@@ -143,5 +143,9 @@ function insertSummary(summaryContainer) {
     parentElement = parentElement.parentElement;
   }
 
+  // if not found, insert after the first h1 and output in console
+  firstH1.insertAdjacentElement('afterend', summaryContainer);
+
+  
   console.warn('No suitable <p> element found after the first <h1>');
 }
