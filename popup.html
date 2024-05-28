@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Summary Fetcher</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>AI Summary Fetcher</h1>
+  <div id="mainScreen">
+    <textarea id="additionalQuestions" placeholder="Enter additional questions about the article (optional)"></textarea>
+    <button id="fetchSummary">Fetch Summary</button>
+    <button id="openSettings">Settings</button>
+  </div>
+  <div id="settingsScreen" style="display: none;">
+    <h2>Settings</h2>
+    <form id="settingsForm">
+      <label for="apiKey">OpenAI API Key:</label>
+      <input type="text" id="apiKey" name="apiKey">
+      <label for="prompt">Base Prompt:</label>
+      <textarea id="prompt" name="prompt"></textarea>
+      <button type="submit">Save</button>
+    </form>
+    <button id="backToMain">Back</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

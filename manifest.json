@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "AI Summary Extension",
+  "version": "1.0",
+  "description": "AI Summary Extension helps you quickly fetch and insert AI-generated summaries of web content. This extension can be easily combined with Reabble's Send To Kindle extension to provide both a concise summary and the full article, making it perfect for on-the-go reading within seconds.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
