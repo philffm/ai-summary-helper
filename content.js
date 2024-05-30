@@ -103,61 +103,59 @@ function getAllTextContent() {
   return content.trim();
 }
 
-function insertSummary(summaryContainer) {
-  console.log('Inserting summary'); // Log function call
-  // find h1, if not found, insert after the first h2
-  const firstHeadline = document.querySelector('h1');
-  if (!firstHeadline) {
-    console.warn('No <h1> element found on the page');
-    return;
-  }
-  // if the first head is not found, insert after the first h2
-  if (!firstHeadline) {
-    const firstHeadline = document.querySelector('h2');
-    if (!firstHeadline) {
-      console.warn('No <h2> element found on the page');
-      return;
+
+  // function to find all paragraphs or divs with text content, then return the first one with more than 100 characters
+
+  function findBestParagraph(element) {
+    console.log('Checking element:', element);
+  
+    // Helper function to scan an element's children recursively
+    function scanChildren(element) {
+      for (let i = 0; i < element.children.length; i++) {
+        const child = element.children[i];
+        if (child.tagName === 'P' || child.tagName === 'SPAN' || child.tagName === 'DIV') {
+          console.log('Checking child:', child);
+          if (child.textContent.length > 200) {
+            console.log('Best paragraph found:', child);
+            return child;
+          }
+          const found = scanChildren(child);
+          if (found) {
+            return found;
+          }
+        }
+      }
+      return null;
     }
-  }
-
-
-
-  function findAndInsertAfterFirstLongParagraph(element) {
-    if (element.tagName.toLowerCase() === 'p' && element.textContent.length > 100) {
-      element.insertAdjacentElement('afterend', summaryContainer);
-      console.log('Summary inserted'); // Log insertion
-      return true;
-    }
-
-    for (let child of element.children) {
-      if (findAndInsertAfterFirstLongParagraph(child)) {
-        return true;
+  
+    // Prioritize scanning within an <article> tag
+    const articles = element.getElementsByTagName('article');
+    for (let article of articles) {
+      const found = scanChildren(article);
+      if (found) {
+        return found;
       }
     }
-
-    return false;
-  }
-
-  let currentElement = firstHeadline.nextElementSibling;
-  while (currentElement) {
-    if (findAndInsertAfterFirstLongParagraph(currentElement)) {
-      return;
-    }
-    currentElement = currentElement.nextElementSibling;
-  }
-
-  // If not found in the siblings, search recursively up and down the DOM tree
-  let parentElement = firstHeadline.parentElement;
-  while (parentElement) {
-    if (findAndInsertAfterFirstLongParagraph(parentElement)) {
-      return;
-    }
-    parentElement = parentElement.parentElement;
-  }
-
-  // if not found, insert after the first h1 and output in console
-  firstHeadline.insertAdjacentElement('afterend', summaryContainer);
-
   
-  console.warn('No suitable <p> element found after the first <h1>');
-}
+    // If no suitable paragraph found within <article> tags, scan all children
+    return scanChildren(element);
+  }
+  
+  function insertSummary(summaryContainer) {
+    console.log('Inserting summary'); // Log function call
+    let firstHeadline = document.querySelector('h1') || document.querySelector('h2');
+    if (!firstHeadline) {
+      console.warn('No <h1> or <h2> element found on the page');
+      return;
+    }
+  
+    const bestParagraph = findBestParagraph(firstHeadline.parentElement);
+    if (bestParagraph) {
+      bestParagraph.insertAdjacentElement('afterend', summaryContainer);
+      console.log('Summary inserted after best paragraph');
+    } else {
+      // If no suitable paragraph is found, insert directly after the first headline
+      firstHeadline.insertAdjacentElement('afterend', summaryContainer);
+      console.warn('No suitable <p>, <span>, or <div> element found, inserted summary after the first headline');
+    }
+  }
