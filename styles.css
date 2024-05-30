@@ -69,6 +69,25 @@ button:hover {
   background-color: #5a5a5a;
 }
 
-.fill-available {
+.fillAvailable {
   width: 100%;
 }
+
+
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-left-color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }

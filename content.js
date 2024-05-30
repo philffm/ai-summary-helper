@@ -77,6 +77,8 @@ async function fetchSummary(additionalQuestions) {
       summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
 
       insertSummary(summaryContainer);
+      resolve({ success: true, message: 'Summary inserted successfully' });
+
     } catch (error) {
       console.error('❌ Error fetching summary:', error);
       alert('Error fetching summary. Check the console for details.');
@@ -104,58 +106,47 @@ function getAllTextContent() {
 }
 
 
-  // function to find all paragraphs or divs with text content, then return the first one with more than 100 characters
+function findBestParagraph(element) {
 
-  function findBestParagraph(element) {
-    console.log('Checking element:', element);
-  
-    // Helper function to scan an element's children recursively
-    function scanChildren(element) {
-      for (let i = 0; i < element.children.length; i++) {
-        const child = element.children[i];
-        if (child.tagName === 'P' || child.tagName === 'SPAN' || child.tagName === 'DIV') {
-          console.log('Checking child:', child);
-          if (child.textContent.length > 200) {
-            console.log('Best paragraph found:', child);
-            return child;
-          }
-          const found = scanChildren(child);
-          if (found) {
-            return found;
-          }
-        }
-      }
-      return null;
+  const textContent = element.querySelectorAll('p, h1, h2, h3');
+  let bestParagraph = null;
+  let minParagraphLength = 50;
+
+  textContent.forEach(paragraph => {
+    const length = paragraph.textContent.length;
+    if (length > minParagraphLength) {
+      bestParagraph = paragraph;
+      minParagraphLength = length;
     }
-  
-    // Prioritize scanning within an <article> tag
-    const articles = element.getElementsByTagName('article');
-    for (let article of articles) {
-      const found = scanChildren(article);
-      if (found) {
-        return found;
-      }
-    }
-  
-    // If no suitable paragraph found within <article> tags, scan all children
-    return scanChildren(element);
-  }
-  
-  function insertSummary(summaryContainer) {
-    console.log('Inserting summary'); // Log function call
-    let firstHeadline = document.querySelector('h1') || document.querySelector('h2');
-    if (!firstHeadline) {
-      console.warn('No <h1> or <h2> element found on the page');
-      return;
-    }
-  
-    const bestParagraph = findBestParagraph(firstHeadline.parentElement);
-    if (bestParagraph) {
-      bestParagraph.insertAdjacentElement('afterend', summaryContainer);
-      console.log('Summary inserted after best paragraph');
+  });
+
+  return bestParagraph;
+
+}
+
+function insertSummary(summaryContainer) {
+  console.log('Inserting summary'); // Log function call
+  const bestParagraph = findBestParagraph(document.body);
+
+  if (bestParagraph) {
+    // Find the shared parent node and insert the summary as the first child of this node
+    const parentNode = bestParagraph.parentNode;
+    console.log
+    if (parentNode.firstChild) {
+      parentNode.insertBefore(summaryContainer, parentNode.firstChild);
+      console.log('Summary inserted at the beginning of the parent node');
     } else {
-      // If no suitable paragraph is found, insert directly after the first headline
+      parentNode.appendChild(summaryContainer);
+      console.log('Summary inserted as the only child of the parent node');
+    }
+  } else {
+    // If no suitable paragraph is found, fallback to inserting after the first headline
+    let firstHeadline = document.querySelector('h1') || document.querySelector('h2');
+    if (firstHeadlyine) {
       firstHeadline.insertAdjacentElement('afterend', summaryContainer);
-      console.warn('No suitable <p>, <span>, or <div> element found, inserted summary after the first headline');
+      console.warn('Inserted summary after the first headline due to no suitable text-heavy elements found');
+    } else {
+      console.error('No insertion point found on the page.');
     }
   }
+}

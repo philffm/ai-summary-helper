@@ -1,4 +1,3 @@
-// popup.js is the JavaScript file that runs in the popup window of the extension.
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Popup DOMContentLoaded'); // Log event
 
@@ -10,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleScreenButton = document.getElementById('toggleScreen');
   const mainScreen = document.getElementById('mainScreen');
   const settingsScreen = document.getElementById('settingsScreen');
+  const spinner = document.getElementById('spinner');
 
   // Load saved settings
   chrome.storage.sync.get(['apiKey', 'prompt'], (data) => {
@@ -30,13 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // change button text to 'Saved! 🎉' for 3 seconds
     const originalText = event.submitter.textContent;
     const originalBackgroundColor = event.submitter.style.backgroundColor;
-    event.submitter.textContent = 'Saved! 🎉'
-    // background color to green 
+    event.submitter.textContent = 'Saved! 🎉';
+    // background color to green
     event.submitter.style.backgroundColor = 'green';
     setTimeout(() => {
       event.submitter.textContent = originalText;
       event.submitter.style.backgroundColor = originalBackgroundColor;
-    } , 3000);  
+    }, 3000);
   });
 
   // Toggle between main and settings screen
@@ -56,9 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchSummaryButton.addEventListener('click', () => {
     console.log('Fetch summary button clicked'); // Log event
     const additionalQuestions = additionalQuestionsInput.value.trim();
+
+    // Show spinner
+    spinner.style.display = 'inline-block';
+
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       console.log('Sending message to content script'); // Log message sending
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions });
+      fetchSummaryButton.textContent = 'Fetching...';
+      fetchSummaryButton.backgroundColor = 'green';
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions }, (response) => {
+        console.log('Response from content script:', response);
+        // fetchSummaryButton.textContent = 'Content inserted 🎉';
+        // fetchSummaryButton.backgroundColor = originalBackgroundColor;
+
+        // // wait 3 seconds before changing button text back to 'Fetch Summary'
+        // setTimeout(() => {
+        //   fetchSummaryButton.textContent = 'Fetch Summary';
+
+        // }, 3000);
+
+        // Hide spinner
+        spinner.style.display = 'none';
+      });
     });
   });
 });
