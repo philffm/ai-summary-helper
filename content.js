@@ -105,11 +105,22 @@ function getAllTextContent() {
 
 function insertSummary(summaryContainer) {
   console.log('Inserting summary'); // Log function call
-  const firstH1 = document.querySelector('h1');
-  if (!firstH1) {
+  // find h1, if not found, insert after the first h2
+  const firstHeadline = document.querySelector('h1');
+  if (!firstHeadline) {
     console.warn('No <h1> element found on the page');
     return;
   }
+  // if the first head is not found, insert after the first h2
+  if (!firstHeadline) {
+    const firstHeadline = document.querySelector('h2');
+    if (!firstHeadline) {
+      console.warn('No <h2> element found on the page');
+      return;
+    }
+  }
+
+
 
   function findAndInsertAfterFirstLongParagraph(element) {
     if (element.tagName.toLowerCase() === 'p' && element.textContent.length > 100) {
@@ -127,7 +138,7 @@ function insertSummary(summaryContainer) {
     return false;
   }
 
-  let currentElement = firstH1.nextElementSibling;
+  let currentElement = firstHeadline.nextElementSibling;
   while (currentElement) {
     if (findAndInsertAfterFirstLongParagraph(currentElement)) {
       return;
@@ -136,7 +147,7 @@ function insertSummary(summaryContainer) {
   }
 
   // If not found in the siblings, search recursively up and down the DOM tree
-  let parentElement = firstH1.parentElement;
+  let parentElement = firstHeadline.parentElement;
   while (parentElement) {
     if (findAndInsertAfterFirstLongParagraph(parentElement)) {
       return;
@@ -145,7 +156,7 @@ function insertSummary(summaryContainer) {
   }
 
   // if not found, insert after the first h1 and output in console
-  firstH1.insertAdjacentElement('afterend', summaryContainer);
+  firstHeadline.insertAdjacentElement('afterend', summaryContainer);
 
   
   console.warn('No suitable <p> element found after the first <h1>');

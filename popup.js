@@ -26,7 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
       apiKey: apiKeyInput.value,
       prompt: promptInput.value
     });
-    alert('Settings saved');
+    // alert('Settings saved');
+    // change button text to 'Saved! 🎉' for 3 seconds
+    const originalText = event.submitter.textContent;
+    const originalBackgroundColor = event.submitter.style.backgroundColor;
+    event.submitter.textContent = 'Saved! 🎉'
+    // background color to green 
+    event.submitter.style.backgroundColor = 'green';
+    setTimeout(() => {
+      event.submitter.textContent = originalText;
+      event.submitter.style.backgroundColor = originalBackgroundColor;
+    } , 3000);  
   });
 
   // Toggle between main and settings screen
