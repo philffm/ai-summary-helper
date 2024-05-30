@@ -1,3 +1,4 @@
+// content.js is the script that runs in the context of the current tab's webpage. It is responsible for fetching the content of the page, sending it to the OpenAI API, and inserting the generated summary back into the page.
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request); // Log received message
   if (request.action === 'fetchSummary') {

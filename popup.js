@@ -1,3 +1,4 @@
+// popup.js is the JavaScript file that runs in the popup window of the extension.
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Popup DOMContentLoaded'); // Log event
 
@@ -6,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fetchSummaryButton = document.getElementById('fetchSummary');
   const additionalQuestionsInput = document.getElementById('additionalQuestions');
   const settingsForm = document.getElementById('settingsForm');
-  const openSettingsButton = document.getElementById('openSettings');
-  const backToMainButton = document.getElementById('backToMain');
+  const toggleScreenButton = document.getElementById('toggleScreen');
   const mainScreen = document.getElementById('mainScreen');
   const settingsScreen = document.getElementById('settingsScreen');
 
@@ -29,16 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Settings saved');
   });
 
-  // Open settings screen
-  openSettingsButton.addEventListener('click', () => {
-    mainScreen.style.display = 'none';
-    settingsScreen.style.display = 'block';
-  });
-
-  // Back to main screen
-  backToMainButton.addEventListener('click', () => {
-    settingsScreen.style.display = 'none';
-    mainScreen.style.display = 'block';
+  // Toggle between main and settings screen
+  toggleScreenButton.addEventListener('click', () => {
+    if (mainScreen.style.display === 'none') {
+      mainScreen.style.display = 'block';
+      settingsScreen.style.display = 'none';
+      toggleScreenButton.textContent = 'Settings';
+    } else {
+      mainScreen.style.display = 'none';
+      settingsScreen.style.display = 'block';
+      toggleScreenButton.textContent = 'Back';
+    }
   });
 
   // Fetch summary

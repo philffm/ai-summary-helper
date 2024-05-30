@@ -1,15 +1,17 @@
+<!-- index.html is the main file that will be loaded when the extension is clicked. It contains the main UI of the extension. -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Summary Fetcher</title>
+  <meta charset="utf-8">
+  <title>AI Summary Helper</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>AI Summary Fetcher</h1>
+  <h1>AI Summary Helper</h1>
+  <button id="toggleScreen" class="settingsButton">Settings</button>
   <div id="mainScreen">
     <textarea id="additionalQuestions" placeholder="Enter additional questions about the article (optional)"></textarea>
-    <button id="fetchSummary">Fetch Summary</button>
-    <button id="openSettings">Settings</button>
+    <button id="fetchSummary" class="fill-available">🪄 Fetch Summary</button>
   </div>
   <div id="settingsScreen" style="display: none;">
     <h2>Settings</h2>
@@ -18,9 +20,8 @@
       <input type="text" id="apiKey" name="apiKey">
       <label for="prompt">Base Prompt:</label>
       <textarea id="prompt" name="prompt"></textarea>
-      <button type="submit">Save</button>
+      <button type="submit" class="fill-available">Save</button>
     </form>
-    <button id="backToMain">Back</button>
   </div>
   <script src="popup.js"></script>
 </body>

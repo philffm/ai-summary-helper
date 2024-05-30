@@ -5,7 +5,6 @@
   "description": "Fetch and insert AI-generated summaries of web content. Combine with Send To Kindle for quick summaries and full articles.",
   "permissions": [
     "activeTab",
-    "scripting",
     "storage"
   ],
   "background": {
