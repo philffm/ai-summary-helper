@@ -2,7 +2,12 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request); // Log received message
   if (request.action === 'fetchSummary') {
-    fetchSummary(request.additionalQuestions);
+    fetchSummary(request.additionalQuestions).then((result) => {
+      sendResponse(result);
+    }).catch((error) => {
+      sendResponse({ success: false, message: error.message });
+    });
+    return true; // Required to indicate sendResponse will be called asynchronously
   }
 });
 
@@ -13,76 +18,78 @@ async function fetchSummary(additionalQuestions) {
 
   const MAX_TOKENS = 4000; // Set a safer limit for content to prevent exceeding model's context length
 
-  chrome.storage.sync.get(['apiKey', 'prompt'], async (data) => {
-    console.log('Retrieved storage data:', data); // Log storage retrieval
-    const apiKey = data.apiKey;
-    let prompt = data.prompt && data.prompt.length > 1 
-      ? data.prompt 
-      : `
-      <h3> section: Article summary section with creative title where you explain it like I'm five what's the deal with the article.
-      <h3> section: More extensive summary with a bit more detail (4-5 sentences).
-      <h3> section: Make a fun reference to the topic related to my competence as a UX designer.
-      <h3> section: make fun about the topic like a standup comedian.
-      <h3> section: related book and media recommendations.
-      <h3> section: if additional questions are provided, answer them in a serious and engaging way.
-      Add emojis, add hashtags, use html, highlight interesting parts, word limit: max 1000 - as much as you think is appropriate`;
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(['apiKey', 'prompt'], async (data) => {
+      console.log('Retrieved storage data:', data); // Log storage retrieval
+      const apiKey = data.apiKey;
+      let prompt = data.prompt && data.prompt.length > 1 
+        ? data.prompt 
+        : `
+        <h3> section: Article summary section with creative title where you explain it like I'm five what's the deal with the article.
+        <h3> section: More extensive summary with a bit more detail (4-5 sentences).
+        <h3> section: Make a fun reference to the topic related to my competence as a UX designer.
+        <h3> section: make fun about the topic like a standup comedian.
+        <h3> section: related book and media recommendations.
+        <h3> section: if additional questions are provided, answer them in a serious and engaging way.
+        Add emojis, add hashtags, use html, highlight interesting parts, word limit: max 1000 - as much as you think is appropriate`;
 
-    if (additionalQuestions) {
-      prompt += `\n\nAdditional questions: ${additionalQuestions} - Please answer in a serious and engaging way.`;
-      console.debug('Prompt with additional questions', prompt);
-    }
-
-    // truncate content to max tokens
-    const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
-
-
-    if (!apiKey) {
-      alert('Please set your OpenAI API key in the extension popup.');
-      return;
-    }
-
-    try {
-      console.log('🕵️ Fetching summary from OpenAI...');
-      const requestBody = JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: 'Summarize in valid html format with sections:' + prompt },
-          { role: 'user', content: truncatedContent },
-
-        ]
-      });
-      console.debug('📦 Request payload:', requestBody);
-
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: requestBody
-      });
-
-      if (!response.ok) {
-        const errorResponse = await response.text();
-        throw new Error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
+      if (additionalQuestions) {
+        prompt += `\n\nAdditional questions: ${additionalQuestions} - Please answer in a serious and engaging way.`;
+        console.debug('Prompt with additional questions', prompt);
       }
 
-      const result = await response.json();
-      console.debug('🚀 OpenAI response:', result);
+      // truncate content to max tokens
+      const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
 
-      const summary = result.choices[0].message.content;
+      if (!apiKey) {
+        alert('Please set your OpenAI API key in the extension popup.');
+        reject(new Error('API key not set'));
+        return;
+      }
 
-      const summaryContainer = document.createElement('blockquote');
-      summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
+      try {
+        console.log('🕵️ Fetching summary from OpenAI...');
+        const requestBody = JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            { role: 'system', content: 'You are a helpful assistant.' },
+            { role: 'user', content: 'Summarize in valid html format with sections:' + prompt },
+            { role: 'user', content: truncatedContent },
+          ]
+        });
+        console.debug('📦 Request payload:', requestBody);
 
-      insertSummary(summaryContainer);
-      resolve({ success: true, message: 'Summary inserted successfully' });
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          },
+          body: requestBody
+        });
 
-    } catch (error) {
-      console.error('❌ Error fetching summary:', error);
-      alert('Error fetching summary. Check the console for details.');
-    }
+        if (!response.ok) {
+          const errorResponse = await response.text();
+          throw new Error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
+        }
+
+        const result = await response.json();
+        console.debug('🚀 OpenAI response:', result);
+
+        const summary = result.choices[0].message.content;
+
+        const summaryContainer = document.createElement('blockquote');
+        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
+
+        insertSummary(summaryContainer);
+        resolve({ success: true, message: 'Summary inserted successfully' });
+
+      } catch (error) {
+        console.error('❌ Error fetching summary:', error);
+        alert('Error fetching summary. Check the console for details.');
+        reject(error);
+      }
+    });
   });
 }
 
@@ -105,9 +112,7 @@ function getAllTextContent() {
   return content.trim();
 }
 
-
 function findBestParagraph(element) {
-
   const textContent = element.querySelectorAll('p, h1, h2, h3');
   let bestParagraph = null;
   let minParagraphLength = 50;
@@ -121,7 +126,6 @@ function findBestParagraph(element) {
   });
 
   return bestParagraph;
-
 }
 
 function insertSummary(summaryContainer) {
@@ -131,7 +135,6 @@ function insertSummary(summaryContainer) {
   if (bestParagraph) {
     // Find the shared parent node and insert the summary as the first child of this node
     const parentNode = bestParagraph.parentNode;
-    console.log
     if (parentNode.firstChild) {
       parentNode.insertBefore(summaryContainer, parentNode.firstChild);
       console.log('Summary inserted at the beginning of the parent node');
@@ -142,7 +145,7 @@ function insertSummary(summaryContainer) {
   } else {
     // If no suitable paragraph is found, fallback to inserting after the first headline
     let firstHeadline = document.querySelector('h1') || document.querySelector('h2');
-    if (firstHeadlyine) {
+    if (firstHeadline) {
       firstHeadline.insertAdjacentElement('afterend', summaryContainer);
       console.warn('Inserted summary after the first headline due to no suitable text-heavy elements found');
     } else {
