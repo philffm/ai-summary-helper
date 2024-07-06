@@ -4,68 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bookmarklet Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      max-width: 500px;
-      width: 100%;
-    }
-    h1 {
-      color: #007bff;
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      color: #007bff;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-    textarea {
-      height: 100px;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .output {
-      margin-top: 20px;
-      word-wrap: break-word;
-      background: #e9ecef;
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
@@ -86,54 +25,6 @@ Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
     <div class="output" id="output"></div>
   </div>
 
-  <script>
-    function generateBookmarklet() {
-      const apiKey = document.getElementById('apiKey').value.trim();
-      const prompt = document.getElementById('prompt').value.trim();
-
-      if (!apiKey || !prompt) {
-        alert('Please provide both the API key and the prompt.');
-        return;
-      }
-
-      const bookmarkletCode = `
-        javascript:(function() {
-          const apiKey = '${apiKey}';
-          const prompt = \`${prompt}\`;
-          const content = document.body.innerText;
-          fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + apiKey
-            },
-            body: JSON.stringify({
-              model: 'gpt-3.5-turbo',
-              messages: [
-                { role: 'system', content: 'You are a helpful assistant.' },
-                { role: 'user', content: 'Summarize in valid HTML format with sections:' + prompt },
-                { role: 'user', content: content }
-              ]
-            })
-          })
-          .then(response => response.json())
-          .then(result => {
-            const summary = result.choices[0].message.content;
-            const summaryContainer = document.createElement('blockquote');
-            summaryContainer.innerHTML = '<div><h2>AI Summary 🧙</h2>' + summary.replace(/\\n\\n/g, '<br>') + '</div>';
-            document.body.prepend(summaryContainer);
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('Error fetching summary. Check the console for details.');
-          });
-        })();
-      `;
-
-      const encodedBookmarklet = 'javascript:' + encodeURIComponent(bookmarkletCode);
-      const outputDiv = document.getElementById('output');
-      outputDiv.innerHTML = `<p>Drag the link below to your bookmarks bar:</p><a href="${encodedBookmarklet}">AI Summary Bookmarklet</a>`;
-    }
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
