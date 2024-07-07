@@ -85,28 +85,21 @@ button:hover {
   body {
     align-items: flex-start;
     height: auto;
-    padding: 20px;
+    /* padding: 20px; */
     
   }
   .container {
     margin-top: 0;
-    padding: 16px;
-    border-radius: 8px;
     box-shadow: 0;
   }
   input, textarea {
-    padding: 12px;
-    border-radius: 8px;
     font-size: 14px;
   }
   button {
-    padding: 8px;
     font-size: 16px;
-    border-radius: 8px;
   }
   .output {
     padding: 10px;
-    border-radius: 8px;
   }
   .output a {
     padding: 8px;
