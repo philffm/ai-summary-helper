@@ -1,4 +1,4 @@
-# AI Summary Helper ![Icon](chrome-extension/icons/icon48.png) 
+# ![Icon](chrome-extension/icons/icon48.png) AI Summary Helper 
 
 I often stumble over articles online I might want to read later. I used to open articles "for later" up until a point when I had 100 tabs open and eventually lost track of them all. 
 
