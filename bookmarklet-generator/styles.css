@@ -63,7 +63,7 @@ button:hover {
   margin-top: 20px;
   word-wrap: break-word;
   text-align: center;
-  background: #e9ecef;
+  background: #0057b30f;
   padding: 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
@@ -71,7 +71,7 @@ button:hover {
 .output a {
   padding: 12px;
   border-radius: 8px;
-  border-color: dimgrey;
+  border-color: rgba(105, 105, 105, 0.289);
   border-style: dotted;
 }
 #header {
@@ -86,12 +86,13 @@ button:hover {
     align-items: flex-start;
     height: auto;
     padding: 20px;
+    
   }
   .container {
     margin-top: 0;
     padding: 16px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0;
   }
   input, textarea {
     padding: 12px;
