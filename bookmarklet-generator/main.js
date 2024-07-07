@@ -116,6 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
     const encodedBookmarklet = 'javascript:' + encodeURIComponent(bookmarkletCode);
     const outputDiv = document.getElementById('output');
-    outputDiv.innerHTML = `<p>Drag the link below to your bookmarks bar:</p><a href="${encodedBookmarklet}">AI Summary Bookmarklet</a>`;
+    outputDiv.innerHTML = `<p>Drag the link below to your bookmarks bar:</p><a href="${encodedBookmarklet}">AI Summary 🪄</a>`;
   }
   
