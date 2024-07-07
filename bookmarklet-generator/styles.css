@@ -24,7 +24,7 @@ body {
 }
 
 h1 {
-  color: #bb86fc;
+  color: #007bff;
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
@@ -33,7 +33,7 @@ h1 {
 label {
   display: block;
   margin: 15px 0 5px;
-  color: #bb86fc;
+  color: #007bff;
   font-weight: bold;
 }
 
@@ -61,8 +61,8 @@ textarea {
 button {
   width: 100%;
   padding: 12px;
-  background-color: #bb86fc;
-  color: #121212;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 6px;
   font-size: 18px;
@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-  background-color: #9c6efb;
+  background-color: #0056b3;
 }
 
 .output {
