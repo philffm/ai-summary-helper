@@ -6,12 +6,12 @@ I often stumble over articles online I might want to read later. Before I used t
 
 With the summary helper I created a tool that allows to summarize articles with a custom prompt - so it can be as tailored to your language and profession or interested as you define it. The summary gets inserted in the content area itself. This was important to me since that way I can easily forward the artice including the generated summary to my Kindle device using Reabbles Send-to-Kindle tool. 
 
->On the go I am way more likely to engage with the content I intentionally selected earlier. 
- 
 >[Create your Bookmarklet](/ai-summary-helper/bookmarklet-generator)
 - Browser & OS-agnostic, even works on iOS 
 
 [Download Chrome Browser Plugin (outdated)](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
+
+>On the go I am way more likely to engage with the content I intentionally selected earlier. 
 
 ## Overview
 
