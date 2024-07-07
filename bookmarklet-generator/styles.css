@@ -11,8 +11,8 @@ body {
   }
   .container {
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 24px;
     max-width: 500px;
     width: 100%;
@@ -20,6 +20,7 @@ body {
   h1 {
     color: #007bff;
     text-align: center;
+    margin: 16px 0;
   }
   label {
     display: block;
@@ -34,10 +35,10 @@ body {
   input, textarea {
     /* width: 100%; */
     width: -webkit-fill-available;
-    padding: 10px;
+    padding: 16px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 16px;
     font-size: 16px;
   }
   textarea {
@@ -49,7 +50,7 @@ body {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     font-size: 18px;
     cursor: pointer;
   }
@@ -59,10 +60,22 @@ body {
   .output {
     margin-top: 20px;
     word-wrap: break-word;
+    text-align: center;
     background: #e9ecef;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 16px;
+    border-radius: 12px;
     border: 1px solid #ccc;
   }
-  
-  
+  .output a {
+    background-color: #f0f0f0;
+    padding: 12px;
+    border-radius: 8px;
+    border-color: dimgrey;
+    border-style: dotted;
+  }
+
+  #header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }

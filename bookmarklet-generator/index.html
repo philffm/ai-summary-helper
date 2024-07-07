@@ -8,7 +8,8 @@
 </head>
 <body>
   <div class="container">
-    <h1>AI Summary Helper</h1>
+   
+    <div id="header"><img src="icon48.png"><h1>AI Summary Helper</h1></div>
     <!-- <h2>Bookmarklet Generator</h2> -->
     <label for="apiKey">API Key <a href="https://platform.openai.com/api-keys" target="_blank"> (get your API key)</a></label>
     <input type="text" id="apiKey" placeholder="Enter your OpenAI API Key">
@@ -22,7 +23,7 @@
         <h3> Answer additional questions in a serious and engaging way.
         Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
     </textarea>
-    <label class="light" for="apiKey">🔒 The API key is stored locally and does not leave your device. Do not share the bookmarklet with others, since it contains the API key.</label>
+    <label class="light" for="apiKey">🔒 The API key is stored locally in your browser. Do not share the bookmarklet with others, since it contains the API key.</label>
     <button onclick="generateBookmarklet()">Generate Bookmarklet</button>
     <div class="output" id="output"></div>
   </div>
