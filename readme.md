@@ -1,6 +1,8 @@
 # AI Summary Helper
 ![Icon](chrome-extension/icons/icon128.png)
 
+>[Create your Bookmarklet](/bookmarklet-generator/)
+
 I often stumble over articles online I might want to read later. Before I used to open the tab "for later" up until a point when I had 100 tabs open and eventually lost track of them all at a certain point. 
 
 With the summary helper I created a tool that allows to summarize articles with a custom prompt - so it can be as tailored to your language and profession or interested as you define it. The summary gets inserted in the content area itself. This was important to me since that way I can easily forward the artice including the generated summary to my Kindle device using Reabbles Send-to-Kindle tool. 
