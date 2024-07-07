@@ -58,16 +58,18 @@ body {
     background-color: #0056b3;
   }
   .output {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     word-wrap: break-word;
     text-align: center;
     background: #e9ecef;
-    padding: 16px;
+    padding: 12px;
     border-radius: 12px;
     border: 1px solid #ccc;
   }
   .output a {
-    background-color: #f0f0f0;
+    /* background-color: #f6f6f6; */
     padding: 12px;
     border-radius: 8px;
     border-color: dimgrey;
