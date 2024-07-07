@@ -1,8 +1,9 @@
-![Icon](chrome-extension/icons/icon48.png) # AI Summary Helper
+![Icon](chrome-extension/icons/icon48.png) 
+# AI Summary Helper
 
 I often stumble over articles online I might want to read later. I used to open articles "for later" up until a point when I had 100 tabs open and eventually lost track of them all. 
 
->[Create your Bookmarklet](/ai-summary-helper/bookmarklet-generator)
+[Create your Bookmarklet](/ai-summary-helper/bookmarklet-generator) 
 - Browser & OS-agnostic, even works on iOS 
 
 [Download Chrome Browser Plugin (outdated)](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
