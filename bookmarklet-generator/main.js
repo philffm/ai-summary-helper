@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({
               model: 'gpt-3.5-turbo',
               messages: [
-                { role: 'system', content: 'You are a helpful assistant.' },
+                { role: 'system', content: 'You summarize content from websites in a tailored and meaningful manner.' },
                 { role: 'user', content: 'Summarize in valid HTML format with sections:' + prompt },
                 { role: 'user', content: content }
               ]
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const summaryContainer = document.createElement('blockquote');
             summaryContainer.innerHTML = '<div><h2>AI Summary 🧙</h2>' + summary.replace(/\\n\\n/g, '<br>') + '</div>';
   
-            targetElement.insertAdjacentElement('afterend', summaryContainer);
+            targetElement.insertAdjacentElement('beforebegin', summaryContainer);
             messageDiv.remove();
           })
           .catch(error => {
