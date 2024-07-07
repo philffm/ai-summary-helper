@@ -26,40 +26,91 @@ document.addEventListener('DOMContentLoaded', () => {
         const apiKey = '${apiKey}';
         const prompt = \`${prompt}\`;
         const content = document.body.innerText;
-        fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + apiKey
-          },
-          body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: [
-              { role: 'system', content: 'You are a helpful assistant.' },
-              { role: 'user', content: 'Summarize in valid HTML format with sections:' + prompt },
-              { role: 'user', content: content }
-            ]
-          })
-        })
-        .then(response => response.json())
-        .then(result => {
-          const summary = result.choices[0].message.content;
-          const summaryContainer = document.createElement('blockquote');
-          summaryContainer.innerHTML = '<div><h2>AI Summary 🧙</h2>' + summary.replace(/\\n\\n/g, '<br>') + '</div>';
-          
-          // Find the main content block and the last <h1> element
-          const mainContentBlock = document.querySelector('main') || document.body;
-          const lastH1 = mainContentBlock.querySelectorAll('h1');
-          if (lastH1.length > 0) {
-            lastH1[lastH1.length - 1].insertAdjacentElement('afterend', summaryContainer);
-          } else {
-            mainContentBlock.prepend(summaryContainer);
+  
+        // Inject styles
+        const style = document.createElement('style');
+        style.innerHTML = \`
+          #ai-summary-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            z-index: 10000;
+            font-size: 18px;
+            font-weight: bold;
+            animation: pulsate 1s infinite;
           }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Error fetching summary. Check the console for details.');
-        });
+          @keyframes pulsate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+          }
+          .hover-effect {
+            outline: 2px dashed #007bff;
+          }
+        \`;
+        document.head.appendChild(style);
+  
+        const messageDiv = document.createElement('div');
+        messageDiv.id = 'ai-summary-message';
+        messageDiv.textContent = 'Click on the element where you want to insert the summary.';
+        document.body.prepend(messageDiv);
+  
+        document.body.style.cursor = 'crosshair';
+  
+        function hoverHandler(event) {
+          event.target.classList.toggle('hover-effect');
+        }
+  
+        document.addEventListener('mouseover', hoverHandler);
+        document.addEventListener('mouseout', hoverHandler);
+  
+        document.addEventListener('click', function handler(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          document.body.style.cursor = 'default';
+          const targetElement = event.target;
+  
+          document.removeEventListener('click', handler);
+          document.removeEventListener('mouseover', hoverHandler);
+          document.removeEventListener('mouseout', hoverHandler);
+  
+          messageDiv.textContent = 'Retrieving summary...';
+  
+          fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + apiKey
+            },
+            body: JSON.stringify({
+              model: 'gpt-3.5-turbo',
+              messages: [
+                { role: 'system', content: 'You are a helpful assistant.' },
+                { role: 'user', content: 'Summarize in valid HTML format with sections:' + prompt },
+                { role: 'user', content: content }
+              ]
+            })
+          })
+          .then(response => response.json())
+          .then(result => {
+            const summary = result.choices[0].message.content;
+            const summaryContainer = document.createElement('blockquote');
+            summaryContainer.innerHTML = '<div><h2>AI Summary 🧙</h2>' + summary.replace(/\\n\\n/g, '<br>') + '</div>';
+  
+            targetElement.insertAdjacentElement('afterend', summaryContainer);
+            messageDiv.remove();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Error fetching summary. Check the console for details.');
+            messageDiv.remove();
+          });
+        }, { once: true });
       })();
     `;
   
