@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
         const messageDiv = document.createElement('div');
         messageDiv.id = 'ai-summary-message';
-        messageDiv.textContent = 'Click on the element where you want to insert the summary.';
+        messageDiv.textContent = 'Click on the element where you want to insert the summary before.';
         document.body.prepend(messageDiv);
   
         document.body.style.cursor = 'crosshair';
