@@ -1,6 +1,6 @@
 # ![Icon](chrome-extension/icons/icon48.png) AI Summary Helper 
 
-I often stumble over articles online I might want to read later. I used to open articles "for later" up until a point when I had 100 tabs open and eventually lost track of them all. 
+I often stumble over articles online I might want to read later. This often resulted in 100 tabs open and eventually me losing track of them all. 
 
 >On the go I am way more likely to engage with the content I intentionally selected earlier. 
 
