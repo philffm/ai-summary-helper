@@ -1,31 +1,34 @@
-<!-- index.html is the main file that will be loaded when the extension is clicked. It contains the main UI of the extension. -->
+<!-- popup.html is the main file that will be loaded when the extension is clicked. It contains the main UI of the extension. -->
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-  <title>AI Summary Helper</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <h1>AI Summary Helper</h1>
-  <button id="toggleScreen" class="settingsButton">Settings</button>
-  <div id="mainScreen">
-    <textarea id="additionalQuestions" placeholder="Enter additional questions about the article (optional)"></textarea>
-    <button id="fetchSummary" class="fillAvailable">
-      🪄 Fetch Summary
-      <span id="spinner" class="spinner" style="display:none;"></span>
-    </button>
-  </div>
-  <div id="settingsScreen" style="display: none;">
-    <h2>Settings</h2>
-    <form id="settingsForm">
-      <label for="apiKey">OpenAI API Key:</label>
-      <input type="text" id="apiKey" name="apiKey">
-      <label for="prompt">Base Prompt:</label>
-      <textarea id="prompt" name="prompt"></textarea>
-      <button type="submit">Save</button>
-    </form>
-  </div>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>AI Summary Helper</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>AI Summary Helper</h1>
+    <button id="toggleScreen" class="settingsButton">Settings</button>
+    <div id="mainScreen">
+      <textarea
+        id="additionalQuestions"
+        placeholder="Enter additional questions about the article (optional)"
+      ></textarea>
+      <button id="fetchSummary" class="fillAvailable">
+        🪄 Fetch Summary
+        <span id="spinner" class="spinner" style="display: none"></span>
+      </button>
+    </div>
+    <div id="settingsScreen" style="display: none">
+      <h2>Settings</h2>
+      <form id="settingsForm">
+        <label for="apiKey">OpenAI API Key:</label>
+        <input type="text" id="apiKey" name="apiKey" />
+        <label for="prompt">Base Prompt:</label>
+        <textarea id="prompt" name="prompt"></textarea>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+    <script src="popup.js"></script>
+  </body>
 </html>

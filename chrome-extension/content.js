@@ -1,26 +1,25 @@
-// content.js is the script that runs in the context of the current tab's webpage. It is responsible for fetching the content of the page, sending it to the OpenAI API, and inserting the generated summary back into the page.
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log('Received message:', request); // Log received message
+  console.log('Received message:', request);
   if (request.action === 'fetchSummary') {
     fetchSummary(request.additionalQuestions).then((result) => {
       sendResponse(result);
     }).catch((error) => {
       sendResponse({ success: false, message: error.message });
     });
-    return true; // Required to indicate sendResponse will be called asynchronously
+    return true;
   }
 });
 
 async function fetchSummary(additionalQuestions) {
-  console.log('Starting fetchSummary'); // Log function call
+  console.log('Starting fetchSummary');
   const content = getAllTextContent();
   console.debug('Fetched content:', content);
 
-  const MAX_TOKENS = 4000; // Set a safer limit for content to prevent exceeding model's context length
+  const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(['apiKey', 'prompt'], async (data) => {
-      console.log('Retrieved storage data:', data); // Log storage retrieval
+      console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
       let prompt = data.prompt && data.prompt.length > 1 
         ? data.prompt 
@@ -38,7 +37,6 @@ async function fetchSummary(additionalQuestions) {
         console.debug('Prompt with additional questions', prompt);
       }
 
-      // truncate content to max tokens
       const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
 
       if (!apiKey) {
@@ -102,54 +100,72 @@ function truncateToTokenLimit(text, maxTokens) {
 }
 
 function getAllTextContent() {
-  console.log('Getting all text content'); // Log function call
+  console.log('Getting all text content');
   const elements = document.querySelectorAll('p, h1, h2, h3');
   let content = '';
   elements.forEach(element => {
     content += element.textContent + '\n\n';
   });
-  console.log('Collected content:', content); // Log collected content
+  console.log('Collected content:', content);
   return content.trim();
 }
 
-function findBestParagraph(element) {
-  const textContent = element.querySelectorAll('p, h1, h2, h3');
-  let bestParagraph = null;
-  let minParagraphLength = 50;
-
-  textContent.forEach(paragraph => {
-    const length = paragraph.textContent.length;
-    if (length > minParagraphLength) {
-      bestParagraph = paragraph;
-      minParagraphLength = length;
-    }
-  });
-
-  return bestParagraph;
-}
-
 function insertSummary(summaryContainer) {
-  console.log('Inserting summary'); // Log function call
-  const bestParagraph = findBestParagraph(document.body);
+  console.log('Inserting summary');
+  
+  const style = document.createElement('style');
+  style.innerHTML = `
+    #ai-summary-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 10000;
+      font-size: 18px;
+      font-weight: bold;
+      animation: pulsate 1s infinite;
+    }
+    @keyframes pulsate {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .hover-effect {
+      outline: 2px dashed #007bff;
+    }
+  `;
+  document.head.appendChild(style);
 
-  if (bestParagraph) {
-    // Find the shared parent node and insert the summary as the first child of this node
-    const parentNode = bestParagraph.parentNode;
-    if (parentNode.firstChild) {
-      parentNode.insertBefore(summaryContainer, parentNode.firstChild);
-      console.log('Summary inserted at the beginning of the parent node');
-    } else {
-      parentNode.appendChild(summaryContainer);
-      console.log('Summary inserted as the only child of the parent node');
-    }
-  } else {
-    // If no suitable paragraph is found, fallback to inserting after the first headline
-    let firstHeadline = document.querySelector('h1') || document.querySelector('h2');
-    if (firstHeadline) {
-      firstHeadline.insertAdjacentElement('afterend', summaryContainer);
-      console.warn('Inserted summary after the first headline due to no suitable text-heavy elements found');
-    } else {
-      console.error('No insertion point found on the page.');
-    }
+  const messageDiv = document.createElement('div');
+  messageDiv.id = 'ai-summary-message';
+  messageDiv.textContent = 'Click on the element where you want to insert the summary before.';
+  document.body.prepend(messageDiv);
+
+  document.body.style.cursor = 'crosshair';
+
+  function hoverHandler(event) {
+    event.target.classList.toggle('hover-effect');
   }
+
+  document.addEventListener('mouseover', hoverHandler);
+  document.addEventListener('mouseout', hoverHandler);
+
+  document.addEventListener('click', function handler(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.body.style.cursor = 'default';
+    const targetElement = event.target;
+
+    document.removeEventListener('click', handler);
+    document.removeEventListener('mouseover', hoverHandler);
+    document.removeEventListener('mouseout', hoverHandler);
+
+    messageDiv.remove();
+    targetElement.insertAdjacentElement('beforebegin', summaryContainer);
+    console.log('Summary inserted before the selected element');
+  }, { once: true });
 }

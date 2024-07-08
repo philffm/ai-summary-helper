@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Popup DOMContentLoaded'); // Log event
+  console.log('Popup DOMContentLoaded');
 
   const apiKeyInput = document.getElementById('apiKey');
   const promptInput = document.getElementById('prompt');
@@ -11,27 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const settingsScreen = document.getElementById('settingsScreen');
   const spinner = document.getElementById('spinner');
 
-  // Load saved settings
   chrome.storage.sync.get(['apiKey', 'prompt'], (data) => {
-    console.log('Loaded settings:', data); // Log loaded settings
+    console.log('Loaded settings:', data);
     if (data.apiKey) apiKeyInput.value = data.apiKey;
     if (data.prompt) promptInput.value = data.prompt;
   });
 
-  // Save settings
   settingsForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log('Settings form submitted'); // Log event
+    console.log('Settings form submitted');
     chrome.storage.sync.set({
       apiKey: apiKeyInput.value,
       prompt: promptInput.value
     });
-    // alert('Settings saved');
-    // change button text to 'Saved! 🎉' for 3 seconds
     const originalText = event.submitter.textContent;
     const originalBackgroundColor = event.submitter.style.backgroundColor;
     event.submitter.textContent = 'Saved! 🎉';
-    // background color to green
     event.submitter.style.backgroundColor = 'green';
     setTimeout(() => {
       event.submitter.textContent = originalText;
@@ -39,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   });
 
-  // Toggle between main and settings screen
   toggleScreenButton.addEventListener('click', () => {
     if (mainScreen.style.display === 'none') {
       mainScreen.style.display = 'block';
@@ -52,30 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Fetch summary
   fetchSummaryButton.addEventListener('click', () => {
-    console.log('Fetch summary button clicked'); // Log event
+    console.log('Fetch summary button clicked');
     const additionalQuestions = additionalQuestionsInput.value.trim();
-
-    // Show spinner
     spinner.style.display = 'inline-block';
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      console.log('Sending message to content script'); // Log message sending
+      console.log('Sending message to content script');
       fetchSummaryButton.textContent = 'Fetching...';
-      fetchSummaryButton.backgroundColor = 'green';
+      fetchSummaryButton.style.backgroundColor = 'green';
       chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions }, (response) => {
         console.log('Response from content script:', response);
-        // fetchSummaryButton.textContent = 'Content inserted 🎉';
-        // fetchSummaryButton.backgroundColor = originalBackgroundColor;
-
-        // // wait 3 seconds before changing button text back to 'Fetch Summary'
-        // setTimeout(() => {
-        //   fetchSummaryButton.textContent = 'Fetch Summary';
-
-        // }, 3000);
-
-        // Hide spinner
         spinner.style.display = 'none';
       });
     });
