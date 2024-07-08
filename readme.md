@@ -2,7 +2,7 @@
 
 I often stumble over articles online I might want to read later. I used to open articles "for later" up until a point when I had 100 tabs open and eventually lost track of them all. 
 
-[Create your Bookmarklet](bookmarklet-generator) 
+[Create your Bookmarklet](https://philffm.github.io/ai-summary-helper/bookmarklet-generator/) 
 - Browser & OS-agnostic, even works on iOS 
 
 [Download Chrome Browser Plugin (outdated)](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
