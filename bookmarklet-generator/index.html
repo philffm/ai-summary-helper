@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmarklet Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+   
+    <div id="header"><img src="icon48.png"><h1>AI Summary Helper</h1></div>
+    <!-- <h2>Bookmarklet Generator</h2> -->
+    <label for="apiKey">API Key <a href="https://platform.openai.com/api-keys" target="_blank"> (get your API key)</a></label>
+    <input type="text" id="apiKey" placeholder="Enter your OpenAI API Key">
+    <label for="prompt">Prompt</label>
+    <textarea id="prompt">
+        <h3> Article summary section with creative title explaining the article in simple terms.
+        <h3> More extensive summary with a bit more detail (4-5 sentences).
+        <h3> Fun reference to the topic related to my competence as a UX designer.
+        <h3> Humorous take on the topic like a standup comedian.
+        <h3> Related book and media recommendations.
+        <h3> Answer additional questions in a serious and engaging way.
+        Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
+    </textarea>
+    <label class="light" for="apiKey">🔒 The API key is stored locally in your browser. Do not share the bookmarklet with others, since it contains the API key.</label>
+    <button onclick="generateBookmarklet()">Generate Bookmarklet</button>
+    <div class="output" id="output"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
