@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AI Summary Helper - Summarize Web Content",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Fetch and insert AI-generated summaries of web content. Combine with Send To Kindle for quick summaries and full articles.",
   "permissions": [
     "activeTab",
