@@ -4,6 +4,7 @@ I often stumble over articles online I might want to read later. I used to open 
 
 [Create your Bookmarklet](https://philffm.github.io/ai-summary-helper/bookmarklet-generator/) 
 - Browser & OS-agnostic, even works on iOS 
+![Demo](bookmarklet-generator/demo.gif)
 
 [Download Chrome Browser Plugin (outdated)](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
 
