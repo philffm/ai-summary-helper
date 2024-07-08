@@ -6,6 +6,7 @@ With the summary helper I created a tool that allows to summarize articles with 
 
 [Create your Bookmarklet](https://philffm.github.io/ai-summary-helper/bookmarklet-generator/) 
 - Browser & OS-agnostic, even works on iOS 
+
 ![Demo](bookmarklet-generator/demo.gif)
 
 [Download Chrome Browser Plugin (outdated)](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
