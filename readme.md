@@ -52,3 +52,11 @@ This project includes two components:
     - Blurred
 - [ ] Include update mechanism (make the bookmarklet check this repo for a newer script) 
 
+
+## Privacy Policy
+
+The privacy policy for this project is available in the [Privacy section](/chrome-extension/privacy.md).
+
+## License
+
+2024 Phil Wornath - [MIT License](LICENSE)
