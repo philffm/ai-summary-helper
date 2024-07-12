@@ -1,4 +1,6 @@
-# ![Icon](chrome-extension/icons/icon48.png) AI Summary Helper 
+<!-- # ![Icon](chrome-extension/icons/icon48.png) AI Summary Helper  -->
+<h1 style="display: flex; align-content: center; align-items: center; gap: 12px;"><img src="chrome-extension/icons/icon128.png" style="width:32px; height:32px">AI Summary Helper</h1>
+
 <a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI&#0032;Summary&#0032;Helper - Instantly&#0032;summarize&#0032;all&#0032;the&#0032;web&#0032;content&#0032;your&#0032;browse | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 
