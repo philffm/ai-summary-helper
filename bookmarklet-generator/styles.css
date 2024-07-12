@@ -79,6 +79,10 @@ button:hover {
   align-items: center;
   gap: 12px;
 }
+#logo {
+  width: 48px;
+  height: 48px;
+}
 
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {

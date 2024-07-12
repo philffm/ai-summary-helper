@@ -1,3 +1,9 @@
 h1:first-of-type {
     display: none;
 }
+
+.markdown-body blockquote {
+    padding: 0 1em;
+    color: #323232;
+    border-left: 1em solid #529bf5;
+}
