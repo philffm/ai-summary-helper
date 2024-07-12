@@ -4,12 +4,11 @@
 
 <a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI&#0032;Summary&#0032;Helper - Instantly&#0032;summarize&#0032;all&#0032;the&#0032;web&#0032;content&#0032;your&#0032;browse | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-
-I often stumble over articles online I might want to read later. This often resulted in 100 tabs open and eventually me losing track of them all. 
-
->On the go I am way more likely to engage with the content I intentionally selected earlier. 
+>You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
 Summary Helper allows to summarize articles with a custom prompt - so it can be as tailored to your language, profession or point of view as you define it. The summary gets inserted in the content area itself. This way you can easily forward the artice including the generated summary to your Kindle device e.g. using [Reabbles Send-to-Kindle tool](https://send.reabble.com/). 
+
+>On the go I am way more likely to engage with the content I intentionally selected earlier. The tailored briefing then helps me to recall why I selected the article and 
 
 **Variant A:** [Create your Bookmarklet](https://philffm.github.io/ai-summary-helper/bookmarklet-generator/) 
 - Browser & OS-agnostic, even works on iOS 
