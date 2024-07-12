@@ -1,3 +1,10 @@
+<style>
+    h1:first-of-type {
+        display: none;
+    }
+
+</style>
+
 <!-- # ![Icon](chrome-extension/icons/icon48.png) AI Summary Helper  -->
 <h1 style="display: flex; align-content: center; align-items: center; gap: 12px;"><img src="icon.svg" style="width:48px; height:48px">AI Summary Helper</h1>
 
