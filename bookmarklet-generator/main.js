@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
               'Authorization': 'Bearer ' + apiKey
             },
             body: JSON.stringify({
-              model: 'gpt-3.5-turbo',
+              model: 'gpt-4o-mini',
               messages: [
                 { role: 'system', content: 'You summarize content from websites in a tailored and meaningful manner.' },
                 { role: 'user', content: 'Summarize in valid HTML format with sections:' + prompt },

@@ -48,7 +48,8 @@ async function fetchSummary(additionalQuestions) {
       try {
         console.log('🕵️ Fetching summary from OpenAI...');
         const requestBody = JSON.stringify({
-          model: 'gpt-3.5-turbo',
+          // model: 'gpt-3.5-turbo',
+          model: 'gpt-4o-mini',
           messages: [
             { role: 'system', content: 'You are a helpful assistant.' },
             { role: 'user', content: 'Summarize in valid html format with sections:' + prompt },
