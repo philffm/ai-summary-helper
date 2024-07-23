@@ -136,7 +136,10 @@ function insertSummary(summaryContainer) {
       100% { transform: scale(1); }
     }
     .hover-effect {
-      outline: 2px dashed #007bff;
+      outline: 4px dashed #007bff;
+      background-color: rgba(0, 123, 255, 0.1);
+      animation: fadeInOut 2s;
+      outline-offset: 4px;
     }
   `;
   document.head.appendChild(style);

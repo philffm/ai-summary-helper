@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainScreen.style.display === 'none') {
       mainScreen.style.display = 'block';
       settingsScreen.style.display = 'none';
-      toggleScreenButton.textContent = 'Settings';
+      // change to svg icon
+      // toggleScreenButton.textContent = 'Settings';
+      toggleScreenButton.textContent = '⚙️';
     } else {
       mainScreen.style.display = 'none';
       settingsScreen.style.display = 'block';

@@ -7,6 +7,9 @@ body {
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 h1 {
@@ -15,25 +18,40 @@ h1 {
   text-align: center;
 }
 
+.header {
+
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoheader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
 form {
   display: flex;
   flex-direction: column;
 }
 
 label {
-  margin-top: 15px;
+  /* margin top and bottom 4px;/ */
+  margin: 8px 0 8px;
   font-weight: bold;
   color: #555;
 }
 
 input, textarea {
-  margin-top: 10px;
-  padding: 10px;
+  width: -webkit-fill-available;
+  padding: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
   font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: calc(100% - 24px);
-  box-sizing: border-box;
 }
 
 textarea {
@@ -42,31 +60,36 @@ textarea {
 }
 
 button {
+  /* width: 100%; */
   padding: 10px;
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-top: 20px;
-  font-size: 16px;
+  border-radius: 16px;
+  font-size: 18px;
+  animation: fadein 1s;
+  /* cursor: pointer; */
 }
 
 button:hover {
   background-color: #0056b3;
+  animation: fadein 1s infinite;
 }
 
 
 .settingsButton {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  /* position: absolute; */
+  /* top: 20px;
+  right: 20px; */
   padding: 10px 15px;
-  background-color: #767676;
+  background-color: #d0d0d0;
+  color: #383838;
+  /* border: #333 solid 1px; */
+  vertical-align: middle;
 }
 
 .settingsButton:hover {
-  background-color: #5a5a5a;
+  background-color: #c3c3c3;
 }
 
 .fillAvailable {
