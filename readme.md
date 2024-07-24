@@ -15,7 +15,7 @@ Summary Helper allows to summarize articles with a custom prompt - so it can be 
 
 ![Demo](bookmarklet-generator/demo.gif)
 
-**Variant B:** [Download Chrome Browser Plugin (outdated)](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
+**Variant B:** [Download Chrome Browser Plugin](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
 
 
 ## Overview
