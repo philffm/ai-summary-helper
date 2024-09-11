@@ -12,6 +12,11 @@ body {
   gap: 8px;
 }
 
+.donate a {
+  color: #007bff;
+  text-decoration: none;
+}
+
 h1 {
   font-size: 24px;
   color: #333;

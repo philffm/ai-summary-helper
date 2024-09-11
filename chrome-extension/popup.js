@@ -11,11 +11,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const settingsScreen = document.getElementById('settingsScreen');
   const spinner = document.getElementById('spinner');
 
+  const donateLink = document.getElementById('donate-link');
+
+  // Array of random donation messages
+  const donationMessages = [
+    'Like the extension? Help me brew new ideas with a soothing cup of tea! 🍵',
+    'Enjoying the tool? Fuel my creativity with a strong coffee! ☕',
+    'Love the extension? Help me upgrade my workspace with a new plant! 🌿',
+    'Want to support? Buy me a book to inspire the next feature! 📚',
+    'Think it’s awesome? Contribute to my dream of sailing away on a boat! ⛵',
+    'Supporting my work? Help me fund a tiny house to code in peace! 🏡',
+    'Love this project? Get me closer to my goal of relocating into a sailboat! 🚤',
+    'Feeling generous? A pizza would definitely boost my brainstorming sessions! 🍕',
+    'Enjoying the tool? Help me turn my remote work into a van life adventure! 🚐',
+    'Happy with the tool? Your support can help me build my tiny home! 🏠',
+    'Appreciate the extension? Buy me a kayak to paddle through my creative process! 🛶',
+    'Like innovation? Support my mission to design from the deck of a boat! ⛴️',
+    'Enjoying the tool? Get me a smoothie to recharge my problem-solving skills! 🥤'
+  ];
+  
+  // Randomize donation link text
+  const randomMessage = donationMessages[Math.floor(Math.random() * donationMessages.length)];
+  donateLink.textContent = randomMessage;
+
+
   chrome.storage.sync.get(['apiKey', 'prompt'], (data) => {
     console.log('Loaded settings:', data);
     if (data.apiKey) apiKeyInput.value = data.apiKey;
     if (data.prompt) promptInput.value = data.prompt;
   });
+
+
+  
+
+  
 
   settingsForm.addEventListener('submit', (event) => {
     event.preventDefault();
