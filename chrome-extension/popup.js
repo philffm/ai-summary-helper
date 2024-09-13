@@ -16,10 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Array of random donation messages
   const donationMessages = [
     'Like the extension? Help me brew new ideas with a soothing cup of tea! 🍵',
-    'Enjoying the tool? Fuel my creativity with a strong coffee! ☕',
     'Love the extension? Help me upgrade my workspace with a new plant! 🌿',
     'Want to support? Buy me a book to inspire the next feature! 📚',
-    'Think it’s awesome? Contribute to my dream of sailing away on a boat! ⛵',
     'Supporting my work? Help me fund a tiny house to code in peace! 🏡',
     'Love this project? Get me closer to my goal of relocating into a sailboat! 🚤',
     'Feeling generous? A pizza would definitely boost my brainstorming sessions! 🍕',
@@ -40,11 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (data.apiKey) apiKeyInput.value = data.apiKey;
     if (data.prompt) promptInput.value = data.prompt;
   });
-
-
-  
-
-  
 
   settingsForm.addEventListener('submit', (event) => {
     event.preventDefault();
