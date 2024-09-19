@@ -236,4 +236,8 @@ outputDiv.innerHTML = `
   <a href="${encodedBookmarklet}" icon="${favIcon}" draggable="true" >AI Summary 🪄</a>
 `;
 
+// scroll to the output element
+
+outputDiv.scrollIntoView({ behavior: 'smooth' });
+
 }
