@@ -13,7 +13,7 @@ Summary Helper allows to summarize articles with a custom prompt - so it can be 
 **Variant A:** [Create your Bookmarklet](https://philffm.github.io/ai-summary-helper/bookmarklet-generator/) 
 - Browser & OS-agnostic, even works on iOS 
 
-![Demo](bookmarklet-generator/dem$$o.gif)
+![Demo](bookmarklet-generator/demo.gif)
 
 **Variant B:** [Download Chrome Browser Plugin](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
 
@@ -23,6 +23,14 @@ Summary Helper allows to summarize articles with a custom prompt - so it can be 
 This project includes two components:
 - **Chrome Extension**: A browser plugin for generating AI summaries of web content.
 - **Bookmarklet Generator**: A tool for creating bookmarklets that provide AI summaries.
+
+|  | Bookmarklet  | Browser Extension |
+| --- | --- | --- |
+| OpenAI | ✅ | ✅ |
+| Mistral AI | ✅ | ⏳ TBD |
+| Custom Prompt | ⏳ TBD | ✅ Each request|
+| Cross Platform | ✅ | ❌|
+
 
 ## Project Structure
 
@@ -42,6 +50,8 @@ This project includes two components:
 
 
 ## Feature Agenda 🚀
+
+Bookmarklet generator generally ships faster since it is faster to iterate on.
 
 ### Browser Plugin
 
