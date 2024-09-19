@@ -31,6 +31,9 @@
 
 
       <input type="text" id="apiKey" placeholder="Enter your API Key" />
+      <label class="light" for="apiKey"
+        >🔒 The API key is stored locally in your browser. Do not share the
+        bookmarklet with others, since it will contain your API key.</label>
       <label for="prompt">Prompt</label>
       <textarea id="prompt">
 <h3> Article summary section with creative title explaining the article in simple terms.
@@ -42,33 +45,13 @@
 Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
     </textarea
       >
-      <label class="light" for="apiKey"
-        >🔒 The API key is stored locally in your browser. Do not share the
-        bookmarklet with others, since it will contain your API key.</label
-      
-        >
         
-      <button onclick="generateBookmarklet()">Generate Bookmarklet</button>
-      <div class="donate">
-        <a
-          id="donate-link"
-          href="https://link.philwornath.com/?source=aish#donate"
-          target="_blank"
-          >💸 Donate</a
-        >
+      <button id="generateButton" onclick="generateBookmarklet()">Generate Bookmarklet</button>
     </div>
-      <div class="output" id="output">
-       
-      </div>
-
 
     <script src="main.js"></script>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const donationDiv = document.querySelector(".donate");
-        donationDiv.innerHTML = getDonationMessage();
-      });
     </script>
   </body>
 </html>

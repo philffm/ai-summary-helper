@@ -229,14 +229,21 @@ const bookmarkletCode = `
 
 
 const encodedBookmarklet = 'javascript:' + encodeURIComponent(bookmarkletCode);
-const outputDiv = document.getElementById('output');
+
+// append outputDiv after #generateButton
+const outputDiv = document.createElement('div');
+outputDiv.id = 'outputBookmarklet';
+document.getElementById('generateButton').after(outputDiv);
+
 
 outputDiv.innerHTML = `
   <p>Drag the link below to your bookmarks bar 🔖 <br> (on iOS, hold to drag for 2 seconds): </p>
-  <a href="${encodedBookmarklet}" icon="${favIcon}" draggable="true" >AI Summary 🪄</a>
+  <a id="bookmarkletLink" href="${encodedBookmarklet}" icon="${favIcon}" draggable="true" >🪄 AI Summary (${selectedModel})</a>
+  
+  <p> ${getDonationMessage()}</p>
 `;
 
-// scroll to the output element
+// scroll to the output element once done
 
 outputDiv.scrollIntoView({ behavior: 'smooth' });
 

@@ -1,7 +1,45 @@
+/* root  */
+
+:root {
+  /* Colors */
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --white-color: #fff;
+  --black-color: #000;
+  
+  /* Fonts */
+  --font-family: Arial, sans-serif;
+  --font-size: 16px;
+  --font-weight: 400;
+  --line-height: 1.5;
+
+  /* Spacing */
+  --padding: 16px;
+  --margin: 16px;
+  --border-radius: 16px;
+  --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  
+  /* Breakpoints */
+    --sm: 576px;  
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;   
+}
+
+
+
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: var(--light-color);
+  color: var(--dark-color);
   margin: 0;
   padding: 0;
   display: flex;
@@ -10,9 +48,9 @@ body {
   height: 100vh;
 }
 .container {
-  background: #fff;
+  background: var(--white-color);
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   padding: 24px;
   margin-top: 20px;
   max-width: 500px;
@@ -22,9 +60,10 @@ body {
   width: 100%;
 }
 h1 {
-  color: #007bff;
+  color: var(--dark-color);
   text-align: center;
   margin: 16px 0;
+  font-size: 24px;
 }
 label {
   display: block;
@@ -58,7 +97,7 @@ textarea {
 }
 button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 12px 0;
   background-color: #007bff;
   color: #fff;
@@ -70,7 +109,15 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-.output {
+
+#bookmarkletLink {
+  font-size: larger;
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#outputBookmarklet {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
