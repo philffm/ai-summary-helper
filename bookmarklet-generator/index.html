@@ -16,22 +16,30 @@
       
       <!-- <h2>Bookmarklet Generator</h2> -->
 
-      <label for="apiKey"
-        >API Key
-        <a href="https://platform.openai.com/api-keys" target="_blank">
-          (get your API key)</a
-        ></label
-      >
-      <input type="text" id="apiKey" placeholder="Enter your OpenAI API Key" />
+      <label for="model">Model</label>
+      <select id="model">
+        <option value="openai">OpenAI 4o</option>
+        <option value="mistral">Mistral</option>
+        <!-- <option value="claude">Claude</option> -->
+      </select>
+      <label for="apiKey">API Key (<span id="apiUrl"></span>)</label>
+
+
+      <!-- switch between OpenAI, Mistral and Claude -->
+
+
+
+
+      <input type="text" id="apiKey" placeholder="Enter your API Key" />
       <label for="prompt">Prompt</label>
       <textarea id="prompt">
-        <h3> Article summary section with creative title explaining the article in simple terms.
-        <h3> More extensive summary with a bit more detail (4-5 sentences).
-        <h3> Fun reference to the topic related to my competence as a UX designer.
-        <h3> Humorous take on the topic like a standup comedian.
-        <h3> Related book and media recommendations.
-        <h3> Answer additional questions in a serious and engaging way.
-        Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
+<h3> Article summary section with creative title explaining the article in simple terms.
+<h3> More extensive summary with a bit more detail (4-5 sentences).
+<h3> Fun reference to the topic related to my competence as a UX designer.
+<h3> Humorous take on the topic like a standup comedian.
+<h3> Related book and media recommendations.
+<h3> Answer additional questions in a serious and engaging way.
+Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
     </textarea
       >
       <label class="light" for="apiKey"

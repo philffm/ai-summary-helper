@@ -44,6 +44,15 @@ input, textarea {
   border-radius: 16px;
   font-size: 16px;
 }
+
+select {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  font-size: 16px;
+}
+
 textarea {
   height: 100px;
 }
