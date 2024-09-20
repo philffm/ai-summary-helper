@@ -144,6 +144,23 @@ button:hover {
   height: 48px;
 }
 
+
+
+  #bookmarkletLink {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+
+  #bookmarkletLink:hover {
+    background-color: #0056b3;
+  }
+
+
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
   body {

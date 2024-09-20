@@ -211,7 +211,7 @@ const bookmarkletCode = `
         // Show donation message
         const donationMessage = document.createElement('div');
         donationMessage.id = 'donation-message';
-        donationMessage.innerHTML = \`${getDonationMessage()} <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">💸 Donate</a>\`;
+        donationMessage.innerHTML = \`${getDonationMessage()}\`;
         document.body.appendChild(donationMessage);
 
         setTimeout(() => {
@@ -231,20 +231,77 @@ const bookmarkletCode = `
 const encodedBookmarklet = 'javascript:' + encodeURIComponent(bookmarkletCode);
 
 // append outputDiv after #generateButton
-const outputDiv = document.createElement('div');
-outputDiv.id = 'outputBookmarklet';
-document.getElementById('generateButton').after(outputDiv);
+// const outputDiv = document.createElement('div');
+// outputDiv.id = 'outputBookmarklet';
+// document.getElementById('generateButton').after(outputDiv);
 
 
-outputDiv.innerHTML = `
+
+var modalContent = `
   <p>Drag the link below to your bookmarks bar 🔖 <br> (on iOS, hold to drag for 2 seconds): </p>
   <a id="bookmarkletLink" href="${encodedBookmarklet}" icon="${favIcon}" draggable="true" >🪄 AI Summary (${selectedModel})</a>
   
   <p> ${getDonationMessage()}</p>
 `;
 
-// scroll to the output element once done
+// open modal with modalContent
+var modalOverlay = document.createElement('div'); // Create overlay element
+modalOverlay.id = 'modalOverlay';
+modalOverlay.innerHTML = `<div id="modal">${modalContent}</div>`;
+document.body.appendChild(modalOverlay);
 
-outputDiv.scrollIntoView({ behavior: 'smooth' });
+// add styles to modal
+var style = document.createElement('style');
+
+style.innerHTML = `
+
+  #modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+    
+  #modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.3s;
+  }
+
+
+`;
+
+// Append the style to the document
+document.body.appendChild(style);
+
+// Add event listener to close modal when clicking outside of it
+modalOverlay.addEventListener('click', function(event) {
+  if (event.target.id === 'modalOverlay') {
+    modalOverlay.remove(); // Remove the modal and overlay
+  }
+});
+
 
 }

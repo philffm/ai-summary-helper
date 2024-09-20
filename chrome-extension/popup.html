@@ -10,7 +10,7 @@
     <div class="header">
       <div class="logoheader">
         <img
-          src="icons/icon48.png"
+          src="icons/icon.svg"
           alt="AI Summary Helper"
           width="32"
           height="32"
@@ -41,7 +41,17 @@
     <div id="settingsScreen" style="display: none">
       <h2>Settings</h2>
       <form id="settingsForm">
-        <label for="apiKey">OpenAI API Key:</label>
+        <label for="model">Model</label>
+        <select id="model">
+          <option value="openai">OpenAI 4o</option>
+          <option value="mistral">Mistral</option>
+          <!-- <option value="claude">Claude</option> -->
+        </select>
+  
+        <label for="apiKey">API Key:</label>
+        <label class="light" for="apiKey"
+        >🔒 The API key is stored locally in your browser.</label>
+
         <input type="text" id="apiKey" name="apiKey" />
         <label for="prompt">Base Prompt:</label>
         <textarea id="prompt" name="prompt"></textarea>

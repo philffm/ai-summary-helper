@@ -13,7 +13,7 @@ body {
 }
 
 .donate a {
-  color: #007bff;
+  color: #92b7df;
   text-decoration: none;
 }
 
@@ -80,6 +80,22 @@ button:hover {
   background-color: #0056b3;
   animation: fadein 1s infinite;
 }
+input, textarea {
+  width: -webkit-fill-available;
+  padding: 16px;
+  /* margin-bottom: 10px; */
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  font-size: 16px;
+}
+
+select {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  font-size: 16px;
+}
 
 
 .settingsButton {
@@ -119,3 +135,4 @@ button:hover {
   to {
     transform: rotate(360deg);
   }
+}

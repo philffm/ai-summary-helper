@@ -1,16 +1,23 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
   if (request.action === 'fetchSummary') {
-    fetchSummary(request.additionalQuestions).then((result) => {
-      sendResponse(result);
-    }).catch((error) => {
-      sendResponse({ success: false, message: error.message });
+    selectTargetElement().then((targetElement) => {
+      if (targetElement) {
+        showPlaceholder(targetElement); // Show "Fetching" placeholder
+        fetchSummary(request.additionalQuestions, targetElement).then((result) => {
+          sendResponse(result);
+        }).catch((error) => {
+          sendResponse({ success: false, message: error.message });
+        });
+      } else {
+        sendResponse({ success: false, message: 'No target element selected' });
+      }
     });
-    return true;
+    return true; // Indicates we will send a response asynchronously
   }
 });
 
-async function fetchSummary(additionalQuestions) {
+async function fetchSummary(additionalQuestions, targetElement) {
   console.log('Starting fetchSummary');
   const content = getAllTextContent();
   console.debug('Fetched content:', content);
@@ -18,9 +25,11 @@ async function fetchSummary(additionalQuestions) {
   const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(['apiKey', 'prompt'], async (data) => {
+    // Fetch settings including API key, prompt, and model from Chrome storage
+    chrome.storage.sync.get(['apiKey', 'prompt', 'model'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
+      const model = data.model || 'openai'; // Default to OpenAI if not set
       let prompt = data.prompt && data.prompt.length > 1 
         ? data.prompt 
         : `
@@ -40,25 +49,30 @@ async function fetchSummary(additionalQuestions) {
       const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
 
       if (!apiKey) {
-        alert('Please set your OpenAI API key in the extension popup.');
+        alert('Please set your API key in the extension popup.');
         reject(new Error('API key not set'));
         return;
       }
 
       try {
-        console.log('🕵️ Fetching summary from OpenAI...');
+        const apiUrl = model === 'openai' 
+          ? 'https://api.openai.com/v1/chat/completions' 
+          : 'https://api.mistral.ai/v1/chat/completions'; // Adjust based on model
+        const modelIdentifier = model === 'openai' 
+          ? 'gpt-4o-mini' 
+          : 'mistral-large-latest';
+
+        console.log('🕵️ Fetching summary from:', model);
         const requestBody = JSON.stringify({
-          // model: 'gpt-3.5-turbo',
-          model: 'gpt-4o-mini',
+          model: modelIdentifier,
           messages: [
             { role: 'system', content: 'You are a helpful assistant.' },
             { role: 'user', content: 'Summarize in valid html format with sections:' + prompt },
             { role: 'user', content: truncatedContent },
           ]
         });
-        console.debug('📦 Request payload:', requestBody);
 
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,25 +87,25 @@ async function fetchSummary(additionalQuestions) {
         }
 
         const result = await response.json();
-        console.debug('🚀 OpenAI response:', result);
+        console.debug('🚀 API response:', result);
 
-        const summary = result.choices[0].message.content;
-
+        const summary = result.choices[0]?.message?.content || 'Error: No summary returned';
         const summaryContainer = document.createElement('blockquote');
         summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
 
-        insertSummary(summaryContainer);
+        insertSummary(targetElement, summaryContainer); // Insert the fetched summary without removing existing content
         resolve({ success: true, message: 'Summary inserted successfully' });
 
       } catch (error) {
         console.error('❌ Error fetching summary:', error);
-        alert('Error fetching summary. Check the console for details.');
+        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later.'; // Show error message
         reject(error);
       }
     });
   });
 }
 
+// Function to truncate text content to fit within a token limit
 function truncateToTokenLimit(text, maxTokens) {
   const encodedText = new TextEncoder().encode(text);
   if (encodedText.length > maxTokens) {
@@ -100,6 +114,7 @@ function truncateToTokenLimit(text, maxTokens) {
   return text;
 }
 
+// Function to extract all relevant text content from the page
 function getAllTextContent() {
   console.log('Getting all text content');
   const elements = document.querySelectorAll('p, h1, h2, h3');
@@ -111,65 +126,101 @@ function getAllTextContent() {
   return content.trim();
 }
 
-function insertSummary(summaryContainer) {
-  console.log('Inserting summary');
-  
-  const style = document.createElement('style');
-  style.innerHTML = `
-    #ai-summary-message {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #007bff;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      z-index: 10000;
-      font-size: 18px;
-      font-weight: bold;
-      animation: pulsate 1s infinite;
+// Function to show "Fetching" placeholder without removing the original content
+function showPlaceholder(targetElement) {
+  console.log('Showing placeholder in the selected element');
+
+  const placeholder = document.createElement('div');
+  placeholder.classList.add('placeholder');
+  placeholder.style.backgroundColor = '#f0f0f0'; // Highlight the element
+  placeholder.style.padding = '32px';
+  placeholder.innerHTML = 'Fetching summary... ⏳';
+
+  // Add subtle animation to the placeholder
+  placeholder.animate([
+    { opacity: 0.5 },
+    { opacity: 1 }
+  ], {
+    duration: 1000,
+    iterations: Infinity
+  });
+
+  targetElement.appendChild(placeholder); // Append the placeholder without removing existing content
+}
+
+// Automatically insert the summary
+function insertSummary(targetElement, summaryContainer) {
+  // Remove the placeholder but keep the existing content
+  const placeholder = targetElement.querySelector('.placeholder');
+  if (placeholder) placeholder.remove();
+
+  console.log('Inserting summary into the target element');
+  targetElement.style.backgroundColor = ''; // Remove highlight
+  targetElement.style.border = ''; // Remove dashed border
+  targetElement.appendChild(summaryContainer); // Append the summary to the target element
+}
+
+// Function to let the user select a target element
+function selectTargetElement() {
+  console.log('Prompting user to select the target element');
+  return new Promise((resolve) => {
+    // Create the message div
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'ai-summary-message';
+    messageDiv.textContent = 'Click on the element where you want to insert the summary.';
+    document.body.appendChild(messageDiv);
+
+    // Style the message div to appear near the cursor
+    messageDiv.style.position = 'absolute';
+    messageDiv.style.backgroundColor = '#007bff';
+    messageDiv.style.color = 'white';
+    messageDiv.style.padding = '5px 10px';
+    messageDiv.style.borderRadius = '5px';
+    messageDiv.style.fontSize = '14px';
+    messageDiv.style.zIndex = '10000';
+    messageDiv.style.pointerEvents = 'none'; // Make sure the div does not interfere with clicks
+
+    // Move the message div with the cursor
+    document.addEventListener('mousemove', (event) => {
+      messageDiv.style.left = event.pageX + 15 + 'px'; // Slight offset to the right of the cursor
+      messageDiv.style.top = event.pageY + 15 + 'px';  // Slight offset below the cursor
+    });
+
+    // Function to toggle hover effect
+    function hoverHandler(event) {
+      event.target.classList.toggle('hover-effect');
     }
-    @keyframes pulsate {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+
+    // Function to handle click and resolve the target element
+    function clickHandler(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      // Remove event listeners
+      document.body.style.cursor = 'default';
+      document.removeEventListener('click', clickHandler);
+      document.removeEventListener('mouseover', hoverHandler);
+      document.removeEventListener('mouseout', hoverHandler);
+      document.removeEventListener('mousemove', mouseMoveHandler);
+
+      // Remove the message
+      messageDiv.remove();
+
+      // Resolve the target element
+      const targetElement = event.target;
+      resolve(targetElement);
     }
-    .hover-effect {
-      outline: 4px dashed #007bff;
-      background-color: rgba(0, 123, 255, 0.1);
-      animation: fadeInOut 2s;
-      outline-offset: 4px;
+
+    // Mouse move event handler to move the message
+    function mouseMoveHandler(event) {
+      messageDiv.style.left = event.pageX + 15 + 'px';
+      messageDiv.style.top = event.pageY + 15 + 'px';
     }
-  `;
-  document.head.appendChild(style);
 
-  const messageDiv = document.createElement('div');
-  messageDiv.id = 'ai-summary-message';
-  messageDiv.textContent = 'Click on the element where you want to insert the summary before.';
-  document.body.prepend(messageDiv);
-
-  document.body.style.cursor = 'crosshair';
-
-  function hoverHandler(event) {
-    event.target.classList.toggle('hover-effect');
-  }
-
-  document.addEventListener('mouseover', hoverHandler);
-  document.addEventListener('mouseout', hoverHandler);
-
-  document.addEventListener('click', function handler(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    document.body.style.cursor = 'default';
-    const targetElement = event.target;
-
-    document.removeEventListener('click', handler);
-    document.removeEventListener('mouseover', hoverHandler);
-    document.removeEventListener('mouseout', hoverHandler);
-
-    messageDiv.remove();
-    targetElement.insertAdjacentElement('beforebegin', summaryContainer);
-    console.log('Summary inserted before the selected element');
-  }, { once: true });
+    // Add the necessary event listeners
+    document.addEventListener('mouseover', hoverHandler);
+    document.addEventListener('mouseout', hoverHandler);
+    document.addEventListener('click', clickHandler, { once: true });
+    document.addEventListener('mousemove', mouseMoveHandler);
+  });
 }
