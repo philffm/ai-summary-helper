@@ -270,7 +270,7 @@ style.innerHTML = `
 
   @keyframes slideUp {
     from {
-      transform: translateY(50px);
+      transform: translateY(50px) scale(.5);
       opacity: 0;
     }
     to {
@@ -278,7 +278,8 @@ style.innerHTML = `
       opacity: 1;
     }
   }
-    
+
+
   #modal {
     background-color: white;
     padding: 20px;
