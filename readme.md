@@ -27,8 +27,8 @@ This project includes two components:
 |  | Bookmarklet  | Browser Extension |
 | --- | --- | --- |
 | OpenAI | ✅ | ✅ |
-| Mistral AI | ✅ | ⏳ TBD |
-| Custom Prompt | ⏳ TBD | ✅ Each request|
+| Mistral AI | ✅ | ✅ |
+| Custom Prompt | 🟠 Initially set base prompt | ✅ Base + custom prompt per request|
 | Cross Platform | ✅ | ❌|
 
 
