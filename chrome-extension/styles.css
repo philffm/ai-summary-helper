@@ -1,3 +1,35 @@
+/* root  */
+
+:root {
+  /* Colors */
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --white-color: #fff;
+  --black-color: #000;
+  
+
+  /* Spacing */
+  --padding: 16px;
+  --margin: 16px;
+  --border-radius: 16px;
+  --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  
+  /* Breakpoints */
+    --sm: 576px;  
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;   
+}
+
+
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
@@ -13,7 +45,7 @@ body {
 }
 
 .donate a {
-  color: #92b7df;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
