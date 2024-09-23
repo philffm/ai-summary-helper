@@ -10,6 +10,8 @@ Summary Helper allows to summarize articles with a custom prompt - so it can be 
 
 >On the go I am way more likely to engage with the content I intentionally selected earlier. The tailored briefing then helps me to recall why I chose the article, suggests me books and other media related to it. 
 
+![AI Summary Helper](aish.png)
+
 **Variant A:** [Create your Bookmarklet](https://philffm.github.io/ai-summary-helper/bookmarklet-generator/) 
 - Browser & OS-agnostic, even works on iOS 
 
