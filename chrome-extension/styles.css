@@ -130,7 +130,7 @@ select {
 }
 
 
-.settingsButton {
+.buttonIcon {
   /* position: absolute; */
   /* top: 20px;
   right: 20px; */
@@ -141,8 +141,19 @@ select {
   vertical-align: middle;
 }
 
-.settingsButton:hover {
+.buttonIcon:hover {
   background-color: #c3c3c3;
+}
+
+.buttonIcon:active {
+  background-color: #b6b6b6;
+}
+
+.buttonIcon:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  opacity: 0.5;
+  /* cursor: not-allowed; */
 }
 
 .fillAvailable {
