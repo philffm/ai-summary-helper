@@ -6,7 +6,7 @@
 <a href="https://chrome.google.com/webstore/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank"><img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Chrome Web Store" style="width: 206px; height: 58px;text-align: center;" width="206" height="58" /></a>
 
 <!-- link createBookmarklet.png to bookmarklet generator -->
-<a href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/" target="_blank"><img src="createBookmarklet.png" alt="Create Bookmarklet" style="text-align: center;" width="206" height="58" /></a>
+<a href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/" target="_blank"><img src="createBookmarklet.png" alt="Create Bookmarklet" style="text-align: center;" /></a>
 
 >You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
