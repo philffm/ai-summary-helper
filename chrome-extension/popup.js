@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const apiKeyContainer = document.getElementById('apiKeyContainer'); // Container for API key input
   const localEndpointContainer = document.getElementById('localEndpointContainer'); // Container for local endpoint input
   const localEndpointInput = document.getElementById('localEndpoint'); // Input for local endpoint
+  const modelIdentifierInput = document.getElementById('modelIdentifier');
 
   // Array of random donation messages
   const donationMessages = [
@@ -58,16 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
 
   // Load stored settings from Chrome storage
-  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint'], (data) => {
+  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier'], (data) => {
     console.log('Loaded settings:', data);
-    if (data.apiKey) apiKeyInput.value = data.apiKey;
-    if (data.prompt) {
-      promptInput.value = data.prompt;
-    } else {
-      promptInput.placeholder = `If not set, default prompt:\n${defaultPrompt}`; // Set default prompt as placeholder with intro text
-    }
-    if (data.model) modelInput.value = data.model; // Load the model selection
-    if (data.localEndpoint) localEndpointInput.value = data.localEndpoint; // Load the local endpoint
+    apiKeyInput.value = data.apiKey || '';
+    promptInput.value = data.prompt || '';
+    modelInput.value = data.model || 'openai';
+    localEndpointInput.value = data.localEndpoint || '';
+    modelIdentifierInput.value = data.modelIdentifier || ''; // Load model identifier
 
     // Call toggleInputVisibility after setting the model to ensure correct initial visibility
     toggleInputVisibility();
@@ -80,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.storage.sync.set({
       apiKey: apiKeyInput.value,
       prompt: promptInput.value,
-      model: modelInput.value, // Save the selected model
-      localEndpoint: localEndpointInput.value // Save the local endpoint
+      model: modelInput.value,
+      localEndpoint: localEndpointInput.value,
+      modelIdentifier: modelIdentifierInput.value // Save model identifier
     });
 
     // Change button text temporarily to indicate success
@@ -171,4 +170,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 });
-

@@ -26,11 +26,19 @@ async function fetchSummary(additionalQuestions, targetElement) {
 
   return new Promise((resolve, reject) => {
     // Fetch settings including API key, prompt, and model from Chrome storage
-    chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint'], async (data) => {
+    chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
-      const model = data.model || 'openai'; // Default to OpenAI if not set
-      const localEndpoint = data.localEndpoint || 'http://localhost:11434/api/chat'; // Default local endpoint
+      const model = data.model || 'openai';
+      const localEndpoint = data.localEndpoint || 'http://localhost:11434/api/chat';
+      const userModelIdentifier = data.modelIdentifier;
+
+      const modelIdentifier = userModelIdentifier || (model === 'openai'
+        ? 'gpt-4o-mini'
+        : model === 'mistral'
+          ? 'mistral-large-latest'
+          : 'llama3.2'); // Default to llama3.2 for Ollama
+
       let prompt = data.prompt && data.prompt.length > 1
         ? data.prompt
         : `
@@ -61,12 +69,6 @@ async function fetchSummary(additionalQuestions, targetElement) {
           : model === 'mistral'
             ? 'https://api.mistral.ai/v1/chat/completions'
             : localEndpoint; // Use local endpoint for Ollama
-
-        const modelIdentifier = model === 'openai'
-          ? 'gpt-4o-mini'
-          : model === 'mistral'
-            ? 'mistral-large-latest'
-            : 'llama3.2'; // Use llama3.2 for Ollama
 
         console.log('🕵️ Fetching summary from:', model);
         const requestBody = JSON.stringify({
