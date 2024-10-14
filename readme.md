@@ -83,6 +83,24 @@ The privacy policy for this project is available in the [Privacy section](/chrom
 
 If you want to use offline LLMs with this plugin you need to ensure that your Ollama-based applications can handle requests from different domains, you need to configure the CORS settings appropriately. Here’s how you can do it on different operating systems:
 
+#### MacOS
+
+
+1. Open the Terminal application.
+2. run export OLLAMA_ORIGINS=*
+3. run / restart ollama
+
+Alternatively, you can edit the `ollama.service` file using a text editor like `nano`:
+2. Edit the `ollama.service` file using a text editor like `nano`:
+   ```
+   sudo nano /Library/LaunchDaemons/com.ollama.ollama.plist
+   ```
+3. Add or modify the `Environment` line to include the `OLLAMA_ORIGINS` variable with a wildcard (`*`) to allow all domains:
+   ```
+   Environment=OLLAMA_ORIGINS=*
+   ```
+
+
 #### Windows
 
 1. Ensure Ollama is not running by quitting the application from the taskbar.
