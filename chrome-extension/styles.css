@@ -148,9 +148,13 @@ textarea {
 
 textarea {
   resize: vertical;
-  height: 70px;
+  height: 100px;
   text-wrap: pretty;
-  font-size: small;
+}
+
+textarea#prompt {
+  font-size: 10px;
+  height: 59px;
 }
 
 select {
