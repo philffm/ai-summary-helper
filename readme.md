@@ -65,8 +65,9 @@ Bookmarklet generator generally ships faster since it is faster to iterate on.
 - [x] iOS compatibility 
 - [x] Select dom element by clicking to make insertion-point be definable by user
 - [x] Add status state
+- [o] Support other providers (on-device? What are some local LLMs we could use for this / API through localhost?)
+    - [x] Ollama
 - [ ] Include update mechanism (make the bookmarklet check this repo for a newer script) 
-- [ ] Support other providers (on-device? What are some local LLMs we could use for this / API through localhost?)
 
 
 ## Privacy Policy
