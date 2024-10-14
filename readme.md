@@ -32,6 +32,7 @@ This project includes two components:
 | --- | --- | --- |
 | OpenAI | ✅ | ✅ |
 | Mistral AI | ✅ | ✅ |
+| Ollama (Local) | ❌ | ✅ |
 | Custom Prompt | 🟠 Initially set base prompt | ✅ Base + custom prompt per request|
 | Cross Platform | ✅ | ❌|
 
