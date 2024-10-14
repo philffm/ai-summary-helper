@@ -75,3 +75,40 @@ The privacy policy for this project is available in the [Privacy section](/chrom
 ## License
 
 2024 Phil Wornath - [MIT License](LICENSE)
+
+## Troubleshooting
+
+### Configuring CORS for Ollama
+
+If you want to use offline LLMs with this plugin you need to ensure that your Ollama-based applications can handle requests from different domains, you need to configure the CORS settings appropriately. Here’s how you can do it on different operating systems:
+
+#### Windows
+
+1. Ensure Ollama is not running by quitting the application from the taskbar.
+2. Open the Control Panel and navigate to “Edit system environment variables.”
+3. Choose to edit or create a new variable named `OLLAMA_ORIGINS`. To allow all domains, set it as follows:
+   ```
+   OLLAMA_ORIGINS=*
+   ```
+4. Apply the changes and close the control panel.
+5. Run Ollama from a new terminal window to ensure it picks up the updated environment variables.
+
+#### Linux
+
+For Linux users running Ollama as a systemd service, follow these steps:
+
+1. Use `systemctl edit ollama.service` to open the service file in an editor.
+2. In the `[Service]` section, add the `Environment` line with your CORS settings. For unrestricted access, use:
+   ```
+   [Service]
+   Environment="OLLAMA_ORIGINS=*"
+   ```
+3. Save your changes, then reload systemd and restart Ollama with:
+   ```
+   systemctl daemon-reload
+   systemctl restart ollama
+   ```
+
+These steps will help you configure Ollama to accept requests from all domains, ensuring seamless integration with your applications.
+
+For more detailed guidance, refer to the comprehensive guide on handling CORS settings in Ollama [here](https://medium.com/dcoderai/how-to-handle-cors-settings-in-ollama-a-comprehensive-guide-ee2a5a1beef0).

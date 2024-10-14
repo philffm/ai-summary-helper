@@ -12,7 +12,7 @@
   --dark-color: #343a40;
   --white-color: #fff;
   --black-color: #000;
-  
+
 
   /* Spacing */
   --padding: 16px;
@@ -20,12 +20,12 @@
   --border-radius: 16px;
   --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 
-  
+
   /* Breakpoints */
-    --sm: 576px;  
-    --md: 768px;
-    --lg: 992px;
-    --xl: 1200px;   
+  --sm: 576px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
 }
 
 
@@ -36,6 +36,7 @@ body {
   min-width: 420px;
   max-width: 480px;
   margin: 0 auto;
+  height: 100%;
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -53,6 +54,13 @@ h1 {
   font-size: 24px;
   color: #333;
   text-align: center;
+}
+
+h2 {
+  font-size: 16px;
+  color: #333;
+  /* text-align: center; */
+  margin: 8px 0 8px;
 }
 
 .header {
@@ -82,7 +90,8 @@ label {
   color: #555;
 }
 
-input, textarea {
+input,
+textarea {
   width: -webkit-fill-available;
   padding: 16px;
   margin-bottom: 10px;
@@ -91,39 +100,62 @@ input, textarea {
   font-size: 16px;
 }
 
-textarea {
-  resize: vertical;
-  height: 100px;
+
+@keyframes button-click {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 button {
-  /* width: 100%; */
-  padding: 10px;
-  background-color: #007bff;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #6CCCFB, #3B6CF2);
   color: #fff;
   border: none;
   border-radius: 16px;
   font-size: 18px;
-  animation: fadein 1s;
-  /* cursor: pointer; */
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover {
-  background-color: #0056b3;
-  animation: fadein 1s infinite;
+  background: linear-gradient(135deg, #5BBBF9, #2A5BE0);
 }
-input, textarea {
+
+button:active {
+  background: linear-gradient(135deg, #3B6CF2, #6CCCFB);
+  animation: button-click 0.5s ease-in-out;
+}
+
+
+input,
+textarea {
   width: -webkit-fill-available;
-  padding: 16px;
+  padding: 12px;
   /* margin-bottom: 10px; */
   border: 1px solid #ccc;
   border-radius: 16px;
   font-size: 16px;
 }
 
+textarea {
+  resize: vertical;
+  height: 70px;
+  text-wrap: pretty;
+  font-size: small;
+}
+
 select {
   width: 100%;
-  padding: 16px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 16px;
   font-size: 16px;
@@ -136,17 +168,18 @@ select {
   right: 20px; */
   padding: 10px 15px;
   background-color: #d0d0d0;
+  background: #d0d0d0;
   color: #383838;
   /* border: #333 solid 1px; */
   vertical-align: middle;
 }
 
 .buttonIcon:hover {
-  background-color: #c3c3c3;
+  background: #c3c3c3;
 }
 
 .buttonIcon:active {
-  background-color: #b6b6b6;
+  background: #b6b6b6;
 }
 
 .buttonIcon:disabled {

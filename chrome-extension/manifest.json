@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
   "name": "AI Summary Helper - Summarize Web Content with OpenAI, Mistral AI, and more",
-  "version": "1.3.1",
+  "version": "1.4",
   "description": "Fetch and insert AI-generated summaries of web content. Combine with Send To Kindle for quick summaries and full articles.",
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "http://localhost/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -20,8 +21,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
   ],
   "icons": {

@@ -44,24 +44,34 @@
       </button>
     </div>
     <div id="settingsScreen" style="display: none">
-      <h2>Settings</h2>
+      <!-- <h2>Settings</h2> -->
       <form id="settingsForm">
         <label for="model">Model</label>
         <select id="model">
           <option value="openai">OpenAI 4o</option>
           <option value="mistral">Mistral</option>
-          <!-- <option value="claude">Claude</option> -->
+          <option value="ollama">Ollama (Local)</option>
         </select>
-
+        <!-- Options will be populated dynamically -->
+      </select>
+      <div id="apiKeyContainer">
         <label for="apiKey">API Key:</label>
-        <label class="light" for="apiKey"
-          >🔒 The API key is stored locally in your browser.</label
-        >
-
         <input type="text" id="apiKey" name="apiKey" />
-        <label for="prompt">Base Prompt:</label>
-        <textarea id="prompt" name="prompt"></textarea>
-        <button type="submit">Save</button>
+        <label class="light" for="apiKey">🔒 The API key is stored locally in your browser.</label>
+      </div>
+      
+      <div id="localEndpointContainer" style="display: none;">
+        <label for="localEndpoint">Local Endpoint URL:</label>
+        <input type="text" id="localEndpoint" placeholder="http://localhost:11434/api/chat" />
+      </div>
+      
+      <label for="promptSelect">Prompt</label>
+      <select id="promptSelect">
+        <!-- Options will be populated dynamically -->
+      </select>
+      <label for="prompt">Custom Prompt</label>
+      <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
+      <button type="submit">Save 💾</button>
       </form>
     </div>
     <script src="popup.js"></script>

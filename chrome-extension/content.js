@@ -26,12 +26,13 @@ async function fetchSummary(additionalQuestions, targetElement) {
 
   return new Promise((resolve, reject) => {
     // Fetch settings including API key, prompt, and model from Chrome storage
-    chrome.storage.sync.get(['apiKey', 'prompt', 'model'], async (data) => {
+    chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
       const model = data.model || 'openai'; // Default to OpenAI if not set
-      let prompt = data.prompt && data.prompt.length > 1 
-        ? data.prompt 
+      const localEndpoint = data.localEndpoint || 'http://localhost:11434/api/chat'; // Default local endpoint
+      let prompt = data.prompt && data.prompt.length > 1
+        ? data.prompt
         : `
         <h3> section: Article summary section with creative title where you explain it like I'm five what's the deal with the article.
         <h3> section: More extensive summary with a bit more detail (4-5 sentences).
@@ -55,12 +56,17 @@ async function fetchSummary(additionalQuestions, targetElement) {
       }
 
       try {
-        const apiUrl = model === 'openai' 
-          ? 'https://api.openai.com/v1/chat/completions' 
-          : 'https://api.mistral.ai/v1/chat/completions'; // Adjust based on model
-        const modelIdentifier = model === 'openai' 
-          ? 'gpt-4o-mini' 
-          : 'mistral-large-latest';
+        const apiUrl = model === 'openai'
+          ? 'https://api.openai.com/v1/chat/completions'
+          : model === 'mistral'
+            ? 'https://api.mistral.ai/v1/chat/completions'
+            : localEndpoint; // Use local endpoint for Ollama
+
+        const modelIdentifier = model === 'openai'
+          ? 'gpt-4o-mini'
+          : model === 'mistral'
+            ? 'mistral-large-latest'
+            : 'llama3.2'; // Use llama3.2 for Ollama
 
         console.log('🕵️ Fetching summary from:', model);
         const requestBody = JSON.stringify({
@@ -69,7 +75,8 @@ async function fetchSummary(additionalQuestions, targetElement) {
             { role: 'system', content: 'You are a helpful assistant.' },
             { role: 'user', content: 'Summarize in valid html format with sections:' + prompt },
             { role: 'user', content: truncatedContent },
-          ]
+          ],
+          stream: false // Ensure streaming is off for local models
         });
 
         const response = await fetch(apiUrl, {
@@ -89,7 +96,19 @@ async function fetchSummary(additionalQuestions, targetElement) {
         const result = await response.json();
         console.debug('🚀 API response:', result);
 
-        const summary = result.choices[0]?.message?.content || 'Error: No summary returned';
+        // Adjust this part to correctly access the message content
+        let summary;
+        if (model === 'ollama' || model === 'llama3.2') {
+          // Adjust for the response structure from Ollama using the llama3.2 model
+          summary = result.message?.content || 'Error: No summary returned';
+        } else if (model === 'openai' || model === 'mistral') {
+          // For OpenAI or Mistral models that use the `choices` array
+          summary = result.choices?.[0]?.message?.content || 'Error: No summary returned';
+        } else {
+          summary = 'Error: Unsupported model';
+        }
+
+
         const summaryContainer = document.createElement('blockquote');
         summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
 
