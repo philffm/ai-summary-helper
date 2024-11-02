@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-const { Configuration, OpenAIApi } = require('openai');
+const { OpenAIApi, Configuration } = require('openai'); // Check order
 
-// Load your OpenAI API key from environment variables
 const openai = new OpenAIApi(new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 }));
+
 
 const translationsPath = path.join(__dirname, 'docs', 'translations.json');
 const langDir = path.join(__dirname, 'lang');
