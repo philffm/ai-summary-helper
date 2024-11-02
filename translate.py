@@ -52,6 +52,8 @@ def translate_file():
             output_path = os.path.join(lang_dir, f"{lang['code']}.json")
             with open(output_path, 'w', encoding='utf-8') as file:
                 json.dump(translated_content, file, ensure_ascii=False, indent=2)
+            print(f"Translated content written to {output_path}")
+            print(f"Content for {lang['code']}: {translated_content}")
 
 if __name__ == '__main__':
     try:
