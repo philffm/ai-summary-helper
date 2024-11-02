@@ -95,19 +95,14 @@
                 englishButton.onclick = () => changeLanguage('en');
                 languageSection.appendChild(englishButton);
 
+                // Create buttons for all languages listed in translations.json
                 for (const lang of translations.languages) {
                     if (lang.code === 'en') continue; // Skip English as it's already added
 
-                    const langFileExists = await fetch(`lang/${lang.code}.json`, { method: 'HEAD' })
-                        .then(res => res.ok)
-                        .catch(() => false);
-
-                    if (langFileExists) {
-                        const button = document.createElement('button');
-                        button.textContent = `${lang.emoji} ${lang.name}`;
-                        button.onclick = () => changeLanguage(lang.code);
-                        languageSection.appendChild(button);
-                    }
+                    const button = document.createElement('button');
+                    button.textContent = `${lang.emoji} ${lang.name}`;
+                    button.onclick = () => changeLanguage(lang.code);
+                    languageSection.appendChild(button);
                 }
             } catch (error) {
                 console.error('Error creating language buttons:', error);
