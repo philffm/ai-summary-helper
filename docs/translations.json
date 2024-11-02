@@ -9,51 +9,6 @@
             "code": "de",
             "name": "German",
             "emoji": "🇩🇪"
-        },
-        {
-            "code": "fr",
-            "name": "French",
-            "emoji": "🇫🇷"
-        },
-        {
-            "code": "it",
-            "name": "Italian",
-            "emoji": "🇮🇹"
-        },
-        {
-            "code": "pt",
-            "name": "Portuguese",
-            "emoji": "🇵🇹"
-        },
-        {
-            "code": "nl",
-            "name": "Dutch",
-            "emoji": "🇳🇱"
-        },
-        {
-            "code": "jp",
-            "name": "Japanese",
-            "emoji": "🇯🇵"
-        },
-        {
-            "code": "cn",
-            "name": "Chinese",
-            "emoji": "🇨🇳"
-        },
-        {
-            "code": "ru",
-            "name": "Russian",
-            "emoji": "🇷🇺"
-        },
-        {
-            "code": "kr",
-            "name": "Korean",
-            "emoji": "🇰🇷"
-        },
-        {
-            "code": "ar",
-            "name": "Arabic",
-            "emoji": "🇦🇪"
         }
     ],
     "content": {
