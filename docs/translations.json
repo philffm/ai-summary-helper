@@ -65,6 +65,11 @@
             "code": "ua",
             "name": "Ukrainian",
             "emoji": "🇺🇦"
+        },
+        {
+            "code": "pl",
+            "name": "Polish",
+            "emoji": "🇵🇱"
         }
     ],
     "content": {
