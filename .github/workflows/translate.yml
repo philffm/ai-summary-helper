@@ -26,6 +26,7 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: python translate.py
 
+
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
