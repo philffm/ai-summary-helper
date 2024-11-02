@@ -1,39 +1,39 @@
 {
   "title": "AI Summary Helper 🚀",
   "about": "About 📖",
-  "aboutText": "Boost your productivity with AI Summary Helper. Never miss important insights from articles again! 🌟",
+  "aboutText": "Elevate your browsing efficiency with AI Summary Helper. Don't miss out on any article again! 🌟",
   "features": "Features 🔍 ",
   "featureList": [
-    "Summarize articles with a personalized touch ✨",
-    "Supports OpenAI, Mistral AI, Ollama (local) and other models",
-    "Seamlessly integrate summaries into your reading process 📖",
-    "Mobile reading: Easily share to Kindle via Reabble 📖",
-    "Cross-Platform: Create bookmarks for all browsers and OS, including iOS"
+    "Personalized Article Summaries ✨",
+    "Supports OpenAI, Mistral AI, Ollama (local), and more models",
+    "Seamlessly Integrate Summaries into Your Reading Habit 📖",
+    "Mobile Reading: Easily Send to Kindle via Reabble 📖",
+    "Universal Compatibility: Bookmarklet Generator for All Browsers and OS, including iOS"
   ],
   "proposeFeature": "Propose a Feature 💡",
-  "proposeFeatureText": "Have a groundbreaking idea? Contribute to the evolution of AI Summary Helper! 💬",
+  "proposeFeatureText": "Have an innovative idea? Contribute to the evolution of AI Summary Helper! 💬",
   "privacyNote": "Privacy Note 🔒",
-  "privacyNoteText": "We prioritize your privacy. Your data remains confidential with us. 🔑",
-  "funMessage": "Explore a smarter way to browse with AI Summary Helper! 🎉",
-  "changelog": "Changelog 📑",
+  "privacyNoteText": "We prioritize your privacy above all. Rest assured, your data remains secure. 🔑",
+  "funMessage": "Explore a smarter way of browsing with AI Summary Helper! 🎉",
+  "changelog": "Changelog 📜",
   "changelogList": [
-    "New prompts for greater accuracy",
-    "Added support for Local LLMs including Ollama / Llama models",
-    "Integration with Mistral AI model",
-    "Upgraded to GPT-4o mini model",
-    "Refreshed UI 🎨"
+    "New prompts - improved accuracy",
+    "Support for Local LLMs including Ollama / Llama models",
+    "Latest updates to support Mistral AI model",
+    "Transitioned to GPT-4o mini model",
+    "Refreshed User Interface 🎨"
   ],
   "aboutCreator": "About the Creator",
-  "creatorText": "Hi Gumroad community :) - I'm Phil Wornath, creator of AI Summary Helper. As a frequent reader of extensive web content, especially scientific articles, time constraints prompted me to develop a tool that boosts reading productivity and efficiency.",
+  "creatorText": "Hello, Gumroad community 🙂 - I'm Phil Wornath, the brains behind AI Summary Helper. Driven by a passion for extensive online articles and scientific research, I often found reading material depths challenging within limited timeframes. This led me to create a tool designed to boost productivity and optimize reading efficiency.",
   "whyHelper": "Why AI Summary Helper?",
   "whyHelperList": [
-    "Reclaim Your Time: Quick digests or save for thorough reviews later.",
-    "Tailored to You: Adapt summaries to fit your language, profession, or perspective.",
-    "Stay Organized: Keep tabs neat and your reading list streamlined.",
-    "Enhanced Reading Experience: Concentrate on key content without feeling overwhelmed."
+    "Reclaim Your Time: Craft quick digests or gear up for thorough reviews later.",
+    "Tailored to You: Adapt summaries to your linguistic style, professional demands, or unique perspective.",
+    "Stay Organized: Keep your tabs tidy and your reading list under control.",
+    "Enhanced Reading Experience: Concentrate on pivotal content without feeling swamped."
   ],
   "getStarted": "Get Started Today",
-  "getStartedText": "To begin using AI Summary Helper, ensure you have an OpenAI API key and sufficient credits. Join our mission to make web reading simpler and accessible for all. Download now on Gumroad and revamp your browsing.",
+  "getStartedText": "To begin harnessing AI Summary Helper, make sure you possess an OpenAI API key and ample credit. Become part of our journey in simplifying web reading for everyone. Download today on Gumroad and revolutionize your web interactions.",
   "feedbackSupport": "Feedback and Support",
-  "feedbackSupportText": "We invite you to experience AI Summary Helper and eagerly await your feedback and inquiries. Let's simplify and enrich online reading. Improve your web reading experience with AI Summary Helper today!"
+  "feedbackSupportText": "We invite you to experience AI Summary Helper and eagerly await your insights and inquiries. Let's simplify and enrich web browsing together. Boost your online reading journey with AI Summary Helper starting now!"
 }

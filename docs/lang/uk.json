@@ -1,0 +1,39 @@
+{
+  "title": "AI Summary Helper 🚀",
+  "about": "About 📖",
+  "aboutText": "Elevate your web browsing to a new level of efficiency with AI Summary Helper. Make sure you don’t miss out on any article ever again! 🌟",
+  "features": "Features 🔍 ",
+  "featureList": [
+    "Personalise your article summaries ✨",
+    "Supports multiple AI models including OpenAI, Mistral AI, Ollama (local), and others",
+    "Seamlessly integrate summaries into your reading experience 📖",
+    "Mobility enhanced: Direct sharing to Kindle via Reabble 📖",
+    "Universal Compatibility: Bookmarklet Creator for all browsers and operating systems, including iOS."
+  ],
+  "proposeFeature": "Propose a Feature 💡",
+  "proposeFeatureText": "Have a great idea? Share it with us and influence the evolution of AI Summary Helper! 💬",
+  "privacyNote": "Privacy Note 🔐",
+  "privacyNoteText": "We prioritise your privacy. Your data remains exclusively yours. 🔑",
+  "funMessage": "Step into a smarter browsing experience with AI Summary Helper! 🎉",
+  "changelog": "Changelog 📋",
+  "changelogList": [
+    "New prompts - enhanced accuracy",
+    "Enhanced support for Local LLMs - including Ollama and Llama models",
+    "Now supporting Mistral AI model",
+    "Updated to GPT-4o mini model",
+    "Revamped User Interface 🎨"
+  ],
+  "aboutCreator": "About the Creator",
+  "creatorText": "Hello, Gumroad community! 🙂 I’m Phil Wornath, the mind behind AI Summary Helper. With a passion for extensive web-based written content, especially academic articles, and the pressures of time, I was inspired to create a solution that maximises productivity and reading efficiency.",
+  "whyHelper": "Why AI Summary Helper?",
+  "whyHelperList": [
+    "Reclaim Your Time: Quickly generate summaries or prepare detailed reviews for later.",
+    "Customised for You: Tailor summaries to fit your language, profession, or viewpoint.",
+    "Stay Organised: Keep your tabs uncluttered and your reading list streamlined.",
+    "Boost Your Reading Experience: Concentrate on the essential content without feeling swamped."
+  ],
+  "getStarted": "Get Started Today",
+  "getStartedText": "To begin utilising AI Summary Helper, make sure you have an OpenAI API key and adequate credit. Join us in simplifying and enhancing web reading for everyone. Download now on Gumroad and revolutionise your web browsing.",
+  "feedbackSupport": "Feedback and Support",
+  "feedbackSupportText": "We are thrilled to have you try AI Summary Helper and eagerly await your feedback and queries. Let's simplify and enrich web reading together. Enhance your web reading with AI Summary Helper today!"
+}

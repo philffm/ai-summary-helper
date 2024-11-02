@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "emoji": "🇬🇧"
+    },
+    {
+      "code": "es",
+      "name": "Spanish",
+      "emoji": "🇪🇸"
+    },
+    {
+      "code": "de",
+      "name": "German",
+      "emoji": "🇩🇪"
+    },
+    {
+      "code": "fr",
+      "name": "French",
+      "emoji": "🇫🇷"
+    },
+    {
+      "code": "it",
+      "name": "Italian",
+      "emoji": "🇮🇹"
+    },
+    {
+      "code": "pt",
+      "name": "Portuguese",
+      "emoji": "🇵🇹"
+    },
+    {
+      "code": "nl",
+      "name": "Dutch",
+      "emoji": "🇳🇱"
+    },
+    {
+      "code": "jp",
+      "name": "Japanese",
+      "emoji": "🇯🇵"
+    },
+    {
+      "code": "cn",
+      "name": "Chinese",
+      "emoji": "🇨🇳"
+    },
+    {
+      "code": "ru",
+      "name": "Russian",
+      "emoji": "🇷🇺"
+    },
+    {
+      "code": "kr",
+      "name": "Korean",
+      "emoji": "🇰🇷"
+    },
+    {
+      "code": "ar",
+      "name": "Arabic",
+      "emoji": "🇦🇪"
+    },
+    {
+      "code": "ja",
+      "name": "Japanese",
+      "emoji": "🇯🇵"
+    },
+    {
+      "code": "uk",
+      "name": "Ukrainian",
+      "emoji": "🇺🇦"
+    }
+  ]
+}

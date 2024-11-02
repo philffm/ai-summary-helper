@@ -1,0 +1,39 @@
+{
+  "title": "AI摘要助手🚀",
+  "about": "关于📖",
+  "aboutText": "将您的浏览体验转化为生产力的强大工具，使用AI摘要助手，不再错过任何文章！🌟",
+  "features": "功能🔍",
+  "featureList": [
+    "具有个性化触摸的文章摘要✨",
+    "支持OpenAI、Mistral AI、Ollama（本地）等多种模型",
+    "将摘要整合到您的阅读流程中📚",
+    "随身阅读：通过Reabble分享至Kindle📖",
+    "跨平台：为所有浏览器和操作系统（包括iOS）生成书签小工具"
+  ],
+  "proposeFeature": "提议功能💡",
+  "proposeFeatureText": "有绝妙的想法吗？与我们分享，并共同塑造AI摘要助手的未来！💬",
+  "privacyNote": "隐私声明🔒",
+  "privacyNoteText": "您的隐私是我们的首要任务。我们确保您的数据安全🔐",
+  "funMessage": "用AI摘要助手，开始更聪明的浏览方式！🎉",
+  "changelog": "更新日志📑",
+  "changelogList": [
+    "新提示 - 更精确",
+    "支持本地LLM - Ollama / Llama模型",
+    "升级以支持Mistral AI模型",
+    "升级到GPT4o mini模型",
+    "更新的用户界面🎨"
+  ],
+  "aboutCreator": "关于创建者",
+  "creatorText": "嗨 Gumroad社区 :) - 我是Phil Wornath，AI摘要助手的创建者。作为一个喜欢阅读网络内容特别是科学文章的人，我经常面临时间限制。这激发了我开发一个提升生产力和阅读效率的工具。",
+  "whyHelper": "为什么选择AI摘要助手？",
+  "whyHelperList": [
+    "收回您的时间：生成快速摘要或为以后深入阅读做准备。",
+    "为您量身定做：根据您的语言、职业或观点定制摘要。",
+    "保持组织性：避免标签页混乱，保持阅读列表井然有序。",
+    "提升阅读体验：专注于对您重要的内容，不被复杂信息超载。"
+  ],
+  "getStarted": "立即开始",
+  "getStartedText": "要开始使用AI摘要助手，请确保您有OpenAI API密钥和足够的信用。加入我们，让网络阅读变得更容易，更便捷。现在就在Gumroad上下载，转变您的浏览体验。",
+  "feedbackSupport": "反馈与支持",
+  "feedbackSupportText": "我们非常期待您尝试AI摘要助手，并欢迎您的反馈和问题。让网页阅读变得更简单、更吸引人。今天就用AI摘要助手提升您的在线阅读体验！"
+}

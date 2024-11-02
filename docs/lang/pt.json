@@ -1,19 +1,19 @@
 {
   "title": "Assistente de Resumo AI 🚀",
   "about": "Sobre 📖",
-  "aboutText": "Transforme sua navegação em uma central de produtividade com o Assistente de Resumo AI. Não deixe mais nenhum artigo passar despercebido! 🌟",
+  "aboutText": "Transforme sua navegação na web em uma central de produtividade com o Assistente de Resumo AI. Não deixe mais nenhum artigo passar despercebido! 🌟",
   "features": "Funcionalidades 🔍",
   "featureList": [
-    "Resumos de artigos com um toque pessoal ✨",
-    "Suporte a modelos OpenAI, Mistral AI, Ollama (local) e outros",
-    "Integre resumos ao seu fluxo de leitura 📚",
-    "Leia em movimento: Compartilhe para o Kindle com Reabble 📖",
-    "Multiplataforma: Gerador de Bookmarklet para todos os navegadores e OS, incluindo iOS."
+    "Resuma artigos com um toque pessoal ✨",
+    "Suporta OpenAI, Mistral AI, Ollama (local) e mais modelos",
+    "Integre resumos ao seu fluxo de leitura 📖",
+    "Leia em movimento: Compartilhe no Kindle com o Reabble 📖",
+    "Multiplataforma: Gerador de Bookmarklet para todos os navegadores e sistemas operacionais, incluindo iOS."
   ],
-  "proposeFeature": "Proponha uma Funcionalidade 💡",
-  "proposeFeatureText": "Tem uma ideia brilhante? Compartilhe conosco e ajude a moldar o futuro do Assistente de Resumo AI! 💬",
+  "proposeFeature": "Sugira uma Funcionalidade 💡",
+  "proposeFeatureText": "Tem uma ideia genial? Compartilhe conosco e forme o futuro do Assistente de Resumo AI! 💬",
   "privacyNote": "Nota de Privacidade 🔒",
-  "privacyNoteText": "Sua privacidade é nossa prioridade máxima. Garantimos que seus dados permaneçam seus. 🔐",
+  "privacyNoteText": "Sua privacidade é nossa prioridade máxima. Garantimos que seus dados permaneçam seus. 🔑",
   "funMessage": "Mergulhe em uma forma mais inteligente de navegar com o Assistente de Resumo AI! 🎉",
   "changelog": "Registro de Mudanças 📑",
   "changelogList": [
@@ -24,16 +24,16 @@
     "UI atualizada 🎨"
   ],
   "aboutCreator": "Sobre o Criador",
-  "creatorText": "Olá Comunidade Gumroad :) - Eu sou Phil Wornath, o criador do Assistente de Resumo AI. Como um amante de extenso conteúdo web escrito, especialmente artigos científicos, muitas vezes enfrentei restrições de tempo. Isso me inspirou a desenvolver uma ferramenta que aprimora a produtividade e a eficiência de leitura.",
+  "creatorText": "Olá comunidade Gumroad :) - Sou Phil Wornath, criador do Assistente de Resumo AI. Como um amante de conteúdo web extenso, especialmente artigos científicos, muitas vezes enfrentei limitações de tempo. Isso me inspirou a desenvolver uma ferramenta que aprimora a produtividade e a eficiência de leitura.",
   "whyHelper": "Por que o Assistente de Resumo AI?",
   "whyHelperList": [
-    "Recupere Seu Tempo: Gere resumos rápidos ou prepare-se para mergulhos mais profundos mais tarde.",
-    "Personalizado para Você: Customize resumos para adequar ao seu idioma, profissão ou ponto de vista.",
-    "Mantenha-se Organizado: Evite abas desordenadas e mantenha sua lista de leitura gerenciável.",
-    "Experiência de Leitura Aprimorada: Foque no conteúdo que importa para você sem se sobrecarregar."
+    "Recupere Seu Tempo: Gere resumos rápidos ou prepare-se para mergulhos profundos mais tarde.",
+    "Feito Sob Medida para Você: Personalize resumos para combinar com sua linguagem, profissão ou ponto de vista.",
+    "Mantenha-se Organizado: Evite guias desordenadas e mantenha sua lista de leitura gerenciável.",
+    "Experiência de Leitura Aprimorada: Foque no conteúdo que é importante para você sem se sobrecarregar."
   ],
   "getStarted": "Comece Hoje",
-  "getStartedText": "Para começar a usar o Assistente de Resumo AI, certifique-se de que você tem uma chave de API OpenAI e crédito suficiente. Junte-se a nós para tornar a leitura na web mais fácil e acessível para todos. Baixe agora no Gumroad e transforme sua experiência de navegação.",
+  "getStartedText": "Para começar a usar o Assistente de Resumo AI, certifique-se de ter uma chave API da OpenAI e crédito suficiente. Junte-se a nós para tornar a leitura na web mais fácil e acessível para todos. Baixe agora no Gumroad e transforme sua experiência de navegação.",
   "feedbackSupport": "Feedback e Suporte",
-  "feedbackSupportText": "Estamos animados para convidá-lo a experimentar o Assistente de Resumo AI e receber seu feedback e perguntas. Vamos tornar a leitura na web mais simples e mais envolvente. Aprimore sua experiência de leitura online com o Assistente de Resumo AI hoje!"
+  "feedbackSupportText": "Estamos empolgados para convidá-lo a experimentar o Assistente de Resumo AI e recebemos seu feedback e perguntas. Vamos tornar a leitura na web mais simples e mais envolvente. Aprimore sua experiência de leitura online com o Assistente de Resumo AI hoje!"
 }

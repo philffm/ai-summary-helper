@@ -1,39 +1,39 @@
 {
-  "title": "Ayudante de Resumen con IA 🚀",
+  "title": "Asistente de Resumen AI 🚀",
   "about": "Acerca de 📖",
-  "aboutText": "Transforma tu navegación en un centro de productividad con Ayudante de Resumen con IA. ¡No dejes que se te escape ningún artículo! 🌟",
+  "aboutText": "Transforma tu navegación en un centro de productividad con Asistente de Resumen AI. ¡No dejes que se te escape otro artículo! 🌟",
   "features": "Características 🔍",
   "featureList": [
     "Resumir artículos con un toque personal ✨",
-    "Soporte para modelos de OpenAI, Mistral AI, Ollama (local) y más",
+    "Soporte para OpenAI, Mistral AI, Ollama (local) y más modelos",
     "Integra resúmenes en tu flujo de lectura 📚",
     "Lee en movimiento: Comparte en Kindle con Reabble 📖",
-    "Multiplataforma: Generador de Bookmarklets para todos los navegadores y sistemas operativos, incluyendo iOS."
+    "Multiplataforma: Generador de Bookmarklet para todos los navegadores y sistemas operativos, incluyendo iOS."
   ],
-  "proposeFeature": "Proponer una Funcionalidad 💡",
-  "proposeFeatureText": "¿Tienes una idea brillante? ¡Compártela con nosotros y forma parte del futuro de Ayudante de Resumen con IA! 🗨️",
+  "proposeFeature": "Proponer una Característica 💡",
+  "proposeFeatureText": "¿Tienes una idea brillante? Compártela con nosotros y forma parte del futuro de Asistente de Resumen AI! 🗨️",
   "privacyNote": "Nota de Privacidad 🔒",
   "privacyNoteText": "Tu privacidad es nuestra máxima prioridad. Nos aseguramos de que tus datos sigan siendo tuyos. 🔐",
-  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con Ayudante de Resumen con IA! 🎉",
-  "changelog": "Registro de Cambios 🆕",
+  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con Asistente de Resumen AI! 🎉",
+  "changelog": "Registro de Cambios 📜",
   "changelogList": [
-    "Nuevos prompts: más precisos",
-    "Soporte para LLM locales: modelos Ollama / Llama",
+    "Nuevos prompts - más precisos",
+    "Soporte para LLMs locales - Modelos Ollama / Llama",
     "Actualizado para soportar el modelo Mistral AI",
-    "Actualizado al modelo GPT4o mini",
+    "Actualizado al modelo mini GPT4o",
     "Interfaz de usuario actualizada 🎨"
   ],
   "aboutCreator": "Acerca del Creador",
-  "creatorText": "Hola comunidad de Gumroad :) - Soy Phil Wornath, el creador de Ayudante de Resumen con IA. Como un amante del contenido web escrito extensivamente, especialmente artículos científicos, a menudo enfrentaba restricciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia de lectura.",
-  "whyHelper": "¿Por qué Ayudante de Resumen con IA?",
+  "creatorText": "Hola comunidad de Gumroad :) - Soy Phil Wornath, el creador de Asistente de Resumen AI. Como amante de los contenidos web escritos extensamente, especialmente artículos científicos, a menudo enfrentaba limitaciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia de lectura.",
+  "whyHelper": "¿Por qué Asistente de Resumen AI?",
   "whyHelperList": [
-    "Recupera tu tiempo: Genera resúmenes rápidos o prepárate para lecturas más profundas más tarde.",
-    "Personalizado para ti: Personaliza los resúmenes para que coincidan con tu idioma, profesión o punto de vista.",
-    "Mantén todo organizado: Evita pestañas desordenadas y mantén tu lista de lectura manejable.",
-    "Experiencia de lectura mejorada: Enfócate en el contenido que importa para ti sin sentirte abrumado."
+    "Recupera Tu Tiempo: Genera resúmenes rápidos o prepárate para inmersiones profundas más tarde.",
+    "Personalizado para Ti: Personaliza los resúmenes para que coincidan con tu idioma, profesión o punto de vista.",
+    "Mantente Organizado: Evita pestañas desordenadas y mantén tu lista de lectura controlable.",
+    "Experiencia de Lectura Mejorada: Concéntrate en el contenido que importa para ti sin sentirte abrumado."
   ],
   "getStarted": "Empieza Hoy",
-  "getStartedText": "Para empezar a usar Ayudante de Resumen con IA, asegúrate de tener una clave de API de OpenAI y crédito suficiente. Únete a nosotros para hacer la lectura web más fácil y accesible para todos. Descárgalo ahora en Gumroad y transforma tu experiencia de navegación.",
+  "getStartedText": "Para comenzar a usar Asistente de Resumen AI, asegúrate de tener una clave de API de OpenAI y crédito suficiente. Únete a nosotros para hacer la lectura web más fácil y accesible para todos. Descarga ahora en Gumroad y transforma tu experiencia de navegación.",
   "feedbackSupport": "Comentarios y Soporte",
-  "feedbackSupportText": "Estamos emocionados de invitarte a probar Ayudante de Resumen con IA y agradecemos tus comentarios y preguntas. Hagamos la lectura en la web más simple y atractiva. ¡Mejora tu experiencia de lectura en línea con Ayudante de Resumen con IA hoy!"
+  "feedbackSupportText": "Estamos emocionados de invitarte a probar Asistente de Resumen AI y recibir tus comentarios y preguntas. Hagamos que la lectura en la web sea más simple y atractiva. ¡Mejora tu experiencia de lectura en línea con Asistente de Resumen AI hoy!"
 }
