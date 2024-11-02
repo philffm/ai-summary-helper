@@ -18,13 +18,16 @@ def translate_content(content, target_lang):
         'Content-Type': 'application/json'
     }
     data = {
-        'model': 'gpt-4o',
-        'prompt': prompt,
+        'model': 'gpt-4o-mini',
+        'messages': [
+            {'role': 'system', 'content': 'You are a professional seo product translator for great product marketing.'},
+            {'role': 'user', 'content': prompt}
+        ],
         'max_tokens': 2000
     }
-    response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=data)
+    response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
     response.raise_for_status()
-    return json.loads(response.json()['choices'][0]['text'].strip())
+    return json.loads(response.json()['choices'][0]['message']['content'].strip())
 
 def translate_file():
     with open(translations_path, 'r', encoding='utf-8') as file:
