@@ -101,12 +101,24 @@ def translate_file():
                 print("Language code missing in configuration.")
                 continue
 
+            # Check if the language file already exists with the same version
+            lang_file_path = os.path.join(lang_dir, f"{lang_code}.json")
+            if os.path.exists(lang_file_path):
+                try:
+                    with open(lang_file_path, 'r', encoding='utf-8') as lang_file:
+                        lang_data = json.load(lang_file)
+                        if lang_data.get('version') == new_version:
+                            print(f"Language file for {lang_code} is already up-to-date.")
+                            continue
+                except json.JSONDecodeError:
+                    print(f"Error reading language file for {lang_code}. Proceeding with translation.")
+
             translated_content = translate_content(content, lang_code)
             if translated_content:
-                output_path = os.path.join(lang_dir, f"{lang_code}.json")
-                with open(output_path, 'w', encoding='utf-8') as file:
+                translated_content['version'] = new_version  # Add version to the translated content
+                with open(lang_file_path, 'w', encoding='utf-8') as file:
                     json.dump(translated_content, file, ensure_ascii=False, indent=2)
-                print(f"Translated content written to {output_path}")
+                print(f"Translated content written to {lang_file_path}")
                 print(f"Content for {lang_code}: {translated_content}")
     else:
         print("No updates needed. Version and languages are unchanged.")
