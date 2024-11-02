@@ -63,10 +63,9 @@
         "features": "Features 🔍",
         "featureList": [
             "Summarize articles with a personal touch ✨",
-            "Customizable Summaries: Powered by GPT-3.5 for quick, tailored article summaries.",
-            "Integrate summaries into your reading flow 📚",
             "OpenAI, Ollama, Mistral AI and more models supported",
-            "Share insights to Kindle with Reabble 📖",
+            "Integrate summaries into your reading flow 📚",
+            "Read on the go: Share to Kindle with Reabble 📖",
             "Cross-Platform: Bookmarklet Generator for all browsers and OS, including iOS."
         ],
         "proposeFeature": "Propose a Feature 💡",
