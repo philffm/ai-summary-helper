@@ -75,7 +75,7 @@
         "funMessage": "Dive into a smarter way of browsing with AI Summary Helper! 🎉",
         "changelog": "Changelog 🆕",
         "changelogList": [
-            "New prompts",
+            "New prompts - more accurate ",
             "Support for Local LLMs - Ollama / Llama models",
             "Updated to support Mistral AI model",
             "Updated to GPT4o mini model",
