@@ -1,0 +1,39 @@
+{
+  "title": "Ayudante de Resumen con IA 🚀",
+  "about": "Acerca de 📖",
+  "aboutText": "¡Transforma tu navegación en un centro de productividad con Ayudante de Resumen con IA! No dejes que ningún artículo se te escape 🌟",
+  "features": "Características 🔍",
+  "featureList": [
+    "Resumen de artículos con un toque personal ✨",
+    "Soporte para múltiples modelos como OpenAI, Mistral AI, Ollama (local) y más",
+    "Integra resúmenes en tu flujo de lectura 📖",
+    "Lee en movimiento: Comparte en Kindle con Reabble 📖",
+    "Multiplataforma: Generador de marcadores para todos los navegadores y sistemas operativos, incluido iOS."
+  ],
+  "proposeFeature": "Proponer una Función 💡",
+  "proposeFeatureText": "¿Tienes una idea brillante? ¡Compártela con nosotros y forma parte del futuro del Ayudante de Resumen con IA! 🗨️",
+  "privacyNote": "Nota de Privacidad 🔒",
+  "privacyNoteText": "Tu privacidad es nuestra máxima prioridad. Nos aseguramos de que tus datos permanezcan tuyos. 🔑",
+  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con el Ayudante de Resumen con IA! 🎉",
+  "changelog": "Registro de Cambios 📑",
+  "changelogList": [
+    "Nuevos prompts: más precisos",
+    "Soporte para Modelos LLM Locales - modelos Ollama / Llama",
+    "Actualizado para soportar el modelo Mistral AI",
+    "Actualizado al modelo mini GPT4o",
+    "Interfaz de Usuario actualizada 🎨"
+  ],
+  "aboutCreator": "Acerca del Creador",
+  "creatorText": "Hola comunidad de Gumroad :) - Soy Phil Wornath, el creador del Ayudante de Resumen con IA. Como amante del contenido web escrito extenso, especialmente los artículos científicos, a menudo enfrentaba restricciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia de lectura.",
+  "whyHelper": "¿Por qué Ayudante de Resumen con IA?",
+  "whyHelperList": [
+    "Recupera Tu Tiempo: Genera resúmenes rápidos o prepárate para inmersiones profundas más tarde.",
+    "Personalizado para Ti: Personaliza los resúmenes para que coincidan con tu idioma, profesión o punto de vista.",
+    "Mantente Organizado: Evita pestañas desordenadas y mantiene tu lista de lectura manejable.",
+    "Experiencia de Lectura Mejorada: Concéntrate en el contenido que te importa sin sentirte abrumado."
+  ],
+  "getStarted": "Comienza Hoy",
+  "getStartedText": "Para comenzar a usar el Ayudante de Resumen con IA, asegúrate de tener una clave API de OpenAI y créditos suficientes. Únete a nosotros para hacer la lectura web más fácil y accesible para todos. Descarga ahora en Gumroad y transforma tu experiencia de navegación.",
+  "feedbackSupport": "Comentarios y Soporte",
+  "feedbackSupportText": "Estamos emocionados de invitarte a probar el Ayudante de Resumen con IA y damos la bienvenida a tus comentarios y preguntas. Hagamos la lectura en la web más simple y más atractiva. ¡Mejora tu experiencia de lectura en línea con el Ayudante de Resumen con IA hoy!"
+}

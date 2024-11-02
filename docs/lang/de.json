@@ -1,0 +1,39 @@
+{
+  "title": "AI Zusammenfassungs-Helfer 🚀",
+  "about": "Über 📖",
+  "aboutText": "Verwandle Dein Browsen mit dem AI Zusammenfassungs-Helfer in ein Kraftwerk der Produktivität. Lass nie wieder einen Artikel durch die Lücken rutschen! 🌟",
+  "features": "Funktionen 🔍",
+  "featureList": [
+    "Artikel mit persönlicher Note zusammenfassen ✨",
+    "Unterstützung für OpenAI, Mistral AI, Ollama (lokal) und weitere Modelle",
+    "Integriere Zusammenfassungen in deinen Lesefluss 📖",
+    "Unterwegs lesen: Teile auf Kindle mit Reabble 📖",
+    "Plattformübergreifend: Bookmarklet-Generator für alle Browser und Betriebssysteme, einschließlich iOS."
+  ],
+  "proposeFeature": "Funktion vorschlagen 💡",
+  "proposeFeatureText": "Hast Du eine geniale Idee? Teile sie mit uns und gestalte die Zukunft des AI Zusammenfassungs-Helfers! 💬",
+  "privacyNote": "Datenschutzhinweis 🔒",
+  "privacyNoteText": "Deine Privatsphäre ist unsere höchste Priorität. Wir garantieren, dass Deine Daten Deine Daten bleiben. 🔐",
+  "funMessage": "Tauche ein in eine intelligentere Art des Browsens mit dem AI Zusammenfassungs-Helfer! 🎉",
+  "changelog": "Änderungsprotokoll 📜",
+  "changelogList": [
+    "Neue Aufforderungen - präziser",
+    "Unterstützung für lokale LLMs - Ollama / Llama Modelle",
+    "Aktualisiert zur Unterstützung des Mistral AI Modells",
+    "Aktualisiert zum GPT4o-Mini-Modell",
+    "Aktualisierte Benutzeroberfläche 🎨"
+  ],
+  "aboutCreator": "Über den Ersteller",
+  "creatorText": "Hallo Gumroad-Community :) - Ich bin Phil Wornath, der Ersteller des AI Zusammenfassungs-Helfers. Als Liebhaber von ausführlichem Webtext, insbesondere wissenschaftlichen Artikeln, stand ich oft unter Zeitdruck. Dies inspirierte mich dazu, ein Tool zu entwickeln, das Produktivität und Leseeffizienz steigert.",
+  "whyHelper": "Warum der AI Zusammenfassungs-Helfer?",
+  "whyHelperList": [
+    "Gewinne Deine Zeit zurück: Erzeuge schnelle Digests oder bereite Dich auf Tiefenanalysen vor.",
+    "Auf Dich zugeschnitten: Passe Zusammenfassungen an Deine Sprache, Dein Fachgebiet oder Deinen Standpunkt an.",
+    "Bleib organisiert: Vermeide überfüllte Tabs und halte Deine Leseliste übersichtlich.",
+    "Verbessertes Leseerlebnis: Konzentriere Dich auf die Inhalte, die Dir wichtig sind, ohne überwältigt zu werden."
+  ],
+  "getStarted": "Heute starten",
+  "getStartedText": "Um den AI Zusammenfassungs-Helfer zu verwenden, stelle sicher, dass Du einen OpenAI API-Schlüssel und ausreichend Guthaben hast. Schließe Dich uns an, um das Web-Lesen einfacher und zugänglicher für jeden zu machen. Lade jetzt auf Gumroad herunter und verwandle Deine Browsing-Erfahrung.",
+  "feedbackSupport": "Feedback und Unterstützung",
+  "feedbackSupportText": "Wir freuen uns, Dich zur Nutzung des AI Zusammenfassungs-Helfers einzuladen und begrüßen Dein Feedback und Deine Fragen. Machen wir das Lesen im Web einfacher und spannender. Verbessere Deine Online-Leseerfahrung mit dem AI Zusammenfassungs-Helfer noch heute!"
+}
