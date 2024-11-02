@@ -26,8 +26,19 @@ def translate_content(content, target_lang):
         'max_tokens': 2000
     }
     response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
-    response.raise_for_status()
-    return json.loads(response.json()['choices'][0]['message']['content'].strip())
+    
+    try:
+        response.raise_for_status()
+        return json.loads(response.json()['choices'][0]['message']['content'].strip())
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+        print(f"Response content: {response.text}")
+    except json.JSONDecodeError as json_err:
+        print(f"JSON decode error: {json_err}")
+        print(f"Response content: {response.text}")
+    except Exception as err:
+        print(f"An error occurred: {err}")
+        print(f"Response content: {response.text}")
 
 def translate_file():
     with open(translations_path, 'r', encoding='utf-8') as file:
@@ -37,9 +48,10 @@ def translate_file():
 
     for lang in languages:
         translated_content = translate_content(content, lang['code'])
-        output_path = os.path.join(lang_dir, f"{lang['code']}.json")
-        with open(output_path, 'w', encoding='utf-8') as file:
-            json.dump(translated_content, file, ensure_ascii=False, indent=2)
+        if translated_content:
+            output_path = os.path.join(lang_dir, f"{lang['code']}.json")
+            with open(output_path, 'w', encoding='utf-8') as file:
+                json.dump(translated_content, file, ensure_ascii=False, indent=2)
 
 if __name__ == '__main__':
     try:
