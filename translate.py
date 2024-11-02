@@ -73,22 +73,43 @@ def translate_file():
         print(f"Error loading JSON file: {json_err}")
         return
 
-    languages = data.get('languages', [])
-    content = data.get('content')
+    # Load the current version and languages
+    current_version_path = 'current_version.json'
+    try:
+        with open(current_version_path, 'r', encoding='utf-8') as file:
+            current_data = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        current_data = {}
 
-    for lang in languages:
-        lang_code = lang.get('code')
-        if not lang_code:
-            print("Language code missing in configuration.")
-            continue
-        
-        translated_content = translate_content(content, lang_code)
-        if translated_content:
-            output_path = os.path.join(lang_dir, f"{lang_code}.json")
-            with open(output_path, 'w', encoding='utf-8') as file:
-                json.dump(translated_content, file, ensure_ascii=False, indent=2)
-            print(f"Translated content written to {output_path}")
-            print(f"Content for {lang_code}: {translated_content}")
+    current_version = current_data.get('version')
+    current_languages = current_data.get('languages', [])
+
+    new_version = data.get('version')
+    new_languages = data.get('languages', [])
+
+    # Check if the version has changed or if there are new languages
+    if new_version != current_version or len(new_languages) != len(current_languages):
+        # Update the current version and languages
+        with open(current_version_path, 'w', encoding='utf-8') as file:
+            json.dump({'version': new_version, 'languages': new_languages}, file, ensure_ascii=False, indent=2)
+
+        content = data.get('content')
+
+        for lang in new_languages:
+            lang_code = lang.get('code')
+            if not lang_code:
+                print("Language code missing in configuration.")
+                continue
+
+            translated_content = translate_content(content, lang_code)
+            if translated_content:
+                output_path = os.path.join(lang_dir, f"{lang_code}.json")
+                with open(output_path, 'w', encoding='utf-8') as file:
+                    json.dump(translated_content, file, ensure_ascii=False, indent=2)
+                print(f"Translated content written to {output_path}")
+                print(f"Content for {lang_code}: {translated_content}")
+    else:
+        print("No updates needed. Version and languages are unchanged.")
 
 if __name__ == '__main__':
     try:
