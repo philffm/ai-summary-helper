@@ -20,7 +20,7 @@ def translate_content(content, target_lang):
         'Content-Type': 'application/json'
     }
     data = {
-        'model': 'gpt-4o-mini',
+        'model': 'gpt-4-turbo',  # Assuming 'gpt-4-turbo' is the intended model
         'messages': [
             {'role': 'system', 'content': 'You are a professional SEO product translator for great product marketing.'},
             {'role': 'user', 'content': prompt}
@@ -34,25 +34,33 @@ def translate_content(content, target_lang):
         response.raise_for_status()
         response_data = response.json()
         
-        # Check if 'choices' exists and contains the expected content
         if 'choices' in response_data and response_data['choices']:
-            # Attempt to parse the JSON from the response content
+            # Extract the content from the response
             translated_text = response_data['choices'][0]['message']['content'].strip()
-            return json.loads(translated_text)
+            
+            # Remove backticks if the content is wrapped in a code block
+            if translated_text.startswith("```json"):
+                translated_text = translated_text.strip("```json").strip("```").strip()
+            
+            try:
+                # Parse the JSON content after stripping the backticks
+                return json.loads(translated_text)
+            except json.JSONDecodeError:
+                print("Failed to parse JSON from translated content. Attempting to clean it up.")
+                print(f"Translated text: {translated_text}")
+                return None
         else:
             print(f"Unexpected response structure: {response_data}")
     
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
         print(f"Response content: {response.text}")
-    except json.JSONDecodeError as json_err:
-        print(f"JSON decode error: {json_err}")
-        print(f"Response content: {response.text}")
     except Exception as err:
         print(f"An error occurred: {err}")
         print(f"Response content: {response.text}")
     
     return None
+
 
 def translate_file():
     try:
