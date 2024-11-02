@@ -7,7 +7,7 @@ const openai = new OpenAIApi(new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 }));
 
-const translationsPath = path.join(__dirname, 'page', 'translations.json');
+const translationsPath = path.join(__dirname, 'docs', 'translations.json');
 const langDir = path.join(__dirname, 'lang');
 
 // Ensure the lang directory existss
