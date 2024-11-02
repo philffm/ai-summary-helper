@@ -191,7 +191,8 @@ footer {
 }
 
 .feature-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .feature-card h3 {
@@ -232,4 +233,9 @@ footer {
     100% {
         transform: translateX(-100%);
     }
+}
+
+.middle-card {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
 }

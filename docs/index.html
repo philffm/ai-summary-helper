@@ -9,9 +9,21 @@
     <script>
         async function loadContent(lang = 'en') {
             try {
-                const response = await fetch('translations.json');
-                const translations = await response.json();
-                const data = translations[lang] || translations['en'];
+                let data;
+                if (lang === 'en') {
+                    const response = await fetch('translations.json');
+                    if (!response.ok) {
+                        throw new Error('Failed to load default content');
+                    }
+                    const translations = await response.json();
+                    data = translations.content;
+                } else {
+                    const response = await fetch(`lang/${lang}.json`);
+                    if (!response.ok) {
+                        throw new Error(`Failed to load language file: ${lang}`);
+                    }
+                    data = await response.json();
+                }
 
                 document.getElementById('metaTitle').textContent = data.title;
                 document.getElementById('metaDescription').setAttribute('content', data.aboutText);
@@ -51,6 +63,37 @@
             }
         }
 
+        async function createLanguageButtons() {
+            try {
+                const response = await fetch('translations.json');
+                const translations = await response.json();
+                const languageSection = document.querySelector('.language-section');
+
+                // Always add the English button
+                const englishButton = document.createElement('button');
+                englishButton.textContent = '🇬🇧 English';
+                englishButton.onclick = () => changeLanguage('en');
+                languageSection.appendChild(englishButton);
+
+                for (const lang of translations.languages) {
+                    if (lang.code === 'en') continue; // Skip English as it's already added
+
+                    const langFileExists = await fetch(`lang/${lang.code}.json`, { method: 'HEAD' })
+                        .then(res => res.ok)
+                        .catch(() => false);
+
+                    if (langFileExists) {
+                        const button = document.createElement('button');
+                        button.textContent = `${lang.emoji} ${lang.name}`;
+                        button.onclick = () => changeLanguage(lang.code);
+                        languageSection.appendChild(button);
+                    }
+                }
+            } catch (error) {
+                console.error('Error creating language buttons:', error);
+            }
+        }
+
         function changeLanguage(lang) {
             loadContent(lang);
             const url = new URL(window.location);
@@ -62,10 +105,12 @@
             const urlParams = new URLSearchParams(window.location.search);
             const lang = urlParams.get('lang') || 'en';
             loadContent(lang);
+            createLanguageButtons();
         };
 
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.querySelector('.feature-cards-container');
+            const cards = container.querySelectorAll('.feature-card');
             let scrollAmount = 0;
             const scrollStep = 1; // Adjust this value to control the speed
             const scrollInterval = 20; // Adjust this value to control the smoothness
@@ -77,6 +122,20 @@
                 if (scrollAmount >= container.scrollWidth - container.clientWidth) {
                     scrollAmount = 0; // Reset to start scrolling from the beginning
                 }
+
+                resizeCards();
+            }
+
+            function resizeCards() {
+                const containerCenter = container.clientWidth / 2;
+                cards.forEach(card => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardCenter = cardRect.left + cardRect.width / 2;
+                    const distanceFromCenter = Math.abs(containerCenter - cardCenter);
+                    const scale = Math.max(1, 1.5 - distanceFromCenter / containerCenter);
+                    card.style.transition = 'transform 0.3s ease';
+                    card.style.transform = `scale(${scale})`;
+                });
             }
 
             setInterval(autoScroll, scrollInterval);
@@ -95,23 +154,12 @@
             </div>
         </div>
         <section id="features-section">
-            <div id="featureList" class="feature-cards-container"></div>
+            <div id="featureList" class="feature-cards-container">
+                <!-- Feature cards will be dynamically inserted here -->
+            </div>
         </section>
         <div class="window-content">
-            <section class="language-section language-menu">
-                <button onclick="changeLanguage('en')">🇬🇧 English</button>
-                <button onclick="changeLanguage('es')">🇪🇸 Español</button>
-                <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-                <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
-                <button onclick="changeLanguage('it')">🇮🇹 Italiano</button>
-                <button onclick="changeLanguage('pt')">🇵🇹 Português</button>
-                <button onclick="changeLanguage('nl')">🇳🇱 Nederlands</button>
-                <button onclick="changeLanguage('jp')">🇯🇵 日本語</button>
-                <button onclick="changeLanguage('cn')">🇨🇳 中文</button>
-                <button onclick="changeLanguage('ru')">🇷🇺 Русский</button>
-                <button onclick="changeLanguage('kr')">🇰🇷 한국어</button>
-                <button onclick="changeLanguage('ar')">🇸🇦 عربي</button>
-            </section>
+            <section class="language-section language-menu"></section>
             <header>
                 <img src="aish.png" alt="AI Summary Helper Preview" style="max-width: 100%;">
                 <p id="aboutText"></p>
