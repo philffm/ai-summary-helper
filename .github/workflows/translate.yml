@@ -38,4 +38,3 @@ jobs:
         commit_message: 'Automated translation update'
         branch: main
         commit_options: '--allow-empty'
-        token: ${{ secrets.GH_PAT }}
