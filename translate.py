@@ -20,7 +20,7 @@ def translate_content(content, target_lang):
         'Content-Type': 'application/json'
     }
     data = {
-        'model': 'gpt-4-turbo',  # Assuming 'gpt-4-turbo' is the intended model
+        'model': 'gpt-4o-mini',  
         'messages': [
             {'role': 'system', 'content': 'You are a professional SEO product translator for great product marketing.'},
             {'role': 'user', 'content': prompt}
