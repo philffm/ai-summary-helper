@@ -63,7 +63,7 @@
         "features": "Features 🔍",
         "featureList": [
             "Summarize articles with a personal touch ✨",
-            "OpenAI, Ollama, Mistral AI and more models supported",
+            "OpenAI, Mistral AI, Ollama (local LLM) and more models supported",
             "Integrate summaries into your reading flow 📚",
             "Read on the go: Share to Kindle with Reabble 📖",
             "Cross-Platform: Bookmarklet Generator for all browsers and OS, including iOS."
