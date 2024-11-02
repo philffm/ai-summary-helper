@@ -25,17 +25,16 @@ jobs:
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: python translate.py
+- name: Stage translation files
+  run: |
+    git config --global user.name "github-actions[bot]"
+    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    git add docs/lang/*.json  # Ensure the docs/lang directory is added to the commit
 
-    - name: Stage translation files
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add docs/lang/*.json  # Ensure the docs/lang directory is added to the commit
-
-    - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: 'Automated translation update'
-        branch: main
-        commit_options: '--allow-empty'
-        token: ${{ secrets.GH_PAT }}
+- name: Commit changes
+  uses: stefanzweifel/git-auto-commit-action@v4
+  with:
+    commit_message: 'Automated translation update'
+    branch: main
+    commit_options: '--allow-empty'
+    token: ${{ secrets.GH_PAT }}  # Reference the PAT secret
