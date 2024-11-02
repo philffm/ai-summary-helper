@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="metaTitle">AI Summary Helper</title>
+    <meta id="metaDescription" name="description" content="AI Summary Helper enhances your browsing experience.">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        async function loadContent(lang = 'en') {
+            try {
+                const response = await fetch('translations.json');
+                const translations = await response.json();
+                const data = translations[lang] || translations['en'];
+
+                document.getElementById('metaTitle').textContent = data.title;
+                document.getElementById('metaDescription').setAttribute('content', data.aboutText);
+
+                document.getElementById('title').textContent = data.title;
+                document.getElementById('aboutText').textContent = data.aboutText;
+
+                const featureList = document.getElementById('featureList');
+                featureList.innerHTML = data.featureList.map(item => `
+                    <div class="feature-card">
+                        ${item}
+                    </div>
+                `).join('');
+
+                document.getElementById('proposeFeature').textContent = data.proposeFeature;
+                document.getElementById('proposeFeatureText').textContent = data.proposeFeatureText;
+                document.getElementById('privacyNote').textContent = data.privacyNote;
+                document.getElementById('privacyNoteText').textContent = data.privacyNoteText;
+                document.getElementById('funMessage').textContent = data.funMessage;
+
+                const changelogList = document.getElementById('changelogList');
+                changelogList.innerHTML = data.changelogList.map(item => `<li>${item}</li>`).join('');
+
+                document.getElementById('aboutCreator').textContent = data.aboutCreator;
+                document.getElementById('creatorText').textContent = data.creatorText;
+
+                const whyHelperList = document.getElementById('whyHelperList');
+                whyHelperList.innerHTML = data.whyHelperList.map(item => `<li>${item}</li>`).join('');
+
+                document.getElementById('getStarted').textContent = data.getStarted;
+                document.getElementById('getStartedText').textContent = data.getStartedText;
+                document.getElementById('feedbackSupport').textContent = data.feedbackSupport;
+                document.getElementById('feedbackSupportText').textContent = data.feedbackSupportText;
+
+            } catch (error) {
+                console.error('Error loading content:', error);
+            }
+        }
+
+        function changeLanguage(lang) {
+            loadContent(lang);
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+        }
+
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'en';
+            loadContent(lang);
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.querySelector('.feature-cards-container');
+            let scrollAmount = 0;
+            const scrollStep = 1; // Adjust this value to control the speed
+            const scrollInterval = 20; // Adjust this value to control the smoothness
+
+            function autoScroll() {
+                scrollAmount += scrollStep;
+                container.scrollLeft = scrollAmount;
+
+                if (scrollAmount >= container.scrollWidth - container.clientWidth) {
+                    scrollAmount = 0; // Reset to start scrolling from the beginning
+                }
+            }
+
+            setInterval(autoScroll, scrollInterval);
+        });
+    </script>
+</head>
+<body>
+    <div class="window-frame">
+        <div class="window-title-bar">
+            <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
+            <h1 id="title" class="window-title">AI Summary Helper</h1>
+            <div class="window-controls">
+                <button class="window-button minimize">_</button>
+                <button class="window-button maximize">□</button>
+                <button class="window-button close">X</button>
+            </div>
+        </div>
+        <section id="features-section">
+            <div id="featureList" class="feature-cards-container"></div>
+        </section>
+        <div class="window-content">
+            <section class="language-section language-menu">
+                <button onclick="changeLanguage('en')">🇬🇧 English</button>
+                <button onclick="changeLanguage('es')">🇪🇸 Español</button>
+                <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+                <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
+                <button onclick="changeLanguage('it')">🇮🇹 Italiano</button>
+                <button onclick="changeLanguage('pt')">🇵🇹 Português</button>
+                <button onclick="changeLanguage('nl')">🇳🇱 Nederlands</button>
+                <button onclick="changeLanguage('jp')">🇯🇵 日本語</button>
+                <button onclick="changeLanguage('cn')">🇨🇳 中文</button>
+                <button onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+                <button onclick="changeLanguage('kr')">🇰🇷 한국어</button>
+                <button onclick="changeLanguage('ar')">🇸🇦 عربي</button>
+            </section>
+            <header>
+                <img src="aish.png" alt="AI Summary Helper Preview" style="max-width: 100%;">
+                <p id="aboutText"></p>
+                <a class="primary-option" target="_blank" href="https://philwornath.gumroad.com/l/ai-summary-helper">Get it on Gumroad</a>
+                <a class="secondary-option" target="_blank" href="https://chrome.google.com/webstore/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb">Chrome Web Store</a>
+                <a class="secondary-option" target="_blank" href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/">Bookmarklet Generator</a>
+            </header>
+            <main>
+
+
+                <section>
+                    <h2 id="proposeFeature"></h2>
+                    <p id="proposeFeatureText"></p>
+                </section>
+                <section>
+                    <h2 id="privacyNote"></h2>
+                    <p id="privacyNoteText"></p>
+                </section>
+                <section>
+                    <p id="funMessage"></p>
+                </section>
+                <section>
+                    <h2>Changelog</h2>
+                    <ul id="changelogList"></ul>
+                </section>
+                <section>
+                    <h2 id="aboutCreator"></h2>
+                    <p id="creatorText"></p>
+                </section>
+                <section>
+                    <h2>Why AI Summary Helper?</h2>
+                    <ul id="whyHelperList"></ul>
+                </section>
+                <section>
+                    <h2 id="getStarted"></h2>
+                    <p id="getStartedText"></p>
+                </section>
+                <section>
+                    <h2 id="feedbackSupport"></h2>
+                    <p id="feedbackSupportText"></p>
+                </section>
+            </main>
+            <footer>
+                <p>&copy; 2024 Phil Wornath. All rights reserved. Visit the project at <a href="https://github.com/philffm/ai-summary-helper/">AI Summary Helper</a>.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

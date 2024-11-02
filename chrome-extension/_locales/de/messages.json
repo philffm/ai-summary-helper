@@ -1,0 +1,47 @@
+{
+    "extensionName": {
+        "message": "AI Summary Helper"
+    },
+    "fetchSummary": {
+        "message": "Zusammenfassung abrufen"
+    },
+    "settings": {
+        "message": "Einstellungen"
+    },
+    "saved": {
+        "message": "Gespeichert! 🎉"
+    },
+    "donate": {
+        "message": "Spenden"
+    },
+    "apiKey": {
+        "message": "API-Schlüssel"
+    },
+    "model": {
+        "message": "Sprachmodell"
+    },
+    "modelIdentifier": {
+        "message": "Modellkennung: (Leer lassen, um Standardmodellkennungen zu verwenden)"
+    },
+    "localEndpoint": {
+        "message": "Lokale Endpunkt-URL"
+    },
+    "prompt": {
+        "message": "Benutzerdefinierte Eingabeaufforderung"
+    },
+    "additionalQuestions": {
+        "message": "Zusätzliche Fragen zum Artikel eingeben (optional)"
+    },
+    "save": {
+        "message": "Speichern 💾"
+    },
+    "toggleScreen": {
+        "message": "Bildschirm umschalten"
+    },
+    "mainScreen": {
+        "message": "Hauptbildschirm"
+    },
+    "settingsScreen": {
+        "message": "Einstellungen"
+    }
+}

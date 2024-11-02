@@ -1,0 +1,17 @@
+{
+    "extensionName": {
+        "message": "AI Summary Helper"
+    },
+    "fetchSummary": {
+        "message": "Fetch Summary"
+    },
+    "settings": {
+        "message": "Settings"
+    },
+    "saved": {
+        "message": "Saved! 🎉"
+    },
+    "donate": {
+        "message": "Donate"
+    }
+}

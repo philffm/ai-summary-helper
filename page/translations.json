@@ -1,0 +1,99 @@
+{
+    "languages": [
+        {
+            "code": "es",
+            "name": "Spanish",
+            "emoji": "🇪🇸"
+        },
+        {
+            "code": "de",
+            "name": "German",
+            "emoji": "🇩🇪"
+        },
+        {
+            "code": "fr",
+            "name": "French",
+            "emoji": "🇫🇷"
+        },
+        {
+            "code": "it",
+            "name": "Italian",
+            "emoji": "🇮🇹"
+        },
+        {
+            "code": "pt",
+            "name": "Portuguese",
+            "emoji": "🇵🇹"
+        },
+        {
+            "code": "nl",
+            "name": "Dutch",
+            "emoji": "🇳🇱"
+        },
+        {
+            "code": "jp",
+            "name": "Japanese",
+            "emoji": "🇯🇵"
+        },
+        {
+            "code": "cn",
+            "name": "Chinese",
+            "emoji": "🇨🇳"
+        },
+        {
+            "code": "ru",
+            "name": "Russian",
+            "emoji": "🇷🇺"
+        },
+        {
+            "code": "kr",
+            "name": "Korean",
+            "emoji": "🇰🇷"
+        },
+        {
+            "code": "ar",
+            "name": "Arabic",
+            "emoji": "🇦🇪"
+        }
+    ],
+    "content": {
+        "title": "AI Summary Helper 🚀",
+        "about": "About 📖",
+        "aboutText": "Transform your browsing into a powerhouse of productivity with AI Summary Helper. Never let another article slip through the cracks! 🌟",
+        "features": "Features 🔍",
+        "featureList": [
+            "Summarize articles with a personal touch ✨",
+            "Customizable Summaries: Powered by GPT-3.5 for quick, tailored article summaries.",
+            "Integrate summaries into your reading flow 📚",
+            "OpenAI, Ollama, Mistral AI and more models supported",
+            "Share insights to Kindle with Reabble 📖",
+            "Cross-Platform: Bookmarklet Generator for all browsers and OS, including iOS."
+        ],
+        "proposeFeature": "Propose a Feature 💡",
+        "proposeFeatureText": "Got a brilliant idea? Share it with us and shape the future of AI Summary Helper! 💬",
+        "privacyNote": "Privacy Note 🔒",
+        "privacyNoteText": "Your privacy is our top priority. We ensure your data stays yours. 🔐",
+        "funMessage": "Dive into a smarter way of browsing with AI Summary Helper! 🎉",
+        "changelog": "Changelog 🆕",
+        "changelogList": [
+            "New prompts",
+            "Support for Local LLMs - Ollama / Llama models",
+            "Updated to support Mistral AI model",
+            "Updated to GPT4o mini model",
+            "Updated UI 🎨"
+        ],
+        "aboutCreator": "About the Creator",
+        "creatorText": "Hi Gumroad community :) - I'm Phil Wornath, the creator of AI Summary Helper. As a lover of extensive written web content, especially scientific articles, I often faced time constraints. This inspired me to develop a tool that enhances productivity and reading efficiency.",
+        "whyHelper": "Why AI Summary Helper?",
+        "whyHelperList": [
+            "Reclaim Your Time: Generate quick digests or prepare for deep dives later.",
+            "Tailored to You: Customize summaries to match your language, profession, or point of view.",
+            "Stay Organized: Avoid cluttered tabs and keep your reading list manageable.",
+            "Enhanced Reading Experience: Focus on the content that matters to you without getting overwhelmed."
+        ],
+        "getStarted": "Get Started Today",
+        "getStartedText": "To start using AI Summary Helper, ensure you have an OpenAI API key and sufficient credit. Join us in making web reading easier and more accessible for everyone. Download now on Gumroad and transform your browsing experience.",
+        "feedbackSupport": "Feedback and Support",
+        "feedbackSupportText": "We're excited to invite you to try AI Summary Helper and welcome your feedback and questions. Let's make reading on the web simpler and more engaging. Enhance your online reading experience with AI Summary Helper today!"
+    }
+}
