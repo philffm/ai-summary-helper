@@ -1,39 +1,39 @@
 {
-  "title": "AI Samenvatting Helper 🚀",
-  "about": "Over 📖",
-  "aboutText": "Zet je browser om in een productiviteitskrachtcentrale met AI Samenvatting Helper. Laat nooit meer een artikel aan je voorbijgaan! 🌟",
-  "features": "Kenmerken 🔍 ",
+  "title": "AI Samenvattingshelper 🚀",
+  "about": "Over ons 📖",
+  "aboutText": "Transformeer je browsen in een productiviteitskrachtpatser met de AI Samenvattingshelper. Laat nooit meer een artikel door de vingers glippen! 🌟",
+  "features": "Kenmerken 🌀",
   "featureList": [
     "Artikelen samenvatten met een persoonlijke touch ✨",
     "Ondersteuning voor OpenAI, Mistral AI, Ollama (lokaal) en meer modellen",
-    "Integreer samenvattingen in je leesstroom 📚",
-    "Lees onderweg: Deel met Kindle via Reabble 📖",
-    "Cross-platform: Bookmarklet-generator voor alle browsers en besturingssystemen, inclusief iOS."
+    "Integreer samenvattingen in je leesflow 📚",
+    "Lees onderweg: Deel naar Kindle met Reabble 📖",
+    "Cross-Platform: Bookmarklet-generator voor alle browsers en besturingssystemen, inclusief iOS."
   ],
-  "proposeFeature": "Stel een Functie voor 💡",
-  "proposeFeatureText": "Heb je een briljant idee? Deel het met ons en vorm de toekomst van AI Samenvatting Helper! 💬",
-  "privacyNote": "Privacy Notitie 🔒",
-  "privacyNoteText": "Jouw privacy is onze hoogste prioriteit. Wij zorgen ervoor dat jouw gegevens van jou blijven. 🔐",
-  "funMessage": "Duik in een slimmere manier van browsen met AI Samenvatting Helper! 🎉",
-  "changelog": "Wijzigingslogboek 📑",
+  "proposeFeature": "Stel een functie voor 💡",
+  "proposeFeatureText": "Heb je een briljant idee? Deel het met ons en vorm de toekomst van de AI Samenvattingshelper! ✍️",
+  "privacyNote": "Privacy Opmerking 🔒",
+  "privacyNoteText": "Jouw privacy is onze hoogste prioriteit. We zorgen ervoor dat jouw gegevens van jou blijven. 🔑",
+  "funMessage": "Duik in een slimmere manier van browsen met de AI Samenvattingshelper! 🎉",
+  "changelog": "Wijzigingslogboek 📖",
   "changelogList": [
     "Nieuwe prompts - nauwkeuriger",
-    "Ondersteuning voor lokale LLMs - Ollama / Llama modellen",
-    "Bijgewerkt om Mistral AI model te ondersteunen",
-    "Bijgewerkt naar GPT4o mini model",
-    "Geüpdatete gebruikersinterface 🎨"
+    "Ondersteuning voor lokale LLM's - Ollama / Llama-modellen",
+    "Bijgewerkt voor ondersteuning van het Mistral AI-model",
+    "Bijgewerkt naar GPT4o mini-model",
+    "Bijgewerkte gebruikersinterface 🎨"
   ],
   "aboutCreator": "Over de Maker",
-  "creatorText": "Hallo Gumroad gemeenschap :) - Ik ben Phil Wornath, de maker van AI Samenvatting Helper. Als liefhebber van uitgebreide geschreven webinhoud, met name wetenschappelijke artikelen, stond ik vaak voor tijdsbeperkingen. Dit inspireerde mij om een tool te ontwikkelen die productiviteit en leesefficiëntie verbetert.",
-  "whyHelper": "Waarom AI Samenvatting Helper?",
+  "creatorText": "Hallo Gumroad-gemeenschap :) - Ik ben Phil Wornath, de maker van de AI Samenvattingshelper. Als liefhebber van uitgebreide geschreven webinhoud, vooral wetenschappelijke artikelen, had ik vaak te maken met tijdsdruk. Dit inspireerde me om een tool te ontwikkelen die de productiviteit en lees efficiëntie verbetert.",
+  "whyHelper": "Waarom AI Samenvattingshelper?",
   "whyHelperList": [
-    "Herover Je Tijd: Genereer snel overzichten of bereid je voor op grondige verstudies later.",
-    "Aangepast aan Jou: Pas samenvattingen aan om overeen te komen met je taal, beroep, of perspectief.",
-    "Blijf Georganiseerd: Vermijd overvolle tabbladen en houd je leeslijst beheersbaar.",
-    "Verbeterde Leeservaring: Focus op de inhoud die voor jou belangrijk is zonder overweldigd te raken."
+    "Herwin Je Tijd: Genereer snelle samenvattingen of bereid je voor op diepgaand onderzoek later.",
+    "Op Maat Gemaakt: Pas samenvattingen aan om te passen bij jouw taal, beroep of perspectief.",
+    "Blijf Georganiseerd: Voorkom rommelige tabs en houd je leeslijst beheersbaar.",
+    "Verbeterde Lezerervaring: Focus op de inhoud die er voor jou toe doet zonder overweldigd te raken."
   ],
   "getStarted": "Begin Vandaag Nog",
-  "getStartedText": "Om te beginnen met het gebruik van AI Samenvatting Helper, zorg ervoor dat je een OpenAI API-sleutel en voldoende krediet hebt. Sluit je bij ons aan om het lezen van het web gemakkelijker en toegankelijker te maken voor iedereen. Download nu op Gumroad en transformeer je browse-ervaring.",
+  "getStartedText": "Om te beginnen met de AI Samenvattingshelper, zorg ervoor dat je een OpenAI API-sleutel en voldoende tegoed hebt. Sluit je bij ons aan om weblezen gemakkelijker en toegankelijker te maken voor iedereen. Download nu op Gumroad en transformeer je browse ervaring.",
   "feedbackSupport": "Feedback en Ondersteuning",
-  "feedbackSupportText": "We nodigen je uit om AI Samenvatting Helper te proberen en verwelkomen je feedback en vragen. Laten we het lezen op het web eenvoudiger en boeiender maken. Verbeter vandaag nog je online leeservaring met AI Samenvatting Helper!"
+  "feedbackSupportText": "We zijn enthousiast om je uit te nodigen om de AI Samenvattingshelper uit te proberen en verwelkomen je feedback en vragen. Laten we het lezen op het web eenvoudiger en boeiender maken. Verbeter je online leeservaring met de AI Samenvattingshelper vandaag!"
 }
