@@ -28,7 +28,7 @@
         "privacyNote": "Privacy Note 🔒",
         "privacyNoteText": "Your privacy is our top priority. We ensure your data stays yours. 🔐",
         "funMessage": "Dive into a smarter way of browsing with AI Summary Helper! 🎉",
-        "changelog": "Changelog 🆕",
+        "changelog": "Changelog 🆕 ",
         "changelogList": [
             "New prompts - more accurate ",
             "Support for Local LLMs - Ollama / Llama models",
