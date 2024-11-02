@@ -8,67 +8,67 @@
         },
         {
             "code": "es",
-            "name": "Spanish",
+            "name": "Español",
             "emoji": "🇪🇸"
         },
         {
             "code": "de",
-            "name": "German",
+            "name": "Deutsch",
             "emoji": "🇩🇪"
         },
         {
             "code": "fr",
-            "name": "French",
+            "name": "Français",
             "emoji": "🇫🇷"
         },
         {
             "code": "it",
-            "name": "Italian",
+            "name": "Italiano",
             "emoji": "🇮🇹"
         },
         {
             "code": "pt",
-            "name": "Portuguese",
+            "name": "Português",
             "emoji": "🇵🇹"
         },
         {
             "code": "nl",
-            "name": "Dutch",
+            "name": "Nederlands",
             "emoji": "🇳🇱"
         },
         {
             "code": "jp",
-            "name": "Japanese",
+            "name": "日本語",
             "emoji": "🇯🇵"
         },
         {
             "code": "cn",
-            "name": "Chinese",
+            "name": "中文",
             "emoji": "🇨🇳"
         },
         {
             "code": "ru",
-            "name": "Russian",
+            "name": "Русский",
             "emoji": "🇷🇺"
         },
         {
             "code": "kr",
-            "name": "Korean",
+            "name": "한국어",
             "emoji": "🇰🇷"
         },
         {
             "code": "ar",
-            "name": "Arabic",
+            "name": "العربية",
             "emoji": "🇦🇪"
         },
         {
             "code": "ua",
-            "name": "Ukrainian",
+            "name": "Українська",
             "emoji": "🇺🇦"
         },
         {
             "code": "pl",
-            "name": "Polish",
+            "name": "Polski",
             "emoji": "🇵🇱"
         }
     ],
