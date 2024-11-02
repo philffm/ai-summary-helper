@@ -3,7 +3,7 @@ name: Translate JSON
 on:
   push:
     paths:
-      - 'page/translations.json'
+      - 'docs/translations.json'
 
 jobs:
   translate:
