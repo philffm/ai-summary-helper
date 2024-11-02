@@ -1,16 +1,17 @@
 const fs = require('fs');
 const path = require('path');
-const { OpenAIApi, Configuration } = require('openai'); // Check order
+const { Configuration, OpenAIApi } = require('openai');
 
-const openai = new OpenAIApi(new Configuration({
+// Initialize OpenAI API client
+const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
-}));
-
+});
+const openai = new OpenAIApi(configuration);
 
 const translationsPath = path.join(__dirname, 'docs', 'translations.json');
 const langDir = path.join(__dirname, 'lang');
 
-// Ensure the lang directory existss
+// Ensure the lang directory exists
 if (!fs.existsSync(langDir)) {
     fs.mkdirSync(langDir);
 }
