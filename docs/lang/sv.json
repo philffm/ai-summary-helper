@@ -1,0 +1,40 @@
+{
+  "title": "AI Sammanfattningshjälp 🚀",
+  "about": "Om 📖",
+  "aboutText": "Förvandla ditt webbläsande till en kraftkälla av produktivitet med AI Sammanfattningshjälp. Låt aldrig en artikel glida genom fingrarna igen! 🌟",
+  "features": "Funktioner 🔍",
+  "featureList": [
+    "Sammanfatta artiklar med en personlig touch ✨",
+    "Stöd för OpenAI, Mistral AI, Ollama (lokalt) och fler modeller",
+    "Integrera sammanfattningar i din läsning 📚",
+    "Läs på språng: Dela till Kindle med Reabble 📖",
+    "Plattformsövergripande: Bokmärkesgenerator för alla webbläsare och operativsystem, inklusive iOS."
+  ],
+  "proposeFeature": "Föreslå en Funktion 💡",
+  "proposeFeatureText": "Har du en briljant idé? Dela den med oss och forma framtiden för AI Sammanfattningshjälp! 💬",
+  "privacyNote": "Integritetsmeddelande 🗒",
+  "privacyNoteText": "Din integritet är vår högsta prioritet. Vi säkerställer att dina uppgifter förblir dina. 🔐",
+  "funMessage": "Dyk ner i ett smartare sätt att webbläsa med AI Sammanfattningshjälp! 🎉",
+  "changelog": "Ändringslogg 🆕",
+  "changelogList": [
+    "Nya uppmaningar - mer exakta",
+    "Stöd för Lokala LLMs - Ollama / Llama-modeller",
+    "Uppdaterat för att stödja Mistral AI-modell",
+    "Uppdaterat till GPT4o mini-modell",
+    "Uppdaterad UI 🎨"
+  ],
+  "aboutCreator": "Om Skaparen",
+  "creatorText": "Hej Gumroad-community :) - Jag är Phil Wornath, skaparen av AI Sammanfattningshjälp. Som en älskare av omfattande skrivet webbinnehåll, särskilt vetenskapliga artiklar, stötte jag ofta på tidsbegränsningar. Detta inspirerade mig att utveckla ett verktyg som förbättrar produktiviteten och läsningseffektiviteten.",
+  "whyHelper": "Varför AI Sammanfattningshjälp?",
+  "whyHelperList": [
+    "Återta Din Tid: Generera snabba sammanfattningar eller förbered för djupdykningar senare.",
+    "Skräddarsytt för Dig: Anpassa sammanfattningar efter ditt språk, yrke eller perspektiv.",
+    "Håll Dig Organiserad: Undvik röriga flikar och håll din läslista hanterbar.",
+    "Förbättrad Litteraturupplevelse: Fokusera på det innehåll som betyder något för dig utan att bli överväldigad."
+  ],
+  "getStarted": "Börja Idag",
+  "getStartedText": "För att börja använda AI Sammanfattningshjälp, se till att du har en OpenAI API-nyckel och tillräckligt med kredit. Gå med oss i att göra webbläsande enklare och mer tillgängligt för alla. Ladda ner nu på Gumroad och förvandla din webbläsarupplevelse.",
+  "feedbackSupport": "Feedback och Support",
+  "feedbackSupportText": "Vi är glada att bjuda in dig att prova AI Sammanfattningshjälp och ser fram emot din feedback och dina frågor. Låt oss göra läsning på webben enklare och mer engagerande. Förbättra din online-läsupplevelse med AI Sammanfattningshjälp idag!",
+  "version": "1.0.0"
+}

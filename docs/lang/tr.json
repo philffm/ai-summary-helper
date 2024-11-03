@@ -1,0 +1,40 @@
+{
+  "title": "Yapay Zeka Özet Yardımcısı 🚀",
+  "about": "Hakkında 📖",
+  "aboutText": "Yapay Zeka Özet Yardımcısı ile gezinme alışkanlıklarınızı verimliliğin bir güç merkezi haline dönüştürün. Bir daha asla bir makalenin gözden kaybolmasına izin vermeyin! 🌟",
+  "features": "Özellikler 🔍",
+  "featureList": [
+    "Makale özetleme, kişisel bir dokunuşla ✨",
+    "OpenAI, Mistral AI, Ollama (yerel) ve daha fazla model desteği",
+    "Özetleri okuma akışınıza entegre edin 📚",
+    "Seyahat halindeyken okuyun: Reabble ile Kindle'a paylaşın 📖",
+    "Çoklu Platform: Tüm tarayıcılar ve işletim sistemleri (iOS dahil) için yer imi oluşturucu."
+  ],
+  "proposeFeature": "Bir Özellik Önerin 💡",
+  "proposeFeatureText": "Harika bir fikriniz mi var? Bizimle paylaşın ve Yapay Zeka Özet Yardımcısı'nın geleceğini şekillendirin! 📝",
+  "privacyNote": "Gizlilik Notu 🔒",
+  "privacyNoteText": "Gizliliğiniz bizim için en önemli önceliktir. Verilerinizin size ait olduğunu garanti ediyoruz. 🔑",
+  "funMessage": "Yapay Zeka Özet Yardımcısı ile daha akıllı bir gezinme yolculuğuna dalın! 🎉",
+  "changelog": "Değişiklik Kaydı 📜",
+  "changelogList": [
+    "Yeni istemler - daha doğru",
+    "Yerel LLM'ler için destek - Ollama / Llama modelleri",
+    "Mistral AI modeline destek sağlandı",
+    "GPT4o mini modeline güncelleme yapıldı",
+    "Güncellenmiş UI 🎨"
+  ],
+  "aboutCreator": "Yaratıcı Hakkında",
+  "creatorText": "Merhaba Gumroad topluluğu :) - Ben Yapay Zeka Özet Yardımcısı'nın yaratıcısı Phil Wornath. Özellikle bilimsel makaleler olmak üzere geniş yazılı web içeriğini seven biri olarak, sık sık zaman kısıtlamalarıyla karşılaştım. Bu durum, verimliliği ve okuma etkinliğini artıran bir araç geliştirme ilhamı verdi.",
+  "whyHelper": "Neden Yapay Zeka Özet Yardımcısı?",
+  "whyHelperList": [
+    "Zamanınızı Geri Kazanın: Hızlı özetler oluşturun veya daha derinlemesine okumalar için hazırlık yapın.",
+    "Size Özel: Özetleri dilinize, mesleğinize veya bakış açınıza göre özelleştirin.",
+    "Düzenli Kalın: Karışık sekmelerden kaçının ve okuma listenizi yönetilebilir kılın.",
+    "Gelişmiş Okuma Deneyimi: Önemli içeriğe odaklanın ve bunaltıcı durumlarla karşılaşmayın."
+  ],
+  "getStarted": "Bugün Başlayın",
+  "getStartedText": "Yapay Zeka Özet Yardımcısını kullanmaya başlamak için bir OpenAI API anahtarınızın ve yeterli kredinizin olması gerektiğini unutmayın. Web okumasını herkes için daha kolay ve erişilebilir hale getirmeye katılın. Hemen Gumroad'dan indirin ve gezinme deneyiminizi dönüştürün.",
+  "feedbackSupport": "Geri Bildirim ve Destek",
+  "feedbackSupportText": "Yapay Zeka Özet Yardımcısını denemeniz için sizi davet etmekten heyecan duyuyoruz ve geri bildirimlerinizi ve sorularınızı bekliyoruz. Web üzerindeki okumayı daha basit ve ilgi çekici hale getirelim. Bugün Yapay Zeka Özet Yardımcısı ile çevrimiçi okuma deneyiminizi geliştirin!",
+  "version": "1.0.0"
+}

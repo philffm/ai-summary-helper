@@ -1,0 +1,40 @@
+{
+  "title": "AI Summary Assistant 🚀",
+  "about": "Overview 📖",
+  "aboutText": "Elevate your browsing experience with the AI Summary Assistant. Ensure you capture every important article seamlessly! 🌟",
+  "features": "Key Features 🔍",
+  "featureList": [
+    "Craft personalized article summaries ✨",
+    "Supports diverse models like OpenAI, Mistral AI, and Ollama (local)",
+    "Seamlessly integrate summaries into your reading routine 📚",
+    "Read anytime, anywhere: Share articles to Kindle via Reabble 📖",
+    "Cross-Device Compatibility: Bookmarklet Generator for all browsers and platforms, including iOS."
+  ],
+  "proposeFeature": "Suggest a Feature 💡",
+  "proposeFeatureText": "Have an innovative idea? Share it with us to influence the next evolution of the AI Summary Assistant! ✍️",
+  "privacyNote": "Privacy Commitment 🔒",
+  "privacyNoteText": "Your privacy is our highest priority. We are dedicated to keeping your data secure and private. 🔐",
+  "funMessage": "Experience a smarter approach to browsing with the AI Summary Assistant! 🎉",
+  "changelog": "Update Log 📅",
+  "changelogList": [
+    "Introducing new prompts for enhanced accuracy",
+    "Local LLM support added for Ollama / Llama models",
+    "Updated compatibility with the Mistral AI model",
+    "Now supporting GPT4o mini model",
+    "Revamped user interface 🎨"
+  ],
+  "aboutCreator": "Meet the Creator",
+  "creatorText": "Hi Gumroad community! :) I'm Phil Wornath, the mind behind AI Summary Assistant. As an avid reader of extensive web content, especially scientific articles, I often struggled with time constraints. This motivated me to create a tool designed to boost your productivity and improve reading efficiency.",
+  "whyHelper": "Why Choose AI Summary Assistant?",
+  "whyHelperList": [
+    "Reclaim Your Time: Quickly generate summaries or prepare for comprehensive reading sessions later.",
+    "Personalized for You: Tailor summaries according to your language, industry, or perspective.",
+    "Stay Organized: Keep your reading list neat and manageable, avoiding tab clutter.",
+    "Improved Reading Experience: Focus solely on the content that is relevant to you without feeling overwhelmed."
+  ],
+  "getStarted": "Start Your Journey Today",
+  "getStartedText": "To kick off your experience with AI Summary Assistant, make sure you have an OpenAI API key and sufficient credits. Join us in making web reading easier and more user-friendly for everyone! Download now on Gumroad and enhance your browsing experience.",
+  "feedbackSupport": "Feedback & Assistance",
+  "feedbackSupportText": "We’re thrilled to have you try AI Summary Assistant and we welcome your feedback and inquiries. Together, let’s simplify and enrich online reading. Transform your web reading experience with AI Summary Assistant today!",
+  "version": "1.0.0"
+}

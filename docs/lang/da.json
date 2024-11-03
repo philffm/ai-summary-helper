@@ -1,0 +1,40 @@
+{
+  "title": "AI Resumehjælper 🚀",
+  "about": "Om 📖",
+  "aboutText": "Forvandl din websurfing til en produktivitetspowerhouse med AI Resumehjælper. Lad aldrig en artikel glide dig forbi! 🌟",
+  "features": "Funktioner 🔍",
+  "featureList": [
+    "Opsummer artikler med et personligt præg ✨",
+    "Understøtter modeller som OpenAI, Mistral AI, Ollama (lokalt) og flere",
+    "Integrer opsummeringer i dit læseflow 📚",
+    "Læs på farten: Del til Kindle med Reabble 📖",
+    "Tværplatform: Bogmærke-generator til alle browsere og OS, inklusive iOS."
+  ],
+  "proposeFeature": "Foreslå en Funktion 💡",
+  "proposeFeatureText": "Har du en genial idé? Del den med os og vær med til at forme fremtiden for AI Resumehjælper! 📝",
+  "privacyNote": "Privatlivsnotat 🔐",
+  "privacyNoteText": "Dit privatliv er vores højeste prioritet. Vi sikrer, at dine data er dine. 🔒",
+  "funMessage": "Dyk ind i en smartere måde at browse på med AI Resumehjælper! 🎉",
+  "changelog": "Ændringslog 📜",
+  "changelogList": [
+    "Nye prompts - mere præcise",
+    "Understøttelse af lokale LLM'er - Ollama / Llama modeller",
+    "Opdateret til at understøtte Mistral AI modellen",
+    "Opdateret til GPT4o mini modellen",
+    "Opdateret UI 🎨"
+  ],
+  "aboutCreator": "Om Skaberen",
+  "creatorText": "Hej Gumroad-fællesskab :) - Jeg er Phil Wornath, skaberen af AI Resumehjælper. Som en der elsker omfattende skrivenetindhold, især videnskabelige artikler, stødte jeg ofte på tidsbegrænsninger. Dette inspirerede mig til at udvikle et værktøj, der forbedrer produktiviteten og læseeffektiviteten.",
+  "whyHelper": "Hvorfor AI Resumehjælper?",
+  "whyHelperList": [
+    "Genfind din tid: Generer hurtige oversigter eller forbered dig til dybere dyk senere.",
+    "Skræddersyet til dig: Tilpas opsummeringer til at matche dit sprog, din profession eller synspunkt.",
+    "Hold dig organiseret: Undgå rodede faner og hold din læseliste overskuelig.",
+    "Forbedret læseoplevelse: Fokuser på det indhold, der betyder noget for dig, uden at blive overvældet."
+  ],
+  "getStarted": "Kom i gang i dag",
+  "getStartedText": "For at begynde at bruge AI Resumehjælper, skal du sørge for, at du har en OpenAI API-nøgle og tilstrækkelig kredit. Deltag i os for at gøre weblæsning nemmere og mere tilgængelig for alle. Download nu på Gumroad og transformér din browsingoplevelse.",
+  "feedbackSupport": "Feedback og Support",
+  "feedbackSupportText": "Vi er glade for at invitere dig til at prøve AI Resumehjælper og ser frem til din feedback og spørgsmål. Lad os gøre læsning på nettet enklere og mere engagerende. Forbedr din online læseoplevelse med AI Resumehjælper i dag!",
+  "version": "1.0.0"
+}
