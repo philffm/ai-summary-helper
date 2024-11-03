@@ -1,40 +1,40 @@
 {
   "version": "1.0.0",
   "title": "AI Summary Helper 🚀",
-  "about": "About 📖",
-  "aboutText": "Elevate your online browsing into a powerhouse of productivity with AI Summary Helper. Ensure no article ever gets overlooked again! 🌟",
-  "features": "Features 🔍",
+  "about": "Informazioni 📖",
+  "aboutText": "Trasforma la tua navigazione online in una fonte di produttività con AI Summary Helper. Assicurati di non perdere mai un articolo! 🌟",
+  "features": "Funzionalità 🔍",
   "featureList": [
-    "Personalized article summaries that resonate with you ✨",
-    "Supports a variety of models: OpenAI, Mistral AI, Ollama (local), and more",
-    "Seamlessly integrate summaries into your reading experience 📚",
-    "Read effortlessly: Share articles straight to Kindle with Reabble 📖",
-    "Cross-Platform Compatibility: Bookmarklet Generator for any browser and OS, including iOS."
+    "Riassunti personalizzati degli articoli che risuonano con te ✨",
+    "Supporta una varietà di modelli: OpenAI, Mistral AI, Ollama (locale) e altri",
+    "Integrazione perfetta dei riassunti nella tua esperienza di lettura 📚",
+    "Leggi senza sforzo: Condividi gli articoli direttamente su Kindle con Reabble 📖",
+    "Compatibilità multipiattaforma: generatore di bookmarklet per qualsiasi browser e sistema operativo, inclusi iOS."
   ],
-  "proposeFeature": "Propose a Feature 💡",
-  "proposeFeatureText": "Have a brilliant idea? Share it with us and help shape the future of AI Summary Helper! 💬",
-  "privacyNote": "Privacy Note 🔒",
-  "privacyNoteText": "Your privacy is our utmost priority. We ensure that your data remains yours. 🔑",
-  "funMessage": "Dive into a smarter browsing experience with AI Summary Helper! 🎉",
-  "changelog": "Changelog 📝",
+  "proposeFeature": "Proponi una Funzionalità 💡",
+  "proposeFeatureText": "Hai un'idea brillante? Condividila con noi e contribuisci a plasmare il futuro di AI Summary Helper! 💬",
+  "privacyNote": "Nota sulla Privacy 🔒",
+  "privacyNoteText": "La tua privacy è la nostra massima priorità. Garantiamo che i tuoi dati rimangano solo tuoi. 🔑",
+  "funMessage": "Immergiti in un’esperienza di navigazione più intelligente con AI Summary Helper! 🎉",
+  "changelog": "Registro delle Modifiche 📝",
   "changelogList": [
-    "New and improved prompts for enhanced accuracy",
-    "Local LLM support: Ollama / Llama models now available",
-    "Updated for compatibility with the Mistral AI model",
-    "Optimized for GPT4o mini model",
-    "UI enhancements for a better user experience 🎨"
+    "Nuovi prompt migliorati per una maggiore precisione",
+    "Supporto per LLM locale: modelli Ollama / Llama ora disponibili",
+    "Aggiornato per la compatibilità con il modello Mistral AI",
+    "Ottimizzato per il modello GPT4o mini",
+    "Miglioramenti all’interfaccia utente per una migliore esperienza 🎨"
   ],
-  "aboutCreator": "About the Creator",
-  "creatorText": "Hello, Gumroad community! :) I'm Phil Wornath, the mind behind AI Summary Helper. As someone who appreciates the depth of written content, particularly scientific articles, I wanted to overcome the challenges of time constraints. This inspired me to create a tool that boosts productivity and enhances reading efficiency.",
-  "whyHelper": "Why Choose AI Summary Helper?",
+  "aboutCreator": "Informazioni sul Creatore",
+  "creatorText": "Ciao, comunità di Gumroad! :) Sono Phil Wornath, la mente dietro AI Summary Helper. Come appassionato di contenuti scritti, in particolare articoli scientifici, volevo superare le sfide imposte dal tempo limitato. Questo mi ha ispirato a creare uno strumento che aumenti la produttività e migliori l'efficienza nella lettura.",
+  "whyHelper": "Perché Scegliere AI Summary Helper?",
   "whyHelperList": [
-    "Reclaim Your Time: Generate quick summaries or save in-depth reading for later.",
-    "Tailored to Your Needs: Customize summaries to fit your language, profession, or perspective.",
-    "Stay Organized: Eliminate cluttered tabs and maintain a manageable reading list.",
-    "Enhanced Reading Experience: Focus on meaningful content without the overwhelm."
+    "Recupera il Tuo Tempo: Genera riassunti rapidi o salva letture approfondite per dopo.",
+    "Personalizzato per le Tue Esigenze: Adatta i riassunti alla tua lingua, professione o prospettiva.",
+    "Rimani Organizzato: Elimina le schede sovraccariche e mantieni una lista di lettura gestibile.",
+    "Esperienza di Lettura Potenziata: Concentrati sui contenuti significativi senza sentirti sopraffatto."
   ],
-  "getStarted": "Get Started Today",
-  "getStartedText": "To begin using AI Summary Helper, ensure you possess an OpenAI API key and adequate credits. Join us in making web reading more efficient and accessible for everyone. Download now on Gumroad and revolutionize your browsing experience.",
-  "feedbackSupport": "Feedback and Support",
-  "feedbackSupportText": "We are thrilled to invite you to try AI Summary Helper and value your feedback and inquiries. Let's work together to simplify and enrich online reading. Enhance your digital reading journey with AI Summary Helper today!"
+  "getStarted": "Inizia Oggi",
+  "getStartedText": "Per iniziare a utilizzare AI Summary Helper, assicurati di avere una chiave API di OpenAI e crediti sufficienti. Unisciti a noi nel rendere la lettura web più efficiente e accessibile per tutti. Scarica ora su Gumroad e rivoluziona la tua esperienza di navigazione.",
+  "feedbackSupport": "Feedback e Supporto",
+  "feedbackSupportText": "Siamo entusiasti di invitarti a provare AI Summary Helper e apprezziamo il tuo feedback e le tue domande. Lavoriamo insieme per semplificare e arricchire la lettura online. Migliora oggi il tuo viaggio di lettura digitale con AI Summary Helper!"
 }
