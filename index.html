@@ -126,6 +126,17 @@
             const url = new URL(window.location);
             url.searchParams.set('lang', lang);
             window.history.pushState({}, '', url);
+
+            // Update the language menu button text
+            fetch('translations.json')
+                .then(response => response.json())
+                .then(data => {
+                    const currentLang = data.languages.find(l => l.code === lang);
+                    if (currentLang) {
+                        document.getElementById('languageMenuButton').textContent = `${currentLang.emoji} ${currentLang.name}`;
+                    }
+                })
+                .catch(error => console.error('Error updating language button:', error));
         }
 
         window.onload = () => {
@@ -133,6 +144,17 @@
             const lang = urlParams.get('lang') || 'en';
             loadContent(lang);
             createLanguageButtons();
+
+            // Set the initial language button text
+            fetch('translations.json')
+                .then(response => response.json())
+                .then(data => {
+                    const currentLang = data.languages.find(l => l.code === lang);
+                    if (currentLang) {
+                        document.getElementById('languageMenuButton').textContent = `${currentLang.emoji} ${currentLang.name}`;
+                    }
+                })
+                .catch(error => console.error('Error setting initial language button:', error));
         };
 
         document.addEventListener("DOMContentLoaded", function() {
