@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.0",
-  "description": "Fetch and insert AI-generated summaries of web content. Combine with Send To Kindle for quick summaries and full articles.",
+  "version": "1.5.1",
+  "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
     "activeTab",
