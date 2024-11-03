@@ -133,13 +133,13 @@ footer {
     display: block;
     text-align: center;
     margin: 10px auto;
-    padding: 10px 20px;
+    padding: 20px 20px;
     background-color: #0078d7;
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 20px;
     transition: background-color 0.3s, transform 0.2s;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .secondary-option {
