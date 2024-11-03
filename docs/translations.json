@@ -70,6 +70,41 @@
             "code": "pl",
             "name": "Polski",
             "emoji": "🇵🇱"
+        },
+        {
+            "code": "tr",
+            "name": "Türkçe",
+            "emoji": "🇹🇷"
+        },
+        {
+            "code": "hi",
+            "name": "हिंदी",
+            "emoji": "🇮🇳"
+        },
+        {
+            "code": "th",
+            "name": "ไทย",
+            "emoji": "🇹🇭"
+        },
+        {
+            "code": "sv",
+            "name": "Svenska",
+            "emoji": "🇸🇪"
+        },
+        {
+            "code": "da",
+            "name": "Dansk",
+            "emoji": "🇩🇰"
+        },
+        {
+            "code": "no",
+            "name": "Norsk",
+            "emoji": "🇳🇴"
+        },
+        {
+            "code": "id",
+            "name": "Indonesian",
+            "emoji": "🇮🇩"
         }
     ],
     "content": {
