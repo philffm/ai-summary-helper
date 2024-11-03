@@ -79,6 +79,7 @@
 
                 document.getElementById('changelog').textContent = data.changelog;
                 document.getElementById('whyHelper').textContent = data.whyHelper;
+                document.getElementById('whyHelperList').textContent = data.whyHelperList;
                 
 
                 const whyHelperList = document.getElementById('whyHelperList');
@@ -165,6 +166,32 @@
             }
 
             setInterval(autoScroll, scrollInterval);
+
+            const languageMenuButton = document.getElementById('languageMenuButton');
+            const languageMenu = document.getElementById('languageMenu');
+
+            languageMenuButton.addEventListener('click', () => {
+                languageMenu.classList.toggle('show');
+            });
+
+            // Fetch languages from a JSON file or define them directly
+            fetch('translations.json')
+                .then(response => response.json())
+                .then(data => {
+                    const languages = data.languages; // Assuming the JSON structure has a 'languages' array
+
+                    languages.forEach(lang => {
+                        const button = document.createElement('button');
+                        button.textContent = `${lang.emoji} ${lang.name}`;
+                        button.onclick = () => {
+                            changeLanguage(lang.code);
+                            languageMenuButton.textContent = `${lang.emoji} ${lang.name}`;
+                            languageMenu.classList.remove('show');
+                        };
+                        languageMenu.appendChild(button);
+                    });
+                })
+                .catch(error => console.error('Error loading languages:', error));
         });
     </script>
 </head>
@@ -172,12 +199,18 @@
     <div class="window-frame">
         <div class="window-title-bar">
             <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
-            <h1 id="title" class="window-title">AI Summary Helper</h1>
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 12px;">
+                <h1 id="title" class="window-title">AI Summary Helper</h1>
+                <button id="languageMenuButton" class="buttonIcon">🇬🇧 English</button>
+            </div>
             <div class="window-controls">
                 <button class="window-button minimize">_</button>
                 <button class="window-button maximize">□</button>
                 <button class="window-button close">X</button>
             </div>
+        </div>
+        <div id="languageMenu" class="language-menu hidden">
+            <!-- Language options will be dynamically inserted here -->
         </div>
         <section id="features-section">
             <div id="featureList" class="feature-cards-container">
@@ -185,7 +218,6 @@
             </div>
         </section>
         <div class="window-content">
-            <section class="language-section language-menu"></section>
             <header>
                 <img src="aish.png" alt="AI Summary Helper Preview" style="max-width: 100%;">
                 <p id="aboutText"></p>
