@@ -3,7 +3,7 @@
         "message": "AI Summary Helper - OpenAI, Mistral, Ollama, Kindle - KI Zusammenfassungen"
     },
     "extensionDescription": {
-        "message": "Fasse Web-Inhalte zusammen und speichere sie. Kombiniere mit Send To Kindle um Webseiten und Artikel inkl. Zusammenfassungen unterwegs zu lesen."
+        "message": "Fasse Web-Inhalte zusammen und speichere sie. Nutze Send To Kindle um Webseiten und Artikel inkl. Zusammenfassungen unterwegs zu lesen."
     },
     "fetchSummary": {
         "message": "Zusammenfassung abrufen"
