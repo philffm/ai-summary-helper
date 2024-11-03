@@ -17,11 +17,10 @@
         />
         <h2>AI Summary Helper</h2>
       </div>
-      <div>
-        <button class="buttonIcon" title="Archive" disabled>🗂️</button>
-        <button id="toggleScreen" class="buttonIcon" title="Settings">
-          ⚙️
-        </button>
+      <div class="header-buttons">
+        <button id="archiveButton" class="buttonIcon" title="Archive">🗂️</button>
+        <button id="backButton" class="buttonIcon" title="Back" style="display: none;">Back</button>
+        <button id="toggleScreenButton" class="buttonIcon" title="Settings">⚙️</button>
       </div>
     </div>
     <!-- link to donate https://link.philwornath.com/#donate?source=aish -->
@@ -77,6 +76,9 @@
       <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
       <button type="submit">Save 💾</button>
       </form>
+    </div>
+    <div id="archiveScreen" style="display: none;">
+      <ul id="articleList"></ul>
     </div>
     <script src="popup.js"></script>
   </body>

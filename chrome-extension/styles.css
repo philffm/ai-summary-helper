@@ -126,6 +126,10 @@ button {
   overflow: hidden;
 }
 
+/* secondary button  */
+
+
+
 button:hover {
   background: linear-gradient(135deg, #5BBBF9, #2A5BE0);
 }
@@ -135,6 +139,19 @@ button:active {
   animation: button-click 0.5s ease-in-out;
 }
 
+
+.secondary {
+  background: #ededed;
+  color: #383838;
+}
+
+.secondary:hover {
+  background: #c3c3c3;
+}
+
+.secondary:active {
+  background: #b6b6b6;
+}
 
 input,
 textarea {
@@ -217,4 +234,36 @@ select {
   to {
     transform: rotate(360deg);
   }
+}
+
+ul#articleList {
+  padding: 0;
+  list-style: none;
+}
+
+
+
+.article-card {
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: var(--margin);
+  padding: var(--padding);
+  transition: box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article-content {
+  margin-top: var(--margin);
+  border-top: 1px solid var(--secondary-color);
+  padding-top: var(--padding);
 }

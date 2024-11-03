@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fetchSummaryButton = document.getElementById('fetchSummary');
   const additionalQuestionsInput = document.getElementById('additionalQuestions');
   const settingsForm = document.getElementById('settingsForm');
-  const toggleScreenButton = document.getElementById('toggleScreen');
+  const toggleScreenButton = document.getElementById('toggleScreenButton');
   const mainScreen = document.getElementById('mainScreen');
   const settingsScreen = document.getElementById('settingsScreen');
   const spinner = document.getElementById('spinner');
@@ -17,24 +17,219 @@ document.addEventListener('DOMContentLoaded', () => {
   const localEndpointInput = document.getElementById('localEndpoint'); // Input for local endpoint
   const modelIdentifierInput = document.getElementById('modelIdentifier');
 
-  // Array of random donation messages
-  const donationMessages = [
-    'Like the extension? Help me brew new ideas with a soothing cup of tea! 🍵',
-    'Love the extension? Help me upgrade my workspace with a new plant! 🌿',
-    'Want to support? Buy me a book to inspire the next feature! 📚',
-    'Supporting my work? Help me fund a tiny house to code in peace! 🏡',
-    'Love this project? Get me closer to my goal of relocating into a sailboat! 🚤',
-    'Feeling generous? A pizza would definitely boost my brainstorming sessions! 🍕',
-    'Enjoying the tool? Help me turn my remote work into a van life adventure! 🚐',
-    'Happy with the tool? Your support can help me build my tiny home! 🏠',
-    'Appreciate the extension? Buy me a kayak to paddle through my creative process! 🛶',
-    'Like innovation? Support my mission to design from the deck of a boat! ⛴️',
-    'Enjoying the tool? Get me a smoothie to recharge my problem-solving skills! 🥤'
-  ];
+  const archiveButton = document.getElementById('archiveButton');
+  const backButton = document.getElementById('backButton');
+  const archiveScreen = document.getElementById('archiveScreen');
+  const articleList = document.getElementById('articleList');
 
-  // Randomize donation link text
-  const randomMessage = donationMessages[Math.floor(Math.random() * donationMessages.length)];
-  donateLink.textContent = randomMessage;
+  const titleElement = document.querySelector('.logoheader h2');
+
+  // Load donation messages from JSON file
+  fetch('donationMessages.json')
+    .then(response => response.json())
+    .then(donationMessages => {
+      const randomMessage = donationMessages[Math.floor(Math.random() * donationMessages.length)];
+      donateLink.textContent = randomMessage;
+    })
+    .catch(error => console.error('Error loading donation messages:', error));
+
+  // Toggle between settings screen and main screen
+  toggleScreenButton.addEventListener('click', () => {
+    if (settingsScreen.style.display === 'block') {
+      showMainScreen();
+    } else {
+      showSettingsScreen();
+    }
+  });
+
+  // Show archive screen
+  archiveButton.addEventListener('click', () => {
+    showArchiveScreen();
+    loadArchivedArticles();
+  });
+
+  // Back to main screen from archive
+  backButton.addEventListener('click', showMainScreen);
+
+  function showMainScreen() {
+    mainScreen.style.display = 'block';
+    settingsScreen.style.display = 'none';
+    archiveScreen.style.display = 'none';
+    archiveButton.style.display = 'inline-block';
+    backButton.style.display = 'none';
+    toggleScreenButton.style.display = 'inline-block';
+    toggleScreenButton.textContent = '⚙️';
+    titleElement.textContent = 'AI Summary Helper';
+  }
+
+  function showSettingsScreen() {
+    mainScreen.style.display = 'none';
+    settingsScreen.style.display = 'block';
+    archiveScreen.style.display = 'none';
+    archiveButton.style.display = 'none';
+    backButton.style.display = 'none';
+    toggleScreenButton.style.display = 'inline-block';
+    toggleScreenButton.textContent = 'Back';
+    titleElement.textContent = 'Settings';
+  }
+
+  function showArchiveScreen() {
+    mainScreen.style.display = 'none';
+    settingsScreen.style.display = 'none';
+    archiveScreen.style.display = 'block';
+    archiveButton.style.display = 'none';
+    backButton.style.display = 'inline-block';
+    toggleScreenButton.style.display = 'none';
+    titleElement.textContent = 'Archive';
+  }
+
+  function loadArchivedArticles() {
+    chrome.storage.local.get({ articles: [] }, (data) => {
+      const articleList = document.getElementById('articleList');
+      articleList.innerHTML = ''; // Clear existing list
+
+      if (data.articles.length === 0) {
+        // Display a fun message if there are no articles
+        const emptyMessage = document.createElement('div');
+        emptyMessage.classList.add('empty-message');
+        emptyMessage.innerHTML = `
+          <p>🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵</p>
+        `;
+        articleList.appendChild(emptyMessage);
+      } else {
+        // Sort articles by timestamp in descending order
+        const sortedArticles = data.articles.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        sortedArticles.forEach((article, index) => {
+          const articleHeader = article.content.substring(0, 50) + '...';
+          const listItem = document.createElement('li');
+          listItem.classList.add('article-card');
+          const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+          const formattedTime = new Date(article.timestamp).toLocaleTimeString(undefined, {
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+
+          // Extract domain name from URL if available
+          let domainName = 'Unknown Source';
+          let urlLink = '';
+          if (article.url) {
+            try {
+              const url = new URL(article.url);
+              domainName = url.hostname;
+              urlLink = `<a href="${article.url}" target="_blank">${domainName}</a>`;
+            } catch (e) {
+              console.error('Invalid URL:', article.url);
+            }
+          }
+
+          listItem.innerHTML = `
+            <div class="article-header">
+              <div>
+                <h4>${articleHeader}</h4>
+                <p class="article-date"><em>💾 ${formattedDate} at ${formattedTime}</em> from ${urlLink}</p>
+              </div>
+              <button class="expand-button">Expand</button>
+              </div>
+              <div class="article-content" style="display: none;">
+              <button class="secondary share-button">Share 🔗</button>
+              <button class="secondary open-button">Open in New Tab 👓</button>
+              <p><strong>Summary:</strong> ${article.summary}</p>
+              <p><strong>Content:</strong> ${article.content}</p>
+            </div>
+          `;
+          articleList.appendChild(listItem);
+
+          const expandButton = listItem.querySelector('.expand-button');
+          const articleContent = listItem.querySelector('.article-content');
+          const openButton = listItem.querySelector('.open-button');
+          const shareButton = listItem.querySelector('.share-button');
+
+          expandButton.addEventListener('click', () => {
+            const isVisible = articleContent.style.display === 'block';
+            articleContent.style.display = isVisible ? 'none' : 'block';
+            expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
+          });
+
+          openButton.addEventListener('click', () => {
+            const newTab = window.open();
+            newTab.document.write(`
+              <html>
+                <head>
+                  <title>Article Details</title>
+                  <style>
+                    body {
+                      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                      padding: 20px;
+                      max-width: 800px;
+                      margin: auto;
+                      background-color: #f5f5f5;
+                      border-radius: 8px;
+                      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+                    h2 {
+                      color: #333;
+                    }
+                    p, pre {
+                      line-height: 1.6;
+                    }
+                    pre {
+                      white-space: pre-wrap;
+                      word-wrap: break-word;
+                    }
+                    .logo {
+                      display: flex;
+                      align-items: center;
+                      gap: 12px;
+                      margin-bottom: 20px;
+                    }
+                    .logo img {
+                      width: 48px;
+                      height: 48px;
+                    }
+                    .logo h1 {
+                      font-size: 24px;
+                      color: #333;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <div class="logo">
+                    <h1>Saved Article from AI Summary Helper</h1>
+                  </div>
+                  <h2>Summary</h2>
+                  <p>${article.summary}</p>
+                  <h2>Content</h2>
+                  <pre>${article.content}</pre>
+                </body>
+              </html>
+            `);
+            newTab.document.close();
+          });
+
+          shareButton.addEventListener('click', () => {
+            if (navigator.share) {
+              navigator.share({
+                title: 'Article from AI Summary Helper',
+                text: `Summary: ${article.summary}\n\nContent: ${article.content}`,
+                url: article.url
+              }).then(() => {
+                console.log('Article shared successfully');
+              }).catch((error) => {
+                console.error('Error sharing article:', error);
+              });
+            } else {
+              console.error('Web Share API not supported in this browser');
+            }
+          });
+        });
+      }
+    });
+  }
 
   // Function to toggle visibility of API key and endpoint inputs
   function toggleInputVisibility() {
@@ -94,43 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   });
 
-  // Toggle between settings screen and main screen
-  toggleScreenButton.addEventListener('click', () => {
-    const titleElement = document.querySelector('.logoheader h2');
-
-    if (mainScreen.style.display === 'none') {
-      mainScreen.style.display = 'block';
-      settingsScreen.style.display = 'none';
-      toggleScreenButton.textContent = '⚙️'; // Switch back to settings icon
-      titleElement.textContent = 'AI Summary Helper'; // Change title back to main
-    } else {
-      mainScreen.style.display = 'none';
-      settingsScreen.style.display = 'block';
-      toggleScreenButton.textContent = 'Back'; // Text when showing settings
-      titleElement.textContent = 'Settings'; // Change title to settings
-    }
-  });
-
-  // Handle the "Fetch Summary" button click
-  fetchSummaryButton.addEventListener('click', () => {
-    console.log('Fetch Summary button clicked');
-    const additionalQuestions = additionalQuestionsInput.value.trim();
-    spinner.style.display = 'inline-block';
-
-    // Query the active tab and send the message to the content script
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      console.log('Sending message to content script');
-      fetchSummaryButton.textContent = 'Select element to fetch...';
-      fetchSummaryButton.style.background = 'green';
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions }, (response) => {
-        console.log('Response from content script:', response);
-        spinner.style.display = 'none';
-        fetchSummaryButton.textContent = '🪄 Fetch Summary';
-        fetchSummaryButton.style.background = '';
-      });
-    });
-  });
-
   // Add event listener to model input to toggle input visibility
   modelInput.addEventListener('change', toggleInputVisibility);
 
@@ -169,4 +327,17 @@ document.addEventListener('DOMContentLoaded', () => {
         promptSelect.value = 'custom';
       });
     });
+
+  fetchSummaryButton.addEventListener('click', () => {
+    const additionalQuestions = additionalQuestionsInput.value;
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions }, (response) => {
+        if (response && response.success) {
+          console.log('Summary fetched successfully:', response.message);
+        } else {
+          console.error('Failed to fetch summary:', response ? response.message : 'No response');
+        }
+      });
+    });
+  });
 });
