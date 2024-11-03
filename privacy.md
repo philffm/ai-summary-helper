@@ -2,7 +2,6 @@
 
 **AI Summary Extension**
 
-
 ## Introduction
 
 Welcome to the AI Summary Extension. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Chrome Extension. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the extension.
@@ -16,6 +15,10 @@ Your OpenAI API key is stored locally on your device and is used to authenticate
 
 ### Content Data
 The text content of web pages you choose to summarize is sent to the OpenAI API for processing. This content is not stored or logged by us.
+
+## Analytics
+
+We use Matomo, a GDPR-compliant analytics platform, to collect anonymous usage data to help us improve the extension. Matomo respects your privacy and does not track personal data. 
 
 ## How We Use Your Information
 
