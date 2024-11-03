@@ -7,8 +7,8 @@ api_key = os.getenv('OPENAI_API_KEY')
 if not api_key:
     raise ValueError("API key is missing. Set the OPENAI_API_KEY environment variable.")
 
-translations_path = 'docs/translations.json'
-lang_dir = 'docs/lang'
+translations_path = 'translations.json'
+lang_dir = 'lang'
 
 # Ensure the lang directory exists
 os.makedirs(lang_dir, exist_ok=True)
