@@ -25,6 +25,7 @@ async function fetchSummary(additionalQuestions, targetElement) {
   const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
+    // Fetch settings including API key, prompt, and model from Chrome storage
     chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
@@ -97,40 +98,40 @@ async function fetchSummary(additionalQuestions, targetElement) {
         const result = await response.json();
         console.debug('🚀 API response:', result);
 
+        // Adjust this part to correctly access the message content
         let summary;
         if (model === 'ollama' || model === 'llama3.2') {
+          // Adjust for the response structure from Ollama using the llama3.2 model
           summary = result.message?.content || 'Error: No summary returned';
         } else if (model === 'openai' || model === 'mistral') {
+          // For OpenAI or Mistral models that use the `choices` array
           summary = result.choices?.[0]?.message?.content || 'Error: No summary returned';
         } else {
           summary = 'Error: Unsupported model';
         }
 
-        // Get the current tab's URL
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          const url = tabs[0].url;
-          saveToLocalStorage(content, summary, url);
-        });
+        // Save the content and summary to local storage
+        saveToLocalStorage(content, summary);
 
         const summaryContainer = document.createElement('blockquote');
         summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
 
-        insertSummary(targetElement, summaryContainer);
+        insertSummary(targetElement, summaryContainer); // Insert the fetched summary without removing existing content
         resolve({ success: true, message: 'Summary inserted successfully' });
 
       } catch (error) {
         console.error('❌ Error fetching summary:', error);
-        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later.';
+        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later.'; // Show error message
         reject(error);
       }
     });
   });
 }
 
-// Function to save content, summary, and URL to local storage
-function saveToLocalStorage(content, summary, url) {
+// Function to save content and summary to local storage
+function saveToLocalStorage(content, summary) {
   const timestamp = new Date().toISOString();
-  const articleData = { content, summary, url, timestamp };
+  const articleData = { content, summary, timestamp };
 
   chrome.storage.local.get({ articles: [] }, (data) => {
     const articles = data.articles;
@@ -169,17 +170,15 @@ function showPlaceholder(targetElement) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('placeholder');
   placeholder.style.backgroundColor = '#f0f0f0'; // Highlight the element
-  placeholder.style.color = '#333'; // Contrast color for text
   placeholder.style.padding = '32px';
   placeholder.innerHTML = 'Fetching summary... ⏳';
 
   // Add subtle animation to the placeholder
   placeholder.animate([
-    { opacity: 0.5, transform: 'scale(1)' },
-    { opacity: 1, transform: 'scale(1.05)' },
-    { opacity: 0.5, transform: 'scale(1)' }
+    { opacity: 0.5 },
+    { opacity: 1 }
   ], {
-    duration: 1500,
+    duration: 1000,
     iterations: Infinity
   });
 

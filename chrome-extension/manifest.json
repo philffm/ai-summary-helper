@@ -5,6 +5,7 @@
   "version": "1.4.0",
   "description": "Fetch and insert AI-generated summaries of web content. Combine with Send To Kindle for quick summaries and full articles.",
   "permissions": [
+    "tabs",
     "activeTab",
     "storage",
     "http://localhost/*"

@@ -75,12 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showArchiveScreen() {
     mainScreen.style.display = 'none';
+    document.body.style.margin = '0';
     settingsScreen.style.display = 'none';
     archiveScreen.style.display = 'block';
     archiveButton.style.display = 'none';
     backButton.style.display = 'inline-block';
     toggleScreenButton.style.display = 'none';
-    titleElement.textContent = 'Archive';
+    titleElement.textContent = 'Archive (Beta)';
   }
 
   function loadArchivedArticles() {
@@ -131,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="article-header">
               <div>
                 <h4>${articleHeader}</h4>
-                <p class="article-date"><em>💾 ${formattedDate} at ${formattedTime}</em> from ${urlLink}</p>
+                <p class="article-date">💾 ${formattedDate} at ${formattedTime}</p>
               </div>
               <button class="expand-button">Expand</button>
               </div>
@@ -148,6 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
           const articleContent = listItem.querySelector('.article-content');
           const openButton = listItem.querySelector('.open-button');
           const shareButton = listItem.querySelector('.share-button');
+
+          // Add event listener to the entire card
+          listItem.addEventListener('click', (event) => {
+            // Prevent the event from triggering when clicking on buttons inside the card
+            if (event.target.tagName === 'BUTTON') return;
+
+            const isVisible = articleContent.style.display === 'block';
+            articleContent.style.display = isVisible ? 'none' : 'block';
+            expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
+          });
 
           expandButton.addEventListener('click', () => {
             const isVisible = articleContent.style.display === 'block';
@@ -213,9 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           shareButton.addEventListener('click', () => {
             if (navigator.share) {
+              // Use Markdown-like syntax for formatting
+              const summaryText = `**Summary:** ${article.summary.replace(/<[^>]*>/g, '')}`;
+              const contentText = `**Content:** ${article.content.replace(/<[^>]*>/g, '')}`;
               navigator.share({
                 title: 'Article from AI Summary Helper',
-                text: `Summary: ${article.summary}\n\nContent: ${article.content}`,
+                text: `${summaryText}\n\n${contentText}`,
                 url: article.url
               }).then(() => {
                 console.log('Article shared successfully');
