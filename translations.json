@@ -62,11 +62,6 @@
             "emoji": "🇩🇰"
         },
         {
-            "code": "no",
-            "name": "Norsk",
-            "emoji": "🇳🇴"
-        },
-        {
             "code": "jp",
             "name": "日本語",
             "emoji": "🇯🇵"
@@ -92,7 +87,7 @@
             "emoji": "🇹🇭"
         },
         {
-            "code": "ind",
+            "code": "ind-bahasa",
             "name": "Indonesian",
             "emoji": "🇮🇩"
         },
