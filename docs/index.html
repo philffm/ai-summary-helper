@@ -77,6 +77,10 @@
                 document.getElementById('aboutCreator').textContent = data.aboutCreator;
                 document.getElementById('creatorText').textContent = data.creatorText;
 
+                document.getElementById('changelog').textContent = data.changelog;
+                document.getElementById('whyHelper').textContent = data.whyHelper;
+                
+
                 const whyHelperList = document.getElementById('whyHelperList');
                 whyHelperList.innerHTML = data.whyHelperList.map(item => `<li>${item}</li>`).join('');
 
@@ -204,7 +208,7 @@
                     <p id="funMessage"></p>
                 </section>
                 <section>
-                    <h2>Changelog</h2>
+                    <h2 id="changelog">Changelog</h2>
                     <ul id="changelogList"></ul>
                 </section>
                 <section>
@@ -212,7 +216,7 @@
                     <p id="creatorText"></p>
                 </section>
                 <section>
-                    <h2>Why AI Summary Helper?</h2>
+                    <h2 id="whyHelper"></h2>
                     <ul id="whyHelperList"></ul>
                 </section>
                 <section>
