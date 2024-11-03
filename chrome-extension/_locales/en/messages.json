@@ -3,7 +3,7 @@
         "message": "AI Summary Helper - OpenAI, Mistral, Ollama, Kindle - Summarize and Save Web Articles"
     },
     "extensionDescription": {
-        "message": "Fetch and insert AI-generated summaries of web content. Combine with Send To Kindle to read summaries and full articles on the go."
+        "message": "Get AI summaries of web content. Use Send To Kindle for reading on the go."
     },
     "fetchSummary": {
         "message": "Fetch Summary"

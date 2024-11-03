@@ -3,7 +3,7 @@
         "message": "AI Summary Helper - OpenAI, Mistral, Ollama, Kindle - Resumenes y Artículos de Web IA"
     },
     "extensionDescription": {
-        "message": "Fetchea y inserta resúmenes generados por IA de contenido web. Combina con Send To Kindle para leer resúmenes y artículos completos en movimiento."
+        "message": "Inserta resúmenes IA de web. Úsalo con Send To Kindle para leer en movimiento."
     },
     "fetchSummary": {
         "message": "Obtener Resumen"
