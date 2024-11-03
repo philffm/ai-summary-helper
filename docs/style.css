@@ -24,6 +24,24 @@ body {
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .window-frame {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .window-title-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .window-controls {
+        display: none;
+    }
+}
+
 .window-title {
     font-size: 18px;
 }
@@ -178,9 +196,9 @@ footer {
     padding: 24px 0;
     gap: 24px;
     white-space: nowrap;
-    /* hide scroll bar */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    transition: transform 0.3s ease;
 }
 
 .feature-card {
@@ -192,10 +210,12 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 10px 0;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease;
     font-size: 18px;
     display: inline-block;
     margin-right: 10px;
+    animation: scroll 10s linear infinite;
+
 }
 
 .feature-card:hover {
