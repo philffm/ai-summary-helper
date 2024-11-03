@@ -1,0 +1,40 @@
+{
+  "title": "Pembantu Ringkasan AI 🚀",
+  "about": "Tentang 📖",
+  "aboutText": "Ubah penjelajahan Anda menjadi kekuatan produktivitas dengan Pembantu Ringkasan AI. Jangan biarkan artikel lain terlewat! 🌟",
+  "features": "Fitur 🔍",
+  "featureList": [
+    "Ringkas artikel dengan sentuhan pribadi ✨",
+    "Dukungan untuk OpenAI, Mistral AI, Ollama (lokal) dan lebih banyak model lainnya",
+    "Integrasikan ringkasan ke dalam alur membaca Anda 📚",
+    "Baca saat bepergian: Bagikan ke Kindle dengan Reabble 📖",
+    "Lintas Platform: Generator Bookmarklet untuk semua browser dan OS, termasuk iOS."
+  ],
+  "proposeFeature": "Usulkan Fitur 🔌",
+  "proposeFeatureText": "Punya ide brilian? Bagikan dengan kami dan bentuk masa depan Pembantu Ringkasan AI! 📝",
+  "privacyNote": "Catatan Privasi 🔒",
+  "privacyNoteText": "Privasi Anda adalah prioritas utama kami. Kami memastikan data Anda tetap milik Anda. 🔑",
+  "funMessage": "Jelajahi cara yang lebih cerdas untuk berselancar dengan Pembantu Ringkasan AI! 🎉",
+  "changelog": "Riwayat Perubahan 📝",
+  "changelogList": [
+    "Prompt baru - lebih akurat",
+    "Dukungan untuk LLM lokal - model Ollama / Llama",
+    "Diperbarui untuk mendukung model Mistral AI",
+    "Diperbarui ke model GPT4o mini",
+    "UI diperbarui 🎨"
+  ],
+  "aboutCreator": "Tentang Pembuatnya",
+  "creatorText": "Hallo komunitas Gumroad :) - Saya Phil Wornath, pencipta Pembantu Ringkasan AI. Sebagai seorang penikmat konten web tertulis yang mendalam, terutama artikel ilmiah, saya sering menghadapi batasan waktu. Ini menginspirasi saya untuk mengembangkan alat yang meningkatkan produktivitas dan efisiensi membaca.",
+  "whyHelper": "Mengapa Pembantu Ringkasan AI?",
+  "whyHelperList": [
+    "Mendapatkan Kembali Waktu Anda: Hasilkan ringkasan cepat atau siapkan untuk eksplorasi mendalam di lain waktu.",
+    "Disesuaikan untuk Anda: Sesuaikan ringkasan agar sesuai dengan bahasa, profesi, atau sudut pandang Anda.",
+    "Tetap Terorganisir: Hindari tab berantakan dan jaga daftar bacaan Anda tetap terkelola.",
+    "Pengalaman Membaca yang Ditingkatkan: Fokus pada konten yang penting bagi Anda tanpa merasa kewalahan."
+  ],
+  "getStarted": "Mulai Hari Ini",
+  "getStartedText": "Untuk mulai menggunakan Pembantu Ringkasan AI, pastikan Anda memiliki kunci API OpenAI dan kredit yang cukup. Bergabunglah dengan kami dalam membuat bacaan web lebih mudah dan lebih dapat diakses untuk semua orang. Unduh sekarang di Gumroad dan ubah pengalaman penjelajahan Anda.",
+  "feedbackSupport": "Umpan Balik dan Dukungan",
+  "feedbackSupportText": "Kami sangat senang mengundang Anda untuk mencoba Pembantu Ringkasan AI dan menyambut umpan balik serta pertanyaan Anda. Mari kita buat membaca di web menjadi lebih sederhana dan menarik. Tingkatkan pengalaman membaca online Anda dengan Pembantu Ringkasan AI hari ini!",
+  "version": "1.0.0"
+}

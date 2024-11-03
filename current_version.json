@@ -4,7 +4,7 @@
     {
       "code": "en",
       "name": "English",
-      "emoji": "🇬🇧"
+      "emoji": "🌍"
     },
     {
       "code": "es",
@@ -37,29 +37,9 @@
       "emoji": "🇳🇱"
     },
     {
-      "code": "jp",
-      "name": "日本語",
-      "emoji": "🇯🇵"
-    },
-    {
-      "code": "cn",
-      "name": "中文",
-      "emoji": "🇨🇳"
-    },
-    {
       "code": "ru",
       "name": "Русский",
       "emoji": "🇷🇺"
-    },
-    {
-      "code": "kr",
-      "name": "한국어",
-      "emoji": "🇰🇷"
-    },
-    {
-      "code": "ar",
-      "name": "العربية",
-      "emoji": "🇦🇪"
     },
     {
       "code": "ua",
@@ -72,9 +52,29 @@
       "emoji": "🇵🇱"
     },
     {
-      "code": "tr",
-      "name": "Türkçe",
-      "emoji": "🇹🇷"
+      "code": "sv",
+      "name": "Svenska",
+      "emoji": "🇸🇪"
+    },
+    {
+      "code": "da",
+      "name": "Dansk",
+      "emoji": "🇩🇰"
+    },
+    {
+      "code": "jp",
+      "name": "日本語",
+      "emoji": "🇯🇵"
+    },
+    {
+      "code": "cn",
+      "name": "中文",
+      "emoji": "🇨🇳"
+    },
+    {
+      "code": "kr",
+      "name": "한국어",
+      "emoji": "🇰🇷"
     },
     {
       "code": "hi",
@@ -87,24 +87,19 @@
       "emoji": "🇹🇭"
     },
     {
-      "code": "sv",
-      "name": "Svenska",
-      "emoji": "🇸🇪"
-    },
-    {
-      "code": "da",
-      "name": "Dansk",
-      "emoji": "🇩🇰"
-    },
-    {
-      "code": "no",
-      "name": "Norsk",
-      "emoji": "🇳🇴"
-    },
-    {
-      "code": "id",
+      "code": "ind-bahasa",
       "name": "Indonesian",
       "emoji": "🇮🇩"
+    },
+    {
+      "code": "ar",
+      "name": "العربية",
+      "emoji": "🇦🇪"
+    },
+    {
+      "code": "tr",
+      "name": "Türkçe",
+      "emoji": "🇹🇷"
     }
   ]
 }
