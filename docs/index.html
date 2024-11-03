@@ -172,6 +172,12 @@
 
             languageMenuButton.addEventListener('click', () => {
                 languageMenu.classList.toggle('show');
+                if (languageMenu.classList.contains('show')) {
+                    const buttons = languageMenu.querySelectorAll('button');
+                    buttons.forEach((button, index) => {
+                        button.style.setProperty('--delay', `${index * 0.03}s`);
+                    });
+                }
             });
 
             // Fetch languages from a JSON file or define them directly
