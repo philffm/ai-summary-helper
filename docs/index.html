@@ -137,22 +137,19 @@
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.querySelector('.feature-cards-container');
             const cards = container.querySelectorAll('.feature-card');
-            let scrollAmount = 2;
-            const scrollStep = 1;
-            const scrollInterval = 30;
-            let isUserScrolling = false;
+            let scrollAmount = 0;
+            const scrollStep = 1; // Adjust this value to control the speed
+            const scrollInterval = 20; // Adjust this value to control the smoothness
 
             function autoScroll() {
-                if (!isUserScrolling) {
-                    scrollAmount += scrollStep;
-                    container.scrollLeft = scrollAmount;
+                scrollAmount += scrollStep;
+                container.scrollLeft = scrollAmount;
 
-                    if (scrollAmount >= container.scrollWidth - container.clientWidth) {
-                        scrollAmount = 0;
-                    }
-
-                    resizeCards();
+                if (scrollAmount >= container.scrollWidth - container.clientWidth) {
+                    scrollAmount = 0; // Reset to start scrolling from the beginning
                 }
+
+                resizeCards();
             }
 
             function resizeCards() {
@@ -166,14 +163,6 @@
                     card.style.transform = `scale(${scale})`;
                 });
             }
-
-            container.addEventListener('scroll', () => {
-                isUserScrolling = true;
-                clearTimeout(container.isScrolling);
-                container.isScrolling = setTimeout(() => {
-                    isUserScrolling = false;
-                }, 100); // Adjust the timeout as needed
-            });
 
             setInterval(autoScroll, scrollInterval);
         });

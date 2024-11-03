@@ -198,7 +198,7 @@ footer {
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    transition: transform 0.3s ease;
+    scroll-behavior: smooth;
 }
 
 .feature-card {
@@ -214,8 +214,6 @@ footer {
     font-size: 18px;
     display: inline-block;
     margin-right: 10px;
-    animation: scroll 10s linear infinite;
-
 }
 
 .feature-card:hover {
@@ -251,16 +249,6 @@ footer {
     position: absolute;
     left: 0;
     top: 0;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
 }
 
 .middle-card {
