@@ -304,3 +304,62 @@ footer {
     transform: scale(1.2);
     transition: transform 0.3s ease-in-out;
 }
+
+/* Styles for the article view */
+article {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
+}
+
+article h1 {
+    font-size: 28px;
+    color: #0078d7;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+article p {
+    margin-bottom: 20px;
+}
+
+article ol {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+article ol li {
+    margin-bottom: 10px;
+}
+
+article a {
+    color: #0078d7;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+article a:hover {
+    color: #005fa3;
+}
+
+/* Responsive adjustments for article view */
+@media (max-width: 768px) {
+    article {
+        padding: 15px;
+    }
+
+    article h1 {
+        font-size: 24px;
+    }
+
+    article p,
+    article ol li {
+        font-size: 14px;
+    }
+}
