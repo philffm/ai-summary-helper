@@ -105,6 +105,11 @@
             "code": "bg",
             "name": "Ъългарски",
             "emoji": "🇧🇬"
+        },
+        {
+            "code": "ro",
+            "name": "Romanian",
+            "emoji": "🇷🇴"
         }
     ],
     "content": {
