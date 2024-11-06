@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - AI Summary Helper</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="window-frame">
+        <div class="window-title-bar">
+            <h1 class="window-title">AI Summary Helper Blog</h1>
+        </div>
+        <div class="window-content">
+            <section id="blog-section">
+                <h2>Latest Blog Posts</h2>
+                <div id="blog-posts" class="blog-posts">
+                    <!-- Blog posts will be dynamically inserted here -->
+                </div>
+            </section>
+        </div>
+        <footer>
+            <p>&copy; 2024 Phil Wornath. All rights reserved. Visit the project at <a href="https://github.com/philffm/ai-summary-helper/">AI Summary Helper</a>.</p>
+        </footer>
+    </div>
+    <script>
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch('blogPosts.json');
+                const posts = await response.json();
+                const blogPostsContainer = document.getElementById('blog-posts');
+
+                posts.forEach(post => {
+                    const article = document.createElement('article');
+                    article.classList.add('blog-post');
+                    article.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <p><strong>Date:</strong> ${post.date}</p>
+                        <p>${post.description} <a href="${post.link}">Read more</a></p>
+                    `;
+                    blogPostsContainer.appendChild(article);
+                });
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadBlogPosts);
+    </script>
+</body>
+</html> 
