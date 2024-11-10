@@ -242,7 +242,7 @@ footer {
 .feature-cards-container {
     display: flex;
     overflow-x: auto;
-    padding: 24px 0;
+    padding: 24px 56px;
     gap: 24px;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;

@@ -5,7 +5,8 @@
   "aboutText": "Transform your browsing into a productivity powerhouse with AI Summary Helper. Never let another article slip through the cracks! 🌟",
   "features": "Features 🔍",
   "featureList": [
-    "Personalized article summaries ✨",
+    "Personalized article summaries ✨, book recommendations 📚 etc.",
+    "Read your way: Language, philosophical angle, creative connections and more.",
     "Supports OpenAI, Mistral AI, Ollama (local), and more models",
     "Seamlessly integrate summaries into your reading routine 📰",
     "Read on the go: Share articles to Kindle using Reabble 📖",
@@ -18,6 +19,7 @@
   "funMessage": "Experience a smarter way to browse with AI Summary Helper! 🎉",
   "changelog": "Changelog 📅",
   "changelogList": [
+    "History: View all your summarized articles - nothing gets lost!",
     "New prompts for improved accuracy",
     "Support for Local LLMs - Ollama/Llama models",
     "Updated support for Mistral AI model",

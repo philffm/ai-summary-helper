@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="article-content" style="display: none;">
               <button class="secondary share-button">Share 🔗</button>
               <button class="secondary open-button">Open in New Tab 👓</button>
+              <button class="delete-button" aria-label="Delete article">🗑️</button>
               <p><strong>Summary:</strong> ${article.summary}</p>
               <p><strong>Content:</strong> ${article.content}</p>
             </div>
@@ -149,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const articleContent = listItem.querySelector('.article-content');
           const openButton = listItem.querySelector('.open-button');
           const shareButton = listItem.querySelector('.share-button');
+          const deleteButton = listItem.querySelector('.delete-button');
 
           // Add event listener to the entire card
           listItem.addEventListener('click', (event) => {
@@ -240,6 +242,29 @@ document.addEventListener('DOMContentLoaded', () => {
               console.error('Web Share API not supported in this browser');
             }
           });
+
+
+          deleteButton.addEventListener('click', function () {
+            if (confirm('Are you sure you want to delete this article?')) {
+              // Retrieve the articles array from storage
+              chrome.storage.local.get('articles', (data) => {
+                const articles = data.articles || [];
+
+                // Use a unique identifier for each article, such as a timestamp or a unique ID
+                const updatedArticles = articles.filter((item) => item.timestamp !== article.timestamp);
+
+                // Save the updated list back to local storage
+                chrome.storage.local.set({ articles: updatedArticles }, () => {
+                  console.log('Article deleted successfully');
+                  loadArchivedArticles(); // Refresh the archive list
+                });
+              });
+            }
+          });
+
+
+
+
         });
       }
     });

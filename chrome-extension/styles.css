@@ -116,7 +116,7 @@ textarea {
 }
 
 button {
-  padding: 12px 24px;
+  padding: 8px 20px;
   background: linear-gradient(90deg, #6CCCFB, #3B6CF2);
   color: #fff;
   border: none;
@@ -266,4 +266,22 @@ ul#articleList {
   margin-top: var(--margin);
   border-top: 1px solid var(--secondary-color);
   padding-top: var(--padding);
+}
+
+.delete-button {
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #dc3545, #a71d2a);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #c82333, #a71d2a);
+}
+
+.delete-button:active {
+  background: linear-gradient(135deg, #a71d2a, #dc3545);
 }
