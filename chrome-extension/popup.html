@@ -18,9 +18,9 @@
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
-        <button id="archiveButton" class="buttonIcon" title="Archive">🗂️</button>
-        <button id="backButton" class="buttonIcon" title="Back" style="display: none;">Back</button>
-        <button id="toggleScreenButton" class="buttonIcon" title="Settings">⚙️</button>
+        <button id="historyButton" class="button-secondary" title="History">🗂️</button>
+        <button id="backButton" class="button–secondary" title="Back" style="display: none;">Back</button>
+        <button id="toggleScreenButton" class="button-secondary" title="Settings">⚙️</button>
       </div>
     </div>
     <!-- link to donate https://link.philwornath.com/#donate?source=aish -->
@@ -37,7 +37,13 @@
         id="additionalQuestions"
         placeholder="Enter additional questions about the article (optional)"
       ></textarea>
-      <button id="fetchSummary" class="fillAvailable">
+      <div id="languageSelection">
+        <label for="languageSelect">Summary Language:</label>
+        <select id="languageSelect">
+          <!-- Options will be populated dynamically -->
+        </select>
+      </div>
+      <button id="fetchSummary" class="button-primary fillAvailable">
         🪄 Fetch Summary
         <span id="spinner" class="spinner" style="display: none"></span>
       </button>
@@ -74,10 +80,10 @@
       </select>
       <label for="prompt">Custom Prompt</label>
       <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
-      <button type="submit">Save 💾</button>
+      <button type="submit" class="button-primary">Save 💾</button>
       </form>
     </div>
-    <div id="archiveScreen" style="display: none;">
+    <div id="historyScreen" style="display: none;">
       <ul id="articleList"></ul>
     </div>
     <script src="popup.js"></script>

@@ -17,10 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const localEndpointInput = document.getElementById('localEndpoint'); // Input for local endpoint
   const modelIdentifierInput = document.getElementById('modelIdentifier');
 
-  const archiveButton = document.getElementById('archiveButton');
+  const historyButton = document.getElementById('historyButton');
   const backButton = document.getElementById('backButton');
-  const archiveScreen = document.getElementById('archiveScreen');
+  const historyScreen = document.getElementById('historyScreen');
   const articleList = document.getElementById('articleList');
+  const screenList = [mainScreen, settingsScreen, historyScreen];
+  const languageSelect = document.getElementById('languageSelect');
+
 
   const titleElement = document.querySelector('.logoheader h2');
 
@@ -33,58 +36,77 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error loading donation messages:', error));
 
-  // Toggle between settings screen and main screen
+  // Define a configuration object for screens
+  const screenConfig = {
+    mainScreen: {
+      show: ['mainScreen', 'historyButton', 'toggleScreenButton'],
+      toggleButtonText: '⚙️',
+      titleText: 'AI Summary Helper'
+    },
+    settingsScreen: {
+      show: ['settingsScreen', 'toggleScreenButton'],
+      toggleButtonText: 'Back',
+      titleText: 'Settings'
+    },
+    historyScreen: {
+      show: ['historyScreen', 'backButton'],
+      toggleButtonText: '',
+      titleText: 'History (Beta)'
+    }
+  };
+
+  // Function to show a screen based on the configuration
+  function showScreen(screenName) {
+    const config = screenConfig[screenName];
+    if (!config) {
+      console.error(`Screen configuration for "${screenName}" not found.`);
+      return;
+    }
+
+    // Hide all screens and buttons by default
+    screenList.forEach(screen => screen.style.display = 'none');
+    document.getElementById('historyButton').style.display = 'none';
+    document.getElementById('backButton').style.display = 'none';
+    document.getElementById('toggleScreenButton').style.display = 'none';
+
+    // Show only the elements specified in the configuration
+    config.show.forEach(elementId => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.style.display = 'block';
+      }
+    });
+
+    // Ensure body styles remain consistent
+    document.body.style.margin = '0';
+    document.body.style.padding = '20px';
+    document.body.style.lineHeight = '1.2';
+
+    // Update toggle button text and title
+    toggleScreenButton.textContent = config.toggleButtonText;
+    titleElement.textContent = config.titleText;
+  }
+
+  // Event listeners to switch screens
   toggleScreenButton.addEventListener('click', () => {
     if (settingsScreen.style.display === 'block') {
-      showMainScreen();
+      showScreen('mainScreen');
     } else {
-      showSettingsScreen();
+      showScreen('settingsScreen');
     }
   });
 
-  // Show archive screen
-  archiveButton.addEventListener('click', () => {
-    showArchiveScreen();
-    loadArchivedArticles();
+  historyButton.addEventListener('click', () => {
+    showScreen('historyScreen');
+    loadHistory();
   });
 
-  // Back to main screen from archive
-  backButton.addEventListener('click', showMainScreen);
+  backButton.addEventListener('click', () => showScreen('mainScreen'));
 
-  function showMainScreen() {
-    mainScreen.style.display = 'block';
-    settingsScreen.style.display = 'none';
-    archiveScreen.style.display = 'none';
-    archiveButton.style.display = 'inline-block';
-    backButton.style.display = 'none';
-    toggleScreenButton.style.display = 'inline-block';
-    toggleScreenButton.textContent = '⚙️';
-    titleElement.textContent = 'AI Summary Helper';
-  }
+  // Initial call to show the main screen
+  showScreen('mainScreen');
 
-  function showSettingsScreen() {
-    mainScreen.style.display = 'none';
-    settingsScreen.style.display = 'block';
-    archiveScreen.style.display = 'none';
-    archiveButton.style.display = 'none';
-    backButton.style.display = 'none';
-    toggleScreenButton.style.display = 'inline-block';
-    toggleScreenButton.textContent = 'Back';
-    titleElement.textContent = 'Settings';
-  }
-
-  function showArchiveScreen() {
-    mainScreen.style.display = 'none';
-    document.body.style.margin = '0';
-    settingsScreen.style.display = 'none';
-    archiveScreen.style.display = 'block';
-    archiveButton.style.display = 'none';
-    backButton.style.display = 'inline-block';
-    toggleScreenButton.style.display = 'none';
-    titleElement.textContent = 'Archive (Beta)';
-  }
-
-  function loadArchivedArticles() {
+  function loadHistory() {
     chrome.storage.local.get({ articles: [] }, (data) => {
       const articleList = document.getElementById('articleList');
       articleList.innerHTML = ''; // Clear existing list
@@ -134,11 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>${articleHeader}</h4>
                 <p class="article-date">💾 ${formattedDate} at ${formattedTime}</p>
               </div>
-              <button class="expand-button">Expand</button>
-              </div>
-              <div class="article-content" style="display: none;">
-              <button class="secondary share-button">Share 🔗</button>
-              <button class="secondary open-button">Open in New Tab 👓</button>
+              <button class="button-icon expand-button">Expand</button>
+            </div>
+            <div class="article-content" style="display: none;">
+              <button class="button-secondary share-button">Share 🔗</button>
+              <button class="button-secondary open-button">Read 👓</button>
               <button class="delete-button" aria-label="Delete article">🗑️</button>
               <p><strong>Summary:</strong> ${article.summary}</p>
               <p><strong>Content:</strong> ${article.content}</p>
@@ -256,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Save the updated list back to local storage
                 chrome.storage.local.set({ articles: updatedArticles }, () => {
                   console.log('Article deleted successfully');
-                  loadArchivedArticles(); // Refresh the archive list
+                  loadHistory(); // Refresh the archive list
                 });
               });
             }
@@ -293,13 +315,18 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
 
   // Load stored settings from Chrome storage
-  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier'], (data) => {
+  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier', 'selectedLanguage'], (data) => {
     console.log('Loaded settings:', data);
     apiKeyInput.value = data.apiKey || '';
     promptInput.value = data.prompt || '';
     modelInput.value = data.model || 'openai';
     localEndpointInput.value = data.localEndpoint || '';
     modelIdentifierInput.value = data.modelIdentifier || ''; // Load model identifier
+
+    // Set the selected language if it exists
+    if (data.selectedLanguage) {
+      languageSelect.value = data.selectedLanguage;
+    }
 
     // Call toggleInputVisibility after setting the model to ensure correct initial visibility
     toggleInputVisibility();
@@ -369,8 +396,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchSummaryButton.addEventListener('click', () => {
     const additionalQuestions = additionalQuestionsInput.value;
+    const selectedLanguage = languageSelect.value; // Get the selected language code
+    // when fetching summary, show spinner
+    spinner.style.display = 'block';
+    fetchSummaryButton.disabled = true;
+    fetchSummaryButton.textContent = 'Select element...';
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions }, (response) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions, selectedLanguage }, (response) => {
         if (response && response.success) {
           console.log('Summary fetched successfully:', response.message);
         } else {
@@ -378,5 +410,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+  });
+
+  // Fetch languages from the JSON file
+  fetch('https://philffm.github.io/ai-summary-helper/translations.json')
+    .then(response => response.json())
+    .then(data => {
+      data.languages.forEach(language => {
+        const option = document.createElement('option');
+        option.value = language.code;
+        option.textContent = `${language.emoji} ${language.name}`;
+        languageSelect.appendChild(option);
+      });
+
+      // Set the selected language if it exists
+      chrome.storage.sync.get('selectedLanguage', (data) => {
+        if (data.selectedLanguage) {
+          languageSelect.value = data.selectedLanguage;
+        }
+      });
+    })
+    .catch(error => console.error('Error fetching languages:', error));
+
+  // Save the selected language to local storage when it changes
+  languageSelect.addEventListener('change', () => {
+    chrome.storage.sync.set({ selectedLanguage: languageSelect.value });
   });
 });

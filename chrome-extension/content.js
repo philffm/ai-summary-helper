@@ -1,10 +1,11 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
   if (request.action === 'fetchSummary') {
+    const { additionalQuestions, selectedLanguage } = request;
     selectTargetElement().then((targetElement) => {
       if (targetElement) {
         showPlaceholder(targetElement); // Show "Fetching" placeholder
-        fetchSummary(request.additionalQuestions, targetElement).then((result) => {
+        fetchSummary(additionalQuestions, selectedLanguage, targetElement).then((result) => {
           sendResponse(result);
         }).catch((error) => {
           sendResponse({ success: false, message: error.message });
@@ -17,7 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-async function fetchSummary(additionalQuestions, targetElement) {
+async function fetchSummary(additionalQuestions, selectedLanguage, targetElement) {
   console.log('Starting fetchSummary');
   const content = getAllTextContent();
   console.debug('Fetched content:', content);
@@ -25,7 +26,6 @@ async function fetchSummary(additionalQuestions, targetElement) {
   const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
-    // Fetch settings including API key, prompt, and model from Chrome storage
     chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
@@ -53,6 +53,10 @@ async function fetchSummary(additionalQuestions, targetElement) {
       if (additionalQuestions) {
         prompt += `\n\nAdditional questions: ${additionalQuestions} - Please answer in a serious and engaging way.`;
         console.debug('Prompt with additional questions', prompt);
+      }
+
+      if (selectedLanguage && selectedLanguage !== 'en') {
+        prompt += `\n\nImportant: Summarize in  ${selectedLanguage} language.`;
       }
 
       const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
@@ -98,30 +102,26 @@ async function fetchSummary(additionalQuestions, targetElement) {
         const result = await response.json();
         console.debug('🚀 API response:', result);
 
-        // Adjust this part to correctly access the message content
         let summary;
         if (model === 'ollama' || model === 'llama3.2') {
-          // Adjust for the response structure from Ollama using the llama3.2 model
           summary = result.message?.content || 'Error: No summary returned';
         } else if (model === 'openai' || model === 'mistral') {
-          // For OpenAI or Mistral models that use the `choices` array
           summary = result.choices?.[0]?.message?.content || 'Error: No summary returned';
         } else {
           summary = 'Error: Unsupported model';
         }
 
-        // Save the content and summary to local storage
         saveToLocalStorage(content, summary);
 
         const summaryContainer = document.createElement('blockquote');
         summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
 
-        insertSummary(targetElement, summaryContainer); // Insert the fetched summary without removing existing content
+        insertSummary(targetElement, summaryContainer);
         resolve({ success: true, message: 'Summary inserted successfully' });
 
       } catch (error) {
         console.error('❌ Error fetching summary:', error);
-        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later.'; // Show error message
+        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later.';
         reject(error);
       }
     });
@@ -170,6 +170,9 @@ function showPlaceholder(targetElement) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('placeholder');
   placeholder.style.backgroundColor = '#f0f0f0'; // Highlight the element
+  placeholder.style.border = '2px dashed #007bff'; // Add dashed border
+  placeholder.style.borderRadius = '10px';
+  placeholder.style.color = '#007bff';
   placeholder.style.padding = '32px';
   placeholder.innerHTML = 'Fetching summary... ⏳';
 
