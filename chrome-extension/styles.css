@@ -2,6 +2,10 @@
 
 :root {
   /* Core Colors */
+  --color-neutral-light: #ffffff;
+  --color-neutral-dark: #000000;
+
+  --color-primary-50: #e0f7ff;
   --color-primary-100: #e0f7ff;
   --color-primary-200: #b3eaff;
   --color-primary-300: #80dcff;
@@ -40,6 +44,7 @@
   --font-size-s-8: 2rem;
 
   /* Spacing */
+  --spacing-s-0: 0rem;
   --spacing-s-1: 0.25rem;
   --spacing-s-2: 0.5rem;
   --spacing-s-3: 0.75rem;
@@ -54,8 +59,9 @@
   --color-solid-dark: var(--color-primary-700);
   --color-dim: var(--color-secondary-200);
 
-  --color-on-solid: #ffffff;
-  --color-on-solid-dark: #ffffff;
+  --color-on-solid: var(--color-secondary-800);
+  --color-on-solid-light: var(--color-secondary-600);
+  --color-on-dark-solid: var(--color-neutral-light);
   --color-on-dim: var(--color-secondary-900);
 
   /* Surface Colors */
@@ -74,23 +80,27 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: var(--spacing-s-4);
-  min-width: 420px;
-  max-width: 480px;
+  padding: var(--spacing-s-0);
+  min-width: 480px;
+  max-width: 500px;
+  max-height: 400px;
   margin: 0 auto;
   height: 100%;
   background-color: var(--color-surface-white);
   border-radius: var(--spacing-s-2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-s-2);
+  width: 100%;
+  /* gap: var(--spacing-s-2); */
 }
 
 .donate a {
-  color: var(--primary-color);
+  color: var(--color-on-solid-light);
   text-decoration: none;
+
 }
+
+
 
 h1 {
   font-size: 24px;
@@ -102,12 +112,18 @@ h2 {
   font-size: var(--font-size-s-4);
   color: var(--color-on-dim);
   margin: var(--spacing-s-2) 0;
+  font-weight: 600;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-surface-white);
+  z-index: 1000;
+  padding: var(--spacing-s-5) var(--spacing-s-5) var(--spacing-s-2) var(--spacing-s-5);
 }
 
 .header-buttons {
@@ -150,9 +166,9 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: 2px solid var(--color-primary-500);
-  /* outline-offset: 4px; */
   border-color: var(--color-primary-500);
   animation: focus-animation 1s ease-in-out infinite alternate;
 }
@@ -181,6 +197,7 @@ button {
   justify-content: center;
 }
 
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -199,7 +216,8 @@ button:active {
 .button-primary {
   /* background: var(--color-solid); */
   background: linear-gradient(30deg, #3B6CF2, #6CCCFB);
-  color: var(--color-on-solid);
+  color: var(--color-on-dark-solid);
+  padding: var(--spacing-s-3) var(--spacing-s-5);
 }
 
 .button-primary:hover {
@@ -321,3 +339,82 @@ ul#articleList {
   padding: var(--spacing-s-2);
   border-radius: var(--spacing-s-2);
 } */
+
+.input-container {
+  position: relative;
+  display: inline-block;
+  /* Ensure the container only takes up necessary space */
+}
+
+#searchInput {
+  width: 100%;
+  /* Ensure the input takes the full width of the container */
+  padding-right: 70px;
+  /* Adjust padding to accommodate the label */
+  box-sizing: border-box;
+  /* Include padding in the element's total width */
+}
+
+.input-container::after {
+  content: '⌘ + F';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-surface-neutral);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  color: #333;
+  /* Ensure contrast with the background */
+  pointer-events: none;
+  /* Prevent interaction with the pseudo-element */
+  z-index: 1;
+  /* Ensure it appears above other elements */
+}
+
+.container {
+  padding: var(--spacing-s-5);
+}
+
+.container-sm {
+  padding: var(--spacing-s-0) var(--spacing-s-5);
+}
+
+.screen {
+  padding: var(--spacing-s-5);
+  padding-top: var(--spacing-s-2);
+
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  right: var(--spacing-s-5);
+  left: var(--spacing-s-5);
+  width: -webkit-fill-available;
+  margin: var(--spacing-s-5) 0;
+  z-index: 1000;
+  background-color: var(--color-surface-white);
+  /* padding: var(--spacing-s-2); */
+}
+
+.fixed-button {
+  width: -webkit-fill-available;
+}
+
+#settingsForm {
+  margin-bottom: 64px;
+}

@@ -1,7 +1,7 @@
 [
     {
         "name": "Default",
-        "prompt": "<h3> Article summary section with creative title explaining the article in simple terms. <h3> More extensive summary with a bit more detail (4-5 sentences). <h3> Fun reference to the topic related to my competence as a UX designer. <h3> Humorous take on the topic like a standup comedian. <h3> Related book and media recommendations. <h3> Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
+        "prompt": "<h3> Article summary section with creative title explaining the article in simple terms. <h3> More extensive summary with a bit more detail (4-5 sentences) and most significant quotes (as stated, in original language) <h3> Fun reference to the topic related to my competence as a UX designer. <h3> Humorous take on the topic like a standup comedian. <h3> Related book and media recommendations. <h3> Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
     },
     {
         "name": "Technical Deep Dive",

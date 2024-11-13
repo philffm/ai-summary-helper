@@ -27,15 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const titleElement = document.querySelector('.logoheader h2');
 
-  // Load donation messages from JSON file
-  fetch('donationMessages.json')
-    .then(response => response.json())
-    .then(donationMessages => {
-      const randomMessage = donationMessages[Math.floor(Math.random() * donationMessages.length)];
-      donateLink.textContent = randomMessage;
-    })
-    .catch(error => console.error('Error loading donation messages:', error));
-
   // Define a configuration object for screens
   const screenConfig = {
     mainScreen: {
@@ -79,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ensure body styles remain consistent
     document.body.style.margin = '0';
-    document.body.style.padding = '20px';
+    document.body.style.padding = '0';
     document.body.style.lineHeight = '1.2';
 
     // Update toggle button text and title
@@ -394,20 +385,31 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+
   fetchSummaryButton.addEventListener('click', () => {
-    const additionalQuestions = additionalQuestionsInput.value;
-    const selectedLanguage = languageSelect.value; // Get the selected language code
-    // when fetching summary, show spinner
-    spinner.style.display = 'block';
+    const additionalQuestions = document.getElementById('additionalQuestions').value;
+    const selectedLanguage = document.getElementById('languageSelect').value;
+
+    // Disable the button and change its text
     fetchSummaryButton.disabled = true;
-    fetchSummaryButton.textContent = 'Select element...';
+    fetchSummaryButton.textContent = 'Select content element';
+
+    // Send a message to the content script with the donation message
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary', additionalQuestions, selectedLanguage }, (response) => {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        action: 'fetchSummary',
+        additionalQuestions,
+        selectedLanguage,
+      }, (response) => {
         if (response && response.success) {
           console.log('Summary fetched successfully:', response.message);
         } else {
           console.error('Failed to fetch summary:', response ? response.message : 'No response');
         }
+
+        // Re-enable the button and reset its text after the operation
+        fetchSummaryButton.disabled = false;
+        fetchSummaryButton.textContent = '🪄 Fetch Summary';
       });
     });
   });
@@ -435,5 +437,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Save the selected language to local storage when it changes
   languageSelect.addEventListener('change', () => {
     chrome.storage.sync.set({ selectedLanguage: languageSelect.value });
+  });
+
+  const searchInput = document.getElementById('searchInput');
+
+  // Function to filter articles based on search input
+  function filterArticles() {
+    const filterText = searchInput.value.toLowerCase();
+    const articles = document.querySelectorAll('.article-card');
+
+    articles.forEach(article => {
+      const headerText = article.querySelector('.article-header h4').textContent.toLowerCase();
+      const contentText = article.querySelector('.article-content').textContent.toLowerCase();
+
+      if (headerText.includes(filterText) || contentText.includes(filterText)) {
+        article.style.display = 'block';
+      } else {
+        article.style.display = 'none';
+      }
+    });
+  }
+
+  // Add event listener to search input to filter articles on input
+  searchInput.addEventListener('input', filterArticles);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.metaKey && event.key === 'f') { // Check for ⌘ + F
+      event.preventDefault(); // Prevent the default find action
+      if (historyScreen.style.display === 'block') {
+        searchInput.focus(); // Focus the search input if history screen is visible
+      }
+    }
   });
 });

@@ -1,10 +1,36 @@
+let cachedDonationMessage = '';
+
+// Define the donation messages
+const donationMessages = [
+  "Like the extension? Help me brew new ideas with a soothing cup of tea! 🍵",
+  "Love the extension? Help me upgrade my workspace with a new plant! 🌿",
+  "Want to support? Buy me a book to inspire the next feature! 📚",
+  "Supporting my work? Help me fund a tiny house to code in peace! 🏡",
+  "Love this project? Get me closer to my goal of relocating into a sailboat! 🚤",
+  "Feeling generous? A pizza would definitely boost my brainstorming sessions! 🍕",
+  "Enjoying the tool? Help me turn my remote work into a van life adventure! 🚐",
+  "Happy with the tool? Your support can help me build my tiny home! 🏠",
+  "Appreciate the extension? Buy me a kayak to paddle through my creative process! 🛶",
+  "Like innovation? Support my mission to design from the deck of a boat! ⛴️",
+  "Enjoying the tool? Get me a smoothie to recharge my problem-solving skills! 🥤"
+];
+
+// Function to get a random donation message
+function getRandomDonationMessage() {
+  const randomIndex = Math.floor(Math.random() * donationMessages.length);
+  return donationMessages[randomIndex];
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
   if (request.action === 'fetchSummary') {
     const { additionalQuestions, selectedLanguage } = request;
+    const donationMessage = getRandomDonationMessage();
+    const donationLink = `<a href="https://link.philwornath.com/?source=aish#donate" target="_blank">${donationMessage}</a>`;
+
     selectTargetElement().then((targetElement) => {
       if (targetElement) {
-        showPlaceholder(targetElement); // Show "Fetching" placeholder
+        showPlaceholder(targetElement, donationLink); // Use the donation link
         fetchSummary(additionalQuestions, selectedLanguage, targetElement).then((result) => {
           sendResponse(result);
         }).catch((error) => {
@@ -17,6 +43,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true; // Indicates we will send a response asynchronously
   }
 });
+
+// Function to clean up the summary text
+function cleanSummaryText(summary) {
+  return summary.replace(/^.*```(html|json|python|javascript|css).*$/gm, '').trim();
+}
 
 async function fetchSummary(additionalQuestions, selectedLanguage, targetElement) {
   console.log('Starting fetchSummary');
@@ -85,6 +116,14 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
           stream: false // Ensure streaming is off for local models
         });
 
+        // Show donation and bug message
+        const donationMessage = getRandomDonationMessage();
+        const messageContainer = document.createElement('div');
+        messageContainer.innerHTML = `
+        <p>Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a></p>
+        <p>${donationMessage} - <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Donate here</a></p>
+        `;
+
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -111,10 +150,14 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
           summary = 'Error: Unsupported model';
         }
 
+        // Clean up the summary text
+        summary = cleanSummaryText(summary);
+
         saveToLocalStorage(content, summary);
 
         const summaryContainer = document.createElement('blockquote');
-        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
+        summaryContainer.innerHTML = `
+        <div><h2>AI Summary 🧙</h2>  ${summary.replace(/\n\n/g, '<br>')} ${messageContainer.innerHTML}  </div>`;
 
         insertSummary(targetElement, summaryContainer);
         resolve({ success: true, message: 'Summary inserted successfully' });
@@ -163,26 +206,60 @@ function getAllTextContent() {
   return content.trim();
 }
 
+// Function to determine if the background is light or dark
+function isBackgroundDark() {
+  const bodyStyle = window.getComputedStyle(document.body);
+  const backgroundColor = bodyStyle.backgroundColor;
+  const rgb = backgroundColor.match(/\d+/g);
+  if (!rgb) return false; // Default to light if unable to determine
+
+  // Calculate luminance
+  const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+  return luminance < 0.5; // Dark if luminance is less than 0.5
+}
+
 // Function to show "Fetching" placeholder without removing the original content
-function showPlaceholder(targetElement) {
+function showPlaceholder(targetElement, donationMessage) {
   console.log('Showing placeholder in the selected element');
 
   const placeholder = document.createElement('div');
   placeholder.classList.add('placeholder');
-  placeholder.style.backgroundColor = '#f0f0f0'; // Highlight the element
-  placeholder.style.border = '2px dashed #007bff'; // Add dashed border
+
+  const isDark = isBackgroundDark();
+  const textColor = isDark ? '#000' : '#fff';
+  const linkColor = isDark ? '#000' : '#fff';
+
+  placeholder.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+  placeholder.style.color = textColor;
+  placeholder.style.border = '2px dashed #007bff';
   placeholder.style.borderRadius = '10px';
-  placeholder.style.color = '#007bff';
   placeholder.style.padding = '32px';
-  placeholder.innerHTML = 'Fetching summary... ⏳';
+  // link color
+
+
+
+  placeholder.innerHTML = `
+    <style>
+     @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    </style>
+    <div style="font-size: 24px;">Fetching summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span></div>
+    <div style="font-size: 16px; margin-top: 10px; font-weight: bold;">
+      ${donationMessage}<br>
+      Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank" style="color: ${linkColor}; font-weight: bold;">contact me</a>
+    </div>
+  `;
 
   // Add subtle animation to the placeholder
   placeholder.animate([
-    { opacity: 0.5 },
-    { opacity: 1 }
+    { backgroundColor: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' },
+    { backgroundColor: isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)' }
   ], {
-    duration: 1000,
-    iterations: Infinity
+    duration: 2000,
+    iterations: Infinity,
+    direction: 'alternate'
   });
 
   targetElement.appendChild(placeholder); // Append the placeholder without removing existing content

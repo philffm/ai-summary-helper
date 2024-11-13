@@ -24,15 +24,17 @@
       </div>
     </div>
     <!-- link to donate https://link.philwornath.com/#donate?source=aish -->
-    <div class="donate">
-      <a
+    <div class="container-sm donate">
+      
+      <p>Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a> or consider<a href="https://link.philwornath.com/?source=aish#donate" target="_blank"> a donation :)</a></p>
+      <!-- <a
         id="donate-link"
         href="https://link.philwornath.com/?source=aish#donate"
         target="_blank"
         >💸 Donate</a
-      >
+      > -->
     </div>
-    <div id="mainScreen">
+    <div id="mainScreen" class="screen">
       <textarea
         id="additionalQuestions"
         placeholder="Enter additional questions about the article (optional)"
@@ -48,7 +50,7 @@
         <span id="spinner" class="spinner" style="display: none"></span>
       </button>
     </div>
-    <div id="settingsScreen" style="display: none">
+    <div id="settingsScreen" class="screen" style="display: none">
       <!-- <h2>Settings</h2> -->
       <form id="settingsForm">
         <label for="model">Model</label>
@@ -73,19 +75,30 @@
         <label for="localEndpoint">Local Endpoint URL:</label>
         <input type="text" id="localEndpoint" placeholder="http://localhost:11434/api/chat" />
       </div>
-      
+    
       <label for="promptSelect">Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/chrome-extension/prompts.json" target="_blank">(View all & contribute)</a></label>
       <select id="promptSelect">
         <!-- Options will be populated dynamically -->
       </select>
       <label for="prompt">Custom Prompt</label>
       <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
-      <button type="submit" class="button-primary">Save 💾</button>
+      <div class="flex fixed-bottom">
+        <button type="submit" class="button-primary fixed-button">Save 💾</button>
+      </div>
       </form>
     </div>
-    <div id="historyScreen" style="display: none;">
+    <div id="historyScreen" class="screen" style="display: none;">
+      <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" />
       <ul id="articleList"></ul>
     </div>
     <script src="popup.js"></script>
+    <script>
+      document.addEventListener('keydown', (event) => {
+        if (event.metaKey && event.key === 'f') { // Check for ⌘ + F
+          event.preventDefault(); // Prevent the default find action
+          document.getElementById('searchInput').focus(); // Focus the search input
+        }
+      });
+    </script>
   </body>
 </html>
