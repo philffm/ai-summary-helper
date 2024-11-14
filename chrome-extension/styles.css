@@ -96,7 +96,8 @@ body {
 
 .donate a {
   color: var(--color-on-solid-light);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--color-on-solid-light);
 
 }
 
@@ -229,21 +230,22 @@ button:active {
 
 /* Secondary button styles */
 .button-secondary {
-  background: var(--color-secondary-200);
+  background: linear-gradient(130deg, var(--color-secondary-100), var(--color-secondary-200));
   color: var(--color-secondary-900);
 }
 
 .button-secondary:hover {
-  background: #c3c3c3;
+  background: linear-gradient(130deg, var(--color-secondary-200), var(--color-secondary-300));
 }
 
 .button-secondary:active {
-  background: #b6b6b6;
+  background: linear-gradient(130deg, var(--color-secondary-300), var(--color-secondary-400));
 }
 
 .delete-button {
   /* background-color: var(--color-danger-light); */
-  border: 2px solid var(--color-danger);
+  /* border: 2px solid var(--color-danger); */
+  background: linear-gradient(30deg, #FF6B6B, #FF9F9F);
 }
 
 textarea {

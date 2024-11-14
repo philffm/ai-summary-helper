@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>${articleHeader}</h4>
                 <p class="article-date">💾 ${formattedDate} at ${formattedTime}</p>
               </div>
-              <button class="button-icon expand-button">Expand</button>
+              <button class="button-secondary expand-button">Expand</button>
             </div>
             <div class="article-content" style="display: none;">
               <button class="button-secondary share-button">Share 🔗</button>
@@ -189,16 +189,16 @@ document.addEventListener('DOMContentLoaded', () => {
                   <title>Article Details</title>
                   <style>
                     body {
-                      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                      font-family: 'Georgia', serif;
                       padding: 20px;
                       max-width: 800px;
                       margin: auto;
-                      background-color: #f5f5f5;
-                      border-radius: 8px;
-                      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                      background-color: #f4f4f4;
+                      color: #333;
+                      line-height: 1.6;
                     }
                     h2 {
-                      color: #333;
+                      color: #444;
                     }
                     p, pre {
                       line-height: 1.6;
@@ -207,26 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
                       white-space: pre-wrap;
                       word-wrap: break-word;
                     }
-                    .logo {
-                      display: flex;
-                      align-items: center;
-                      gap: 12px;
-                      margin-bottom: 20px;
-                    }
-                    .logo img {
-                      width: 48px;
-                      height: 48px;
-                    }
-                    .logo h1 {
-                      font-size: 24px;
-                      color: #333;
-                    }
                   </style>
                 </head>
                 <body>
-                  <div class="logo">
-                    <h1>Saved Article from AI Summary Helper</h1>
-                  </div>
                   <h2>Summary</h2>
                   <p>${article.summary}</p>
                   <h2>Content</h2>
@@ -236,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `);
             newTab.document.close();
           });
+
 
           shareButton.addEventListener('click', () => {
             if (navigator.share) {
@@ -415,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Fetch languages from the JSON file
-  fetch('https://philffm.github.io/ai-summary-helper/translations.json')
+  fetch('translations.json')
     .then(response => response.json())
     .then(data => {
       data.languages.forEach(language => {

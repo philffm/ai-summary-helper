@@ -132,3 +132,15 @@ For Linux users running Ollama as a systemd service, follow these steps:
 These steps will help you configure Ollama to accept requests from all domains, ensuring seamless integration with your applications.
 
 For more detailed guidance, refer to the comprehensive guide on handling CORS settings in Ollama [here](https://medium.com/dcoderai/how-to-handle-cors-settings-in-ollama-a-comprehensive-guide-ee2a5a1beef0).
+
+
+
+# Compatible Tools
+<!-- table with tools, name, description, url -->
+Tools that are compatible with AI Summary Helper.
+
+Name | Description | URL
+--- | --- | ---
+Reabble Send to Kindle | Send your articles to Kindle | https://send.reabble.com/
+Web Clipper | Clip web pages to Kindle | https://github.com/webclipper/web-clipper
+

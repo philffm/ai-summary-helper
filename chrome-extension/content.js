@@ -44,10 +44,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// Function to clean up the summary text
-function cleanSummaryText(summary) {
-  return summary.replace(/^.*```(html|json|python|javascript|css).*$/gm, '').trim();
-}
 
 async function fetchSummary(additionalQuestions, selectedLanguage, targetElement) {
   console.log('Starting fetchSummary');
@@ -109,9 +105,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
         const requestBody = JSON.stringify({
           model: modelIdentifier,
           messages: [
-            { role: 'system', content: 'You are a helpful assistant.' },
-            { role: 'user', content: 'Summarize in valid html format with sections:' + prompt },
-            { role: 'user', content: truncatedContent },
+            { role: 'system', content: 'You summarize web content and return valid html format with h2 headings, h3 headings, and paragraphs. Leave out ```html tags. ' },
+            { role: 'user', content: 'Summarize the following content: ' + truncatedContent + prompt },
+            // { role: 'user', content: truncatedContent },
           ],
           stream: false // Ensure streaming is off for local models
         });
@@ -150,8 +146,12 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
           summary = 'Error: Unsupported model';
         }
 
-        // Clean up the summary text
-        summary = cleanSummaryText(summary);
+        // Remove the placeholder but keep the existing content
+        const placeholder = targetElement.querySelector('.placeholder');
+        if (placeholder) placeholder.remove();
+
+        // remove plaholder from content 
+        const placeholderInContent = content.replace(/<div class="placeholder">.*<\/div>/, '');
 
         saveToLocalStorage(content, summary);
 
@@ -267,9 +267,6 @@ function showPlaceholder(targetElement, donationMessage) {
 
 // Automatically insert the summary
 function insertSummary(targetElement, summaryContainer) {
-  // Remove the placeholder but keep the existing content
-  const placeholder = targetElement.querySelector('.placeholder');
-  if (placeholder) placeholder.remove();
 
   console.log('Inserting summary into the target element');
   targetElement.style.backgroundColor = ''; // Remove highlight
