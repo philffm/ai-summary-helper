@@ -17,6 +17,13 @@ function init() {
   });
 }
 
+fetch(chrome.runtime.getURL('manifest.json'))
+  .then(response => response.json())
+  .then(manifest => {
+    document.getElementById('versionNumber').textContent = manifest.version;
+  })
+  .catch(error => console.error('Error fetching manifest:', error));
+
 init();
 
 
@@ -761,5 +768,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Call the first-time setup function
   firstTimeSetup();
+
 
 });

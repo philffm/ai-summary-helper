@@ -1,5 +1,3 @@
-let cachedDonationMessage = '';
-
 // Define the donation messages
 const donationMessages = [
   "Like the extension? Help me brew new ideas with a soothing cup of tea! 🍵",
@@ -34,7 +32,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       selectTargetElement().then((targetElement) => {
         if (targetElement) {
-          showPlaceholder(targetElement, donationLink); // Use the donation link
           fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement).then((result) => {
             sendResponse(result);
           }).catch((error) => {
@@ -58,8 +55,14 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
     selectedLanguage
   };
   console.log('Starting fetchSummary with prompt details:', promptDetails);
+
+  // Fetch content before showing the placeholder
   const content = getAllTextContent();
   console.debug('Fetched content:', content);
+
+  // Show placeholder after fetching content
+  const donationMessage = getRandomDonationMessage();
+  showPlaceholder(targetElement, donationMessage);
 
   const MAX_TOKENS = 4000;
 
@@ -208,15 +211,29 @@ function getAllTextContent() {
   return content.trim();
 }
 
-// Function to determine if the background is light or dark
+// Simplified function to determine if the background is light or dark
 function isBackgroundDark() {
-  const bodyStyle = window.getComputedStyle(document.body);
-  const backgroundColor = bodyStyle.backgroundColor;
+  const elementsToCheck = ['html', 'body', 'main', 'article'];
+  let backgroundColor = null;
+
+  for (const selector of elementsToCheck) {
+    const element = document.querySelector(selector);
+    if (element) {
+      backgroundColor = window.getComputedStyle(element).backgroundColor;
+      break;
+    }
+  }
+
+  if (!backgroundColor) return false; // Default to light if unable to determine
+
   const rgb = backgroundColor.match(/\d+/g);
   if (!rgb) return false; // Default to light if unable to determine
 
   // Calculate luminance
-  const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+  const r = parseInt(rgb[0], 10);
+  const g = parseInt(rgb[1], 10);
+  const b = parseInt(rgb[2], 10);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance < 0.5; // Dark if luminance is less than 0.5
 }
 
@@ -228,17 +245,14 @@ function showPlaceholder(targetElement, donationMessage) {
   placeholder.classList.add('placeholder');
 
   const isDark = isBackgroundDark();
-  const textColor = isDark ? '#000' : '#fff';
-  const linkColor = isDark ? '#000' : '#fff';
+  const textColor = isDark ? '#fff' : '#000';
+  const linkColor = isDark ? '#add8e6' : '#007bff'; // Light blue for dark backgrounds, blue for light backgrounds
 
-  placeholder.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+  placeholder.style.backgroundColor = isDark ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)';
   placeholder.style.color = textColor;
   placeholder.style.border = '2px dashed #007bff';
   placeholder.style.borderRadius = '10px';
   placeholder.style.padding = '32px';
-  // link color
-
-
 
   placeholder.innerHTML = `
     <style>
@@ -247,17 +261,17 @@ function showPlaceholder(targetElement, donationMessage) {
         to { transform: rotate(360deg); }
       }
     </style>
-    <div style="font-size: 24px;">Fetching summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span></div>
+    <div style="font-size: 24px; color: ${textColor} !important;">Fetching summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span></div>
     <div style="font-size: 16px; margin-top: 10px; font-weight: bold;">
-      ${donationMessage}<br>
-      Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank" style="color: ${linkColor}; font-weight: bold;">contact me</a>
+    Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank" style="color: ${linkColor} !important; font-weight: bold;">contact me</a>
+      >${donationMessage} <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Donate here</a><br>
     </div>
   `;
 
   // Add subtle animation to the placeholder
   placeholder.animate([
-    { backgroundColor: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' },
-    { backgroundColor: isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)' }
+    { backgroundColor: isDark ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)' },
+    { backgroundColor: isDark ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)' }
   ], {
     duration: 2000,
     iterations: Infinity,
@@ -266,7 +280,6 @@ function showPlaceholder(targetElement, donationMessage) {
 
   targetElement.appendChild(placeholder); // Append the placeholder without removing existing content
 }
-
 // Automatically insert the summary
 function insertSummary(targetElement, summaryContainer) {
 
@@ -340,3 +353,4 @@ function selectTargetElement() {
     document.addEventListener('mousemove', mouseMoveHandler);
   });
 }
+
