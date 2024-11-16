@@ -138,6 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  if (deleteHistoryButton) {
+    deleteHistoryButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      // clear only history / articles
+      chrome.storage.local.set({ articles: [] }, () => {
+        if (confirm('Are you sure you want to delete all history? This action cannot be undone.')) {
+          alert('History has been reset.');
+          location.reload(); // Reload the page to reflect changes
+        }
+      });
+    });
+  }
+
   // Event listeners to switch screens
   toggleScreenButton.addEventListener('click', () => {
     if (settingsScreen.style.display === 'block') {

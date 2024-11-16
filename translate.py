@@ -22,7 +22,7 @@ def translate_content(content, target_lang):
     data = {
         'model': 'gpt-4o-mini',  
         'messages': [
-            {'role': 'system', 'content': 'You are a professional SEO product translator for great product marketing.'},
+            {'role': 'system', 'content': 'You are a professional SEO product translator for great product marketing. Keep the JSON structure, translate the content and IMPORTANT: for the local language section find inside information for the dedicated language / market.'},
             {'role': 'user', 'content': prompt}
         ],
         'max_tokens': 2000

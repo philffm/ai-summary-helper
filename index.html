@@ -65,6 +65,9 @@
                     </div>
                 `).join('');
 
+                document.getElementById('localizedFeature').textContent = data.localizedFeature.headline;
+                document.getElementById('localizedFeatureText').innerHTML = convertMarkdownLinks(data.localizedFeature.text);
+
                 document.getElementById('proposeFeature').textContent = data.proposeFeature;
                 document.getElementById('proposeFeatureText').innerHTML = convertMarkdownLinks(data.proposeFeatureText);
                 document.getElementById('privacyNote').textContent = data.privacyNote;
@@ -295,8 +298,10 @@
                 <a class="secondary-option" target="_blank" href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/">Bookmarklet Generator</a>
             </header>
             <main>
-
-
+                <section></section>
+                    <h2 id="localizedFeature"></h2>
+                    <p id="localizedFeatureText"></p>
+                </section>
                 <section>
                     <h2 id="proposeFeature"></h2>
                     <p id="proposeFeatureText"></p>
