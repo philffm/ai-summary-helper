@@ -1,3 +1,25 @@
+function init() {
+
+  // Define the default prompt
+  const defaultPrompt = `- brief summary
+  - fun standup comedy set on the topic (sell it to me, make fun of it)
+  - what does it mean for my profession (ux)
+  - add some book recommendations
+  `;
+
+  // Write the default prompt to storage if not already set
+  chrome.storage.sync.get('prompt', (data) => {
+    if (!data.prompt) {
+      chrome.storage.sync.set({ prompt: defaultPrompt, promptType: 'custom' }, () => {
+        console.log('Default prompt set for new users.');
+      });
+    }
+  });
+}
+
+init();
+
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Popup DOMContentLoaded');
 
@@ -10,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleScreenButton = document.getElementById('toggleScreenButton');
   const mainScreen = document.getElementById('mainScreen');
   const settingsScreen = document.getElementById('settingsScreen');
-  const spinner = document.getElementById('spinner');
-  const donateLink = document.getElementById('donate-link');
   const apiKeyContainer = document.getElementById('apiKeyContainer'); // Container for API key input
   const localEndpointContainer = document.getElementById('localEndpointContainer'); // Container for local endpoint input
   const localEndpointInput = document.getElementById('localEndpoint'); // Input for local endpoint
@@ -21,8 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const backButton = document.getElementById('backButton');
   const historyScreen = document.getElementById('historyScreen');
   const articleList = document.getElementById('articleList');
+
+  const appsButton = document.getElementById('appsButton');
+  const compatibleToolsSection = document.querySelector('.compatible-tools');
   const screenList = [mainScreen, settingsScreen, historyScreen];
   const languageSelect = document.getElementById('languageSelect');
+  const deleteSettingsButton = document.getElementById('deleteSettingsButton');
 
 
   const titleElement = document.querySelector('.logoheader h2');
@@ -30,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Define a configuration object for screens
   const screenConfig = {
     mainScreen: {
-      show: ['mainScreen', 'historyButton', 'toggleScreenButton'],
+      show: ['mainScreen', 'historyButton', 'toggleScreenButton', 'appsButton'],
       toggleButtonText: '⚙️',
       titleText: 'AI Summary Helper'
     },
@@ -54,28 +78,53 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Hide all screens and buttons by default
-    screenList.forEach(screen => screen.style.display = 'none');
-    document.getElementById('historyButton').style.display = 'none';
-    document.getElementById('backButton').style.display = 'none';
-    document.getElementById('toggleScreenButton').style.display = 'none';
+    hideAllScreens();
+    showConfiguredElements(config.show);
+    updateBodyStyles();
+    updateScreenText(config);
 
-    // Show only the elements specified in the configuration
-    config.show.forEach(elementId => {
+  }
+
+  function hideAllScreens() {
+    screenList.forEach(screen => screen.style.display = 'none');
+    ['historyButton', 'backButton', 'toggleScreenButton', 'appsButton'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+  }
+
+  function showConfiguredElements(elements) {
+    elements.forEach(elementId => {
       const element = document.getElementById(elementId);
       if (element) {
         element.style.display = 'block';
       }
     });
+  }
 
-    // Ensure body styles remain consistent
+  function updateBodyStyles() {
     document.body.style.margin = '0';
     document.body.style.padding = '0';
     document.body.style.lineHeight = '1.2';
+  }
 
-    // Update toggle button text and title
+  function updateScreenText(config) {
     toggleScreenButton.textContent = config.toggleButtonText;
     titleElement.textContent = config.titleText;
+  }
+
+
+
+  // Add event listener to the "Delete Settings" button
+  if (deleteSettingsButton) {
+    deleteSettingsButton.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent any default action
+      if (confirm('Are you sure you want to delete all settings? This action cannot be undone.')) {
+        chrome.storage.sync.clear(() => {
+          alert('Settings have been reset to default.');
+          location.reload(); // Reload the page to reflect changes
+        });
+      }
+    });
   }
 
   // Event listeners to switch screens
@@ -86,6 +135,22 @@ document.addEventListener('DOMContentLoaded', () => {
       showScreen('settingsScreen');
     }
   });
+
+  chrome.storage.sync.get(['apiKey'], (data) => {
+    if (!data.apiKey) {
+      const toastMessage = document.createElement('div');
+      toastMessage.className = 'toast-message';
+      toastMessage.textContent = 'To fetch summaries, set your API key in settings ⤴️';
+      document.body.appendChild(toastMessage);
+
+      // Optionally, remove the toast after a few seconds
+      setTimeout(() => {
+        toastMessage.remove();
+      }, 5000);
+    }
+  });
+
+
 
   historyButton.addEventListener('click', () => {
     showScreen('historyScreen');
@@ -100,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function loadHistory() {
     chrome.storage.local.get({ articles: [] }, (data) => {
       const articleList = document.getElementById('articleList');
-      articleList.innerHTML = ''; // Clear existing list
 
       if (data.articles.length === 0) {
         // Display a fun message if there are no articles
@@ -278,33 +342,74 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Default prompt to use as a placeholder
-  const defaultPrompt = `
-    <h3> Article summary section with creative title explaining the article in simple terms.
-    <h3> More extensive summary with a bit more detail (4-5 sentences).
-    <h3> Fun reference to the topic related to my competence as a UX designer.
-    <h3> Humorous take on the topic like a standup comedian.
-    <h3> Related book and media recommendations.
-    <h3> Answer additional questions in a serious and engaging way.
-    Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
-  `;
+
+  // Function to toggle the visibility of the prompt input field
+  function togglePromptInputVisibility() {
+    if (promptSelect.value === 'custom') {
+      promptInput.style.display = 'block'; // Show the custom prompt field
+    } else {
+      promptInput.style.display = 'none'; // Hide the custom prompt field
+    }
+  }
+
+  // Event listener to toggle the visibility of the prompt input field on change
+  promptSelect.addEventListener('change', () => {
+    togglePromptInputVisibility();
+    // Save the selected preset
+    chrome.storage.sync.set({ selectedPreset: promptSelect.value });
+  });
+
+  // Initial call to set the correct visibility on page load
+  chrome.storage.sync.get(['selectedPreset'], (data) => {
+    if (data.selectedPreset) {
+      promptSelect.value = data.selectedPreset;
+    }
+    togglePromptInputVisibility(); // Ensure visibility is set correctly on load
+  });
 
   // Load stored settings from Chrome storage
-  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier', 'selectedLanguage'], (data) => {
-    console.log('Loaded settings:', data);
+  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier', 'selectedLanguage', 'promptType', 'presetPrompt'], (data) => {
+    console.log('Loaded settings from local storage:', data);
     apiKeyInput.value = data.apiKey || '';
     promptInput.value = data.prompt || '';
     modelInput.value = data.model || 'openai';
     localEndpointInput.value = data.localEndpoint || '';
-    modelIdentifierInput.value = data.modelIdentifier || ''; // Load model identifier
+    modelIdentifierInput.value = data.modelIdentifier || '';
 
     // Set the selected language if it exists
     if (data.selectedLanguage) {
       languageSelect.value = data.selectedLanguage;
     }
 
-    // Call toggleInputVisibility after setting the model to ensure correct initial visibility
+    // Set the prompt type and load the appropriate prompt
+    if (data.promptType === 'custom') {
+      promptSelect.value = 'custom';
+      promptInput.value = data.prompt || defaultPrompt; // Load from storage or use default
+      promptInput.style.display = 'block'; // Ensure the custom prompt field is visible
+    } else {
+      promptSelect.value = data.presetPrompt || 'default';
+      promptInput.style.display = 'none';
+    }
+
     toggleInputVisibility();
+  });
+
+  // Update the custom prompt field when a new prompt is selected
+  promptSelect.addEventListener('change', () => {
+    if (promptSelect.value === 'custom') {
+      promptInput.style.display = 'block'; // Show the custom prompt field
+      chrome.storage.sync.set({ promptType: 'custom' });
+    } else {
+      promptInput.style.display = 'none'; // Hide the custom prompt field
+      chrome.storage.sync.set({ promptType: 'preset', presetPrompt: promptSelect.value });
+    }
+  });
+
+  // Change dropdown to "Custom" when the prompt input is edited
+  promptInput.addEventListener('input', () => {
+    promptSelect.value = 'custom';
+    promptInput.style.display = 'block'; // Ensure the custom prompt field is visible
+    chrome.storage.sync.set({ prompt: promptInput.value, promptType: 'custom' });
   });
 
   // Save the settings when the form is submitted
@@ -316,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       prompt: promptInput.value,
       model: modelInput.value,
       localEndpoint: localEndpointInput.value,
-      modelIdentifier: modelIdentifierInput.value // Save model identifier
+      modelIdentifier: modelIdentifierInput.value,
     });
 
     // Change button text temporarily to indicate success
@@ -356,16 +461,36 @@ document.addEventListener('DOMContentLoaded', () => {
         promptSelect.appendChild(option);
       });
 
+      // Load stored prompt settings
+      chrome.storage.sync.get(['prompt', 'selectedPreset'], (data) => {
+        if (data.selectedPreset) {
+          promptSelect.value = data.selectedPreset;
+          if (data.selectedPreset === 'custom') {
+            promptInput.value = data.prompt || '';
+            promptInput.style.display = 'block';
+          } else {
+            promptInput.style.display = 'none';
+          }
+        }
+      });
+
       // Update the custom prompt field when a new prompt is selected
       promptSelect.addEventListener('change', () => {
-        if (promptSelect.value !== 'custom') {
-          promptInput.value = promptSelect.value;
+        if (promptSelect.value === 'custom') {
+          promptInput.style.display = 'block'; // Show the custom prompt field
+        } else {
+          promptInput.style.display = 'none'; // Hide the custom prompt field
         }
+        // Save the selected preset
+        chrome.storage.sync.set({ selectedPreset: promptSelect.value });
       });
 
       // Change dropdown to "Custom" when the prompt input is edited
       promptInput.addEventListener('input', () => {
         promptSelect.value = 'custom';
+        promptInput.style.display = 'block'; // Ensure the custom prompt field is visible
+        // Save the custom prompt
+        chrome.storage.sync.set({ prompt: promptInput.value });
       });
     });
 
@@ -374,26 +499,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const additionalQuestions = document.getElementById('additionalQuestions').value;
     const selectedLanguage = document.getElementById('languageSelect').value;
 
-    // Disable the button and change its text
-    fetchSummaryButton.disabled = true;
-    fetchSummaryButton.textContent = 'Select content element';
+    // Retrieve the selected prompt or custom prompt
+    chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt'], (data) => {
+      let promptToUse = '';
+      if (data.promptType === 'custom') {
+        promptToUse = data.prompt;
+      } else {
+        promptToUse = data.presetPrompt; // Use the preset name or identifier
+      }
 
-    // Send a message to the content script with the donation message
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {
-        action: 'fetchSummary',
-        additionalQuestions,
-        selectedLanguage,
-      }, (response) => {
-        if (response && response.success) {
-          console.log('Summary fetched successfully:', response.message);
-        } else {
-          console.error('Failed to fetch summary:', response ? response.message : 'No response');
-        }
+      // Disable the button and change its text
+      fetchSummaryButton.disabled = true;
+      fetchSummaryButton.textContent = 'Select content element';
 
-        // Re-enable the button and reset its text after the operation
-        fetchSummaryButton.disabled = false;
-        fetchSummaryButton.textContent = '🪄 Fetch Summary';
+      // Send a message to the content script with the selected prompt
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          action: 'fetchSummary',
+          additionalQuestions,
+          selectedLanguage,
+          prompt: promptToUse
+        }, (response) => {
+          if (response && response.success) {
+            console.log('Summary fetched successfully:', response.message);
+          } else {
+            console.error('Failed to fetch summary:', response ? response.message : 'No response');
+          }
+
+          // Re-enable the button and reset its text after the operation
+          fetchSummaryButton.disabled = false;
+          fetchSummaryButton.textContent = '🪄 Fetch Summary';
+        });
       });
     });
   });
@@ -453,4 +589,177 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  const summaryLengthSlider = document.getElementById('summaryLength');
+  const summaryLengthValue = document.getElementById('summaryLengthValue');
+
+  // Load stored summary length
+  chrome.storage.sync.get(['summaryLength'], (data) => {
+    const length = data.summaryLength || 500; // Default to 500 if not set
+    summaryLengthSlider.value = length;
+    summaryLengthValue.textContent = length;
+  });
+
+  // Update the displayed value and store it when the slider changes
+  summaryLengthSlider.addEventListener('input', () => {
+    const newLength = summaryLengthSlider.value;
+    summaryLengthValue.textContent = newLength;
+
+    // Store the new summary length in local storage
+    chrome.storage.sync.set({ summaryLength: newLength }, () => {
+      console.log(`Summary length updated to ${newLength}`);
+    });
+  });
+
+  // Function to load compatible tools and display them as cards
+  function loadCompatibleTools() {
+    fetch('compatible-tools.json')
+      .then(response => response.json())
+      .then(tools => {
+        const compatibleToolsList = document.getElementById('compatibleToolsList');
+        compatibleToolsList.innerHTML = ''; // Clear existing content
+
+        // Add the explanatory card
+        const explanatoryCard = document.createElement('div');
+        explanatoryCard.classList.add('explanatory-card');
+        explanatoryCard.innerHTML = '💠 Working well with AI Summary Helper';
+        compatibleToolsList.appendChild(explanatoryCard);
+
+        // Add each tool as a card
+        tools.forEach(tool => {
+          const toolCard = document.createElement('div');
+          toolCard.classList.add('tool-card');
+          toolCard.innerHTML = `
+            <div class="tool-card-content">
+              <h3>${tool.Name}</h3>
+              <p>${tool.Description}</p>
+              <a href="${tool.URL}" target="_blank" class="discover-button">Discover ↗</a>
+            </div>
+          `;
+          compatibleToolsList.appendChild(toolCard);
+        });
+      })
+      .catch(error => console.error('Error loading compatible tools:', error));
+  }
+
+  // Call the function to load compatible tools
+  loadCompatibleTools();
+
+  // Toggle the visibility of the compatible tools section
+  appsButton.addEventListener('click', () => {
+    if (compatibleToolsSection.style.display === 'none' || compatibleToolsSection.style.display === '') {
+      compatibleToolsSection.style.display = 'block';
+    } else {
+      compatibleToolsSection.style.display = 'none';
+    }
+  });
+
+  // Initially hide the compatible tools section
+  compatibleToolsSection.style.display = 'none';
+
+  // Accordion functionality
+  const accordionButtons = document.querySelectorAll('.accordion-button');
+  accordionButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent form submission
+
+      // Toggle the clicked button and its content
+      const content = button.nextElementSibling;
+      const isActive = button.classList.contains('active');
+
+      // Close all accordion contents
+      const allContents = document.querySelectorAll('.accordion-content');
+      allContents.forEach(content => {
+        content.style.maxHeight = null;
+      });
+
+      // Remove 'active' class from all buttons
+      accordionButtons.forEach(btn => btn.classList.remove('active'));
+
+      // If the clicked button was not active, activate it
+      if (!isActive) {
+        button.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+
+  const saveButton = document.querySelector('.button-primary.fixed-button'); // Assuming this is your save button
+
+  // Trigger save when API key is updated
+  apiKeyInput.addEventListener('input', () => {
+    saveButton.click();
+  });
+
+  // Function to trigger save
+  function triggerSave() {
+    saveButton.click();
+  }
+
+  // Debounce function to delay execution
+  function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  // Add event listeners to all input elements within the settings form
+  const inputs = settingsForm.querySelectorAll('select');
+  inputs.forEach(input => {
+    input.addEventListener('input', triggerSave);
+  });
+
+  // Add debounced event listener for textarea elements
+  const textareas = settingsForm.querySelectorAll('textarea, input');
+  const debouncedSave = debounce(triggerSave, 1000);
+  textareas.forEach(textarea => {
+    textarea.addEventListener('input', debouncedSave);
+  });
+
+  const apiKeyLinkContainer = document.getElementById('apiKeyLinkContainer');
+  const apiKeyLink = document.getElementById('apiKeyLink');
+
+  // Function to update the API key link based on the selected model
+  function updateApiKeyLink(model) {
+    let linkHtml = '';
+    if (model === 'openai') {
+      linkHtml = '(Get your <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI API key</a>)';
+    } else if (model === 'mistral') {
+      linkHtml = '(Get your <a href="https://console.mistral.ai/api-keys/" target="_blank">Mistral API key</a>)';
+    } else if (model === 'ollama') {
+      linkHtml = '(Visit <a href="https://ollama.com/" target="_blank">Ollama</a> for more information)';
+    } else {
+      linkHtml = ''; // Clear the link if no valid model is selected
+    }
+    apiKeyLink.innerHTML = linkHtml;
+    apiKeyLinkContainer.style.display = linkHtml ? 'block' : 'none';
+  }
+
+  // Update the link when the model changes
+  modelInput.addEventListener('change', () => {
+    updateApiKeyLink(modelInput.value);
+    toggleInputVisibility();
+  });
+
+  // Initial call to set the correct link on page load
+  updateApiKeyLink(modelInput.value);
+
+
+  // Function to handle first-time setup
+  function firstTimeSetup() {
+    chrome.storage.sync.get('prompt', (data) => {
+      if (!data.prompt) {
+        const defaultPrompt = " - a brief summary - 2 best quotes from the text - pitch the article as a standup comedian - what does it mean for my profession - e.g. ux, developer, marketing";
+        chrome.storage.sync.set({ prompt: defaultPrompt, promptType: 'custom' }, () => {
+          console.log('Default prompt set for new users.');
+        });
+      }
+    });
+  }
+
+  // Call the first-time setup function
+  firstTimeSetup();
+
 });

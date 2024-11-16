@@ -138,9 +138,11 @@ For more detailed guidance, refer to the comprehensive guide on handling CORS se
 # Compatible Tools
 <!-- table with tools, name, description, url -->
 Tools that are compatible with AI Summary Helper.
+Feel free to add your own tool to the list.
 
 Name | Description | URL
 --- | --- | ---
-Reabble Send to Kindle | Send your articles to Kindle | https://send.reabble.com/
-Web Clipper | Clip web pages to Kindle | https://github.com/webclipper/web-clipper
+Reabble Send to Kindle | Send your summarized articles to Kindle. | https://send.reabble.com/
+Web Clipper | Clip your summarized web pages to different places (e.g. OneNote, Notion, GitHub etc.) | https://clipper.website/
+Inoreader | RSS Feed Reader | https://www.inoreader.com/
 

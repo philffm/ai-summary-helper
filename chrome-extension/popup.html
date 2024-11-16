@@ -18,21 +18,20 @@
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
+        <button id="appsButton" class="button-secondary" title="Apps">💠</button>
         <button id="historyButton" class="button-secondary" title="History">🗂️</button>
         <button id="backButton" class="button–secondary" title="Back" style="display: none;">Back</button>
         <button id="toggleScreenButton" class="button-secondary" title="Settings">⚙️</button>
       </div>
     </div>
     <!-- link to donate https://link.philwornath.com/#donate?source=aish -->
-    <div class="container-sm donate">
-      
-      <p>Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a> or consider <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">a donation</a> :)</p>
-      <!-- <a
-        id="donate-link"
-        href="https://link.philwornath.com/?source=aish#donate"
-        target="_blank"
-        >💸 Donate</a
-      > -->
+    <div class="compatible-tools">
+      <!-- <h2>Compatible Tools</h2> -->
+      <div id="compatibleToolsList">
+        <div class="explanatory-card">
+          💠 Extensions that integrate well in the workflow with AI Summary Helper
+        </div>
+      </div>
     </div>
     <div id="mainScreen" class="screen">
       <textarea
@@ -45,46 +44,68 @@
           <!-- Options will be populated dynamically -->
         </select>
       </div>
+      <div id="sumaryLengthSlider">
+        <label for="summaryLength">Summary Length: <span id="summaryLengthValue">500</span> words</label>
+        <input type="range" id="summaryLength" min="100" max="500" value="200" step="50">
+      </div>
       <button id="fetchSummary" class="button-primary fillAvailable">
         🪄 Fetch Summary
         <span id="spinner" class="spinner" style="display: none"></span>
       </button>
     </div>
     <div id="settingsScreen" class="screen" style="display: none">
-      <!-- <h2>Settings</h2> -->
+      <p class="donate">Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a> or consider <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">a donation</a> :)</p>
+
       <form id="settingsForm">
-        <label for="model">Model</label>
-        <select id="model">
-          <option value="openai">OpenAI 4o</option>
-          <option value="mistral">Mistral</option>
-          <option value="ollama">Ollama (Local)</option>
-        </select>
-        <!-- Options will be populated dynamically -->
-      </select>
-      <div id="modelIdentifierContainer">
-        <label for="modelIdentifier">Model Identifier: (Leave blank to use default model identifiers)</label>
-        <input type="text" id="modelIdentifier" placeholder="e.g., gpt-4o-mini, llama3.2, mistral-large-latest" />
-      </div>
-      <div id="apiKeyContainer">
-        <label for="apiKey">API Key:</label>
-        <input type="text" id="apiKey" name="apiKey" />
-        <label class="light" for="apiKey">🔒 The API key is stored locally in your browser.</label>
-      </div>
-      
-      <div id="localEndpointContainer" style="display: none;">
-        <label for="localEndpoint">Local Endpoint URL:</label>
-        <input type="text" id="localEndpoint" placeholder="http://localhost:11434/api/chat" />
-      </div>
-    
-      <label for="promptSelect">Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/chrome-extension/prompts.json" target="_blank">(View all & contribute)</a></label>
-      <select id="promptSelect">
-        <!-- Options will be populated dynamically -->
-      </select>
-      <label for="prompt">Custom Prompt</label>
-      <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
-      <div class="flex fixed-bottom">
-        <button type="submit" class="button-primary fixed-button">Save 💾</button>
-      </div>
+        <div class="accordion flex column gap-2">
+          <div class="accordion-item">
+            <button class="accordion-button">🤖 Model</button>
+            <div class="accordion-content">
+              <p>Choose the LLM model you want to use to generate the summary.</p>
+              <label for="model">Model <span id="apiKeyLink" style="font-weight: normal;"></span></label>
+              <select id="model">
+                <option value="openai">OpenAI 4o</option>
+                <option value="mistral">Mistral</option>
+                <option value="ollama">Ollama (Local)</option>
+              </select>
+              <div id="modelIdentifierContainer">
+                <label for="modelIdentifier">Model Identifier: (Leave blank to use default model identifiers)</label>
+                <input type="text" id="modelIdentifier" placeholder="e.g., gpt-4o-mini, llama3.2, mistral-large-latest" />
+              </div>
+              <div id="apiKeyContainer">
+                <label for="apiKey">API Key:</label>
+                <input type="text" id="apiKey" name="apiKey" />
+                <label class="light" for="apiKey">🔒 The API key is stored locally in your browser.</label>
+              </div>
+              <div id="localEndpointContainer" style="display: none;">
+                <label for="localEndpoint">Local Endpoint URL:</label>
+                <input type="text" id="localEndpoint" placeholder="http://localhost:11434/api/chat" />
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">💬 Prompt</button>
+            <div class="accordion-content">
+              <p>Choose the prompt you want to use to generate the summary.</p>
+              <label for="promptSelect">Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/chrome-extension/prompts.json" target="_blank">(View all & contribute)</a></label>
+              <select id="promptSelect">
+                <!-- Options will be populated dynamically -->
+              </select>
+              <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
+            </div>
+          </div>
+          <!-- general settings -->
+          <div class="accordion-item">
+            <button class="accordion-button">🔄 General Settings</button>
+            <div class="accordion-content">
+              <p>General settings for the extension.</p>
+              <button id="deleteSettingsButton" class="button danger">Delete Settings</button>
+            </div>
+          </div>
+        </div>
+        <div class="flex fixed-bottom">
+          <button type="submit" class="button-primary fixed-button">Save 💾</button>
+        </div>
       </form>
     </div>
     <div id="historyScreen" class="screen" style="display: none;">

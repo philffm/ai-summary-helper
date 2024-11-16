@@ -24,36 +24,47 @@ function getRandomDonationMessage() {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
   if (request.action === 'fetchSummary') {
-    const { additionalQuestions, selectedLanguage } = request;
-    const donationMessage = getRandomDonationMessage();
-    const donationLink = `<a href="https://link.philwornath.com/?source=aish#donate" target="_blank">${donationMessage}</a>`;
+    const { additionalQuestions, selectedLanguage, prompt } = request;
 
-    selectTargetElement().then((targetElement) => {
-      if (targetElement) {
-        showPlaceholder(targetElement, donationLink); // Use the donation link
-        fetchSummary(additionalQuestions, selectedLanguage, targetElement).then((result) => {
-          sendResponse(result);
-        }).catch((error) => {
-          sendResponse({ success: false, message: error.message });
-        });
-      } else {
-        sendResponse({ success: false, message: 'No target element selected' });
-      }
+    chrome.storage.sync.get(['summaryLength'], (data) => {
+      const summaryLength = data.summaryLength || 500; // Default to 500 if not set
+
+      const donationMessage = getRandomDonationMessage();
+      const donationLink = `<a href="https://link.philwornath.com/?source=aish#donate" target="_blank">${donationMessage}</a>`;
+
+      selectTargetElement().then((targetElement) => {
+        if (targetElement) {
+          showPlaceholder(targetElement, donationLink); // Use the donation link
+          fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement).then((result) => {
+            sendResponse(result);
+          }).catch((error) => {
+            sendResponse({ success: false, message: error.message });
+          });
+        } else {
+          sendResponse({ success: false, message: 'No target element selected' });
+        }
+      });
     });
+
     return true; // Indicates we will send a response asynchronously
   }
 });
 
-
-async function fetchSummary(additionalQuestions, selectedLanguage, targetElement) {
-  console.log('Starting fetchSummary');
+async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement) {
+  const promptDetails = {
+    prompt,
+    summaryLength,
+    additionalQuestions,
+    selectedLanguage
+  };
+  console.log('Starting fetchSummary with prompt details:', promptDetails);
   const content = getAllTextContent();
   console.debug('Fetched content:', content);
 
   const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier'], async (data) => {
+    chrome.storage.sync.get(['apiKey', 'model', 'localEndpoint', 'modelIdentifier'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
       const model = data.model || 'openai';
@@ -66,17 +77,6 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
           ? 'mistral-large-latest'
           : 'llama3.2'); // Default to llama3.2 for Ollama
 
-      let prompt = data.prompt && data.prompt.length > 1
-        ? data.prompt
-        : `
-        <h3> section: Article summary section with creative title where you explain it like I'm five what's the deal with the article.
-        <h3> section: More extensive summary with a bit more detail (4-5 sentences).
-        <h3> section: Make a fun reference to the topic related to my competence as a UX designer.
-        <h3> section: make fun about the topic like a standup comedian.
-        <h3> section: related book and media recommendations.
-        <h3> section: if additional questions are provided, answer them in a serious and engaging way.
-        Add emojis, add hashtags, use html, highlight interesting parts, word limit: max 1000 - as much as you think is appropriate`;
-
       if (additionalQuestions) {
         prompt += `\n\nAdditional questions: ${additionalQuestions} - Please answer in a serious and engaging way.`;
         console.debug('Prompt with additional questions', prompt);
@@ -85,6 +85,8 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
       if (selectedLanguage && selectedLanguage !== 'en') {
         prompt += `\n\nImportant: Summarize in  ${selectedLanguage} language.`;
       }
+
+      prompt += `\n\nPlease limit the summary to approximately ${summaryLength} words.`;
 
       const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
 
@@ -105,13 +107,13 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
         const requestBody = JSON.stringify({
           model: modelIdentifier,
           messages: [
-            { role: 'system', content: 'You summarize web content and return valid html format with h2 headings, h3 headings, and paragraphs. Leave out ```html tags. ' },
-            { role: 'user', content: 'Summarize the following content: ' + truncatedContent + prompt },
-            // { role: 'user', content: truncatedContent },
+            { role: 'system', content: 'You summarize content and return a html div  with h2 headings and <p> paragraphs. When you quote, keep it literal and in the input language.' },
+            { role: 'user', content: 'Stick to word limit of ' + summaryLength + ' words. ' + 'Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
           ],
           stream: false // Ensure streaming is off for local models
         });
 
+        console.log('🚀 Request body:', requestBody);
         // Show donation and bug message
         const donationMessage = getRandomDonationMessage();
         const messageContainer = document.createElement('div');
@@ -150,7 +152,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, targetElement
         const placeholder = targetElement.querySelector('.placeholder');
         if (placeholder) placeholder.remove();
 
-        // remove plaholder from content 
+        // remove placeholder from content 
         const placeholderInContent = content.replace(/<div class="placeholder">.*<\/div>/, '');
 
         saveToLocalStorage(content, summary);

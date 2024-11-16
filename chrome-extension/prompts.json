@@ -1,26 +1,26 @@
 [
     {
         "name": "Default",
-        "prompt": "<h3> Article summary section with creative title explaining the article in simple terms. <h3> More extensive summary with a bit more detail (4-5 sentences) and most significant quotes (as stated, in original language) <h3> Fun reference to the topic related to my competence as a UX designer. <h3> Humorous take on the topic like a standup comedian. <h3> Related book and media recommendations. <h3> Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
+        "prompt": "- Article summary section with creative title explaining the article in simple terms. - More extensive summary with a bit more detail (4-5 sentences) and most significant quotes (as stated, in original language) - Fun reference to the topic related to my competence as a UX designer. - Humorous take on the topic like a standup comedian. - Related book and media recommendations. - Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
     },
     {
         "name": "Technical Deep Dive",
-        "prompt": "<h3> Technical overview of the article with detailed analysis. <h3> Break down complex concepts into simpler terms. <h3> Include diagrams or code snippets if applicable. <h3> Discuss potential applications and implications in the tech industry. <h3> Recommend further reading or resources for deeper understanding."
+        "prompt": "- Technical overview of the article with detailed analysis. - Break down complex concepts into simpler terms. - Include diagrams or code snippets if applicable. - Discuss potential applications and implications in the tech industry. - Recommend further reading or resources for deeper understanding."
     },
     {
         "name": "Historical Context",
-        "prompt": "<h3> Provide historical background related to the article's topic. <h3> Discuss key events and figures that shaped the current context. <h3> Analyze how past developments influence present scenarios. <h3> Suggest documentaries or books for historical insights."
+        "prompt": "- Provide historical background related to the article's topic. - Discuss key events and figures that shaped the current context. - Analyze how past developments influence present scenarios. - Suggest documentaries or books for historical insights."
     },
     {
         "name": "Environmental Impact",
-        "prompt": "<h3> Evaluate the environmental implications of the article's subject. <h3> Discuss sustainability and ecological considerations. <h3> Highlight innovative solutions or practices. <h3> Recommend eco-friendly products or initiatives."
+        "prompt": "- Evaluate the environmental implications of the article's subject. - Discuss sustainability and ecological considerations. - Highlight innovative solutions or practices. - Recommend eco-friendly products or initiatives."
     },
     {
         "name": "Cultural Perspective",
-        "prompt": "<h3> Explore the cultural significance of the article's topic. <h3> Discuss how different cultures perceive the subject. <h3> Include quotes or anecdotes from cultural figures. <h3> Suggest cultural events or media for further exploration."
+        "prompt": "- Explore the cultural significance of the article's topic. - Discuss how different cultures perceive the subject. - Include quotes or anecdotes from cultural figures. - Suggest cultural events or media for further exploration."
     },
     {
         "name": "Future Predictions",
-        "prompt": "<h3> Speculate on future trends and developments related to the article. <h3> Discuss potential technological advancements. <h3> Analyze market or societal shifts. <h3> Recommend futuristic books or media."
+        "prompt": "- Speculate on future trends and developments related to the article. - Discuss potential technological advancements. - Analyze market or societal shifts. - Recommend futuristic books or media."
     }
 ]

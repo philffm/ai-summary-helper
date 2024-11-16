@@ -1,0 +1,3 @@
+Reabble Send to Kindle | Send your summarized articles to Kindle. | https://send.reabble.com/
+Web Clipper | Clip your summarized web pages to different places (e.g. OneNote, Notion, GitHub etc.) | https://clipper.website/
+Inoreader | RSS Feed Reader | https://www.inoreader.com/
