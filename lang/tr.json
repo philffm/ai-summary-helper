@@ -1,40 +1,42 @@
 {
-  "title": "Yapay Zeka Özet Yardımcısı 🚀",
-  "about": "Hakkında 📖",
-  "aboutText": "Yapay Zeka Özet Yardımcısı ile gezinme alışkanlıklarınızı verimliliğin bir güç merkezi haline dönüştürün. Bir daha asla bir makalenin gözden kaybolmasına izin vermeyin! 🌟",
+  "title": "AI Özet Yardımcısı 🚀",
+  "about": "Hakkında 📰",
+  "aboutText": "Tarayıcınızı ürünlülük gücüne dönüştürün, AI Özet Yardımcısı ile. Bir daha asla bir makalenin gözünüzden kaçmasına izin vermeyin! 🌟",
   "features": "Özellikler 🔍",
   "featureList": [
-    "Makale özetleme, kişisel bir dokunuşla ✨",
-    "OpenAI, Mistral AI, Ollama (yerel) ve daha fazla model desteği",
+    "Makaleleri kişisel bir dokunuşla özetleyin ✨",
+    "OpenAI, Mistral AI, Ollama (yerel) ve daha birçok model desteklenmektedir",
     "Özetleri okuma akışınıza entegre edin 📚",
-    "Seyahat halindeyken okuyun: Reabble ile Kindle'a paylaşın 📖",
-    "Çoklu Platform: Tüm tarayıcılar ve işletim sistemleri (iOS dahil) için yer imi oluşturucu."
+    "Hareket halindeyken okuyun: Kindle’a [Reabble](https://send.reabble.com//) ile paylaşın 📰",
+    "Çapraz Platform: Tüm tarayıcılar ve işletim sistemleri, iOS/Android dahil olmak üzere, için yer imi oluşturucu"
   ],
   "proposeFeature": "Bir Özellik Önerin 💡",
-  "proposeFeatureText": "Harika bir fikriniz mi var? Bizimle paylaşın ve Yapay Zeka Özet Yardımcısı'nın geleceğini şekillendirin! 📝",
+  "proposeFeatureText": "Harika bir fikriniz mi var? Bunu bizimle [buradan](https://yourproposefeaturelink.com) paylaşın ve AI Özet Yardımcısının geleceğini şekillendirin! 📝",
   "privacyNote": "Gizlilik Notu 🔒",
-  "privacyNoteText": "Gizliliğiniz bizim için en önemli önceliktir. Verilerinizin size ait olduğunu garanti ediyoruz. 🔑",
-  "funMessage": "Yapay Zeka Özet Yardımcısı ile daha akıllı bir gezinme yolculuğuna dalın! 🎉",
-  "changelog": "Değişiklik Kaydı 📜",
+  "privacyNoteText": "Gizliliğiniz bizim önceliğimizdir. Verilerinizin sizinle kalmasını sağlıyoruz. 🔑 [Daha fazla bilgi edinin](privacy)",
+  "funMessage": "AI Özet Yardımcısı ile daha akıllı bir tarayıcının tadını çıkarın! 🎉",
+  "changelog": "Değişiklikler 💖",
   "changelogList": [
+    "Okuma akışınıza ve AI Özet Yardımcısına iyi entegrasyon sağlayan uyumlu araçlar listesi eklendi",
+    "Makale geçmişi - özetlerinizi görüntüleyin ve arayın",
     "Yeni istemler - daha doğru",
-    "Yerel LLM'ler için destek - Ollama / Llama modelleri",
-    "Mistral AI modeline destek sağlandı",
-    "GPT4o mini modeline güncelleme yapıldı",
-    "Güncellenmiş UI 🎨"
+    "Yerel LLM'ler için destek - [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/) modelleri",
+    "Mistral AI ([Mistral AI](https://www.mistral.ai/)) modeline destek güncellendi",
+    "GPT4o mini modeline güncellendi",
+    "Geliştirilmiş kullanıcı arayüzü 🎨"
   ],
   "aboutCreator": "Yaratıcı Hakkında",
-  "creatorText": "Merhaba Gumroad topluluğu :) - Ben Yapay Zeka Özet Yardımcısı'nın yaratıcısı Phil Wornath. Özellikle bilimsel makaleler olmak üzere geniş yazılı web içeriğini seven biri olarak, sık sık zaman kısıtlamalarıyla karşılaştım. Bu durum, verimliliği ve okuma etkinliğini artıran bir araç geliştirme ilhamı verdi.",
-  "whyHelper": "Neden Yapay Zeka Özet Yardımcısı?",
+  "creatorText": "Merhaba topluluk :) - Ben AI Özet Yardımcısının yaratıcısı Phil Wornath. Uzun yazılı web içeriklerine, özellikle bilimsel makalelere aşık birisi olarak, sık sık zaman kısıtlamaları ile karşılaştım. Bu beni, üretkenliği ve okuma verimliliğini artıran bir araç geliştirmeye ilham verdi.",
+  "whyHelper": "Neden AI Özet Yardımcısı?",
   "whyHelperList": [
-    "Zamanınızı Geri Kazanın: Hızlı özetler oluşturun veya daha derinlemesine okumalar için hazırlık yapın.",
+    "Zamanınızı Tekrar Kazanın: Hızlı özetler oluşturun veya daha sonra derinlemesine okumalar için hazırlanın.",
     "Size Özel: Özetleri dilinize, mesleğinize veya bakış açınıza göre özelleştirin.",
-    "Düzenli Kalın: Karışık sekmelerden kaçının ve okuma listenizi yönetilebilir kılın.",
-    "Gelişmiş Okuma Deneyimi: Önemli içeriğe odaklanın ve bunaltıcı durumlarla karşılaşmayın."
+    "Düzenli Kalın: Karmaşık sekmelerden kaçının ve okuma listenizi yönetilebilir tutun.",
+    "Gelişmiş Okuma Deneyimi: Önemli olan içeriğe odaklanın, bunalmış hissetmeyin."
   ],
   "getStarted": "Bugün Başlayın",
-  "getStartedText": "Yapay Zeka Özet Yardımcısını kullanmaya başlamak için bir OpenAI API anahtarınızın ve yeterli kredinizin olması gerektiğini unutmayın. Web okumasını herkes için daha kolay ve erişilebilir hale getirmeye katılın. Hemen Gumroad'dan indirin ve gezinme deneyiminizi dönüştürün.",
+  "getStartedText": "AI Özet Yardımcısını kullanmaya başlamak için bir [OpenAI API anahtarı](https://platform.openai.com/account/api-keys) ve yeterli krediye sahip olduğunuzdan emin olun. Web okumayı herkes için daha kolay ve erişilebilir hale getirmede bize katılın. Hemen [Gumroad](https://gumroad.com/) üzerinden indirin ve tarayıcı deneyiminizi dönüştürün.",
   "feedbackSupport": "Geri Bildirim ve Destek",
-  "feedbackSupportText": "Yapay Zeka Özet Yardımcısını denemeniz için sizi davet etmekten heyecan duyuyoruz ve geri bildirimlerinizi ve sorularınızı bekliyoruz. Web üzerindeki okumayı daha basit ve ilgi çekici hale getirelim. Bugün Yapay Zeka Özet Yardımcısı ile çevrimiçi okuma deneyiminizi geliştirin!",
-  "version": "1.0.0"
+  "feedbackSupportText": "AI Özet Yardımcısını denemenizi dört gözle bekliyoruz ve geri bildirimlerinizi ve sorularınızı merakla bekliyoruz. Hep birlikte web üzerindeki okumayı daha basit ve keyifli hale getirelim. Bugün AI Özet Yardımcısı ile çevrimiçi okuma deneyiminizi geliştirin!",
+  "version": "1.0.1"
 }

@@ -1,40 +1,42 @@
 {
-  "title": "Pembantu Ringkasan AI 🚀",
+  "title": "Bantuan Ringkasan AI 🚀",
   "about": "Tentang 📖",
-  "aboutText": "Ubah penjelajahan Anda menjadi kekuatan produktivitas dengan Pembantu Ringkasan AI. Jangan biarkan artikel lain terlewat! 🌟",
-  "features": "Fitur 🔍",
+  "aboutText": "Ubah penelusuran Anda menjadi kekuatan produktivitas dengan Bantuan Ringkasan AI. Jangan biarkan artikel lain terlewatkan! 🌟",
+  "features": "Fitur 🔍 ",
   "featureList": [
     "Ringkas artikel dengan sentuhan pribadi ✨",
-    "Dukungan untuk OpenAI, Mistral AI, Ollama (lokal) dan lebih banyak model lainnya",
+    "Mendukung model OpenAI, Mistral AI, Ollama (lokal) dan banyak lagi",
     "Integrasikan ringkasan ke dalam alur membaca Anda 📚",
-    "Baca saat bepergian: Bagikan ke Kindle dengan Reabble 📖",
-    "Lintas Platform: Generator Bookmarklet untuk semua browser dan OS, termasuk iOS."
+    "Baca sambil bergerak: Bagikan ke Kindle dengan [Reabble](https://send.reabble.com//) 📖",
+    "Lintas Platform: Pembuatan Bookmarklet untuk semua peramban dan OS, termasuk iOS/Android"
   ],
-  "proposeFeature": "Usulkan Fitur 🔌",
-  "proposeFeatureText": "Punya ide brilian? Bagikan dengan kami dan bentuk masa depan Pembantu Ringkasan AI! 📝",
-  "privacyNote": "Catatan Privasi 🔒",
-  "privacyNoteText": "Privasi Anda adalah prioritas utama kami. Kami memastikan data Anda tetap milik Anda. 🔑",
-  "funMessage": "Jelajahi cara yang lebih cerdas untuk berselancar dengan Pembantu Ringkasan AI! 🎉",
-  "changelog": "Riwayat Perubahan 📝",
+  "proposeFeature": "Usulkan Fitur 💡",
+  "proposeFeatureText": "Punya ide cemerlang? Bagikan dengan kami [di sini](https://yourproposefeaturelink.com) dan bentuk masa depan Bantuan Ringkasan AI! 📝",
+  "privacyNote": "Catatan Privasi 🔐",
+  "privacyNoteText": "Privasi Anda adalah prioritas utama kami. Kami memastikan data Anda tetap milik Anda. 🔑 [Pelajari lebih lanjut](privacy)",
+  "funMessage": "Masuki cara penelusuran yang lebih cerdas dengan Bantuan Ringkasan AI! 🎉",
+  "changelog": "Catatan Perubahan 📝",
   "changelogList": [
+    "Menambahkan daftar alat yang kompatibel yang terintegrasi dengan baik dengan alur membaca Anda dan Bantuan Ringkasan AI",
+    "Riwayat artikel - lihat dan cari ringkasan Anda",
     "Prompt baru - lebih akurat",
-    "Dukungan untuk LLM lokal - model Ollama / Llama",
-    "Diperbarui untuk mendukung model Mistral AI",
-    "Diperbarui ke model GPT4o mini",
-    "UI diperbarui 🎨"
+    "Dukungan untuk LLM Lokal - model [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
+    "Diperbarui untuk mendukung model [Mistral AI](https://www.mistral.ai/)",
+    "Diperbarui ke model mini GPT4o",
+    "Antarmuka pengguna diperbarui 🎨"
   ],
-  "aboutCreator": "Tentang Pembuatnya",
-  "creatorText": "Hallo komunitas Gumroad :) - Saya Phil Wornath, pencipta Pembantu Ringkasan AI. Sebagai seorang penikmat konten web tertulis yang mendalam, terutama artikel ilmiah, saya sering menghadapi batasan waktu. Ini menginspirasi saya untuk mengembangkan alat yang meningkatkan produktivitas dan efisiensi membaca.",
-  "whyHelper": "Mengapa Pembantu Ringkasan AI?",
+  "aboutCreator": "Tentang Pembuat",
+  "creatorText": "Halo komunitas :) - Saya Phil Wornath, pembuat Bantuan Ringkasan AI. Sebagai penggemar konten web tertulis yang luas, terutama artikel ilmiah, saya sering menghadapi batas waktu. Ini menginspirasi saya untuk mengembangkan alat yang meningkatkan produktivitas dan efisiensi membaca.",
+  "whyHelper": "Mengapa Bantuan Ringkasan AI?",
   "whyHelperList": [
-    "Mendapatkan Kembali Waktu Anda: Hasilkan ringkasan cepat atau siapkan untuk eksplorasi mendalam di lain waktu.",
+    "Ambil Kembali Waktu Anda: Buat ringkasan cepat atau siapkan untuk menyelam lebih dalam nanti.",
     "Disesuaikan untuk Anda: Sesuaikan ringkasan agar sesuai dengan bahasa, profesi, atau sudut pandang Anda.",
-    "Tetap Terorganisir: Hindari tab berantakan dan jaga daftar bacaan Anda tetap terkelola.",
+    "Tetap Teratur: Hindari tab yang berantakan dan jaga daftar bacaan Anda tetap terkelola.",
     "Pengalaman Membaca yang Ditingkatkan: Fokus pada konten yang penting bagi Anda tanpa merasa kewalahan."
   ],
   "getStarted": "Mulai Hari Ini",
-  "getStartedText": "Untuk mulai menggunakan Pembantu Ringkasan AI, pastikan Anda memiliki kunci API OpenAI dan kredit yang cukup. Bergabunglah dengan kami dalam membuat bacaan web lebih mudah dan lebih dapat diakses untuk semua orang. Unduh sekarang di Gumroad dan ubah pengalaman penjelajahan Anda.",
+  "getStartedText": "Untuk mulai menggunakan Bantuan Ringkasan AI, pastikan Anda memiliki [kunci API OpenAI](https://platform.openai.com/account/api-keys) dan kredit yang cukup. Bergabunglah dengan kami dalam membuat membaca web lebih mudah dan lebih terjangkau untuk semua orang. Unduh sekarang di [Gumroad](https://gumroad.com/) dan ubah pengalaman penelusuran Anda.",
   "feedbackSupport": "Umpan Balik dan Dukungan",
-  "feedbackSupportText": "Kami sangat senang mengundang Anda untuk mencoba Pembantu Ringkasan AI dan menyambut umpan balik serta pertanyaan Anda. Mari kita buat membaca di web menjadi lebih sederhana dan menarik. Tingkatkan pengalaman membaca online Anda dengan Pembantu Ringkasan AI hari ini!",
-  "version": "1.0.0"
+  "feedbackSupportText": "Kami sangat senang mengundang Anda untuk mencoba Bantuan Ringkasan AI dan menyambut umpan balik dan pertanyaan Anda. Mari bersama-sama membuat membaca di web lebih sederhana dan lebih menarik. Tingkatkan pengalaman membaca online Anda dengan Bantuan Ringkasan AI hari ini!",
+  "version": "1.0.1"
 }

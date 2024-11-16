@@ -1,40 +1,42 @@
 {
-  "version": "1.0.0",
   "title": "Assistant de Résumé IA 🚀",
-  "about": "À Propos 📝",
-  "aboutText": "Transformez votre navigation en une puissance de productivité avec l'Assistant de Résumé IA. Ne laissez plus aucun article vous échapper ! 🌟",
-  "features": "Fonctionnalités 🔍",
+  "about": "À Propos 📖",
+  "aboutText": "Transformez votre navigation en une véritable puissance de productivité avec l’Assistant de Résumé IA. Ne laissez plus aucun article vous échapper ! 🌟",
+  "features": "Fonctionnalités 🛠️",
   "featureList": [
     "Résumez les articles avec une touche personnelle ✨",
-    "Support de modèles OpenAI, Mistral IA, Ollama (local) et plus encore",
-    "Intégrez des résumés dans votre flux de lecture 📖",
-    "Lisez en déplacement : Partagez sur Kindle avec Reabble 📜",
-    "Multi-plateforme : Générateur de bookmarklet pour tous les navigateurs et systèmes d'exploitation, y compris iOS."
+    "Modèles OpenAI, Mistral AI, Ollama (local) et plus encore pris en charge",
+    "Intégrez des résumés dans votre flux de lecture 📚",
+    "Lisez en déplacement : Partagez sur Kindle avec [Reabble](https://send.reabble.com//) 📖",
+    "Multi-plateforme : Générateur de bookmarklet pour tous les navigateurs et systèmes d'exploitation, y compris iOS/Android"
   ],
   "proposeFeature": "Proposez une Fonctionnalité 💡",
-  "proposeFeatureText": "Vous avez une idée brillante ? Partagez-la avec nous et façonnez le futur de l'Assistant de Résumé IA ! 🗣️",
+  "proposeFeatureText": "Vous avez une idée brillante ? Partagez-la avec nous [ici](https://yourproposefeaturelink.com) et façonnez l'avenir de l’Assistant de Résumé IA ! 📝",
   "privacyNote": "Note de Confidentialité 🔒",
-  "privacyNoteText": "Votre vie privée est notre priorité absolue. Nous garantissons que vos données restent les vôtres. 🔑",
-  "funMessage": "Plongez dans une manière plus intelligente de naviguer avec l'Assistant de Résumé IA ! 🎉",
+  "privacyNoteText": "Votre confidentialité est notre priorité. Nous garantissons que vos données vous appartiennent. 🔑 [En savoir plus](privacy)",
+  "funMessage": "Plongez dans une manière plus intelligente de naviguer avec l’Assistant de Résumé IA ! 🎉",
   "changelog": "Journal des Modifications 📜",
   "changelogList": [
+    "Ajout d'une liste d'outils compatibles qui s'intègrent bien dans votre flux de lecture et l’Assistant de Résumé IA",
+    "Historique des articles - consultez et recherchez vos résumés",
     "Nouveaux prompts - plus précis",
-    "Support pour les LLM locaux - modèles Ollama / Llama",
-    "Mise à jour pour le modèle Mistral IA",
+    "Support pour les LLMs Locaux - modèles [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
+    "Mise à jour pour prendre en charge le modèle [Mistral AI](https://www.mistral.ai/)",
     "Mise à jour vers le modèle GPT4o mini",
-    "Interface utilisateur mise à jour 🎨"
+    "UI mise à jour 🎨"
   ],
   "aboutCreator": "À Propos du Créateur",
-  "creatorText": "Salut communauté Gumroad :) - Je suis Phil Wornath, le créateur de l'Assistant de Résumé IA. En tant qu'amateur de contenu écrit vaste sur le web, en particulier d'articles scientifiques, j'ai souvent été confronté à des contraintes de temps. Cela m'a inspiré à développer un outil qui améliore la productivité et l'efficacité de lecture.",
+  "creatorText": "Bonjour à la communauté :) - Je suis Phil Wornath, le créateur de l’Assistant de Résumé IA. En tant qu'amateur de contenu écrit approfondi sur le web, notamment d'articles scientifiques, j'ai souvent fait face à des contraintes de temps. Cela m'a inspiré à développer un outil qui améliore la productivité et l'efficacité de la lecture.",
   "whyHelper": "Pourquoi l'Assistant de Résumé IA ?",
   "whyHelperList": [
-    "Récupérez Votre Temps : Générez des résumés rapides ou préparez-vous à des explorations plus profondes plus tard.",
-    "Personnalisé pour Vous : Adaptez les résumés à votre langue, profession ou point de vue.",
+    "Récupérez votre Temps : Générez des résumés rapides ou préparez-vous pour des analyses approfondies plus tard.",
+    "Personnalisé pour Vous : Adaptez les résumés pour qu'ils correspondent à votre langue, votre profession ou votre point de vue.",
     "Restez Organisé : Évitez les onglets encombrés et gardez votre liste de lecture gérable.",
-    "Expérience de Lecture Améliorée : Concentrez-vous sur le contenu qui compte pour vous sans être submergé."
+    "Expérience de Lecture Améliorée : Concentrez-vous sur le contenu qui compte pour vous sans sentir d'être submergé."
   ],
   "getStarted": "Commencez Dès Aujourd'hui",
-  "getStartedText": "Pour commencer à utiliser l'Assistant de Résumé IA, assurez-vous d'avoir une clé API OpenAI et du crédit suffisant. Rejoignez-nous pour rendre la lecture sur le web plus facile et accessible à tous. Téléchargez maintenant sur Gumroad et transformez votre expérience de navigation.",
-  "feedbackSupport": "Retour d'Expérience et Support",
-  "feedbackSupportText": "Nous sommes ravis de vous inviter à essayer l'Assistant de Résumé IA et nous accueillons vos retours et vos questions. Rendons la lecture sur le web plus simple et engageante. Améliorez votre expérience de lecture en ligne avec l'Assistant de Résumé IA aujourd'hui !"
+  "getStartedText": "Pour commencer à utiliser l’Assistant de Résumé IA, assurez-vous d'avoir une [clé API OpenAI](https://platform.openai.com/account/api-keys) et un crédit suffisant. Rejoignez-nous pour simplifier la lecture sur le web et la rendre plus accessible à tous. Téléchargez maintenant sur [Gumroad](https://gumroad.com/) et transformez votre expérience de navigation.",
+  "feedbackSupport": "Retour et Support",
+  "feedbackSupportText": "Nous sommes ravis de vous inviter à essayer l’Assistant de Résumé IA et accueillons vos retours et questions. Simplifions la lecture sur le web et la rendons plus engageante. Améliorez votre expérience de lecture en ligne avec l’Assistant de Résumé IA dès aujourd'hui !",
+  "version": "1.0.1"
 }

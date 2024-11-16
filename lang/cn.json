@@ -1,40 +1,42 @@
 {
-  "version": "1.0.0",
   "title": "AI摘要助手 🚀",
   "about": "关于我们 📖",
-  "aboutText": "通过AI摘要助手将您的浏览体验变成高效的工作 powerhouse。不要让另一篇文章被忽视！🌟",
-  "features": "功能特点 🔍",
+  "aboutText": "使用AI摘要助手，将您的浏览变成高效生产力的动力场。再也不让任何文章从指尖溜走！ 🌟",
+  "features": "功能特点 🛠️",
   "featureList": [
-    "用个性化的方式总结文章 ✨",
-    "支持OpenAI、Mistral AI、Ollama（本地）等多个模型",
-    "将摘要无缝融入您的阅读流程 📚",
-    "随时随地阅读：通过Reabble分享至Kindle 📖",
-    "跨平台使用：为所有浏览器和操作系统（包括iOS）生成书签工具"
+    "为文章提供个性化摘要 ✨",
+    "支持OpenAI、Mistral AI、Ollama（本地）等模型",
+    "将摘要融入你的阅读流程 📚",
+    "随时随地阅读：通过[Reabble](https://send.reabble.com//)分享至Kindle 📖",
+    "跨平台：适用于所有浏览器和操作系统的书签生成器，包括iOS/Android"
   ],
-  "proposeFeature": "建议新功能 ⚡",
-  "proposeFeatureText": "有一个绝妙的主意吗？与我们分享，共同塑造AI摘要助手的未来！📝",
-  "privacyNote": "隐私声明 🔒",
-  "privacyNoteText": "您的隐私是我们的首要任务。我们确保您的数据始终安全。🔑",
-  "funMessage": "通过AI摘要助手，体验更智能的浏览方式！🎉",
+  "proposeFeature": "提议功能 💡",
+  "proposeFeatureText": "有一个绝妙的想法吗？在[这里](https://yourproposefeaturelink.com)分享给我们，共同塑造AI摘要助手的未来！ 📝",
+  "privacyNote": "隐私说明 🔒",
+  "privacyNoteText": "您的隐私是我们的首要任务。我们确保您的数据始终归您所有。 🔑 [了解更多](privacy)",
+  "funMessage": "使用AI摘要助手，探索更智能的浏览方式！ 🎉",
   "changelog": "更新日志 📅",
   "changelogList": [
+    "添加了与您的阅读流程和AI摘要助手良好运作的兼容工具列表",
+    "文章历史 - 查看并搜索您的摘要",
     "新增提示 - 更加准确",
-    "支持本地LLMs - Ollama / Llama模型",
-    "更新以支持Mistral AI模型",
-    "更新至GPT4o迷你模型",
-    "用户界面更新 🎨"
+    "支持本地LLMs - [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)模型",
+    "更新以支持[Mistral AI](https://www.mistral.ai/)模型",
+    "更新至GPT4o mini模型",
+    "界面更新 🎨"
   ],
-  "aboutCreator": "关于创作者",
-  "creatorText": "嗨，Gumroad社区 :) - 我是Phil Wornath，AI摘要助手的创作者。作为一个热爱深入书写网络内容，特别是科学文章的人，我常常面临时间紧迫。这激励我开发一款增强生产力和阅读效率的工具。",
+  "aboutCreator": "关于创建者",
+  "creatorText": "大家好 :) - 我是Phil Wornath，AI摘要助手的创作者。作为一名热爱广泛书面内容，尤其是科学文章的人，我经常面临时间限制。这激励我开发一种工具，以提高生产力和阅读效率。",
   "whyHelper": "为什么选择AI摘要助手？",
   "whyHelperList": [
-    "重新夺回时间：快速生成摘要，或为后续深入阅读做准备。",
-    "量身定制：根据您的语言、职业或观点定制摘要。",
-    "保持组织：避免标签混乱，保持阅读清单可管理。",
-    "增强的阅读体验：专注于对您重要的内容，而不至于感到不堪重负。"
+    "重新掌控时间：快速生成摘要，或为将来的深度阅读做准备。",
+    "量身定制：根据您的语言、职业或观点自定义摘要。",
+    "保持组织性：避免标签混乱，保持阅读列表可管理。",
+    "增强阅读体验：专注于对您重要的内容，而不至于感到不堪重负。"
   ],
-  "getStarted": "立即开始",
-  "getStartedText": "要开始使用AI摘要助手，请确保您拥有OpenAI API密钥和充足的信用。加入我们，让网络阅读变得更简单和可及。在Gumroad上下载，转变您的浏览体验。",
+  "getStarted": "立即开始使用",
+  "getStartedText": "要开始使用AI摘要助手，请确保您有一个[OpenAI API密钥](https://platform.openai.com/account/api-keys)以及足够的信用。与我们一起，致力于让网络阅读更简单、更易于访问。立即在[Gumroad](https://gumroad.com/)上下载，改变您的浏览体验。",
   "feedbackSupport": "反馈与支持",
-  "feedbackSupportText": "我们很高兴邀请您尝试AI摘要助手，并欢迎您的反馈和问题。让我们一起让网络阅读更简单、更有趣。今天就使用AI摘要助手，提升您的在线阅读体验！"
+  "feedbackSupportText": "我们很高兴邀请您尝试AI摘要助手，欢迎您的反馈和问题。让我们共同使网络阅读变得更简单、更具吸引力。今天就用AI摘要助手提升您的在线阅读体验！",
+  "version": "1.0.1"
 }

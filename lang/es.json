@@ -1,40 +1,42 @@
 {
-  "version": "1.0.0",
-  "title": "Asistente de Resumen AI 🚀",
+  "title": "Asistente de Resúmenes AI 🚀",
   "about": "Acerca de 📖",
-  "aboutText": "Transforma tu navegación en una fuente de productividad con el Asistente de Resumen AI. ¡Nunca dejes que otro artículo se te escape! 🌟",
-  "features": "Características 🔍",
+  "aboutText": "Transforma tu navegación en una potencia de productividad con el Asistente de Resúmenes AI. ¡Nunca dejes que otro artículo se te escape! 🌟",
+  "features": "Características 🖥️",
   "featureList": [
     "Resume artículos con un toque personal ✨",
-    "Compatible con OpenAI, Mistral AI, Ollama (local) y más modelos",
+    "Soporta modelos como OpenAI, Mistral AI, Ollama (local) y más",
     "Integra resúmenes en tu flujo de lectura 📚",
-    "Lee en cualquier lugar: Comparte a Kindle con Reabble 📖",
-    "Multiplataforma: Generador de marcadores para todos los navegadores y sistemas operativos, incluyendo iOS."
+    "Lee en movimiento: Comparte a Kindle con [Reabble](https://send.reabble.com//) 📖",
+    "Multiplataforma: Generador de marcadores para todos los navegadores y sistemas operativos, incluyendo iOS/Android"
   ],
-  "proposeFeature": "Proponer una Función ⚡",
-  "proposeFeatureText": "¿Tienes una idea brillante? ¡Compártela con nosotros y da forma al futuro del Asistente de Resumen AI! 📝",
+  "proposeFeature": "Proponer una Función 🛠️",
+  "proposeFeatureText": "¿Tienes una idea brillante? Compártela con nosotros [aquí](https://yourproposefeaturelink.com) y ayuda a dar forma al futuro del Asistente de Resúmenes AI! 📝",
   "privacyNote": "Nota de Privacidad 🔒",
-  "privacyNoteText": "Tu privacidad es nuestra máxima prioridad. Aseguramos que tus datos se mantengan a salvo. 🔏",
-  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con el Asistente de Resumen AI! 🎉",
-  "changelog": "Registro de Cambios 📜",
+  "privacyNoteText": "Tu privacidad es nuestra máxima prioridad. Aseguramos que tus datos siguen siendo tuyos. 🔑 [Aprende más](privacy)",
+  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con el Asistente de Resúmenes AI! 🎉",
+  "changelog": "Registro de Cambios 📋",
   "changelogList": [
+    "Añadida lista de herramientas compatibles que se integran bien con tu flujo de lectura y el Asistente de Resúmenes AI",
+    "Historial de artículos - visualiza y busca a través de tus resúmenes",
     "Nuevos prompts - más precisos",
-    "Soporte para modelos LLM locales - Ollama / Llama",
-    "Actualizado para soportar el modelo Mistral AI",
+    "Soporte para LLMs Locales - modelos [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
+    "Actualización para soportar el modelo [Mistral AI](https://www.mistral.ai/)",
     "Actualizado a modelo GPT4o mini",
-    "Interfaz de usuario actualizada 🎨"
+    "Interfaz actualizada 🎨"
   ],
   "aboutCreator": "Acerca del Creador",
-  "creatorText": "Hola comunidad de Gumroad :) - Soy Phil Wornath, el creador del Asistente de Resumen AI. Como amante de los contenidos web extensos, especialmente de artículos científicos, a menudo enfrento limitaciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia en la lectura.",
-  "whyHelper": "¿Por qué elegir el Asistente de Resumen AI?",
+  "creatorText": "Hola comunidad :) - Soy Phil Wornath, el creador del Asistente de Resúmenes AI. Como amante del contenido extenso en la web, especialmente artículos científicos, a menudo enfrentaba limitaciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia en la lectura.",
+  "whyHelper": "¿Por qué el Asistente de Resúmenes AI?",
   "whyHelperList": [
-    "Recupera tu Tiempo: Genera resúmenes rápidos o prepárate para profundizar más tarde.",
-    "Personalizado para Ti: Adecúa los resúmenes según tu idioma, profesión o perspectiva.",
-    "Mantente Organizado: Evita las pestañas desordenadas y mantén tu lista de lecturas manejable.",
-    "Experiencia de Lectura Mejorada: Concéntrate en el contenido que te interesa sin sentirte abrumado."
+    "Recupera tu Tiempo: Genera resúmenes rápidos o prepárate para lecturas más profundas después.",
+    "Personalizado para Ti: Ajusta los resúmenes para que coincidan con tu lenguaje, profesión o punto de vista.",
+    "Mantente Organizado: Evita pestañas desordenadas y manten tu lista de lectura manejable.",
+    "Experiencia de Lectura Mejorada: Concéntrate en el contenido que te importa sin sentirte abrumado."
   ],
   "getStarted": "Empieza Hoy",
-  "getStartedText": "Para comenzar a usar el Asistente de Resumen AI, asegúrate de tener una clave API de OpenAI y suficiente crédito. Únete a nosotros para hacer que la lectura en la web sea más fácil y accesible para todos. Descárgalo ahora en Gumroad y transforma tu experiencia de navegación.",
+  "getStartedText": "Para comenzar a usar el Asistente de Resúmenes AI, asegúrate de tener una [clave API de OpenAI](https://platform.openai.com/account/api-keys) y suficiente crédito. Únete a nosotros para hacer que la lectura en la web sea más fácil y accesible para todos. Descarga ahora en [Gumroad](https://gumroad.com/) y transforma tu experiencia de navegación.",
   "feedbackSupport": "Comentarios y Soporte",
-  "feedbackSupportText": "Estamos emocionados de invitarte a probar el Asistente de Resumen AI y esperamos tus comentarios y preguntas. Hagamos que la lectura en la web sea más sencilla y atractiva. ¡Mejora tu experiencia de lectura en línea con el Asistente de Resumen AI hoy!"
+  "feedbackSupportText": "¡Estamos emocionados de invitarte a probar el Asistente de Resúmenes AI y esperamos tus comentarios y preguntas! Hagamos que la lectura en la web sea más simple y atractiva. Mejora tu experiencia de lectura en línea con el Asistente de Resúmenes AI hoy mismo!",
+  "version": "1.0.1"
 }

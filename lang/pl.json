@@ -1,40 +1,42 @@
 {
-  "title": "Pomocnik Streszczeń AI 🚀",
+  "title": "AI Podsumowania Pomocnik 🚀",
   "about": "O aplikacji 📖",
-  "aboutText": "Przekształć swoje przeglądanie w potęgę produktywności dzięki Pomocnikowi Streszczeń AI. Już nigdy więcej nie pozwól, aby jakiś artykuł umknął ci! 🌟",
-  "features": "Cechy 🔍",
+  "aboutText": "Zamień swoje przeglądanie w potęgę produktywności dzięki AI Podsumowania Pomocnik. Nigdy już nie pozwól, aby jakikolwiek artykuł umknął Twojej uwadze! 🌟",
+  "features": "Funkcje 🔍",
   "featureList": [
-    "Podsumuj artykuły z osobistym podejściem ✨",
-    "Wsparcie dla modeli OpenAI, Mistral AI, Ollama (lokalnie) i innych",
-    "Integracja podsumowań w twoim codziennym czytaniu 📚",
-    "Czytaj w drodze: Udostępnij na Kindle z Reabble 📖",
-    "Wieloplatformowość: Generator zakładek dla wszystkich przeglądarek i systemów operacyjnych, w tym iOS."
+    "Podsumowuj artykuły w osobisty sposób ✨",
+    "Wsparcie dla modeli OpenAI, Mistral AI, Ollama (lokalnie) i wielu innych",
+    "Integruj podsumowania w swoim przepływie czytania 📚",
+    "Czytaj w ruchu: Udostępniaj na Kindle za pomocą [Reabble](https://send.reabble.com//) 📖",
+    "Wieloplatformowość: Generator zakładek dla wszystkich przeglądarek i systemów operacyjnych, w tym iOS/Android"
   ],
-  "proposeFeature": "Proponuj funkcję 💡",
-  "proposeFeatureText": "Masz genialny pomysł? Podziel się nim z nami i kształtuj przyszłość Pomocnika Streszczeń AI! 📝",
+  "proposeFeature": "Zaproponuj Funkcję 💡",
+  "proposeFeatureText": "Masz doskonały pomysł? Podziel się nim z nami [tutaj](https://yourproposefeaturelink.com) i współtwórz przyszłość AI Podsumowania Pomocnik! 📝",
   "privacyNote": "Informacja o prywatności 🔒",
-  "privacyNoteText": "Twoja prywatność jest naszym najwyższym priorytetem. Zapewniamy, że twoje dane pozostają twoje. 🔑",
-  "funMessage": "Zanurz się w mądrzejszy sposób przeglądania z Pomocnikiem Streszczeń AI! 🎉",
+  "privacyNoteText": "Twoja prywatność jest dla nas najważniejsza. Zapewniamy, że Twoje dane pozostają Twoje. 🔑 [Dowiedz się więcej](privacy)",
+  "funMessage": "Zanurz się w inteligentniejszy sposób przeglądania z AI Podsumowania Pomocnik! 🎉",
   "changelog": "Historia zmian 📜",
   "changelogList": [
-    "Nowe komendy - bardziej precyzyjne",
-    "Wsparcie dla lokalnych LLM-ów - modele Ollama / Llama",
-    "Aktualizacja wsparcia dla modelu Mistral AI",
-    "Aktualizacja do modelu GPT-4o mini",
+    "Dodano listę zgodnych narzędzi, które dobrze integrują się z Twoim przepływem czytania i AI Podsumowania Pomocnik",
+    "Historia artykułów - przeglądaj i wyszukuj swoje podsumowania",
+    "Nowe wskazówki - bardziej dokładne",
+    "Wsparcie dla lokalnych LLM - modele [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
+    "Zaktualizowano wsparcie dla modelu [Mistral AI](https://www.mistral.ai/)",
+    "Zaktualizowano do modelu GPT4o mini",
     "Zaktualizowany interfejs użytkownika 🎨"
   ],
   "aboutCreator": "O twórcy",
-  "creatorText": "Cześć społeczności Gumroad :) - Jestem Phil Wornath, twórca Pomocnika Streszczeń AI. Jako miłośnik obszernej treści pisanej w sieci, szczególnie artykułów naukowych, często zmagałem się z ograniczeniem czasowym. To zainspirowało mnie do stworzenia narzędzia, które zwiększa produktywność i efektywność czytania.",
-  "whyHelper": "Dlaczego Pomocnik Streszczeń AI?",
+  "creatorText": "Cześć społeczności :) - Jestem Phil Wornath, twórcą AI Podsumowania Pomocnik. Jako miłośnik obszernej pisanej treści w sieci, szczególnie artykułów naukowych, często borykałem się z ograniczeniem czasowym. To zainspirowało mnie do stworzenia narzędzia, które zwiększa produktywność i efektywność czytania.",
+  "whyHelper": "Dlaczego AI Podsumowania Pomocnik?",
   "whyHelperList": [
-    "Odzyskaj swój czas: Generuj szybkie podsumowania lub przygotuj się na głębsze zanurzenie później.",
+    "Odzyskaj swój czas: Generuj szybkie podsumowania lub przygotuj się na głębsze zanurzenie w późniejszym czasie.",
     "Dopasowane do Ciebie: Dostosuj podsumowania do swojego języka, zawodu lub punktu widzenia.",
-    "Zachowaj porządek: Unikaj przeładowanych zakładek i utrzymuj swoją listę do czytania w porządku.",
-    "Ulepszona przyjemność z czytania: Skup się na treści, która ma dla Ciebie znaczenie, bez przytłoczenia."
+    "Zachowaj porządek: Unikaj zagraconych zakładek i zachowaj zarządzalność swojej listy czytania.",
+    "Zwiększone wrażenia z czytania: Skup się na treści, która ma dla Ciebie znaczenie, bez przytłaczania."
   ],
-  "getStarted": "Rozpocznij już dziś",
-  "getStartedText": "Aby zacząć korzystać z Pomocnika Streszczeń AI, upewnij się, że masz klucz API OpenAI i wystarczający kredyt. Dołącz do nas w upraszczaniu czytania w sieci i spraw, aby było bardziej dostępne dla wszystkich. Pobierz teraz na Gumroad i przekształć swoje doświadczenie przeglądania.",
+  "getStarted": "Zacznij już dziś",
+  "getStartedText": "Aby rozpocząć korzystanie z AI Podsumowania Pomocnik, upewnij się, że masz [klucz API OpenAI](https://platform.openai.com/account/api-keys) oraz odpowiednie środki. Dołącz do nas, aby ułatwić i uczynić czytanie w internecie bardziej dostępnym dla wszystkich. Pobierz teraz na [Gumroad](https://gumroad.com/) i przekształć swoje doświadczenie przeglądania.",
   "feedbackSupport": "Opinie i wsparcie",
-  "feedbackSupportText": "Cieszymy się, że możemy zaprosić Cię do wypróbowania Pomocnika Streszczeń AI i oczekujemy na Twoje opinie i pytania. Uczyńmy czytanie w sieci prostszym i bardziej angażującym. Ulepsz swoje doświadczenie czytania online z Pomocnikiem Streszczeń AI już dziś!",
-  "version": "1.0.0"
+  "feedbackSupportText": "Z radością zapraszamy Cię do wypróbowania AI Podsumowania Pomocnik i czekamy na Twoje opinie oraz pytania. Uczyńmy czytanie w sieci prostszym i bardziej angażującym. Zwiększ swoje doświadczenie czytania online z AI Podsumowania Pomocnik już dziś!",
+  "version": "1.0.1"
 }
