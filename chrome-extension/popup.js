@@ -15,6 +15,10 @@ function init() {
       });
     }
   });
+  // output entire local storage
+  chrome.storage.sync.get(null, (data) => {
+    console.log('All settings:', data);
+  });
 }
 
 fetch(chrome.runtime.getURL('manifest.json'))
@@ -147,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!data.apiKey) {
       const toastMessage = document.createElement('div');
       toastMessage.className = 'toast-message';
-      toastMessage.textContent = 'To fetch summaries, set your API key in settings ⤴️';
+      toastMessage.textContent = 'To fetch summaries, set your API key in settings ⤴';
       document.body.appendChild(toastMessage);
 
       // Optionally, remove the toast after a few seconds
@@ -172,11 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function loadHistory() {
     chrome.storage.local.get({ articles: [] }, (data) => {
       const articleList = document.getElementById('articleList');
+      articleList.innerHTML = ''; // Clear existing articles
 
-      if (data.articles.length === 0) {
-        // Display a fun message if there are no articles
+      console.log('Articles loaded:', data.articles); // Debugging: Log all articles
+
+      if (data.articles.length === 0 && !document.querySelector('#emptyMessage')) {
         const emptyMessage = document.createElement('div');
-        emptyMessage.classList.add('empty-message');
+        emptyMessage.id = 'emptyMessage';
         emptyMessage.innerHTML = `
           <p>🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵</p>
         `;
@@ -186,7 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sortedArticles = data.articles.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
         sortedArticles.forEach((article, index) => {
-          const articleHeader = article.content.substring(0, 50) + '...';
+          console.log(`Processing article ${index + 1}:`, article); // Debugging: Log each article
+
+          const articleHeader = article.title || article.content.split('\n')[0] || "No title available";
           const listItem = document.createElement('li');
           listItem.classList.add('article-card');
           const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, {
@@ -199,24 +207,16 @@ document.addEventListener('DOMContentLoaded', () => {
             minute: '2-digit'
           });
 
-          // Extract domain name from URL if available
-          let domainName = 'Unknown Source';
-          let urlLink = '';
+          let articleDomain = '';
           if (article.url) {
-            try {
-              const url = new URL(article.url);
-              domainName = url.hostname;
-              urlLink = `<a href="${article.url}" target="_blank">${domainName}</a>`;
-            } catch (e) {
-              console.error('Invalid URL:', article.url);
-            }
+            articleDomain = new URL(article.url).hostname;
           }
 
           listItem.innerHTML = `
             <div class="article-header">
               <div>
                 <h4>${articleHeader}</h4>
-                <p class="article-date">💾 ${formattedDate} at ${formattedTime}</p>
+                <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}
               </div>
               <button class="button-secondary expand-button">Expand</button>
             </div>
@@ -224,115 +224,114 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="button-secondary share-button">Share 🔗</button>
               <button class="button-secondary open-button">Read 👓</button>
               <button class="delete-button" aria-label="Delete article">🗑️</button>
-              <p><strong>Summary:</strong> ${article.summary}</p>
-              <p><strong>Content:</strong> ${article.content}</p>
+              <p><strong>Description:</strong> ${article.description || 'No description available'}</p>
+              <p><strong>Summary:</strong> ${article.summary || 'No summary available'}</p>
+              <p><strong>Content:</strong> ${article.content || 'No content available'}</p>
             </div>
           `;
           articleList.appendChild(listItem);
 
+          // Safely add event listeners
           const expandButton = listItem.querySelector('.expand-button');
           const articleContent = listItem.querySelector('.article-content');
           const openButton = listItem.querySelector('.open-button');
           const shareButton = listItem.querySelector('.share-button');
           const deleteButton = listItem.querySelector('.delete-button');
 
-          // Add event listener to the entire card
-          listItem.addEventListener('click', (event) => {
-            // Prevent the event from triggering when clicking on buttons inside the card
-            if (event.target.tagName === 'BUTTON') return;
+          if (expandButton && articleContent) {
+            expandButton.addEventListener('click', () => {
+              const isVisible = articleContent.style.display === 'block';
+              articleContent.style.display = isVisible ? 'none' : 'block';
+              expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
+            });
+          }
 
-            const isVisible = articleContent.style.display === 'block';
-            articleContent.style.display = isVisible ? 'none' : 'block';
-            expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
-          });
+          if (openButton) {
+            openButton.addEventListener('click', () => {
+              const newTab = window.open();
+              newTab.document.write(`
+                <html>
+                  <head>
+                    <title>Article Details</title>
+                    <style>
+                      body {
+                        font-family: 'Georgia', serif;
+                        padding: 20px;
+                        max-width: 800px;
+                        margin: auto;
+                        background-color: #f4f4f4;
+                        color: #333;
+                        line-height: 1.6;
+                      }
+                      h2 {
+                        color: #444;
+                      }
+                      p, pre {
+                        line-height: 1.6;
+                      }
+                      pre {
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
+                      }
+                    </style>
+                  </head>
+                  <body>
+                    <h2>Summary</h2>
+                    <p>${article.summary}</p>
+                    <h2>Content</h2>
+                    <pre>${article.content}</pre>
+                  </body>
+                </html>
+              `);
+              newTab.document.close();
+            });
+          }
 
-          expandButton.addEventListener('click', () => {
-            const isVisible = articleContent.style.display === 'block';
-            articleContent.style.display = isVisible ? 'none' : 'block';
-            expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
-          });
+          if (shareButton) {
+            shareButton.addEventListener('click', () => {
+              if (navigator.share) {
+                const summaryText = article.summary.replace(/<[^>]*>/g, '').trim();
+                const shareData = {
+                  title: `📄 ${article.title || 'No title available'}`,
+                  url: article.url,
+                  text: `🪄${summaryText || 'No summary available'}`
+                };
+                navigator.share(shareData)
+                  .then(() => {
+                    console.log('Article shared successfully');
+                  })
+                  .catch((error) => {
+                    console.error('Error sharing article:', error);
+                  });
+              } else {
+                console.error('Web Share API not supported in this browser');
+              }
+            });
+          }
 
-          openButton.addEventListener('click', () => {
-            const newTab = window.open();
-            newTab.document.write(`
-              <html>
-                <head>
-                  <title>Article Details</title>
-                  <style>
-                    body {
-                      font-family: 'Georgia', serif;
-                      padding: 20px;
-                      max-width: 800px;
-                      margin: auto;
-                      background-color: #f4f4f4;
-                      color: #333;
-                      line-height: 1.6;
-                    }
-                    h2 {
-                      color: #444;
-                    }
-                    p, pre {
-                      line-height: 1.6;
-                    }
-                    pre {
-                      white-space: pre-wrap;
-                      word-wrap: break-word;
-                    }
-                  </style>
-                </head>
-                <body>
-                  <h2>Summary</h2>
-                  <p>${article.summary}</p>
-                  <h2>Content</h2>
-                  <pre>${article.content}</pre>
-                </body>
-              </html>
-            `);
-            newTab.document.close();
-          });
-
-
-          shareButton.addEventListener('click', () => {
-            if (navigator.share) {
-              // Use Markdown-like syntax for formatting
-              const summaryText = `**Summary:** ${article.summary.replace(/<[^>]*>/g, '')}`;
-              const contentText = `**Content:** ${article.content.replace(/<[^>]*>/g, '')}`;
-              navigator.share({
-                title: 'Article from AI Summary Helper',
-                text: `${summaryText}\n\n${contentText}`,
-                url: article.url
-              }).then(() => {
-                console.log('Article shared successfully');
-              }).catch((error) => {
-                console.error('Error sharing article:', error);
-              });
-            } else {
-              console.error('Web Share API not supported in this browser');
-            }
-          });
-
-
-          deleteButton.addEventListener('click', function () {
-            if (confirm('Are you sure you want to delete this article?')) {
-              // Retrieve the articles array from storage
-              chrome.storage.local.get('articles', (data) => {
-                const articles = data.articles || [];
-
-                // Use a unique identifier for each article, such as a timestamp or a unique ID
-                const updatedArticles = articles.filter((item) => item.timestamp !== article.timestamp);
-
-                // Save the updated list back to local storage
-                chrome.storage.local.set({ articles: updatedArticles }, () => {
-                  console.log('Article deleted successfully');
-                  loadHistory(); // Refresh the archive list
+          if (deleteButton) {
+            deleteButton.addEventListener('click', function () {
+              if (confirm('Are you sure you want to delete this article?')) {
+                chrome.storage.local.get('articles', (data) => {
+                  const articles = data.articles || [];
+                  const updatedArticles = articles.filter((item) => item.timestamp !== article.timestamp);
+                  chrome.storage.local.set({ articles: updatedArticles }, () => {
+                    console.log('Article deleted successfully');
+                    loadHistory(); // Refresh the archive list
+                  });
                 });
-              });
+              }
+            });
+          }
+
+          // Make the entire card clickable
+          listItem.addEventListener('click', (event) => {
+            if (!event.target.classList.contains('expand-button')) {
+              const isVisible = articleContent.style.display === 'block';
+              articleContent.style.display = isVisible ? 'none' : 'block';
+              expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
             }
           });
-
-
-
-
         });
       }
     });
@@ -529,6 +528,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, (response) => {
           if (response && response.success) {
             console.log('Summary fetched successfully:', response.message);
+
+            // Display additional data
+            displayArticleDetails(response.data);
           } else {
             console.error('Failed to fetch summary:', response ? response.message : 'No response');
           }
@@ -540,6 +542,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // Function to display article details in the popup
+  function displayArticleDetails(data) {
+    const articleDetailsContainer = document.getElementById('articleDetails');
+    articleDetailsContainer.innerHTML = `
+      <h3>Article Details</h3>
+      <p><strong>Title:</strong> ${data.title || 'No title available'}</p>
+      <p><strong>Description:</strong> ${data.description || 'No description available'}</p>
+      <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+    `;
+  }
 
   // Fetch languages from the JSON file
   fetch('translations.json')
@@ -725,7 +738,6 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.addEventListener('input', debouncedSave);
   });
 
-  const apiKeyLinkContainer = document.getElementById('apiKeyLinkContainer');
   const apiKeyLink = document.getElementById('apiKeyLink');
 
   // Function to update the API key link based on the selected model
@@ -741,7 +753,6 @@ document.addEventListener('DOMContentLoaded', () => {
       linkHtml = ''; // Clear the link if no valid model is selected
     }
     apiKeyLink.innerHTML = linkHtml;
-    apiKeyLinkContainer.style.display = linkHtml ? 'block' : 'none';
   }
 
   // Update the link when the model changes

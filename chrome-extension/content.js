@@ -1,16 +1,14 @@
 // Define the donation messages
 const donationMessages = [
-  "Like the extension? Help me brew new ideas with a soothing cup of tea! 🍵",
-  "Love the extension? Help me upgrade my workspace with a new plant! 🌿",
-  "Want to support? Buy me a book to inspire the next feature! 📚",
-  "Supporting my work? Help me fund a tiny house to code in peace! 🏡",
-  "Love this project? Get me closer to my goal of relocating into a sailboat! 🚤",
+  "Help me brew new ideas with a soothing cup of tea! 🍵",
+  "Help me upgrade my workspace with a new plant! 🌿",
+  "Help me fund a tiny house to code in peace! 🏡",
+  "Get me closer to my goal of relocating into a sailboat! 🚤",
   "Feeling generous? A pizza would definitely boost my brainstorming sessions! 🍕",
-  "Enjoying the tool? Help me turn my remote work into a van life adventure! 🚐",
-  "Happy with the tool? Your support can help me build my tiny home! 🏠",
-  "Appreciate the extension? Buy me a kayak to paddle through my creative process! 🛶",
-  "Like innovation? Support my mission to design from the deck of a boat! ⛴️",
-  "Enjoying the tool? Get me a smoothie to recharge my problem-solving skills! 🥤"
+  "Help me turn my remote work into a van life adventure! 🚐",
+  "Your support can help me build my tiny home! 🏠",
+  "Help me get a kayak to paddle through my creative process! 🛶",
+  "Get me a smoothie to recharge my problem-solving skills! 🥤"
 ];
 
 // Function to get a random donation message
@@ -59,6 +57,18 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   // Fetch content before showing the placeholder
   const content = getAllTextContent();
   console.debug('Fetched content:', content);
+
+  // Capture the current page URL
+  const pageUrl = window.location.href;
+  console.debug('Page URL:', pageUrl);
+
+  // Capture the page title
+  const pageTitle = document.title;
+  console.debug('Page Title:', pageTitle);
+
+  // Capture the meta description
+  const metaDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || 'No description available';
+  console.debug('Meta Description:', metaDescription);
 
   // Show placeholder after fetching content
   const donationMessage = getRandomDonationMessage();
@@ -122,7 +132,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         const messageContainer = document.createElement('div');
         messageContainer.innerHTML = `
         <p>Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a></p>
-        <p>${donationMessage} - <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Donate here</a></p>
+        <p>${donationMessage} - <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Support AI Summary Helper</a></p>
         `;
 
         const response = await fetch(apiUrl, {
@@ -158,7 +168,8 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         // remove placeholder from content 
         const placeholderInContent = content.replace(/<div class="placeholder">.*<\/div>/, '');
 
-        saveToLocalStorage(content, summary);
+        // Save additional details to local storage
+        saveToLocalStorage(content, summary, pageUrl, pageTitle, metaDescription);
 
         const summaryContainer = document.createElement('blockquote');
         summaryContainer.innerHTML = `
@@ -176,10 +187,10 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   });
 }
 
-// Function to save content and summary to local storage
-function saveToLocalStorage(content, summary) {
+// Function to save content, summary, URL, title, and description to local storage
+function saveToLocalStorage(content, summary, url, title, description) {
   const timestamp = new Date().toISOString();
-  const articleData = { content, summary, timestamp };
+  const articleData = { content, summary, url, title, description, timestamp };
 
   chrome.storage.local.get({ articles: [] }, (data) => {
     const articles = data.articles;
@@ -264,7 +275,7 @@ function showPlaceholder(targetElement, donationMessage) {
     <div style="font-size: 24px; color: ${textColor} !important;">Fetching summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span></div>
     <div style="font-size: 16px; margin-top: 10px; font-weight: bold;">
     Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank" style="color: ${linkColor} !important; font-weight: bold;">contact me</a>
-      >${donationMessage} <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Donate here</a><br>
+      ${donationMessage} <a href="https://link.philwornath.com/?source=aish#donate" style="color: ${linkColor} !important; font-weight: bold;" target="_blank">Support AI Summary Helper</a><br>
     </div>
   `;
 

@@ -2,13 +2,12 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.16",
+  "version": "1.5.17",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
     "activeTab",
-    "storage",
-    "http://localhost/*"
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"
@@ -35,5 +34,8 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }

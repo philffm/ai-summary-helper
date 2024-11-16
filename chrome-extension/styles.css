@@ -101,6 +101,12 @@ body {
   width: 100%;
 }
 
+a {
+  color: var(--color-on-solid-light);
+  text-decoration: underline;
+  text-decoration-color: var(--color-on-solid-light);
+}
+
 .donate a {
   color: var(--color-on-solid-light);
   text-decoration: underline;

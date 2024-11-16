@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>AI Summary Helper</title>
     <link rel="stylesheet" href="styles.css" />
+
   </head>
   <body>
     <div class="header">
@@ -114,13 +115,5 @@
       <ul id="articleList"></ul>
     </div>
     <script src="popup.js"></script>
-    <script>
-      document.addEventListener('keydown', (event) => {
-        if (event.metaKey && event.key === 'f') { // Check for ⌘ + F
-          event.preventDefault(); // Prevent the default find action
-          document.getElementById('searchInput').focus(); // Focus the search input
-        }
-      });
-    </script>
   </body>
 </html>
