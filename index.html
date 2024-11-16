@@ -56,23 +56,23 @@
                 document.getElementById('metaDescription').setAttribute('content', data.aboutText);
 
                 document.getElementById('title').textContent = data.title;
-                document.getElementById('aboutText').textContent = data.aboutText;
+                document.getElementById('aboutText').innerHTML = convertMarkdownLinks(data.aboutText);
 
                 const featureList = document.getElementById('featureList');
                 featureList.innerHTML = data.featureList.map(item => `
                     <div class="feature-card">
-                        ${item}
+                        ${convertMarkdownLinks(item)}
                     </div>
                 `).join('');
 
                 document.getElementById('proposeFeature').textContent = data.proposeFeature;
-                document.getElementById('proposeFeatureText').textContent = data.proposeFeatureText;
+                document.getElementById('proposeFeatureText').innerHTML = convertMarkdownLinks(data.proposeFeatureText);
                 document.getElementById('privacyNote').textContent = data.privacyNote;
-                document.getElementById('privacyNoteText').textContent = data.privacyNoteText;
+                document.getElementById('privacyNoteText').innerHTML = convertMarkdownLinks(data.privacyNoteText);
                 document.getElementById('funMessage').textContent = data.funMessage;
 
                 const changelogList = document.getElementById('changelogList');
-                changelogList.innerHTML = data.changelogList.map(item => `<li>${item}</li>`).join('');
+                changelogList.innerHTML = data.changelogList.map(item => `<li>${convertMarkdownLinks(item)}</li>`).join('');
 
                 document.getElementById('aboutCreator').textContent = data.aboutCreator;
                 document.getElementById('creatorText').textContent = data.creatorText;
@@ -80,19 +80,22 @@
                 document.getElementById('changelog').textContent = data.changelog;
                 document.getElementById('whyHelper').textContent = data.whyHelper;
                 document.getElementById('whyHelperList').textContent = data.whyHelperList;
-                
 
                 const whyHelperList = document.getElementById('whyHelperList');
-                whyHelperList.innerHTML = data.whyHelperList.map(item => `<li>${item}</li>`).join('');
+                whyHelperList.innerHTML = data.whyHelperList.map(item => `<li>${convertMarkdownLinks(item)}</li>`).join('');
 
                 document.getElementById('getStarted').textContent = data.getStarted;
-                document.getElementById('getStartedText').textContent = data.getStartedText;
+                document.getElementById('getStartedText').innerHTML = convertMarkdownLinks(data.getStartedText);
                 document.getElementById('feedbackSupport').textContent = data.feedbackSupport;
-                document.getElementById('feedbackSupportText').textContent = data.feedbackSupportText;
+                document.getElementById('feedbackSupportText').innerHTML = convertMarkdownLinks(data.feedbackSupportText);
 
             } catch (error) {
                 console.error('Error loading content:', error);
             }
+        }
+
+        function convertMarkdownLinks(text) {
+            return text.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
         }
 
         async function createLanguageButtons() {
