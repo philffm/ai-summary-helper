@@ -6,6 +6,7 @@
     <title id="metaTitle">AI Summary Helper</title>
     <meta id="metaDescription" name="description" content="AI Summary Helper enhances your browsing experience.">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- hreflang tags -->
     <link rel="alternate" href="https://philffm.github.io/ai-summary-helper/?lang=en" hreflang="en">
@@ -187,34 +188,31 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.querySelector('.feature-cards-container');
-            const cards = container.querySelectorAll('.feature-card');
+            const cards = Array.from(container.querySelectorAll('.feature-card'));
             let scrollAmount = 0;
             const scrollStep = 1; // Adjust this value to control the speed
             const scrollInterval = 20; // Adjust this value to control the smoothness
 
+            // Duplicate the cards to create an infinite loop effect
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                container.appendChild(clone);
+                console.log(clone);
+            });
+
+            // Auto-scroll function
             function autoScroll() {
                 scrollAmount += scrollStep;
-                container.scrollLeft = scrollAmount;
-
-                if (scrollAmount >= container.scrollWidth - container.clientWidth) {
-                    scrollAmount = 0; // Reset to start scrolling from the beginning
+                if (scrollAmount >= container.scrollWidth / 2) {
+                    scrollAmount = 0; // Reset scroll amount to loop
                 }
-
-                resizeCards();
-            }
-
-            function resizeCards() {
-                const containerCenter = container.clientWidth / 2;
-                cards.forEach(card => {
-                    const cardRect = card.getBoundingClientRect();
-                    const cardCenter = cardRect.left + cardRect.width / 2;
-                    const distanceFromCenter = Math.abs(containerCenter - cardCenter);
-                    const scale = Math.max(1, 1.5 - distanceFromCenter / containerCenter);
-                    card.style.transition = 'transform 0.3s ease';
-                    card.style.transform = `scale(${scale})`;
+                container.scrollTo({
+                    left: scrollAmount,
+                    behavior: 'smooth' // Smooth scrolling
                 });
             }
 
+            // Start auto-scrolling
             setInterval(autoScroll, scrollInterval);
 
             const languageMenuButton = document.getElementById('languageMenuButton');
@@ -249,6 +247,7 @@
                 })
                 .catch(error => console.error('Error loading languages:', error));
         });
+
     </script>
 
     <!-- Matomo -->
@@ -285,8 +284,11 @@
             <!-- Language options will be dynamically inserted here -->
         </div>
         <section id="features-section">
-            <div id="featureList" class="feature-cards-container">
-                <!-- Feature cards will be dynamically inserted here -->
+            <!-- Optional: Scroll Buttons -->
+            <div class="feature-cards-wrapper">
+                <div id="featureList" class="feature-cards-container">
+                    <!-- Feature cards will be dynamically inserted here -->
+                </div>
             </div>
         </section>
         <div class="window-content">

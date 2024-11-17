@@ -1,13 +1,13 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+    font-family: 'Roboto', 'Lato', 'Arial', sans-serif;
+    font-size: 18px;
     padding: 0;
     background-color: #f4f4f9;
     color: #333;
 }
 
 .window-frame {
-    max-width: 800px;
+    max-width: 900px;
     margin: 20px auto;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -55,7 +55,7 @@ body {
 }
 
 .window-content {
-    padding: 20px;
+    padding: 0 40px;
 }
 
 .language-section {
@@ -82,7 +82,7 @@ body {
     z-index: 1000;
     opacity: 0;
     transform: scale(0.9);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .language-menu.show {
@@ -97,11 +97,11 @@ body {
     background-color: #f4f4f9;
     color: #333;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
     text-align: center;
     opacity: 0;
     transform: translateX(-20px);
-    animation: flyIn 0.5s forwards;
+    animation: flyIn 0.3s forwards;
     animation-delay: var(--delay);
 }
 
@@ -210,15 +210,9 @@ footer {
 }
 
 .secondary-option {
-    display: block;
-    text-align: center;
-    margin: 10px auto;
     padding: 12px 12px;
     background-color: #e0e0e0;
     color: #333;
-    text-decoration: none;
-    border-radius: 20px;
-    transition: background-color 0.3s, transform 0.2s;
     font-size: 16px;
 }
 
@@ -238,41 +232,41 @@ footer {
     transform: scale(0.95);
 }
 
-/* New styles for feature cards */
+/* Updated styles for feature cards slider */
 .feature-cards-container {
     display: flex;
-    overflow-x: auto;
-    padding: 24px 56px;
+    padding: 40px 32px;
+    overflow: scroll;
     gap: 24px;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
+}
+
+.feature-cards-container::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }
 
 .feature-card {
     flex: 0 0 auto;
-    width: 200px;
-    text-wrap: balance;
+    width: 250px;
+    /* Increased width for better visibility */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 10px 0;
-    transition: transform 0.3s ease;
-    font-size: 18px;
-    display: inline-block;
-    margin-right: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 24px;
+    text-wrap: auto;
 }
 
 .feature-card:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .feature-card h3 {
     margin-top: 0;
-    font-size: 18px;
+    font-size: 20px;
     color: #0078d7;
 }
 
@@ -298,12 +292,74 @@ footer {
     position: absolute;
     left: 0;
     top: 0;
+    color: #ffd700;
 }
 
 .middle-card {
     transform: scale(1.2);
     transition: transform 0.3s ease-in-out;
 }
+
+/* Enhanced styles for better responsiveness and aesthetics */
+
+/* Feature Cards Scroll Snap */
+.feature-cards-container {
+    scroll-snap-type: x mandatory;
+}
+
+
+/* Adjust padding for smaller screens */
+@media (max-width: 1024px) {
+    .feature-cards-container {
+        padding: 20px 30px;
+        gap: 20px;
+    }
+
+    .feature-card {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-cards-container {
+        padding: 16px 20px;
+        gap: 16px;
+    }
+
+    .feature-card {
+        width: 150px;
+        padding: 15px;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        font-size: 12px;
+    }
+}
+
+/* Optional: Add scroll buttons for better UX */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 120, 215, 0.8);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.slider-button:hover {
+    background-color: rgba(0, 120, 215, 1);
+}
+
+
 
 /* Styles for the article view */
 article {
