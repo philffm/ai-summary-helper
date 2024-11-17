@@ -1,5 +1,5 @@
 {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "languages": [
         {
             "code": "en",
@@ -124,18 +124,22 @@
             "Read on the go: Share to Kindle with [Reabble](https://send.reabble.com/) 📖",
             "Cross-Platform: Bookmarklet Generator for all browsers and OS, including iOS/Android"
         ],
+        "localizedFeature": {
+            "headline": "Read and Understand Articles in English – Effortlessly! 🌍",
+            "text": "<p>Imagine browsing through a sea of articles online, trying to keep up with your favorite blogs, news outlets, or research papers. It’s a challenge, right? Not anymore. With <strong>AI Summary Helper</strong>, you can dive straight into the essence of any article, summarized just for you in English.</p><p>Whether you're tackling a 10-page research paper or the latest trending blog, AI Summary Helper is here to save the day. For example, imagine a science article explaining how black holes affect time. Instead of wading through pages of astrophysics jargon, you get a concise, easy-to-digest summary:</p><blockquote>Black holes warp time through intense gravitational pull. Clocks closer to the black hole run slower compared to those farther away, a phenomenon explained by Einstein's theory of relativity.</blockquote><p>Simple, isn’t it? And not just summaries! Tailor them to suit your needs – want a business angle, an academic focus, or a casual breakdown? You’re in control.</p><h3>How does this work in practice?</h3><ul><li>A food blogger's in-depth recipe? Summarized into quick prep instructions.</li><li>A lengthy editorial on the economy? Key takeaways extracted for your busy schedule.</li><li>Curious about Shakespeare? Get the plot of Macbeth in three lines.</li></ul><p>AI Summary Helper doesn’t just help you understand; it enhances how you absorb information. Whether you’re a professional, student, or curious learner, English content now flows into your brain effortlessly.</p><p>Say goodbye to cluttered tabs and missed reads. Start a smarter way to browse the web with AI Summary Helper today! 🚀</p>"
+        },
         "proposeFeature": "Propose a Feature 💡",
-        "proposeFeatureText": "Got a brilliant idea? Share it with us [here](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp) and shape the future of AI Summary Helper! 💬",
+        "proposeFeatureText": "Got a brilliant idea? Share it with us <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">here</a> and shape the future of AI Summary Helper! 💬",
         "privacyNote": "Privacy Note 🔒",
-        "privacyNoteText": "Your privacy is our top priority. We ensure your data stays yours. 🔐 [Learn more](privacy)",
+        "privacyNoteText": "Your privacy is our top priority. We ensure your data stays yours. 🔐 <a href=\"privacy\">Learn more</a>",
         "funMessage": "Dive into a smarter way of browsing with AI Summary Helper! 🎉",
         "changelog": "Changelog 🆕",
         "changelogList": [
             "Added list of compatible tools that integrate well with your reading flow and AI Summary Helper",
             "History of articles - view and search through your summaries",
             "New prompts - more accurate",
-            "Support for Local LLMs - [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/) models",
-            "Updated to support [Mistral AI](https://www.mistral.ai/) model",
+            "Support for Local LLMs - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> models",
+            "Updated to support <a href=\"https://www.mistral.ai/\">Mistral AI</a> model",
             "Updated to GPT4o mini model",
             "Updated UI 🎨"
         ],
@@ -149,7 +153,7 @@
             "Enhanced Reading Experience: Focus on the content that matters to you without getting overwhelmed."
         ],
         "getStarted": "Get Started Today",
-        "getStartedText": "To start using AI Summary Helper, ensure you have an [OpenAI API key](https://platform.openai.com/account/api-keys) and sufficient credit. Join us in making web reading easier and more accessible for everyone. Download now on [Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper) and transform your browsing experience.",
+        "getStartedText": "To start using AI Summary Helper, ensure you have an <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API key</a> and sufficient credit. Join us in making web reading easier and more accessible for everyone. Download now on <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> and transform your browsing experience.",
         "feedbackSupport": "Feedback and Support",
         "feedbackSupportText": "We're excited to invite you to try AI Summary Helper and welcome your feedback and questions. Let's make reading on the web simpler and more engaging. Enhance your online reading experience with AI Summary Helper today!"
     }
