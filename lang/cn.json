@@ -1,42 +1,46 @@
 {
   "title": "AI摘要助手 🚀",
-  "about": "关于我们 📖",
-  "aboutText": "使用AI摘要助手，将您的浏览变成高效生产力的动力场。再也不让任何文章从指尖溜走！ 🌟",
-  "features": "功能特点 🛠️",
+  "about": "关于 📖",
+  "aboutText": "通过AI摘要助手将您的浏览体验变成生产力的强大工具。再也不让一篇文章被忽视！🌟",
+  "features": "功能 🔍",
   "featureList": [
-    "为文章提供个性化摘要 ✨",
-    "支持OpenAI、Mistral AI、Ollama（本地）等模型",
-    "将摘要融入你的阅读流程 📚",
+    "个性化文章摘要 ✨",
+    "支持OpenAI、Mistral AI、Ollama（本地）等多种模型",
+    "将摘要集成到您的阅读流程中 📚",
     "随时随地阅读：通过[Reabble](https://send.reabble.com/)分享至Kindle 📖",
     "跨平台：适用于所有浏览器和操作系统的书签生成器，包括iOS/Android"
   ],
+  "localizedFeature": {
+    "headline": "轻松阅读和理解英文文章！🌍",
+    "text": "<p>想象一下在浩瀚的在线文章中浏览，苦苦跟上你最喜欢的博客、新闻网站或研究论文。这是一个挑战，对吧？现在不再是了。通过<strong>AI摘要助手</strong>，您可以直接深入任何文章的精髓，为您特别总结的内容。</p><p>无论您面对的是10页的研究论文还是最新的热门博客，AI摘要助手将为您提供帮助。例如，想象一下，科学文章解释黑洞如何影响时间。您无需翻阅难懂的天体物理学术语，而是获得一个简洁、易于理解的摘要：</p><blockquote>黑洞通过强大的引力使时间变形。靠近黑洞的时钟比远离黑洞的时钟走得慢，这是爱因斯坦相对论的现象。</blockquote><p>简单吧？而且不仅是摘要！您可以根据需要定制它们——想要商业视角、学术焦点或休闲解析？您掌控一切。</p><h3>这在实践中如何运作？</h3><ul><li>食品博主的详细食谱？总结成快速准备说明。</li><li>关于经济的冗长社论？为您的忙碌日程提取关键要点。</li><li>对莎士比亚感到好奇？用三句话讲述《麦克白》的情节。</li></ul><p>AI摘要助手不仅帮助您理解；它增强了您吸收信息的方式。无论您是专业人士、学生还是好奇的学习者，英文内容现在可以轻松流入您的脑海。</p><p>与繁杂的标签和错过的阅读说再见。今天就用AI摘要助手开始更智能的网络浏览吧！🚀</p>"
+  },
   "proposeFeature": "提议功能 💡",
-  "proposeFeatureText": "有一个绝妙的想法吗？在[这里](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp)分享给我们，共同塑造AI摘要助手的未来！ 📝",
-  "privacyNote": "隐私说明 🔒",
-  "privacyNoteText": "您的隐私是我们的首要任务。我们确保您的数据始终归您所有。 🔑 [了解更多](privacy)",
-  "funMessage": "使用AI摘要助手，探索更智能的浏览方式！ 🎉",
-  "changelog": "更新日志 📅",
+  "proposeFeatureText": "有个绝妙的想法吗？请在<a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">这里</a>与我们分享，共同塑造AI摘要助手的未来！📝",
+  "privacyNote": "隐私声明 🔐",
+  "privacyNoteText": "您的隐私是我们的首要任务。我们确保您的数据保持私密。🔒 <a href=\"privacy\">了解更多</a>",
+  "funMessage": "用AI摘要助手开启更智能的浏览体验吧！🎉",
+  "changelog": "版本更新 📜",
   "changelogList": [
-    "添加了与您的阅读流程和AI摘要助手良好运作的兼容工具列表",
-    "文章历史 - 查看并搜索您的摘要",
-    "新增提示 - 更加准确",
-    "支持本地LLMs - [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)模型",
-    "更新以支持[Mistral AI](https://www.mistral.ai/)模型",
+    "添加了与您的阅读流程和AI摘要助手兼容的工具列表",
+    "文章历史 - 查看和搜索您的摘要",
+    "新提示 - 更准确",
+    "支持本地LLM - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> 模型",
+    "更新以支持<a href=\"https://www.mistral.ai/\">Mistral AI</a>模型",
     "更新至GPT4o mini模型",
-    "界面更新 🎨"
+    "更新用户界面 🎨"
   ],
   "aboutCreator": "关于创建者",
-  "creatorText": "大家好 :) - 我是Phil Wornath，AI摘要助手的创作者。作为一名热爱广泛书面内容，尤其是科学文章的人，我经常面临时间限制。这激励我开发一种工具，以提高生产力和阅读效率。",
+  "creatorText": "嗨，社区 :) - 我是AI摘要助手的创建者Phil Wornath。作为一个热爱大量书面网络内容，尤其是科学文章的人，我常常面临时间限制。这激励我开发出一种可以提升生产力和阅读效率的工具。",
   "whyHelper": "为什么选择AI摘要助手？",
   "whyHelperList": [
-    "重新掌控时间：快速生成摘要，或为将来的深度阅读做准备。",
-    "量身定制：根据您的语言、职业或观点自定义摘要。",
-    "保持组织性：避免标签混乱，保持阅读列表可管理。",
-    "增强阅读体验：专注于对您重要的内容，而不至于感到不堪重负。"
+    "重拾您的时间：快速生成摘要或为后续深度阅读做准备。",
+    "量身定制：根据您的语言、职业或观点来定制摘要。",
+    "保持条理：避免杂乱的标签，保持阅读列表可管理。",
+    "增强阅读体验：无压力地集中注意力在您认为重要的内容上。"
   ],
-  "getStarted": "立即开始使用",
-  "getStartedText": "要开始使用AI摘要助手，请确保您有一个[OpenAI API密钥](https://platform.openai.com/account/api-keys)以及足够的信用。与我们一起，致力于让网络阅读更简单、更易于访问。立即在[Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper)上下载，改变您的浏览体验。",
-  "feedbackSupport": "反馈与支持",
-  "feedbackSupportText": "我们很高兴邀请您尝试AI摘要助手，欢迎您的反馈和问题。让我们共同使网络阅读变得更简单、更具吸引力。今天就用AI摘要助手提升您的在线阅读体验！",
-  "version": "1.0.1"
+  "getStarted": "马上开始使用",
+  "getStartedText": "要开始使用AI摘要助手，请确保您拥有<a href=\"https://platform.openai.com/account/api-keys\">OpenAI API密钥</a>和足够的信用。欢迎加入我们，共同让网页阅读变得更简单、更容易。立即在<a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a>下载并改变您的浏览体验。",
+  "feedbackSupport": "反馈和支持",
+  "feedbackSupportText": "我们很高兴邀请您试用AI摘要助手，并欢迎您的反馈和问题。让我们一起简化网络阅读，使其更有趣。今天就用AI摘要助手提升您的在线阅读体验！",
+  "version": "1.0.2"
 }

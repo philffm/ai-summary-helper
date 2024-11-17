@@ -1,42 +1,46 @@
 {
   "title": "AI Samenvatting Helper 🚀",
-  "about": "Over ons 📖",
-  "aboutText": "Transformeer je browse-ervaring in een krachtpatser van productiviteit met AI Samenvatting Helper. Laat geen enkel artikel meer verloren gaan! 🌟",
+  "about": "Over 📖",
+  "aboutText": "Transformeer je browsen in een krachtpatser van productiviteit met AI Samenvatting Helper. Laat geen enkel artikel meer aan je voorbijgaan! 🌟",
   "features": "Kenmerken 🔍",
   "featureList": [
-    "Vat artikelen samen met een persoonlijke touch ✨",
+    "Samenvatten van artikelen met een persoonlijke touch ✨",
     "Ondersteuning voor OpenAI, Mistral AI, Ollama (lokaal) en meer modellen",
-    "Integratie van samenvattingen in je leesflow 📚",
+    "Integreer samenvattingen in je leesflow 📚",
     "Lees onderweg: Deel naar Kindle met [Reabble](https://send.reabble.com/) 📖",
-    "Cross-Platform: Bookmarklet-generator voor alle browsers en besturingssystemen, inclusief iOS/Android"
+    "Cross-Platform: Bookmarklet Generator voor alle browsers en besturingssystemen, inclusief iOS/Android"
   ],
-  "proposeFeature": "Stel een functie voor 💡",
-  "proposeFeatureText": "Heb je een briljant idee? Deel het met ons [hier](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp) en vorm de toekomst van AI Samenvatting Helper! 📝",
-  "privacyNote": "Privacy-opmerking 🔒",
-  "privacyNoteText": "Jouw privacy is onze topprioriteit. We zorgen ervoor dat je gegevens van jou blijven. 🔐 [Leer meer](privacy)",
+  "localizedFeature": {
+    "headline": "Lees en Begrijp Artikelen in het Engels - Moeiteloos! 🌍",
+    "text": "<p>Stel je voor dat je door een zee van artikelen online bladert, terwijl je probeert bij te blijven met je favoriete blogs, nieuwswebsites of onderzoeksdocumenten. Het is een uitdaging, toch? Niet meer. Met <strong>AI Samenvatting Helper</strong> duik je direct in de kern van elk artikel, samengevat speciaal voor jou in het Engels.</p><p>Of je nu een 10-pagina tellend onderzoeksdocument of de nieuwste trending blog onder ogen ziet, AI Samenvatting Helper is er om de dag te redden. Stel je bijvoorbeeld een wetenschappelijk artikel voor dat uitlegt hoe zwarte gaten de tijd beïnvloeden. In plaats van door pagina’s van astrophysica jargon te ploegen, krijg je een beknopte, makkelijk te begrijpen samenvatting:</p><blockquote>Zwarte gaten vervormen de tijd door intense zwaartekracht. Klokken dichter bij het zwarte gat lopen langzamer in vergelijking met klokken die verder weg staan, een fenomeen dat wordt uitgelegd door Einsteins relativiteitstheorie.</blockquote><p>Eenvoudig, niet? En niet alleen samenvattingen! Pas ze aan naar jouw wensen - wil je een zakelijke invalshoek, een academische focus of een casual samenvatting? Jij hebt de controle.</p><h3>Hoe werkt dit in de praktijk?</h3><ul><li>Een diepgaand recept van een foodblogger? Samengevat in snelle bereidingsinstructies.</li><li>Een lange redactionele over de economie? Belangrijke punten voor jouw drukke schema samengevoegd.</li><li>Benieuwd naar Shakespeare? Krijg de plot van Macbeth in drie zinnen.</li></ul><p>AI Samenvatting Helper helpt je niet alleen bij het begrijpen; het verbetert hoe je informatie opneemt. Of je nu een professional, student of nieuwsgierige leerling bent, Engelse content stroomt nu moeiteloos je brein binnen.</p><p>Zeg vaarwel tegen rommelige tabs en gemiste artikelen. Begin vandaag nog met een slimmere manier van browsen op het web met AI Samenvatting Helper! 🚀</p>"
+  },
+  "proposeFeature": "Stel een Kenmerk Voor 💡",
+  "proposeFeatureText": "Heb je een briljant idee? Deel het met ons <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">hier</a> en vorm de toekomst van AI Samenvatting Helper! 💬",
+  "privacyNote": "Privacy Opmerking 🔒",
+  "privacyNoteText": "Jouw privacy is onze hoogste prioriteit. We zorgen ervoor dat jouw data van jou blijft. 🔑 <a href=\"privacy\">Leer meer</a>",
   "funMessage": "Duik in een slimmere manier van browsen met AI Samenvatting Helper! 🎉",
-  "changelog": "Wijzigingslog 📜",
+  "changelog": "Wijzigingsgeschiedenis 📜",
   "changelogList": [
-    "Lijst van compatibele tools toegevoegd die goed integreren met je leesflow en AI Samenvatting Helper",
-    "Historie van artikelen - bekijk en doorzoek je samenvattingen",
+    "Toegevoegd: lijst van compatibele tools die goed integreren met je leesflow en AI Samenvatting Helper",
+    "Geschiedenis van artikelen - bekijk en doorzoek je samenvattingen",
     "Nieuwe prompts - nauwkeuriger",
-    "Ondersteuning voor lokale LLM's - [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/) modellen",
-    "Geüpdatet voor ondersteuning van [Mistral AI](https://www.mistral.ai/) model",
-    "Geüpdatet naar GPT4o mini model",
-    "Verbeterde gebruikersinterface 🎨"
+    "Ondersteuning voor lokale LLM's - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> modellen",
+    "Bijgewerkt om <a href=\"https://www.mistral.ai/\">Mistral AI</a> model te ondersteunen",
+    "Bijgewerkt naar GPT4o mini model",
+    "Bijgewerkte UI 🎨"
   ],
-  "aboutCreator": "Over de maker",
-  "creatorText": "Hallo gemeenschap :) - Ik ben Phil Wornath, de maker van AI Samenvatting Helper. Als liefhebber van uitgebreide geschreven webinhoud, vooral wetenschappelijke artikelen, had ik vaak tijdsdruk. Dit inspireerde me om een tool te ontwikkelen die de productiviteit en lees efficiëntie verhoogt.",
+  "aboutCreator": "Over de Maker",
+  "creatorText": "Hallo gemeenschap :) - Ik ben Phil Wornath, de maker van AI Samenvatting Helper. Als liefhebber van uitgebreide geschreven webinhoud, vooral wetenschappelijke artikelen, had ik vaak te maken met tijdsdruk. Dit inspireerde me om een tool te ontwikkelen die productiviteit en lees efficiëntie verhoogt.",
   "whyHelper": "Waarom AI Samenvatting Helper?",
   "whyHelperList": [
-    "Herclaim je tijd: Genereer snelle samenvattingen of bereid je voor op diepere analyses later.",
-    "Op maat gemaakt voor jou: Pas samenvattingen aan op basis van jouw taal, beroep of standpunt.",
-    "Blijf georganiseerd: Voorkom rommelige tabs en houd je leeslijst beheersbaar.",
-    "Verhoogde leeservaring: Focus op de inhoud die voor jou belangrijk is zonder overweldigd te raken."
+    "Herwin je Tijd: Genereer snelle samenvattingen of bereid je voor op diepgaande duiken later.",
+    "Op Maat Gemaakt Voor Jou: Pas samenvattingen aan om aan jouw taal, beroep of perspectief te voldoen.",
+    "Blijf Georganiseerd: Vermijd rommelige tabs en houd je leeslijst beheersbaar.",
+    "Verbeterde Leescapaciteit: Focus op de inhoud die voor jou belangrijk is zonder overweldigd te raken."
   ],
-  "getStarted": "Begin vandaag nog",
-  "getStartedText": "Om te beginnen met AI Samenvatting Helper, zorg dat je een [OpenAI API-sleutel](https://platform.openai.com/account/api-keys) hebt en voldoende credits. Sluit je bij ons aan om weblezen gemakkelijker en toegankelijker te maken voor iedereen. Download nu op [Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper) en transformeer je browse-ervaring.",
-  "feedbackSupport": "Feedback en ondersteuning",
-  "feedbackSupportText": "We zijn enthousiast om je uit te nodigen AI Samenvatting Helper te proberen en horen graag je feedback en vragen. Laten we het lezen op het web eenvoudiger en interessanter maken. Verhoog je online leeservaring vandaag nog met AI Samenvatting Helper!",
-  "version": "1.0.1"
+  "getStarted": "Begin Vandaag Nog",
+  "getStartedText": "Om AI Samenvatting Helper te gebruiken, zorg ervoor dat je een <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API-sleutel</a> en voldoende tegoed hebt. Doe met ons mee om web lezen eenvoudiger en toegankelijker te maken voor iedereen. Download nu op <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> en transformeer je browse-ervaring.",
+  "feedbackSupport": "Feedback en Ondersteuning",
+  "feedbackSupportText": "We zijn enthousiast om je uit te nodigen om AI Samenvatting Helper uit te proberen en verwelkomen je feedback en vragen. Laten we het lezen op het web eenvoudiger en boeiender maken. Versterk je online leeservaring vandaag nog met AI Samenvatting Helper!",
+  "version": "1.0.2"
 }

@@ -1,40 +1,46 @@
 {
-  "version": "1.0.0",
   "title": "AI Summary Helper 🚀",
-  "about": "Informazioni 📖",
-  "aboutText": "Trasforma la tua navigazione online in una fonte di produttività con AI Summary Helper. Assicurati di non perdere mai un articolo! 🌟",
-  "features": "Funzionalità 🔍",
+  "about": "Sobre 📖",
+  "aboutText": "Transforme sua navegação em uma potência de produtividade com o AI Summary Helper. Nunca deixe outro artigo escapar! 🌟",
+  "features": "Características 🛠️",
   "featureList": [
-    "Riassunti personalizzati degli articoli che risuonano con te ✨",
-    "Supporta una varietà di modelli: OpenAI, Mistral AI, Ollama (locale) e altri",
-    "Integrazione perfetta dei riassunti nella tua esperienza di lettura 📚",
-    "Leggi senza sforzo: Condividi gli articoli direttamente su Kindle con Reabble 📖",
-    "Compatibilità multipiattaforma: generatore di bookmarklet per qualsiasi browser e sistema operativo, inclusi iOS."
+    "Resuma artigos com um toque pessoal ✨",
+    "Suporta modelos como OpenAI, Mistral AI, Ollama (local) e mais",
+    "Integre resumos ao seu fluxo de leitura 📝",
+    "Leia em qualquer lugar: Compartilhe para Kindle com [Reabble](https://send.reabble.com/) 📖",
+    "Multiplataforma: Gerador de Bookmarklet para todos os navegadores e sistemas operacionais, incluindo iOS/Android"
   ],
-  "proposeFeature": "Proponi una Funzionalità 💡",
-  "proposeFeatureText": "Hai un'idea brillante? Condividila con noi e contribuisci a plasmare il futuro di AI Summary Helper! 💬",
-  "privacyNote": "Nota sulla Privacy 🔒",
-  "privacyNoteText": "La tua privacy è la nostra massima priorità. Garantiamo che i tuoi dati rimangano solo tuoi. 🔑",
-  "funMessage": "Immergiti in un’esperienza di navigazione più intelligente con AI Summary Helper! 🎉",
-  "changelog": "Registro delle Modifiche 📝",
+  "localizedFeature": {
+    "headline": "Leia e Compreenda Artigos em Inglês – Sem Esforço! 🌍",
+    "text": "<p>Imagine navegar por um mar de artigos online, tentando acompanhar seus blogs, fontes de notícias ou papers de pesquisa favoritos. É um desafio, certo? Não mais. Com <strong>AI Summary Helper</strong>, você pode mergulhar diretamente na essência de qualquer artigo, resumido especialmente para você em inglês.</p><p>Se você está enfrentando um artigo de pesquisa de 10 páginas ou o último blog em tendência, o AI Summary Helper está aqui para salvar o dia. Por exemplo, imagine um artigo de ciência explicando como os buracos negros afetam o tempo. Em vez de se perder em páginas de jargão astrofísico, você recebe um resumo conciso e fácil de digerir:</p><blockquote>Buracos negros distorcem o tempo através de uma intensa atração gravitacional. Relógios mais próximos do buraco negro funcionam mais devagar em comparação com aqueles mais distantes, um fenômeno explicado pela teoria da relatividade de Einstein.</blockquote><p>Simples, não é? E não se trata apenas de resumos! Personalize-os para atender às suas necessidades – deseja uma perspectiva empresarial, um foco acadêmico ou uma explicação casual? Você está no controle.</p><h3>Como isso funciona na prática?</h3><ul><li>Uma receita detalhada de um blogueiro gastronômico? Resumida em instruções rápidas de preparo.</li><li>Um editorial longo sobre a economia? Os principais pontos extraídos para a sua agenda ocupada.</li><li>Curioso sobre Shakespeare? Conheça a trama de Macbeth em três linhas.</li></ul><p>AI Summary Helper não apenas ajuda você a entender; ele aprimora a maneira como você absorve informações. Seja você um profissional, estudante ou aprendiz curioso, o conteúdo em inglês agora flui para sua mente sem esforço.</p><p>Diga adeus às abas bagunçadas e às leituras perdidas. Comece uma maneira mais inteligente de navegar na web com AI Summary Helper hoje! 🚀</p>"
+  },
+  "proposeFeature": "Proponha uma Função 💡",
+  "proposeFeatureText": "Tem uma ideia brilhante? Compartilhe conosco <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">aqui</a> e ajude a moldar o futuro do AI Summary Helper! 📝",
+  "privacyNote": "Nota de Privacidade 🔒",
+  "privacyNoteText": "Sua privacidade é nossa prioridade. Garantimos que seus dados permaneçam com você. 🔑 <a href=\"privacy\">Saiba mais</a>",
+  "funMessage": "Mergulhe em uma maneira mais inteligente de navegar com AI Summary Helper! 🎉",
+  "changelog": "Histórico de Alterações 📜",
   "changelogList": [
-    "Nuovi prompt migliorati per una maggiore precisione",
-    "Supporto per LLM locale: modelli Ollama / Llama ora disponibili",
-    "Aggiornato per la compatibilità con il modello Mistral AI",
-    "Ottimizzato per il modello GPT4o mini",
-    "Miglioramenti all’interfaccia utente per una migliore esperienza 🎨"
+    "Adicionada lista de ferramentas compatíveis que se integram bem ao seu fluxo de leitura e ao AI Summary Helper",
+    "Histórico de artigos - consulte e busque entre seus resumos",
+    "Novos prompts - mais precisos",
+    "Suporte para LLMs locais - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
+    "Atualizado para suportar o modelo <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
+    "Atualizado para o modelo GPT4o mini",
+    "Interface atualizada 🎨"
   ],
-  "aboutCreator": "Informazioni sul Creatore",
-  "creatorText": "Ciao, comunità di Gumroad! :) Sono Phil Wornath, la mente dietro AI Summary Helper. Come appassionato di contenuti scritti, in particolare articoli scientifici, volevo superare le sfide imposte dal tempo limitato. Questo mi ha ispirato a creare uno strumento che aumenti la produttività e migliori l'efficienza nella lettura.",
-  "whyHelper": "Perché Scegliere AI Summary Helper?",
+  "aboutCreator": "Sobre o Criador",
+  "creatorText": "Oi comunidade :) - Sou Phil Wornath, o criador do AI Summary Helper. Como amante de conteúdos escritos extensos na web, especialmente artigos científicos, frequentemente enfrentei restrições de tempo. Isso me inspirou a desenvolver uma ferramenta que aprimora a produtividade e a eficiência da leitura.",
+  "whyHelper": "Por que AI Summary Helper?",
   "whyHelperList": [
-    "Recupera il Tuo Tempo: Genera riassunti rapidi o salva letture approfondite per dopo.",
-    "Personalizzato per le Tue Esigenze: Adatta i riassunti alla tua lingua, professione o prospettiva.",
-    "Rimani Organizzato: Elimina le schede sovraccariche e mantieni una lista di lettura gestibile.",
-    "Esperienza di Lettura Potenziata: Concentrati sui contenuti significativi senza sentirti sopraffatto."
+    "Recupere Seu Tempo: Gere resumos rápidos ou prepare-se para uma análise mais aprofundada depois.",
+    "Personalizado para Você: Customize os resumos para corresponder ao seu idioma, profissão ou perspectiva.",
+    "Mantenha-se Organizado: Evite abas bagunçadas e mantenha sua lista de leitura gerenciável.",
+    "Experiência de Leitura Aprimorada: Concentre-se no conteúdo que realmente importa para você sem se sentir sobrecarregado."
   ],
-  "getStarted": "Inizia Oggi",
-  "getStartedText": "Per iniziare a utilizzare AI Summary Helper, assicurati di avere una chiave API di OpenAI e crediti sufficienti. Unisciti a noi nel rendere la lettura web più efficiente e accessibile per tutti. Scarica ora su Gumroad e rivoluziona la tua esperienza di navigazione.",
-  "feedbackSupport": "Feedback e Supporto",
-  "feedbackSupportText": "Siamo entusiasti di invitarti a provare AI Summary Helper e apprezziamo il tuo feedback e le tue domande. Lavoriamo insieme per semplificare e arricchire la lettura online. Migliora oggi il tuo viaggio di lettura digitale con AI Summary Helper!"
+  "getStarted": "Comece Hoje Mesmo",
+  "getStartedText": "Para começar a usar o AI Summary Helper, certifique-se de ter uma <a href=\"https://platform.openai.com/account/api-keys\">chave de API OpenAI</a> e crédito suficiente. Junte-se a nós para tornar a leitura na web mais fácil e acessível para todos. Baixe agora no <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> e transforme sua experiência de navegação.",
+  "feedbackSupport": "Feedback e Suporte",
+  "feedbackSupportText": "Estamos animados para convidá-lo a experimentar o AI Summary Helper e aguardamos seu feedback e perguntas. Vamos tornar a leitura na web mais simples e envolvente. Aprimore sua experiência de leitura online com o AI Summary Helper hoje!",
+  "version": "1.0.2"
 }

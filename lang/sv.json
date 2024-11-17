@@ -1,40 +1,46 @@
 {
   "title": "AI Sammanfattningshjälp 🚀",
   "about": "Om 📖",
-  "aboutText": "Förvandla ditt webbläsande till en kraftkälla av produktivitet med AI Sammanfattningshjälp. Låt aldrig en artikel glida genom fingrarna igen! 🌟",
-  "features": "Funktioner 🔍",
+  "aboutText": "Förvandla din webbläsarupplevelse till en produktivitetsmaskin med AI Sammanfattningshjälp. Låt aldrig en artikel smita förbi dig igen! 🌟",
+  "features": "Funktioner 🔍 ",
   "featureList": [
     "Sammanfatta artiklar med en personlig touch ✨",
-    "Stöd för OpenAI, Mistral AI, Ollama (lokalt) och fler modeller",
-    "Integrera sammanfattningar i din läsning 📚",
-    "Läs på språng: Dela till Kindle med Reabble 📖",
-    "Plattformsövergripande: Bokmärkesgenerator för alla webbläsare och operativsystem, inklusive iOS."
+    "Stöd för OpenAI, Mistral AI, Ollama (lokalt) och flera modeller",
+    "Integrera sammanfattningar i din läsflow 📚",
+    "Läs på språng: Dela till Kindle med [Reabble](https://send.reabble.com/) 📖",
+    "Tvärplattforms: Bokmärkesskapare för alla webbläsare och operativsystem, inklusive iOS/Android"
   ],
+  "localizedFeature": {
+    "headline": "Läs och Förstå Artiklar på Svenska – Utan Ansträngning! 🌍",
+    "text": "<p>Tänk dig att bläddra igenom en mängd artiklar på nätet, och försöka hänga med i dina favoritbloggar, nyhetskällor eller forskningspapper. Det är en utmaning, eller hur? Inte längre. Med <strong>AI Sammanfattningshjälp</strong> kan du dyka rakt ner i essensen av vilken artikel som helst, sammanfattad just för dig på svenska.</p><p>Oavsett om du hanterar ett 10-sidigt forskningspapper eller den senaste trendiga bloggen, är AI Sammanfattningshjälp här för att rädda dagen. Tänk bara på en vetenskapsartikel som förklarar hur svarta hål påverkar tid. Istället för att kämpa igenom sidor av astrofysik-jargong, får du en koncis, lättsmält sammanfattning:</p><blockquote>Svarta hål påverkar tid genom intensiv gravitation. Klockor närmare det svarta hålet går långsammare än de som är längre bort, ett fenomen som förklaras av Einsteins relativitetsteori.</blockquote><p>Enkelt, eller hur? Och inte bara sammanfattningar! Anpassa dem efter dina behov – vill du ha en affärsvinkel, en akademisk fokus, eller en avslappnad sammanställning? Du har kontrollen.</p><h3>Hur fungerar detta i praktiken?</h3><ul><li>En djupgående receptbeskrivning från en matbloggare? Sammanfattas till snabba förberedelseinstruktioner.</li><li>En lång ledare om ekonomin? Nyckelinsikter extraherade för ditt hektiska schema.</li><li>Nyfiken på Shakespeare? Få handlingen av Macbeth på tre rader.</li></ul><p>AI Sammanfattningshjälp hjälper dig inte bara att förstå; den förbättrar hur du tar in information. Oavsett om du är en professionell, student eller nyfiken lärande, flödar svenskt innehåll nu in i ditt sinne utan ansträngning.</p><p>Säg hej då till röriga flikar och missade läsningar. Börja ett smartare sätt att bläddra på nätet med AI Sammanfattningshjälp idag! 🚀</p>"
+  },
   "proposeFeature": "Föreslå en Funktion 💡",
-  "proposeFeatureText": "Har du en briljant idé? Dela den med oss och forma framtiden för AI Sammanfattningshjälp! 💬",
-  "privacyNote": "Integritetsmeddelande 🗒",
-  "privacyNoteText": "Din integritet är vår högsta prioritet. Vi säkerställer att dina uppgifter förblir dina. 🔐",
-  "funMessage": "Dyk ner i ett smartare sätt att webbläsa med AI Sammanfattningshjälp! 🎉",
+  "proposeFeatureText": "Har du en briljant idé? Dela den med oss <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">här</a> och forma framtiden för AI Sammanfattningshjälp! 💬",
+  "privacyNote": "Integritetsnotis 🗑2",
+  "privacyNoteText": "Din integritet är vår högsta prioritet. Vi säkerställer att dina uppgifter förblir dina. 🗐 <a href=\"privacy\">Läs mer</a>",
+  "funMessage": "Dyk in i ett smartare sätt att bläddra med AI Sammanfattningshjälp! 🎉",
   "changelog": "Ändringslogg 🆕",
   "changelogList": [
-    "Nya uppmaningar - mer exakta",
-    "Stöd för Lokala LLMs - Ollama / Llama-modeller",
-    "Uppdaterat för att stödja Mistral AI-modell",
-    "Uppdaterat till GPT4o mini-modell",
+    "Tillagd lista över kompatibla verktyg som integrerar bra med din läsflow och AI Sammanfattningshjälp",
+    "Historik av artiklar - se och söka igenom dina sammanfattningar",
+    "Nya prompts - mer exakta",
+    "Stöd för Lokala LLMs - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> modeller",
+    "Uppdaterad för att stödja <a href=\"https://www.mistral.ai/\">Mistral AI</a> modell",
+    "Uppdaterad till GPT4o mini-modell",
     "Uppdaterad UI 🎨"
   ],
   "aboutCreator": "Om Skaparen",
-  "creatorText": "Hej Gumroad-community :) - Jag är Phil Wornath, skaparen av AI Sammanfattningshjälp. Som en älskare av omfattande skrivet webbinnehåll, särskilt vetenskapliga artiklar, stötte jag ofta på tidsbegränsningar. Detta inspirerade mig att utveckla ett verktyg som förbättrar produktiviteten och läsningseffektiviteten.",
+  "creatorText": "Hej gemenskap :) - Jag är Phil Wornath, skaparen av AI Sammanfattningshjälp. Som en älskare av omfattande skriven webbinnehåll, särskilt vetenskapliga artiklar, stötte jag ofta på tidsbegränsningar. Detta inspirerade mig att utveckla ett verktyg som förbättrar produktiviteten och läsningseffektiviteten.",
   "whyHelper": "Varför AI Sammanfattningshjälp?",
   "whyHelperList": [
-    "Återta Din Tid: Generera snabba sammanfattningar eller förbered för djupdykningar senare.",
-    "Skräddarsytt för Dig: Anpassa sammanfattningar efter ditt språk, yrke eller perspektiv.",
-    "Håll Dig Organiserad: Undvik röriga flikar och håll din läslista hanterbar.",
-    "Förbättrad Litteraturupplevelse: Fokusera på det innehåll som betyder något för dig utan att bli överväldigad."
+    "Återta Din Tid: Generera snabba sammanfattningar eller förbered dig för djupdykningar senare.",
+    "Skräddarsytt för Dig: Anpassa sammanfattningar för att passa ditt språk, yrke eller perspektiv.",
+    "Håll dig Organiserad: Undvik röriga flikar och håll din läslista hanterbar.",
+    "Förbättrad Läsupplevelse: Fokusera på innehållet som betyder något för dig utan att bli överväldigad."
   ],
-  "getStarted": "Börja Idag",
-  "getStartedText": "För att börja använda AI Sammanfattningshjälp, se till att du har en OpenAI API-nyckel och tillräckligt med kredit. Gå med oss i att göra webbläsande enklare och mer tillgängligt för alla. Ladda ner nu på Gumroad och förvandla din webbläsarupplevelse.",
+  "getStarted": "Kom igång Idag",
+  "getStartedText": "För att börja använda AI Sammanfattningshjälp, se till att du har en <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API-nyckel</a> och tillräcklig kredit. Gå med oss för att göra webbläsning enklare och mer tillgänglig för alla. Ladda ner nu på <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> och förvandla din webbläsarupplevelse.",
   "feedbackSupport": "Feedback och Support",
-  "feedbackSupportText": "Vi är glada att bjuda in dig att prova AI Sammanfattningshjälp och ser fram emot din feedback och dina frågor. Låt oss göra läsning på webben enklare och mer engagerande. Förbättra din online-läsupplevelse med AI Sammanfattningshjälp idag!",
-  "version": "1.0.0"
+  "feedbackSupportText": "Vi är glada att bjuda in dig att prova AI Sammanfattningshjälp och välkomnar din feedback och frågor. Låt oss göra läsning på nätet enklare och mer engagerande. Förbättra din online läsupplevelse med AI Sammanfattningshjälp idag!",
+  "version": "1.0.2"
 }

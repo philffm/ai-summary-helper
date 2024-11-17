@@ -1,40 +1,46 @@
 {
-  "title": "AI Resumehjælper 🚀",
-  "about": "Om 📖",
-  "aboutText": "Forvandl din websurfing til en produktivitetspowerhouse med AI Resumehjælper. Lad aldrig en artikel glide dig forbi! 🌟",
+  "title": "AI Resume Hjælper 🚀",
+  "about": "Om 📝",
+  "aboutText": "Forvandl din online browsing til en produktiv kraft med AI Resume Hjælper. Lad ikke endnu en artikel glide gennem fingrene på dig! 🌟",
   "features": "Funktioner 🔍",
   "featureList": [
-    "Opsummer artikler med et personligt præg ✨",
-    "Understøtter modeller som OpenAI, Mistral AI, Ollama (lokalt) og flere",
-    "Integrer opsummeringer i dit læseflow 📚",
-    "Læs på farten: Del til Kindle med Reabble 📖",
-    "Tværplatform: Bogmærke-generator til alle browsere og OS, inklusive iOS."
+    "Sammenskriv artikler med et personligt præg ✨",
+    "Understøtter OpenAI, Mistral AI, Ollama (lokalt) med flere modeller",
+    "Integrer resuméer i din læseflow 📰",
+    "Læs på farten: Del til Kindle med [Reabble](https://send.reabble.com/) 📬",
+    "Cross-Platform: Bogmærke-generator til alle browsere og OS, herunder iOS/Android"
   ],
+  "localizedFeature": {
+    "headline": "Læs og Forstå Artikler Painlessly på Engelsk! 🇬🇧",
+    "text": "<p>Forestil dig at browse gennem en verden af artikler online, mens du forsøger at holde trit med dine yndlingsblogs, nyhedssider eller forskningsartikler. Det er en udfordring, ikke? Ikke længere. Med <strong>AI Resume Hjælper</strong> kan du dykke lige ned i essensen af enhver artikel, der bliver opsummeret specielt for dig på engelsk.</p><p>Uanset om du arbejder med et 10-siders forskningspapir eller den nyeste blog, er AI Resume Hjælper her for at redde dagen. For eksempel, forestil dig en videnskabsartikel, der forklarer hvordan sorte huller påvirker tid. I stedet for at svømme igennem sider af astrofysik-jargon, får du en kortfattet, letfordøjelig opsummering:</p><blockquote>Sorte huller krummer tiden gennem intens gravitationel påvirkning. Urer tættere på det sorte hul går langsommere sammenlignet med dem længere væk, et fænomen forklaret af Einsteins relativitetsteori.</blockquote><p>Simelt, ikke? Og ikke kun opsummeringer! Tilpas dem til dine behov – vil du have en forretningsvinkel, et akademisk fokus, eller en afslappet tilgang? Du er i kontrol.</p><h3>Hvordan fungerer det i praksis?</h3><ul><li>En fødevarebloggers dybdegående opskrift? Sammenfattet til hurtige forberedelsesinstruktioner.</li><li>En lang kommentar om økonomi? Vigtige pointer udtrukket til din travle tidsplan.</li><li>Er du nysgerrig på Shakespeare? Få plottet af Macbeth på tre linjer.</li></ul><p>AI Resume Hjælper hjælper ikke bare med at forstå; det forbedrer, hvordan du opfatter information. Uanset om du er professionel, studerende eller nysgerrig lærende, strømmer engelsk indhold nu ind i din hjerne uden besvær.</p><p>Sig farvel til rodede faner og missede læsninger. Start en smartere måde at browse nettet på med AI Resume Hjælper i dag! 🚀</p>"
+  },
   "proposeFeature": "Foreslå en Funktion 💡",
-  "proposeFeatureText": "Har du en genial idé? Del den med os og vær med til at forme fremtiden for AI Resumehjælper! 📝",
-  "privacyNote": "Privatlivsnotat 🔐",
-  "privacyNoteText": "Dit privatliv er vores højeste prioritet. Vi sikrer, at dine data er dine. 🔒",
-  "funMessage": "Dyk ind i en smartere måde at browse på med AI Resumehjælper! 🎉",
+  "proposeFeatureText": "Har du en genial idé? Del den med os <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">her</a> og vær med til at forme fremtiden for AI Resume Hjælper! 🗣️",
+  "privacyNote": "Privatlivsnotat 🔒",
+  "privacyNoteText": "Dit privatliv er vores højeste prioritet. Vi sikrer, at dine data forbliver dine. 🔐 <a href=\"privacy\">Lær mere</a>",
+  "funMessage": "Dyk ind i en smartere måde at browse på med AI Resume Hjælper! 🎉",
   "changelog": "Ændringslog 📜",
   "changelogList": [
-    "Nye prompts - mere præcise",
-    "Understøttelse af lokale LLM'er - Ollama / Llama modeller",
-    "Opdateret til at understøtte Mistral AI modellen",
+    "Tilføjet liste over kompatible værktøjer, der fungerer godt med din læseflow og AI Resume Hjælper",
+    "Historik over artikler - se og søg i dine opsummeringer",
+    "Nye prompts - mere nøjagtige",
+    "Support for lokale LLM'er - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> modeller",
+    "Opdateret til at supportere <a href=\"https://www.mistral.ai/\">Mistral AI</a> modellen",
     "Opdateret til GPT4o mini modellen",
     "Opdateret UI 🎨"
   ],
   "aboutCreator": "Om Skaberen",
-  "creatorText": "Hej Gumroad-fællesskab :) - Jeg er Phil Wornath, skaberen af AI Resumehjælper. Som en der elsker omfattende skrivenetindhold, især videnskabelige artikler, stødte jeg ofte på tidsbegrænsninger. Dette inspirerede mig til at udvikle et værktøj, der forbedrer produktiviteten og læseeffektiviteten.",
-  "whyHelper": "Hvorfor AI Resumehjælper?",
+  "creatorText": "Hej fællesskab :) - Jeg er Phil Wornath, skaberen af AI Resume Hjælper. Som en elsker af omfattende skriftligt indhold på nettet, især videnskabelige artikler, stod jeg ofte over for tidsbegrænsninger. Dette inspirerede mig til at udvikle et værktøj, der forbedrer produktivitet og læseeffektivitet.",
+  "whyHelper": "Hvorfor AI Resume Hjælper?",
   "whyHelperList": [
-    "Genfind din tid: Generer hurtige oversigter eller forbered dig til dybere dyk senere.",
-    "Skræddersyet til dig: Tilpas opsummeringer til at matche dit sprog, din profession eller synspunkt.",
-    "Hold dig organiseret: Undgå rodede faner og hold din læseliste overskuelig.",
-    "Forbedret læseoplevelse: Fokuser på det indhold, der betyder noget for dig, uden at blive overvældet."
+    "Genindvind Din Tid: Generer hurtige opsummeringer eller forbered dig til dybdegående læsning senere.",
+    "Tilpasset Til Dig: Tilpas opsummeringer til at matche dit sprog, profession eller synspunkt.",
+    "Forbliv Organiseret: Undgå rodede faner og hold din læseliste overskuelig.",
+    "Forbedret Læseoplevelse: Fokuser på det indhold, der betyder noget for dig uden at blive overvældet."
   ],
-  "getStarted": "Kom i gang i dag",
-  "getStartedText": "For at begynde at bruge AI Resumehjælper, skal du sørge for, at du har en OpenAI API-nøgle og tilstrækkelig kredit. Deltag i os for at gøre weblæsning nemmere og mere tilgængelig for alle. Download nu på Gumroad og transformér din browsingoplevelse.",
+  "getStarted": "Kom i Gang I Dag",
+  "getStartedText": "For at begynde at bruge AI Resume Hjælper, skal du sikre dig, at du har en <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API-nøgle</a> og tilstrækkelig kredit. Deltag i vores bestræbelser på at gøre weblæsning nemmere og mere tilgængelig for alle. Download nu på <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> og transformation din browsingoplevelse.",
   "feedbackSupport": "Feedback og Support",
-  "feedbackSupportText": "Vi er glade for at invitere dig til at prøve AI Resumehjælper og ser frem til din feedback og spørgsmål. Lad os gøre læsning på nettet enklere og mere engagerende. Forbedr din online læseoplevelse med AI Resumehjælper i dag!",
-  "version": "1.0.0"
+  "feedbackSupportText": "Vi er glade for at invitere dig til at prøve AI Resume Hjælper og vi ser frem til din feedback og spørgsmål. Lad os gøre læsning på nettet enklere og mere engagerende. Forbedr din online læseoplevelse med AI Resume Hjælper i dag!",
+  "version": "1.0.2"
 }

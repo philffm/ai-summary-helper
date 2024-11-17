@@ -1,42 +1,46 @@
 {
-  "title": "Bantuan Ringkasan AI 🚀",
+  "title": "AI Summary Helper 🚀",
   "about": "Tentang 📖",
-  "aboutText": "Ubah penelusuran Anda menjadi kekuatan produktivitas dengan Bantuan Ringkasan AI. Jangan biarkan artikel lain terlewatkan! 🌟",
-  "features": "Fitur 🔍 ",
+  "aboutText": "Ubah cara Anda menjelajahi internet menjadi kekuatan produktivitas dengan AI Summary Helper. Jangan biarkan artikel lain terlewat! 🌟",
+  "features": "Fitur 🔍",
   "featureList": [
     "Ringkas artikel dengan sentuhan pribadi ✨",
     "Mendukung model OpenAI, Mistral AI, Ollama (lokal) dan banyak lagi",
-    "Integrasikan ringkasan ke dalam alur membaca Anda 📚",
-    "Baca sambil bergerak: Bagikan ke Kindle dengan [Reabble](https://send.reabble.com/) 📖",
-    "Lintas Platform: Pembuatan Bookmarklet untuk semua peramban dan OS, termasuk iOS/Android"
+    "Integrasikan ringkasan ke dalam alur bacaan Anda 📚",
+    "Baca saat bepergian: Bagikan ke Kindle menggunakan [Reabble](https://send.reabble.com/) 📖",
+    "Lintas Platform: Pembuat bookmarklet untuk semua browser dan OS, termasuk iOS/Android"
   ],
+  "localizedFeature": {
+    "headline": "Baca dan Pahami Artikel dalam Bahasa Inggris – Tanpa Susah! 🌍",
+    "text": "<p>Bayangkan menjelajahi lautan artikel online, berusaha mengikuti blog, media berita, atau makalah penelitian favorit Anda. Itu adalah tantangan, bukan? Tidak lagi. Dengan <strong>AI Summary Helper</strong>, Anda bisa langsung menyelami inti dari setiap artikel, diringkas khusus untuk Anda dalam bahasa Inggris.</p><p>Baik Anda menghadapi makalah penelitian 10 halaman atau blog tren terbaru, AI Summary Helper siap menyelamatkan Anda. Misalnya, bayangkan sebuah artikel sains yang menjelaskan bagaimana lubang hitam memengaruhi waktu. Alih-alih membaca halaman demi halaman jargon astrofisika, Anda mendapatkan ringkasan singkat yang mudah dicerna:</p><blockquote>Lubang hitam membengkokkan waktu melalui tarikan gravitasi yang sangat kuat. Jam yang lebih dekat dengan lubang hitam berfungsi lebih lambat dibandingkan dengan yang lebih jauh, sebuah fenomena yang dijelaskan oleh teori relativitas Einstein.</blockquote><p>Simple, bukan? Dan tidak hanya ringkasan! Sesuaikan ringkasan sesuai kebutuhan Anda – ingin sudut pandang bisnis, fokus akademis, atau penjelasan santai? Anda yang berkuasa.</p><h3>Bagaimana ini bekerja dalam praktik?</h3><ul><li>Resep mendalam dari seorang blogger makanan? Diringkas menjadi petunjuk persiapan yang cepat.</li><li>Editorial panjang tentang ekonomi? Ambil poin-poin kunci untuk jadwal sibuk Anda.</li><li>Penasaran tentang Shakespeare? Dapatkan alur cerita Macbeth dalam tiga baris.</li></ul><p>AI Summary Helper tidak hanya membantu Anda memahami; ia meningkatkan cara Anda menyerap informasi. Apakah Anda seorang profesional, mahasiswa, atau pembelajar yang penasaran, konten berbahasa Inggris kini mengalir ke otak Anda dengan mudah.</p><p>Ucapkan selamat tinggal pada tab yang berantakan dan bacaan yang terlewat. Mulailah cara yang lebih cerdas untuk menjelajahi web dengan AI Summary Helper hari ini! 🚀</p>"
+  },
   "proposeFeature": "Usulkan Fitur 💡",
-  "proposeFeatureText": "Punya ide cemerlang? Bagikan dengan kami [di sini](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp) dan bentuk masa depan Bantuan Ringkasan AI! 📝",
-  "privacyNote": "Catatan Privasi 🔐",
-  "privacyNoteText": "Privasi Anda adalah prioritas utama kami. Kami memastikan data Anda tetap milik Anda. 🔑 [Pelajari lebih lanjut](privacy)",
-  "funMessage": "Masuki cara penelusuran yang lebih cerdas dengan Bantuan Ringkasan AI! 🎉",
-  "changelog": "Catatan Perubahan 📝",
+  "proposeFeatureText": "Punya ide brilian? Bagikan dengan kami <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">di sini</a> dan bentuk masa depan AI Summary Helper! 📝",
+  "privacyNote": "Catatan Privasi 🔒",
+  "privacyNoteText": "Privasi Anda adalah prioritas utama kami. Kami memastikan data Anda tetap milik Anda. 🔐 <a href=\"privacy\">Pelajari lebih lanjut</a>",
+  "funMessage": "Jelajahi cara yang lebih cerdas dalam browsing dengan AI Summary Helper! 🎉",
+  "changelog": "Catatan Perubahan 📜",
   "changelogList": [
-    "Menambahkan daftar alat yang kompatibel yang terintegrasi dengan baik dengan alur membaca Anda dan Bantuan Ringkasan AI",
-    "Riwayat artikel - lihat dan cari ringkasan Anda",
-    "Prompt baru - lebih akurat",
-    "Dukungan untuk LLM Lokal - model [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
-    "Diperbarui untuk mendukung model [Mistral AI](https://www.mistral.ai/)",
-    "Diperbarui ke model mini GPT4o",
-    "Antarmuka pengguna diperbarui 🎨"
+    "Menambahkan daftar alat yang kompatibel untuk integrasi yang baik dengan alur bacaan Anda dan AI Summary Helper",
+    "Riwayat artikel - lihat dan cari melalui ringkasan Anda",
+    "Penambahan prompt baru - lebih akurat",
+    "Dukungan untuk LLM lokal - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
+    "Diperbarui untuk mendukung model <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
+    "Diperbarui ke model GPT4o mini",
+    "Antarmuka pengguna yang diperbarui 🎨"
   ],
   "aboutCreator": "Tentang Pembuat",
-  "creatorText": "Halo komunitas :) - Saya Phil Wornath, pembuat Bantuan Ringkasan AI. Sebagai penggemar konten web tertulis yang luas, terutama artikel ilmiah, saya sering menghadapi batas waktu. Ini menginspirasi saya untuk mengembangkan alat yang meningkatkan produktivitas dan efisiensi membaca.",
-  "whyHelper": "Mengapa Bantuan Ringkasan AI?",
+  "creatorText": "Hai komunitas :) - Saya Phil Wornath, pembuat AI Summary Helper. Sebagai pencinta konten tulisan yang luas di web, terutama artikel ilmiah, saya sering menghadapi keterbatasan waktu. Ini menginspirasi saya untuk mengembangkan alat yang meningkatkan produktivitas dan efisiensi membaca.",
+  "whyHelper": "Mengapa AI Summary Helper?",
   "whyHelperList": [
-    "Ambil Kembali Waktu Anda: Buat ringkasan cepat atau siapkan untuk menyelam lebih dalam nanti.",
-    "Disesuaikan untuk Anda: Sesuaikan ringkasan agar sesuai dengan bahasa, profesi, atau sudut pandang Anda.",
-    "Tetap Teratur: Hindari tab yang berantakan dan jaga daftar bacaan Anda tetap terkelola.",
+    "Ambil Kembali Waktu Anda: Hasilkan ringkasan cepat atau bersiap untuk eksplorasi mendalam nanti.",
+    "Dikhususkan untuk Anda: Sesuaikan ringkasan untuk mencocokkan bahasa, profesi, atau sudut pandang Anda.",
+    "Tetap Terorganisir: Hindari tab yang berantakan dan jaga agar daftar bacaan Anda dapat dikelola.",
     "Pengalaman Membaca yang Ditingkatkan: Fokus pada konten yang penting bagi Anda tanpa merasa kewalahan."
   ],
   "getStarted": "Mulai Hari Ini",
-  "getStartedText": "Untuk mulai menggunakan Bantuan Ringkasan AI, pastikan Anda memiliki [kunci API OpenAI](https://platform.openai.com/account/api-keys) dan kredit yang cukup. Bergabunglah dengan kami dalam membuat membaca web lebih mudah dan lebih terjangkau untuk semua orang. Unduh sekarang di [Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper) dan ubah pengalaman penelusuran Anda.",
+  "getStartedText": "Untuk mulai menggunakan AI Summary Helper, pastikan Anda memiliki <a href=\"https://platform.openai.com/account/api-keys\">kunci API OpenAI</a> dan kredit yang cukup. Bergabunglah dengan kami untuk membuat pembacaan web lebih mudah dan lebih mudah diakses bagi semua orang. Unduh sekarang di <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> dan ubah pengalaman menjelajah Anda.",
   "feedbackSupport": "Umpan Balik dan Dukungan",
-  "feedbackSupportText": "Kami sangat senang mengundang Anda untuk mencoba Bantuan Ringkasan AI dan menyambut umpan balik dan pertanyaan Anda. Mari bersama-sama membuat membaca di web lebih sederhana dan lebih menarik. Tingkatkan pengalaman membaca online Anda dengan Bantuan Ringkasan AI hari ini!",
-  "version": "1.0.1"
+  "feedbackSupportText": "Kami sangat senang mengundang Anda untuk mencoba AI Summary Helper dan menyambut umpan balik serta pertanyaan Anda. Mari kita buat membaca di web lebih sederhana dan lebih menarik. Tingkatkan pengalaman membaca online Anda dengan AI Summary Helper hari ini!",
+  "version": "1.0.2"
 }

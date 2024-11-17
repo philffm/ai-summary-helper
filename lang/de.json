@@ -1,42 +1,46 @@
 {
-  "title": "AI Zusammenfassungs-Helfer 🚀",
-  "about": "Überblick 📖",
-  "aboutText": "Verwandeln Sie Ihr Surfen in eine Produktivitäts-Kraftmaschine mit AI Zusammenfassungs-Helfer. Lassen Sie keinen Artikel mehr unbemerkt! 🌟",
+  "title": "AI Zusammenfassungshelfer 🚀",
+  "about": "Über 📖",
+  "aboutText": "Verwandle dein Browsing in eine Produktivitätsmaschine mit dem AI Zusammenfassungshelfer. Lass keinen Artikel mehr durch die Lappen gehen! 🌟",
   "features": "Funktionen 🔍",
   "featureList": [
     "Artikel mit einer persönlichen Note zusammenfassen ✨",
     "Unterstützung für OpenAI, Mistral AI, Ollama (lokal) und weitere Modelle",
-    "Integrieren Sie Zusammenfassungen in Ihren Leseablauf 📚",
-    "Unterwegs lesen: Teilen Sie mit Kindle über [Reabble](https://send.reabble.com/) 📖",
-    "Plattformübergreifend: Bookmarklet-Generator für alle Browser und OS, einschließlich iOS/Android"
+    "Integriere Zusammenfassungen nahtlos in deinen Lesefluss 📚",
+    "Unterwegs lesen: Teile mit Kindle über [Reabble](https://send.reabble.com/) 📖",
+    "Plattformübergreifend: Bookmarklet-Generator für alle Browser und Betriebssysteme, einschließlich iOS/Android"
   ],
-  "proposeFeature": "Funktion vorschlagen 💡",
-  "proposeFeatureText": "Haben Sie eine großartige Idee? Teilen Sie sie mit uns [hier](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp) und gestalten Sie die Zukunft von AI Zusammenfassungs-Helfer! 📝",
+  "localizedFeature": {
+    "headline": "Artikel auf Deutsch lesen und verstehen – mühelos! 🌍",
+    "text": "<p>Stell dir vor, du surfst durch einen Ozean von Artikeln im Internet, versuchst, mit deinen Lieblingsblogs, Nachrichtenquellen oder wissenschaftlichen Arbeiten Schritt zu halten. Es ist eine Herausforderung, oder? Aber nicht mehr! Mit <strong>AI Zusammenfassungshelfer</strong> kannst du direkt in das Wesentliche eines jeden Artikels eintauchen, zusammengefasst nur für dich auf Deutsch.</p><p>Ob du nun ein 10-seitiges Forschungspapier oder den neuesten Modetrend-Blog bearbeitest, AI Zusammenfassungshelfer steht bereit, um dir zu helfen. Zum Beispiel, stell dir einen Wissenschaftsartikel vor, der erklärt, wie schwarze Löcher die Zeit beeinflussen. Anstatt durch Seiten mit Astrophysik-Jargon hindurchzukämpfen, bekommst du eine prägnante, leicht verdauliche Zusammenfassung:</p><blockquote>Schwarze Löcher krümmen die Zeit durch ihre intensive Gravitation. Uhren, die näher am schwarzen Loch sind, laufen langsamer als weiter entfernt, ein Phänomen, das durch Einsteins Relativitätstheorie erklärt wird.</blockquote><p>Einfach, oder? Und es sind nicht nur Zusammenfassungen! Passe sie an deine Bedürfnisse an – möchtest du einen geschäftlichen Blickwinkel, einen akademischen Fokus oder eine lockere Zusammenfassung? Du hast die Kontrolle.</p><h3>Wie funktioniert das in der Praxis?</h3><ul><li>Das ausführliche Rezept eines Food-Bloggers? Zusammengefasst in schnellen Zubereitungsanweisungen.</li><li>Ein umfangreicher Kommentar zur Wirtschaft? Wichtige Erkenntnisse für deinen vollen Terminplan extrahiert.</li><li>Neugierig auf Shakespeare? Bekomme die Handlung von Macbeth in drei Sätzen.</li></ul><p>AI Zusammenfassungshelfer hilft dir nicht nur, zu verstehen; es verbessert, wie du Informationen aufgenommen kannst. Ob du ein Profi, Student oder neugieriger Lernender bist, Inhalte auf Deutsch fließen jetzt mühelos in dein Gehirn.</p><p>Verabschiede dich von überfüllten Tabs und verpassten Artikeln. Starte heute mit einer klügeren Art, im Netz zu browsen, mit dem AI Zusammenfassungshelfer! 🚀</p>"
+  },
+  "proposeFeature": "Eine Funktion vorschlagen 💡",
+  "proposeFeatureText": "Hast du eine geniale Idee? Teile sie mit uns <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">hier</a> und gestalte die Zukunft des AI Zusammenfassungshelfers! 📝",
   "privacyNote": "Datenschutzhinweis 🔒",
-  "privacyNoteText": "Ihre Privatsphäre hat für uns höchste Priorität. Wir sorgen dafür, dass Ihre Daten Ihnen gehören. 🔑 [Erfahren Sie mehr](privacy)",
-  "funMessage": "Tauchen Sie ein in eine intelligenteren Art des Surfens mit AI Zusammenfassungs-Helfer! 🎉",
-  "changelog": "Änderungsprotokoll 📜",
+  "privacyNoteText": "Dein Datenschutz hat für uns oberste Priorität. Wir sorgen dafür, dass deine Daten auch deine bleiben. 🔐 <a href=\"privacy\">Erfahre mehr</a>",
+  "funMessage": "Entdecke eine klügere Art des Surfens mit dem AI Zusammenfassungshelfer! 🎉",
+  "changelog": "Änderungsprotokoll 📖",
   "changelogList": [
-    "Liste der kompatiblen Tools hinzugefügt, die gut in Ihren Leseablauf und AI Zusammenfassungs-Helfer integriert werden können",
-    "Historie der Artikel - Durchsuchen und Anzeigen Ihrer Zusammenfassungen",
-    "Neue Eingabeaufforderungen - präziser",
-    "Unterstützung für lokale LLMs - [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/) Modelle",
-    "Aktualisierung zur Unterstützung des [Mistral AI](https://www.mistral.ai/) Modells",
-    "Aktualisierung auf das GPT4o Mini-Modell",
-    "Überarbeitetes UI 🎨"
+    "Liste kompatibler Tools hinzugefügt, die gut mit deinem Lesefluss und dem AI Zusammenfassungshelfer integriert sind",
+    "Historie der Artikel - durchsuchen und ansehen deiner Zusammenfassungen",
+    "Neue Aufforderungen - genauere Ergebnisse",
+    "Unterstützung für lokale LLMs - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> Modelle",
+    "Aktualisiert zur Unterstützung des <a href=\"https://www.mistral.ai/\">Mistral AI</a> Modells",
+    "Aktualisiert zum GPT4o Mini-Modell",
+    "Benutzeroberfläche aktualisiert 🎨"
   ],
-  "aboutCreator": "Über den Ersteller",
-  "creatorText": "Hallo Community :) - Ich bin Phil Wornath, der Ersteller von AI Zusammenfassungs-Helfer. Als Liebhaber umfangreicher schriftlicher Webinhalte, insbesondere wissenschaftlicher Artikel, hatte ich oft mit Zeitmangel zu kämpfen. Das inspirierte mich zur Entwicklung eines Tools, das Produktivität und Leseeffizienz steigert.",
-  "whyHelper": "Warum AI Zusammenfassungs-Helfer?",
+  "aboutCreator": "Über den Schöpfer",
+  "creatorText": "Hallo Community :) - Ich bin Phil Wornath, der Schöpfer des AI Zusammenfassungshelfers. Als Liebhaber umfangreicher schriftlicher Inhalte im Internet, insbesondere wissenschaftlicher Artikel, hatte ich oft mit Zeitmangel zu kämpfen. Das inspirierte mich dazu, ein Werkzeug zu entwickeln, das die Produktivität und Effizienz beim Lesen verbessert.",
+  "whyHelper": "Warum AI Zusammenfassungshelfer?",
   "whyHelperList": [
-    "Gewinnen Sie Ihre Zeit zurück: Erstellen Sie schnelle Übersichten oder bereiten Sie sich auf tiefere Einblicke vor.",
-    "Auf Sie abgestimmt: Passen Sie die Zusammenfassungen an Ihre Sprache, Profession oder Perspektive an.",
-    "Bleiben Sie organisiert: Vermeiden Sie überladene Registerkarten und halten Sie Ihre Leseliste überschaubar.",
-    "Verbesserte Leseerfahrung: Konzentrieren Sie sich auf die Inhalte, die Ihnen wichtig sind, ohne überfordert zu werden."
+    "Deine Zeit zurückgewinnen: Schnelle Zusammenfassungen erstellen oder dich später ausführlich mit Themen beschäftigen.",
+    "Auf dich abgestimmt: Passe Zusammenfassungen an deine Sprache, deinen Beruf oder deinen Standpunkt an.",
+    "Organisiert bleiben: Vermeide überfüllte Tabs und halte deine Leseliste handhabbar.",
+    "Verbessertes Leseerlebnis: Konzentriere dich auf die Inhalte, die dir wichtig sind, ohne überfordert zu werden."
   ],
-  "getStarted": "Heute Loslegen",
-  "getStartedText": "Um AI Zusammenfassungs-Helfer zu nutzen, stellen Sie sicher, dass Sie einen [OpenAI API-Schlüssel](https://platform.openai.com/account/api-keys) und genügend Guthaben haben. Machen Sie mit uns das Weblesen einfacher und zugänglicher für alle. Laden Sie jetzt auf [Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper) herunter und verwandeln Sie Ihr Surferlebnis.",
+  "getStarted": "Heute starten",
+  "getStartedText": "Um mit dem AI Zusammenfassungshelfer zu beginnen, stelle sicher, dass du einen <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API-Schlüssel</a> und ausreichendes Guthaben hast. Schließe dich uns an, um das Lesen im Internet einfacher und zugänglicher für alle zu machen. Jetzt herunterladen auf <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> und verändere dein Browsing-Erlebnis.",
   "feedbackSupport": "Feedback und Unterstützung",
-  "feedbackSupportText": "Wir freuen uns, Sie einzuladen, AI Zusammenfassungs-Helfer auszuprobieren und begrüßen Ihr Feedback und Ihre Fragen. Lassen Sie uns das Lesen im Web einfacher und ansprechender gestalten. Verbessern Sie Ihr Online-Leseerlebnis noch heute mit AI Zusammenfassungs-Helfer!",
-  "version": "1.0.1"
+  "feedbackSupportText": "Wir freuen uns, dich einzuladen, den AI Zusammenfassungshelfer auszuprobieren und begrüßen dein Feedback sowie deine Fragen. Lassen uns das Lesen im Internet einfacher und ansprechender gestalten. Verbessere dein Online-Leseerlebnis heute mit dem AI Zusammenfassungshelfer!",
+  "version": "1.0.2"
 }

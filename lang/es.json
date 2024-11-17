@@ -1,42 +1,46 @@
 {
-  "title": "Asistente de Resúmenes AI 🚀",
+  "title": "Ayudante de Resumen AI 🚀",
   "about": "Acerca de 📖",
-  "aboutText": "Transforma tu navegación en una potencia de productividad con el Asistente de Resúmenes AI. ¡Nunca dejes que otro artículo se te escape! 🌟",
-  "features": "Características 🖥️",
+  "aboutText": "Transforma tu navegación en una potencia de productividad con el Ayudante de Resumen AI. ¡Nunca dejes que otro artículo se te escape! 🌟",
+  "features": "Características 🛠️",
   "featureList": [
     "Resume artículos con un toque personal ✨",
-    "Soporta modelos como OpenAI, Mistral AI, Ollama (local) y más",
+    "Compatible con modelos como OpenAI, Mistral AI, Ollama (local) y más",
     "Integra resúmenes en tu flujo de lectura 📚",
-    "Lee en movimiento: Comparte a Kindle con [Reabble](https://send.reabble.com/) 📖",
-    "Multiplataforma: Generador de marcadores para todos los navegadores y sistemas operativos, incluyendo iOS/Android"
+    "Lee en cualquier lugar: Comparte a Kindle con [Reabble](https://send.reabble.com/) 📖",
+    "Multi-plataforma: Generador de marcadores para todos los navegadores y sistemas operativos, incluyendo iOS/Android"
   ],
-  "proposeFeature": "Proponer una Función 🛠️",
-  "proposeFeatureText": "¿Tienes una idea brillante? Compártela con nosotros [aquí](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp) y ayuda a dar forma al futuro del Asistente de Resúmenes AI! 📝",
+  "localizedFeature": {
+    "headline": "¡Lee y Comprende Artículos en Español – Sin Esfuerzo! 🌍",
+    "text": "<p>Imagina navegar por un mar de artículos en línea, intentando seguir tus blogs favoritos, medios de comunicación o documentos de investigación. Es un desafío, ¿verdad? Ya no más. Con <strong>Ayudante de Resumen AI</strong>, puedes sumergirte directamente en la esencia de cualquier artículo, resumido solo para ti en español.</p><p>Ya sea que estés abordando un documento de investigación de 10 páginas o el último blog en tendencia, el Ayudante de Resumen AI está aquí para salvar el día. Por ejemplo, imagina un artículo sobre ciencia que explica cómo los agujeros negros afectan el tiempo. En lugar de sumergirte en páginas de jerga astrofísica, obtienes un resumen conciso y fácil de digerir:</p><blockquote>Los agujeros negros distorsionan el tiempo mediante una intensa atracción gravitacional. Los relojes más cerca del agujero negro funcionan más lentamente en comparación con aquellos que están más alejados, un fenómeno explicado por la teoría de la relatividad de Einstein.</blockquote><p>¿Sencillo, verdad? ¡Y no solo resúmenes! Adáptalos a tus necesidades: ¿quieres un enfoque empresarial, académico o un desglose casual? Tú tienes el control.</p><h3>¿Cómo funciona esto en la práctica?</h3><ul><li>¿Una receta de un blog de comida? Resumida en instrucciones rápidas de preparación.</li><li>¿Un largo editorial sobre la economía? Toma notas clave extraídas para tu agenda ocupada.</li><li>¿Curioso sobre Shakespeare? Obtén la trama de Macbeth en tres líneas.</li></ul><p>El Ayudante de Resumen AI no solo te ayuda a entender; mejora la manera en que absorbes información. Ya seas un profesional, estudiante o aprendiz curioso, el contenido en español ahora fluye en tu mente sin esfuerzo.</p><p>Dile adiós a las pestañas desordenadas y lecturas perdidas. ¡Comienza una manera más inteligente de navegar por Internet con el Ayudante de Resumen AI hoy! 🚀</p>"
+  },
+  "proposeFeature": "Proponer una Característica 🛠️",
+  "proposeFeatureText": "¿Tienes una idea brillante? Compártela con nosotros <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">aquí</a> y dale forma al futuro del Ayudante de Resumen AI! 💬",
   "privacyNote": "Nota de Privacidad 🔒",
-  "privacyNoteText": "Tu privacidad es nuestra máxima prioridad. Aseguramos que tus datos siguen siendo tuyos. 🔑 [Aprende más](privacy)",
-  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con el Asistente de Resúmenes AI! 🎉",
-  "changelog": "Registro de Cambios 📋",
+  "privacyNoteText": "Tu privacidad es nuestra prioridad. Aseguramos que tus datos sean solo tuyos. 🔑 <a href=\"privacy\">Descubre más</a>",
+  "funMessage": "¡Sumérgete en una forma más inteligente de navegar con el Ayudante de Resumen AI! 🎉",
+  "changelog": "Registro de Cambios 📅",
   "changelogList": [
-    "Añadida lista de herramientas compatibles que se integran bien con tu flujo de lectura y el Asistente de Resúmenes AI",
-    "Historial de artículos - visualiza y busca a través de tus resúmenes",
+    "Añadida lista de herramientas compatibles que se integran bien con tu flujo de lectura y el Ayudante de Resumen AI",
+    "Historial de artículos - vista y búsqueda a través de tus resúmenes",
     "Nuevos prompts - más precisos",
-    "Soporte para LLMs Locales - modelos [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
-    "Actualización para soportar el modelo [Mistral AI](https://www.mistral.ai/)",
-    "Actualizado a modelo GPT4o mini",
+    "Soporte para LLMs Locales - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
+    "Actualizado para soportar el modelo <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
+    "Actualizado al modelo GPT4o mini",
     "Interfaz actualizada 🎨"
   ],
   "aboutCreator": "Acerca del Creador",
-  "creatorText": "Hola comunidad :) - Soy Phil Wornath, el creador del Asistente de Resúmenes AI. Como amante del contenido extenso en la web, especialmente artículos científicos, a menudo enfrentaba limitaciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia en la lectura.",
-  "whyHelper": "¿Por qué el Asistente de Resúmenes AI?",
+  "creatorText": "Hola comunidad :) - Soy Phil Wornath, el creador del Ayudante de Resumen AI. Como amante del contenido web extenso, especialmente artículos científicos, a menudo enfrentaba limitaciones de tiempo. Esto me inspiró a desarrollar una herramienta que mejora la productividad y la eficiencia de la lectura.",
+  "whyHelper": "¿Por qué Ayudante de Resumen AI?",
   "whyHelperList": [
-    "Recupera tu Tiempo: Genera resúmenes rápidos o prepárate para lecturas más profundas después.",
-    "Personalizado para Ti: Ajusta los resúmenes para que coincidan con tu lenguaje, profesión o punto de vista.",
-    "Mantente Organizado: Evita pestañas desordenadas y manten tu lista de lectura manejable.",
+    "Recupera tu Tiempo: Genera resúmenes rápidos o prepárate para profundizar más tarde.",
+    "Adaptado a Ti: Personaliza resúmenes para que coincidan con tu lenguaje, profesión o perspectiva.",
+    "Mantente Organizado: Evita pestañas desordenadas y mantén tu lista de lectura manejable.",
     "Experiencia de Lectura Mejorada: Concéntrate en el contenido que te importa sin sentirte abrumado."
   ],
   "getStarted": "Empieza Hoy",
-  "getStartedText": "Para comenzar a usar el Asistente de Resúmenes AI, asegúrate de tener una [clave API de OpenAI](https://platform.openai.com/account/api-keys) y suficiente crédito. Únete a nosotros para hacer que la lectura en la web sea más fácil y accesible para todos. Descarga ahora en [Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper) y transforma tu experiencia de navegación.",
+  "getStartedText": "Para comenzar a usar el Ayudante de Resumen AI, asegúrate de tener una <a href=\"https://platform.openai.com/account/api-keys\">clave API de OpenAI</a> y crédito suficiente. Únete a nosotros para hacer que la lectura en la web sea más fácil y accesible para todos. Descárgalo ahora en <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> y transforma tu experiencia de navegación.",
   "feedbackSupport": "Comentarios y Soporte",
-  "feedbackSupportText": "¡Estamos emocionados de invitarte a probar el Asistente de Resúmenes AI y esperamos tus comentarios y preguntas! Hagamos que la lectura en la web sea más simple y atractiva. Mejora tu experiencia de lectura en línea con el Asistente de Resúmenes AI hoy mismo!",
-  "version": "1.0.1"
+  "feedbackSupportText": "¡Nos emociona invitarte a probar el Ayudante de Resumen AI y esperamos tus comentarios y preguntas! Hagamos que la lectura en la web sea más simple y atractiva. Mejora tu experiencia de lectura en línea con el Ayudante de Resumen AI hoy mismo!",
+  "version": "1.0.2"
 }

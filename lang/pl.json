@@ -1,42 +1,46 @@
 {
-  "title": "AI Podsumowania Pomocnik 🚀",
-  "about": "O aplikacji 📖",
-  "aboutText": "Zamień swoje przeglądanie w potęgę produktywności dzięki AI Podsumowania Pomocnik. Nigdy już nie pozwól, aby jakikolwiek artykuł umknął Twojej uwadze! 🌟",
+  "title": "Pomocnik Podsumowań AI 🚀",
+  "about": "O nas 📖",
+  "aboutText": "Przekształć swoje przeglądanie w potęgę produktywności z Pomocnikiem Podsumowań AI. Już nigdy nie pozwól, aby jakiś artykuł umknął! 🌟",
   "features": "Funkcje 🔍",
   "featureList": [
-    "Podsumowuj artykuły w osobisty sposób ✨",
-    "Wsparcie dla modeli OpenAI, Mistral AI, Ollama (lokalnie) i wielu innych",
-    "Integruj podsumowania w swoim przepływie czytania 📚",
-    "Czytaj w ruchu: Udostępniaj na Kindle za pomocą [Reabble](https://send.reabble.com/) 📖",
+    "Podsumowuj artykuły z osobistym akcentem ✨",
+    "Wsparcie dla OpenAI, Mistral AI, Ollama (lokalnie) i wielu innych modeli",
+    "Integruj podsumowania w swoim procesie czytania 📰",
+    "Czytaj w ruchu: Udostępnij na Kindle z [Reabble](https://send.reabble.com/) 📖",
     "Wieloplatformowość: Generator zakładek dla wszystkich przeglądarek i systemów operacyjnych, w tym iOS/Android"
   ],
+  "localizedFeature": {
+    "headline": "Czytaj i Rozumiej Artykuły po Angielsku - Bez Wysiłku! 🌍",
+    "text": "<p>Wyobraź sobie przeglądanie morza artykułów online, próbując nadążyć za ulubionymi blogami, portalami informacyjnymi lub pracami badawczymi. To wyzwanie, prawda? Już nie. Z <strong>Pomocnikiem Podsumowań AI</strong> możesz nurkować prosto w istotę dowolnego artykułu, podsumowanego specjalnie dla Ciebie w języku angielskim.</p><p>Niezależnie od tego, czy masz do czynienia z 10-stronicową pracą badawczą, czy najnowszym blogiem, Pomocnik Podsumowań AI jest tutaj, aby uratować sytuację. Na przykład, wyobraź sobie artykuł naukowy wyjaśniający, jak czarne dziury wpływają na czas. Zamiast przekopywać się przez strony żargonu astrofizycznego, otrzymujesz zwięzłe, łatwe do zrozumienia podsumowanie:</p><blockquote>Czarne dziury zniekształcają czas przez intensywny wpływ grawitacyjny. Zegary bliżej czarnej dziury działają wolniej w porównaniu do tych, które znajdują się dalej, co jest zjawiskiem wyjaśnionym przez teorię względności Einsteina.</blockquote><p>Proste, prawda? I to nie tylko podsumowania! Dostosuj je do swoich potrzeb – chcesz spojrzenia biznesowego, akademickiego, czy luźniejszego? Ty decydujesz.</p><h3>Jak to działa w praktyce?</h3><ul><li>Szczegółowy przepis od blogera kulinarnego? Streszczony do szybkich wskazówek dotyczących przygotowania.</li><li>Obszerna redakcja na temat gospodarki? Kluczowe punkty wydobyte dla Twojego zapracowanego harmonogramu.</li><li>Ciekawy Shakespeare? Otrzymaj fabułę Makbeta w trzech linijkach.</li></ul><p>Pomocnik Podsumowań AI nie tylko ułatwia zrozumienie; poprawia sposób przyswajania informacji. Niezależnie od tego, czy jesteś profesjonalistą, studentem czy ciekawym uczniem, treści po angielsku płyną teraz do Twojego mózgu bez wysiłku.</p><p>Pożegnaj się z zaśmieconymi kartami i pominiętymi lekturami. Rozpocznij mądrzejszy sposób przeglądania internetu z Pomocnikiem Podsumowań AI już dziś! 🚀</p>"
+  },
   "proposeFeature": "Zaproponuj Funkcję 💡",
-  "proposeFeatureText": "Masz doskonały pomysł? Podziel się nim z nami [tutaj](https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp) i współtwórz przyszłość AI Podsumowania Pomocnik! 📝",
+  "proposeFeatureText": "Masz genialny pomysł? Podziel się nim z nami <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">tutaj</a> i kształtuj przyszłość Pomocnika Podsumowań AI! 📝",
   "privacyNote": "Informacja o prywatności 🔒",
-  "privacyNoteText": "Twoja prywatność jest dla nas najważniejsza. Zapewniamy, że Twoje dane pozostają Twoje. 🔑 [Dowiedz się więcej](privacy)",
-  "funMessage": "Zanurz się w inteligentniejszy sposób przeglądania z AI Podsumowania Pomocnik! 🎉",
-  "changelog": "Historia zmian 📜",
+  "privacyNoteText": "Twoja prywatność jest dla nas najważniejsza. Zapewniamy, że Twoje dane pozostają Twoje. 🔐 <a href=\"privacy\">Dowiedz się więcej</a>",
+  "funMessage": "Zanurz się w mądrzejszy sposób przeglądania z Pomocnikiem Podsumowań AI! 🎉",
+  "changelog": "Dziennik zmian 📜",
   "changelogList": [
-    "Dodano listę zgodnych narzędzi, które dobrze integrują się z Twoim przepływem czytania i AI Podsumowania Pomocnik",
-    "Historia artykułów - przeglądaj i wyszukuj swoje podsumowania",
-    "Nowe wskazówki - bardziej dokładne",
-    "Wsparcie dla lokalnych LLM - modele [Ollama](https://ollama.com/) / [Llama](https://ai.meta.com/llama/)",
-    "Zaktualizowano wsparcie dla modelu [Mistral AI](https://www.mistral.ai/)",
-    "Zaktualizowano do modelu GPT4o mini",
+    "Dodano listę kompatybilnych narzędzi, które dobrze integrują się z Twoim procesem czytania i Pomocnikiem Podsumowań AI",
+    "Historia artykułów - przeglądanie i przeszukiwanie podsumowań",
+    "Nowe zapytania - dokładniejsze",
+    "Wsparcie dla lokalnych modeli LLM - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
+    "Zaktualizowane wsparcie dla modelu <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
+    "Zaktualizowany do modelu GPT4o mini",
     "Zaktualizowany interfejs użytkownika 🎨"
   ],
   "aboutCreator": "O twórcy",
-  "creatorText": "Cześć społeczności :) - Jestem Phil Wornath, twórcą AI Podsumowania Pomocnik. Jako miłośnik obszernej pisanej treści w sieci, szczególnie artykułów naukowych, często borykałem się z ograniczeniem czasowym. To zainspirowało mnie do stworzenia narzędzia, które zwiększa produktywność i efektywność czytania.",
-  "whyHelper": "Dlaczego AI Podsumowania Pomocnik?",
+  "creatorText": "Cześć społeczności :) - Nazywam się Phil Wornath i jestem twórcą Pomocnika Podsumowań AI. Jako miłośnik obszernej treści pisanej w sieci, zwłaszcza artykułów naukowych, często borykałem się z ograniczeniami czasowymi. To zainspirowało mnie do stworzenia narzędzia, które zwiększa produktywność i skuteczność czytania.",
+  "whyHelper": "Dlaczego Pomocnik Podsumowań AI?",
   "whyHelperList": [
-    "Odzyskaj swój czas: Generuj szybkie podsumowania lub przygotuj się na głębsze zanurzenie w późniejszym czasie.",
-    "Dopasowane do Ciebie: Dostosuj podsumowania do swojego języka, zawodu lub punktu widzenia.",
-    "Zachowaj porządek: Unikaj zagraconych zakładek i zachowaj zarządzalność swojej listy czytania.",
-    "Zwiększone wrażenia z czytania: Skup się na treści, która ma dla Ciebie znaczenie, bez przytłaczania."
+    "Odzyskaj swój czas: Generuj szybkie streszczenia lub przygotuj się na dogłębne analizowanie później.",
+    "Dostosuj do siebie: Personalizuj podsumowania, aby odpowiadały Twojemu językowi, zawodowi lub punktowi widzenia.",
+    "Zachowaj porządek: Unikaj zaśmieconych kart i miej swoją listę lektur pod kontrolą.",
+    "Zwiększona jakość czytania: Skoncentruj się na treści, która ma dla Ciebie znaczenie, bez przytłoczenia."
   ],
-  "getStarted": "Zacznij już dziś",
-  "getStartedText": "Aby rozpocząć korzystanie z AI Podsumowania Pomocnik, upewnij się, że masz [klucz API OpenAI](https://platform.openai.com/account/api-keys) oraz odpowiednie środki. Dołącz do nas, aby ułatwić i uczynić czytanie w internecie bardziej dostępnym dla wszystkich. Pobierz teraz na [Gumroad](https://philwornath.gumroad.com/l/ai-summary-helper) i przekształć swoje doświadczenie przeglądania.",
+  "getStarted": "Rozpocznij już dziś",
+  "getStartedText": "Aby rozpocząć korzystanie z Pomocnika Podsumowań AI, upewnij się, że masz <a href=\"https://platform.openai.com/account/api-keys\">klucz API OpenAI</a> oraz wystarczający kredyt. Dołącz do nas, aby ułatwić czytanie w Internecie i uczynić je bardziej dostępnym dla każdego. Pobierz teraz na <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> i przekształć swoje doświadczenie przeglądania.",
   "feedbackSupport": "Opinie i wsparcie",
-  "feedbackSupportText": "Z radością zapraszamy Cię do wypróbowania AI Podsumowania Pomocnik i czekamy na Twoje opinie oraz pytania. Uczyńmy czytanie w sieci prostszym i bardziej angażującym. Zwiększ swoje doświadczenie czytania online z AI Podsumowania Pomocnik już dziś!",
-  "version": "1.0.1"
+  "feedbackSupportText": "Jesteśmy podekscytowani, aby zaprosić Cię do wypróbowania Pomocnika Podsumowań AI i z przyjemnością czekamy na Twoje opinie oraz pytania. Sprawmy, aby czytanie w Internecie było prostsze i bardziej angażujące. Zwiększ swoje doświadczenie czytania online z Pomocnikiem Podsumowań AI już dziś!",
+  "version": "1.0.2"
 }
