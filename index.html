@@ -413,7 +413,7 @@
     </div>
     <!-- Extension UI -->
     <div id="extensionUI" class="extension-ui hidden">
-        <img src="extension.jpg" alt="Extension UI" style="width: auto; height: auto;">
+        <img src="extension.png" alt="Extension UI" style="width: 500px; height: auto;">
     </div>
     <style>
         .tooltip {
@@ -447,15 +447,18 @@
         }
 
         .extension-ui {
-            max-width: 800px; /* Set a maximum width */
+            max-width: 500px; /* Set a maximum width */
             height: auto;
             position: absolute; /* Position absolute for dynamic placement */
             background-color: #f9f9f9; /* Optional: Add a background color */
             border-radius: 10px; /* Optional: Add rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
             z-index: 1000; /* Ensure it appears above other elements */
+            opacity: 0; /* Start with opacity 0 for fade-in effect */
+            animation: fadeInFlyIn .5s forwards; /* Apply fade-in animation */
         }
 
+    
         #summarizeButton {
             position: absolute;
             /* width: max-content; */

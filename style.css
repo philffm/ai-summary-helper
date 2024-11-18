@@ -400,9 +400,11 @@ footer {
 .feature-cards-container {
     display: flex;
     padding: 40px 32px;
-    overflow: scroll;
+    overflow-x: auto;
     gap: 24px;
     white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 }
 
 .feature-cards-container::-webkit-scrollbar {
@@ -413,12 +415,11 @@ footer {
 .feature-card {
     flex: 0 0 auto;
     width: 250px;
-    /* Increased width for better visibility */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-size: 20px;
     text-wrap: auto;
     height: max-content;
@@ -590,4 +591,20 @@ article a:hover {
     article ol li {
         font-size: 14px;
     }
+}
+
+@keyframes fadeInFlyIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeInFlyIn .5s ease-out forwards;
 }
