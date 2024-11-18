@@ -39,19 +39,30 @@
 
         async function loadContent(lang = 'en') {
             try {
+                let translations;
                 if (lang === 'en') {
                     const response = await fetch('translations.json');
                     if (!response.ok) {
                         throw new Error('Failed to load default content');
                     }
-                    const translations = await response.json();
-                    data = translations.content; // Assign to the broader scoped variable
+                    translations = await response.json();
+                    data = translations.content;
                 } else {
                     const response = await fetch(`lang/${lang}.json`);
                     if (!response.ok) {
                         throw new Error(`Failed to load language file: ${lang}`);
                     }
                     data = await response.json();
+
+                    // Check if aisummary exists, if not, load from en.json
+                    if (!data.aisummary) {
+                        const enResponse = await fetch('lang/en.json');
+                        if (!enResponse.ok) {
+                            throw new Error('Failed to load English language file for aisummary');
+                        }
+                        const enData = await enResponse.json();
+                        data.aisummary = enData.aisummary;
+                    }
                 }
 
                 document.getElementById('metaTitle').textContent = data.title;

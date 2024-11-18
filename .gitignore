@@ -6,3 +6,4 @@ test.md
 Archive.zip
 chrome-extension/Archive 2.zip
 *.zip
+.env
