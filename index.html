@@ -35,16 +35,17 @@
     <meta name="robots" content="follow, index">
 
     <script>
+        let data; // Declare data in a broader scope
+
         async function loadContent(lang = 'en') {
             try {
-                let data;
                 if (lang === 'en') {
                     const response = await fetch('translations.json');
                     if (!response.ok) {
                         throw new Error('Failed to load default content');
                     }
                     const translations = await response.json();
-                    data = translations.content;
+                    data = translations.content; // Assign to the broader scoped variable
                 } else {
                     const response = await fetch(`lang/${lang}.json`);
                     if (!response.ok) {
@@ -194,6 +195,7 @@
         };
 
         document.addEventListener("DOMContentLoaded", function() {
+            // Initialize feature cards auto-scroll
             const container = document.querySelector('.feature-cards-container');
             const cards = Array.from(container.querySelectorAll('.feature-card'));
             let scrollAmount = 0;
@@ -204,7 +206,6 @@
             cards.forEach(card => {
                 const clone = card.cloneNode(true);
                 container.appendChild(clone);
-                console.log(clone);
             });
 
             // Auto-scroll function
@@ -222,6 +223,7 @@
             // Start auto-scrolling
             setInterval(autoScroll, scrollInterval);
 
+            // Initialize language menu button
             const languageMenuButton = document.getElementById('languageMenuButton');
             const languageMenu = document.getElementById('languageMenu');
 
@@ -232,6 +234,33 @@
                     buttons.forEach((button, index) => {
                         button.style.setProperty('--delay', `${index * 0.03}s`);
                     });
+                }
+            });
+            // Initialize extension button
+            document.getElementById('extensionButton').addEventListener('click', function() {
+                const extensionUI = document.getElementById('extensionUI');
+                extensionUI.classList.toggle('hidden');
+
+                if (!extensionUI.classList.contains('hidden')) {
+                    const buttonRect = this.getBoundingClientRect();
+                    extensionUI.style.position = 'absolute';
+                    extensionUI.style.top = `${buttonRect.bottom + window.scrollY}px`; // Position below the button
+                    extensionUI.style.left = `${buttonRect.left + window.scrollX + buttonRect.width  - extensionUI.offsetWidth}px`; // Center horizontally
+                }
+            });
+
+            // Initialize summarize button
+            document.getElementById('extensionUI').addEventListener('click', function() {
+                if (data && data.aisummary) {
+                    const summarySection = document.createElement('section');
+                    summarySection.classList.add('padding-h-m');
+                    extensionUI.classList.add('hidden');
+                    summarySection.innerHTML = data.aisummary;
+                    console.log(data.aisummary);
+                    const featuresSection = document.getElementById('features-section');
+                    featuresSection.parentNode.insertBefore(summarySection, featuresSection);
+                } else {
+                    console.error('Summary data is not available');
                 }
             });
 
@@ -276,15 +305,31 @@
 <body>
     <div class="window-frame">
         <div class="window-title-bar">
-            <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
-            <div style="display: flex; flex-direction: row; align-items: center; gap: 12px;">
+            <div class="window-controls">
+                <button class="window-button minimize"></button>
+                <button class="window-button maximize"></button>
+                <button class="window-button close"></button>
+            </div>
+            <div class="window-row">
+                <div class="navigation-buttons">
+                    <button class="navigation-button">
+                        <span>&#9664;</span> <!-- Left chevron -->
+                    </button>
+                    <button class="navigation-button">
+                        <span>&#9654;</span> <!-- Right chevron -->
+                    </button>
+                    </div>
+                <div class="address-bar">
+                    <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
                 <h1 id="title" class="window-title">AI Summary Helper</h1>
                 <button id="languageMenuButton" class="buttonIcon">🌍 Language</button>
+
+                
             </div>
-            <div class="window-controls">
-                <button class="window-button minimize">_</button>
-                <button class="window-button maximize">□</button>
-                <button class="window-button close">X</button>
+            <!-- Extension button with tooltip -->
+            <button class="extension-button" id="extensionButton">
+                <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
+            </button>
             </div>
         </div>
         <div id="languageMenu" class="language-menu hidden">
@@ -355,5 +400,117 @@
             </footer>
         </div>
     </div>
+    <!-- Extension UI -->
+    <div id="extensionUI" class="extension-ui hidden">
+        <img src="extension.jpg" alt="Extension UI" style="width: auto; height: auto;">
+    </div>
+    <style>
+        .tooltip {
+            visibility: hidden;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the button */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .extension-button {
+            border-radius: 12px;
+            border: 1px solid grey;
+        }
+
+        .extension-button:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .extension-ui.hidden {
+            display: none;
+        }
+
+        .extension-ui {
+            max-width: 800px; /* Set a maximum width */
+            height: auto;
+            position: absolute; /* Position absolute for dynamic placement */
+            background-color: #f9f9f9; /* Optional: Add a background color */
+            border-radius: 10px; /* Optional: Add rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
+            z-index: 1000; /* Ensure it appears above other elements */
+        }
+
+        #summarizeButton {
+            position: absolute;
+            /* width: max-content; */
+            bottom: 14px;
+            /* left: 50%; */
+            transform: translateX(-108%);
+            width: 93%;
+            margin: 0 12px;
+            background: linear-gradient(30deg, #3B6CF2, #6CCCFB);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            /* margin: 0 4px; */
+            /* margin: 20px; */
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #summarizeButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        #extensionButton {
+            position: relative;
+            padding:  10px;
+            border-radius: 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        #extensionButton::after {
+            content: "try me";
+            position: absolute;
+            bottom: -25px; /* Position below the button */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #extensionButton:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+            }
+        }
+    </style>
 </body>
 </html>

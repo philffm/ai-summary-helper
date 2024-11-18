@@ -6,6 +6,23 @@ body {
     color: #333;
 }
 
+
+.flex {
+    display: flex;
+}
+
+.padding-h-m {
+    padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+    .padding-h-m {
+        padding: 0 20px;
+    }
+}
+
+
+
 blockquote {
     font-size: 24px;
     font-style: italic;
@@ -40,13 +57,105 @@ blockquote::before {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.window-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 100%;
+}
+
 .window-title-bar {
-    background-color: #0078d7;
-    color: white;
+    background-color: #f1f1f1;
+    color: #333;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.window-controls button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.window-controls .minimize {
+    background-color: #fbbc05;
+    /* Orange */
+}
+
+.window-controls .maximize {
+    background-color: #34a853;
+    /* Green */
+}
+
+.window-controls .close {
+    background-color: #ea4335;
+    /* Red */
+}
+
+.window-controls button:hover {
+    opacity: 0.8;
+}
+
+.address-bar {
+    display: flex;
     align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.address-bar img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.address-bar span {
+    font-size: 14px;
+    color: #333;
+}
+
+.window-title-bar .navigation-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.navigation-button {
+    /* background-color: #e0e0e0; */
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navigation-button:hover {
+    background-color: #d0d0d0;
+}
+
+.navigation-button img {
+    width: 12px;
+    height: 12px;
 }
 
 @media (max-width: 768px) {
@@ -69,6 +178,10 @@ blockquote::before {
 
 .window-title {
     font-size: 18px;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+
 }
 
 .window-controls button {

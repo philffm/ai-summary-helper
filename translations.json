@@ -1,5 +1,5 @@
 {
-    "version": "1.0.3",
+    "version": "1.0.4",
     "languages": [
         {
             "code": "en",
@@ -116,6 +116,7 @@
         "title": "AI Summary Helper 🚀",
         "about": "About 📖",
         "aboutText": "Transform your browsing into a powerhouse of productivity with AI Summary Helper. Never let another article slip through the cracks! 🌟",
+        "aisummary": "<h2>AI Summary 🪄 of this page:</h2><h3>AI Summary Helper - Your Secret Weapon Around The Web</h3> <p>Turn overwhelming articles into bite-sized brilliance. Summarize, translate, and conquer the web with style! 🌍</p> <h3>Standup Comedy:</h3> <p>Ever felt like reading a 10-page article for one nugget of info? It's like buying a watermelon for a single seed. AI Summary Helper says, 'Hold up, I got you!' Why sweat through astrophysics when we can whisper Einstein’s secrets to you in 3 sentences? Or transform Shakespeare into 'Macbeth: TL;DR - Dude goes mad, everyone dies.' Oh, and it translates too! Learning Japanese now feels like karaoke with subtitles.</p> <h3>Striking Quotes:</h3> <ul><li>‘Clocks closer to black holes run slower.’ Thanks, Einstein—and AI Summary Helper—for making me smarter at dinner parties.</li><li>‘Say goodbye to cluttered tabs and missed reads.’ Finally, my browser looks less like a hoarder’s attic!</li><li>‘Summarize articles with a personal touch.’ Because who doesn't want Shakespeare with a bit of sass?</li></ul> <h3>#AIHelper 🚀</h3> <p>Makes TL;DR an art form. 🌍 From science papers to Shakespeare—summarized, personalized, & translated! Try it now 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
         "features": "Features 🔍 ",
         "featureList": [
             "Summarize articles with a personal touch ✨",
