@@ -169,7 +169,14 @@
 
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang') || 'en';
+            let lang = urlParams.get('lang');
+
+            // Detect browser language if no language is set in the URL
+            if (!lang) {
+                const browserLang = navigator.language || navigator.languages[0];
+                lang = browserLang.split('-')[0]; // Use the language code (e.g., 'en' from 'en-US')
+            }
+
             loadContent(lang);
             createLanguageButtons();
             loadBlogPosts(); // Load blog posts on page load
