@@ -1,46 +1,47 @@
 {
-  "title": "Yapay Zeka Özeti Yardımcısı 🚀",
+  "title": "AI Özet Yardımcısı 🚀",
   "about": "Hakkında 📖",
-  "aboutText": "Tarayıcınızı bir verimlilik gücü haline dönüştürün, Yapay Zeka Özeti Yardımcısı ile tanışın. Bir daha asla bir makalenin gözden kaçmasına izin vermeyin! 🌟",
-  "features": "Özellikler 🔍 ",
+  "aboutText": "AI Özet Yardımcısı ile tarayıcınızı üretkenliğin gücüne dönüştürün. Bir daha asla başka bir makalenin gözden kaçmasına izin vermeyin! 🌟",
+  "aisummary": "<h2>Bu sayfanın AI Özeti 🪄:</h2><h3>AI Özet Yardımcısı - İnternetteki Gizli Silahınız</h3> <p>Karmaşık makaleleri özlü bir biçimde anlayın. Özetleyin, çevirin ve interneti stil sahibi bir şekilde fethedin! 🌍</p> <h3>Komedi:</h3> <p>Bir bilgi kırıntısı için 10 sayfalık bir makale okumak zorunda kaldığınızı hissettiniz mi? Tek bir tohum için karpuz almak gibi. AI Özet Yardımcısı diyor ki, 'Bekle, ben hallederim!' Neden astrofiziğe kafa yoralım ki, Einstein’ın sırlarını 3 cümleye sıkıştırmıyoruz? Ya da Shakespeare’i 'Macbeth: TL;DR - Adam deli oluyor, herkes ölüyor.' olarak dönüştürmüyoruz. Oh, ve aynı zamanda çeviri yapıyor! Japonca öğrenmek artık altyazılı karaoke gibi.</p> <h3>Çarpıcı Alıntılar:</h3> <ul><li>'Siyah deliklere daha yakın saatler daha yavaş çalışır.' Teşekkürler, Einstein—ve AI Özet Yardımcısı—bana akşam yemeğinde daha zeki göstermediğiniz için.</li><li>'Dağınık sekmelere ve okunmamış makalelere veda edin.' Nihayet, tarayıcım bir toplayıcının tavanı gibi görünmüyor!</li><li>'Makale özetleri kişisel bir dokunuşla.' Çünkü kim Shakespeare'yi biraz alaycılıkla istemez ki?</li></ul> <h3>#AIYardımcı 🚀</h3> <p>TL;DR'yı bir sanat formuna dönüştürün. 🌍 Bilim makalelerinden Shakespeare'e—özetlendi, kişiselleştirildi ve çevrildi! Şimdi deneyin 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
+  "features": "Özellikler 🔍",
   "featureList": [
-    "Makaleleri kişisel bir dokunuşla özetleyin ✨",
-    "OpenAI, Mistral AI, Ollama (yerel) ve daha fazla model desteği",
-    "Özetleri okuma akışınıza entegre edin 📚",
-    "Yolda okuma: [Reabble](https://send.reabble.com/) ile Kindle'a paylaşın 📖",
-    "Çapraz platform: Tüm tarayıcılar ve işletim sistemleri için yer işareti oluşturucu, iOS/Android dahil"
+    "Makale özetlerini kişisel bir dokunuşla sunun ✨",
+    "OpenAI, Mistral AI, Ollama (yerel) ve daha fazla model destekleniyor",
+    "Özetleri okuma akışınıza entegre edin 📖",
+    "Hareket halindeyken okuyun: [Reabble](https://send.reabble.com/) ile Kindle'a paylaşın 📖",
+    "Platformlar Arası: Tüm tarayıcılar ve işletim sistemleri için yer işareti oluşturucu, iOS/Android dahil"
   ],
   "localizedFeature": {
-    "headline": "Makale Okuma ve Anlama – Kolayca! 🌍",
-    "text": "<p>Hayal edin; çevrimiçi pek çok makale arasında dolaşıyorsunuz, sevdiğiniz bloglar, haber siteleri veya araştırma makaleleriyle ayak uydurmaya çalışıyorsunuz. Bu çok zor değil mi? Artık değil. <strong>Yapay Zeka Özeti Yardımcısı</strong> ile herhangi bir makalenin özüne dalarak, İngilizce olarak sizin için özetlenmiş halde edinebilirsiniz.</p><p>İster 10 sayfalık bir araştırma makalesi, ister en son trend blog ile ilgileniyor olun, Yapay Zeka Özeti Yardımcısı size yardımcı olmak için burada. Örneğin, karadeliklerin zamanı nasıl etkilediğini açıklayan bir bilim makalesi hayal edin. Astrofizik jargonu arasında kaybolmak yerine, net, kolayca sindirilebilir bir özete sahip oluyorsunuz:</p><blockquote>Karadelikler, güçlü yerçekimi çekimi yoluyla zamanı bükmektedir. Karadeliklere daha yakın olan saatler, daha uzaktakilere göre daha yavaş çalışır, bu da Einstein'ın görelilik teorisiyle açıklanan bir fenomendir.</blockquote><p>Basit, değil mi? Ve sadece özetlerle sınırlı değil! Kendi ihtiyaçlarınıza göre uyarlayın - iş açısı, akademik odak veya sıradan bir çözüm mü istersiniz? Kontrol sizde.</p><h3>Bu pratikte nasıl çalışıyor?</h3><ul><li>Bir yemek blogcusunun kapsamlı tarifi? Hızlı hazırlık talimatlarına özetlenmiş.</li><li>Ekonomi hakkında uzun bir makale? Meşgul programınız için önemli noktalar çıkarılmış.</li><li>Shakespeare hakkında merak mı ediyorsunuz? Macbeth'in konusunu üç cümleyle öğrenin.</li></ul><p>Yapay Zeka Özeti Yardımcısı, sadece anlamanıza yardımcı olmakla kalmaz; bilgilere nasıl daha iyi hakim olduğunuzu geliştirir. İster profesyonel, ister öğrenci veya meraklı bir öğrenici olun, İngilizce içerik artık zihninize zahmetsizce akıyor.</p><p>Karışık sekmelere ve kaçırılan okumaya veda edin. Bugün Yapay Zeka Özeti Yardımcısı ile web'de daha akıllı bir tarama yöntemine başlayın! 🚀</p>"
+    "headline": "İngilizce Metinleri Daha İyi Çevirin ve Anlayın 🌍",
+    "text": "<p>Online olarak favori bloglarınızı, haber kaynaklarınızı veya araştırma makalelerinizi takip etmeye çalışırken bir makale denizinde yüzmeyi hayal edin. Zor bir görev değil mi? Artık değil. <strong>AI Özet Yardımcısı</strong> ile her makalenin özüne daldığınızda, sadece sizin için özelleştirilmiş özetleri edinebilirsiniz.</p><p>İster 10 sayfalık bir araştırma makalesiyle mücadele ediyor olun, ister en son trendleri takip eden bir blog, AI Özet Yardımcısı işinizi kurtarır. Örneğin, karadeliklerin zaman üzerindeki etkilerini açıklayan bir bilim makalesini düşünün. Astrofizik jargonlarını okuyarak zaman kaybetmek yerine, basit ve kolay anlaşılır bir özet alırsınız:</p><blockquote>Karadelikler, yoğun yerçekimi çekimiyle zamanı bozar. Karadeliklere daha yakın saatler, daha uzakta olanlara göre daha yavaş çalışır, bu fenomen Einstein'ın görelilik teorisiyle açıklanmaktadır.</blockquote><p>Basit, değil mi? Ve yalnızca özetlemekle kalmaz! İhtiyaçlarınıza göre özelleştirin – bir iş perspektifi mi, akademik bir odak mı, yoksa günlük bir özet mi istersiniz? Kontrol sizde.</p><h3>Bu uygulamada nasıl çalışır?</h3><ul><li>Bir yemek blogcusunun derinlemesine tarifi? Hızlı hazırlık talimatlarına özetlendi.</li><li>Ekonomi üzerine uzun bir makale? Yoğun programınıza uygun ana noktalar çıkarıldı.</li><li>Shakespeare hakkında meraklı mısınız? Macbeth'in hikayesini üç cümlede alın.</li></ul><p>AI Özet Yardımcısı yalnızca anlamanızı sağlamakla kalmaz; bilgiyi nasıl absorbe ettiğinizi de geliştirir. İster profesyonel, ister öğrenci, ister meraklı bir öğrenici olun, İngilizce içerik artık beyninize zahmetsizce akıyor.</p><p>Karmaşık sekmelere ve okunmamış makalelere veda edin. Bugün AI Özet Yardımcısı ile internette daha akıllı bir tarayıcı deneyimlemeye başlayın! 🚀</p><h2>Yeni Bir Dil Öğrenin 🗣️: Desteklenen Herhangi Bir Dilde Makaleleri Anlayın</h2><p><strong>İspanyolca</strong>, <strong>Japonca</strong> veya <strong>Arapça</strong> makaleleri okumak istiyor ama anlamakta zorlanıyor musunuz? AI Özet Yardımcısı çok dilli asistanınız! İstediğiniz dili seçin, uygulamanın çevirmesine, özetlemesine ve okurken öğrenmenize izin verin.</p><p>İşte nasıl çalıştığı:</p><ul><li><strong>Yerel Haberleri Her Yerden Okuma:</strong> Fransız siyaseti veya Alman teknolojisiyle ilgileniyor musunuz? AI Özet Yardımcısı, anlama bağlamına uygun olarak kendi dillerinde özetler sunar.</li><li><strong>Yabancı Edebiyatı Çalışmak:</strong> <em>Gabriel García Márquez</em>'i İspanyolca veya <em>Haruki Murakami</em>'yi Japonca takdir etmek ister misiniz? Anahtar ifadeleri vurgularken, İngilizce bağlam zengini özetler alarak kesintisiz bir öğrenim deneyimi yaşarsınız.</li></ul><p>Desteklenen diller: 🌍 İngilizce, 🇪🇸 İspanyolca, 🇩🇪 Almanca, 🇫🇷 Fransızca, 🇮🇹 İtalyanca, 🇧🇷 Portekizce, 🇳🇱 Hollandaca, 🇷🇺 Rusça, 🇺🇦 Ukraynaca, 🇵🇱 Lehçe, 🇸🇪 İsveççe, 🇩🇰 Danca, 🇯🇵 Japonca, 🇨🇳 Çince, 🇰🇷 Korece, 🇮🇳 Hintçe, 🇹🇭 Tayca, 🇮🇩 Endonezyaca, 🇸🇦 Arapça, 🇹🇷 Türkçe, 🇧🇬 Bulgarca, 🇷🇴 Romence.</p><p>Çeviriyi anlamayla harmanlayarak AI Özet Yardımcısı, yeni dilleri zahmetsizce ustalaşmanız için rehberinizdir!</p>"
   },
-  "proposeFeature": "Bir Özellik Önerin 📝",
-  "proposeFeatureText": "Harika bir fikriniz mi var? Bunu bizimle <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">burada</a> paylaşın ve Yapay Zeka Özeti Yardımcısı'nın geleceğini şekillendirin! 💬",
+  "proposeFeature": "Bir Özellik Önerin ⚡",
+  "proposeFeatureText": "Harika bir fikriniz mi var? Bunu bizimle <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">burada</a> paylaşın ve AI Özet Yardımcısının geleceğini şekillendirin! 💬",
   "privacyNote": "Gizlilik Notu 🔒",
-  "privacyNoteText": "Gizliliğiniz bizim önceliğimizdir. Verilerinizin sizinle kalmasını sağlıyoruz. 🔐 <a href=\"privacy\">Daha fazla bilgi edinin</a>",
-  "funMessage": "Yapay Zeka Özeti Yardımcısı ile daha akıllı bir tarama yöntemine dalın! 🎉",
+  "privacyNoteText": "Gizliliğiniz bizim önceliğimizdir. Verilerinizin yalnızca sizin olmasını sağlarız. 🔑 <a href=\"privacy\">Daha fazlasını öğrenin</a>",
+  "funMessage": "AI Özet Yardımcısı ile daha akıllı bir tarayıcı deneyimine dalın! 🎉",
   "changelog": "Değişiklik Günlüğü 📜",
   "changelogList": [
-    "Okuma akışınıza ve Yapay Zeka Özeti Yardımcısı ile uyumlu çalışan araçların listesini ekledik",
-    "Makalelerin geçmişi - özetlerinizi görüntüleyin ve arayın",
+    "Okuma akışınıza ve AI Özet Yardımcısına iyi entegre olan uyumlu araçların listesi eklendi",
+    "Makalelerin geçmişi - özetlerinizi gözden geçirin ve arayın",
     "Yeni istemler - daha doğru",
     "Yerel LLM'ler için destek - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> modelleri",
-    "Mistral AI model desteği güncellendi <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
-    "GPT4o mini model desteği güncellendi",
-    "Güncellenmiş arayüz 🎨"
+    "AI Özet Yardımcısı ile uyumlu olması için <a href=\"https://www.mistral.ai/\">Mistral AI</a> modelinin desteği güncellendi",
+    "GPT4o mini modeli güncellendi",
+    "Arayüz güncellendi 🎨"
   ],
-  "aboutCreator": "Yaratıcı Hakkında",
-  "creatorText": "Merhaba topluluk :) - Ben Phil Wornath, Yapay Zeka Özeti Yardımcısı'nın yaratıcısıyım. Özellikle bilimsel makalelere yönelik geniş yazılı web içeriği tutkunuyum, sıkça zaman sınırlamaları ile karşılaştım. Bu, verimliliği ve okuma etkinliğini artıran bir araç geliştirmemi ilham etti.",
-  "whyHelper": "Neden Yapay Zeka Özeti Yardımcısı?",
+  "aboutCreator": "Yaratıcısı Hakkında",
+  "creatorText": "Merhaba topluluk :) - Ben Phil Wornath, AI Özet Yardımcısının yaratıcısıyım. Kapsamlı yazılı içeriklere, özellikle bilimsel makalelere olan bir tutkum var. Zaman kısıtlamaları sık sık karşımda duruyordu. Bu da beni verimliliği artıran ve okuma etkinliğini yükselten bir araç geliştirmeye yöneltti.",
+  "whyHelper": "Neden AI Özet Yardımcısı?",
   "whyHelperList": [
-    "Zamanınızı Geri Kazanın: Hızlı özetler oluşturun veya daha derinlemesine incelemeler için hazırlanın.",
-    "Size Özel: Özellikleri dilinize, mesleğinize veya bakış açınıza göre özelleştirin.",
-    "Düzenli Kalın: Karışık sekmelerden kaçının ve okuma listenizi yönetilebilir tutun.",
-    "Geliştirilmiş Okuma Deneyimi: Sizi aşırı yüklenmeden koruyarak sizin için önemli olan içeriğe odaklanın."
+    "Zamanınızı Geri Kazanın: Hızlı özetler oluşturun veya daha sonra derinlemesine incelemeler için hazırlanın.",
+    "Size Özel: Özetleri dilinize, mesleğinize veya bakış açınıza göre özelleştirin.",
+    "Organize Kalın: Dağınık sekmelerden kaçınarak okuma listenizi yönetilebilir tutun.",
+    "Gelişmiş Okuma Deneyimi: Sizi aşırı yüklemeden, önem taşıyan içeriğe odaklanın."
   ],
   "getStarted": "Bugün Başlayın",
-  "getStartedText": "Yapay Zeka Özeti Yardımcısını kullanmaya başlamak için bir <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API anahtarı</a>'na ve yeterli krediye sahip olduğunuzdan emin olun. Web okuma deneyimini herkes için daha kolay ve erişilebilir hale getirelim. Şimdi <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a>'dan indirin ve tarayıcı deneyiminizi dönüştürün.",
+  "getStartedText": "AI Özet Yardımcısını kullanmaya başlamak için bir <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API anahtarı</a> ve yeterli krediye sahip olduğunuzdan emin olun. İnternette okuma deneyimini daha kolay ve herkes için daha erişilebilir hale getirmek için bize katılın. Şimdi <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a>'dan indirin ve tarayıcı deneyiminizi dönüştürün.",
   "feedbackSupport": "Geri Bildirim ve Destek",
-  "feedbackSupportText": "Yapay Zeka Özeti Yardımcısını denemeniz için sizi davet etmekten heyecan duyuyoruz ve geri bildirimlerinizi ve sorularınızı bekliyoruz. Web'de okuma işlemini daha basit ve etkileşimli hale getirelim. Bugün Yapay Zeka Özeti Yardımcısını kullanarak çevrimiçi okuma deneyiminizi geliştirin!",
-  "version": "1.0.2"
+  "feedbackSupportText": "AI Özet Yardımcısını denemeniz için sizi davet etmekten heyecan duyuyoruz ve geri bildirimlerinizi ve sorularınızı bekliyoruz. İnternetteki okumayı daha basit ve daha ilgi çekici hale getirelim. Bugün AI Özet Yardımcısı ile çevrimiçi okuma deneyiminizi artırın!",
+  "version": "1.0.8"
 }

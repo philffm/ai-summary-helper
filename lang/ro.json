@@ -1,46 +1,47 @@
 {
   "title": "AI Summary Helper 🚀",
-  "about": "Despre 📝",
-  "aboutText": "Transformă navigarea pe internet într-o putere a productivității cu AI Summary Helper. Nu lăsa să-ți scape niciun articol! 🌟",
-  "features": "Funcții 🔍",
+  "about": "Despre 🤔",
+  "aboutText": "Transformă navigarea ta într-o putere a productivității cu AI Summary Helper. Nu mai lăsa niciun articol să-ți scape! 🌟",
+  "aisummary": "<h2>AI Summary 🪄 al acestei pagini:</h2><h3>AI Summary Helper - Arma ta secretă pe internet</h3> <p>Transformă articolele copleșitoare în practici concise. Resumează, traduci și cucerește internetul cu stil! 🗺️</p> <h3>Comedie Standup:</h3> <p>Te-ai simțit vreodată ca și cum ai citi un articol de 10 pagini pentru un singur nugget de informații? E ca și cum ai cumpăra o pepene pentru o singură sămânță. AI Summary Helper spune: 'Așteaptă, te ajut!' De ce să ne zbatem cu astrofizica când putem șopti secretele lui Einstein în 3 propoziții? Sau să transformăm Shakespeare în 'Macbeth: TL;DR - Tipul devine nebun, toată lumea moare.' Oh, și traduce și! Învățarea japoneză acum e ca și cum ai cânta karaoke cu subtitrări.</p> <h3>Citate Impresionante:</h3> <ul><li>‘Ceasurile apropiate de găuri negre merg mai încet.’ Mulțumesc, Einstein—și AI Summary Helper—pentru că mă faci mai deștept la petrecerile cu cina.</li><li>‘Spune adio tab-urilor încurcate și lecturilor ratate.’ În sfârșit, browserul meu arată mai puțin ca un pod al strânsorilor!</li><li>‘Resumează articolele cu o notă personală.’ Pentru că cine nu vrea un Shakespeare cu puțin stil?</li></ul> <h3>#AIHelper 🚀</h3> <p>Transformă TL;DR într-o formă de artă. 🗺️ De la lucrări științifice la Shakespeare—resumează, personalizează și traduce! Încearcă acum 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
+  "features": "Caracteristici 🔍",
   "featureList": [
-    "Rezumă articole cu o notă personală ✨",
-    "Suport pentru OpenAI, Mistral AI, Ollama (local) și alte modele",
-    "Integrează rezumate în fluxul tău de lectură 📰",
-    "Citește în deplasare: Partajează pe Kindle cu [Reabble](https://send.reabble.com/) 📝",
-    "Cross-Platform: Generator de marcaje pentru toate browserele și sistemele de operare, inclusiv iOS/Android"
+    "Resumează articole cu o notă personală ✨",
+    "Suport pentru modele OpenAI, Mistral AI, Ollama (locale) și altele",
+    "Integrează rezumatele în fluxul tău de lectură 📚",
+    "Citeste pe drum: Distribuie pe Kindle cu [Reabble](https://send.reabble.com/) 📖",
+    "Cross-Platform: Generator de bookmarklet pentru toate browserele și OS, inclusiv iOS/Android"
   ],
   "localizedFeature": {
-    "headline": "Citește și Înțelege Articole în Engleză - Fără Effort! 🌍",
-    "text": "<p>Imaginează-ți cum răsfoiești printr-o mare de articole online, încercând să ții pasul cu blogurile tale preferate, sursele de știri sau lucrările de cercetare. E o provocare, nu-i așa? Nu mai este. Cu <strong>AI Summary Helper</strong>, poți ajunge direct la esența oricărui articol, rezumat special pentru tine în engleză.</p><p>Fie că abordezi o lucrare de cercetare de 10 pagini sau cel mai recent blog în trend, AI Summary Helper este aici pentru a-ți salva ziua. De exemplu, imaginează-ți un articol științific care explică modul în care găurile negre afectează timpul. În loc să navighezi prin pagini de jargon astrofizic, primești un rezumat concis și ușor de digerat:</p><blockquote>Găurile negre distorsionează timpul printr-o atracție gravitațională intensă. Ceasurile mai aproape de gaura neagră merg mai încet comparativ cu cele mai departe, un fenomen explicat de teoria relativității a lui Einstein.</blockquote><p>Simplu, nu-i așa? Și nu doar rezumate! Personalizează-le pentru a se potrivi nevoilor tale - dorești o perspectivă de afaceri, un accent academic sau o prezentare relaxată? Ești tu la control.</p><h3>Cum funcționează în practică?</h3><ul><li>Rețeta detaliată a unui blogger culinar? Rezumată în instrucțiuni rapide de preparare.</li><li>Un editorial lung despre economie? Punctele cheie extrase pentru programul tău ocupat.</li><li>Curios în legătură cu Shakespeare? Obține intrigile lui Macbeth în trei propoziții.</li></ul><p>AI Summary Helper nu doar că te ajută să înțelegi; îți îmbunătățește modul în care absoarbe informațiile. Fie că ești profesionist, student sau învățăcel curios, acum conținutul în limba engleză curge în mintea ta fără efort.</p><p>Spune adio filelor aglomerate și lecturilor ratate. Începe o modalitate mai inteligentă de a naviga pe web cu AI Summary Helper astăzi! 🚀</p>"
+    "headline": "Traducerea și Înțelegerea Textelor Mai Bine în Română 🌍",
+    "text": "<p>Imaginează-ți că răsfoiești o mare de articole online, încercând să ții pasul cu blogurile tale preferate, agențiile de știri sau lucrările de cercetare. Este o provocare, nu-i așa? Nu mai este! Cu <strong>AI Summary Helper</strong>, poți ajunge direct la esența oricărui articol, rezumat special pentru tine în română.</p><p>Indiferent dacă te ocupi de o lucrare de 10 pagini sau de cel mai recent blog în vogă, AI Summary Helper este aici să te salveze. De exemplu, imaginează-ți un articol științific care explică cum găurile negre afectează timpul. În loc să te scufunzi prin pagini de jargon astrofizic, primești un rezumat concis, ușor de digerat:</p><blockquote>Găurile negre deformează timpul prin atracția gravitațională intensă. Ceasurile apropiate de gaura neagră merg mai încet comparativ cu cele aflate la distanță, un fenomen explicat prin teoria relativității a lui Einstein.</blockquote><p>Simple, nu-i așa? Și nu doar rezumate! Customizează-le conform nevoilor tale – vrei un unghi de afaceri, o abordare academică sau o explicație ușoară? Ești la timonă.</p><h3>Cum funcționează în practică?</h3><ul><li>O rețetă detaliată a unui blogger culinar? Rezumată în instrucțiuni rapide de preparare.</li><li>Un editoriat lung despre economie? Extragem esențialul pentru programul tău aglomerat.</li><li>Curios despre Shakespeare? Obține povestea lui Macbeth în trei linii.</li></ul><p>AI Summary Helper nu doar că te ajută să înțelegi; îmbunătățește modul în care absoarbe informațiile. Indiferent dacă ești profesionist, student sau învățăcel curios, conținutul în română acum îți curge în minte fără efort.</p><p>Spune adio tab-urilor încurcate și lecturilor ratate. Începe un mod mai inteligent de a naviga pe web cu AI Summary Helper astăzi! 🚀</p><h2>Învăță o Nouă Limbă 🌎: Înțelege Articole în Orice Limbă Suportată</h2><p>Vrei să citești articole în <strong>engleză</strong>, <strong>franceză</strong> sau <strong>spaniolă</strong> dar ai dificultăți în a înțelege? AI Summary Helper este asistentul tău multilingv! Selectează limba dorită și lasă aplicația să traducă, rezumeze și să te ajute să înveți în timp ce citești.</p><p>Iată cum funcționează:</p><ul><li><strong>Citește știri locale din întreaga lume:</strong> Interesat de politica franceză sau tehnologia germană? AI Summary Helper oferă rezumate în limbile lor native cu context pentru a se potrivi înțelegerii tale.</li><li><strong>Studiind literatură străină:</strong> Vrei să apreciezi <em>Gabriel García Márquez</em> în spaniolă sau <em>Haruki Murakami</em> în japoneză? Subliniază frazele cheie în timp ce obții rezumate bogate în context în română pentru o experiență de învățare fluidă.</li></ul><p>Limbi suportate: 🌍 Engleză, 🇪🇸 Spaniolă, 🇩🇪 Germană, 🇫🇷 Franceză, 🇮🇹 Italiană, 🇧🇷 Portugheză, 🇳🇱 Olandeză, 🇷🇺 Rusă, 🇺🇦 Ucraineană, 🇵🇱 Poloneză, 🇸🇪 Suedeză, 🇩🇰 Daneză, 🇯🇵 Japoneză, 🇨🇳 Chineză, 🇰🇷 Coreeană, 🇮🇳 Hindi, 🇹🇭 Thai, 🇮🇩 Indoneziană, 🇸🇦 Arabă, 🇹🇷 Turcă, 🇧🇬 Bulgară, 🇷🇴 Română.</p><p>Prin combinarea traducerii cu înțelegerea, AI Summary Helper este ghidul tău pentru a stăpâni noi limbi fără efort!</p>"
   },
-  "proposeFeature": "Propune o Funcție 💡",
-  "proposeFeatureText": "Ai o idee strălucită? Împărtășește-o cu noi <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">aici</a> și modelează viitorul AI Summary Helper! 📝",
+  "proposeFeature": "Propune o Caracteristică 💡",
+  "proposeFeatureText": "Ai o idee strălucitoare? Împărtășește-o cu noi <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">aici</a> și formează viitorul AI Summary Helper! 📝",
   "privacyNote": "Notă de Confidențialitate 🔒",
-  "privacyNoteText": "Confidențialitatea ta este prioritatea noastră. Ne asigurăm că datele tale rămân ale tale. 🔑 <a href=\"privacy\">Află mai multe</a>",
-  "funMessage": "Intră într-o modalitate mai inteligentă de a naviga cu AI Summary Helper! 🎉",
-  "changelog": "Jurnal de Schimbări 📅",
+  "privacyNoteText": "Confidențialitatea ta este prioritatea noastră. Ne asigurăm că datele tale rămân ale tale. 🔐 <a href=\"privacy\">Află mai multe</a>",
+  "funMessage": "Intri într-un mod mai inteligent de a naviga cu AI Summary Helper! 🎉",
+  "changelog": "Jurnal de Schimbări 📜",
   "changelogList": [
-    "Adăugat lista de instrumente compatibile care se integrează bine cu fluxul tău de lectură și AI Summary Helper",
-    "Istoric de articole - vizualizează și caută printre rezumatele tale",
-    "Comenzi noi - mai precise",
-    "Suport pentru LLM-uri Locale - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
-    "Actualizat pentru a suporta modelul <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
-    "Actualizat la modelul GPT4o mini",
+    "Adăugat o listă de instrumente compatibile care se integrează bine cu fluxul tău de lectură și AI Summary Helper",
+    "Istoricul articolelor - vizualizează și caută printre rezumatele tale",
+    "Prompturi noi - mai precise",
+    "Suport pentru LLM-uri locale - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
+    "Actualizat pentru a susține <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
+    "Actualizat pentru modelul GPT4o mini",
     "Interfață actualizată 🎨"
   ],
   "aboutCreator": "Despre Creator",
-  "creatorText": "Salut comunitate :) - Sunt Phil Wornath, creatorul AI Summary Helper. Ca iubitor al conținutului scris extins pe web, în special al articolelor științifice, m-am confruntat adesea cu constrângeri de timp. Aceasta m-a inspirat să dezvolt un instrument care îmbunătățește productivitatea și eficiența lecturii.",
+  "creatorText": "Salut comunitate :) - Sunt Phil Wornath, creatorul AI Summary Helper. Ca iubitor al conținutului scris extins pe web, în special al articolelor științifice, m-am confruntat adesea cu constrângeri de timp. Acest lucru m-a inspirat să dezvolt un instrument care îmbunătățește productivitatea și eficiența în lectură.",
   "whyHelper": "De ce AI Summary Helper?",
   "whyHelperList": [
-    "Recuperează-ți Timpul: Generați digeste rapide sau pregătiți-vă pentru analiză detaliată ulterior.",
-    "Personalizat pentru Tine: Personalizează rezumatele pentru a se potrivi limbii, profesiei sau punctului tău de vedere.",
-    "Rămâi Organizat: Evită filele aglomerate și menține-ți lista de lecturi gestionabilă.",
-    "Experiență de Lectură Îmbunătățită: Concentrează-te pe conținutul care contează pentru tine fără a fi copleșit."
+    "Recuperează-ți timpul: generează rezumate rapide sau pregătește-te pentru explorări mai profunde mai târziu.",
+    "Personalizat pentru tine: adaptează rezumatele pentru a se potrivi limbii tale, profesiei sau punctului tău de vedere.",
+    "Rămâi organizat: evită tab-urile încurcate și menține lista ta de lecturi gestionabilă.",
+    "Experiență de lectură îmbunătățită: concentrează-te pe conținutul care contează pentru tine fără a fi copleșit."
   ],
-  "getStarted": "Începe Azi",
-  "getStartedText": "Pentru a începe să folosești AI Summary Helper, asigură-te că ai un <a href=\"https://platform.openai.com/account/api-keys\">cheie API OpenAI</a> și credit suficient. Alătură-te nouă pentru a face cititul pe web mai ușor și mai accesibil pentru toată lumea. Descarcă acum pe <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> și transformă-ți experiența de navigare.",
+  "getStarted": "Începe Astăzi",
+  "getStartedText": "Pentru a începe să folosești AI Summary Helper, asigură-te că ai o <a href=\"https://platform.openai.com/account/api-keys\">cheie API OpenAI</a> și credit suficient. Alătură-te nouă pentru a face citirea pe web mai ușoară și mai accesibilă pentru toată lumea. Descarcă acum de pe <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> și transformă-ți experiența de navigare.",
   "feedbackSupport": "Feedback și Suport",
-  "feedbackSupportText": "Suntem încântați să te invităm să încerci AI Summary Helper și așteptăm feedbackul și întrebările tale. Să facem cititul pe web mai simplu și mai captivant. Îmbunătățește-ți experiența de lectură online cu AI Summary Helper astăzi!",
-  "version": "1.0.2"
+  "feedbackSupportText": "Suntem încântați să te invităm să încerci AI Summary Helper și așteptăm feedbackul și întrebările tale. Hai să facem citirea pe web mai simplă și mai captivantă. Îmbunătățește-ți experiența de lectură online cu AI Summary Helper astăzi!",
+  "version": "1.0.8"
 }

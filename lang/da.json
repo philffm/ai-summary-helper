@@ -1,46 +1,47 @@
 {
-  "title": "AI Summary Helper 🚀",
-  "about": "Om 🌐",
-  "aboutText": "Forvandl din browsing til en kraftfuld produktivitetsmaskine med AI Summary Helper. Lad aldrig endnu en artikel falde mellem stolene! 🌟",
-  "features": "Funktioner 🔍 ",
+  "title": "AI Resumehjælper 🚀",
+  "about": "Om 🔍",
+  "aboutText": "Forvandl din browsing til en produktivitetssmedje med AI Resumehjælper. Lad aldrig endnu en artikel glippe mellem fingrene! 🌟",
+  "aisummary": "<h2>AI Resume 🦄 af denne side:</h2><h3>AI Resumehjælper - Dit hemmelige våben på nettet</h3> <p>Omform overwhelming artikler til mundrette bidder. Opsummér, oversæt og erobr nettet med stil! 🌍</p> <h3>Standup Komedie:</h3> <p>Har du nogensinde haft følelsen af at læse en 10-siders artikel for at finde en enkelt info? Det er som at købe en vandmelon for en enkelt kerne. AI Resumehjælper siger, 'Hold op, jeg har dig!' Hvorfor svede igennem astrofysik, når vi kan hviske Einsteins hemmeligheder til dig i 3 sætninger? Eller omdanne Shakespeare til 'Macbeth: TL;DR - Fyren går amok, alle dør.' Åh, og det oversætter også! At lære japansk føles nu som karaoke med undertekster.</p> <h3>Slående Citater:</h3> <ul><li>‘Ugerne nærmere sorte huller løber langsommere.’ Tak, Einstein - og AI Resumehjælper - for at gøre mig smartere til middagsfester.</li><li>‘Sig farvel til rodet af faner og oversete læsninger.’ Endelig ser min browser mindre ud som en samlers loft!</li><li>‘Opsummér artikler med et personligt præg.’ Fordi hvem vil ikke have Shakespeare med lidt attitude?</li></ul> <h3>#AIHjælper 🚀</h3> <p>Gør TL;DR til en kunstform. 🌍 Fra videnskabelige artikler til Shakespeare - opsummeret, tilpasset og oversat! Prøv det nu 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
+  "features": "Funktioner 🧭",
   "featureList": [
-    "Sammenfat artikler med et personligt touch ✨",
-    "Understøttelse af OpenAI, Mistral AI, Ollama (lokalt) og flere modeller",
-    "Integrer sammenfatninger i din læseflow 📚",
+    "Opsummér artikler med et personligt præg ✨",
+    "Understøttelse af OpenAI, Mistral AI, Ollama (lokale) og flere modeller",
+    "Integrér opsummeringer i dit læseflow 📚",
     "Læs på farten: Del til Kindle med [Reabble](https://send.reabble.com/) 📖",
-    "Platformuafhængig: Bogmærke-generator til alle browsere og OS, inklusive iOS/Android"
+    "Tværplatform: Bogmærke-generator for alle browsere og OS, inklusive iOS/Android"
   ],
   "localizedFeature": {
-    "headline": "Oversæt og Forstå Tekster Bedre på Engelsk 🌍",
-    "text": "<p>Forestil dig at browse gennem en myriade af artikler online, mens du prøver at følge med i dine yndlingsblogs, nyhedskilder eller forskningsartikler. Det er en udfordring, ikke? Ikke længere. Med <strong>AI Summary Helper</strong> kan du dykke direkte ind i essensen af enhver artikel, der er sammenfattet specielt til dig på engelsk.</p><p>Uanset om du tager fat på en 10-siders forskningsartikel eller den seneste blog, er AI Summary Helper her for at redde dagen. For eksempel, forestil dig en videnskabsartikel, der forklarer, hvordan sorte huller påvirker tid. I stedet for at vade igennem sider med astrofysikermåde, får du en kortfattet, letforståelig sammenfatning:</p><blockquote>Sorte huller forvrænger tid gennem intens gravitationsdræk. Ure nærmere på det sorte hul kører langsommere sammenlignet med dem længere væk, et fænomen forklaret med Einsteins relativitetsteori.</blockquote><p>Simpelt, ikke? Og ikke kun sammenfatninger! Tilpas dem til dine behov – ønsker du en forretningsvinkel, akademisk fokus eller en afslappet opsummering? Du er i kontrol.</p><h3>Hvordan fungerer det i praksis?</h3><ul><li>En madbloggers dybdegående opskrift? Sammenfattet til hurtige forberedelsesinstruktioner.</li><li>En lang leder om økonomien? Nøglepunkter udtrukket til din travle tidsplan.</li><li>Nyfiken på Shakespeare? Få handlingen i Macbeth på tre linjer.</li></ul><p>AI Summary Helper hjælper dig ikke kun med at forstå; det forbedrer, hvordan du optager information. Uanset om du er professionel, studerende eller nysgerrig lærende, flyder engelsk indhold nu ind i din hjerne ubesværet.</p><p>Sig farvel til rodet faner og mistede læsninger. Start en smartere måde at browse internettet på med AI Summary Helper i dag! 🚀</p><h2>Lær et Nyt Sprog 🌎: Forstå Artikler på Ethvert Støttet Sprog</h2><p>Vil du læse artikler på <strong>spansk</strong>, <strong>japansk</strong> eller <strong>arabisk</strong>, men kæmper med forståelsen? AI Summary Helper er din flersprogede assistent! Vælg blot dit ønskede sprog, og lad appen oversætte, sammenfatte og hjælpe dig med at lære, mens du læser.</p><p>Her er hvordan det fungerer:</p><ul><li><strong>Læsning af Lokale Nyheder Overalt:</strong> Interesseret i fransk politik eller tysk teknologi? AI Summary Helper tilbyder sammenfatninger på deres modersmål med kontekst, der matcher din forståelse.</li><li><strong>Studie af Udenlandsk Litteratur:</strong> Vil du værdsætte <em>Gabriel García Márquez</em> på spansk eller <em>Haruki Murakami</em> på japansk? Fremhæv nøgleord, mens du får kontekstrige sammenfatninger på engelsk for en problemfri læringsoplevelse.</li></ul><p>Understøttede sprog: 🇬🇧 Engelsk, 🇪🇸 Spansk, 🇩🇪 Tysk, 🇫🇷 Fransk, 🇮🇹 Italiensk, 🇵🇹 Portugisisk, 🇳🇱 Hollandsk, 🇷🇺 Russisk, 🇺🇦 Ukrainsk, 🇵🇱 Polsk, 🇸🇪 Svensk, 🇩🇰 Dansk, 🇯🇵 Japansk, 🇨🇳 Kinesisk, 🇰🇷 Koreansk, 🇮🇳 Hindi, 🇹🇭 Thai, 🇮🇩 Indonesisk, 🇸🇦 Arabisk, 🇹🇷 Tyrkisk, 🇧🇬 Bulgarsk, 🇷🇴 Rumænsk.</p><p>Ved at blande oversættelse med forståelse er AI Summary Helper din guide til at mestre nye sprog ubesværet!</p>"
+    "headline": "Oversæt og forstå tekster bedre på dansk 🌍",
+    "text": "<p>Forestil dig at browse gennem en strøm af artikler online, forsøge at følge med i dine yndlingsblogs, nyhedssider eller forskningsartikler. Det er en udfordring, ikke? Ikke længere. Med <strong>AI Resumehjælper</strong> kan du dykke direkte ned i essensen af enhver artikel, opsummeret bare for dig på dansk.</p><p>Uanset om du tackles en 10-siders forskningspapir eller den nyeste trendy blog, er AI Resumehjælper her for at redde dagen. For eksempel, forestil dig en videnskabsartikel, der forklarer, hvordan sorte huller påvirker tid. I stedet for at træde gennem sider af astrofysisk jargon får du en kortfattet, letfordøjelig opsummering:</p><blockquote>Sorte huller forvrider tid gennem intens gravitationel tiltrækning. Ugerne tættere på det sorte hul løber langsommere i forhold til dem længere væk, et fænomen forklaret af Einsteins relativitetsteori.</blockquote><p>Enkelt, ikke? Og ikke kun opsummeringer! Tilpas dem til dine behov – ønsker du en forretningsvinkel, en akademisk fokus eller en afslappet nedbrydning? Du er i kontrol.</p><h3>Hvordan fungerer dette i praksis?</h3><ul><li>En madbloggers dybdegående opskrift? Opsummeret til hurtige forberedelsesinstruktioner.</li><li>En lang leder om økonomien? Nøglepunkter udtrukket til din travle hverdag.</li><li>Er du nysgerrig efter Shakespeare? Få plottet af Macbeth i tre linjer.</li></ul><p>AI Resumehjælper hjælper ikke bare med at forstå; det forbedrer, hvordan du optager information. Uanset om du er professionel, studerende eller nysgerrig lærende, flyder dansk indhold nu ubesværet ind i din hjerne.</p><p>Sig farvel til rodede faner og oversete læsninger. Start en smartere måde at browse internettet på med AI Resumehjælper i dag! 🚀</p><h2>Lær et nyt sprog 🌍: Forstå artikler på ethvert understøttet sprog</h2><p>Vil du læse artikler på <strong>spansk</strong>, <strong>japansk</strong> eller <strong>arabisk</strong>, men har svært ved at forstå? AI Resumehjælper er din flersprogede assistent! Vælg blot dit ønskede sprog, og lad appen oversætte, opsummere og hjælpe dig med at lære, mens du læser.</p><p>Her er hvordan det fungerer:</p><ul><li><strong>Læsning af lokale nyheder hvor som helst:</strong> Interessere dig for fransk politik eller tysk teknologi? AI Resumehjælper tilbyder opsummeringer på deres modersmål med kontekst til at matche din forståelse.</li><li><strong>Studere udenlandsk litteratur:</strong> Vil du værdsætte <em>Gabriel García Márquez</em> på spansk eller <em>Haruki Murakami</em> på japansk? Fremhæv nøglefraser, mens du får kontekst-rige opsummeringer på dansk for en problemfri læringsoplevelse.</li></ul><p>Understøttede sprog: 🇬🇧 Engelsk, 🇪🇸 Spansk, 🇩🇪 Tysk, 🇫🇷 Fransk, 🇮🇹 Italiensk, 🇧🇷 Portugisisk, 🇳🇱 Hollandsk, 🇷🇺 Russisk, 🇺🇦 Ukrainsk, 🇵🇱 Polsk, 🇸🇪 Svensk, 🇩🇰 Dansk, 🇯🇵 Japansk, 🇨🇳 Kinesisk, 🇰🇷 Koreansk, 🇮🇳 Hindi, 🇹🇭 Thai, 🇮🇩 Indonesisk, 🇸🇦 Arabisk, 🇹🇷 Tyrkisk, 🇧🇬 Bulgarsk, 🇷🇴 Rumænsk.</p><p>Ved at blande oversættelse med forståelse er AI Resumehjælper din guide til at mestre nye sprog ubesværet!</p>"
   },
-  "proposeFeature": "Foreslå en Funktion 💡",
-  "proposeFeatureText": "Har du en genial idé? Del den med os <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">her</a> og form fremtiden for AI Summary Helper! 📝",
+  "proposeFeature": "Foreslå en funktion 💡",
+  "proposeFeatureText": "Har du en fantastisk idé? Del den med os <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">her</a> og form fremtiden for AI Resumehjælper! 💬",
   "privacyNote": "Privatlivsnotat 🔒",
-  "privacyNoteText": "Dit privatliv er vores højeste prioritet. Vi sikrer, at dine data forbliver dine. 🔐 <a href=\"privacy\">Lær mere</a>",
-  "funMessage": "Dyk ned i en smartere måde at browse med AI Summary Helper! 🎉",
-  "changelog": "Ændringslog 📝",
+  "privacyNoteText": "Dit privatliv er vores topprioritet. Vi sikrer, at dine data forbliver dine. 🔒 <a href=\"privacy\">Lær mere</a>",
+  "funMessage": "Dyk ned i en smartere måde at browse med AI Resumehjælper! 🎉",
+  "changelog": "Ændringslog 📜",
   "changelogList": [
-    "Tilføjet liste over kompatible værktøjer, der integrerer godt med din læseflow og AI Summary Helper",
-    "Historik over artikler - se og søg gennem dine sammenfatninger",
+    "Tilføjet liste over kompatible værktøjer, der integrerer godt med dit læseflow og AI Resumehjælper",
+    "Historik over artikler - se og søg gennem dine opsummeringer",
     "Nye prompts - mere præcise",
-    "Understøttelse af lokale LLM'er - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> modeller",
-    "Opdateret for at understøtte <a href=\"https://www.mistral.ai/\">Mistral AI</a> modellen",
+    "Understøttelse af lokale LLM’er - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> modeller",
+    "Opdateret til at støtte <a href=\"https://www.mistral.ai/\">Mistral AI</a> model",
     "Opdateret til GPT4o mini model",
     "Opdateret UI 🎨"
   ],
   "aboutCreator": "Om Skaberen",
-  "creatorText": "Hej fællesskab :) - Jeg er Phil Wornath, skaberen af AI Summary Helper. Som elsker af omfattende skriftligt webindhold, især videnskabelige artikler, stod jeg ofte over for tidsbegrænsninger. Dette inspirerede mig til at udvikle et værktøj, der forbedrer produktiviteten og læseeffektiviteten.",
-  "whyHelper": "Hvorfor AI Summary Helper?",
+  "creatorText": "Hej fællesskab :) - Jeg er Phil Wornath, skaberen af AI Resumehjælper. Som en elsker af omfattende skriftligt webindhold, især videnskabelige artikler, står jeg ofte over for tidsbegrænsninger. Dette inspirerede mig til at udvikle et værktøj, der forbedrer produktivitet og læseeffektivitet.",
+  "whyHelper": "Hvorfor AI Resumehjælper?",
   "whyHelperList": [
-    "Genvind Din Tid: Generer hurtige indsigter eller forbered dig på dybdegående studier senere.",
-    "Skræddersyet Til Dig: Tilpas sammenfatninger for at matche dit sprog, profession eller synspunkt.",
-    "Hold Dig Organiseret: Undgå rodet faner og hold din læseliste håndterbar.",
-    "Forbedret Læseoplevelse: Fokuser på det indhold, der betyder noget for dig, uden at blive overvældet."
+    "Genindvind din tid: Generer hurtige opsummeringer eller forbered til dybe dyk senere.",
+    "Tilpasset til dig: Tilpas opsummeringer til at matche dit sprog, profession eller synspunkt.",
+    "Hold dig organiseret: Undgå rodede faner og hold din læseliste overskuelig.",
+    "Forbedret læseoplevelse: Fokuser på det indhold, der betyder noget for dig uden at blive overvældet."
   ],
-  "getStarted": "Kom I Gang I Dag",
-  "getStartedText": "For at begynde at bruge AI Summary Helper, skal du sørge for at have en <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API-nøgle</a> og tilstrækkelig kredit. Deltag i os med at gøre web-læsning nemmere og mere tilgængeligt for alle. Download nu fra <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> og transformere din browsingoplevelse.",
+  "getStarted": "Kom i gang i dag",
+  "getStartedText": "For at begynde at bruge AI Resumehjælper, skal du sikre dig, at du har en <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API-nøgle</a> og tilstrækkelig kredit. Deltag i os i at gøre web-læsning lettere og mere tilgængelig for alle. Download nu på <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> og forvandl din browsingoplevelse.",
   "feedbackSupport": "Feedback og Support",
-  "feedbackSupportText": "Vi er begejstrede for at invitere dig til at prøve AI Summary Helper og byder din feedback og spørgsmål velkommen. Lad os gøre læsningen på nettet enklere og mere engagerende. Forbedr din online læseoplevelse med AI Summary Helper i dag!",
-  "version": "1.0.3"
+  "feedbackSupportText": "Vi er glade for at invitere dig til at prøve AI Resumehjælper og byde på din feedback og spørgsmål. Lad os gøre læsning på nettet enklere og mere engagerende. Forbedr din online læseoplevelse med AI Resumehjælper i dag!",
+  "version": "1.0.8"
 }

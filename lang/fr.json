@@ -1,46 +1,47 @@
 {
-  "title": "Assistant de Résumé IA 🚀",
+  "title": "AI Summary Helper 🚀",
   "about": "À propos 📖",
-  "aboutText": "Transformez votre navigation en une puissance de productivité avec l'Assistant de Résumé IA. Ne laissez plus jamais un article vous passer sous le nez ! 🌟",
-  "features": "Fonctionnalités 🔍",
+  "aboutText": "Transformez votre navigation en une véritable puissance de productivité avec AI Summary Helper. Ne laissez plus jamais un article vous échapper ! 🌟",
+  "aisummary": "<h2>Résumé AI 🧙‍♂️ de cette page :</h2><h3>AI Summary Helper - Votre arme secrète sur le web</h3> <p>Transformez des articles accablants en éclats de génie. Résumez, traduisez et conquérez le web avec style ! 🌍</p> <h3>Comédie Stand-up :</h3> <p>Avez-vous déjà eu l'impression de lire un article de 10 pages juste pour une seule information ? C'est comme acheter une pastèque pour une seule graine. AI Summary Helper dit : 'Attendez, je m'occupe de ça !' Pourquoi se débattre avec l'astrophysique quand nous pouvons vous chuchoter les secrets d'Einstein en 3 phrases ? Ou transformer Shakespeare en 'Macbeth : TL;DR - Le type devient fou, tout le monde meurt.' Oh, et il traduit aussi ! Apprendre le japonais ressemble désormais à un karaoké avec des sous-titres.</p> <h3>Citations frappantes :</h3> <ul><li>‘Les horloges plus proches des trous noirs tournent plus lentement.’ Merci, Einstein — et AI Summary Helper — de me rendre plus intelligent lors des dîners.</li><li>‘Dites adieu aux onglets encombrés et aux lectures manquées.’ Enfin, mon navigateur ressemble moins à un grenier d’accumulateur !</li><li>‘Résumez les articles avec une touche personnelle.’ Parce que qui ne veut pas de Shakespeare avec un peu de piquant ?</li></ul> <h3>#AIHelper 🚀</h3> <p>Fait du TL;DR une forme d'art. 🌍 Des articles scientifiques à Shakespeare — résumés, personnalisés et traduits ! Essayez-le maintenant 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
+  "features": "Fonctionnalités 🧭",
   "featureList": [
-    "Résumé d'articles avec une touche personnelle ✨",
-    "OpenAI, Mistral AI, Ollama (local) et d'autres modèles pris en charge",
+    "Résumez des articles avec une touche personnelle ✨",
+    "OpenAI, Mistral AI, Ollama (local) et plus de modèles supportés",
     "Intégrez des résumés dans votre flux de lecture 📚",
-    "Lisez en déplacement : partagez sur Kindle avec [Reabble](https://send.reabble.com/) 📖",
-    "Cross-Platform : Générateur de bookmarklet pour tous les navigateurs et systèmes d'exploitation, y compris iOS/Android"
+    "Lisez en déplacement : Partagez sur Kindle avec [Reabble](https://send.reabble.com/) 📖",
+    "Cross-Plateforme : Générateur de signets pour tous les navigateurs et systèmes d'exploitation, y compris iOS/Android"
   ],
   "localizedFeature": {
-    "headline": "Lisez et Comprenez des Articles en Anglais – Sans Effort ! 🌍",
-    "text": "<p>Imaginez parcourir une mer d'articles en ligne, essayant de suivre vos blogs préférés, vos médias d'information ou vos articles de recherche. C'est un défi, n'est-ce pas ? Plus maintenant. Avec <strong>l'Assistant de Résumé IA</strong>, vous pouvez plonger directement dans l'essentiel de n'importe quel article, résumé juste pour vous en anglais.</p><p>Que vous traitiez d'un article de recherche de 10 pages ou du dernier blog à la mode, l'Assistant de Résumé IA est là pour sauver la mise. Par exemple, imaginez un article scientifique expliquant comment les trous noirs affectent le temps. Au lieu de vous enlisier dans des pages de jargon astrophysique, vous obtiendrez un résumé concis et facile à digérer :</p><blockquote>Les trous noirs déforment le temps par une intense attraction gravitationnelle. Les horloges plus proches du trou noir avancent plus lentement par rapport à celles qui sont plus éloignées, un phénomène expliqué par la théorie de la relativité d'Einstein.</blockquote><p>Simple, n'est-ce pas ? Et pas seulement des résumés ! Adaptez-les à vos besoins – vous voulez un angle commercial, un accent académique ou un décryptage décontracté ? Vous êtes aux commandes.</p><h3>Comment cela fonctionne-t-il en pratique ?</h3><ul><li>Une recette approfondie d'un blogueur culinaire ? Résumée en instructions de préparation rapides.</li><li>Un éditorial long sur l'économie ? Les points clés extraits pour votre emploi du temps chargé.</li><li>Curieux de savoir ce qui arrive à Macbeth ? Obtenez l'intrigue en trois lignes.</li></ul><p>L'Assistant de Résumé IA ne vous aide pas seulement à comprendre ; il améliore la façon dont vous absorbez l'information. Que vous soyez un professionnel, étudiant ou apprenant curieux, le contenu en anglais s'écoule désormais dans votre cerveau sans effort.</p><p>Faites vos adieux aux onglets encombrés et aux lectures manquées. Commencez une méthode de navigation plus intelligente sur le web avec l'Assistant de Résumé IA aujourd'hui ! 🚀</p>"
+    "headline": "Traduiser et Comprendre Mieux les Textes en Anglais 🌍",
+    "text": "<p>Imaginez naviguer à travers une mer d'articles en ligne, essayant de suivre vos blogs, sites d'actualités ou articles de recherche préférés. C'est un défi, n'est-ce pas ? Plus maintenant. Avec <strong>AI Summary Helper</strong>, plongez directement dans l'essentiel de n'importe quel article, résumé juste pour vous en anglais.</p><p>Que vous soyez confronté à un article de recherche de 10 pages ou au dernier blog tendance, AI Summary Helper est là pour sauver la mise. Par exemple, imaginez un article scientifique expliquant comment les trous noirs affectent le temps. Au lieu de vous noyer sous des pages de jargon astrophysique, vous obtenez un résumé concis et facile à digérer :</p><blockquote>Les trous noirs déforment le temps par une intense attraction gravitationnelle. Les horloges plus proches du trou noir tournent plus lentement que celles qui sont plus éloignées, un phénomène expliqué par la théorie de la relativité d'Einstein.</blockquote><p>Simple, n'est-ce pas ? Et pas seulement des résumés ! Adaptez-les à vos besoins – vous voulez un angle commercial, un focus académique ou une décomposition décontractée ? Vous êtes aux commandes.</p><h3>Comment cela fonctionne-t-il en pratique ?</h3><ul><li>Une recette détaillée d'un blog culinaire ? Résumée en instructions de préparation rapides.</li><li>Un éditorial long sur l'économie ? Les points clés extraits pour votre emploi du temps chargé.</li><li>Curieux de Shakespeare ? Obtenez l'intrigue de Macbeth en trois lignes.</li></ul><p>AI Summary Helper ne se contente pas de vous aider à comprendre ; il améliore votre façon d'absorber l'information. Que vous soyez professionnel, étudiant ou apprenant curieux, le contenu anglais s'écoule désormais facilement dans votre cerveau.</p><p>Dites adieu aux onglets encombrés et aux lectures manquées. Commencez une manière plus intelligente de naviguer sur le web avec AI Summary Helper aujourd'hui ! 🚀</p><h2>Apprenez une nouvelle langue 🌎 : Comprenez des articles dans n'importe quelle langue prise en charge</h2><p>Vous souhaitez lire des articles en <strong>espagnol</strong>, <strong>japonais</strong> ou <strong>arabe</strong> mais avez du mal avec la compréhension ? AI Summary Helper est votre assistant multilingue ! Il vous suffit de sélectionner votre langue désirée, et laissez l'application traduire, résumer et vous aider à apprendre tout en lisant.</p><p>Voici comment cela fonctionne :</p><ul><li><strong>Lire des Actualités Locales Partout :</strong> Intéressé par la politique française ou la technologie allemande ? AI Summary Helper propose des résumés dans leur langue natale avec un contexte adapté à votre compréhension.</li><li><strong>Étudier la Littérature Étrangère :</strong> Vous voulez apprécier <em>Gabriel García Márquez</em> en espagnol ou <em>Haruki Murakami</em> en japonais ? Surlignez des phrases clés tout en obtenant des résumés riches en contexte en anglais pour une expérience d'apprentissage fluide.</li></ul><p>Langues prises en charge : 🇬🇧 Anglais, 🇪🇸 Espagnol, 🇩🇪 Allemand, 🇫🇷 Français, 🇮🇹 Italien, 🇵🇹 Portugais, 🇳🇱 Néerlandais, 🇷🇺 Russe, 🇺🇦 Ukrainien, 🇵🇱 Polonais, 🇸🇪 Suédois, 🇩🇰 Danois, 🇯🇵 Japonais, 🇨🇳 Chinois, 🇰🇷 Coréen, 🇮🇳 Hindi, 🇹🇭 Thaï, 🇮🇩 Indonésien, 🇸🇦 Arabe, 🇹🇷 Turc, 🇧🇬 Bulgare, 🇷🇴 Roumain.</p><p>En associant traduction et compréhension, AI Summary Helper est votre guide pour maîtriser de nouvelles langues sans effort !</p>"
   },
-  "proposeFeature": "Proposer une Fonctionnalité 💡",
-  "proposeFeatureText": "Vous avez une idée brillante ? Partagez-la avec nous <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">ici</a> et façonnez l'avenir de l'Assistant de Résumé IA ! 📝",
+  "proposeFeature": "Proposez une Fonctionnalité 💡",
+  "proposeFeatureText": "Vous avez une idée brillante ? Partagez-la avec nous <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">ici</a> et façonnez l'avenir d'AI Summary Helper ! 📝",
   "privacyNote": "Note de Confidentialité 🔒",
-  "privacyNoteText": "Votre vie privée est notre priorité. Nous garantissons que vos données vous appartiennent. 🛡️ <a href=\"privacy\">En savoir plus</a>",
-  "funMessage": "Plongez dans une manière plus intelligente de naviguer avec l'Assistant de Résumé IA ! 🎉",
+  "privacyNoteText": "Votre vie privée est notre priorité. Nous assurons que vos données restent les vôtres. 🔑 <a href=\"privacy\">En savoir plus</a>",
+  "funMessage": "Plongez dans une manière plus intelligente de naviguer avec AI Summary Helper ! 🎉",
   "changelog": "Journal des Modifications 📜",
   "changelogList": [
-    "Ajout de la liste des outils compatibles qui s'intègrent bien à votre flux de lecture et à l'Assistant de Résumé IA",
-    "Historique des articles - visualisez et recherchez à travers vos résumés",
+    "Ajout d'une liste d'outils compatibles qui s'intègrent bien à votre flux de lecture et à AI Summary Helper",
+    "Historique des articles - consultez et recherchez vos résumés",
     "Nouveaux prompts - plus précis",
-    "Support pour les LLM locaux - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
-    "Mise à jour pour prendre en charge le modèle <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
+    "Support pour les LLM Locaux - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a>",
+    "Mise à jour pour soutenir le modèle <a href=\"https://www.mistral.ai/\">Mistral AI</a>",
     "Mise à jour vers le modèle GPT4o mini",
-    "Interface Utilisateur mise à jour 🎨"
+    "Mise à jour de l'interface utilisateur 🎨"
   ],
-  "aboutCreator": "À propos du Créateur",
-  "creatorText": "Salut la communauté :) - Je suis Phil Wornath, le créateur de l'Assistant de Résumé IA. En tant qu'amateur de contenu écrit étendu sur le web, en particulier des articles scientifiques, j'ai souvent rencontré des contraintes de temps. Cela m'a inspiré à développer un outil qui améliore la productivité et l'efficacité de la lecture.",
-  "whyHelper": "Pourquoi l'Assistant de Résumé IA ?",
+  "aboutCreator": "À Propos du Créateur",
+  "creatorText": "Salut la communauté :) - Je suis Phil Wornath, le créateur d'AI Summary Helper. En tant qu'amateur de contenu écrit étendu sur le web, en particulier des articles scientifiques, j'ai souvent fait face à des contraintes de temps. Cela m'a inspiré à développer un outil qui améliore la productivité et l'efficacité de lecture.",
+  "whyHelper": "Pourquoi AI Summary Helper ?",
   "whyHelperList": [
-    "Récupérez Votre Temps : Générez des résumés rapides ou préparez-vous pour des plongées approfondies plus tard.",
-    "Personnalisé pour Vous : Adaptez les résumés à votre langue, profession ou point de vue.",
-    "Restez Organisé : Évitez les onglets encombrés et gardez votre liste de lecture gérable.",
-    "Expérience de Lecture Améliorée : Concentrez-vous sur le contenu qui vous importe sans être submergé."
+    "Récupérez votre temps : générez des résumés rapides ou préparez-vous à des approfondissements plus tard.",
+    "Adapté à vous : personnalisez les résumés pour qu'ils correspondent à votre langue, profession ou point de vue.",
+    "Restez organisé : évitez les onglets encombrés et gardez votre liste de lecture gérable.",
+    "Expérience de lecture améliorée : concentrez-vous sur le contenu qui compte pour vous sans être submergé."
   ],
-  "getStarted": "Commencez Aujourd'hui",
-  "getStartedText": "Pour commencer à utiliser l'Assistant de Résumé IA, assurez-vous d'avoir une <a href=\"https://platform.openai.com/account/api-keys\">clé API OpenAI</a> et des crédits suffisants. Rejoignez-nous pour rendre la lecture sur le web plus facile et plus accessible pour tous. Téléchargez maintenant sur <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> et transformez votre expérience de navigation.",
-  "feedbackSupport": "Feedback et Support",
-  "feedbackSupportText": "Nous sommes ravis de vous inviter à essayer l'Assistant de Résumé IA et accueillons vos retours et questions. Rendons la lecture sur le web plus simple et plus engageante. Améliorez votre expérience de lecture en ligne avec l'Assistant de Résumé IA aujourd'hui !",
-  "version": "1.0.2"
+  "getStarted": "Commencez Dès Aujourd'hui",
+  "getStartedText": "Pour commencer à utiliser AI Summary Helper, assurez-vous d'avoir une <a href=\"https://platform.openai.com/account/api-keys\">clé API OpenAI</a> et un crédit suffisant. Rejoignez-nous pour faciliter et rendre la lecture sur le web plus accessible pour tous. Téléchargez maintenant sur <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> et transformez votre expérience de navigation.",
+  "feedbackSupport": "Retour d'Information et Support",
+  "feedbackSupportText": "Nous sommes ravis de vous inviter à essayer AI Summary Helper et nous accueillons vos retours et questions. Rendant la lecture sur le web plus simple et plus engageante. Améliorez votre expérience de lecture en ligne avec AI Summary Helper dès aujourd'hui !",
+  "version": "1.0.8"
 }
