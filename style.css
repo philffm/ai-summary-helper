@@ -12,6 +12,12 @@ blockquote {
     margin: 20px 0;
 }
 
+blockquote::before {
+    content: "“";
+    font-size: 24px;
+    color: #0078d7;
+}
+
 .window-frame {
     max-width: 900px;
     margin: 20px auto;
