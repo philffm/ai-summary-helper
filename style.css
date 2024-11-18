@@ -202,8 +202,18 @@ blockquote::before {
 @media (max-width: 768px) {
     .window-title {
         font-size: 12px;
+
+    }
+}
+
+@media (max-width: 400px) {
+    .window-title {
         width: 90px;
         overflow-wrap: break-word;
+    }
+
+    .buttonIcon {
+        padding: 0;
     }
 }
 
