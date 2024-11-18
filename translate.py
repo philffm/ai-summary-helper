@@ -35,7 +35,6 @@ def translate_content(content, target_lang):
         response_data = response.json()
         
         if 'choices' in response_data and response_data['choices']:
-            # Extract the content from the response
             translated_text = response_data['choices'][0]['message']['content'].strip()
             
             # Remove backticks if the content is wrapped in a code block
@@ -43,7 +42,6 @@ def translate_content(content, target_lang):
                 translated_text = translated_text.strip("```json").strip("```").strip()
             
             try:
-                # Parse the JSON content after stripping the backticks
                 return json.loads(translated_text)
             except json.JSONDecodeError:
                 print("Failed to parse JSON from translated content. Attempting to clean it up.")
@@ -101,7 +99,6 @@ def translate_file():
                 print("Language code missing in configuration.")
                 continue
 
-            # Check if the language file already exists with the same version
             lang_file_path = os.path.join(lang_dir, f"{lang_code}.json")
             if os.path.exists(lang_file_path):
                 try:
@@ -115,11 +112,12 @@ def translate_file():
 
             translated_content = translate_content(content, lang_code)
             if translated_content:
-                translated_content['version'] = new_version  # Add version to the translated content
+                translated_content['version'] = new_version
                 with open(lang_file_path, 'w', encoding='utf-8') as file:
                     json.dump(translated_content, file, ensure_ascii=False, indent=2)
                 print(f"Translated content written to {lang_file_path}")
-                print(f"Content for {lang_code}: {translated_content}")
+            else:
+                print(f"Failed to translate content for {lang_code}.")
     else:
         print("No updates needed. Version and languages are unchanged.")
 

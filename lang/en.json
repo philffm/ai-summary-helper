@@ -1,4 +1,5 @@
 {
+  "version": "1.0.4",
   "title": "AI Summary Helper 🚀",
   "about": "About 📖",
   "aboutText": "Turn your browsing into a productivity powerhouse with AI Summary Helper. Never miss another article again! 🌟",
@@ -42,6 +43,5 @@
   "getStarted": "Start Your Journey Today",
   "getStartedText": "To begin using AI Summary Helper, make sure you have an <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API key</a> and sufficient credit. Join us in revolutionizing web reading for everyone. Download now from <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> and transform your browsing experience.",
   "feedbackSupport": "Feedback and Support",
-  "feedbackSupportText": "We're eager to have you try AI Summary Helper and appreciate your feedback and inquiries. Let’s work together to make web reading straightforward and engaging. Enhance your online reading experience with AI Summary Helper today!",
-  "version": "1.0.4"
+  "feedbackSupportText": "We're eager to have you try AI Summary Helper and appreciate your feedback and inquiries. Let’s work together to make web reading straightforward and engaging. Enhance your online reading experience with AI Summary Helper today!"
 }
