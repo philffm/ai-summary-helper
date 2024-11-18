@@ -202,6 +202,8 @@ blockquote::before {
 @media (max-width: 768px) {
     .window-title {
         font-size: 12px;
+        width: 90px;
+        overflow-wrap: break-word;
     }
 }
 
