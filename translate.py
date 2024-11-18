@@ -24,8 +24,7 @@ def translate_content(content, target_lang):
         'messages': [
             {'role': 'system', 'content': 'You are a professional SEO product translator for great product marketing. Keep the JSON structure, translate the content and IMPORTANT: for the local language section find inside information for the dedicated language / market. Make sure to include the aisummary part.'},
             {'role': 'user', 'content': prompt}
-        ],
-        'max_tokens': 2000
+        ]
     }
     
     response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
