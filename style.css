@@ -286,14 +286,14 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    font-size: 24px;
+    font-size: 20px;
     text-wrap: auto;
+    height: max-content;
 }
 
 @media (max-width: 768px) {
     .feature-card {
-        font-size: 18px;
-        height: max-content;
+        font-size: 16px;
 
     }
 }
