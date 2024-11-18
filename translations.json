@@ -15,6 +15,101 @@
             "code": "de",
             "name": "Deutsch",
             "emoji": "🇩🇪"
+        },
+        {
+            "code": "fr",
+            "name": "Français",
+            "emoji": "🇫🇷"
+        },
+        {
+            "code": "it",
+            "name": "Italiano",
+            "emoji": "🇮🇹"
+        },
+        {
+            "code": "pt",
+            "name": "Português",
+            "emoji": "🇵🇹"
+        },
+        {
+            "code": "nl",
+            "name": "Nederlands",
+            "emoji": "🇳🇱"
+        },
+        {
+            "code": "ru",
+            "name": "Русский",
+            "emoji": "🇷🇺"
+        },
+        {
+            "code": "ua",
+            "name": "Українська",
+            "emoji": "🇺🇦"
+        },
+        {
+            "code": "pl",
+            "name": "Polski",
+            "emoji": "🇵🇱"
+        },
+        {
+            "code": "sv",
+            "name": "Svenska",
+            "emoji": "🇸🇪"
+        },
+        {
+            "code": "da",
+            "name": "Dansk",
+            "emoji": "🇩🇰"
+        },
+        {
+            "code": "jp",
+            "name": "日本語",
+            "emoji": "🇯🇵"
+        },
+        {
+            "code": "cn",
+            "name": "中文",
+            "emoji": "🇨🇳"
+        },
+        {
+            "code": "kr",
+            "name": "한국어",
+            "emoji": "🇰🇷"
+        },
+        {
+            "code": "hi",
+            "name": "हिंदी",
+            "emoji": "🇮🇳"
+        },
+        {
+            "code": "th",
+            "name": "ไทย",
+            "emoji": "🇹🇭"
+        },
+        {
+            "code": "ind-bahasa",
+            "name": "Indonesian",
+            "emoji": "🇮🇩"
+        },
+        {
+            "code": "ar",
+            "name": "العربية",
+            "emoji": "🇦🇪"
+        },
+        {
+            "code": "tr",
+            "name": "Türkçe",
+            "emoji": "🇹🇷"
+        },
+        {
+            "code": "bg",
+            "name": "Ъългарски",
+            "emoji": "🇧🇬"
+        },
+        {
+            "code": "ro",
+            "name": "Romanian",
+            "emoji": "🇷🇴"
         }
     ],
     "content": {
