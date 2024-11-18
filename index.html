@@ -49,31 +49,79 @@
         async function loadContent(lang = 'en') {
             try {
                 let translations;
-                if (lang === 'en') {
-                    const response = await fetch('translations.json');
-                    if (!response.ok) {
-                        throw new Error('Failed to load default content');
-                    }
-                    translations = await response.json();
-                    data = translations.content;
-                } else {
-                    const response = await fetch(`lang/${lang}.json`);
-                    if (!response.ok) {
-                        throw new Error(`Failed to load language file: ${lang}`);
-                    }
-                    data = await response.json();
+                const languageMap = {
+                    'en': 'en',
+                    'en-US': 'en',
+                    'en-GB': 'en',
+                    'es': 'es',
+                    'es-ES': 'es',
+                    'es-MX': 'es',
+                    'de': 'de',
+                    'de-DE': 'de',
+                    'fr': 'fr',
+                    'fr-FR': 'fr',
+                    'it': 'it',
+                    'it-IT': 'it',
+                    'pt': 'pt',
+                    'pt-PT': 'pt',
+                    'pt-BR': 'pt',
+                    'nl': 'nl',
+                    'nl-NL': 'nl',
+                    'ru': 'ru',
+                    'ru-RU': 'ru',
+                    'ua': 'ua',
+                    'uk-UA': 'ua',
+                    'pl': 'pl',
+                    'pl-PL': 'pl',
+                    'sv': 'sv',
+                    'sv-SE': 'sv',
+                    'da': 'da',
+                    'da-DK': 'da',
+                    'ja': 'jp',
+                    'ja-JP': 'jp',
+                    'zh': 'cn',
+                    'zh-CN': 'cn',
+                    'zh-Hans-CN': 'cn',
+                    'zh-TW': 'cn',
+                    'ko': 'kr',
+                    'ko-KR': 'kr',
+                    'hi': 'hi',
+                    'hi-IN': 'hi',
+                    'mr': 'hi',
+                    'mr-IN': 'hi',
+                    'th': 'th',
+                    'th-TH': 'th',
+                    'id': 'ind-bahasa',
+                    'id-ID': 'ind-bahasa',
+                    'ar': 'ar',
+                    'ar-SA': 'ar',
+                    'tr': 'tr',
+                    'tr-TR': 'tr',
+                    'bg': 'bg',
+                    'bg-BG': 'bg',
+                    'ro': 'ro',
+                    'ro-RO': 'ro'
+                };
 
-                    // Check if aisummary exists, if not, load from en.json
-                    if (!data.aisummary) {
-                        const enResponse = await fetch('lang/en.json');
-                        if (!enResponse.ok) {
-                            throw new Error('Failed to load English language file for aisummary');
-                        }
-                        const enData = await enResponse.json();
-                        data.aisummary = enData.aisummary;
+                // Use the mapped language code or default to English
+                const mappedLang = languageMap[lang] || 'en';
+
+                const response = await fetch(`lang/${mappedLang}.json`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load language file: ${mappedLang}`);
+                }
+                data = await response.json();
+
+                if (!data.aisummary) {
+                    const enResponse = await fetch('lang/en.json');
+                    if (!enResponse.ok) {
+                        throw new Error('Failed to load English language file for aisummary');
                     }
+                    const enData = await enResponse.json();
+                    data.aisummary = enData.aisummary;
                 }
 
+                // Update the page content with the loaded data
                 document.getElementById('metaTitle').textContent = data.title;
                 document.getElementById('metaDescription').setAttribute('content', data.aboutText);
 
