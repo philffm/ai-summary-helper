@@ -34,8 +34,6 @@
     <meta name="google-site-verification" content="_QcmSOybAqnxQ1YH95ay00G4LZgwxLg-1Pb50QBpI2c" />
     <meta name="robots" content="follow, index">
 
-    <link rel="icon" type="image/svg+xml" href="icon.svg">
-
     <script>
         let data; // Declare data in a broader scope
 
@@ -415,7 +413,7 @@
     </div>
     <!-- Extension UI -->
     <div id="extensionUI" class="extension-ui hidden">
-        <img src="extension.png" alt="Extension UI" style="width: 500px; height: auto;">
+        <img src="extension.png" alt="Extension UI" class="extension-ui-image">
     </div>
     <style>
         .tooltip {
@@ -525,6 +523,20 @@
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+            }
+        }
+
+        /* Add new style for the image */
+        .extension-ui-image {
+            width: 500px;
+            height: auto;
+        }
+
+        /* Mobile style */
+        @media (max-width: 600px) {
+            .extension-ui-image {
+                width: 100%; /* Adjust width for mobile */
+                height: auto;
             }
         }
     </style>
