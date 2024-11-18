@@ -280,6 +280,8 @@ footer {
 @media (max-width: 768px) {
     .feature-card {
         font-size: 18px;
+        height: max-content;
+
     }
 }
 
