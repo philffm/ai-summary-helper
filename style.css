@@ -6,6 +6,12 @@ body {
     color: #333;
 }
 
+blockquote {
+    font-size: 18px;
+    font-style: italic;
+    margin: 20px 0;
+}
+
 .window-frame {
     max-width: 900px;
     margin: 20px auto;
