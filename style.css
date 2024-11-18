@@ -136,6 +136,13 @@ blockquote::before {
     gap: 5px;
 }
 
+@media (max-width: 768px) {
+    #logoIcon {
+        display: none;
+    }
+
+}
+
 .navigation-button {
     /* background-color: #e0e0e0; */
     border: none;
@@ -147,6 +154,13 @@ blockquote::before {
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+@media (max-width: 768px) {
+    .navigation-button {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .navigation-button:hover {
@@ -182,6 +196,12 @@ blockquote::before {
     width: 100%;
     text-align: center;
 
+}
+
+@media (max-width: 768px) {
+    .window-title {
+        font-size: 12px;
+    }
 }
 
 .window-controls button {
