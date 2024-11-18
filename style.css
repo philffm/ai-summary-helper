@@ -58,6 +58,12 @@ body {
     padding: 0 40px;
 }
 
+@media (max-width: 768px) {
+    .window-content {
+        padding: 0 20px;
+    }
+}
+
 .language-section {
     margin-bottom: 20px;
 }
@@ -257,6 +263,12 @@ footer {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-size: 24px;
     text-wrap: auto;
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        font-size: 18px;
+    }
 }
 
 .feature-card:hover {
