@@ -7,15 +7,28 @@ body {
 }
 
 blockquote {
-    font-size: 18px;
+    font-size: 24px;
     font-style: italic;
     margin: 20px 0;
+    position: relative;
+    /* Set position relative for positioning pseudo-elements */
+    padding-left: 48px;
 }
 
 blockquote::before {
+    display: inline-block;
+    position: absolute;
+    /* Position absolutely within the blockquote */
+    top: 50%;
+    /* Set the top to 50% of the parent's height */
+    transform: translateY(-50%);
+    /* Shift up by half its own height to center vertically */
+
     content: "“";
-    font-size: 24px;
+    font-size: 65px;
     color: #0078d7;
+    left: 0px;
+    /* Adjust left position to ensure it doesn't overlap the text */
 }
 
 .window-frame {
