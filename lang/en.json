@@ -1,46 +1,47 @@
 {
   "title": "AI Summary Helper 🚀",
   "about": "About 📖",
-  "aboutText": "Transform your browsing into a powerhouse of productivity with AI Summary Helper. Never let another article slip through the cracks! 🌟",
-  "features": "Features 🔍 ",
+  "aboutText": "Turn your browsing into a productivity powerhouse with AI Summary Helper. Never miss another article again! 🌟",
+  "aisummary": "<h2>AI Summary 🚄 of this page:</h2><h3>AI Summary Helper - Your Ultimate Tool for Efficient Reading</h3><p>Transform lengthy articles into concise insights. Summarize, translate, and navigate the web with confidence! 🌍</p><h3>Standup Comedy:</h3><p>Ever felt like digging through a long article just to find one piece of useful information? It's akin to buying a whole watermelon for just one seed. AI Summary Helper says, 'Wait a minute, I got you covered!' Why struggle with complex theories when we can deliver Einstein’s insights in just three sentences? Or distill Shakespeare into 'Macbeth: TL;DR - Guy goes insane, everyone ends up dead.' Plus, it translates! Learning Japanese feels like singing karaoke with subtitles now.</p><h3>Memorable Quotes:</h3><ul><li>‘Clocks closer to black holes run slower.’ Thanks to Einstein—and AI Summary Helper—for enhancing my knowledge at social gatherings.</li><li>‘Say goodbye to tab clutter and missed readings.’ Finally, my browser resembles less of a hoarder’s haven!</li><li>‘Summarize articles with a personal twist.’ Because who wouldn't appreciate Shakespeare with a hint of wit?</li></ul><h3>#AIHelper 🚀</h3><p>Makes TL;DR an art form. 🌍 From scientific papers to Shakespeare—summarized, personalized, & translated! Try it now 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
+  "features": "Features 🛠️",
   "featureList": [
     "Summarize articles with a personal touch ✨",
-    "Supports OpenAI, Mistral AI, Ollama (local), and more models",
-    "Integrate summaries seamlessly into your reading flow 📚",
+    "Supports OpenAI, Mistral AI, Ollama (local) and many other models",
+    "Integrate summaries seamlessly into your reading experience 📚",
     "Read on the go: Share to Kindle with [Reabble](https://send.reabble.com/) 📖",
-    "Cross-Platform: Bookmarklet Generator for all browsers and operating systems, including iOS/Android"
+    "Cross-Platform: Bookmark generator works for all browsers and operating systems, including iOS/Android"
   ],
   "localizedFeature": {
-    "headline": "Enhance Your English Reading Experience 🌍",
-    "text": "<p>Imagine navigating through a sea of articles online, trying to keep up with your favorite blogs, news outlets, or academic papers. It can be overwhelming, right? Not anymore. With <strong>AI Summary Helper</strong>, dive straight into the essence of any article, summarized just for you in English.</p><p>Whether you’re tackling a 10-page research paper or the latest trending blog post, AI Summary Helper is here to save the day. For instance, consider a scientific article explaining how black holes impact time. Instead of sifting through pages of astrophysics jargon, you receive a concise, easy-to-understand summary:</p><blockquote>Black holes distort time through intense gravitational pull. Clocks closer to the black hole operate slower compared to those further away, a phenomenon explained by Einstein's theory of relativity.</blockquote><p>Simple, right? And it’s not just summaries! Tailor them according to your needs – whether you want a business perspective, an academic focus, or an informal breakdown, you are in control.</p><h3>How does this work in practice?</h3><ul><li>A food blogger's detailed recipe? Summarized into quick prep instructions.</li><li>A lengthy editorial on the economy? Key takeaways extracted for your busy schedule.</li><li>Curious about Shakespeare? Get the plot of Macbeth in three lines.</li></ul><p>AI Summary Helper doesn’t just help you understand; it transforms how you absorb information. Whether you’re a professional, student, or lifelong learner, English content now flows into your mind effortlessly.</p><p>Say goodbye to overflowing tabs and missed readings. Start a smarter way to browse the web with AI Summary Helper today! 🚀</p><h2>Learn Any Language 🌎: Comprehend Articles in Your Preferred Language</h2><p>Want to read articles in <strong>Spanish</strong>, <strong>Japanese</strong>, or <strong>Arabic</strong> but struggling with comprehension? AI Summary Helper is your multilingual companion! Simply select your desired language, and let the app translate, summarize, and help you learn while reading.</p><p>Here’s how it works:</p><ul><li><strong>Reading Local News Anywhere:</strong> Interested in French politics or German technology? AI Summary Helper offers summaries in their native languages with relevant context to enhance your understanding.</li><li><strong>Studying Foreign Literature:</strong> Want to appreciate <em>Gabriel García Márquez</em> in Spanish or <em>Haruki Murakami</em> in Japanese? Highlight key phrases while receiving context-rich summaries in English for a seamless learning journey.</li></ul><p>Languages supported: 🇬🇧 English, 🇪🇸 Spanish, 🇩🇪 German, 🇫🇷 French, 🇮🇹 Italian, 🇵🇹 Portuguese, 🇳🇱 Dutch, 🇷🇺 Russian, 🇺🇦 Ukrainian, 🇵🇱 Polish, 🇸🇪 Swedish, 🇩🇰 Danish, 🇯🇵 Japanese, 🇨🇳 Chinese, 🇰🇷 Korean, 🇮🇳 Hindi, 🇹🇭 Thai, 🇮🇩 Indonesian, 🇸🇦 Arabic, 🇹🇷 Turkish, 🇧🇬 Bulgarian, 🇷🇴 Romanian.</p><p>By blending translation with comprehension, AI Summary Helper is your path to mastering new languages effortlessly!</p>"
+    "headline": "Enhance Understanding and Translation of Texts in English 🌍",
+    "text": "<p>Imagine sifting through a multitude of articles online, trying to keep up with your favorite blogs, news outlets, or research studies. It’s quite the task, isn’t it? Not anymore! With <strong>AI Summary Helper</strong>, dive straight into the essence of any article, curated just for you in English.</p><p>Whether confronting a 10-page research paper or the trending new blog, AI Summary Helper has your back. For instance, picture a scientific article detailing how black holes affect time. Instead of trudging through pages of complex physics jargon, you receive a concise, digestible summary:</p><blockquote>Black holes distort time due to their intense gravitational pull. Clocks nearer to the black hole run slower than those farther away, a phenomenon described by Einstein's theory of relativity.</blockquote><p>Simple, right? And it doesn't stop at summaries! Customize them based on your preferences – whether you want a business perspective, an academic focus, or a casual explanation! You’re in charge.</p><h3>How does it work in real life?</h3><ul><li>A detailed food blogger's recipe? Summarized into quick prep steps.</li><li>A lengthy editorial on the economy? Get actionable takeaways for your packed schedule.</li><li>Interested in Shakespeare? Summarize the plot of Macbeth in just three lines.</li></ul><p>AI Summary Helper not only aids your understanding but also amplifies your information absorption. Whether you’re a professional, student, or a curious learner, English content is now readily accessible.</p><p>Wave goodbye to a cluttered browser and missed opportunities to read. Begin your smarter browsing journey with AI Summary Helper today! 🚀</p><h2>Learn a New Language 🌍: Understand Articles in Any Supported Language</h2><p>Want to explore articles in <strong>Spanish</strong>, <strong>Japanese</strong>, or <strong>Arabic</strong> but found comprehension challenging? AI Summary Helper is your multilingual support system! Just select your preferred language, and the app will translate, summarize, and aid your learning experience.</p><p>Here’s how it works:</p><ul><li><strong>Reading Local News Everywhere:</strong> Interested in French politics or German tech? AI Summary Helper provides summaries in their native languages tailored to your comprehension.</li><li><strong>Exploring Foreign Literature:</strong> Want to enjoy <em>Gabriel García Márquez</em> in Spanish or <em>Haruki Murakami</em> in Japanese? Highlight key phrases while receiving context-heavy summaries in English for a smooth learning journey.</li></ul><p>Supported languages: 🌏 English, 🇪🇸 Spanish, 🇩🇪 German, 🇫🇷 French, 🇮🇹 Italian, 🇧🇷 Portuguese, 🇳🇱 Dutch, 🇷🇺 Russian, 🇺🇦 Ukrainian, 🇵🇱 Polish, 🇸🇪 Swedish, 🇩🇰 Danish, 🇯🇵 Japanese, 🇨🇳 Chinese, 🇰🇷 Korean, 🇮🇳 Hindi, 🇹🇭 Thai, 🇮🇩 Indonesian, 🇸🇦 Arabic, 🇹🇷 Turkish, 🇧🇬 Bulgarian, 🇷🇴 Romanian.</p><p>By fusing translation with comprehension, AI Summary Helper is your compass to mastering new languages with ease!</p>"
   },
   "proposeFeature": "Suggest a Feature 💡",
-  "proposeFeatureText": "Do you have a brilliant idea? Share it with us <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">here</a> and help shape the future of AI Summary Helper! 📝",
+  "proposeFeatureText": "Got an innovative idea? Share it with us <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">here</a> and help shape the future of AI Summary Helper! 📝",
   "privacyNote": "Privacy Notice 🔒",
-  "privacyNoteText": "Your privacy is our utmost priority. We ensure that your data remains exclusively yours. 🔏 <a href=\"privacy\">Learn more</a>",
-  "funMessage": "Explore a more intelligent way of browsing with AI Summary Helper! 🎉",
+  "privacyNoteText": "Your privacy is our utmost priority. We ensure your data remains yours. 🔑 <a href=\"privacy\">Learn more</a>",
+  "funMessage": "Embark on a smarter browsing journey with AI Summary Helper! 🎉",
   "changelog": "Changelog 📜",
   "changelogList": [
-    "Added a list of compatible tools that work well with your reading flow and AI Summary Helper",
+    "Introduced a list of compatible tools that integrate seamlessly with your reading experience and AI Summary Helper",
     "History of articles - view and search through your summaries",
     "New prompts for increased accuracy",
     "Support for Local LLMs - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> models",
-    "Updated support for the <a href=\"https://www.mistral.ai/\">Mistral AI</a> model",
-    "Upgraded to GPT-4 mini model",
-    "Revamped User Interface 🎨"
+    "Updated to support <a href=\"https://www.mistral.ai/\">Mistral AI</a> model",
+    "Updated to GPT4o mini model",
+    "User Interface Upgraded 🎨"
   ],
-  "aboutCreator": "Meet the Creator",
-  "creatorText": "Hello community :) - I'm Phil Wornath, the creator of AI Summary Helper. As an avid reader of extensive web content, especially scientific articles, I often faced time constraints. This inspired me to develop a tool that enhances productivity and reading efficiency.",
-  "whyHelper": "Why Choose AI Summary Helper?",
+  "aboutCreator": "About the Creator",
+  "creatorText": "Hello community :) - I'm Phil Wornath, the creator of AI Summary Helper. As a fan of extensive written web content, particularly scientific articles, I often encountered time limitations. This motivated me to develop a tool focused on enhancing productivity and reading efficiency.",
+  "whyHelper": "What Makes AI Summary Helper Essential?",
   "whyHelperList": [
-    "Reclaim Your Time: Generate quick summaries or prepare for deeper dives later.",
-    "Personalized for You: Customize summaries based on your language, profession, or perspective.",
-    "Stay Organized: Keep track of your reading list without the chaos of multiple tabs.",
-    "Enhanced Reading Experience: Focus on what truly matters to you without feeling overwhelmed."
+    "Reclaim Your Time: Generate quick summaries or prepare for in-depth reading later.",
+    "Tailored for You: Customize summaries to fit your language, profession, or perspective.",
+    "Stay Organized: Banish cluttered tabs and maintain a streamlined reading list.",
+    "Enhanced Reading Experience: Concentrate on the content that matters most without feeling overwhelmed."
   ],
-  "getStarted": "Get Started Today",
-  "getStartedText": "To begin using AI Summary Helper, ensure you have an <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API key</a> and adequate credits. Join us in making web reading easier and more accessible for everyone. Download now on <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> and transform your browsing experience.",
+  "getStarted": "Start Your Journey Today",
+  "getStartedText": "To begin using AI Summary Helper, make sure you have an <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API key</a> and sufficient credit. Join us in revolutionizing web reading for everyone. Download now from <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> and transform your browsing experience.",
   "feedbackSupport": "Feedback and Support",
-  "feedbackSupportText": "We're thrilled to invite you to try AI Summary Helper and welcome your feedback and inquiries. Let's simplify and enhance reading on the web together. Elevate your online reading experience with AI Summary Helper today!",
-  "version": "1.0.3"
+  "feedbackSupportText": "We're eager to have you try AI Summary Helper and appreciate your feedback and inquiries. Let’s work together to make web reading straightforward and engaging. Enhance your online reading experience with AI Summary Helper today!",
+  "version": "1.0.4"
 }
