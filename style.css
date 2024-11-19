@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', 'Lato', 'Arial', sans-serif;
     font-size: 18px;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #ffff;
     color: #333;
     margin: 0;
 }
@@ -56,6 +56,7 @@ blockquote::before {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .window-row {

@@ -99,7 +99,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         prompt += `\n\nImportant: Summarize in  ${selectedLanguage} language.`;
       }
 
-      prompt += `\n\nPlease limit the summary to approximately ${summaryLength} words.`;
+
+      // Convert word limit to token limit
+      const tokenLimit = summaryLength * 1.5; // Assuming 1 word ≈ 1.5 tokens on average
 
       const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
 
@@ -121,7 +123,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           model: modelIdentifier,
           messages: [
             { role: 'system', content: 'You summarize content and return a html div  with h2 headings and <p> paragraphs. When you quote, keep it literal and in the input language.' },
-            { role: 'user', content: 'Stick to word limit of ' + summaryLength + ' words. ' + 'Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
+            { role: 'user', content: 'Strictly stick to word limit of ' + summaryLength + ' words or ' + tokenLimit + ' tokens' + 'Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
           ],
           stream: false // Ensure streaming is off for local models
         });
@@ -180,7 +182,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
       } catch (error) {
         console.error('❌ Error fetching summary:', error);
-        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later.';
+        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later. Make sure your API key is set and internet connection is stable. If the problem persists, please <a href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp" target="_blank">give feedback</a> or <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a>.';
         reject(error);
       }
     });
