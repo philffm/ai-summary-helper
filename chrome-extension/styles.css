@@ -630,3 +630,128 @@ ul#articleList {
     transform: translateY(0);
   }
 }
+
+/* Styles for Play Podcast Button */
+#playPodcastButton {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
+}
+
+#playPodcastButton:hover {
+  background-color: #45a049;
+}
+
+/* Styles for Audio Player */
+#podcastAudioPlayer {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.search-and-create {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Adjust the gap as needed */
+}
+
+#searchInput {
+  flex-grow: 1;
+  /* Allows the input to take up available space */
+}
+
+#playPodcastButton {
+  margin-top: 0;
+  /* Remove any top margin to align with the input */
+}
+
+#podcastList {
+  display: flex;
+  overflow-x: auto;
+  padding: 12px 0px 12px 20px;
+  margin: 0;
+  gap: var(--spacing-s-4);
+}
+
+.podcast-card {
+  flex: 0 0 auto;
+  width: 200px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: var(--spacing-s-4);
+  background-color: var(--color-neutral-light);
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+}
+
+.podcast-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: var(--spacing-s-2);
+}
+
+.podcast-card audio {
+  width: 100%;
+}
+
+.podcast-card h3,
+.podcast-card p {
+  margin: 0;
+}
+
+.podcast-card .play-button,
+.podcast-card .delete-button,
+.podcast-card .share-button {
+  margin-top: auto;
+  color: #007bff;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.podcast-card .play-button:hover,
+.podcast-card .delete-button:hover,
+.podcast-card .share-button:hover {
+  text-decoration: underline;
+}
+
+.podcast-menu {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: var(--color-surface-white);
+  border-radius: var(--spacing-s-2);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-s-4);
+  width: 300px;
+  z-index: 1000;
+}
+
+.podcast-menu button {
+  width: 100%;
+  margin-bottom: var(--spacing-s-2);
+}
+
+#podcastList {
+  display: flex;
+  overflow-x: auto;
+  padding: 12px 0px;
+  margin: 0;
+  gap: var(--spacing-s-4);
+}
+
+.compatible-tools {
+  display: none;
+  /* Initially hidden */
+}

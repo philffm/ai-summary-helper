@@ -19,6 +19,11 @@ function init() {
   chrome.storage.sync.get(null, (data) => {
     console.log('All settings:', data);
   });
+
+  // show get podcasts from local storage
+  chrome.storage.local.get({ podcasts: [] }, (data) => {
+    console.log('Podcasts:', data.podcasts);
+  });
 }
 
 fetch(chrome.runtime.getURL('manifest.json'))
@@ -48,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const localEndpointInput = document.getElementById('localEndpoint'); // Input for local endpoint
   const modelIdentifierInput = document.getElementById('modelIdentifier');
 
+  const podcastButton = document.getElementById('podcastButton');
   const historyButton = document.getElementById('historyButton');
   const backButton = document.getElementById('backButton');
   const historyScreen = document.getElementById('historyScreen');
@@ -62,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const titleElement = document.querySelector('.logoheader h2');
 
+  loadPodcasts();
+
+  // Call loadPodcasts on page load to display existing podcasts
+
+
   // Define a configuration object for screens
   const screenConfig = {
     mainScreen: {
@@ -75,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       titleText: 'Settings'
     },
     historyScreen: {
-      show: ['historyScreen', 'backButton'],
+      show: ['historyScreen', 'backButton', 'podcastButton'],
       toggleButtonText: '',
       titleText: 'History (Beta)'
     }
@@ -98,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function hideAllScreens() {
     screenList.forEach(screen => screen.style.display = 'none');
-    ['historyButton', 'backButton', 'toggleScreenButton', 'appsButton'].forEach(id => {
+    ['historyButton', 'backButton', 'toggleScreenButton', 'appsButton', 'podcastButton'].forEach(id => {
       document.getElementById(id).style.display = 'none';
     });
   }
@@ -304,19 +315,34 @@ document.addEventListener('DOMContentLoaded', () => {
           if (shareButton) {
             shareButton.addEventListener('click', () => {
               if (navigator.share) {
-                const summaryText = article.summary.replace(/<[^>]*>/g, '').trim();
-                const shareData = {
-                  title: `📄 ${article.title || 'No title available'}`,
-                  url: article.url,
-                  text: `🪄${summaryText || 'No summary available'}`
-                };
-                navigator.share(shareData)
-                  .then(() => {
-                    console.log('Article shared successfully');
-                  })
-                  .catch((error) => {
-                    console.error('Error sharing article:', error);
+                const podcast = podcasts[0]; // Assuming you want to share the first podcast
+                const podcastUrl = podcast.audio; // Base64-encoded data URL
+
+                if (podcastUrl && podcastUrl.startsWith('data:')) {
+                  // Convert base64 to Blob
+                  const byteString = atob(podcastUrl.split(',')[1]);
+                  const mimeString = podcastUrl.split(',')[0].split(':')[1].split(';')[0];
+                  const ab = new ArrayBuffer(byteString.length);
+                  const ia = new Uint8Array(ab);
+                  for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                  }
+                  const blob = new Blob([ab], { type: mimeString });
+                  const blobUrl = URL.createObjectURL(blob);
+
+                  navigator.share({
+                    title: podcast.title,
+                    url: blobUrl
+                  }).then(() => {
+                    console.log('Podcast shared successfully.');
+                    URL.revokeObjectURL(blobUrl); // Clean up the Blob URL
+                  }).catch((error) => {
+                    console.error('Error sharing podcast:', error);
                   });
+                } else {
+                  console.error('Invalid data URL for sharing:', podcastUrl);
+                  alert('Cannot share podcast: Invalid data URL.');
+                }
               } else {
                 console.error('Web Share API not supported in this browser');
               }
@@ -347,8 +373,296 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         });
+
+        // ======= Toggle Play Podcast Button Visibility =======
+        togglePlayPodcastButton(sortedArticles);
       }
     });
+  }
+
+  /**
+   * Toggles the visibility of the Play Podcast button based on selected model and API key.
+   * @param {Array} sortedArticles - The list of sorted articles.
+   * 
+   * 
+   */
+  function togglePlayPodcastButton(sortedArticles) {
+    chrome.storage.sync.get(['model', 'apiKey', 'selectedLanguage'], (data) => {
+      const playButton = document.getElementById('playPodcastButton');
+      const audioPlayer = document.getElementById('podcastAudioPlayer');
+
+      console.log('🔍 Selected Model:', data.model);
+      console.log('🔑 API Key Present:', data.apiKey ? 'Yes' : 'No');
+
+      if (data.model === 'openai' && data.apiKey) {
+        console.log('✅ Conditions met: Displaying Play Podcast Button.');
+        playButton.style.display = 'block';
+        audioPlayer.style.display = 'none';
+        audioPlayer.src = '';
+
+        // Attach event listener if not already attached
+        if (!playButton.dataset.listenerAttached) {
+          playButton.addEventListener('click', () => handlePlayPodcast(sortedArticles, data.apiKey, audioPlayer, playButton, data.selectedLanguage));
+          playButton.dataset.listenerAttached = 'true'; // Prevent multiple attachments
+          console.log('🔗 Play Podcast button event listener attached.');
+        }
+      } else {
+        if (data.model !== 'openai') {
+          console.warn('⚠️ Selected model is not OpenAI. Play Podcast Button will be hidden.');
+        }
+        if (!data.apiKey) {
+          console.warn('⚠️ API Key is not set. Play Podcast Button will be hidden.');
+        }
+        playButton.style.display = 'none';
+      }
+    });
+  }
+
+  /**
+   * Handles the Play Podcast button click event.
+   * @param {Array} sortedArticles - The list of sorted articles.
+   * @param {string} apiKey - The OpenAI API key.
+   * @param {HTMLElement} audioPlayer - The audio player element.
+   * @param {HTMLElement} playButton - The Play Podcast button element.
+   * @param {string} selectedLanguage - The selected language.
+   */
+  async function handlePlayPodcast(sortedArticles, apiKey, audioPlayer, playButton, selectedLanguage) {
+    selectedLanguage = document.getElementById('languageSelect').value;
+    console.log('️ Play Podcast button clicked.');
+    playButton.disabled = true;
+    playButton.textContent = '🎙️ Generating Podcast...';
+
+    // 40000 tokens max, 1 token = 4 characters 
+    const MAX_INPUT_LENGTH = 10000; // Maximum allowed characters for OpenAI API
+
+    try {
+      // Step 1: Combine Articles
+      const { combinedInput, includedCount } = createCombinedInput(sortedArticles, MAX_INPUT_LENGTH);
+      console.log(`✅ Included ${includedCount} article(s) in the podcast.`);
+      console.log('📝 Combined Input:', combinedInput);
+
+      if (!combinedInput.trim()) {
+        alert('⚠️ No summaries available to generate a podcast.');
+        console.warn('❌ Combined input is empty.');
+        resetPlayButton(playButton);
+        return;
+      }
+
+      // Step 2: Create Chat Completion for Engaging Script
+      console.log('🔄 Creating chat completion for the podcast script.');
+      const podcastScript = await createChatCompletion(combinedInput, apiKey, selectedLanguage);
+      console.log('📝 Generated Podcast Script:', podcastScript);
+
+      if (!podcastScript.trim()) {
+        alert('⚠️ Failed to generate a podcast script.');
+        console.warn('❌ Podcast script is empty.');
+        resetPlayButton(playButton);
+        return;
+      }
+
+      // Step 3: Generate Audio from Podcast Script
+      console.log('🔄 Generating audio from the podcast script.');
+      const audioBlob = await generateAudioFromText(podcastScript, apiKey);
+
+      if (audioBlob) {
+        console.log('✅ Audio blob successfully generated.');
+        const audioURL = URL.createObjectURL(audioBlob);
+        audioPlayer.src = audioURL;
+        audioPlayer.style.display = 'block';
+        audioPlayer.play()
+          .then(() => console.log('▶️ Audio is playing.'))
+          .catch(err => console.error('❌ Error playing audio:', err));
+
+        // Save the podcast
+        const podcastTitle = `Podcast - ${new Date().toLocaleString()}`;
+        console.log('📥 Saving podcast:', podcastTitle);
+        savePodcast(podcastTitle, audioBlob);
+      } else {
+        alert('⚠️ Failed to generate audio.');
+        console.error('❌ Audio blob is null.');
+      }
+    } catch (error) {
+      console.error('🛑 Error in handlePlayPodcast:', error);
+      alert(`❌ An error occurred while generating the podcast: ${error.message}`);
+    } finally {
+      resetPlayButton(playButton);
+    }
+  }
+
+  /**
+   * Resets the Play Podcast button to its default state.
+   * @param {HTMLElement} playButton - The Play Podcast button element.
+   */
+  function resetPlayButton(playButton) {
+    playButton.disabled = false;
+    playButton.textContent = '🎙️ Play Podcast';
+    console.log('🔄 Play Podcast button re-enabled.');
+  }
+
+  /**
+   * Creates a combined input string from article summaries, titles, and URLs without exceeding the max length.
+   * Counts only the characters in the summaries to determine inclusion.
+   * @param {Array} articles - The list of sorted articles.
+   * @param {number} maxLength - The maximum allowed character length for summaries.
+   * @returns {Object} - An object containing the combined input and the count of included articles.
+   */
+  function createCombinedInput(articles, maxLength) {
+    let combinedInput = '';
+    let includedCount = 0;
+    let currentSummaryLength = 0;
+
+    for (let article of articles) {
+      // Strip HTML from the summary
+      const plainSummary = stripHtml(article.summary);
+
+      // Calculate the length of the summary
+      const summaryLength = plainSummary.length;
+
+      // Check if adding this summary would exceed the maxLength
+      if ((currentSummaryLength + summaryLength) > maxLength * 0.9) {
+        console.log('📏 Maximum summary length reached. Stopping further additions.');
+        break; // Stop adding more articles
+      }
+
+      // Construct a plain text block for each article
+      const articleText = `Title: ${article.title}\nSummary: ${plainSummary}\nURL: ${article.url}\n\n`;
+
+      combinedInput += articleText;
+      includedCount += 1;
+      currentSummaryLength += summaryLength;
+    }
+
+    return { combinedInput, includedCount };
+  }
+
+  /**
+   * Creates a chat completion using OpenAI's Chat API to generate an engaging podcast script.
+   * @param {string} inputText - The combined input text from articles.
+   * @param {string} apiKey - The OpenAI API key.
+   * @returns {Promise<string>} - The generated podcast script.
+   */
+  async function createChatCompletion(inputText, apiKey, selectedLanguage) {
+    const apiUrl = 'https://api.openai.com/v1/chat/completions';
+    const model = 'gpt-4o'; // Ensure this is the correct model as per OpenAI documentation
+
+    // Define the conversation messages
+    const messages = [
+      {
+        role: 'system',
+        content: `In language code"${selectedLanguage}" language, you are a creative and engaging podcast host. Transform the provided article summaries into an exciting 1 minute podcast script that captivates the audience. use language ${selectedLanguage}. Include the source of the article in the script.`
+      },
+      {
+        role: 'user',
+        content: inputText
+      }
+    ];
+
+    // Define the request payload
+    const requestBody = {
+      model: model,
+      messages: messages,
+      max_tokens: 2500, // Adjust based on desired script length
+      temperature: 0.7, // Adjust for creativity
+      top_p: 1,
+      n: 1,
+      stream: false,
+      stop: null
+    };
+
+    console.log('📤 Sending chat completion request to OpenAI:', requestBody);
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      console.log('📥 Received response from Chat Completion API:', response);
+
+      if (!response.ok) {
+        let errorMessage = `Status: ${response.status}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage += ` - ${errorData.error.message}`;
+            console.error('🛑 OpenAI Chat Completion API Error:', errorData.error);
+          } else {
+            console.error('🛑 Unexpected error structure:', errorData);
+          }
+        } catch (parseError) {
+          const errorText = await response.text();
+          console.error('🛑 Error parsing OpenAI Chat Completion API error response:', parseError);
+          console.error('🛑 Raw Error Response:', errorText);
+        }
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      const podcastScript = data.choices[0].message.content.trim();
+      return podcastScript;
+    } catch (error) {
+      console.error('🛑 Error in createChatCompletion:', error);
+      throw error; // Propagate the error to be handled by the caller
+    }
+  }
+
+  /**
+   * Generates audio from the provided text using OpenAI's speech API.
+   * @param {string} text - The text to convert to speech.
+   * @param {string} apiKey - The OpenAI API key.
+   * @returns {Promise<Blob|null>} - The audio blob or null if failed.
+   */
+  async function generateAudioFromText(text, apiKey) {
+    const apiUrl = 'https://api.openai.com/v1/audio/speech'; // Verify the correct endpoint
+    const requestBody = {
+      model: "tts-1", // Ensure this is the correct model as per OpenAI documentation
+      input: text,
+      voice: "alloy"  // Ensure 'alloy' is a valid voice option
+    };
+
+    console.log('📤 Sending audio generation request to OpenAI:', requestBody);
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      console.log('📥 Received response from Audio API:', response);
+
+      if (!response.ok) {
+        let errorMessage = `Status: ${response.status}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage += ` - ${errorData.error.message}`;
+            console.error('🛑 OpenAI Audio API Error:', errorData.error);
+          } else {
+            console.error('🛑 Unexpected error structure:', errorData);
+          }
+        } catch (parseError) {
+          const errorText = await response.text();
+          console.error('🛑 Error parsing OpenAI Audio API error response:', parseError);
+          console.error('🛑 Raw Error Response:', errorText);
+        }
+        throw new Error(errorMessage);
+      }
+
+      const audioBlob = await response.blob();
+      console.log('🎧 Audio blob received:', audioBlob);
+      return audioBlob;
+    } catch (error) {
+      console.error('🛑 Error in generateAudioFromText:', error);
+      throw error; // Propagate the error to be handled by the caller
+    }
   }
 
   // Function to toggle visibility of API key and endpoint inputs
@@ -386,6 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     togglePromptInputVisibility(); // Ensure visibility is set correctly on load
   });
+
 
   // Load stored settings from Chrome storage
   chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier', 'selectedLanguage', 'promptType', 'presetPrompt'], (data) => {
@@ -447,7 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Change button text temporarily to indicate success
     const originalText = event.submitter.textContent;
     const originalBackground = event.submitter.style.background;
-    event.submitter.textContent = 'Saved! 🎉';
+    event.submitter.textContent = 'Saved! ';
     event.submitter.style.background = 'linear-gradient(135deg, #4CAF50, #388E3C)'; // Darker green gradient
     setTimeout(() => {
       event.submitter.textContent = originalText;
@@ -745,7 +1060,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('input', triggerSave);
   });
 
-  // Add debounced event listener for textarea elements
+  // Add debounced event listener for textarea and input elements
   const textareas = settingsForm.querySelectorAll('textarea, input');
   const debouncedSave = debounce(triggerSave, 1000);
   textareas.forEach(textarea => {
@@ -794,5 +1109,130 @@ document.addEventListener('DOMContentLoaded', () => {
   // Call the first-time setup function
   firstTimeSetup();
 
+  /**
+   * Estimates the number of tokens in a given string.
+   * Note: This is a simple approximation. For exact counts, use OpenAI's Tokenizer.
+   * @param {string} text - The text to tokenize.
+   * @returns {number} - Estimated number of tokens.
+   */
+  function estimateTokenCount(text) {
+    return Math.ceil(text.length / 4);
+  }
+
+  /**
+   * Creates a combined input string from article summaries, titles, and URLs without exceeding the max token limit.
+   * @param {Array} articles - The list of sorted articles.
+   * @param {number} maxTokens - The maximum allowed token count.
+   * @returns {Object} - An object containing the combined input and the count of included articles.
+   */
+  function createCombinedInputByTokens(articles, maxTokens) {
+    let combinedInput = '';
+    let includedCount = 0;
+    let currentTokenCount = 0;
+
+    for (let article of articles) {
+      // Strip HTML from the summary
+      const plainSummary = stripHtml(article.summary);
+
+      // Construct a plain text block for each article
+      const articleText = `Title: ${article.title}\nSummary: ${plainSummary}\nURL: ${article.url}\n\n`;
+      const articleTokenCount = estimateTokenCount(articleText);
+
+      // Check if adding this article would exceed the maxTokens
+      if ((currentTokenCount + articleTokenCount) > maxTokens) {
+        console.log('📏 Maximum token limit reached. Stopping further additions.');
+        break; // Stop adding more articles
+      }
+
+      combinedInput += articleText;
+      includedCount += 1;
+      currentTokenCount += articleTokenCount;
+    }
+
+    return { combinedInput, includedCount };
+  }
+
+  /**
+   * Strips HTML tags from a given string.
+   * @param {string} html - The HTML string to be stripped.
+   * @returns {string} - The plain text string without HTML tags.
+   */
+  function stripHtml(html) {
+    const tmp = document.createElement('DIV');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  // Function to save a podcast to local storage
+  function savePodcast(title, audioBlob) {
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      const base64data = reader.result;
+      chrome.storage.local.get({ podcasts: [] }, (data) => {
+        const podcasts = data.podcasts;
+        podcasts.push({ title, audio: base64data, timestamp: Date.now() });
+        chrome.storage.local.set({ podcasts }, () => {
+          if (chrome.runtime.lastError) {
+            console.error('Error saving podcast:', chrome.runtime.lastError);
+          } else {
+            console.log('Podcast saved successfully.');
+            loadPodcasts(); // Refresh the list
+          }
+        });
+      });
+    };
+    reader.readAsDataURL(audioBlob);
+  }
+
+
+  // Function to load podcasts from local storage
+  function loadPodcasts() {
+    const podcastList = document.getElementById('podcastList');
+    podcastList.innerHTML = ''; // Clear existing podcasts
+
+    // Add explanatory card
+    const explanatoryCard = document.createElement('div');
+    explanatoryCard.classList.add('explanatory-card');
+    explanatoryCard.innerHTML = '💠 Transform your articles into podcasts and share them with your friends';
+    podcastList.appendChild(explanatoryCard);
+
+    // Add play podcast button
+    const playPodcastButton = document.createElement('button');
+    playPodcastButton.id = 'playPodcastButton';
+    playPodcastButton.classList.add('button-primary');
+    playPodcastButton.textContent = '🎙️ Create';
+    playPodcastButton.style.display = 'none';
+    explanatoryCard.appendChild(playPodcastButton);
+
+    chrome.storage.local.get({ podcasts: [] }, (data) => {
+      data.podcasts.forEach((podcast, index) => {
+        const listItem = document.createElement('div');
+        listItem.classList.add('podcast-card');
+        listItem.innerHTML = `
+          <div class="podcast-card-content">
+            <h3>${podcast.title}</h3>
+            <audio controls src="${podcast.audio}"></audio>
+            <button class="delete-podcast-button">Delete</button>
+          </div>
+        `;
+        podcastList.appendChild(listItem);
+
+        // Add event listeners
+        const deleteButton = listItem.querySelector('.delete-podcast-button');
+        const shareButton = listItem.querySelector('.share-podcast-button');
+
+        deleteButton.addEventListener('click', () => {
+          if (confirm('Are you sure you want to delete this podcast?')) {
+            data.podcasts.splice(index, 1);
+            chrome.storage.local.set({ podcasts: data.podcasts }, () => {
+              console.log('Podcast deleted successfully.');
+              loadPodcasts(); // Refresh the list
+            });
+          }
+        });
+
+      });
+    });
+  }
 
 });

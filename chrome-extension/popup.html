@@ -21,6 +21,7 @@
       <div class="header-buttons">
         <button id="appsButton" class="button-secondary" title="Apps">💠</button>
         <button id="historyButton" class="button-secondary" title="History">🗂️</button>
+        <button id="podcastButton" class="button-secondary">🎙️</button>
         <button id="backButton" class="button–secondary" title="Back" style="display: none;">Back</button>
         <button id="toggleScreenButton" class="button-secondary" title="Settings">⚙️</button>
       </div>
@@ -66,7 +67,7 @@
               <label for="model">Model <span id="apiKeyLink" style="font-weight: normal;"></span></label>
               <select id="model">
                 <option value="openai">OpenAI 4o</option>
-                <option value="mistral">Mistral</option>
+              <option value="mistral">Mistral</option>
                 <option value="ollama">Ollama (Local)</option>
               </select>
               <div id="modelIdentifierContainer">
@@ -103,7 +104,6 @@
               <button id="deleteSettingsButton" class="button danger">Delete Settings</button>
               <!-- delete history -->
               <button id="deleteHistoryButton" class="button danger">Delete History</button>
-
             </div>
           </div>
         </div>
@@ -114,7 +114,15 @@
       </form>
     </div>
     <div id="historyScreen" class="screen" style="display: none;">
+      <div class="podcast-tools">
+        <h2>Podcasts</h2>
+        <audio id="podcastAudioPlayer" controls style="display: none; width: 100%; margin-top: 10px;"></audio>
+        <div id="podcastList" class="podcast-list">
+            <button id="playPodcastButton" class="button-primary" style="display: none;">🎙️ Create</button>
+        </div>
+      </div>
       <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" />
+      
       <ul id="articleList"></ul>
     </div>
     <script src="popup.js"></script>

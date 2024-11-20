@@ -2,12 +2,13 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.19",
+  "version": "1.5.21",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
     "activeTab",
-    "storage"
+    "storage",
+    "https://api.openai.com/*"
   ],
   "background": {
     "service_worker": "background.js"
