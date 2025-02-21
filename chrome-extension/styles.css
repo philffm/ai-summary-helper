@@ -546,12 +546,20 @@ ul#articleList {
 }
 
 .explanatory-card {
-  padding: 10px;
-  width: 220px;
+  padding: var(--spacing-s-2);
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--spacing-s-2);
   background-color: #f0f0f0;
   border-radius: var(--spacing-s-4);
   font-size: 14px;
   color: #333;
+}
+
+.explanatory-card input {
+  margin: 0;
 }
 
 .accordion-button {
@@ -640,8 +648,8 @@ ul#articleList {
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-
+  /* display: inline-block; */
+  width: -webkit-fill-available;
 }
 
 #playPodcastButton:hover {

@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     historyScreen: {
       show: ['historyScreen', 'backButton', 'podcastButton'],
       toggleButtonText: '',
-      titleText: 'History (Beta)'
+      titleText: 'History'
     }
   };
 
@@ -450,7 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Step 2: Create Chat Completion for Engaging Script
       console.log('🔄 Creating chat completion for the podcast script.');
-      const podcastScript = await createChatCompletion(combinedInput, apiKey, selectedLanguage);
+      const podcastName = document.getElementById('podcastNameInput').value;
+      const podcastScript = await createChatCompletion(combinedInput, apiKey, selectedLanguage, podcastName);
       console.log('📝 Generated Podcast Script:', podcastScript);
 
       if (!podcastScript.trim()) {
@@ -541,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {string} apiKey - The OpenAI API key.
    * @returns {Promise<string>} - The generated podcast script.
    */
-  async function createChatCompletion(inputText, apiKey, selectedLanguage) {
+  async function createChatCompletion(inputText, apiKey, selectedLanguage, podcastName) {
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
     const model = 'gpt-4o'; // Ensure this is the correct model as per OpenAI documentation
 
@@ -549,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messages = [
       {
         role: 'system',
-        content: `In language code"${selectedLanguage}" language, you are a creative and engaging podcast host. Transform the provided article summaries into an exciting 1 minute podcast script that captivates the audience. use language ${selectedLanguage}. Include the source of the article in the script.`
+        content: `Podcast Name: ${podcastName}\n In language code"${selectedLanguage}" language, you are a creative and engaging podcast host. Transform the provided article summaries into an exciting 1 minute podcast script that captivates the audience. use language ${selectedLanguage}. Include the source of the article in the script. only include the domain, not the full URL.`
       },
       {
         role: 'user',
@@ -1193,8 +1194,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add explanatory card
     const explanatoryCard = document.createElement('div');
     explanatoryCard.classList.add('explanatory-card');
-    explanatoryCard.innerHTML = '💠 Transform your articles into podcasts and share them with your friends';
+    explanatoryCard.innerHTML = '💠 Keep your friends in the loop: Transform your last reads into mini-podcasts you can share with your friends. (Requires OpenAI for now)';
     podcastList.appendChild(explanatoryCard);
+
+    // add input file for podcast name 
+    const podcastNameInput = document.createElement('input');
+    podcastNameInput.type = 'text';
+    podcastNameInput.id = 'podcastNameInput';
+    podcastNameInput.placeholder = 'Podcast Name';
+    explanatoryCard.appendChild(podcastNameInput);
+
+
 
     // Add play podcast button
     const playPodcastButton = document.createElement('button');
@@ -1203,6 +1213,8 @@ document.addEventListener('DOMContentLoaded', () => {
     playPodcastButton.textContent = '🎙️ Create';
     playPodcastButton.style.display = 'none';
     explanatoryCard.appendChild(playPodcastButton);
+
+
 
     chrome.storage.local.get({ podcasts: [] }, (data) => {
       data.podcasts.forEach((podcast, index) => {
@@ -1234,5 +1246,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  const podcastTools = document.querySelector('.podcast-tools');
+  const podcastList = document.getElementById('podcastList');
+  const podcastAudioPlayer = document.getElementById('podcastAudioPlayer');
+  const playPodcastButton = document.getElementById('playPodcastButton');
+
+  // Initially hide podcast elements
+  podcastTools.style.display = 'none';
+  podcastList.style.display = 'none';
+  podcastAudioPlayer.style.display = 'none';
+  playPodcastButton.style.display = 'none';
+
+  podcastButton.addEventListener('click', () => {
+    // Toggle visibility of podcast elements
+    const isVisible = podcastTools.style.display === 'block';
+    podcastTools.style.display = isVisible ? 'none' : 'block';
+    podcastList.style.display = isVisible ? 'none' : 'block';
+    podcastAudioPlayer.style.display = isVisible ? 'none' : 'block';
+    playPodcastButton.style.display = isVisible ? 'none' : 'block';
+  });
 
 });
