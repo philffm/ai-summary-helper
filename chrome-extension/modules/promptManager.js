@@ -30,10 +30,11 @@ export function initPromptManager(promptSelectEl, promptInput, onPromptChange) {
         })
         .catch(error => console.error('Error loading prompts:', error));
 
-    // Load stored prompt settings
-    chrome.storage.local.get(['prompt', 'selectedPreset'], data => {
-        if (data.selectedPreset) promptSelectEl.value = data.selectedPreset;
+    // Load stored prompt settings from sync storage (canonical place used by the app)
+    chrome.storage.sync.get(['prompt', 'presetPrompt', 'promptType'], data => {
+        if (data.presetPrompt) promptSelectEl.value = data.presetPrompt;
         if (data.prompt) promptInput.value = data.prompt;
+        // If promptType indicates custom, make sure the input is visible
         togglePromptInputVisibility(promptSelectEl, promptInput);
     });
 
@@ -41,10 +42,17 @@ export function initPromptManager(promptSelectEl, promptInput, onPromptChange) {
     promptSelectEl.addEventListener('change', () => {
         if (promptSelectEl.value === 'custom') {
             promptInput.style.display = 'block';
+            // For custom, keep `prompt` as the custom text (user-edited)
+            chrome.storage.sync.set({ presetPrompt: promptSelectEl.value, promptType: 'custom' });
         } else {
             promptInput.style.display = 'none';
+            // For preset, store both the preset name and the actual prompt text
+            const selectedOption = promptSelectEl.options[promptSelectEl.selectedIndex];
+            const presetPromptText = selectedOption?.dataset?.prompt || '';
+            chrome.storage.sync.set({ presetPrompt: promptSelectEl.value, prompt: presetPromptText, promptType: 'preset' });
+            // Also update the textarea so it reflects the preset content if needed
+            if (promptInput) promptInput.value = presetPromptText;
         }
-        chrome.storage.local.set({ selectedPreset: promptSelectEl.value });
         if (onPromptChange) onPromptChange(promptSelectEl.value);
     });
 
@@ -52,7 +60,7 @@ export function initPromptManager(promptSelectEl, promptInput, onPromptChange) {
     promptInput.addEventListener('input', () => {
         promptSelectEl.value = 'custom';
         promptInput.style.display = 'block';
-        chrome.storage.local.set({ prompt: promptInput.value, promptType: 'custom' });
+        chrome.storage.sync.set({ prompt: promptInput.value, promptType: 'custom' });
         if (onPromptChange) onPromptChange('custom');
     });
 }

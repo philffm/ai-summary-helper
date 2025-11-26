@@ -199,23 +199,33 @@ function initSettingsManager(ui) {
             // Get current config from storage
             const storageData = await StorageManager.getAll();
             const servicesConfig = storageData.servicesConfig || {};
-            // Update service config
+            // Preserve any existing fields (like `model`) when updating the service entry
+            const prevCfg = servicesConfig[activeService] || {};
+            // Ensure we have service metadata so we can fall back to the service default model
+            const servicesMeta = await StorageManager.getServices();
+            const serviceMeta = servicesMeta.find(s => s.id === activeService);
+            const defaultModel = serviceMeta?.defaultModel || '';
+
             servicesConfig[activeService] = {
-                apiKey: apiKeyInput ? apiKeyInput.value : '',
-                customModel: modelIdentifierInput ? modelIdentifierInput.value : '',
-                endpoint: endpointInput ? endpointInput.value : ''
+                // keep previously saved model if present, otherwise fall back to the service default
+                model: prevCfg.model || defaultModel,
+                apiKey: apiKeyInput ? apiKeyInput.value : (prevCfg.apiKey || ''),
+                customModel: modelIdentifierInput ? modelIdentifierInput.value : (prevCfg.customModel || ''),
+                endpoint: endpointInput ? endpointInput.value : (prevCfg.endpoint || '')
             };
             // Save active service
             await StorageManager.set({ activeService });
             // Save service config
             await StorageManager.set({ servicesConfig });
 
-            // Save prompt selection and custom prompt
+            // Save prompt selection and custom prompt using canonical keys
+            // used throughout the app: `prompt`, `presetPrompt`, and `promptType`.
             if (promptSelect) {
-                await StorageManager.set({ selectedPrompt: promptSelect.value });
+                const promptType = (promptSelect.value === 'custom') ? 'custom' : 'preset';
+                await StorageManager.set({ presetPrompt: promptSelect.value, promptType });
             }
             if (promptInput) {
-                await StorageManager.set({ customPrompt: promptInput.value });
+                await StorageManager.set({ prompt: promptInput.value });
             }
 
             // Button feedback: turn green and show 'Saved!'

@@ -15,14 +15,12 @@ function loadPodcasts() {
     podcastNameInput.id = 'podcastNameInput';
     podcastNameInput.placeholder = 'Podcast Name';
     explanatoryCard.appendChild(podcastNameInput);
-
-    // Add play podcast button
-    const playPodcastButton = document.createElement('button');
-    playPodcastButton.id = 'playPodcastButton';
-    playPodcastButton.classList.add('button-primary');
-    playPodcastButton.textContent = '🎙️ Create';
-    playPodcastButton.style.display = 'none';
-    explanatoryCard.appendChild(playPodcastButton);
+    // Attach the existing Play/Create button from the DOM (avoid duplicate IDs)
+    const existingPlayButton = document.getElementById('playPodcastButton');
+    if (existingPlayButton) {
+        // Move the existing button into the explanatory card so it appears next to the input
+        explanatoryCard.appendChild(existingPlayButton);
+    }
 
     chrome.storage.local.get({ podcasts: [] }, (data) => {
         data.podcasts.forEach((podcast, index) => {
@@ -80,7 +78,7 @@ document.getElementById('podcastButton').addEventListener('click', () => {
  * @param {HTMLElement} playButton - The Play Podcast button element.
  * @param {string} selectedLanguage - The selected language.
  */
-async function handlePlayPodcast(sortedArticles, apiKey, audioPlayer, playButton, selectedLanguage) {
+async function handlePlayPodcast(sortedArticles, apiKey, audioPlayer, playButton, selectedLanguage, activeService = 'openai', modelIdentifier = '') {
     selectedLanguage = document.getElementById('languageSelect').value;
     console.log('️ Play Podcast button clicked.');
     playButton.disabled = true;
@@ -105,7 +103,7 @@ async function handlePlayPodcast(sortedArticles, apiKey, audioPlayer, playButton
         // Step 2: Create Chat Completion for Engaging Script
         console.log('🔄 Creating chat completion for the podcast script.');
         const podcastName = document.getElementById('podcastNameInput').value;
-        const podcastScript = await createChatCompletion(combinedInput, apiKey, selectedLanguage, podcastName);
+        const podcastScript = await createChatCompletion(combinedInput, apiKey, selectedLanguage, podcastName, activeService, modelIdentifier);
         console.log('📝 Generated Podcast Script:', podcastScript);
 
         if (!podcastScript.trim()) {
@@ -117,7 +115,7 @@ async function handlePlayPodcast(sortedArticles, apiKey, audioPlayer, playButton
 
         // Step 3: Generate Audio from Podcast Script
         console.log('🔄 Generating audio from the podcast script.');
-        const audioBlob = await generateAudioFromText(podcastScript, apiKey);
+        const audioBlob = await generateAudioFromText(podcastScript, apiKey, activeService);
 
         if (audioBlob) {
             console.log('✅ Audio blob successfully generated.');
@@ -145,6 +143,28 @@ async function handlePlayPodcast(sortedArticles, apiKey, audioPlayer, playButton
 }
 
 /**
+ * Combine article summaries into a single input string, respecting a max length.
+ * @param {Array} articles
+ * @param {number} maxLength
+ * @returns {{combinedInput: string, includedCount: number}}
+ */
+function createCombinedInput(articles, maxLength) {
+    if (!Array.isArray(articles)) return { combinedInput: '', includedCount: 0 };
+    let combined = '';
+    let count = 0;
+    for (const a of articles) {
+        const piece = (a.summary || a.content || a.title || '').trim();
+        if (!piece) continue;
+        // Add separator
+        const toAdd = (combined ? '\n\n' : '') + piece;
+        if ((combined + toAdd).length > maxLength) break;
+        combined += toAdd;
+        count += 1;
+    }
+    return { combinedInput: combined, includedCount: count };
+}
+
+/**
  * Resets the Play Podcast button to its default state.
  * @param {HTMLElement} playButton - The Play Podcast button element.
  */
@@ -158,6 +178,37 @@ function resetPlayButton(playButton) {
 function initPodcastManager(ui) {
     // Setup podcast UI and load podcasts
     loadPodcasts();
+    // Wire up Create/Play button to generate a podcast from saved articles
+    const btn = document.getElementById('playPodcastButton');
+    if (btn) {
+        // Avoid attaching multiple listeners if init is called more than once
+        btn.removeEventListener('click', btn._podcastClickHandler);
+        const handler = async () => {
+            try {
+                // Load saved article summaries from local storage
+                chrome.storage.local.get(['articles'], (data) => {
+                    const articles = data.articles || [];
+                    // Get API key from sync storage (openai service by default)
+                    chrome.storage.sync.get(['servicesConfig', 'activeService'], (sdata) => {
+                        const activeService = sdata.activeService || 'openai';
+                        const cfg = (sdata.servicesConfig || {})[activeService] || {};
+                        const apiKey = cfg.apiKey || '';
+                        const modelIdentifier = cfg.customModel || cfg.model || '';
+                        if (!apiKey) {
+                            alert(`Please set your ${activeService} API key in the extension settings before creating a podcast.`);
+                            return;
+                        }
+                        // pass modelIdentifier so createChatCompletion can use the correct model
+                        handlePlayPodcast(articles, apiKey, podcastAudioPlayer, btn, undefined, activeService, modelIdentifier);
+                    });
+                });
+            } catch (err) {
+                console.error('Error handling play podcast click:', err);
+            }
+        };
+        btn._podcastClickHandler = handler;
+        btn.addEventListener('click', handler);
+    }
     // You can add more initialization logic here if needed, e.g. wiring up UIManager events
 }
 

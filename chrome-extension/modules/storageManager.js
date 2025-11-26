@@ -150,6 +150,7 @@ class StorageManager {
 
         for (const service of services) {
             if (!cfg[service.id]) {
+                // Missing whole service entry -> create with defaults
                 cfg[service.id] = {
                     apiKey: '',
                     model: service.defaultModel,
@@ -157,6 +158,20 @@ class StorageManager {
                     endpoint: service.endpointUrl
                 };
                 changed = true;
+            } else {
+                // Ensure existing entry has all expected fields (don't clobber existing values)
+                const entry = cfg[service.id] || {};
+                const updatedEntry = { ...entry };
+                if (updatedEntry.apiKey === undefined) updatedEntry.apiKey = '';
+                if (updatedEntry.model === undefined || updatedEntry.model === null || updatedEntry.model === '') updatedEntry.model = service.defaultModel;
+                if (updatedEntry.customModel === undefined) updatedEntry.customModel = '';
+                if (updatedEntry.endpoint === undefined || updatedEntry.endpoint === '') updatedEntry.endpoint = service.endpointUrl;
+
+                // If any defaults were applied, write back
+                if (JSON.stringify(updatedEntry) !== JSON.stringify(entry)) {
+                    cfg[service.id] = updatedEntry;
+                    changed = true;
+                }
             }
         }
 

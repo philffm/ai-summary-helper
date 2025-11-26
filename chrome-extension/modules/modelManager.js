@@ -13,9 +13,11 @@
         if (modelIdentifierLabel) {
             modelIdentifierLabel.textContent = `Model Identifier: ${currentModel}`;
         }
-        // Hide input unless editing
+        // Show input by default so the user can see and edit the model identifier.
+        // Previously this was hidden unconditionally which made the identifier input
+        // invisible in the settings UI.
         if (modelIdentifierContainer) {
-            modelIdentifierContainer.style.display = 'none';
+            modelIdentifierContainer.style.display = 'block';
         }
         // Only set input value if editing
         if (modelIdentifierInput) {

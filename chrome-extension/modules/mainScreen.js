@@ -12,14 +12,10 @@ export function initMainScreen() {
         const additionalQuestions = additionalQuestionsInput.value;
         const selectedLanguage = languageSelect.value;
 
-        // Retrieve the selected prompt or custom prompt
+        // Retrieve the prompt text (stored as `prompt`). For presets, promptManager
+        // stores the actual preset text in `prompt` as well, so we can always use it.
         chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt'], (data) => {
-            let promptToUse = '';
-            if (data.promptType === 'custom') {
-                promptToUse = data.prompt;
-            } else {
-                promptToUse = data.presetPrompt; // Use the preset name or identifier
-            }
+            let promptToUse = data.prompt || '';
 
             // Disable the button and change its text
             fetchSummaryButton.disabled = true;

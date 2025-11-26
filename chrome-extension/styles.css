@@ -763,3 +763,11 @@ ul#articleList {
   display: none;
   /* Initially hidden */
 }
+
+/* Heading for compatible tools inside the popup */
+.compatible-tools-heading {
+  margin: 12px 20px 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-neutral-dark);
+}

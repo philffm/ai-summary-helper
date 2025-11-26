@@ -60,7 +60,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement) {
-  const tokenLimit = 1000; // Define a default value for tokenLimit
+  // Increase tokenLimit for Gemini-style providers. This is an approximate
+  // token limit (measured in tokens) used to decide how much of the page to
+  // include. We use character-based truncation below (chars ≈ tokens * 4).
+  const tokenLimit = 20000; // generous default for larger inputs
 
   const promptDetails = {
     prompt,
@@ -86,7 +89,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   const metaDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || 'No description available';
   console.debug('Meta Description:', metaDescription);
 
-  // Truncate content to fit within the token limit
+  // Truncate content to fit within the token limit (character-based
+  // approximation). This prevents byte-based truncation issues seen with
+  // TextEncoder slicing and Gemini's silent truncation.
   const truncatedContent = truncateToTokenLimit(content, tokenLimit);
   console.debug('Truncated content:', truncatedContent);
 
@@ -114,6 +119,23 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         // Prefer modelConfig sent from popup (endpoint + model + responseStructure)
         let apiUrl = modelConfig?.endpointUrl || cfg.endpoint;
         let modelIdentifier = modelConfig?.modelIdentifier || cfg.customModel || cfg.model;
+
+        // Defensive fallback: if modelIdentifier is missing (migration not run),
+        // attempt to read the default model from the bundled services.json so
+        // we always send a `model` parameter to APIs like OpenAI.
+        if (!modelIdentifier) {
+          try {
+            const servicesResp = await fetch(chrome.runtime.getURL('services.json'));
+            if (servicesResp && servicesResp.ok) {
+              const servicesList = await servicesResp.json();
+              const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
+              modelIdentifier = svcMeta?.defaultModel || '';
+              console.debug('Fallback modelIdentifier from services.json:', modelIdentifier);
+            }
+          } catch (e) {
+            console.warn('Could not load services.json for fallback modelIdentifier', e);
+          }
+        }
 
         console.debug('Resolved apiUrl:', apiUrl, 'modelIdentifier:', modelIdentifier);
 
@@ -150,18 +172,52 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
           // Ask Gemini to return strict, valid HTML only. Place the instruction
           // before the user content so the model understands the required output
-          // format. We include language and length constraints.
+          // format. We include language and length constraints. Build fullText
+          // separately so we can log and inspect its length when debugging.
           const geminiInstruction = `Please produce ONLY valid HTML. Return a single <div> element containing an <h2> title (the summary heading) and one or more <p> paragraphs (the summary content). Do NOT include any explanation, JSON, markdown, or surrounding text — only the HTML snippet. Preserve quoted text exactly as in the source.`;
 
-          requestBody = JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  { text: `${geminiInstruction}\n\nOutput Language: ${selectedLanguage}. Strictly stick to a maximum of ${summaryLength} words.\n\nPrompt:\n${prompt}\n\nContent:\n${truncatedContent}` }
-                ]
-              }
-            ]
-          });
+          // Build parts using a Gemini-safe ordering: ensure part[0] is
+          // content (or a harmless placeholder) and put instructions in
+          // part[1]. Wrap the contents in a role:'user' object so Gemini
+          // treats it like a user message while avoiding first-part
+          // sanitization/truncation of instructions.
+          const CHUNK_SIZE = 16000; // characters per content chunk
+          const contentChunks = chunkText(truncatedContent, CHUNK_SIZE);
+
+          const parts = [];
+
+          // Part 0: a harmless token to avoid first-part safety truncation
+          parts.push({ text: 'BEGIN' });
+
+          // Part 1: instruction and metadata
+          parts.push({ text: geminiInstruction });
+          parts.push({ text: `Output Language: ${selectedLanguage}. Strictly limit to ${summaryLength} words.` });
+          parts.push({ text: `Prompt:\n${prompt}` });
+
+          // Append all content chunks after the instruction block
+          contentChunks.forEach(c => parts.push({ text: c }));
+
+          // Build the Gemini REST body using the role:user pattern. This
+          // keeps the instruction visible to the API while following the
+          // documented REST payload shape.
+          const geminiRequestObj = {
+            contents: [ { role: 'user', parts } ]
+          };
+
+          // Log debug info to help trace prompt truncation issues
+          console.debug('Gemini total characters (all parts):', parts.map(p => p.text.length).reduce((a,b)=>a+b,0));
+          console.debug('Gemini parts count:', parts.length, 'first part length:', parts[0].text.length);
+
+          // Show a small in-page debug panel so developers can inspect the exact
+          // prompt parts being sent to Gemini. This helps determine whether the
+          // prompt is constructed fully or truncated before network send.
+          try {
+            updateGeminiDebugPanel(parts.map(p => p.text).join('\n\n---- PART ----\n\n'), finalApiUrl);
+          } catch (e) {
+            console.warn('Could not update Gemini debug panel', e);
+          }
+
+          requestBody = JSON.stringify(geminiRequestObj);
 
           // Gemini expects an API key in the `x-goog-api-key` header
           headers['x-goog-api-key'] = apiKey;
@@ -303,25 +359,68 @@ function saveToLocalStorage(content, summary, url, title, description) {
   });
 }
 
-// Function to truncate text content to fit within a token limit
+// Function to truncate text content to fit within a token limit.
+// Previous implementation sliced by UTF-8 bytes which is too aggressive for
+// Gemini (and causes early truncation). Use a rough tokens -> chars
+// approximation (chars ≈ tokens * 4) and slice by characters instead.
 function truncateToTokenLimit(text, maxTokens) {
-  const encodedText = new TextEncoder().encode(text);
-  if (encodedText.length > maxTokens) {
-    return new TextDecoder().decode(encodedText.slice(0, maxTokens));
+  if (!text) return text;
+  // rough approx: 1 token ≈ 4 characters (varies by language)
+  const approxTokens = Math.ceil(text.length / 4);
+  if (approxTokens <= maxTokens) return text;
+  const allowedChars = Math.max(1000, Math.floor(maxTokens * 4));
+  return text.slice(0, allowedChars);
+}
+
+// Split a long text into chunks of up to `chunkSize` characters.
+function chunkText(text, chunkSize) {
+  if (!text) return [];
+  const chunks = [];
+  let start = 0;
+  while (start < text.length) {
+    chunks.push(text.slice(start, start + chunkSize));
+    start += chunkSize;
   }
-  return text;
+  return chunks;
 }
 
 // Function to extract all relevant text content from the page
 function getAllTextContent() {
   console.log('Getting all text content');
-  const elements = document.querySelectorAll('p, h1, h2, h3');
+  const selectors = `
+    p,
+    h1, h2, h3, h4, h5, h6,
+    article, section,
+    li, blockquote,
+    span,
+    div
+  `;
+
+  const elements = document.querySelectorAll(selectors);
   let content = '';
-  elements.forEach(element => {
-    content += element.textContent + '\n\n';
-  });
-  console.log('Collected content:', content);
-  return content.trim();
+
+  for (const el of elements) {
+    try {
+      const text = el.innerText || el.textContent || '';
+      if (!text) continue;
+      const trimmed = text.trim();
+      if (!trimmed) continue;
+
+      const style = window.getComputedStyle(el);
+      if (style && (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0')) continue;
+      // only include elements that are likely visible / readable
+      if (el.offsetParent === null && el.tagName.toLowerCase() !== 'article') continue;
+
+      content += trimmed + '\n\n';
+    } catch (e) {
+      // Some nodes may throw when accessing computed styles; skip them
+      continue;
+    }
+  }
+
+  const result = content.trim();
+  console.log('Collected content length:', result.length);
+  return result;
 }
 
 // Simplified function to determine if the background is light or dark
@@ -465,5 +564,99 @@ function selectTargetElement() {
     document.addEventListener('click', clickHandler, { once: true });
     document.addEventListener('mousemove', mouseMoveHandler);
   });
+}
+
+// -----------------------
+// Gemini debug panel helpers
+// -----------------------
+function ensureGeminiDebugPanel() {
+  let panel = document.getElementById('ai-summary-gemini-debug');
+  if (panel) return panel;
+
+  panel = document.createElement('div');
+  panel.id = 'ai-summary-gemini-debug';
+  panel.style.position = 'fixed';
+  panel.style.right = '12px';
+  panel.style.bottom = '12px';
+  panel.style.width = '420px';
+  panel.style.maxHeight = '60vh';
+  panel.style.overflow = 'auto';
+  panel.style.background = 'rgba(0,0,0,0.85)';
+  panel.style.color = '#fff';
+  panel.style.padding = '8px';
+  panel.style.borderRadius = '8px';
+  panel.style.zIndex = 2147483647;
+  panel.style.fontFamily = 'monospace';
+  panel.style.fontSize = '12px';
+
+  panel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+      <strong style="font-size:13px">Gemini Prompt (debug)</strong>
+      <div>
+        <button id="ai-debug-copy" style="margin-right:6px">Copy</button>
+        <button id="ai-debug-save" style="margin-right:6px">Save</button>
+        <button id="ai-debug-toggle">Hide</button>
+      </div>
+    </div>
+    <div id="ai-debug-meta" style="opacity:0.9;margin-bottom:6px;font-size:11px"></div>
+    <pre id="ai-debug-pre" style="white-space:pre-wrap;word-break:break-word;max-height:420px;overflow:auto;background:rgba(255,255,255,0.03);padding:8px;border-radius:6px;"></pre>
+  `;
+
+  document.body.appendChild(panel);
+
+  const copyBtn = panel.querySelector('#ai-debug-copy');
+  const saveBtn = panel.querySelector('#ai-debug-save');
+  const toggleBtn = panel.querySelector('#ai-debug-toggle');
+
+  copyBtn.addEventListener('click', async () => {
+    const txt = panel.querySelector('#ai-debug-pre').textContent || '';
+    try {
+      await navigator.clipboard.writeText(txt);
+      copyBtn.textContent = 'Copied';
+      setTimeout(() => (copyBtn.textContent = 'Copy'), 1500);
+    } catch (e) {
+      console.warn('Clipboard copy failed', e);
+    }
+  });
+
+  saveBtn.addEventListener('click', () => {
+    const txt = panel.querySelector('#ai-debug-pre').textContent || '';
+    chrome.storage.local.get({ geminiDebugs: [] }, (data) => {
+      const arr = data.geminiDebugs || [];
+      arr.unshift({ ts: new Date().toISOString(), text: txt });
+      chrome.storage.local.set({ geminiDebugs: arr }, () => {
+        saveBtn.textContent = 'Saved';
+        setTimeout(() => (saveBtn.textContent = 'Save'), 1500);
+      });
+    });
+  });
+
+  toggleBtn.addEventListener('click', () => {
+    const pre = panel.querySelector('#ai-debug-pre');
+    const meta = panel.querySelector('#ai-debug-meta');
+    const hidden = pre.style.display === 'none';
+    pre.style.display = hidden ? 'block' : 'none';
+    meta.style.display = hidden ? 'block' : 'none';
+    toggleBtn.textContent = hidden ? 'Hide' : 'Show';
+  });
+
+  return panel;
+}
+
+function updateGeminiDebugPanel(text, apiUrl) {
+  try {
+    const panel = ensureGeminiDebugPanel();
+    const pre = panel.querySelector('#ai-debug-pre');
+    const meta = panel.querySelector('#ai-debug-meta');
+    const maxDisplay = 20000; // avoid rendering extremely huge content fully
+    let displayText = text;
+    if (text.length > maxDisplay) {
+      displayText = text.slice(0, maxDisplay) + `\n\n... (truncated, total ${text.length} chars)`;
+    }
+    pre.textContent = displayText;
+    meta.textContent = `API: ${apiUrl} — length: ${text.length} chars`;
+  } catch (e) {
+    console.warn('updateGeminiDebugPanel failed', e);
+  }
 }
 
