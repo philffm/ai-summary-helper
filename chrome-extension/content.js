@@ -17,6 +17,9 @@ function getRandomDonationMessage() {
   return donationMessages[randomIndex];
 }
 
+let servicesData = [];
+let modelConfig = {};
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
   if (request.action === 'fetchSummary') {
@@ -39,13 +42,22 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           sendResponse({ success: false, message: 'No target element selected' });
         }
       });
+
     });
 
     return true; // Indicates we will send a response asynchronously
+  } else if (request.action === 'setServices') {
+    servicesData = request.services;
+    console.log('Services data received:', servicesData);
+  } else if (request.action === 'setModelConfig') {
+    modelConfig = request.modelConfig;
+    console.log('Model configuration received:', modelConfig);
   }
 });
 
 async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement) {
+  const tokenLimit = 1000; // Define a default value for tokenLimit
+
   const promptDetails = {
     prompt,
     summaryLength,
@@ -70,6 +82,10 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   const metaDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || 'No description available';
   console.debug('Meta Description:', metaDescription);
 
+  // Truncate content to fit within the token limit
+  const truncatedContent = truncateToTokenLimit(content, tokenLimit);
+  console.debug('Truncated content:', truncatedContent);
+
   // Show placeholder after fetching content
   const donationMessage = getRandomDonationMessage();
   showPlaceholder(targetElement, donationMessage);
@@ -77,33 +93,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(['apiKey', 'model', 'localEndpoint', 'modelIdentifier'], async (data) => {
+    chrome.storage.sync.get(['apiKey'], async (data) => {
       console.log('Retrieved storage data:', data);
       const apiKey = data.apiKey;
-      const model = data.model || 'openai';
-      const localEndpoint = data.localEndpoint || 'http://localhost:11434/api/chat';
-      const userModelIdentifier = data.modelIdentifier;
-
-      const modelIdentifier = userModelIdentifier || (model === 'openai'
-        ? 'gpt-4o-mini'
-        : model === 'mistral'
-          ? 'mistral-large-latest'
-          : 'llama3.2'); // Default to llama3.2 for Ollama
-
-      if (additionalQuestions) {
-        prompt += `\n\nAdditional questions: ${additionalQuestions} - Please answer in a serious and engaging way.`;
-        console.debug('Prompt with additional questions', prompt);
-      }
-
-      if (selectedLanguage && selectedLanguage !== 'en') {
-        prompt += `\n\nImportant: Summarize in  ${selectedLanguage} language.`;
-      }
-
-
-      // Convert word limit to token limit
-      const tokenLimit = summaryLength * 1.5; // Assuming 1 word ≈ 1.5 tokens on average
-
-      const truncatedContent = truncateToTokenLimit(content, MAX_TOKENS);
 
       if (!apiKey) {
         alert('Please set your API key in the extension popup.');
@@ -112,13 +104,44 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
       }
 
       try {
-        const apiUrl = model === 'openai'
-          ? 'https://api.openai.com/v1/chat/completions'
-          : model === 'mistral'
-            ? 'https://api.mistral.ai/v1/chat/completions'
-            : localEndpoint; // Use local endpoint for Ollama
+        // Read the current settings directly from storage to avoid race conditions
+        let apiUrl;
+        let modelIdentifier;
+        await new Promise((resolve) => {
+          chrome.storage.sync.get(['customEndpoint', 'model', 'modelIdentifier'], (settings) => {
+            try {
+              const storedModel = settings.model;
+              apiUrl = settings.customEndpoint || (storedModel === 'openai' ? 'https://api.openai.com/v1/chat/completions' : undefined);
+              modelIdentifier = settings.modelIdentifier || storedModel;
+            } catch (e) {
+              console.error('Error reading model settings from storage', e);
+            }
+            resolve();
+          });
+        });
 
-        console.log('🕵️ Fetching summary from:', model);
+        console.debug('Resolved apiUrl:', apiUrl, 'modelIdentifier:', modelIdentifier);
+
+        if (!apiUrl) {
+          const msg = 'Model endpoint is not configured. Open the extension settings and set a valid endpoint.';
+          console.error('❌', msg);
+          const placeholderEl = targetElement.querySelector('.placeholder');
+          if (placeholderEl) placeholderEl.innerHTML = msg;
+          throw new Error(msg);
+        }
+
+        try {
+          // Will throw if apiUrl is not a valid URL
+          new URL(apiUrl);
+        } catch (urlErr) {
+          const msg = `Configured endpoint is not a valid URL: ${apiUrl}`;
+          console.error('❌', msg, urlErr);
+          const placeholderEl = targetElement.querySelector('.placeholder');
+          if (placeholderEl) placeholderEl.innerHTML = msg;
+          throw new Error(msg);
+        }
+
+        console.log('🕵️ Fetching summary from:', modelIdentifier);
         const requestBody = JSON.stringify({
           model: modelIdentifier,
           messages: [
@@ -148,20 +171,59 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
         if (!response.ok) {
           const errorResponse = await response.text();
+          console.error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
           throw new Error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
         }
 
         const result = await response.json();
         console.debug('🚀 API response:', result);
 
-        let summary;
-        if (model === 'ollama' || model === 'llama3.2') {
-          summary = result.message?.content || 'Error: No summary returned';
-        } else if (model === 'openai' || model === 'mistral') {
-          summary = result.choices?.[0]?.message?.content || 'Error: No summary returned';
-        } else {
-          summary = 'Error: Unsupported model';
+        // Helper: safely extract a nested field using a responseStructure string like
+        // "result.choices?.[0]?.message?.content". This implements optional chaining
+        // and array index access without using eval.
+        function getByResponseStructure(obj, responseStructure) {
+          try {
+            if (!responseStructure || typeof responseStructure !== 'string') return undefined;
+            let path = responseStructure.replace(/^result\./, '');
+            // Treat optional chaining tokens `?.` as `.` for traversal; we'll bail on undefined anyway.
+            path = path.replace(/\?\./g, '.');
+            const re = /([A-Za-z_$][\w$]*)|\[(\d+)\]/g;
+            let cur = obj;
+            let match;
+            while ((match = re.exec(path)) !== null) {
+              const prop = match[1] !== undefined ? match[1] : Number(match[2]);
+              if (cur == null) return undefined;
+              cur = cur[prop];
+            }
+            return cur;
+          } catch (e) {
+            console.warn('getByResponseStructure failed', e);
+            return undefined;
+          }
         }
+
+        // Primary extraction using responseStructure from services if available
+        let summary = getByResponseStructure(result, modelConfig?.responseStructure);
+
+        // Common fallbacks for various API shapes
+        if (!summary) {
+          if (result.choices && result.choices[0]) {
+            // OpenAI-like: choices[0].message.content or choices[0].text
+            summary = result.choices[0].message?.content || result.choices[0].text;
+          }
+        }
+        if (!summary && result.message && result.message.content) {
+          summary = result.message.content;
+        }
+        if (!summary && Array.isArray(result.output) && result.output[0]) {
+          // Some providers use result.output[0].content[0].text
+          summary = result.output[0].content?.[0]?.text || result.output[0].text;
+        }
+        if (!summary && result.content) {
+          summary = result.content;
+        }
+
+        if (!summary) summary = 'Error: No summary returned';
 
         // Remove the placeholder but keep the existing content
         const placeholder = targetElement.querySelector('.placeholder');
@@ -182,7 +244,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
       } catch (error) {
         console.error('❌ Error fetching summary:', error);
-        targetElement.querySelector('.placeholder').innerHTML = 'Error fetching summary. Please try again later. Make sure your API key is set and internet connection is stable. If the problem persists, please <a href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp" target="_blank">give feedback</a> or <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a>.';
+        targetElement.querySelector('.placeholder').innerHTML = `Error fetching summary. Please try again later. Make sure your API key is set and internet connection is stable. If the problem persists, please <a href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp" target="_blank">give feedback</a> or <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a>. Error details: ${error.message}`;
         reject(error);
       }
     });

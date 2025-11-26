@@ -1,0 +1,42 @@
+[
+    {
+        "name": "OpenAI",
+        "apiKeyDocumentationUrl": "https://platform.openai.com/api-keys",
+        "endpointUrl": "https://api.openai.com/v1/chat/completions",
+        "defaultModel": "gpt-5-mini",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
+        "name": "DeepSeek",
+        "apiKeyDocumentationUrl": "https://api.deepseek.com/docs/api-keys",
+        "endpointUrl": "https://api.deepseek.com/chat/completions",
+        "defaultModel": "deepseek-chat",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
+        "name": "Mistral",
+        "apiKeyDocumentationUrl": "https://console.mistral.ai/api-keys/",
+        "endpointUrl": "https://api.mistral.ai/v1/chat/completions",
+        "defaultModel": "mistral-large-latest",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
+        "name": "Ollama",
+        "apiKeyDocumentationUrl": "https://ollama.com/",
+        "endpointUrl": "http://localhost:11434/api/chat",
+        "defaultModel": "llama3.2",
+        "allowCustomEndpoint": true,
+        "responseStructure": "result.message?.content"
+    },
+    {
+        "name": "Gemini",
+        "apiKeyDocumentationUrl": "https://cloud.google.com/docs/authentication/api-keys",
+        "endpointUrl": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+        "defaultModel": "gemini-2.5-flash",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    }
+]

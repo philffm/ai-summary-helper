@@ -1,27 +1,28 @@
+// Import the UIManager and StorageManager classes
+import UIManager from './uiManager.js';
+import StorageManager from './storageManager.js';
+import { loadPodcasts } from './podcastManager.js';
+
 function init() {
+  // Initialize default settings
+  StorageManager.initializeDefaults();
 
-  // Define the default prompt
-  const defaultPrompt = `- brief summary
-  - fun standup comedy set on the topic (sell it to me, make fun of it)
-  - what does it mean for my profession (ux)
-  - add some book recommendations
-  `;
-
-  // Write the default prompt to storage if not already set
-  chrome.storage.sync.get('prompt', (data) => {
+  // Use StorageManager to get and set storage data
+  StorageManager.get('prompt').then(data => {
     if (!data.prompt) {
-      chrome.storage.sync.set({ prompt: defaultPrompt, promptType: 'custom' }, () => {
+      StorageManager.set({ prompt: StorageManager.DEFAULTS.prompt, promptType: 'custom' }).then(() => {
         console.log('Default prompt set for new users.');
       });
     }
   });
-  // output entire local storage
-  chrome.storage.sync.get(null, (data) => {
+
+  // Output entire local storage
+  StorageManager.get(null).then(data => {
     console.log('All settings:', data);
   });
 
-  // show get podcasts from local storage
-  chrome.storage.local.get({ podcasts: [] }, (data) => {
+  // Show get podcasts from local storage
+  StorageManager.getLocal({ podcasts: [] }).then(data => {
     console.log('Podcasts:', data.podcasts);
   });
 }
@@ -36,103 +37,34 @@ fetch(chrome.runtime.getURL('manifest.json'))
 init();
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   console.log('Popup DOMContentLoaded');
+
+  // Initialize the UIManager
+  const uiManager = new UIManager();
 
   const apiKeyInput = document.getElementById('apiKey');
   const modelInput = document.getElementById('model'); // New model selector
   const promptInput = document.getElementById('prompt');
   const fetchSummaryButton = document.getElementById('fetchSummary');
-  const additionalQuestionsInput = document.getElementById('additionalQuestions');
   const settingsForm = document.getElementById('settingsForm');
   const toggleScreenButton = document.getElementById('toggleScreenButton');
-  const mainScreen = document.getElementById('mainScreen');
   const settingsScreen = document.getElementById('settingsScreen');
   const apiKeyContainer = document.getElementById('apiKeyContainer'); // Container for API key input
-  const localEndpointContainer = document.getElementById('localEndpointContainer'); // Container for local endpoint input
-  const localEndpointInput = document.getElementById('localEndpoint'); // Input for local endpoint
+  const customEndpointContainer = document.getElementById('customEndpointContainer'); // Container for custom endpoint input
+  const customEndpointInput = document.getElementById('customEndpoint'); // Input for custom endpoint
   const modelIdentifierInput = document.getElementById('modelIdentifier');
 
-  const podcastButton = document.getElementById('podcastButton');
-  const historyButton = document.getElementById('historyButton');
-  const backButton = document.getElementById('backButton');
   const historyScreen = document.getElementById('historyScreen');
-  const articleList = document.getElementById('articleList');
 
-  const appsButton = document.getElementById('appsButton');
   const compatibleToolsSection = document.querySelector('.compatible-tools');
-  const screenList = [mainScreen, settingsScreen, historyScreen];
   const languageSelect = document.getElementById('languageSelect');
   const deleteSettingsButton = document.getElementById('deleteSettingsButton');
-
-
-  const titleElement = document.querySelector('.logoheader h2');
 
   loadPodcasts();
 
   // Call loadPodcasts on page load to display existing podcasts
 
-
-  // Define a configuration object for screens
-  const screenConfig = {
-    mainScreen: {
-      show: ['mainScreen', 'historyButton', 'toggleScreenButton', 'appsButton'],
-      toggleButtonText: '⚙️',
-      titleText: 'AI Summary Helper'
-    },
-    settingsScreen: {
-      show: ['settingsScreen', 'toggleScreenButton'],
-      toggleButtonText: 'Back',
-      titleText: 'Settings'
-    },
-    historyScreen: {
-      show: ['historyScreen', 'backButton', 'podcastButton'],
-      toggleButtonText: '',
-      titleText: 'History'
-    }
-  };
-
-  // Function to show a screen based on the configuration
-  function showScreen(screenName) {
-    const config = screenConfig[screenName];
-    if (!config) {
-      console.error(`Screen configuration for "${screenName}" not found.`);
-      return;
-    }
-
-    hideAllScreens();
-    showConfiguredElements(config.show);
-    updateBodyStyles();
-    updateScreenText(config);
-
-  }
-
-  function hideAllScreens() {
-    screenList.forEach(screen => screen.style.display = 'none');
-    ['historyButton', 'backButton', 'toggleScreenButton', 'appsButton', 'podcastButton'].forEach(id => {
-      document.getElementById(id).style.display = 'none';
-    });
-  }
-
-  function showConfiguredElements(elements) {
-    elements.forEach(elementId => {
-      const element = document.getElementById(elementId);
-      if (element) {
-        element.style.display = 'block';
-      }
-    });
-  }
-
-  function updateBodyStyles() {
-    document.body.style.margin = '0';
-    document.body.style.padding = '0';
-    document.body.style.lineHeight = '1.2';
-  }
-
-  function updateScreenText(config) {
-    toggleScreenButton.textContent = config.toggleButtonText;
-    titleElement.textContent = config.titleText;
-  }
 
 
 
@@ -141,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteSettingsButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent any default action
       if (confirm('Are you sure you want to delete all settings? This action cannot be undone.')) {
-        chrome.storage.sync.clear(() => {
+        StorageManager.clear(() => {
           alert('Settings have been reset to default.');
           location.reload(); // Reload the page to reflect changes
         });
@@ -154,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteHistoryButton.addEventListener('click', (event) => {
       event.preventDefault();
       // clear only history / articles
-      chrome.storage.local.set({ articles: [] }, () => {
+      StorageManager.setLocal({ articles: [] }, () => {
         if (confirm('Are you sure you want to delete all history? This action cannot be undone.')) {
           alert('History has been reset.');
           location.reload(); // Reload the page to reflect changes
@@ -166,40 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event listeners to switch screens
   toggleScreenButton.addEventListener('click', () => {
     if (settingsScreen.style.display === 'block') {
-      showScreen('mainScreen');
+      uiManager.showScreen('main');
     } else {
-      showScreen('settingsScreen');
+      uiManager.showScreen('settings');
     }
   });
 
   chrome.storage.sync.get(['apiKey'], (data) => {
     if (!data.apiKey) {
-      const toastMessage = document.createElement('div');
-      toastMessage.className = 'toast-message';
-      toastMessage.textContent = 'To fetch summaries, set your API key in settings ⤴';
-      document.body.appendChild(toastMessage);
-
-      // Optionally, remove the toast after a few seconds
-      setTimeout(() => {
-        toastMessage.remove();
-      }, 5000);
+      uiManager.showToast('To fetch summaries, set your API key in settings ⤴');
     }
   });
 
 
 
   historyButton.addEventListener('click', () => {
-    showScreen('historyScreen');
+    uiManager.showScreen('history');
     loadHistory();
   });
 
-  backButton.addEventListener('click', () => showScreen('mainScreen'));
+  backButton.addEventListener('click', () => uiManager.showScreen('main'));
 
   // Initial call to show the main screen
-  showScreen('mainScreen');
+  uiManager.showScreen('main');
 
   function loadHistory() {
-    chrome.storage.local.get({ articles: [] }, (data) => {
+    StorageManager.getLocal({ articles: [] }).then(data => {
       const articleList = document.getElementById('articleList');
       articleList.innerHTML = ''; // Clear existing articles
 
@@ -352,10 +276,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (deleteButton) {
             deleteButton.addEventListener('click', function () {
               if (confirm('Are you sure you want to delete this article?')) {
-                chrome.storage.local.get('articles', (data) => {
+                StorageManager.getLocal('articles').then(data => {
                   const articles = data.articles || [];
                   const updatedArticles = articles.filter((item) => item.timestamp !== article.timestamp);
-                  chrome.storage.local.set({ articles: updatedArticles }, () => {
+                  StorageManager.setLocal({ articles: updatedArticles }, () => {
                     console.log('Article deleted successfully');
                     loadHistory(); // Refresh the archive list
                   });
@@ -387,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * 
    */
   function togglePlayPodcastButton(sortedArticles) {
-    chrome.storage.sync.get(['model', 'apiKey', 'selectedLanguage'], (data) => {
+    StorageManager.get(['model', 'apiKey', 'selectedLanguage']).then(data => {
       const playButton = document.getElementById('playPodcastButton');
       const audioPlayer = document.getElementById('podcastAudioPlayer');
 
@@ -670,10 +594,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function toggleInputVisibility() {
     if (modelInput.value === 'ollama') {
       apiKeyContainer.style.display = 'none';
-      localEndpointContainer.style.display = 'block';
+      customEndpointContainer.style.display = 'block';
     } else {
       apiKeyContainer.style.display = 'block';
-      localEndpointContainer.style.display = 'none';
+      customEndpointContainer.style.display = 'none';
     }
   }
 
@@ -691,11 +615,11 @@ document.addEventListener('DOMContentLoaded', () => {
   promptSelect.addEventListener('change', () => {
     togglePromptInputVisibility();
     // Save the selected preset
-    chrome.storage.sync.set({ selectedPreset: promptSelect.value });
+    StorageManager.set({ selectedPreset: promptSelect.value });
   });
 
   // Initial call to set the correct visibility on page load
-  chrome.storage.sync.get(['selectedPreset'], (data) => {
+  StorageManager.get(['selectedPreset']).then(data => {
     if (data.selectedPreset) {
       promptSelect.value = data.selectedPreset;
     }
@@ -704,12 +628,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Load stored settings from Chrome storage
-  chrome.storage.sync.get(['apiKey', 'prompt', 'model', 'localEndpoint', 'modelIdentifier', 'selectedLanguage', 'promptType', 'presetPrompt'], (data) => {
+  StorageManager.get(['apiKey', 'prompt', 'model', 'customEndpoint', 'modelIdentifier', 'selectedLanguage', 'promptType', 'presetPrompt']).then(data => {
     console.log('Loaded settings from local storage:', data);
     apiKeyInput.value = data.apiKey || '';
     promptInput.value = data.prompt || '';
     modelInput.value = data.model || 'openai';
-    localEndpointInput.value = data.localEndpoint || '';
+    customEndpointInput.value = data.customEndpoint || '';
     modelIdentifierInput.value = data.modelIdentifier || '';
 
     // Set the selected language if it exists
@@ -734,10 +658,10 @@ document.addEventListener('DOMContentLoaded', () => {
   promptSelect.addEventListener('change', () => {
     if (promptSelect.value === 'custom') {
       promptInput.style.display = 'block'; // Show the custom prompt field
-      chrome.storage.sync.set({ promptType: 'custom' });
+      StorageManager.set({ promptType: 'custom' });
     } else {
       promptInput.style.display = 'none'; // Hide the custom prompt field
-      chrome.storage.sync.set({ promptType: 'preset', presetPrompt: promptSelect.value });
+      StorageManager.set({ promptType: 'preset', presetPrompt: promptSelect.value });
     }
   });
 
@@ -745,18 +669,18 @@ document.addEventListener('DOMContentLoaded', () => {
   promptInput.addEventListener('input', () => {
     promptSelect.value = 'custom';
     promptInput.style.display = 'block'; // Ensure the custom prompt field is visible
-    chrome.storage.sync.set({ prompt: promptInput.value, promptType: 'custom' });
+    StorageManager.set({ prompt: promptInput.value, promptType: 'custom' });
   });
 
   // Save the settings when the form is submitted
   settingsForm.addEventListener('submit', (event) => {
     event.preventDefault();
     console.log('Settings form submitted');
-    chrome.storage.sync.set({
+    StorageManager.set({
       apiKey: apiKeyInput.value,
       prompt: promptInput.value,
       model: modelInput.value,
-      localEndpoint: localEndpointInput.value,
+      customEndpoint: customEndpointInput.value,
       modelIdentifier: modelIdentifierInput.value,
     });
 
@@ -798,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Load stored prompt settings
-      chrome.storage.sync.get(['prompt', 'selectedPreset'], (data) => {
+      StorageManager.get(['prompt', 'selectedPreset']).then(data => {
         if (data.selectedPreset) {
           promptSelect.value = data.selectedPreset;
           if (data.selectedPreset === 'custom') {
@@ -818,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
           promptInput.style.display = 'none'; // Hide the custom prompt field
         }
         // Save the selected preset
-        chrome.storage.sync.set({ selectedPreset: promptSelect.value });
+        StorageManager.set({ selectedPreset: promptSelect.value });
       });
 
       // Change dropdown to "Custom" when the prompt input is edited
@@ -826,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
         promptSelect.value = 'custom';
         promptInput.style.display = 'block'; // Ensure the custom prompt field is visible
         // Save the custom prompt
-        chrome.storage.sync.set({ prompt: promptInput.value });
+        StorageManager.set({ prompt: promptInput.value });
       });
     });
 
@@ -836,7 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedLanguage = document.getElementById('languageSelect').value;
 
     // Retrieve the selected prompt or custom prompt
-    chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt'], (data) => {
+    StorageManager.get(['prompt', 'promptType', 'presetPrompt']).then(data => {
       let promptToUse = '';
       if (data.promptType === 'custom') {
         promptToUse = data.prompt;
@@ -850,12 +774,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Send a message to the content script with the selected prompt
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, {
+        const activeTab = tabs && tabs[0];
+        if (!activeTab || !activeTab.id) {
+          console.error('No active tab found to send message to.');
+          alert('Cannot fetch summary: no active tab available.');
+          fetchSummaryButton.disabled = false;
+          fetchSummaryButton.textContent = '🪄 Fetch Summary';
+          return;
+        }
+
+        // Avoid sending messages to internal pages (chrome://, edge://, about:, extension pages)
+        if (!/^https?:\/\//.test(activeTab.url)) {
+          console.error('Active tab URL not supported for content scripts:', activeTab.url);
+          alert('Cannot fetch summary on this page. Open a regular webpage (http/https) and try again.');
+          fetchSummaryButton.disabled = false;
+          fetchSummaryButton.textContent = '🪄 Fetch Summary';
+          return;
+        }
+
+        chrome.tabs.sendMessage(activeTab.id, {
           action: 'fetchSummary',
           additionalQuestions,
           selectedLanguage,
           prompt: promptToUse
         }, (response) => {
+          if (chrome.runtime.lastError) {
+            console.error('Error sending message to content script:', chrome.runtime.lastError.message);
+            alert('The content script could not be reached in the active tab. Make sure the page is a normal webpage and reload it.');
+            fetchSummaryButton.disabled = false;
+            fetchSummaryButton.textContent = '🪄 Fetch Summary';
+            return;
+          }
+
           if (response && response.success) {
             console.log('Summary fetched successfully:', response.message);
 
@@ -896,7 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Set the selected language if it exists
-      chrome.storage.sync.get('selectedLanguage', (data) => {
+      StorageManager.get('selectedLanguage').then(data => {
         if (data.selectedLanguage) {
           languageSelect.value = data.selectedLanguage;
         }
@@ -906,7 +856,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Save the selected language to local storage when it changes
   languageSelect.addEventListener('change', () => {
-    chrome.storage.sync.set({ selectedLanguage: languageSelect.value });
+    StorageManager.set({ selectedLanguage: languageSelect.value });
   });
 
   const searchInput = document.getElementById('searchInput');
@@ -944,7 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryLengthValue = document.getElementById('summaryLengthValue');
 
   // Load stored summary length
-  chrome.storage.sync.get(['summaryLength'], (data) => {
+  StorageManager.get(['summaryLength']).then(data => {
     const length = data.summaryLength || 500; // Default to 500 if not set
     summaryLengthSlider.value = length;
     summaryLengthValue.textContent = length;
@@ -956,7 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
     summaryLengthValue.textContent = newLength;
 
     // Store the new summary length in local storage
-    chrome.storage.sync.set({ summaryLength: newLength }, () => {
+    StorageManager.set({ summaryLength: newLength }, () => {
       console.log(`Summary length updated to ${newLength}`);
     });
   });
@@ -1072,17 +1022,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to update the API key link based on the selected model
   function updateApiKeyLink(model) {
-    let linkHtml = '';
-    if (model === 'openai') {
-      linkHtml = '(Get your <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI API key</a>)';
-    } else if (model === 'mistral') {
-      linkHtml = '(Get your <a href="https://console.mistral.ai/api-keys/" target="_blank">Mistral API key</a>)';
-    } else if (model === 'ollama') {
-      linkHtml = '(Visit <a href="https://ollama.com/" target="_blank">Ollama</a> for more information)';
-    } else {
-      linkHtml = ''; // Clear the link if no valid model is selected
-    }
-    apiKeyLink.innerHTML = linkHtml;
+    StorageManager.getServices().then(services => {
+      const selectedService = services.find(service => service.defaultModel === model);
+      if (selectedService) {
+        apiKeyLink.innerHTML = `(Get your <a href="${selectedService.apiKeyDocumentationUrl}" target="_blank">${selectedService.name} API key</a>)`;
+      } else {
+        apiKeyLink.innerHTML = ''; // Clear the link if no valid model is selected
+      }
+    }).catch(error => {
+      console.error('Error loading services:', error);
+      apiKeyLink.innerHTML = ''; // Clear the link in case of an error
+    });
   }
 
   // Update the link when the model changes
@@ -1097,10 +1047,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to handle first-time setup
   function firstTimeSetup() {
-    chrome.storage.sync.get('prompt', (data) => {
+    StorageManager.get('prompt').then(data => {
       if (!data.prompt) {
         const defaultPrompt = " - a brief summary - 2 best quotes from the text - pitch the article as a standup comedian - what does it mean for my profession - e.g. ux, developer, marketing";
-        chrome.storage.sync.set({ prompt: defaultPrompt, promptType: 'custom' }, () => {
+        StorageManager.set({ prompt: defaultPrompt, promptType: 'custom' }).then(() => {
           console.log('Default prompt set for new users.');
         });
       }
@@ -1169,10 +1119,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const reader = new FileReader();
     reader.onloadend = function () {
       const base64data = reader.result;
-      chrome.storage.local.get({ podcasts: [] }, (data) => {
+      StorageManager.getLocal({ podcasts: [] }).then(data => {
         const podcasts = data.podcasts;
         podcasts.push({ title, audio: base64data, timestamp: Date.now() });
-        chrome.storage.local.set({ podcasts }, () => {
+        StorageManager.setLocal({ podcasts }, () => {
           if (chrome.runtime.lastError) {
             console.error('Error saving podcast:', chrome.runtime.lastError);
           } else {
@@ -1185,86 +1135,95 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(audioBlob);
   }
 
+  // Load model configuration and send it to content.js
+  const modelConfig = await StorageManager.getModelConfig();
+  chrome.runtime.sendMessage({ action: 'setModelConfig', modelConfig });
 
-  // Function to load podcasts from local storage
-  function loadPodcasts() {
-    const podcastList = document.getElementById('podcastList');
-    podcastList.innerHTML = ''; // Clear existing podcasts
+  // Fetch services data and populate model dropdown
+  StorageManager.getServices()
+    .then(services => {
+      const modelSelect = document.getElementById('model');
+      const apiKeyLink = document.getElementById('apiKeyLink');
+      const modelIdentifierInput = document.getElementById('modelIdentifier');
+      const customEndpointContainer = document.getElementById('customEndpointContainer');
+      const customEndpointInput = document.getElementById('customEndpoint');
 
-    // Add explanatory card
-    const explanatoryCard = document.createElement('div');
-    explanatoryCard.classList.add('explanatory-card');
-    explanatoryCard.innerHTML = '💠 Keep your friends in the loop: Transform your last reads into mini-podcasts you can share with your friends. (Requires OpenAI for now)';
-    podcastList.appendChild(explanatoryCard);
-
-    // add input file for podcast name 
-    const podcastNameInput = document.createElement('input');
-    podcastNameInput.type = 'text';
-    podcastNameInput.id = 'podcastNameInput';
-    podcastNameInput.placeholder = 'Podcast Name';
-    explanatoryCard.appendChild(podcastNameInput);
-
-
-
-    // Add play podcast button
-    const playPodcastButton = document.createElement('button');
-    playPodcastButton.id = 'playPodcastButton';
-    playPodcastButton.classList.add('button-primary');
-    playPodcastButton.textContent = '🎙️ Create';
-    playPodcastButton.style.display = 'none';
-    explanatoryCard.appendChild(playPodcastButton);
-
-
-
-    chrome.storage.local.get({ podcasts: [] }, (data) => {
-      data.podcasts.forEach((podcast, index) => {
-        const listItem = document.createElement('div');
-        listItem.classList.add('podcast-card');
-        listItem.innerHTML = `
-          <div class="podcast-card-content">
-            <h3>${podcast.title}</h3>
-            <audio controls src="${podcast.audio}"></audio>
-            <button class="delete-podcast-button">Delete</button>
-          </div>
-        `;
-        podcastList.appendChild(listItem);
-
-        // Add event listeners
-        const deleteButton = listItem.querySelector('.delete-podcast-button');
-        const shareButton = listItem.querySelector('.share-podcast-button');
-
-        deleteButton.addEventListener('click', () => {
-          if (confirm('Are you sure you want to delete this podcast?')) {
-            data.podcasts.splice(index, 1);
-            chrome.storage.local.set({ podcasts: data.podcasts }, () => {
-              console.log('Podcast deleted successfully.');
-              loadPodcasts(); // Refresh the list
-            });
-          }
-        });
-
+      services.forEach(service => {
+        if (service.defaultModel) {
+          const option = document.createElement('option');
+          option.value = service.defaultModel;
+          option.textContent = service.name;
+          modelSelect.appendChild(option);
+        }
       });
-    });
-  }
 
-  const podcastTools = document.querySelector('.podcast-tools');
-  const podcastList = document.getElementById('podcastList');
-  const podcastAudioPlayer = document.getElementById('podcastAudioPlayer');
-  const playPodcastButton = document.getElementById('playPodcastButton');
+      // Update API key link, model identifier, and endpoint visibility based on selected model
+      modelSelect.addEventListener('change', () => {
+        const selectedModel = modelSelect.value;
+        const selectedService = services.find(service => service.defaultModel === selectedModel);
+        if (selectedService) {
+          apiKeyLink.innerHTML = `(Get your <a href="${selectedService.apiKeyDocumentationUrl}" target="_blank">${selectedService.name} API key</a>)`;
+          modelIdentifierInput.value = selectedService.defaultModel; // Set default model identifier
 
-  // Initially hide podcast elements
-  podcastTools.style.display = 'none';
-  podcastList.style.display = 'none';
-  podcastAudioPlayer.style.display = 'none';
-  playPodcastButton.style.display = 'none';
+          // Show or hide the custom endpoint input based on the selected model and allowCustomEndpoint flag
+          if (selectedService.allowCustomEndpoint) {
+            customEndpointContainer.style.display = 'block';
+          } else {
+            customEndpointContainer.style.display = 'none';
+          }
 
-  podcastButton.addEventListener('click', () => {
-    // Toggle visibility of podcast elements
-    const isVisible = podcastTools.style.display === 'block';
-    podcastTools.style.display = isVisible ? 'none' : 'block';
-    podcastList.style.display = isVisible ? 'none' : 'block';
-    podcastAudioPlayer.style.display = isVisible ? 'none' : 'block';
-    playPodcastButton.style.display = isVisible ? 'none' : 'block';
-  });
+          // Update the model configuration and send it to content.js
+          const modelConfig = {
+            endpointUrl: selectedService.allowCustomEndpoint ? (customEndpointInput.value || selectedService.endpointUrl) : selectedService.endpointUrl,
+            modelIdentifier: modelIdentifierInput.value
+          };
+          chrome.runtime.sendMessage({ action: 'setModelConfig', modelConfig });
+        }
+      });
+
+      // Save custom model identifier to local storage when changed
+      modelIdentifierInput.addEventListener('input', () => {
+        const customModelIdentifier = modelIdentifierInput.value;
+        StorageManager.set({ modelIdentifier: customModelIdentifier });
+        console.log('Custom model identifier saved:', customModelIdentifier);
+      });
+
+      // Initial setup for model identifier and endpoint visibility
+      StorageManager.get(['model', 'modelIdentifier', 'customEndpoint']).then(data => {
+        const initialModel = data.model || services[0].defaultModel;
+        const initialService = services.find(service => service.defaultModel === initialModel);
+        if (initialService) {
+          modelSelect.value = initialService.defaultModel;
+          apiKeyLink.innerHTML = `(Get your <a href="${initialService.apiKeyDocumentationUrl}" target="_blank">${initialService.name} API key</a>)`;
+          modelIdentifierInput.value = data.modelIdentifier || initialService.defaultModel;
+
+          // Only use customEndpoint if allowCustomEndpoint is true
+          if (initialService.allowCustomEndpoint) {
+            customEndpointInput.value = data.customEndpoint || initialService.endpointUrl;
+          } else {
+            customEndpointInput.value = initialService.endpointUrl;
+          }
+
+          // Set initial visibility of the custom endpoint input
+          if (initialService.allowCustomEndpoint) {
+            customEndpointContainer.style.display = 'block';
+          } else {
+            customEndpointContainer.style.display = 'none';
+          }
+
+          // Send initial model configuration to content.js
+          const modelConfig = {
+            endpointUrl: initialService.allowCustomEndpoint ? (customEndpointInput.value || initialService.endpointUrl) : initialService.endpointUrl,
+            modelIdentifier: modelIdentifierInput.value
+          };
+          chrome.runtime.sendMessage({ action: 'setModelConfig', modelConfig });
+        }
+      });
+
+      // Send services data to content.js
+      chrome.runtime.sendMessage({ action: 'setServices', services });
+
+    })
+    .catch(error => console.error('Error loading services:', error));
 
 });

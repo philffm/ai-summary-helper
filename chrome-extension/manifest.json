@@ -2,13 +2,16 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.21",
+  "version": "1.5.23",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
     "activeTab",
-    "storage",
-    "https://api.openai.com/*"
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://api.deepseek.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -54,5 +57,15 @@
       },
       "description": "Fetch a summary of the current page"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "uiManager.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
 }

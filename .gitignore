@@ -7,3 +7,6 @@ Archive.zip
 chrome-extension/Archive 2.zip
 *.zip
 .env
+.secrets
+
+chrome-extension_working

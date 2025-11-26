@@ -11,30 +11,26 @@
       <div id="header">
         <img id="logo" src="icon.svg" />
         <h1>AI Summary Helper</h1>
-        
       </div>
-      
+
       <!-- <h2>Bookmarklet Generator</h2> -->
 
       <label for="model">Model</label>
       <select id="model">
-        <option value="openai">OpenAI 4o</option>
+        <option value="openai">OpenAI GPT</option>
         <option value="mistral">Mistral</option>
         <option value="ollama">Ollama (Local)</option>
         <!-- <option value="claude">Claude</option> -->
       </select>
       <label for="apiKey">API Key (<span id="apiUrl"></span>)</label>
 
-
       <!-- switch between OpenAI, Mistral and Claude -->
-
-
-
 
       <input type="text" id="apiKey" placeholder="Enter your API Key" />
       <label class="light" for="apiKey"
         >🔒 The API key is stored locally in your browser. Do not share the
-        bookmarklet with others, since it will contain your API key.</label>
+        bookmarklet with others, since it will contain your API key.</label
+      >
       <label for="prompt">Prompt</label>
       <textarea id="prompt">
 <h3> Article summary section with creative title explaining the article in simple terms.
@@ -46,13 +42,14 @@
 Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.
     </textarea
       >
-        
-      <button id="generateButton" onclick="generateBookmarklet()">Generate Bookmarklet</button>
+
+      <button id="generateButton" onclick="generateBookmarklet()">
+        Generate Bookmarklet
+      </button>
     </div>
 
     <script src="main.js"></script>
 
-    <script>
-    </script>
+    <script></script>
   </body>
 </html>
