@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <title>AI Summary Helper</title>
     <link rel="stylesheet" href="styles.css" />
-
   </head>
   <body>
     <div class="header">
@@ -19,11 +18,23 @@
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
-        <button id="appsButton" class="button-secondary" title="Apps">💠</button>
-        <button id="historyButton" class="button-secondary" title="History">🗂️</button>
+        <button id="appsButton" class="button-secondary" title="Apps">
+          💠
+        </button>
+        <button id="historyButton" class="button-secondary" title="History">
+          🗂️
+        </button>
         <button id="podcastButton" class="button-secondary">🎙️</button>
-        <button id="backButton" class="button-secondary" title="Back">Back</button>
-        <button id="toggleScreenButton" class="button-secondary" title="Settings">⚙️</button>
+        <button id="backButton" class="button-secondary" title="Back">
+          Back
+        </button>
+        <button
+          id="toggleScreenButton"
+          class="button-secondary"
+          title="Settings"
+        >
+          ⚙️
+        </button>
       </div>
     </div>
     <!-- link to donate https://link.philwornath.com/#donate?source=aish -->
@@ -31,7 +42,8 @@
       <!-- <h2>Compatible Tools</h2> -->
       <div id="compatibleToolsList">
         <div class="explanatory-card">
-          💠 Extensions that integrate well in the workflow with AI Summary Helper
+          💠 Extensions that integrate well in the workflow with AI Summary
+          Helper
         </div>
       </div>
     </div>
@@ -47,8 +59,17 @@
         </select>
       </div>
       <div id="sumaryLengthSlider">
-        <label for="summaryLength">Summary Length: <span id="summaryLengthValue">500</span> words</label>
-        <input type="range" id="summaryLength" min="100" max="500" value="200" step="50">
+        <label for="summaryLength"
+          >Summary Length: <span id="summaryLengthValue">500</span> words</label
+        >
+        <input
+          type="range"
+          id="summaryLength"
+          min="100"
+          max="500"
+          value="200"
+          step="50"
+        />
       </div>
       <button id="fetchSummary" class="button-primary fillAvailable">
         🪄 Fetch Summary
@@ -56,75 +77,71 @@
       </button>
     </div>
     <div id="settingsScreen" class="screen" style="display: none">
-      <p class="donate">Questions, bugs or happy? 💡, feel free to <a href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp" target="_blank">give feedback</a>,  <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a> or consider <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">a donation</a> :)</p>
+      <p class="donate">
+        Questions, bugs or happy? 💡, feel free to
+        <a
+          href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp"
+          target="_blank"
+          >give feedback</a
+        >,
+        <a href="https://philwornath.com/?ref=aish#contact" target="_blank"
+          >contact me</a
+        >
+        or consider
+        <a
+          href="https://link.philwornath.com/?source=aish#donate"
+          target="_blank"
+          >a donation</a
+        >
+        :)
+      </p>
 
       <form id="settingsForm">
-        <div class="accordion flex column gap-2">
-          <div class="accordion-item">
-            <button class="accordion-button">🤖 Model</button>
-            <div class="accordion-content">
-              <p>Choose the LLM model you want to use to generate the summary.</p>
-              <label for="model">Model <span id="apiKeyLink" style="font-weight: normal;"></span></label>
-              <select id="model">
-                <!-- Options will be populated dynamically -->
-              </select>
-              <div id="modelIdentifierContainer">
-                <label for="modelIdentifier">Model Identifier: (Leave blank to use default model identifiers)</label>
-                <input type="text" id="modelIdentifier" placeholder="e.g., gpt-4o-mini, llama3.2, mistral-large-latest" />
-              </div>
-              <div id="apiKeyContainer">
-                <label for="apiKey">API Key:</label>
-                <input type="text" id="apiKey" name="apiKey" />
-                <label class="light" for="apiKey">🔒 The API key is stored locally in your browser.</label>
-              </div>
-              <div id="customEndpointContainer" style="display: none;">
-                <label for="customEndpoint">Endpoint URL:</label>
-                <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button class="accordion-button">💬 Prompt</button>
-            <div class="accordion-content">
-              <p>Choose the prompt you want to use to generate the summary.</p>
-              <label for="promptSelect">Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/chrome-extension/prompts.json" target="_blank">(View all & contribute)</a></label>
-              <select id="promptSelect">
-                <!-- Options will be populated dynamically -->
-              </select>
-              <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
-            </div>
-          </div>
-          <!-- general settings -->
-          <div class="accordion-item">
-            <button class="accordion-button">🔄 General Settings</button>
-            <div class="accordion-content">
-              <p>General settings for the extension.</p>
-              <button id="deleteSettingsButton" class="button danger">Delete Settings</button>
-              <!-- delete history -->
-              <button id="deleteHistoryButton" class="button danger">Delete History</button>
-            </div>
-          </div>
-        </div>
-        <p>Open Source software by <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a> <br>AI Summary Helper v<span id="versionNumber">xxx</span> - Feel free to  <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a></p>
+        <div class="accordion flex column gap-2"></div>
+        <p>
+          Open Source software by
+          <a href="https://link.philwornath.com/?ref=aish" target="_blank"
+            >Phil Wornath</a
+          >
+          <br />AI Summary Helper v<span id="versionNumber">1.5.25</span> - Feel
+          free to
+          <a href="https://github.com/philffm/ai-summary-helper" target="_blank"
+            >contribute on GitHub 💙</a
+          >
+        </p>
         <div class="flex fixed-bottom">
-          <button type="submit" class="button-primary fixed-button">Save 💾</button>
+          <button type="submit" class="button-primary fixed-button">
+            Save 💾
+          </button>
         </div>
       </form>
     </div>
-    <div id="historyScreen" class="screen" style="display: none;">
+    <div id="historyScreen" class="screen" style="display: none">
       <div class="podcast-tools">
         <h2>Podcasts (Beta)</h2>
-        <audio id="podcastAudioPlayer" controls style="display: none; width: 100%; margin-top: 10px;"></audio>
+        <audio
+          id="podcastAudioPlayer"
+          controls
+          style="display: none; width: 100%; margin-top: 10px"
+        ></audio>
         <div id="podcastList" class="podcast-list">
-            <button id="playPodcastButton" class="button-primary" style="display: none;">🎙️ Create</button>
+          <button
+            id="playPodcastButton"
+            class="button-primary"
+            style="display: none"
+          >
+            🎙️ Create
+          </button>
         </div>
       </div>
-      <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" />
-      
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search articles... (⌘ + F)"
+      />
+
       <ul id="articleList"></ul>
     </div>
     <script type="module" src="popup.js"></script>
-    <script type="module" src="podcastManager.js"></script>
-    <script type="module" src="uiManager.js"></script>
   </body>
 </html>

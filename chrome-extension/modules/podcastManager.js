@@ -154,5 +154,12 @@ function resetPlayButton(playButton) {
     console.log('🔄 Play Podcast button re-enabled.');
 }
 
+// Podcast module initializer
+function initPodcastManager(ui) {
+    // Setup podcast UI and load podcasts
+    loadPodcasts();
+    // You can add more initialization logic here if needed, e.g. wiring up UIManager events
+}
+
 // Export the functions
-export { loadPodcasts, handlePlayPodcast, resetPlayButton };
+export { loadPodcasts, handlePlayPodcast, resetPlayButton, initPodcastManager };

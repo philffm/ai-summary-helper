@@ -1,10 +1,12 @@
+// uiManager.js
 class UIManager {
     constructor() {
-        this.screens = {
-            main: document.getElementById('mainScreen'),
-            settings: document.getElementById('settingsScreen'),
-            history: document.getElementById('historyScreen')
-        };
+            this.screens = {
+                main: document.getElementById('mainScreen'),
+                settings: document.getElementById('settingsScreen'),
+                history: document.getElementById('historyScreen'),
+                podcast: document.getElementById('podcastScreen') // ⭐ NEW
+            };
 
         this.buttons = {
             history: document.getElementById('historyButton'),
@@ -20,8 +22,14 @@ class UIManager {
         document.body.style.padding = '0';
         document.body.style.margin = '0';
 
-        Object.values(this.screens).forEach(screen => screen.style.display = 'none');
-        this.screens[screenName].style.display = 'block';
+        // Hide all screens safely
+        Object.values(this.screens).forEach(screen => {
+            if (screen) screen.style.display = 'none';
+        });
+        // Show requested screen if exists
+        if (this.screens[screenName]) {
+            this.screens[screenName].style.display = 'block';
+        }
 
         // Update button visibility based on the current screen
         switch (screenName) {
@@ -33,18 +41,25 @@ class UIManager {
                 this.buttons.podcast.style.display = 'none';
                 break;
             case 'settings':
+                this.buttons.apps.style.display = 'none';
                 this.buttons.history.style.display = 'none';
                 this.buttons.settings.style.display = 'none';
                 this.buttons.back.style.display = 'block';
                 this.buttons.podcast.style.display = 'none';
-                this.buttons.apps.style.display = 'none';
                 break;
             case 'history':
+                this.buttons.apps.style.display = 'none';
                 this.buttons.history.style.display = 'none';
                 this.buttons.settings.style.display = 'none';
                 this.buttons.back.style.display = 'block';
                 this.buttons.podcast.style.display = 'block';
+                break;
+            case 'podcast': // ⭐ NEW RULESET
                 this.buttons.apps.style.display = 'none';
+                this.buttons.history.style.display = 'none';
+                this.buttons.settings.style.display = 'none';
+                this.buttons.back.style.display = 'block';
+                this.buttons.podcast.style.display = 'none'; // avoid recursion
                 break;
             default:
                 break;

@@ -1,3 +1,7 @@
+// content.js
+// Mark that content script is loaded
+window.contentScriptLoaded = true;
+
 // Define the donation messages
 const donationMessages = [
   "Help me brew new ideas with a soothing cup of tea! 🍵",
@@ -93,9 +97,12 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   const MAX_TOKENS = 4000;
 
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(['apiKey'], async (data) => {
+    chrome.storage.sync.get(['activeService', 'servicesConfig'], async (data) => {
       console.log('Retrieved storage data:', data);
-      const apiKey = data.apiKey;
+
+      const activeService = data.activeService || 'openai';
+      const cfg = (data.servicesConfig || {})[activeService] || {};
+      const apiKey = cfg.apiKey || '';
 
       if (!apiKey) {
         alert('Please set your API key in the extension popup.');
@@ -104,21 +111,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
       }
 
       try {
-        // Read the current settings directly from storage to avoid race conditions
-        let apiUrl;
-        let modelIdentifier;
-        await new Promise((resolve) => {
-          chrome.storage.sync.get(['customEndpoint', 'model', 'modelIdentifier'], (settings) => {
-            try {
-              const storedModel = settings.model;
-              apiUrl = settings.customEndpoint || (storedModel === 'openai' ? 'https://api.openai.com/v1/chat/completions' : undefined);
-              modelIdentifier = settings.modelIdentifier || storedModel;
-            } catch (e) {
-              console.error('Error reading model settings from storage', e);
-            }
-            resolve();
-          });
-        });
+        // Prefer modelConfig sent from popup (endpoint + model + responseStructure)
+        let apiUrl = modelConfig?.endpointUrl || cfg.endpoint;
+        let modelIdentifier = modelConfig?.modelIdentifier || cfg.customModel || cfg.model;
 
         console.debug('Resolved apiUrl:', apiUrl, 'modelIdentifier:', modelIdentifier);
 
@@ -131,7 +126,6 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         }
 
         try {
-          // Will throw if apiUrl is not a valid URL
           new URL(apiUrl);
         } catch (urlErr) {
           const msg = `Configured endpoint is not a valid URL: ${apiUrl}`;
@@ -142,16 +136,53 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         }
 
         console.log('🕵️ Fetching summary from:', modelIdentifier);
-        const requestBody = JSON.stringify({
-          model: modelIdentifier,
-          messages: [
-            { role: 'system', content: 'You summarize content and return a html div  with h2 headings and <p> paragraphs. When you quote, keep it literal and in the input language.' },
-            { role: 'user', content: 'Strictly stick to word limit of ' + summaryLength + ' words or ' + tokenLimit + ' tokens' + 'Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
-          ],
-          stream: false // Ensure streaming is off for local models
-        });
 
+        // Prepare request and headers. Gemini requires a different shape and
+        // uses the `x-goog-api-key` header instead of Bearer tokens.
+        let requestBody;
+        const headers = { 'Content-Type': 'application/json' };
+        let finalApiUrl = apiUrl;
+
+        if (activeService === 'gemini') {
+          // Build Gemini REST request: contents -> parts -> text
+          // Ensure we call the correct model-specific endpoint
+          finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:generateContent`;
+
+          // Ask Gemini to return strict, valid HTML only. Place the instruction
+          // before the user content so the model understands the required output
+          // format. We include language and length constraints.
+          const geminiInstruction = `Please produce ONLY valid HTML. Return a single <div> element containing an <h2> title (the summary heading) and one or more <p> paragraphs (the summary content). Do NOT include any explanation, JSON, markdown, or surrounding text — only the HTML snippet. Preserve quoted text exactly as in the source.`;
+
+          requestBody = JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  { text: `${geminiInstruction}\n\nOutput Language: ${selectedLanguage}. Strictly stick to a maximum of ${summaryLength} words.\n\nPrompt:\n${prompt}\n\nContent:\n${truncatedContent}` }
+                ]
+              }
+            ]
+          });
+
+          // Gemini expects an API key in the `x-goog-api-key` header
+          headers['x-goog-api-key'] = apiKey;
+        } else {
+          // Default: OpenAI-like providers (chat completion style)
+          requestBody = JSON.stringify({
+            model: modelIdentifier,
+            messages: [
+              { role: 'system', content: 'You summarize content and return a html div  with h2 headings and <p> paragraphs. When you quote, keep it literal and in the input language.' },
+              { role: 'user', content: 'Strictly stick to word limit of ' + summaryLength + ' words or ' + tokenLimit + ' tokens' + ' Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
+            ],
+            stream: false // Ensure streaming is off for local models
+          });
+
+          headers['Authorization'] = `Bearer ${apiKey}`;
+        }
+
+        console.log('🚀 Request URL:', finalApiUrl);
+        console.log('🚀 Request headers:', headers);
         console.log('🚀 Request body:', requestBody);
+
         // Show donation and bug message
         const donationMessage = getRandomDonationMessage();
         const messageContainer = document.createElement('div');
@@ -160,18 +191,21 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         <p>${donationMessage} - <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Support AI Summary Helper</a></p>
         `;
 
-        const response = await fetch(apiUrl, {
+        const response = await fetch(finalApiUrl, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-          },
+          headers,
           body: requestBody
         });
 
         if (!response.ok) {
           const errorResponse = await response.text();
           console.error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
+
+          // Provide a clearer message for Gemini 401/UNAUTHENTICATED errors
+          if (activeService === 'gemini' && response.status === 401) {
+            throw new Error(`HTTP ${response.status} - Gemini authentication failed. Gemini requires an API key passed in the 'x-goog-api-key' header (see https://ai.google.dev/gemini-api/docs/api-key). Response: ${errorResponse}`);
+          }
+
           throw new Error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
         }
 
@@ -211,6 +245,10 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
             // OpenAI-like: choices[0].message.content or choices[0].text
             summary = result.choices[0].message?.content || result.choices[0].text;
           }
+        }
+        // Gemini-like responses: candidates[].content.parts[].text
+        if (!summary && result.candidates && result.candidates[0]) {
+          summary = result.candidates[0].content?.parts?.[0]?.text || result.candidates[0].text;
         }
         if (!summary && result.message && result.message.content) {
           summary = result.message.content;

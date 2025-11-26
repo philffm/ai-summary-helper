@@ -1,5 +1,6 @@
 [
     {
+        "id": "openai",
         "name": "OpenAI",
         "apiKeyDocumentationUrl": "https://platform.openai.com/api-keys",
         "endpointUrl": "https://api.openai.com/v1/chat/completions",
@@ -8,6 +9,7 @@
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
+        "id": "deepseek",
         "name": "DeepSeek",
         "apiKeyDocumentationUrl": "https://api.deepseek.com/docs/api-keys",
         "endpointUrl": "https://api.deepseek.com/chat/completions",
@@ -16,6 +18,7 @@
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
+        "id": "mistral",
         "name": "Mistral",
         "apiKeyDocumentationUrl": "https://console.mistral.ai/api-keys/",
         "endpointUrl": "https://api.mistral.ai/v1/chat/completions",
@@ -24,6 +27,7 @@
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
+        "id": "ollama",
         "name": "Ollama",
         "apiKeyDocumentationUrl": "https://ollama.com/",
         "endpointUrl": "http://localhost:11434/api/chat",
@@ -32,11 +36,12 @@
         "responseStructure": "result.message?.content"
     },
     {
+        "id": "gemini",
         "name": "Gemini",
         "apiKeyDocumentationUrl": "https://cloud.google.com/docs/authentication/api-keys",
-        "endpointUrl": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+        "endpointUrl": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
         "defaultModel": "gemini-2.5-flash",
         "allowCustomEndpoint": false,
-        "responseStructure": "result.choices?.[0]?.message?.content"
+        "responseStructure": "candidates?.[0]?.content?.parts?.[0]?.text"
     }
 ]

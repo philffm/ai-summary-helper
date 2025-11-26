@@ -32,11 +32,19 @@ END{
 # copy compatible-tools.json to chrome-extension
 cp -f compatible-tools.json chrome-extension/
 
-# increment the version number in manifest.json
+echo "Chrome extension built: $ZIP_FILE"
+
+# increment the version number in manifest.json and current_version.json
 VERSION=$(jq -r '.version' chrome-extension/manifest.json)
 NEW_VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
 sed -i '' "s/$VERSION/$NEW_VERSION/" chrome-extension/manifest.json
 
+
+# update current_version.json
+jq ".version = \"$NEW_VERSION\"" current_version.json > current_version.json.tmp && mv current_version.json.tmp current_version.json
+
+# inject version into popup.html
+sed -i '' "s|<span id=\"versionNumber\">[^<]*</span>|<span id=\"versionNumber\">$NEW_VERSION</span>|" chrome-extension/popup.html
 
 # zip the chrome-extension folder with the new version number - if the zip file already exists, remove it
 ZIP_FILE="chrome-extension-$NEW_VERSION.zip"
@@ -44,6 +52,5 @@ if [ -f $ZIP_FILE ]; then
   rm $ZIP_FILE
 fi
 zip -r $ZIP_FILE chrome-extension/
-
 
 echo "Chrome extension built: $ZIP_FILE"

@@ -85,7 +85,7 @@ function generateBookmarklet() {
 
   if (selectedModel === 'openai') {
     apiUrl = 'https://api.openai.com/v1/chat/completions';
-    modelIdentifier = 'gpt-4o-mini';
+    modelIdentifier = 'gpt-5-mini';
   } else if (selectedModel === 'mistral') {
     apiUrl = 'https://api.mistral.ai/v1/chat/completions';
     modelIdentifier = 'mistral-large-latest';
