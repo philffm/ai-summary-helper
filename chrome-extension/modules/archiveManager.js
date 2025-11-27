@@ -1,8 +1,36 @@
 // archiveManager.js
 // Handles archive/history UI and logic for saved articles
 import StorageManager from './storageManager.js';
+import { renderPodcastUI } from './podcastManager.js';
 
 let uiManagerRef = null;
+
+// Show podcast manager in history view
+export function showPodcastManagerInHistory() {
+    const podcastScreen = document.getElementById('podcastScreen');
+    const articleList = document.getElementById('articleList');
+    const searchInput = document.getElementById('searchInput');
+    if (podcastScreen) {
+        // Hide history content
+        if (articleList) articleList.style.display = 'none';
+        if (searchInput) searchInput.style.display = 'none';
+        podcastScreen.innerHTML = '';
+        // Add back button
+        const backBtn = document.createElement('button');
+        backBtn.textContent = '← Back to History';
+        backBtn.className = 'button-secondary';
+        backBtn.style.marginBottom = '1em';
+        backBtn.onclick = () => {
+            podcastScreen.style.display = 'none';
+            if (articleList) articleList.style.display = 'block';
+            if (searchInput) searchInput.style.display = 'block';
+        };
+        podcastScreen.appendChild(backBtn);
+        // Render podcast UI
+        renderPodcastUI(podcastScreen);
+        podcastScreen.style.display = 'block';
+    }
+}
 
 export function initArchive(uiManager) {
     uiManagerRef = uiManager;
@@ -13,16 +41,16 @@ export function initArchive(uiManager) {
 }
 
 function loadHistory() {
-    const historyList = document.getElementById('historyList');
-    if (!historyList) return;
-    historyList.innerHTML = '<div>Loading…</div>';
+    const articleList = document.getElementById('articleList');
+    if (!articleList) return;
+    articleList.innerHTML = '<div>Loading…</div>';
     StorageManager.getLocal({ articles: [] }).then(data => {
         const articles = (data.articles || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         if (!articles.length) {
-            historyList.innerHTML = '<div class="explanatory-card">No articles saved yet.</div>';
+            articleList.innerHTML = '<div class="explanatory-card">No articles saved yet.</div>';
             return;
         }
-        historyList.innerHTML = '';
+        articleList.innerHTML = '';
         articles.forEach((article, idx) => {
             const card = document.createElement('div');
             card.className = 'history-card';
@@ -34,7 +62,7 @@ function loadHistory() {
                     <button class="delete-article-button">Delete</button>
                 </div>
             `;
-            historyList.appendChild(card);
+            articleList.appendChild(card);
             card.querySelector('.delete-article-button').addEventListener('click', () => {
                 if (!confirm('Delete this article?')) return;
                 const updated = articles.filter((_, i) => i !== idx);
@@ -45,7 +73,7 @@ function loadHistory() {
 }
 
 function setupSearch() {
-    const searchInput = document.getElementById('historySearchInput');
+    const searchInput = document.getElementById('searchInput');
     if (!searchInput) return;
     searchInput.addEventListener('input', () => {
         filterHistory(searchInput.value.trim());
@@ -53,8 +81,8 @@ function setupSearch() {
 }
 
 function filterHistory(query) {
-    const historyList = document.getElementById('historyList');
-    if (!historyList) return;
+    const articleList = document.getElementById('articleList');
+    if (!articleList) return;
     StorageManager.getLocal({ articles: [] }).then(data => {
         let articles = (data.articles || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         if (query) {
@@ -64,9 +92,9 @@ function filterHistory(query) {
                 (a.summary && stripHtml(a.summary).toLowerCase().includes(q))
             );
         }
-        historyList.innerHTML = '';
+        articleList.innerHTML = '';
         if (!articles.length) {
-            historyList.innerHTML = '<div class="explanatory-card">No matching articles found.</div>';
+            articleList.innerHTML = '<div class="explanatory-card">No matching articles found.</div>';
             return;
         }
         articles.forEach((article, idx) => {
@@ -80,7 +108,7 @@ function filterHistory(query) {
                     <button class="delete-article-button">Delete</button>
                 </div>
             `;
-            historyList.appendChild(card);
+            articleList.appendChild(card);
             card.querySelector('.delete-article-button').addEventListener('click', () => {
                 if (!confirm('Delete this article?')) return;
                 const updated = articles.filter((_, i) => i !== idx);

@@ -5,7 +5,8 @@ import { initPromptManager } from './modules/promptManager.js';
 import { initSettingsManager } from './modules/settingsManager.js';
 // import { initModelManager } from './modules/modelManager.js';
 import { initLanguageManager } from './modules/languageManager.js';
-import { initPodcastManager } from './modules/podcastManager.js';
+// import { initPodcastManager } from './modules/podcastManager.js';
+// Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initToolsManager } from './modules/toolsManager.js';
@@ -21,11 +22,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     initSettingsManager(ui);
     initLanguageManager(ui);
     initToolsManager(ui);
-    initPodcastManager(ui);
+    if (window.initPodcastManager) {
+        window.initPodcastManager(ui);
+    }
     initShortcuts(ui);
     initMainScreen();
     initArticleManager(ui);
     initAccordion(ui);
 
     ui.showScreen("main");
+
+    // Podcast button in history screen triggers podcast manager in history view
+    const podcastButton = document.getElementById('podcastButton');
+    if (podcastButton) {
+        podcastButton.addEventListener('click', () => {
+            ui.enterPodcastMenu();
+        });
+    }
 });

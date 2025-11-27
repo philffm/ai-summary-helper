@@ -1,3 +1,4 @@
+    // ...existing code...
 /**
  * Create a chat completion using the active service config.
  * Falls back to StorageManager.getActiveServiceConfig() when apiKey/service/model are not provided.
@@ -10,7 +11,8 @@
  * @param {string} activeService - (optional) service id e.g. 'openai' or 'gemini'
  * @param {string} modelIdentifier - (optional) model id/name to use
  */
-async function createChatCompletion(inputText, apiKey, selectedLanguage, podcastName, activeService = null, modelIdentifier = null) {
+export async function createChatCompletion(inputText, apiKey, selectedLanguage, podcastName, activeService = null, modelIdentifier = null) {
+    console.log('[API] createChatCompletion called with:', { inputText, apiKey, selectedLanguage, podcastName, activeService, modelIdentifier });
     try {
         // If caller didn't provide service/model/apiKey, load active service config
         if (!apiKey || !activeService || !modelIdentifier) {
@@ -32,6 +34,7 @@ async function createChatCompletion(inputText, apiKey, selectedLanguage, podcast
         const systemInstruction = `Podcast Name: ${podcastName || 'Untitled Podcast'}\nIn language code "${selectedLanguage || 'en-US'}" you are a creative and engaging podcast host. Transform the provided article summaries into an exciting ~1 minute podcast script that captivates the audience. Include the source domain when appropriate.`;
 
         // Gemini branch
+        console.log('[API] createChatCompletion - systemInstruction:', systemInstruction);
         if ((activeService || '').toLowerCase() === 'gemini') {
             const finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:generateContent`;
             const fullText = `${systemInstruction}\n\n${inputText}`;
@@ -43,7 +46,7 @@ async function createChatCompletion(inputText, apiKey, selectedLanguage, podcast
                 contents: [ { parts: [ { text: fullText } ] } ]
             };
 
-            console.log('📤 Sending request to Gemini:', { url: finalApiUrl, model: modelIdentifier, length: fullText.length });
+            console.log('📤 Sending request to Gemini:', { url: finalApiUrl, model: modelIdentifier, length: fullText.length, reqObj });
 
             const resp = await fetch(finalApiUrl, {
                 method: 'POST',
@@ -61,6 +64,7 @@ async function createChatCompletion(inputText, apiKey, selectedLanguage, podcast
             }
 
             const data = await resp.json();
+            console.log('[API] Gemini response:', data);
             // Try several known Gemini shapes
             const candidates = data.candidates || [];
             let out = candidates[0]?.content?.parts?.[0]?.text || data.output?.[0]?.content?.[0]?.text || data.candidates?.[0]?.text || data.message?.content || JSON.stringify(data);
@@ -75,17 +79,21 @@ async function createChatCompletion(inputText, apiKey, selectedLanguage, podcast
             { role: 'user', content: inputText }
         ];
 
+        // Only set temperature if not default (1)
         const requestBody = {
             model: modelIdentifier || 'gpt-4o',
             messages,
-            max_tokens: 2500,
-            temperature: 0.7,
+            max_completion_tokens: 2500,
             top_p: 1,
             n: 1,
             stream: false
         };
+        // Some models only support temperature=1 (default), so omit if not supported
+        if (modelIdentifier && !modelIdentifier.startsWith('gemini') && modelIdentifier !== 'gpt-3.5-turbo' && modelIdentifier !== 'gpt-4o') {
+            requestBody.temperature = 1;
+        }
 
-        console.log('� Sending chat completion request to OpenAI-like endpoint:', { apiUrl, model: requestBody.model });
+        console.log('� Sending chat completion request to OpenAI-like endpoint:', { apiUrl, model: requestBody.model, requestBody });
 
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -109,6 +117,7 @@ async function createChatCompletion(inputText, apiKey, selectedLanguage, podcast
         }
 
         const result = await response.json();
+        console.log('[API] OpenAI-like response:', result);
         const podcastScript = result.choices?.[0]?.message?.content || result.choices?.[0]?.text || JSON.stringify(result);
         return String(podcastScript).trim();
     } catch (error) {
@@ -129,7 +138,7 @@ async function createChatCompletion(inputText, apiKey, selectedLanguage, podcast
  * @param {string} apiKey - optional; will be read from storage if missing
  * @param {string} activeService - optional service id
  */
-async function generateAudioFromText(text, apiKey = '', activeService = null) {
+export async function generateAudioFromText(text, apiKey = '', activeService = null) {
     try {
         if (!apiKey || !activeService) {
             try {

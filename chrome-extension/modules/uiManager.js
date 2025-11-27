@@ -53,6 +53,9 @@ class UIManager {
                 this.buttons.settings.style.display = 'none';
                 this.buttons.back.style.display = 'block';
                 this.buttons.podcast.style.display = 'block';
+                // Hide podcastScreen by default when entering history
+                const podcastScreen = document.getElementById('podcastScreen');
+                if (podcastScreen) podcastScreen.style.display = 'none';
                 break;
             case 'podcast': // ⭐ NEW RULESET
                 this.buttons.apps.style.display = 'none';
@@ -77,6 +80,27 @@ class UIManager {
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), duration);
     }
+
+        // Podcast menu entry point
+        enterPodcastMenu() {
+            // If in history screen, show podcast manager in history view
+            if (this.screens.history && document.getElementById('podcastScreen')) {
+                this.showScreen('history');
+                import('./archiveManager.js').then(mod => {
+                    mod.showPodcastManagerInHistory();
+                });
+            } else {
+                // Fallback: show in dedicated podcast screen
+                this.showScreen('podcast');
+                const podcastScreen = this.screens.podcast;
+                if (podcastScreen) {
+                    podcastScreen.innerHTML = '';
+                    import('./podcastManager.js').then(mod => {
+                        mod.renderPodcastUI(podcastScreen);
+                    });
+                }
+            }
+        }
 }
 
 export default UIManager;
