@@ -73,6 +73,11 @@ class UIManager {
                 // Hide podcastScreen by default when entering history
                 const podcastScreen = document.getElementById('podcastScreen');
                 if (podcastScreen) podcastScreen.style.display = 'none';
+                // Ensure articleList and searchInput are visible
+                const articleList = document.getElementById('articleList');
+                if (articleList) articleList.style.display = 'block';
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.style.display = 'block';
                 break;
             case 'podcast': // ⭐ NEW RULESET
                 this.buttons.apps.style.display = 'none';
