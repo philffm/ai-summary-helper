@@ -21,9 +21,17 @@ export function showPodcastManagerInHistory() {
         backBtn.className = 'button-secondary';
         backBtn.style.marginBottom = '1em';
         backBtn.onclick = () => {
-            podcastScreen.style.display = 'none';
+            // Always restore history screen and re-initialize content
+            if (uiManagerRef && typeof uiManagerRef.showScreen === 'function') {
+                uiManagerRef.showScreen('history');
+            }
+            // Show article list and search input again
             if (articleList) articleList.style.display = 'block';
             if (searchInput) searchInput.style.display = 'block';
+            // Clear podcast screen content to avoid DOM conflicts
+            podcastScreen.innerHTML = '';
+            // Re-initialize history content and listeners
+            initArchive(uiManagerRef);
         };
         podcastScreen.appendChild(backBtn);
         // Render podcast UI

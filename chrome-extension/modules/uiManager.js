@@ -1,12 +1,12 @@
 // uiManager.js
 class UIManager {
     constructor() {
-            this.screens = {
-                main: document.getElementById('mainScreen'),
-                settings: document.getElementById('settingsScreen'),
-                history: document.getElementById('historyScreen'),
-                podcast: document.getElementById('podcastScreen') // ⭐ NEW
-            };
+        this.screens = {
+            main: document.getElementById('mainScreen'),
+            settings: document.getElementById('settingsScreen'),
+            history: document.getElementById('historyScreen'),
+            podcast: document.getElementById('podcastScreen') // ⭐ NEW
+        };
 
         this.buttons = {
             history: document.getElementById('historyButton'),
@@ -15,9 +15,26 @@ class UIManager {
             podcast: document.getElementById('podcastButton'),
             apps: document.getElementById('appsButton')
         };
+
+        // Podcast button visibility logic
+        this.updatePodcastButtonVisibility();
     }
 
-    showScreen(screenName) {
+    async updatePodcastButtonVisibility() {
+        // Only show podcast button if there are articles in local storage
+        const btn = this.buttons.podcast;
+        if (!btn) return;
+        const StorageManager = (await import('./storageManager.js')).default;
+        StorageManager.getLocal({ articles: [] }).then(data => {
+            if (data.articles && data.articles.length > 0) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+    }
+
+    async showScreen(screenName) {
         // Ensure body has no padding or margin
         document.body.style.padding = '0';
         document.body.style.margin = '0';
@@ -38,7 +55,7 @@ class UIManager {
                 this.buttons.history.style.display = 'block';
                 this.buttons.settings.style.display = 'block';
                 this.buttons.back.style.display = 'none';
-                this.buttons.podcast.style.display = 'none';
+                await this.updatePodcastButtonVisibility();
                 break;
             case 'settings':
                 this.buttons.apps.style.display = 'none';
@@ -52,7 +69,7 @@ class UIManager {
                 this.buttons.history.style.display = 'none';
                 this.buttons.settings.style.display = 'none';
                 this.buttons.back.style.display = 'block';
-                this.buttons.podcast.style.display = 'block';
+                this.buttons.podcast.style.display = 'none'; // Hide podcast button in archive/history
                 // Hide podcastScreen by default when entering history
                 const podcastScreen = document.getElementById('podcastScreen');
                 if (podcastScreen) podcastScreen.style.display = 'none';
@@ -62,7 +79,7 @@ class UIManager {
                 this.buttons.history.style.display = 'none';
                 this.buttons.settings.style.display = 'none';
                 this.buttons.back.style.display = 'block';
-                this.buttons.podcast.style.display = 'none'; // avoid recursion
+                this.buttons.podcast.style.display = 'none'; // Hide podcast button in podcast screen
                 break;
             default:
                 break;

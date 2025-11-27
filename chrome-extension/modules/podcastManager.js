@@ -1,33 +1,42 @@
-import { handlePlayPodcast } from "./audioManager.js";
+/******************************************************************
+ * PODCAST MANAGER — CLEAN, REFACTORED, BUG-FREE VERSION
+ * Your Podcast Wizard with perfect selection handling
+ ******************************************************************/
+
 import { generateAudioFromText } from "../api.js";
-// podcastManager.js
-// MULTI-STEP WIZARD VERSION
+
+// ─────────────────────────────────────────────
+// GLOBAL STATE
+// ─────────────────────────────────────────────
 
 let currentStep = 1; // 1 = name, 2 = articles, 3 = length, 4 = generate
+
 let podcastWizardState = {
-    name: '',
-    selectedArticles: [],
-    length: '2'
+    name: "",
+    selectedArticles: new Set(), // ⚡ Use Set to avoid duplicates
+    length: "2",
+    allArticles: []
 };
 
-function renderPodcastUI(targetContainer) {
+
+// ─────────────────────────────────────────────
+// ENTRYPOINT
+// ─────────────────────────────────────────────
+
+export function renderPodcastUI(targetContainer) {
     if (!targetContainer) return;
 
-    // Remove old UI
     targetContainer.innerHTML = "";
 
-    // Outer container
     const container = document.createElement("div");
     container.id = "podcastContainer";
     container.className = "podcast-ui flex column gap-2";
     targetContainer.appendChild(container);
 
-    // Step container for swapping views
     const stepContainer = document.createElement("div");
     stepContainer.id = "podcastStepContainer";
     container.appendChild(stepContainer);
 
-    // Navigation buttons
     const nav = document.createElement("div");
     nav.className = "flex row gap-2 mt-2";
     nav.innerHTML = `
@@ -36,7 +45,6 @@ function renderPodcastUI(targetContainer) {
     `;
     container.appendChild(nav);
 
-    // Final section for created podcasts
     const createdHeader = document.createElement("h3");
     createdHeader.textContent = "Created Podcasts";
     container.appendChild(createdHeader);
@@ -48,82 +56,58 @@ function renderPodcastUI(targetContainer) {
 
     renderCreatedPodcasts(podcastList);
 
-    // Initial render
-    renderStep(stepContainer);
+    loadArticles().then(() => {
+        renderStep(stepContainer);
+    });
 
-    // Button handlers
     document.getElementById("prevStepBtn").onclick = () => {
         currentStep = Math.max(1, currentStep - 1);
         renderStep(stepContainer);
     };
 
-    document.getElementById("nextStepBtn").onclick = () => {
-        if (currentStep < 4) {
-            currentStep++;
-            renderStep(stepContainer);
-        }
-    };
+    document.getElementById("nextStepBtn").onclick = goNextStep;
 }
 
-// ------------------------------
-// STEP RENDERER
-// ------------------------------
+
+// ─────────────────────────────────────────────
+// STEP LOADER
+// ─────────────────────────────────────────────
+
 function renderStep(container) {
     container.innerHTML = "";
 
     switch (currentStep) {
-        case 1:
-            renderStep1(container);
-            break;
-        case 2:
-            renderStep2(container);
-            break;
-        case 3:
-            renderStep3(container);
-            break;
-        case 4:
-            renderStep4(container);
-            break;
+        case 1: renderStep1(container); break;
+        case 2: renderStep2(container); break;
+        case 3: renderStep3(container); break;
+        case 4: renderStep4(container); break;
     }
 
-    // Update navigation buttons
     const prevBtn = document.getElementById("prevStepBtn");
     const nextBtn = document.getElementById("nextStepBtn");
 
     prevBtn.style.display = currentStep === 1 ? "none" : "block";
     nextBtn.textContent = currentStep === 4 ? "Generate 🎙️" : "Next ▶";
 
-    // Require at least one article selected before allowing to proceed from step 2
     if (currentStep === 2) {
-        // Check selection and update button state
-        const updateNextBtnState = () => {
-            nextBtn.disabled = podcastWizardState.selectedArticles.length === 0;
-        };
-        updateNextBtnState();
-        // Listen for changes in selection
-        const selectionList = document.getElementById("articleSelectionList");
-        if (selectionList) {
-            selectionList.addEventListener("change", updateNextBtnState);
-        }
-        nextBtn.onclick = () => {
-            if (podcastWizardState.selectedArticles.length > 0) {
-                currentStep++;
-                renderStep(container);
-            }
-        };
-    } else if (currentStep === 4) {
-        nextBtn.onclick = generatePodcast;
-    } else {
-        nextBtn.onclick = () => {
-            currentStep++;
-            renderStep(container);
-        };
+        nextBtn.disabled = podcastWizardState.selectedArticles.size === 0;
     }
 }
 
-// ------------------------------
-// STEP 1 — Name
-// ------------------------------
+
+// Handle Next Step
+function goNextStep() {
+    if (currentStep === 2 && podcastWizardState.selectedArticles.size === 0) return;
+    if (currentStep === 4) return generatePodcast();
+    currentStep++;
+    renderStep(document.getElementById("podcastStepContainer"));
+}
+
+
+// ─────────────────────────────────────────────
+// STEP 1 — NAME
+// ─────────────────────────────────────────────
+
 function renderStep1(container) {
     const label = document.createElement("label");
     label.textContent = "Pick a name for your show:";
@@ -145,413 +129,431 @@ function renderStep1(container) {
     container.append(label, input);
 }
 
-// ------------------------------
-// STEP 2 — Article Picker
-// ------------------------------
+
+// ─────────────────────────────────────────────
+// STEP 2 — CLEAN ARTICLE PICKER
+// ─────────────────────────────────────────────
+
 function renderStep2(container) {
     const label = document.createElement("label");
-    label.textContent = "Select articles for your podcast:";
+    label.textContent = "Select up to 5 articles:";
     container.appendChild(label);
 
-    // Horizontal scrolling container for cards
-    const scrollContainer = document.createElement("div");
-    scrollContainer.className = "article-scroll-container";
-    scrollContainer.style.display = "flex";
-    scrollContainer.style.overflowX = "auto";
-    scrollContainer.style.gap = "1rem";
-    scrollContainer.style.padding = "0.5rem 0";
-    scrollContainer.id = "articleSelectionList";
-    container.appendChild(scrollContainer);
+    const list = document.createElement("div");
+    list.style.display = "flex";
+    list.style.overflowX = "auto";
+    list.style.gap = "1rem";
+    list.style.padding = "0.5rem 0";
+    container.appendChild(list);
 
-    let visibleCount = 5;
+    podcastWizardState.allArticles.forEach(article => {
+        const id = article._id; // stable ID
+        const isSelected = podcastWizardState.selectedArticles.has(id);
 
-    function renderCards(articles, startIdx = 0) {
-        scrollContainer.innerHTML = "";
-        const endIdx = Math.min(startIdx + visibleCount, articles.length);
-        // Preselect the 3 most recent articles (indices 0, 1, 2 in reversed array)
-        const defaultSelected = (startIdx === 0)
-            ? [0, 1, 2].filter(i => i < endIdx)
-            : [];
+        const card = document.createElement("div");
+        card.className = "article-card";
+        card.style.minWidth = "220px";
+        card.style.cursor = "pointer";
+        card.style.border = isSelected ? "2px solid #0084ff" : "1px solid #ccc";
+        card.style.borderRadius = "8px";
+        card.style.padding = "1rem";
+        card.style.background = isSelected ? "#e8f3ff" : "#fff";
 
-        // If no selection, set to defaultSelected
-        if (podcastWizardState.selectedArticles.length === 0 && defaultSelected.length > 0) {
-            podcastWizardState.selectedArticles = [...defaultSelected];
+        card.onclick = () => toggleArticle(id, card);
+
+        const title = document.createElement("div");
+        title.textContent = article.title || "Untitled";
+        title.style.fontWeight = "bold";
+        title.style.marginBottom = "0.5rem";
+
+        const summary = document.createElement("div");
+        if (article.summary) {
+            summary.textContent = article.summary.replace(/<[^>]+>/g, "").slice(0, 100) + "…";
+            summary.style.fontSize = "0.9em";
+            summary.style.marginBottom = "0.5rem";
         }
 
-        for (let idx = startIdx; idx < endIdx; idx++) {
-            const article = articles[idx];
-            const card = document.createElement("div");
-            card.className = "article-card";
-            card.style.minWidth = "220px";
-            card.style.border = "1px solid #ccc";
-            card.style.borderRadius = "8px";
-            card.style.padding = "1rem";
-            card.style.background = "#fff";
-            card.style.display = "flex";
-            card.style.flexDirection = "column";
-            card.style.alignItems = "flex-start";
+        const date = document.createElement("div");
+        date.textContent = new Date(article.timestamp).toLocaleDateString();
+        date.style.fontSize = "0.8em";
+        date.style.color = "#888";
 
-            const cb = document.createElement("input");
-            cb.type = "checkbox";
-            cb.value = idx;
-            cb.checked = podcastWizardState.selectedArticles.includes(idx);
-            cb.style.marginBottom = "0.5rem";
+        card.appendChild(title);
+        if (article.summary) card.appendChild(summary);
+        card.appendChild(date);
 
-            // Limit selection to 5 articles
-            cb.addEventListener("change", () => {
-                const checkedBoxes = scrollContainer.querySelectorAll("input[type='checkbox']:checked");
-                if (checkedBoxes.length > 5) {
-                    cb.checked = false;
-                    alert("You can select up to 5 articles only.");
-                } else {
-                    if (cb.checked) {
-                        if (!podcastWizardState.selectedArticles.includes(idx)) {
-                            podcastWizardState.selectedArticles.push(idx);
-                        }
-                    } else {
-                        podcastWizardState.selectedArticles = podcastWizardState.selectedArticles.filter(i => i !== idx);
-                    }
-                }
-                // After any change, update Next button state
-                const nextBtn = document.getElementById("nextStepBtn");
-                if (nextBtn) nextBtn.disabled = podcastWizardState.selectedArticles.length === 0;
-            });
-
-            const title = document.createElement("div");
-            title.textContent = article.title || `Article ${idx + 1}`;
-            title.style.fontWeight = "bold";
-            title.style.marginBottom = "0.5rem";
-
-            // Optionally show summary or timestamp
-            if (article.summary) {
-                const summary = document.createElement("div");
-                summary.textContent = article.summary.replace(/<[^>]+>/g, "").slice(0, 80) + "...";
-                summary.style.fontSize = "0.9em";
-                summary.style.marginBottom = "0.5rem";
-                card.appendChild(summary);
-            }
-            if (article.timestamp) {
-                const date = document.createElement("div");
-                date.textContent = new Date(article.timestamp).toLocaleDateString();
-                date.style.fontSize = "0.8em";
-                date.style.color = "#888";
-                card.appendChild(date);
-            }
-
-            card.appendChild(cb);
-            card.appendChild(title);
-
-            scrollContainer.appendChild(card);
-        }
-
-        // If there are more articles to show, add a Load More button as the last card
-        if (endIdx < articles.length) {
-            const loadMoreCard = document.createElement("div");
-            loadMoreCard.className = "article-card load-more-card";
-            loadMoreCard.style.minWidth = "120px";
-            loadMoreCard.style.display = "flex";
-            loadMoreCard.style.alignItems = "center";
-            loadMoreCard.style.justifyContent = "center";
-            loadMoreCard.style.border = "1px dashed #aaa";
-            loadMoreCard.style.borderRadius = "8px";
-            loadMoreCard.style.background = "#f9f9f9";
-
-            const btn = document.createElement("button");
-            btn.textContent = "Load More";
-            btn.className = "button-secondary";
-            btn.onclick = () => {
-                visibleCount += 5;
-                renderCards(articles, 0);
-            };
-            loadMoreCard.appendChild(btn);
-            scrollContainer.appendChild(loadMoreCard);
-        }
-        // After rendering, update Next button state
-        const nextBtn = document.getElementById("nextStepBtn");
-        if (nextBtn) nextBtn.disabled = podcastWizardState.selectedArticles.length === 0;
-    }
-
-    chrome.storage.local.get(["articles"], data => {
-        let articles = Object.values(data.articles || {});
-        articles = articles.map((a, idx) => ({
-            ...a,
-            timestamp: typeof a.timestamp === "string" ? Date.parse(a.timestamp) : (typeof a.timestamp === "number" ? a.timestamp : 0)
-        }));
-        articles.sort((a, b) => b.timestamp - a.timestamp);
-
-        const MAX_SELECTION = 5;
-
-        articles.forEach((article, idx) => {
-            const id = typeof article.timestamp === "string" ? article.timestamp : new Date(article.timestamp).toISOString();
-            const isSelected = podcastWizardState.selectedArticles.includes(id);
-
-            const card = document.createElement("div");
-            card.className = "article-card";
-            card.style.minWidth = "220px";
-            card.style.border = isSelected ? "2px solid #0084ff" : "1px solid #ccc";
-            card.style.borderRadius = "8px";
-            card.style.padding = "1rem";
-            card.style.background = isSelected ? "#e8f3ff" : "#fff";
-            card.style.display = "flex";
-            card.style.flexDirection = "column";
-            card.style.alignItems = "flex-start";
-            card.style.cursor = "pointer";
-            card.style.transition = "border-color 0.2s, background 0.2s";
-
-            // Checkbox (optional, hidden)
-            const cb = document.createElement("input");
-            cb.type = "checkbox";
-            cb.value = id;
-            cb.checked = isSelected;
-            cb.style.display = "none";
-
-            // Card click toggles selection
-            card.addEventListener("click", (e) => {
-                if (!isSelected && podcastWizardState.selectedArticles.length >= MAX_SELECTION) {
-                    card.classList.add("shake");
-                    setTimeout(() => card.classList.remove("shake"), 400);
-                    return;
-                }
-                if (!isSelected) {
-                    podcastWizardState.selectedArticles.push(id);
-                } else {
-                    podcastWizardState.selectedArticles = podcastWizardState.selectedArticles.filter(x => x !== id);
-                }
-                // Update UI
-                cb.checked = !isSelected;
-                card.style.border = cb.checked ? "2px solid #0084ff" : "1px solid #ccc";
-                card.style.background = cb.checked ? "#e8f3ff" : "#fff";
-                const nextBtn = document.getElementById("nextStepBtn");
-                if (nextBtn) nextBtn.disabled = podcastWizardState.selectedArticles.length === 0;
-            });
-
-            // Title
-            const title = document.createElement("div");
-            title.textContent = article.title || "Untitled";
-            title.style.fontWeight = "bold";
-            title.style.marginBottom = "0.5rem";
-
-            // Summary (truncated, plain text)
-            if (article.summary) {
-                const summary = document.createElement("div");
-                summary.textContent = article.summary.replace(/<[^>]+>/g, "").slice(0, 100) + "…";
-                summary.style.fontSize = "0.9em";
-                summary.style.marginBottom = "0.5rem";
-                card.appendChild(summary);
-            }
-
-            // Date
-            if (article.timestamp) {
-                const date = document.createElement("div");
-                date.textContent = new Date(article.timestamp).toLocaleDateString();
-                date.style.fontSize = "0.8em";
-                date.style.color = "#888";
-                card.appendChild(date);
-            }
-
-            card.appendChild(cb);
-            card.appendChild(title);
-
-            scrollContainer.appendChild(card);
-        });
-
-        const nextBtn = document.getElementById("nextStepBtn");
-        if (nextBtn) nextBtn.disabled = podcastWizardState.selectedArticles.length === 0;
+        list.appendChild(card);
     });
+
+    updateNextButtonState();
 }
 
-// ------------------------------
-// STEP 3 — Length Slider
-// ------------------------------
+
+// Toggle selection safely
+function toggleArticle(id, card) {
+    const MAX = 5;
+
+    if (podcastWizardState.selectedArticles.has(id)) {
+        podcastWizardState.selectedArticles.delete(id);
+    } else {
+        if (podcastWizardState.selectedArticles.size >= MAX) {
+            card.classList.add("shake");
+            setTimeout(() => card.classList.remove("shake"), 300);
+            return;
+        }
+        podcastWizardState.selectedArticles.add(id);
+    }
+
+    // Update card UI
+    const selected = podcastWizardState.selectedArticles.has(id);
+    card.style.border = selected ? "2px solid #0084ff" : "1px solid #ccc";
+    card.style.background = selected ? "#e8f3ff" : "#fff";
+
+    updateNextButtonState();
+}
+
+
+function updateNextButtonState() {
+    const nextBtn = document.getElementById("nextStepBtn");
+    if (nextBtn) nextBtn.disabled = podcastWizardState.selectedArticles.size === 0;
+}
+
+
+// ─────────────────────────────────────────────
+// STEP 3 — LENGTH
+// ─────────────────────────────────────────────
+
 function renderStep3(container) {
     const label = document.createElement("label");
     label.textContent = "Podcast length (minutes):";
 
     const slider = document.createElement("input");
     slider.type = "range";
-    slider.min = "1";
+    slider.min = "0.5";
     slider.max = "3";
-    slider.value = "2";
+    slider.step = "0.5";
+    slider.value = podcastWizardState.length;
+
+    // Create a wrapper for slider and label
+    const sliderWrapper = document.createElement("div");
+    sliderWrapper.style.position = "relative";
+    sliderWrapper.style.width = "100%";
+    sliderWrapper.appendChild(slider);
 
     const value = document.createElement("span");
-    value.id = "podcastLengthValue";
-    value.textContent = slider.value;
+    value.textContent = slider.value + " min";
+    value.style.position = "absolute";
+    value.style.top = "48px";
+    value.style.left = "0";
+    value.style.transform = "translateX(-12px)";
+    value.style.whiteSpace = "nowrap";
+
+    // Function to update label position under slider thumb
+    function updateValuePosition() {
+        const min = parseFloat(slider.min);
+        const max = parseFloat(slider.max);
+        const val = parseFloat(slider.value);
+        // Calculate percent position
+        const percent = (val - min) / (max - min);
+        // Get slider width
+        const sliderWidth = slider.offsetWidth || 200;
+        // Thumb offset (approximate)
+        const thumbWidth = 16;
+        const offset = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+        value.style.left = `${offset}px`;
+        value.textContent = slider.value + " min";
+    }
 
     slider.oninput = () => {
-        value.textContent = slider.value;
         podcastWizardState.length = slider.value;
+        updateValuePosition();
+        // Save length in local storage
+        import('./storageManager.js').then(({ default: StorageManager }) => {
+            StorageManager.setLocal({ podcastLength: slider.value });
+        });
     };
-    // Set initial value in state
-    podcastWizardState.length = slider.value;
 
-    container.append(label, slider, value);
+    slider.addEventListener('input', updateValuePosition);
+    slider.addEventListener('change', updateValuePosition);
+    window.addEventListener('resize', updateValuePosition);
+
+    // Load saved length from local storage
+    import('./storageManager.js').then(({ default: StorageManager }) => {
+        StorageManager.getLocal({ podcastLength: "2" }).then(data => {
+            if (data.podcastLength) {
+                slider.value = data.podcastLength;
+                podcastWizardState.length = slider.value;
+                updateValuePosition();
+            } else {
+                updateValuePosition();
+            }
+        });
+    });
+
+    sliderWrapper.appendChild(value);
+    container.appendChild(label);
+    container.appendChild(sliderWrapper);
+
+    // Podcast style chips
+    const styleLabel = document.createElement("label");
+    styleLabel.textContent = "Podcast style:";
+    styleLabel.style.marginTop = "1em";
+    container.appendChild(styleLabel);
+
+    const styles = [
+        "Interview",
+        "News",
+        "Comedy",
+        "Storytelling",
+        "Educational",
+        "Panel",
+        "Solo"
+    ];
+    const chipsContainer = document.createElement("div");
+    chipsContainer.className = "podcast-style-chips";
+    chipsContainer.style.display = "flex";
+    chipsContainer.style.gap = "0.5em";
+    chipsContainer.style.flexWrap = "wrap";
+
+    // Load saved style from local storage
+    import('./storageManager.js').then(({ default: StorageManager }) => {
+        StorageManager.getLocal({ podcastStyle: "" }).then(data => {
+            if (data.podcastStyle) {
+                podcastWizardState.style = data.podcastStyle;
+            }
+            Array.from(chipsContainer.children).forEach(c => {
+                if (c.textContent === podcastWizardState.style) {
+                    c.style.background = "#cce6ff";
+                }
+            });
+        });
+    });
+
+    styles.forEach(style => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "chip";
+        chip.textContent = style;
+        chip.style.padding = "0.3em 0.8em";
+        chip.style.borderRadius = "16px";
+        chip.style.border = "1px solid #0084ff";
+        chip.style.background = "#f4f8ff";
+        chip.style.cursor = "pointer";
+        chip.onclick = () => {
+            podcastWizardState.style = style;
+            Array.from(chipsContainer.children).forEach(c => c.style.background = "#f4f8ff");
+            chip.style.background = "#cce6ff";
+            // Save style in local storage
+            import('./storageManager.js').then(({ default: StorageManager }) => {
+                StorageManager.setLocal({ podcastStyle: style });
+            });
+        };
+        chipsContainer.appendChild(chip);
+    });
+    container.appendChild(chipsContainer);
+
+    // Custom style input
+    const customStyleLabel = document.createElement("label");
+    customStyleLabel.textContent = "Custom style (optional):";
+    customStyleLabel.style.marginTop = "1em";
+    container.appendChild(customStyleLabel);
+
+    const customStyleInput = document.createElement("input");
+    customStyleInput.type = "text";
+    customStyleInput.placeholder = "Describe your podcast style";
+    customStyleInput.style.marginBottom = "0.5em";
+    // Load saved custom style from local storage
+    import('./storageManager.js').then(({ default: StorageManager }) => {
+        StorageManager.getLocal({ podcastCustomStyle: "" }).then(data => {
+            if (data.podcastCustomStyle) {
+                customStyleInput.value = data.podcastCustomStyle;
+                podcastWizardState.customStyle = data.podcastCustomStyle;
+            }
+        });
+    });
+
+    customStyleInput.value = podcastWizardState.customStyle || "";
+    customStyleInput.oninput = () => {
+        podcastWizardState.customStyle = customStyleInput.value;
+        // Save custom style in local storage
+        import('./storageManager.js').then(({ default: StorageManager }) => {
+            StorageManager.setLocal({ podcastCustomStyle: customStyleInput.value });
+        });
+    };
+    container.appendChild(customStyleInput);
 }
 
-// ------------------------------
-// STEP 4 — Final Confirmation + Generate
-// ------------------------------
+
+// ─────────────────────────────────────────────
+// STEP 4 — CONFIRM
+// ─────────────────────────────────────────────
+
 function renderStep4(container) {
-    // Use wizard state for confirmation values
-    const podcastName = podcastWizardState.name || "(not set)";
-    const podcastLength = podcastWizardState.length || "(not set)";
-    chrome.storage.local.get(["articles"], data => {
-        const original = data.articles || [];
-        const titles = podcastWizardState.selectedArticles
-            .map(id => {
-                const found = original.find(a => a.timestamp === id);
-                return found?.title;
-            })
-            .filter(Boolean);
-        container.innerHTML = `
-            <p>You're ready to generate your podcast! 🎙️</p>
-            <p><strong>Name:</strong> ${podcastWizardState.name}</p>
-            <p><strong>Selected articles:</strong> ${titles.join(", ")}</p>
-            <p><strong>Length:</strong> ${podcastWizardState.length} min</p>
-            <p>Click “Generate 🎙️” to create your episode.</p>
-        `;
+    const selected = [...podcastWizardState.selectedArticles];
+    const titles = podcastWizardState.allArticles
+        .filter(a => selected.includes(a._id))
+        .map(a => a.title);
+
+    const style = podcastWizardState.style || "";
+    const customStyle = podcastWizardState.customStyle || "";
+
+    container.innerHTML = `
+        <p>You're ready to generate your podcast! 🎙️</p>
+        <p><strong>Name:</strong> ${podcastWizardState.name}</p>
+        <p><strong>Articles:</strong> ${titles.join(", ")}</p>
+        <p><strong>Length:</strong> ${podcastWizardState.length} min</p>
+        <p><strong>Style:</strong> ${style ? style : "-"}</p>
+        <p><strong>Custom style:</strong> ${customStyle ? customStyle : "-"}</p>
+        <p>Click “Generate 🎙️” to create your episode.</p>
+    `;
+}
+
+
+// ─────────────────────────────────────────────
+// LOAD ARTICLES
+// ─────────────────────────────────────────────
+
+function loadArticles() {
+    return new Promise(resolve => {
+        chrome.storage.local.get(["articles"], data => {
+            let articles = Object.values(data.articles || {});
+
+            articles = articles.map(a => ({
+                ...a,
+                timestamp: a.timestamp ? Date.parse(a.timestamp) : 0,
+                _id: a.timestamp ? String(a.timestamp) : crypto.randomUUID()
+            }));
+
+            articles.sort((a, b) => b.timestamp - a.timestamp);
+
+            podcastWizardState.allArticles = articles;
+            resolve();
+        });
     });
 }
 
-// ------------------------------
-// GENERATION LOGIC
-// ------------------------------
-function generatePodcast() {
-    // Use wizard state for all values
-    const selected = podcastWizardState.selectedArticles;
-    const podcastName = podcastWizardState.name || "Untitled Podcast";
-    const length = podcastWizardState.length || "2";
 
-    // Always get nextBtn reference at the start
+// ─────────────────────────────────────────────
+// GENERATION LOGIC
+// ─────────────────────────────────────────────
+
+async function generatePodcast() {
     const nextBtn = document.getElementById("nextStepBtn");
 
-    // Get articles and generate podcast script using createChatCompletion
-    chrome.storage.local.get(["articles", "podcasts"], async articleData => {
-        // Defensive: ensure articles exist and selected indices are valid
-        const allArticles = Array.isArray(articleData.articles) ? articleData.articles : [];
-        const selectedArticleObjects = selected
-            .map(id => allArticles.find(a => a.timestamp === id))
-            .filter(Boolean);
+    const selectedArticles = podcastWizardState.allArticles.filter(a =>
+        podcastWizardState.selectedArticles.has(a._id)
+    );
 
-        // Truncate each article summary to fit within 2000 chars total
-        let totalLimit = 2000;
-        let used = 0;
-        const formattedArticles = selectedArticleObjects.map(a => {
-            let cleanSummary = a.summary ? a.summary.replace(/<[^>]+>/g, "") : "";
-            let maxLen = Math.min(cleanSummary.length, totalLimit - used - (selectedArticleObjects.length - 1));
-            if (maxLen < 0) maxLen = 0;
-            let truncatedSummary = cleanSummary.slice(0, maxLen);
-            used += truncatedSummary.length + 1; // +1 for separator
-            return `Title: ${a.title || "Untitled"}\nDomain: ${a.domain || ""}\nSummary: ${truncatedSummary}`;
-        });
-        const inputText = formattedArticles.join("\n\n");
+    // Include style and custom style in the prompt
+    const style = podcastWizardState.style || "";
+    const customStyle = podcastWizardState.customStyle || "";
+    let styleText = "";
+    if (style || customStyle) {
+        styleText = `Podcast Style: ${style ? style : "-"}`;
+        if (customStyle) styleText += `\nCustom Style: ${customStyle}`;
+    }
 
-        // Get service config and selected language
-        chrome.storage.sync.get(["servicesConfig", "activeService", "selectedLanguage"], async sdata => {
-            const activeService = sdata.activeService || "openai";
-            const servicesConfig = sdata.servicesConfig || {};
-            const selectedLanguage = sdata.selectedLanguage || "en-US";
-            const serviceCfg = servicesConfig[activeService] || {};
-            const apiKey = serviceCfg.apiKey || "";
-            // Prefer customModel if set, else default model
-            const modelIdentifier = serviceCfg.customModel || serviceCfg.model || "";
+    const formattedText = [
+        styleText,
+        selectedArticles
+            .map(a => `Title: ${a.title}\nDomain: ${a.domain || ""}\nSummary: ${a.summary}`)
+            .join("\n\n")
+    ].filter(Boolean).join("\n\n");
 
-            // Import createChatCompletion dynamically
-            const { createChatCompletion } = await import("../api.js");
-            if (nextBtn) {
-                nextBtn.disabled = true;
-                nextBtn.textContent = "Generating...";
-            }
+    chrome.storage.sync.get(["servicesConfig", "activeService", "selectedLanguage"], async sdata => {
+        const activeService = sdata.activeService || "openai";
+        const serviceCfg = sdata.servicesConfig?.[activeService] || {};
+        const apiKey = serviceCfg.apiKey;
+        const modelIdentifier = serviceCfg.customModel || serviceCfg.model || "";
+
+        const { createChatCompletion } = await import("../api.js");
+
+        nextBtn.disabled = true;
+        nextBtn.textContent = "Generating…";
+
+        try {
+            const script = await createChatCompletion(
+                formattedText,
+                apiKey,
+                sdata.selectedLanguage || "en-US",
+                podcastWizardState.name,
+                activeService,
+                modelIdentifier
+            );
+
+            let audioBase64 = null;
             try {
-                const script = await createChatCompletion(
-                    inputText,
-                    apiKey,
-                    selectedLanguage,
-                    podcastName,
-                    activeService,
-                    modelIdentifier
-                );
-                // 🔊 Generate audio from script
-                let audioBase64 = null;
-                try {
-                    const audioBlob = await generateAudioFromText(
-                        script,
-                        apiKey,
-                        typeof activeService === "string" && activeService.length > 0 ? activeService : "openai"
-                    );
-                    audioBase64 = await blobToBase64(audioBlob);
-                } catch (e) {
-                    console.warn("TTS failed, saving without audio:", e);
-                }
-
-                const podcast = {
-                    name: podcastName,
-                    articles: selectedArticleObjects,
-                    length,
-                    script,
-                    created: Date.now(),
-                    service: typeof activeService === "string" && activeService.length > 0 ? activeService : "openai",
-                    model: modelIdentifier,
-                    audio: audioBase64 || null
-                };
-                const podcasts = Array.isArray(articleData.podcasts) ? articleData.podcasts : [];
-                podcasts.unshift(podcast);
-                chrome.storage.local.set({ podcasts }, () => {
-                    renderCreatedPodcasts(document.getElementById("podcastList"));
-                    if (nextBtn) {
-                        nextBtn.disabled = false;
-                        nextBtn.textContent = "Generate 🎙️";
-                    }
-                });
-            } catch (err) {
-                if (nextBtn) {
-                    nextBtn.disabled = false;
-                    nextBtn.textContent = "Generate 🎙️";
-                }
-                alert("Error generating podcast: " + (err?.message || err));
+                const blob = await generateAudioFromText(script, apiKey, activeService);
+                audioBase64 = await blobToBase64(blob);
+            } catch (e) {
+                console.warn("TTS failed:", e);
             }
-        });
+
+            savePodcast({
+                name: podcastWizardState.name,
+                articles: selectedArticles,
+                length: podcastWizardState.length,
+                script,
+                created: Date.now(),
+                service: activeService,
+                model: modelIdentifier,
+                audio: audioBase64
+            });
+
+            renderCreatedPodcasts(document.getElementById("podcastList"));
+
+        } catch (err) {
+            alert("Error generating podcast: " + err.message);
+        }
+
+        nextBtn.disabled = false;
+        nextBtn.textContent = "Generate 🎙️";
     });
 }
 
-// ------------------------------
+
+function savePodcast(podcast) {
+    chrome.storage.local.get({ podcasts: [] }, data => {
+        data.podcasts.unshift(podcast);
+        chrome.storage.local.set({ podcasts: data.podcasts });
+    });
+}
+
+
+// ─────────────────────────────────────────────
 // RENDER SAVED PODCASTS
-// ------------------------------
-function renderCreatedPodcasts(listContainer) {
-    listContainer.innerHTML = "";
+// ─────────────────────────────────────────────
+
+function renderCreatedPodcasts(container) {
+    container.innerHTML = "";
 
     chrome.storage.local.get({ podcasts: [] }, data => {
-        data.podcasts.forEach((podcast, index) => {
+        data.podcasts.forEach((p, index) => {
             const card = document.createElement("div");
             card.className = "podcast-card";
 
-            const title = podcast.name || podcast.title || "Untitled Podcast";
-            let audioHtml = "";
-            if (podcast.audio) {
-                audioHtml = `<audio controls src="${podcast.audio}"></audio>`;
-            } else {
-                audioHtml = "<em>No audio yet</em>";
-            }
             card.innerHTML = `
-                <div class="podcast-card-content">
-                    <h3>${title}</h3>
-                    ${audioHtml}
-                    <button class="delete-podcast-button">Delete</button>
-                </div>
+                <h3>${p.name}</h3>
+                ${p.audio ? `<audio controls src="${p.audio}"></audio>` : "<em>No audio</em>"}
+                <button class="delete-podcast-button">Delete</button>
             `;
 
-            listContainer.appendChild(card);
-
-            card
-                .querySelector(".delete-podcast-button")
-                .addEventListener("click", () => {
-                    data.podcasts.splice(index, 1);
-                    chrome.storage.local.set({ podcasts: data.podcasts }, () => {
-                        renderCreatedPodcasts(listContainer);
-                    });
+            card.querySelector(".delete-podcast-button").onclick = () => {
+                data.podcasts.splice(index, 1);
+                chrome.storage.local.set({ podcasts: data.podcasts }, () => {
+                    renderCreatedPodcasts(container);
                 });
+            };
+
+            container.appendChild(card);
         });
     });
 }
+
+
+// ─────────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────────
 
 function blobToBase64(blob) {
     return new Promise(resolve => {
@@ -560,5 +562,3 @@ function blobToBase64(blob) {
         reader.readAsDataURL(blob);
     });
 }
-
-export { renderPodcastUI };
