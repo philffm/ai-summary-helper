@@ -66,7 +66,12 @@ function initSettingsManager(ui) {
 
                     // Load current selection and config from storage
                     const data = await StorageManager.getAll();
-                    const activeService = data.activeService || 'openai';
+                    let activeService = data.activeService || 'openai';
+                    // If the activeService is not in the available services, fall back to the first one
+                    if (!services.some(s => s.id === activeService)) {
+                        activeService = services.length > 0 ? services[0].id : '';
+                        await StorageManager.set({ activeService });
+                    }
                     modelSelect.value = activeService;
                     await updateServiceUI(activeService, services, data);
 
