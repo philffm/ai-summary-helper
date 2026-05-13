@@ -832,3 +832,15 @@ ul#articleList {
   font-weight: 600;
   color: var(--color-neutral-dark);
 }
+/* Streaming drafting animation */
+#streamOutput {
+  transition: opacity 0.3s ease-in;
+  line-height: 1.5;
+  font-family: sans-serif;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

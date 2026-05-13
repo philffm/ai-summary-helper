@@ -25,7 +25,6 @@ let servicesData = [];
 let modelConfig = {};
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log('Received message:', request);
   if (request.action === 'PING') {
     sendResponse({ status: 'PONG' });
     return true;
@@ -37,11 +36,23 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     // 2. Run the logic independently
     (async () => {
-      const { additionalQuestions, selectedLanguage, prompt } = request;
+      const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt } = request;
       const targetElement = await selectTargetElement();
       if (targetElement) {
-        chrome.storage.sync.get(['summaryLength'], (data) => {
-          fetchSummary(additionalQuestions, selectedLanguage, prompt, data.summaryLength || 500, targetElement);
+        // Fetch debugEnabled along with summaryLength AND prompt settings
+        chrome.storage.sync.get(['summaryLength', 'debugEnabled', 'prompt'], (data) => {
+          // Use the stored prompt as a fallback if the popup didn't send one 
+          // (though mainScreen.js usually sends it)
+          const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
+          
+          fetchSummary(
+            popupQuestions, 
+            selectedLanguage, 
+            promptToUse, 
+            data.summaryLength || 500, 
+            targetElement, 
+            data.debugEnabled || false
+          );
         });
       }
     })();
@@ -56,52 +67,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement) {
+async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled) {
   // Increase tokenLimit for Gemini-style providers. This is an approximate
   // token limit (measured in tokens) used to decide how much of the page to
   // include. We use character-based truncation below (chars ≈ tokens * 4).
   const tokenLimit = 20000; // generous default for larger inputs
 
-  const promptDetails = {
-    prompt,
-    summaryLength,
-    additionalQuestions,
-    selectedLanguage
-  };
-  console.log('Starting fetchSummary with prompt details:', promptDetails);
-
-  // Fetch content before showing the placeholder
   const content = getAllTextContent();
-  console.debug('Fetched content:', content);
-
-  // Capture the current page URL
-  const pageUrl = window.location.href;
-  console.debug('Page URL:', pageUrl);
-
-  // Capture the page title
-  const pageTitle = document.title;
-  console.debug('Page Title:', pageTitle);
-
-  // Capture the meta description
-  const metaDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || 'No description available';
-  console.debug('Meta Description:', metaDescription);
-
-  // Truncate content to fit within the token limit (character-based
-  // approximation). This prevents byte-based truncation issues seen with
-  // TextEncoder slicing and Gemini's silent truncation.
   const truncatedContent = truncateToTokenLimit(content, tokenLimit);
-  console.debug('Truncated content:', truncatedContent);
 
   // Show placeholder after fetching content
   const donationMessage = getRandomDonationMessage();
   showPlaceholder(targetElement, donationMessage);
 
-  const MAX_TOKENS = 4000;
-
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(['activeService', 'servicesConfig'], async (data) => {
-      console.log('Retrieved storage data:', data);
-
       const activeService = data.activeService || 'openai';
       const cfg = (data.servicesConfig || {})[activeService] || {};
       const apiKey = cfg.apiKey || '';
@@ -110,13 +90,11 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
       let apiKeyOptional = false;
       try {
         const servicesUrl = chrome.runtime.getURL('services.json');
-        console.debug('Checking apiKeyOptional for service:', activeService, 'from:', servicesUrl);
         const servicesResp = await fetch(servicesUrl);
         if (servicesResp && servicesResp.ok) {
           const servicesList = await servicesResp.json();
           const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
           apiKeyOptional = svcMeta?.apiKeyOptional || false;
-          console.debug('Result: apiKeyOptional =', apiKeyOptional);
         }
       } catch (e) {
         console.warn('Could not load services.json for apiKeyOptional check', e);
@@ -147,18 +125,14 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
               const servicesList = await servicesResp.json();
               const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
               modelIdentifier = svcMeta?.defaultModel || '';
-              console.debug('Fallback modelIdentifier from services.json:', modelIdentifier);
             }
           } catch (e) {
             console.warn('Could not load services.json for fallback modelIdentifier', e);
           }
         }
 
-        console.debug('Resolved apiUrl:', apiUrl, 'modelIdentifier:', modelIdentifier);
-
         if (!apiUrl) {
           const msg = 'Model endpoint is not configured. Open the extension settings and set a valid endpoint.';
-          console.error('❌', msg);
           const placeholderEl = targetElement.querySelector('.placeholder');
           if (placeholderEl) placeholderEl.innerHTML = msg;
           throw new Error(msg);
@@ -168,251 +142,110 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           new URL(apiUrl);
         } catch (urlErr) {
           const msg = `Configured endpoint is not a valid URL: ${apiUrl}`;
-          console.error('❌', msg, urlErr);
           const placeholderEl = targetElement.querySelector('.placeholder');
           if (placeholderEl) placeholderEl.innerHTML = msg;
           throw new Error(msg);
         }
 
-        console.log('🕵️ Fetching summary from:', modelIdentifier);
-
         // Prepare request and headers. Gemini requires a different shape and
         // uses the `x-goog-api-key` header instead of Bearer tokens.
-        let requestBody;
         const headers = { 'Content-Type': 'application/json' };
+        let requestBody;
         let finalApiUrl = apiUrl;
 
         if (activeService === 'gemini') {
-          // Build Gemini REST request: contents -> parts -> text
-          // Ensure we call the correct model-specific endpoint
-          finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:generateContent`;
-
-          // Ask Gemini to return strict, valid HTML only. Place the instruction
-          // before the user content so the model understands the required output
-          // format. We include language and length constraints. Build fullText
-          // separately so we can log and inspect its length when debugging.
-          const geminiInstruction = `Please produce ONLY valid HTML. Return a single <div> element containing an <h2> title (the summary heading) and one or more <p> paragraphs (the summary content). Do NOT include any explanation, JSON, markdown, or surrounding text — only the HTML snippet. Preserve quoted text exactly as in the source.`;
-
-          // Build parts using a Gemini-safe ordering: ensure part[0] is
-          // content (or a harmless placeholder) and put instructions in
-          // part[1]. Wrap the contents in a role:'user' object so Gemini
-          // treats it like a user message while avoiding first-part
-          // sanitization/truncation of instructions.
-          const CHUNK_SIZE = 16000; // characters per content chunk
-          const contentChunks = chunkText(truncatedContent, CHUNK_SIZE);
-
-          const parts = [];
-
-          // Part 0: a harmless token to avoid first-part safety truncation
-          parts.push({ text: 'BEGIN' });
-
-          // Part 1: instruction and metadata
-          parts.push({ text: geminiInstruction });
-          parts.push({ text: `Output Language: ${selectedLanguage}. Strictly limit to ${summaryLength} words.` });
-          parts.push({ text: `Prompt:\n${prompt}` });
-
-          // Append all content chunks after the instruction block
-          contentChunks.forEach(c => parts.push({ text: c }));
-
-          // Build the Gemini REST body using the role:user pattern. This
-          // keeps the instruction visible to the API while following the
-          // documented REST payload shape.
-          const geminiRequestObj = {
-            contents: [ { role: 'user', parts } ]
-          };
-
-          // Log debug info to help trace prompt truncation issues
-          console.debug('Gemini total characters (all parts):', parts.map(p => p.text.length).reduce((a,b)=>a+b,0));
-          console.debug('Gemini parts count:', parts.length, 'first part length:', parts[0].text.length);
-
-          // Show a small in-page debug panel so developers can inspect the exact
-          // prompt parts being sent to Gemini. This helps determine whether the
-          // prompt is constructed fully or truncated before network send.
-          try {
-            updateGeminiDebugPanel(parts.map(p => p.text).join('\n\n---- PART ----\n\n'), finalApiUrl);
-          } catch (e) {
-            console.warn('Could not update Gemini debug panel', e);
-          }
-
-          requestBody = JSON.stringify(geminiRequestObj);
-
-          // Gemini expects an API key in the `x-goog-api-key` header
+          // Switch to streaming endpoint for Gemini
+          finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:streamGenerateContent?alt=sse`;
           headers['x-goog-api-key'] = apiKey;
+          
+          const parts = [
+            { text: `Please produce ONLY valid HTML. Return a single <div> containing an <h2> and <p> tags. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
+            { text: `Prompt Context: ${prompt}` },
+            { text: `Additional Questions/Instructions: ${additionalQuestions}` },
+            { text: truncatedContent }
+          ];
+
+          requestBody = JSON.stringify({ contents: [{ role: 'user', parts }] });
         } else {
-          // Default: OpenAI-like providers (chat completion style)
-          
-          // Switch to stream: true for streaming support
-          const useStreaming = true; 
-          
+          // OpenAI / Ollama streaming
+          headers['Authorization'] = `Bearer ${apiKey}`;
           requestBody = JSON.stringify({
             model: modelIdentifier,
             messages: [
-              { role: 'system', content: 'You summarize content and return a html div  with h2 headings and <p> paragraphs. When you quote, keep it literal and in the input language.' },
-              { role: 'user', content: 'Strictly stick to word limit of ' + summaryLength + ' words or ' + tokenLimit + ' tokens' + ' Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
+              { role: 'system', content: 'You are a summarizer returning HTML <div> with <h2> and <p>.' },
+              { role: 'user', content: `Language: ${selectedLanguage}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${truncatedContent}` }
             ],
-            stream: useStreaming // Enable streaming
+            stream: true
           });
-
-          headers['Authorization'] = `Bearer ${apiKey}`;
         }
 
-        console.log('🚀 Request URL:', finalApiUrl);
-        console.log('🚀 Request headers:', headers);
-        console.log('🚀 Request body:', requestBody);
-
-        // Show donation and bug message
-        const donationMessage = getRandomDonationMessage();
-        const messageContainer = document.createElement('div');
-        messageContainer.innerHTML = `
-        <p>Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a></p>
-        <p>${donationMessage} - <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">Support AI Summary Helper</a></p>
-        `;
-
-        const response = await fetch(finalApiUrl, {
-          method: 'POST',
-          headers,
-          body: requestBody
-        });
-
-        if (!response.ok) {
-          const errorResponse = await response.text();
-          console.error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
-
-          // Provide a clearer message for Gemini 401/UNAUTHENTICATED errors
-          if (activeService === 'gemini' && response.status === 401) {
-            throw new Error(`HTTP ${response.status} - Gemini authentication failed. Gemini requires an API key passed in the 'x-goog-api-key' header (see https://ai.google.dev/gemini-api/docs/api-key). Response: ${errorResponse}`);
-          }
-
-          throw new Error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
+        // Generic Debug Panel Trigger
+        if (debugEnabled) {
+          updateDebugPanel(`Requesting ${modelIdentifier}...\n\nURL: ${finalApiUrl}\n\nPayload: ${requestBody}`, finalApiUrl);
         }
 
+        const response = await fetch(finalApiUrl, { method: 'POST', headers, body: requestBody });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+
+        // STREAMING LOGIC
         let summary = "";
-        
-        // Handle streaming response if activeService is not gemini (since gemini stream has a different path)
-        if (activeService !== 'gemini') {
-            const placeholderEl = targetElement.querySelector('.placeholder > div:first-child');
-            if (placeholderEl) {
-               placeholderEl.innerHTML = `Writing summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span><br><br><span id="streamOutput" style="font-size: 16px; font-weight: normal; opacity: 0.8;"></span>`;
-            }
-            
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder("utf-8");
-            let done = false;
-            let buffer = '';
-            
-            while (!done) {
-                const { value, done: readerDone } = await reader.read();
-                done = readerDone;
-                if (value) {
-                    buffer += decoder.decode(value, { stream: true });
-                    const lines = buffer.split('\n');
-                    buffer = lines.pop(); // Keep the last incomplete line in the buffer
-                    
-                    for (let line of lines) {
-                        line = line.trim();
-                        if (!line) continue;
-                        if (line === 'data: [DONE]') continue;
+        const streamContainer = targetElement.querySelector('.placeholder');
+        const outputArea = document.createElement('div');
+        outputArea.style.marginTop = '15px';
+        outputArea.style.borderTop = '1px solid #ccc';
+        outputArea.style.paddingTop = '10px';
+        streamContainer.appendChild(outputArea);
 
-                        try {
-                            let data;
-                            if (line.startsWith('data: ')) {
-                                data = JSON.parse(line.substring(6));
-                            } else {
-                                data = JSON.parse(line);
-                            }
-                            
-                            let contentPiece = '';
-                            // Extract from OpenAI format
-                            if (data && data.choices && data.choices[0].delta && data.choices[0].delta.content) {
-                                contentPiece = data.choices[0].delta.content;
-                            } 
-                            // Extract from Ollama native format
-                            else if (data && data.message && data.message.content) {
-                                contentPiece = data.message.content;
-                            }
-                            // Ollama /api/generate fallback format
-                            else if (data && data.response) {
-                                contentPiece = data.response;
-                            }
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let buffer = '';
 
-                            if (contentPiece) {
-                                summary += contentPiece;
-                                const streamOutput = targetElement.querySelector('#streamOutput');
-                                if (streamOutput) {
-                                    // Expand feedback length to 500 chars so they see more of it
-                                    streamOutput.innerHTML = summary.substring(0, 500) + (summary.length > 500 ? '...' : ''); 
-                                }
-                            }
-                        } catch (e) {
-                            // Ignore parse errors on incomplete chunks
-                            console.debug("JSON Parse error for line:", line, e);
-                        }
-                    }
-                }
-            }
-        } else {
-             const result = await response.json();
-             console.debug('🚀 API response:', result);
-             
-             // ... existing extraction logic for Gemini
-             function getByResponseStructure(obj, responseStructure) {
-               try {
-                 if (!responseStructure || typeof responseStructure !== 'string') return undefined;
-                 let path = responseStructure.replace(/^result\\./, '');
-                 path = path.replace(/\\?\\./g, '.');
-                 const re = /([A-Za-z_$][\\w$]*)|\[(\\d+)\]/g;
-                 let cur = obj;
-                 let match;
-                 while ((match = re.exec(path)) !== null) {
-                   const prop = match[1] !== undefined ? match[1] : Number(match[2]);
-                   if (cur == null) return undefined;
-                   cur = cur[prop];
-                 }
-                 return cur;
-               } catch (e) {
-                 console.warn('getByResponseStructure failed', e);
-                 return undefined;
-               }
-             }
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop();
 
-             summary = getByResponseStructure(result, modelConfig?.responseStructure);
+          for (let line of lines) {
+            line = line.trim();
+            if (!line || line === 'data: [DONE]') continue;
 
-             if (!summary && result.candidates && result.candidates[0]) {
-               summary = result.candidates[0].content?.parts?.[0]?.text || result.candidates[0].text;
-             }
-             if (!summary && result.message && result.message.content) {
-               summary = result.message.content;
-             }
-             if (!summary && Array.isArray(result.output) && result.output[0]) {
-               summary = result.output[0].content?.[0]?.text || result.output[0].text;
-             }
-             if (!summary && result.content) {
-               summary = result.content;
-             }
+            try {
+              let contentPiece = '';
+              const cleanLine = line.startsWith('data: ') ? line.substring(6) : line;
+              const json = JSON.parse(cleanLine);
+
+              if (activeService === 'gemini') {
+                contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+              } else {
+                contentPiece = json.choices?.[0]?.delta?.content || json.message?.content || json.response || '';
+              }
+
+              if (contentPiece) {
+                summary += contentPiece;
+                // Live update the UI
+                outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${summary}`;
+                if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
+              }
+            } catch (e) { /* Ignore partial JSON chunks */ }
+          }
         }
 
-        if (!summary) summary = 'Error: No summary returned';
-
-        // Remove the placeholder but keep the existing content
-        const placeholder = targetElement.querySelector('.placeholder');
-        if (placeholder) placeholder.remove();
-
-        // remove placeholder from content 
-        const placeholderInContent = content.replace(/<div class="placeholder">.*<\/div>/, '');
-
-        // Save additional details to local storage
-        saveToLocalStorage(content, summary, pageUrl, pageTitle, metaDescription);
-
+        // Finalize UI
+        streamContainer.remove();
         const summaryContainer = document.createElement('blockquote');
-        summaryContainer.innerHTML = `
-        <div><h2>AI Summary 🧙</h2>  ${summary.replace(/\n\n/g, '<br>')} ${messageContainer.innerHTML}  </div>`;
-
+        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
         insertSummary(targetElement, summaryContainer);
-        resolve({ success: true, message: 'Summary inserted successfully' });
+        
+        saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
+        resolve({ success: true });
 
       } catch (error) {
-        console.error('❌ Error fetching summary:', error);
-        targetElement.querySelector('.placeholder').innerHTML = `Error fetching summary. Please try again later. Make sure your API key is set and internet connection is stable. If the problem persists, please <a href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp" target="_blank">give feedback</a> or <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a>. Error details: ${error.message}`;
+        console.error('❌ Error:', error);
+        targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${error.message}`;
         reject(error);
       }
     });
@@ -640,97 +473,17 @@ function selectTargetElement() {
   });
 }
 
-// -----------------------
-// Gemini debug panel helpers
-// -----------------------
-function ensureGeminiDebugPanel() {
-  let panel = document.getElementById('ai-summary-gemini-debug');
-  if (panel) return panel;
-
-  panel = document.createElement('div');
-  panel.id = 'ai-summary-gemini-debug';
-  panel.style.position = 'fixed';
-  panel.style.right = '12px';
-  panel.style.bottom = '12px';
-  panel.style.width = '420px';
-  panel.style.maxHeight = '60vh';
-  panel.style.overflow = 'auto';
-  panel.style.background = 'rgba(0,0,0,0.85)';
-  panel.style.color = '#fff';
-  panel.style.padding = '8px';
-  panel.style.borderRadius = '8px';
-  panel.style.zIndex = 2147483647;
-  panel.style.fontFamily = 'monospace';
-  panel.style.fontSize = '12px';
-
-  panel.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-      <strong style="font-size:13px">Gemini Prompt (debug)</strong>
-      <div>
-        <button id="ai-debug-copy" style="margin-right:6px">Copy</button>
-        <button id="ai-debug-save" style="margin-right:6px">Save</button>
-        <button id="ai-debug-toggle">Hide</button>
-      </div>
-    </div>
-    <div id="ai-debug-meta" style="opacity:0.9;margin-bottom:6px;font-size:11px"></div>
-    <pre id="ai-debug-pre" style="white-space:pre-wrap;word-break:break-word;max-height:420px;overflow:auto;background:rgba(255,255,255,0.03);padding:8px;border-radius:6px;"></pre>
-  `;
-
-  document.body.appendChild(panel);
-
-  const copyBtn = panel.querySelector('#ai-debug-copy');
-  const saveBtn = panel.querySelector('#ai-debug-save');
-  const toggleBtn = panel.querySelector('#ai-debug-toggle');
-
-  copyBtn.addEventListener('click', async () => {
-    const txt = panel.querySelector('#ai-debug-pre').textContent || '';
-    try {
-      await navigator.clipboard.writeText(txt);
-      copyBtn.textContent = 'Copied';
-      setTimeout(() => (copyBtn.textContent = 'Copy'), 1500);
-    } catch (e) {
-      console.warn('Clipboard copy failed', e);
-    }
-  });
-
-  saveBtn.addEventListener('click', () => {
-    const txt = panel.querySelector('#ai-debug-pre').textContent || '';
-    chrome.storage.local.get({ geminiDebugs: [] }, (data) => {
-      const arr = data.geminiDebugs || [];
-      arr.unshift({ ts: new Date().toISOString(), text: txt });
-      chrome.storage.local.set({ geminiDebugs: arr }, () => {
-        saveBtn.textContent = 'Saved';
-        setTimeout(() => (saveBtn.textContent = 'Save'), 1500);
-      });
-    });
-  });
-
-  toggleBtn.addEventListener('click', () => {
-    const pre = panel.querySelector('#ai-debug-pre');
-    const meta = panel.querySelector('#ai-debug-meta');
-    const hidden = pre.style.display === 'none';
-    pre.style.display = hidden ? 'block' : 'none';
-    meta.style.display = hidden ? 'block' : 'none';
-    toggleBtn.textContent = hidden ? 'Hide' : 'Show';
-  });
-
-  return panel;
-}
-
-function updateGeminiDebugPanel(text, apiUrl) {
-  try {
-    const panel = ensureGeminiDebugPanel();
-    const pre = panel.querySelector('#ai-debug-pre');
-    const meta = panel.querySelector('#ai-debug-meta');
-    const maxDisplay = 20000; // avoid rendering extremely huge content fully
-    let displayText = text;
-    if (text.length > maxDisplay) {
-      displayText = text.slice(0, maxDisplay) + `\n\n... (truncated, total ${text.length} chars)`;
-    }
-    pre.textContent = displayText;
-    meta.textContent = `API: ${apiUrl} — length: ${text.length} chars`;
-  } catch (e) {
-    console.warn('updateGeminiDebugPanel failed', e);
+/**
+ * Universal Debug Panel - Now handles all models
+ */
+function updateDebugPanel(text, apiUrl) {
+  let panel = document.getElementById('ai-summary-debug');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'ai-summary-debug';
+    panel.style.cssText = `position:fixed;right:10px;bottom:10px;width:350px;max-height:40vh;overflow:auto;background:#222;color:#0f0;padding:10px;z-index:10000;font-family:monospace;font-size:11px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);`;
+    document.body.appendChild(panel);
   }
+  panel.innerHTML = `<strong>Debug (${apiUrl})</strong><hr><pre style="white-space:pre-wrap">${text}</pre>`;
 }
 

@@ -133,8 +133,8 @@ export function renderArticles(articles) {
             <div class="article-content" style="display: none;">
               <div class="action-bar" style="margin-bottom: 12px; display: flex; gap: 8px;">
                 <button class="button-secondary share-button">Share 🔗</button>
-                <button class="button-secondary md-button">Export .MD 📝</button>
-                <button class="button-secondary open-button">Read Full 👓</button>
+                <button class="button-secondary md-button">.MD 💾</button>
+                <button class="button-secondary open-button">Reader 👓</button>
                 <button class="delete-button" aria-label="Delete article" style="margin-left: auto;">🗑️</button>
               </div>
               <p><strong>Description:</strong> ${article.description || 'No description available'}</p>

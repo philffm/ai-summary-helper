@@ -4,16 +4,16 @@
         "name": "OpenAI",
         "apiKeyDocumentationUrl": "https://platform.openai.com/api-keys",
         "endpointUrl": "https://api.openai.com/v1/chat/completions",
-        "defaultModel": "gpt-5-mini",
+        "defaultModel": "gpt-5.4-mini",
         "allowCustomEndpoint": false,
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
         "id": "deepseek",
         "name": "DeepSeek",
-        "apiKeyDocumentationUrl": "https://api.deepseek.com/docs/api-keys",
+        "apiKeyDocumentationUrl": "https://platform.deepseek.com/api_keys",
         "endpointUrl": "https://api.deepseek.com/chat/completions",
-        "defaultModel": "deepseek-chat",
+        "defaultModel": "deepseek-v4-flash",
         "allowCustomEndpoint": false,
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
@@ -41,7 +41,7 @@
         "name": "Gemini",
         "apiKeyDocumentationUrl": "https://cloud.google.com/docs/authentication/api-keys",
         "endpointUrl": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-        "defaultModel": "gemini-2.5-flash",
+        "defaultModel": "gemini-3.1-flash-lite",
         "allowCustomEndpoint": false,
         "responseStructure": "candidates?.[0]?.content?.parts?.[0]?.text"
     }
