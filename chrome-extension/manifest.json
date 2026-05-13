@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.32",
+  "version": "1.5.34",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
@@ -62,7 +62,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "uiManager.js"
+        "uiManager.js",
+        "services.json"
       ],
       "matches": [
         "<all_urls>"

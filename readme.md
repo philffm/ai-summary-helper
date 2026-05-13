@@ -80,56 +80,61 @@ The privacy policy for this project is available in the [Privacy section](/chrom
 
 ## Troubleshooting
 
-### Configuring CORS for Ollama
+### Configuring CORS for Ollama (The "Failed to Fetch" Error)
 
-If you want to use offline LLMs with this plugin you need to ensure that your Ollama-based applications can handle requests from different domains, you need to configure the CORS settings appropriately. Here’s how you can do it on different operating systems:
+It looks like you've hit the classic CORS (Cross-Origin Resource Sharing) wall. Even though the configuration is correct, the browser blocks requests from websites (like arxiv.org) to your local Ollama instance for security reasons because Ollama isn't explicitly saying "I allow requests from this website."
 
-#### MacOS
+Since the extension's content script runs directly on the page, its "Origin" is the website you are visiting, and Ollama rejects it by default.
 
+To fix this, you need to set the `OLLAMA_ORIGINS` environment variable. Here is the breakdown based on your operating system:
 
-1. Open the Terminal application.
-2. run export OLLAMA_ORIGINS=*
-3. run / restart ollama
+#### 1. Windows (Most Common Issue)
 
-Alternatively, you can edit the `ollama.service` file using a text editor like `nano`:
-2. Edit the `ollama.service` file using a text editor like `nano`:
+1. Quit Ollama entirely. Look for the Ollama icon in your System Tray (bottom right, near the clock), right-click it, and select **Quit**.
+2. Open the Start Menu, search for "Edit the system environment variables," and open it.
+3. Click **Environment Variables**.
+4. Under User variables, click **New**:
+   - Variable name: `OLLAMA_ORIGINS`
+   - Variable value: `*`
+5. Click **OK** on all windows.
+6. **Crucial:** Open a new Terminal or Command Prompt and type `ollama serve` (or simply relaunch the Ollama app from the Start menu).
+
+#### 2. MacOS
+
+1. Quit Ollama from the Menu Bar icon.
+2. Open Terminal and run:
+   ```bash
+   launchctl setenv OLLAMA_ORIGINS "*"
    ```
-   sudo nano /Library/LaunchDaemons/com.ollama.ollama.plist
-   ```
-3. Add or modify the `Environment` line to include the `OLLAMA_ORIGINS` variable with a wildcard (`*`) to allow all domains:
-   ```
-   Environment=OLLAMA_ORIGINS=*
-   ```
+3. Restart the Ollama application.
 
+*Note: To make this permanent, you usually need to add that line to your `~/.zshrc` or `~/.bash_profile`.*
 
-#### Windows
+#### 3. Linux (Systemd)
 
-1. Ensure Ollama is not running by quitting the application from the taskbar.
-2. Open the Control Panel and navigate to “Edit system environment variables.”
-3. Choose to edit or create a new variable named `OLLAMA_ORIGINS`. To allow all domains, set it as follows:
-   ```
-   OLLAMA_ORIGINS=*
-   ```
-4. Apply the changes and close the control panel.
-5. Run Ollama from a new terminal window to ensure it picks up the updated environment variables.
+If you are running Ollama as a service:
 
-#### Linux
-
-For Linux users running Ollama as a systemd service, follow these steps:
-
-1. Use `systemctl edit ollama.service` to open the service file in an editor.
-2. In the `[Service]` section, add the `Environment` line with your CORS settings. For unrestricted access, use:
-   ```
+1. Run `sudo systemctl edit ollama.service`.
+2. Add these lines under the `[Service]` section:
+   ```ini
    [Service]
    Environment="OLLAMA_ORIGINS=*"
    ```
-3. Save your changes, then reload systemd and restart Ollama with:
-   ```
-   systemctl daemon-reload
-   systemctl restart ollama
+3. Save and exit, then run:
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl restart ollama
    ```
 
-These steps will help you configure Ollama to accept requests from all domains, ensuring seamless integration with your applications.
+🧐 **Why is this happening?**
+Browsers follow a "Same-Origin Policy." When the extension tries to fetch `localhost:11434`, the browser sends a "Preflight" request (an `OPTIONS` check) to see if the server allows it. If `OLLAMA_ORIGINS` isn't set, Ollama doesn't include the `Access-Control-Allow-Origin` header in its response, and the browser kills the request. Setting it to `*` tells Ollama to accept requests from any origin.
+
+#### Use Ollama via HTTPS (Advanced)
+
+If you are running Ollama on a remote server behind an HTTPS proxy (like Nginx, Apache, or Cloudflare), you normally **do not** need to set `OLLAMA_ORIGINS` on the server itself. Instead, ensure your proxy is configured to allow CORS headers:
+
+- **Why?** Browsers block "Mixed Content" (requesting HTTP from an HTTPS site). Using an HTTPS endpoint for Ollama solves this.
+- **How?** Add `Access-Control-Allow-Origin: *` to your proxy configuration settings.
 
 For more detailed guidance, refer to the comprehensive guide on handling CORS settings in Ollama [here](https://medium.com/dcoderai/how-to-handle-cors-settings-in-ollama-a-comprehensive-guide-ee2a5a1beef0).
 

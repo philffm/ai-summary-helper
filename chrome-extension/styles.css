@@ -627,6 +627,67 @@ ul#articleList {
   animation: slideIn 0.5s ease-out;
 }
 
+.history-card {
+  background-color: var(--color-neutral-light);
+  border-radius: var(--spacing-s-4);
+  box-shadow: var(--box-shadow);
+  margin-bottom: var(--spacing-s-4);
+  padding: var(--spacing-s-4);
+  border: 1px solid var(--color-secondary-200);
+}
+
+.history-card h3 {
+  margin: 0 0 var(--spacing-s-2) 0;
+  font-size: var(--font-size-s-4);
+}
+
+.history-card-meta {
+  color: var(--color-secondary-600);
+  font-size: var(--font-size-s-1);
+  margin-bottom: var(--spacing-s-2);
+}
+
+.history-card-summary {
+  font-size: var(--font-size-s-2);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-s-4);
+}
+
+.history-card-actions {
+  display: flex;
+  gap: var(--spacing-s-2);
+  flex-wrap: wrap;
+}
+
+.history-card-actions button {
+  padding: var(--spacing-s-1) var(--spacing-s-3);
+  font-size: var(--font-size-s-1);
+  cursor: pointer;
+  border-radius: var(--spacing-s-1);
+}
+
+.share-article-button {
+  background-color: var(--color-primary-500);
+  color: white;
+  border: none;
+}
+
+.copy-article-button, .save-md-button {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-800);
+  border: 1px solid var(--color-secondary-300);
+}
+
+.delete-article-button {
+  background-color: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+.delete-article-button:hover {
+  background-color: var(--color-error-10);
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;

@@ -67,10 +67,52 @@ function loadHistory() {
                     <h3>${article.title || 'Untitled'}</h3>
                     <div class="history-card-meta">${new Date(article.timestamp).toLocaleString()}${article.url ? ` · ${new URL(article.url).hostname}` : ''}</div>
                     <div class="history-card-summary">${stripHtml(article.summary || '')}</div>
-                    <button class="delete-article-button">Delete</button>
+                    <div class="history-card-actions">
+                        <button class="share-article-button">Share</button>
+                        <button class="copy-article-button">Copy</button>
+                        <button class="save-md-button">Save .md</button>
+                        <button class="delete-article-button">Delete</button>
+                    </div>
                 </div>
             `;
             articleList.appendChild(card);
+
+            const summaryClean = stripHtml(article.summary || '');
+            const shareText = `${article.title || 'Summary'}\n\n${summaryClean}\n\nSource: ${article.url || ''}`;
+
+            card.querySelector('.share-article-button').addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: article.title || 'AI Summary',
+                            text: shareText,
+                            url: article.url
+                        });
+                    } catch (err) {
+                        console.error('Share failed:', err);
+                    }
+                } else {
+                    uiManagerRef.showToast('Native sharing not supported');
+                }
+            });
+
+            card.querySelector('.copy-article-button').addEventListener('click', () => {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    uiManagerRef.showToast('Copied to clipboard');
+                });
+            });
+
+            card.querySelector('.save-md-button').addEventListener('click', () => {
+                const mdContent = `# ${article.title || 'Summary'}\n\n${summaryClean}\n\n---\nSource: ${article.url || ''}`;
+                const blob = new Blob([mdContent], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${(article.title || 'summary').replace(/[^a-z0-9]/gi, '_').toLowerCase()}.md`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
             card.querySelector('.delete-article-button').addEventListener('click', () => {
                 if (!confirm('Delete this article?')) return;
                 const updated = articles.filter((_, i) => i !== idx);
@@ -113,10 +155,52 @@ function filterHistory(query) {
                     <h3>${article.title || 'Untitled'}</h3>
                     <div class="history-card-meta">${new Date(article.timestamp).toLocaleString()}${article.url ? ` · ${new URL(article.url).hostname}` : ''}</div>
                     <div class="history-card-summary">${stripHtml(article.summary || '')}</div>
-                    <button class="delete-article-button">Delete</button>
+                    <div class="history-card-actions">
+                        <button class="share-article-button">Share</button>
+                        <button class="copy-article-button">Copy</button>
+                        <button class="save-md-button">Save .md</button>
+                        <button class="delete-article-button">Delete</button>
+                    </div>
                 </div>
             `;
             articleList.appendChild(card);
+
+            const summaryClean = stripHtml(article.summary || '');
+            const shareText = `${article.title || 'Summary'}\n\n${summaryClean}\n\nSource: ${article.url || ''}`;
+
+            card.querySelector('.share-article-button').addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: article.title || 'AI Summary',
+                            text: shareText,
+                            url: article.url
+                        });
+                    } catch (err) {
+                        console.error('Share failed:', err);
+                    }
+                } else {
+                    uiManagerRef.showToast('Native sharing not supported');
+                }
+            });
+
+            card.querySelector('.copy-article-button').addEventListener('click', () => {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    uiManagerRef.showToast('Copied to clipboard');
+                });
+            });
+
+            card.querySelector('.save-md-button').addEventListener('click', () => {
+                const mdContent = `# ${article.title || 'Summary'}\n\n${summaryClean}\n\n---\nSource: ${article.url || ''}`;
+                const blob = new Blob([mdContent], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${(article.title || 'summary').replace(/[^a-z0-9]/gi, '_').toLowerCase()}.md`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
             card.querySelector('.delete-article-button').addEventListener('click', () => {
                 if (!confirm('Delete this article?')) return;
                 const updated = articles.filter((_, i) => i !== idx);

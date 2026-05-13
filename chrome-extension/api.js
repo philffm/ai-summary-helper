@@ -27,8 +27,10 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
             }
         }
 
-        // Ensure we have an apiKey
-        if (!apiKey) throw new Error('API key not provided for the active service');
+        // Ensure we have an apiKey unless it's Ollama
+        if (!apiKey && (activeService || '').toLowerCase() !== 'ollama') {
+            throw new Error('API key not provided for the active service');
+        }
 
         // Build a system instruction tailored to podcast creation
         const systemInstruction = `Podcast Name: ${podcastName || 'Untitled Podcast'}\nIn language code "${selectedLanguage || 'en-US'}" you are a creative and engaging podcast host. Transform the provided article summaries into an exciting ~1 minute podcast script that captivates the audience. Include the source domain when appropriate.`;

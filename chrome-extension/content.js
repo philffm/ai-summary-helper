@@ -26,30 +26,27 @@ let modelConfig = {};
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('Received message:', request);
+  if (request.action === 'PING') {
+    sendResponse({ status: 'PONG' });
+    return true;
+  }
+  
   if (request.action === 'fetchSummary') {
-    const { additionalQuestions, selectedLanguage, prompt } = request;
+    // 1. Acknowledge immediately to prevent port errors in the popup
+    sendResponse({ success: true, message: 'Selection started' });
 
-    chrome.storage.sync.get(['summaryLength'], (data) => {
-      const summaryLength = data.summaryLength || 500; // Default to 500 if not set
-
-      const donationMessage = getRandomDonationMessage();
-      const donationLink = `<a href="https://link.philwornath.com/?source=aish#donate" target="_blank">${donationMessage}</a>`;
-
-      selectTargetElement().then((targetElement) => {
-        if (targetElement) {
-          fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement).then((result) => {
-            sendResponse(result);
-          }).catch((error) => {
-            sendResponse({ success: false, message: error.message });
-          });
-        } else {
-          sendResponse({ success: false, message: 'No target element selected' });
-        }
-      });
-
-    });
-
-    return true; // Indicates we will send a response asynchronously
+    // 2. Run the logic independently
+    (async () => {
+      const { additionalQuestions, selectedLanguage, prompt } = request;
+      const targetElement = await selectTargetElement();
+      if (targetElement) {
+        chrome.storage.sync.get(['summaryLength'], (data) => {
+          fetchSummary(additionalQuestions, selectedLanguage, prompt, data.summaryLength || 500, targetElement);
+        });
+      }
+    })();
+    
+    return false; // Port closes after sendResponse
   } else if (request.action === 'setServices') {
     servicesData = request.services;
     console.log('Services data received:', servicesData);
@@ -109,7 +106,26 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
       const cfg = (data.servicesConfig || {})[activeService] || {};
       const apiKey = cfg.apiKey || '';
 
-      if (!apiKey) {
+      // Check if API key is optional for this service
+      let apiKeyOptional = false;
+      try {
+        const servicesUrl = chrome.runtime.getURL('services.json');
+        console.debug('Checking apiKeyOptional for service:', activeService, 'from:', servicesUrl);
+        const servicesResp = await fetch(servicesUrl);
+        if (servicesResp && servicesResp.ok) {
+          const servicesList = await servicesResp.json();
+          const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
+          apiKeyOptional = svcMeta?.apiKeyOptional || false;
+          console.debug('Result: apiKeyOptional =', apiKeyOptional);
+        }
+      } catch (e) {
+        console.warn('Could not load services.json for apiKeyOptional check', e);
+      }
+
+      // Hard fallback for Ollama just in case fetch fails
+      if (activeService === 'ollama') apiKeyOptional = true;
+
+      if (!apiKey && !apiKeyOptional) {
         alert('Please set your API key in the extension popup.');
         reject(new Error('API key not set'));
         return;
@@ -125,7 +141,8 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         // we always send a `model` parameter to APIs like OpenAI.
         if (!modelIdentifier) {
           try {
-            const servicesResp = await fetch(chrome.runtime.getURL('services.json'));
+            const servicesUrl = chrome.runtime.getURL('services.json');
+            const servicesResp = await fetch(servicesUrl);
             if (servicesResp && servicesResp.ok) {
               const servicesList = await servicesResp.json();
               const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
@@ -223,13 +240,17 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           headers['x-goog-api-key'] = apiKey;
         } else {
           // Default: OpenAI-like providers (chat completion style)
+          
+          // Switch to stream: true for streaming support
+          const useStreaming = true; 
+          
           requestBody = JSON.stringify({
             model: modelIdentifier,
             messages: [
               { role: 'system', content: 'You summarize content and return a html div  with h2 headings and <p> paragraphs. When you quote, keep it literal and in the input language.' },
               { role: 'user', content: 'Strictly stick to word limit of ' + summaryLength + ' words or ' + tokenLimit + ' tokens' + ' Output Language: ' + selectedLanguage + '. ' + prompt + truncatedContent },
             ],
-            stream: false // Ensure streaming is off for local models
+            stream: useStreaming // Enable streaming
           });
 
           headers['Authorization'] = `Bearer ${apiKey}`;
@@ -265,56 +286,109 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           throw new Error(`HTTP error! status: ${response.status}, response: ${errorResponse}`);
         }
 
-        const result = await response.json();
-        console.debug('🚀 API response:', result);
-
-        // Helper: safely extract a nested field using a responseStructure string like
-        // "result.choices?.[0]?.message?.content". This implements optional chaining
-        // and array index access without using eval.
-        function getByResponseStructure(obj, responseStructure) {
-          try {
-            if (!responseStructure || typeof responseStructure !== 'string') return undefined;
-            let path = responseStructure.replace(/^result\./, '');
-            // Treat optional chaining tokens `?.` as `.` for traversal; we'll bail on undefined anyway.
-            path = path.replace(/\?\./g, '.');
-            const re = /([A-Za-z_$][\w$]*)|\[(\d+)\]/g;
-            let cur = obj;
-            let match;
-            while ((match = re.exec(path)) !== null) {
-              const prop = match[1] !== undefined ? match[1] : Number(match[2]);
-              if (cur == null) return undefined;
-              cur = cur[prop];
+        let summary = "";
+        
+        // Handle streaming response if activeService is not gemini (since gemini stream has a different path)
+        if (activeService !== 'gemini') {
+            const placeholderEl = targetElement.querySelector('.placeholder > div:first-child');
+            if (placeholderEl) {
+               placeholderEl.innerHTML = `Writing summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span><br><br><span id="streamOutput" style="font-size: 16px; font-weight: normal; opacity: 0.8;"></span>`;
             }
-            return cur;
-          } catch (e) {
-            console.warn('getByResponseStructure failed', e);
-            return undefined;
-          }
-        }
+            
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            let done = false;
+            let buffer = '';
+            
+            while (!done) {
+                const { value, done: readerDone } = await reader.read();
+                done = readerDone;
+                if (value) {
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop(); // Keep the last incomplete line in the buffer
+                    
+                    for (let line of lines) {
+                        line = line.trim();
+                        if (!line) continue;
+                        if (line === 'data: [DONE]') continue;
 
-        // Primary extraction using responseStructure from services if available
-        let summary = getByResponseStructure(result, modelConfig?.responseStructure);
+                        try {
+                            let data;
+                            if (line.startsWith('data: ')) {
+                                data = JSON.parse(line.substring(6));
+                            } else {
+                                data = JSON.parse(line);
+                            }
+                            
+                            let contentPiece = '';
+                            // Extract from OpenAI format
+                            if (data && data.choices && data.choices[0].delta && data.choices[0].delta.content) {
+                                contentPiece = data.choices[0].delta.content;
+                            } 
+                            // Extract from Ollama native format
+                            else if (data && data.message && data.message.content) {
+                                contentPiece = data.message.content;
+                            }
+                            // Ollama /api/generate fallback format
+                            else if (data && data.response) {
+                                contentPiece = data.response;
+                            }
 
-        // Common fallbacks for various API shapes
-        if (!summary) {
-          if (result.choices && result.choices[0]) {
-            // OpenAI-like: choices[0].message.content or choices[0].text
-            summary = result.choices[0].message?.content || result.choices[0].text;
-          }
-        }
-        // Gemini-like responses: candidates[].content.parts[].text
-        if (!summary && result.candidates && result.candidates[0]) {
-          summary = result.candidates[0].content?.parts?.[0]?.text || result.candidates[0].text;
-        }
-        if (!summary && result.message && result.message.content) {
-          summary = result.message.content;
-        }
-        if (!summary && Array.isArray(result.output) && result.output[0]) {
-          // Some providers use result.output[0].content[0].text
-          summary = result.output[0].content?.[0]?.text || result.output[0].text;
-        }
-        if (!summary && result.content) {
-          summary = result.content;
+                            if (contentPiece) {
+                                summary += contentPiece;
+                                const streamOutput = targetElement.querySelector('#streamOutput');
+                                if (streamOutput) {
+                                    // Expand feedback length to 500 chars so they see more of it
+                                    streamOutput.innerHTML = summary.substring(0, 500) + (summary.length > 500 ? '...' : ''); 
+                                }
+                            }
+                        } catch (e) {
+                            // Ignore parse errors on incomplete chunks
+                            console.debug("JSON Parse error for line:", line, e);
+                        }
+                    }
+                }
+            }
+        } else {
+             const result = await response.json();
+             console.debug('🚀 API response:', result);
+             
+             // ... existing extraction logic for Gemini
+             function getByResponseStructure(obj, responseStructure) {
+               try {
+                 if (!responseStructure || typeof responseStructure !== 'string') return undefined;
+                 let path = responseStructure.replace(/^result\\./, '');
+                 path = path.replace(/\\?\\./g, '.');
+                 const re = /([A-Za-z_$][\\w$]*)|\[(\\d+)\]/g;
+                 let cur = obj;
+                 let match;
+                 while ((match = re.exec(path)) !== null) {
+                   const prop = match[1] !== undefined ? match[1] : Number(match[2]);
+                   if (cur == null) return undefined;
+                   cur = cur[prop];
+                 }
+                 return cur;
+               } catch (e) {
+                 console.warn('getByResponseStructure failed', e);
+                 return undefined;
+               }
+             }
+
+             summary = getByResponseStructure(result, modelConfig?.responseStructure);
+
+             if (!summary && result.candidates && result.candidates[0]) {
+               summary = result.candidates[0].content?.parts?.[0]?.text || result.candidates[0].text;
+             }
+             if (!summary && result.message && result.message.content) {
+               summary = result.message.content;
+             }
+             if (!summary && Array.isArray(result.output) && result.output[0]) {
+               summary = result.output[0].content?.[0]?.text || result.output[0].text;
+             }
+             if (!summary && result.content) {
+               summary = result.content;
+             }
         }
 
         if (!summary) summary = 'Error: No summary returned';
