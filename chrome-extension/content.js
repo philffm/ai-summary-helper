@@ -226,8 +226,18 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
               if (contentPiece) {
                 summary += contentPiece;
+                
+                // Extremely simple markdown-to-HTML parser for LLMs that ignore the HTML prompt
+                let formattedSummary = summary
+                  .replace(/^```html\n?/gi, '').replace(/\n?```$/g, '') // strip markdown codeblocks if they wrap HTML
+                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                  .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                  .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                  .replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                  
                 // Live update the UI
-                outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${summary}`;
+                outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${formattedSummary.replace(/\\n/g, '<br>')}`;
                 if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
               }
             } catch (e) { /* Ignore partial JSON chunks */ }
@@ -236,8 +246,18 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
         // Finalize UI
         streamContainer.remove();
+        
+        // Final markdown-to-HTML pass (including clean spacing)
+        let finalHtml = summary
+          .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '')
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+          .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+          .replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
         const summaryContainer = document.createElement('blockquote');
-        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${summary.replace(/\n\n/g, '<br>')}</div>`;
+        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${finalHtml.replace(/\\n/g, '<br>')}</div>`;
         insertSummary(targetElement, summaryContainer);
         
         saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
@@ -294,40 +314,62 @@ function chunkText(text, chunkSize) {
 // Function to extract all relevant text content from the page
 function getAllTextContent() {
   console.log('Getting all text content');
-  const selectors = `
-    p,
-    h1, h2, h3, h4, h5, h6,
-    article, section,
-    li, blockquote,
-    span,
-    div
-  `;
+  
+  // Create a clone of the document body so we don't mutate the actual page
+  const clone = document.body.cloneNode(true);
 
-  const elements = document.querySelectorAll(selectors);
-  let content = '';
+  // List of selectors for elements that usually contain non-article noise
+  const noiseSelectors = [
+    'script', 'style', 'noscript', 'nav', 'header', 'footer', 'aside',
+    '[role="navigation"]', '[role="banner"]', '[role="contentinfo"]',
+    'iframe', 'embed', 'object', 'canvas', 'svg', '.ad', '.ads', '.advertisement',
+    '#comments', '.comments', '.sidebar', '#sidebar'
+  ];
 
-  for (const el of elements) {
-    try {
-      const text = el.innerText || el.textContent || '';
-      if (!text) continue;
-      const trimmed = text.trim();
-      if (!trimmed) continue;
-
-      const style = window.getComputedStyle(el);
-      if (style && (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0')) continue;
-      // only include elements that are likely visible / readable
-      if (el.offsetParent === null && el.tagName.toLowerCase() !== 'article') continue;
-
-      content += trimmed + '\n\n';
-    } catch (e) {
-      // Some nodes may throw when accessing computed styles; skip them
-      continue;
+  for (const selector of noiseSelectors) {
+    const nodes = clone.querySelectorAll(selector);
+    for (const node of nodes) {
+      node.remove();
     }
   }
 
-  const result = content.trim();
-  console.log('Collected content length:', result.length);
-  return result;
+  // To prevent block elements from running together when reading textContent,
+  // we can insert newlines before and after them.
+  const blockElements = ['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'article', 'section', 'blockquote'];
+  for (const tag of blockElements) {
+    const nodes = clone.querySelectorAll(tag);
+    for (const node of nodes) {
+      node.prepend(document.createTextNode('\\n\\n'));
+      node.append(document.createTextNode('\\n\\n'));
+    }
+  }
+
+  // Fallback chain: look for article, or main, or use the whole body clone
+  let mainNode = clone.querySelector('article') || 
+                 clone.querySelector('main') || 
+                 clone.querySelector('[role="main"]') || 
+                 clone;
+
+  let text = mainNode.textContent || '';
+  
+  // Clean up whitespace: replace multiple spaces with one, and multiple newlines with double newlines
+  let cleanText = text
+    .replace(/[ \\t]+/g, ' ')      
+    .replace(/\\n\\s*\\n/g, '\\n\\n')  
+    .trim();
+
+  // If it's suspiciously short (e.g. they put the main article outside <main>), fallback
+  if (cleanText.length < 500 && mainNode !== clone) {
+    console.log("Extracted content too short, falling back to full body container.");
+    text = clone.textContent || '';
+    cleanText = text
+      .replace(/[ \\t]+/g, ' ')
+      .replace(/\\n\\s*\\n/g, '\\n\\n')
+      .trim();
+  }
+
+  console.log('Collected content length:', cleanText.length);
+  return cleanText;
 }
 
 // Simplified function to determine if the background is light or dark
