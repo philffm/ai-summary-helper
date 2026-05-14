@@ -330,10 +330,24 @@ function getAllTextContent() {
 
   // Check whether an element (or any of its ancestors) matches a noise selector.
   // We work on the live DOM so getComputedStyle is available for pseudo-elements.
+  // Pre-compute the set of noise container elements once for efficient ancestry checks.
+  const noiseSet = new Set();
+  for (const sel of noiseSelectors) {
+    try {
+      document.querySelectorAll(sel).forEach(el => noiseSet.add(el));
+    } catch (e) {
+      console.warn('getAllTextContent: skipping invalid noise selector', sel, e);
+    }
+  }
+
+  // Returns true if el or any ancestor is a known noise container.
   function isNoise(el) {
-    return noiseSelectors.some(sel => {
-      try { return el.closest(sel) !== null; } catch (e) { console.warn("isNoise: invalid selector", sel, e); return false; }
-    });
+    let node = el;
+    while (node && node !== document.body) {
+      if (noiseSet.has(node)) return true;
+      node = node.parentElement;
+    }
+    return false;
   }
 
   // Extract the rendered text injected by a CSS pseudo-element (::before / ::after).
@@ -345,7 +359,8 @@ function getAllTextContent() {
       if (!content || content === 'none' || content === 'normal') return '';
       // Strip the surrounding CSS quotes from the string value.
       const stripped = content.replace(/^["']|["']$/g, '');
-      // Discard likely icon-font characters (U+E000–U+F8FF: Unicode Private Use Area).
+      // Discard icon-font characters: fonts like Font Awesome map glyphs to the
+      // Unicode Private Use Area (U+E000–U+F8FF), which would appear as garbage symbols.
       return stripped.replace(/[\uE000-\uF8FF]/g, '');
     } catch (e) {
       return '';
@@ -557,6 +572,9 @@ function updateDebugPanel(text, apiUrl) {
     panel.style.cssText = `position:fixed;right:10px;bottom:10px;width:350px;max-height:40vh;overflow:auto;background:#222;color:#0f0;padding:10px;z-index:10000;font-family:monospace;font-size:11px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);`;
     document.body.appendChild(panel);
   }
-  panel.innerHTML = `<strong>Debug (${apiUrl})</strong><hr><pre style="white-space:pre-wrap">${text}</pre>`;
+  // Set content via textContent to avoid XSS from API responses or URL strings.
+  panel.innerHTML = '<strong></strong><hr><pre style="white-space:pre-wrap"></pre>';
+  panel.querySelector('strong').textContent = `Debug (${apiUrl})`;
+  panel.querySelector('pre').textContent = text;
 }
 
