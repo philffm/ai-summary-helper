@@ -340,14 +340,11 @@ function getAllTextContent() {
     }
   }
 
-  // Returns true if el or any ancestor is a known noise container.
+  // Returns true if el is a known noise container root. Because extractText() never
+  // recurses into skipped subtrees, the parent context is already confirmed clean,
+  // so a direct Set lookup is sufficient (no ancestor walk needed).
   function isNoise(el) {
-    let node = el;
-    while (node && node !== document.body) {
-      if (noiseSet.has(node)) return true;
-      node = node.parentElement;
-    }
-    return false;
+    return noiseSet.has(el);
   }
 
   // Extract the rendered text injected by a CSS pseudo-element (::before / ::after).
@@ -357,11 +354,14 @@ function getAllTextContent() {
     try {
       const content = window.getComputedStyle(el, pseudo).getPropertyValue('content');
       if (!content || content === 'none' || content === 'normal') return '';
-      // Strip the surrounding CSS quotes from the string value.
-      const stripped = content.replace(/^["']|["']$/g, '');
+      // Strip the outermost CSS quotes from the string value (browser always wraps in double quotes).
+      const q = content[0];
+      const stripped = (q === '"' || q === "'") && content[content.length - 1] === q
+        ? content.slice(1, -1)
+        : content;
       // Discard icon-font characters: fonts like Font Awesome map glyphs to the
       // Unicode Private Use Area (U+E000–U+F8FF), which would appear as garbage symbols.
-      return stripped.replace(/[\uE000-\uF8FF]/g, '');
+      return stripped.replace(/[\uE000-\uF8FF]|[\uDB80-\uDBFF][\uDC00-\uDFFF]/g, '');
     } catch (e) {
       return '';
     }
