@@ -67,6 +67,29 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+// Convert a small subset of Markdown to HTML.
+// Handles bold, italic, headings, inline code, unordered lists, and code fences.
+function markdownToHtml(text) {
+  return text
+    // Strip wrapping code fences (```html ... ``` or ``` ... ```)
+    .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '')
+    // Headings
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    // Bold and italic
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Unordered list items (lines starting with "* " or "- ")
+    .replace(/^[*-] (.+)$/gim, '<li>$1</li>')
+    // Wrap consecutive <li> elements in a <ul>
+    .replace(/(<li>[\s\S]*?<\/li>\n?)+/g, '<ul>$&</ul>')
+    // Newlines to <br>
+    .replace(/\n/g, '<br>');
+}
+
 async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled) {
   // Increase tokenLimit for Gemini-style providers. This is an approximate
   // token limit (measured in tokens) used to decide how much of the page to
@@ -227,17 +250,10 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
               if (contentPiece) {
                 summary += contentPiece;
                 
-                // Extremely simple markdown-to-HTML parser for LLMs that ignore the HTML prompt
-                let formattedSummary = summary
-                  .replace(/^```html\n?/gi, '').replace(/\n?```$/g, '') // strip markdown codeblocks if they wrap HTML
-                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                  .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                  .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                  .replace(/^# (.*$)/gim, '<h1>$1</h1>');
-                  
+                // Markdown-to-HTML conversion for live streaming preview
+                const formattedSummary = markdownToHtml(summary);
                 // Live update the UI
-                outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${formattedSummary.replace(/\\n/g, '<br>')}`;
+                outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${formattedSummary}`;
                 if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
               }
             } catch (e) { /* Ignore partial JSON chunks */ }
@@ -247,17 +263,11 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         // Finalize UI
         streamContainer.remove();
         
-        // Final markdown-to-HTML pass (including clean spacing)
-        let finalHtml = summary
-          .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '')
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-          .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-          .replace(/^# (.*$)/gim, '<h1>$1</h1>');
+        // Final markdown-to-HTML pass
+        const finalHtml = markdownToHtml(summary);
 
         const summaryContainer = document.createElement('blockquote');
-        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${finalHtml.replace(/\\n/g, '<br>')}</div>`;
+        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${finalHtml}</div>`;
         insertSummary(targetElement, summaryContainer);
         
         saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
