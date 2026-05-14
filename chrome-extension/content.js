@@ -184,10 +184,6 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           updateDebugPanel(`Requesting ${modelIdentifier}...\n\nURL: ${finalApiUrl}\n\nPayload: ${requestBody}`, finalApiUrl);
         }
 
-        const response = await fetch(finalApiUrl, { method: 'POST', headers, body: requestBody });
-
-        if (!response.ok) throw new Error(`HTTP ${response.status}: ${await response.text()}`);
-
         // STREAMING LOGIC
         let summary = "";
         const streamContainer = targetElement.querySelector('.placeholder');
@@ -197,71 +193,90 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         outputArea.style.paddingTop = '10px';
         streamContainer.appendChild(outputArea);
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder("utf-8");
+        const port = chrome.runtime.connect({ name: 'streamFetch' });
+        
+        port.postMessage({
+          action: 'startFetch',
+          apiUrl: finalApiUrl,
+          headers: headers,
+          body: requestBody
+        });
+
         let buffer = '';
 
-        while (true) {
-          const { value, done } = await reader.read();
-          if (done) break;
-          
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split('\n');
-          buffer = lines.pop();
-
-          for (let line of lines) {
-            line = line.trim();
-            if (!line || line === 'data: [DONE]') continue;
-
-            try {
-              let contentPiece = '';
-              const cleanLine = line.startsWith('data: ') ? line.substring(6) : line;
-              const json = JSON.parse(cleanLine);
-
-              if (activeService === 'gemini') {
-                contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
-              } else {
-                contentPiece = json.choices?.[0]?.delta?.content || json.message?.content || json.response || '';
-              }
-
-              if (contentPiece) {
-                summary += contentPiece;
-                
-                // Extremely simple markdown-to-HTML parser for LLMs that ignore the HTML prompt
-                let formattedSummary = summary
-                  .replace(/^```html\n?/gi, '').replace(/\n?```$/g, '') // strip markdown codeblocks if they wrap HTML
-                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                  .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                  .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                  .replace(/^# (.*$)/gim, '<h1>$1</h1>');
-                  
-                // Live update the UI
-                outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${formattedSummary.replace(/\\n/g, '<br>')}`;
-                if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
-              }
-            } catch (e) { /* Ignore partial JSON chunks */ }
+        port.onMessage.addListener((msg) => {
+          if (msg.error) {
+            console.error('❌ Error:', msg.error);
+            targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${msg.error}`;
+            reject(new Error(msg.error));
+            port.disconnect();
+            return;
           }
-        }
 
-        // Finalize UI
-        streamContainer.remove();
-        
-        // Final markdown-to-HTML pass (including clean spacing)
-        let finalHtml = summary
-          .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '')
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-          .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-          .replace(/^# (.*$)/gim, '<h1>$1</h1>');
+          if (msg.done) {
+            // Finalize UI
+            streamContainer.remove();
+            
+            // Final markdown-to-HTML pass (including clean spacing)
+            let finalHtml = summary
+              .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '')
+              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+              .replace(/\*(.*?)\*/g, '<em>$1</em>')
+              .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+              .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+              .replace(/^# (.*$)/gim, '<h1>$1</h1>');
 
-        const summaryContainer = document.createElement('blockquote');
-        summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${finalHtml.replace(/\\n/g, '<br>')}</div>`;
-        insertSummary(targetElement, summaryContainer);
-        
-        saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
-        resolve({ success: true });
+            const summaryContainer = document.createElement('blockquote');
+            summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${finalHtml.replace(/\\n/g, '<br>')}</div>`;
+            insertSummary(targetElement, summaryContainer);
+            
+            saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
+            resolve({ success: true });
+            
+            port.disconnect();
+            return;
+          }
+
+          if (msg.chunk) {
+            buffer += msg.chunk;
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+
+            for (let line of lines) {
+              line = line.trim();
+              if (!line || line === 'data: [DONE]') continue;
+
+              try {
+                let contentPiece = '';
+                const cleanLine = line.startsWith('data: ') ? line.substring(6) : line;
+                const json = JSON.parse(cleanLine);
+
+                if (activeService === 'gemini') {
+                  contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                } else {
+                  contentPiece = json.choices?.[0]?.delta?.content || json.message?.content || json.response || '';
+                }
+
+                if (contentPiece) {
+                  summary += contentPiece;
+                  
+                  // Extremely simple markdown-to-HTML parser for LLMs that ignore the HTML prompt
+                  let formattedSummary = summary
+                    .replace(/^```html\n?/gi, '').replace(/\n?```$/g, '') // strip markdown codeblocks if they wrap HTML
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                    
+                  // Live update the UI
+                  outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${formattedSummary.replace(/\\n/g, '<br>')}`;
+                  if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
+                }
+              } catch (e) { /* Ignore partial JSON chunks */ }
+            }
+          }
+        });
 
       } catch (error) {
         console.error('❌ Error:', error);
