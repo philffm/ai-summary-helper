@@ -332,7 +332,7 @@ function getAllTextContent() {
   // We work on the live DOM so getComputedStyle is available for pseudo-elements.
   function isNoise(el) {
     return noiseSelectors.some(sel => {
-      try { return el.closest(sel) !== null; } catch (e) { return false; }
+      try { return el.closest(sel) !== null; } catch (e) { console.warn("isNoise: invalid selector", sel, e); return false; }
     });
   }
 
@@ -345,7 +345,7 @@ function getAllTextContent() {
       if (!content || content === 'none' || content === 'normal') return '';
       // Strip the surrounding CSS quotes from the string value.
       const stripped = content.replace(/^["']|["']$/g, '');
-      // Discard likely icon-font characters (Unicode Private Use Area).
+      // Discard likely icon-font characters (U+E000–U+F8FF: Unicode Private Use Area).
       return stripped.replace(/[\uE000-\uF8FF]/g, '');
     } catch (e) {
       return '';
