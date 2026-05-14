@@ -314,9 +314,6 @@ function chunkText(text, chunkSize) {
 // Function to extract all relevant text content from the page
 function getAllTextContent() {
   console.log('Getting all text content');
-  
-  // Create a clone of the document body so we don't mutate the actual page
-  const clone = document.body.cloneNode(true);
 
   // List of selectors for elements that usually contain non-article noise
   const noiseSelectors = [
@@ -326,45 +323,79 @@ function getAllTextContent() {
     '#comments', '.comments', '.sidebar', '#sidebar'
   ];
 
-  for (const selector of noiseSelectors) {
-    const nodes = clone.querySelectorAll(selector);
-    for (const node of nodes) {
-      node.remove();
+  const blockTags = new Set([
+    'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'li', 'article', 'section', 'blockquote', 'br', 'tr'
+  ]);
+
+  // Check whether an element (or any of its ancestors) matches a noise selector.
+  // We work on the live DOM so getComputedStyle is available for pseudo-elements.
+  function isNoise(el) {
+    return noiseSelectors.some(sel => {
+      try { return el.closest(sel) !== null; } catch (e) { return false; }
+    });
+  }
+
+  // Extract the rendered text injected by a CSS pseudo-element (::before / ::after).
+  // Many sites use pseudo-elements to insert characters as an anti-scraping measure;
+  // textContent on a detached clone never sees this content, but getComputedStyle does.
+  function getPseudoContent(el, pseudo) {
+    try {
+      const content = window.getComputedStyle(el, pseudo).getPropertyValue('content');
+      if (!content || content === 'none' || content === 'normal') return '';
+      // Strip the surrounding CSS quotes from the string value.
+      const stripped = content.replace(/^["']|["']$/g, '');
+      // Discard likely icon-font characters (Unicode Private Use Area).
+      return stripped.replace(/[\uE000-\uF8FF]/g, '');
+    } catch (e) {
+      return '';
     }
   }
 
-  // To prevent block elements from running together when reading textContent,
-  // we can insert newlines before and after them.
-  const blockElements = ['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'article', 'section', 'blockquote'];
-  for (const tag of blockElements) {
-    const nodes = clone.querySelectorAll(tag);
-    for (const node of nodes) {
-      node.prepend(document.createTextNode('\\n\\n'));
-      node.append(document.createTextNode('\\n\\n'));
+  // Recursively build plain text from a live DOM element, capturing both text
+  // nodes and CSS pseudo-element content that textContent would normally miss.
+  function extractText(el) {
+    let result = '';
+    result += getPseudoContent(el, '::before');
+    for (const child of el.childNodes) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        result += child.textContent;
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        if (isNoise(child)) continue;
+        const tag = child.tagName.toLowerCase();
+        if (blockTags.has(tag)) {
+          result += '\n\n' + extractText(child) + '\n\n';
+        } else {
+          result += extractText(child);
+        }
+      }
     }
+    result += getPseudoContent(el, '::after');
+    return result;
   }
 
-  // Fallback chain: look for article, or main, or use the whole body clone
-  let mainNode = clone.querySelector('article') || 
-                 clone.querySelector('main') || 
-                 clone.querySelector('[role="main"]') || 
-                 clone;
+  // Fallback chain: look for article, or main, or use the whole body
+  const mainEl =
+    document.querySelector('article') ||
+    document.querySelector('main') ||
+    document.querySelector('[role="main"]') ||
+    document.body;
 
-  let text = mainNode.textContent || '';
-  
+  let text = extractText(mainEl);
+
   // Clean up whitespace: replace multiple spaces with one, and multiple newlines with double newlines
   let cleanText = text
-    .replace(/[ \\t]+/g, ' ')      
-    .replace(/\\n\\s*\\n/g, '\\n\\n')  
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n\s*\n/g, '\n\n')
     .trim();
 
   // If it's suspiciously short (e.g. they put the main article outside <main>), fallback
-  if (cleanText.length < 500 && mainNode !== clone) {
-    console.log("Extracted content too short, falling back to full body container.");
-    text = clone.textContent || '';
+  if (cleanText.length < 500 && mainEl !== document.body) {
+    console.log('Extracted content too short, falling back to full body container.');
+    text = extractText(document.body);
     cleanText = text
-      .replace(/[ \\t]+/g, ' ')
-      .replace(/\\n\\s*\\n/g, '\\n\\n')
+      .replace(/[ \t]+/g, ' ')
+      .replace(/\n\s*\n/g, '\n\n')
       .trim();
   }
 
