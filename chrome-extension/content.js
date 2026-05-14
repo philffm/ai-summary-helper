@@ -359,8 +359,10 @@ function getAllTextContent() {
       const stripped = (q === '"' || q === "'") && content[content.length - 1] === q
         ? content.slice(1, -1)
         : content;
-      // Discard icon-font characters: fonts like Font Awesome map glyphs to the
-      // Unicode Private Use Area (U+E000–U+F8FF), which would appear as garbage symbols.
+      // Discard icon-font characters: fonts like Font Awesome map glyphs to Unicode
+      // Private Use Area code points, which would appear as garbage symbols in output.
+      // The regex covers BMP PUA (U+E000–U+F8FF) and supplementary PUA planes
+      // (U+F0000–U+FFFFD, U+100000–U+10FFFD) via their UTF-16 surrogate pairs.
       return stripped.replace(/[\uE000-\uF8FF]|[\uDB80-\uDBFF][\uDC00-\uDFFF]/g, '');
     } catch (e) {
       return '';
