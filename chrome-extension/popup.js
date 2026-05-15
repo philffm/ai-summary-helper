@@ -13,6 +13,19 @@ import { initToolsManager } from './modules/toolsManager.js';
 import { initAccordion } from './modules/accordion.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // Hide podcast button by default
+    const initialPodcastBtn = document.getElementById('podcastButton');
+    if (initialPodcastBtn) initialPodcastBtn.style.display = 'none';
+
+    // Load theme and beta toggle preferences
+    const storageData = await StorageManager.getAll();
+    if (storageData.theme === 'dark' || storageData.theme === 'light') {
+        document.documentElement.setAttribute('data-theme', storageData.theme);
+    }
+    
+    if (initialPodcastBtn) {
+        initialPodcastBtn.style.display = storageData.betaPodcast ? 'inline-flex' : 'none';
+    }
     const ui = new UIManager();
 
     StorageManager.initializeDefaults();
@@ -33,9 +46,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     ui.showScreen("main");
 
     // Podcast button in history screen triggers podcast manager in history view
-    const podcastButton = document.getElementById('podcastButton');
-    if (podcastButton) {
-        podcastButton.addEventListener('click', () => {
+    const historyPodcastBtn = document.getElementById('podcastButton');
+    if (historyPodcastBtn) {
+        historyPodcastBtn.addEventListener('click', () => {
             ui.enterPodcastMenu();
         });
     }

@@ -87,6 +87,24 @@ function initSettingsManager(ui) {
                 async function loadSettings() {
                     await populateModelDropdown();
                     // You can add more logic here to load other settings (prompt, etc.)
+                    const themeSelect = document.getElementById('themeSelect');
+                    const betaPodcastToggle = document.getElementById('betaPodcastToggle');
+                    const storageData = await StorageManager.getAll();
+                    
+                    if (themeSelect) {
+                        const savedTheme = storageData.theme || 'system';
+                        themeSelect.value = savedTheme;
+                        
+                        // APPLY THEME IMMEDIATELY ON LOAD
+                        if (savedTheme === 'dark' || savedTheme === 'light') {
+                            document.documentElement.setAttribute('data-theme', savedTheme);
+                        } else {
+                            document.documentElement.removeAttribute('data-theme');
+                        }
+                    }
+                    if (betaPodcastToggle) {
+                        betaPodcastToggle.checked = !!storageData.betaPodcast;
+                    }
                 }
 
                                 loadSettings();
@@ -130,8 +148,28 @@ function initSettingsManager(ui) {
                 button: '🔄 General Settings',
                 content: `
                   <p>General settings for the extension.</p>
-                  <button id="deleteSettingsButton" class="button danger">Delete Settings</button>
-                  <button id="deleteHistoryButton" class="button danger">Delete History</button>
+                  
+                  <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
+                    <label for="themeSelect">Theme</label>
+                    <select id="themeSelect" style="width: auto; margin-bottom: 0;">
+                        <option value="system">System Default</option>
+                        <option value="light">Light Mode</option>
+                        <option value="dark">Dark Mode</option>
+                    </select>
+                  </div>
+                  
+                  <div class="setting-group" style="margin-bottom: var(--spacing-s-4); display: flex; justify-content: space-between; align-items: center;">
+                    <label for="betaPodcastToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Enable Podcast Beta</label>
+                    <label class="switch">
+                      <input type="checkbox" id="betaPodcastToggle" />
+                      <span class="slider-toggle"></span>
+                    </label>
+                  </div>
+                  
+                  <div style="display: flex; gap: var(--spacing-s-2); margin-top: var(--spacing-s-4);">
+                    <button id="deleteSettingsButton" class="button danger" style="flex:1;">Delete Settings</button>
+                    <button id="deleteHistoryButton" class="button danger" style="flex:1;">Delete History</button>
+                  </div>
                 `
             }
         ];
@@ -197,6 +235,8 @@ function initSettingsManager(ui) {
             const endpointInput = document.getElementById('customEndpoint');
             const promptSelect = document.getElementById('promptSelect');
             const promptInput = document.getElementById('prompt');
+            const themeSelect = document.getElementById('themeSelect');
+            const betaPodcastToggle = document.getElementById('betaPodcastToggle');
             const saveButton = settingsForm.querySelector('button[type="submit"]');
 
             // Get selected service
@@ -231,6 +271,24 @@ function initSettingsManager(ui) {
             }
             if (promptInput) {
                 await StorageManager.set({ prompt: promptInput.value });
+            }
+            
+            if (themeSelect) {
+                await StorageManager.set({ theme: themeSelect.value });
+                // Apply theme immediately
+                if (themeSelect.value === 'dark' || themeSelect.value === 'light') {
+                    document.documentElement.setAttribute('data-theme', themeSelect.value);
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            }
+            
+            if (betaPodcastToggle) {
+                await StorageManager.set({ betaPodcast: betaPodcastToggle.checked });
+                const podcastButton = document.getElementById('podcastButton');
+                if (podcastButton) {
+                    podcastButton.style.display = betaPodcastToggle.checked ? 'inline-flex' : 'none';
+                }
             }
 
             // Button feedback: turn green and show 'Saved!'

@@ -7,7 +7,8 @@ class StorageManager {
     - what does it mean for my profession (ux)
     - book recommendations`,
         promptType: 'custom',
-        selectedLanguage: 'en-US'
+        selectedLanguage: 'en-US',
+        betaPodcast: false
     };
 
     // bump if you later change the structure again
