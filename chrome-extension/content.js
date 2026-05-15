@@ -217,17 +217,10 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
             // Finalize UI
             streamContainer.remove();
             
-            // Final markdown-to-HTML pass (including clean spacing)
-            let finalHtml = summary
-              .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '')
-              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-              .replace(/\*(.*?)\*/g, '<em>$1</em>')
-              .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-              .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-              .replace(/^# (.*$)/gim, '<h1>$1</h1>');
-
+            const finalHtml = markdownToHtml(summary);
             const summaryContainer = document.createElement('blockquote');
-            summaryContainer.innerHTML = `<div><h2>AI Summary 🧙</h2>${finalHtml.replace(/\\n/g, '<br>')}</div>`;
+            summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
+            summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${finalHtml}</div>`;
             insertSummary(targetElement, summaryContainer);
             
             saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
@@ -260,17 +253,8 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
                 if (contentPiece) {
                   summary += contentPiece;
                   
-                  // Extremely simple markdown-to-HTML parser for LLMs that ignore the HTML prompt
-                  let formattedSummary = summary
-                    .replace(/^```html\n?/gi, '').replace(/\n?```$/g, '') // strip markdown codeblocks if they wrap HTML
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                    .replace(/^# (.*$)/gim, '<h1>$1</h1>');
-                    
                   // Live update the UI
-                  outputArea.innerHTML = `<small style="opacity:0.7">Drafting...</small><br>${formattedSummary.replace(/\\n/g, '<br>')}`;
+                  outputArea.innerHTML = `<small style="opacity:0.7; color: #666;">Drafting summary...</small><br>${markdownToHtml(summary)}`;
                   if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
                 }
               } catch (e) { /* Ignore partial JSON chunks */ }
@@ -326,14 +310,25 @@ function chunkText(text, chunkSize) {
   return chunks;
 }
 
+// Improved Markdown to HTML helper
+function markdownToHtml(text) {
+  return text
+    .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '') // Strip code blocks
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>').replace(/<\/ul>\n<ul>/g, '') // Basic lists
+    .replace(/\n/g, '<br>'); // Handle line breaks
+}
+
 // Function to extract all relevant text content from the page
 function getAllTextContent() {
   console.log('Getting all text content');
   
-  // Create a clone of the document body so we don't mutate the actual page
-  const clone = document.body.cloneNode(true);
-
-  // List of selectors for elements that usually contain non-article noise
+  // 1. Use the actual document first to let innerText do its layout magic
+  // (innerText respects CSS and naturally adds newlines for block elements)
   const noiseSelectors = [
     'script', 'style', 'noscript', 'nav', 'header', 'footer', 'aside',
     '[role="navigation"]', '[role="banner"]', '[role="contentinfo"]',
@@ -341,45 +336,34 @@ function getAllTextContent() {
     '#comments', '.comments', '.sidebar', '#sidebar'
   ];
 
+  // We'll use a temporary hidden div to process the clone if we want to be safe
+  const clone = document.body.cloneNode(true);
   for (const selector of noiseSelectors) {
     const nodes = clone.querySelectorAll(selector);
-    for (const node of nodes) {
-      node.remove();
-    }
+    for (const node of nodes) node.remove();
   }
 
-  // To prevent block elements from running together when reading textContent,
-  // we can insert newlines before and after them.
-  const blockElements = ['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'article', 'section', 'blockquote'];
-  for (const tag of blockElements) {
-    const nodes = clone.querySelectorAll(tag);
-    for (const node of nodes) {
-      node.prepend(document.createTextNode('\\n\\n'));
-      node.append(document.createTextNode('\\n\\n'));
-    }
-  }
-
-  // Fallback chain: look for article, or main, or use the whole body clone
   let mainNode = clone.querySelector('article') || 
                  clone.querySelector('main') || 
                  clone.querySelector('[role="main"]') || 
                  clone;
 
-  let text = mainNode.textContent || '';
+  // 2. Use innerText for natural formatting, fallback to textContent
+  let text = mainNode.innerText || mainNode.textContent || '';
   
-  // Clean up whitespace: replace multiple spaces with one, and multiple newlines with double newlines
+  // 3. The FIXED Clean-up
   let cleanText = text
-    .replace(/[ \\t]+/g, ' ')      
-    .replace(/\\n\\s*\\n/g, '\\n\\n')  
+    .replace(/[ \t]+/g, ' ')      // Fixed: matches actual spaces and tabs
+    .replace(/\n{3,}/g, '\n\n')   // Fixed: collapses 3+ newlines into just two
     .trim();
 
   // If it's suspiciously short (e.g. they put the main article outside <main>), fallback
   if (cleanText.length < 500 && mainNode !== clone) {
     console.log("Extracted content too short, falling back to full body container.");
-    text = clone.textContent || '';
+    text = clone.innerText || clone.textContent || '';
     cleanText = text
-      .replace(/[ \\t]+/g, ' ')
-      .replace(/\\n\\s*\\n/g, '\\n\\n')
+      .replace(/[ \t]+/g, ' ')
+      .replace(/\n{3,}/g, '\n\n')
       .trim();
   }
 
