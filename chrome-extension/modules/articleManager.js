@@ -69,8 +69,19 @@ export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
     const historyButton = document.getElementById('historyButton');
     const backButton = document.getElementById('backButton');
-    const historyScreen = document.getElementById('historyScreen');
     const searchInput = document.getElementById('searchInput');
+    const detailBackBtn = document.getElementById('detailBackButton');
+
+    if (detailBackBtn) {
+        detailBackBtn.addEventListener('click', () => {
+            const articleDetail = document.getElementById('articleDetail');
+            const articleList = document.getElementById('articleList');
+            const searchInput = document.getElementById('searchInput');
+            articleDetail.style.display = 'none';
+            if (articleList) articleList.style.display = 'block';
+            if (searchInput) searchInput.style.display = 'block';
+        });
+    }
 
     if (historyButton) {
         historyButton.addEventListener('click', () => {
@@ -88,7 +99,8 @@ export function initArticleManager(uiManager) {
     document.addEventListener('keydown', (event) => {
         if (event.metaKey && event.key === 'f') {
             event.preventDefault();
-            if (historyScreen.style.display === 'block') {
+            const historyNav = document.querySelector('.nav-item[data-screen="history"]');
+            if (historyNav && historyNav.classList.contains('active')) {
                 searchInput.focus();
             }
         }
@@ -113,7 +125,7 @@ export function renderArticles(articles) {
     }
     const sortedArticles = articles.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
     sortedArticles.forEach((article) => {
-        const articleHeader = article.title || article.content.split('\n')[0] || "No title available";
+        const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || "No title available";
         const listItem = document.createElement('li');
         listItem.classList.add('article-card');
         const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
@@ -122,106 +134,34 @@ export function renderArticles(articles) {
         if (article.url) {
             articleDomain = new URL(article.url).hostname;
         }
+        const safeSummary = (article.summary || 'No summary available').replace(/<img[^>]*>/gi, '');
         listItem.innerHTML = `
             <div class="article-header">
               <div>
                 <h4>${articleHeader}</h4>
                 <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}
               </div>
-              <button class="button-secondary expand-button">Expand</button>
-            </div>
-            <div class="article-content" style="display: none;">
-              <div class="action-bar" style="margin-bottom: 12px; display: flex; gap: 8px;">
-                <button class="button-secondary share-button">Share 🔗</button>
-                <button class="button-secondary md-button">.MD 💾</button>
-                <button class="button-secondary open-button">Reader 👓</button>
-                <button class="delete-button" aria-label="Delete article" style="margin-left: auto;">🗑️</button>
-              </div>
-              <p><strong>Description:</strong> ${article.description || 'No description available'}</p>
-              <div class="summary-box" style="background: rgba(0,0,0,0.05); padding: 10px; border-radius: 8px; border-left: 4px solid #007bff; margin-bottom: 12px;">
-                <strong>Summary:</strong><br>${article.summary || 'No summary available'}
-              </div>
-              <p style="font-size: 0.9em; opacity: 0.8; margin-top: 10px;"><strong>Original Content:</strong><br>${article.content || 'No content available'}</p>
+              <button class="button-secondary open-article-button">Open</button>
             </div>
         `;
         articleList.appendChild(listItem);
 
-        const expandButton = listItem.querySelector('.expand-button');
-        const articleContent = listItem.querySelector('.article-content');
-        const openButton = listItem.querySelector('.open-button');
+        const openButton = listItem.querySelector('.open-article-button');
         const shareButton = listItem.querySelector('.share-button');
         const mdButton = listItem.querySelector('.md-button');
         const deleteButton = listItem.querySelector('.delete-button');
 
-        if (expandButton && articleContent) {
-            expandButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isVisible = articleContent.style.display === 'block';
-                articleContent.style.display = isVisible ? 'none' : 'block';
-                expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
-            });
-        }
         if (openButton) {
             openButton.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const newTab = window.open();
-                newTab.document.write(`
-                    <html>
-                      <head>
-                        <title>Article Details</title>
-                        <style>
-                          body { font-family: 'Georgia', serif; padding: 20px; max-width: 800px; margin: auto; background-color: #f4f4f4; color: #333; line-height: 1.6; }
-                          h2 { color: #444; }
-                          p, pre { line-height: 1.6; }
-                          pre { white-space: pre-wrap; word-wrap: break-word; }
-                        </style>
-                      </head>
-                      <body>
-                        <h2>Summary</h2>
-                        <p>${article.summary}</p>
-                        <h2>Content</h2>
-                        <pre>${article.content}</pre>
-                      </body>
-                    </html>
-                `);
-                newTab.document.close();
+                showArticleDetail(article);
             });
         }
-        if (shareButton) {
-            shareButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                shareArticle(article);
-            });
-        }
-        if (mdButton) {
-            mdButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                exportToMarkdown(article);
-            });
-        }
-        if (deleteButton) {
-            deleteButton.addEventListener('click', function (e) {
-                e.stopPropagation();
-                if (confirm('Are you sure you want to delete this article?')) {
-                    StorageManager.getLocal('articles').then(data => {
-                        const articles = data.articles || [];
-                        const updatedArticles = articles.filter((item) => item.timestamp !== article.timestamp);
-                        StorageManager.setLocal({ articles: updatedArticles }, () => {
-                            renderArticles(updatedArticles);
-                        });
-                    });
-                }
-            });
-        }
-        /*
+        // Click on the card itself also opens detail
         listItem.addEventListener('click', (event) => {
-            if (!event.target.classList.contains('expand-button')) {
-                const isVisible = articleContent.style.display === 'block';
-                articleContent.style.display = isVisible ? 'none' : 'block';
-                expandButton.textContent = isVisible ? 'Expand' : 'Collapse';
-            }
+            if (event.target.closest('button') || event.target.closest('a')) return;
+            showArticleDetail(article);
         });
-        */
     });
 }
 
@@ -231,21 +171,97 @@ export function filterArticles() {
     const articles = document.querySelectorAll('.article-card');
     articles.forEach(article => {
         const headerText = article.querySelector('.article-header h4').textContent.toLowerCase();
-        const contentText = article.querySelector('.article-content').textContent.toLowerCase();
-        if (headerText.includes(filterText) || contentText.includes(filterText)) {
-            article.style.display = 'block';
-        } else {
-            article.style.display = 'none';
-        }
+        const matches = headerText.includes(filterText);
+        article.style.display = matches ? 'block' : 'none';
     });
 }
 
 export function displayArticleDetails(data) {
-    const articleDetailsContainer = document.getElementById('articleDetails');
-    articleDetailsContainer.innerHTML = `
-      <h3>Article Details</h3>
-      <p><strong>Title:</strong> ${data.title || 'No title available'}</p>
-      <p><strong>Description:</strong> ${data.description || 'No description available'}</p>
-      <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+    // No longer used — detail view is now handled by showArticleDetail()
+}
+
+/**
+ * Shows the full article detail view with back button
+ */
+export function showArticleDetail(article) {
+    const articleList = document.getElementById('articleList');
+    const searchInput = document.getElementById('searchInput');
+    const articleDetail = document.getElementById('articleDetail');
+    const articleDetailContent = document.getElementById('articleDetailContent');
+    const backBtn = document.getElementById('detailBackButton');
+
+    if (!articleDetail || !articleDetailContent) return;
+
+    const safeTitle = article.title || (article.content && article.content.split('\n')[0]) || 'Article';
+    const safeSummary = (article.summary || 'No summary available').replace(/<img[^>]*>/gi, '');
+    const safeContent = (article.content || 'No content available').replace(/<img[^>]*>/gi, '');
+    const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
+
+    articleDetailContent.innerHTML = `
+      <div class="article-detail-card">
+        <h3 style="margin-bottom:8px;">${safeTitle}</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">
+          ${article.url ? `<a href="${article.url}" target="_blank">${domain} ↗</a> · ` : ''}
+          ${new Date(article.timestamp).toLocaleDateString()}
+        </p>
+        <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="button-secondary share-button">Share 🔗</button>
+          <button class="button-secondary md-button">.MD 💾</button>
+          <button class="button-secondary open-button">Reader 👓</button>
+          <button class="delete-button" style="margin-left:auto;">🗑️ Delete</button>
+        </div>
+        <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-radius:8px;border-left:4px solid #007bff;margin-bottom:16px;">
+          <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
+          <div>${safeSummary}</div>
+        </div>
+        <details style="margin-top:8px;">
+          <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">📄 Original Content</summary>
+          <p style="font-size:13px;opacity:0.85;margin-top:8px;">${safeContent}</p>
+        </details>
+      </div>
     `;
+
+    // Wire up buttons
+    const shareBtn = articleDetailContent.querySelector('.share-button');
+    const mdBtn = articleDetailContent.querySelector('.md-button');
+    const openBtn = articleDetailContent.querySelector('.open-button');
+    const deleteBtn = articleDetailContent.querySelector('.delete-button');
+
+    if (shareBtn) shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareArticle(article); });
+    if (mdBtn) mdBtn.addEventListener('click', (e) => { e.stopPropagation(); exportToMarkdown(article); });
+    if (openBtn) {
+        openBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const newTab = window.open();
+            newTab.document.write(`
+                <html><head><title>${safeTitle}</title>
+                <style>body{font-family:Georgia,serif;padding:20px;max-width:800px;margin:auto;background:#f4f4f4;color:#333;line-height:1.6;}
+                h2{color:#444;}pre{white-space:pre-wrap;word-wrap:break-word;}</style></head>
+                <body><h2>Summary</h2><p>${article.summary}</p><h2>Content</h2><pre>${article.content}</pre></body></html>
+            `);
+            newTab.document.close();
+        });
+    }
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (confirm('Are you sure you want to delete this article?')) {
+                StorageManager.getLocal('articles').then(data => {
+                    const articles = data.articles || [];
+                    const updated = articles.filter(item => item.timestamp !== article.timestamp);
+                    StorageManager.setLocal({ articles: updated }, () => {
+                        renderArticles(updated);
+                        articleDetail.style.display = 'none';
+                        if (articleList) articleList.style.display = 'block';
+                        if (searchInput) searchInput.style.display = 'block';
+                    });
+                });
+            }
+        });
+    }
+
+    // Show detail, hide list
+    if (articleList) articleList.style.display = 'none';
+    if (searchInput) searchInput.style.display = 'none';
+    articleDetail.style.display = 'block';
 }

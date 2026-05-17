@@ -7,7 +7,8 @@ export function initShortcuts({ historyScreenId = 'historyScreen', searchInputId
             event.preventDefault();
             const historyScreen = document.getElementById(historyScreenId);
             const searchInput = document.getElementById(searchInputId);
-            if (historyScreen && searchInput && historyScreen.style.display === 'block') {
+            const historyNav = document.querySelector('.nav-item[data-screen="history"]');
+            if (historyScreen && searchInput && historyNav && historyNav.classList.contains('active')) {
                 searchInput.focus();
             }
         }

@@ -155,7 +155,7 @@ class StorageManager {
                 cfg[service.id] = {
                     apiKey: '',
                     model: service.defaultModel,
-                    customModel: '',
+                    customModel: [],
                     endpoint: service.endpointUrl
                 };
                 changed = true;
@@ -165,7 +165,11 @@ class StorageManager {
                 const updatedEntry = { ...entry };
                 if (updatedEntry.apiKey === undefined) updatedEntry.apiKey = '';
                 if (updatedEntry.model === undefined || updatedEntry.model === null || updatedEntry.model === '') updatedEntry.model = service.defaultModel;
-                if (updatedEntry.customModel === undefined) updatedEntry.customModel = '';
+                if (updatedEntry.customModel === undefined) updatedEntry.customModel = [];
+                // Migrate old string customModel → array
+                if (typeof updatedEntry.customModel === 'string') {
+                    updatedEntry.customModel = updatedEntry.customModel ? [updatedEntry.customModel] : [];
+                }
                 if (updatedEntry.endpoint === undefined || updatedEntry.endpoint === '') updatedEntry.endpoint = service.endpointUrl;
 
                 // If any defaults were applied, write back

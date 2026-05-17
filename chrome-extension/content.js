@@ -30,28 +30,54 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
   
+  if (request.action === 'toggleHybridSidebar') {
+    toggleHybridSidebar();
+    sendResponse({ status: 'Sidebar toggled' });
+    return true;
+  }
+  
   if (request.action === 'fetchSummary') {
+    const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode } = request;
     // 1. Acknowledge immediately to prevent port errors in the popup
-    sendResponse({ success: true, message: 'Selection started' });
+    sendResponse({ success: true, message: summaryMode === 'extension' ? 'Fetching summary...' : 'Selection started' });
 
     // 2. Run the logic independently
     (async () => {
-      const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt } = request;
+
+      // Extension mode: skip element selection, use a temp off-screen container
+      if (summaryMode === 'extension') {
+        chrome.storage.sync.get(['summaryLength', 'debugEnabled', 'prompt'], (data) => {
+          const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
+          // Create a hidden placeholder so fetchSummary has a target to stream into
+          const hiddenTarget = document.createElement('div');
+          hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
+          document.body.appendChild(hiddenTarget);
+          fetchSummary(
+            popupQuestions,
+            selectedLanguage,
+            promptToUse,
+            data.summaryLength || 500,
+            hiddenTarget,
+            data.debugEnabled || false,
+            summaryMode
+          );
+        });
+        return;
+      }
+
+      // Inline mode: ask user to pick an insertion point
       const targetElement = await selectTargetElement();
       if (targetElement) {
-        // Fetch debugEnabled along with summaryLength AND prompt settings
         chrome.storage.sync.get(['summaryLength', 'debugEnabled', 'prompt'], (data) => {
-          // Use the stored prompt as a fallback if the popup didn't send one 
-          // (though mainScreen.js usually sends it)
           const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
-          
           fetchSummary(
             popupQuestions, 
             selectedLanguage, 
             promptToUse, 
             data.summaryLength || 500, 
             targetElement, 
-            data.debugEnabled || false
+            data.debugEnabled || false,
+            summaryMode
           );
         });
       }
@@ -67,7 +93,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled) {
+async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension') {
   // Increase tokenLimit for Gemini-style providers. This is an approximate
   // token limit (measured in tokens) used to decide how much of the page to
   // include. We use character-based truncation below (chars ≈ tokens * 4).
@@ -112,7 +138,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
       try {
         // Prefer modelConfig sent from popup (endpoint + model + responseStructure)
         let apiUrl = modelConfig?.endpointUrl || cfg.endpoint;
-        let modelIdentifier = modelConfig?.modelIdentifier || cfg.customModel || cfg.model;
+        let modelIdentifier = modelConfig?.modelIdentifier || cfg.activeModelId || (Array.isArray(cfg.customModel) ? cfg.customModel[0] : cfg.customModel) || cfg.model;
 
         // Defensive fallback: if modelIdentifier is missing (migration not run),
         // attempt to read the default model from the bundled services.json so
@@ -184,6 +210,13 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           updateDebugPanel(`Requesting ${modelIdentifier}...\n\nURL: ${finalApiUrl}\n\nPayload: ${requestBody}`, finalApiUrl);
         }
 
+        // Helper: relay progress back to the popup
+        const relay = (action, payload = {}) => {
+          if (summaryMode === 'extension') {
+            chrome.runtime.sendMessage({ action, ...payload }).catch(() => {});
+          }
+        };
+
         // STREAMING LOGIC
         let summary = "";
         const streamContainer = targetElement.querySelector('.placeholder');
@@ -192,6 +225,11 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         outputArea.style.borderTop = '1px solid #ccc';
         outputArea.style.paddingTop = '10px';
         streamContainer.appendChild(outputArea);
+
+        relay('summaryProgress', { chunk: 'Connected to API, waiting for response…' });
+
+        // Track start time for elapsed reporting
+        const streamStart = Date.now();
 
         const port = chrome.runtime.connect({ name: 'streamFetch' });
         
@@ -207,6 +245,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         port.onMessage.addListener((msg) => {
           if (msg.error) {
             console.error('❌ Error:', msg.error);
+            relay('summaryError', { error: msg.error });
             targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${msg.error}`;
             reject(new Error(msg.error));
             port.disconnect();
@@ -218,10 +257,22 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
             streamContainer.remove();
             
             const finalHtml = markdownToHtml(summary);
-            const summaryContainer = document.createElement('blockquote');
-            summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
-            summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${finalHtml}</div>`;
-            insertSummary(targetElement, summaryContainer);
+            
+            if (summaryMode === 'inline') {
+              const summaryContainer = document.createElement('blockquote');
+              summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
+              summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${finalHtml}</div>`;
+              insertSummary(targetElement, summaryContainer);
+            } else {
+              // Extension mode: clean up the hidden placeholder, summary is saved to storage
+              targetElement.remove();
+              relay('summaryComplete', {
+                summary: finalHtml,
+                title: document.title,
+                url: window.location.href,
+                timestamp: new Date().toISOString()
+              });
+            }
             
             saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
             resolve({ success: true });
@@ -231,6 +282,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           }
 
           if (msg.chunk) {
+            relay('summaryProgress', { chunk: 'Receiving data…' });
             buffer += msg.chunk;
             const lines = buffer.split('\n');
             buffer = lines.pop();
@@ -256,6 +308,16 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
                   // Live update the UI
                   outputArea.innerHTML = `<small style="opacity:0.7; color: #666;">Drafting summary...</small><br>${markdownToHtml(summary)}`;
                   if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
+                  
+                  // Throttled progress to popup (every ~10 words)
+                  const wordCount = summary.split(/\s+/).filter(Boolean).length;
+                  if (summaryMode === 'extension' && wordCount % 10 < 2) {
+                    const elapsed = Math.floor((Date.now() - streamStart) / 1000);
+                    relay('summaryProgress', {
+                      chunk: `${wordCount} words · ${elapsed}s`,
+                      preview: summary
+                    });
+                  }
                 }
               } catch (e) { /* Ignore partial JSON chunks */ }
             }
@@ -264,6 +326,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
       } catch (error) {
         console.error('❌ Error:', error);
+        relay('summaryError', { error: error.message });
         targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${error.message}`;
         reject(error);
       }
@@ -310,6 +373,42 @@ function chunkText(text, chunkSize) {
   return chunks;
 }
 
+// ── Hybrid Sidebar (fallback when native sidePanel API is unavailable) ──
+
+function toggleHybridSidebar() {
+    const sidebarId = 'ai-summary-hybrid-sidebar';
+    let sidebar = document.getElementById(sidebarId);
+
+    if (sidebar) {
+        sidebar.style.transform = 'translateX(100%)';
+        setTimeout(() => sidebar.remove(), 300);
+        return;
+    }
+
+    sidebar = document.createElement('iframe');
+    sidebar.id = sidebarId;
+    sidebar.src = chrome.runtime.getURL('popup.html');
+    sidebar.style.cssText = `
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 420px;
+        height: 100vh;
+        border: none;
+        border-left: 1px solid rgba(0,0,0,0.1);
+        box-shadow: -8px 0 24px rgba(0,0,0,0.1);
+        z-index: 2147483647;
+        background: #faf8ff;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        color-scheme: light dark;
+    `;
+    document.body.appendChild(sidebar);
+    requestAnimationFrame(() => {
+        sidebar.style.transform = 'translateX(0)';
+    });
+}
+
 // Improved Markdown to HTML helper
 function markdownToHtml(text) {
   return text
@@ -326,41 +425,91 @@ function markdownToHtml(text) {
 // Function to extract all relevant text content from the page
 function getAllTextContent() {
   console.log('Getting all text content');
-  
-  // 1. Use the actual document first to let innerText do its layout magic
-  // (innerText respects CSS and naturally adds newlines for block elements)
+
+  // Noise selectors — elements to strip before extracting text
   const noiseSelectors = [
     'script', 'style', 'noscript', 'nav', 'header', 'footer', 'aside',
     '[role="navigation"]', '[role="banner"]', '[role="contentinfo"]',
-    'iframe', 'embed', 'object', 'canvas', 'svg', '.ad', '.ads', '.advertisement',
-    '#comments', '.comments', '.sidebar', '#sidebar'
+    'iframe', 'embed', 'object', 'canvas', 'svg',
+    '.ad', '.ads', '.advertisement', '.ad-wrap', '.ad-config',
+    '#comments', '.comments', '.sidebar', '#sidebar',
+    // visually hidden / screen-reader-only text
+    '.sr-only', '.visually-hidden', '.screen-reader-text', '.skip-link',
+    '[aria-hidden="true"]', '.hidden', '.hide',
+    // NPR-specific junk
+    '.tags', '.share-tools', '.recommended-stories', '.story-recommendations',
+    '.npr-footer', '.global-stickybar', '#main-sidebar',
+    '.audio-module', '.story-meta', '.storytitle', '.bucketwrap',
+    '.credit-caption', '.imagewrap', '.branding',
+    '#storybyline', '.storybyline-wrap', '.program-block', '.dateblock',
+    '#headlineaudio', '#global-modal-mount', '#npr-plus-get-access-modal-mount',
+    '#global-stickybar-mount', '#callout-end-of-story-mount',
+    '#callout-end-of-story-mount-piano-wrap', '#end-of-story-recommendations-mount',
+    '#end-of-story-recommendations-mount-piano', '#newsletter-acquisition-callout-data',
+    '.speakable'
   ];
 
-  // We'll use a temporary hidden div to process the clone if we want to be safe
-  const clone = document.body.cloneNode(true);
+  // Find the best content container
+  const articleEl = document.querySelector('#storytext')     // NPR
+    || document.querySelector('article')                      // generic
+    || document.querySelector('[role="main"]')                // fallback
+    || document.querySelector('main')                         // last resort
+    || document.body;
+
+  // Clone just the content container
+  const clone = articleEl.cloneNode(true);
+
+  // Strip noise from the clone
   for (const selector of noiseSelectors) {
     const nodes = clone.querySelectorAll(selector);
     for (const node of nodes) node.remove();
   }
 
-  let mainNode = clone.querySelector('article') || 
-                 clone.querySelector('main') || 
-                 clone.querySelector('[role="main"]') || 
-                 clone;
+  // Use textContent on the cleaned clone (reliable, works detached)
+  let text = clone.textContent || '';
 
-  // 2. Use innerText for natural formatting, fallback to textContent
-  let text = mainNode.innerText || mainNode.textContent || '';
-  
-  // 3. The FIXED Clean-up
+  // Clean up whitespace
   let cleanText = text
-    .replace(/[ \t]+/g, ' ')      // Fixed: matches actual spaces and tabs
-    .replace(/\n{3,}/g, '\n\n')   // Fixed: collapses 3+ newlines into just two
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 
-  // If it's suspiciously short (e.g. they put the main article outside <main>), fallback
-  if (cleanText.length < 500 && mainNode !== clone) {
-    console.log("Extracted content too short, falling back to full body container.");
-    text = clone.innerText || clone.textContent || '';
+  // Post-process: strip common noise lines
+  const noisePatterns = [
+    /^Accessibility links\b/i,
+    /^Skip to main content/i,
+    /^Keyboard shortcuts for audio player/i,
+    /^NPR 24 Hour Program Stream/i,
+    /^Open Navigation Menu/i,
+    /^Close Navigation Menu/i,
+    /^toggle caption$/i,
+    /^hide caption$/i,
+    /^Sponsor Message/i,
+    /^Become an NPR sponsor/i,
+  ];
+  cleanText = cleanText
+    .split('\n')
+    .filter(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return false; // skip empty lines
+      for (const pattern of noisePatterns) {
+        if (pattern.test(trimmed)) return false;
+      }
+      return true;
+    })
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+  // If too short, fall back to full body
+  if (cleanText.length < 500 && articleEl !== document.body) {
+    console.log("Extracted content too short, falling back to full body.");
+    const bodyClone = document.body.cloneNode(true);
+    for (const selector of noiseSelectors) {
+      const nodes = bodyClone.querySelectorAll(selector);
+      for (const node of nodes) node.remove();
+    }
+    text = bodyClone.textContent || '';
     cleanText = text
       .replace(/[ \t]+/g, ' ')
       .replace(/\n{3,}/g, '\n\n')

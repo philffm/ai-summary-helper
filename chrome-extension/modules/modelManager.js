@@ -1,41 +1,69 @@
 // Model Manager modelManager.js
 // Handles service/model config and label logic
 
-    // Handles model identifier label and input logic
+import StorageManager from './storageManager.js';
+
+    // Handles model identifier label and tag UI
     async function updateModelIdentifierUI(serviceId, services, storageData) {
-        const modelIdentifierInput = document.getElementById('modelIdentifier');
-        const modelIdentifierLabel = document.getElementById('modelIdentifierLabel');
         const modelIdentifierContainer = document.getElementById('modelIdentifierContainer');
         const service = services.find(s => s.id === serviceId);
         const cfg = storageData.servicesConfig?.[serviceId] || {};
-        // Model label always shows current model
-        const currentModel = (cfg.customModel && cfg.customModel.trim() !== '') ? cfg.customModel : service.defaultModel || '';
-        if (modelIdentifierLabel) {
-            modelIdentifierLabel.textContent = `Model Identifier: ${currentModel}`;
-        }
-        // Show input by default so the user can see and edit the model identifier.
-        // Previously this was hidden unconditionally which made the identifier input
-        // invisible in the settings UI.
+        const defaultModel = service?.defaultModel || '';
+        const models = Array.isArray(cfg.customModel) ? cfg.customModel : (cfg.customModel ? [cfg.customModel] : []);
+
         if (modelIdentifierContainer) {
             modelIdentifierContainer.style.display = 'block';
-        }
-        // Only set input value if editing
-        if (modelIdentifierInput) {
-            modelIdentifierInput.value = cfg.customModel || '';
-            modelIdentifierInput.oninput = () => {
-                chrome.storage.sync.get(null, storageData => {
-                    const servicesConfig = storageData.servicesConfig || {};
-                    servicesConfig[serviceId] = {
-                        ...servicesConfig[serviceId],
-                        customModel: modelIdentifierInput.value
-                    };
-                    chrome.storage.sync.set({ servicesConfig }, () => {
-                        if (modelIdentifierLabel) {
-                            modelIdentifierLabel.textContent = `Model Identifier: ${modelIdentifierInput.value}`;
-                        }
+            modelIdentifierContainer.innerHTML = `
+                <label style="display:block;margin-bottom:6px;">Model Identifiers</label>
+                <div id="modelTagList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">
+                  ${models.map(m => `<span class="model-id-tag" data-model="${m.replace(/"/g, '&quot;')}">${m} <span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span></span>`).join('')}
+                  ${models.length === 0 ? `<span style="font-size:12px;color:var(--text-muted);">Default: ${defaultModel}</span>` : ''}
+                </div>
+                <div style="display:flex;gap:6px;">
+                  <input type="text" id="addModelInput" placeholder="e.g. gpt-5-mini" style="flex:1;padding:8px 10px;" />
+                  <button id="addModelBtn" class="button-secondary" style="flex-shrink:0;">+ Add</button>
+                </div>
+            `;
+
+            // Wire up remove buttons
+            modelIdentifierContainer.querySelectorAll('.remove-model-tag').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const tag = el.closest('.model-id-tag');
+                    const model = tag.dataset.model;
+                    StorageManager.get(null).then(storageData => {
+                        const servicesConfig = storageData.servicesConfig || {};
+                        let list = Array.isArray(servicesConfig[serviceId]?.customModel)
+                          ? [...servicesConfig[serviceId].customModel]
+                          : [];
+                        StorageManager.updateService(serviceId, { customModel: list.filter(m => m !== model) }).then(() => {
+                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...servicesConfig[serviceId], customModel: list.filter(m => m !== model) } } });
+                        });
                     });
                 });
-            };
+            });
+
+            // Wire up add button
+            const addBtn = document.getElementById('addModelBtn');
+            const addInput = document.getElementById('addModelInput');
+            if (addBtn && addInput) {
+                const addModel = () => {
+                    const val = addInput.value.trim();
+                    if (!val) return;
+                    StorageManager.get(null).then(storageData => {
+                        const servicesConfig = storageData.servicesConfig || {};
+                        const entry = servicesConfig[serviceId] || {};
+                        let list = Array.isArray(entry.customModel) ? [...entry.customModel] : (entry.customModel ? [entry.customModel] : []);
+                        if (!list.includes(val)) list.push(val);
+                        StorageManager.updateService(serviceId, { customModel: list }).then(() => {
+                            addInput.value = '';
+                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...entry, customModel: list } } });
+                        });
+                    });
+                };
+                addBtn.addEventListener('click', addModel);
+                addInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addModel(); });
+            }
         }
     }
 

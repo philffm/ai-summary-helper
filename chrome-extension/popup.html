@@ -1,4 +1,8 @@
-<!-- popup.html is the main file that will be loaded when the extension is clicked. It contains the main UI of the extension. -->
+<!-- popup.html — AI Summary Helper
+     Architecture: header (sticky) → screens (natural flow) → bottom-nav (fixed)
+     Screens: main | history | settings | apps — toggled via display:none/block
+     All legacy button IDs preserved in hidden div for JS compatibility
+-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,126 +11,200 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- ── Header ──────────────────────────────────────────────────────── -->
     <div class="header">
       <div class="logoheader">
-        <img
-          src="icons/icon.svg"
-          alt="AI Summary Helper"
-          width="32"
-          height="32"
-        />
+        <img src="icons/icon.svg" alt="AI Summary Helper" width="32" height="32" />
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
-        <button id="appsButton" class="button-secondary" title="Apps">
-          💠
-        </button>
-        <button id="historyButton" class="button-secondary" title="History">
-          🗂️
-        </button>
-        <button id="podcastButton" class="button-secondary">🎙️</button>
-        <button id="backButton" class="button-secondary" title="Back">
-          Back
-        </button>
-        <button
-          id="toggleScreenButton"
-          class="button-secondary"
-          title="Settings"
-        >
-          ⚙️
-        </button>
+        <button id="popoutButton" class="button-icon" title="Open in sidebar">↗️</button>
       </div>
     </div>
-    <!-- link to donate https://link.philwornath.com/#donate?source=aish -->
-    <div class="compatible-tools">
-      <h2 class="compatible-tools-heading">Compatible Tools</h2>
-      <div id="compatibleToolsList">
-        <div class="explanatory-card">
-          💠 Extensions that integrate well in the workflow with AI Summary
-          Helper
-        </div>
-      </div>
-    </div>
-    <div id="mainScreen" class="screen">
-      <textarea
-        id="additionalQuestions"
-        placeholder="Enter additional questions about the article (optional)"
-      ></textarea>
-      <div id="languageSelection">
-        <label for="languageSelect">Summary Language:</label>
-        <select id="languageSelect">
-          <!-- Options will be populated dynamically -->
-        </select>
-      </div>
-      <div id="sumaryLengthSlider">
-        <label for="summaryLength"
-          >Summary Length: <span id="summaryLengthValue">500</span> words</label
-        >
-        <input
-          type="range"
-          id="summaryLength"
-          min="100"
-          max="500"
-          value="200"
-          step="50"
-        />
-      </div>
-      <button id="fetchSummary" class="button-primary fillAvailable">
-        🪄 Fetch Summary
-        <span id="spinner" class="spinner" style="display: none"></span>
-      </button>
-    </div>
-    <div id="settingsScreen" class="screen" style="display: none">
-      <p class="donate">
-        Questions, bugs or happy? 💡, feel free to
-        <a
-          href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp"
-          target="_blank"
-          >give feedback</a
-        >,
-        <a href="https://philwornath.com/?ref=aish#contact" target="_blank"
-          >contact me</a
-        >
-        or consider
-        <a
-          href="https://link.philwornath.com/?source=aish#donate"
-          target="_blank"
-          >a donation</a
-        >
-        :)
-      </p>
 
-      <form id="settingsForm">
-        <div class="accordion flex column gap-2"></div>
-        <p>
-          Open Source software by
-          <a href="https://link.philwornath.com/?ref=aish" target="_blank"
-            >Phil Wornath</a
-          >
-          <br />AI Summary Helper v<span id="versionNumber">1.5.38</span> - Feel
-          free to
-          <a href="https://github.com/philffm/ai-summary-helper" target="_blank"
-            >contribute on GitHub 💙</a
-          >
+    <!-- legacy header buttons (hidden, kept for JS getElementById compatibility) -->
+    <div style="display:none" aria-hidden="true">
+      <button id="appsButton">💠</button>
+      <button id="historyButton">🗂️</button>
+      <button id="podcastButton">🎙️</button>
+      <button id="backButton">Back</button>
+    </div>
+
+    <!-- ── Screen Container (slides horizontally) ──────────────────── -->
+    <div class="screen-container" id="screenContainer">
+      <!-- MAIN SCREEN -->
+      <div id="mainScreen" class="screen">
+      <div class="main-screen-layout">
+        <!-- Scrollable feed area (top) -->
+        <div class="feed-scroll" id="feedScroll">
+          <!-- Summary Feed (chat-style bubbles) -->
+          <div id="summaryFeed" class="summary-feed"></div>
+
+          <!-- Recent entry (welcome area when empty) -->
+          <div class="recent-entry" id="recentEntry">
+            <div class="recent-thumb">
+              <img src="icons/icon.svg" alt="" width="24" height="24" />
+            </div>
+            <div class="recent-info">
+              <span class="recent-title" id="recentTitle">No recent summaries</span>
+              <span class="recent-meta" id="recentMeta">Summarize a page to see it here</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fixed-bottom controls -->
+        <div class="controls-bar">
+          <div class="input-card">
+            <label class="input-card-label">What should the AI focus on?</label>
+            <textarea
+              id="additionalQuestions"
+              class="input-card-textarea"
+              placeholder="Ask specific questions about this page…"
+            ></textarea>
+
+            <!-- Quick-action chips row (parent for popup panels) -->
+            <div class="chip-row" id="chipRow">
+
+              <!-- Expandable panels (pop up above the chips) -->
+              <div id="panelLanguage" class="chip-panel popup-panel" style="display:none">
+                <label class="chip-panel-label">Summary Language</label>
+                <input type="text" id="languageSearch" class="chip-panel-search" placeholder="Search languages…" />
+                <div id="languageTagGrid" class="tag-grid"></div>
+                <select id="languageSelect" style="display:none"></select>
+              </div>
+              <div id="panelLength" class="chip-panel popup-panel" style="display:none">
+                <div class="chip-panel-header">
+                  <label for="summaryLength" class="chip-panel-label">Summary Length</label>
+                  <span id="summaryLengthValue" class="chip-panel-badge">200</span>
+                </div>
+                <input type="range" id="summaryLength" min="100" max="500" value="200" step="50" />
+                <div class="range-labels">
+                  <span>100</span>
+                  <span>500</span>
+                </div>
+              </div>
+              <div id="panelMode" class="chip-panel popup-panel" style="display:none">
+                <label class="chip-panel-label">Summary Mode</label>
+                <div class="mode-tabs">
+                  <button id="modeExtension" class="mode-tab active" data-mode="extension">
+                    <span class="mode-tab-title">Extension</span>
+                    <span class="mode-tab-hint">View &amp; Copy</span>
+                  </button>
+                  <button id="modeInline" class="mode-tab" data-mode="inline">
+                    <span class="mode-tab-title">Inline</span>
+                    <span class="mode-tab-hint">Insert into Page</span>
+                  </button>
+                </div>
+                <p class="mode-tip">Inline mode is great for "Send to Kindle".</p>
+              </div>
+              <div id="panelModel" class="chip-panel popup-panel" style="display:none">
+                <label class="chip-panel-label">AI Model</label>
+                <div id="modelProviderGrid" class="tag-grid" style="margin-bottom:8px;"></div>
+                <div id="modelIdGrid" class="tag-grid" style="border-top:1px solid var(--outline);padding-top:8px;"></div>
+                <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--outline);display:flex;gap:6px;">
+                  <input type="text" id="customModelInput" class="chip-panel-search" placeholder="Add custom model ID…" style="margin-bottom:0;" />
+                  <button id="setCustomModelBtn" class="button-secondary" style="flex-shrink:0;font-size:11px;">+</button>
+                </div>
+                <button id="modelSettingsLink" class="button-secondary" style="width:100%;font-size:11px;margin-top:6px;">⚙️ Settings</button>
+                <select id="modelSelect" style="display:none"></select>
+              </div>
+
+              <button class="chip" data-panel="language">
+                <span class="chip-icon">🌐</span>
+                <span id="chipLanguageLabel">EN</span>
+              </button>
+              <button class="chip" data-panel="length">
+                <span class="chip-icon">📏</span>
+                <span id="chipLengthLabel">200w</span>
+              </button>
+              <button class="chip" data-panel="mode">
+                <span class="chip-icon">📋</span>
+                <span id="chipModeLabel">Ext</span>
+              </button>
+              <button class="chip" data-panel="model">
+                <span class="chip-icon">🤖</span>
+                <span id="chipModelLabel">OpenAI</span>
+              </button>
+            </div>
+
+            <button id="fetchSummary" class="button-primary fillAvailable" style="margin-top: var(--spacing-s-3);">
+              ✨ Fetch Summary
+              <span id="spinner" class="spinner" style="display: none"></span>
+            </button>
+          </div>
+        </div>
+      </div> <!-- closes main-screen-layout -->
+      </div> <!-- closes #mainScreen -->
+
+      <!-- HISTORY SCREEN -->
+      <div id="historyScreen" class="screen">
+        <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" />
+        <ul id="articleList"></ul>
+        <div id="articleDetail" style="display:none">
+          <button id="detailBackButton" class="button-secondary" style="margin-bottom:12px;">← Back</button>
+          <div id="articleDetailContent"></div>
+        </div>
+        <div id="podcastScreen" style="display: none"></div>
+      </div>
+
+      <!-- SETTINGS SCREEN -->
+      <div id="settingsScreen" class="screen">
+        <div class="settings-header">
+          <h2>Settings</h2>
+          <button type="submit" form="settingsForm" class="button-primary" style="padding:8px 16px;font-size:13px;width:auto;flex-shrink:0;">Save 💾</button>
+        </div>
+        <p class="donate">
+          Questions, bugs or happy? 💡, feel free to
+          <a href="https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp" target="_blank">give feedback</a>,
+          <a href="https://philwornath.com/?ref=aish#contact" target="_blank">contact me</a>
+          or consider
+          <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">a donation</a> :)
         </p>
-        <div class="flex fixed-bottom">
-          <button type="submit" class="button-primary fixed-button">
-            Save 💾
-          </button>
-        </div>
-      </form>
-    </div>
-    <div id="historyScreen" class="screen" style="display: none">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search articles... (⌘ + F)"
-      />
+        <form id="settingsForm">
+          <div class="accordion flex column gap-2 mb-3"></div>
+          <p>
+            Open Source software by
+            <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
+            <br />AI Summary Helper v<span id="versionNumber">1.5.44</span> — Feel free to
+            <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
+          </p>
+        </form>
+      </div>
 
-      <ul id="articleList"></ul>
-      <!-- Podcast Manager UI will be rendered here when in history view -->
-      <div id="podcastScreen" style="display: none"></div>
+      <!-- APPS SCREEN -->
+      <div id="appsScreen" class="screen">
+        <div class="apps-hero">
+          <span class="apps-hero-icon">💠</span>
+          <h2>Compatible Tools</h2>
+          <p>Extensions that integrate seamlessly with AI Summary Helper to supercharge your workflow.</p>
+        </div>
+        <div id="compatibleToolsList" class="apps-grid">
+          <div class="explanatory-card">Loading tools…</div>
+        </div>
+      </div>
     </div>
+
+    <!-- ── Bottom Nav ──────────────────────────────────────────────────── -->
+    <nav class="bottom-nav" id="bottomNav">
+      <div class="nav-blob" id="navBlob"></div>
+      <button class="nav-item active" data-screen="main">
+        <span class="nav-icon">✨</span>
+        <span class="nav-label">Summarize</span>
+      </button>
+      <button class="nav-item" data-screen="history">
+        <span class="nav-icon">🕐</span>
+        <span class="nav-label">History</span>
+      </button>
+      <button class="nav-item" data-screen="apps">
+        <span class="nav-icon">💠</span>
+        <span class="nav-label">Apps</span>
+      </button>
+      <button class="nav-item" data-screen="settings">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-label">Settings</span>
+      </button>
+    </nav>
+
     <script type="module" src="popup.js"></script>
   </body>
 </html>

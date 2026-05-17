@@ -2,13 +2,14 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.38",
+  "version": "1.5.42",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
     "activeTab",
     "storage",
-    "scripting"
+    "scripting",
+    "sidePanel"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -42,6 +43,9 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
   "commands": {
     "toggle-popup": {
       "suggested_key": {
@@ -61,12 +65,15 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "popup.html",
+        "styles.css",
+        "popup.js",
         "uiManager.js",
-        "services.json"
+        "services.json",
+        "icons/*",
+        "modules/*"
       ],
-      "matches": [
-        "<all_urls>"
-      ]
+      "matches": ["<all_urls>"]
     }
   ]
 }

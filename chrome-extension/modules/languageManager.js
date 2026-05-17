@@ -23,6 +23,8 @@ export function initLanguageManager(uiManager) {
                 if (storage.selectedLanguage) {
                     languageSelect.value = storage.selectedLanguage;
                 }
+                // Dispatch change so popup.js picks up the initial flag & label
+                languageSelect.dispatchEvent(new Event('change'));
             });
         })
         .catch(error => console.error('Error loading languages:', error));

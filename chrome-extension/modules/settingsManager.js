@@ -105,6 +105,14 @@ function initSettingsManager(ui) {
                     if (betaPodcastToggle) {
                         betaPodcastToggle.checked = !!storageData.betaPodcast;
                     }
+                    const nativeSidePanelToggle = document.getElementById('nativeSidePanelToggle');
+                    if (nativeSidePanelToggle) {
+                        nativeSidePanelToggle.checked = !!storageData.useNativeSidePanel;
+                    }
+                    const openLargeToggle = document.getElementById('openLargeToggle');
+                    if (openLargeToggle) {
+                        openLargeToggle.checked = !!storageData.openLarge;
+                    }
                 }
 
                                 loadSettings();
@@ -157,6 +165,22 @@ function initSettingsManager(ui) {
                         <option value="dark">Dark Mode</option>
                     </select>
                   </div>
+
+                  <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
+                    <label for="openLargeToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Open Large by Default</label>
+                    <label class="switch">
+                      <input type="checkbox" id="openLargeToggle" />
+                      <span class="slider-toggle"></span>
+                    </label>
+                  </div>
+
+                  <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
+                    <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Side Panel</label>
+                    <label class="switch">
+                      <input type="checkbox" id="nativeSidePanelToggle" />
+                      <span class="slider-toggle"></span>
+                    </label>
+                  </div>
                   
                   <div class="setting-group" style="margin-bottom: var(--spacing-s-4); display: flex; justify-content: space-between; align-items: center;">
                     <label for="betaPodcastToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Enable Podcast Beta</label>
@@ -166,9 +190,12 @@ function initSettingsManager(ui) {
                     </label>
                   </div>
                   
-                  <div style="display: flex; gap: var(--spacing-s-2); margin-top: var(--spacing-s-4);">
-                    <button id="deleteSettingsButton" class="button danger" style="flex:1;">Delete Settings</button>
-                    <button id="deleteHistoryButton" class="button danger" style="flex:1;">Delete History</button>
+                  <div style="margin-top: var(--spacing-s-4); padding-top: var(--spacing-s-3); border-top: 2px solid var(--danger);">
+                    <p style="font-size: 12px; font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--spacing-s-3);">⚠️ Danger Zone</p>
+                    <div style="display: flex; gap: var(--spacing-s-2);">
+                      <button id="deleteSettingsButton" class="button danger" style="flex:1;">Delete Settings</button>
+                      <button id="deleteHistoryButton" class="button danger" style="flex:1;">Delete History</button>
+                    </div>
                   </div>
                 `
             }
@@ -201,21 +228,93 @@ function initSettingsManager(ui) {
     const settingsForm = document.getElementById('settingsForm');
     const summaryLengthSlider = document.getElementById('summaryLength');
     const summaryLengthValue = document.getElementById('summaryLengthValue');
-    const settingsButton = document.getElementById('toggleScreenButton');
+    const saveButton = document.querySelector('button[form="settingsForm"]');
 
-    // Wire up settings button to show settings screen
-    if (settingsButton && ui && typeof ui.showScreen === 'function') {
-        settingsButton.addEventListener('click', () => {
-            ui.showScreen('settings');
+    // ── Auto-save helper: saves a key/value and flashes the save button ──
+    const autoSave = async (key, value) => {
+        await StorageManager.set({ [key]: value });
+        if (saveButton) {
+            const origText = saveButton.textContent;
+            const origBg = saveButton.style.background;
+            const origColor = saveButton.style.color;
+            saveButton.textContent = 'Saved!';
+            saveButton.style.background = '#2ecc40';
+            saveButton.style.color = '#fff';
+            saveButton.disabled = true;
+            setTimeout(() => {
+                saveButton.textContent = origText;
+                saveButton.style.background = origBg;
+                saveButton.style.color = origColor;
+            }, 1500);
+        }
+    };
+
+    // ── Auto-save on individual setting changes ──────────────────────────
+    const themeSelect = document.getElementById('themeSelect');
+    if (themeSelect) {
+        themeSelect.addEventListener('change', () => {
+            const val = themeSelect.value;
+            autoSave('theme', val);
+            if (val === 'dark' || val === 'light') {
+                document.documentElement.setAttribute('data-theme', val);
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        });
+    }
+
+    const betaPodcastToggle = document.getElementById('betaPodcastToggle');
+    if (betaPodcastToggle) {
+        betaPodcastToggle.addEventListener('change', () => {
+            autoSave('betaPodcast', betaPodcastToggle.checked);
+            const podcastButton = document.getElementById('podcastButton');
+            if (podcastButton) {
+                podcastButton.style.display = betaPodcastToggle.checked ? 'inline-flex' : 'none';
+            }
+        });
+    }
+
+    const nativeSidePanelToggle = document.getElementById('nativeSidePanelToggle');
+    if (nativeSidePanelToggle) {
+        nativeSidePanelToggle.addEventListener('change', () => {
+            autoSave('useNativeSidePanel', nativeSidePanelToggle.checked);
+        });
+    }
+
+    const openLargeToggle = document.getElementById('openLargeToggle');
+    if (openLargeToggle) {
+        openLargeToggle.addEventListener('change', () => {
+            autoSave('openLarge', openLargeToggle.checked);
+        });
+    }
+
+    // Auto-save model selection
+    const modelSelect = document.getElementById('model');
+    if (modelSelect) {
+        modelSelect.addEventListener('change', async () => {
+            await StorageManager.set({ activeService: modelSelect.value });
+            autoSave('activeService', modelSelect.value);
+        });
+    }
+
+    // Auto-save prompt selection
+    const promptSelect = document.getElementById('promptSelect');
+    if (promptSelect) {
+        promptSelect.addEventListener('change', () => {
+            const promptType = promptSelect.value === 'custom' ? 'custom' : 'preset';
+            StorageManager.set({ presetPrompt: promptSelect.value, promptType });
+            autoSave('presetPrompt', promptSelect.value);
         });
     }
 
     // Initialize summary length slider
     if (summaryLengthSlider && summaryLengthValue) {
         chrome.storage.local.get(['summaryLength'], data => {
-            const length = data.summaryLength || 500;
+            const length = data.summaryLength || 200;
             summaryLengthSlider.value = length;
             summaryLengthValue.textContent = length;
+            // Force the blue fill track and chip label to recalculate
+            summaryLengthSlider.dispatchEvent(new Event('input'));
         });
         summaryLengthSlider.addEventListener('input', () => {
             const newLength = summaryLengthSlider.value;
@@ -224,93 +323,30 @@ function initSettingsManager(ui) {
         });
     }
 
-    // Settings form submit logic (if form exists)
+    // Settings form submit — only handles fields not auto-saved (API key, endpoint, custom prompt)
     if (settingsForm) {
         settingsForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            // Gather all settings fields
-            const modelSelect = document.getElementById('model');
             const apiKeyInput = document.getElementById('apiKey');
-            const modelIdentifierInput = document.getElementById('modelIdentifier');
             const endpointInput = document.getElementById('customEndpoint');
-            const promptSelect = document.getElementById('promptSelect');
             const promptInput = document.getElementById('prompt');
-            const themeSelect = document.getElementById('themeSelect');
-            const betaPodcastToggle = document.getElementById('betaPodcastToggle');
-            const saveButton = settingsForm.querySelector('button[type="submit"]');
+            const activeService = (document.getElementById('model') || {}).value || 'openai';
 
-            // Get selected service
-            const activeService = modelSelect ? modelSelect.value : 'openai';
-            // Get current config from storage
             const storageData = await StorageManager.getAll();
             const servicesConfig = storageData.servicesConfig || {};
-            // Preserve any existing fields (like `model`) when updating the service entry
-            const prevCfg = servicesConfig[activeService] || {};
-            // Ensure we have service metadata so we can fall back to the service default model
-            const servicesMeta = await StorageManager.getServices();
-            const serviceMeta = servicesMeta.find(s => s.id === activeService);
-            const defaultModel = serviceMeta?.defaultModel || '';
-
+            const existing = servicesConfig[activeService] || {};
             servicesConfig[activeService] = {
-                // keep previously saved model if present, otherwise fall back to the service default
-                model: prevCfg.model || defaultModel,
-                apiKey: apiKeyInput ? apiKeyInput.value : (prevCfg.apiKey || ''),
-                customModel: modelIdentifierInput ? modelIdentifierInput.value : (prevCfg.customModel || ''),
-                endpoint: endpointInput ? endpointInput.value : (prevCfg.endpoint || '')
+                ...existing,
+                apiKey: apiKeyInput ? apiKeyInput.value : (existing.apiKey || ''),
+                endpoint: endpointInput ? endpointInput.value : (existing.endpoint || ''),
+                customModel: existing.customModel || [],
+                activeModelId: existing.activeModelId || ''
             };
-            // Save active service
-            await StorageManager.set({ activeService });
-            // Save service config
             await StorageManager.set({ servicesConfig });
-
-            // Save prompt selection and custom prompt using canonical keys
-            // used throughout the app: `prompt`, `presetPrompt`, and `promptType`.
-            if (promptSelect) {
-                const promptType = (promptSelect.value === 'custom') ? 'custom' : 'preset';
-                await StorageManager.set({ presetPrompt: promptSelect.value, promptType });
-            }
             if (promptInput) {
                 await StorageManager.set({ prompt: promptInput.value });
             }
-            
-            if (themeSelect) {
-                await StorageManager.set({ theme: themeSelect.value });
-                // Apply theme immediately
-                if (themeSelect.value === 'dark' || themeSelect.value === 'light') {
-                    document.documentElement.setAttribute('data-theme', themeSelect.value);
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-            }
-            
-            if (betaPodcastToggle) {
-                await StorageManager.set({ betaPodcast: betaPodcastToggle.checked });
-                const podcastButton = document.getElementById('podcastButton');
-                if (podcastButton) {
-                    podcastButton.style.display = betaPodcastToggle.checked ? 'inline-flex' : 'none';
-                }
-            }
-
-            // Button feedback: turn green and show 'Saved!'
-            if (saveButton) {
-                const originalText = saveButton.textContent;
-                const originalClass = saveButton.className;
-                const originalBg = saveButton.style.background;
-                const originalColor = saveButton.style.color;
-                const originalDisabled = saveButton.disabled;
-                saveButton.textContent = 'Saved!';
-                saveButton.className += ' saved';
-                saveButton.style.background = '#2ecc40';
-                saveButton.style.color = '#fff';
-                saveButton.disabled = true;
-                setTimeout(() => {
-                    saveButton.textContent = originalText;
-                    saveButton.className = originalClass;
-                    saveButton.style.background = originalBg;
-                    saveButton.style.color = originalColor;
-                    saveButton.disabled = originalDisabled;
-                }, 2000);
-            }
+            autoSave('servicesConfig', servicesConfig);
         });
     }
 }
