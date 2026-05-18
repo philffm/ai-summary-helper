@@ -1,0 +1,20 @@
+{
+    "extensionName": {
+        "message": "AI Summary Helper - OpenAI, Gemini, Mistral, Ollama, Kindle"
+    },
+    "extensionDescription": {
+        "message": "快速获取并阅读网页内容的AI摘要。配合Send To Kindle使用，随时随地阅读。"
+    },
+    "fetchSummary": {
+        "message": "获取摘要"
+    },
+    "settings": {
+        "message": "设置"
+    },
+    "saved": {
+        "message": "已保存！ 🎉"
+    },
+    "donate": {
+        "message": "捐赠"
+    }
+}

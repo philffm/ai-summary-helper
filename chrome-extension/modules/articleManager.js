@@ -55,8 +55,10 @@ ${article.content || 'No content available.'}
     
     // Create a filename based on the title
     const safeTitle = (article.title || 'article').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    // add date in YYYYMMDD format for uniqueness
+    const datePrefix = new Date(article.timestamp).toISOString().split('T')[0].replace(/-/g, '');
     a.href = url;
-    a.download = `${safeTitle}_summary.md`;
+    a.download = `${datePrefix}_${safeTitle}_summary.md`;
     document.body.appendChild(a);
     a.click();
     
@@ -109,8 +111,8 @@ export function initArticleManager(uiManager) {
 
 export function loadHistory() {
     StorageManager.getLocal({ articles: [] }).then(data => {
-        renderArticles(data.articles);
-    });
+        if (data && data.articles) renderArticles(data.articles);
+    }).catch(() => {}); // Ignore if extension context invalidated
 }
 
 export function renderArticles(articles) {
@@ -129,35 +131,24 @@ export function renderArticles(articles) {
         const listItem = document.createElement('li');
         listItem.classList.add('article-card');
         const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-        const formattedTime = new Date(article.timestamp).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
         let articleDomain = '';
         if (article.url) {
             articleDomain = new URL(article.url).hostname;
         }
-        const safeSummary = (article.summary || 'No summary available').replace(/<img[^>]*>/gi, '');
+        const tags = article.tags || [];
+        const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
         listItem.innerHTML = `
             <div class="article-header">
               <div>
                 <h4>${articleHeader}</h4>
-                <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}
+                <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
+                ${tagsHtml}
               </div>
-              <button class="button-secondary open-article-button">Open</button>
             </div>
         `;
         articleList.appendChild(listItem);
 
-        const openButton = listItem.querySelector('.open-article-button');
-        const shareButton = listItem.querySelector('.share-button');
-        const mdButton = listItem.querySelector('.md-button');
-        const deleteButton = listItem.querySelector('.delete-button');
-
-        if (openButton) {
-            openButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showArticleDetail(article);
-            });
-        }
-        // Click on the card itself also opens detail
+        // Click on the card itself opens detail
         listItem.addEventListener('click', (event) => {
             if (event.target.closest('button') || event.target.closest('a')) return;
             showArticleDetail(article);
@@ -196,21 +187,24 @@ export function showArticleDetail(article) {
     const safeSummary = (article.summary || 'No summary available').replace(/<img[^>]*>/gi, '');
     const safeContent = (article.content || 'No content available').replace(/<img[^>]*>/gi, '');
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
+    const tags = article.tags || [];
+    const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">${tags.map(t => `<span class="tag-chip" style="font-size:12px;">${t}</span>`).join('')}</div>` : '';
 
     articleDetailContent.innerHTML = `
       <div class="article-detail-card">
         <h3 style="margin-bottom:8px;">${safeTitle}</h3>
-        <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
           ${article.url ? `<a href="${article.url}" target="_blank">${domain} ↗</a> · ` : ''}
           ${new Date(article.timestamp).toLocaleDateString()}
         </p>
+        ${tagsHtml}
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
           <button class="button-secondary share-button">Share 🔗</button>
           <button class="button-secondary md-button">.MD 💾</button>
           <button class="button-secondary open-button">Reader 👓</button>
           <button class="delete-button" style="margin-left:auto;">🗑️ Delete</button>
         </div>
-        <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-radius:8px;border-left:4px solid #007bff;margin-bottom:16px;">
+        <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:16px;">
           <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
           <div>${safeSummary}</div>
         </div>

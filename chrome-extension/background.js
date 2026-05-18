@@ -2,8 +2,11 @@
 
 // Sync side panel behavior with user setting
 function updateSidePanelBehavior(useNative) {
-    chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: !!useNative })
-        .catch(err => console.error('[sidePanel] setPanelBehavior:', err));
+    try {
+        chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: !!useNative });
+    } catch (e) {
+        // Silently ignore if sidePanel API is unavailable
+    }
 }
 
 // Initialize on startup
@@ -18,6 +21,29 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     }
 });
 
+// Listen for messages from the popup
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg.action === 'openNativeSidePanel') {
+        // Use sender.tab.windowId to target the correct window
+        const windowId = sender?.tab?.windowId;
+        if (windowId) {
+            chrome.sidePanel.open({ windowId })
+                .then(() => sendResponse({ success: true }))
+                .catch(err => sendResponse({ error: err.message }));
+        } else {
+            // Fallback: try all windows
+            chrome.windows.getAll({}, (windows) => {
+                if (windows.length > 0) {
+                    chrome.sidePanel.open({ windowId: windows[0].id })
+                        .then(() => sendResponse({ success: true }))
+                        .catch(err => sendResponse({ error: err.message }));
+                }
+            });
+        }
+        return true;
+    }
+});
+
 chrome.commands.onCommand.addListener((command) => {
     console.log(`Command received: ${command}`);
     if (command === 'toggle-popup') {
@@ -26,18 +52,6 @@ chrome.commands.onCommand.addListener((command) => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary' });
         });
-    }
-});
-
-// Listen for messages from the popup
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    if (msg.action === 'openNativeSidePanel') {
-        chrome.windows.getCurrent({}, (win) => {
-            chrome.sidePanel.open({ windowId: win.id })
-                .then(() => sendResponse({ success: true }))
-                .catch(err => sendResponse({ error: err.message }));
-        });
-        return true; // keep channel open for async response
     }
 });
 

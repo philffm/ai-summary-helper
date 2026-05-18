@@ -145,8 +145,12 @@ class UIManager {
         // Side effects per screen (delayed to let animation play)
         if (screenName === 'history') {
             setTimeout(async () => {
-                const { loadHistory } = await import('./articleManager.js');
-                loadHistory();
+                try {
+                    const { loadHistory } = await import('./articleManager.js');
+                    loadHistory();
+                } catch (e) {
+                    // Ignore if extension context was invalidated (popup closed)
+                }
             }, 350);
         }
     }

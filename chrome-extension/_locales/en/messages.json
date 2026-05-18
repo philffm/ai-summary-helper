@@ -16,5 +16,215 @@
     },
     "donate": {
         "message": "Donate"
+    },
+    "noRecentSummaries": {
+        "message": "No recent summaries"
+    },
+    "summarizePageToSee": {
+        "message": "Summarize a page to see it here"
+    },
+    "whatShouldAiFocus": {
+        "message": "What should the AI focus on?"
+    },
+    "askSpecificQuestions": {
+        "message": "Ask specific questions about this page…"
+    },
+    "summaryLanguage": {
+        "message": "Summary Language"
+    },
+    "searchLanguages": {
+        "message": "Search languages…"
+    },
+    "summaryLength": {
+        "message": "Summary Length"
+    },
+    "summaryMode": {
+        "message": "Summary Mode"
+    },
+    "extension": {
+        "message": "Extension"
+    },
+    "viewAndCopy": {
+        "message": "View &amp; Copy"
+    },
+    "inline": {
+        "message": "Inline"
+    },
+    "insertIntoPage": {
+        "message": "Insert into Page"
+    },
+    "inlineModeTip": {
+        "message": "Inline mode is great for \"Send to Kindle\"."
+    },
+    "aiModel": {
+        "message": "AI Model"
+    },
+    "addCustomModelId": {
+        "message": "Add custom model ID…"
+    },
+    "searchArticles": {
+        "message": "Search articles... (⌘ + F)"
+    },
+    "back": {
+        "message": "← Back"
+    },
+    "save": {
+        "message": "Save 💾"
+    },
+    "feedbackText": {
+        "message": "Questions, bugs or happy? 💡, feel free to give feedback, contact me or consider a donation :)"
+    },
+    "openSourceBy": {
+        "message": "Open Source software by"
+    },
+    "contributeOnGithub": {
+        "message": "Feel free to contribute on GitHub 💙"
+    },
+    "compatibleTools": {
+        "message": "Compatible Tools"
+    },
+    "compatibleToolsDesc": {
+        "message": "Extensions that integrate seamlessly with AI Summary Helper to supercharge your workflow."
+    },
+    "loadingTools": {
+        "message": "Loading tools…"
+    },
+    "navSummarize": {
+        "message": "Summarize"
+    },
+    "navHistory": {
+        "message": "History"
+    },
+    "navApps": {
+        "message": "Apps"
+    },
+    "navSettings": {
+        "message": "Settings"
+    },
+    "starting": {
+        "message": "Starting…"
+    },
+    "contactingContentScript": {
+        "message": "Contacting content script…"
+    },
+    "workingOnIt": {
+        "message": "Working on it…"
+    },
+    "summary": {
+        "message": "Summary"
+    },
+    "noTitleAvailable": {
+        "message": "No title available"
+    },
+    "noSummaryAvailable": {
+        "message": "No summary available"
+    },
+    "noContentAvailable": {
+        "message": "No content available"
+    },
+    "noDescriptionAvailable": {
+        "message": "No description available"
+    },
+    "share": {
+        "message": "Share 🔗"
+    },
+    "saveMd": {
+        "message": ".MD 💾"
+    },
+    "reader": {
+        "message": "Reader 👓"
+    },
+    "delete": {
+        "message": "🗑️ Delete"
+    },
+    "aiSummary": {
+        "message": "🧙 AI Summary"
+    },
+    "originalContent": {
+        "message": "📄 Original Content"
+    },
+    "emptyArchive": {
+        "message": "🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "No tools available yet."
+    },
+    "failedToLoadTools": {
+        "message": "Failed to load tools."
+    },
+    "clickToInsert": {
+        "message": "Click on the element where you want to insert the summary."
+    },
+    "fetchingSummary": {
+        "message": "Fetching summary..."
+    },
+    "openInSidebar": {
+        "message": "Open in sidebar"
+    },
+    "theme": {
+        "message": "Theme"
+    },
+    "systemDefault": {
+        "message": "System Default"
+    },
+    "lightMode": {
+        "message": "Light Mode"
+    },
+    "darkMode": {
+        "message": "Dark Mode"
+    },
+    "uiLanguage": {
+        "message": "UI Language"
+    },
+    "browserDefault": {
+        "message": "Browser Default"
+    },
+    "useNativeSidePanel": {
+        "message": "Use Native Chrome Side Panel"
+    },
+    "dangerZone": {
+        "message": "⚠️ Danger Zone"
+    },
+    "deleteSettings": {
+        "message": "Delete Settings"
+    },
+    "deleteHistory": {
+        "message": "Delete History"
+    },
+    "model": {
+        "message": "Model"
+    },
+    "apiKey": {
+        "message": "API Key"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 The API key is stored locally in your browser."
+    },
+    "endpointUrl": {
+        "message": "Endpoint URL"
+    },
+    "prompt": {
+        "message": "Prompt"
+    },
+    "enterCustomPrompt": {
+        "message": "Enter your custom prompt here"
+    },
+    "generalSettings": {
+        "message": "🔄 General Settings"
+    },
+    "enablePodcastBeta": {
+        "message": "Enable Podcast Beta"
+    },
+    "modelIdentifiers": {
+        "message": "Model Identifiers"
+    },
+    "default": {
+        "message": "default"
+    },
+    "notConfigured": {
+        "message": "Not configured"
+    },
+    "configured": {
+        "message": "Configured"
     }
 }

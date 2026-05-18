@@ -30,6 +30,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     StorageManager.initializeDefaults();
 
+    // ── Apply UI language setting ───────────────────────────────────────
+    chrome.storage.sync.get('uiLanguage', (data) => {
+        if (data.uiLanguage) {
+            document.documentElement.lang = data.uiLanguage;
+        }
+    });
+
     // initModelManager(ui); // Not exported from modelManager.js
     initPromptManager(ui);
     initSettingsManager(ui);
@@ -45,16 +52,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     ui.showScreen("main");
 
-    // ── Pop-out to Hybrid Side Panel ────────────────────────────────────
+    // ── Auto-open native side panel if enabled ──────────────────────────
+    chrome.storage.sync.get('useNativeSidePanel', (data) => {
+        if (data.useNativeSidePanel) {
+            chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
+                if (response?.success) window.close();
+            });
+        }
+    });
+
+    // ── Pop-out to Sidebar ─────────────────────────────────────────────
     const popoutBtn = document.getElementById('popoutButton');
     if (popoutBtn) {
         popoutBtn.addEventListener('click', async () => {
             try {
-                const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+                const tabs = await chrome.tabs.query({ active: true, currentWindow: true }).catch(() => []);
                 const activeTab = tabs[0];
-                const { useNativeSidePanel, openLarge } = await chrome.storage.sync.get(['useNativeSidePanel', 'openLarge']);
+                const { useNativeSidePanel } = await chrome.storage.sync.get('useNativeSidePanel').catch(() => ({}));
 
-                // Native side panel (delegated to background script)
+                // Native side panel (opt-in)
                 if (useNativeSidePanel) {
                     chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
                         if (response?.success) window.close();
@@ -62,35 +78,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                     return;
                 }
 
-                // Open large = hybrid injected iframe (compatible side panel)
-                if (openLarge) {
-                    if (activeTab) {
-                        const { ensureContentScript } = await import('./modules/mainScreen.js');
-                        await ensureContentScript(activeTab.id, activeTab.url);
-                        chrome.tabs.sendMessage(activeTab.id, { action: 'toggleHybridSidebar' });
-                    }
-                    window.close();
-                    return;
-                }
-
                 // Default: hybrid injected iframe
                 if (activeTab) {
-                    const { ensureContentScript } = await import('./modules/mainScreen.js');
-                    await ensureContentScript(activeTab.id, activeTab.url);
-                    chrome.tabs.sendMessage(activeTab.id, { action: 'toggleHybridSidebar' });
+                    const mod = await import('./modules/mainScreen.js').catch(() => null);
+                    if (mod?.ensureContentScript) {
+                        await mod.ensureContentScript(activeTab.id, activeTab.url).catch(() => {});
+                        chrome.tabs.sendMessage(activeTab.id, { action: 'toggleHybridSidebar' }).catch(() => {});
+                    }
                 }
                 window.close();
             } catch (err) {
                 console.error('[sidePanel] Failed:', err.message);
-                try {
-                    if (chrome.sidePanel?.open) {
-                        const win = await chrome.windows.getCurrent();
-                        await chrome.sidePanel.open({ windowId: win.id });
-                        window.close();
-                    }
-                } catch (e) {
-                    console.error('[sidePanel] All methods failed:', e);
-                }
             }
         });
     }

@@ -27,6 +27,8 @@ export function initMainScreen(ui) {
         const preview = textOnly.length > 100 ? textOnly.slice(0, 100) + '…' : textOnly;
         const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
 
+        const tags = article.tags || [];
+        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${t}</span>`).join('')}</div>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         bubble.innerHTML = `
@@ -35,6 +37,7 @@ export function initMainScreen(ui) {
                 <span class="summary-bubble-domain">${domain} · ${date}</span>
             </div>
             <div class="summary-bubble-body">${preview}</div>
+            ${tagsHtml}
         `;
         // Click to open in history
         bubble.style.cursor = 'pointer';
@@ -117,7 +120,10 @@ export function initMainScreen(ui) {
             if (recentEntry) recentEntry.style.display = 'none';
             const sorted = articles.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             // Reverse so oldest is first, newest at bottom (scroll targets it)
-            sorted.reverse().slice(0, 10).forEach(addBubble);
+            sorted.reverse();
+            // Take the last 10 (newest) — if more than 10, slice from the end
+            const recent = sorted.length > 10 ? sorted.slice(-10) : sorted;
+            recent.forEach(addBubble);
             // Scroll to newest (bottom of feed)
             requestAnimationFrame(() => {
                 const scrollEl = document.getElementById('feedScroll');
@@ -155,7 +161,8 @@ export function initMainScreen(ui) {
                     title: msg.title || 'Summary',
                     url: msg.url || '',
                     summary: msg.summary,
-                    timestamp: msg.timestamp || new Date().toISOString()
+                    timestamp: msg.timestamp || new Date().toISOString(),
+                    tags: msg.tags || []
                 });
             }
             if (fetchSummaryButton) {

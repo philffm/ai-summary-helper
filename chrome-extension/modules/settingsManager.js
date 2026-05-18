@@ -105,13 +105,13 @@ function initSettingsManager(ui) {
                     if (betaPodcastToggle) {
                         betaPodcastToggle.checked = !!storageData.betaPodcast;
                     }
-                    const nativeSidePanelToggle = document.getElementById('nativeSidePanelToggle');
-                    if (nativeSidePanelToggle) {
-                        nativeSidePanelToggle.checked = !!storageData.useNativeSidePanel;
+                    const nativeToggle = document.getElementById('nativeSidePanelToggle');
+                    if (nativeToggle) {
+                        nativeToggle.checked = !!storageData.useNativeSidePanel;
                     }
-                    const openLargeToggle = document.getElementById('openLargeToggle');
-                    if (openLargeToggle) {
-                        openLargeToggle.checked = !!storageData.openLarge;
+                    const uiLangSelect = document.getElementById('uiLangSelect');
+                    if (uiLangSelect && storageData.uiLanguage) {
+                        uiLangSelect.value = storageData.uiLanguage;
                     }
                 }
 
@@ -167,29 +167,26 @@ function initSettingsManager(ui) {
                   </div>
 
                   <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
-                    <label for="openLargeToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Open Large by Default</label>
-                    <label class="switch">
-                      <input type="checkbox" id="openLargeToggle" />
-                      <span class="slider-toggle"></span>
-                    </label>
+                    <label for="uiLangSelect">UI Language</label>
+                    <select id="uiLangSelect" style="width: auto; margin-bottom: 0;">
+                        <option value="">Browser Default</option>
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                        <option value="es">Español</option>
+                        <option value="ko">한국어</option>
+                        <option value="ja">日本語</option>
+                        <option value="zh_CN">简体中文</option>
+                    </select>
                   </div>
 
                   <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
-                    <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Side Panel</label>
+                    <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Chrome Side Panel</label>
                     <label class="switch">
                       <input type="checkbox" id="nativeSidePanelToggle" />
                       <span class="slider-toggle"></span>
                     </label>
                   </div>
-                  
-                  <div class="setting-group" style="margin-bottom: var(--spacing-s-4); display: flex; justify-content: space-between; align-items: center;">
-                    <label for="betaPodcastToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Enable Podcast Beta</label>
-                    <label class="switch">
-                      <input type="checkbox" id="betaPodcastToggle" />
-                      <span class="slider-toggle"></span>
-                    </label>
-                  </div>
-                  
+
                   <div style="margin-top: var(--spacing-s-4); padding-top: var(--spacing-s-3); border-top: 2px solid var(--danger);">
                     <p style="font-size: 12px; font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--spacing-s-3);">⚠️ Danger Zone</p>
                     <div style="display: flex; gap: var(--spacing-s-2);">
@@ -274,17 +271,17 @@ function initSettingsManager(ui) {
         });
     }
 
-    const nativeSidePanelToggle = document.getElementById('nativeSidePanelToggle');
-    if (nativeSidePanelToggle) {
-        nativeSidePanelToggle.addEventListener('change', () => {
-            autoSave('useNativeSidePanel', nativeSidePanelToggle.checked);
+    const nativeToggle = document.getElementById('nativeSidePanelToggle');
+    if (nativeToggle) {
+        nativeToggle.addEventListener('change', () => {
+            autoSave('useNativeSidePanel', nativeToggle.checked);
         });
     }
 
-    const openLargeToggle = document.getElementById('openLargeToggle');
-    if (openLargeToggle) {
-        openLargeToggle.addEventListener('change', () => {
-            autoSave('openLarge', openLargeToggle.checked);
+    const uiLangSelect = document.getElementById('uiLangSelect');
+    if (uiLangSelect) {
+        uiLangSelect.addEventListener('change', () => {
+            autoSave('uiLanguage', uiLangSelect.value);
         });
     }
 

@@ -13,11 +13,19 @@ import StorageManager from './storageManager.js';
 
         if (modelIdentifierContainer) {
             modelIdentifierContainer.style.display = 'block';
+            // Build tag list: custom models + default (if not already in custom list)
+            const allModels = [...models];
+            if (defaultModel && !allModels.includes(defaultModel)) {
+                allModels.push(defaultModel);
+            }
             modelIdentifierContainer.innerHTML = `
                 <label style="display:block;margin-bottom:6px;">Model Identifiers</label>
                 <div id="modelTagList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">
-                  ${models.map(m => `<span class="model-id-tag" data-model="${m.replace(/"/g, '&quot;')}">${m} <span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span></span>`).join('')}
-                  ${models.length === 0 ? `<span style="font-size:12px;color:var(--text-muted);">Default: ${defaultModel}</span>` : ''}
+                  ${allModels.map(m => {
+                    const isDefault = m === defaultModel && !models.includes(m);
+                    return `<span class="model-id-tag" data-model="${m.replace(/"/g, '&quot;')}">${m}${isDefault ? ' (default)' : ''} ${!isDefault ? '<span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span>' : ''}</span>`;
+                  }).join('')}
+                </div>
                 </div>
                 <div style="display:flex;gap:6px;">
                   <input type="text" id="addModelInput" placeholder="e.g. gpt-5-mini" style="flex:1;padding:8px 10px;" />

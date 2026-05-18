@@ -185,7 +185,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           headers['x-goog-api-key'] = apiKey;
           
           const parts = [
-            { text: `Please produce ONLY valid HTML. Return a single <div> containing an <h2> and <p> tags. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
+            { text: `Please produce ONLY valid HTML. Return a single <div> containing an <h2> and <p> tags. At the end include an HTML comment with 3-5 broad topic tags (general categories, not specific terms): <!-- TAGS: tag1, tag2, tag3 -->. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
             { text: `Prompt Context: ${prompt}` },
             { text: `Additional Questions/Instructions: ${additionalQuestions}` },
             { text: truncatedContent }
@@ -198,7 +198,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           requestBody = JSON.stringify({
             model: modelIdentifier,
             messages: [
-              { role: 'system', content: 'You are a summarizer returning HTML <div> with <h2> and <p>.' },
+              { role: 'system', content: 'You are a summarizer returning HTML <div> with <h2 with <h2> and <p>. At the end include an HTML comment with 3-5 broad topic tags (general categories, not specific terms): <!-- TAGS: tag1, tag2, tag3 -->.' },
               { role: 'user', content: `Language: ${selectedLanguage}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${truncatedContent}` }
             ],
             stream: true
@@ -258,23 +258,39 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
             
             const finalHtml = markdownToHtml(summary);
             
+            // Extract tags: first try HTML comment, then scrape #hashtags from text
+            let tags = [];
+            const tagMatch = finalHtml.match(/<!--\s*TAGS:\s*([^>]+)\s*-->/i);
+            if (tagMatch) {
+              tags = tagMatch[1].split(',').map(t => t.trim().replace(/^#/, '')).filter(Boolean);
+            }
+            // Also scrape #hashtags from the summary text itself
+            const hashTags = summary.match(/#(\w+)/g) || [];
+            for (const ht of hashTags) {
+              const clean = ht.replace('#', '');
+              if (!tags.includes(clean)) tags.push(clean);
+            }
+            // Strip the comment from the rendered HTML
+            const cleanHtml = finalHtml.replace(/<!--\s*TAGS:\s*[^>]+\s*-->/gi, '').trim();
+            
             if (summaryMode === 'inline') {
               const summaryContainer = document.createElement('blockquote');
               summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
-              summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${finalHtml}</div>`;
+              summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${cleanHtml}</div>`;
               insertSummary(targetElement, summaryContainer);
             } else {
               // Extension mode: clean up the hidden placeholder, summary is saved to storage
               targetElement.remove();
               relay('summaryComplete', {
-                summary: finalHtml,
+                summary: cleanHtml,
                 title: document.title,
                 url: window.location.href,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                tags: tags
               });
             }
             
-            saveToLocalStorage(truncatedContent, summary, window.location.href, document.title, '');
+            saveToLocalStorage(truncatedContent, cleanHtml, window.location.href, document.title, '', tags);
             resolve({ success: true });
             
             port.disconnect();
@@ -335,9 +351,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 }
 
 // Function to save content, summary, URL, title, and description to local storage
-function saveToLocalStorage(content, summary, url, title, description) {
+function saveToLocalStorage(content, summary, url, title, description, tags = []) {
   const timestamp = new Date().toISOString();
-  const articleData = { content, summary, url, title, description, timestamp };
+  const articleData = { content, summary, url, title, description, timestamp, tags };
 
   chrome.storage.local.get({ articles: [] }, (data) => {
     const articles = data.articles;
@@ -390,16 +406,16 @@ function toggleHybridSidebar() {
     sidebar.src = chrome.runtime.getURL('popup.html');
     sidebar.style.cssText = `
         position: fixed;
-        top: 0;
-        right: 0;
+        top: 12px;
+        right: 12px;
         width: 420px;
-        height: 100vh;
+        height: calc(100vh - 24px);
         border: none;
-        border-left: 1px solid rgba(0,0,0,0.1);
-        box-shadow: -8px 0 24px rgba(0,0,0,0.1);
+        border-radius: 16px;
+        box-shadow: -8px 0 32px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
         z-index: 2147483647;
         background: #faf8ff;
-        transform: translateX(100%);
+        transform: translateX(calc(100% + 20px));
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         color-scheme: light dark;
     `;
@@ -446,7 +462,17 @@ function getAllTextContent() {
     '#global-stickybar-mount', '#callout-end-of-story-mount',
     '#callout-end-of-story-mount-piano-wrap', '#end-of-story-recommendations-mount',
     '#end-of-story-recommendations-mount-piano', '#newsletter-acquisition-callout-data',
-    '.speakable'
+    '.speakable',
+    // YouTube-specific junk
+    '#comments', '#chat', '#live-chat-iframe', '#donation-shelf',
+    '#merch-shelf', '#movie-description', '#secondary',
+    '#related', '#playlist', '#header', '#masthead-container',
+    'ytd-comments', 'ytd-live-chat-frame', 'ytd-merch-shelf-renderer',
+    'ytd-video-secondary-info-renderer', 'ytd-comment-thread-renderer',
+    'ytd-item-section-renderer', 'ytd-shelf-renderer',
+    '#owner', '#subscribe-button', '#top-level-buttons-computed',
+    '#vote-count', '#menu', '#action-buttons', '#actions',
+    '#meta-contents', '#description-inline-expander'
   ];
 
   // Find the best content container
@@ -454,6 +480,10 @@ function getAllTextContent() {
     || document.querySelector('article')                      // generic
     || document.querySelector('[role="main"]')                // fallback
     || document.querySelector('main')                         // last resort
+    || document.querySelector('ytd-text-inline-expander')     // YouTube description
+    || document.querySelector('ytd-section-list-renderer')    // YouTube comments/sections
+    || document.querySelector('#description')                 // YouTube fallback
+    || document.querySelector('#content')                     // YouTube fallback
     || document.body;
 
   // Clone just the content container

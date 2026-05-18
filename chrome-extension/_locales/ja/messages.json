@@ -1,0 +1,20 @@
+{
+    "extensionName": {
+        "message": "AI Summary Helper - OpenAI, Gemini, Mistral, Ollama, Kindle"
+    },
+    "extensionDescription": {
+        "message": "ウェブコンテンツのAI要約をすばやく取得して読めます。Send To Kindleと組み合わせて外出先でも読書できます。"
+    },
+    "fetchSummary": {
+        "message": "要約を取得"
+    },
+    "settings": {
+        "message": "設定"
+    },
+    "saved": {
+        "message": "保存しました！ 🎉"
+    },
+    "donate": {
+        "message": "寄付する"
+    }
+}
