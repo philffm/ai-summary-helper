@@ -35,7 +35,7 @@ export function initArchiveGraph(container, articles) {
     container.innerHTML = '';
     container.style.position = 'relative';
     container.style.width = '100%';
-    container.style.height = '400px';
+    container.style.height = '90%';
     container.style.overflow = 'hidden';
 
     // Load D3 from bundled library
@@ -57,7 +57,7 @@ function renderGraph(container, articles) {
     }
 
     const width = container.clientWidth || 400;
-    const height = 400;
+    const height = container.clientHeight || 400;
 
     // Clear and set up SVG
     container.innerHTML = '';
