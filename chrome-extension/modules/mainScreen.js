@@ -29,6 +29,7 @@ export function initMainScreen(ui) {
 
         const tags = article.tags || [];
         const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${t}</span>`).join('')}</div>` : '';
+        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">🤖 ${article.modelId}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         bubble.innerHTML = `
@@ -38,6 +39,7 @@ export function initMainScreen(ui) {
             </div>
             <div class="summary-bubble-body">${preview}</div>
             ${tagsHtml}
+            ${modelHtml}
         `;
         // Click to open in history
         bubble.style.cursor = 'pointer';
@@ -162,7 +164,9 @@ export function initMainScreen(ui) {
                     url: msg.url || '',
                     summary: msg.summary,
                     timestamp: msg.timestamp || new Date().toISOString(),
-                    tags: msg.tags || []
+                    tags: msg.tags || [],
+                    modelId: msg.modelId || '',
+                    content: msg.content || ''
                 });
             }
             if (fetchSummaryButton) {
@@ -221,7 +225,8 @@ export function initMainScreen(ui) {
                     additionalQuestions,
                     selectedLanguage,
                     prompt: promptToUse,
-                    summaryMode: mode
+                    summaryMode: mode,
+                    summaryLength: await chrome.storage.local.get('summaryLength').then(d => d.summaryLength || 200)
                 };
 
                 chrome.tabs.sendMessage(activeTab.id, message, (response) => {

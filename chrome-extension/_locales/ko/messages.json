@@ -1,9 +1,9 @@
 {
     "extensionName": {
-        "message": "AI Summary Helper - OpenAI, Gemini, Mistral, Ollama, Kindle"
+        "message": "AI Summary Helper - OpenAI, Gemini, Mistral, Ollama, Kindle 저장"
     },
     "extensionDescription": {
-        "message": "웹 콘텐츠의 AI 요약을 빠르게 가져오고 읽으세요. Send To Kindle과 함께 사용하여 이동 중에도 읽을 수 있습니다."
+        "message": "웹 콘텐츠의 AI 요약을 빠르게 가져오세요. Send To Kindle과 함께 사용하여 이동 중에도 읽을 수 있습니다."
     },
     "fetchSummary": {
         "message": "요약 가져오기"
@@ -16,5 +16,227 @@
     },
     "donate": {
         "message": "후원하기"
+    },
+    "noRecentSummaries": {
+        "message": "최근 요약 없음"
+    },
+    "summarizePageToSee": {
+        "message": "여기에 표시하려면 페이지를 요약하세요"
+    },
+    "whatShouldAiFocus": {
+        "message": "AI가 무엇에 집중해야 하나요?"
+    },
+    "askSpecificQuestions": {
+        "message": "이 페이지에 대해 구체적인 질문을 해보세요…"
+    },
+    "summaryLanguage": {
+        "message": "요약 언어"
+    },
+    "searchLanguages": {
+        "message": "언어 검색…"
+    },
+    "summaryLength": {
+        "message": "요약 길이"
+    },
+    "summaryMode": {
+        "message": "요약 모드"
+    },
+    "extension": {
+        "message": "확장 프로그램"
+    },
+    "viewAndCopy": {
+        "message": "보기 &amp; 복사"
+    },
+    "inline": {
+        "message": "인라인"
+    },
+    "insertIntoPage": {
+        "message": "페이지에 삽입"
+    },
+    "inlineModeTip": {
+        "message": "인라인 모드는 \"Kindle로 보내기\"에 매우 유용합니다."
+    },
+    "aiModel": {
+        "message": "AI 모델"
+    },
+    "addCustomModelId": {
+        "message": "사용자 지정 모델 ID 추가…"
+    },
+    "searchArticles": {
+        "message": "기사 검색... (⌘ + F)"
+    },
+    "back": {
+        "message": "← 뒤로"
+    },
+    "save": {
+        "message": "저장 💾"
+    },
+    "feedbackText": {
+        "message": "질문이나 버그가 있거나 만족하시나요? 💡 자유롭게 피드백을 주시거나, 연락하시거나, 후원을 고려해 주세요 :)"
+    },
+    "openSourceBy": {
+        "message": "오픈 소스 소프트웨어 제공:"
+    },
+    "contributeOnGithub": {
+        "message": "GitHub에서 자유롭게 기여해 주세요 💙"
+    },
+    "compatibleTools": {
+        "message": "호환 도구"
+    },
+    "compatibleToolsDesc": {
+        "message": "AI Summary Helper와 원활하게 통합되어 워크플로우를 향상시키는 확장 프로그램입니다."
+    },
+    "loadingTools": {
+        "message": "도구 로딩 중…"
+    },
+    "navSummarize": {
+        "message": "요약"
+    },
+    "navHistory": {
+        "message": "기록"
+    },
+    "navApps": {
+        "message": "앱"
+    },
+    "navSettings": {
+        "message": "설정"
+    },
+    "starting": {
+        "message": "시작하는 중…"
+    },
+    "contactingContentScript": {
+        "message": "콘텐츠 스크립트에 연결하는 중…"
+    },
+    "workingOnIt": {
+        "message": "작업 중…"
+    },
+    "summary": {
+        "message": "요약"
+    },
+    "noTitleAvailable": {
+        "message": "제목 없음"
+    },
+    "noSummaryAvailable": {
+        "message": "요약 없음"
+    },
+    "noContentAvailable": {
+        "message": "콘텐츠 없음"
+    },
+    "noDescriptionAvailable": {
+        "message": "설명 없음"
+    },
+    "share": {
+        "message": "공유 🔗"
+    },
+    "saveMd": {
+        "message": ".MD 저장 💾"
+    },
+    "reader": {
+        "message": "리더 👓"
+    },
+    "delete": {
+        "message": "🗑️ 삭제"
+    },
+    "aiSummary": {
+        "message": "🧙 AI 요약"
+    },
+    "originalContent": {
+        "message": "📄 원본 콘텐츠"
+    },
+    "emptyArchive": {
+        "message": "🗂️ 보관함이 사막처럼 텅 비어 있습니다! 기사를 저장하여 채워보세요. 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "아직 사용할 수 있는 도구가 없습니다."
+    },
+    "failedToLoadTools": {
+        "message": "도구를 로드하지 못했습니다."
+    },
+    "clickToInsert": {
+        "message": "요약을 삽입할 요소를 클릭하세요."
+    },
+    "fetchingSummary": {
+        "message": "요약 가져오는 중..."
+    },
+    "openInSidebar": {
+        "message": "사이드바에서 열기"
+    },
+    "theme": {
+        "message": "테마"
+    },
+    "systemDefault": {
+        "message": "시스템 기본값"
+    },
+    "lightMode": {
+        "message": "라이트 모드"
+    },
+    "darkMode": {
+        "message": "다크 모드"
+    },
+    "uiLanguage": {
+        "message": "UI 언어"
+    },
+    "browserDefault": {
+        "message": "브라우저 기본값"
+    },
+    "useNativeSidePanel": {
+        "message": "네이티브 Chrome 사이드 패널 사용"
+    },
+    "dangerZone": {
+        "message": "⚠️ 위험 구역"
+    },
+    "deleteSettings": {
+        "message": "설정 삭제"
+    },
+    "deleteHistory": {
+        "message": "기록 삭제"
+    },
+    "modelConfiguration": {
+        "message": "🤖 모델 구성"
+    },
+    "modelDesc": {
+        "message": "요약을 생성할 LLM 모델을 선택하세요."
+    },
+    "promptCustomization": {
+        "message": "💬 프롬프트 사용자 정의"
+    },
+    "promptDesc": {
+        "message": "AI가 텍스트를 분석하는 방식을 사용자 정의하세요."
+    },
+    "model": {
+        "message": "모델"
+    },
+    "apiKey": {
+        "message": "API 키"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 API 키는 브라우저에 로컬로 저장됩니다."
+    },
+    "endpointUrl": {
+        "message": "엔드포인트 URL"
+    },
+    "prompt": {
+        "message": "프롬프트"
+    },
+    "enterCustomPrompt": {
+        "message": "여기에 사용자 지정 프롬프트를 입력하세요"
+    },
+    "generalSettings": {
+        "message": "🔄 일반 설정"
+    },
+    "enablePodcastBeta": {
+        "message": "팟캐스트 베타 활성화"
+    },
+    "modelIdentifiers": {
+        "message": "모델 식별자"
+    },
+    "default": {
+        "message": "기본값"
+    },
+    "notConfigured": {
+        "message": "구성되지 않음"
+    },
+    "configured": {
+        "message": "구성됨"
     }
 }

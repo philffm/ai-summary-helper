@@ -16,5 +16,245 @@
     },
     "donate": {
         "message": "寄付する"
+    },
+    "noRecentSummaries": {
+        "message": "最近の要約はありません"
+    },
+    "summarizePageToSee": {
+        "message": "ページを要約するとここに表示されます"
+    },
+    "whatShouldAiFocus": {
+        "message": "AIに何に注目させますか？"
+    },
+    "askSpecificQuestions": {
+        "message": "このページに関する具体的な質問を入力…"
+    },
+    "summaryLanguage": {
+        "message": "要約の言語"
+    },
+    "searchLanguages": {
+        "message": "言語を検索…"
+    },
+    "summaryLength": {
+        "message": "要約の長さ"
+    },
+    "summaryMode": {
+        "message": "要約モード"
+    },
+    "extension": {
+        "message": "拡張機能"
+    },
+    "viewAndCopy": {
+        "message": "表示してコピー"
+    },
+    "inline": {
+        "message": "インライン"
+    },
+    "insertIntoPage": {
+        "message": "ページに挿入"
+    },
+    "inlineModeTip": {
+        "message": "インラインモードは「Send to Kindle」に最適です。"
+    },
+    "aiModel": {
+        "message": "AIモデル"
+    },
+    "addCustomModelId": {
+        "message": "カスタムモデルIDを追加…"
+    },
+    "searchArticles": {
+        "message": "記事を検索... (⌘ + F)"
+    },
+    "back": {
+        "message": "← 戻る"
+    },
+    "save": {
+        "message": "保存 💾"
+    },
+    "feedbackText": {
+        "message": "質問、バグ、ご感想など💡 フィードバックの送信、お問い合わせ、または寄付をご検討いただければ幸いです :)"
+    },
+    "openSourceBy": {
+        "message": "オープンソースソフトウェア提供:"
+    },
+    "contributeOnGithub": {
+        "message": "GitHubでの貢献をお待ちしています 💙"
+    },
+    "compatibleTools": {
+        "message": "互換性のあるツール"
+    },
+    "compatibleToolsDesc": {
+        "message": "AI Summary Helperとシームレスに連携し、ワークフローを強化する拡張機能。"
+    },
+    "loadingTools": {
+        "message": "ツールを読み込み中…"
+    },
+    "navSummarize": {
+        "message": "要約"
+    },
+    "navHistory": {
+        "message": "履歴"
+    },
+    "navApps": {
+        "message": "アプリ"
+    },
+    "navSettings": {
+        "message": "設定"
+    },
+    "starting": {
+        "message": "開始中…"
+    },
+    "contactingContentScript": {
+        "message": "コンテンツスクリプトに接続中…"
+    },
+    "workingOnIt": {
+        "message": "処理中…"
+    },
+    "summary": {
+        "message": "要約"
+    },
+    "noTitleAvailable": {
+        "message": "タイトルなし"
+    },
+    "noSummaryAvailable": {
+        "message": "要約なし"
+    },
+    "noContentAvailable": {
+        "message": "コンテンツなし"
+    },
+    "noDescriptionAvailable": {
+        "message": "説明なし"
+    },
+    "share": {
+        "message": "共有 🔗"
+    },
+    "saveMd": {
+        "message": ".MD保存 💾"
+    },
+    "reader": {
+        "message": "リーダー 👓"
+    },
+    "delete": {
+        "message": "🗑️ 削除"
+    },
+    "aiSummary": {
+        "message": "🧙 AI要約"
+    },
+    "originalContent": {
+        "message": "📄 元のコンテンツ"
+    },
+    "emptyArchive": {
+        "message": "🗂️ アーカイブが砂漠のように空っぽです！記事を保存して追加しましょう。 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "利用可能なツールはまだありません。"
+    },
+    "failedToLoadTools": {
+        "message": "ツールの読み込みに失敗しました。"
+    },
+    "clickToInsert": {
+        "message": "要約を挿入する要素をクリックしてください。"
+    },
+    "fetchingSummary": {
+        "message": "要約を取得中..."
+    },
+    "openInSidebar": {
+        "message": "サイドバーで開く"
+    },
+    "theme": {
+        "message": "テーマ"
+    },
+    "systemDefault": {
+        "message": "システムのデフォルト"
+    },
+    "lightMode": {
+        "message": "ライトモード"
+    },
+    "darkMode": {
+        "message": "ダークモード"
+    },
+    "uiLanguage": {
+        "message": "UI言語"
+    },
+    "browserDefault": {
+        "message": "ブラウザのデフォルト"
+    },
+    "useNativeSidePanel": {
+        "message": "ネイティブのChromeサイドパネルを使用"
+    },
+    "dangerZone": {
+        "message": "⚠️ 危険ゾーン"
+    },
+    "deleteSettings": {
+        "message": "設定を削除"
+    },
+    "deleteHistory": {
+        "message": "履歴を削除"
+    },
+    "model": {
+        "message": "モデル"
+    },
+    "apiKey": {
+        "message": "APIキー"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 APIキーはブラウザにローカル保存されます。"
+    },
+    "endpointUrl": {
+        "message": "エンドポイントURL"
+    },
+    "prompt": {
+        "message": "カスタムプロンプト"
+    },
+    "enterCustomPrompt": {
+        "message": "ここにカスタムプロンプトを入力してください"
+    },
+    "generalSettings": {
+        "message": "🔄 一般設定"
+    },
+    "modelConfiguration": {
+        "message": "🤖 モデル構成"
+    },
+    "modelDesc": {
+        "message": "要約を生成するLLMモデルを選択してください。"
+    },
+    "promptCustomization": {
+        "message": "💬 プロンプトのカスタマイズ"
+    },
+    "promptDesc": {
+        "message": "AIがテキストを分析する方法をカスタマイズしてください。"
+    },
+    "enablePodcastBeta": {
+        "message": "ポッドキャストベータ版を有効にする"
+    },
+    "modelIdentifiers": {
+        "message": "モデル識別子"
+    },
+    "default": {
+        "message": "デフォルト"
+    },
+    "notConfigured": {
+        "message": "未設定"
+    },
+    "configured": {
+        "message": "設定済み"
+    },
+    "modelIdentifier": {
+        "message": "モデル識別子: (デフォルトを使用する場合は空白のまま)"
+    },
+    "localEndpoint": {
+        "message": "ローカルエンドポイントURL"
+    },
+    "additionalQuestions": {
+        "message": "記事に関する追加の質問を入力 (任意)"
+    },
+    "toggleScreen": {
+        "message": "画面の切り替え"
+    },
+    "mainScreen": {
+        "message": "メイン画面"
+    },
+    "settingsScreen": {
+        "message": "設定画面"
     }
 }

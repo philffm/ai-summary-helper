@@ -209,6 +209,18 @@
     "enterCustomPrompt": {
         "message": "Enter your custom prompt here"
     },
+    "modelConfiguration": {
+        "message": "🤖 Model Configuration"
+    },
+    "modelDesc": {
+        "message": "Choose the LLM model to generate your summaries."
+    },
+    "promptCustomization": {
+        "message": "💬 Prompt Customization"
+    },
+    "promptDesc": {
+        "message": "Customize how the AI analyzes the text."
+    },
     "generalSettings": {
         "message": "🔄 General Settings"
     },

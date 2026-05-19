@@ -16,5 +16,233 @@
     },
     "donate": {
         "message": "Donar"
+    },
+    "noRecentSummaries": {
+        "message": "No hay resúmenes recientes"
+    },
+    "summarizePageToSee": {
+        "message": "Resume una página para verla aquí"
+    },
+    "whatShouldAiFocus": {
+        "message": "¿En qué debería enfocarse la IA?"
+    },
+    "askSpecificQuestions": {
+        "message": "Haz preguntas específicas sobre esta página…"
+    },
+    "summaryLanguage": {
+        "message": "Idioma del resumen"
+    },
+    "searchLanguages": {
+        "message": "Buscar idiomas…"
+    },
+    "summaryLength": {
+        "message": "Longitud del resumen"
+    },
+    "summaryMode": {
+        "message": "Modo de resumen"
+    },
+    "extension": {
+        "message": "Extensión"
+    },
+    "viewAndCopy": {
+        "message": "Ver y copiar"
+    },
+    "inline": {
+        "message": "Integrado (Inline)"
+    },
+    "insertIntoPage": {
+        "message": "Insertar en la página"
+    },
+    "inlineModeTip": {
+        "message": "El modo integrado es ideal para \"Enviar a Kindle\"."
+    },
+    "aiModel": {
+        "message": "Modelo de IA"
+    },
+    "addCustomModelId": {
+        "message": "Añadir ID de modelo personalizado…"
+    },
+    "searchArticles": {
+        "message": "Buscar artículos... (⌘ + F)"
+    },
+    "back": {
+        "message": "← Volver"
+    },
+    "save": {
+        "message": "Guardar 💾"
+    },
+    "feedbackText": {
+        "message": "¿Preguntas, errores o simplemente feliz? 💡, no dudes en dar tu opinión, contactarme o considerar una donación :)"
+    },
+    "openSourceBy": {
+        "message": "Software de código abierto por"
+    },
+    "contributeOnGithub": {
+        "message": "Siéntete libre de contribuir en GitHub 💙"
+    },
+    "compatibleTools": {
+        "message": "Herramientas compatibles"
+    },
+    "compatibleToolsDesc": {
+        "message": "Extensiones que se integran perfectamente con AI Summary Helper para potenciar tu flujo de trabajo."
+    },
+    "loadingTools": {
+        "message": "Cargando herramientas…"
+    },
+    "navSummarize": {
+        "message": "Resumir"
+    },
+    "navHistory": {
+        "message": "Historial"
+    },
+    "navApps": {
+        "message": "Apps"
+    },
+    "navSettings": {
+        "message": "Ajustes"
+    },
+    "starting": {
+        "message": "Iniciando…"
+    },
+    "contactingContentScript": {
+        "message": "Contactando con el script de contenido…"
+    },
+    "workingOnIt": {
+        "message": "Trabajando en ello…"
+    },
+    "summary": {
+        "message": "Resumen"
+    },
+    "noTitleAvailable": {
+        "message": "Sin título disponible"
+    },
+    "noSummaryAvailable": {
+        "message": "Sin resumen disponible"
+    },
+    "noContentAvailable": {
+        "message": "Sin contenido disponible"
+    },
+    "noDescriptionAvailable": {
+        "message": "Sin descripción disponible"
+    },
+    "share": {
+        "message": "Compartir 🔗"
+    },
+    "saveMd": {
+        "message": "Guardar .MD 💾"
+    },
+    "reader": {
+        "message": "Lector 👓"
+    },
+    "delete": {
+        "message": "🗑️ Eliminar"
+    },
+    "aiSummary": {
+        "message": "🧙 Resumen de IA"
+    },
+    "originalContent": {
+        "message": "📄 Contenido original"
+    },
+    "emptyArchive": {
+        "message": "🗂️ ¡Tu archivo está tan vacío como un desierto! Empieza a guardar algunos artículos para llenarlo. 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "Aún no hay herramientas disponibles."
+    },
+    "failedToLoadTools": {
+        "message": "Error al cargar las herramientas."
+    },
+    "clickToInsert": {
+        "message": "Haz clic en el elemento donde deseas insertar el resumen."
+    },
+    "fetchingSummary": {
+        "message": "Obteniendo resumen..."
+    },
+    "openInSidebar": {
+        "message": "Abrir en la barra lateral"
+    },
+    "theme": {
+        "message": "Tema"
+    },
+    "systemDefault": {
+        "message": "Predeterminado del sistema"
+    },
+    "lightMode": {
+        "message": "Modo claro"
+    },
+    "darkMode": {
+        "message": "Modo oscuro"
+    },
+    "uiLanguage": {
+        "message": "Idioma de la interfaz"
+    },
+    "browserDefault": {
+        "message": "Predeterminado del navegador"
+    },
+    "useNativeSidePanel": {
+        "message": "Usar panel lateral nativo de Chrome"
+    },
+    "dangerZone": {
+        "message": "⚠️ Zona de peligro"
+    },
+    "deleteSettings": {
+        "message": "Borrar configuración"
+    },
+    "deleteHistory": {
+        "message": "Borrar historial"
+    },
+    "model": {
+        "message": "Modelo"
+    },
+    "apiKey": {
+        "message": "Clave API"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 La clave API se almacena localmente en tu navegador."
+    },
+    "endpointUrl": {
+        "message": "URL del Endpoint"
+    },
+    "prompt": {
+        "message": "Prompt"
+    },
+    "enterCustomPrompt": {
+        "message": "Introduce tu prompt personalizado aquí"
+    },
+    "generalSettings": {
+        "message": "🔄 Ajustes generales"
+    },
+    "enablePodcastBeta": {
+        "message": "Habilitar Podcast Beta"
+    },
+    "modelIdentifiers": {
+        "message": "Identificadores de modelo"
+    },
+    "default": {
+        "message": "predeterminado"
+    },
+    "notConfigured": {
+        "message": "No configurado"
+    },
+    "configured": {
+        "message": "Configurado"
+    },
+    "modelIdentifier": {
+        "message": "Identificador de modelo: (dejar en blanco para predeterminado)"
+    },
+    "localEndpoint": {
+        "message": "URL del Endpoint local"
+    },
+    "additionalQuestions": {
+        "message": "Introducir preguntas adicionales sobre el artículo (opcional)"
+    },
+    "toggleScreen": {
+        "message": "Cambiar pantalla"
+    },
+    "mainScreen": {
+        "message": "Pantalla principal"
+    },
+    "settingsScreen": {
+        "message": "Pantalla de configuración"
     }
 }

@@ -15,6 +15,234 @@
         "message": "已保存！ 🎉"
     },
     "donate": {
-        "message": "捐赠"
+        "message": "赞助"
+    },
+    "noRecentSummaries": {
+        "message": "暂无近期摘要"
+    },
+    "summarizePageToSee": {
+        "message": "总结页面后在此处查看"
+    },
+    "whatShouldAiFocus": {
+        "message": "AI应该关注什么？"
+    },
+    "askSpecificQuestions": {
+        "message": "对这个页面提出具体问题…"
+    },
+    "summaryLanguage": {
+        "message": "摘要语言"
+    },
+    "searchLanguages": {
+        "message": "搜索语言…"
+    },
+    "summaryLength": {
+        "message": "摘要长度"
+    },
+    "summaryMode": {
+        "message": "摘要模式"
+    },
+    "extension": {
+        "message": "扩展程序"
+    },
+    "viewAndCopy": {
+        "message": "查看和复制"
+    },
+    "inline": {
+        "message": "内联"
+    },
+    "insertIntoPage": {
+        "message": "插入页面"
+    },
+    "inlineModeTip": {
+        "message": "内联模式非常适合“发送到Kindle”。"
+    },
+    "aiModel": {
+        "message": "AI模型"
+    },
+    "addCustomModelId": {
+        "message": "添加自定义模型ID…"
+    },
+    "searchArticles": {
+        "message": "搜索文章... (⌘ + F)"
+    },
+    "back": {
+        "message": "← 返回"
+    },
+    "save": {
+        "message": "保存 💾"
+    },
+    "feedbackText": {
+        "message": "有问题、发现Bug或觉得好用？💡 欢迎提供反馈、联系我或考虑赞助 :)"
+    },
+    "openSourceBy": {
+        "message": "开源软件作者："
+    },
+    "contributeOnGithub": {
+        "message": "欢迎在GitHub上贡献代码 💙"
+    },
+    "compatibleTools": {
+        "message": "兼容工具"
+    },
+    "compatibleToolsDesc": {
+        "message": "与AI Summary Helper无缝集成、提升工作效率的扩展程序。"
+    },
+    "loadingTools": {
+        "message": "正在加载工具…"
+    },
+    "navSummarize": {
+        "message": "摘要"
+    },
+    "navHistory": {
+        "message": "历史记录"
+    },
+    "navApps": {
+        "message": "应用"
+    },
+    "navSettings": {
+        "message": "设置"
+    },
+    "starting": {
+        "message": "正在开始…"
+    },
+    "contactingContentScript": {
+        "message": "正在连接内容脚本…"
+    },
+    "workingOnIt": {
+        "message": "处理中…"
+    },
+    "summary": {
+        "message": "摘要"
+    },
+    "noTitleAvailable": {
+        "message": "无可用标题"
+    },
+    "noSummaryAvailable": {
+        "message": "无可用摘要"
+    },
+    "noContentAvailable": {
+        "message": "无可用内容"
+    },
+    "noDescriptionAvailable": {
+        "message": "无可用描述"
+    },
+    "share": {
+        "message": "分享 🔗"
+    },
+    "saveMd": {
+        "message": "保存 .MD 💾"
+    },
+    "reader": {
+        "message": "阅读器 👓"
+    },
+    "delete": {
+        "message": "🗑️ 删除"
+    },
+    "aiSummary": {
+        "message": "🧙 AI摘要"
+    },
+    "originalContent": {
+        "message": "📄 原始内容"
+    },
+    "emptyArchive": {
+        "message": "🗂️ 您的归档空空如也！开始保存一些文章来填满它吧。 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "暂无可用工具。"
+    },
+    "failedToLoadTools": {
+        "message": "加载工具失败。"
+    },
+    "clickToInsert": {
+        "message": "点击要插入摘要的元素。"
+    },
+    "fetchingSummary": {
+        "message": "正在获取摘要..."
+    },
+    "openInSidebar": {
+        "message": "在侧边栏打开"
+    },
+    "theme": {
+        "message": "主题"
+    },
+    "systemDefault": {
+        "message": "系统默认"
+    },
+    "lightMode": {
+        "message": "浅色模式"
+    },
+    "darkMode": {
+        "message": "深色模式"
+    },
+    "uiLanguage": {
+        "message": "界面语言"
+    },
+    "browserDefault": {
+        "message": "浏览器默认"
+    },
+    "useNativeSidePanel": {
+        "message": "使用原生Chrome侧边栏"
+    },
+    "dangerZone": {
+        "message": "⚠️ 危险区域"
+    },
+    "deleteSettings": {
+        "message": "删除设置"
+    },
+    "deleteHistory": {
+        "message": "删除历史记录"
+    },
+    "model": {
+        "message": "模型"
+    },
+    "apiKey": {
+        "message": "API密钥"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 API密钥安全地保存在您的浏览器本地。"
+    },
+    "endpointUrl": {
+        "message": "端点URL"
+    },
+    "prompt": {
+        "message": "提示词"
+    },
+    "enterCustomPrompt": {
+        "message": "在此输入您的自定义提示词"
+    },
+    "generalSettings": {
+        "message": "🔄 通用设置"
+    },
+    "enablePodcastBeta": {
+        "message": "启用播客(Beta版)"
+    },
+    "modelIdentifiers": {
+        "message": "模型标识符"
+    },
+    "default": {
+        "message": "默认"
+    },
+    "notConfigured": {
+        "message": "未配置"
+    },
+    "configured": {
+        "message": "已配置"
+    },
+    "modelIdentifier": {
+        "message": "模型标识符: (留空则使用默认标识符)"
+    },
+    "localEndpoint": {
+        "message": "本地端点URL"
+    },
+    "additionalQuestions": {
+        "message": "输入关于文章的额外问题（可选）"
+    },
+    "toggleScreen": {
+        "message": "切换屏幕"
+    },
+    "mainScreen": {
+        "message": "主屏幕"
+    },
+    "settingsScreen": {
+        "message": "设置屏幕"
     }
 }

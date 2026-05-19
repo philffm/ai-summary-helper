@@ -1,10 +1,15 @@
 {
     "version": "1.0.8",
-    "languages": [
+   "languages": [
         {
             "code": "en",
             "name": "English",
             "emoji": "🌍"
+        },
+        {
+            "code": "cn",
+            "name": "中文",
+            "emoji": "🇨🇳"
         },
         {
             "code": "es",
@@ -12,9 +17,34 @@
             "emoji": "🇪🇸"
         },
         {
+            "code": "hi",
+            "name": "हिंदी",
+            "emoji": "🇮🇳"
+        },
+        {
+            "code": "ar",
+            "name": "العربية",
+            "emoji": "🇦🇪"
+        },
+        {
+            "code": "ind-bahasa",
+            "name": "Bahasa Indonesia",
+            "emoji": "🇮🇩"
+        },
+        {
+            "code": "da",
+            "name": "Dansk",
+            "emoji": "🇩🇰"
+        },
+        {
             "code": "de",
             "name": "Deutsch",
             "emoji": "🇩🇪"
+        },
+        {
+            "code": "tl",
+            "name": "Filipino",
+            "emoji": "🇵🇭"
         },
         {
             "code": "fr",
@@ -27,14 +57,49 @@
             "emoji": "🇮🇹"
         },
         {
-            "code": "pt",
-            "name": "Português",
-            "emoji": "🇵🇹"
+            "code": "sw",
+            "name": "Kiswahili",
+            "emoji": "🇰🇪"
         },
         {
             "code": "nl",
             "name": "Nederlands",
             "emoji": "🇳🇱"
+        },
+        {
+            "code": "pl",
+            "name": "Polski",
+            "emoji": "🇵🇱"
+        },
+        {
+            "code": "pt",
+            "name": "Português",
+            "emoji": "🇵🇹"
+        },
+        {
+            "code": "ro",
+            "name": "Română",
+            "emoji": "🇷🇴"
+        },
+        {
+            "code": "sv",
+            "name": "Svenska",
+            "emoji": "🇸🇪"
+        },
+        {
+            "code": "vi",
+            "name": "Tiếng Việt",
+            "emoji": "🇻🇳"
+        },
+        {
+            "code": "tr",
+            "name": "Türkçe",
+            "emoji": "🇹🇷"
+        },
+        {
+            "code": "bg",
+            "name": "Български",
+            "emoji": "🇧🇬"
         },
         {
             "code": "ru",
@@ -47,39 +112,19 @@
             "emoji": "🇺🇦"
         },
         {
-            "code": "pl",
-            "name": "Polski",
-            "emoji": "🇵🇱"
+            "code": "ur",
+            "name": "اردو",
+            "emoji": "🇵🇰"
         },
         {
-            "code": "sv",
-            "name": "Svenska",
-            "emoji": "🇸🇪"
+            "code": "fa",
+            "name": "فارسی",
+            "emoji": "🇮🇷"
         },
         {
-            "code": "da",
-            "name": "Dansk",
-            "emoji": "🇩🇰"
-        },
-        {
-            "code": "jp",
-            "name": "日本語",
-            "emoji": "🇯🇵"
-        },
-        {
-            "code": "cn",
-            "name": "中文",
-            "emoji": "🇨🇳"
-        },
-        {
-            "code": "kr",
-            "name": "한국어",
-            "emoji": "🇰🇷"
-        },
-        {
-            "code": "hi",
-            "name": "हिंदी",
-            "emoji": "🇮🇳"
+            "code": "bn",
+            "name": "বাংলা",
+            "emoji": "🇧🇩"
         },
         {
             "code": "th",
@@ -87,29 +132,14 @@
             "emoji": "🇹🇭"
         },
         {
-            "code": "ind-bahasa",
-            "name": "Indonesian",
-            "emoji": "🇮🇩"
+            "code": "jp",
+            "name": "日本語",
+            "emoji": "🇯🇵"
         },
         {
-            "code": "ar",
-            "name": "العربية",
-            "emoji": "🇦🇪"
-        },
-        {
-            "code": "tr",
-            "name": "Türkçe",
-            "emoji": "🇹🇷"
-        },
-        {
-            "code": "bg",
-            "name": "Ъливки",
-            "emoji": "🇧🇬"
-        },
-        {
-            "code": "ro",
-            "name": "Romanian",
-            "emoji": "🇷🇴"
+            "code": "kr",
+            "name": "한국어",
+            "emoji": "🇰🇷"
         }
     ],
     "content": {

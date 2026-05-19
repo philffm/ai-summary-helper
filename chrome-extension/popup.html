@@ -46,8 +46,8 @@
               <img src="icons/icon.svg" alt="" width="24" height="24" />
             </div>
             <div class="recent-info">
-              <span class="recent-title" id="recentTitle">No recent summaries</span>
-              <span class="recent-meta" id="recentMeta">Summarize a page to see it here</span>
+              <span class="recent-title" id="recentTitle" data-i18n="noRecentSummaries">No recent summaries</span>
+              <span class="recent-meta" id="recentMeta" data-i18n="summarizePageToSee">Summarize a page to see it here</span>
             </div>
           </div>
         </div>
@@ -55,10 +55,11 @@
         <!-- Fixed-bottom controls -->
         <div class="controls-bar">
           <div class="input-card">
-            <label class="input-card-label">What should the AI focus on?</label>
+            <label class="input-card-label" data-i18n="whatShouldAiFocus">What should the AI focus on?</label>
             <textarea
               id="additionalQuestions"
               class="input-card-textarea"
+              data-i18n-placeholder="askSpecificQuestions"
               placeholder="Ask specific questions about this page…"
             ></textarea>
 
@@ -127,7 +128,7 @@
               </button>
             </div>
 
-            <button id="fetchSummary" class="button-primary fillAvailable" style="margin-top: var(--spacing-s-3);">
+            <button id="fetchSummary" class="button-primary fillAvailable" style="margin-top: var(--spacing-s-3);" data-i18n="fetchSummary">
               ✨ Fetch Summary
               <span id="spinner" class="spinner" style="display: none"></span>
             </button>
@@ -138,10 +139,17 @@
 
       <!-- HISTORY SCREEN -->
       <div id="historyScreen" class="screen">
-        <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" />
+        <div id="historyTopBar" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
+          <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;flex:1;" />
+          <button id="graphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
+        </div>
+        <div id="detailTopBar" style="display:none;gap:8px;margin-bottom:12px;align-items:center;">
+          <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
+          <button id="detailGraphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
+        </div>
         <ul id="articleList"></ul>
-        <div id="articleDetail" style="display:none">
-          <button id="detailBackButton" class="button-secondary" style="margin-bottom:12px;">← Back</button>
+        <div id="graphContainer" style="display:none;"></div>
+        <div id="articleDetail" style="display:none;">
           <div id="articleDetailContent"></div>
         </div>
         <div id="podcastScreen" style="display: none"></div>
@@ -150,8 +158,8 @@
       <!-- SETTINGS SCREEN -->
       <div id="settingsScreen" class="screen">
         <div class="settings-header">
-          <h2>Settings</h2>
-          <button type="submit" form="settingsForm" class="button-primary" style="padding:8px 16px;font-size:13px;width:auto;flex-shrink:0;">Save 💾</button>
+          <h2 data-i18n="settings">Settings</h2>
+          <button type="submit" form="settingsForm" class="button-primary" style="padding:8px 16px;font-size:13px;width:auto;flex-shrink:0;" data-i18n="save">Save 💾</button>
         </div>
         <p class="donate">
           Questions, bugs or happy? 💡, feel free to
@@ -161,11 +169,113 @@
           <a href="https://link.philwornath.com/?source=aish#donate" target="_blank">a donation</a> :)
         </p>
         <form id="settingsForm">
-          <div class="accordion flex column gap-2 mb-3"></div>
+          <div class="accordion flex column gap-2 mb-3" id="settingsAccordion">
+            <!-- Model Configuration -->
+            <div class="accordion-item">
+              <button data-i18n="modelConfiguration" type="button" class="accordion-button">🤖 Model Configuration</button>
+              <div class="accordion-content">
+                <p data-i18n="modelDesc">Choose the LLM model to generate your summaries.</p>
+                <label for="model">Provider <span id="apiKeyLink" style="font-weight: normal"></span></label>
+                <select id="model"></select>
+                <div id="modelIdentifierContainer">
+                  <label id="modelIdentifierLabel" for="modelIdentifier">Model Identifier: (default)</label>
+                  <input type="text" id="modelIdentifier" placeholder="e.g., gpt-5-mini, llama3.2" />
+                </div>
+                <div id="apiKeyContainer">
+                  <label for="apiKey">API Key:</label>
+                  <input type="password" id="apiKey" name="apiKey" placeholder="sk-..." />
+                  <label class="light">🔒 Stored locally in your browser.</label>
+                </div>
+                <div id="customEndpointContainer" style="display: none">
+                  <label for="customEndpoint">Endpoint URL:</label>
+                  <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Prompt Customization -->
+            <div class="accordion-item">
+              <button data-i18n="promptCustomization" type="button" class="accordion-button">💬 Prompt Customization</button>
+              <div class="accordion-content">
+                <p data-i18n="promptDesc">Customize how the AI analyzes the text.</p>
+                <label for="promptSelect">Preset Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/chrome-extension/prompts.json" target="_blank">(View all & contribute)</a></label>
+                <select id="promptSelect"></select>
+                <textarea id="prompt" placeholder="Enter your custom prompt here..."></textarea>
+              </div>
+            </div>
+
+            <!-- General Settings -->
+            <div class="accordion-item">
+              <button data-i18n="generalSettings" type="button" class="accordion-button">🔄 General Settings</button>
+              <div class="accordion-content">
+                <div class="setting-group flex justify-between align-center mb-3">
+                  <label for="themeSelect">Theme</label>
+                  <select id="themeSelect">
+                      <option value="system">System Default</option>
+                      <option value="light">Light Mode</option>
+                      <option value="dark">Dark Mode</option>
+                  </select>
+                </div>
+
+                <div class="setting-group flex justify-between align-center mb-3">
+                  <label for="uiLangSelect">UI Language</label>
+                  <select id="uiLangSelect">
+                      <option value="">Browser Default</option>
+                      <option value="en">English</option>
+                      <option value="de">Deutsch</option>
+                      <option value="es">Español</option>
+                      <option value="fr">Français</option>
+                      <option value="it">Italiano</option>
+                      <option value="pt">Português</option>
+                      <option value="ru">Русский</option>
+                      <option value="ar">العربية</option>
+                      <option value="hi">हिन्दी</option>
+                      <option value="bn">বাংলা</option>
+                      <option value="ko">한국어</option>
+                      <option value="ja">日本語</option>
+                      <option value="zh_CN">简体中文</option>
+                  </select>
+                </div>
+
+                <div class="setting-group flex justify-between align-center mb-3">
+                  <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Chrome Side Panel</label>
+                  <label class="switch">
+                    <input type="checkbox" id="nativeSidePanelToggle" />
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div>
+
+                <!-- <div class="setting-group flex justify-between align-center mb-3">
+                  <label for="betaPodcastToggle" style="margin: 0; font-weight: normal; cursor: pointer;">🎙️ Podcast (Beta)</label>
+                  <label class="switch">
+                    <input type="checkbox" id="betaPodcastToggle" />
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div> -->
+
+                <div class="backup-restore" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--outline);">
+                  <p style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">💾 Backup & Restore</p>
+                  <div style="display: flex; gap: 8px;">
+                    <button type="button" id="exportSettingsButton" class="button-secondary flex-1">📤 Export</button>
+                    <button type="button" id="importSettingsButton" class="button-secondary flex-1">📥 Import</button>
+                    <input type="file" id="importSettingsFile" accept=".json" style="display: none;" />
+                  </div>
+                </div>
+
+                <div class="danger-zone" style="margin-top: 16px; border-top: 2px solid var(--danger); padding-top: 12px;">
+                  <p style="font-size: 12px; font-weight: 700; color: var(--danger); text-transform: uppercase;">⚠️ Danger Zone</p>
+                  <div style="display: flex; gap: 8px;">
+                    <button type="button" id="deleteSettingsButton" class="button danger flex-1">Delete Settings</button>
+                    <button type="button" id="deleteHistoryButton" class="button danger flex-1">Delete History</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <p>
             Open Source software by
             <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">1.5.46</span> — Feel free to
+            <br />AI Summary Helper v<span id="versionNumber">1.5.51</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>
@@ -175,8 +285,8 @@
       <div id="appsScreen" class="screen">
         <div class="apps-hero">
           <span class="apps-hero-icon">💠</span>
-          <h2>Compatible Tools</h2>
-          <p>Extensions that integrate seamlessly with AI Summary Helper to supercharge your workflow.</p>
+          <h2 data-i18n="compatibleTools">Compatible Tools</h2>
+          <p data-i18n="compatibleToolsDesc">Extensions that integrate seamlessly with AI Summary Helper to supercharge your workflow.</p>
         </div>
         <div id="compatibleToolsList" class="apps-grid">
           <div class="explanatory-card">Loading tools…</div>
@@ -189,19 +299,19 @@
       <div class="nav-blob" id="navBlob"></div>
       <button class="nav-item active" data-screen="main">
         <span class="nav-icon">✨</span>
-        <span class="nav-label">Summarize</span>
+        <span class="nav-label" data-i18n="navSummarize">Summarize</span>
       </button>
       <button class="nav-item" data-screen="history">
         <span class="nav-icon">🕐</span>
-        <span class="nav-label">History</span>
+        <span class="nav-label" data-i18n="navHistory">History</span>
       </button>
       <button class="nav-item" data-screen="apps">
         <span class="nav-icon">💠</span>
-        <span class="nav-label">Apps</span>
+        <span class="nav-label" data-i18n="navApps">Apps</span>
       </button>
       <button class="nav-item" data-screen="settings">
         <span class="nav-icon">⚙️</span>
-        <span class="nav-label">Settings</span>
+        <span class="nav-label" data-i18n="navSettings">Settings</span>
       </button>
     </nav>
 

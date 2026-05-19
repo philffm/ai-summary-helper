@@ -2,14 +2,15 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "1.5.46",
+  "version": "1.5.51",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
     "activeTab",
-    "storage",
+    "sidePanel",
     "scripting",
-    "sidePanel"
+    "storage",
+    "unlimitedStorage"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -71,7 +72,8 @@
         "uiManager.js",
         "services.json",
         "icons/*",
-        "modules/*"
+        "modules/*",
+        "lib/*"
       ],
       "matches": ["<all_urls>"]
     }

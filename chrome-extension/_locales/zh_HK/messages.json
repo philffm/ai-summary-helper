@@ -1,0 +1,248 @@
+{
+    "extensionName": {
+        "message": "AI Summary Helper - OpenAI, Gemini, Mistral, Ollama, Kindle"
+    },
+    "extensionDescription": {
+        "message": "快速獲取網頁內容嘅AI摘要。夾埋Send To Kindle用，隨時隨地都可以睇。"
+    },
+    "fetchSummary": {
+        "message": "獲取摘要"
+    },
+    "settings": {
+        "message": "設定"
+    },
+    "saved": {
+        "message": "儲存好啦！ 🎉"
+    },
+    "donate": {
+        "message": "贊助 (請飲咖啡)"
+    },
+    "noRecentSummaries": {
+        "message": "暫時冇近期摘要"
+    },
+    "summarizePageToSee": {
+        "message": "總結頁面之後可以喺度睇"
+    },
+    "whatShouldAiFocus": {
+        "message": "AI應該留意啲咩？"
+    },
+    "askSpecificQuestions": {
+        "message": "對呢個頁面提出具體問題…"
+    },
+    "summaryLanguage": {
+        "message": "摘要語言"
+    },
+    "searchLanguages": {
+        "message": "搜尋語言…"
+    },
+    "summaryLength": {
+        "message": "摘要長度"
+    },
+    "summaryMode": {
+        "message": "摘要模式"
+    },
+    "extension": {
+        "message": "擴充套件"
+    },
+    "viewAndCopy": {
+        "message": "檢視同埋複製"
+    },
+    "inline": {
+        "message": "行內"
+    },
+    "insertIntoPage": {
+        "message": "加入頁面"
+    },
+    "inlineModeTip": {
+        "message": "行內模式好啱用嚟「傳送到Kindle」。"
+    },
+    "aiModel": {
+        "message": "AI模型"
+    },
+    "addCustomModelId": {
+        "message": "新增自訂模型ID…"
+    },
+    "searchArticles": {
+        "message": "搜尋文章... (⌘ + F)"
+    },
+    "back": {
+        "message": "← 返回"
+    },
+    "save": {
+        "message": "儲存 💾"
+    },
+    "feedbackText": {
+        "message": "有問題、發現Bug定係覺得好用？💡 歡迎畀意見、搵我或者考慮贊助 :)"
+    },
+    "openSourceBy": {
+        "message": "開源軟件作者："
+    },
+    "contributeOnGithub": {
+        "message": "歡迎喺GitHub上面貢獻程式碼 💙"
+    },
+    "compatibleTools": {
+        "message": "支援工具"
+    },
+    "compatibleToolsDesc": {
+        "message": "同AI Summary Helper無縫整合、提升做嘢效率嘅擴充套件。"
+    },
+    "loadingTools": {
+        "message": "載入緊工具…"
+    },
+    "navSummarize": {
+        "message": "摘要"
+    },
+    "navHistory": {
+        "message": "歷史紀錄"
+    },
+    "navApps": {
+        "message": "App"
+    },
+    "navSettings": {
+        "message": "設定"
+    },
+    "starting": {
+        "message": "開始緊…"
+    },
+    "contactingContentScript": {
+        "message": "連線緊內容腳本…"
+    },
+    "workingOnIt": {
+        "message": "處理緊…"
+    },
+    "summary": {
+        "message": "摘要"
+    },
+    "noTitleAvailable": {
+        "message": "冇可用標題"
+    },
+    "noSummaryAvailable": {
+        "message": "冇可用摘要"
+    },
+    "noContentAvailable": {
+        "message": "冇可用內容"
+    },
+    "noDescriptionAvailable": {
+        "message": "冇可用描述"
+    },
+    "share": {
+        "message": "分享 🔗"
+    },
+    "saveMd": {
+        "message": "儲存 .MD 💾"
+    },
+    "reader": {
+        "message": "閱讀器 👓"
+    },
+    "delete": {
+        "message": "🗑️ 刪除"
+    },
+    "aiSummary": {
+        "message": "🧙 AI摘要"
+    },
+    "originalContent": {
+        "message": "📄 原始內容"
+    },
+    "emptyArchive": {
+        "message": "🗂️ 你個封存吉空空如也！開始儲存啲文章塞滿佢啦。 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "暫時冇可用工具。"
+    },
+    "failedToLoadTools": {
+        "message": "載入工具失敗。"
+    },
+    "clickToInsert": {
+        "message": "撳下你要插入摘要嘅位。"
+    },
+    "fetchingSummary": {
+        "message": "獲取緊摘要..."
+    },
+    "openInSidebar": {
+        "message": "喺側邊欄打開"
+    },
+    "theme": {
+        "message": "主題"
+    },
+    "systemDefault": {
+        "message": "系統預設"
+    },
+    "lightMode": {
+        "message": "淺色模式"
+    },
+    "darkMode": {
+        "message": "深色模式"
+    },
+    "uiLanguage": {
+        "message": "介面語言"
+    },
+    "browserDefault": {
+        "message": "瀏覽器預設"
+    },
+    "useNativeSidePanel": {
+        "message": "使用原生Chrome側邊欄"
+    },
+    "dangerZone": {
+        "message": "⚠️ 危險地帶"
+    },
+    "deleteSettings": {
+        "message": "刪除設定"
+    },
+    "deleteHistory": {
+        "message": "刪除歷史紀錄"
+    },
+    "model": {
+        "message": "模型"
+    },
+    "apiKey": {
+        "message": "API金鑰"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 API金鑰安全噉儲存喺你個瀏覽器入面。"
+    },
+    "endpointUrl": {
+        "message": "端點URL"
+    },
+    "prompt": {
+        "message": "提示詞"
+    },
+    "enterCustomPrompt": {
+        "message": "喺度打你嘅自訂提示詞"
+    },
+    "generalSettings": {
+        "message": "🔄 一般設定"
+    },
+    "enablePodcastBeta": {
+        "message": "啟用Podcast (Beta版)"
+    },
+    "modelIdentifiers": {
+        "message": "模型識別碼"
+    },
+    "default": {
+        "message": "預設"
+    },
+    "notConfigured": {
+        "message": "未設定"
+    },
+    "configured": {
+        "message": "已設定"
+    },
+    "modelIdentifier": {
+        "message": "模型識別碼: (留空就用預設識別碼)"
+    },
+    "localEndpoint": {
+        "message": "本機端點URL"
+    },
+    "additionalQuestions": {
+        "message": "打啲關於文章嘅額外問題（可選）"
+    },
+    "toggleScreen": {
+        "message": "切換螢幕"
+    },
+    "mainScreen": {
+        "message": "主螢幕"
+    },
+    "settingsScreen": {
+        "message": "設定螢幕"
+    }
+}

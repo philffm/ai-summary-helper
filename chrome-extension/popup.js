@@ -1,7 +1,6 @@
 import UIManager from './modules/uiManager.js';
 import StorageManager from './modules/storageManager.js';
 import { initArticleManager } from './modules/articleManager.js';
-import { initPromptManager } from './modules/promptManager.js';
 import { initSettingsManager } from './modules/settingsManager.js';
 // import { initModelManager } from './modules/modelManager.js';
 import { initLanguageManager } from './modules/languageManager.js';
@@ -31,14 +30,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     StorageManager.initializeDefaults();
 
     // ── Apply UI language setting ───────────────────────────────────────
-    chrome.storage.sync.get('uiLanguage', (data) => {
-        if (data.uiLanguage) {
-            document.documentElement.lang = data.uiLanguage;
-        }
+    import('./modules/i18n.js').then(({ applyTranslations }) => {
+        chrome.storage.sync.get('uiLanguage', (data) => {
+            applyTranslations(data.uiLanguage || 'en');
+        });
     });
 
     // initModelManager(ui); // Not exported from modelManager.js
-    initPromptManager(ui);
     initSettingsManager(ui);
     initLanguageManager(ui);
     initToolsManager(ui);
@@ -171,6 +169,27 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
                 languageTagGrid.appendChild(btn);
             });
+            // If user typed a search term that doesn't match any language, show a "Use custom" chip
+            if (filter && languageTagGrid.children.length === 0) {
+                const customBtn = document.createElement('button');
+                customBtn.className = 'tag-btn';
+                customBtn.style.borderColor = 'var(--accent)';
+                customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${filter}"`;
+                customBtn.title = `Use "${filter}" as custom language code`;
+                customBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Add a temporary option for this custom code
+                    const opt = document.createElement('option');
+                    opt.value = filter;
+                    opt.textContent = `✏️ ${filter.toUpperCase()}`;
+                    languageSelect.add(opt);
+                    languageSelect.value = filter;
+                    languageSelect.dispatchEvent(new Event('change'));
+                    document.getElementById('panelLanguage').style.display = 'none';
+                    document.querySelector('.chip[data-panel="language"]').classList.remove('active');
+                });
+                languageTagGrid.appendChild(customBtn);
+            }
         };
 
         const observer = new MutationObserver(() => renderTags());

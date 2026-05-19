@@ -68,7 +68,7 @@
   --slider-fill: #2563eb;
 
   /* nav */
-  --nav-blob-bg: #1d4ed8;
+  --nav-blob-bg: linear-gradient(135deg, var(--accent), var(--accent-light));
   --nav-active-text: #ffffff;
 }
 
@@ -106,7 +106,7 @@
     --slider-fill: #60a5fa;
 
     /* nav */
-    --nav-blob-bg: var(--accent-light);
+    --nav-blob-bg: linear-gradient(135deg, var(--accent), var(--accent-light));
     --nav-active-text: #ffffff;
   }
 }
@@ -310,7 +310,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .button-primary {
   width: 100%;
-  padding: 14px 20px;
+  padding: 12px 16px;
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent-light));
   box-shadow: 0 6px 18px var(--accent-glow);
@@ -408,6 +408,7 @@ input,
 textarea,
 select {
   width: 100%;
+  /* max-width: 100px; */
   padding: 12px 14px;
   margin-bottom: var(--spacing-s-3);
   border-radius: var(--radius-md);
@@ -823,6 +824,13 @@ ul#articleList {
   gap: var(--spacing-s-3);
 }
 
+.setting-group {
+    margin-bottom: var(--spacing-s-5);
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
 .donate {
   margin-bottom: var(--spacing-s-4);
   color: var(--text-secondary);
@@ -960,6 +968,42 @@ ul#articleList {
 #searchInput {
   flex-grow: 1;
   margin-bottom: var(--spacing-s-4);
+}
+
+/* ── History Toolbar ───────────────────────────────────────────────────── */
+
+.history-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s-2);
+  margin-bottom: var(--spacing-s-4);
+}
+
+.history-toolbar #searchInput {
+  margin-bottom: 0;
+}
+
+#graphToggleBtn {
+  flex-shrink: 0;
+}
+
+/* ── Graph Container ───────────────────────────────────────────────────── */
+
+#graphContainer {
+  width: 100%;
+  min-height: 400px;
+  border-radius: var(--radius-lg);
+  background: var(--glass-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+}
+
+.graph-link {
+  stroke: var(--outline);
+  stroke-width: 1.5px;
+  stroke-opacity: 0.6;
 }
 
 /* ── Bottom Navigation ─────────────────────────────────────────────────── */

@@ -37,7 +37,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
   
   if (request.action === 'fetchSummary') {
-    const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode } = request;
+    const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode, summaryLength: msgSummaryLength } = request;
     // 1. Acknowledge immediately to prevent port errors in the popup
     sendResponse({ success: true, message: summaryMode === 'extension' ? 'Fetching summary...' : 'Selection started' });
 
@@ -46,8 +46,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       // Extension mode: skip element selection, use a temp off-screen container
       if (summaryMode === 'extension') {
-        chrome.storage.sync.get(['summaryLength', 'debugEnabled', 'prompt'], (data) => {
+        chrome.storage.sync.get(['debugEnabled', 'prompt'], (data) => {
           const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
+          // Use message-passed summaryLength first, fall back to 200
+          const length = msgSummaryLength || 200;
           // Create a hidden placeholder so fetchSummary has a target to stream into
           const hiddenTarget = document.createElement('div');
           hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
@@ -56,7 +58,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             popupQuestions,
             selectedLanguage,
             promptToUse,
-            data.summaryLength || 500,
+            length,
             hiddenTarget,
             data.debugEnabled || false,
             summaryMode
@@ -68,13 +70,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       // Inline mode: ask user to pick an insertion point
       const targetElement = await selectTargetElement();
       if (targetElement) {
-        chrome.storage.sync.get(['summaryLength', 'debugEnabled', 'prompt'], (data) => {
+        chrome.storage.sync.get(['debugEnabled', 'prompt'], (data) => {
           const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
+          const length = msgSummaryLength || 200;
           fetchSummary(
             popupQuestions, 
             selectedLanguage, 
             promptToUse, 
-            data.summaryLength || 500, 
+            length, 
             targetElement, 
             data.debugEnabled || false,
             summaryMode
@@ -99,8 +102,8 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   // include. We use character-based truncation below (chars ≈ tokens * 4).
   const tokenLimit = 20000; // generous default for larger inputs
 
-  const content = getAllTextContent();
-  const truncatedContent = truncateToTokenLimit(content, tokenLimit);
+  const { html: contentHtml, text: contentText } = getAllTextContent();
+  const truncatedContent = truncateToTokenLimit(contentText, tokenLimit);
 
   // Show placeholder after fetching content
   const donationMessage = getRandomDonationMessage();
@@ -286,11 +289,13 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
                 title: document.title,
                 url: window.location.href,
                 timestamp: new Date().toISOString(),
-                tags: tags
+                tags: tags,
+                modelId: modelIdentifier,
+                content: contentHtml
               });
             }
             
-            saveToLocalStorage(truncatedContent, cleanHtml, window.location.href, document.title, '', tags);
+            saveToLocalStorage(contentHtml, cleanHtml, window.location.href, document.title, '', tags, modelIdentifier, summaryLength);
             resolve({ success: true });
             
             port.disconnect();
@@ -351,9 +356,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 }
 
 // Function to save content, summary, URL, title, and description to local storage
-function saveToLocalStorage(content, summary, url, title, description, tags = []) {
+function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200) {
   const timestamp = new Date().toISOString();
-  const articleData = { content, summary, url, title, description, timestamp, tags };
+  const articleData = { content, summary, url, title, description, timestamp, tags, modelId, summaryLength };
 
   chrome.storage.local.get({ articles: [] }, (data) => {
     const articles = data.articles;
@@ -495,6 +500,35 @@ function getAllTextContent() {
     for (const node of nodes) node.remove();
   }
 
+  // ── Sanitization Block: Remove all HTML bloat but keep clean semantic tags ──
+  // 1. Remove interactive or dead nodes
+  const badNodes = clone.querySelectorAll('script, style, button, input, iframe');
+  for (const node of badNodes) node.remove();
+
+  // 2. Clean up images: resolve src for lazy-loaded images, then strip all tracking attributes
+  const allImages = clone.querySelectorAll('img');
+  for (const img of allImages) {
+    const src = img.src || img.getAttribute('data-src') || img.getAttribute('data-original');
+    if (src && !src.startsWith('data:image')) {
+      img.setAttribute('src', src);
+    } else {
+      img.remove();
+      continue;
+    }
+  }
+
+  // 3. Strip every single attribute except src, href, alt from all elements
+  const allElements = clone.querySelectorAll('*');
+  for (const el of allElements) {
+    const attrs = Array.from(el.attributes);
+    for (const attr of attrs) {
+      if (attr.name !== 'src' && attr.name !== 'href' && attr.name !== 'alt') {
+        el.removeAttribute(attr.name);
+      }
+    }
+  }
+  // ── End Sanitization Block ─────────────────────────────────────────────────
+
   // Use textContent on the cleaned clone (reliable, works detached)
   let text = clone.textContent || '';
 
@@ -539,6 +573,32 @@ function getAllTextContent() {
       const nodes = bodyClone.querySelectorAll(selector);
       for (const node of nodes) node.remove();
     }
+    // Apply sanitization on the body clone too
+    const bodyBadNodes = bodyClone.querySelectorAll('script, style, button, input, iframe');
+    for (const node of bodyBadNodes) node.remove();
+
+    const bodyImages = bodyClone.querySelectorAll('img');
+    for (const img of bodyImages) {
+      const src = img.src || img.getAttribute('data-src') || img.getAttribute('data-original');
+      if (src && !src.startsWith('data:image')) {
+        img.setAttribute('src', src);
+      } else {
+        img.remove();
+        continue;
+      }
+    }
+
+    const bodyAllEls = bodyClone.querySelectorAll('*');
+    for (const el of bodyAllEls) {
+      const attrs = Array.from(el.attributes);
+      for (const attr of attrs) {
+        if (attr.name !== 'src' && attr.name !== 'href' && attr.name !== 'alt') {
+          el.removeAttribute(attr.name);
+        }
+      }
+    }
+    // Use the body clone for both HTML and text
+    clone.innerHTML = bodyClone.innerHTML;
     text = bodyClone.textContent || '';
     cleanText = text
       .replace(/[ \t]+/g, ' ')
@@ -547,7 +607,8 @@ function getAllTextContent() {
   }
 
   console.log('Collected content length:', cleanText.length);
-  return cleanText;
+  // Return both the cleaned HTML (for storage) and the plain text (for AI prompt)
+  return { html: clone.innerHTML, text: cleanText };
 }
 
 // Simplified function to determine if the background is light or dark

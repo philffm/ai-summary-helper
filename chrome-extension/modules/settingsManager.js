@@ -1,254 +1,150 @@
-// Settings Manager
-// Handles settings form and persistence
+// settingsManager.js
+// Settings screen initialization — UI is in popup.html (static accordion),
+// this file handles logic, auto-save, and wiring event listeners.
 
 import StorageManager from './storageManager.js';
 import { initPromptManager } from './promptManager.js';
 import { updateModelIdentifierUI } from './modelManager.js';
 
-function initSettingsManager(ui) {
+let uiRef = null;
 
-                // Helper to update API key link, endpoint visibility, and field values
-                async function updateServiceUI(serviceId, services, storageData) {
-                    // Get input elements first
-                    const apiKeyLink = document.getElementById('apiKeyLink');
-                    const apiKeyInput = document.getElementById('apiKey');
-                    const modelIdentifierInput = document.getElementById('modelIdentifier');
-                    const endpointInput = document.getElementById('customEndpoint');
-                    const apiKeyContainer = document.getElementById('apiKeyContainer');
-                    const customEndpointContainer = document.getElementById('customEndpointContainer');
-                    const modelIdentifierLabel = document.getElementById('modelIdentifierLabel');
-                    const modelIdentifierContainer = document.getElementById('modelIdentifierContainer');
+export async function initSettingsManager(ui) {
+    uiRef = ui;
+    const storageData = await StorageManager.getAll();
 
-                    // Add listeners to save changes
-                    if (apiKeyInput) {
-                        apiKeyInput.oninput = () => {
-                            StorageManager.updateService(serviceId, { apiKey: apiKeyInput.value });
-                        };
-                    }
-                    if (endpointInput) {
-                        endpointInput.oninput = () => {
-                            StorageManager.updateService(serviceId, { endpoint: endpointInput.value });
-                        };
-                    }
+    // Initialize distinct sections independently (DOM is already in popup.html)
+    initModelSettings(storageData);
+    initGeneralSettings(storageData);
+    initDangerZone();
+    initBackupRestore();
+    initSummaryLengthSlider();
 
-                    // Use modular model identifier UI logic
-                    updateModelIdentifierUI(serviceId, services, storageData);
-
-                    const service = services.find(s => s.id === serviceId);
-                    if (!service) return;
-                    if (apiKeyLink) {
-                        apiKeyLink.innerHTML = service.apiKeyDocumentationUrl ? `(<a href="${service.apiKeyDocumentationUrl}" target="_blank">Get your API key</a>)` : '';
-                    }
-                    if (customEndpointContainer) {
-                        customEndpointContainer.style.display = service.allowCustomEndpoint ? 'block' : 'none';
-                    }
-                    if (apiKeyContainer) {
-                        apiKeyContainer.style.display = 'block';
-                    }
-                    // Populate fields from storage
-                    const cfg = storageData.servicesConfig?.[serviceId] || {};
-                    if (apiKeyInput) apiKeyInput.value = cfg.apiKey || '';
-                    if (endpointInput) endpointInput.value = cfg.endpoint || service.endpointUrl || '';
-                }
-
-                // Populate model/service dropdown
-                async function populateModelDropdown() {
-                    const modelSelect = document.getElementById('model');
-                    if (!modelSelect) return;
-                    const services = await StorageManager.getServices();
-                    modelSelect.innerHTML = '';
-                    services.forEach(service => {
-                        const option = document.createElement('option');
-                        option.value = service.id;
-                        option.textContent = service.name;
-                        modelSelect.appendChild(option);
-                    });
-
-                    // Load current selection and config from storage
-                    const data = await StorageManager.getAll();
-                    let activeService = data.activeService || 'openai';
-                    // If the activeService is not in the available services, fall back to the first one
-                    if (!services.some(s => s.id === activeService)) {
-                        activeService = services.length > 0 ? services[0].id : '';
-                        await StorageManager.set({ activeService });
-                    }
-                    modelSelect.value = activeService;
-                    await updateServiceUI(activeService, services, data);
-
-                    // Listen for changes
-                    modelSelect.addEventListener('change', async () => {
-                        const selectedId = modelSelect.value;
-                        await updateServiceUI(selectedId, services, await StorageManager.getAll());
-                        StorageManager.set({ activeService: selectedId });
-                    });
-                }
-
-                // Load initial settings and populate UI
-                async function loadSettings() {
-                    await populateModelDropdown();
-                    // You can add more logic here to load other settings (prompt, etc.)
-                    const themeSelect = document.getElementById('themeSelect');
-                    const betaPodcastToggle = document.getElementById('betaPodcastToggle');
-                    const storageData = await StorageManager.getAll();
-                    
-                    if (themeSelect) {
-                        const savedTheme = storageData.theme || 'system';
-                        themeSelect.value = savedTheme;
-                        
-                        // APPLY THEME IMMEDIATELY ON LOAD
-                        if (savedTheme === 'dark' || savedTheme === 'light') {
-                            document.documentElement.setAttribute('data-theme', savedTheme);
-                        } else {
-                            document.documentElement.removeAttribute('data-theme');
-                        }
-                    }
-                    if (betaPodcastToggle) {
-                        betaPodcastToggle.checked = !!storageData.betaPodcast;
-                    }
-                    const nativeToggle = document.getElementById('nativeSidePanelToggle');
-                    if (nativeToggle) {
-                        nativeToggle.checked = !!storageData.useNativeSidePanel;
-                    }
-                    const uiLangSelect = document.getElementById('uiLangSelect');
-                    if (uiLangSelect && storageData.uiLanguage) {
-                        uiLangSelect.value = storageData.uiLanguage;
-                    }
-                }
-
-                                loadSettings();
-
-    // Dynamically render accordion items for settings
-    const accordionContainer = document.querySelector('.accordion');
-    if (accordionContainer) {
-        accordionContainer.innerHTML = '';
-        const accordionItems = [
-            {
-                button: '🤖 Model',
-                content: `
-                  <p>Choose the LLM model you want to use to generate the summary.</p>
-                  <label for="model">Model <span id="apiKeyLink" style="font-weight: normal"></span></label>
-                  <select id="model"></select>
-                  <div id="modelIdentifierContainer">
-                    <label id="modelIdentifierLabel" for="modelIdentifier">Model Identifier: (default)</label>
-                    <input type="text" id="modelIdentifier" placeholder="e.g., gpt-5-mini, llama3.2, mistral-large-latest" />
-                  </div>
-                  <div id="apiKeyContainer">
-                    <label for="apiKey">API Key:</label>
-                    <input type="text" id="apiKey" name="apiKey" />
-                    <label class="light" for="apiKey">🔒 The API key is stored locally in your browser.</label>
-                  </div>
-                  <div id="customEndpointContainer" style="display: none">
-                    <label for="customEndpoint">Endpoint URL:</label>
-                    <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
-                  </div>
-                `
-            },
-            {
-                button: '💬 Prompt',
-                content: `
-                  <p>Choose the prompt you want to use to generate the summary.</p>
-                  <label for="promptSelect">Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/chrome-extension/prompts.json" target="_blank">(View all & contribute)</a></label>
-                  <select id="promptSelect"></select>
-                  <textarea id="prompt" placeholder="Enter your custom prompt here"></textarea>
-                `
-            },
-            {
-                button: '🔄 General Settings',
-                content: `
-                  <p>General settings for the extension.</p>
-                  
-                  <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
-                    <label for="themeSelect">Theme</label>
-                    <select id="themeSelect" style="width: auto; margin-bottom: 0;">
-                        <option value="system">System Default</option>
-                        <option value="light">Light Mode</option>
-                        <option value="dark">Dark Mode</option>
-                    </select>
-                  </div>
-
-                  <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
-                    <label for="uiLangSelect">UI Language</label>
-                    <select id="uiLangSelect" style="width: auto; margin-bottom: 0;">
-                        <option value="">Browser Default</option>
-                        <option value="en">English</option>
-                        <option value="de">Deutsch</option>
-                        <option value="es">Español</option>
-                        <option value="ko">한국어</option>
-                        <option value="ja">日本語</option>
-                        <option value="zh_CN">简体中文</option>
-                    </select>
-                  </div>
-
-                  <div class="setting-group" style="margin-bottom: var(--spacing-s-3); display: flex; justify-content: space-between; align-items: center;">
-                    <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Chrome Side Panel</label>
-                    <label class="switch">
-                      <input type="checkbox" id="nativeSidePanelToggle" />
-                      <span class="slider-toggle"></span>
-                    </label>
-                  </div>
-
-                  <div style="margin-top: var(--spacing-s-4); padding-top: var(--spacing-s-3); border-top: 2px solid var(--danger);">
-                    <p style="font-size: 12px; font-weight: 700; color: var(--danger); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--spacing-s-3);">⚠️ Danger Zone</p>
-                    <div style="display: flex; gap: var(--spacing-s-2);">
-                      <button id="deleteSettingsButton" class="button danger" style="flex:1;">Delete Settings</button>
-                      <button id="deleteHistoryButton" class="button danger" style="flex:1;">Delete History</button>
-                    </div>
-                  </div>
-                `
-            }
-        ];
-        accordionItems.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'accordion-item';
-            const button = document.createElement('button');
-            button.className = 'accordion-button';
-            button.innerHTML = item.button;
-            const content = document.createElement('div');
-            content.className = 'accordion-content';
-            content.innerHTML = item.content;
-            itemDiv.appendChild(button);
-            itemDiv.appendChild(content);
-            accordionContainer.appendChild(itemDiv);
-        });
-        // After rendering, populate model dropdown and update API key link
-        setTimeout(() => {
-            loadSettings();
-            // Initialize prompt manager after accordion is rendered
-            const promptSelect = document.getElementById('promptSelect');
-            const promptInput = document.getElementById('prompt');
-            if (promptSelect && promptInput) {
-                initPromptManager(promptSelect, promptInput);
-            }
-        }, 0);
+    // Initialize prompt manager with the static DOM elements
+    const promptSelect = document.getElementById('promptSelect');
+    const promptInput = document.getElementById('prompt');
+    if (promptSelect && promptInput) {
+        initPromptManager(promptSelect, promptInput);
     }
-    // Settings form logic
-    const settingsForm = document.getElementById('settingsForm');
-    const summaryLengthSlider = document.getElementById('summaryLength');
-    const summaryLengthValue = document.getElementById('summaryLengthValue');
-    const saveButton = document.querySelector('button[form="settingsForm"]');
 
-    // ── Auto-save helper: saves a key/value and flashes the save button ──
-    const autoSave = async (key, value) => {
-        await StorageManager.set({ [key]: value });
-        if (saveButton) {
-            const origText = saveButton.textContent;
-            const origBg = saveButton.style.background;
-            const origColor = saveButton.style.color;
-            saveButton.textContent = 'Saved!';
-            saveButton.style.background = '#2ecc40';
-            saveButton.style.color = '#fff';
-            saveButton.disabled = true;
-            setTimeout(() => {
-                saveButton.textContent = origText;
-                saveButton.style.background = origBg;
-                saveButton.style.color = origColor;
-            }, 1500);
+    // Prevent form submission page reloads
+    const settingsForm = document.getElementById('settingsForm');
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', (e) => e.preventDefault());
+    }
+}
+
+// ── UI Helper: Visual Auto-Save Indicator ──────────────────────────
+function flashSaveIndicator() {
+    const saveButton = document.querySelector('button[form="settingsForm"]');
+    if (!saveButton) return;
+
+    const origText = saveButton.textContent;
+    const origBg = saveButton.style.background;
+    const origColor = saveButton.style.color;
+
+    saveButton.textContent = 'Saved! ✓';
+    saveButton.style.background = 'var(--success, #2ecc40)';
+    saveButton.style.color = '#fff';
+    saveButton.disabled = true;
+
+    setTimeout(() => {
+        saveButton.textContent = origText;
+        saveButton.style.background = origBg;
+        saveButton.style.color = origColor;
+        saveButton.disabled = false;
+    }, 1500);
+}
+
+const autoSave = async (key, value) => {
+    await StorageManager.set({ [key]: value });
+    flashSaveIndicator();
+};
+
+// ── Section: Model Configuration ─────────────────────────────────────
+async function initModelSettings(storageData) {
+    const services = await StorageManager.getServices();
+    const modelSelect = document.getElementById('model');
+    const apiKeyInput = document.getElementById('apiKey');
+    const endpointInput = document.getElementById('customEndpoint');
+
+    if (!modelSelect) return;
+
+    // Populate provider dropdown
+    modelSelect.innerHTML = '';
+    services.forEach(service => {
+        const option = document.createElement('option');
+        option.value = service.id;
+        option.textContent = service.name;
+        modelSelect.appendChild(option);
+    });
+
+    // Restore active service
+    let activeService = storageData.activeService || 'openai';
+    if (!services.some(s => s.id === activeService)) {
+        activeService = services[0]?.id;
+        if (activeService) await StorageManager.set({ activeService });
+    }
+    modelSelect.value = activeService;
+
+    // ── Helper: refresh all UI fields for a given provider ────────
+    const updateFields = async (serviceId) => {
+        const service = services.find(s => s.id === serviceId);
+        const latest = await StorageManager.getAll();
+        const cfg = latest.servicesConfig?.[serviceId] || {};
+
+        // API key documentation link
+        const apiKeyLink = document.getElementById('apiKeyLink');
+        if (apiKeyLink) {
+            apiKeyLink.innerHTML = service?.apiKeyDocumentationUrl
+                ? `(<a href="${service.apiKeyDocumentationUrl}" target="_blank">Get Key</a>)`
+                : '';
         }
+
+        // Endpoint visibility
+        const customEndpointContainer = document.getElementById('customEndpointContainer');
+        if (customEndpointContainer) {
+            customEndpointContainer.style.display = service?.allowCustomEndpoint ? 'block' : 'none';
+        }
+
+        // Populate field values
+        if (apiKeyInput) apiKeyInput.value = cfg.apiKey || '';
+        if (endpointInput) endpointInput.value = cfg.endpoint || service?.endpointUrl || '';
+
+        // Model identifier tag UI (from modelManager.js)
+        updateModelIdentifierUI(serviceId, services, latest);
     };
 
-    // ── Auto-save on individual setting changes ──────────────────────────
+    // ── Event: provider change ────────────────────────────────────
+    modelSelect.addEventListener('change', async () => {
+        const selectedId = modelSelect.value;
+        await autoSave('activeService', selectedId);
+        await updateFields(selectedId);
+    });
+
+    // ── Real-time save: API key ────────────────────────────────────
+    if (apiKeyInput) {
+        apiKeyInput.addEventListener('input', () => {
+            StorageManager.updateService(modelSelect.value, { apiKey: apiKeyInput.value });
+        });
+    }
+
+    // ── Real-time save: Endpoint ───────────────────────────────────
+    if (endpointInput) {
+        endpointInput.addEventListener('input', () => {
+            StorageManager.updateService(modelSelect.value, { endpoint: endpointInput.value });
+        });
+    }
+
+    // Initial population
+    await updateFields(activeService);
+}
+
+// ── Section: General Settings ────────────────────────────────────────
+function initGeneralSettings(storageData) {
+    // ── Theme ──────────────────────────────────────────────────────
     const themeSelect = document.getElementById('themeSelect');
     if (themeSelect) {
+        themeSelect.value = storageData.theme || 'system';
         themeSelect.addEventListener('change', () => {
             const val = themeSelect.value;
             autoSave('theme', val);
@@ -260,8 +156,35 @@ function initSettingsManager(ui) {
         });
     }
 
+    // ── UI Language ────────────────────────────────────────────────
+    const uiLangSelect = document.getElementById('uiLangSelect');
+    if (uiLangSelect) {
+        uiLangSelect.value = storageData.uiLanguage || '';
+        uiLangSelect.addEventListener('change', async () => {
+            const val = uiLangSelect.value;
+            await autoSave('uiLanguage', val);
+            try {
+                const { applyTranslations } = await import('./i18n.js');
+                applyTranslations(val);
+            } catch (e) {
+                console.error('Translation failed', e);
+            }
+        });
+    }
+
+    // ── Native Side Panel ──────────────────────────────────────────
+    const nativeToggle = document.getElementById('nativeSidePanelToggle');
+    if (nativeToggle) {
+        nativeToggle.checked = !!storageData.useNativeSidePanel;
+        nativeToggle.addEventListener('change', () => {
+            autoSave('useNativeSidePanel', nativeToggle.checked);
+        });
+    }
+
+    // ── Beta Podcast ───────────────────────────────────────────────
     const betaPodcastToggle = document.getElementById('betaPodcastToggle');
     if (betaPodcastToggle) {
+        betaPodcastToggle.checked = !!storageData.betaPodcast;
         betaPodcastToggle.addEventListener('change', () => {
             autoSave('betaPodcast', betaPodcastToggle.checked);
             const podcastButton = document.getElementById('podcastButton');
@@ -270,87 +193,121 @@ function initSettingsManager(ui) {
             }
         });
     }
+}
 
-    const nativeToggle = document.getElementById('nativeSidePanelToggle');
-    if (nativeToggle) {
-        nativeToggle.addEventListener('change', () => {
-            autoSave('useNativeSidePanel', nativeToggle.checked);
-        });
-    }
+// ── Section: Summary Length Slider ───────────────────────────────────
+function initSummaryLengthSlider() {
+    const slider = document.getElementById('summaryLength');
+    const valueDisplay = document.getElementById('summaryLengthValue');
+    const chipLabel = document.getElementById('chipLengthLabel');
+    if (!slider || !valueDisplay) return;
 
-    const uiLangSelect = document.getElementById('uiLangSelect');
-    if (uiLangSelect) {
-        uiLangSelect.addEventListener('change', () => {
-            autoSave('uiLanguage', uiLangSelect.value);
-        });
-    }
+    chrome.storage.local.get(['summaryLength'], (data) => {
+        const length = data.summaryLength || 200;
+        slider.value = length;
+        valueDisplay.textContent = length;
+        slider.dispatchEvent(new Event('input'));
+    });
 
-    // Auto-save model selection
-    const modelSelect = document.getElementById('model');
-    if (modelSelect) {
-        modelSelect.addEventListener('change', async () => {
-            await StorageManager.set({ activeService: modelSelect.value });
-            autoSave('activeService', modelSelect.value);
-        });
-    }
+    slider.addEventListener('input', () => {
+        const newLength = slider.value;
+        valueDisplay.textContent = newLength;
+        if (chipLabel) chipLabel.textContent = newLength + 'w';
+        chrome.storage.local.set({ summaryLength: Number(newLength) });
+    });
+}
 
-    // Auto-save prompt selection
-    const promptSelect = document.getElementById('promptSelect');
-    if (promptSelect) {
-        promptSelect.addEventListener('change', () => {
-            const promptType = promptSelect.value === 'custom' ? 'custom' : 'preset';
-            StorageManager.set({ presetPrompt: promptSelect.value, promptType });
-            autoSave('presetPrompt', promptSelect.value);
-        });
-    }
+// ── Section: Danger Zone ─────────────────────────────────────────────
+function initDangerZone() {
+    const btnSettings = document.getElementById('deleteSettingsButton');
+    const btnHistory = document.getElementById('deleteHistoryButton');
 
-    // Initialize summary length slider
-    if (summaryLengthSlider && summaryLengthValue) {
-        chrome.storage.local.get(['summaryLength'], data => {
-            const length = data.summaryLength || 200;
-            summaryLengthSlider.value = length;
-            summaryLengthValue.textContent = length;
-            // Force the blue fill track and chip label to recalculate
-            summaryLengthSlider.dispatchEvent(new Event('input'));
-        });
-        summaryLengthSlider.addEventListener('input', () => {
-            const newLength = summaryLengthSlider.value;
-            summaryLengthValue.textContent = newLength;
-            chrome.storage.local.set({ summaryLength: newLength });
-        });
-    }
-
-    // Settings form submit — only handles fields not auto-saved (API key, endpoint, custom prompt)
-    if (settingsForm) {
-        settingsForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const apiKeyInput = document.getElementById('apiKey');
-            const endpointInput = document.getElementById('customEndpoint');
-            const promptInput = document.getElementById('prompt');
-            const activeService = (document.getElementById('model') || {}).value || 'openai';
-
-            const storageData = await StorageManager.getAll();
-            const servicesConfig = storageData.servicesConfig || {};
-            const existing = servicesConfig[activeService] || {};
-            servicesConfig[activeService] = {
-                ...existing,
-                apiKey: apiKeyInput ? apiKeyInput.value : (existing.apiKey || ''),
-                endpoint: endpointInput ? endpointInput.value : (existing.endpoint || ''),
-                customModel: existing.customModel || [],
-                activeModelId: existing.activeModelId || ''
-            };
-            await StorageManager.set({ servicesConfig });
-            if (promptInput) {
-                await StorageManager.set({ prompt: promptInput.value });
+    if (btnSettings) {
+        btnSettings.addEventListener('click', async () => {
+            if (confirm('Are you sure you want to reset all settings to default?')) {
+                await chrome.storage.sync.clear();
+                alert('Settings deleted. The extension will now reload.');
+                chrome.runtime.reload();
             }
-            autoSave('servicesConfig', servicesConfig);
+        });
+    }
+
+    if (btnHistory) {
+        btnHistory.addEventListener('click', async () => {
+            if (confirm('Are you sure you want to delete all saved summaries?')) {
+                await StorageManager.setLocal({ articles: [] });
+                alert('History deleted.');
+            }
         });
     }
 }
 
-/**
- * Initializes the summary length slider and syncs with storage.
- * @param {HTMLElement} summaryLengthSlider - The slider element.
- * @param {HTMLElement} summaryLengthValue - The value display element.
- */
-export { initSettingsManager };
+// ── Section: Backup & Restore ────────────────────────────────────────
+function initBackupRestore() {
+    const btnExport = document.getElementById('exportSettingsButton');
+    const btnImport = document.getElementById('importSettingsButton');
+    const fileInput = document.getElementById('importSettingsFile');
+
+    // ── Export Settings ──
+    if (btnExport) {
+        btnExport.addEventListener('click', async () => {
+            try {
+                const data = await StorageManager.getAll();
+                const jsonStr = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
+                a.download = `ai_summary_settings_${date}.json`;
+
+                document.body.appendChild(a);
+                a.click();
+
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                const origText = btnExport.textContent;
+                btnExport.textContent = 'Exported! ✓';
+                setTimeout(() => btnExport.textContent = origText, 2000);
+            } catch (err) {
+                console.error('Export failed:', err);
+                alert('Failed to export settings.');
+            }
+        });
+    }
+
+    // ── Import Settings ──
+    if (btnImport && fileInput) {
+        btnImport.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+
+                    if (typeof importedData !== 'object' || Array.isArray(importedData)) {
+                        throw new Error('Invalid format');
+                    }
+
+                    await StorageManager.set(importedData);
+
+                    alert('Settings imported successfully! The extension will now reload to apply them.');
+                    chrome.runtime.reload();
+                } catch (err) {
+                    console.error('Import failed:', err);
+                    alert('Invalid JSON file. Please select a valid AI Summary Helper backup.');
+                } finally {
+                    fileInput.value = '';
+                }
+            };
+
+            reader.readAsText(file);
+        });
+    }
+}

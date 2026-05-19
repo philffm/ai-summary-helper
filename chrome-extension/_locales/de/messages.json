@@ -17,11 +17,227 @@
     "donate": {
         "message": "Spenden"
     },
-    "apiKey": {
-        "message": "API-Schlüssel"
+    "noRecentSummaries": {
+        "message": "Keine aktuellen Zusammenfassungen"
+    },
+    "summarizePageToSee": {
+        "message": "Fasse eine Seite zusammen, um sie hier zu sehen"
+    },
+    "whatShouldAiFocus": {
+        "message": "Worauf soll sich die KI konzentrieren?"
+    },
+    "askSpecificQuestions": {
+        "message": "Spezifische Fragen zu dieser Seite stellen…"
+    },
+    "summaryLanguage": {
+        "message": "Sprache der Zusammenfassung"
+    },
+    "searchLanguages": {
+        "message": "Sprachen suchen…"
+    },
+    "summaryLength": {
+        "message": "Länge der Zusammenfassung"
+    },
+    "summaryMode": {
+        "message": "Modus der Zusammenfassung"
+    },
+    "extension": {
+        "message": "Erweiterung"
+    },
+    "viewAndCopy": {
+        "message": "Ansehen & Kopieren"
+    },
+    "inline": {
+        "message": "Inline"
+    },
+    "insertIntoPage": {
+        "message": "In Seite einfügen"
+    },
+    "inlineModeTip": {
+        "message": "Der Inline-Modus eignet sich hervorragend für \"An Kindle senden\"."
+    },
+    "aiModel": {
+        "message": "KI-Modell"
+    },
+    "addCustomModelId": {
+        "message": "Benutzerdefinierte Modell-ID hinzufügen…"
+    },
+    "searchArticles": {
+        "message": "Artikel suchen... (⌘ + F)"
+    },
+    "back": {
+        "message": "← Zurück"
+    },
+    "save": {
+        "message": "Speichern 💾"
+    },
+    "feedbackText": {
+        "message": "Fragen, Fehler oder glücklich? 💡 Gib gerne Feedback, kontaktiere mich oder ziehe eine Spende in Betracht :)"
+    },
+    "openSourceBy": {
+        "message": "Open Source Software von"
+    },
+    "contributeOnGithub": {
+        "message": "Beteilige dich gerne auf GitHub 💙"
+    },
+    "compatibleTools": {
+        "message": "Kompatible Tools"
+    },
+    "compatibleToolsDesc": {
+        "message": "Erweiterungen, die nahtlos mit dem AI Summary Helper integriert sind, um deinen Workflow zu verbessern."
+    },
+    "loadingTools": {
+        "message": "Tools werden geladen…"
+    },
+    "navSummarize": {
+        "message": "Zusammenfassen"
+    },
+    "navHistory": {
+        "message": "Verlauf"
+    },
+    "navApps": {
+        "message": "Apps"
+    },
+    "navSettings": {
+        "message": "Einstellungen"
+    },
+    "starting": {
+        "message": "Startet…"
+    },
+    "contactingContentScript": {
+        "message": "Verbindung zum Content-Skript wird hergestellt…"
+    },
+    "workingOnIt": {
+        "message": "Arbeite daran…"
+    },
+    "summary": {
+        "message": "Zusammenfassung"
+    },
+    "noTitleAvailable": {
+        "message": "Kein Titel verfügbar"
+    },
+    "noSummaryAvailable": {
+        "message": "Keine Zusammenfassung verfügbar"
+    },
+    "noContentAvailable": {
+        "message": "Kein Inhalt verfügbar"
+    },
+    "noDescriptionAvailable": {
+        "message": "Keine Beschreibung verfügbar"
+    },
+    "share": {
+        "message": "Teilen 🔗"
+    },
+    "saveMd": {
+        "message": ".MD Speichern 💾"
+    },
+    "reader": {
+        "message": "Leseansicht 👓"
+    },
+    "delete": {
+        "message": "🗑️ Löschen"
+    },
+    "aiSummary": {
+        "message": "🧙 KI-Zusammenfassung"
+    },
+    "originalContent": {
+        "message": "📄 Originalinhalt"
+    },
+    "emptyArchive": {
+        "message": "🗂️ Dein Archiv ist so leer wie eine Wüste! Speichere Artikel, um es zu füllen. 🌵"
+    },
+    "noToolsAvailable": {
+        "message": "Noch keine Tools verfügbar."
+    },
+    "failedToLoadTools": {
+        "message": "Tools konnten nicht geladen werden."
+    },
+    "clickToInsert": {
+        "message": "Klicke auf das Element, in das die Zusammenfassung eingefügt werden soll."
+    },
+    "fetchingSummary": {
+        "message": "Zusammenfassung wird abgerufen..."
+    },
+    "openInSidebar": {
+        "message": "In Seitenleiste öffnen"
+    },
+    "theme": {
+        "message": "Design"
+    },
+    "systemDefault": {
+        "message": "Systemstandard"
+    },
+    "lightMode": {
+        "message": "Heller Modus"
+    },
+    "darkMode": {
+        "message": "Dunkler Modus"
+    },
+    "uiLanguage": {
+        "message": "UI-Sprache"
+    },
+    "browserDefault": {
+        "message": "Browser-Standard"
+    },
+    "useNativeSidePanel": {
+        "message": "Native Chrome-Seitenleiste verwenden"
+    },
+    "dangerZone": {
+        "message": "⚠️ Gefahrenzone"
+    },
+    "deleteSettings": {
+        "message": "Einstellungen löschen"
+    },
+    "deleteHistory": {
+        "message": "Verlauf löschen"
     },
     "model": {
         "message": "Sprachmodell"
+    },
+    "apiKey": {
+        "message": "API-Schlüssel"
+    },
+    "apiKeyStoredLocally": {
+        "message": "🔒 Der API-Schlüssel wird lokal in deinem Browser gespeichert."
+    },
+    "endpointUrl": {
+        "message": "Endpunkt-URL"
+    },
+    "prompt": {
+        "message": "Benutzerdefinierte Eingabeaufforderung"
+    },
+    "enterCustomPrompt": {
+        "message": "Gib hier deinen benutzerdefinierten Prompt ein"
+    },
+    "modelConfiguration": {
+        "message": "🤖 Modellkonfiguration"
+    },
+    "modelDesc": {
+        "message": "Wähle das LLM-Modell aus, um deine Zusammenfassungen zu generieren."
+    },
+    "promptCustomization": {
+        "message": "💬 Prompt-Anpassung"
+    },
+    "promptDesc": {
+        "message": "Passe an, wie die KI den Text ausgeben soll."
+    },
+    "generalSettings": {
+        "message": "🔄 Allgemeine Einstellungen"
+    },
+    "enablePodcastBeta": {
+        "message": "Podcast-Beta aktivieren"
+    },
+    "modelIdentifiers": {
+        "message": "Modellkennungen"
+    },
+    "default": {
+        "message": "Standard"
+    },
+    "notConfigured": {
+        "message": "Nicht konfiguriert"
+    },
+    "configured": {
+        "message": "Konfiguriert"
     },
     "modelIdentifier": {
         "message": "Modellkennung: (Leer lassen, um Standardmodellkennungen zu verwenden)"
@@ -29,14 +245,8 @@
     "localEndpoint": {
         "message": "Lokale Endpunkt-URL"
     },
-    "prompt": {
-        "message": "Benutzerdefinierte Eingabeaufforderung"
-    },
     "additionalQuestions": {
         "message": "Zusätzliche Fragen zum Artikel eingeben (optional)"
-    },
-    "save": {
-        "message": "Speichern 💾"
     },
     "toggleScreen": {
         "message": "Bildschirm umschalten"

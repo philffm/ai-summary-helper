@@ -103,8 +103,38 @@ function loadHistory() {
             });
 
             card.querySelector('.save-md-button').addEventListener('click', () => {
-                const mdContent = `# ${article.title || 'Summary'}\n\n${summaryClean}\n\n---\nSource: ${article.url || ''}`;
-                const blob = new Blob([mdContent], { type: 'text/markdown' });
+                const summaryClean = stripHtml(article.summary || '');
+
+                // Parse stored clean HTML and convert tags to Markdown syntax
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(article.content || '', 'text/html');
+
+                // Convert <img> to ![alt](src)
+                const images = doc.querySelectorAll('img');
+                images.forEach(img => {
+                    const alt = img.getAttribute('alt') || 'image';
+                    const src = img.getAttribute('src') || '';
+                    if (src) {
+                        img.parentNode.replaceChild(doc.createTextNode(`\n\n![${alt}](${src})\n\n`), img);
+                    } else {
+                        img.remove();
+                    }
+                });
+
+                // Convert <a> to [text](url)
+                const links = doc.querySelectorAll('a');
+                links.forEach(link => {
+                    const text = link.textContent.trim() || 'Link';
+                    const href = link.getAttribute('href') || '';
+                    if (href) {
+                        link.parentNode.replaceChild(doc.createTextNode(`[${text}](${href})`), link);
+                    }
+                });
+
+                const originalContentMarkdown = doc.body.textContent || '';
+
+                const mdContent = `# ${article.title || 'Summary'}\n\n## AI Summary\n\n${summaryClean}\n\n---\n\n## Original Article\n\n${originalContentMarkdown.trim().replace(/\n{3,}/g, '\n\n')}\n\n---\n\nSource: ${article.url || ''}`;
+                const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
@@ -191,8 +221,38 @@ function filterHistory(query) {
             });
 
             card.querySelector('.save-md-button').addEventListener('click', () => {
-                const mdContent = `# ${article.title || 'Summary'}\n\n${summaryClean}\n\n---\nSource: ${article.url || ''}`;
-                const blob = new Blob([mdContent], { type: 'text/markdown' });
+                const summaryClean = stripHtml(article.summary || '');
+
+                // Parse stored clean HTML and convert tags to Markdown syntax
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(article.content || '', 'text/html');
+
+                // Convert <img> to ![alt](src)
+                const images = doc.querySelectorAll('img');
+                images.forEach(img => {
+                    const alt = img.getAttribute('alt') || 'image';
+                    const src = img.getAttribute('src') || '';
+                    if (src) {
+                        img.parentNode.replaceChild(doc.createTextNode(`\n\n\n![${alt}](${src})\n\n`), img);
+                    } else {
+                        img.remove();
+                    }
+                });
+
+                // Convert <a> to [text](url)
+                const links = doc.querySelectorAll('a');
+                links.forEach(link => {
+                    const text = link.textContent.trim() || 'Link';
+                    const href = link.getAttribute('href') || '';
+                    if (href) {
+                        link.parentNode.replaceChild(doc.createTextNode(`[${text}](${href})`), link);
+                    }
+                });
+
+                const originalContentMarkdown = doc.body.textContent || '';
+
+                const mdContent = `# ${article.title || 'Summary'}\n\n## AI Summary\n\n${summaryClean}\n\n---\n\n## Original Article\n\n${originalContentMarkdown.trim().replace(/\n{3,}/g, '\n\n')}\n\n---\n\nSource: ${article.url || ''}`;
+                const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
