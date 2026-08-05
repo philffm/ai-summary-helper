@@ -2,14 +2,14 @@
   "title": "AI Summary Helper 🚀",
   "about": "About 📖",
   "aboutText": "Transform your browsing into a powerhouse of productivity with AI Summary Helper. Never let another article slip through the cracks! 🌟",
-  "aisummary": "<h2>AI Summary 🚴‍♂️ of this page:</h2><h3>AI Summary Helper - Your Secret Weapon Around The Web</h3> <p>Turn overwhelming articles into bite-sized brilliance. Summarize, translate, and conquer the web with style! 🌍</p> <h3>Standup Comedy:</h3> <p>Ever felt like reading a 10-page article for one nugget of info? It's like buying a watermelon for a single seed. AI Summary Helper says, 'Hold up, I got you!' Why sweat through astrophysics when we can whisper Einstein’s secrets to you in 3 sentences? Or transform Shakespeare into 'Macbeth: TL;DR - Dude goes mad, everyone dies.' Oh, and it translates too! Learning Japanese now feels like karaoke with subtitles.</p> <h3>Striking Quotes:</h3> <ul><li>‘Clocks closer to black holes run slower.’ Thanks, Einstein—and AI Summary Helper—for making me smarter at dinner parties.</li><li>‘Say goodbye to cluttered tabs and missed reads.’ Finally, my browser looks less like a hoarder’s attic!</li><li>‘Summarize articles with a personal touch.’ Because who doesn't want Shakespeare with a bit of sass?</li></ul> <h3>#AIHelper 🚀</h3> <p>Makes TL;DR an art form. 🌍 From science papers to Shakespeare—summarized, personalized, & translated! Try it now 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
+  "aisummary": "<h2>AI Summary 🤖 of this page:</h2><h3>AI Summary Helper - Your Secret Weapon Around The Web</h3> <p>Turn overwhelming articles into bite-sized brilliance. Summarize, translate, and conquer the web with style! 🌍</p> <h3>Standup Comedy:</h3> <p>Ever felt like reading a 10-page article for one nugget of info? It's like buying a watermelon for a single seed. AI Summary Helper says, 'Hold up, I got you!' Why sweat through astrophysics when we can whisper Einstein’s secrets to you in 3 sentences? Or transform Shakespeare into 'Macbeth: TL;DR - Dude goes mad, everyone dies.' Oh, and it translates too! Learning Japanese now feels like karaoke with subtitles.</p> <h3>Striking Quotes:</h3> <ul><li>‘Clocks closer to black holes run slower.’ Thanks, Einstein—and AI Summary Helper—for making me smarter at dinner parties.</li><li>‘Say goodbye to cluttered tabs and missed reads.’ Finally, my browser looks less like a hoarder’s attic!</li><li>‘Summarize articles with a personal touch.’ Because who doesn't want Shakespeare with a bit of sass?</li></ul> <h3>#AIHelper 🚀</h3> <p>Makes TL;DR an art form. 🌍 From science papers to Shakespeare—summarized, personalized, & translated! Try it now 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
   "features": "Features 🔍 ",
   "featureList": [
-    "Summarize articles with a personal touch ✨",
-    "OpenAI, Mistral AI, Ollama (local) and more models supported",
-    "Integrate summaries into your reading flow 📚",
+    "Access 100+ AI models via OpenRouter (OpenAI, Gemini, Mistral) or ByPhil Cloud ☁️",
+    "Save for Later: Assign review timeframes, speed-read, and auto-close tabs 🔖",
+    "Offline Knowledge Graph & Analytics: Map your reading history and track streaks 🕸️",
     "Read on the go: Share to Kindle with [Reabble](https://send.reabble.com/) 📖",
-    "Cross-Platform: Bookmarklet Generator for all browsers and OS, including iOS/Android"
+    "Cross-Platform: Extension, Native Side Panel, and Bookmarklet Generator"
   ],
   "localizedFeature": {
     "headline": "Translate and Understand Texts Better in English 🌍",
@@ -18,30 +18,30 @@
   "proposeFeature": "Propose a Feature 💡",
   "proposeFeatureText": "Got a brilliant idea? Share it with us <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">here</a> and shape the future of AI Summary Helper! 📝",
   "privacyNote": "Privacy Note 🔐",
-  "privacyNoteText": "Your privacy is our top priority. We ensure your data stays yours. 🔒 <a href=\"privacy\">Learn more</a>",
+  "privacyNoteText": "Your privacy is our top priority. All your article history and knowledge graphs stay 100% local. 🔒 <a href=\"privacy\">Learn more</a>",
   "funMessage": "Dive into a smarter way of browsing with AI Summary Helper! 🎉",
   "changelog": "Changelog 📜",
   "changelogList": [
-    "Added list of compatible tools that integrate well with your reading flow and AI Summary Helper",
-    "History of articles - view and search through your summaries",
-    "New prompts - more accurate",
-    "Support for Local LLMs - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> models",
-    "Updated to support <a href=\"https://www.mistral.ai/\">Mistral AI</a> model",
-    "Updated to GPT4o mini model",
-    "Updated UI 🎨"
+    "Massive 2.0 Update: Integrated OpenRouter & ByPhil Cloud for 100+ models! 🤖",
+    "Added 'Save for Later' tab management with RSVP speed-reading and timed reminders 🔖",
+    "New Interactive Knowledge Graph and reading analytics heatmaps 📊",
+    "Added Native Chrome Side Panel and Hybrid Sidebar UI modes",
+    "Improved Send-to-Kindle inline insertion formatting",
+    "Support for Local LLMs via <a href=\"https://ollama.com/\">Ollama</a> / Llama models",
+    "Updated UI with a beautiful new chat-style summary feed 🎨"
   ],
   "aboutCreator": "About the Creator",
-  "creatorText": "Hi community :) - I'm Phil Wornath, the creator of AI Summary Helper. As a lover of extensive written web content, especially scientific articles, I often faced time constraints. This inspired me to develop a tool that enhances productivity and reading efficiency.",
+  "creatorText": "Hi community :) - I'm Phil Wornath, the creator of AI Summary Helper. As a designer and lover of extensive written web content, I built this tool to solve my own tab overload and digital fatigue. Building this open-source project alongside an amazing community has been the highlight of my journey.",
   "whyHelper": "Why AI Summary Helper?",
   "whyHelperList": [
-    "Reclaim Your Time: Generate quick digests or prepare for deep dives later.",
-    "Tailored to You: Customize summaries to match your language, profession, or point of view.",
-    "Stay Organized: Avoid cluttered tabs and keep your reading list manageable.",
-    "Enhanced Reading Experience: Focus on the content that matters to you without getting overwhelmed."
+    "Reclaim Your Time: Save up to 80% of reading time with quick digests or RSVP speed-reading.",
+    "Clear Tab Clutter: Save articles with a 'decision slip' and let the tab close automatically.",
+    "Connect the Dots: Explore how your research topics overlap over time with the offline Knowledge Graph.",
+    "Tailored to You: Customize summaries to match your language, profession, or point of view."
   ],
   "getStarted": "Get Started Today",
-  "getStartedText": "To start using AI Summary Helper, ensure you have an <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API key</a> and sufficient credit. Join us in making web reading easier and more accessible for everyone. Download now on <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> and transform your browsing experience.",
+  "getStartedText": "To start using AI Summary Helper, you can use the built-in ByPhil Cloud (no API key needed!) or connect your own keys for OpenAI, Mistral, DeepSeek and 100+ others via OpenRouter. Join us in making web reading easier and more accessible for everyone. Download now on <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> and transform your browsing experience.",
   "feedbackSupport": "Feedback and Support",
   "feedbackSupportText": "We're excited to invite you to try AI Summary Helper and welcome your feedback and questions. Let's make reading on the web simpler and more engaging. Enhance your online reading experience with AI Summary Helper today!",
-  "version": "1.0.8"
+  "version": "2.0.0"
 }

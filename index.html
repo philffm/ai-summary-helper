@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="metaTitle">AI Summary Helper</title>
     <meta id="metaDescription" name="description" content="AI Summary Helper enhances your browsing experience.">
+    
     <!-- icon  -->
     <link rel="icon" type="image/svg+xml" href="icon.svg">
     <link rel="stylesheet" href="style.css">
@@ -31,7 +32,6 @@
     <link rel="alternate" href="https://philffm.github.io/ai-summary-helper/?lang=da" hreflang="da">
     <link rel="alternate" href="https://philffm.github.io/ai-summary-helper/?lang=no" hreflang="no">
     <link rel="alternate" href="https://philffm.github.io/ai-summary-helper/?lang=id" hreflang="id">
-     
 
     <meta name="google-site-verification" content="_QcmSOybAqnxQ1YH95ay00G4LZgwxLg-1Pb50QBpI2c" />
     <meta name="robots" content="follow, index">
@@ -40,329 +40,12 @@
     <meta property="og:title" content="AI Summary Helper">
     <meta property="og:description" content="AI Summary Helper - Summarize the web in your language">
     <meta property="og:image" content="https://philffm.github.io/ai-summary-helper/og-share.jpeg">
-
     <meta property="og:url" content="https://philffm.github.io/ai-summary-helper/">
     <meta property="og:type" content="website">
-
-    <script>
-        let data; // Declare data in a broader scope
-
-        async function loadContent(lang = 'en') {
-            try {
-                let translations;
-                const languageMap = {
-                    'en': 'en',
-                    'en-US': 'en',
-                    'en-GB': 'en',
-                    'es': 'es',
-                    'es-ES': 'es',
-                    'es-MX': 'es',
-                    'de': 'de',
-                    'de-DE': 'de',
-                    'fr': 'fr',
-                    'fr-FR': 'fr',
-                    'it': 'it',
-                    'it-IT': 'it',
-                    'pt': 'pt',
-                    'pt-PT': 'pt',
-                    'pt-BR': 'pt',
-                    'nl': 'nl',
-                    'nl-NL': 'nl',
-                    'ru': 'ru',
-                    'ru-RU': 'ru',
-                    'ua': 'ua',
-                    'uk-UA': 'ua',
-                    'pl': 'pl',
-                    'pl-PL': 'pl',
-                    'sv': 'sv',
-                    'sv-SE': 'sv',
-                    'da': 'da',
-                    'da-DK': 'da',
-                    'jp': 'jp',
-                    'ja': 'jp',
-                    'ja-JP': 'jp',
-                    'cn': 'cn',
-                    'zh': 'cn',
-                    'zh-CN': 'cn',
-                    'zh-Hans-CN': 'cn',
-                    'zh-TW': 'cn',
-                    'kr': 'kr',
-                    'ko': 'kr',
-                    'ko-KR': 'kr',
-                    'hi': 'hi',
-                    'hi-IN': 'hi',
-                    'mr': 'hi',
-                    'mr-IN': 'hi',
-                    'th': 'th',
-                    'th-TH': 'th',
-                    'id': 'ind-bahasa',
-                    'id-ID': 'ind-bahasa',
-                    'ind-bahasa': 'ind-bahasa',
-                    'ar': 'ar',
-                    'ar-SA': 'ar',
-                    'tr': 'tr',
-                    'tr-TR': 'tr',
-                    'bg': 'bg',
-                    'bg-BG': 'bg',
-                    'ro': 'ro',
-                    'ro-RO': 'ro'
-                };
-
-                // Use the mapped language code or default to English
-                const mappedLang = languageMap[lang] || 'en';
-
-                const response = await fetch(`lang/${mappedLang}.json`);
-                if (!response.ok) {
-                    throw new Error(`Failed to load language file: ${mappedLang}`);
-                }
-                data = await response.json();
-
-                if (!data.aisummary) {
-                    const enResponse = await fetch('lang/en.json');
-                    if (!enResponse.ok) {
-                        throw new Error('Failed to load English language file for aisummary');
-                    }
-                    const enData = await enResponse.json();
-                    data.aisummary = enData.aisummary;
-                }
-
-                // Update the page content with the loaded data
-                document.getElementById('metaTitle').textContent = data.title;
-                document.getElementById('metaDescription').setAttribute('content', data.aboutText);
-
-                document.getElementById('title').textContent = data.title;
-                document.getElementById('aboutText').innerHTML = convertMarkdownLinks(data.aboutText);
-
-                const featureList = document.getElementById('featureList');
-                featureList.innerHTML = data.featureList.map(item => `
-                    <div class="feature-card">
-                        ${convertMarkdownLinks(item)}
-                    </div>
-                `).join('');
-
-                document.getElementById('localizedFeature').textContent = data.localizedFeature.headline;
-                document.getElementById('localizedFeatureText').innerHTML = convertMarkdownLinks(data.localizedFeature.text);
-
-                document.getElementById('proposeFeature').textContent = data.proposeFeature;
-                document.getElementById('proposeFeatureText').innerHTML = convertMarkdownLinks(data.proposeFeatureText);
-                document.getElementById('privacyNote').textContent = data.privacyNote;
-                document.getElementById('privacyNoteText').innerHTML = convertMarkdownLinks(data.privacyNoteText);
-                document.getElementById('funMessage').textContent = data.funMessage;
-
-                const changelogList = document.getElementById('changelogList');
-                changelogList.innerHTML = data.changelogList.map(item => `<li>${convertMarkdownLinks(item)}</li>`).join('');
-
-                document.getElementById('aboutCreator').textContent = data.aboutCreator;
-                document.getElementById('creatorText').textContent = data.creatorText;
-
-                document.getElementById('changelog').textContent = data.changelog;
-                document.getElementById('whyHelper').textContent = data.whyHelper;
-                document.getElementById('whyHelperList').textContent = data.whyHelperList;
-
-                const whyHelperList = document.getElementById('whyHelperList');
-                whyHelperList.innerHTML = data.whyHelperList.map(item => `<li>${convertMarkdownLinks(item)}</li>`).join('');
-
-                document.getElementById('getStarted').textContent = data.getStarted;
-                document.getElementById('getStartedText').innerHTML = convertMarkdownLinks(data.getStartedText);
-                document.getElementById('feedbackSupport').textContent = data.feedbackSupport;
-                document.getElementById('feedbackSupportText').innerHTML = convertMarkdownLinks(data.feedbackSupportText);
-
-            } catch (error) {
-                console.error('Error loading content:', error);
-            }
-        }
-
-        function convertMarkdownLinks(text) {
-            return text.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-        }
-
-        async function createLanguageButtons() {
-            try {
-                const response = await fetch('translations.json');
-                const translations = await response.json();
-                const languageSection = document.querySelector('.language-section');
-
-                // Always add the English button
-                const englishButton = document.createElement('button');
-                englishButton.textContent = '🇬🇧 English';
-                englishButton.onclick = () => changeLanguage('en');
-                languageSection.appendChild(englishButton);
-
-                // Create buttons for all languages listed in translations.json
-                for (const lang of translations.languages) {
-                    if (lang.code === 'en') continue; // Skip English as it's already added
-
-                    const button = document.createElement('button');
-                    button.textContent = `${lang.emoji} ${lang.name}`;
-                    button.onclick = () => changeLanguage(lang.code);
-                    languageSection.appendChild(button);
-                }
-            } catch (error) {
-                console.error('Error creating language buttons:', error);
-            }
-        }
-
-        function changeLanguage(lang) {
-            loadContent(lang);
-            const url = new URL(window.location);
-            url.searchParams.set('lang', lang);
-            window.history.pushState({}, '', url);
-
-            // Update the language menu button text
-            fetch('translations.json')
-                .then(response => response.json())
-                .then(data => {
-                    const currentLang = data.languages.find(l => l.code === lang);
-                    if (currentLang) {
-                        document.getElementById('languageMenuButton').textContent = `${currentLang.emoji} ${currentLang.name}`;
-                    }
-                })
-                .catch(error => console.error('Error updating language button:', error));
-        }
-
-        async function loadBlogPosts() {
-            try {
-                const response = await fetch('blog/blogPosts.json');
-                const posts = await response.json();
-                const blogPostsContainer = document.querySelector('.blog-posts');
-
-                posts.forEach(post => {
-                    const article = document.createElement('article');
-                    article.classList.add('blog-post');
-                    article.innerHTML = `
-                        <h3>${post.title}</h3>
-                        <p><strong>Date:</strong> ${post.date}</p>
-                        <p>${post.description} <a href="blog/${post.link}">Read more</a></p>
-                    `;
-                    blogPostsContainer.appendChild(article);
-                });
-            } catch (error) {
-                console.error('Error loading blog posts:', error);
-            }
-        }
-
-        window.onload = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            let lang = urlParams.get('lang');
-
-            // Detect browser language if no language is set in the URL
-            if (!lang) {
-                const browserLang = navigator.language || navigator.languages[0];
-                lang = browserLang.split('-')[0]; // Use the language code (e.g., 'en' from 'en-US')
-            }
-
-            loadContent(lang);
-            createLanguageButtons();
-            loadBlogPosts(); // Load blog posts on page load
-
-            // Set the initial language button text
-            fetch('translations.json')
-                .then(response => response.json())
-                .then(data => {
-                    const currentLang = data.languages.find(l => l.code === lang);
-                    if (currentLang) {
-                        document.getElementById('languageMenuButton').textContent = `${currentLang.emoji} ${currentLang.name}`;
-                    }
-                })
-                .catch(error => console.error('Error setting initial language button:', error));
-        };
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize feature cards auto-scroll
-            const container = document.querySelector('.feature-cards-container');
-            const cards = Array.from(container.querySelectorAll('.feature-card'));
-            let scrollAmount = 0;
-            const scrollStep = 1; // Adjust this value to control the speed
-            const scrollInterval = 20; // Adjust this value to control the smoothness
-
-            // Duplicate the cards to create an infinite loop effect
-            cards.forEach(card => {
-                const clone = card.cloneNode(true);
-                container.appendChild(clone);
-            });
-
-            // Auto-scroll function
-            function autoScroll() {
-                scrollAmount += scrollStep;
-                if (scrollAmount >= container.scrollWidth / 2) {
-                    scrollAmount = 0; // Reset scroll amount to loop
-                }
-                container.scrollTo({
-                    left: scrollAmount,
-                    behavior: 'smooth' // Smooth scrolling
-                });
-            }
-
-            // Start auto-scrolling
-            setInterval(autoScroll, scrollInterval);
-
-            // Initialize language menu button
-            const languageMenuButton = document.getElementById('languageMenuButton');
-            const languageMenu = document.getElementById('languageMenu');
-
-            languageMenuButton.addEventListener('click', () => {
-                languageMenu.classList.toggle('show');
-                if (languageMenu.classList.contains('show')) {
-                    const buttons = languageMenu.querySelectorAll('button');
-                    buttons.forEach((button, index) => {
-                        button.style.setProperty('--delay', `${index * 0.03}s`);
-                    });
-                }
-            });
-            // Initialize extension button
-            document.getElementById('extensionButton').addEventListener('click', function() {
-                const extensionUI = document.getElementById('extensionUI');
-                extensionUI.classList.toggle('hidden');
-
-                if (!extensionUI.classList.contains('hidden')) {
-                    const buttonRect = this.getBoundingClientRect();
-                    extensionUI.style.position = 'absolute';
-                    extensionUI.style.top = `${buttonRect.bottom + window.scrollY}px`; // Position below the button
-                    extensionUI.style.left = `${buttonRect.left + window.scrollX + buttonRect.width  - extensionUI.offsetWidth}px`; // Center horizontally
-                }
-            });
-
-            // Initialize summarize button
-            document.getElementById('extensionUI').addEventListener('click', function() {
-                if (data && data.aisummary) {
-                    const summarySection = document.createElement('section');
-                    summarySection.classList.add('padding-h-m');
-                    extensionUI.classList.add('hidden');
-                    summarySection.innerHTML = data.aisummary;
-                    console.log(data.aisummary);
-                    const featuresSection = document.getElementById('features-section');
-                    featuresSection.parentNode.insertBefore(summarySection, featuresSection);
-                } else {
-                    console.error('Summary data is not available');
-                }
-            });
-
-            // Fetch languages from a JSON file or define them directly
-            fetch('translations.json')
-                .then(response => response.json())
-                .then(data => {
-                    const languages = data.languages; // Assuming the JSON structure has a 'languages' array
-
-                    languages.forEach(lang => {
-                        const button = document.createElement('button');
-                        button.textContent = `${lang.emoji} ${lang.name}`;
-                        button.onclick = () => {
-                            changeLanguage(lang.code);
-                            languageMenuButton.textContent = `${lang.emoji} ${lang.name}`;
-                            languageMenu.classList.remove('show');
-                        };
-                        languageMenu.appendChild(button);
-                    });
-                })
-                .catch(error => console.error('Error loading languages:', error));
-        });
-
-    </script>
 
     <!-- Matomo -->
     <script>
       var _paq = window._paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
@@ -383,39 +66,47 @@
                 <button class="window-button maximize"></button>
                 <button class="window-button close"></button>
             </div>
+            
             <div class="window-row">
                 <div class="navigation-buttons">
-                    <button class="navigation-button">
-                        <span>&#9664;</span> <!-- Left chevron -->
-                    </button>
-                    <button class="navigation-button">
-                        <span>&#9654;</span> <!-- Right chevron -->
-                    </button>
-                    </div>
-                <div class="address-bar">
-                    <img id="logoIcon" src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
-                <h1 id="title" class="window-title">AI Summary Helper</h1>
-                <button id="languageMenuButton" class="buttonIcon">🌍 Language</button>
-
+                    <button class="navigation-button"><span>&#9664;</span></button>
+                    <button class="navigation-button"><span>&#9654;</span></button>
+                </div>
                 
-            </div>
-            <!-- Extension button with tooltip -->
-            <button class="extension-button" id="extensionButton">
-                <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
-            </button>
+                <div class="address-bar">
+                    <img id="logoIcon" src="icon.svg" alt="AI Summary Helper Icon">
+                    <h1 id="title" class="window-title">AI Summary Helper</h1>
+                    
+                    <div class="language-menu-container">
+                        <button id="languageMenuButton" class="buttonIcon">🌍 Language</button>
+                        <div id="languageMenu" class="language-menu">
+                            <!-- Language options dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extension button with relative wrapper for safe UI popup positioning -->
+                <div class="extension-wrapper">
+                    <button class="extension-button" id="extensionButton">
+                        <img src="icon.svg" alt="AI Summary Helper Icon" style="width: 32px; height: 32px;">
+                        <span class="tooltip">try me</span>
+                    </button>
+                    <!-- Extension UI -->
+                    <div id="extensionUI" class="extension-ui hidden">
+                        <img src="extension.png" alt="Extension UI" class="extension-ui-image">
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="languageMenu" class="language-menu hidden">
-            <!-- Language options will be dynamically inserted here -->
-        </div>
+
         <section id="features-section">
-            <!-- Optional: Scroll Buttons -->
             <div class="feature-cards-wrapper">
                 <div id="featureList" class="feature-cards-container">
-                    <!-- Feature cards will be dynamically inserted here -->
+                    <!-- Feature cards dynamically inserted here -->
                 </div>
             </div>
         </section>
+
         <div class="window-content">
             <header>
                 <img src="aish.png" alt="AI Summary Helper Preview" style="max-width: 100%;">
@@ -425,7 +116,7 @@
                 <a class="secondary-option" target="_blank" href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/">Bookmarklet Generator</a>
             </header>
             <main>
-                <section></section>
+                <section>
                     <h2 id="localizedFeature"></h2>
                     <p id="localizedFeatureText"></p>
                 </section>
@@ -464,143 +155,16 @@
                 <section id="blog-section">
                     <h2>Latest Blog Posts</h2>
                     <div class="blog-posts">
-                        <!-- Blog posts will be dynamically inserted here -->
+                        <!-- Blog posts dynamically inserted here -->
                     </div>
                 </section>
             </main>
             <footer>
-                <p>&copy; 2024 Phil Wornath. All rights reserved. Visit the project at <a href="https://github.com/philffm/ai-summary-helper/">AI Summary Helper</a>.</p>
+                <p>&copy; 2026 Phil Wornath. All rights reserved. Visit the project at <a href="https://github.com/philffm/ai-summary-helper/">AI Summary Helper</a>.</p>
             </footer>
         </div>
     </div>
-    <!-- Extension UI -->
-    <div id="extensionUI" class="extension-ui hidden">
-        <img src="extension.png" alt="Extension UI" class="extension-ui-image">
-    </div>
-    <style>
-        .tooltip {
-            visibility: hidden;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            border-radius: 5px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%; /* Position the tooltip above the button */
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
 
-        .extension-button {
-            border-radius: 12px;
-            border: 1px solid grey;
-        }
-
-        .extension-button:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .extension-ui.hidden {
-            display: none;
-        }
-
-        .extension-ui {
-            max-width: 500px; /* Set a maximum width */
-            height: auto;
-            position: absolute; /* Position absolute for dynamic placement */
-            background-color: #f9f9f9; /* Optional: Add a background color */
-            border-radius: 10px; /* Optional: Add rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
-            z-index: 1000; /* Ensure it appears above other elements */
-            opacity: 0; /* Start with opacity 0 for fade-in effect */
-            animation: fadeInFlyIn .5s forwards; /* Apply fade-in animation */
-        }
-
-    
-        #summarizeButton {
-            position: absolute;
-            /* width: max-content; */
-            bottom: 14px;
-            /* left: 50%; */
-            transform: translateX(-108%);
-            width: 93%;
-            margin: 0 12px;
-            background: linear-gradient(30deg, #3B6CF2, #6CCCFB);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            /* margin: 0 4px; */
-            /* margin: 20px; */
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        #summarizeButton:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        #extensionButton {
-            position: relative;
-            padding:  10px;
-            border-radius: 20px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            animation: pulse 2s infinite;
-        }
-
-        #extensionButton::after {
-            content: "try me";
-            position: absolute;
-            bottom: -25px; /* Position below the button */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        #extensionButton:hover::after {
-            opacity: 1;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-            }
-        }
-
-        /* Add new style for the image */
-        .extension-ui-image {
-            width: 500px;
-            height: auto;
-        }
-
-        /* Mobile style */
-        @media (max-width: 600px) {
-            .extension-ui-image {
-                width: 320px; /* Adjust width for mobile */
-                height: auto;
-            }
-        }
-    </style>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -5,11 +5,11 @@
   "aisummary": "<h2>本页面的 AI 摘要 🤖:</h2><h3>AI 摘要助手 - 您在网络上的秘密武器</h3> <p>将冗长的文章转化为简明扼要的智慧。总结、翻译并优雅地征服网络！ 🌍</p> <h3>搞笑段子:</h3> <p>有没有觉得为了一个信息而阅读一篇10页的文章就像是为了一个种子而买西瓜一样？AI 摘要助手说，‘等等，我来帮你！’为什么要费力气读天体物理学，我们可以为您用三句话来讲述爱因斯坦的秘密？或者把莎士比亚变成‘麦克白：TL;DR - 兄弟发疯，所有人都死了。’哦，它还能翻译！学习日语现在感觉就像有字幕的卡拉OK。</p> <h3>精彩语录:</h3> <ul><li>‘靠近黑洞的时钟走得更慢。’谢谢你，爱因斯坦，还有 AI 摘要助手，让我在晚宴上显得更聪明。</li><li>‘告别混乱的标签和错过的阅读。’终于，我的浏览器不再像一个囤积狂的阁楼了！</li><li>‘以个人的口味总结文章。’因为谁不想要点萨斯风格的莎士比亚呢？</li></ul> <h3>#AI助手 🚀</h3> <p>把 TL;DR 变成一门艺术。 🌍 从科学论文到莎士比亚——总结、个性化 & 翻译！现在就试试 👉 <a href='https://philwornath.gumroad.com/l/ai-summary-helper'>Gumroad</a></p>",
   "features": "功能 🛠️",
   "featureList": [
-    "以个人的口味总结文章 ✨",
-    "支持 OpenAI、Mistral AI、Ollama（本地）以及更多模型",
-    "将摘要融入您的阅读流程 📚",
+    "通过 OpenRouter 或 ByPhil 云 ☁️ 访问 100 多种 AI 模型（OpenAI、Gemini、Mistral、DeepSeek）",
+    "稍后阅读：分配审阅时间范围、使用快速阅读 (RSVP) 并自动关闭标签页 🔖",
+    "离线知识图谱与分析：绘制您的阅读历史并跟踪您的阅读习惯 🕸️",
     "随时随地阅读：通过 [Reabble](https://send.reabble.com/) 分享到 Kindle 📖",
-    "跨平台：为所有浏览器和操作系统（包括 iOS/Android）生成书签工具"
+    "跨平台：扩展程序、原生侧边栏以及为所有浏览器生成书签工具"
   ],
   "localizedFeature": {
     "headline": "更好地翻译和理解英语文本 🌍",
@@ -18,30 +18,30 @@
   "proposeFeature": "提议功能 💡",
   "proposeFeatureText": "有个精彩的主意？在 <a href=\"https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp\">这里</a> 跟我们分享，塑造 AI 摘要助手的未来！ 📝",
   "privacyNote": "隐私说明 🔒",
-  "privacyNoteText": "您的隐私是我们的首要任务。我们确保您的数据仅属于您。 🔑 <a href=\"privacy\">了解更多</a>",
+  "privacyNoteText": "您的隐私是我们的首要任务。您的所有文章历史和知识图谱 100% 保存在本地。 🔑 <a href=\"privacy\">了解更多</a>",
   "funMessage": "与 AI 摘要助手一起开启更智能的浏览方式！ 🎉",
   "changelog": "更新日志 📅",
   "changelogList": [
-    "增加了与您的阅读流程和 AI 摘要助手兼容的工具列表",
-    "文章历史 - 查看和搜索您的摘要",
-    "新增提示 - 更加准确",
-    "支持本地 LLM - <a href=\"https://ollama.com/\">Ollama</a> / <a href=\"https://ai.meta.com/llama/\">Llama</a> 模型",
-    "更新以支持 <a href=\"https://www.mistral.ai/\">Mistral AI</a> 模型",
-    "更新至 GPT4o mini 模型",
-    "更新 UI 🎨"
+    "重磅 2.0 更新：集成 OpenRouter & ByPhil 云，支持 100 多种模型！ 🤖",
+    "新增“稍后阅读”标签管理，具有 RSVP 快速阅读和定时提醒功能 🔖",
+    "全新交互式知识图谱和阅读分析热图 📊",
+    "添加了原生 Chrome 侧边栏和混合侧边栏 UI 模式",
+    "改进了“发送至 Kindle”的文章内插入格式",
+    "支持本地 LLM - 通过 <a href=\"https://ollama.com/\">Ollama</a> / Llama 模型",
+    "更新 UI，带来美观的全新聊天式摘要信息流 🎨"
   ],
   "aboutCreator": "关于创作者",
-  "creatorText": "嗨，大家好 :) - 我是 Phil Wornath，AI 摘要助手的创作者。作为一名热爱大量书面网络内容的人，尤其是科学文章，我常常面临时间有限的问题。这激励我开发出一种提高生产力和阅读效率的工具。",
+  "creatorText": "嗨，大家好 :) - 我是 Phil Wornath，AI 摘要助手的创作者。作为一名设计师和大量书面网络内容的爱好者，我构建了这个工具来解决我自己的标签页过载和数字疲劳问题。与一个了不起的社区一起构建这个开源项目是我旅程中最精彩的部分。",
   "whyHelper": "为什么选择 AI 摘要助手？",
   "whyHelperList": [
-    "重新夺回您的时间：生成快速摘要或为深入探索做准备。",
-    "量身定制：根据您的语言、职业或观点定制摘要。",
-    "保持有序：避免标签堆积，保持阅读列表可管理。",
-    "增强阅读体验：专注于对您重要的内容，而不会感到不知所措。"
+    "重新夺回您的时间：通过快速摘要或 RSVP 快速阅读，节省高达 80% 的阅读时间。",
+    "清理标签页混乱：保存文章并设定时间，让标签页自动关闭。",
+    "融会贯通：通过离线知识图谱，探索您的研究主题随着时间的推移是如何交织的。",
+    "量身定制：根据您的语言、职业或观点定制摘要。"
   ],
   "getStarted": "今天就开始使用",
-  "getStartedText": "要开始使用 AI 摘要助手，请确保您拥有 <a href=\"https://platform.openai.com/account/api-keys\">OpenAI API 密钥</a> 和充足的信用额度。与我们一起让网络阅读对每个人来说更简单、更容易获取。立即在 <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> 下载，改变您的浏览体验。",
+  "getStartedText": "要开始使用 AI 摘要助手，您可以使用内置的 ByPhil 云（无需 API 密钥！），或通过 OpenRouter 连接您自己的 OpenAI、Mistral、DeepSeek 等 100 多种模型的密钥。与我们一起让网络阅读对每个人来说更简单、更容易获取。立即在 <a href=\"https://philwornath.gumroad.com/l/ai-summary-helper\">Gumroad</a> 下载，改变您的浏览体验。",
   "feedbackSupport": "反馈与支持",
   "feedbackSupportText": "我们很高兴邀请您尝试 AI 摘要助手，并欢迎您的反馈和问题。让我们一起使网络阅读变得简单而有趣。今天就用 AI 摘要助手提升您的在线阅读体验！",
-  "version": "1.0.8"
+  "version": "2.0.0"
 }
