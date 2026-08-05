@@ -34,26 +34,6 @@ jq ".version = \"$NEW_VERSION\"" current_version.json > current_version.json.tmp
 # inject version into popup.html
 sed -i '' "s|<span id=\"versionNumber\">[^<]*</span>|<span id=\"versionNumber\">$NEW_VERSION</span>|" chrome-extension/popup.html
 
-# ==========================================
-# 🌐 LANGUAGE COVERAGE SCANNER
-# ==========================================
-echo "Scanning UI language coverage..."
-
-BASE=$(jq 'length' chrome-extension/_locales/en/messages.json)
-TABLE="| Locale | Status | Keys |\n|:---|:---|:---|\n"
-
-for dir in chrome-extension/_locales/*/; do
-    loc=$(basename "$dir")
-    keys=$(jq 'length' "${dir}messages.json")
-    pct=$(( keys * 100 / BASE ))
-    icon=$([ $pct -ge 100 ] && echo "✅" || ([ $pct -ge 80 ] && echo "⚠️" || echo "❌"))
-    TABLE+="| \`$loc\` | $icon $pct% | $keys / $BASE |\n"
-done
-
-# Inject into chrome-extension/readme.md
-awk -v t="$TABLE" '//{print; printf "%s", t; skip=1; next} //{skip=0} !skip' chrome-extension/readme.md > tmp.md && mv tmp.md chrome-extension/readme.md
-# ==========================================
-
 # zip the chrome-extension folder
 ZIP_FILE="chrome-extension-$NEW_VERSION.zip"
 [ -f "$ZIP_FILE" ] && rm "$ZIP_FILE"

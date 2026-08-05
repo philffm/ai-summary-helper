@@ -1,6 +1,13 @@
 // storageManager.js
 
 class StorageManager {
+    static API_BASE = 'https://api.byphil.eu';
+    // static API_BASE = 'http://127.0.0.1:3000'; // for local testing - comment out for production
+
+    static getApiBase() {
+        return this.API_BASE || 'https://api.byphil.eu';
+    }
+
     static DEFAULTS = {
         prompt: `- brief summary
     - fun standup comedy set on the topic
@@ -8,7 +15,9 @@ class StorageManager {
     - book recommendations`,
         promptType: 'custom',
         selectedLanguage: 'en-US',
-        betaPodcast: false
+        betaPodcast: false,
+        connectionMode: 'cloud',
+        preferredCloudModel: 'google/gemini-2.5-flash'
     };
 
     // bump if you later change the structure again
@@ -17,16 +26,81 @@ class StorageManager {
     // ─────────────────────────────────────────────
     // Basic helpers
     // ─────────────────────────────────────────────
+    static AUTH_KEYS = [
+        'pb_token',
+        'pb_user',
+        'pending_otp_id',
+        'pending_email',
+        'pending_otp_expires_at',
+        'pending_otp_requested_at'
+    ];
+
+    static isAuthKey(key) {
+        return this.AUTH_KEYS.includes(key);
+    }
+
     static async getAll() {
-        return new Promise(resolve => chrome.storage.sync.get(null, resolve));
+        const [syncData, localAuthData] = await Promise.all([
+            new Promise(resolve => chrome.storage.sync.get(null, resolve)),
+            new Promise(resolve => chrome.storage.local.get(this.AUTH_KEYS, resolve)),
+        ]);
+
+        return {
+            ...syncData,
+            ...localAuthData,
+        };
     }
 
     static async get(key) {
-        return new Promise(resolve => chrome.storage.sync.get(key, resolve));
+        if (typeof key === 'string') {
+            if (this.isAuthKey(key)) {
+                return new Promise(resolve => chrome.storage.local.get(key, resolve));
+            }
+            return new Promise(resolve => chrome.storage.sync.get(key, resolve));
+        }
+
+        const keys = Array.isArray(key) ? key : [key];
+        const authKeys = keys.filter((k) => this.isAuthKey(k));
+        const syncKeys = keys.filter((k) => !this.isAuthKey(k));
+
+        const [syncData, authData] = await Promise.all([
+            syncKeys.length > 0 ? new Promise(resolve => chrome.storage.sync.get(syncKeys, resolve)) : Promise.resolve({}),
+            authKeys.length > 0 ? new Promise(resolve => chrome.storage.local.get(authKeys, resolve)) : Promise.resolve({}),
+        ]);
+
+        return {
+            ...syncData,
+            ...authData,
+        };
     }
 
     static async set(data) {
-        return new Promise(resolve => chrome.storage.sync.set(data, resolve));
+        const entries = Object.entries(data || {});
+        const localData = {};
+        const syncData = {};
+
+        for (const [key, value] of entries) {
+            if (this.isAuthKey(key)) {
+                localData[key] = value;
+            } else {
+                syncData[key] = value;
+            }
+        }
+
+        await Promise.all([
+            Object.keys(syncData).length > 0
+                ? new Promise(resolve => chrome.storage.sync.set(syncData, resolve))
+                : Promise.resolve(),
+            Object.keys(localData).length > 0
+                ? new Promise(resolve => chrome.storage.local.set(localData, resolve))
+                : Promise.resolve(),
+        ]);
+
+        // Keep sync storage clean from legacy auth fields.
+        const authKeysWritten = Object.keys(localData);
+        if (authKeysWritten.length > 0) {
+            await new Promise(resolve => chrome.storage.sync.remove(authKeysWritten, resolve));
+        }
     }
 
     static async clear(cb) {
@@ -45,6 +119,19 @@ class StorageManager {
             if (typeof cb === 'function') cb();
             resolve();
         }));
+    }
+
+    /**
+     * Get or generate a stable installId for anonymous cloud tracking
+     */
+    static async getInstallId() {
+        const data = await this.getLocal(['installId']);
+        if (data.installId) return data.installId;
+        
+        const newId = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+            .map(b => b.toString(16).padStart(2, '0')).join('');
+        await this.setLocal({ installId: newId });
+        return newId;
     }
 
     // ─────────────────────────────────────────────
@@ -213,6 +300,19 @@ class StorageManager {
 
     static async getActiveServiceConfig() {
         const data = await this.getAll();
+        const connectionMode = data.connectionMode || 'cloud';
+
+        if (connectionMode === 'cloud') {
+            return {
+                id: 'cloud',
+                connectionMode: 'cloud',
+                apiKey: data.licenseKey || '',
+                model: data.preferredCloudModel || 'google/gemini-2.5-flash',
+                endpoint: `${this.getApiBase()}/v1/projects/ai_summary_helper/chat`,
+                responseStructure: 'result.choices?.[0]?.message?.content'
+            };
+        }
+
         const services = await this.getServices();
 
         const active = data.activeService || 'openai';
@@ -221,6 +321,7 @@ class StorageManager {
 
         return {
             id: active,
+            connectionMode: 'local',
             apiKey: cfg.apiKey || '',
             model: cfg.customModel || cfg.model || serviceMeta?.defaultModel,
             endpoint: cfg.endpoint || serviceMeta?.endpointUrl,

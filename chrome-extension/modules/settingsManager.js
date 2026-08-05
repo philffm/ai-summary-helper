@@ -5,6 +5,7 @@
 import StorageManager from './storageManager.js';
 import { initPromptManager } from './promptManager.js';
 import { updateModelIdentifierUI } from './modelManager.js';
+import { initAuthManager } from './authManager.js';
 
 let uiRef = null;
 
@@ -18,6 +19,9 @@ export async function initSettingsManager(ui) {
     initDangerZone();
     initBackupRestore();
     initSummaryLengthSlider();
+
+    // Initialize Auth Manager
+    initAuthManager();
 
     // Initialize prompt manager with the static DOM elements
     const promptSelect = document.getElementById('promptSelect');
@@ -60,16 +64,155 @@ const autoSave = async (key, value) => {
     flashSaveIndicator();
 };
 
-// ── Section: Model Configuration ─────────────────────────────────────
+// ── Section: Model Configuration (Refactored for Hybrid Subscription Model) ──
 async function initModelSettings(storageData) {
     const services = await StorageManager.getServices();
+    
+    // UI Mode Containers
+    const cloudModeContainer = document.getElementById('cloudModeContainer');
+    const developerModeContainer = document.getElementById('developerModeContainer');
+    
+    // High-Level Connection Mode Toggles
+    const modeCloudRadio = document.getElementById('modeCloud');
+    const modeLocalRadio = document.getElementById('modeLocal');
+    
+    // Cloud Mode Elements
+    const cloudModelSelect = document.getElementById('cloudModelSelect');
+    const licenseKeyInput = document.getElementById('licenseKey');
+    const verifyLicenseBtn = document.getElementById('verifyLicenseButton');
+    const licenseStatusLabel = document.getElementById('licenseStatusLabel');
+    
+    // Developer Mode Elements (Existing)
     const modelSelect = document.getElementById('model');
     const apiKeyInput = document.getElementById('apiKey');
     const endpointInput = document.getElementById('customEndpoint');
 
-    if (!modelSelect) return;
+    if (!modelSelect || !cloudModeContainer || !developerModeContainer) return;
 
-    // Populate provider dropdown
+    // ── 1. Restore & Bind Connection Mode Toggles ───────────────────
+    const currentMode = storageData.connectionMode || 'cloud';
+    if (currentMode === 'cloud' && modeCloudRadio) modeCloudRadio.checked = true;
+    if (currentMode === 'local' && modeLocalRadio) modeLocalRadio.checked = true;
+
+    const toggleConnectionContainers = (mode) => {
+        if (mode === 'cloud') {
+            cloudModeContainer.style.display = 'block';
+            developerModeContainer.style.display = 'none';
+        } else {
+            cloudModeContainer.style.display = 'none';
+            developerModeContainer.style.display = 'block';
+        }
+    };
+    toggleConnectionContainers(currentMode);
+
+    const handleModeChange = async (e) => {
+        const targetMode = e.target.value;
+        await autoSave('connectionMode', targetMode);
+        toggleConnectionContainers(targetMode);
+    };
+
+    if (modeCloudRadio) modeCloudRadio.addEventListener('change', handleModeChange);
+    if (modeLocalRadio) modeLocalRadio.addEventListener('change', handleModeChange);
+
+    // ── 2. Initialize Cloud Settings State ──────────────────────────
+    if (cloudModelSelect) {
+        // Fetch filtered cheap models from your backend proxy
+        fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.models.length > 0) {
+                    // Clear the loading indicator option
+                    cloudModelSelect.innerHTML = '';
+                    
+                    // Populate options dynamically
+                    data.models.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.id;
+                        // Example output: "Gemini 2.5 Flash (Context: 1M)"
+                        option.textContent = `${model.name} (Context: ${Math.round(model.context / 1000)}k)`;
+                        cloudModelSelect.appendChild(option);
+                    });
+
+                    // Restore user's previous selection or default to the first cheap model
+                    cloudModelSelect.value = storageData.preferredCloudModel || data.models[0].id;
+                } else {
+                    throw new Error("Empty model array received");
+                }
+            })
+            .catch(err => {
+                console.error("Failed to populate dynamic openrouter roster:", err);
+                cloudModelSelect.innerHTML = '<option value="google/gemini-2.5-flash">Gemini 2.5 Flash (Fallback)</option>';
+            });
+
+        // Retain auto-save trigger on user selection change
+        cloudModelSelect.addEventListener('change', () => {
+            autoSave('preferredCloudModel', cloudModelSelect.value);
+        });
+    }
+
+    if (licenseKeyInput) {
+        licenseKeyInput.value = storageData.licenseKey || '';
+    }
+
+    const refreshLicenseUIStatus = (status, isValid = false) => {
+        if (!licenseStatusLabel) return;
+        licenseStatusLabel.textContent = status;
+        if (isValid) {
+            licenseStatusLabel.style.color = '#fff';
+            licenseStatusLabel.style.background = 'var(--success, #2ecc40)';
+        } else {
+            licenseStatusLabel.style.color = 'var(--text-muted, #889999)';
+            licenseStatusLabel.style.background = 'rgba(0,0,0,0.2)';
+        }
+    };
+
+    // Initialize display state of active token if it exists
+    if (storageData.licenseKey) {
+        refreshLicenseUIStatus('Pro Active ✓', true);
+    } else {
+        refreshLicenseUIStatus('Free Trial Mode');
+    }
+
+    // Handshake execution with api.byphil.eu
+    if (verifyLicenseBtn && licenseKeyInput) {
+        verifyLicenseBtn.addEventListener('click', async () => {
+            const inputKey = licenseKeyInput.value.trim();
+            if (!inputKey) {
+                alert('Please enter a license key.');
+                return;
+            }
+
+            verifyLicenseBtn.disabled = true;
+            verifyLicenseBtn.textContent = 'Verifying...';
+
+            try {
+                const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/license/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ license_key: inputKey })
+                });
+
+                const resData = await response.json();
+
+                if (response.ok && resData.valid && resData.status === 'active') {
+                    await StorageManager.set({ licenseKey: inputKey });
+                    refreshLicenseUIStatus('Pro Active ✓', true);
+                    flashSaveIndicator();
+                } else {
+                    alert('Invalid or deactivated license key. Check your subscription parameters.');
+                    refreshLicenseUIStatus('Invalid Key');
+                }
+            } catch (err) {
+                console.error('License authorization handshake broke down:', err);
+                alert('Infrastructural link execution failed. Ensure network connection to gateway.');
+            } finally {
+                verifyLicenseBtn.disabled = false;
+                verifyLicenseBtn.textContent = 'Activate';
+            }
+        });
+    }
+
+    // ── 3. Initialize Developer Mode Settings (Legacy Elements) ─────
     modelSelect.innerHTML = '';
     services.forEach(service => {
         const option = document.createElement('option');
@@ -78,7 +221,6 @@ async function initModelSettings(storageData) {
         modelSelect.appendChild(option);
     });
 
-    // Restore active service
     let activeService = storageData.activeService || 'openai';
     if (!services.some(s => s.id === activeService)) {
         activeService = services[0]?.id;
@@ -86,13 +228,11 @@ async function initModelSettings(storageData) {
     }
     modelSelect.value = activeService;
 
-    // ── Helper: refresh all UI fields for a given provider ────────
     const updateFields = async (serviceId) => {
         const service = services.find(s => s.id === serviceId);
         const latest = await StorageManager.getAll();
         const cfg = latest.servicesConfig?.[serviceId] || {};
 
-        // API key documentation link
         const apiKeyLink = document.getElementById('apiKeyLink');
         if (apiKeyLink) {
             apiKeyLink.innerHTML = service?.apiKeyDocumentationUrl
@@ -100,42 +240,35 @@ async function initModelSettings(storageData) {
                 : '';
         }
 
-        // Endpoint visibility
         const customEndpointContainer = document.getElementById('customEndpointContainer');
         if (customEndpointContainer) {
             customEndpointContainer.style.display = service?.allowCustomEndpoint ? 'block' : 'none';
         }
 
-        // Populate field values
         if (apiKeyInput) apiKeyInput.value = cfg.apiKey || '';
         if (endpointInput) endpointInput.value = cfg.endpoint || service?.endpointUrl || '';
 
-        // Model identifier tag UI (from modelManager.js)
         updateModelIdentifierUI(serviceId, services, latest);
     };
 
-    // ── Event: provider change ────────────────────────────────────
     modelSelect.addEventListener('change', async () => {
         const selectedId = modelSelect.value;
         await autoSave('activeService', selectedId);
         await updateFields(selectedId);
     });
 
-    // ── Real-time save: API key ────────────────────────────────────
     if (apiKeyInput) {
         apiKeyInput.addEventListener('input', () => {
             StorageManager.updateService(modelSelect.value, { apiKey: apiKeyInput.value });
         });
     }
 
-    // ── Real-time save: Endpoint ───────────────────────────────────
     if (endpointInput) {
         endpointInput.addEventListener('input', () => {
             StorageManager.updateService(modelSelect.value, { endpoint: endpointInput.value });
         });
     }
 
-    // Initial population
     await updateFields(activeService);
 }
 
@@ -178,6 +311,15 @@ function initGeneralSettings(storageData) {
         nativeToggle.checked = !!storageData.useNativeSidePanel;
         nativeToggle.addEventListener('change', () => {
             autoSave('useNativeSidePanel', nativeToggle.checked);
+        });
+    }
+
+    // ── Highlighting ───────────────────────────────────────────────
+    const highlightingToggle = document.getElementById('highlightingToggle');
+    if (highlightingToggle) {
+        highlightingToggle.checked = storageData.highlightingEnabled !== false; // default on
+        highlightingToggle.addEventListener('change', () => {
+            autoSave('highlightingEnabled', highlightingToggle.checked);
         });
     }
 
@@ -248,37 +390,89 @@ function initBackupRestore() {
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
 
-    // ── Export Settings ──
+    // ── Export — settings-only or full backup ──
     if (btnExport) {
-        btnExport.addEventListener('click', async () => {
-            try {
-                const data = await StorageManager.getAll();
-                const jsonStr = JSON.stringify(data, null, 2);
-                const blob = new Blob([jsonStr], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
+        // Build a small choice panel, hidden by default
+        const choicePanel = document.createElement('div');
+        choicePanel.style.cssText = `
+            display:none; flex-direction:column; gap:6px;
+            margin-top:8px; padding:10px;
+            background:var(--glass-card); border:1px solid var(--glass-border);
+            border-radius:var(--radius-md);
+        `;
+        choicePanel.innerHTML = `
+            <p style="font-size:11px;font-weight:600;color:var(--text-secondary);margin:0 0 4px;">What to export?</p>
+            <button type="button" id="exportSettingsOnly" class="button-secondary" style="font-size:12px;justify-content:flex-start;">⚙️ Settings only</button>
+            <button type="button" id="exportFullBackup"   class="button-secondary" style="font-size:12px;justify-content:flex-start;">📚 Settings + Article History</button>
+        `;
+        btnExport.parentElement.insertAdjacentElement('afterend', choicePanel);
 
+        btnExport.addEventListener('click', () => {
+            const isOpen = choicePanel.style.display === 'flex';
+            choicePanel.style.display = isOpen ? 'none' : 'flex';
+            btnExport.textContent = isOpen ? '📤 Export' : '📤 Export ▲';
+        });
+
+        const doExport = async (includeContent) => {
+            choicePanel.style.display = 'none';
+            btnExport.textContent = '📤 Export';
+            try {
+                const [syncData, localData] = await Promise.all([
+                    StorageManager.getAll(),
+                    new Promise(resolve => chrome.storage.local.get(null, resolve))
+                ]);
+
+                let backup, filename;
+                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
+
+                if (includeContent) {
+                    const count = (localData.articles || []).length;
+                    backup = {
+                        _backup_version: 2,
+                        _exported_at: new Date().toISOString(),
+                        _article_count: count,
+                        settings: syncData,
+                        local: localData
+                    };
+                    filename = `aish_backup_${date}_${count}articles.json`;
+                } else {
+                    backup = {
+                        _backup_version: 1,
+                        _exported_at: new Date().toISOString(),
+                        ...syncData
+                    };
+                    filename = `aish_settings_${date}.json`;
+                }
+
+                const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
-                a.download = `ai_summary_settings_${date}.json`;
-
+                a.download = filename;
                 document.body.appendChild(a);
                 a.click();
-
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
 
                 const origText = btnExport.textContent;
-                btnExport.textContent = 'Exported! ✓';
-                setTimeout(() => btnExport.textContent = origText, 2000);
+                btnExport.textContent = includeContent
+                    ? `Exported! ✓ (${backup._article_count} articles)`
+                    : 'Exported! ✓';
+                setTimeout(() => btnExport.textContent = origText, 2500);
             } catch (err) {
                 console.error('Export failed:', err);
-                alert('Failed to export settings.');
+                alert('Failed to export backup.');
             }
-        });
+        };
+
+        // Wire up once the panel is injected (next tick)
+        setTimeout(() => {
+            document.getElementById('exportSettingsOnly')?.addEventListener('click', () => doExport(false));
+            document.getElementById('exportFullBackup')?.addEventListener('click',   () => doExport(true));
+        }, 0);
     }
 
-    // ── Import Settings ──
+    // ── Import (settings + article history) ──
     if (btnImport && fileInput) {
         btnImport.addEventListener('click', () => fileInput.click());
 
@@ -295,13 +489,23 @@ function initBackupRestore() {
                         throw new Error('Invalid format');
                     }
 
-                    await StorageManager.set(importedData);
+                    if (importedData._backup_version === 2) {
+                        // Full backup — restore settings to sync, local data to local
+                        const { settings, local } = importedData;
+                        if (settings) await StorageManager.set(settings);
+                        if (local) await new Promise(resolve => chrome.storage.local.set(local, resolve));
+                        const count = (local?.articles || []).length;
+                        alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);
+                    } else {
+                        // Legacy v1 backup — settings only
+                        await StorageManager.set(importedData);
+                        alert('Settings imported successfully! The extension will now reload.');
+                    }
 
-                    alert('Settings imported successfully! The extension will now reload to apply them.');
                     chrome.runtime.reload();
                 } catch (err) {
                     console.error('Import failed:', err);
-                    alert('Invalid JSON file. Please select a valid AI Summary Helper backup.');
+                    alert('Invalid backup file. Please select a valid AI Summary Helper export.');
                 } finally {
                     fileInput.value = '';
                 }

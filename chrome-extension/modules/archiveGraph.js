@@ -3,6 +3,29 @@
 
 let graphInitialized = false;
 
+// Brand-harmonious tag palette (anchored to accent blue #2563eb)
+const TAG_PALETTE = [
+    '#7c3aed', // violet
+    '#0891b2', // cyan
+    '#059669', // emerald
+    '#d97706', // amber
+    '#db2777', // pink
+    '#0284c7', // sky
+    '#65a30d', // lime
+    '#dc2626', // red
+    '#7c3aed', // violet (repeat for large tag sets)
+    '#9333ea', // purple
+];
+
+// Deterministic color per tag name
+function tagColor(tagLabel) {
+    let hash = 0;
+    for (let i = 0; i < tagLabel.length; i++) {
+        hash = (hash * 31 + tagLabel.charCodeAt(i)) >>> 0;
+    }
+    return TAG_PALETTE[hash % TAG_PALETTE.length];
+}
+
 function buildGraphData(articles) {
     const nodes = [];
     const links = [];
@@ -29,7 +52,7 @@ function buildGraphData(articles) {
     return { nodes, links };
 }
 
-export function initArchiveGraph(container, articles) {
+export function initArchiveGraph(container, articles, highlightTimestamp) {
     if (!container || !articles || articles.length === 0) return;
 
     container.innerHTML = '';
@@ -42,12 +65,12 @@ export function initArchiveGraph(container, articles) {
     const script = document.createElement('script');
     script.src = chrome.runtime.getURL('lib/d3.min.js');
     script.onload = () => {
-        renderGraph(container, articles);
+        renderGraph(container, articles, highlightTimestamp);
     };
     document.head.appendChild(script);
 }
 
-function renderGraph(container, articles) {
+function renderGraph(container, articles, highlightTimestamp) {
     const data = buildGraphData(articles);
     const { nodes, links } = data;
 
@@ -109,9 +132,13 @@ function renderGraph(container, articles) {
         .data(links)
         .join('line')
         .attr('class', 'graph-link')
-        .attr('stroke', 'var(--outline)')
+        .attr('stroke', d => {
+            // Color link by the tag node it connects to
+            const tagNode = nodes.find(n => n.id === (d.target?.id || d.target));
+            return tagNode?.group === 'tag' ? tagColor(tagNode.label) : 'var(--outline)';
+        })
         .attr('stroke-width', 1.5)
-        .attr('stroke-opacity', 0.6)
+        .attr('stroke-opacity', 0.35)
         .attr('marker-end', 'url(#arrow)');
 
     // Draw nodes into mainContainer
@@ -119,12 +146,41 @@ function renderGraph(container, articles) {
         .selectAll('circle')
         .data(nodes)
         .join('circle')
-        .attr('r', d => d.group === 'article' ? 8 : 5)
-        .attr('fill', d => d.group === 'article' ? 'var(--accent)' : 'var(--text-muted)')
-        .attr('stroke', 'var(--bg-primary, #fff)')
-        .attr('stroke-width', 1.5)
+        .attr('r', d => {
+            if (d.group === 'article') {
+                return highlightTimestamp && d.data?.timestamp === highlightTimestamp ? 12 : 8;
+            }
+            return 5;
+        })
+        .attr('fill', d => {
+            if (d.group === 'article') return 'var(--accent)';
+            return tagColor(d.label);
+        })
+        .attr('stroke', d => {
+            if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) {
+                return '#fbbf24'; // amber highlight ring
+            }
+            return 'var(--bg-primary, #fff)';
+        })
+        .attr('stroke-width', d => {
+            if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) return 3;
+            return 1.5;
+        })
         .style('cursor', 'pointer')
         .call(drag(simulation));
+
+    // Pulse animation for highlighted node
+    if (highlightTimestamp) {
+        node.filter(d => d.group === 'article' && d.data?.timestamp === highlightTimestamp)
+            .each(function() {
+                const el = d3.select(this);
+                (function pulse() {
+                    el.transition().duration(700).attr('r', 15).attr('stroke-opacity', 0.4)
+                      .transition().duration(700).attr('r', 12).attr('stroke-opacity', 1)
+                      .on('end', pulse);
+                })();
+            });
+    }
 
     // Labels into mainContainer
     const label = mainContainer.append('g')
@@ -133,7 +189,8 @@ function renderGraph(container, articles) {
         .join('text')
         .text(d => d.label.length > 20 ? d.label.slice(0, 20) + '…' : d.label)
         .attr('font-size', d => d.group === 'article' ? '11px' : '10px')
-        .attr('fill', 'var(--text-primary)')
+        .attr('font-weight', d => d.group === 'tag' ? '600' : 'normal')
+        .attr('fill', d => d.group === 'tag' ? tagColor(d.label) : 'var(--text-primary)')
         .attr('text-anchor', 'middle')
         .attr('dy', d => d.group === 'article' ? -12 : -8)
         .style('pointer-events', 'none')

@@ -4,7 +4,7 @@
 
 >You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
-Summary Helper allows to summarize articles with a custom prompt - so it can be as tailored to your language, profession or point of view as you define it. The summary gets inserted in the content area itself. This way you can easily forward the artice including the generated summary to your Kindle device e.g. using [Reabbles Send-to-Kindle tool](https://send.reabble.com/). 
+Summary Helper allows to summarize articles with a custom prompt - so it can be as tailored to your language, profession or point of view as you define it. The summary gets inserted in the content area itself. This way you can easily forward the article including the generated summary to your Kindle device e.g. using [Reabbles Send-to-Kindle tool](https://send.reabble.com/). 
 
 <a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI&#0032;Summary&#0032;Helper - Instantly&#0032;summarize&#0032;all&#0032;the&#0032;web&#0032;content&#0032;your&#0032;browse | Product Hunt" style="width: 250px; height: 54px;text-align: center;" width="250" height="54" /></a> 
 <a href="https://chrome.google.com/webstore/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank"><img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Chrome Web Store" style="width: 206px; height: 58px;text-align: center;" width="206" height="58" /></a><a href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/" target="_blank"><img src="assets/createBookmarklet.svg" alt="Create Bookmarklet" /></a>
@@ -35,6 +35,11 @@ This project includes two components:
 | Ollama (Local) | ❌ | ✅ |
 | Custom Prompt | 🟠 Initially set base prompt | ✅ Base + custom prompt per request|
 | Cross Platform | ✅ | ❌|
+| Text Highlighting | ❌ | ✅ |
+| Article History & Archive | ❌ | ✅ |
+| Save for Later (Tab Close) | ❌ | ✅ |
+| Context Menu Actions | ❌ | ✅ |
+| Backup & Restore | ❌ | ✅ |
 
 
 ## Project Structure
@@ -59,6 +64,24 @@ This project includes two components:
 Bookmarklet generator generally ships faster since it is faster to iterate on.
 
 ### Browser Plugin
+
+- [x] Summarize page via popup or keyboard shortcut
+- [x] Custom prompt per request + saved default prompt
+- [x] Multi-language summary output
+- [x] Summary length slider
+- [x] Article history with search and graph visualization
+- [x] Text highlighting (yellow / AI ghost highlights) with per-page persistence
+- [x] Enable/disable highlighting toggle in settings
+- [x] Context menu: Highlight selection, Remove all highlights, Summarize page, Summarize & close tab
+- [x] **Save for Later** — right-click any tab → "Summarize & Close": generates summary, saves with timeframe reminder (tomorrow / weekend / week / research session), closes the tab, shows in history with metadata
+- [x] **RSVP Speed-reading overlay** — while summarizing on close, the AI output streams word-by-word as a speed-reading display; adjustable speed (slow/medium/fast) saved between sessions
+- [x] **Timed reminders** — Chrome notifications remind you to revisit saved articles at your chosen timeframe
+- [x] Backup & Restore (v2 format: settings + full article history)
+- [x] Inline mode ("Send to Kindle" friendly)
+- [x] Native side panel support
+- [x] Graph view of article archive (D3.js, keyword-based)
+- [x] **Analytics Report** — reading activity heatmap, top topics, streaks, model usage stats, per-article or full-archive view
+- [x] Multi-provider support: OpenAI, Mistral, Deepseek, Ollama, byphil Cloud (no API key needed)
 
 ### Bookmarklet Generator 
 - [x] Save API Key in Browser

@@ -29,7 +29,8 @@ export function initMainScreen(ui) {
 
         const tags = article.tags || [];
         const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${t}</span>`).join('')}</div>` : '';
-        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">🤖 ${article.modelId}</span>` : '';
+        const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
+        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji} ${article.modelId}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         bubble.innerHTML = `
@@ -55,11 +56,12 @@ export function initMainScreen(ui) {
         feed.appendChild(bubble);
     };
 
-    const addStreamBubble = (modelName = '') => {
+    const addStreamBubble = (modelName = '', mode = 'local') => {
         // Remove any existing stream bubble
         const old = feed.querySelector('.stream-bubble');
         if (old) old.remove();
 
+        const emoji = mode === 'cloud' ? '☁️' : '💻';
         const bubble = document.createElement('div');
         bubble.className = 'stream-bubble';
         bubble.id = 'streamBubble';
@@ -69,7 +71,7 @@ export function initMainScreen(ui) {
             <span id="streamText" style="font-weight:600;">Starting…</span>
             <span id="streamTimer" style="font-size:11px;opacity:0.6;margin-left:auto;"></span>
           </div>
-          <div id="streamModel" style="font-size:11px;opacity:0.5;margin-bottom:4px;">${modelName}</div>
+          <div id="streamModel" style="font-size:11px;opacity:0.5;margin-bottom:4px;">${emoji} ${modelName}</div>
           <div id="streamPreview" style="font-size:12px;opacity:0.7;line-height:1.5;max-height:80px;overflow:hidden;"></div>
         `;
         feed.appendChild(bubble);
@@ -166,6 +168,7 @@ export function initMainScreen(ui) {
                     timestamp: msg.timestamp || new Date().toISOString(),
                     tags: msg.tags || [],
                     modelId: msg.modelId || '',
+                    connectionMode: msg.connectionMode || 'local',
                     content: msg.content || ''
                 });
             }
@@ -204,7 +207,10 @@ export function initMainScreen(ui) {
                 // Show the streaming bubble and hide the welcome entry
                 if (recentEntry) recentEntry.style.display = 'none';
                 const modelLabel = document.getElementById('chipModelLabel');
-                addStreamBubble(modelLabel?.textContent || '');
+                const chipIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
+                const isCloud = chipIcon?.textContent === '☁️' || (await chrome.storage.sync.get('connectionMode')).connectionMode === 'cloud';
+                
+                addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');
                 updateStream('Contacting content script…');
             }
 
@@ -220,18 +226,28 @@ export function initMainScreen(ui) {
 
                 await ensureContentScript(activeTab.id, activeTab.url);
 
+                const {
+                    connectionMode = 'cloud',
+                    preferredCloudModel = 'google/gemini-2.5-flash'
+                } = await chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']);
+
                 const message = {
                     action: 'fetchSummary',
                     additionalQuestions,
                     selectedLanguage,
                     prompt: promptToUse,
                     summaryMode: mode,
-                    summaryLength: await chrome.storage.local.get('summaryLength').then(d => d.summaryLength || 200)
+                    summaryLength: await chrome.storage.local.get('summaryLength').then(d => d.summaryLength || 200),
+                    connectionMode,
+                    preferredCloudModel,
                 };
 
                 chrome.tabs.sendMessage(activeTab.id, message, (response) => {
                     if (chrome.runtime.lastError) {
                         console.warn("Popup communication error:", chrome.runtime.lastError);
+                        updateStream('❌ Could not reach page — try refreshing the tab.');
+                        fetchSummaryButton.disabled = false;
+                        fetchSummaryButton.textContent = '✨ Fetch Summary';
                     }
                 });
 
@@ -256,17 +272,27 @@ export async function ensureContentScript(tabId, url) {
         throw new Error('AI Summary cannot run on system pages or the Web Store.');
     }
 
-    try {
-        // Ping the content script
-        await chrome.tabs.sendMessage(tabId, { action: 'PING' });
-    } catch (e) {
-        // If ping fails, inject
-        console.log("Injecting content script due to ping failure...");
-        await chrome.scripting.executeScript({
-            target: { tabId },
-            files: ['content.js']
+    // Try a ping first — if it succeeds we're already good
+    const ping = (id) => new Promise((resolve) => {
+        chrome.tabs.sendMessage(id, { action: 'PING' }, (res) => {
+            if (chrome.runtime.lastError || !res || res.status !== 'PONG') resolve(false);
+            else resolve(true);
         });
-        // Give it a moment to initialize listeners
-        await new Promise(resolve => setTimeout(resolve, 250));
+    });
+
+    if (await ping(tabId)) return; // already loaded
+
+    // Content script not present — inject it
+    console.log('Injecting content script due to ping failure...');
+    await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+
+    // Retry ping up to 10 times (50 ms apart = max 500 ms) so we don't send
+    // fetchSummary before the onMessage listener is registered
+    for (let i = 0; i < 10; i++) {
+        await new Promise(r => setTimeout(r, 50));
+        if (await ping(tabId)) return;
     }
+
+    // Final fallback wait in case scripting injection is slow
+    await new Promise(r => setTimeout(r, 300));
 }

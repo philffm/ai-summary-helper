@@ -22,6 +22,10 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
                 activeService = activeService || cfg.id || 'openai';
                 apiKey = apiKey || cfg.apiKey || '';
                 modelIdentifier = modelIdentifier || cfg.model || '';
+                if (cfg.connectionMode === 'cloud') {
+                    const installId = await StorageManager.getInstallId();
+                    // We'll return early or handle it in the fetch below
+                }
             } catch (e) {
                 console.warn('Could not import StorageManager or get active service config', e);
             }

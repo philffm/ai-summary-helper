@@ -5,6 +5,8 @@
 import StorageManager from './storageManager.js';
 
 let uiManagerRef = null;
+let currentDetailArticle = null;
+let cachedArticles = [];
 
 /**
  * Triggers the native OS share sheet
@@ -117,6 +119,121 @@ ${contentPlain.trim().replace(/\n{3,}/g, '\n\n')}
     URL.revokeObjectURL(url);
 }
 
+/**
+ * Copies summary and content to clipboard as formatted text (HTML) and plain text (Markdown-ish)
+ */
+async function copyArticleToClipboard(article) {
+    const title = article.title || 'AI Summary';
+    const summary = article.summary || '';
+    const content = article.content || '';
+    
+    // Create a clean HTML version for the clipboard
+    const cleanHtml = `
+        <div style="font-family: sans-serif;">
+            <h1>${title}</h1>
+            <p><a href="${article.url}">${article.url}</a></p>
+            <hr>
+            <h2>🧙 AI Summary</h2>
+            <div>${summary}</div>
+            <hr>
+            <h2>📄 Original Content</h2>
+            <div>${content}</div>
+        </div>
+    `.replace(/style="[^"]*"/gi, (match) => {
+        // Keep ONLY the top-level font family for the container, strip all other styles
+        return match.includes('font-family: sans-serif') ? match : '';
+    });
+
+    // Create a plain text / markdown version
+    const plainText = `# ${title}\nSource: ${article.url || 'N/A'}\n\n## 🧙 AI SUMMARY\n${summary.replace(/<[^>]+>/g, '').trim()}\n\n---\n\n## 📄 ORIGINAL CONTENT\n${content.replace(/<[^>]+>/g, '').trim()}`;
+
+    try {
+        const typeHtml = 'text/html';
+        const typePlain = 'text/plain';
+        const blobHtml = new Blob([cleanHtml], { type: typeHtml });
+        const blobPlain = new Blob([plainText], { type: typePlain });
+        
+        const data = [new ClipboardItem({
+            [typeHtml]: blobHtml,
+            [typePlain]: blobPlain
+        })];
+
+        await navigator.clipboard.write(data);
+        if (uiManagerRef) uiManagerRef.showToast('Copied to clipboard! 📋');
+    } catch (err) {
+        console.error('Clipboard copy failed:', err);
+        // Fallback for cases where ClipboardItem might fail
+        try {
+            await navigator.clipboard.writeText(plainText);
+            if (uiManagerRef) uiManagerRef.showToast('Copied as plain text.');
+        } catch (e) {
+            console.error('Final copy fallback failed:', e);
+        }
+    }
+}
+
+/**
+ * Sends article summary and content to a Kindle email via the proxy API
+ */
+async function sendToKindle(article) {
+    const config = await StorageManager.getAll();
+    if (!config.kindleEmail) {
+        if (uiManagerRef) {
+            uiManagerRef.showToast('Set your Kindle email in Settings first.');
+            uiManagerRef.showScreen('settings');
+        } else {
+            alert('Please configure your Kindle delivery email address inside settings first.');
+        }
+        return;
+    }
+
+    // Show a brief hint about free tier limit
+    const isPro = config.pb_user?.subscription_status === 'active';
+    if (!isPro) {
+        const confirmation = confirm('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nSend this article to Kindle?');
+        if (!confirmation) return;
+    }
+
+    try {
+        const apiBase = StorageManager.getApiBase();
+        const headers = { 'Content-Type': 'application/json' };
+        if (config.pb_token) {
+            headers['Authorization'] = `Bearer ${config.pb_token}`;
+        } else if (config.licenseKey) {
+            headers['Authorization'] = `Bearer ${config.licenseKey}`;
+        }
+
+        const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+                kindle_email: config.kindleEmail,
+                title: article.title || 'AI Summary Document',
+                content: article.content || article.summary || '',
+                summary: article.summary || '',
+                url: article.url || ''
+            })
+        });
+
+        const resData = await response.json();
+        if (response.ok && resData.success) {
+            if (uiManagerRef) uiManagerRef.showToast('Sent to Kindle! 📚');
+        } else {
+            const msg = resData.error || 'Kindle delivery failed.';
+            if (resData.error?.includes('Free tier limit') || resData.error?.includes('402')) {
+                alert(`📚 Free tier limit reached (3 sends).\n\nUpgrade to Pro for unlimited Kindle delivery.\n\nhttps://philwornath.com/links`);
+            } else if (uiManagerRef) {
+                uiManagerRef.showToast(msg);
+            } else {
+                alert(msg);
+            }
+        }
+    } catch (err) {
+        console.error('Kindle dispatch error:', err);
+        if (uiManagerRef) uiManagerRef.showToast('Network error sending to Kindle.');
+    }
+}
+
 export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
     const historyButton = document.getElementById('historyButton');
@@ -132,8 +249,10 @@ export function initArticleManager(uiManager) {
             const articleDetail = document.getElementById('articleDetail');
             const articleList = document.getElementById('articleList');
             const graphContainer = document.getElementById('graphContainer');
+            const reportContainer = document.getElementById('reportContainer');
             if (articleDetail) articleDetail.style.display = 'none';
             if (graphContainer) graphContainer.style.display = 'none';
+            if (reportContainer) reportContainer.style.display = 'none';
             if (articleList) articleList.style.display = 'block';
             if (historyTopBar) historyTopBar.style.display = 'flex';
             if (detailTopBar) detailTopBar.style.display = 'none';
@@ -151,6 +270,20 @@ export function initArticleManager(uiManager) {
     }
     if (searchInput) {
         searchInput.addEventListener('input', filterArticles);
+
+        // Show/hide clear button as user types
+        const clearBtn = document.getElementById('searchClearBtn');
+        if (clearBtn) {
+            searchInput.addEventListener('input', () => {
+                clearBtn.hidden = searchInput.value.length === 0;
+            });
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                clearBtn.hidden = true;
+                filterArticles();
+                searchInput.focus();
+            });
+        }
     }
 
     document.addEventListener('keydown', (event) => {
@@ -181,16 +314,33 @@ export function initArticleManager(uiManager) {
             if (articleList) articleList.style.display = 'none';
             if (articleDetail) articleDetail.style.display = 'none';
             graphContainer.style.display = 'block';
-            StorageManager.getLocal({ articles: [] }).then(data => {
-                const articles = data.articles || [];
-                if (articles.length > 0) {
+            const searchInput = document.getElementById('searchInput');
+            const filterText = (searchInput?.value || '').toLowerCase();
+            const articlesToShow = filterText
+                ? cachedArticles.filter(a => {
+                    const titleMatch = (a.title || '').toLowerCase().includes(filterText);
+                    const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(filterText));
+                    return titleMatch || tagMatch;
+                  })
+                : cachedArticles;
+            const source = articlesToShow.length > 0 ? articlesToShow : cachedArticles;
+            if (source.length > 0) {
                     import('./archiveGraph.js').then(mod => {
-                        mod.initArchiveGraph(graphContainer, articles);
+                        mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp);
                     });
                 } else {
+                    // Fall back to storage if cache is empty (e.g. first load)
+                    StorageManager.getLocal({ articles: [] }).then(data => {
+                        const articles = data.articles || [];
+                        if (articles.length > 0) {
+                            import('./archiveGraph.js').then(mod => {
+                                mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp);
+                            });
+                        } else {
                     graphContainer.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">No articles to graph yet.</div>';
+                        }
+                    });
                 }
-            });
         }
     };
 
@@ -198,6 +348,40 @@ export function initArticleManager(uiManager) {
     const detailGraphToggleBtn = document.getElementById('detailGraphToggleBtn');
     if (graphToggleBtn) graphToggleBtn.addEventListener('click', toggleGraph);
     if (detailGraphToggleBtn) detailGraphToggleBtn.addEventListener('click', toggleGraph);
+
+    // ── Shared report toggle ────────────────────────────────────────────
+    const toggleReport = () => {
+        const articleList = document.getElementById('articleList');
+        const articleDetail = document.getElementById('articleDetail');
+        const graphContainer = document.getElementById('graphContainer');
+        const reportContainer = document.getElementById('reportContainer');
+        if (!reportContainer) return;
+        const isReport = reportContainer.style.display === 'block';
+        if (isReport) {
+            reportContainer.style.display = 'none';
+            if (detailTopBar?.style.display === 'flex') {
+                if (articleDetail) articleDetail.style.display = 'block';
+            } else {
+                if (articleList) articleList.style.display = 'block';
+            }
+        } else {
+            if (articleList) articleList.style.display = 'none';
+            if (articleDetail) articleDetail.style.display = 'none';
+            if (graphContainer) graphContainer.style.display = 'none';
+            reportContainer.style.display = 'block';
+            StorageManager.getLocal({ articles: [] }).then(data => {
+                const articles = data.articles || [];
+                import('./analyticsManager.js').then(mod => {
+                    mod.initAnalyticsReport(reportContainer, articles);
+                });
+            });
+        }
+    };
+
+    const reportToggleBtn = document.getElementById('reportToggleBtn');
+    const detailReportToggleBtn = document.getElementById('detailReportToggleBtn');
+    if (reportToggleBtn) reportToggleBtn.addEventListener('click', toggleReport);
+    if (detailReportToggleBtn) detailReportToggleBtn.addEventListener('click', toggleReport);
 
     // ── Listen for open-article events from the graph preview card ────
     const graphContainer = document.getElementById('graphContainer');
@@ -209,21 +393,48 @@ export function initArticleManager(uiManager) {
             }
         });
     }
+
+    // ── Listen for tag-search events from the analytics report ────────
+    const reportContainerEl = document.getElementById('reportContainer');
+    if (reportContainerEl) {
+        reportContainerEl.addEventListener('tag-search', (e) => {
+            const tag = e.detail?.tag;
+            if (!tag) return;
+            // Hide report, show article list
+            reportContainerEl.style.display = 'none';
+            const articleList = document.getElementById('articleList');
+            const historyTopBar = document.getElementById('historyTopBar');
+            if (articleList) articleList.style.display = 'block';
+            if (historyTopBar) historyTopBar.style.display = 'flex';
+            // Pre-fill search and filter
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = tag;
+                filterArticles();
+                searchInput.focus();
+            }
+        });
+    }
 }
 
 export function loadHistory() {
     const graphContainer = document.getElementById('graphContainer');
+    const reportContainer = document.getElementById('reportContainer');
     const articleList = document.getElementById('articleList');
     const articleDetail = document.getElementById('articleDetail');
     const historyTopBar = document.getElementById('historyTopBar');
     const detailTopBar = document.getElementById('detailTopBar');
     if (graphContainer) graphContainer.style.display = 'none';
+    if (reportContainer) reportContainer.style.display = 'none';
     if (articleDetail) articleDetail.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'none';
     if (historyTopBar) historyTopBar.style.display = 'flex';
     if (articleList) articleList.style.display = 'block';
     StorageManager.getLocal({ articles: [] }).then(data => {
-        if (data && data.articles) renderArticles(data.articles);
+        if (data && data.articles) {
+            cachedArticles = data.articles;
+            renderArticles(cachedArticles);
+        }
     }).catch(() => {});
 }
 
@@ -249,7 +460,19 @@ export function renderArticles(articles) {
         }
         const tags = article.tags || [];
         const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
-        const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">🤖 ${article.modelId}</span>` : '';
+        const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
+        const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji} ${article.modelId}</span>` : '';
+        
+        // Decision metadata (timeframe + reason)
+        const decisionHtml = article.isDecision ? `
+          <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(148,163,184,0.1);">
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+              ${article.decisionTimeframe ? `<span style="font-size:11px;background:rgba(59,130,246,0.15);color:#3b82f6;padding:3px 8px;border-radius:12px;font-weight:600;">🔖 ${article.decisionTimeframe}</span>` : ''}
+              ${article.decisionReason ? `<span style="font-size:11px;color:#94a3b8;font-style:italic;">"${article.decisionReason}"</span>` : ''}
+            </div>
+          </div>
+        ` : '';
+        
         listItem.innerHTML = `
             <div class="article-header">
               <div>
@@ -257,6 +480,7 @@ export function renderArticles(articles) {
                 <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
                 ${tagsHtml}
                 ${modelBadge}
+                ${decisionHtml}
               </div>
             </div>
         `;
@@ -273,10 +497,30 @@ export function renderArticles(articles) {
 export function filterArticles() {
     const searchInput = document.getElementById('searchInput');
     const filterText = searchInput.value.toLowerCase();
+    const graphContainer = document.getElementById('graphContainer');
+
+    // If graph is visible, re-render it with matching articles
+    if (graphContainer && graphContainer.style.display === 'block') {
+        const filtered = cachedArticles.filter(a => {
+            const titleMatch = (a.title || '').toLowerCase().includes(filterText);
+            const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(filterText));
+            return titleMatch || tagMatch;
+        });
+        import('./archiveGraph.js').then(mod => {
+            mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : cachedArticles, currentDetailArticle?.timestamp);
+        });
+        // Dim the graph label when a filter is active
+        graphContainer.style.opacity = filterText && filtered.length < cachedArticles.length ? '0.9' : '1';
+        return;
+    }
+
+    // Otherwise filter the article list cards
     const articles = document.querySelectorAll('.article-card');
     articles.forEach(article => {
         const headerText = article.querySelector('.article-header h4').textContent.toLowerCase();
-        const matches = headerText.includes(filterText);
+        const tagText = Array.from(article.querySelectorAll('.tag-chip'))
+            .map(chip => chip.textContent.toLowerCase()).join(' ');
+        const matches = headerText.includes(filterText) || tagText.includes(filterText);
         article.style.display = matches ? 'block' : 'none';
     });
 }
@@ -289,6 +533,7 @@ export function displayArticleDetails(data) {
  * Shows the full article detail view with back button
  */
 export function showArticleDetail(article) {
+    currentDetailArticle = article;
     const articleList = document.getElementById('articleList');
     const articleDetail = document.getElementById('articleDetail');
     const articleDetailContent = document.getElementById('articleDetailContent');
@@ -323,8 +568,21 @@ export function showArticleDetail(article) {
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
     const tags = article.tags || [];
     const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">${tags.map(t => `<span class="tag-chip" style="font-size:12px;">${t}</span>`).join('')}</div>` : '';
-    const modelInfo = article.modelId ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;margin-right:12px;">🤖 ${article.modelId}</span>` : '';
+    const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
+    const modelInfo = article.modelId ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;margin-right:12px;">${modelEmoji} ${article.modelId}</span>` : '';
     const lengthInfo = article.summaryLength ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;">📏 ${article.summaryLength}w</span>` : '';
+    
+    // Decision metadata
+    const decisionBadge = article.isDecision ? `
+      <div style="background:rgba(59,130,246,0.1);border-left:3px solid #3b82f6;padding:12px;margin-bottom:12px;border-radius:6px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:14px;">🔖</span>
+          <span style="font-size:13px;font-weight:600;color:#3b82f6;">Saved for Later</span>
+          ${article.decisionTimeframe ? `<span style="font-size:11px;background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;">${article.decisionTimeframe}</span>` : ''}
+        </div>
+        ${article.decisionReason ? `<p style="margin:0;font-size:12px;color:var(--text-secondary);">${article.decisionReason}</p>` : ''}
+      </div>
+    ` : '';
 
     articleDetailContent.innerHTML = `
       <div class="article-detail-card">
@@ -337,8 +595,11 @@ export function showArticleDetail(article) {
           ${modelInfo}${lengthInfo}
         </p>
         ${tagsHtml}
+        ${decisionBadge}
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
           <button class="button-secondary share-button">Share 🔗</button>
+          <button class="button-secondary copy-button">Copy 📋</button>
+          <button class="button-secondary kindle-button">Kindle 📚</button>
           <button class="button-secondary md-button">.MD 💾</button>
           <button class="button-secondary open-button">Reader 👓</button>
           <button class="delete-button" style="margin-left:auto;">🗑️ Delete</button>
@@ -356,11 +617,15 @@ export function showArticleDetail(article) {
 
     // Wire up buttons
     const shareBtn = articleDetailContent.querySelector('.share-button');
+    const copyBtn = articleDetailContent.querySelector('.copy-button');
+    const kindleBtn = articleDetailContent.querySelector('.kindle-button');
     const mdBtn = articleDetailContent.querySelector('.md-button');
     const openBtn = articleDetailContent.querySelector('.open-button');
     const deleteBtn = articleDetailContent.querySelector('.delete-button');
 
     if (shareBtn) shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareArticle(article); });
+    if (copyBtn) copyBtn.addEventListener('click', (e) => { e.stopPropagation(); copyArticleToClipboard(article); });
+    if (kindleBtn) kindleBtn.addEventListener('click', (e) => { e.stopPropagation(); sendToKindle(article); });
     if (mdBtn) mdBtn.addEventListener('click', (e) => { e.stopPropagation(); exportToMarkdown(article); });
     if (openBtn) {
         openBtn.addEventListener('click', (e) => {

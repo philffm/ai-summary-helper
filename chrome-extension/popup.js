@@ -224,7 +224,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Refresh chip label from storage (used on init + whenever main screen shows)
     const refreshModelChip = async () => {
-        const { servicesConfig, activeService } = await chrome.storage.sync.get(['servicesConfig', 'activeService']);
+        const { servicesConfig, activeService, connectionMode, preferredCloudModel } = await chrome.storage.sync.get(['servicesConfig', 'activeService', 'connectionMode', 'preferredCloudModel']);
+        
+        if (connectionMode === 'cloud') {
+            const active = preferredCloudModel || 'google/gemini-2.5-flash';
+            // Just take the model name part (after /) for the chip if it's long
+            const label = active.includes('/') ? active.split('/').pop() : active;
+            if (chipModelLabel) chipModelLabel.textContent = label;
+            return;
+        }
+
         const svcId = activeService || 'openai';
         const meta = servicesMetaCache.find(s => s.id === svcId);
         const cfg = (servicesConfig || {})[svcId] || {};
@@ -267,7 +276,104 @@ document.addEventListener("DOMContentLoaded", async () => {
             .catch(e => console.error('Error loading services:', e));
 
         const renderUI = () => {
-            chrome.storage.sync.get('servicesConfig', ({ servicesConfig }) => {
+            chrome.storage.sync.get(['servicesConfig', 'connectionMode', 'preferredCloudModel'], async ({ servicesConfig, connectionMode, preferredCloudModel }) => {
+                if (connectionMode === 'cloud') {
+                    // Update chip label
+                    const activeCloudModel = preferredCloudModel || 'google/gemini-2.5-flash';
+                    const chipLabel = activeCloudModel.includes('/') ? activeCloudModel.split('/').pop() : activeCloudModel;
+                    chipModelLabel.textContent = chipLabel;
+
+                    // Provider tags: Show "byphil Cloud" and "Developer Mode" shortcuts
+                    modelProviderGrid.innerHTML = '';
+                    const modes = [
+                        { id: 'cloud', name: '☁️ Cloud' },
+                        { id: 'local', name: '💻 Advanced' }
+                    ];
+
+                    modes.forEach(m => {
+                        const btn = document.createElement('button');
+                        btn.className = 'tag-btn';
+                        btn.textContent = m.name;
+                        if (m.id === connectionMode) btn.classList.add('active');
+                        btn.addEventListener('click', async (e) => {
+                            e.preventDefault();
+                            await chrome.storage.sync.set({ connectionMode: m.id });
+                            renderUI();
+                        });
+                        modelProviderGrid.appendChild(btn);
+                    });
+
+                    // Model ID tags: Fetch from local proxy for quick select
+                    const { recentCloudModels = ['google/gemini-2.5-flash'] } = await chrome.storage.sync.get('recentCloudModels');
+                    const filter = customModelInput.value.toLowerCase().trim();
+
+                    if (!filter) {
+                        modelIdGrid.innerHTML = '';
+                        recentCloudModels.forEach(modelId => {
+                            const btn = document.createElement('button');
+                            btn.className = 'tag-btn';
+                            const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
+                            btn.innerHTML = `${shortName} <span class="remove-recent" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>`;
+                            if (modelId === activeCloudModel) btn.classList.add('active');
+                            
+                            btn.addEventListener('click', async (e) => {
+                                if (e.target.classList.contains('remove-recent')) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    const newRecent = recentCloudModels.filter(m => m !== modelId);
+                                    await chrome.storage.sync.set({ recentCloudModels: newRecent });
+                                    renderUI();
+                                    return;
+                                }
+                                await chrome.storage.sync.set({ preferredCloudModel: modelId });
+                                renderUI();
+                            });
+                            modelIdGrid.appendChild(btn);
+                        });
+                        return;
+                    }
+
+                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">🔍 Searching Cloud...</span>';
+                    try {
+                        const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`);
+                        const data = await response.json();
+                        if (data.success && data.models.length > 0) {
+                            modelIdGrid.innerHTML = '';
+                            const searchResults = data.models.filter(m => 
+                                m.name.toLowerCase().includes(filter) || m.id.toLowerCase().includes(filter)
+                            );
+                            
+                            if (searchResults.length === 0) {
+                                modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">No matches found</span>';
+                                return;
+                            }
+
+                            searchResults.forEach(model => {
+                                const btn = document.createElement('button');
+                                btn.className = 'tag-btn';
+                                btn.textContent = model.name;
+                                if (model.id === activeCloudModel) btn.classList.add('active');
+                                btn.addEventListener('click', async (e) => {
+                                    e.preventDefault();
+                                    await chrome.storage.sync.set({ preferredCloudModel: model.id });
+                                    
+                                    // Add to recent list (limit to 10)
+                                    let newRecent = [model.id, ...recentCloudModels.filter(m => m !== model.id)];
+                                    newRecent = newRecent.slice(0, 10);
+                                    await chrome.storage.sync.set({ recentCloudModels: newRecent });
+                                    
+                                    customModelInput.value = '';
+                                    renderUI();
+                                });
+                                modelIdGrid.appendChild(btn);
+                            });
+                        }
+                    } catch (err) {
+                        modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--danger);padding:4px 0;">Failed to load models</span>';
+                    }
+                    return;
+                }
+
                 const curSvcId = modelSelect.value;
                 const meta = servicesMetaCache.find(s => s.id === curSvcId);
                 const defModel = meta?.defaultModel || '';
@@ -290,6 +396,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Provider tags
                 modelProviderGrid.innerHTML = '';
+                
+                // Add Cloud mode shortcut
+                const cloudBtn = document.createElement('button');
+                cloudBtn.className = 'tag-btn';
+                cloudBtn.textContent = '☁️ Cloud Mode';
+                cloudBtn.style.borderStyle = 'dashed';
+                cloudBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    await chrome.storage.sync.set({ connectionMode: 'cloud' });
+                    renderUI();
+                });
+                modelProviderGrid.appendChild(cloudBtn);
+
                 Array.from(modelSelect.options).forEach(option => {
                     const btn = document.createElement('button');
                     btn.className = 'tag-btn';
@@ -313,10 +432,24 @@ document.addEventListener("DOMContentLoaded", async () => {
                 deduped.forEach((modelId) => {
                     const btn = document.createElement('button');
                     btn.className = 'tag-btn';
-                    btn.textContent = modelId;
+                    const isCustom = customModels.includes(modelId);
+                    btn.innerHTML = `${modelId}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
+                    
                     btn.addEventListener('click', (e) => {
                         e.preventDefault();
+                        
+                        // Handle removal of custom model
+                        if (e.target.classList.contains('remove-tag')) {
+                            const newCustom = customModels.filter(m => m !== modelId);
+                            StorageManager.updateService(curSvcId, { 
+                                customModel: newCustom,
+                                // If we just removed the active model, fall back to default
+                                activeModelId: modelId === activeModel ? (newCustom[0] || defModel) : activeModel
+                            }).then(() => renderUI());
+                            return;
+                        }
+
                         chrome.storage.sync.get('servicesConfig', ({ servicesConfig: sc }) => {
                             const c = { ...(sc || {}) };
                             const entry = { ...(c[curSvcId] || {}) };
@@ -344,6 +477,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
             renderUI();
         });
+
+        if (customModelInput) {
+            customModelInput.addEventListener('input', () => {
+                renderUI();
+            });
+        }
 
         if (setCustomModelBtn && customModelInput) {
             setCustomModelBtn.addEventListener('click', () => {
@@ -440,4 +579,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Wherever you send a message to the background/content script, use sendMessageToContentScript
     // Example usage:
     // sendMessageToContentScript({ action: 'summarize' }, (response) => { /* handle response */ });
+
+    
+    // ── Decision Slip Integration ──────────────────────────────────────────
+    // Decisions are now saved as regular articles with embedded metadata
 });

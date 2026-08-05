@@ -14,7 +14,7 @@
     <!-- ── Header ──────────────────────────────────────────────────────── -->
     <div class="header">
       <div class="logoheader">
-        <img src="icons/icon.svg" alt="AI Summary Helper" width="32" height="32" />
+        <img src="icons/icon.svg" alt="AI Summary Helper" width="24" height="24" />
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
@@ -84,6 +84,7 @@
                   <span>500</span>
                 </div>
               </div>
+
               <div id="panelMode" class="chip-panel popup-panel" style="display:none">
                 <label class="chip-panel-label">Summary Mode</label>
                 <div class="mode-tabs">
@@ -140,15 +141,32 @@
       <!-- HISTORY SCREEN -->
       <div id="historyScreen" class="screen">
         <div id="historyTopBar" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
-          <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;flex:1;" />
+          <div class="search-input-wrap" style="position:relative;flex:1;display:flex;align-items:center;">
+            <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles"
+              style="margin-bottom:0;width:100%;padding-right:32px;"
+              aria-label="Search articles"
+              autocomplete="off"
+              spellcheck="false" />
+            <button type="button" id="searchClearBtn"
+              aria-label="Clear search"
+              hidden
+              style="position:absolute;right:8px;top:50%;transform:translateY(-50%);
+                     background:none;border:none;padding:2px 4px;cursor:pointer;
+                     font-size:14px;color:var(--text-muted);line-height:1;
+                     border-radius:var(--radius-sm);align-items:center;
+                     transition:color 0.12s;">✕</button>
+          </div>
           <button id="graphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
+          <button id="reportToggleBtn" class="button-secondary" title="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
         </div>
         <div id="detailTopBar" style="display:none;gap:8px;margin-bottom:12px;align-items:center;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
           <button id="detailGraphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
+          <button id="detailReportToggleBtn" class="button-secondary" title="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
         </div>
         <ul id="articleList"></ul>
         <div id="graphContainer" style="display:none;"></div>
+        <div id="reportContainer" style="display:none;"></div>
         <div id="articleDetail" style="display:none;">
           <div id="articleDetailContent"></div>
         </div>
@@ -175,20 +193,87 @@
               <button data-i18n="modelConfiguration" type="button" class="accordion-button">🤖 Model Configuration</button>
               <div class="accordion-content">
                 <p data-i18n="modelDesc">Choose the LLM model to generate your summaries.</p>
-                <label for="model">Provider <span id="apiKeyLink" style="font-weight: normal"></span></label>
-                <select id="model"></select>
-                <div id="modelIdentifierContainer">
-                  <label id="modelIdentifierLabel" for="modelIdentifier">Model Identifier: (default)</label>
-                  <input type="text" id="modelIdentifier" placeholder="e.g., gpt-5-mini, llama3.2" />
+                
+                <!-- Add this at the very top of your Model Configuration section -->
+                <div class="setting-group" style="margin-bottom: var(--spacing-s-4);">
+                    <label class="type-badge">Connection Path</label>
+                    <div class="segmented-control">
+                        <input type="radio" id="modeCloud" name="connectionMode" value="cloud">
+                        <label for="modeCloud">☁️ byphil Cloud (Default)</label>
+                        
+                        <input type="radio" id="modeLocal" name="connectionMode" value="local">
+                        <label for="modeLocal">💻 Bring your own key</label>
+                    </div>
                 </div>
-                <div id="apiKeyContainer">
-                  <label for="apiKey">API Key:</label>
-                  <input type="password" id="apiKey" name="apiKey" placeholder="sk-..." />
-                  <label class="light">🔒 Stored locally in your browser.</label>
+
+                <!-- ── CONTAINER 1: CLOUD OPERATIONS ── -->
+                <div id="cloudModeContainer" class="flex column gap-3" style="display: none;">
+                    <div class="setting-group">
+                        <label for="cloudModelSelect">Preferred Cloud Model</label>
+                        <select id="cloudModelSelect">
+                            <option value="" disabled selected>🔄 Connecting to proxy metrics...</option>
+                        </select>
+                    </div>
+
+                    <!-- ── Account Sync (OTP Section) ── -->
+                    <div class="setting-group" id="authSection" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--glass-border);">
+                        <div class="flex-label-row">
+                            <label class="type-badge">Account Sync</label>
+                            <span id="authStatusLabel" class="status-badge" style="color: var(--text-muted, #889999); background: rgba(0, 0, 0, 0.2);">Not logged in</span>
+                        </div>
+                        
+                        <div id="otpEmailStage">
+                            <input type="email" id="otpEmail" placeholder="Enter your email...">
+                            <button type="button" id="otpRequestBtn" class="button-primary" style="margin-top: 8px;">Send Magic Code</button>
+                        </div>
+
+                        <div id="otpCodeStage" style="display: none;">
+                          <p class="input-caption">Enter the code sent to your email.</p>
+                          <input type="text" id="otpCode" placeholder="Enter code" inputmode="text" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" style="text-align: center; font-size: 1.2rem; letter-spacing: 0.2rem;">
+                            <button type="button" id="otpVerifyBtn" class="button-primary" style="margin-top: 8px;">Verify & Log In</button>
+                            <button type="button" class="btn-link" id="otpBackBtn" style="margin-top: 10px; width: 100%; text-align: center;">Wrong email? Go back</button>
+                        </div>
+
+                        <div id="loggedInStage" style="display: none;">
+                            <p class="input-caption" id="userEmailLabel" style="margin-bottom: 8px;">Logged in as: ...</p>
+                            <button type="button" id="logoutBtn" class="button-secondary" style="width: 100%;">Log Out</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" id="legacyLicenseGroup">
+                        <div class="flex-label-row">
+                            <label for="licenseKey">Pro License Key</label>
+                            <span id="licenseStatusLabel" class="status-badge">Checking tier...</span>
+                        </div>
+                        <div class="input-with-button">
+                        <input type="password" id="licenseKey" placeholder="AISH-PRO-7F9K-2Q4M-8X1C or sub_...">
+                            <button type="button" id="verifyLicenseButton" class="button-secondary" style="width: auto; padding: 0 16px;">Activate</button>
+                        </div>
+                      <p class="input-caption">Use your product key or paste your Stripe subscription ID (starts with sub_).</p>
+                      <div id="proUpgradeCta" style="display:none; margin-top: 8px;">
+                        <button type="button" id="proUpgradeButton" class="button-primary" style="width: 100%;">Buy Pro Pass</button>
+                        <p class="input-caption" style="margin-top: 6px;">Secure checkout opens in a new tab.</p>
+                      </div>
+                    </div>
                 </div>
-                <div id="customEndpointContainer" style="display: none">
-                  <label for="customEndpoint">Endpoint URL:</label>
-                  <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
+
+                <!-- ── CONTAINER 2: DEVELOPER/BYO OPERATIONS (Existing Elements) ── -->
+                <div id="developerModeContainer" class="flex column gap-3" style="display: none;">
+                  <label for="model">Provider <span id="apiKeyLink" style="font-weight: normal"></span></label>
+                  <select id="model"></select>
+                  <div id="modelIdentifierContainer">
+                    <label id="modelIdentifierLabel" for="modelIdentifier">Model Identifier: (default)</label>
+                    <input type="text" id="modelIdentifier" placeholder="e.g., gpt-5-mini, llama3.2" />
+                  </div>
+                  <div id="apiKeyContainer">
+                    <label for="apiKey">API Key:</label>
+                    <input type="password" id="apiKey" name="apiKey" placeholder="sk-..." />
+                    <label class="light">🔒 Stored locally in your browser.</label>
+                  </div>
+                  <div id="customEndpointContainer" style="display: none">
+                    <label for="customEndpoint">Endpoint URL:</label>
+                    <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -237,16 +322,29 @@
                   </select>
                 </div>
 
+                <div style="border-top:1px solid var(--outline);margin:4px 0 12px;"></div>
+
                 <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Chrome Side Panel</label>
+                  <label for="nativeSidePanelToggle" style="cursor:pointer;">Use Native Side Panel</label>
                   <label class="switch">
                     <input type="checkbox" id="nativeSidePanelToggle" />
                     <span class="slider-toggle"></span>
                   </label>
                 </div>
 
+                <div class="setting-group flex justify-between align-center mb-3">
+                  <div style="flex:1;min-width:0;">
+                    <label for="highlightingToggle" style="display:block;cursor:pointer;margin:0;">✏️ Page Highlighting</label>
+                    <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;">Yellow highlights &amp; AI ghost annotations</p>
+                  </div>
+                  <label class="switch" style="flex-shrink:0;margin-left:12px;">
+                    <input type="checkbox" id="highlightingToggle" />
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div>
+
                 <!-- <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="betaPodcastToggle" style="margin: 0; font-weight: normal; cursor: pointer;">🎙️ Podcast (Beta)</label>
+                  <label for="betaPodcastToggle" style="cursor:pointer;">🎙️ Podcast (Beta)</label>
                   <label class="switch">
                     <input type="checkbox" id="betaPodcastToggle" />
                     <span class="slider-toggle"></span>
@@ -275,7 +373,7 @@
           <p>
             Open Source software by
             <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">1.5.52</span> — Feel free to
+            <br />AI Summary Helper v<span id="versionNumber">1.5.58</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>
