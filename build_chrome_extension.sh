@@ -10,7 +10,6 @@ cp -f translations.json chrome-extension/
 # Read the table from the Compatible Tools section of readme.md (Root)
 awk '/Name \| Description \| URL/{flag=1; next} /--- \| --- \| ---/{next} /^$/{flag=0} flag' readme.md > table.txt
 
-# --- FIX IS HERE: Split the left and right whitespace trimming into separate commands ---
 awk 'BEGIN{ FS="|"; print "[" }
 {
   sub(/^[ \t]+/, "", $1); sub(/[ \t]+$/, "", $1);
@@ -26,7 +25,6 @@ END{
   }
   print "]"
 }' table.txt > compatible-tools.json
-# -----------------------------------------------------------------------------------------
 
 cp -f compatible-tools.json chrome-extension/
 
@@ -66,7 +64,11 @@ ZIP_FILE="chrome-extension-$NEW_VERSION.zip"
 # Temporarily hide the android manifest so it doesn't end up in the desktop zip
 mv chrome-extension/manifest-android.json ./manifest-android.tmp
 
-zip -r "$ZIP_FILE" chrome-extension/
+# Navigate INTO the directory so we only pack the contents, not the root folder
+cd chrome-extension
+zip -r "../$ZIP_FILE" .
+cd ..
+
 echo "✅ Desktop extension built: $ZIP_FILE"
 
 
@@ -87,7 +89,11 @@ mv "$ANDROID_DIR/manifest-android.json" "$ANDROID_DIR/manifest.json"
 
 ANDROID_ZIP_FILE="chrome-extension-android-$NEW_VERSION.zip"
 [ -f "$ANDROID_ZIP_FILE" ] && rm "$ANDROID_ZIP_FILE"
-zip -r "$ANDROID_ZIP_FILE" "$ANDROID_DIR"/
+
+# Navigate INTO the Android directory to pack only the contents
+cd "$ANDROID_DIR"
+zip -r "../$ANDROID_ZIP_FILE" .
+cd ..
 
 echo "✅ Android extension built: $ANDROID_ZIP_FILE"
 
