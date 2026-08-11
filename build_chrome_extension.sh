@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Build the chrome extension
 
 # copy files from assets to chrome-extension
@@ -24,19 +26,65 @@ END{
 
 cp -f compatible-tools.json chrome-extension/
 
-# increment the version number in manifest.json and current_version.json
+# increment the version number in manifest.json, manifest-android.json, and current_version.json
 VERSION=$(jq -r '.version' chrome-extension/manifest.json)
 NEW_VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
-sed -i '' "s/$VERSION/$NEW_VERSION/" chrome-extension/manifest.json
+
+# Portable in-place sed helper for macOS (BSD sed) and Linux (GNU sed)
+inplace_sed() {
+  local expr="$1"
+  local file="$2"
+  if [[ "$(uname)" == "Darwin" ]]; then
+    sed -i '' "$expr" "$file"
+  else
+    sed -i "$expr" "$file"
+  fi
+}
+
+# Update Desktop manifest
+inplace_sed "s/$VERSION/$NEW_VERSION/" chrome-extension/manifest.json
+# Update Android manifest
+inplace_sed "s/$VERSION/$NEW_VERSION/" chrome-extension/manifest-android.json
 
 jq ".version = \"$NEW_VERSION\"" current_version.json > current_version.json.tmp && mv current_version.json.tmp current_version.json
 
 # inject version into popup.html
-sed -i '' "s|<span id=\"versionNumber\">[^<]*</span>|<span id=\"versionNumber\">$NEW_VERSION</span>|" chrome-extension/popup.html
+inplace_sed "s|<span id=\"versionNumber\">[^<]*</span>|<span id=\"versionNumber\">$NEW_VERSION</span>|" chrome-extension/popup.html
 
-# zip the chrome-extension folder
+
+# ==========================================
+# 1. BUILD DESKTOP VERSION
+# ==========================================
 ZIP_FILE="chrome-extension-$NEW_VERSION.zip"
 [ -f "$ZIP_FILE" ] && rm "$ZIP_FILE"
-zip -r "$ZIP_FILE" chrome-extension/
 
-echo "Chrome extension built: $ZIP_FILE"
+# Temporarily hide the android manifest so it doesn't end up in the desktop zip
+mv chrome-extension/manifest-android.json ./manifest-android.tmp
+
+zip -r "$ZIP_FILE" chrome-extension/
+echo "✅ Desktop extension built: $ZIP_FILE"
+
+
+# ==========================================
+# 2. BUILD ANDROID VERSION
+# ==========================================
+# Bring the android manifest back
+mv ./manifest-android.tmp chrome-extension/manifest-android.json
+
+ANDROID_DIR="chrome-extension-android"
+
+# Create a clean temporary directory for the Android build
+rm -rf "$ANDROID_DIR"
+cp -r chrome-extension/ "$ANDROID_DIR"
+
+# Overwrite the default manifest with the Android one, and clean up
+mv "$ANDROID_DIR/manifest-android.json" "$ANDROID_DIR/manifest.json"
+
+ANDROID_ZIP_FILE="chrome-extension-android-$NEW_VERSION.zip"
+[ -f "$ANDROID_ZIP_FILE" ] && rm "$ANDROID_ZIP_FILE"
+zip -r "$ANDROID_ZIP_FILE" "$ANDROID_DIR"/
+
+echo "✅ Android extension built: $ANDROID_ZIP_FILE"
+
+# Clean up the temporary android build folder
+rm -rf "$ANDROID_DIR"

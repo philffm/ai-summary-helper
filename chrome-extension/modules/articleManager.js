@@ -3,10 +3,34 @@
 
 
 import StorageManager from './storageManager.js';
+import { sendToLocalSend } from './localSendClient.js';
 
 let uiManagerRef = null;
 let currentDetailArticle = null;
 let cachedArticles = [];
+
+function buildSafeArticleTitle(title) {
+    return (title || 'AI Summary').replace(/[^a-z0-9_-]/gi, '_');
+}
+
+function buildArticleDocumentHtml(article) {
+    return `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>${article.title || 'AI Summary'}</title>
+<style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}img{max-width:100%;height:auto;}</style>
+</head><body><h1>${article.title || 'AI Summary'}</h1>
+<div class="meta">Captured via AI Summary Helper &middot; <a href="${article.url || '#'}">Source</a></div>
+${article.summary ? `<div class="summary"><h2>🧙 AI Summary</h2>${article.summary}</div>` : ''}
+<h2>📄 Content</h2><div>${article.content || ''}</div></body></html>`;
+}
+
+function buildArticleHtmlFile(article) {
+    const safeTitle = buildSafeArticleTitle(article.title);
+    const fileName = `${safeTitle}.html`;
+    const docHtml = buildArticleDocumentHtml(article);
+    const blob = new Blob([docHtml], { type: 'text/html' });
+    const file = new File([blob], fileName, { type: 'text/html' });
+    return { file, fileName, docHtml };
+}
 
 /**
  * Triggers the native OS share sheet
@@ -19,13 +43,30 @@ async function shareArticle(article) {
     }
 
     try {
+        const { file } = buildArticleHtmlFile(article);
+        const fileShareData = {
+            title: article.title || 'AI Summary',
+            files: [file]
+        };
+
+        // Prefer file sharing so AirDrop imports as an offline document.
+        if (navigator.canShare && navigator.canShare(fileShareData)) {
+            await navigator.share(fileShareData);
+            if (uiManagerRef) uiManagerRef.showToast('File shared successfully.');
+            return;
+        }
+
+        // Fallback for environments that only support URL/text share.
         await navigator.share({
             title: article.title || 'AI Summary',
-            text: `Check out this summary: \n\n${article.summary}\n\nRead more at:`,
+            text: `Check out this summary: \n\n${article.summary || ''}\n\nRead more at:`,
             url: article.url || ''
         });
     } catch (err) {
         console.error('Share failed:', err);
+        if (uiManagerRef && err?.name !== 'AbortError') {
+            uiManagerRef.showToast(`Share failed: ${err?.message || 'Unknown error'}`);
+        }
     }
 }
 /**
@@ -172,6 +213,7 @@ async function copyArticleToClipboard(article) {
     }
 }
 
+
 /**
  * Sends article summary and content to a Kindle email via the proxy API
  */
@@ -187,11 +229,15 @@ async function sendToKindle(article) {
         return;
     }
 
-    // Show a brief hint about free tier limit
     const isPro = config.pb_user?.subscription_status === 'active';
     if (!isPro) {
         const confirmation = confirm('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nSend this article to Kindle?');
         if (!confirmation) return;
+    }
+
+    // Content now arrives pre-optimized from content capture.
+    if (uiManagerRef) {
+        uiManagerRef.showToast('Preparing Kindle delivery... ⏳', 3000);
     }
 
     try {
@@ -234,14 +280,74 @@ async function sendToKindle(article) {
     }
 }
 
+async function dispatchToLocalSend(article) {
+    const config = await StorageManager.getAll();
+    const readerIp = (config.localSendIp || '').trim();
+
+    if (!readerIp) {
+        if (uiManagerRef) {
+            uiManagerRef.showToast('Please set your LocalSend IP in Settings first.');
+            uiManagerRef.showScreen('settings');
+        } else {
+            alert('Configure your LocalSend IP address inside settings first.');
+        }
+        return;
+    }
+
+    if (uiManagerRef) uiManagerRef.showToast('Sending to LocalSend over Wi-Fi... 🚀');
+
+    try {
+        const { fileName, docHtml } = buildArticleHtmlFile(article);
+
+        await sendToLocalSend(readerIp, fileName, docHtml, 'text/html');
+
+        if (uiManagerRef) uiManagerRef.showToast('Sent successfully! 📖');
+    } catch (err) {
+        console.error('[LocalSend Error]', err);
+        if (uiManagerRef) uiManagerRef.showToast(`Transfer failed: ${err?.message || 'Check if receiver is online.'}`);
+    }
+}
+
 export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
-    const historyButton = document.getElementById('historyButton');
-    const backButton = document.getElementById('backButton');
     const searchInput = document.getElementById('searchInput');
     const detailBackBtn = document.getElementById('detailBackButton');
+    const detailDeleteBtn = document.getElementById('detailDeleteBtn');
     const historyTopBar = document.getElementById('historyTopBar');
     const detailTopBar = document.getElementById('detailTopBar');
+    const historyScreen = document.getElementById('historyScreen');
+    let lastHistoryScrollTop = 0;
+
+    const setTopBarsHidden = (hidden) => {
+        if (historyTopBar) historyTopBar.classList.toggle('scroll-hidden', hidden);
+        if (detailTopBar) detailTopBar.classList.toggle('scroll-hidden', hidden);
+    };
+
+    const deleteCurrentDetailArticle = () => {
+        if (!currentDetailArticle) return;
+        if (!confirm('Are you sure you want to delete this article?')) return;
+
+        StorageManager.getLocal('articles').then(data => {
+            const articles = data.articles || [];
+            const updated = articles.filter(item => item.timestamp !== currentDetailArticle.timestamp);
+            StorageManager.setLocal({ articles: updated }, () => {
+                currentDetailArticle = null;
+                cachedArticles = updated;
+                renderArticles(updated);
+
+                const articleDetail = document.getElementById('articleDetail');
+                const articleList = document.getElementById('articleList');
+                const graphContainer = document.getElementById('graphContainer');
+                const reportContainer = document.getElementById('reportContainer');
+                if (articleDetail) articleDetail.style.display = 'none';
+                if (graphContainer) graphContainer.style.display = 'none';
+                if (reportContainer) reportContainer.style.display = 'none';
+                if (articleList) articleList.style.display = 'block';
+                if (historyTopBar) historyTopBar.style.display = 'flex';
+                if (detailTopBar) detailTopBar.style.display = 'none';
+            });
+        });
+    };
 
     // ── Handle Detail Back Button ───────────────────────────────────────
     if (detailBackBtn) {
@@ -259,15 +365,27 @@ export function initArticleManager(uiManager) {
         });
     }
 
-    if (historyButton) {
-        historyButton.addEventListener('click', () => {
-            uiManager.showScreen('history');
-            loadHistory();
-        });
+    if (detailDeleteBtn) {
+        detailDeleteBtn.addEventListener('click', deleteCurrentDetailArticle);
     }
-    if (backButton) {
-        backButton.addEventListener('click', () => uiManager.showScreen('main'));
+
+    if (historyScreen) {
+        historyScreen.addEventListener('scroll', () => {
+            const currentTop = Math.max(0, historyScreen.scrollTop);
+            const delta = currentTop - lastHistoryScrollTop;
+
+            if (currentTop <= 8) {
+                setTopBarsHidden(false);
+            } else if (delta > 6) {
+                setTopBarsHidden(true);
+            } else if (delta < -4) {
+                setTopBarsHidden(false);
+            }
+
+            lastHistoryScrollTop = currentTop;
+        }, { passive: true });
     }
+
     if (searchInput) {
         searchInput.addEventListener('input', filterArticles);
 
@@ -428,6 +546,8 @@ export function loadHistory() {
     if (reportContainer) reportContainer.style.display = 'none';
     if (articleDetail) articleDetail.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'none';
+    if (historyTopBar) historyTopBar.classList.remove('scroll-hidden');
+    if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
     if (historyTopBar) historyTopBar.style.display = 'flex';
     if (articleList) articleList.style.display = 'block';
     StorageManager.getLocal({ articles: [] }).then(data => {
@@ -525,10 +645,6 @@ export function filterArticles() {
     });
 }
 
-export function displayArticleDetails(data) {
-    // No longer used — detail view is now handled by showArticleDetail()
-}
-
 /**
  * Shows the full article detail view with back button
  */
@@ -553,14 +669,10 @@ export function showArticleDetail(article) {
     const detailParser = new DOMParser();
     const detailDoc = detailParser.parseFromString(rawContentSource, 'text/html');
 
-    // Convert vanilla <img> tags to stylized text placeholders inside the memory document tree
+    // 🔥 NEW: Keep the images, but enforce max-width so they don't break the popup layout
     const detailImages = detailDoc.querySelectorAll('img');
     detailImages.forEach(el => {
-        const alt = el.getAttribute('alt') || 'image';
-        const placeholderSpan = detailDoc.createElement('span');
-        placeholderSpan.style.cssText = 'display:inline-block;background:rgba(0,0,0,0.06);padding:2px 8px;border-radius:4px;font-size:12px;font-family:monospace;margin:0 4px;';
-        placeholderSpan.textContent = `🖼️ ${alt}`;
-        el.parentNode.replaceChild(placeholderSpan, el);
+        el.style.cssText = 'max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);';
     });
 
     // Strip remaining tags cleanly, preserving line breaks
@@ -600,9 +712,9 @@ export function showArticleDetail(article) {
           <button class="button-secondary share-button">Share 🔗</button>
           <button class="button-secondary copy-button">Copy 📋</button>
           <button class="button-secondary kindle-button">Kindle 📚</button>
+                    <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">LocalSend 📱</button>
           <button class="button-secondary md-button">.MD 💾</button>
           <button class="button-secondary open-button">Reader 👓</button>
-          <button class="delete-button" style="margin-left:auto;">🗑️ Delete</button>
         </div>
         <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:16px;">
           <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
@@ -619,13 +731,24 @@ export function showArticleDetail(article) {
     const shareBtn = articleDetailContent.querySelector('.share-button');
     const copyBtn = articleDetailContent.querySelector('.copy-button');
     const kindleBtn = articleDetailContent.querySelector('.kindle-button');
+    const localSendBtn = articleDetailContent.querySelector('.localsend-button');
     const mdBtn = articleDetailContent.querySelector('.md-button');
     const openBtn = articleDetailContent.querySelector('.open-button');
-    const deleteBtn = articleDetailContent.querySelector('.delete-button');
+
+    StorageManager.getAll().then((cfg) => {
+        const pref = cfg.deliveryPreference === 'localsend' ? 'localsend' : 'kindle';
+        if (kindleBtn) kindleBtn.style.display = pref === 'kindle' ? 'inline-flex' : 'none';
+        if (localSendBtn) localSendBtn.style.display = pref === 'localsend' ? 'inline-flex' : 'none';
+    }).catch(() => {
+        // Fallback: show Kindle if settings retrieval fails.
+        if (kindleBtn) kindleBtn.style.display = 'inline-flex';
+        if (localSendBtn) localSendBtn.style.display = 'none';
+    });
 
     if (shareBtn) shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareArticle(article); });
     if (copyBtn) copyBtn.addEventListener('click', (e) => { e.stopPropagation(); copyArticleToClipboard(article); });
     if (kindleBtn) kindleBtn.addEventListener('click', (e) => { e.stopPropagation(); sendToKindle(article); });
+    if (localSendBtn) localSendBtn.addEventListener('click', (e) => { e.stopPropagation(); dispatchToLocalSend(article); });
     if (mdBtn) mdBtn.addEventListener('click', (e) => { e.stopPropagation(); exportToMarkdown(article); });
     if (openBtn) {
         openBtn.addEventListener('click', (e) => {
@@ -640,25 +763,6 @@ export function showArticleDetail(article) {
             newTab.document.close();
         });
     }
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            if (confirm('Are you sure you want to delete this article?')) {
-                StorageManager.getLocal('articles').then(data => {
-                    const articles = data.articles || [];
-                    const updated = articles.filter(item => item.timestamp !== article.timestamp);
-                    StorageManager.setLocal({ articles: updated }, () => {
-                        renderArticles(updated);
-                        articleDetail.style.display = 'none';
-                        if (articleList) articleList.style.display = 'block';
-                        if (historyTopBar) historyTopBar.style.display = 'flex';
-                        if (detailTopBar) detailTopBar.style.display = 'none';
-                    });
-                });
-            }
-        });
-    }
-
     // Show detail, hide list and graph
     if (articleList) articleList.style.display = 'none';
     if (graphContainer) graphContainer.style.display = 'none';

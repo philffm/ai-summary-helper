@@ -16,6 +16,7 @@ export async function initSettingsManager(ui) {
     // Initialize distinct sections independently (DOM is already in popup.html)
     initModelSettings(storageData);
     initGeneralSettings(storageData);
+    initLocalSendSettings(storageData);
     initDangerZone();
     initBackupRestore();
     initSummaryLengthSlider();
@@ -314,12 +315,59 @@ function initGeneralSettings(storageData) {
         });
     }
 
-    // ── Highlighting ───────────────────────────────────────────────
-    const highlightingToggle = document.getElementById('highlightingToggle');
-    if (highlightingToggle) {
-        highlightingToggle.checked = storageData.highlightingEnabled !== false; // default on
-        highlightingToggle.addEventListener('change', () => {
-            autoSave('highlightingEnabled', highlightingToggle.checked);
+    // ── Highlighting Toggles (separate features) ───────────────────
+    const highlightToggle = document.getElementById('highlightingToggle');
+    const aiHighlightToggle = document.getElementById('aiHighlightingToggle');
+    const legacyHighlighting = storageData.highlightingEnabled !== false;
+
+    const getUserHighlightValue = () => {
+        if (highlightToggle) return !!highlightToggle.checked;
+        return storageData.userHighlightingEnabled !== undefined
+            ? storageData.userHighlightingEnabled !== false
+            : legacyHighlighting;
+    };
+
+    const getAiHighlightValue = () => {
+        if (aiHighlightToggle) return !!aiHighlightToggle.checked;
+        return storageData.aiHighlightingEnabled !== undefined
+            ? storageData.aiHighlightingEnabled !== false
+            : legacyHighlighting;
+    };
+
+    const persistHighlightingSettings = async (key, value) => {
+        const payload = {
+            [key]: value,
+            // Backward compatibility key for older builds.
+            highlightingEnabled: getUserHighlightValue() && getAiHighlightValue()
+        };
+        await StorageManager.set(payload);
+        flashSaveIndicator();
+    };
+
+    if (highlightToggle) {
+        highlightToggle.checked = storageData.userHighlightingEnabled !== undefined
+            ? storageData.userHighlightingEnabled !== false
+            : legacyHighlighting;
+        highlightToggle.addEventListener('change', () => {
+            persistHighlightingSettings('userHighlightingEnabled', highlightToggle.checked);
+        });
+    }
+
+    if (aiHighlightToggle) {
+        aiHighlightToggle.checked = storageData.aiHighlightingEnabled !== undefined
+            ? storageData.aiHighlightingEnabled !== false
+            : legacyHighlighting;
+        aiHighlightToggle.addEventListener('change', () => {
+            persistHighlightingSettings('aiHighlightingEnabled', aiHighlightToggle.checked);
+        });
+    }
+
+    // ── AI Ghost Highlight Amount ────────────────────────────────
+    const ghostHighlightAmount = document.getElementById('ghostHighlightAmount');
+    if (ghostHighlightAmount) {
+        ghostHighlightAmount.value = storageData.ghostHighlightAmount || 'regular';
+        ghostHighlightAmount.addEventListener('change', () => {
+            autoSave('ghostHighlightAmount', ghostHighlightAmount.value);
         });
     }
 
@@ -329,10 +377,6 @@ function initGeneralSettings(storageData) {
         betaPodcastToggle.checked = !!storageData.betaPodcast;
         betaPodcastToggle.addEventListener('change', () => {
             autoSave('betaPodcast', betaPodcastToggle.checked);
-            const podcastButton = document.getElementById('podcastButton');
-            if (podcastButton) {
-                podcastButton.style.display = betaPodcastToggle.checked ? 'inline-flex' : 'none';
-            }
         });
     }
 }
@@ -356,6 +400,198 @@ function initSummaryLengthSlider() {
         valueDisplay.textContent = newLength;
         if (chipLabel) chipLabel.textContent = newLength + 'w';
         chrome.storage.local.set({ summaryLength: Number(newLength) });
+    });
+}
+
+// ── Section: LocalSend Configuration ─────────────────────────────────
+function initLocalSendSettings(storageData) {
+    const kindleEmailInput = document.getElementById('kindleEmail');
+    const localSendIpInput = document.getElementById('localSendIp');
+    const scanBtn = document.getElementById('scanLocalSendButton');
+    const statusLabel = document.getElementById('localSendStatus');
+    const deliveryPreferenceSelect = document.getElementById('deliveryPreference');
+    const kindleConfigBlock = document.getElementById('kindleDeliveryConfig');
+    const localSendConfigBlock = document.getElementById('localSendDeliveryConfig');
+
+    if (!localSendIpInput) return;
+
+    if (kindleEmailInput) {
+        kindleEmailInput.value = storageData.kindleEmail || '';
+        kindleEmailInput.addEventListener('input', () => {
+            autoSave('kindleEmail', kindleEmailInput.value.trim());
+        });
+    }
+
+    const applyDeliveryModeVisibility = (mode) => {
+        if (kindleConfigBlock) {
+            kindleConfigBlock.style.display = mode === 'kindle' ? 'block' : 'none';
+        }
+        if (localSendConfigBlock) {
+            localSendConfigBlock.style.display = mode === 'localsend' ? 'block' : 'none';
+        }
+    };
+
+    if (deliveryPreferenceSelect) {
+        const currentMode = storageData.deliveryPreference === 'localsend' ? 'localsend' : 'kindle';
+        deliveryPreferenceSelect.value = currentMode;
+        applyDeliveryModeVisibility(currentMode);
+
+        // Migrate old value 'both' to exclusive default 'kindle'.
+        if (storageData.deliveryPreference === 'both') {
+            autoSave('deliveryPreference', 'kindle');
+        }
+
+        deliveryPreferenceSelect.addEventListener('change', () => {
+            const selected = deliveryPreferenceSelect.value === 'localsend' ? 'localsend' : 'kindle';
+            applyDeliveryModeVisibility(selected);
+            autoSave('deliveryPreference', selected);
+        });
+    } else {
+        applyDeliveryModeVisibility('kindle');
+    }
+
+    localSendIpInput.value = storageData.localSendIp || '';
+
+    localSendIpInput.addEventListener('input', () => {
+        autoSave('localSendIp', localSendIpInput.value.trim());
+        if (statusLabel) statusLabel.textContent = '';
+    });
+
+    if (scanBtn) {
+        scanBtn.addEventListener('click', async () => {
+            scanBtn.disabled = true;
+            scanBtn.textContent = 'Scanning...';
+
+            if (statusLabel) {
+                statusLabel.textContent = 'Searching LAN for LocalSend receiver...';
+                statusLabel.style.color = 'var(--text-muted)';
+            }
+
+            try {
+                const foundIp = await discoverLocalSendDevice();
+                if (foundIp) {
+                    localSendIpInput.value = foundIp;
+                    await autoSave('localSendIp', foundIp);
+                    if (statusLabel) {
+                        statusLabel.textContent = `Found device at ${foundIp} ✓`;
+                        statusLabel.style.color = '#2ecc40';
+                    }
+                } else if (statusLabel) {
+                    statusLabel.textContent = 'No active receiver found.';
+                    statusLabel.style.color = 'var(--text-muted)';
+                }
+            } catch (err) {
+                console.error('LocalSend scan failed:', err);
+                if (statusLabel) {
+                    statusLabel.textContent = 'Scan failed. Enter IP manually.';
+                    statusLabel.style.color = 'var(--danger, #dc2626)';
+                }
+            } finally {
+                scanBtn.disabled = false;
+                scanBtn.textContent = 'Auto-Detect';
+            }
+        });
+    }
+}
+
+async function discoverLocalSendDevice() {
+    const localIp = await getLocalSubnetIp();
+    if (!localIp) return null;
+
+    const PORT = 53317;
+    const prefix = localIp.substring(0, localIp.lastIndexOf('.'));
+    const candidates = [];
+    for (let i = 1; i < 255; i++) candidates.push(`${prefix}.${i}`);
+
+    const batchSize = 24;
+    for (let start = 0; start < candidates.length; start += batchSize) {
+        const batch = candidates.slice(start, start + batchSize);
+        const results = await Promise.all(batch.map(ip => probeLocalSendInfo(ip, PORT)));
+        const found = results.find(Boolean);
+        if (found) return found;
+    }
+
+    return null;
+}
+
+function probeLocalSendInfo(targetIp, port) {
+    return new Promise((resolve) => {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => {
+            controller.abort();
+            resolve(null);
+        }, 1100);
+
+        // Probe KOReader-compatible HTTP first, then HTTPS; check both v2 and v1 routes.
+        const probeInfo = async () => {
+            const protocols = ['http', 'https'];
+            const versions = ['v2', 'v1'];
+
+            for (const protocol of protocols) {
+                for (const version of versions) {
+                    const data = await fetch(`${protocol}://${targetIp}:${port}/api/localsend/${version}/info`, {
+                        method: 'GET',
+                        signal: controller.signal
+                    }).then(res => (res.ok ? res.json() : null)).catch(() => null);
+
+                    if (data) {
+                        return { data, protocol };
+                    }
+                }
+            }
+
+            return null;
+        };
+
+        probeInfo()
+            .then(result => {
+                clearTimeout(timeout);
+                if (result?.data && (result.data.alias || result.data.deviceModel || result.data.version)) {
+                    resolve(`${result.protocol}://${targetIp}`);
+                } else {
+                    resolve(null);
+                }
+            })
+            .catch(() => {
+                clearTimeout(timeout);
+                resolve(null);
+            });
+    });
+}
+
+function getLocalSubnetIp() {
+    return new Promise((resolve) => {
+        try {
+            const pc = new RTCPeerConnection({ iceServers: [] });
+            pc.createDataChannel('');
+
+            const timeout = setTimeout(() => {
+                try { pc.close(); } catch (_) {}
+                resolve('192.168.1.1');
+            }, 1200);
+
+            pc.onicecandidate = (ice) => {
+                const cand = ice?.candidate?.candidate;
+                if (!cand) return;
+                const match = /([0-9]{1,3}(?:\.[0-9]{1,3}){3})/.exec(cand);
+                const myIp = match?.[1];
+                if (myIp && (myIp.startsWith('192.168.') || myIp.startsWith('10.') || myIp.startsWith('172.'))) {
+                    clearTimeout(timeout);
+                    try { pc.close(); } catch (_) {}
+                    resolve(myIp);
+                }
+            };
+
+            pc.createOffer()
+                .then(offer => pc.setLocalDescription(offer))
+                .catch(() => {
+                    clearTimeout(timeout);
+                    try { pc.close(); } catch (_) {}
+                    resolve('192.168.1.1');
+                });
+        } catch (_) {
+            resolve('192.168.1.1');
+        }
     });
 }
 
@@ -390,89 +626,37 @@ function initBackupRestore() {
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
 
-    // ── Export — settings-only or full backup ──
+    // ── Export Settings ──
     if (btnExport) {
-        // Build a small choice panel, hidden by default
-        const choicePanel = document.createElement('div');
-        choicePanel.style.cssText = `
-            display:none; flex-direction:column; gap:6px;
-            margin-top:8px; padding:10px;
-            background:var(--glass-card); border:1px solid var(--glass-border);
-            border-radius:var(--radius-md);
-        `;
-        choicePanel.innerHTML = `
-            <p style="font-size:11px;font-weight:600;color:var(--text-secondary);margin:0 0 4px;">What to export?</p>
-            <button type="button" id="exportSettingsOnly" class="button-secondary" style="font-size:12px;justify-content:flex-start;">⚙️ Settings only</button>
-            <button type="button" id="exportFullBackup"   class="button-secondary" style="font-size:12px;justify-content:flex-start;">📚 Settings + Article History</button>
-        `;
-        btnExport.parentElement.insertAdjacentElement('afterend', choicePanel);
-
-        btnExport.addEventListener('click', () => {
-            const isOpen = choicePanel.style.display === 'flex';
-            choicePanel.style.display = isOpen ? 'none' : 'flex';
-            btnExport.textContent = isOpen ? '📤 Export' : '📤 Export ▲';
-        });
-
-        const doExport = async (includeContent) => {
-            choicePanel.style.display = 'none';
-            btnExport.textContent = '📤 Export';
+        btnExport.addEventListener('click', async () => {
             try {
-                const [syncData, localData] = await Promise.all([
-                    StorageManager.getAll(),
-                    new Promise(resolve => chrome.storage.local.get(null, resolve))
-                ]);
-
-                let backup, filename;
-                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
-
-                if (includeContent) {
-                    const count = (localData.articles || []).length;
-                    backup = {
-                        _backup_version: 2,
-                        _exported_at: new Date().toISOString(),
-                        _article_count: count,
-                        settings: syncData,
-                        local: localData
-                    };
-                    filename = `aish_backup_${date}_${count}articles.json`;
-                } else {
-                    backup = {
-                        _backup_version: 1,
-                        _exported_at: new Date().toISOString(),
-                        ...syncData
-                    };
-                    filename = `aish_settings_${date}.json`;
-                }
-
-                const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+                const data = await StorageManager.getAll();
+                const jsonStr = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
+
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = filename;
+                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
+                a.download = `ai_summary_settings_${date}.json`;
+
                 document.body.appendChild(a);
                 a.click();
+
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
 
                 const origText = btnExport.textContent;
-                btnExport.textContent = includeContent
-                    ? `Exported! ✓ (${backup._article_count} articles)`
-                    : 'Exported! ✓';
-                setTimeout(() => btnExport.textContent = origText, 2500);
+                btnExport.textContent = 'Exported! ✓';
+                setTimeout(() => btnExport.textContent = origText, 2000);
             } catch (err) {
                 console.error('Export failed:', err);
-                alert('Failed to export backup.');
+                alert('Failed to export settings.');
             }
-        };
-
-        // Wire up once the panel is injected (next tick)
-        setTimeout(() => {
-            document.getElementById('exportSettingsOnly')?.addEventListener('click', () => doExport(false));
-            document.getElementById('exportFullBackup')?.addEventListener('click',   () => doExport(true));
-        }, 0);
+        });
     }
 
-    // ── Import (settings + article history) ──
+    // ── Import Settings ──
     if (btnImport && fileInput) {
         btnImport.addEventListener('click', () => fileInput.click());
 
@@ -489,23 +673,13 @@ function initBackupRestore() {
                         throw new Error('Invalid format');
                     }
 
-                    if (importedData._backup_version === 2) {
-                        // Full backup — restore settings to sync, local data to local
-                        const { settings, local } = importedData;
-                        if (settings) await StorageManager.set(settings);
-                        if (local) await new Promise(resolve => chrome.storage.local.set(local, resolve));
-                        const count = (local?.articles || []).length;
-                        alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);
-                    } else {
-                        // Legacy v1 backup — settings only
-                        await StorageManager.set(importedData);
-                        alert('Settings imported successfully! The extension will now reload.');
-                    }
+                    await StorageManager.set(importedData);
 
+                    alert('Settings imported successfully! The extension will now reload to apply them.');
                     chrome.runtime.reload();
                 } catch (err) {
                     console.error('Import failed:', err);
-                    alert('Invalid backup file. Please select a valid AI Summary Helper export.');
+                    alert('Invalid JSON file. Please select a valid AI Summary Helper backup.');
                 } finally {
                     fileInput.value = '';
                 }

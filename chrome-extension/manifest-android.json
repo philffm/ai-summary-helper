@@ -7,7 +7,6 @@
   "permissions": [
     "tabs",
     "activeTab",
-    "sidePanel",
     "scripting",
     "storage",
     "contextMenus",
@@ -20,14 +19,6 @@
   ],
   "background": {
     "service_worker": "background.js"
-  },
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
   },
   "content_scripts": [
     {
@@ -46,25 +37,6 @@
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  },
-  "side_panel": {
-    "default_path": "popup.html"
-  },
-  "commands": {
-    "toggle-popup": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y",
-        "mac": "Command+Shift+Y"
-      },
-      "description": "Toggle the extension popup"
-    },
-    "fetch-summary": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+S",
-        "mac": "Command+Shift+S"
-      },
-      "description": "Fetch a summary of the current page"
-    }
   },
   "web_accessible_resources": [
     {

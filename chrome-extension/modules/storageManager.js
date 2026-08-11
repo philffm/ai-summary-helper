@@ -17,7 +17,7 @@ class StorageManager {
         selectedLanguage: 'en-US',
         betaPodcast: false,
         connectionMode: 'cloud',
-        preferredCloudModel: 'google/gemini-2.5-flash'
+        preferredCloudModel: 'google/gemini-3.6-flash'
     };
 
     // bump if you later change the structure again
@@ -26,81 +26,16 @@ class StorageManager {
     // ─────────────────────────────────────────────
     // Basic helpers
     // ─────────────────────────────────────────────
-    static AUTH_KEYS = [
-        'pb_token',
-        'pb_user',
-        'pending_otp_id',
-        'pending_email',
-        'pending_otp_expires_at',
-        'pending_otp_requested_at'
-    ];
-
-    static isAuthKey(key) {
-        return this.AUTH_KEYS.includes(key);
-    }
-
     static async getAll() {
-        const [syncData, localAuthData] = await Promise.all([
-            new Promise(resolve => chrome.storage.sync.get(null, resolve)),
-            new Promise(resolve => chrome.storage.local.get(this.AUTH_KEYS, resolve)),
-        ]);
-
-        return {
-            ...syncData,
-            ...localAuthData,
-        };
+        return new Promise(resolve => chrome.storage.sync.get(null, resolve));
     }
 
     static async get(key) {
-        if (typeof key === 'string') {
-            if (this.isAuthKey(key)) {
-                return new Promise(resolve => chrome.storage.local.get(key, resolve));
-            }
-            return new Promise(resolve => chrome.storage.sync.get(key, resolve));
-        }
-
-        const keys = Array.isArray(key) ? key : [key];
-        const authKeys = keys.filter((k) => this.isAuthKey(k));
-        const syncKeys = keys.filter((k) => !this.isAuthKey(k));
-
-        const [syncData, authData] = await Promise.all([
-            syncKeys.length > 0 ? new Promise(resolve => chrome.storage.sync.get(syncKeys, resolve)) : Promise.resolve({}),
-            authKeys.length > 0 ? new Promise(resolve => chrome.storage.local.get(authKeys, resolve)) : Promise.resolve({}),
-        ]);
-
-        return {
-            ...syncData,
-            ...authData,
-        };
+        return new Promise(resolve => chrome.storage.sync.get(key, resolve));
     }
 
     static async set(data) {
-        const entries = Object.entries(data || {});
-        const localData = {};
-        const syncData = {};
-
-        for (const [key, value] of entries) {
-            if (this.isAuthKey(key)) {
-                localData[key] = value;
-            } else {
-                syncData[key] = value;
-            }
-        }
-
-        await Promise.all([
-            Object.keys(syncData).length > 0
-                ? new Promise(resolve => chrome.storage.sync.set(syncData, resolve))
-                : Promise.resolve(),
-            Object.keys(localData).length > 0
-                ? new Promise(resolve => chrome.storage.local.set(localData, resolve))
-                : Promise.resolve(),
-        ]);
-
-        // Keep sync storage clean from legacy auth fields.
-        const authKeysWritten = Object.keys(localData);
-        if (authKeysWritten.length > 0) {
-            await new Promise(resolve => chrome.storage.sync.remove(authKeysWritten, resolve));
-        }
+        return new Promise(resolve => chrome.storage.sync.set(data, resolve));
     }
 
     static async clear(cb) {

@@ -1,7 +1,6 @@
 <!-- popup.html — AI Summary Helper
      Architecture: header (sticky) → screens (natural flow) → bottom-nav (fixed)
      Screens: main | history | settings | apps — toggled via display:none/block
-     All legacy button IDs preserved in hidden div for JS compatibility
 -->
 <!DOCTYPE html>
 <html>
@@ -14,20 +13,12 @@
     <!-- ── Header ──────────────────────────────────────────────────────── -->
     <div class="header">
       <div class="logoheader">
-        <img src="icons/icon.svg" alt="AI Summary Helper" width="24" height="24" />
+        <img src="icons/icon.svg" alt="AI Summary Helper" width="32" height="32" />
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
         <button id="popoutButton" class="button-icon" title="Open in sidebar">↗️</button>
       </div>
-    </div>
-
-    <!-- legacy header buttons (hidden, kept for JS getElementById compatibility) -->
-    <div style="display:none" aria-hidden="true">
-      <button id="appsButton">💠</button>
-      <button id="historyButton">🗂️</button>
-      <button id="podcastButton">🎙️</button>
-      <button id="backButton">Back</button>
     </div>
 
     <!-- ── Screen Container (slides horizontally) ──────────────────── -->
@@ -52,7 +43,7 @@
           </div>
         </div>
 
-        <!-- Fixed-bottom controls -->
+        <!-- Floating controls -->
         <div class="controls-bar">
           <div class="input-card">
             <label class="input-card-label" data-i18n="whatShouldAiFocus">What should the AI focus on?</label>
@@ -84,7 +75,6 @@
                   <span>500</span>
                 </div>
               </div>
-
               <div id="panelMode" class="chip-panel popup-panel" style="display:none">
                 <label class="chip-panel-label">Summary Mode</label>
                 <div class="mode-tabs">
@@ -141,21 +131,7 @@
       <!-- HISTORY SCREEN -->
       <div id="historyScreen" class="screen">
         <div id="historyTopBar" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
-          <div class="search-input-wrap" style="position:relative;flex:1;display:flex;align-items:center;">
-            <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles"
-              style="margin-bottom:0;width:100%;padding-right:32px;"
-              aria-label="Search articles"
-              autocomplete="off"
-              spellcheck="false" />
-            <button type="button" id="searchClearBtn"
-              aria-label="Clear search"
-              hidden
-              style="position:absolute;right:8px;top:50%;transform:translateY(-50%);
-                     background:none;border:none;padding:2px 4px;cursor:pointer;
-                     font-size:14px;color:var(--text-muted);line-height:1;
-                     border-radius:var(--radius-sm);align-items:center;
-                     transition:color 0.12s;">✕</button>
-          </div>
+          <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;flex:1;" />
           <button id="graphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
           <button id="reportToggleBtn" class="button-secondary" title="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
         </div>
@@ -163,6 +139,7 @@
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
           <button id="detailGraphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
           <button id="detailReportToggleBtn" class="button-secondary" title="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
+          <button id="detailDeleteBtn" class="button-secondary delete-top-button" title="Delete Article" aria-label="Delete Article" style="height:44px;width:44px;flex-shrink:0;">🗑️</button>
         </div>
         <ul id="articleList"></ul>
         <div id="graphContainer" style="display:none;"></div>
@@ -246,14 +223,10 @@
                             <span id="licenseStatusLabel" class="status-badge">Checking tier...</span>
                         </div>
                         <div class="input-with-button">
-                        <input type="password" id="licenseKey" placeholder="AISH-PRO-7F9K-2Q4M-8X1C or sub_...">
+                            <input type="password" id="licenseKey" placeholder="aish_live_...">
                             <button type="button" id="verifyLicenseButton" class="button-secondary" style="width: auto; padding: 0 16px;">Activate</button>
                         </div>
-                      <p class="input-caption">Use your product key or paste your Stripe subscription ID (starts with sub_).</p>
-                      <div id="proUpgradeCta" style="display:none; margin-top: 8px;">
-                        <button type="button" id="proUpgradeButton" class="button-primary" style="width: 100%;">Buy Pro Pass</button>
-                        <p class="input-caption" style="margin-top: 6px;">Secure checkout opens in a new tab.</p>
-                      </div>
+                        <p class="input-caption">Don't have a key? <a href="https://apps.byphil.eu/" target="_blank">Upgrade to Pro Pass</a> for unlimited, zero-config summaries.</p>
                     </div>
                 </div>
 
@@ -322,10 +295,8 @@
                   </select>
                 </div>
 
-                <div style="border-top:1px solid var(--outline);margin:4px 0 12px;"></div>
-
                 <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="nativeSidePanelToggle" style="cursor:pointer;">Use Native Side Panel</label>
+                  <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;">Use Native Chrome Side Panel</label>
                   <label class="switch">
                     <input type="checkbox" id="nativeSidePanelToggle" />
                     <span class="slider-toggle"></span>
@@ -334,8 +305,8 @@
 
                 <div class="setting-group flex justify-between align-center mb-3">
                   <div style="flex:1;min-width:0;">
-                    <label for="highlightingToggle" style="display:block;cursor:pointer;margin:0;">✏️ Page Highlighting</label>
-                    <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;">Yellow highlights &amp; AI ghost annotations</p>
+                    <label for="highlightingToggle" style="display:block;margin:0;font-weight:normal;cursor:pointer;">✏️ Page Highlighting</label>
+                    <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;">Manual yellow highlights</p>
                   </div>
                   <label class="switch" style="flex-shrink:0;margin-left:12px;">
                     <input type="checkbox" id="highlightingToggle" />
@@ -343,8 +314,62 @@
                   </label>
                 </div>
 
+                <div class="setting-group flex justify-between align-center mb-3">
+                  <div style="flex:1;min-width:0;">
+                    <label for="aiHighlightingToggle" style="display:block;margin:0;font-weight:normal;cursor:pointer;">✨ AI Ghost Highlighting</label>
+                    <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;">Automatic light-blue quote highlights from summaries</p>
+                  </div>
+                  <label class="switch" style="flex-shrink:0;margin-left:12px;">
+                    <input type="checkbox" id="aiHighlightingToggle" />
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div>
+
+                <div class="setting-group flex justify-between align-center mb-3">
+                  <label for="ghostHighlightAmount">Ghost Highlight Amount</label>
+                  <select id="ghostHighlightAmount">
+                      <option value="few">A few</option>
+                      <option value="regular">Regular</option>
+                      <option value="a_lot">A lot</option>
+                  </select>
+                </div>
+
+                <div class="setting-group mb-3" >
+                  <h4 style="margin:0 0 6px;font-size:13px;">📱 KOReader / LocalSend</h4>
+                  <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.4;">
+                    Choose one delivery method for article detail actions.
+                  </p>
+                  <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.4;">
+                    KOReader plugin: <a href="https://github.com/kaikozlov/localsend.koplugin" target="_blank" rel="noopener noreferrer">kaikozlov/localsend.koplugin</a><br />
+                    For KOReader, prefer <strong>HTTP</strong> (<code>http://IP</code>) instead of HTTPS, which can be buggy.
+                  </p>
+                  <div class="setting-group flex justify-between align-center" style="margin-bottom:8px;">
+                    <label for="deliveryPreference" style="margin:0;">Delivery Method</label>
+                    <select id="deliveryPreference">
+                      <option value="kindle">Kindle</option>
+                      <option value="localsend">LocalSend</option>
+                    </select>
+                  </div>
+
+                  <div id="kindleDeliveryConfig" style="margin-top:6px;">
+                    <label for="kindleEmail" style="display:block;margin:0 0 6px;font-size:12px;">Kindle Email</label>
+                    <input type="email" id="kindleEmail" placeholder="yourname@kindle.com"
+                      style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
+                    <div style="font-size:11px;margin-top:6px;color:var(--text-muted);">Used for Send to Kindle delivery.</div>
+                  </div>
+
+                  <div id="localSendDeliveryConfig" style="margin-top:6px;">
+                    <div style="display:flex;gap:8px;align-items:center;">
+                      <input type="text" id="localSendIp" placeholder="e.g. 192.168.1.142"
+                        style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
+                      <button type="button" id="scanLocalSendButton" class="button-secondary" style="white-space:nowrap;">Auto-Detect</button>
+                    </div>
+                    <div id="localSendStatus" style="font-size:11px;margin-top:6px;min-height:14px;color:var(--text-muted);"></div>
+                  </div>
+                </div>
+
                 <!-- <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="betaPodcastToggle" style="cursor:pointer;">🎙️ Podcast (Beta)</label>
+                  <label for="betaPodcastToggle" style="margin: 0; font-weight: normal; cursor: pointer;">🎙️ Podcast (Beta)</label>
                   <label class="switch">
                     <input type="checkbox" id="betaPodcastToggle" />
                     <span class="slider-toggle"></span>
@@ -372,8 +397,8 @@
           </div>
           <p>
             Open Source software by
-            <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">1.5.58</span> — Feel free to
+            <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
+            <br />AI Summary Helper v<span id="versionNumber">2.0.25</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>

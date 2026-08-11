@@ -88,6 +88,55 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg.action === 'sendLocalSendP2P') {
+        const method = msg.method || 'POST';
+        const isJson = msg.isJson !== false;
+        const headers = msg.headers || {
+            'Content-Type': isJson ? 'application/json' : 'application/octet-stream'
+        };
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000);
+
+        let body = msg.body;
+        if (isJson) {
+            body = typeof body === 'string' ? body : JSON.stringify(body);
+        } else if (Array.isArray(body)) {
+            // Reconstruct byte payload sent as number array through runtime messaging.
+            body = new Uint8Array(body).buffer;
+        }
+
+        fetch(msg.targetUrl, {
+            method,
+            headers,
+            body: method === 'GET' || method === 'HEAD' ? undefined : body,
+            signal: controller.signal
+        })
+            .then(async (res) => {
+                clearTimeout(timeout);
+                const text = await res.text();
+                let data = null;
+                try {
+                    data = text ? JSON.parse(text) : null;
+                } catch (_) {
+                    data = null;
+                }
+
+                sendResponse({
+                    success: true,
+                    ok: res.ok,
+                    status: res.status,
+                    data,
+                    text
+                });
+            })
+            .catch((err) => {
+                clearTimeout(timeout);
+                sendResponse({ success: false, error: err?.message || 'Network request failed' });
+            });
+
+        return true;
+    }
+
     if (msg.action === 'openNativeSidePanel') {
         // Use sender.tab.windowId to target the correct window
         const windowId = sender?.tab?.windowId;

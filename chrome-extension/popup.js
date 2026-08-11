@@ -12,19 +12,12 @@ import { initToolsManager } from './modules/toolsManager.js';
 import { initAccordion } from './modules/accordion.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // Hide podcast button by default
-    const initialPodcastBtn = document.getElementById('podcastButton');
-    if (initialPodcastBtn) initialPodcastBtn.style.display = 'none';
-
     // Load theme and beta toggle preferences
     const storageData = await StorageManager.getAll();
     if (storageData.theme === 'dark' || storageData.theme === 'light') {
         document.documentElement.setAttribute('data-theme', storageData.theme);
     }
     
-    if (initialPodcastBtn) {
-        initialPodcastBtn.style.display = storageData.betaPodcast ? 'inline-flex' : 'none';
-    }
     const ui = new UIManager();
 
     StorageManager.initializeDefaults();
@@ -544,14 +537,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    // Podcast button in history screen triggers podcast manager in history view
-    const historyPodcastBtn = document.getElementById('podcastButton');
-    if (historyPodcastBtn) {
-        historyPodcastBtn.addEventListener('click', () => {
-            ui.enterPodcastMenu();
-        });
-    }
-
     // Utility to handle summarize button error state
     function showSummarizeError() {
         const summarizeBtn = document.getElementById('summarizeButton');
@@ -579,8 +564,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Wherever you send a message to the background/content script, use sendMessageToContentScript
     // Example usage:
     // sendMessageToContentScript({ action: 'summarize' }, (response) => { /* handle response */ });
-
-    
-    // ── Decision Slip Integration ──────────────────────────────────────────
-    // Decisions are now saved as regular articles with embedded metadata
 });

@@ -11,30 +11,6 @@ class UIManager {
             apps: document.getElementById('appsScreen'),
             podcast: document.getElementById('podcastScreen')
         };
-
-        this.buttons = {
-            history: document.getElementById('historyButton'),
-            settings: document.getElementById('toggleScreenButton'),
-            back: document.getElementById('backButton'),
-            podcast: document.getElementById('podcastButton'),
-            apps: document.getElementById('appsButton')
-        };
-
-        // Podcast button visibility logic
-        this.updatePodcastButtonVisibility();
-    }
-
-    async updatePodcastButtonVisibility() {
-        const btn = this.buttons.podcast;
-        if (!btn) return;
-        const StorageManager = (await import('./storageManager.js')).default;
-        StorageManager.getLocal({ articles: [] }).then(data => {
-            if (data.articles && data.articles.length > 0) {
-                btn.style.display = 'block';
-            } else {
-                btn.style.display = 'none';
-            }
-        });
     }
 
     positionNavBlob(screenName) {
