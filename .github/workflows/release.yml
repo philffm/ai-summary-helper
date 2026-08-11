@@ -1,3 +1,19 @@
+name: Build and Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -8,13 +24,11 @@
           sudo apt-get update
           sudo apt-get install -y jq zip gawk
 
-      # --- NEW STEP ---
       - name: Always use the latest version file from main
         run: |
           git fetch origin main
           # Force the runner to use the current_version.json from the absolute latest main branch
           git checkout origin/main -- current_version.json
-      # --------------
 
       - name: Run build script
         run: |
@@ -35,8 +49,28 @@
           # Ensure we have the latest remote main branch
           git fetch origin main
 
-          # Rebase our new commit on top of the latest main
+          # Rebase our new commit on top of the latest main.
+          # -X theirs tells Git: "If there is a conflict, always keep the Action's version bump"
           git pull --rebase -X theirs origin main
 
           # Push successfully to main
           git push origin HEAD:main
+
+      - name: Extract version for release tag
+        id: get_version
+        run: |
+          # Read the newly bumped version from the JSON file
+          VERSION=$(jq -r '.version' current_version.json)
+          # Save it as an environment variable (e.g., v2.0.26) for the next step
+          echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_NAME }} # Force it to use the new version as the tag
+          generate_release_notes: true
+          files: |
+            chrome-extension-*.zip
+            chrome-extension-android-*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
