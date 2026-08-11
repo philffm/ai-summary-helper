@@ -29,16 +29,25 @@ jobs:
           chmod +x build_chrome_extension.sh
           ./build_chrome_extension.sh
 
-      - name: Commit version bump back to repository
+      - name: Commit version bump back to repo
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+          # Stage the changed files
           git add chrome-extension/manifest.json chrome-extension/manifest-android.json current_version.json chrome-extension/popup.html
-          # Only commit when tracked version files changed
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: bump extension version [skip ci]"
-            git push origin HEAD:main
-          fi
+
+          # Commit the changes (if any exist)
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: bump version [skip ci]"
+
+          # Ensure we have the latest remote main branch
+          git fetch origin main
+
+          # Rebase our new commit on top of the latest main to avoid conflicts
+          git pull --rebase origin main
+
+          # Push successfully to main
+          git push origin HEAD:main
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
