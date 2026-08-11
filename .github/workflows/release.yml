@@ -50,12 +50,23 @@ jobs:
           # Push successfully to main
           git push origin HEAD:main
 
+      - name: Extract version for release tag
+        id: get_version
+        run: |
+          # Read the newly bumped version from the JSON file
+          VERSION=$(jq -r '.version' current_version.json)
+          # Save it as an environment variable (e.g., v2.0.26) for the next step
+          echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ env.TAG_NAME }} # Force it to use the new version as the tag
           generate_release_notes: true
           files: |
             chrome-extension-*.zip
             chrome-extension-android-*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
