@@ -43,8 +43,9 @@ jobs:
           # Ensure we have the latest remote main branch
           git fetch origin main
 
-          # Rebase our new commit on top of the latest main to avoid conflicts
-          git pull --rebase origin main
+          # Rebase our new commit on top of the latest main.
+          # -X theirs tells Git: "If there is a conflict, always keep the Action's version bump"
+          git pull --rebase -X theirs origin main
 
           # Push successfully to main
           git push origin HEAD:main
