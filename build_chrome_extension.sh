@@ -12,7 +12,7 @@ awk '/Name \| Description \| URL/{flag=1; next} /--- \| --- \| ---/{next} /^$/{f
 
 awk 'BEGIN{ FS="|"; print "[" }
 {
-  gsub(/^[ \t]+|[ \t]+$/, "", $1); gsub(/^[ \t]+|[ \t]+$/, "", $2); gsub(/^[ \t]+|[ \t]+$/, "", $3);
+  gsub(/^[ \t]+|[ \t]+$/, "", $1); gsub(/^[ \t]+\vert{}[ \t]+$/, "", $2); gsub(/^[ \t]+\vert{}[ \t]+$/, "", $3);
   names[NR]=$1; descriptions[NR]=$2; urls[NR]=$3;
 }
 END{
@@ -26,9 +26,9 @@ END{
 
 cp -f compatible-tools.json chrome-extension/
 
-# increment the version number in manifest.json, manifest-android.json, and current_version.json
-VERSION=$(jq -r '.version' chrome-extension/manifest.json)
-NEW_VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+# Read the base version from current_version.json as the single source of truth
+VERSION=$(jq -r '.version' current_version.json)
+NEW_VERSION=$(echo "$VERSION" | awk -F. '{$NF =$NF + 1;} 1' | sed 's/ /./g')
 
 # Portable in-place sed helper for macOS (BSD sed) and Linux (GNU sed)
 inplace_sed() {
@@ -42,10 +42,11 @@ inplace_sed() {
 }
 
 # Update Desktop manifest
-inplace_sed "s/$VERSION/$NEW_VERSION/" chrome-extension/manifest.json
+inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" chrome-extension/manifest.json
 # Update Android manifest
-inplace_sed "s/$VERSION/$NEW_VERSION/" chrome-extension/manifest-android.json
+inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" chrome-extension/manifest-android.json
 
+# Update current_version.json
 jq ".version = \"$NEW_VERSION\"" current_version.json > current_version.json.tmp && mv current_version.json.tmp current_version.json
 
 # inject version into popup.html
@@ -87,4 +88,4 @@ zip -r "$ANDROID_ZIP_FILE" "$ANDROID_DIR"/
 echo "✅ Android extension built: $ANDROID_ZIP_FILE"
 
 # Clean up the temporary android build folder
-rm -rf "$ANDROID_DIR"
+rm -rf "$ANDROID_DIR
