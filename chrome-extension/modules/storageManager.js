@@ -23,26 +23,53 @@ class StorageManager {
     // bump if you later change the structure again
     static MIGRATION_VERSION = 1;
 
+    // 🔥 Keys that must live in local storage (due to size limits or device-specific nature)
+    static LOCAL_KEYS = ['articles', 'annotations', 'installId', 'summaryMode', 'summaryLength', 'pb_token'];
+
     // ─────────────────────────────────────────────
     // Basic helpers
     // ─────────────────────────────────────────────
+
+    // 🔥 UPDATED: Fetches and merges BOTH sync and local storage for complete backups
     static async getAll() {
-        return new Promise(resolve => chrome.storage.sync.get(null, resolve));
+        const syncData = await new Promise(resolve => chrome.storage.sync.get(null, resolve));
+        const localData = await new Promise(resolve => chrome.storage.local.get(null, resolve));
+        return { ...syncData, ...localData };
     }
 
     static async get(key) {
         return new Promise(resolve => chrome.storage.sync.get(key, resolve));
     }
 
+    // 🔥 UPDATED: Automatically routes large data to .local, settings to .sync
     static async set(data) {
-        return new Promise(resolve => chrome.storage.sync.set(data, resolve));
+        const localData = {};
+        const syncData = {};
+        let hasLocal = false;
+        let hasSync = false;
+
+        for (const [key, value] of Object.entries(data)) {
+            if (this.LOCAL_KEYS.includes(key)) {
+                localData[key] = value;
+                hasLocal = true;
+            } else {
+                syncData[key] = value;
+                hasSync = true;
+            }
+        }
+
+        const promises = [];
+        if (hasSync) promises.push(new Promise(resolve => chrome.storage.sync.set(syncData, resolve)));
+        if (hasLocal) promises.push(new Promise(resolve => chrome.storage.local.set(localData, resolve)));
+
+        return Promise.all(promises);
     }
 
+    // 🔥 UPDATED: Clears both storages completely
     static async clear(cb) {
-        return new Promise(resolve => chrome.storage.sync.clear(() => {
-            if (typeof cb === 'function') cb();
-            resolve();
-        }));
+        await new Promise(resolve => chrome.storage.local.clear(resolve));
+        await new Promise(resolve => chrome.storage.sync.clear(resolve));
+        if (typeof cb === 'function') cb();
     }
 
     static async getLocal(key) {
