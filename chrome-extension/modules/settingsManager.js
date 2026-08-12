@@ -626,37 +626,90 @@ function initBackupRestore() {
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
 
-    // ── Export Settings ──
+    // ── Export — settings-only or full backup ──
     if (btnExport) {
-        btnExport.addEventListener('click', async () => {
-            try {
-                const data = await StorageManager.getAll();
-                const jsonStr = JSON.stringify(data, null, 2);
-                const blob = new Blob([jsonStr], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
+        // Build a small choice panel, hidden by default
+        const choicePanel = document.createElement('div');
+        choicePanel.style.cssText = `
+            display:none; flex-direction:column; gap:6px;
+            margin-top:8px; padding:10px;
+            background:var(--glass-card); border:1px solid var(--glass-border);
+            border-radius:var(--radius-md);
+        `;
+        choicePanel.innerHTML = `
+            <p style="font-size:11px;font-weight:600;color:var(--text-secondary);margin:0 0 4px;">What to export?</p>
+            <button type="button" id="exportSettingsOnly" class="button-secondary" style="font-size:12px;justify-content:flex-start;">⚙️ Settings only</button>
+            <button type="button" id="exportFullBackup"   class="button-secondary" style="font-size:12px;justify-content:flex-start;">📚 Settings + Article History</button>
+        `;
+        btnExport.parentElement.insertAdjacentElement('afterend', choicePanel);
 
+        btnExport.addEventListener('click', () => {
+            const isOpen = choicePanel.style.display === 'flex';
+            choicePanel.style.display = isOpen ? 'none' : 'flex';
+            btnExport.textContent = isOpen ? '📤 Export' : '📤 Export ▲';
+        });
+
+        const doExport = async (includeContent) => {
+            choicePanel.style.display = 'none';
+            btnExport.textContent = '📤 Export';
+            try {
+                // Fetch cleanly separated sync and local data
+                const [syncData, localData] = await Promise.all([
+                    new Promise(resolve => chrome.storage.sync.get(null, resolve)),
+                    new Promise(resolve => chrome.storage.local.get(null, resolve))
+                ]);
+
+                let backup, filename;
+                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
+
+                if (includeContent) {
+                    const count = (localData.articles || []).length;
+                    backup = {
+                        _backup_version: 2,
+                        _exported_at: new Date().toISOString(),
+                        _article_count: count,
+                        settings: syncData,
+                        local: localData
+                    };
+                    filename = `aish_backup_${date}_${count}articles.json`;
+                } else {
+                    backup = {
+                        _backup_version: 1,
+                        _exported_at: new Date().toISOString(),
+                        ...syncData
+                    };
+                    filename = `aish_settings_${date}.json`;
+                }
+
+                const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
-                a.download = `ai_summary_settings_${date}.json`;
-
+                a.download = filename;
                 document.body.appendChild(a);
                 a.click();
-
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
 
                 const origText = btnExport.textContent;
-                btnExport.textContent = 'Exported! ✓';
-                setTimeout(() => btnExport.textContent = origText, 2000);
+                btnExport.textContent = includeContent
+                    ? `Exported! ✓ (${backup._article_count} articles)`
+                    : 'Exported! ✓';
+                setTimeout(() => btnExport.textContent = origText, 2500);
             } catch (err) {
                 console.error('Export failed:', err);
-                alert('Failed to export settings.');
+                alert('Failed to export backup.');
             }
-        });
+        };
+
+        // Wire up once the panel is injected (next tick)
+        setTimeout(() => {
+            document.getElementById('exportSettingsOnly')?.addEventListener('click', () => doExport(false));
+            document.getElementById('exportFullBackup')?.addEventListener('click',   () => doExport(true));
+        }, 0);
     }
 
-    // ── Import Settings ──
+    // ── Import (settings + article history) ──
     if (btnImport && fileInput) {
         btnImport.addEventListener('click', () => fileInput.click());
 
@@ -673,13 +726,27 @@ function initBackupRestore() {
                         throw new Error('Invalid format');
                     }
 
-                    await StorageManager.set(importedData);
+                    if (importedData._backup_version === 2) {
+                        // Full backup — restore settings to sync, local data to local
+                        const { settings, local } = importedData;
 
-                    alert('Settings imported successfully! The extension will now reload to apply them.');
+                        // Use raw chrome APIs to ensure strict separation
+                        if (settings) await new Promise(resolve => chrome.storage.sync.set(settings, resolve));
+                        if (local) await new Promise(resolve => chrome.storage.local.set(local, resolve));
+
+                        const count = (local?.articles || []).length;
+                        alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);
+                    } else {
+                        // Legacy v1 backup — settings only
+                        // Safe to use StorageManager.set() since it routes automatically
+                        await StorageManager.set(importedData);
+                        alert('Settings imported successfully! The extension will now reload.');
+                    }
+
                     chrome.runtime.reload();
                 } catch (err) {
                     console.error('Import failed:', err);
-                    alert('Invalid JSON file. Please select a valid AI Summary Helper backup.');
+                    alert('Invalid backup file. Please select a valid AI Summary Helper export.');
                 } finally {
                     fileInput.value = '';
                 }
