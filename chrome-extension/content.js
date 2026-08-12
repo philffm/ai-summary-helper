@@ -1,9 +1,19 @@
 // content.js
-// Mark that content script is loaded
-window.contentScriptLoaded = true;
+(() => {
+  // Smart injection guard: Checks if an alive extension context exists.
+  // If the extension was reloaded, the old context is "invalidated" and 
+  // getManifest() will throw an error. This safely allows the new script to inject!
+  if (window.aishPing && window.aishPing()) return;
+  window.aishPing = () => {
+    try {
+      return !!chrome.runtime.getManifest();
+    } catch (e) {
+      return false;
+    }
+  };
 
 const API_BASE = 'https://api.byphil.eu';
-// const API_BASE = 'http://localhost:3000'; // for local testing - comment out for production
+// const API_BASE = 'http://localhost:3000'; // for local testing
 
 // Define the donation messages
 const donationMessages = [
@@ -980,19 +990,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
         // 🔥 IMPORTANT: This tells the AI to return EXACT verbatim quotes so `indexOf()` never fails
         const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include two HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] -->.`;
-          if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
-          const { installId } = await chrome.storage.local.get('installId');
-          if (installId) headers['X-Install-ID'] = installId;
 
-          requestBody = JSON.stringify({
-            model: modelIdentifier,
-            messages: [
-              { role: 'system', content: systemPrompt },
-              { role: 'user', content: `Language: ${selectedLanguage}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${truncatedContent}` }
-            ],
-            stream: true
-          });
-        } else if (activeService === 'gemini') {
+        // ── Route based on API format ──
+        if (activeService === 'gemini') {
           finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:streamGenerateContent?alt=sse`;
           headers['x-goog-api-key'] = apiKey;
           const parts = [
@@ -1002,7 +1002,11 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
           ];
           requestBody = JSON.stringify({ contents: [{ role: 'user', parts }] });
         } else {
-          headers['Authorization'] = `Bearer ${apiKey}`;
+          // Default OpenAI / Cloud / Custom format
+          if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
+          const { installId } = await chrome.storage.local.get('installId');
+          if (installId) headers['X-Install-ID'] = installId;
+
           requestBody = JSON.stringify({
             model: modelIdentifier,
             messages: [
@@ -1886,3 +1890,5 @@ function updateDebugPanel(text, apiUrl) {
   }
   panel.innerHTML = `<strong>Debug (${apiUrl})</strong><hr><pre style="white-space:pre-wrap">${text}</pre>`;
 }
+
+})();

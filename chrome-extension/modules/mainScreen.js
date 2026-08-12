@@ -265,10 +265,20 @@ export function initMainScreen(ui) {
     });
 }
 
+// Helper to check if tab URL supports content scripts
+function isInjectableUrl(url) {
+  if (!url) return false;
+  return !url.startsWith('chrome://') &&
+         !url.startsWith('chrome-extension://') &&
+         !url.startsWith('edge://') &&
+         !url.startsWith('about:') &&
+         !url.includes('chrome.google.com/webstore');
+}
+
 // Helper to check if content script is loaded, or inject it if not
 export async function ensureContentScript(tabId, url) {
     // Restricted Chrome URLs
-    if (url && (url.startsWith('chrome://') || url.startsWith('https://chrome.google.com/webstore'))) {
+    if (!isInjectableUrl(url)) {
         throw new Error('AI Summary cannot run on system pages or the Web Store.');
     }
 
@@ -284,15 +294,19 @@ export async function ensureContentScript(tabId, url) {
 
     // Content script not present — inject it
     console.log('Injecting content script due to ping failure...');
-    await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+    try {
+        await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+    } catch (e) {
+        console.error('ExecuteScript error:', e);
+        throw new Error('Failed to inject script: ' + e.message);
+    }
 
-    // Retry ping up to 10 times (50 ms apart = max 500 ms) so we don't send
-    // fetchSummary before the onMessage listener is registered
-    for (let i = 0; i < 10; i++) {
-        await new Promise(r => setTimeout(r, 50));
+    // Poll with PINGs for up to 1 second (100ms × 10) to wait for content.js
+    // to finish parsing and register its onMessage listener
+    for (let attempt = 0; attempt < 10; attempt++) {
+        await new Promise(resolve => setTimeout(resolve, 100));
         if (await ping(tabId)) return;
     }
 
-    // Final fallback wait in case scripting injection is slow
-    await new Promise(r => setTimeout(r, 300));
+    throw new Error('Content script loaded but failed to respond to PING.');
 }
