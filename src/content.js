@@ -923,9 +923,9 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   showPlaceholder(targetElement, donationMessage);
 
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(['activeService', 'servicesConfig', 'connectionMode', 'preferredCloudModel', 'licenseKey', 'pb_token', 'ghostHighlightAmount'], async (data) => {
+    chrome.storage.sync.get(['activeService', 'servicesConfig', 'connectionMode', 'preferredCloudModel', 'licenseKey', 'ghostHighlightAmount'], async (data) => {
       const localAuth = await chrome.storage.local.get(['pb_token']).catch(() => ({}));
-      const sessionToken = localAuth?.pb_token || data.pb_token || '';
+      const sessionToken = localAuth?.pb_token || '';
       const connectionMode = data.connectionMode || 'cloud';
       let activeService = data.activeService || 'openai';
       let cfg = (data.servicesConfig || {})[activeService] || {};
@@ -1333,7 +1333,18 @@ async function ensureGeneralTag(tags, contentText = '', pageTitle = '', maxTags 
   }
 
   const cappedSpecific = uniqueSpecific.slice(0, Math.max(0, maxTags - 1));
-  return [broadTag, ...cappedSpecific];
+
+  // Final dedup: ensure broadTag isn't duplicated in the result
+  const finalTags = [broadTag];
+  const finalSeen = new Set([broadTag.toLowerCase()]);
+  for (const t of cappedSpecific) {
+    const k = t.toLowerCase();
+    if (!finalSeen.has(k)) {
+      finalSeen.add(k);
+      finalTags.push(t);
+    }
+  }
+  return finalTags;
 }
 
 

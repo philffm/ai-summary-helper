@@ -4,9 +4,12 @@ icons/.DS_Store
 ai-summary-helper.zip
 test.md
 Archive.zip
-chrome-extension/Archive 2.zip
+src/Archive 2.zip
 *.zip
 .env
 .secrets
 
 chrome-extension_working
+dist/
+dev/
+prod/

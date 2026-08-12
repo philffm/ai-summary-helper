@@ -1,5 +1,5 @@
 <link href="style.css" rel="stylesheet">
-<!-- # ![Icon](chrome-extension/icons/icon48.png) AI Summary Helper  -->
+<!-- # ![Icon](src/icons/icon48.png) AI Summary Helper  -->
 <h1 style="display: flex; align-content: center; align-items: center; gap: 12px;"><img src="icon.svg" style="width:48px; height:48px">AI Summary Helper</h1>
 
 >You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
@@ -44,7 +44,9 @@ This project includes two components:
 
 ## Project Structure
 
-- `chrome-extension/`: Contains the files for the Chrome extension.
+- `src/`: Single source of truth for the WebExtension (Chrome MV3, Vanilla JS).
+- `platforms/`: Per-platform manifests & artifacts (Firefox, iOS/Safari).
+- `scripts/build.js`: Syncs `src/` to per-platform build targets.
 - `bookmarklet-generator/`: Contains the files for the bookmarklet generator.
 - `privacy.md`: Privacy policy for the project.
 
@@ -52,7 +54,24 @@ This project includes two components:
 
 ### Chrome Extension
 
-1. Navigate to the `chrome-extension` directory and follow the instructions in the `readme.md`.
+1. Navigate to the `src` directory and follow the instructions in the `readme.md`.
+
+### Firefox Extension
+
+1. Run `npm run build:firefox` (or `node scripts/build.js firefox`) to sync `src/` into `dist/firefox/` with the Firefox manifest.
+2. Open `about:debugging#/runtime/this-firefox` in Firefox and click **Load Temporary Add-on**, then select `dist/firefox/manifest.json`.
+
+### Safari (iOS / macOS)
+
+1. Run `npm run build:ios` (or `node scripts/build.js ios`) to sync `src/` into `dist/ios/`.
+2. Convert the WebExtension into a native container app:
+   ```bash
+   xcrun safari-web-extension-converter dist/ios \
+     --app-name "AI Summary Helper" \
+     --bundle-identifier "eu.byphil.aisummaryhelper" \
+     --platform ios
+   ```
+3. In Xcode, ensure the extension target bundle ID starts with the parent app's bundle ID (e.g. `eu.byphil.aisummaryhelper.extension`), select the same signing team for both targets, and run on a concrete device/simulator (not "Any iOS Device").
 
 ### Bookmarklet Generator
 
@@ -95,7 +114,7 @@ Bookmarklet generator generally ships faster since it is faster to iterate on.
 
 ## Privacy Policy
 
-The privacy policy for this project is available in the [Privacy section](/chrome-extension/privacy.md).
+The privacy policy for this project is available in the [Privacy section](/src/privacy.md).
 
 ## License
 

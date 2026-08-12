@@ -7,19 +7,19 @@
   "permissions": [
     "tabs",
     "activeTab",
-    "sidePanel",
     "scripting",
     "storage",
     "contextMenus",
     "notifications",
-    "alarms",
-    "unlimitedStorage"
+    "alarms"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": [
+      "background.js"
+    ]
   },
   "action": {
     "default_popup": "popup.html",
@@ -46,9 +46,6 @@
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  },
-  "side_panel": {
-    "default_path": "popup.html"
   },
   "commands": {
     "toggle-popup": {

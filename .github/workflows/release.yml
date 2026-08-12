@@ -41,7 +41,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # Stage the changed files
-          git add chrome-extension/manifest.json chrome-extension/manifest-android.json current_version.json chrome-extension/popup.html
+          git add src/manifest.json src/manifest-android.json platforms/firefox/manifest.json platforms/ios/manifest.json current_version.json src/popup.html
 
           # Commit the changes (if any exist)
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: bump version [skip ci]"
@@ -70,7 +70,8 @@ jobs:
           tag_name: ${{ env.TAG_NAME }} # Force it to use the new version as the tag
           generate_release_notes: true
           files: |
-            chrome-extension-*.zip
-            chrome-extension-android-*.zip
+            prod/aish-extension-chrome-*.zip
+            prod/aish-extension-android-*.zip
+            prod/aish-extension-firefox-*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

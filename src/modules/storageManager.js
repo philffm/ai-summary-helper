@@ -21,35 +21,84 @@ class StorageManager {
     };
 
     // bump if you later change the structure again
-    static MIGRATION_VERSION = 1;
+    static MIGRATION_VERSION = 2;
 
-    // 🔥 Keys that must live in local storage (due to size limits or device-specific nature)
-    static LOCAL_KEYS = ['articles', 'annotations', 'installId', 'summaryMode', 'summaryLength', 'pb_token'];
+    // 🔥 Keys that MUST live in local storage (heavy data or device-specific session state)
+    static LOCAL_KEYS = [
+        'articles',
+        'annotations',
+        'ghostHighlights',
+        'articleHistory',
+        'summaryMode',
+        'summaryLength',
+        'installId',
+        'pb_token',
+        'pb_user',
+        'pending_otp_id',
+        'pending_email',
+        'pending_otp_expires_at',
+        'pending_otp_requested_at'
+    ];
+
+    static isLocalKey(key) {
+        return this.LOCAL_KEYS.includes(key);
+    }
 
     // ─────────────────────────────────────────────
     // Basic helpers
     // ─────────────────────────────────────────────
 
-    // 🔥 UPDATED: Fetches and merges BOTH sync and local storage for complete backups
+    // 🔥 Fetches and merges BOTH sync and local storage for complete backups
     static async getAll() {
         const syncData = await new Promise(resolve => chrome.storage.sync.get(null, resolve));
         const localData = await new Promise(resolve => chrome.storage.local.get(null, resolve));
         return { ...syncData, ...localData };
     }
 
+    /**
+     * Fetch key(s) from their respective storage locations.
+     * Accepts a single string key, an array of keys, or null (returns everything from sync).
+     */
     static async get(key) {
-        return new Promise(resolve => chrome.storage.sync.get(key, resolve));
+        // null/undefined means "get all from sync" (legacy usage in modelManager.js)
+        if (key === null || key === undefined) {
+            return new Promise(resolve => chrome.storage.sync.get(null, resolve));
+        }
+
+        if (typeof key === 'string') {
+            if (this.isLocalKey(key)) {
+                return new Promise(resolve => chrome.storage.local.get(key, resolve));
+            }
+            return new Promise(resolve => chrome.storage.sync.get(key, resolve));
+        }
+
+        // Array of keys
+        const keys = Array.isArray(key) ? key : [key];
+        const localKeys = keys.filter(k => this.isLocalKey(k));
+        const syncKeys = keys.filter(k => !this.isLocalKey(k));
+
+        const [syncData, localData] = await Promise.all([
+            syncKeys.length > 0
+                ? new Promise(resolve => chrome.storage.sync.get(syncKeys, resolve))
+                : Promise.resolve({}),
+            localKeys.length > 0
+                ? new Promise(resolve => chrome.storage.local.get(localKeys, resolve))
+                : Promise.resolve({})
+        ]);
+
+        return { ...syncData, ...localData };
     }
 
-    // 🔥 UPDATED: Automatically routes large data to .local, settings to .sync
+    // 🔥 Automatically routes large data to .local, settings to .sync.
+    // Also cleans up any local keys that were mistakenly stored in sync.
     static async set(data) {
         const localData = {};
         const syncData = {};
         let hasLocal = false;
         let hasSync = false;
 
-        for (const [key, value] of Object.entries(data)) {
-            if (this.LOCAL_KEYS.includes(key)) {
+        for (const [key, value] of Object.entries(data || {})) {
+            if (this.isLocalKey(key)) {
                 localData[key] = value;
                 hasLocal = true;
             } else {
@@ -62,10 +111,16 @@ class StorageManager {
         if (hasSync) promises.push(new Promise(resolve => chrome.storage.sync.set(syncData, resolve)));
         if (hasLocal) promises.push(new Promise(resolve => chrome.storage.local.set(localData, resolve)));
 
-        return Promise.all(promises);
+        await Promise.all(promises);
+
+        // Clean up sync storage if any local keys were previously saved there by mistake
+        if (hasLocal) {
+            const keysToRemove = Object.keys(localData);
+            await new Promise(resolve => chrome.storage.sync.remove(keysToRemove, resolve));
+        }
     }
 
-    // 🔥 UPDATED: Clears both storages completely
+    // 🔥 Clears both storages completely
     static async clear(cb) {
         await new Promise(resolve => chrome.storage.local.clear(resolve));
         await new Promise(resolve => chrome.storage.sync.clear(resolve));
@@ -81,6 +136,16 @@ class StorageManager {
             if (typeof cb === 'function') cb();
             resolve();
         }));
+    }
+
+    /**
+     * Purge any LOCAL_KEYS that were mistakenly stored in sync storage.
+     * Call during initialization to recover from quota errors.
+     */
+    static async purgeSyncBloat() {
+        return new Promise(resolve => {
+            chrome.storage.sync.remove(this.LOCAL_KEYS, resolve);
+        });
     }
 
     /**
@@ -120,6 +185,9 @@ class StorageManager {
      * - ensure default prompt exists
      */
     static async initialize() {
+        // Run legacy sync cleanup first — purge any local keys from sync storage
+        await this.purgeSyncBloat();
+
         const data = await this.getAll();
 
         // Already migrated?

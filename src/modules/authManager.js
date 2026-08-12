@@ -87,15 +87,7 @@ export async function initAuthManager(uiManager) {
     };
 
     const ensureInstallId = async () => {
-        const { installId } = await chrome.storage.local.get('installId');
-        if (installId) return installId;
-
-        const generated = (typeof crypto?.randomUUID === 'function')
-            ? crypto.randomUUID()
-            : Array.from(crypto.getRandomValues(new Uint8Array(16))).map((b) => b.toString(16).padStart(2, '0')).join('');
-
-        await chrome.storage.local.set({ installId: generated });
-        return generated;
+        return StorageManager.getInstallId();
     };
 
     const refreshUsageAnalytics = async (token) => {

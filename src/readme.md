@@ -10,7 +10,7 @@ A powerful browser extension for summarizing web pages with a custom AI prompt, 
 ### Load Unpacked (Development)
 1. Open Chrome and go to `chrome://extensions`
 2. Enable **Developer mode** (top right)
-3. Click **Load unpacked** and select this `chrome-extension/` folder
+3. Click **Load unpacked** and select this `src/` folder
 
 ## Features
 
