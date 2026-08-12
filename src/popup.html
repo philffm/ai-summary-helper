@@ -376,6 +376,19 @@
                   </label>
                 </div> -->
 
+                <div class="setting-group mb-3" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--outline);">
+                  <h4 style="margin:0 0 6px;font-size:13px;">🔖 Bookmarklet Generator</h4>
+                  <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.4;">
+                    Generate a bookmarklet that summarizes any page in any browser — including iOS/Android where the extension can't run. It uses your byphil Cloud login.
+                  </p>
+                  <button type="button" id="generateBookmarkletBtn" class="button-secondary" style="width:100%;">🪄 Generate Bookmarklet</button>
+                  <div id="bookmarkletResultContainer" style="display:none;margin-top:10px;">
+                    <p style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:0 0 6px;">Drag this link to your bookmarks bar 🔖 <span style="font-weight:400;">(on iOS, hold to drag for 2 seconds)</span></p>
+                    <a id="bookmarkletDragLink" href="#" draggable="true" style="display:inline-block;padding:8px 12px;background:var(--accent,#7c5cff);color:#fff;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;">✨ AI Summary</a>
+                    <p style="font-size:11px;color:var(--danger,#e74c3c);margin:8px 0 0;line-height:1.4;">🔒 Keep this private: This bookmarklet contains your personal cloud token. Do not share it with others. If your token expires, simply come back here to generate a new one.</p>
+                  </div>
+                </div>
+
                 <div class="backup-restore" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--outline);">
                   <p style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">💾 Backup & Restore</p>
                   <div style="display: flex; gap: 8px;">
@@ -398,7 +411,7 @@
           <p>
             Open Source software by
             <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.0.322</span> — Feel free to
+            <br />AI Summary Helper v<span id="versionNumber">2.0.324</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>

@@ -1,5 +1,14 @@
 // content.js
 (() => {
+  // ── Cross-browser shim ────────────────────────────────────────────────
+  // Safari/iOS Web Extensions expose ONLY the `browser.*` namespace; the
+  // `chrome.*` namespace is undefined there. Firefox exposes both, but
+  // `browser.*` is the Promise-based standard. Alias chrome → browser so
+  // the rest of this script works unchanged on every platform.
+  if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
+    globalThis.chrome = browser;
+  }
+
   // Smart injection guard: Checks if an alive extension context exists.
   // If the extension was reloaded, the old context is "invalidated" and 
   // getManifest() will throw an error. This safely allows the new script to inject!

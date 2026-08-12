@@ -11,6 +11,15 @@ import { initMainScreen } from './modules/mainScreen.js';
 import { initToolsManager } from './modules/toolsManager.js';
 import { initAccordion } from './modules/accordion.js';
 
+// ── Cross-browser shim ─────────────────────────────────────────────────────
+// Safari/iOS Web Extensions expose ONLY the `browser.*` namespace; `chrome.*`
+// is undefined there. Firefox exposes both but prefers `browser.*`. Alias
+// chrome → browser so the rest of this codebase works unchanged on every
+// platform (popup, content script, background, and all modules).
+if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
+    globalThis.chrome = browser;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     // Load theme and beta toggle preferences
     const storageData = await StorageManager.getAll();
@@ -61,15 +70,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const activeTab = tabs[0];
                 const { useNativeSidePanel } = await chrome.storage.sync.get('useNativeSidePanel').catch(() => ({}));
 
-                // Native side panel (opt-in)
-                if (useNativeSidePanel) {
+                // Native side panel (Chrome-only, opt-in). On Firefox/Safari/iOS
+                // `chrome.sidePanel` is undefined, so we always fall through to
+                // the hybrid injected iframe sidebar.
+                const nativeAvailable = !!(chrome.sidePanel && chrome.sidePanel.setPanelBehavior);
+                if (useNativeSidePanel && nativeAvailable) {
                     chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
                         if (response?.success) window.close();
                     });
                     return;
                 }
 
-                // Default: hybrid injected iframe
+                // Default: hybrid injected iframe (works on every platform)
                 if (activeTab) {
                     const mod = await import('./modules/mainScreen.js').catch(() => null);
                     if (mod?.ensureContentScript) {

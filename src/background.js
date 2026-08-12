@@ -1,3 +1,11 @@
+// ── Cross-browser shim ─────────────────────────────────────────────────────
+// Safari/iOS Web Extensions expose ONLY the `browser.*` namespace; `chrome.*`
+// is undefined there. Firefox exposes both but prefers `browser.*`. Alias
+// chrome → browser so the rest of this script works unchanged on every platform.
+if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
+    globalThis.chrome = browser;
+}
+
 // Currently, we don't have background tasks
 
 // ── Context Menu ─────────────────────────────────────────────────────────────
@@ -138,6 +146,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 
     if (msg.action === 'openNativeSidePanel') {
+        // Native side panel is Chrome-only. On Firefox/Safari/iOS the
+        // `sidePanel` API is undefined — fall back to the hybrid sidebar.
+        if (!chrome.sidePanel) {
+            sendResponse({ success: false, error: 'sidePanel API not available' });
+            return;
+        }
         // Use sender.tab.windowId to target the correct window
         const windowId = sender?.tab?.windowId;
         if (windowId) {
