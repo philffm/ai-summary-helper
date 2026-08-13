@@ -70,6 +70,35 @@ PROD_DIR="prod"
 rm -rf "$DEV_DIR" "$PROD_DIR"
 mkdir -p "$DEV_DIR" "$PROD_DIR"
 
+# Bundle the modular content script into a single file (MV3 content scripts
+# can't use ES modules directly). Writes the bundled content.js into a target
+# dir. Usage: bundle_content <target_dir>
+bundle_content() {
+  local target="$1"
+  node -e '
+    const fs = require("fs");
+    const path = require("path");
+    const SRC = process.argv[1];
+    const OUT = process.argv[2];
+    const seen = new Set();
+    const parts = [];
+    function strip(src){ return src.replace(/^import\s+[^;]+;\s*$/gm,"").replace(/^export\s+/gm,""); }
+    function resolve(abs){
+      if (seen.has(abs)) return;
+      seen.add(abs);
+      const src = fs.readFileSync(abs,"utf8");
+      const re = /import\s*\{[^}]*\}\s*from\s*[\x27"]([^\x27"]+)[\x27"]\s*;/g;
+      let m; const imports=[];
+      while((m=re.exec(src))!==null) imports.push(m[1]);
+      for (const spec of imports) resolve(path.resolve(path.dirname(abs), spec));
+      parts.push(strip(src));
+    }
+    resolve(path.join(SRC,"content.js"));
+    fs.writeFileSync(path.join(OUT,"content.js"), parts.join("\n\n"));
+    console.log("  ✓ bundled content.js");
+  ' "$ROOT_DIR/src" "$1"
+}
+
 
 # ==========================================
 # 1. BUILD DESKTOP VERSION (Chrome)
@@ -81,6 +110,8 @@ cp -r "$ROOT_DIR/src/" "$CHROME_DIR"
 cp -f "$ROOT_DIR/platforms/chrome/manifest.json" "$CHROME_DIR/manifest.json"
 # The android manifest must not ship in the desktop build
 rm -f "$CHROME_DIR/manifest-android.json"
+# Bundle the modular content script
+bundle_content "$CHROME_DIR"
 
 CHROME_ZIP_FILE="$PROD_DIR/aish-extension-chrome-$NEW_VERSION.zip"
 cd "$CHROME_DIR"
@@ -100,6 +131,8 @@ cp -r "$ROOT_DIR/src/" "$ANDROID_DIR"
 # Overwrite the default manifest with the Android one
 cp -f "$ROOT_DIR/platforms/android/manifest.json" "$ANDROID_DIR/manifest.json"
 rm -f "$ANDROID_DIR/manifest-android.json"
+# Bundle the modular content script
+bundle_content "$ANDROID_DIR"
 
 ANDROID_ZIP_FILE="$PROD_DIR/aish-extension-android-$NEW_VERSION.zip"
 cd "$ANDROID_DIR"
@@ -117,6 +150,8 @@ rm -rf "$FIREFOX_DIR"
 cp -r "$ROOT_DIR/src/" "$FIREFOX_DIR"
 cp -f "$ROOT_DIR/platforms/firefox/manifest.json" "$FIREFOX_DIR/manifest.json"
 rm -f "$FIREFOX_DIR/manifest-android.json"
+# Bundle the modular content script
+bundle_content "$FIREFOX_DIR"
 
 FIREFOX_ZIP_FILE="$PROD_DIR/aish-extension-firefox-$NEW_VERSION.zip"
 cd "$FIREFOX_DIR"
@@ -136,6 +171,8 @@ cp -r "$ROOT_DIR/src/" "$IOS_DIR"
 cp -f "$ROOT_DIR/platforms/ios/manifest.json" "$IOS_DIR/manifest.json"
 # Clean up any leftover manifests
 rm -f "$IOS_DIR/manifest-android.json"
+# Bundle the modular content script
+bundle_content "$IOS_DIR"
 
 IOS_ZIP_FILE="$PROD_DIR/aish-extension-ios-$NEW_VERSION.zip"
 cd "$IOS_DIR"
