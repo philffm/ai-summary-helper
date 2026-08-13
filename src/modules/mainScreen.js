@@ -172,7 +172,12 @@ export function initMainScreen(ui) {
 
         if (onboardingContainer) onboardingContainer.style.display = showOnboarding ? 'flex' : 'none';
         if (feedScroll) feedScroll.style.display = showOnboarding ? 'none' : 'flex';
-        if (recentEntry) recentEntry.style.display = showOnboarding ? 'none' : '';
+        // Only hide the recent-entry when onboarding is shown. When onboarding
+        // is NOT shown, leave recentEntry alone — loadFeed() already controls
+        // its visibility based on whether articles exist. (Setting it to ''
+        // here would override loadFeed's 'none' and wrongly show the empty
+        // state even when there are recent summaries.)
+        if (recentEntry && showOnboarding) recentEntry.style.display = 'none';
         // Hide the input card / controls bar while onboarding is active so
         // there's no visual conflict with the login mask.
         if (controlsBar) controlsBar.style.display = showOnboarding ? 'none' : '';
