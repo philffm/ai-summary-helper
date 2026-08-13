@@ -6,12 +6,13 @@
  * This script syncs `src/` into per-platform build targets and applies the
  * platform-specific manifest overrides:
  *
- *   - chrome  → dev/aish-extension-chrome   (uses src/manifest.json as-is)
+ *   - chrome  → dev/aish-extension-chrome   (uses platforms/chrome/manifest.json)
+ *   - android → dev/aish-extension-android  (uses platforms/android/manifest.json)
  *   - firefox → dev/aish-extension-firefox  (uses platforms/firefox/manifest.json)
  *   - ios     → dev/aish-extension-ios      (uses platforms/ios/manifest.json)
  *
  * This is a lightweight dev-sync tool. For full releases (version bump +
- * zipping into prod/), use build_chrome_extension.sh instead.
+ * zipping into prod/), use build.sh instead.
  *
  * Usage:
  *   node scripts/build.js            # build all platforms
@@ -33,7 +34,6 @@ const PLATFORMS = path.join(ROOT, 'platforms');
 
 // Files that are never copied into a platform build.
 const EXCLUDED = new Set([
-    'manifest-android.json', // Android uses a separate manifest, not a platform dir
     'node_modules',
     '.DS_Store',
 ]);
@@ -71,7 +71,6 @@ function buildPlatform(name, manifestPath) {
         // Default: keep src/manifest.json (Chrome)
         console.log(`  ✓ ${name}: using src/manifest.json`);
     }
-
     console.log(`  ✓ ${name}: synced ${path.relative(ROOT, SRC)} → ${path.relative(ROOT, outDir)}`);
     return outDir;
 }
@@ -92,7 +91,10 @@ function main() {
     console.log('🔨 Building extension targets…');
 
     if (requested('chrome')) {
-        buildPlatform('chrome', null);
+        buildPlatform('chrome', path.join(PLATFORMS, 'chrome', 'manifest.json'));
+    }
+    if (requested('android')) {
+        buildPlatform('android', path.join(PLATFORMS, 'android', 'manifest.json'));
     }
     if (requested('firefox')) {
         buildPlatform('firefox', path.join(PLATFORMS, 'firefox', 'manifest.json'));

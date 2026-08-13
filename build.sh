@@ -45,10 +45,10 @@ inplace_sed() {
   fi
 }
 
-# Update Desktop manifest
-inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" src/manifest.json
+# Update Chrome manifest
+inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/chrome/manifest.json
 # Update Android manifest
-inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" src/manifest-android.json
+inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/android/manifest.json
 # Update Firefox manifest
 inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/firefox/manifest.json
 # Update iOS manifest
@@ -77,6 +77,8 @@ mkdir -p "$DEV_DIR" "$PROD_DIR"
 CHROME_DIR="$DEV_DIR/aish-extension-chrome"
 rm -rf "$CHROME_DIR"
 cp -r "$ROOT_DIR/src/" "$CHROME_DIR"
+# Overwrite the default manifest with the Chrome one
+cp -f "$ROOT_DIR/platforms/chrome/manifest.json" "$CHROME_DIR/manifest.json"
 # The android manifest must not ship in the desktop build
 rm -f "$CHROME_DIR/manifest-android.json"
 
@@ -96,7 +98,8 @@ rm -rf "$ANDROID_DIR"
 cp -r "$ROOT_DIR/src/" "$ANDROID_DIR"
 
 # Overwrite the default manifest with the Android one
-mv "$ANDROID_DIR/manifest-android.json" "$ANDROID_DIR/manifest.json"
+cp -f "$ROOT_DIR/platforms/android/manifest.json" "$ANDROID_DIR/manifest.json"
+rm -f "$ANDROID_DIR/manifest-android.json"
 
 ANDROID_ZIP_FILE="$PROD_DIR/aish-extension-android-$NEW_VERSION.zip"
 cd "$ANDROID_DIR"

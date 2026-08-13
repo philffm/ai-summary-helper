@@ -41,7 +41,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # Stage the changed files
-          git add src/manifest.json src/manifest-android.json platforms/firefox/manifest.json platforms/ios/manifest.json current_version.json src/popup.html
+          git add platforms/chrome/manifest.json platforms/android/manifest.json platforms/firefox/manifest.json platforms/ios/manifest.json current_version.json src/popup.html
 
           # Commit the changes (if any exist)
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: bump version [skip ci]"
