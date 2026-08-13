@@ -172,6 +172,7 @@ body {
   min-width: 400px;
   /* max-width: 420px; */
   min-height: 520px;
+  height: 100%;
   font-family: 'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 14px;
   line-height: 1.5;

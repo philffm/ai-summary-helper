@@ -32,10 +32,36 @@ export async function initSettingsManager(ui) {
         initPromptManager(promptSelect, promptInput);
     }
 
-    // Prevent form submission page reloads
+    // Prevent form submission page reloads AND persist model settings
+    // (API key, endpoint, active service) when the user clicks Save.
     const settingsForm = document.getElementById('settingsForm');
     if (settingsForm) {
-        settingsForm.addEventListener('submit', (e) => e.preventDefault());
+        settingsForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const modelSelect = document.getElementById('model');
+            const apiKeyInput = document.getElementById('apiKey');
+            const endpointInput = document.getElementById('customEndpoint');
+
+            const activeService = modelSelect ? modelSelect.value : 'openai';
+            const storageData = await StorageManager.getAll();
+            const servicesConfig = storageData.servicesConfig || {};
+            const prevCfg = servicesConfig[activeService] || {};
+
+            // Persist the current field values for the active service.
+            // This guarantees the API key / endpoint are saved even if the
+            // user clicks Save without first blurring the input field.
+            servicesConfig[activeService] = {
+                ...prevCfg,
+                apiKey: apiKeyInput ? apiKeyInput.value : (prevCfg.apiKey || ''),
+                endpoint: endpointInput ? endpointInput.value : (prevCfg.endpoint || '')
+            };
+
+            await StorageManager.set({ activeService });
+            await StorageManager.set({ servicesConfig });
+
+            flashSaveIndicator();
+        });
     }
 }
 
@@ -260,13 +286,13 @@ async function initModelSettings(storageData) {
     });
 
     if (apiKeyInput) {
-        apiKeyInput.addEventListener('input', () => {
+        apiKeyInput.addEventListener('change', () => {
             StorageManager.updateService(modelSelect.value, { apiKey: apiKeyInput.value });
         });
     }
 
     if (endpointInput) {
-        endpointInput.addEventListener('input', () => {
+        endpointInput.addEventListener('change', () => {
             StorageManager.updateService(modelSelect.value, { endpoint: endpointInput.value });
         });
     }

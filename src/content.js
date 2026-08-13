@@ -933,6 +933,14 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(['activeService', 'servicesConfig', 'connectionMode', 'preferredCloudModel', 'licenseKey', 'ghostHighlightAmount'], async (data) => {
+      // ── Define relay FIRST so it's available to every code path,
+      // including validation errors and the missing-API-key branch ──
+      const relay = (action, payload = {}) => {
+        if (summaryMode === 'extension') {
+          chrome.runtime.sendMessage({ action, ...payload }).catch(() => {});
+        }
+      };
+
       const localAuth = await chrome.storage.local.get(['pb_token']).catch(() => ({}));
       const sessionToken = localAuth?.pb_token || '';
       const connectionMode = data.connectionMode || 'cloud';
@@ -973,6 +981,7 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
       if (!apiKey && !apiKeyOptional) {
         alert('Please set your API key in the extension popup.');
+        relay('summaryError', { error: 'API key not set' });
         reject(new Error('API key not set'));
         return;
       }
@@ -1029,12 +1038,6 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         if (debugEnabled) {
           updateDebugPanel(`Requesting ${modelIdentifier}...\n\nURL: ${finalApiUrl}\n\nPayload: ${requestBody}`, finalApiUrl);
         }
-
-        const relay = (action, payload = {}) => {
-          if (summaryMode === 'extension') {
-            chrome.runtime.sendMessage({ action, ...payload }).catch(() => {});
-          }
-        };
 
         let summary = "";
         const streamContainer = targetElement.querySelector('.placeholder');
