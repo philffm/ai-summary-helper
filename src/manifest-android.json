@@ -2,11 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-<<<<<<< Updated upstream
-  "version": "2.0.329",
-=======
-  "version": "2.0.332",
->>>>>>> Stashed changes
+  "version": "2.0.330",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
