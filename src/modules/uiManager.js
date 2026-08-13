@@ -58,6 +58,12 @@ class UIManager {
         });
         this.positionNavBlob(screenName);
 
+        // Show the floating Save button only on the settings screen
+        const saveFab = document.getElementById('settingsSaveFab');
+        if (saveFab) {
+            saveFab.style.display = screenName === 'settings' ? 'block' : 'none';
+        }
+
         if (this._currentScreenIdx === undefined) {
             // First show: set initial positions without animation
             const blob = document.getElementById('navBlob');

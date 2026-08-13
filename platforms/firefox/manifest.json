@@ -2,7 +2,11 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
+<<<<<<< Updated upstream
   "version": "2.0.327",
+=======
+  "version": "2.0.332",
+>>>>>>> Stashed changes
   "description": "__MSG_extensionDescription__",
   "browser_specific_settings": {
     "gecko": {

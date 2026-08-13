@@ -359,6 +359,27 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   box-shadow: 0 8px 22px var(--accent-glow);
 }
 
+/* Floating Save button — fixed at the bottom of the settings screen,
+   above the bottom navigation bar. */
+.settings-save-fab {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px);
+  z-index: 102;
+  width: auto;
+  min-width: 180px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  box-shadow: 0 8px 24px var(--accent-glow), 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.settings-save-fab:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 10px 28px var(--accent-glow);
+}
+
 .danger {
   background: linear-gradient(135deg, var(--danger), #e24646);
   color: #fff;
@@ -960,6 +981,7 @@ ul#articleList {
 
 #settingsForm {
   position: relative;
+  padding-bottom: 64px;
 }
 
 /* ── Podcast ───────────────────────────────────────────────────────────── */
@@ -1625,6 +1647,107 @@ ul#articleList {
   font-size: 10px;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+/* ── Onboarding / Empty State ─────────────────────────────────────────── */
+
+.onboarding-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  height: 100%;
+}
+
+.onboarding-container h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.onboarding-container p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.onboarding-auth-box {
+  width: 100%;
+  max-width: 360px;
+  background: var(--glass-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inner-glow);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.onboarding-auth-box input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--outline);
+  background: var(--glass-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.onboarding-auth-box input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 12px 16px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.primary-btn:hover {
+  filter: brightness(1.06);
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tertiary-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+.tertiary-btn:hover {
+  color: var(--text-primary);
+}
+
+.auth-message {
+  font-size: 0.85rem;
+  margin-top: 5px;
+  color: var(--accent);
+  min-height: 1.2em;
 }
 
 /* ── Summary Feed (chat-style bubbles) ─────────────────────────────────── */

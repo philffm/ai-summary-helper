@@ -26,6 +26,27 @@
       <!-- MAIN SCREEN -->
       <div id="mainScreen" class="screen">
       <div class="main-screen-layout">
+        <!-- Onboarding / Empty State (shown when not authed & no API key & no articles) -->
+        <div id="mainScreenOnboarding" class="onboarding-container" style="display: none;">
+          <h2>Welcome to AI Summary Helper</h2>
+          <p>Sign in to unlock free cloud models and sync your summaries, or bring your own API keys.</p>
+
+          <div class="onboarding-auth-box">
+            <input type="email" id="onboardingEmail" placeholder="name@example.com" />
+            <button id="onboardingSendCodeBtn" class="primary-btn">Sign in / Sign up via Email</button>
+
+            <div id="onboardingOtpStep" style="display: none;">
+              <input type="text" id="onboardingOtpCode" placeholder="Enter 6-digit code" />
+              <button id="onboardingVerifyBtn" class="primary-btn">Verify &amp; Login</button>
+            </div>
+            <div id="onboardingAuthMessage" class="auth-message"></div>
+          </div>
+
+          <button id="onboardingCustomApiBtn" class="tertiary-btn">
+            I want to use my own Custom API / Local Model
+          </button>
+        </div>
+
         <!-- Scrollable feed area (top) -->
         <div class="feed-scroll" id="feedScroll">
           <!-- Summary Feed (chat-style bubbles) -->
@@ -154,7 +175,6 @@
       <div id="settingsScreen" class="screen">
         <div class="settings-header">
           <h2 data-i18n="settings">Settings</h2>
-          <button type="submit" form="settingsForm" class="button-primary" style="padding:8px 16px;font-size:13px;width:auto;flex-shrink:0;" data-i18n="save">Save 💾</button>
         </div>
         <p class="donate">
           Questions, bugs or happy? 💡, feel free to
@@ -167,7 +187,7 @@
           <div class="accordion flex column gap-2 mb-3" id="settingsAccordion">
             <!-- Model Configuration -->
             <div class="accordion-item">
-              <button data-i18n="modelConfiguration" type="button" class="accordion-button">🤖 Model Configuration</button>
+              <button data-i18n="modelConfiguration" type="button" class="accordion-button">🤖 Account / API / Model Configuration</button>
               <div class="accordion-content">
                 <p data-i18n="modelDesc">Choose the LLM model to generate your summaries.</p>
                 
@@ -411,7 +431,7 @@
           <p>
             Open Source software by
             <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.0.327</span> — Feel free to
+            <br />AI Summary Helper v<span id="versionNumber">2.0.324</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>
@@ -429,6 +449,11 @@
         </div>
       </div>
     </div>
+
+    <!-- Floating Save Button — lives OUTSIDE the .screen-container so
+         position:fixed isn't broken by the screens' transform/backdrop-filter.
+         Visibility is toggled by uiManager when the settings screen is active. -->
+    <button type="submit" form="settingsForm" class="button-primary settings-save-fab" id="settingsSaveFab" data-i18n="save" style="display:none;">Save 💾</button>
 
     <!-- ── Bottom Nav ──────────────────────────────────────────────────── -->
     <nav class="bottom-nav" id="bottomNav">
