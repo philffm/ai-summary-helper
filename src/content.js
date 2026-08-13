@@ -9,17 +9,19 @@
     globalThis.chrome = browser;
   }
 
-  // Smart injection guard: Checks if an alive extension context exists.
-  // If the extension was reloaded, the old context is "invalidated" and 
-  // getManifest() will throw an error. This safely allows the new script to inject!
-  if (window.aishPing && window.aishPing()) return;
-  window.aishPing = () => {
-    try {
-      return !!chrome.runtime.getManifest();
-    } catch (e) {
-      return false;
+  // Smart injection guard: If the extension context is alive AND this page
+  // already has our content script initialized, skip re-initialization.
+  // If the context is orphaned (extension reloaded), chrome.runtime.id will
+  // throw, so we fall through and re-initialize with fresh listeners.
+  try {
+    if (window.aishContentScriptInitialized && chrome.runtime.id) {
+      return; // Extension alive and already injected on this page.
     }
-  };
+  } catch (e) {
+    // Context orphaned (extension reloaded) — re-initialize below.
+  }
+
+  window.aishContentScriptInitialized = true;
 
 const API_BASE = 'https://api.byphil.eu';
 // const API_BASE = 'http://localhost:3000'; // for local testing
@@ -756,8 +758,10 @@ function showDecisionDialog(onConfirm) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === 'PING') {
-    sendResponse({ status: 'PONG' });
+  // Normalize casing so both 'PING' and 'ping' work.
+  const action = (request.action || '').toLowerCase();
+  if (action === 'ping') {
+    sendResponse({ status: 'pong' });
     return true;
   }
 
@@ -808,6 +812,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       chrome.storage.sync.get(['debugEnabled', 'prompt'], async (data) => {
         const promptToUse = data.prompt || 'Summarize the following content:';
+        // Guard against restricted pages (XML/JSON viewers, etc.) where
+        // document.body may not exist or isn't HTML.
+        if (!document.body) {
+          updateStreamingOverlay(streamOverlay, '❌ Cannot summarize this page type.', true);
+          return;
+        }
         const hiddenTarget = document.createElement('div');
         hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
         document.body.appendChild(hiddenTarget);
@@ -854,6 +864,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         chrome.storage.sync.get(['debugEnabled', 'prompt'], (data) => {
           const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
           const length = msgSummaryLength || 200;
+          // Guard against restricted pages where document.body may not exist.
+          if (!document.body) {
+            sendResponse({ success: false, error: 'Cannot summarize this page type.' });
+            return;
+          }
           const hiddenTarget = document.createElement('div');
           hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
           document.body.appendChild(hiddenTarget);
@@ -919,6 +934,58 @@ async function getTopUserTags(limit = 10) {
   });
 }
 
+// ── Safe port connection with retry ─────────────────────────────────────
+// Safari on iOS/macOS aggressively suspends background scripts, so a
+// runtime.connect() can fire before the onConnect listener is ready and
+// fail with "No runtime.onConnect listeners found". Safari reliably wakes
+// background workers for runtime.sendMessage, so we send a "wakeup" ping
+// first, give the worker a tick to register its listeners, then attempt the
+// long-lived connection (with retries as a fallback).
+function connectWithRetry(portName, retries = 3, delay = 150) {
+  return new Promise((resolve, reject) => {
+    // 1. Force Safari to wake the background script via a one-off message.
+    chrome.runtime.sendMessage({ action: 'wakeup' }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.warn('Wakeup ping failed, attempting connection anyway...', chrome.runtime.lastError);
+      }
+
+      // 2. Give the background script a tick to initialize its top-level
+      // event listeners if it just cold-started.
+      setTimeout(() => {
+        function attempt(remaining) {
+          try {
+            const port = chrome.runtime.connect({ name: portName });
+
+            let isDisconnected = false;
+            port.onDisconnect.addListener(() => {
+              isDisconnected = true;
+              if (chrome.runtime.lastError && remaining > 0) {
+                setTimeout(() => attempt(remaining - 1), delay);
+              } else {
+                reject(chrome.runtime.lastError || new Error('Connection failed'));
+              }
+            });
+
+            // Give it a brief tick to verify connection stability
+            setTimeout(() => {
+              if (!isDisconnected) resolve(port);
+              else if (remaining > 0) setTimeout(() => attempt(remaining - 1), delay);
+              else reject(new Error('Connection failed'));
+            }, 50);
+          } catch (err) {
+            if (remaining > 0) {
+              setTimeout(() => attempt(remaining - 1), delay);
+            } else {
+              reject(err);
+            }
+          }
+        }
+        attempt(retries);
+      }, 50);
+    });
+  });
+}
+
 async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension') {
   const tokenLimit = 20000;
 
@@ -932,7 +999,13 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
   showPlaceholder(targetElement, donationMessage);
 
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(['activeService', 'servicesConfig', 'connectionMode', 'preferredCloudModel', 'licenseKey', 'ghostHighlightAmount'], async (data) => {
+    // Sensitive keys (servicesConfig, licenseKey) now live in LOCAL storage;
+    // harmless prefs stay in sync.
+    Promise.all([
+      chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel', 'ghostHighlightAmount']),
+      chrome.storage.local.get(['servicesConfig', 'licenseKey'])
+    ]).then(async ([syncData, localData]) => {
+      const data = { ...syncData, ...localData };
       // ── Define relay FIRST so it's available to every code path,
       // including validation errors and the missing-API-key branch ──
       const relay = (action, payload = {}) => {
@@ -949,7 +1022,15 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
       let apiKey = cfg.apiKey || '';
       
       let apiUrl = cfg.endpoint;
-      let modelIdentifier = cfg.activeModelId || (Array.isArray(cfg.customModel) ? cfg.customModel[0] : cfg.customModel) || cfg.model;
+      // Resolve the active model. It may be a legacy string or a
+      // provider-bound object ({ id, provider }). Normalize to the id.
+      const resolveModelId = (m) => {
+        if (!m) return '';
+        return typeof m === 'string' ? m : (m.id || '');
+      };
+      let modelIdentifier = resolveModelId(cfg.activeModelId)
+        || (Array.isArray(cfg.customModel) ? resolveModelId(cfg.customModel[0]) : resolveModelId(cfg.customModel))
+        || cfg.model;
       const ghostCfg = getGhostHighlightConfig(data.ghostHighlightAmount);
 
       if (connectionMode === 'cloud') {
@@ -1050,8 +1131,19 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
         relay('summaryProgress', { chunk: 'Connected to API, waiting for response…' });
 
         const streamStart = Date.now();
-        const port = chrome.runtime.connect({ name: 'streamFetch' });
-        
+        // Use retry logic so Safari/iOS cold-starts of the background script
+        // don't fail with "No runtime.onConnect listeners found".
+        let port;
+        try {
+          port = await connectWithRetry('streamFetch');
+        } catch (connectErr) {
+          console.error('❌ Failed to connect for streaming:', connectErr);
+          relay('summaryError', { error: 'Could not connect to the background service. Please try again.' });
+          targetElement.querySelector('.placeholder').innerHTML = '<b>Error:</b> Could not connect to the background service. Please try again.';
+          reject(new Error(connectErr.message || 'Connection failed'));
+          return;
+        }
+
         port.postMessage({
           action: 'startFetch',
           apiUrl: finalApiUrl,
@@ -1171,6 +1263,10 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
 
                 if (activeService === 'gemini') {
                   contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                } else if (activeService === 'ollama') {
+                  // Ollama: content may be in message.content OR message.thinking
+                  // (reasoning models like qwen3:8b stream their "thinking" first).
+                  contentPiece = json.message?.content || json.message?.thinking || json.response || '';
                 } else {
                   contentPiece = json.choices?.[0]?.delta?.content || json.message?.content || json.response || '';
                 }
@@ -1189,9 +1285,17 @@ async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summa
                   const wordCount = summary.split(/\s+/).filter(Boolean).length;
                   if (summaryMode === 'extension' && wordCount % 10 < 2) {
                     const elapsed = Math.floor((Date.now() - streamStart) / 1000);
+
+                    // Estimate output progress from received words vs. the
+                    // target summary length. Clamp to [0, 99] until done so we
+                    // never show 100% before the stream actually completes.
+                    const targetWords = Number(summaryLength) || 200;
+                    const estimatedPct = Math.min(99, Math.round((wordCount / targetWords) * 100));
+
                     relay('summaryProgress', {
-                      chunk: `${wordCount} words · ${elapsed}s`,
-                      preview: summary
+                      chunk: `${wordCount} words · ${elapsed}s · ${estimatedPct}%`,
+                      preview: summary,
+                      progress: estimatedPct
                     });
                   }
                 }

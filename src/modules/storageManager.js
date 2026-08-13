@@ -23,7 +23,8 @@ class StorageManager {
     // bump if you later change the structure again
     static MIGRATION_VERSION = 2;
 
-    // 🔥 Keys that MUST live in local storage (heavy data or device-specific session state)
+    // 🔥 Keys that MUST live in local storage (heavy data, device-specific
+    // session state, or sensitive credentials that should never sync to cloud).
     static LOCAL_KEYS = [
         'articles',
         'annotations',
@@ -37,7 +38,11 @@ class StorageManager {
         'pending_otp_id',
         'pending_email',
         'pending_otp_expires_at',
-        'pending_otp_requested_at'
+        'pending_otp_requested_at',
+        // Sensitive / network-local data — never send to Google's sync cloud.
+        'servicesConfig',   // contains API keys, model endpoints
+        'licenseKey',
+        'localSendIp'
     ];
 
     static isLocalKey(key) {
@@ -149,6 +154,32 @@ class StorageManager {
     }
 
     /**
+     * One-time migration: move sensitive keys that previously lived in sync
+     * (servicesConfig, licenseKey, localSendIp) down to local storage and
+     * remove them from sync. Prevents credentials from being synced to
+     * Google's cloud and fixes split-brain (key in both storages).
+     */
+    static async migrateSensitiveToLocal() {
+        const sensitiveKeys = ['servicesConfig', 'licenseKey', 'localSendIp'];
+        const syncData = await new Promise(resolve => chrome.storage.sync.get(sensitiveKeys, resolve));
+        const toLocal = {};
+        let found = false;
+
+        for (const key of sensitiveKeys) {
+            if (syncData[key] !== undefined) {
+                toLocal[key] = syncData[key];
+                found = true;
+            }
+        }
+
+        if (found) {
+            await new Promise(resolve => chrome.storage.local.set(toLocal, resolve));
+            await new Promise(resolve => chrome.storage.sync.remove(Object.keys(toLocal), resolve));
+            console.log('✅ Migrated sensitive keys from sync → local:', Object.keys(toLocal).join(', '));
+        }
+    }
+
+    /**
      * Get or generate a stable installId for anonymous cloud tracking
      */
     static async getInstallId() {
@@ -187,6 +218,12 @@ class StorageManager {
     static async initialize() {
         // Run legacy sync cleanup first — purge any local keys from sync storage
         await this.purgeSyncBloat();
+
+        // Migrate sensitive keys that previously lived in sync (servicesConfig,
+        // licenseKey, localSendIp) down to local, then remove them from sync.
+        // This keeps credentials off Google's sync cloud and fixes the
+        // split-brain where servicesConfig existed in both storages.
+        await this.migrateSensitiveToLocal();
 
         const data = await this.getAll();
 
@@ -287,6 +324,20 @@ class StorageManager {
                 if (typeof updatedEntry.customModel === 'string') {
                     updatedEntry.customModel = updatedEntry.customModel ? [updatedEntry.customModel] : [];
                 }
+                // Migrate legacy string-based custom models → provider-bound objects.
+                // Each entry becomes { id, provider } so the routing context is
+                // never lost when the background script wakes back up.
+                if (Array.isArray(updatedEntry.customModel)) {
+                    updatedEntry.customModel = updatedEntry.customModel.map(m =>
+                        typeof m === 'string'
+                            ? { id: m, provider: service.id }
+                            : m
+                    );
+                }
+                // Migrate legacy string activeModelId → provider-bound object
+                if (typeof updatedEntry.activeModelId === 'string') {
+                    updatedEntry.activeModelId = { id: updatedEntry.activeModelId, provider: service.id };
+                }
                 if (updatedEntry.endpoint === undefined || updatedEntry.endpoint === '') updatedEntry.endpoint = service.endpointUrl;
 
                 // If any defaults were applied, write back
@@ -348,12 +399,14 @@ class StorageManager {
         const active = data.activeService || 'openai';
         const cfg = data.servicesConfig?.[active] || {};
         const serviceMeta = services.find(s => s.id === active);
+        const activeModel = await this.getActiveModel(active, cfg);
 
         return {
             id: active,
             connectionMode: 'local',
             apiKey: cfg.apiKey || '',
-            model: cfg.customModel || cfg.model || serviceMeta?.defaultModel,
+            model: activeModel.id || cfg.model || serviceMeta?.defaultModel,
+            provider: activeModel.provider,
             endpoint: cfg.endpoint || serviceMeta?.endpointUrl,
             responseStructure: serviceMeta?.responseStructure || null
         };
@@ -367,6 +420,51 @@ class StorageManager {
             ...updates
         };
         await this.set({ servicesConfig: cfg });
+    }
+
+    /**
+     * Normalize a customModel entry to a provider-bound object.
+     * Accepts either a legacy string ("qwen3:8b") or an object ({ id, provider }).
+     * @param {string|object} m
+     * @param {string} fallbackProvider
+     * @returns {{id: string, provider: string}}
+     */
+    static normalizeCustomModel(m, fallbackProvider) {
+        if (typeof m === 'string') {
+            return { id: m, provider: fallbackProvider };
+        }
+        if (m && typeof m === 'object') {
+            return {
+                id: m.id || '',
+                provider: m.provider || fallbackProvider
+            };
+        }
+        return { id: '', provider: fallbackProvider };
+    }
+
+    /**
+     * Get the active model for a service as a provider-bound object.
+     * Falls back to the first custom model, then the service default.
+     * @param {string} serviceId
+     * @param {object} [cfg] optional pre-fetched service config
+     * @returns {{id: string, provider: string}}
+     */
+    static async getActiveModel(serviceId, cfg) {
+        const data = cfg ? { servicesConfig: { [serviceId]: cfg } } : await this.getAll();
+        const services = await this.getServices();
+        const serviceMeta = services.find(s => s.id === serviceId);
+        const entry = (data.servicesConfig || {})[serviceId] || {};
+        const defaultModel = serviceMeta?.defaultModel || '';
+
+        // activeModelId may be a string (legacy) or { id, provider }
+        if (entry.activeModelId) {
+            return this.normalizeCustomModel(entry.activeModelId, serviceId);
+        }
+        const custom = Array.isArray(entry.customModel) ? entry.customModel : [];
+        if (custom.length > 0) {
+            return this.normalizeCustomModel(custom[0], serviceId);
+        }
+        return { id: defaultModel, provider: serviceId };
     }
 
     /**

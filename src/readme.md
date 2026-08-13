@@ -143,7 +143,9 @@ background.js                — Service worker
 | Key | Location | Contents |
 |-----|----------|----------|
 | `articles` | `local` | Array of saved article objects |
-| `servicesConfig` | `sync` | API keys, models per provider |
+| `servicesConfig` | `local` | API keys, models per provider (sensitive — never synced) |
+| `licenseKey` | `local` | Pro license key (sensitive — never synced) |
+| `localSendIp` | `local` | Local network IP for LocalSend (never synced) |
 | `activeService` | `sync` | Currently selected provider |
 | `prompt` | `sync` | Default summary prompt |
 | `selectedLanguage` | `sync` | Default output language |

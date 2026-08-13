@@ -74,6 +74,11 @@ export function initMainScreen(ui) {
             <span id="streamTimer" style="font-size:11px;opacity:0.6;margin-left:auto;"></span>
           </div>
           <div id="streamModel" style="font-size:11px;opacity:0.5;margin-bottom:4px;">${emoji} ${modelName}</div>
+          <div id="streamProgressWrap" style="display:none;margin-bottom:6px;">
+            <div style="height:4px;background:var(--outline, rgba(100,116,139,0.25));border-radius:999px;overflow:hidden;">
+              <div id="streamProgressBar" style="height:100%;width:0%;background:var(--accent, #2563eb);border-radius:999px;transition:width 0.4s ease;"></div>
+            </div>
+          </div>
           <div id="streamPreview" style="font-size:12px;opacity:0.7;line-height:1.5;max-height:80px;overflow:hidden;"></div>
         `;
         feed.appendChild(bubble);
@@ -108,6 +113,16 @@ export function initMainScreen(ui) {
             const snippet = plain.length > 200 ? '…' + plain.slice(-200) : plain;
             el.textContent = snippet;
         }
+    };
+
+    // Update the estimated output-progress bar (0-99 while streaming).
+    const updateStreamProgress = (pct) => {
+        const wrap = document.getElementById('streamProgressWrap');
+        const bar = document.getElementById('streamProgressBar');
+        if (!wrap || !bar) return;
+        if (typeof pct !== 'number' || Number.isNaN(pct) || pct <= 0) return;
+        wrap.style.display = 'block';
+        bar.style.width = `${Math.min(99, Math.max(0, pct))}%`;
     };
 
     const removeStreamBubble = () => {
@@ -212,6 +227,7 @@ export function initMainScreen(ui) {
         if (msg.action === 'summaryProgress') {
             updateStream(msg.chunk || 'Working on it…');
             if (msg.preview) updateStreamPreview(msg.preview);
+            if (typeof msg.progress === 'number') updateStreamProgress(msg.progress);
         }
         if (msg.action === 'summaryComplete') {
             removeStreamBubble();
@@ -313,7 +329,13 @@ export function initMainScreen(ui) {
                 }
             } catch (err) {
                 console.error('Failed to communicate with tab:', err);
-                updateStream('❌ ' + err.message);
+                // Give a clearer message for permission-related failures (e.g.
+                // Safari "Ask" permission not granted for this site).
+                const msg = (err && err.message) || '';
+                const permissionHint = /permission|not allowed|Cannot access|inject/i.test(msg)
+                    ? ' — allow this extension on this site (Safari: tap the icon → Always Allow).'
+                    : '';
+                updateStream('❌ ' + msg + permissionHint);
                 fetchSummaryButton.disabled = false;
                 fetchSummaryButton.textContent = '✨ Fetch Summary';
             }
@@ -443,9 +465,13 @@ export async function ensureContentScript(tabId, url) {
 
     // Try a ping first — if it succeeds we're already good
     const ping = (id) => new Promise((resolve) => {
-        chrome.tabs.sendMessage(id, { action: 'PING' }, (res) => {
-            if (chrome.runtime.lastError || !res || res.status !== 'PONG') resolve(false);
-            else resolve(true);
+        chrome.tabs.sendMessage(id, { action: 'ping' }, (res) => {
+            if (chrome.runtime.lastError) {
+                resolve(false);
+                return;
+            }
+            const status = (res && res.status || '').toLowerCase();
+            resolve(status === 'pong');
         });
     });
 
@@ -460,9 +486,10 @@ export async function ensureContentScript(tabId, url) {
         throw new Error('Failed to inject script: ' + e.message);
     }
 
-    // Poll with PINGs for up to 1 second (100ms × 10) to wait for content.js
-    // to finish parsing and register its onMessage listener
-    for (let attempt = 0; attempt < 10; attempt++) {
+    // Poll with PINGs for up to ~3 seconds (30 × 100ms) to wait for content.js
+    // to finish parsing and register its onMessage listener. iOS/Safari can be
+    // slow to initialize a large content script, so give it more time.
+    for (let attempt = 0; attempt < 30; attempt++) {
         await new Promise(resolve => setTimeout(resolve, 100));
         if (await ping(tabId)) return;
     }

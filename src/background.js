@@ -96,6 +96,14 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    // Dummy endpoint to force Safari to wake the background script before a
+    // long-lived connection is attempted. Safari reliably wakes workers for
+    // runtime.sendMessage, but may fail a runtime.connect() while asleep.
+    if (msg.action === 'wakeup') {
+        sendResponse({ status: 'awake' });
+        return true; // Keep the message channel open for the response
+    }
+
     if (msg.action === 'sendLocalSendP2P') {
         const method = msg.method || 'POST';
         const isJson = msg.isJson !== false;
@@ -208,10 +216,24 @@ chrome.runtime.onConnect.addListener((port) => {
                 const requestId = Math.random().toString(36).slice(2, 10);
                 const startedAt = Date.now();
                 const controller = new AbortController();
-                const timeoutMs = 120000;
-                const timeoutId = setTimeout(() => {
-                    controller.abort();
-                }, timeoutMs);
+
+                // Activity-based timeout: resets on every received chunk.
+                // This prevents long-running streams (e.g. Ollama thinking
+                // models like qwen3:8b) from being killed just because the
+                // overall request exceeds a fixed wall-clock limit — as long
+                // as output keeps flowing, the request stays alive. We only
+                // abort if the stream is truly idle for IDLE_TIMEOUT_MS.
+                const IDLE_TIMEOUT_MS = 120000;
+                let timeoutId = null;
+                const armTimeout = () => {
+                    if (timeoutId) clearTimeout(timeoutId);
+                    timeoutId = setTimeout(() => {
+                        controller.abort();
+                    }, IDLE_TIMEOUT_MS);
+                };
+                const clearTimeoutHandle = () => {
+                    if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+                };
 
                 let heartbeatId = null;
                 let chunkCount = 0;
@@ -234,6 +256,9 @@ chrome.runtime.onConnect.addListener((port) => {
                         });
                     }, 3000);
 
+                    // Start the idle timeout (aborts only if no data arrives).
+                    armTimeout();
+
                     const response = await fetch(msg.apiUrl, {
                         method: 'POST',
                         headers: msg.headers,
@@ -250,14 +275,14 @@ chrome.runtime.onConnect.addListener((port) => {
 
                     if (!response.ok) {
                         if (heartbeatId) clearInterval(heartbeatId);
-                        clearTimeout(timeoutId);
+                        clearTimeoutHandle();
                         port.postMessage({ error: `HTTP ${response.status}: ${await response.text()}` });
                         return;
                     }
 
                     if (!response.body) {
                         if (heartbeatId) clearInterval(heartbeatId);
-                        clearTimeout(timeoutId);
+                        clearTimeoutHandle();
                         port.postMessage({ error: 'No response body received from API.' });
                         return;
                     }
@@ -269,7 +294,7 @@ chrome.runtime.onConnect.addListener((port) => {
                         const { value, done } = await reader.read();
                         if (done) {
                             if (heartbeatId) clearInterval(heartbeatId);
-                            clearTimeout(timeoutId);
+                            clearTimeoutHandle();
                             port.postMessage({
                                 meta: 'stream-complete',
                                 requestId,
@@ -295,13 +320,16 @@ chrome.runtime.onConnect.addListener((port) => {
                         }
 
                         port.postMessage({ chunk: decoded });
+
+                        // Data arrived — reset the idle timeout.
+                        armTimeout();
                     }
                 } catch (err) {
                     if (heartbeatId) clearInterval(heartbeatId);
-                    clearTimeout(timeoutId);
+                    clearTimeoutHandle();
 
                     const errorMessage = err?.name === 'AbortError'
-                        ? `Request timed out after ${timeoutMs / 1000}s`
+                        ? `Request timed out after ${IDLE_TIMEOUT_MS / 1000}s of inactivity`
                         : err.message;
 
                     port.postMessage({ error: errorMessage });

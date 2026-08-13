@@ -137,6 +137,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Refresh model data from storage when model panel opens
                 if (panelId === 'panelModel') {
                     refreshModelChip();
+                    // Re-render the model grid so newly added custom models
+                    // (e.g. added in Settings) show up immediately.
+                    if (typeof renderModelUI === 'function') renderModelUI();
                 }
             }
         });
@@ -178,7 +181,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (filter && languageTagGrid.children.length === 0) {
                 const customBtn = document.createElement('button');
                 customBtn.className = 'tag-btn';
-                customBtn.style.borderColor = 'var(--accent)';
                 customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${filter}"`;
                 customBtn.title = `Use "${filter}" as custom language code`;
                 customBtn.addEventListener('click', (e) => {
@@ -227,9 +229,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let servicesMetaCache = [];
 
+    // Module-level hook so the model panel can re-render the model grid
+    // (assigned inside the renderUI block below).
+    let renderModelUI = null;
+
     // Refresh chip label from storage (used on init + whenever main screen shows)
     const refreshModelChip = async () => {
-        const { servicesConfig, activeService, connectionMode, preferredCloudModel } = await chrome.storage.sync.get(['servicesConfig', 'activeService', 'connectionMode', 'preferredCloudModel']);
+        // servicesConfig now lives in LOCAL storage; prefs stay in sync.
+        const [syncData, localData] = await Promise.all([
+            chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']),
+            chrome.storage.local.get(['servicesConfig'])
+        ]);
+        const { servicesConfig, activeService, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
         
         if (connectionMode === 'cloud') {
             const active = preferredCloudModel || 'google/gemini-2.5-flash';
@@ -244,8 +255,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const cfg = (servicesConfig || {})[svcId] || {};
         const def = meta?.defaultModel || '';
         const custom = Array.isArray(cfg.customModel) ? cfg.customModel : [];
-        const active = cfg.activeModelId || custom[0] || def;
-        if (chipModelLabel) chipModelLabel.textContent = active || svcId;
+        // Normalize custom models (legacy strings or { id, provider } objects)
+        const customIds = custom.map(m => typeof m === 'string' ? m : m?.id);
+        const activeId = (typeof cfg.activeModelId === 'string' ? cfg.activeModelId : cfg.activeModelId?.id) || customIds[0] || def;
+        if (chipModelLabel) chipModelLabel.textContent = activeId || svcId;
     };
 
     if (modelSettingsLink) {
@@ -281,7 +294,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             .catch(e => console.error('Error loading services:', e));
 
         const renderUI = () => {
-            chrome.storage.sync.get(['servicesConfig', 'connectionMode', 'preferredCloudModel'], async ({ servicesConfig, connectionMode, preferredCloudModel }) => {
+            renderModelUI = renderUI; // expose for the model panel chip handler
+            // servicesConfig now lives in LOCAL storage; prefs stay in sync.
+            Promise.all([
+                chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']),
+                chrome.storage.local.get(['servicesConfig'])
+            ]).then(async ([syncData, localData]) => {
+                const { servicesConfig, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
                 if (connectionMode === 'cloud') {
                     // Update chip label
                     const activeCloudModel = preferredCloudModel || 'google/gemini-2.5-flash';
@@ -383,18 +402,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const meta = servicesMetaCache.find(s => s.id === curSvcId);
                 const defModel = meta?.defaultModel || '';
                 const cfg = (servicesConfig || {})[curSvcId] || {};
-                const hasConfig = !!(cfg.apiKey || cfg.endpoint);
-                const customModels = Array.isArray(cfg.customModel) ? cfg.customModel : (cfg.customModel ? [cfg.customModel] : []);
-                // Active model = activeModelId, or first custom, or default
-                const activeModel = cfg.activeModelId || customModels[0] || defModel;
+                // Normalize custom models to provider-bound objects
+                const rawCustom = Array.isArray(cfg.customModel) ? cfg.customModel : (cfg.customModel ? [cfg.customModel] : []);
+                const customModels = rawCustom.map(m => StorageManager.normalizeCustomModel(m, curSvcId));
+                const customIds = customModels.map(m => m.id);
+                // Active model = activeModelId (string or object), or first custom, or default
+                const activeModelObj = cfg.activeModelId
+                    ? StorageManager.normalizeCustomModel(cfg.activeModelId, curSvcId)
+                    : (customModels[0] || { id: defModel, provider: curSvcId });
+                const activeModel = activeModelObj.id;
                 // Build list: active first, then custom models, then default
                 const allModels = [
-                    activeModel,
-                    ...customModels.filter(m => m !== activeModel),
-                    ...(activeModel !== defModel && !customModels.includes(defModel) && defModel ? [defModel] : [])
+                    activeModelObj,
+                    ...customModels.filter(m => m.id !== activeModel),
+                    ...(activeModel !== defModel && !customIds.includes(defModel) && defModel ? [{ id: defModel, provider: curSvcId }] : [])
                 ];
                 // Remove exact duplicates while preserving order
-                const deduped = allModels.filter((m, i, a) => a.indexOf(m) === i);
+                const deduped = allModels.filter((m, i, a) => a.findIndex(x => x.id === m.id) === i);
 
                 // Update chip label to show only the active model ID
                 chipModelLabel.textContent = activeModel;
@@ -419,7 +443,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     btn.className = 'tag-btn';
                     btn.textContent = option.textContent;
                     if (option.selected) btn.classList.add('active');
-                    if (hasConfig && !option.selected) btn.style.borderColor = 'var(--accent-light)';
                     btn.addEventListener('click', (e) => {
                         e.preventDefault();
                         modelSelect.value = option.value;
@@ -434,10 +457,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                     modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">No models configured</span>';
                     return;
                 }
-                deduped.forEach((modelId) => {
+                deduped.forEach((modelObj) => {
+                    const modelId = modelObj.id;
                     const btn = document.createElement('button');
                     btn.className = 'tag-btn';
-                    const isCustom = customModels.includes(modelId);
+                    const isCustom = customIds.includes(modelId);
                     btn.innerHTML = `${modelId}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
@@ -446,29 +470,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                         
                         // Handle removal of custom model
                         if (e.target.classList.contains('remove-tag')) {
-                            const newCustom = customModels.filter(m => m !== modelId);
+                            const newCustom = customModels.filter(m => m.id !== modelId);
+                            const newActive = modelId === activeModel
+                                ? (newCustom[0] || { id: defModel, provider: curSvcId })
+                                : activeModelObj;
                             StorageManager.updateService(curSvcId, { 
                                 customModel: newCustom,
                                 // If we just removed the active model, fall back to default
-                                activeModelId: modelId === activeModel ? (newCustom[0] || defModel) : activeModel
+                                activeModelId: newActive
                             }).then(() => renderUI());
                             return;
                         }
 
-                        chrome.storage.sync.get('servicesConfig', ({ servicesConfig: sc }) => {
-                            const c = { ...(sc || {}) };
-                            const entry = { ...(c[curSvcId] || {}) };
-                            entry.activeModelId = modelId;
-                            c[curSvcId] = entry;
-                            chrome.storage.sync.set({ servicesConfig: c }, () => {
-                                renderUI();
-                            });
-                        });
+                        // Use StorageManager.updateService for a proper read-modify-write
+                        // that preserves the latest stored custom models.
+                        StorageManager.updateService(curSvcId, {
+                            activeModelId: { id: modelId, provider: curSvcId }
+                        }).then(() => renderUI());
                     });
                     modelIdGrid.appendChild(btn);
                 });
-
-                if (customModelInput) customModelInput.value = '';
             });
         };
 
@@ -490,21 +511,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         if (setCustomModelBtn && customModelInput) {
-            setCustomModelBtn.addEventListener('click', () => {
+            setCustomModelBtn.addEventListener('click', async () => {
                 const val = customModelInput.value.trim();
                 if (!val) return;
-                const svcId = modelSelect.value;
-                chrome.storage.sync.get('servicesConfig', ({ servicesConfig }) => {
-                    const cfg = { ...(servicesConfig || {}) };
-                    const entry = cfg[svcId] || {};
+                const svcId = modelSelect.value || 'openai';
+                try {
+                    // Use StorageManager.updateService for a proper read-modify-write
+                    // that merges the latest stored state (avoids clobbering races).
+                    const current = await StorageManager.getAll();
+                    const entry = (current.servicesConfig || {})[svcId] || {};
                     let list = Array.isArray(entry.customModel) ? [...entry.customModel] : [];
-                    if (!list.includes(val)) list.push(val);
-                    cfg[svcId] = { ...entry, customModel: list };
-                    chrome.storage.sync.set({ servicesConfig: cfg }, () => {
-                        customModelInput.value = '';
-                        renderUI();
+                    list = list.map(m => StorageManager.normalizeCustomModel(m, svcId));
+                    if (!list.some(m => m.id === val)) {
+                        list.push({ id: val, provider: svcId });
+                    }
+                    await StorageManager.updateService(svcId, {
+                        customModel: list,
+                        // Set the newly added model as the active one so it's
+                        // immediately selected and retrievable.
+                        activeModelId: { id: val, provider: svcId }
                     });
-                });
+                    customModelInput.value = '';
+                    renderUI();
+                } catch (err) {
+                    console.error('[Model] Failed to add custom model:', err);
+                }
             });
         }
     }

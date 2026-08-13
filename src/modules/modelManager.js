@@ -9,21 +9,25 @@ import StorageManager from './storageManager.js';
         const service = services.find(s => s.id === serviceId);
         const cfg = storageData.servicesConfig?.[serviceId] || {};
         const defaultModel = service?.defaultModel || '';
-        const models = Array.isArray(cfg.customModel) ? cfg.customModel : (cfg.customModel ? [cfg.customModel] : []);
+        // Normalize custom models to provider-bound objects ({ id, provider })
+        const rawModels = Array.isArray(cfg.customModel) ? cfg.customModel : (cfg.customModel ? [cfg.customModel] : []);
+        const models = rawModels.map(m => StorageManager.normalizeCustomModel(m, serviceId));
+        const modelIds = models.map(m => m.id);
 
         if (modelIdentifierContainer) {
             modelIdentifierContainer.style.display = 'block';
             // Build tag list: custom models + default (if not already in custom list)
             const allModels = [...models];
-            if (defaultModel && !allModels.includes(defaultModel)) {
-                allModels.push(defaultModel);
+            if (defaultModel && !modelIds.includes(defaultModel)) {
+                allModels.push({ id: defaultModel, provider: serviceId });
             }
             modelIdentifierContainer.innerHTML = `
                 <label style="display:block;margin-bottom:6px;">Model Identifiers</label>
                 <div id="modelTagList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">
                   ${allModels.map(m => {
-                    const isDefault = m === defaultModel && !models.includes(m);
-                    return `<span class="model-id-tag" data-model="${m.replace(/"/g, '&quot;')}">${m}${isDefault ? ' (default)' : ''} ${!isDefault ? '<span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span>' : ''}</span>`;
+                    const isDefault = m.id === defaultModel && !modelIds.includes(m.id);
+                    const safeId = m.id.replace(/"/g, '&quot;');
+                    return `<span class="model-id-tag" data-model="${safeId}" data-provider="${m.provider}">${m.id}${isDefault ? ' (default)' : ''} ${!isDefault ? '<span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span>' : ''}</span>`;
                   }).join('')}
                 </div>
                 </div>
@@ -44,8 +48,13 @@ import StorageManager from './storageManager.js';
                         let list = Array.isArray(servicesConfig[serviceId]?.customModel)
                           ? [...servicesConfig[serviceId].customModel]
                           : [];
-                        StorageManager.updateService(serviceId, { customModel: list.filter(m => m !== model) }).then(() => {
-                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...servicesConfig[serviceId], customModel: list.filter(m => m !== model) } } });
+                        // Filter by id (works for both string and object entries)
+                        list = list.filter(m => {
+                            const id = typeof m === 'string' ? m : m?.id;
+                            return id !== model;
+                        });
+                        StorageManager.updateService(serviceId, { customModel: list }).then(() => {
+                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...servicesConfig[serviceId], customModel: list } } });
                         });
                     });
                 });
@@ -62,10 +71,16 @@ import StorageManager from './storageManager.js';
                         const servicesConfig = storageData.servicesConfig || {};
                         const entry = servicesConfig[serviceId] || {};
                         let list = Array.isArray(entry.customModel) ? [...entry.customModel] : (entry.customModel ? [entry.customModel] : []);
-                        if (!list.includes(val)) list.push(val);
-                        StorageManager.updateService(serviceId, { customModel: list }).then(() => {
+                        // Normalize existing entries and check for duplicates by id
+                        const normalized = list.map(m => StorageManager.normalizeCustomModel(m, serviceId));
+                        if (!normalized.some(m => m.id === val)) {
+                            normalized.push({ id: val, provider: serviceId });
+                        }
+                        // Set the newly added model as the active one so it's
+                        // immediately selected and retrievable.
+                        StorageManager.updateService(serviceId, { customModel: normalized, activeModelId: { id: val, provider: serviceId } }).then(() => {
                             addInput.value = '';
-                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...entry, customModel: list } } });
+                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...entry, customModel: normalized, activeModelId: { id: val, provider: serviceId } } } });
                         });
                     });
                 };

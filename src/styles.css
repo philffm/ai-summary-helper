@@ -1598,7 +1598,7 @@ ul#articleList {
 /* ── Recent Entry ──────────────────────────────────────────────────────── */
 
 .recent-entry {
-  display: flex;
+  display: none; /* hidden by default — JS only shows it when confirmed empty */
   align-items: center;
   gap: var(--spacing-s-3);
   padding: var(--spacing-s-4);

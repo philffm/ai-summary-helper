@@ -124,3 +124,22 @@ zip -r "$ROOT_DIR/$FIREFOX_ZIP_FILE" .
 cd "$ROOT_DIR"
 
 echo "✅ Firefox extension built: $FIREFOX_ZIP_FILE"
+
+# ==========================================
+# 4. BUILD IOS VERSION
+# ==========================================
+IOS_DIR="$DEV_DIR/aish-extension-ios"
+rm -rf "$IOS_DIR"
+cp -r "$ROOT_DIR/src/" "$IOS_DIR"
+
+# Overwrite the default manifest with the iOS one
+cp -f "$ROOT_DIR/platforms/ios/manifest.json" "$IOS_DIR/manifest.json"
+# Clean up any leftover manifests
+rm -f "$IOS_DIR/manifest-android.json"
+
+IOS_ZIP_FILE="$PROD_DIR/aish-extension-ios-$NEW_VERSION.zip"
+cd "$IOS_DIR"
+zip -r "$ROOT_DIR/$IOS_ZIP_FILE" .
+cd "$ROOT_DIR"
+
+echo "✅ iOS extension built: $IOS_ZIP_FILE"

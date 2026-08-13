@@ -161,10 +161,14 @@ ai-summary-helper/
 1. Run `npm run build:ios` (or `node scripts/build.js ios`) to sync `src/` into `dist/ios/`.
 2. Convert the WebExtension into a native container app:
    ```bash
-   xcrun safari-web-extension-converter dist/ios \
-     --app-name "AI Summary Helper" \
-     --bundle-identifier "eu.byphil.aisummaryhelper" \
-     --platform ios
+   xcrun safari-web-extension-converter ./dev/aish-extension-ios \
+   --project-location dist/ios \
+   --app-name "AI Summary Helper" \
+   --bundle-identifier "eu.byphil.aisummaryhelper" \
+   --copy-resources \
+   --force
+      
+
    ```
 3. In Xcode, ensure the extension target bundle ID starts with the parent app's bundle ID (e.g. `eu.byphil.aisummaryhelper.extension`), select the same signing team for both targets, and run on a concrete device/simulator (not "Any iOS Device").
 

@@ -460,11 +460,17 @@ async function generatePodcast() {
             .join("\n\n")
     ].filter(Boolean).join("\n\n");
 
-    chrome.storage.sync.get(["servicesConfig", "activeService", "selectedLanguage"], async sdata => {
+    Promise.all([
+        chrome.storage.sync.get(["activeService", "selectedLanguage"]),
+        chrome.storage.local.get(["servicesConfig"])
+    ]).then(async ([syncData, localData]) => {
+        const sdata = { ...syncData, ...localData };
         const activeService = sdata.activeService || "openai";
         const serviceCfg = sdata.servicesConfig?.[activeService] || {};
         const apiKey = serviceCfg.apiKey;
-        const modelIdentifier = serviceCfg.customModel || serviceCfg.model || "";
+        // Normalize custom model (legacy string or { id, provider } object)
+        const rawModel = serviceCfg.customModel || serviceCfg.model || "";
+        const modelIdentifier = typeof rawModel === 'string' ? rawModel : (rawModel?.id || "");
 
         const { createChatCompletion } = await import("../api.js");
 
@@ -508,6 +514,7 @@ async function generatePodcast() {
 
         nextBtn.disabled = false;
         nextBtn.textContent = "Generate 🎙️";
+    });
     });
 }
 
