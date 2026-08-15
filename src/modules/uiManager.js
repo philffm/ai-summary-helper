@@ -135,6 +135,20 @@ class UIManager {
                 }
             }, 350);
         }
+
+        // Re-poll account status whenever the user opens the Settings screen,
+        // so the "Account Sync" panel reflects the latest subscription state
+        // instead of whatever was fetched at popup load.
+        if (screenName === 'settings') {
+            setTimeout(async () => {
+                try {
+                    const { refreshAuthStateFromSettings } = await import('./authManager.js');
+                    await refreshAuthStateFromSettings();
+                } catch (e) {
+                    // Ignore if extension context was invalidated (popup closed)
+                }
+            }, 350);
+        }
     }
 
     toggleElementVisibility(element, show) {

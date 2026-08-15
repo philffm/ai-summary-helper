@@ -32,12 +32,16 @@
           <p>Sign in to unlock free cloud models and sync your summaries, or bring your own API keys.</p>
 
           <div class="onboarding-auth-box">
-            <input type="email" id="onboardingEmail" placeholder="name@example.com" />
-            <button id="onboardingSendCodeBtn" class="primary-btn">Sign in / Sign up via Email</button>
+            <div id="onboardingEmailStage">
+              <input type="email" id="onboardingEmail" placeholder="name@example.com" />
+              <button type="button" id="onboardingSendCodeBtn" class="primary-btn">Sign in / Sign up via Email</button>
+            </div>
 
             <div id="onboardingOtpStep" style="display: none;">
-              <input type="text" id="onboardingOtpCode" placeholder="Enter 6-digit code" />
-              <button id="onboardingVerifyBtn" class="primary-btn">Verify &amp; Login</button>
+              <p class="input-caption">Enter the code sent to your email.</p>
+              <input type="text" id="onboardingOtpCode" placeholder="Enter 6-digit code" inputmode="text" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" />
+              <button type="button" id="onboardingVerifyBtn" class="primary-btn">Verify &amp; Login</button>
+              <button type="button" class="btn-link" id="onboardingBackBtn" style="margin-top: 10px; width: 100%; text-align: center;">Wrong email? Go back</button>
             </div>
             <div id="onboardingAuthMessage" class="auth-message"></div>
           </div>
@@ -196,7 +200,7 @@
                     <label class="type-badge">Connection Path</label>
                     <div class="segmented-control">
                         <input type="radio" id="modeCloud" name="connectionMode" value="cloud">
-                        <label for="modeCloud">☁️ byphil Cloud (Default)</label>
+                        <label for="modeCloud">☁️ byphil Cloud</label>
                         
                         <input type="radio" id="modeLocal" name="connectionMode" value="local">
                         <label for="modeLocal">💻 Bring your own key</label>
@@ -267,6 +271,7 @@
                     <label for="customEndpoint">Endpoint URL:</label>
                     <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
                   </div>
+                  <div id="ollamaTutorialContainer" class="ollama-tutorial" style="display: none;"></div>
                 </div>
               </div>
             </div>
@@ -431,7 +436,7 @@
           <p>
             Open Source software by
             <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.0.356</span> — Feel free to
+            <br />AI Summary Helper v<span id="versionNumber">2.0.388</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>

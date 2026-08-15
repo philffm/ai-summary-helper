@@ -104,7 +104,22 @@ function bundleContentScript(entryPath) {
     }
 
     resolveModule(entryPath);
-    return parts.join('\n\n');
+    const body = parts.join('\n\n');
+
+    // Wrap the ENTIRE bundle in an injection guard. Safari on iOS (and some
+    // SPA navigations) re-injects content scripts, which would otherwise
+    // redeclare top-level `let`/`const` from the inlined modules (e.g.
+    // `annotationUrlWatcher`) and throw a SyntaxError. The `window` object
+    // persists between these phantom re-injections, so the flag guarantees
+    // the bundle body (and all its top-level declarations) runs only once.
+    return `// AI Summary Helper — bundled content script (injection-guarded)
+if (!window.__AISH_CONTENT_LOADED) {
+    window.__AISH_CONTENT_LOADED = true;
+
+${body}
+
+}
+`;
 }
 
 /**

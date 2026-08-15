@@ -22,8 +22,9 @@ export async function initSettingsManager(ui) {
     initSummaryLengthSlider();
     initBookmarkletGenerator();
 
-    // Initialize Auth Manager
-    initAuthManager();
+    // Initialize Auth Manager (drives both the Settings panel and the
+    // main-screen onboarding mask — see authManager.js)
+    initAuthManager(ui);
 
     // Initialize prompt manager with the static DOM elements
     const promptSelect = document.getElementById('promptSelect');
@@ -92,6 +93,107 @@ const autoSave = async (key, value) => {
     flashSaveIndicator();
 };
 
+// ── Ollama per-platform setup tutorial ─────────────────────────────────────
+// Shows only when the Ollama provider is selected. Modern Ollama rejects
+// cross-origin requests from web pages / extensions unless OLLAMA_ORIGINS
+// is configured — this walks the user through fixing that on their platform.
+const OLLAMA_TUTORIALS = {
+    macos: {
+        title: 'Set up Ollama on macOS',
+        steps: [
+            { title: 'Quit Ollama', body: 'Click the Ollama icon in the menu bar (top-right) and choose <b>Quit Ollama</b>.' },
+            { title: 'Open Terminal', body: 'Open the <b>Terminal</b> app on your Mac.' },
+            { title: 'Allow all origins (app)', body: 'Run this command so Ollama stays configured after restarting the Mac app:',
+              code: 'launchctl setenv OLLAMA_ORIGINS "*"' },
+            { title: 'Restart Ollama', body: 'Launch Ollama again from your Applications folder or Spotlight.' },
+            { title: 'Quick test (terminal)', body: 'Prefer the terminal? Run Ollama directly in a foreground window:',
+              code: 'OLLAMA_ORIGINS="*" ollama serve' }
+        ],
+        note: 'Once Ollama restarts, the 403 Forbidden error from this extension is resolved.'
+    },
+    windows: {
+        title: 'Set up Ollama on Windows',
+        steps: [
+            { title: 'Quit Ollama', body: 'Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>.' },
+            { title: 'Open Command Prompt', body: 'Press <b>Win + R</b>, type <code>cmd</code> and press Enter.' },
+            { title: 'Allow all origins', body: 'Run this so the running server accepts requests from any origin:',
+              code: 'set OLLAMA_ORIGINS=*' },
+            { title: 'Start Ollama', body: 'Run Ollama as a foreground server from the same window:',
+              code: 'ollama serve' },
+            { title: 'Persist (optional)', body: 'For a permanent fix, set <code>OLLAMA_ORIGINS=*</code> as a system environment variable under <i>System Properties → Environment Variables</i> and restart Ollama.' }
+        ],
+        note: 'Once Ollama restarts, the 403 Forbidden error from your extension is fixed.'
+    },
+    linux: {
+        title: 'Set up Ollama on Linux',
+        steps: [
+            { title: 'Stop Ollama', body: 'If running as a systemd service, stop it with <code>sudo systemctl stop ollama</code>.' },
+            { title: 'Allow all origins', body: 'Start Ollama with the global wildcard so any origin can connect:',
+              code: 'OLLAMA_ORIGINS="*" ollama serve' },
+            { title: 'Persist (optional)', body: 'For a permanent config via systemd, add <code>Environment="OLLAMA_ORIGINS=*"</code> under the service unit (e.g. <code>/etc/systemd/system/ollama.service</code>), then <code>systemctl daemon-reload</code> and restart.' }
+        ],
+        note: 'Once Ollama restarts, the 403 Forbidden error from your extension is fixed.'
+    }
+};
+
+function detectPlatform() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (/mac os|macintosh|iphone|ipad|ipod/.test(ua)) return 'macos';
+    if (/windows|win64|win32/.test(ua)) return 'windows';
+    return 'linux';
+}
+
+function renderOllamaTutorial(serviceId) {
+    const container = document.getElementById('ollamaTutorialContainer');
+    if (!container) return;
+    const isOllama = (serviceId || '').toLowerCase() === 'ollama';
+    container.style.display = isOllama ? 'block' : 'none';
+    container.innerHTML = '';
+
+    if (!isOllama) return;
+
+    const platform = detectPlatform();
+    const t = OLLAMA_TUTORIALS[platform] || OLLAMA_TUTORIALS.macos;
+
+    const stepsHtml = t.steps.map((step, i) => `
+        <div class="ollama-step">
+            <span class="ollama-step-num">${i + 1}</span>
+            <div class="ollama-step-body">
+                <div class="ollama-step-title">${step.title}</div>
+                ${step.body ? `<div class="ollama-step-desc">${step.body}</div>` : ''}
+                ${step.code ? `
+                <div class="ollama-code-wrap">
+                    <pre class="ollama-code">${escapeHtml(step.code)}</pre>
+                    <button type="button" class="button-secondary ollama-copy-btn" data-copy="${escapeHtml(step.code)}">📋 Copy</button>
+                </div>` : ''}
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="ollama-tutorial-header">🦙 ${t.title}</div>
+        ${stepsHtml}
+        <div class="ollama-tutorial-note">💡 ${t.note}</div>
+    `;
+
+    container.querySelectorAll('.ollama-copy-btn').forEach(copyBtn => {
+        copyBtn.addEventListener('click', () => {
+            const command = copyBtn.dataset.copy;
+            navigator.clipboard.writeText(command).then(() => {
+                copyBtn.textContent = 'Copied! ✓';
+                setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 1500);
+            }).catch(() => {});
+        });
+    });
+}
+
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
 // ── Section: Model Configuration (Refactored for Hybrid Subscription Model) ──
 async function initModelSettings(storageData) {
     const services = await StorageManager.getServices();
@@ -137,6 +239,18 @@ async function initModelSettings(storageData) {
         const targetMode = e.target.value;
         await autoSave('connectionMode', targetMode);
         toggleConnectionContainers(targetMode);
+
+        // When entering BYOK (local) mode, restore and reflect the last-set
+        // provider from storage so the developer panel doesn't fall back to
+        // a stale default selection.
+        if (targetMode === 'local') {
+            const latest = await StorageManager.getAll();
+            let saved = latest.activeService || modelSelect?.value || 'openai';
+            if (modelSelect && Array.from(modelSelect.options).some(o => o.value === saved)) {
+                modelSelect.value = saved;
+            }
+            await updateFields(saved);
+        }
     };
 
     if (modeCloudRadio) modeCloudRadio.addEventListener('change', handleModeChange);
@@ -272,6 +386,8 @@ async function initModelSettings(storageData) {
         if (customEndpointContainer) {
             customEndpointContainer.style.display = service?.allowCustomEndpoint ? 'block' : 'none';
         }
+
+        renderOllamaTutorial(serviceId);
 
         if (apiKeyInput) apiKeyInput.value = cfg.apiKey || '';
         if (endpointInput) endpointInput.value = cfg.endpoint || service?.endpointUrl || '';
@@ -819,12 +935,10 @@ function initBackupRestore() {
                     }
 
                     if (importedData._backup_version === 2) {
-                        // Full backup — restore settings to sync, local data to local
+                        // FIX: Leverage the new StorageManager routing
                         const { settings, local } = importedData;
-
-                        // Use raw chrome APIs to ensure strict separation
-                        if (settings) await new Promise(resolve => chrome.storage.sync.set(settings, resolve));
-                        if (local) await new Promise(resolve => chrome.storage.local.set(local, resolve));
+                        if (settings) await StorageManager.set(settings);
+                        if (local) await StorageManager.set(local);
 
                         const count = (local?.articles || []).length;
                         alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);

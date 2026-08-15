@@ -45,14 +45,17 @@ inplace_sed() {
   fi
 }
 
-# Update Chrome manifest
-inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/chrome/manifest.json
+# Update Chrome manifest — always set the version from current_version.json,
+# regardless of whatever value the manifest currently holds. Using a wildcard
+# pattern (instead of matching the old $VERSION exactly) guarantees the bump
+# applies even if a manifest was previously edited out of sync.
+inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/chrome/manifest.json
 # Update Android manifest
-inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/android/manifest.json
+inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/android/manifest.json
 # Update Firefox manifest
-inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/firefox/manifest.json
+inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/firefox/manifest.json
 # Update iOS manifest
-inplace_sed "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" platforms/ios/manifest.json
+inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/ios/manifest.json
 
 # Update current_version.json
 jq ".version = \"$NEW_VERSION\"" current_version.json > current_version.json.tmp && mv current_version.json.tmp current_version.json
@@ -94,7 +97,18 @@ bundle_content() {
       parts.push(strip(src));
     }
     resolve(path.join(SRC,"content.js"));
-    fs.writeFileSync(path.join(OUT,"content.js"), parts.join("\n\n"));
+    const body = parts.join("\n\n");
+    // Wrap the ENTIRE bundle in an injection guard. Safari on iOS (and some
+    // SPA navigations) re-injects content scripts, which would otherwise
+    // redeclare top-level `let`/`const` from the inlined modules (e.g.
+    // `annotationUrlWatcher`) and throw a SyntaxError. The `window` object
+    // persists between these phantom re-injections, so the flag guarantees
+    // the bundle body (and all its top-level declarations) runs only once.
+    const out = "// AI Summary Helper — bundled content script (injection-guarded)\n" +
+      "if (!window.__AISH_CONTENT_LOADED) {\n" +
+      "    window.__AISH_CONTENT_LOADED = true;\n\n" +
+      body + "\n\n}\n";
+    fs.writeFileSync(path.join(OUT,"content.js"), out);
     console.log("  ✓ bundled content.js");
   ' "$ROOT_DIR/src" "$1"
 }

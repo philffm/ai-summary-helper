@@ -380,6 +380,14 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   box-shadow: 0 10px 28px var(--accent-glow);
 }
 
+/* Keep the button centered while pressed. The global `button:active`
+   rule sets `transform: scale(0.97)`, which would otherwise override the
+   `translateX(-50%)` centering offset and make the button jump to the
+   right on press. Re-apply the centering translate alongside the scale. */
+.settings-save-fab:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
 .danger {
   background: linear-gradient(135deg, var(--danger), #e24646);
   color: #fff;
@@ -1525,6 +1533,102 @@ ul#articleList {
   color: var(--danger);
 }
 
+/* ── Ollama Setup Tutorial (settings) ────────────────────────────────── */
+
+.ollama-tutorial {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md, 12px);
+  background: rgba(59,130,246,0.05);
+}
+
+.ollama-tutorial-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.ollama-step {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ollama-step-num {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ollama-step-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.ollama-step-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted, #889999);
+}
+
+.ollama-step-desc code {
+  background: rgba(127,127,127,0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.ollama-code {
+  margin: 6px 0 0;
+  padding: 8px 10px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text);
+}
+
+.ollama-code-wrap {
+  position: relative;
+  margin-top: 6px;
+}
+
+.ollama-code-wrap .ollama-code {
+  margin-top: 0;
+  padding-right: 64px;
+}
+
+.ollama-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-width: 0;
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+.ollama-tutorial-note {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--glass-border);
+  font-size: 12px;
+  color: var(--text-muted, #889999);
+}
+
 .chip-panel-header {
   display: flex;
   align-items: center;
@@ -1685,6 +1789,12 @@ ul#articleList {
   padding: 1.5rem;
   border-radius: 12px;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.onboarding-auth-box > div {
   display: flex;
   flex-direction: column;
   gap: 10px;

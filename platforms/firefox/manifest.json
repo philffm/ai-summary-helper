@@ -2,12 +2,19 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "2.0.332",
+  "version": "2.0.388",
   "description": "__MSG_extensionDescription__",
   "browser_specific_settings": {
     "gecko": {
       "id": "ai-summary-helper@byphil.eu",
-      "strict_min_version": "115.0"
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": ["technicalAndInteraction", "websiteContent", "authenticationInfo"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
     }
   },
   "permissions": [

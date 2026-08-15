@@ -170,20 +170,38 @@ function normalizeAnnotationEntries(rawAnnotations) {
   return migrated;
 }
 
+// Returns false once the extension has been reloaded/updated, which
+// invalidates chrome.runtime for every content script still injected in
+// already-open tabs. From that point on any chrome.* call throws
+// synchronously, so long-lived loops must self-tear-down instead of
+// hammering a dead API forever.
+function isExtensionContextValid() {
+  try {
+    return !!(chrome && chrome.runtime && chrome.runtime.id);
+  } catch (e) {
+    return false;
+  }
+}
+
 function getNormalizedAnnotations(callback) {
-  chrome.storage.local.get(['annotations'], (res) => {
-    const normalized = normalizeAnnotationEntries(res.annotations);
-    const existing = Array.isArray(res.annotations) ? res.annotations : [];
-    const shouldWriteBack = !Array.isArray(res.annotations)
-      || JSON.stringify(existing) !== JSON.stringify(normalized);
+  if (!isExtensionContextValid()) return; // silently no-op, don't throw
+  try {
+    chrome.storage.local.get(['annotations'], (res) => {
+      const normalized = normalizeAnnotationEntries(res.annotations);
+      const existing = Array.isArray(res.annotations) ? res.annotations : [];
+      const shouldWriteBack = !Array.isArray(res.annotations)
+        || JSON.stringify(existing) !== JSON.stringify(normalized);
 
-    if (shouldWriteBack) {
-      chrome.storage.local.set({ annotations: normalized }, () => callback(normalized));
-      return;
-    }
+      if (shouldWriteBack) {
+        chrome.storage.local.set({ annotations: normalized }, () => callback(normalized));
+        return;
+      }
 
-    callback(normalized);
-  });
+      callback(normalized);
+    });
+  } catch (e) {
+    return; // context died between the check and the call
+  }
 }
 
 function isOwnHighlightMutation(mutations) {
@@ -201,6 +219,7 @@ function isOwnHighlightMutation(mutations) {
 export function startAnnotationWatchers() {
   if (!annotationObserver && document.documentElement) {
     annotationObserver = new MutationObserver((mutations) => {
+      if (!isExtensionContextValid()) { annotationObserver.disconnect(); return; }
       if (isOwnHighlightMutation(mutations)) return;
       scheduleRestoreAnnotations(220);
     });
@@ -214,6 +233,12 @@ export function startAnnotationWatchers() {
 
   if (!annotationUrlWatcher) {
     annotationUrlWatcher = window.setInterval(() => {
+      if (!isExtensionContextValid()) {
+        clearInterval(annotationUrlWatcher);
+        annotationUrlWatcher = null;
+        if (annotationObserver) { annotationObserver.disconnect(); annotationObserver = null; }
+        return;
+      }
       const currentUrl = getPageKey();
       if (currentUrl !== lastObservedUrl) {
         lastObservedUrl = currentUrl;

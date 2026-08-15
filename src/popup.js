@@ -85,6 +85,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (activeTab) {
                     const mod = await import('./modules/mainScreen.js').catch(() => null);
                     if (mod?.ensureContentScript) {
+                        // Safari opt-in model: request site access within this
+                        // click gesture so the native prompt is honored.
+                        if (mod.hasSiteAccess && !(await mod.hasSiteAccess(activeTab.url))) {
+                            if (mod.requestSiteAccess) {
+                                await mod.requestSiteAccess(activeTab.url);
+                            }
+                        }
                         await mod.ensureContentScript(activeTab.id, activeTab.url).catch(() => {});
                         chrome.tabs.sendMessage(activeTab.id, { action: 'toggleHybridSidebar' }).catch(() => {});
                     }

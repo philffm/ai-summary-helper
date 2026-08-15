@@ -45,8 +45,7 @@ import {
   getGhostHighlightConfig,
   normalizeGhostQuotes,
   ensureGeneralTag,
-  saveToLocalStorage,
-  connectWithRetry
+  saveToLocalStorage
 } from './content/core.js';
 
 (() => {
@@ -166,11 +165,25 @@ import {
 
   // ── Extension Message Handlers ───────────────────────────────────────────────
 
+  // Registry for in-flight streaming fetches. Background pushes chunks via
+  // chrome.tabs.sendMessage({action:'streamChunk', requestId, payload}),
+  // which we route to the matching handler here. This replaced an earlier
+  // runtime.connect()-based approach that was unreliable on Safari — see
+  // the note in background.js.
+  const streamHandlers = new Map();
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // Normalize casing so both 'PING' and 'ping' work.
     const action = (request.action || '').toLowerCase();
     if (action === 'ping') {
       sendResponse({ status: 'pong' });
+      return true;
+    }
+
+    if (request.action === 'streamChunk' && request.requestId) {
+      const handler = streamHandlers.get(request.requestId);
+      if (handler) handler(request.payload);
+      sendResponse({ status: 'ok' });
       return true;
     }
 
@@ -462,35 +475,33 @@ import {
           relay('summaryProgress', { chunk: 'Connected to API, waiting for response…' });
 
           const streamStart = Date.now();
-          // Use retry logic so Safari/iOS cold-starts of the background script
-          // don't fail with "No runtime.onConnect listeners found".
-          let port;
-          try {
-            port = await connectWithRetry('streamFetch');
-          } catch (connectErr) {
-            console.error('❌ Failed to connect for streaming:', connectErr);
-            relay('summaryError', { error: 'Could not connect to the background service. Please try again.' });
-            targetElement.querySelector('.placeholder').innerHTML = '<b>Error:</b> Could not connect to the background service. Please try again.';
-            reject(new Error(connectErr.message || 'Connection failed'));
-            return;
-          }
-
-          port.postMessage({
-            action: 'startFetch',
-            apiUrl: finalApiUrl,
-            headers: headers,
-            body: requestBody
-          });
-
+          const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
           let buffer = '';
 
-          port.onMessage.addListener(async (msg) => {
+          // Message-based streaming (not runtime.connect/ports) — see the
+          // comment on streamHandlers above for why. We still send the
+          // initial request via a plain sendMessage (which reliably wakes a
+          // suspended Safari background page), then background pushes
+          // chunks back to this tab individually.
+          //
+          // IMPORTANT: register the handler BEFORE sending anything to
+          // background. If we send first and register after awaiting the
+          // ack, there's a race: background can start pushing
+          // 'request-started'/'response'/chunk messages the instant it
+          // receives startFetch — often before our sendMessage ack
+          // round-trip even completes — and any message that arrives before
+          // streamHandlers.set() runs is silently dropped (streamHandlers.get()
+          // returns undefined, so it's a no-op). On a fast API response this
+          // can mean the 'done' message itself is lost, which is exactly why
+          // this got stuck forever on "Connected to API, waiting for
+          // response…" — nothing was left to resolve it.
+          streamHandlers.set(requestId, async (msg) => {
             if (msg.error) {
               console.error('❌ Error:', msg.error);
               relay('summaryError', { error: msg.error });
               targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${msg.error}`;
               reject(new Error(msg.error));
-              port.disconnect();
+              streamHandlers.delete(requestId);
               return;
             }
 
@@ -572,7 +583,7 @@ import {
                   resolve({ success: true, article: null });
                 });
 
-              port.disconnect();
+              streamHandlers.delete(requestId);
               return;
             }
 
@@ -631,6 +642,49 @@ import {
               }
             }
           });
+
+          // Safari wake-up ping: iOS/macOS aggressively suspends the
+          // background worker. The first message-pass through can take
+          // 100-300ms to spin the worker up, so fire a no-op wakeup first
+          // to warm it before the actual startFetch handshake. The stream
+          // handler above is already registered by this point, so even if
+          // background responds unexpectedly fast, nothing gets dropped.
+          try {
+            await new Promise((res) => {
+              chrome.runtime.sendMessage({ action: 'wakeup' }, () => {
+                // Ignore errors — this only serves to wake the worker.
+                if (chrome.runtime.lastError) {}
+                res();
+              });
+            });
+          } catch (_) {}
+
+          try {
+            await new Promise((res, rej) => {
+              chrome.runtime.sendMessage({
+                action: 'startFetch',
+                requestId,
+                apiUrl: finalApiUrl,
+                headers: headers,
+                body: requestBody
+              }, (ack) => {
+                if (chrome.runtime.lastError) {
+                  rej(new Error(chrome.runtime.lastError.message));
+                } else if (ack && ack.started === false) {
+                  rej(new Error(ack.error || 'Failed to start stream'));
+                } else {
+                  res();
+                }
+              });
+            });
+          } catch (connectErr) {
+            console.error('❌ Failed to start streaming fetch:', connectErr);
+            streamHandlers.delete(requestId);
+            relay('summaryError', { error: 'Could not connect to the background service. Please try again.' });
+            targetElement.querySelector('.placeholder').innerHTML = '<b>Error:</b> Could not connect to the background service. Please try again.';
+            reject(new Error(connectErr.message || 'Connection failed'));
+            return;
+          }
 
         } catch (error) {
           console.error('❌ Error:', error);

@@ -198,29 +198,18 @@ export function initMainScreen(ui) {
         if (controlsBar) controlsBar.style.display = showOnboarding ? 'none' : '';
 
         if (showOnboarding) {
-            setupOnboardingListeners(ui);
-            // If a code was already requested (popup may have closed while the
-            // user checked their inbox), restore the OTP step so they can type
-            // the code without starting over.
-            if (data.pending_otp_id) {
-                const emailInput = document.getElementById('onboardingEmail');
-                const sendBtn = document.getElementById('onboardingSendCodeBtn');
-                const otpStep = document.getElementById('onboardingOtpStep');
-                const msgBox = document.getElementById('onboardingAuthMessage');
-                if (otpStep) otpStep.style.display = 'block';
-                if (sendBtn) sendBtn.style.display = 'none';
-                if (emailInput) {
-                    emailInput.disabled = true;
-                    if (data.pending_email) emailInput.value = data.pending_email;
-                }
-                if (msgBox) msgBox.textContent = 'Code sent! Check your inbox.';
-                const otpInput = document.getElementById('onboardingOtpCode');
-                if (otpInput) otpInput.focus();
-            }
+            setupOnboardingExtras(ui);
         }
     };
 
     evaluateOnboarding();
+
+    // The onboarding mask's email/OTP login is handled by the shared
+    // authManager module (same implementation as the Settings screen).
+    // Whenever auth state changes — e.g. the user finishes signing in —
+    // re-evaluate whether the onboarding mask should still be shown, so we
+    // can swap over to the summary feed without reloading the popup.
+    document.addEventListener('aish:authStateChanged', evaluateOnboarding);
 
     // ── Listen for streaming relay from content script ─────────────────
     chrome.runtime.onMessage.addListener((msg) => {
@@ -296,6 +285,21 @@ export function initMainScreen(ui) {
                     return;
                 }
 
+                // Safari opt-in model: if we don't yet have access to this site,
+                // request it NOW — still within the click gesture, so Safari's
+                // native "Allow on this website?" prompt is honored. This avoids
+                // the silent PING timeout that happens when access was never
+                // granted in the first place.
+                if (!(await hasSiteAccess(activeTab.url))) {
+                    const granted = await requestSiteAccess(activeTab.url);
+                    if (!granted) {
+                        updateStream('❌ AI Summary Helper needs permission to run on this site. Please tap "Allow" in the prompt (or enable it in Safari Settings → Extensions → AI Summary Helper).');
+                        fetchSummaryButton.disabled = false;
+                        fetchSummaryButton.textContent = '✨ Fetch Summary';
+                        return;
+                    }
+                }
+
                 await ensureContentScript(activeTab.id, activeTab.url);
 
                 const {
@@ -332,7 +336,10 @@ export function initMainScreen(ui) {
                 // Give a clearer message for permission-related failures (e.g.
                 // Safari "Ask" permission not granted for this site).
                 const msg = (err && err.message) || '';
-                const permissionHint = /permission|not allowed|Cannot access|inject/i.test(msg)
+                // If ensureContentScript already surfaced a full actionable
+                // permission message, don't append a redundant short hint.
+                const alreadyActionable = /Safari Settings|Always Allow|Allow on this website/i.test(msg);
+                const permissionHint = !alreadyActionable && /permission|not allowed|Cannot access|inject/i.test(msg)
                     ? ' — allow this extension on this site (Safari: tap the icon → Always Allow).'
                     : '';
                 updateStream('❌ ' + msg + permissionHint);
@@ -343,105 +350,19 @@ export function initMainScreen(ui) {
     });
 }
 
-// ── Onboarding listeners ─────────────────────────────────────────────
-// Wires up the email/OTP auth flow and the "use my own API" fallback on
-// the main-screen onboarding view. Reuses the same byphil Cloud endpoints
-// as authManager.js.
-function setupOnboardingListeners(ui) {
-    const emailInput = document.getElementById('onboardingEmail');
-    const sendBtn = document.getElementById('onboardingSendCodeBtn');
-    const otpStep = document.getElementById('onboardingOtpStep');
-    const otpInput = document.getElementById('onboardingOtpCode');
-    const verifyBtn = document.getElementById('onboardingVerifyBtn');
-    const msgBox = document.getElementById('onboardingAuthMessage');
+// ── Onboarding extras ────────────────────────────────────────────────
+// The email/OTP login flow itself is wired once, globally, by the shared
+// authManager module (see initAuthManager in popup.js / settingsManager.js)
+// — it drives both the onboarding mask's inputs and the Settings screen's
+// "Account Sync" panel from one implementation. All that's left for
+// mainScreen.js to wire up here is the onboarding-only "use my own API"
+// fallback button.
+function setupOnboardingExtras(ui) {
     const customApiBtn = document.getElementById('onboardingCustomApiBtn');
-
-    // Tertiary button → navigate to Settings
-    if (customApiBtn) {
+    if (customApiBtn && !customApiBtn.dataset.bound) {
+        customApiBtn.dataset.bound = 'true';
         customApiBtn.addEventListener('click', () => {
             if (ui && typeof ui.showScreen === 'function') ui.showScreen('settings');
-        });
-    }
-
-    // Send OTP code
-    if (sendBtn) {
-        sendBtn.addEventListener('click', async () => {
-            const email = emailInput.value.trim();
-            if (!email) {
-                msgBox.textContent = 'Please enter a valid email.';
-                return;
-            }
-            msgBox.textContent = 'Sending code...';
-            sendBtn.disabled = true;
-            try {
-                const response = await fetch(`${StorageManager.getApiBase()}/v1/auth/request-otp`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                });
-                const result = await response.json();
-                if (!response.ok) throw new Error(result.error || 'Failed to send code');
-
-                await StorageManager.set({
-                    pending_otp_id: result.otpId,
-                    pending_email: email,
-                    pending_otp_expires_at: result.otpExpiresAt,
-                    pending_otp_requested_at: new Date().toISOString()
-                });
-
-                otpStep.style.display = 'block';
-                sendBtn.style.display = 'none';
-                emailInput.disabled = true;
-                msgBox.textContent = 'Code sent! Check your inbox.';
-                otpInput.focus();
-            } catch (err) {
-                msgBox.textContent = 'Error: ' + err.message;
-            } finally {
-                sendBtn.disabled = false;
-            }
-        });
-    }
-
-    // Verify OTP code
-    if (verifyBtn) {
-        verifyBtn.addEventListener('click', async () => {
-            const code = otpInput.value.replace(/\s+/g, '').trim();
-            if (!code) {
-                msgBox.textContent = 'Please enter the verification code.';
-                return;
-            }
-            msgBox.textContent = 'Verifying...';
-            verifyBtn.disabled = true;
-            try {
-                const stored = await StorageManager.getAll();
-                const effectiveOtpId = stored.pending_otp_id;
-                if (!effectiveOtpId) throw new Error('Session lost. Please request a new code.');
-
-                const response = await fetch(`${StorageManager.getApiBase()}/v1/auth/verify-otp`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ otpId: effectiveOtpId, code })
-                });
-                const result = await response.json();
-                if (!response.ok) throw new Error(result.error || 'Invalid code');
-
-                await StorageManager.set({
-                    pb_token: result.token,
-                    pb_user: result.record,
-                    pending_otp_id: null,
-                    pending_email: null,
-                    pending_otp_expires_at: null,
-                    pending_otp_requested_at: null
-                });
-
-                msgBox.textContent = 'Success!';
-                // Reload UI to clear onboarding and show the main app
-                setTimeout(() => window.location.reload(), 1000);
-            } catch (err) {
-                msgBox.textContent = 'Invalid code. Try again.';
-            } finally {
-                verifyBtn.disabled = false;
-            }
         });
     }
 }
@@ -454,6 +375,61 @@ function isInjectableUrl(url) {
          !url.startsWith('edge://') &&
          !url.startsWith('about:') &&
          !url.includes('chrome.google.com/webstore');
+}
+
+// ── Site-access permission helpers (Safari opt-in model) ─────────────
+// Safari (macOS + iOS) treats website access as opt-in per site, unlike
+// Chrome/Firefox which grant <all_urls> at install time. These helpers use
+// the official `chrome.permissions` API to check and request access, which
+// shows Safari's native "Allow on this website?" prompt.
+
+/**
+ * Check whether the extension currently has access to a given origin.
+ * Returns true if the API is unavailable (falls through to injection).
+ */
+export function hasSiteAccess(url) {
+    return new Promise((resolve) => {
+        if (typeof chrome.permissions?.contains !== 'function') {
+            resolve(true);
+            return;
+        }
+        try {
+            chrome.permissions.contains({ origins: [url] }, (result) => {
+                if (chrome.runtime.lastError) {
+                    resolve(true);
+                    return;
+                }
+                resolve(!!result);
+            });
+        } catch (e) {
+            resolve(true);
+        }
+    });
+}
+
+/**
+ * Request access to a given origin via Safari's native permission prompt.
+ * MUST be called from within a user gesture (e.g. a click handler) for
+ * Safari/Chrome to honor it. Returns true if granted.
+ */
+export function requestSiteAccess(url) {
+    return new Promise((resolve) => {
+        if (typeof chrome.permissions?.request !== 'function') {
+            resolve(false);
+            return;
+        }
+        try {
+            chrome.permissions.request({ origins: [url] }, (granted) => {
+                if (chrome.runtime.lastError) {
+                    resolve(false);
+                    return;
+                }
+                resolve(!!granted);
+            });
+        } catch (e) {
+            resolve(false);
+        }
+    });
 }
 
 // Helper to check if content script is loaded, or inject it if not
@@ -477,13 +453,38 @@ export async function ensureContentScript(tabId, url) {
 
     if (await ping(tabId)) return; // already loaded
 
+    // Proactively check whether we're allowed to run scripts on this page.
+    // Safari (macOS + iOS) treats website access as opt-in per site, so even
+    // though the manifest requests <all_urls>, the user must grant access.
+    // If not granted, both static injection AND executeScript fail closed
+    // with no error surfaced — so detect it here and prompt accordingly.
+    const hasAccess = await hasSiteAccess(url);
+
+    if (!hasAccess) {
+        throw new Error(
+            'AI Summary Helper does not have permission to run on this site. ' +
+            'Please enable it in Safari Settings → Extensions → AI Summary Helper ' +
+            '→ "Allow on this website" (or "Always Allow on every website").'
+        );
+    }
+
     // Content script not present — inject it
     console.log('Injecting content script due to ping failure...');
     try {
         await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
     } catch (e) {
         console.error('ExecuteScript error:', e);
-        throw new Error('Failed to inject script: ' + e.message);
+        const msg = (e && e.message) || '';
+        // Safari surfaces permission failures here (e.g. "This extension does
+        // not have permission to run scripts on this page").
+        if (/permission|not allowed|Cannot access|not permitted|denied/i.test(msg)) {
+            throw new Error(
+                'AI Summary Helper does not have permission to run on this site. ' +
+                'Please enable it in Safari Settings → Extensions → AI Summary Helper ' +
+                '→ "Allow on this website" (or "Always Allow on every website").'
+            );
+        }
+        throw new Error('Failed to inject script: ' + msg);
     }
 
     // Poll with PINGs for up to ~3 seconds (30 × 100ms) to wait for content.js

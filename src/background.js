@@ -8,6 +8,19 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 
 // Currently, we don't have background tasks
 
+// Convert an ArrayBuffer to a base64 string in chunks — avoids blowing the
+// call stack on large images (String.fromCharCode.apply on a huge array
+// throws "Maximum call stack size exceeded").
+function arrayBufferToBase64(buffer) {
+    const bytes = new Uint8Array(buffer);
+    const chunkSize = 0x8000;
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+        binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+    }
+    return btoa(binary);
+}
+
 // ── Context Menu ─────────────────────────────────────────────────────────────
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.removeAll(() => {
@@ -195,6 +208,68 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         }
         return true;
     }
+
+    // Fetch a (possibly cross-origin / http:// on an https:// page) image
+    // on behalf of a content script and return it as a data URL. Content
+    // scripts must not fetch() third-party images directly — Safari applies
+    // the *page's* CORS/mixed-content rules to content-script fetches
+    // regardless of the extension's host_permissions, unlike Chrome. The
+    // background page is a genuine privileged context, so it can fetch
+    // cross-origin freely.
+    if (msg.action === 'fetchImageAsDataUrl' && msg.url) {
+        (async () => {
+            try {
+                const res = await fetch(msg.url);
+                if (!res.ok) {
+                    sendResponse({ success: false, error: `HTTP ${res.status}` });
+                    return;
+                }
+                const contentType = res.headers.get('content-type') || 'image/jpeg';
+                const buf = await res.arrayBuffer();
+                const dataUrl = `data:${contentType};base64,${arrayBufferToBase64(buf)}`;
+                sendResponse({ success: true, dataUrl });
+            } catch (err) {
+                sendResponse({ success: false, error: err?.message || 'Image fetch failed' });
+            }
+        })();
+        return true;
+    }
+
+    // Start a streaming fetch — message-based (not runtime.connect/ports).
+    // Safari's background page is a non-persistent event page, and it does
+    // NOT reliably re-register onConnect listeners after being suspended and
+    // woken back up — content scripts calling runtime.connect() at that
+    // moment get "No runtime.onConnect listeners found" even after a wakeup
+    // ping + retries. runtime.sendMessage / tabs.sendMessage do not have
+    // this problem, so we push each chunk back to the tab individually
+    // instead of relying on a long-lived port.
+    if (msg.action === 'startFetch' && msg.requestId) {
+        // Fallback: Safari sometimes omits sender.tab.id in
+        // chrome.runtime.onMessage for content scripts. If it's missing,
+        // resolve the active tab so we can push chunks back to it.
+        const handleStart = async () => {
+            let tabId = sender?.tab?.id;
+            if (tabId == null) {
+                const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+                tabId = activeTab?.id;
+            }
+
+            if (tabId == null) {
+                console.error('[AISH Background] No active tab found for startFetch');
+                return;
+            }
+
+            handleStreamFetch(msg, tabId);
+        };
+
+        handleStart();
+        // Respond synchronously WITHOUT return true, so the handshake is
+        // acknowledged immediately. In Safari, an async sendResponse paired
+        // with `return true` can close the message port pre-emptively and
+        // surface "The message port closed before a response was received".
+        sendResponse({ started: true });
+        return false;
+    }
 });
 
 chrome.commands.onCommand.addListener((command) => {
@@ -208,133 +283,93 @@ chrome.commands.onCommand.addListener((command) => {
     }
 });
 
-// Listen for connections from the content script for streaming fetches
-chrome.runtime.onConnect.addListener((port) => {
-    if (port.name === 'streamFetch') {
-        port.onMessage.addListener(async (msg) => {
-            if (msg.action === 'startFetch') {
-                const requestId = Math.random().toString(36).slice(2, 10);
-                const startedAt = Date.now();
-                const controller = new AbortController();
+// Performs the streaming fetch on behalf of the content script and pushes
+// each chunk back via chrome.tabs.sendMessage (see comment above for why
+// this replaces the old runtime.connect()-based approach).
+async function handleStreamFetch(msg, tabId) {
+    const { requestId, apiUrl, headers, body } = msg;
+    const push = (payload) => chrome.tabs.sendMessage(tabId, { action: 'streamChunk', requestId, payload }).catch(() => {});
 
-                // Activity-based timeout: resets on every received chunk.
-                // This prevents long-running streams (e.g. Ollama thinking
-                // models like qwen3:8b) from being killed just because the
-                // overall request exceeds a fixed wall-clock limit — as long
-                // as output keeps flowing, the request stays alive. We only
-                // abort if the stream is truly idle for IDLE_TIMEOUT_MS.
-                const IDLE_TIMEOUT_MS = 120000;
-                let timeoutId = null;
-                const armTimeout = () => {
-                    if (timeoutId) clearTimeout(timeoutId);
-                    timeoutId = setTimeout(() => {
-                        controller.abort();
-                    }, IDLE_TIMEOUT_MS);
-                };
-                const clearTimeoutHandle = () => {
-                    if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
-                };
+    const startedAt = Date.now();
+    const controller = new AbortController();
 
-                let heartbeatId = null;
-                let chunkCount = 0;
-                let byteCount = 0;
+    // Activity-based timeout: resets on every received chunk. This prevents
+    // long-running streams (e.g. Ollama thinking models like qwen3:8b) from
+    // being killed just because the overall request exceeds a fixed
+    // wall-clock limit — as long as output keeps flowing, the request stays
+    // alive. We only abort if the stream is truly idle for IDLE_TIMEOUT_MS.
+    const IDLE_TIMEOUT_MS = 120000;
+    let timeoutId = null;
+    const armTimeout = () => {
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => controller.abort(), IDLE_TIMEOUT_MS);
+    };
+    const clearTimeoutHandle = () => {
+        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+    };
 
-                try {
-                    port.postMessage({
-                        meta: 'request-started',
-                        requestId,
-                        url: msg.apiUrl,
-                    });
+    let heartbeatId = null;
+    let chunkCount = 0;
+    let byteCount = 0;
 
-                    heartbeatId = setInterval(() => {
-                        port.postMessage({
-                            meta: 'heartbeat',
-                            requestId,
-                            elapsedMs: Date.now() - startedAt,
-                            chunkCount,
-                            byteCount,
-                        });
-                    }, 3000);
+    try {
+        push({ meta: 'request-started', requestId, url: apiUrl });
 
-                    // Start the idle timeout (aborts only if no data arrives).
-                    armTimeout();
+        heartbeatId = setInterval(() => {
+            push({ meta: 'heartbeat', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
+        }, 3000);
 
-                    const response = await fetch(msg.apiUrl, {
-                        method: 'POST',
-                        headers: msg.headers,
-                        body: msg.body,
-                        signal: controller.signal,
-                    });
+        // Start the idle timeout (aborts only if no data arrives).
+        armTimeout();
 
-                    port.postMessage({
-                        meta: 'response',
-                        requestId,
-                        status: response.status,
-                        contentType: response.headers.get('content-type') || '',
-                    });
+        const response = await fetch(apiUrl, { method: 'POST', headers, body, signal: controller.signal });
 
-                    if (!response.ok) {
-                        if (heartbeatId) clearInterval(heartbeatId);
-                        clearTimeoutHandle();
-                        port.postMessage({ error: `HTTP ${response.status}: ${await response.text()}` });
-                        return;
-                    }
+        push({ meta: 'response', requestId, status: response.status, contentType: response.headers.get('content-type') || '' });
 
-                    if (!response.body) {
-                        if (heartbeatId) clearInterval(heartbeatId);
-                        clearTimeoutHandle();
-                        port.postMessage({ error: 'No response body received from API.' });
-                        return;
-                    }
+        if (!response.ok) {
+            if (heartbeatId) clearInterval(heartbeatId);
+            clearTimeoutHandle();
+            push({ error: `HTTP ${response.status}: ${await response.text()}` });
+            return;
+        }
 
-                    const reader = response.body.getReader();
-                    const decoder = new TextDecoder("utf-8");
+        if (!response.body) {
+            if (heartbeatId) clearInterval(heartbeatId);
+            clearTimeoutHandle();
+            push({ error: 'No response body received from API.' });
+            return;
+        }
 
-                    while (true) {
-                        const { value, done } = await reader.read();
-                        if (done) {
-                            if (heartbeatId) clearInterval(heartbeatId);
-                            clearTimeoutHandle();
-                            port.postMessage({
-                                meta: 'stream-complete',
-                                requestId,
-                                elapsedMs: Date.now() - startedAt,
-                                chunkCount,
-                                byteCount,
-                            });
-                            port.postMessage({ done: true });
-                            break;
-                        }
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
 
-                        chunkCount += 1;
-                        byteCount += value?.byteLength || 0;
-
-                        const decoded = decoder.decode(value, { stream: true });
-                        if (chunkCount <= 2) {
-                            port.postMessage({
-                                meta: 'chunk-preview',
-                                requestId,
-                                chunkCount,
-                                preview: decoded.slice(0, 120),
-                            });
-                        }
-
-                        port.postMessage({ chunk: decoded });
-
-                        // Data arrived — reset the idle timeout.
-                        armTimeout();
-                    }
-                } catch (err) {
-                    if (heartbeatId) clearInterval(heartbeatId);
-                    clearTimeoutHandle();
-
-                    const errorMessage = err?.name === 'AbortError'
-                        ? `Request timed out after ${IDLE_TIMEOUT_MS / 1000}s of inactivity`
-                        : err.message;
-
-                    port.postMessage({ error: errorMessage });
-                }
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) {
+                if (heartbeatId) clearInterval(heartbeatId);
+                clearTimeoutHandle();
+                push({ meta: 'stream-complete', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
+                push({ done: true });
+                break;
             }
-        });
+
+            chunkCount += 1;
+            byteCount += value?.byteLength || 0;
+
+            const decoded = decoder.decode(value, { stream: true });
+            if (chunkCount <= 2) {
+                push({ meta: 'chunk-preview', requestId, chunkCount, preview: decoded.slice(0, 120) });
+            }
+
+            push({ chunk: decoded });
+            armTimeout();
+        }
+    } catch (err) {
+        if (heartbeatId) clearInterval(heartbeatId);
+        clearTimeoutHandle();
+        const errorMessage = err?.name === 'AbortError'
+            ? `Request timed out after ${IDLE_TIMEOUT_MS / 1000}s of inactivity`
+            : err.message;
+        push({ error: errorMessage });
     }
-});
+}

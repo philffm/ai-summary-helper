@@ -204,22 +204,35 @@ export async function inlineAndCompressImages(htmlString, maxWidth = 600, qualit
     const originalSrc = img.getAttribute('src');
     if (!originalSrc || originalSrc.startsWith('data:')) return;
 
-    let objectUrl = null;
-
     try {
       const absoluteUrl = new URL(originalSrc, window.location.href).href;
 
-      const response = await fetch(absoluteUrl);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-      const blob = await response.blob();
-      objectUrl = URL.createObjectURL(blob);
+      // Fetching third-party image bytes must go through the background
+      // script here — not a direct content-script fetch(). Chrome extends
+      // the extension's host_permissions to content-script fetch() calls,
+      // but Safari does NOT: a content script's fetch is still subject to
+      // the *page's* CORS/mixed-content rules (e.g. an http:// image on an
+      // https:// page gets blocked with "access control checks" errors),
+      // even though the extension itself has <all_urls> access. The
+      // background page is a genuine privileged extension context and can
+      // fetch cross-origin freely.
+      const dataUrl = await new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({ action: 'fetchImageAsDataUrl', url: absoluteUrl }, (res) => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError.message));
+          } else if (!res?.success) {
+            reject(new Error(res?.error || 'Image fetch failed'));
+          } else {
+            resolve(res.dataUrl);
+          }
+        });
+      });
 
       const imageElement = new Image();
       await new Promise((resolve, reject) => {
         imageElement.onload = resolve;
         imageElement.onerror = reject;
-        imageElement.src = objectUrl;
+        imageElement.src = dataUrl;
       });
 
       let width = imageElement.width;
@@ -245,8 +258,6 @@ export async function inlineAndCompressImages(htmlString, maxWidth = 600, qualit
       img.setAttribute('src', base64Data);
     } catch (error) {
       console.warn(`[AI Summary Helper] Failed to inline image ${originalSrc}. Leaving original URL.`, error);
-    } finally {
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
     }
   }));
 

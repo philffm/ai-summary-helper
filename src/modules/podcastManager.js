@@ -515,7 +515,6 @@ async function generatePodcast() {
         nextBtn.disabled = false;
         nextBtn.textContent = "Generate 🎙️";
     });
-    });
 }
 
 

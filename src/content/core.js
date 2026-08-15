@@ -30,60 +30,6 @@ export function getTopUserTags(limit = 10) {
 }
 
 /**
- * Safe port connection with retry.
- * Safari on iOS/macOS aggressively suspends background scripts, so a
- * runtime.connect() can fire before the onConnect listener is ready and
- * fail with "No runtime.onConnect listeners found". Safari reliably wakes
- * background workers for runtime.sendMessage, so we send a "wakeup" ping
- * first, give the worker a tick to register its listeners, then attempt the
- * long-lived connection (with retries as a fallback).
- */
-export function connectWithRetry(portName, retries = 3, delay = 150) {
-  return new Promise((resolve, reject) => {
-    // 1. Force Safari to wake the background script via a one-off message.
-    chrome.runtime.sendMessage({ action: 'wakeup' }, (response) => {
-      if (chrome.runtime.lastError) {
-        console.warn('Wakeup ping failed, attempting connection anyway...', chrome.runtime.lastError);
-      }
-
-      // 2. Give the background script a tick to initialize its top-level
-      // event listeners if it just cold-started.
-      setTimeout(() => {
-        function attempt(remaining) {
-          try {
-            const port = chrome.runtime.connect({ name: portName });
-
-            let isDisconnected = false;
-            port.onDisconnect.addListener(() => {
-              isDisconnected = true;
-              if (chrome.runtime.lastError && remaining > 0) {
-                setTimeout(() => attempt(remaining - 1), delay);
-              } else {
-                reject(chrome.runtime.lastError || new Error('Connection failed'));
-              }
-            });
-
-            // Give it a brief tick to verify connection stability
-            setTimeout(() => {
-              if (!isDisconnected) resolve(port);
-              else if (remaining > 0) setTimeout(() => attempt(remaining - 1), delay);
-              else reject(new Error('Connection failed'));
-            }, 50);
-          } catch (err) {
-            if (remaining > 0) {
-              setTimeout(() => attempt(remaining - 1), delay);
-            } else {
-              reject(err);
-            }
-          }
-        }
-        attempt(retries);
-      }, 50);
-    });
-  });
-}
-
-/**
  * Save an article to local storage.
  */
 export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200) {
