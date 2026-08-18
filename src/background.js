@@ -117,6 +117,39 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         return true; // Keep the message channel open for the response
     }
 
+    // ── Tab proxy handlers ──────────────────────────────────────────────
+    // When popup.html is loaded inside an <iframe> embedded in a regular web
+    // page (the hybrid sidebar), Firefox downgrades that iframe to
+    // content-script-level privileges: `chrome.tabs` is undefined there. The
+    // background page always has full privileges on every platform, so these
+    // handlers do the real tab work on behalf of any context that can't reach
+    // `chrome.tabs` directly.
+    if (msg.action === 'getActiveTab') {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tab = tabs && tabs[0];
+            sendResponse({ success: !!tab, tab: tab ? { id: tab.id, url: tab.url } : null });
+        });
+        return true;
+    }
+
+    if (msg.action === 'relayToActiveTab' && msg.message) {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tab = tabs && tabs[0];
+            if (!tab) {
+                sendResponse({ success: false, error: 'No active tab' });
+                return;
+            }
+            chrome.tabs.sendMessage(tab.id, msg.message, (response) => {
+                if (chrome.runtime.lastError) {
+                    sendResponse({ success: false, error: chrome.runtime.lastError.message });
+                    return;
+                }
+                sendResponse({ success: true, response });
+            });
+        });
+        return true;
+    }
+
     if (msg.action === 'sendLocalSendP2P') {
         const method = msg.method || 'POST';
         const isJson = msg.isJson !== false;

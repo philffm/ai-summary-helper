@@ -1,0 +1,4 @@
+{
+  "_comment": "Auto-generated and updated by scripts/translate.mjs — do not hand-edit. Tracks a content hash per source file and, per locale, the source hash it was last translated against plus when/which model did it. A file is 're-translate' when its current source hash no longer matches the hash recorded under that locale.",
+  "files": {}
+}

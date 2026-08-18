@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Why We Moved Search, Tagging, and Recommendations Out of the Cloud — AI Summary Helper</title>
+<meta name="description" content="The TF-IDF index behind AI Summary Helper's search, duplicate detection, and digest features — and why most of it never needed a server.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Part of byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Back to app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Part of byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Switch to light mode</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Engineering · August 2026</span>
+      <h1>Why We Moved Search, Tagging, and Recommendations Out of the Cloud</h1>
+      <p class="post-sub">Search, dedup, tag cleanup, and recommendations share one small on-device index. Here's how that works, and why it isn't just a privacy talking point.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Most "AI-powered" browser extensions ship everything to a server — including the parts that have nothing to do with AI at all. Search, tag cleanup, "find similar items": these are decades-old, well-understood techniques. They don't need a language model, and they definitely don't need a network round-trip. We went through AI Summary Helper feature by feature and asked, for each one: does this actually need the cloud, or are we just defaulting to it because that's the easy architecture?</p>
+        <p>Most of them didn't need it.</p>
+
+        <h2>What actually moved on-device</h2>
+        <p><strong>Search.</strong> The extension originally matched only on article title and tags — fast, but blind to anything in the article body. Rather than brute-force scanning full text on every keystroke, or shipping every query to a server, we built a small TF-IDF index from the user's own saved archive. Cheap fields — title, tags — get checked first and instantly, the same as before. Longer queries get widened against the index, which is built once per session and updated incrementally, not re-scanned per keystroke.</p>
+        <p><strong>Duplicate detection.</strong> Before a save completes, a tiered check runs: exact normalized URL match first (cheap, O(1)), then title similarity on the handful of candidates that pass that filter, and only then — for the few remaining candidates — a full TF-IDF cosine-similarity comparison. Most saves never reach the expensive tier at all, because the cheap tiers already resolved them.</p>
+        <p><strong>Tag normalization.</strong> Tags accumulate drift over time — "ML," "Machine Learning," "machine-learning" all meaning the same thing to a human and nothing alike to a filter. A small alias table catches the obvious cases; a fuzzy edit-distance merge across the whole tag vocabulary catches the rest, picking whichever spelling the user actually used most often as the canonical form rather than forcing a "correct" one on them.</p>
+        <p><strong>Readability and tone.</strong> Flesch&ndash;Kincaid grade level is pure arithmetic on sentence and syllable counts — no model required. Sentiment is a bundled AFINN wordlist with a small negation check on the two preceding tokens. Neither of these needed to leave the browser.</p>
+        <p><strong>"Similar articles" and Digest.</strong> Both reuse the exact same TF-IDF vectors search already built. It would have been easy to build three separate similarity systems for three separate features. Building one index and letting search, recommendations, and digest curation all read from it kept the total system smaller and meant improving the index once improved all three features at once.</p>
+
+        <h2>What we deliberately left in the cloud</h2>
+        <p>The actual summarization step — the part that genuinely requires a language model — still needs a network call. There's no getting around that with current on-device model sizes if you want a cloud-tier model's output quality. Users bring their own API key for that step (OpenAI, Gemini, Mistral, DeepSeek), or point the extension at a local Ollama instance and skip the network for that step too. That's the one place where "on-device" isn't the default — it's opt-in, because the tradeoff there is real: a local model is slower and lower-quality than a hosted one, and we didn't want to pretend otherwise.</p>
+
+        <h2>Why this is more than a privacy talking point</h2>
+        <p>The privacy angle is real — an extension with broad host permissions sending page content to a server for things that don't need it is a legitimate trust question, not just optics. But the more mundane reason to do this is that it's usually just the correct engineering call. TF-IDF search doesn't need 200ms of network latency. Tag deduplication doesn't need an API bill attached to it. Matching the tool to the actual job, instead of routing everything through "call the cloud" by default, tends to produce something faster, cheaper to run, and more resilient to being offline — the privacy benefit comes along for free, not the other way around.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is a free Chrome extension.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source on GitHub</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">Privacy &amp; GDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — independent software built in Germany.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>

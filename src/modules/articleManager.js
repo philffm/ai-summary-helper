@@ -4,10 +4,31 @@
 
 import StorageManager from './storageManager.js';
 import { sendToLocalSend } from './localSendClient.js';
+import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
+import { computeMetrics } from './textMetrics.js';
 
 let uiManagerRef = null;
 let currentDetailArticle = null;
 let cachedArticles = [];
+
+// On-device TF-IDF index, shared by search, "similar articles", and (via
+// tagIntelligence.js elsewhere) tag suggestions. Built lazily on first use
+// and rebuilt only when the archive actually changes — not on every
+// keystroke or render.
+let searchIndex = null;
+let searchIndexDirty = true;
+
+function invalidateSearchIndex() {
+    searchIndexDirty = true;
+}
+
+function ensureSearchIndex() {
+    if (!searchIndex || searchIndexDirty) {
+        searchIndex = buildIndex(cachedArticles);
+        searchIndexDirty = false;
+    }
+    return searchIndex;
+}
 
 function buildSafeArticleTitle(title) {
     return (title || 'AI Summary').replace(/[^a-z0-9_-]/gi, '_');
@@ -333,6 +354,7 @@ export function initArticleManager(uiManager) {
             StorageManager.setLocal({ articles: updated }, () => {
                 currentDetailArticle = null;
                 cachedArticles = updated;
+                invalidateSearchIndex();
                 renderArticles(updated);
 
                 const articleDetail = document.getElementById('articleDetail');
@@ -444,7 +466,7 @@ export function initArticleManager(uiManager) {
             const source = articlesToShow.length > 0 ? articlesToShow : cachedArticles;
             if (source.length > 0) {
                     import('./archiveGraph.js').then(mod => {
-                        mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp);
+                        mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp, ensureSearchIndex());
                     });
                 } else {
                     // Fall back to storage if cache is empty (e.g. first load)
@@ -452,7 +474,7 @@ export function initArticleManager(uiManager) {
                         const articles = data.articles || [];
                         if (articles.length > 0) {
                             import('./archiveGraph.js').then(mod => {
-                                mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp);
+                                mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp, buildIndex(articles));
                             });
                         } else {
                     graphContainer.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">No articles to graph yet.</div>';
@@ -553,6 +575,7 @@ export function loadHistory() {
     StorageManager.getLocal({ articles: [] }).then(data => {
         if (data && data.articles) {
             cachedArticles = data.articles;
+            invalidateSearchIndex();
             renderArticles(cachedArticles);
         }
     }).catch(() => {});
@@ -573,6 +596,7 @@ export function renderArticles(articles) {
         const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || "No title available";
         const listItem = document.createElement('li');
         listItem.classList.add('article-card');
+        listItem.dataset.ts = String(article.timestamp);
         const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
         let articleDomain = '';
         if (article.url) {
@@ -616,33 +640,100 @@ export function renderArticles(articles) {
 
 export function filterArticles() {
     const searchInput = document.getElementById('searchInput');
-    const filterText = searchInput.value.toLowerCase();
+    const filterText = searchInput.value.trim();
+    const lowerFilter = filterText.toLowerCase();
     const graphContainer = document.getElementById('graphContainer');
 
-    // If graph is visible, re-render it with matching articles
+    // Tier 1: cheap title/tag substring match — this is the whole cost for
+    // an empty or very short query, same as the original behaviour.
+    const cheapMatch = (a) => {
+        const titleMatch = (a.title || '').toLowerCase().includes(lowerFilter);
+        const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(lowerFilter));
+        return titleMatch || tagMatch;
+    };
+
+    // If graph is visible, re-render it with matching articles. The graph
+    // is keyed on tags anyway, so it stays on the cheap tier only.
     if (graphContainer && graphContainer.style.display === 'block') {
-        const filtered = cachedArticles.filter(a => {
-            const titleMatch = (a.title || '').toLowerCase().includes(filterText);
-            const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(filterText));
-            return titleMatch || tagMatch;
-        });
+        const filtered = cachedArticles.filter(cheapMatch);
         import('./archiveGraph.js').then(mod => {
-            mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : cachedArticles, currentDetailArticle?.timestamp);
+            mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : cachedArticles, currentDetailArticle?.timestamp, ensureSearchIndex());
         });
-        // Dim the graph label when a filter is active
         graphContainer.style.opacity = filterText && filtered.length < cachedArticles.length ? '0.9' : '1';
         return;
     }
 
-    // Otherwise filter the article list cards
-    const articles = document.querySelectorAll('.article-card');
-    articles.forEach(article => {
-        const headerText = article.querySelector('.article-header h4').textContent.toLowerCase();
-        const tagText = Array.from(article.querySelectorAll('.tag-chip'))
+    // Tier 2: once the query is long enough to be meaningful (2-char
+    // queries match almost everything and aren't worth indexing), widen
+    // the search to summary/content via the prebuilt TF-IDF index. This is
+    // an index lookup, not a re-scan of every article's full text.
+    let indexedMatchIds = null;
+    if (filterText.length >= 3) {
+        const index = ensureSearchIndex();
+        const ranked = tfidfSearch(index, cachedArticles, filterText);
+        indexedMatchIds = new Set(ranked.map(a => String(a.timestamp)));
+    }
+
+    const cards = document.querySelectorAll('.article-card');
+    cards.forEach(card => {
+        if (!filterText) { card.style.display = 'block'; return; }
+        const headerText = card.querySelector('.article-header h4').textContent.toLowerCase();
+        const tagText = Array.from(card.querySelectorAll('.tag-chip'))
             .map(chip => chip.textContent.toLowerCase()).join(' ');
-        const matches = headerText.includes(filterText) || tagText.includes(filterText);
-        article.style.display = matches ? 'block' : 'none';
+        const cheapHit = headerText.includes(lowerFilter) || tagText.includes(lowerFilter);
+        const indexedHit = indexedMatchIds ? indexedMatchIds.has(card.dataset.ts) : false;
+        card.style.display = (cheapHit || indexedHit) ? 'block' : 'none';
     });
+}
+
+/**
+ * Fills in the #localInsights placeholder for the current article detail
+ * view with reading-level/sentiment badges and "similar in your archive"
+ * links. Everything here runs on-device: readingLevel/sentiment are pure
+ * text math (textMetrics.js), and similarTo() reuses the same TF-IDF index
+ * search already builds — no extra indexing pass, no network calls.
+ */
+async function renderLocalInsights(article, container) {
+    if (!container) return;
+    try {
+        const index = ensureSearchIndex();
+        const [metrics, related] = await Promise.all([
+            computeMetrics(article),
+            Promise.resolve(similarTo(index, cachedArticles, article, { limit: 4 }))
+        ]);
+
+        const badges = [];
+        if (metrics.readingLevel) {
+            badges.push(`<span class="tag-chip" style="font-size:11px;" title="Flesch reading ease: ${metrics.readingLevel.ease}/100">📖 ${metrics.readingLevel.label} · grade ${metrics.readingLevel.grade}</span>`);
+        }
+        if (metrics.sentiment && metrics.sentiment.matches > 0) {
+            const moodEmoji = metrics.sentiment.label === 'Positive' ? '🙂' : metrics.sentiment.label === 'Negative' ? '🙁' : '😐';
+            badges.push(`<span class="tag-chip" style="font-size:11px;">${moodEmoji} ${metrics.sentiment.label} tone</span>`);
+        }
+        if (metrics.estimatedMinutes) {
+            badges.push(`<span class="tag-chip" style="font-size:11px;">⏱️ ~${metrics.estimatedMinutes} min read</span>`);
+        }
+
+        const relatedHtml = related.length ? `
+          <div style="margin-top:10px;">
+            <strong style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">🔗 Similar in your archive</strong>
+            ${related.map(r => `<div class="related-article-link" data-ts="${r.article.timestamp}" style="font-size:12px;padding:6px 0;border-top:1px solid rgba(148,163,184,0.15);cursor:pointer;">${(r.article.title || 'Untitled')} <span style="color:var(--text-muted);">(${Math.round(r.score * 100)}% similar)</span></div>`).join('')}
+          </div>` : '';
+
+        container.innerHTML = `${badges.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;">${badges.join('')}</div>` : ''}${relatedHtml}`;
+
+        container.querySelectorAll('.related-article-link').forEach(el => {
+            el.addEventListener('click', () => {
+                const match = cachedArticles.find(a => String(a.timestamp) === el.dataset.ts);
+                if (match) showArticleDetail(match);
+            });
+        });
+    } catch (err) {
+        // Silent by design — local insights are a bonus, never worth
+        // interrupting the article detail view over.
+        console.warn('[AISH] Local insights failed:', err);
+        container.innerHTML = '';
+    }
 }
 
 /**
@@ -716,16 +807,22 @@ export function showArticleDetail(article) {
           <button class="button-secondary md-button">.MD 💾</button>
           <button class="button-secondary open-button">Reader 👓</button>
         </div>
-        <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:16px;">
+        <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:12px;">
           <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
           <div>${safeSummary}</div>
         </div>
+        <div id="localInsights" style="margin-bottom:16px;"></div>
         <details style="margin-top:8px;">
           <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">📄 Original Content</summary>
           <div style="font-size:13px;opacity:0.85;margin-top:8px;">${safeContent}</div>
         </details>
       </div>
     `;
+
+    // On-device insights (reading level, sentiment, similar articles) load
+    // asynchronously and progressively fill in — they never block the rest
+    // of the detail view from rendering.
+    renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
 
     // Wire up buttons
     const shareBtn = articleDetailContent.querySelector('.share-button');

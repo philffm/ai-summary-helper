@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "2.0.389",
+  "version": "2.0.404",
   "description": "__MSG_extensionDescription__",
   "browser_specific_settings": {
     "gecko": {

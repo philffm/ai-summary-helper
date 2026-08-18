@@ -276,8 +276,7 @@ export function initMainScreen(ui) {
             }
 
             try {
-                const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-                const activeTab = tabs[0];
+                const activeTab = await getActiveTab();
                 if (!activeTab) {
                     updateStream('❌ No active tab found');
                     fetchSummaryButton.disabled = false;
@@ -318,14 +317,14 @@ export function initMainScreen(ui) {
                     preferredCloudModel,
                 };
 
-                chrome.tabs.sendMessage(activeTab.id, message, (response) => {
-                    if (chrome.runtime.lastError) {
-                        console.warn("Popup communication error:", chrome.runtime.lastError);
-                        updateStream('❌ Could not reach page — try refreshing the tab.');
-                        fetchSummaryButton.disabled = false;
-                        fetchSummaryButton.textContent = '✨ Fetch Summary';
-                    }
-                });
+                try {
+                    await sendMessageToTab(activeTab.id, message);
+                } catch (err) {
+                    console.warn("Popup communication error:", err);
+                    updateStream('❌ Could not reach page — try refreshing the tab.');
+                    fetchSummaryButton.disabled = false;
+                    fetchSummaryButton.textContent = '✨ Fetch Summary';
+                }
 
                 // Inline mode: close popup
                 if (mode !== 'extension') {
@@ -375,6 +374,60 @@ function isInjectableUrl(url) {
          !url.startsWith('edge://') &&
          !url.startsWith('about:') &&
          !url.includes('chrome.google.com/webstore');
+}
+
+// ── Tab helpers (Firefox hybrid-sidebar iframe fallback) ─────────────
+// When popup.html is loaded inside an <iframe> embedded in a regular web
+// page (the hybrid sidebar), Firefox downgrades that iframe to
+// content-script-level privileges: `chrome.tabs` (and its `chrome.tabs`
+// compatibility alias) is undefined there. These helpers try the direct
+// call first — which works in the native popup and in Chrome's iframe —
+// and transparently fall back to asking background.js, which always has
+// full privileges on every platform.
+
+/**
+ * Resolve the active tab, or null if none. Falls back to background.js
+ * when `chrome.tabs` is unavailable (Firefox hybrid-sidebar iframe).
+ */
+export function getActiveTab() {
+    if (typeof chrome.tabs?.query === 'function') {
+        return chrome.tabs.query({ active: true, currentWindow: true }).then(tabs => tabs && tabs[0]);
+    }
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage({ action: 'getActiveTab' }, (res) => {
+            if (chrome.runtime.lastError || !res?.success) {
+                resolve(null);
+                return;
+            }
+            resolve(res.tab);
+        });
+    });
+}
+
+/**
+ * Send a message to a tab, resolving with the response. Falls back to
+ * background.js when `chrome.tabs` is unavailable. Rejects on error.
+ */
+export function sendMessageToTab(tabId, message) {
+    return new Promise((resolve, reject) => {
+        if (typeof chrome.tabs?.sendMessage === 'function') {
+            chrome.tabs.sendMessage(tabId, message, (response) => {
+                if (chrome.runtime.lastError) {
+                    reject(chrome.runtime.lastError);
+                    return;
+                }
+                resolve(response);
+            });
+        } else {
+            chrome.runtime.sendMessage({ action: 'relayToActiveTab', message }, (res) => {
+                if (chrome.runtime.lastError || !res?.success) {
+                    reject(new Error((res && res.error) || (chrome.runtime.lastError && chrome.runtime.lastError.message) || 'Could not reach page'));
+                    return;
+                }
+                resolve(res.response);
+            });
+        }
+    });
 }
 
 // ── Site-access permission helpers (Safari opt-in model) ─────────────
@@ -440,16 +493,15 @@ export async function ensureContentScript(tabId, url) {
     }
 
     // Try a ping first — if it succeeds we're already good
-    const ping = (id) => new Promise((resolve) => {
-        chrome.tabs.sendMessage(id, { action: 'ping' }, (res) => {
-            if (chrome.runtime.lastError) {
-                resolve(false);
-                return;
-            }
+    const ping = async (id) => {
+        try {
+            const res = await sendMessageToTab(id, { action: 'ping' });
             const status = (res && res.status || '').toLowerCase();
-            resolve(status === 'pong');
-        });
-    });
+            return status === 'pong';
+        } catch (e) {
+            return false;
+        }
+    };
 
     if (await ping(tabId)) return; // already loaded
 

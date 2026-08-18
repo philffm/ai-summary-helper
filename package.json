@@ -1,18 +1,14 @@
 {
-  "name": "ai-summary-helper",
-  "version": "2.0.313",
-  "description": "Multi-platform build tooling for the AI Summary Helper WebExtension. src/ is the single source of truth; scripts/build.js syncs it to per-platform targets.",
-  "type": "module",
+  "name": "aish-website-i18n",
   "private": true,
+  "version": "1.0.0",
+  "description": "CI-only tooling that translates and market-adapts the AI Summary Helper website. Not part of the site itself — the site remains plain HTML/CSS/JS with no build step.",
+  "type": "module",
   "scripts": {
-    "build": "node scripts/build.js",
-    "build:chrome": "node scripts/build.js chrome",
-    "build:firefox": "node scripts/build.js firefox",
-    "build:ios": "node scripts/build.js ios",
-    "build:clean": "node scripts/build.js --clean",
-    "build:all": "node scripts/build.js --clean"
+    "translate": "node scripts/translate.mjs",
+    "translate:dry-run": "node scripts/translate.mjs --dry-run"
   },
-  "engines": {
-    "node": ">=18"
+  "dependencies": {
+    "cheerio": "^1.2.0"
   }
 }

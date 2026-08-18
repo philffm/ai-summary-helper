@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (popoutBtn) {
         popoutBtn.addEventListener('click', async () => {
             try {
-                const tabs = await chrome.tabs.query({ active: true, currentWindow: true }).catch(() => []);
-                const activeTab = tabs[0];
+                const mod = await import('./modules/mainScreen.js').catch(() => null);
+                const activeTab = mod?.getActiveTab ? await mod.getActiveTab() : null;
                 const { useNativeSidePanel } = await chrome.storage.sync.get('useNativeSidePanel').catch(() => ({}));
 
                 // Native side panel (Chrome-only, opt-in). On Firefox/Safari/iOS
@@ -82,17 +82,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 // Default: hybrid injected iframe (works on every platform)
-                if (activeTab) {
-                    const mod = await import('./modules/mainScreen.js').catch(() => null);
-                    if (mod?.ensureContentScript) {
-                        // Safari opt-in model: request site access within this
-                        // click gesture so the native prompt is honored.
-                        if (mod.hasSiteAccess && !(await mod.hasSiteAccess(activeTab.url))) {
-                            if (mod.requestSiteAccess) {
-                                await mod.requestSiteAccess(activeTab.url);
-                            }
+                if (activeTab && mod?.ensureContentScript) {
+                    // Safari opt-in model: request site access within this
+                    // click gesture so the native prompt is honored.
+                    if (mod.hasSiteAccess && !(await mod.hasSiteAccess(activeTab.url))) {
+                        if (mod.requestSiteAccess) {
+                            await mod.requestSiteAccess(activeTab.url);
                         }
-                        await mod.ensureContentScript(activeTab.id, activeTab.url).catch(() => {});
+                    }
+                    await mod.ensureContentScript(activeTab.id, activeTab.url).catch(() => {});
+                    // Route through the tab helper so a nested pop-out (triggered
+                    // from inside an already-popped-out sidebar) still works on
+                    // Firefox, where `chrome.tabs` is undefined in the iframe.
+                    if (mod.sendMessageToTab) {
+                        await mod.sendMessageToTab(activeTab.id, { action: 'toggleHybridSidebar' }).catch(() => {});
+                    } else {
                         chrome.tabs.sendMessage(activeTab.id, { action: 'toggleHybridSidebar' }).catch(() => {});
                     }
                 }

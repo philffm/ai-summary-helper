@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>Blog — AI Summary Helper</title>
-<meta name="description" content="Notes on reading, search, and building on-device — from the team behind AI Summary Helper.">
+<title>You Won't Read Most of What You Save. Here's the Actual Fix. — AI Summary Helper</title>
+<meta name="description" content="Most bookmarked articles are never reopened. Here's why Digest exists, and why it deliberately doesn't try to make the pile bigger.">
 
 <script>
   (function(){
@@ -76,35 +76,46 @@
 </header>
 
 <main id="main">
-  <section class="hero" style="padding-bottom:24px;">
-    <div class="wrap">
-      <div class="eyebrow"><span class="dash"></span> The blog <span class="dash"></span></div>
-      <h1 style="font-size:clamp(30px, 4.6vw, 46px);">Notes on reading, search,<br><em>and building on-device</em></h1>
-      <p class="sub">What we learned building this — and where it fits if you're weighing your options.</p>
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Product · August 2026</span>
+      <h1>You Won't Read Most of What You Save. Here's the Actual Fix.</h1>
+      <p class="post-sub">The overwhelming majority of saved articles never get reopened. That's not a discipline problem &mdash; it's a design problem.</p>
     </div>
-  </section>
+  </div>
 
-  <section style="padding-top:24px;">
+  <section>
     <div class="wrap">
-      <div class="blog-grid reveal">
-        <a class="blog-card" href="pocket-alternative.html">
-          <span class="blog-date">Guide · Aug 2026</span>
-          <h3>Looking for a Pocket alternative? Here's what actually matters</h3>
-          <p>Pocket's shutdown left a real gap. A decision guide based on what you actually used it for — not which app looks the most familiar.</p>
-          <span class="blog-read">Read the post →</span>
-        </a>
-        <a class="blog-card" href="unread-saves.html">
-          <span class="blog-date">Product · Aug 2026</span>
-          <h3>You won't read most of what you save. Here's the actual fix.</h3>
-          <p>Most saved articles are never reopened. Why Digest exists, and why it deliberately doesn't try to make the pile bigger.</p>
-          <span class="blog-read">Read the post →</span>
-        </a>
-        <a class="blog-card" href="on-device-architecture.html">
-          <span class="blog-date">Engineering · Aug 2026</span>
-          <h3>Why we moved search, tagging, and recommendations out of the cloud</h3>
-          <p>The TF-IDF index behind search, dedup, and digest — and why most of it never needed a server in the first place.</p>
-          <span class="blog-read">Read the post →</span>
-        </a>
+      <div class="prose">
+<p>Research on bookmarking behavior (Bergman, Whittaker, and Schooler) found something most of us already suspected but didn't want to admit: the overwhelming majority of things people save to read later never get reopened. Some studies put the number as high as 84%.</p>
+        <p>If that sounds about right for your own reading list, it's not a discipline problem. It's a design problem — in the tools, not in you.</p>
+
+        <h2>The save reflex isn't the problem. The pile is.</h2>
+        <p>Saving something takes one click and about half a second of intention. Actually reading it later requires you to reopen an app, scroll through a list that's grown to 60, 100, 200 items, and make a decision about which one, right now, in whatever five-minute window you've found. That second step is where almost everyone gives up — not because the articles weren't interesting, but because <em>choosing among 200 things</em> is its own kind of work, and most read-later apps hand you the entire pile and walk away.</p>
+        <p>A bookmark, in other words, is a promise you keep breaking. Not because you're lazy. Because the tool asked you to do the hard part — deciding what to actually read, right now — with zero help.</p>
+
+        <h2>What most read-it-later apps optimize for</h2>
+        <p>Almost every tool in this category is built to make <em>saving</em> frictionless. That's the wrong optimization target if the real failure point is <em>choosing</em>. A longer list isn't more useful than a shorter one if you never open the app to look at it.</p>
+
+        <h2>The idea behind Digest</h2>
+        <p>Instead of asking you to scroll a growing pile and make a decision, AI Summary Helper's Digest feature makes a first pass for you. Tap it, and it picks a small set of your saves — five, by default — biased toward:</p>
+        <ul>
+          <li><strong>Recency</strong>, so it's not surfacing something you saved eight months ago and have clearly moved on from</li>
+          <li><strong>Variety</strong>, so you don't get five articles about the same topic when what actually happened is you saved five things from the same news cycle</li>
+          <li><strong>Mood, if you want it</strong> — pick "upbeat," "neutral," or "deep and serious," and it'll lean the selection that direction using the tone of what you saved</li>
+        </ul>
+        <p>That's it. Five picks, not two hundred. A decision you can make in ten seconds instead of a list you'll close the tab on.</p>
+
+        <h2>Then it gets out of your read-later app entirely</h2>
+        <p>The part that actually matters: once Digest has picked something, you're not stuck reading it in the extension. It bundles the picks — summaries and links back to the source — into one file you can send straight to your Kindle or to another device on your network. Load it up before a flight, a weekend, a commute with no signal. The bundle exists specifically so the moment you'd actually read something doesn't require you to be at your laptop with the extension open.</p>
+
+        <h2>Why this matters more than it sounds like it should</h2>
+        <p>Every read-it-later tool will tell you it helps you "read more of what you save." Almost none of them change anything about the actual moment of choosing. They just make saving easier, which — per that same research — makes the pile grow faster without doing anything about the part that was actually broken.</p>
+        <p>The fix isn't a better list. It's not needing to look at the list at all.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is a free Chrome extension.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+        </div>
       </div>
     </div>
   </section>

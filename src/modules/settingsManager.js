@@ -6,6 +6,7 @@ import StorageManager from './storageManager.js';
 import { initPromptManager } from './promptManager.js';
 import { updateModelIdentifierUI } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
+import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 
 let uiRef = null;
 
@@ -19,6 +20,7 @@ export async function initSettingsManager(ui) {
     initLocalSendSettings(storageData);
     initDangerZone();
     initBackupRestore();
+    initLocalIntelligence();
     initSummaryLengthSlider();
     initBookmarkletGenerator();
 
@@ -799,6 +801,66 @@ function getLocalSubnetIp() {
                 });
         } catch (_) {
             resolve('192.168.1.1');
+        }
+    });
+}
+
+// ── Section: On-Device Intelligence (tag cleanup) ────────────────────
+// The per-save tag normalization in content.js only handles known
+// alias->canonical mapping. Merging near-duplicate tags that emerged
+// organically across the whole archive (typos, "Podcast" vs "Podcasts",
+// "ML" vs "Machine Learning") needs the full tag vocabulary, so it runs
+// as an explicit, on-demand maintenance pass rather than on every save.
+function initLocalIntelligence() {
+    const btn = document.getElementById('cleanupTagsButton');
+    const resultEl = document.getElementById('cleanupTagsResult');
+    if (!btn) return;
+
+    btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        const originalLabel = btn.textContent;
+        btn.textContent = '🧹 Analyzing tags…';
+        if (resultEl) resultEl.style.display = 'none';
+
+        try {
+            const data = await StorageManager.getLocal({ articles: [] });
+            const articles = data.articles || [];
+
+            if (articles.length === 0) {
+                if (resultEl) { resultEl.textContent = 'No articles saved yet.'; resultEl.style.display = 'block'; }
+                return;
+            }
+
+            const canonicalMap = buildCanonicalTagMap(articles);
+            let changedArticles = 0;
+            let tagsMerged = 0;
+
+            const updated = articles.map(article => {
+                const before = article.tags || [];
+                const after = applyCanonicalTags(before, canonicalMap);
+                const beforeKey = before.map(t => t.toLowerCase()).sort().join('|');
+                const afterKey = after.map(t => t.toLowerCase()).sort().join('|');
+                if (beforeKey !== afterKey) {
+                    changedArticles++;
+                    tagsMerged += Math.max(0, before.length - after.length);
+                }
+                return { ...article, tags: after };
+            });
+
+            await StorageManager.setLocal({ articles: updated });
+
+            if (resultEl) {
+                resultEl.textContent = changedArticles > 0
+                    ? `✓ Updated ${changedArticles} article${changedArticles === 1 ? '' : 's'}, merged ${tagsMerged} duplicate tag${tagsMerged === 1 ? '' : 's'}.`
+                    : '✓ Tags already look consistent — nothing to merge.';
+                resultEl.style.display = 'block';
+            }
+        } catch (err) {
+            console.error('[AISH] Tag cleanup failed:', err);
+            if (resultEl) { resultEl.textContent = 'Something went wrong — please try again.'; resultEl.style.display = 'block'; }
+        } finally {
+            btn.disabled = false;
+            btn.textContent = originalLabel;
         }
     });
 }
