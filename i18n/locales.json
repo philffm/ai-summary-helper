@@ -34,6 +34,34 @@
       "dir": "hi",
       "hreflang": "hi",
       "marketNotes": "Primary audience is English-fluent Indian tech/knowledge workers who already read technical English comfortably — so lean toward the natural code-switched register common in Indian tech content (keep product terms, feature names like 'Digest', 'Kindle', 'LocalSend', and technical terms like 'on-device' in English rather than forcing awkward literal Hindi translations for them) rather than formal textbook Hindi. Mention Ollama/local-model support prominently — price sensitivity and data-cost awareness are real considerations in this market, and 'free, fully offline, no ongoing cost' is a genuinely strong angle here, more so than in other locales."
+    },
+    "de": {
+      "name": "German",
+      "dir": "de",
+      "hreflang": "de",
+      "marketNotes": "Germany, Austria, Switzerland. Use formal 'Sie' register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. GDPR/data-sovereignty framing resonates strongly here, so the 'nothing leaves Europe' / byphil-hosted-in-Germany angle can be played up rather than softened. Keep EUR pricing as-is, no conversion needed."
+    },
+
+    "ko": {
+      "name": "Korean",
+      "dir": "ko",
+      "hreflang": "ko",
+      "marketNotes": "South Korea. Use formal register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. Keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
+    },
+
+    "ja": {
+      "name": "Japanese",
+      "dir": "ja",
+      "hreflang": "ja",
+      "marketNotes": "Japan. Use formal register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. Keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
+    },
+
+    "pt": {
+      "name": "Portuguese",
+      "dir": "pt",
+      "hreflang": "pt",
+      "marketNotes": "Brazil. Use neutral, pan-regional Portuguese that reads naturally in both Portugal and Brazil — avoid Portugal-only or Brazil-only slang. This is the widest-reach locale by native speaker count, spanning very different purchasing power levels, so keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
     }
+
   }
 }
