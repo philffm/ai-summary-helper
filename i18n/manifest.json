@@ -27,6 +27,30 @@
           "translatedAt": "2026-08-18T17:40:02.185Z",
           "model": "google/gemini-3.7-flash",
           "unitCount": 152
+        },
+        "de": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:52:21.107Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        },
+        "ko": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:53:11.688Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        },
+        "ja": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:53:49.170Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        },
+        "pt": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:54:08.945Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
         }
       }
     },
@@ -54,6 +78,30 @@
         "hi": {
           "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
           "translatedAt": "2026-08-18T17:40:47.089Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "de": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:54:21.295Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "ko": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:54:37.268Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "ja": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:54:43.904Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "pt": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:54:53.529Z",
           "model": "google/gemini-3.7-flash",
           "unitCount": 41
         }
@@ -85,6 +133,30 @@
           "translatedAt": "2026-08-18T17:42:35.450Z",
           "model": "google/gemini-3.7-flash",
           "unitCount": 71
+        },
+        "de": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:55:20.087Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        },
+        "ko": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:55:49.308Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        },
+        "ja": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:56:20.373Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        },
+        "pt": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:56:52.465Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
         }
       }
     },
@@ -114,6 +186,30 @@
           "translatedAt": "2026-08-18T17:44:10.547Z",
           "model": "google/gemini-3.7-flash",
           "unitCount": 57
+        },
+        "de": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:57:16.001Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        },
+        "ko": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:57:49.500Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        },
+        "ja": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:58:01.563Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        },
+        "pt": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:58:28.936Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
         }
       }
     },
@@ -141,6 +237,30 @@
         "hi": {
           "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
           "translatedAt": "2026-08-18T17:45:52.501Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "de": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T17:58:58.563Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "ko": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T17:59:29.971Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "ja": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T18:00:00.391Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "pt": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T18:00:12.389Z",
           "model": "google/gemini-3.7-flash",
           "unitCount": 47
         }
