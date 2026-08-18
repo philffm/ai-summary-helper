@@ -14,3 +14,4 @@ dist/
 dev/
 prod/
 chrome-extension_LEGACY
+node_modules/
