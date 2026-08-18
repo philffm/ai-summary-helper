@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>हमने Search, Tagging, और Recommendations को Cloud से बाहर क्यों शिफ्ट किया — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helper के search, duplicate detection, और digest features के पीछे का TF-IDF index — और क्यों इनमें से ज़्यादातर चीज़ों को कभी server की ज़रूरत ही नहीं थी।">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">सीधे content पर जाएं</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. का हिस्सा।
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← App पर वापस जाएं</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. का हिस्सा ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Light mode में बदलें</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Engineering · August 2026</span>
+      <h1>हमने Search, Tagging, और Recommendations को Cloud से बाहर क्यों शिफ्ट किया</h1>
+      <p class="post-sub">Search, dedup, tag cleanup, और recommendations एक ही छोटा on-device index शेयर करते हैं। जानिए यह कैसे काम करता है, और यह सिर्फ़ एक privacy talking point क्यों नहीं है।</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>ज़्यादातर "AI-powered" browser extensions सब कुछ server पर भेज देते हैं — यहाँ तक कि उन चीज़ों को भी जिनका AI से कोई लेना-देना नहीं है। Search, tag cleanup, "find similar items": ये दशकों पुरानी, well-understood टेक्निक्स हैं। इन्हें किसी language model की ज़रूरत नहीं है, और network round-trip की तो बिल्कुल नहीं। हमने AI Summary Helper के हर feature को एक-एक करके परखा और पूछा: क्या इसे वाकई cloud की ज़रूरत है, या हम बस इसलिए cloud यूज़ कर रहे हैं क्योंकि यह आसान architecture है?</p>
+        <p>उनमें से ज़्यादातर को इसकी ज़रूरत नहीं थी।</p>
+
+        <h2>असल में क्या-क्या on-device शिफ्ट हुआ</h2>
+        <p><strong>Search.</strong> पहले यह extension केवल article title और tags से मैच करता था — तेज़ तो था, लेकिन article body में क्या है, यह नहीं देख पाता था। हर keystroke पर brute-force full text scan करने या हर query को server पर भेजने के बजाय, हमने user के सेव किए गए archive से एक छोटा TF-IDF index तैयार किया। सस्ते fields — जैसे title और tags — पहले और तुरंत चेक होते हैं, बिल्कुल पहले की तरह। लंबी queries को इस index के ज़रिए मैच किया जाता है, जो हर session में सिर्फ़ एक बार बनता है और incrementally update होता है, न कि हर keystroke पर दोबारा scan होता है।</p>
+        <p><strong>Duplicate detection.</strong> Save पूरा होने से पहले एक tiered check चलता है: सबसे पहले exact normalized URL match (सस्ता, O(1)), फिर उस फ़िल्टर को पास करने वाले कुछ चुनिंदा candidates पर title similarity, और सिर्फ़ तभी — बचे हुए कुछ candidates के लिए — एक पूरा TF-IDF cosine-similarity comparison। ज़्यादातर saves कभी महंगे tier तक पहुँचते ही नहीं हैं, क्योंकि सस्ते tiers उन्हें पहले ही resolve कर देते हैं।</p>
+        <p><strong>Tag normalization.</strong> समय के साथ tags में drift आ जाता है — जैसे "ML", "Machine Learning", "machine-learning" इंसान के लिए एक जैसे हैं, लेकिन filter के लिए बिल्कुल अलग। एक छोटी alias table साफ़ मामलों को पकड़ लेती है; और बाकी के लिए पूरी tag vocabulary पर fuzzy edit-distance merge काम करता है, जो user द्वारा सबसे ज़्यादा इस्तेमाल की गई spelling को canonical form मान लेता है, बजाय इसके कि उन पर कोई "सही" spelling थोपी जाए।</p>
+        <p><strong>Readability और tone.</strong> Flesch–Kincaid grade level सिर्फ़ sentence और syllable counts का सीधा arithmetic है — किसी model की ज़रूरत नहीं। Sentiment के लिए एक bundled AFINN wordlist है, जिसमें पिछले दो tokens पर एक छोटा negation check होता है। इनमें से किसी को भी browser से बाहर जाने की ज़रूरत नहीं थी।</p>
+        <p><strong>"Similar articles" और Digest.</strong> ये दोनों बिल्कुल उन्हीं TF-IDF vectors को reuse करते हैं जो search पहले ही बना चुका होता है। तीन अलग-अलग features के लिए तीन अलग similarity systems बनाना आसान होता। लेकिन एक ही index बनाकर search, recommendations, और digest curation को उसी से पढ़ने देना पूरे system को हल्का रखता है — यानी index को एक बार बेहतर करने से तीनों features एक साथ बेहतर हो जाते हैं।</p>
+
+        <h2>हमने जानबूझकर क्या cloud में रहने दिया</h2>
+        <p>असल summarization step — वह हिस्सा जिसमें वाकई एक language model की ज़रूरत होती है — अभी भी network call पर निर्भर करता है। अगर आपको cloud-tier model जैसी output quality चाहिए, तो मौजूदा on-device model sizes के साथ इससे बचा नहीं जा सकता। Users इस step के लिए अपनी खुद की API key इस्तेमाल कर सकते हैं (OpenAI, Gemini, Mistral, DeepSeek), या extension को local Ollama instance से कनेक्ट करके इस step में भी network calls और API costs पूरी तरह बचा सकते हैं। बस यही एक जगह है जहाँ "on-device" default नहीं है — यह opt-in है, क्योंकि यहाँ tradeoff साफ़ है: local model hosted model से धीमा और कम quality वाला होता है, और हम इस बात को छुपाना नहीं चाहते थे।</p>
+
+        <h2>यह सिर्फ़ एक privacy talking point से बढ़कर क्यों है</h2>
+        <p>Privacy का पहलू पूरी तरह वाजिब है — broad host permissions वाला extension अगर उन चीज़ों के लिए भी page content server पर भेजे जिनकी ज़रूरत ही नहीं है, तो यह भरोसे का सवाल बन जाता है, सिर्फ़ दिखावा नहीं। लेकिन इसे करने की सबसे बुनियादी वजह यह है कि आमतौर पर यही सही engineering decision होता है। TF-IDF search को 200ms network latency की ज़रूरत नहीं है। Tag deduplication के लिए फालतू API bill भरने की ज़रूरत नहीं है। हर चीज़ को default रूप से cloud पर भेजने के बजाय सही काम के लिए सही tool चुनना इसे तेज़ बनाता है, चलाने में बेहद किफ़ायती रखता है, और offline भी बिना रुकावट काम करने देता है — privacy का फ़ायदा तो इसके साथ अपने आप बिल्कुल मुफ़्त मिल जाता है।</p>
+        <div class="post-cta">
+          <p>AI Summary Helper एक फ़्री Chrome extension है।</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">Privacy &amp; GDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — independent software built in Germany.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

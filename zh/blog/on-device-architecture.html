@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>为什么我们将搜索、标签与推荐功能移出云端 —— AI Summary Helper</title>
+<meta name="description" content="揭秘 AI Summary Helper 搜索、重复检测与文摘功能背后的 TF-IDF 索引 —— 以及为什么大部分功能其实根本不需要服务器。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳转至主要内容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下项目
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特性</a>
+        <a href="../index.html#pricing">价格方案</a>
+        <a href="./" aria-current="page">博客</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回应用</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特性</a>
+      <a href="../index.html#pricing">价格方案</a>
+      <a href="./">博客</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下项目 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切换至浅色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">工程技术 · 2026 年 8 月</span>
+      <h1>为什么我们将搜索、标签与推荐功能移出云端</h1>
+      <p class="post-sub">搜索、查重、标签整理和内容推荐共用一个轻量级本地端索引。本文将解析其工作原理，以及为什么这不仅仅是一个关于隐私的宣传点。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>大多数“AI 驱动”的浏览器扩展程序会将所有数据发送到服务器 —— 甚至是那些与 AI 完全无关的部分。搜索、标签整理、“查找相似内容”：这些都是发展了数十年、技术非常成熟的方法。它们不需要大语言模型，更不需要耗费一次网络往返。我们逐一审视了 AI Summary Helper 的每项功能并自问：这真的需要云端吗？还是我们仅仅因为云端架构最省事就默认采用了它？</p>
+        <p>事实证明，绝大多数功能根本不需要。</p>
+
+        <h2>哪些功能真正迁移到了本地端</h2>
+        <p><strong>搜索。</strong> 该扩展最初仅匹配文章标题和标签 —— 速度虽快，但无法检索正文内容。与其在每次按键输入时暴力扫描全文，或将每个查询请求发送给服务器，我们利用用户自己保存的文章归档构建了一个轻量级的 TF-IDF 索引。低开销字段（标题、标签）依然像以前一样最先完成即时检查。较长的查询则在索引中进行扩展检索；该索引在每个会话中仅构建一次并支持增量更新，无需每次按键都重新全量扫描。</p>
+        <p><strong>重复检测。</strong> 在保存操作完成之前，系统会执行分层检查：首先是规范化 URL 的精确匹配（低开销，O(1)）；接着对通过初筛的少数候选内容进行标题相似度检查；只有针对极少数残留的候选内容，才会进行完整的 TF-IDF 余弦相似度比较。大多数保存操作根本不会触发高开销的计算层，因为前面的轻量层已经解决了问题。</p>
+        <p><strong>标签规范化。</strong> 随着时间推移，标签往往会出现表述分歧 —— 例如“ML”、“Machine Learning”、“machine-learning”对人类来说含义相同，但对过滤器而言却完全不同。一个简短的别名表可以处理显而易见的情况；而针对整个标签词表的模糊编辑距离合并算法则能搞定其余部分，系统会选择用户实际最常使用的拼写作为规范形式，而不是强加一个所谓的“正确”写法。</p>
+        <p><strong>可读性与语调。</strong> Flesch–Kincaid 可读性分级纯粹是基于句子和音节数量的算术运算 —— 完全不需要模型。情感分析则是内置的 AFINN 词表，外加对前两个词元的简易否定词检查。这两者都不需要离开浏览器。</p>
+        <p><strong>“相似文章”与文摘。</strong> 两者都复用了搜索功能已经构建好的同套 TF-IDF 向量。为三个不同的功能构建三套独立的相似度系统本不是难事，但构建一个共享索引并让搜索、推荐和文摘整理共同读取，不仅让整个系统更轻量，还意味着只要对索引进行一次优化，就能同时提升这三项功能的表现。</p>
+
+        <h2>我们特意保留在云端的功能</h2>
+        <p>核心的摘要生成步骤 —— 即真正需要语言模型的部分 —— 依然需要网络调用。以目前端侧模型的大小，如果你想要获得云端顶级模型的输出质量，这一点无法避免。在这一步，用户可以使用自己的 API Key（OpenAI、Gemini、Mistral、DeepSeek），或者将扩展指向本地 Ollama 实例以完全跳过网络请求。这是唯一一个“本地端”不是默认选项的地方 —— 它是可选的，因为这里的权衡是显而易见的：本地模型确实比云端托管模型更慢、生成质量也稍逊一筹，我们不想回避这一点。</p>
+
+        <h2>为什么这不仅仅是关于隐私的宣传噱头</h2>
+        <p>隐私层面的考量是真实存在的 —— 一个拥有广泛主机权限的扩展程序如果把页面内容发送到服务器去处理非必要任务，这确实关乎用户信任，绝不仅是表面功夫。但更务实的原因在于：这通常本就是更正确的工程决策。TF-IDF 搜索不需要承受 200ms 的网络延迟；标签查重也不该产生额外的 API 账单。根据实际需求选择恰当的工具，而不是默认把所有请求都甩给云端，往往能让系统响应更快、运行成本更低，并且在离线状态下更具韧性 —— 隐私保护只是水到渠成的附带红利，而不是反过来的因果。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免费的 Chrome 扩展程序。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">添加至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">隐私与 GDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 隶属于 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> —— 德国制造的独立软件。<br>
+      设计与开发： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

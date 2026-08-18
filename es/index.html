@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper — Resume, guarda y busca en la web desde tu dispositivo</title>
+<meta name="description" content="Una extensión de Chrome que resume páginas web con IA, las guarda en un archivo con búsqueda y envía selecciones de lectura a Kindle o LocalSend. Búsqueda, deduplicación y recomendaciones en tu dispositivo.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="Resume, guarda y busca en la web desde tu dispositivo. Una extensión de Chrome diseñada para que no vuelvas a perder tu lista de lectura.">
+<meta property="og:url" content="https://aish.byphil.eu/">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/index.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/index.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/index.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte de byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Funciones</a>
+        <a href="#digest">Digest</a>
+        <a href="#pricing">Precios</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Mi cuenta</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">Funciones</a>
+      <a href="#digest">Digest</a>
+      <a href="#pricing">Precios</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Mi cuenta</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte de byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Cambiar a modo claro</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Extensión de Chrome · Parte de byphil. <span class="dash"></span></div>
+      <h1>Resume la web.<br><em>Conserva lo importante.</em></h1>
+      <p class="sub">AI Summary Helper guarda cualquier página como un artículo resumido y localizable; además, te ayuda a retomarlo con un resumen en el dispositivo que envía lecturas sin conexión directo a tu Kindle u otro dispositivo.</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Añadir a Chrome — es gratis</a>
+        <a href="#features" class="btn-secondary">Descubre cómo funciona</a>
+      </div>
+      <p class="hero-meta">No requiere crear cuenta · Usa tu propia clave de IA o ejecútalo completamente sin conexión con Ollama</p>
+    </div>
+  </section>
+
+  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="mock-shell reveal">
+        <div class="mock-card">
+          <div class="mock-tags"><span class="mock-chip">IA</span><span class="mock-chip">Software</span></div>
+          <h4>El auge de los agentes de IA en la ingeniería de software</h4>
+          <p>Los agentes de IA están transformando la forma en que los equipos crean software: las herramientas de programación autónomas ahora planifican, escriben y prueban con mínima supervisión en todo el flujo de trabajo.</p>
+          <div class="mock-badge">📖 Estándar · nivel 8.2 &nbsp;·&nbsp; ⏱️ ~4 min de lectura &nbsp;·&nbsp; 🔗 3 similares en tu archivo</div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-tags"><span class="mock-chip">🗞️ Digest</span></div>
+          <h4>Tu resumen: 5 artículos seleccionados</h4>
+          <p>Seleccionados por variedad, sin repetir la misma historia. Listos para enviar a Kindle o LocalSend en un solo archivo.</p>
+          <div class="mock-badge">📚 Enviar a Kindle &nbsp;·&nbsp; 📱 Enviar por LocalSend</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Qué hace</div>
+        <h2>Todo lo que una lista de lectura debió ser desde el principio</h2>
+        <p>Guarda, comprende, encuentra de nuevo y retoma tus lecturas, sin otra suscripción que retenga tu archivo.</p>
+      </div>
+
+      <div class="feature-grid reveal">
+        <div class="feature-card">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>Resúmenes con IA, tú eliges el modelo</h3>
+          <p>OpenAI, Gemini, Mistral, DeepSeek o más de 100 modelos vía OpenRouter; o conéctalo a un modelo local de Ollama sin enviar nada a la red en este paso.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Búsqueda real en el dispositivo</h3>
+          <p>Búsqueda de texto completo en títulos, etiquetas y contenido de artículos, impulsada por un índice TF-IDF generado en tu navegador. Sin retrasos y sin enviar datos a servidores.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>Guardar para después, con intención</h3>
+          <p>Marca una "decisión" con un motivo y un plazo, y recibe recordatorios, en lugar de verla desaparecer en una pila que nunca volverás a abrir.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>Un resumen que se organiza solo</h3>
+          <p>Con un solo toque se selecciona un grupo variado de tus artículos guardados (sin cinco versiones de la misma noticia), agrupados en un único archivo para Kindle o LocalSend.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Un grafo de conocimiento, no solo una lista</h3>
+          <p>Descubre cómo se conectan tus artículos guardados: por etiquetas compartidas y por similitud temática, incluso si no comparten etiquetas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>Más de 20 idiomas, multiplataforma</h3>
+          <p>Lee y resume en el idioma que prefieras. Extensión, panel lateral nativo o bookmarklet para cualquier lugar al que no llegue la extensión del navegador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">El problema del 84 %</div>
+        <h2>La mayoría de lo que guardas, no lo vuelves a leer</h2>
+        <p>Los estudios sobre el uso de marcadores muestran de forma consistente que la gran mayoría de los artículos guardados nunca se vuelven a abrir. No es falta de disciplina: es lo que ocurre cuando una herramienta facilita guardar pero no ayuda a decidir qué leer.</p>
+      </div>
+      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. Toca Digest</h3>
+          <p>Elige 5 de tus artículos guardados, priorizando la actualidad y la variedad para no mostrarte cinco versiones de la misma noticia.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. Ajusta el tono si lo deseas</h3>
+          <p>Optimista, neutral o profundo y riguroso: el resumen adapta la selección al tono que te apetezca leer.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. Envíalo para leer sin conexión</h3>
+          <p>Un solo archivo directo a tu Kindle o a un dispositivo en tu red. Cárgalo antes de un vuelo, un trayecto o un fin de semana sin señal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Creado al estilo byphil</div>
+        <h2>Tu archivo sigue siendo tuyo</h2>
+        <p>La búsqueda, la detección de duplicados, la limpieza de etiquetas, el análisis de nivel y tono de lectura y los "artículos similares" se ejecutan por completo en tu navegador: sin servidores ni cuentas obligatorias para aprovecharlo. Lo único que sale de tu equipo es la solicitud de resumen, y solo al proveedor de IA que elijas. Conéctalo a un modelo local de Ollama y ni siquiera eso saldrá de tu equipo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Una sola clave para todas las herramientas de byphil</div>
+        <h2>Comienza gratis. Pasa a Pro cuando lo necesites.</h2>
+        <p>El Support Pass no es solo para esta extensión: es una sola clave que desbloquea acceso prémium a todo lo que crea byphil, gestionado desde tu cuenta de byphil.</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="tablist" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" onclick="setBilling('monthly')">Mensual</button>
+          <button type="button" id="btnYearly" onclick="setBilling('yearly')">Anual · ahorra un 50 %</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">Gratis</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">Todo en tu dispositivo, siempre</div>
+          <ul>
+            <li>Resúmenes ilimitados con tu propia clave de IA u Ollama</li>
+            <li>Búsqueda, resumen y grafo de conocimiento: todo en el dispositivo</li>
+            <li>3 envíos a Kindle incluidos</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">Añadir a Chrome</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">Mejor opción</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/mes</span></span>
+            <span class="price-yearly">€29.94<span>/año</span></span>
+          </div>
+          <div class="tier-note">Facturación <span class="price-monthly">mensual</span><span class="price-yearly">anual</span></div>
+          <ul>
+            <li>Envíos ilimitados a Kindle y LocalSend, incluidos los resúmenes</li>
+            <li>Acceso a IA en byphil Cloud: sin necesidad de clave de API</li>
+            <li>Desbloquea Pro en todas las herramientas de byphil</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Obtener Support Pass</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/pago único</span></div>
+          <div class="tier-note">12 meses de acceso total</div>
+          <ul>
+            <li>Todo lo incluido en Support Pass</li>
+            <li>Apoyo directo a futuras herramientas</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Donar y desbloquear</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Preguntas</div>
+        <h2>Antes de instalar</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>¿Necesito una cuenta para usarlo?</summary>
+          <p>No. Instálalo, usa la clave de tu proveedor de IA (o un modelo local de Ollama) y empieza a guardar. Solo necesitas una cuenta si quieres acceso a byphil Cloud o envíos ilimitados a Kindle/LocalSend mediante el Support Pass.</p>
+        </details>
+        <details>
+          <summary>¿Qué datos salen de mi navegador?</summary>
+          <p>Solo la solicitud de resumen enviada al proveedor de IA que hayas configurado. La búsqueda, la detección de duplicados, la limpieza de etiquetas, la puntuación de nivel y sentimiento y las recomendaciones de "artículos similares" se ejecutan localmente sobre tu archivo guardado.</p>
+        </details>
+        <details>
+          <summary>¿Puedo usarlo sin depender en absoluto de la nube?</summary>
+          <p>Sí: conéctalo a un modelo local de Ollama y el proceso de resumen también permanecerá en tu equipo. Todo lo demás ya funciona así.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa con mis artículos guardados si cancelo el Support Pass?</summary>
+          <p>Tu archivo permanece exactamente donde siempre ha estado: en el almacenamiento local de tu navegador en tu dispositivo. El Support Pass solo da acceso a funciones adicionales en la nube (acceso a IA en byphil Cloud, envíos ilimitados a Kindle/LocalSend), nunca a lo que ya has guardado.</p>
+        </details>
+        <details>
+          <summary>¿Es de código abierto?</summary>
+          <p>Sí, el código de la extensión es público en <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Del blog</div>
+        <h2>Notas sobre lectura, búsqueda y desarrollo en el dispositivo</h2>
+        <p>Lo que aprendimos al desarrollar las funciones de búsqueda, resumen y detección de duplicados, y cómo encajan si estás evaluando herramientas para leer más tarde.</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">Guía</span>
+          <h3>¿Buscas una alternativa a Pocket? Esto es lo que realmente importa</h3>
+          <p>El cierre de Pocket dejó un vacío importante. Una guía para decidir según el uso real que le dabas, no según qué aplicación tiene un aspecto más familiar.</p>
+          <span class="blog-read">Leer el artículo →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">Producto</span>
+          <h3>No vas a leer la mayoría de lo que guardas. Esta es la solución real.</h3>
+          <p>La mayoría de los artículos guardados nunca se vuelven a abrir. Por qué existe Digest y por qué evita deliberadamente acumular más contenido.</p>
+          <span class="blog-read">Leer el artículo →</span>
+        </a>
+        <a class="blog-card" href="blog/on-device-architecture.html">
+          <span class="blog-date">Ingeniería</span>
+          <h3>Por qué sacamos la búsqueda, las etiquetas y las recomendaciones de la nube</h3>
+          <p>El índice TF-IDF detrás de la búsqueda, la deduplicación y el resumen, y por qué la mayor parte nunca necesitó un servidor en primer lugar.</p>
+          <span class="blog-read">Leer el artículo →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">No es un proyecto aislado</div>
+        <h2>Parte del ecosistema byphil</h2>
+        <p>AI Summary Helper es una de las diversas herramientas independientes desarrolladas por byphil. Una sola cuenta y un Support Pass desbloquean acceso prémium a todas ellas, ahora y a medida que se lancen nuevas.</p>
+      </div>
+
+      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">Estás aquí</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>Resume, guarda y busca en la web desde tu dispositivo.</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">Comunidad de viajes con mascotas</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>Una comunidad para cuidadores de mascotas y anfitriones con estilo de vida independiente del lugar de residencia.</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">Grafo de conocimiento</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>Explora ideas conectadas y hábitos de lectura, diseñado para estructurar el conocimiento a largo plazo.</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">Ver todo lo que crea byphil →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código en GitHub</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">Privacidad y RGPD</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Términos del servicio</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Reembolsos y devoluciones</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Aviso legal</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — software independiente creado en Alemania. Pagos procesados por Stripe como Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Resolución de litigios en línea para consumidores de la UE</a> · Diseñado y desarrollado por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+
+
+</body></html>

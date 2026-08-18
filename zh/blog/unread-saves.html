@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>你收藏的文章大多永远不会再读。这里有一个真正的解决方案。— AI Summary Helper</title>
+<meta name="description" content="大部分被收藏的文章再也没有被打开过。这就是为什么我们打造了 Digest 功能，以及为什么它绝不试图让你的待读列表越积越多。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳转到正文</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下项目
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特性</a>
+        <a href="../index.html#pricing">定价</a>
+        <a href="./" aria-current="page">博客</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回应用</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特性</a>
+      <a href="../index.html#pricing">定价</a>
+      <a href="./">博客</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下项目 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切换至浅色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">产品动态 · 2026年8月</span>
+      <h1>你收藏的内容大多永远不会再读。这里有一个真正的解决方案。</h1>
+      <p class="post-sub">绝大多数被保存的文章再也不会被重新打开。这不是自律问题——而是产品设计的问题。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>关于书签与收藏行为的研究（Bergman、Whittaker 与 Schooler）证实了一个我们大多数人早已隐约察觉却不愿承认的事实：绝大多数存入“稍后阅读”的内容，其实再也没有被打开过。部分研究显示，这一比例甚至高达 84%。</p>
+        <p>如果这也正是你的阅读清单现状，请不要责怪自己不够自律。这是工具本身的设计缺陷，问题不在你。</p>
+
+        <h2>问题不在于“随手收藏”的习惯，而在于堆积如山的列表。</h2>
+        <p>收藏只需点击一下，花上不到半秒的念头。但稍后真正去阅读，却需要你重新打开应用，在一份已经累积到 60、100 甚至 200 篇文章的列表中不断翻找，并在好不容易空出的五分钟碎片时间里做出抉择。绝大多数人恰恰在第二步败下阵来——不是因为文章不够精彩，而是因为 <em>在两百个选项中做决定</em> 本身就是一项繁重的心理负担，而大多数“稍后阅读”应用只是把整座信息大山抛给你，便不再过问。</p>
+        <p>换句话说，书签成了一个不断被违背的承诺。这并非因为你懈怠，而是因为工具将最艰难的一步——在当下决定究竟读什么——完全推给了你，没有提供任何协助。</p>
+
+        <h2>大多数“稍后阅读”应用优化的方向</h2>
+        <p>这类工具几乎都在努力让 <em>收藏</em> 变得毫无阻力。但如果真正的瓶颈在于 <em>筛选决策</em>，那这种优化方向就完全本末倒置了。如果你根本不会再打开应用去翻阅，那么更长的列表并不会比短列表带来更多价值。</p>
+
+        <h2>Digest 背后的设计初衷</h2>
+        <p>AI Summary Helper 的 Digest 功能无需让你在不断膨胀的列表中翻找做决定，而是先为你完成初筛。只需轻轻一点，它就会从你的收藏中挑选出一小部分（默认 5 篇），重点考量以下维度：</p>
+        <ul>
+          <li><strong>时效性</strong>：避免翻出八个月前收藏、如今你早已不感兴趣的内容</li>
+          <li><strong>多样性</strong>：避免连续推荐五篇同一主题的文章，防止被同一热点新闻刷屏</li>
+          <li><strong>阅读心情（可选）</strong> ：可选“轻松愉悦”、“客观中立”或“深度严肃”，系统会根据你收藏内容的基调进行针对性筛选</li>
+        </ul>
+        <p>就是这么简单。为你挑选 5 篇，而不是丢给你 200 篇。让你在 10 秒内轻松做出决定，而不是面对庞杂列表直接关掉标签页。</p>
+
+        <h2>彻底跳出“稍后阅读”应用的束缚</h2>
+        <p>真正关键的地方在于：Digest 完成筛选后，你无需局限在浏览器扩展中阅读。它会将精选内容（包括摘要与原文链接）打包成一份文件，直接发送到你的 Kindle 或局域网内的其他设备上。在起飞前、周末到来时、或在没有信号的通勤途中将其载入。这样打包的目的，正是为了确保你在真正想要阅读的时刻，不必守在笔记本电脑前并一直开着扩展程序。</p>
+
+        <h2>为什么这一点比听起来重要得多</h2>
+        <p>几乎每款稍后阅读工具都会宣称能帮“读完更多收藏的内容”。但几乎没有一款工具真正改变过做决策的关键时刻。它们只是让收藏变得越来越容易，而正如研究所指出的——这只会让列表堆积得更快，对真正卡住的环节却毫无改善。</p>
+        <p>解决之道不在于打造一份更完美的列表，而在于让你根本无需再去面对那份列表。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免费的 Chrome 扩展程序。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">添加至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 源码</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">隐私政策与 GDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 隶属于 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 来自德国的独立软件项目。<br>
+      设计与开发： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

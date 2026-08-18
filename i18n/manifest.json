@@ -1,4 +1,150 @@
 {
   "_comment": "Auto-generated and updated by scripts/translate.mjs — do not hand-edit. Tracks a content hash per source file and, per locale, the source hash it was last translated against plus when/which model did it. A file is 're-translate' when its current source hash no longer matches the hash recorded under that locale.",
-  "files": {}
+  "files": {
+    "index.html": {
+      "sourceHash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+      "translations": {
+        "fr": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:37:43.253Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        },
+        "es": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:38:21.973Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        },
+        "zh": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:39:10.461Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        },
+        "hi": {
+          "hash": "41a12726dbe4a857a70b239423e207f3813432ad5953f67ee5e3e05c323a3a38",
+          "translatedAt": "2026-08-18T17:40:02.185Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 152
+        }
+      }
+    },
+    "blog/index.html": {
+      "sourceHash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+      "translations": {
+        "fr": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:40:15.317Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "es": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:40:28.459Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "zh": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:40:41.109Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        },
+        "hi": {
+          "hash": "3b1a87001f92f0e765e34968798a9dbd8a213388d9d1d5f20931b1317a2363a4",
+          "translatedAt": "2026-08-18T17:40:47.089Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 41
+        }
+      }
+    },
+    "blog/pocket-alternative.html": {
+      "sourceHash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+      "translations": {
+        "fr": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:41:09.695Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        },
+        "es": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:41:38.104Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        },
+        "zh": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:42:06.238Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        },
+        "hi": {
+          "hash": "d36aba078e297ee09ec841fe9372d21493b392b8a17ef59da31f9a289fdc093d",
+          "translatedAt": "2026-08-18T17:42:35.450Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 71
+        }
+      }
+    },
+    "blog/unread-saves.html": {
+      "sourceHash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+      "translations": {
+        "fr": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:43:02.935Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        },
+        "es": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:43:25.001Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        },
+        "zh": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:43:45.344Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        },
+        "hi": {
+          "hash": "7ceadb633d3eea44e94adccebd7df978c63b0ed4578b0cbefca78e440d278425",
+          "translatedAt": "2026-08-18T17:44:10.547Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 57
+        }
+      }
+    },
+    "blog/on-device-architecture.html": {
+      "sourceHash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+      "translations": {
+        "fr": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T17:44:34.979Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "es": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T17:44:58.604Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "zh": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T17:45:28.323Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        },
+        "hi": {
+          "hash": "fbc970683cba4456c125f8caa3fb71dbec0401f172297697fd9cf698f43343c1",
+          "translatedAt": "2026-08-18T17:45:52.501Z",
+          "model": "google/gemini-3.7-flash",
+          "unitCount": 47
+        }
+      }
+    }
+  }
 }

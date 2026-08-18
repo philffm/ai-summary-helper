@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Por qué sacamos la búsqueda, las etiquetas y las recomendaciones de la nube — AI Summary Helper</title>
+<meta name="description" content="El índice TF-IDF detrás de la búsqueda, la detección de duplicados y los resúmenes de AI Summary Helper, y por qué la mayor parte nunca necesitó un servidor.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte de byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funciones</a>
+        <a href="../index.html#pricing">Precios</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Volver a la app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funciones</a>
+      <a href="../index.html#pricing">Precios</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte de byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Cambiar a modo claro</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Ingeniería · Agosto de 2026</span>
+      <h1>Por qué sacamos la búsqueda, el etiquetado y las recomendaciones de la nube</h1>
+      <p class="post-sub">La búsqueda, la deduplicación, la limpieza de etiquetas y las recomendaciones comparten un pequeño índice en el dispositivo. Así es como funciona y por qué va más allá de un simple argumento de privacidad.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>La mayoría de las extensiones de navegador «con IA» envían todo a un servidor, incluidas las partes que no tienen nada que ver con la IA. La búsqueda, la limpieza de etiquetas o «encontrar elementos similares» son técnicas consolidadas con décadas de antigüedad. No necesitan un modelo de lenguaje y definitivamente no necesitan una petición de red de ida y vuelta. Revisamos cada función de AI Summary Helper y nos preguntamos: ¿esto realmente necesita la nube, o simplemente la usamos por defecto porque es la arquitectura más fácil?</p>
+        <p>La mayoría no la necesitaba.</p>
+
+        <h2>Qué se trasladó al dispositivo</h2>
+        <p><strong>Búsqueda.</strong> Originalmente, la extensión solo buscaba coincidencias en el título y las etiquetas del artículo: rápido, pero ciego a cualquier contenido del cuerpo del texto. En lugar de escanear todo el texto por fuerza bruta con cada pulsación de tecla o enviar cada consulta a un servidor, creamos un pequeño índice TF-IDF a partir del archivo guardado del propio usuario. Los campos livianos (título, etiquetas) se comprueban primero y al instante, igual que antes. Las consultas más largas se amplían contra el índice, que se genera una vez por sesión y se actualiza de forma incremental, sin volver a escanearse en cada pulsación.</p>
+        <p><strong>Detección de duplicados.</strong> Antes de completar un guardado, se ejecuta una comprobación por niveles: primero una coincidencia exacta de URL normalizada (económica, O(1)), luego similitud de título en los pocos candidatos que pasan ese filtro, y solo entonces —para los pocos restantes— una comparación completa de similitud de coseno mediante TF-IDF. La mayoría de los guardados nunca llegan al nivel más costoso, porque los niveles livianos ya los resolvieron.</p>
+        <p><strong>Normalización de etiquetas.</strong> Con el tiempo, las etiquetas se dispersan: «ML», «Machine Learning», «machine-learning» significan lo mismo para un humano, pero nada parecido para un filtro. Una pequeña tabla de alias detecta los casos obvios; una combinación basada en distancia de edición difusa (fuzzy edit-distance) sobre todo el vocabulario de etiquetas se encarga del resto, eligiendo la variante que el usuario utilizó con más frecuencia como forma canónica en lugar de imponerle una «correcta».</p>
+        <p><strong>Legibilidad y tono.</strong> El nivel de legibilidad de Flesch-Kincaid es pura aritmética sobre el conteo de oraciones y sílabas: no requiere ningún modelo. El análisis de sentimiento es una lista de palabras AFINN integrada con una pequeña verificación de negación en los dos tokens precedentes. Ninguno de estos procesos necesitaba salir del navegador.</p>
+        <p><strong>«Artículos similares» y Resumen.</strong> Ambos reutilizan exactamente los mismos vectores TF-IDF que la búsqueda ya generó. Habría sido fácil crear tres sistemas de similitud independientes para tres funciones distintas. Crear un solo índice y permitir que la búsqueda, las recomendaciones y la selección del resumen lean de él mantuvo el sistema más ligero y significó que optimizar el índice una sola vez mejoraba las tres funciones a la vez.</p>
+
+        <h2>Lo que dejamos deliberadamente en la nube</h2>
+        <p>El paso de resumen propiamente dicho —la parte que realmente requiere un modelo de lenguaje— todavía necesita una llamada de red. No hay forma de evitarlo con el tamaño actual de los modelos en dispositivo si se busca la calidad de salida de un modelo en la nube. Los usuarios pueden usar su propia clave de API para ese paso (OpenAI, Gemini, Mistral, DeepSeek) o apuntar la extensión a una instancia local de Ollama y prescindir también de la red en esa etapa. Ese es el único punto donde la ejecución en local no viene por defecto: es opcional, porque la compensación es real: un modelo local es más lento y ofrece menor calidad que uno alojado, y no queríamos fingir lo contrario.</p>
+
+        <h2>Por qué esto va más allá de un argumento de privacidad</h2>
+        <p>El aspecto de la privacidad es real: una extensión con permisos amplios de host que envía el contenido de la página a un servidor para tareas que no lo requieren plantea una duda legítima de confianza, no es solo una cuestión de imagen. Pero la razón más pragmática para hacerlo es que, por lo general, es la decisión de ingeniería correcta. La búsqueda TF-IDF no necesita 200 ms de latencia de red. La deduplicación de etiquetas no necesita acarrear una factura de API. Elegir la herramienta adecuada para cada tarea, en lugar de recurrir por defecto a «consultar la nube», suele dar como resultado algo más rápido, más económico de operar y más resiliente sin conexión: la privacidad viene de la mano sin costo adicional, no al revés.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper es una extensión gratuita para Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Añadir a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código fuente en GitHub</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">Privacidad y RGPD</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Aviso legal</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independiente desarrollado en Alemania.<br>
+      Diseñado y desarrollado por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
