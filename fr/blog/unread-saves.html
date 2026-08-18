@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Vous ne lirez jamais la plupart de vos articles sauvegardés. Voici la vraie solution. — AI Summary Helper</title>
+<meta name="description" content="La plupart des articles mis en favoris ne sont jamais rouverts. Voici pourquoi Digest existe, et pourquoi il refuse délibérément d'agrandir la pile.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Passer au contenu</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Un projet byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Fonctionnalités</a>
+        <a href="../index.html#pricing">Tarifs</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Retour à l'application</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Fonctionnalités</a>
+      <a href="../index.html#pricing">Tarifs</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Un projet byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Passer en mode clair</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Produit · Août 2026</span>
+      <h1>Vous ne lirez jamais la plupart de vos articles sauvegardés. Voici la vraie solution.</h1>
+      <p class="post-sub">L'immense majorité des articles sauvegardés ne sont jamais rouverts. Ce n'est pas un manque de discipline — c'est un problème de conception.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Les recherches sur les habitudes de mise en favoris (Bergman, Whittaker et Schooler) ont révélé ce que nous soupçonnions tous sans vouloir l'admettre : l'écrasante majorité des contenus mis de côté pour plus tard ne sont jamais rouverts. Certaines études avancent même un chiffre de 84 %.</p>
+        <p>Si cela ressemble à votre propre liste de lecture, ce n'est pas un manque de discipline. C'est un problème de conception — qui vient des outils, pas de vous.</p>
+
+        <h2>Le réflexe de sauvegarder n'est pas le problème. C'est la pile qui l'est.</h2>
+        <p>Sauvegarder un lien prend un clic et une demi-seconde d'intention. Le lire réellement plus tard exige de rouvrir une application, de faire défiler une liste devenue longue de 60, 100 ou 200 éléments, puis de choisir lequel lire, là, maintenant, dans le créneau de cinq minutes que vous venez de trouver. C'est à cette seconde étape que presque tout le monde abandonne — non pas parce que les articles manquaient d'intérêt, mais parce que <em>choisir parmi 200 éléments</em> est une charge mentale à part entière, et que la plupart des applications de lecture différée se contentent de vous laisser seul face à toute la pile.</p>
+        <p>Un favori n'est en fait qu'une promesse que l'on ne tient jamais. Non pas par paresse, mais parce que l'outil vous impose la partie la plus difficile — décider quoi lire précisément, maintenant — sans vous apporter la moindre aide.</p>
+
+        <h2>Ce que la plupart des applications de lecture différée cherchent à optimiser</h2>
+        <p>Presque tous les outils de cette catégorie sont conçus pour rendre <em>la sauvegarde</em> totalement fluide. C'est le mauvais objectif d'optimisation si le véritable point de friction est <em>le choix</em>. Une liste plus longue n'a pas plus d'utilité qu'une liste courte si vous n'ouvrez jamais l'application pour la consulter.</p>
+
+        <h2>Le concept derrière Digest</h2>
+        <p>Au lieu de vous obliger à faire défiler une pile interminable pour faire un choix, la fonctionnalité Digest de AI Summary Helper effectue une première sélection pour vous. Cliquez dessus, et elle extrait un nombre restreint de vos sauvegardes — cinq par défaut — selon plusieurs critères :</p>
+        <ul>
+          <li><strong>La récence</strong>, pour éviter de déterrer un contenu sauvegardé il y a huit mois sur un sujet qui ne vous intéresse plus</li>
+          <li><strong>La diversité</strong>, pour ne pas vous retrouver avec cinq articles sur le même sujet juste parce que vous avez sauvegardé cinq liens lors d'une même veille d'actualité</li>
+          <li><strong>L'ambiance, selon votre humeur</strong> — choisissez « stimulant », « neutre » ou « approfondi », et la sélection s'orientera en fonction de la tonalité des articles sauvegardés</li>
+        </ul>
+        <p>C'est tout. Cinq choix, pas deux cents. Une décision prise en dix secondes au lieu d'un onglet qu'on referme aussitôt.</p>
+
+        <h2>Puis il s'efface totalement de votre flux de travail</h2>
+        <p>L'aspect fondamental : une fois la sélection effectuée par Digest, vous n'êtes pas contraint de la lire dans l'extension. Elle regroupe les résumés et les liens sources dans un fichier unique que vous pouvez envoyer directement vers votre Kindle ou un autre appareil sur votre réseau. Préparez-le avant un vol, un week-end ou un trajet sans connexion. Cette compilation a été pensée précisément pour que votre temps de lecture ne dépende pas de votre ordinateur portable ni d'une extension ouverte.</p>
+
+        <h2>Pourquoi cela change bien plus de choses qu'il n'y paraît</h2>
+        <p>Tous les outils de lecture différée promettent de vous aider à « lire davantage ce que vous sauvegardez ». Presque aucun ne modifie le moment même du choix. Ils se contentent de faciliter la sauvegarde, ce qui — comme le confirment ces mêmes études — fait grossir la pile plus vite sans jamais résoudre le véritable dysfonctionnement.</p>
+        <p>La solution n'est pas d'avoir une meilleure liste. C'est de ne plus avoir besoin de la consulter.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper est une extension Chrome gratuite.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Ajouter à Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Code source sur GitHub</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">Confidentialité &amp; RGPD</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Mentions légales</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Un projet <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — logiciel indépendant développé en Allemagne.<br>
+      Conçu &amp; développé par <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
