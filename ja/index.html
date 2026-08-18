@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper — オンデバイスでWebを要約、保存、検索</title>
+<meta name="description" content="WebページをAIで要約して検索可能なアーカイブに保存し、厳選された読書ダイジェストをKindleやLocalSendへ送信するChrome拡張機能。検索、重複排除、レコメンドはすべてオンデバイスで動作します。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="オンデバイスでWebを要約、保存、検索。リーディングリストを二度と埋もれさせないためのChrome拡張機能。">
+<meta property="og:url" content="https://aish.byphil.eu/">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/index.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/index.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/index.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/index.html"><link rel="alternate" hreflang="de" href="https://aish.byphil.eu/de/index.html"><link rel="alternate" hreflang="ko" href="https://aish.byphil.eu/ko/index.html"><link rel="alternate" hreflang="ja" href="https://aish.byphil.eu/ja/index.html"><link rel="alternate" hreflang="pt" href="https://aish.byphil.eu/pt/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">コンテンツへスキップ</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. プロジェクト
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">機能</a>
+        <a href="#digest">ダイジェスト</a>
+        <a href="#pricing">料金プラン</a>
+        <a href="blog/">ブログ</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">マイアカウント</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">機能</a>
+      <a href="#digest">ダイジェスト</a>
+      <a href="#pricing">料金プラン</a>
+      <a href="blog/">ブログ</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">マイアカウント</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. プロジェクト ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">ライトモードに切り替え</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Chrome拡張機能 · byphil. プロジェクト <span class="dash"></span></div>
+      <h1>Webを要約する。<br><em>重要な情報を、確実に手元に。</em></h1>
+      <p class="sub">AI Summary Helperは、あらゆるWebページを要約付きの検索可能な記事として保存します。さらにオンデバイスのダイジェスト機能により、オフライン読書用のコンテンツをKindleや他端末へ直接転送し、保存した記事を確実に消化できるよう支援します。</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加（無料）</a>
+        <a href="#features" class="btn-secondary">機能を見る</a>
+      </div>
+      <p class="hero-meta">アカウント登録不要で利用開始可能 · お手持ちのAI APIキーを使用、またはOllamaによる完全オフライン動作に対応</p>
+    </div>
+  </section>
+
+  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="mock-shell reveal">
+        <div class="mock-card">
+          <div class="mock-tags"><span class="mock-chip">AI</span><span class="mock-chip">ソフトウェア</span></div>
+          <h4>ソフトウェアエンジニアリングにおけるAIエージェントの台頭</h4>
+          <p>AIエージェントはソフトウェア開発チームのデリバリー手法を根本から変革しています。自律型コーディングツールが、ワークフロー全体で最小限の監視のもと設計・実装・テストを実行する時代が到来しました。</p>
+          <div class="mock-badge">📖 標準 · 難易度 8.2 &nbsp;·&nbsp; ⏱️ 読了目安 ~4分 &nbsp;·&nbsp; 🔗 アーカイブ内に類似記事3件</div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-tags"><span class="mock-chip">🗞️ ダイジェスト</span></div>
+          <h4>あなたのダイジェスト — 厳選された5本の記事</h4>
+          <p>同じトピックの重複を避け、多様性を重視して選定。1つのファイルにまとめてKindleやLocalSendへ即座に送信できます。</p>
+          <div class="mock-badge">📚 Kindleへ送信 &nbsp;·&nbsp; 📱 LocalSendで送信</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">主な機能</div>
+        <h2>リーディングリストが本来備えるべきだったすべての機能</h2>
+        <p>保存し、理解し、再検索し、実際に読み返す。アーカイブが外部サブスクリプションに人質に取られる心配はありません。</p>
+      </div>
+
+      <div class="feature-grid reveal">
+        <div class="feature-card">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI要約、モデルは自由に選択可能</h3>
+          <p>OpenAI、Gemini、Mistral、DeepSeekのほか、OpenRouter経由で100以上のモデルに対応。ローカルのOllamaモデルを指定すれば、要約処理を完全オフラインで完結させることも可能です。</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>オンデバイスでの本格的な全文検索</h3>
+          <p>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>意図を持った「後で読む」</h3>
+          <p>理由や期限を設定して「アクション/判断」としてフラグを立てることで、リマインドを受け取ることができます。二度と開かれないリストの山に埋もれさせることはありません。</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>自動キュレーション型ダイジェスト</h3>
+          <p>ワンクリックで保存記事から小規模かつ多様なセットを自動選定。同じ話題ばかりが重なるのを防ぎ、1つのファイルにまとめてKindleやLocalSendへ転送します。</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>単なるリストを超えたナレッジグラフ</h3>
+          <p>共有タグによる関連性だけでなく、タグが付いていなくても内容の類似度に基づいて保存記事間のつながりを可視化します。</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>20以上の言語に対応、クロスプラットフォーム</h3>
+          <p>お好みの言語で閲覧・要約が可能。ブラウザ拡張機能、ネイティブサイドパネル、または拡張機能が利用できない環境向けのブックマークレットをご用意しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">「84%」の課題</div>
+        <h2>保存した記事のほとんどは、二度と読まれない</h2>
+        <p>ブックマーク行動に関する調査では、保存された記事の大半が二度と開かれないことが一貫して示されています。これは利用者の規律の問題ではありません。保存を容易にする一方で、何を実際に読むべきかの選定を支援しないツールの構造的な課題です。</p>
+      </div>
+      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. 「ダイジェスト」をクリック</h3>
+          <p>保存記事から5本を選定。最新性とテーマの多様性を重視するため、同一ニュースの類似記事ばかりが並ぶことはありません。</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. 必要に応じてトーンを設定</h3>
+          <p>ポジティブ、ニュートラル、あるいは深層的・専門的など、そのときの気分や読書目的に応じて選定傾向を調整できます。</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. オフライン端末へ送信</h3>
+          <p>1つのパッケージにまとめ、Kindleや同一ネットワーク上の端末へ直接送信。フライト前、通勤時、電波の届かないオフライン環境での読書に備えられます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">byphilの開発哲学</div>
+        <h2>アーカイブは常にあなた自身のもの</h2>
+        <p>検索、重複検出、タグ整理、読解難易度やトーンのスコアリング、「類似記事」の算出はすべてブラウザ内で完結します。サーバーへの依存はなく、アカウントを作成しなくてもすべての価値を享受できます。端末外へ送信されるのはAI要約リクエストのみであり、それもご自身が選択したAIプロバイダー宛てに限定されます。ローカルのOllamaモデルを指定すれば、その通信すらローカルで完結します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ひとつのキーで、すべてのbyphilツールを利用可能</div>
+        <h2>無料で開始、必要に応じてProへ</h2>
+        <p>Support Passは本拡張機能専用のライセンスではありません。byphilが開発するすべてのツールでプレミアム機能を利用できる共通キーであり、byphilアカウントから一元管理できます。</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="tablist" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" onclick="setBilling('monthly')">月払い</button>
+          <button type="button" id="btnYearly" onclick="setBilling('yearly')">年払い · 50%割引</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">Free</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">すべての機能を常にオンデバイスで</div>
+          <ul>
+            <li>自身のAI APIキーまたはOllamaを用いた無制限の要約</li>
+            <li>検索、ダイジェスト、ナレッジグラフ — すべてオンデバイス動作</li>
+            <li>Kindle送信 3回分付属</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">Chromeに追加</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">おすすめ</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/月</span></span>
+            <span class="price-yearly">€29.94<span>/年</span></span>
+          </div>
+          <div class="tier-note">請求サイクル <span class="price-monthly">月払い</span><span class="price-yearly">年払い</span></div>
+          <ul>
+            <li>KindleおよびLocalSendへの送信（ダイジェスト含む）が無制限</li>
+            <li>byphil Cloud AIへのアクセス — APIキー不要</li>
+            <li>すべてのbyphilツールのPro機能を利用可能</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Support Passを購入</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/買い切り</span></div>
+          <div class="tier-note">12か月間の全機能アクセス</div>
+          <ul>
+            <li>Support Passのすべての機能</li>
+            <li>今後のツール開発への直接的な支援</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">支援してアンロック</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">よくある質問</div>
+        <h2>インストール前の確認事項</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>利用にあたってアカウント登録は必要ですか？</summary>
+          <p>いいえ、不要です。インストール後、お手持ちのAIプロバイダーのAPIキーを設定する（またはローカルのOllamaモデルを使用する）だけで、すぐに保存を開始できます。アカウントが必要となるのは、byphil Cloudへのアクセスや、Support PassによるKindle/LocalSendへの無制限送信機能を利用する場合のみです。</p>
+        </details>
+        <details>
+          <summary>ブラウザから外部へ送信されるデータは何ですか？</summary>
+          <p>ご自身が設定したAIプロバイダーへの要約リクエストのみです。検索、重複検出、タグ整理、読解難易度や感情分析スコアリング、「類似記事」のレコメンドは、すべてローカルに保存されたアーカイブに対して端末上で実行されます。</p>
+        </details>
+        <details>
+          <summary>クラウドに一切依存せずに運用することは可能ですか？</summary>
+          <p>可能です。ローカルのOllamaモデルを指定すれば、要約処理も含めてすべて端末内で完結します。その他の機能はすでに完全にオンデバイスで動作しています。</p>
+        </details>
+        <details>
+          <summary>Support Passの支払いを停止した場合、保存したデータはどうなりますか？</summary>
+          <p>アーカイブはお使いの端末のブラウザローカルストレージ内にそのまま保持されます。Support Passはクラウド依存の追加機能（byphil Cloud AIアクセス、無制限のKindle/LocalSend送信）のみを制限するものであり、保存済みのデータへのアクセスが制限されることはありません。</p>
+        </details>
+        <details>
+          <summary>オープンソースですか？</summary>
+          <p>はい。拡張機能のソースコードは <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>にて公開されています。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">ブログ記事</div>
+        <h2>読書、検索、オンデバイス開発に関するノート</h2>
+        <p>検索、ダイジェスト、重複検出機能の開発プロセスで得られた知見と、「後で読む」ツールの比較検討における位置づけについて解説しています。</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">ガイド</span>
+          <h3>Pocketの代替ツールをお探しですか？ 選定時に本当に重視すべきポイント</h3>
+          <p>Pocketのサービス終了は大きな影響を与えました。見た目の類似性ではなく、実際の利用目的に基づいた選定ガイドをお届けします。</p>
+          <span class="blog-read">記事を読む →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">プロダクト</span>
+          <h3>保存した記事のほとんどを読めない理由と、その本質的な解決策</h3>
+          <p>保存記事の大半が二度と開かれない背景、Digest機能の存在意義、そして意図的に保存の山を肥大化させない設計思想について。</p>
+          <span class="blog-read">記事を読む →</span>
+        </a>
+        <a class="blog-card" href="blog/on-device-architecture.html">
+          <span class="blog-date">エンジニアリング</span>
+          <h3>検索、タグ付け、レコメンド機能をクラウドからオンデバイスへ移行した理由</h3>
+          <p>検索、重複排除、ダイジェストを支えるTF-IDFインデックスの仕組みと、なぜ大半の機能にサーバーが不要だったのかを解説します。</p>
+          <span class="blog-read">記事を読む →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">単独のツールではありません</div>
+        <h2>byphil エコシステムの一部として</h2>
+        <p>AI Summary Helperは、byphilが開発する独立したツール群のひとつです。ひとつのアカウントとSupport Passで、現在提供中および今後リリースされるすべてのツールのプレミアム機能をご利用いただけます。</p>
+      </div>
+
+      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">現在のツール</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>オンデバイスでWebを要約、保存、検索。</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">ペットトラベルコミュニティ</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>場所にとらわれないライフスタイルを送るペットシッターとホストのためのコミュニティ。</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">ナレッジグラフ</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>アイデアのつながりや読書行動を可視化し、長期的な知識体系の構築を支援します。</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">byphilのすべてのプロダクトを見る →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubソースコード</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">プライバシー &amp; GDPR</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">利用規約</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">返金および返品ポリシー</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">特定商取引法に基づく表記・会社概要</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — ドイツで開発されている独立系ソフトウェア。決済はMerchant of RecordとしてStripeが処理します。<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU消費者紛争解決</a> · Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+
+
+</body></html>

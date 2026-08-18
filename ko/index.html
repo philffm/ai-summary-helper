@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper — 온디바이스 웹 요약, 저장 및 검색</title>
+<meta name="description" content="AI로 웹 페이지를 요약하고 검색 가능한 아카이브에 저장하며, 큐레이션된 읽기 다이제스트를 Kindle 또는 LocalSend로 전송하는 Chrome 확장 프로그램입니다. 검색, 중복 제거, 추천 기능이 온디바이스로 실행됩니다.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="온디바이스에서 웹을 요약하고 저장하고 검색하세요. 읽기 목록을 다시는 잃어버리고 싶지 않은 분들을 위해 제작된 Chrome 확장 프로그램입니다.">
+<meta property="og:url" content="https://aish.byphil.eu/">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/index.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/index.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/index.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/index.html"><link rel="alternate" hreflang="de" href="https://aish.byphil.eu/de/index.html"><link rel="alternate" hreflang="ko" href="https://aish.byphil.eu/ko/index.html"><link rel="alternate" hreflang="ja" href="https://aish.byphil.eu/ja/index.html"><link rel="alternate" hreflang="pt" href="https://aish.byphil.eu/pt/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil 제품군.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">기능</a>
+        <a href="#digest">다이제스트</a>
+        <a href="#pricing">요금제</a>
+        <a href="blog/">블로그</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">내 계정</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">기능</a>
+      <a href="#digest">다이제스트</a>
+      <a href="#pricing">요금제</a>
+      <a href="blog/">블로그</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">내 계정</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil 제품군 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">라이트 모드로 전환</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Chrome 확장 프로그램 · byphil 제품군 <span class="dash"></span></div>
+      <h1>웹을 요약하세요.<br><em>중요한 내용만 간직하세요.</em></h1>
+      <p class="sub">AI Summary Helper는 웹 페이지를 요약 및 검색 가능한 글로 저장하며, 오프라인 읽기 자료를 Kindle이나 다른 기기로 바로 전송하는 온디바이스 다이제스트를 통해 저장한 글을 실제로 다시 읽을 수 있도록 돕습니다.</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가 — 무료</a>
+        <a href="#features" class="btn-secondary">주요 기능 살펴보기</a>
+      </div>
+      <p class="hero-meta">계정 등록 없이 바로 시작 가능 · 보유 중인 AI 키를 사용하거나 Ollama를 통해 완전 오프라인으로 실행</p>
+    </div>
+  </section>
+
+  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="mock-shell reveal">
+        <div class="mock-card">
+          <div class="mock-tags"><span class="mock-chip">AI</span><span class="mock-chip">소프트웨어</span></div>
+          <h4>소프트웨어 엔지니어링에서 AI 에이전트의 부상</h4>
+          <p>AI 에이전트는 팀의 소프트웨어 배포 방식을 혁신하고 있습니다. 자율 코딩 도구는 이제 전체 워크플로에서 최소한의 감독만으로 계획, 작성, 테스트를 수행합니다.</p>
+          <div class="mock-badge">📖 기본 · 읽기 수준 8.2 &nbsp;·&nbsp; ⏱️ 예상 읽기 시간 약 4분 &nbsp;·&nbsp; 🔗 보관함 내 유사한 글 3개</div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-tags"><span class="mock-chip">🗞️ 다이제스트</span></div>
+          <h4>맞춤 다이제스트 — 엄선된 글 5편</h4>
+          <p>동일한 내용의 중복 없이 다양성을 고려해 선별되었습니다. 단일 파일로 묶어 Kindle 또는 LocalSend로 즉시 전송할 수 있습니다.</p>
+          <div class="mock-badge">📚 Kindle로 전송 &nbsp;·&nbsp; 📱 LocalSend로 전송</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">주요 기능</div>
+        <h2>읽기 목록 서비스가 본래 갖추었어야 할 모든 기능</h2>
+        <p>추가 구독 결제에 아카이브가 묶이는 일 없이, 저장하고 이해하며 다시 찾아 실제로 읽어보세요.</p>
+      </div>
+
+      <div class="feature-grid reveal">
+        <div class="feature-card">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>원하는 모델로 생성하는 AI 요약</h3>
+          <p>OpenAI, Gemini, Mistral, DeepSeek뿐만 아니라 OpenRouter를 통한 100개 이상의 모델을 지원합니다. 로컬 Ollama 모델을 지정하면 네트워크 통신 없이도 요약을 생성할 수 있습니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>진정한 온디바이스 검색</h3>
+          <p>브라우저 내에서 구축된 TF-IDF 인덱스를 통해 제목, 태그, 본문 전체를 대상으로 전문 검색을 지원합니다. 서버 왕복이나 지연이 없으며 데이터가 외부로 전송되지 않습니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>목적 있는 나중에 읽기</h3>
+          <p>다시 열어보지 않을 목록에 쌓아두는 대신, 이유와 기한을 설정해 "결정" 항목으로 표시하고 알림을 받아보세요.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>자동으로 선별되는 다이제스트</h3>
+          <p>탭 한 번으로 저장한 글 중 중복되지 않는 다채로운 글을 선별하여, Kindle이나 LocalSend용 단일 파일로 묶어 제공합니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>단순한 목록을 넘어선 지식 그래프</h3>
+          <p>공유 태그뿐만 아니라 공통 태그가 없더라도 주제별 유사성을 분석하여 저장된 글들의 연결 관계를 확인하세요.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>20개 이상의 언어 지원 및 크로스 플랫폼</h3>
+          <p>원하는 언어로 읽고 요약하세요. 확장 프로그램, 기본 사이드 패널, 북마클릿을 지원하여 브라우저 확장을 사용할 수 없는 환경에서도 활용할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">84%의 문제</div>
+        <h2>저장한 글의 대부분은 다시 읽지 않게 됩니다</h2>
+        <p>북마크 행동에 관한 연구에 따르면 저장된 글의 대다수는 다시 열리지 않는 것으로 나타납니다. 이는 사용자의 의지 부족이 아니라, 저장은 쉽게 만들면서 정작 무엇을 읽어야 할지 선택하는 데에는 아무런 도움을 주지 않는 도구의 구조적 문제입니다.</p>
+      </div>
+      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. 다이제스트 클릭</h3>
+          <p>최신성과 다양성을 고려하여 저장된 글 5편을 선별하므로, 같은 주제의 뉴스를 반복해서 보지 않아도 됩니다.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. 원하는 분위기 설정</h3>
+          <p>가벼운 톤, 중립적인 톤, 깊이 있는 진지한 톤 등 현재 읽고 싶은 분위기에 맞춰 선별 결과를 조정합니다.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. 오프라인으로 전송</h3>
+          <p>하나의 번들로 묶어 Kindle이나 로컬 네트워크상의 기기로 바로 전송하세요. 비행기 탑승 전, 출퇴근길, 인터넷이 연결되지 않는 주말에 유용합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">byphil의 철학으로 제작</div>
+        <h2>데이터의 소유권은 온전히 사용자에게 있습니다</h2>
+        <p>검색, 중복 감지, 태그 정리, 읽기 수준 및 톤 분석, '유사한 글' 추천 등 모든 기능이 브라우저 내부에서만 실행됩니다. 서버나 계정 없이도 핵심 기능을 온전히 활용할 수 있습니다. 기기 외부로 나가는 데이터는 사용자가 직접 설정한 AI 제공업체로의 요약 요청 호출뿐이며, 로컬 Ollama 모델을 사용하는 경우 이 과정마저도 완전히 기기 내부에서 처리됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">하나의 키로 모든 byphil 도구 이용</div>
+        <h2>무료로 시작하고, 필요할 때 Pro로 업그레이드하세요.</h2>
+        <p>Support Pass는 이 확장 프로그램만을 위한 요금제가 아닙니다. byphil 계정에서 관리되며, byphil이 제작하는 모든 도구의 프리미엄 기능을 이용할 수 있는 단일 패스입니다.</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="tablist" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" onclick="setBilling('monthly')">월간 결제</button>
+          <button type="button" id="btnYearly" onclick="setBilling('yearly')">연간 결제 · 50% 절약</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">Free</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">언제나 모든 기능이 온디바이스로 작동</div>
+          <ul>
+            <li>개인 AI 키 또는 Ollama 사용 시 무제한 요약</li>
+            <li>검색, 다이제스트, 지식 그래프 모두 온디바이스 실행</li>
+            <li>Kindle 전송 3회 포함</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">Chrome에 추가</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">가장 인기 있는 옵션</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/월</span></span>
+            <span class="price-yearly">€29.94<span>/년</span></span>
+          </div>
+          <div class="tier-note">결제 주기: <span class="price-monthly">매월 청구</span><span class="price-yearly">매년 청구</span></div>
+          <ul>
+            <li>다이제스트를 포함한 무제한 Kindle 및 LocalSend 전송</li>
+            <li>byphil Cloud AI 제공 — 별도 API 키 불필요</li>
+            <li>모든 byphil 도구의 Pro 기능 활성화</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Support Pass 구독하기</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/1회 결제</span></div>
+          <div class="tier-note">12개월 전체 이용 권한</div>
+          <ul>
+            <li>Support Pass의 모든 혜택 포함</li>
+            <li>신규 도구 개발 직접 후원</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">후원하고 잠금 해제</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">자주 묻는 질문</div>
+        <h2>설치 전 확인사항</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>이용하려면 계정이 필요한가요?</summary>
+          <p>아닙니다. 프로그램을 설치하고 보유 중인 AI 제공업체 키를 입력하거나(또는 로컬 Ollama 모델 사용) 바로 저장을 시작할 수 있습니다. Support Pass를 통해 byphil Cloud를 이용하거나 무제한 Kindle/LocalSend 전송을 원하실 때만 계정이 필요합니다.</p>
+        </details>
+        <details>
+          <summary>브라우저 외부로 전송되는 데이터는 무엇인가요?</summary>
+          <p>설정하신 AI 제공업체로 전달되는 요약 요청 데이터뿐입니다. 검색, 중복 감지, 태그 정리, 읽기 수준 및 감성 분석, '유사한 글' 추천 등은 모두 사용자가 저장한 로컬 아카이브 내에서 직접 실행됩니다.</p>
+        </details>
+        <details>
+          <summary>클라우드 의존성 없이 완전히 독립적으로 실행할 수 있나요?</summary>
+          <p>네, 로컬 Ollama 모델을 연결하면 요약 과정까지 기기 내부에서 완전히 처리됩니다. 그 외 모든 기능은 이미 로컬에서 동작하고 있습니다.</p>
+        </details>
+        <details>
+          <summary>Support Pass 결제를 중단하면 저장된 글은 어떻게 되나요?</summary>
+          <p>저장된 아카이브는 기기 내 브라우저 로컬 저장소에 그대로 유지됩니다. Support Pass는 클라우드 기반 부가 기능(byphil Cloud AI 이용, 무제한 Kindle/LocalSend 전송)에만 적용되며, 이미 저장된 데이터에 대한 접근은 절대 제한되지 않습니다.</p>
+        </details>
+        <details>
+          <summary>오픈 소스인가요?</summary>
+          <p>네, 확장 프로그램의 소스 코드는 다음에 공개되어 있습니다: <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">블로그 아티클</div>
+        <h2>읽기, 검색, 그리고 온디바이스 개발에 관한 기록</h2>
+        <p>검색, 다이제스트, 중복 감지 기능을 구축하며 배운 점과 '나중에 읽기' 도구를 고민 중인 분들을 위한 안내입니다.</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">가이드</span>
+          <h3>Pocket 대체 서비스를 찾고 계신가요? 진정으로 고려해야 할 요소</h3>
+          <p>Pocket 서비스 중단이 남긴 공백을 채우기 위해, 단순히 겉모습이 익숙한 앱이 아닌 실제 사용 목적에 기반한 선택 가이드를 제공합니다.</p>
+          <span class="blog-read">글 읽기 →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">제품</span>
+          <h3>저장한 글의 대부분은 읽지 않게 됩니다. 이에 대한 실질적인 해결책.</h3>
+          <p>저장된 글 대다수는 다시 열리지 않습니다. 다이제스트 기능이 존재하는 이유와 단순히 저장 목록의 양을 늘리지 않는 이유를 설명합니다.</p>
+          <span class="blog-read">글 읽기 →</span>
+        </a>
+        <a class="blog-card" href="blog/on-device-architecture.html">
+          <span class="blog-date">엔지니어링</span>
+          <h3>검색, 태깅, 추천 기능을 클라우드 외부로 이전한 이유</h3>
+          <p>검색, 중복 제거, 다이제스트의 기반이 되는 TF-IDF 인덱스 분석 및 애초에 서버가 필요하지 않았던 이유를 다룹니다.</p>
+          <span class="blog-read">글 읽기 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">단일 프로젝트가 아닙니다</div>
+        <h2>byphil 생태계의 일환</h2>
+        <p>AI Summary Helper는 byphil이 개발한 여러 독립적인 도구 중 하나입니다. 하나의 계정과 Support Pass로 현재는 물론 향후 출시될 모든 도구의 프리미엄 기능을 이용할 수 있습니다.</p>
+      </div>
+
+      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">현재 위치</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>온디바이스로 웹을 요약하고, 저장하고, 검색하세요.</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">반려동물 동반 여행 커뮤니티</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>지역에 구애받지 않고 생활하는 펫시터와 호스트를 위한 커뮤니티입니다.</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">지식 그래프</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>장기적인 지식 매핑을 위해 구축된 도구로, 연결된 아이디어와 독서 패턴을 탐색합니다.</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">byphil의 모든 프로젝트 보기 →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 소스 코드</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">개인정보 보호 및 GDPR</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">이용약관</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">환불 및 반품 정책</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">회사 정보</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — 독일에서 제작된 독립 소프트웨어입니다. 결제는 기록상 판매자(Merchant of Record)인 Stripe를 통해 처리됩니다.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU 소비자 분쟁 해결</a> · 기획 및 개발: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+
+
+</body></html>

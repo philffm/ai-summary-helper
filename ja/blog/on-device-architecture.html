@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>検索・タグ付け・推薦機能をクラウドから移行した理由 — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helperの検索、重複検出、ダイジェスト機能を支えるTF-IDFインデックスと、その大半にサーバー処理が不要であった理由について解説します。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://aish.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://aish.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://aish.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt" href="https://aish.byphil.eu/pt/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">コンテンツへスキップ</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. プロジェクトの一部
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">機能</a>
+        <a href="../index.html#pricing">料金プラン</a>
+        <a href="./" aria-current="page">ブログ</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← アプリに戻る</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">機能</a>
+      <a href="../index.html#pricing">料金プラン</a>
+      <a href="./">ブログ</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. ↗ のプロダクト</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">ライトモードに切り替え</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Engineering · 2026年8月</span>
+      <h1>検索・タグ付け・推薦機能をクラウドから移行した理由</h1>
+      <p class="post-sub">検索、重複検出、タグ整理、推薦機能は、デバイス上の1つの軽量インデックスを共有しています。その仕組みと、これが単なるプライバシー対策にとどまらない理由を解説します。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>「AI搭載」を謳う多くのブラウザ拡張機能は、AIとはまったく無関係な処理を含め、すべてのデータをサーバーに送信しています。検索、タグ整理、「類似アイテムの検出」といった機能は、何十年も前から確立されている技術です。大規模言語モデルは不要であり、ネットワーク通信の遅延も一切必要ありません。AI Summary Helperでは機能を一つずつ見直し、「これは本当にクラウドが必要なのか、それとも設計が容易だからという理由だけで依存しているのではないか？」と検証を行いました。</p>
+        <p>その結果、ほとんどの機能においてクラウドは不要でした。</p>
+
+        <h2>オンデバイス（ローカル）へ移行した機能</h2>
+        <p><strong>検索機能。</strong> 当初、本拡張機能は記事のタイトルとタグのみを照合していました。高速ではあるものの、本文の内容は検索できませんでした。キー入力ごとに全文を総当たりでスキャンしたり、すべてのクエリをサーバーに送信したりする代わりに、保存されたユーザー自身のアーカイブから軽量なTF-IDFインデックスを構築する手法を採用しました。タイトルやタグなどの軽量フィールドは従来通り瞬時に検証されます。長めのクエリに対しては、セッションごとに一度構築され差分更新されるインデックスを参照して検索範囲を広げます。</p>
+        <p><strong>重複検出。</strong> 保存処理が完了する前に、階層化されたチェックが実行されます。まず正規化URLの完全一致（低コスト、O(1)）が行われ、次にそのフィルターを通過した候補に対してタイトルの類似度判定を実施します。そして、残ったわずかな候補に対してのみ、TF-IDFによるコサイン類似度の完全比較を行います。大半の保存処理は軽量な層で解決されるため、負荷の高い処理層に到達することはありません。</p>
+        <p><strong>タグの正規化。</strong> タグは運用に伴い表記揺れが生じがちです。「ML」「Machine Learning」「machine-learning」は人間にとっては同じ意味ですが、フィルターにとっては全く別の文字列です。軽量なエイリアステーブルで典型的な表記揺れを処理し、タグ全体の語彙に対する編集距離を用いたファジーマージで残りを補足します。この際、システムが「正解」を強制するのではなく、ユーザーが最も頻繁に使用した表記を正規形として採用します。</p>
+        <p><strong>可読性とトーンの分析。</strong> Flesch–Kincaidの可読性指標は、文と音節の数に基づく単純な算術処理であり、機械学習モデルは不要です。感情分析には内蔵のAFINN単語リストを使用し、直前2トークンの否定語チェックを行うだけで十分です。いずれの処理もブラウザ外にデータを送信する必要はありません。</p>
+        <p><strong>「類似記事」およびダイジェスト機能。</strong> これらはいずれも、検索機能向けに構築されたTF-IDFベクトルをそのまま再利用しています。3つの機能に対して個別の類似度システムを構築することも容易でしたが、単一のインデックスを構築し、検索・推薦・ダイジェスト生成のすべてがそれを参照するように設計しました。これによりシステム全体を軽量に保つことができ、インデックスを1度改善するだけで3つの機能すべてを同時に向上させることが可能になりました。</p>
+
+        <h2>あえてクラウドに残した機能</h2>
+        <p>実際の要約処理 — つまり言語モデルが真に必要となる工程 — においては、依然としてネットワーク通信が必要です。クラウドクラスのモデルと同等の出力品質を求める場合、現行のオンデバイスモデルのサイズでは限界があります。この工程では、ユーザー自身がAPIキー（OpenAI、Gemini、Mistral、DeepSeek）を設定するか、拡張機能をローカルのOllamaインスタンスに接続してネットワーク通信なしで利用することも可能です。ローカルモデルはホスト型モデルよりも処理速度や品質面でトレードオフが存在するため、オンデバイス処理はデフォルトではなく選択制としています。</p>
+
+        <h2>単なるプライバシー対策にとどまらない理由</h2>
+        <p>プライバシーの重要性は言うまでもありません。広範なホスト権限を持つ拡張機能が、不要な処理のためにページコンテンツをサーバーへ送信することは、単なる見栄えの問題ではなく信頼に関わる本質的な問題です。しかし、オンデバイス化を選択したより実務的な理由は、それがエンジニアリングとして純粋に適切な判断だからです。TF-IDF検索に200ミリ秒のネットワーク遅延は不要であり、タグの重複排除にAPI利用料をかける必要もありません。何でも安易にクラウド処理に依存するのではなく、目的に適した技術を選択することで、より高速で運用コストが低く、オフライン環境にも強いシステムが実現します。プライバシー保護のメリットは、その副産物として自然にもたらされるものです。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper は無料のChrome拡張機能です。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">プライバシーとGDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ドイツで開発された独立系ソフトウェア。<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

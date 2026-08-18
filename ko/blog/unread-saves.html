@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>저장한 글의 대부분은 읽지 않게 됩니다. 진짜 해결책은 여기에 있습니다. — AI Summary Helper</title>
+<meta name="description" content="북마크한 글의 대부분은 다시 열어보지 않게 됩니다. Digest 기능이 존재하는 이유와, 읽을거리를 무작정 쌓아두지 않도록 설계된 이유를 확인해 보세요.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://aish.byphil.eu/de/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://aish.byphil.eu/ko/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://aish.byphil.eu/ja/blog/unread-saves.html"><link rel="alternate" hreflang="pt" href="https://aish.byphil.eu/pt/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">본문 바로가기</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 프로젝트
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">기능</a>
+        <a href="../index.html#pricing">요금 안내</a>
+        <a href="./" aria-current="page">블로그</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 앱으로 돌아가기</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">기능</a>
+      <a href="../index.html#pricing">요금 안내</a>
+      <a href="./">블로그</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 프로젝트 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">라이트 모드로 전환</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">제품 소식 · 2026년 8월</span>
+      <h1>저장한 글의 대부분은 다시 읽지 않습니다. 진짜 해결책은 여기에 있습니다.</h1>
+      <p class="post-sub">저장된 글의 압도적 다수는 다시 열리지 않습니다. 이는 사용자의 의지 부족이 아니라 설계의 문제입니다.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>북마크 행동에 관한 연구(Bergman, Whittaker, Schooler)에 따르면, 우리가 짐작하면서도 인정하고 싶지 않았던 사실이 드러났습니다. 나중에 읽으려고 저장한 콘텐츠의 대다수는 다시 열람되지 않는다는 점입니다. 일부 연구에서는 이 비율을 최대 84%에 달하는 것으로 파악했습니다.</p>
+        <p>본인의 읽기 목록에서도 이러한 현상이 나타난다면, 그것은 결코 의지력의 문제가 아닙니다. 사용자가 아닌 도구 자체의 설계 문제입니다.</p>
+
+        <h2>저장하는 습관이 문제가 아닙니다. 문제는 쌓여 있는 목록입니다.</h2>
+        <p>콘텐츠를 저장하는 데는 단 한 번의 클릭과 0.5초의 의도만 필요합니다. 그러나 나중에 실제로 읽으려면 앱을 다시 열고, 60개, 100개, 200개로 불어난 목록을 스크롤하며, 잠깐 생긴 5분의 틈새 시간 동안 무엇을 읽을지 결정을 내려야 합니다. 거의 모든 사람이 포기하게 되는 지점이 바로 이 두 번째 단계입니다. 글이 흥미롭지 않아서가 아니라, <em>200개 항목 중에서 하나를 선택하는 일</em> 자체가 또 하나의 부담스러운 작업이기 때문이며, 대부분의 나중에 읽기 앱은 거대한 목록 더미를 사용자에게 떠넘기고 방치합니다.</p>
+        <p>즉, 북마크는 계속해서 어기게 되는 약속과 같습니다. 게을러서가 아닙니다. 도구가 아무런 도움도 주지 않은 채 ‘지금 당장 무엇을 읽을지 결정하는 가장 어려운 일’을 사용자에게 온전히 떠넘겼기 때문입니다.</p>
+
+        <h2>대부분의 ‘나중에 읽기’ 앱이 최적화하는 방식</h2>
+        <p>이 분야의 거의 모든 도구는 <em>저장</em> 과정을 매끄럽게 만드는 데 초점을 맞춥니다. 그러나 실제 실패 지점이 <em>선택</em>이라면, 이는 잘못된 최적화 목표입니다. 앱을 다시 열어보지 않는다면 긴 목록은 짧은 목록보다 유용할 것이 없습니다.</p>
+
+        <h2>Digest 기능의 핵심 개념</h2>
+        <p>늘어나는 목록을 스크롤하며 고민하게 만드는 대신, AI Summary Helper의 Digest 기능이 1차 선별을 대신 수행합니다. 클릭 한 번으로 기본 5개의 선별된 저장 항목을 제안하며, 다음 기준을 우선적으로 고려합니다:</p>
+        <ul>
+          <li><strong>최신성</strong> — 8개월 전에 저장해 이미 관심이 지난 콘텐츠는 배제합니다.</li>
+          <li><strong>다양성</strong> — 특정 이슈로 인해 한 번에 저장했던 동일 주제의 글 5개가 한꺼번에 나오지 않도록 조율합니다.</li>
+          <li><strong>원하는 분위기(Mood) 설정</strong>  — '경쾌함', '중립적', '심도 있고 진지함' 중 원하는 분위기를 선택하면, 저장된 콘텐츠의 톤을 분석하여 해당 방향으로 선별합니다.</li>
+        </ul>
+        <p>이것이 전부입니다. 200개가 아닌 단 5개의 선택지. 탭을 닫아버리게 만드는 긴 목록 대신, 10초 안에 결정할 수 있는 간결함을 제공합니다.</p>
+
+        <h2>앱의 제약을 벗어난 완전한 읽기 경험</h2>
+        <p>가장 중요한 점은 Digest가 콘텐츠를 선별한 후 브라우저 확장 프로그램 안에 갇혀 읽을 필요가 없다는 것입니다. 핵심 요약과 원문 링크를 하나의 파일로 묶어 Kindle이나 로컬 네트워크의 다른 기기로 바로 전송할 수 있습니다. 비행기 탑승 전, 주말 휴식 전, 네트워크 연결이 원활하지 않은 출퇴근길 전에 미리 담아두세요. 노트북을 켜고 확장 프로그램을 열어둘 필요 없이 온전히 읽기에 집중할 수 있도록 지원합니다.</p>
+
+        <h2>이 접근 방식이 생각보다 훨씬 중요한 이유</h2>
+        <p>모든 나중에 읽기 도구는 사용자가 '저장한 글을 더 많이 읽도록 돕는다'고 말합니다. 하지만 '선택하는 순간' 자체를 개선하는 도구는 거의 없습니다. 단지 저장을 더 쉽게 만들어줄 뿐이며, 앞선 연구 결과처럼 쌓이는 속도만 빨라질 뿐 정작 근본적으로 결함이 있는 단계는 해결하지 못합니다.</p>
+        <p>진정한 해결책은 더 나은 목록을 만드는 것이 아니라, 목록 자체를 쳐다볼 필요가 없게 만드는 것입니다.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper는 무료 Chrome 확장 프로그램입니다.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 소스코드</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">개인정보 처리방침 및 GDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 독일에서 개발된 독립 소프트웨어입니다.<br>
+      기획 및 개발: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

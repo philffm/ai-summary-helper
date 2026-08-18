@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>保存した記事のほとんどは読まれません。その根本的な解決策がここにあります。 — AI Summary Helper</title>
+<meta name="description" content="ブックマークした記事の多くは二度と開かれません。なぜDigestが存在するのか、そしてなぜあえて未読の山を増やさない設計にしているのかを解説します。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://aish.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://aish.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://aish.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://aish.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://aish.byphil.eu/hi/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://aish.byphil.eu/de/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://aish.byphil.eu/ko/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://aish.byphil.eu/ja/blog/unread-saves.html"><link rel="alternate" hreflang="pt" href="https://aish.byphil.eu/pt/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">コンテンツへスキップ</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. プロジェクト
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">機能</a>
+        <a href="../index.html#pricing">料金プラン</a>
+        <a href="./" aria-current="page">ブログ</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← アプリに戻る</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">機能</a>
+      <a href="../index.html#pricing">料金プラン</a>
+      <a href="./">ブログ</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. プロジェクト ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">ライトモードに切り替え</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">プロダクト · 2026年8月</span>
+      <h1>保存した記事のほとんどは読まれません。その根本的な解決策がここにあります。</h1>
+      <p class="post-sub">保存された記事の圧倒的多数は、二度と開かれることがありません。これは意志の強さの問題ではなく、ツールの設計上の問題です。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>ブックマーク行動に関する研究（Bergman、Whittaker、Schooler）によって、私たちが薄々感じつつも認めたくなかった事実が明らかになりました。「あとで読む」ために保存された記事の圧倒的多数は、二度と開かれないということです。一部の研究では、その割合は実に84%に達すると報告されています。</p>
+        <p>もしご自身のリーディングリストにも心当たりがあるとしても、それはご自身の自己規律の欠如ではありません。問題はあなたではなく、ツールの設計にあるのです。</p>
+
+        <h2>問題は「保存する習慣」ではなく、「溜まった山」にあります。</h2>
+        <p>記事の保存自体は、ワンクリックかつわずか0.5秒の意志決定で完了します。しかし、それを後から実際に読むには、アプリを開き直し、60件、100件、200件と膨らんだリストをスクロールし、確保できたわずか5分ほどの隙間時間で「どれを読むか」を決断しなければなりません。ほぼすべての人が挫折するのは、まさにこの2つ目のステップです。記事に興味がなくなったからではなく、 <em>200件もの候補から選ぶこと</em> それ自体がひとつの大きな負荷となるからです。しかし大半の「あとで読む」アプリは、膨大な未読の山を丸投げして放置する設計になっています。</p>
+        <p>言い換えれば、ブックマークとは「破られ続ける約束」のようなものです。あなたが怠惰だからではありません。ツールが最も困難な部分——「今、実際に何を読むべきかを決めること」を、何のサポートもなくユーザーに丸投げしているからです。</p>
+
+        <h2>大半の「あとで読む」アプリが最適化しているもの</h2>
+        <p>このカテゴリに属するほぼすべてのツールは、 <em>「保存すること」</em> を摩擦なく行えるよう設計されています。しかし、真のボトルネックが <em>「選択すること」</em>にあるとすれば、それは誤った最適化目標です。アプリを開いて中身を見る機会が一度もないのであれば、リストがどれほど長くても何の価値もありません。</p>
+
+        <h2>Digest の基本コンセプト</h2>
+        <p>増え続ける未読の山をスクロールして決断を迫る代わりに、AI Summary Helper の `Digest` 機能が一次選考を代行します。タップするだけで、保存した記事の中から少数のセット（デフォルトでは5件）を、以下の基準を優先して抽出します。</p>
+        <ul>
+          <li><strong>新しさ（Recency）</strong>：8ヶ月前に保存してすでに興味を失っているような古い記事を除外します</li>
+          <li><strong>多様性（Variety）</strong>：同じニュースサイクルで保存した類似記事ばかりが5件並んでしまう事態を防ぎます</li>
+          <li><strong>気分に応じた調整（任意設定）</strong> ：「軽快」「ニュートラル」「じっくり・深掘り」から選択することで、保存済み記事のトーンに基づき、その方向性に合わせて選定します</li>
+        </ul>
+        <p>仕組みはこれだけです。200件ではなく、厳選された5件。タブをそっと閉じてしまうような長大なリストではなく、10秒で意思決定できる分量を提供します。</p>
+
+        <h2>「あとで読む」アプリの枠組みを超えた読書体験</h2>
+        <p>真に重要なのは、`Digest` が記事を選定した後の展開です。拡張機能の画面内に留まって読む必要はありません。選ばれた記事群（要約と元記事へのリンク）は1つのファイルにまとめられ、お使いの Kindle やローカルネットワーク上の他のデバイスへ直接転送できます。フライト前や週末、電波の届かない通勤時などにダウンロードしておけば、拡張機能を開いたノートPCの前に縛られることなく、いつでも読書に集中できます。</p>
+
+        <h2>なぜこれが決定的に重要なのか</h2>
+        <p>あらゆる「あとで読む」ツールは、「保存した記事をより多く読めるようにする」と謳っています。しかし、その大半は「実際に何を読むかを選ぶ瞬間」には何の手も打っていません。単に保存を容易にしているだけであり、前述の研究結果が示す通り、本質的な問題を解決しないまま未読の山をいたずらに増やしているに過ぎないのです。</p>
+        <p>解決策は、より優れたリストを作ることではありません。リスト自体を見る必要をなくすことです。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper は無料の Chrome 拡張機能です。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome に追加</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub でソースコードを見る</a>
+        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">プライバシーおよび GDPR</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">特定商取引法に基づく表記・法的表示</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ドイツ発のインディペンデントソフトウェア。<br>
+      設計・開発： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
