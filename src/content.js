@@ -353,8 +353,24 @@ import {
         const data = { ...syncData, ...localData };
         // ── Define relay FIRST so it's available to every code path ──
         const relay = (action, payload = {}) => {
-          if (summaryMode === 'extension') {
-            chrome.runtime.sendMessage({ action, ...payload }).catch(() => {});
+          if (summaryMode !== 'extension') return;
+          const msg = { action, ...payload };
+
+          // Broadcast to all extension pages (native popup, native side
+          // panel). On Firefox this does NOT reach a popup embedded in a
+          // hybrid-sidebar <iframe>, but it's the reliable path for every
+          // other context.
+          chrome.runtime.sendMessage(msg).catch(() => {});
+
+          // ALSO push directly into the hybrid-sidebar iframe we created.
+          // Firefox downgrades an extension page embedded in a regular web
+          // page to content-script privileges, so runtime.sendMessage
+          // broadcasts never arrive there. A plain postMessage between the
+          // content script and the iframe's own document needs no extension
+          // privileges, so this is the reliable return path in pop-out mode.
+          const sidebar = document.getElementById('ai-summary-hybrid-sidebar');
+          if (sidebar && sidebar.contentWindow) {
+            try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) {}
           }
         };
 

@@ -212,7 +212,12 @@ export function initMainScreen(ui) {
     document.addEventListener('aish:authStateChanged', evaluateOnboarding);
 
     // ── Listen for streaming relay from content script ─────────────────
-    chrome.runtime.onMessage.addListener((msg) => {
+    // On Firefox a hybrid-sidebar iframe is downgraded to content-script
+    // privileges, so it never receives runtime.sendMessage broadcasts. The
+    // content script also postMessages directly into the iframe's document,
+    // which needs no extension privileges — handle those here exactly like
+    // the runtime broadcasts.
+    const handleStreamMessage = (msg) => {
         if (msg.action === 'summaryProgress') {
             updateStream(msg.chunk || 'Working on it…');
             if (msg.preview) updateStreamPreview(msg.preview);
@@ -247,6 +252,22 @@ export function initMainScreen(ui) {
                     removeStreamBubble();
                 }, 3000);
             }
+        }
+    };
+
+    chrome.runtime.onMessage.addListener(handleStreamMessage);
+
+    // Hybrid-sidebar iframe return path (Firefox): the content script
+    // postMessages the same streaming events directly into our document
+    // because runtime.sendMessage broadcasts can't reach a downgraded
+    // iframe. Normalize those events and feed them through the same handler.
+    window.addEventListener('message', (event) => {
+        // Accept messages from our own content script. We don't allowlist the
+        // source origin because the iframe's parent page origin is variable —
+        // but the payload shape must match our summary events exactly.
+        const data = event?.data;
+        if (data && typeof data === 'object' && data.action) {
+            handleStreamMessage(data);
         }
     });
 

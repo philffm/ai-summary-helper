@@ -6,6 +6,7 @@ import StorageManager from './storageManager.js';
 import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
+import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText } from './annotationExporter.js';
 
 let uiManagerRef = null;
 let currentDetailArticle = null;
@@ -34,20 +35,24 @@ function buildSafeArticleTitle(title) {
     return (title || 'AI Summary').replace(/[^a-z0-9_-]/gi, '_');
 }
 
-function buildArticleDocumentHtml(article) {
+async function buildArticleDocumentHtml(article) {
+    // Include the article's highlights & AI suggested highlights (ghosts
+    // included even if never marked "keep").
+    const annotationsHtml = await buildAnnotationsSection(article);
     return `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>${article.title || 'AI Summary'}</title>
 <style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}img{max-width:100%;height:auto;}</style>
 </head><body><h1>${article.title || 'AI Summary'}</h1>
 <div class="meta">Captured via AI Summary Helper &middot; <a href="${article.url || '#'}">Source</a></div>
 ${article.summary ? `<div class="summary"><h2>🧙 AI Summary</h2>${article.summary}</div>` : ''}
+${annotationsHtml}
 <h2>📄 Content</h2><div>${article.content || ''}</div></body></html>`;
 }
 
-function buildArticleHtmlFile(article) {
+async function buildArticleHtmlFile(article) {
     const safeTitle = buildSafeArticleTitle(article.title);
     const fileName = `${safeTitle}.html`;
-    const docHtml = buildArticleDocumentHtml(article);
+    const docHtml = await buildArticleDocumentHtml(article);
     const blob = new Blob([docHtml], { type: 'text/html' });
     const file = new File([blob], fileName, { type: 'text/html' });
     return { file, fileName, docHtml };
@@ -64,7 +69,7 @@ async function shareArticle(article) {
     }
 
     try {
-        const { file } = buildArticleHtmlFile(article);
+        const { file } = await buildArticleHtmlFile(article);
         const fileShareData = {
             title: article.title || 'AI Summary',
             files: [file]
@@ -93,7 +98,7 @@ async function shareArticle(article) {
 /**
  * Generates and downloads a Markdown file with YAML Frontmatter
  */
-function exportToMarkdown(article) {
+async function exportToMarkdown(article) {
     // 1. Format date as YYYY-MM-DD for Obsidian frontmatter
     const createdDate = new Date(article.timestamp).toISOString().split('T')[0];
     
@@ -152,10 +157,16 @@ why:
 
     const contentPlain = doc.body.textContent || 'No content available.';
 
+    // Include the article's highlights & AI suggested highlights (ghosts
+    // included even if never marked "keep").
+    const annotationsPlain = await buildAnnotationsPlainText(article);
+
     const mdContent = `${frontmatter}
 
 # Summary
 ${summaryPlain}
+
+${annotationsPlain}
 
 ---
 
@@ -188,7 +199,12 @@ async function copyArticleToClipboard(article) {
     const title = article.title || 'AI Summary';
     const summary = article.summary || '';
     const content = article.content || '';
-    
+
+    // Fetch annotations (user + ghost) once and reuse for both mime types.
+    const annotations = await fetchAnnotationsForArticle(article);
+    const annotationsHtml = await buildAnnotationsSection(article, annotations);
+    const annotationsPlain = await buildAnnotationsPlainText(article, annotations);
+
     // Create a clean HTML version for the clipboard
     const cleanHtml = `
         <div style="font-family: sans-serif;">
@@ -197,6 +213,7 @@ async function copyArticleToClipboard(article) {
             <hr>
             <h2>🧙 AI Summary</h2>
             <div>${summary}</div>
+            ${annotationsHtml ? `<hr><div>${annotationsHtml}</div>` : ''}
             <hr>
             <h2>📄 Original Content</h2>
             <div>${content}</div>
@@ -207,7 +224,7 @@ async function copyArticleToClipboard(article) {
     });
 
     // Create a plain text / markdown version
-    const plainText = `# ${title}\nSource: ${article.url || 'N/A'}\n\n## 🧙 AI SUMMARY\n${summary.replace(/<[^>]+>/g, '').trim()}\n\n---\n\n## 📄 ORIGINAL CONTENT\n${content.replace(/<[^>]+>/g, '').trim()}`;
+    const plainText = `# ${title}\nSource: ${article.url || 'N/A'}\n\n## 🧙 AI SUMMARY\n${summary.replace(/<[^>]+>/g, '').trim()}\n\n${annotationsPlain}\n\n---\n\n## 📄 ORIGINAL CONTENT\n${content.replace(/<[^>]+>/g, '').trim()}`;
 
     try {
         const typeHtml = 'text/html';
@@ -270,13 +287,15 @@ async function sendToKindle(article) {
             headers['Authorization'] = `Bearer ${config.licenseKey}`;
         }
 
+        const annotationsHtml = await buildAnnotationsSection(article);
+
         const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
             method: 'POST',
             headers,
             body: JSON.stringify({
                 kindle_email: config.kindleEmail,
                 title: article.title || 'AI Summary Document',
-                content: article.content || article.summary || '',
+                content: [article.content || article.summary || '', annotationsHtml].filter(Boolean).join('\n'),
                 summary: article.summary || '',
                 url: article.url || ''
             })
@@ -318,7 +337,7 @@ async function dispatchToLocalSend(article) {
     if (uiManagerRef) uiManagerRef.showToast('Sending to LocalSend over Wi-Fi... 🚀');
 
     try {
-        const { fileName, docHtml } = buildArticleHtmlFile(article);
+        const { fileName, docHtml } = await buildArticleHtmlFile(article);
 
         await sendToLocalSend(readerIp, fileName, docHtml, 'text/html');
 

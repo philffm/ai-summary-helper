@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!--
+    Base URL assumption: https://philffm.github.io/ai-summary-helper/
+    If/when this moves to a custom domain (e.g. aish.byphil.eu), swap the
+    base below AND fix scripts/translate.mjs's hreflang base URL to match
+    — they need to agree, and right now the script still has the old
+    aish.byphil.eu guess baked in from before we knew the real path.
+  -->
+
+  <url>
+    <loc>https://philffm.github.io/ai-summary-helper/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philffm.github.io/ai-summary-helper/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philffm.github.io/ai-summary-helper/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://philffm.github.io/ai-summary-helper/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://philffm.github.io/ai-summary-helper/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://philffm.github.io/ai-summary-helper/de/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://philffm.github.io/ai-summary-helper/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://philffm.github.io/ai-summary-helper/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://philffm.github.io/ai-summary-helper/pt/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://philffm.github.io/ai-summary-helper/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://philffm.github.io/ai-summary-helper/hi/"/>
+  </url>
+
+  <url>
+    <loc>https://philffm.github.io/ai-summary-helper/blog/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://philffm.github.io/ai-summary-helper/blog/pocket-alternative.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://philffm.github.io/ai-summary-helper/blog/unread-saves.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://philffm.github.io/ai-summary-helper/blog/on-device-architecture.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Locale homepages -->
+  <url><loc>https://philffm.github.io/ai-summary-helper/fr/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/es/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/de/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/ja/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/ko/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/pt/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/zh/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://philffm.github.io/ai-summary-helper/hi/</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+
+</urlset>
