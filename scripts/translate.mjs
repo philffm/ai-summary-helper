@@ -223,6 +223,17 @@ function addHreflangTags($, config, currentLocaleCode, relPath) {
     }
 }
 
+/**
+ * Sets the <html lang> attribute to the target locale's BCP-47 code so the
+ * translated page is correctly identified for SEO and screen readers. The
+ * English source always carries lang="en"; without this, every translated
+ * page would keep claiming to be English.
+ */
+function setHtmlLang($, locale) {
+    const html = $('html');
+    if (html.length) html.attr('lang', locale.hreflang);
+}
+
 // ── OpenRouter call ──────────────────────────────────────────────────
 
 async function translateUnits(units, locale, apiKey) {
@@ -353,6 +364,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
         const translations = { ...cached, ...fresh };
         injectUnits($, units, translations);
         rewriteAssetPaths($, locale);
+        setHtmlLang($, locale);
         addHreflangTags($, config, code, relPath);
 
         const outPath = path.join(ROOT, locale.dir, relPath);
