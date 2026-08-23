@@ -124,6 +124,30 @@ body{
 }
 .skip-link:focus{top:16px;}
 
+/* ── Locale suggestion banner ────────────────────────────────────── */
+.lang-banner{
+  position:sticky; top:0; z-index:90;
+  background:var(--nav-bg-solid); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-medium);
+}
+.lang-banner-inner{
+  max-width:1080px; margin:0 auto; padding:10px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.lang-banner-text{ font-size:14px; color:var(--paper); }
+.lang-banner-link{
+  color:var(--signal-light); font-weight:600; text-decoration:underline;
+  text-underline-offset:3px;
+}
+.lang-banner-link:hover{ color:var(--signal); }
+.lang-banner-close{
+  width:28px; height:28px; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center;
+  background:transparent; border:1px solid var(--border-subtle); border-radius:8px;
+  color:var(--paper-dim); cursor:pointer;
+}
+.lang-banner-close:hover{ background:var(--surface-1-strong); color:var(--paper); }
+@media (max-width: 640px){ .lang-banner-inner{ padding:8px 14px; } .lang-banner-text{ font-size:13px; } }
+
 .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease;}
 .reveal.is-visible{opacity:1; transform:translateY(0);}
 @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }

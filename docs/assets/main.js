@@ -106,3 +106,66 @@ function setBilling(period) {
     if (by) by.classList.remove('active');
   }
 }
+
+/* ── Locale suggestion banner (English pages only) ───────────────── */
+(function () {
+  // Only offer a locale switch on English pages. Anyone already on a
+  // /lang/xx/ page is left alone — no redirect, so every locale URL
+  // stays independently reachable and indexable.
+  var htmlLang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+  if (htmlLang && htmlLang !== 'en' && htmlLang.indexOf('en-') !== 0) return;
+
+  var LOCALES = {
+    de: 'Deutsch', es: 'Español', fr: 'Français', hi: 'हिन्दी',
+    ja: '日本語', ko: '한국어', pt: 'Português', zh: '中文'
+  };
+  var DISMISS_KEY = 'aish_lang_banner_dismissed';
+
+  // Best match: walk navigator.languages (falling back to navigator.language)
+  // and pick the first that maps to a shipped locale.
+  function preferredLocale() {
+    var langs = [];
+    try { langs = navigator.languages || []; } catch (e) {}
+    if (!langs.length && navigator.language) langs = [navigator.language];
+    for (var i = 0; i < langs.length; i++) {
+      var code = (langs[i] || '').toLowerCase();
+      var base = code.split('-')[0];
+      if (LOCALES[base]) return base;
+    }
+    return null;
+  }
+
+  var target = preferredLocale();
+  if (!target) return;
+
+  var dismissed = false;
+  try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
+
+  // Same-page mapping: /index.html -> /lang/xx/index.html, and
+  // /blog/foo.html -> /lang/xx/blog/foo.html. Never just the homepage.
+  var rel = window.location.pathname.replace(/^\/+/, '');
+  if (!rel) rel = 'index.html';
+  var href = '/lang/' + target + '/' + rel;
+
+  var banner = document.createElement('div');
+  banner.className = 'lang-banner';
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Language suggestion');
+  banner.innerHTML =
+    '<div class="lang-banner-inner">' +
+      '<span class="lang-banner-text">This page is also available in ' +
+        '<a class="lang-banner-link" href="' + href + '">' + (LOCALES[target] || target) + '</a>.' +
+      '</span>' +
+      '<button type="button" class="lang-banner-close" aria-label="Dismiss language suggestion">' +
+        '<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M6 6l12 12M18 6l6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+      '</button>' +
+    '</div>';
+
+  function dismiss() {
+    banner.remove();
+    try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
+  }
+  banner.querySelector('.lang-banner-close').addEventListener('click', dismiss);
+
+  if (!dismissed) document.body.prepend(banner);
+})();
