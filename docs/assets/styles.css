@@ -215,7 +215,7 @@ nav.links a:hover{ color:var(--paper); }
 .mobile-menu-inner .theme-toggle-mobile{ border-bottom:1px solid var(--border-subtle); }
 .mobile-menu-inner a:last-child{ border-bottom:none; }
 
-@media (max-width: 760px){ .nav-desktop-links{ display:none; } .nav-toggle{ display:flex; } }
+@media (max-width: 900px){ .nav-desktop-links{ display:none; } .nav-toggle{ display:flex; } }
 
 .brand-cluster{ display:flex; align-items:center; gap:12px; min-width:0; }
 .ecosystem-badge{
@@ -305,8 +305,8 @@ section{ padding:76px 0; }
 .icon-violet{ background:linear-gradient(150deg, #A98AE8, #6B4CC4); }
 .icon-gold{ background:linear-gradient(150deg, #E4C88E, #B4863B); }
 
-@media (max-width: 860px){ .feature-grid{ grid-template-columns:repeat(2, 1fr); } }
-@media (max-width: 560px){ .feature-grid{ grid-template-columns:1fr; } }
+@media (max-width: 1024px){ .feature-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width: 640px){ .feature-grid{ grid-template-columns:1fr; gap:12px; } .feature-card{ padding:20px; } }
 
 /* ── Mock card (product preview, no screenshots needed) ─────────── */
 .mock-shell{
@@ -391,8 +391,8 @@ section{ padding:76px 0; }
 .blog-card h3{ font-family:var(--font-display); font-size:17px; font-weight:600; margin:0 0 10px; line-height:1.3; }
 .blog-card p{ font-size:14px; line-height:1.6; color:var(--paper-dim); margin:0 0 14px; }
 .blog-card .blog-read{ font-size:13.5px; font-weight:600; color:var(--signal-light); display:inline-flex; align-items:center; gap:5px; }
-@media (max-width: 860px){ .blog-grid{ grid-template-columns:repeat(2, 1fr); } }
-@media (max-width: 560px){ .blog-grid{ grid-template-columns:1fr; } }
+@media (max-width: 1024px){ .blog-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width: 640px){ .blog-grid{ grid-template-columns:1fr; gap:12px; } .blog-card{ padding:20px; } }
 
 .post-hero{ padding:56px 0 20px; }
 .post-hero .blog-date{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--brass-light); display:block; margin-bottom:16px; }
