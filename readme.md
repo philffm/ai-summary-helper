@@ -46,70 +46,74 @@ This project includes two components:
 
 ```
 ai-summary-helper/
-├── src/                          # Single source of truth (Chrome MV3, Vanilla JS)
-│   ├── manifest.json             # (removed — moved to platforms/chrome)
-│   ├── background.js             # Service worker: context menus, alarms, notifications, side panel
-│   ├── content.js                # Content script: page text extraction, highlighting, hybrid sidebar
-│   ├── popup.html                # Popup UI (header → screens → bottom-nav)
-│   ├── popup.js                  # Popup entry point — wires up all module inits
-│   ├── styles.css                # Global styles (glassmorphism, light/dark themes)
-│   ├── api.js                    # API helpers
-│   ├── services.json             # Provider registry (OpenAI, Mistral, Deepseek, Ollama, …)
-│   ├── prompts.json              # Preset prompt library
-│   ├── compatible-tools.json     # Compatible tools table (generated from readme)
-│   ├── translations.json         # UI translation strings (source of truth)
-│   ├── donationMessages.json     # Donation message pool
-│   ├── privacy.md                # Privacy policy
-│   ├── readme.md                 # Extension-specific readme
-│   ├── _locales/                 # i18n messages per locale (ar, de, en, es, fr, hi, it, ja, ko, pt_PT, ru, zh_*)
-│   ├── icons/                    # Extension icons (16/48/128 + svg)
-│   ├── lib/                      # Vendored libs (e.g. d3.min.js)
-│   └── modules/                  # ES modules (see table below)
+├── plugin/                       # Shippable extension code (monorepo split)
+│   ├── src/                      # Single source of truth (Chrome MV3, Vanilla JS)
+│   │   ├── background.js         # Service worker: context menus, alarms, notifications, side panel
+│   │   ├── content.js            # Content script: page text extraction, highlighting, hybrid sidebar
+│   │   ├── popup.html            # Popup UI (header → screens → bottom-nav)
+│   │   ├── popup.js              # Popup entry point — wires up all module inits
+│   │   ├── styles.css            # Global styles (glassmorphism, light/dark themes)
+│   │   ├── api.js                # API helpers
+│   │   ├── services.json         # Provider registry (OpenAI, Mistral, Deepseek, Ollama, …)
+│   │   ├── prompts.json          # Preset prompt library
+│   │   ├── compatible-tools.json # Compatible tools table (generated from readme)
+│   │   ├── translations.json     # UI translation strings (source of truth)
+│   │   ├── donationMessages.json # Donation message pool
+│   │   ├── privacy.md            # Privacy policy
+│   │   ├── readme.md             # Extension-specific readme
+│   │   ├── _locales/             # i18n messages per locale (ar, de, en, es, fr, hi, it, ja, ko, pt_PT, ru, zh_*)
+│   │   ├── icons/                # Extension icons (16/48/128 + svg)
+│   │   ├── lib/                  # Vendored libs (e.g. d3.min.js)
+│   │   └── modules/              # ES modules (see table below)
+│   │
+│   ├── platforms/                # Per-platform manifests
+│   │   ├── chrome/manifest.json  # Chrome: sidePanel + service_worker
+│   │   ├── android/manifest.json # Android: no sidePanel, service_worker
+│   │   ├── firefox/manifest.json # Firefox: gecko id, background.scripts (event page)
+│   │   └── ios/manifest.json     # Safari/iOS: background.scripts
+│   │
+│   ├── scripts/
+│   │   └── build.js              # Node dev-sync tool (src → dev/<platform>)
+│   │
+│   ├── build.sh                  # Release build: version bump + zip into prod/
+│   │
+│   ├── dev/                      # Generated unpacked builds (git-ignored)
+│   │   ├── aish-extension-chrome/
+│   │   ├── aish-extension-android/
+│   │   └── aish-extension-firefox/
+│   │
+│   └── prod/                     # Generated release zips (git-ignored)
+│       ├── aish-extension-chrome-<ver>.zip
+│       ├── aish-extension-android-<ver>.zip
+│       └── aish-extension-firefox-<ver>.zip
 │
-├── platforms/                    # Per-platform manifests
-│   ├── chrome/manifest.json      # Chrome: sidePanel + service_worker
-│   ├── android/manifest.json     # Android: no sidePanel, service_worker
-│   ├── firefox/manifest.json     # Firefox: gecko id, background.scripts (event page)
-│   └── ios/manifest.json         # Safari/iOS: background.scripts
-│
-├── scripts/
-│   └── build.js                  # Node dev-sync tool (src → dev/<platform>)
-│
-├── build.sh                      # Release build: version bump + zip into prod/
-├── current_version.json          # Single source of truth for version + language list
-├── package.json                  # npm scripts (build, build:chrome, build:firefox, …)
-│
-├── dev/                          # Generated unpacked builds (git-ignored)
-│   ├── aish-extension-chrome/
-│   ├── aish-extension-android/
-│   └── aish-extension-firefox/
-│
-├── prod/                         # Generated release zips (git-ignored)
-│   ├── aish-extension-chrome-<ver>.zip
-│   ├── aish-extension-android-<ver>.zip
-│   └── aish-extension-firefox-<ver>.zip
+├── docs/                         # Marketing website (GitHub Pages publish folder)
+│   ├── index.html                # Landing page
+│   ├── sitemap.xml               # SEO sitemap
+│   ├── CNAME                     # Custom domain (ai-summary-helper.byphil.eu)
+│   ├── assets/                   # Marketing images (aish.png, createBookmarklet.svg, …)
+│   ├── blog/                     # Marketing blog (static HTML)
+│   ├── i18n/                     # Translation config + manifest (locales.json, manifest.json)
+│   └── lang/                     # Website translations (generated by translate.mjs)
 │
 ├── bookmarklet-generator/        # Standalone bookmarklet generator (works on iOS)
 │   ├── index.html
 │   ├── main.js
 │   └── styles.css
 │
-├── blog/                         # Marketing blog (static HTML + blogPosts.json)
-├── lang/                         # Website translations (generated by translate.py)
-├── assets/                       # Marketing images (aish.png, createBookmarklet.svg, …)
-├── chrome-extension_LEGACY/      # Archived legacy extension (reference only)
+├── scripts/
+│   └── translate.mjs             # Website translation pipeline (docs/ → docs/lang/)
 │
-├── .github/workflows/
-│   ├── release.yml               # Tag-triggered: build + version bump + GitHub release
-│   └── translate.yml             # Auto-translates translations.json → lang/
+├── current_version.json          # Single source of truth for version + language list
+├── package.json                  # npm scripts (build, build:chrome, build:firefox, …)
+├── readme.md                     # This overview (also feeds compatible-tools.json)
 │
-├── translate.py                  # OpenAI-powered translation script
-├── index.html / script.js / style.css   # Root marketing website
-├── sitemap.xml                   # SEO sitemap
-└── table.txt                     # Compatible-tools table (intermediate build artifact)
+└── .github/workflows/
+    ├── release.yml               # Tag-triggered: build + version bump + GitHub release
+    └── translate.yml             # Auto-translates docs/ content → docs/lang/
 ```
 
-### `src/modules/` — ES module responsibilities
+### `plugin/src/modules/` — ES module responsibilities
 
 | Module | Responsibility |
 | --- | --- |
@@ -136,33 +140,33 @@ ai-summary-helper/
 
 ### Build pipeline
 
-- **Dev sync** — `node scripts/build.js` (or `npm run build`) copies `src/` into `dev/aish-extension-<platform>/` and overlays the matching `platforms/<platform>/manifest.json`.
-- **Release** — `./build.sh` bumps the version in `current_version.json` + all `platforms/*/manifest.json` + `src/popup.html`, then zips each platform build into `prod/`.
-- **CI** — `.github/workflows/release.yml` runs `build.sh` on tag push, commits the version bump, and creates a GitHub release with the three zips.
+- **Dev sync** — `node plugin/scripts/build.js` (or `npm run build`) copies `plugin/src/` into `plugin/dev/aish-extension-<platform>/` and overlays the matching `plugin/platforms/<platform>/manifest.json`.
+- **Release** — `./plugin/build.sh` bumps the version in `current_version.json` + all `plugin/platforms/*/manifest.json` + `plugin/src/popup.html`, then zips each platform build into `plugin/prod/`.
+- **CI** — `.github/workflows/release.yml` runs `plugin/build.sh` on tag push, commits the version bump, and creates a GitHub release with the three zips.
 
 ### Cross-browser notes
 
-- `src/` is written against the `chrome.*` namespace. A tiny shim at the top of `content.js`, `background.js`, and `popup.js` aliases `chrome → browser` when only `browser.*` exists (Safari/iOS), so the same code runs on every platform.
+- `plugin/src/` is written against the `chrome.*` namespace. A tiny shim at the top of `content.js`, `background.js`, and `popup.js` aliases `chrome → browser` when only `browser.*` exists (Safari/iOS), so the same code runs on every platform.
 - Firefox uses `background.scripts` (event page) + a `gecko.id`; Chrome uses `service_worker` + `sidePanel`; Android/iOS omit `sidePanel`.
 
 ## Installation and Usage
 
 ### Chrome Extension
 
-1. Navigate to the `src` directory and follow the instructions in the `readme.md`.
+1. Navigate to the `plugin/src` directory and follow the instructions in the `readme.md`.
 
 ### Firefox Extension
 
-1. Run `npm run build:firefox` (or `node scripts/build.js firefox`) to sync `src/` into `dist/firefox/` with the Firefox manifest.
-2. Open `about:debugging#/runtime/this-firefox` in Firefox and click **Load Temporary Add-on**, then select `dist/firefox/manifest.json`.
+1. Run `npm run build:firefox` (or `node plugin/scripts/build.js firefox`) to sync `plugin/src/` into `plugin/dev/aish-extension-firefox/` with the Firefox manifest.
+2. Open `about:debugging#/runtime/this-firefox` in Firefox and click **Load Temporary Add-on**, then select `plugin/dev/aish-extension-firefox/manifest.json`.
 
 ### Safari (iOS / macOS)
 
-1. Run `npm run build:ios` (or `node scripts/build.js ios`) to sync `src/` into `dist/ios/`.
+1. Run `npm run build:ios` (or `node plugin/scripts/build.js ios`) to sync `plugin/src/` into `plugin/dev/aish-extension-ios/`.
 2. Convert the WebExtension into a native container app:
    ```bash
-   xcrun safari-web-extension-converter ./dev/aish-extension-ios \
-   --project-location dist/ios \
+   xcrun safari-web-extension-converter ./plugin/dev/aish-extension-ios \
+   --project-location plugin/dist/ios \
    --app-name "AI Summary Helper" \
    --bundle-identifier "eu.byphil.aisummaryhelper" \
    --copy-resources \

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Blog — AI Summary Helper</title>
+<meta name="description" content="Notes on reading, search, and building on-device — from the team behind AI Summary Helper.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-blog-->
+
+<main id="main">
+  <section class="hero" style="padding-bottom:24px;">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> The blog <span class="dash"></span></div>
+      <h1 style="font-size:clamp(30px, 4.6vw, 46px);">Notes on reading, search,<br><em>and building on-device</em></h1>
+      <p class="sub">What we learned building this — and where it fits if you're weighing your options.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px;">
+    <div class="wrap">
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="pocket-alternative.html">
+          <span class="blog-date">Guide · Aug 2026</span>
+          <h3>Looking for a Pocket alternative? Here's what actually matters</h3>
+          <p>Pocket's shutdown left a real gap. A decision guide based on what you actually used it for — not which app looks the most familiar.</p>
+          <span class="blog-read">Read the post →</span>
+        </a>
+        <a class="blog-card" href="unread-saves.html">
+          <span class="blog-date">Product · Aug 2026</span>
+          <h3>You won't read most of what you save. Here's the actual fix.</h3>
+          <p>Most saved articles are never reopened. Why Digest exists, and why it deliberately doesn't try to make the pile bigger.</p>
+          <span class="blog-read">Read the post →</span>
+        </a>
+        <a class="blog-card" href="on-device-architecture.html">
+          <span class="blog-date">Engineering · Aug 2026</span>
+          <h3>Why we moved search, tagging, and recommendations out of the cloud</h3>
+          <p>The TF-IDF index behind search, dedup, and digest — and why most of it never needed a server in the first place.</p>
+          <span class="blog-read">Read the post →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--include:footer-blog-->
+</body>
+</html>

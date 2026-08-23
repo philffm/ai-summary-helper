@@ -40,7 +40,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
 
-const ROOT = process.cwd();
+const REPO_ROOT = process.cwd();
+const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
 const CONFIG_PATH = path.join(ROOT, 'i18n', 'locales.json');
 const MANIFEST_PATH = path.join(ROOT, 'i18n', 'manifest.json');
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'google/gemini-3.7-flash';
@@ -271,9 +272,91 @@ ${locale.marketNotes}`;
 
 // ── Main ─────────────────────────────────────────────────────────────
 
+// ── String-level cache (content-addressed) ─────────────────────────────
+//
+// Staleness used to be tracked per FILE: any edit anywhere on a page
+// (even shared nav/footer text used on every page) re-translated the
+// entire page hash-to-hash. Now every extracted string is cached under
+// the sha256 of its own English text, per locale. Two consequences:
+//   1. Editing one sentence only re-translates that one string — not
+//      every page that happens to contain it.
+//   2. Identical strings (e.g. nav/footer text repeated across every
+//      page via site-src/partials/) are translated ONCE per locale and
+//      reused everywhere, including across different source files in
+//      the same run.
+// Rebuilding the output HTML itself is always cheap (no LLM call), so a
+// file is always re-rendered even when every one of its strings was a
+// cache hit — that keeps structural changes (new markup from
+// build-site.mjs) flowing through without needing their own staleness
+// tracking.
+
+function stringKey(text) {
+    return sha256(text);
+}
+
+async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
+    const srcPath = path.join(ROOT, relPath);
+    const srcContent = await readFile(srcPath, 'utf8');
+
+    let anyApiCallsThisFile = false;
+
+    for (const [code, locale] of Object.entries(targetLocales)) {
+        if (!locale) continue;
+
+        const $ = cheerio.load(srcContent, { decodeEntities: false });
+        const units = extractUnits($);
+
+        // Split into cache hits (already translated for this locale) and
+        // units that actually need an API call.
+        const cached = {};
+        const missing = [];
+        for (const u of units) {
+            const key = stringKey(u.text);
+            const entry = manifest.strings[key];
+            const hit = entry?.translations?.[code];
+            if (hit) {
+                cached[u.id] = hit.text;
+            } else {
+                missing.push(u);
+            }
+        }
+
+        let fresh = {};
+        if (missing.length > 0) {
+            console.log(`translate  ${relPath} [${code}] — ${missing.length}/${units.length} new string(s)${DRY_RUN ? ' (dry run)' : ''}`);
+            fresh = await translateUnits(missing, locale, apiKey);
+            anyApiCallsThisFile = true;
+
+            const now = new Date().toISOString();
+            const model = DRY_RUN ? 'dry-run' : OPENROUTER_MODEL;
+            for (const u of missing) {
+                const key = stringKey(u.text);
+                if (!fresh[u.id]) continue;
+                manifest.strings[key] = manifest.strings[key] || { en: u.text, translations: {} };
+                manifest.strings[key].en = u.text;
+                manifest.strings[key].translations[code] = { text: fresh[u.id], translatedAt: now, model };
+            }
+        } else {
+            console.log(`cached     ${relPath} [${code}] — 0 new strings, reusing ${units.length}`);
+        }
+
+        const translations = { ...cached, ...fresh };
+        injectUnits($, units, translations);
+        rewriteAssetPaths($);
+        addHreflangTags($, config, code, relPath);
+
+        const outPath = path.join(ROOT, locale.dir, relPath);
+        await ensureDir(outPath);
+        await writeFile(outPath, $.html(), 'utf8');
+    }
+
+    return anyApiCallsThisFile;
+}
+
 async function main() {
     const config = await loadJson(CONFIG_PATH);
-    const manifest = existsSync(MANIFEST_PATH) ? await loadJson(MANIFEST_PATH) : { files: {} };
+    const manifest = existsSync(MANIFEST_PATH) ? await loadJson(MANIFEST_PATH) : { strings: {} };
+    manifest.strings = manifest.strings || {};
 
     const apiKey = process.env.OPENROUTER_API_KEY;
     if (!DRY_RUN && !apiKey) {
@@ -286,54 +369,17 @@ async function main() {
         ? { [ONLY_LOCALE]: config.locales[ONLY_LOCALE] }
         : config.locales;
 
-    let changedCount = 0;
-
+    let filesWithApiCalls = 0;
     for (const relPath of targetFiles) {
-        const srcPath = path.join(ROOT, relPath);
-        const srcContent = await readFile(srcPath, 'utf8');
-        const srcHash = sha256(srcContent);
-
-        manifest.files[relPath] = manifest.files[relPath] || { sourceHash: null, translations: {} };
-        manifest.files[relPath].sourceHash = srcHash;
-
-        for (const [code, locale] of Object.entries(targetLocales)) {
-            if (!locale) continue;
-            const record = manifest.files[relPath].translations[code];
-            const isStale = !record || record.hash !== srcHash;
-
-            if (!isStale) {
-                console.log(`skip   ${relPath} [${code}] — up to date`);
-                continue;
-            }
-
-            console.log(`translate  ${relPath} [${code}]${DRY_RUN ? ' (dry run)' : ''}`);
-
-            const $ = cheerio.load(srcContent, { decodeEntities: false });
-            const units = extractUnits($);
-            const translations = await translateUnits(units, locale, apiKey);
-            injectUnits($, units, translations);
-            rewriteAssetPaths($);
-            addHreflangTags($, config, code, relPath);
-
-            const outPath = path.join(ROOT, locale.dir, relPath);
-            await ensureDir(outPath);
-            await writeFile(outPath, $.html(), 'utf8');
-
-            manifest.files[relPath].translations[code] = {
-                hash: srcHash,
-                translatedAt: new Date().toISOString(),
-                model: DRY_RUN ? 'dry-run' : OPENROUTER_MODEL,
-                unitCount: units.length
-            };
-            changedCount++;
-        }
+        const called = await translateFile(relPath, config, targetLocales, manifest, apiKey);
+        if (called) filesWithApiCalls++;
     }
 
     await saveJson(MANIFEST_PATH, manifest);
-    console.log(`\nDone. ${changedCount} (file, locale) pair(s) updated.`);
+    console.log(`\nDone. ${filesWithApiCalls}/${targetFiles.length} file(s) needed new translation calls. ${Object.keys(manifest.strings).length} unique string(s) cached total.`);
     // Signal to the Action whether there's anything to commit/PR.
     if (process.env.GITHUB_OUTPUT) {
-        await writeFile(process.env.GITHUB_OUTPUT, `changed=${changedCount > 0}\n`, { flag: 'a' });
+        await writeFile(process.env.GITHUB_OUTPUT, `changed=${filesWithApiCalls > 0}\n`, { flag: 'a' });
     }
 }
 

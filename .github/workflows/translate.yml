@@ -4,9 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'index.html'
-      - 'blog/**.html'
-      - 'i18n/locales.json'
+      - 'site-src/**'
+      - 'docs/i18n/locales.json'
   workflow_dispatch:
     inputs:
       locale:
@@ -34,6 +33,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Assemble docs/ from site-src/ templates + partials
+        run: node scripts/build-site.mjs
+
       - name: Run translation pipeline
         id: translate
         env:
@@ -45,19 +47,19 @@ jobs:
             node scripts/translate.mjs
           fi
 
-      # No website/ wrapper folder anymore (back at repo root, alongside
-      # the extension source), so git-add is scoped explicitly to what
-      # this pipeline can actually touch — never a blanket `-A`, which in
-      # a monorepo risks sweeping up unrelated changes from the extension
-      # build into a "translation" PR.
+      # docs/ is generated (by build-site.mjs) and committed (GitHub Pages
+      # serves it directly), so both the English pages AND the translated
+      # lang/ output can change in one PR here. git-add stays scoped
+      # explicitly rather than a blanket `-A`, which in a monorepo risks
+      # sweeping up unrelated changes from the extension build.
       - name: Open pull request with the updated translations
         if: steps.translate.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           add-paths: |
-            lang/**
-            i18n/manifest.json
+            docs/**
+            !docs/lang/**/.DS_Store
           commit-message: 'i18n: update translations for changed content'
           branch: i18n/auto-update
           delete-branch: true

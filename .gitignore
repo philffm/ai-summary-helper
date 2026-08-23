@@ -4,14 +4,17 @@ icons/.DS_Store
 ai-summary-helper.zip
 test.md
 Archive.zip
-src/Archive 2.zip
 *.zip
 .env
 .secrets
 
 chrome-extension_working
-dist/
-dev/
-prod/
 chrome-extension_LEGACY
 node_modules/
+
+# Generated build artifacts (plugin/build.sh)
+plugin/dev/
+plugin/prod/
+plugin/dist/
+plugin/table.txt
+plugin/compatible-tools.json

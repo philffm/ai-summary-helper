@@ -1,0 +1,1594 @@
+commit 64e1ed26404614bb15f8ee0c651f55e5a6ee3b9a
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 12:56:22 2026 +0200
+
+    Restructure
+
+commit 73b853651e1a2ead1844c76715eb2aca8ce5f00c
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 12:56:20 2026 +0200
+
+commit 7d956394f2765326bace43da55f239b2e104a537
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 12:37:21 2026 +0200
+
+    Update CNAME
+
+commit 00cda459022932f977c248655f3694a56e95e764
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 12:35:58 2026 +0200
+
+    Restructuring
+
+commit 833eac8f187a2e895f0484e5e1977a93ad8b7f8c
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 11:25:59 2026 +0200
+
+commit 102029455fe4c43aed84172f970b011a08d93b8d
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 11:15:57 2026 +0200
+
+    Update CNAME
+
+commit 34479dd2284925a07d20f4d467a6a25d1637ac3d
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 11:11:57 2026 +0200
+
+    Create CNAME
+
+commit b35e9aed883629d8b2c1c83a46458f3554c10c24
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 09:51:42 2026 +0200
+
+    Restructure
+
+commit 6acc2bac8c11af9a8fe41c9b91ae9f2d0a9b8fd3
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Tue Aug 18 18:02:17 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit b42d7828ac7e3c1a7ace49da4912d65e2ce6f2b0
+Merge: 6eb1a51 840a865
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 02:01:20 2026 +0800
+
+    Merge pull request #10 from philffm/i18n/auto-update
+    
+    Translation update (automated)
+
+commit 840a865a01270e545678e9d0bdee23aea31179b5
+Author: philffm <6079545+philffm@users.noreply.github.com>
+Date:   Tue Aug 18 18:00:12 2026 +0000
+
+    i18n: update translations for changed content
+
+commit 6eb1a51baf36951d504eae1dc740ac7ba5ab4715
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 18 19:51:37 2026 +0200
+
+commit d4be276ba1b0606f6a1187079a67148c202c7409
+Merge: 6d2e806 7cf631e
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 19 01:48:55 2026 +0800
+
+    Merge pull request #9 from philffm/i18n/auto-update
+    
+    i18n: update translations for changed content
+
+commit 7cf631e1f019fe1f731b303f382955f962e9cf74
+Author: philffm <6079545+philffm@users.noreply.github.com>
+Date:   Tue Aug 18 17:45:53 2026 +0000
+
+    i18n: update translations for changed content
+
+commit 6d2e806e97549c1e5b98299b75731269a8f6eb1a
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 18 19:35:51 2026 +0200
+
+commit 6a87f5b453449644d7343e80f2849664b3630361
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 18 19:32:57 2026 +0200
+
+commit 86d8524c010af69a8fb220d86638d824e9a1728e
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Sat Aug 15 13:55:44 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit 90ff7259d1039e282cef50cc1522b6132c65aaaa
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Sat Aug 15 15:55:04 2026 +0200
+
+commit 0d03b39f62a5166c7a02a46637e9b422a90d7546
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 13 15:45:45 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit a3f4d8c12c3037a2e97a5edeb68920b8e1ac93f0
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 17:44:43 2026 +0200
+
+    Refactor content
+
+commit 7cdedcb12dfdfa78ed7a00f33514e79bbbb9b920
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 17:11:46 2026 +0200
+
+commit a2931ab645a17f07818d930dfba2438a9956ea54
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 13 12:55:21 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit 0ba3f416e20c68bc925ab6a7e56b27b91729d899
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 14:54:18 2026 +0200
+
+commit bdebba2def737a31141e6723154fb66f35fca580
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 14:44:45 2026 +0200
+
+commit 1f7ad34c169fb335c85368b432580cec195438ec
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 14:44:43 2026 +0200
+
+commit a642a851dcb71a99590f57ad9f61b45d787dd82d
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 13 12:34:12 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit 52cb7b409fa442647414cd63a16c42b22309ac16
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 14:32:50 2026 +0200
+
+commit e13fbcd068c5c5473c4298a98cd0f657f7ce965e
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 13 12:29:12 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit d161d23e872f73d95b52aafcddfe2cc4b82a0431
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 14:28:48 2026 +0200
+
+commit 1e6485a9417454f4fa2407cd0f4b736db8fa2fe4
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 14:25:39 2026 +0200
+
+commit 81b36cb1eb9277cbd3ec3684cf571930dea6a89a
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 13 10:16:51 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit ea5893ab5ad8e21a1b7682d6d8ba1e93688e3042
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 12:15:40 2026 +0200
+
+    Fix bug where local models stopped working
+
+commit 0e28c91dd00b2f0f2cffefd0531e06f6bdf9c56e
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Wed Aug 12 22:55:04 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit a499ad9c29300e88ed356a38a510939e7ed8f4e9
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 13 00:53:38 2026 +0200
+
+    Architecture update
+
+commit d5e7c26e1824b0e01408186cb59a77d74c88650e
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 19:27:26 2026 +0200
+
+commit 802a36ef9735f32ce6abf523b9beb078644e4569
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 19:26:35 2026 +0200
+
+commit faca1ad06877089e7bb3691ba54149fdddedf6ae
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 19:22:15 2026 +0200
+
+    Architecture update - firefox ios wip
+
+commit aa54eb264deeb52c14561dacac0c900271eb6fcd
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 19:22:01 2026 +0200
+
+commit 5e3e624b192ee76733df9a900f9deab58b7154e9
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Wed Aug 12 10:01:26 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit 743c61f67873f2bb8134ef083216b0d71a1395a5
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 12:00:30 2026 +0200
+
+    Restore backup feature
+
+commit d4d831b4e51e028957fed309122a547eae2b3ec6
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 11:53:29 2026 +0200
+
+    stable
+
+commit 7457a1532a730d1eb245dce1d92934bca2d3bed8
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Wed Aug 12 09:37:43 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit 55ef2603bfa9e9e0e077ab7c451d8984b959deb1
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 12 11:36:41 2026 +0200
+
+commit aa861067deeec192bdd049291a928e40d736c3d2
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Tue Aug 11 14:57:21 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit f72030aaf73e4c71dc9fa75adc7ee7644d5a25ff
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:55:53 2026 +0200
+
+commit d32faa41829dfd920820d408e181aee673a7b26d
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:55:50 2026 +0200
+
+commit e1affbc3234b7b13390ad421944f395e20e25cf0
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Tue Aug 11 14:44:33 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit c1bb41603210043c982f1e6b326ca283fef0550e
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:43:32 2026 +0200
+
+commit 1d463c85f7f37635d64c664afd8c25d40e2f85c5
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:41:14 2026 +0200
+
+commit 32771a42657d491d43bc4251b66798d23970891a
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Tue Aug 11 14:35:51 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit f2e2c069d1b68a5c68c63653f378a9b3d259749a
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:35:04 2026 +0200
+
+commit ed09803e77150758535c503d55a355d28d8bf05f
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:32:41 2026 +0200
+
+commit 183655c7b96c9c1807bedf126de77492e5cacbb6
+Author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Date:   Tue Aug 11 14:29:50 2026 +0000
+
+    chore: bump version [skip ci]
+
+commit 7846a5eebfca79c98bdf14ab0f7a8b5fe19f562e
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:28:54 2026 +0200
+
+commit 667bec361646720744ef2aa352af6c8b4b0f3e5b
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Tue Aug 11 14:25:07 2026 +0000
+
+    Automated translation update
+
+commit 06462a04204992c72889487b9f52191c370e6e09
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:24:16 2026 +0200
+
+commit 08e63283537f12df796902f22bbab86404a2c9e7
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:21:46 2026 +0200
+
+commit 4f17779c1bb26c9c913c4337e0d223279c8091d5
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 16:12:37 2026 +0200
+
+commit b3ccdfa78b041404f8f2f6874803babe01b7f0d6
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Tue Aug 11 14:02:56 2026 +0000
+
+    Automated translation update
+
+commit 457d3f0587b60e9954effe1c77f6ce0f3689ae61
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Aug 11 15:59:31 2026 +0200
+
+commit 5de00289c855a4b8e57fb28577cde6addbcaf0a2
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu Aug 6 01:46:06 2026 +0200
+
+commit af7d894b314ea0661eaa5f219bdc7d2dd7a06695
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Aug 5 23:49:12 2026 +0200
+
+commit 838f141412b345878bbba1c97ada0a9ae683aaac
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue May 19 16:05:58 2026 +0200
+
+    Adjust graph height
+
+commit 09ff97080cad253f1bb60bb64970a837f2c8e80e
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue May 19 16:03:13 2026 +0200
+
+commit c5e35f4cdd5436c1063a0a2ec3c233d7a6b7a798
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Mon May 18 15:16:06 2026 +0200
+
+    Update
+
+commit 39d2bb505d5700a0c8c96882578c84b07f73f1c3
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Sun May 17 23:33:28 2026 +0200
+
+     Major update
+    
+     🎨 UI/UX Overhaul
+    Chat-style summary feed — Main screen now shows a scrollable feed of summary feed with chat bubbles (oldest → newest, newest at bottom). Clicking a bubble opens the full article detail view directly.
+    Bottom nav with sliding blob — GPU-accelerated sliding indicator, labels always visible (dimmed when inactive), repositioned on resize.
+    Horizontal slide transitions — Screens now slide horizontally with smooth CSS transforms instead of instant show/hide.
+    Split layout — Input controls (textarea, chips, fetch button) fixed at bottom, feed scrollable on top.
+    Streaming progress bubble — Live preview of the summary being generated, elapsed timer, model name, and real-time word count.
+    Language quick-select grid — Searchable tag grid replaces the native <select> dropdown. Auto-focuses search on open.
+    Model quick-select panel — Two-row layout: provider tags (OpenAI, DeepSeek, etc.) + model ID tags. Custom model IDs can be added inline.
+    Chip panels pop up — Language/Length/Mode/Model panels now float above the chip row instead of pushing content down.
+    Accessibility pass — Higher contrast colors in both light and dark modes, darker text, more saturated accents, improved nav active states.
+    🔧 Settings
+    Auto-save on every change — Theme, model, prompt, toggles all save instantly with a green flash confirmation.
+    Save button moved to top-right — No longer fixed at the bottom of the settings page.
+    Danger Zone section — Delete Settings / Delete History buttons grouped under a red-bordered section.
+    "Open Large by Default" toggle — Opens the hybrid injected iframe sidebar instead of the small popup.
+    "Use Native Side Panel" toggle — Opt-in to Chrome's native side panel API.
+    🚀 Side Panel / Popout
+    Hybrid iframe fallback — When native side panel is unavailable, injects a 420px iframe sidebar into the page with smooth slide animation.
+    Popout button restored — ↗️** — Re-added to header. Priority: Native side panel (if enabled) → Hybrid iframe (if "Open Large") → Hybrid iframe (default).
+    Background script sync — setPanelBehavior dynamically updates when toggling the native side panel setting.
+    🐛 Bug Fixes
+    Missing </div> in HTML — #mainScreen was never closed, nesting all other screens inside it and breaking navigation.
+    article.content.split() crash — Undefined content caused TypeError, silently killing all screens silently failed.
+    <img> tags in saved content — Stripped from rendered HTML to prevent chrome-extension:// 404s.
+    Storage race conditions — Fixed hoisting bug where summaryMode was used before destructuring.
+    Storage race conditions — modelManager.js now uses StorageManager.updateService() instead of raw chrome.storage.sync to prevent overwrites.
+    activeModelId separate from custom list — Separate storage field so clicking a model tag never mutates your saved custom models list.
+    Slider fill track — Dispatches input event after loading saved value so the blue fill bar renders correctly on init.
+    Summary bubble disappearing — Removed race condition where loadFeed() cleared the feed before storage write completed.
+    🧹 Cleanup
+    Removed header settings/popout buttons (re-added popout only).
+    Removed unused fixed-bottom CSS, article-content inline HTML, displayArticleDetails function.
+    Consolidated all storage reads/writes to chrome.storage.sync for consistency.
+
+commit 7f9ccc0aba8f8de2ce6d8827d1b8f565ed3756a9
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri May 15 19:07:04 2026 +0200
+
+commit 0f47b07489bbbd808f7421ce3c0f67718550b754
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri May 15 13:57:22 2026 +0200
+
+commit 189c1d2af1bbde4546733bc36729c668a6bd4e50
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri May 15 13:56:15 2026 +0200
+
+commit 12d4e789838df217e136d1efac4135944d7f1735
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 14 23:27:49 2026 +0200
+
+commit 98063cef3a55f444be37ef7267f2a9b0c1cac209
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 14 01:00:00 2026 +0200
+
+commit 781c8c5f783ddcff3bfc357ec423f1d4fcc0bf80
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 14 00:59:31 2026 +0200
+
+    Stable
+
+commit c07879d6ac51fa49396374ffa55f27bf9616873c
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed May 13 23:13:03 2026 +0200
+
+commit 8361da2c5df38dea641ff88bc9d3c0beb6838a61
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed May 13 19:11:10 2026 +0200
+
+commit d388397605d58961f33ea2f31232758e263c3160
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed May 13 18:59:28 2026 +0200
+
+    Bugfixes
+
+commit 0cafecff99202e698464039441ef91be4de50c4d
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed May 13 17:34:31 2026 +0200
+
+commit 64b8c59d52747823d98c646d0cb2a53ba2abc755
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 30 18:02:03 2025 +0100
+
+commit a4ecc8c49c23169d82e6f77884f54843c87e4ccf
+Author: Phil W <philipp@wornath.de>
+Date:   Thu Nov 27 23:37:39 2025 +0100
+
+commit 4be67f27a55ce0b5dcd0f4818ea415dd3257e49d
+Author: Phil W <philipp@wornath.de>
+Date:   Thu Nov 27 23:37:31 2025 +0100
+
+commit bf6f5a7307654d65e9d16444dddd99b5f194940d
+Author: Phil W <philipp@wornath.de>
+Date:   Thu Nov 27 23:35:23 2025 +0100
+
+commit cacfb6a52198b25d543160992750ac95873d105f
+Author: Phil W <philipp@wornath.de>
+Date:   Thu Nov 27 22:49:32 2025 +0100
+
+commit 18b1448987e60e76d415d1e884cd9b26eeeb9d8f
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Wed Nov 26 22:41:18 2025 +0100
+
+commit abee00bc0ec06478354819d31c2a49a0eb008e89
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 26 19:49:27 2025 +0100
+
+commit c9dd49d1e720682e2708d199cbcfdb3f70b707fa
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 26 13:20:50 2025 +0100
+
+commit f7a3d349be536f4f78f456628d299c19dedbe289
+Author: Phil W <philipp@wornath.de>
+Date:   Fri Feb 21 23:03:47 2025 +0100
+
+commit 25796cbbc0b247fef0a2c1f6c96fd12f6dd53a86
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 20 10:26:40 2024 +0100
+
+commit 1754e0bcf9672729ac2c36c33f1b575be44486e2
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Nov 19 10:29:40 2024 +0100
+
+commit c18d69f7f553c26370483fa9f586df690900ed43
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:41:29 2024 +0100
+
+commit 02bdcfe47a4dd38bb007d5e7270ca4db18abb74a
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:22:11 2024 +0100
+
+commit c56efa2a037c92b8e67174d7464d68ff4d734f3c
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:20:22 2024 +0100
+
+commit daa7f10bff29033e7c0600441f5cf7025d16b18c
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:16:19 2024 +0100
+
+commit a506f64a4afa804de4e30592c692e2ab57209dc0
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:14:58 2024 +0100
+
+commit efa4c1134e7f09bf11e59efa7d0cc8e64000debf
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:06:10 2024 +0100
+
+commit 5181c76193e1b57baeef20f32879afcc36c34491
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:04:06 2024 +0100
+
+commit d7d10baffeea3cbe81fd67d88c7de0c718d27ebb
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:03:01 2024 +0100
+
+commit c099bb07ee145ac9f2cc8def14f5f6fff9a49e72
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:01:49 2024 +0100
+
+commit e168feb91c8c081bb9c84f37f568282c722412cb
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 20:00:04 2024 +0100
+
+commit 11fc8fdbadd2982924e9ba544914e22a566e67f9
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 19:57:11 2024 +0100
+
+commit e86dd11f3da0cb2f8bee1fb1214a6b0995178f65
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 19:55:56 2024 +0100
+
+commit 0db951f6283baf127e73daaf3e4c31bb1f7f2269
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 18:50:49 2024 +0000
+
+    Automated translation update
+
+commit ce27c337628ae6a87a56daf5d64273e782bb8d8b
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 19:38:05 2024 +0100
+
+commit 4771a0461716f417253a33b9a4a8818da2c94691
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 18:36:14 2024 +0000
+
+    Automated translation update
+
+commit bb54f7274a507ff39c22a2e5b8d37dac5e8fa3f2
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 19:34:00 2024 +0100
+
+commit 4219bb243f7f02643e440cc5d1930062176156e7
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 18:32:53 2024 +0000
+
+    Automated translation update
+
+commit 9b3e01f0df0f457ec6bdc41c3de49463c3165827
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 19:31:01 2024 +0100
+
+commit 5925d0b3f53330bc4581a53e3232d3596bc3dfa7
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 19:29:56 2024 +0100
+
+commit ddb98509d5533fef1f4baaece31380f5eee63b97
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 18:48:11 2024 +0100
+
+commit 677de3f5bbc19addcfdc9cfe1c069b6d8d5bbe14
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 17:44:43 2024 +0000
+
+    Automated translation update
+
+commit 414c61219821be99ccd65a46766e5c88b9c915e2
+Merge: 1e04556 a8f52af
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 18:42:31 2024 +0100
+
+    Merge remote-tracking branch 'origin/main'
+
+commit 1e04556908e7314d460a405d0be3cbec903bb0d3
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 18:32:44 2024 +0100
+
+commit a8f52af0a7d4bf9a0dc1df80b4b9c7a211835c05
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 17:27:44 2024 +0000
+
+    Automated translation update
+
+commit 54ba2e1d9de77c2d1845bcd297c24cc371e3ef32
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 18:17:31 2024 +0100
+
+commit eee4318f3e38f9cec02a0e66af46eea4ebc3418c
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 18:16:05 2024 +0100
+
+commit f1bbfa43018272eb261998249e9c4b72c40dd91c
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 17:07:45 2024 +0000
+
+    Automated translation update
+
+commit 1fac2e18e2e567f3c57e0a73127d6755b0bf9674
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 17:54:00 2024 +0100
+
+commit 462913d050d5c128dda784e8216a76713a05dffe
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 15:26:36 2024 +0100
+
+commit c92b3f0fc023c52704ae64b40bec305a3535da93
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Mon Nov 18 09:47:12 2024 +0000
+
+    Automated translation update
+
+commit 392d723ea42337813d324a530b579e8d504e38b5
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:35:53 2024 +0100
+
+commit 222ef89c93288edff1020e831e9fd68630361b11
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:35:37 2024 +0100
+
+commit 48ae30947b5f724c77112ade61db07be60026eb6
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:28:02 2024 +0100
+
+commit 01220c34cf7cb052011dbd7047c63ae3740dfc61
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:21:45 2024 +0100
+
+commit 83a3cd18fc0893e9f9e6746df7cfed15a3915b88
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:16:38 2024 +0100
+
+commit f5e033a9a17e0950fa1084b1039a4053d6b11492
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:15:41 2024 +0100
+
+commit 559f67c27a9e3430bd7fc86a0ef428cd028fdf19
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:15:16 2024 +0100
+
+commit bd11bebd4529fb0b9b940e334ebe98d2585c1959
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Nov 18 10:12:33 2024 +0100
+
+commit 204ea1e4b3af32ffd035f76e5e1121e26475c578
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 13:59:23 2024 +0100
+
+commit b341f0b3691d7d04788d1afc84f48cfc5c10c695
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 01:27:11 2024 +0100
+
+commit aa2bb53d0b254bec3917b3c3efba999376247bc4
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 01:14:32 2024 +0100
+
+    added better language
+
+commit dfb750542ef8ab43c3995e4e6949531f2e233820
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sun Nov 17 00:00:43 2024 +0000
+
+    Automated translation update
+
+commit e888cd42ac6df8f2e8aeb33c0b69297378cc69cf
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 00:53:45 2024 +0100
+
+commit d85f4195743579a764f2d20ec5f0d6946e055998
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 00:22:26 2024 +0100
+
+commit 17fd7425f6bb3e8a91ad9ed965484161514861b1
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 00:21:03 2024 +0100
+
+commit 668933dfad30484d5838c0412f5e9f073181c27f
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 00:12:37 2024 +0100
+
+commit 4d7b3114fa357ad709ca4668ce2d4d21f88b2bd2
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sat Nov 16 23:11:15 2024 +0000
+
+    Automated translation update
+
+commit 176c7d22b57ae5299b83a25f833f5c261e636d43
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 17 00:06:19 2024 +0100
+
+commit 33ba117e5b86bd6aa3aa3cb0c342c63993a827f9
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 16 16:21:33 2024 +0100
+
+    v1.5.16
+
+commit 4d8991e8c48e4d84877aeeddeb3db4820b76e7a1
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 16 02:55:13 2024 +0100
+
+commit 1d527804cf68e5a48358732fa277e8fadfd9cef1
+Author: Phil W <philipp@wornath.de>
+Date:   Thu Nov 14 17:54:54 2024 +0100
+
+commit 471566a0d9a8de2fcf200913977161d12546577d
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 13 20:45:53 2024 +0100
+
+commit dfacaccc084db8f6aef2524e8f927b4bb8357a9f
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 13 20:43:37 2024 +0100
+
+    Update
+
+commit cd0b085426bc389aead2d04fab24746fc31b3774
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 13 01:24:47 2024 +0100
+
+commit 31d3582a76fa04912a7904dd4a69bc0fa31e661f
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 10 22:02:13 2024 +0100
+
+    Add delete button and update website
+
+commit 5f6a6e7ea061a2339aaee299becce15126b0b152
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 6 17:15:51 2024 +0100
+
+commit b794ae46ae58e903ce3101e97c8e575c51e23cca
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 6 17:12:18 2024 +0100
+
+commit b1279018535889495417bba77e418d5a373cbbbb
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 6 17:09:45 2024 +0100
+
+commit 6b51b373d37854eccd7d6af1eab68e67d07e2ece
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Nov 6 16:41:20 2024 +0100
+
+    Add sitemap
+
+commit c4b6a13ddfb0757f58acceb775ddd16033101184
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Tue Nov 5 00:56:04 2024 +0000
+
+    Automated translation update
+
+commit ca93fcd9d31753eab3ec698093f02983ae4e5222
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Nov 5 01:55:36 2024 +0100
+
+    Update translations.json
+
+commit a266e92b1f319b68a8ffd6eb739cdc34ccff61f1
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Tue Nov 5 00:52:28 2024 +0000
+
+    Automated translation update
+
+commit b5cebca3c1275d80df64051f167ae84d7c9ce4c3
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Nov 5 01:51:58 2024 +0100
+
+    Update translations.json
+
+commit 6c4220447be69e564650fd379672474fd1f4d9d2
+Merge: 09ed0e8 5e7be2c
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Nov 5 00:10:47 2024 +0100
+
+    Merge pull request #4 from philffm/backup-branch
+    
+    Merge branch
+
+commit 5e7be2c8263d6c741ea5cf9cfdf8cf6bc254f866
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Nov 5 00:09:43 2024 +0100
+
+commit 09ed0e8ae5d0b619cf86e446264aeb61046fec89
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 20:22:14 2024 +0100
+
+commit db6fe4af9c400da3763d399767618fd3564442bb
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 20:19:59 2024 +0100
+
+commit 9b7145ac7de8c84d6acdfaad076eaf2f4c654179
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 18:32:21 2024 +0100
+
+commit 4be7bf5ed8f7a3f4707c3e6c367543fd2e4c409a
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sun Nov 3 16:23:21 2024 +0000
+
+    Automated translation update
+
+commit ce34443554a8e5d5604cb525efb5cd59b2fd1360
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 17:22:57 2024 +0100
+
+commit a4229626ee7c9e7db8dbe8b523c9b17dba520a9d
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 17:12:06 2024 +0100
+
+commit 73fb610281e430bd5ff05833c8b817b9ffe9e0c1
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 16:59:29 2024 +0100
+
+commit b8510d8e593bcfcc3c23aebf484c84d518e9183f
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 16:51:14 2024 +0100
+
+commit 3fb86af98126563a572a92077b203c9d4ddbbefe
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 16:49:47 2024 +0100
+
+commit 11544ed63e84d575970aef98a41231c7c54e3d0f
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 12:34:43 2024 +0100
+
+commit f41a2798d7ef1fc657f48940a4f52d0e3859b98e
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 12:26:54 2024 +0100
+
+commit 5063159f6ec751ba157bb6f389fc1f15c061e460
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 11:05:33 2024 +0100
+
+commit 8bdaa86595f91a93cf42f184b3d85cff2e01d947
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 11:03:17 2024 +0100
+
+commit 1abe3351c5aafd01ab2dd45b0fd835124c085a62
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 11:00:42 2024 +0100
+
+commit 3685466708158baaa834c0699feb62c865edf377
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 10:58:17 2024 +0100
+
+commit 052d6a3748e31e347168bffd5c85e5031aaff6a8
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 03:19:16 2024 +0100
+
+commit 3866222991f931b546407d6de1631897fcb57ccf
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 03:10:25 2024 +0100
+
+commit 66b1dcc94fb8b1c16d556c7bdb526343404f3a2c
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:55:43 2024 +0100
+
+commit e3d2d1b477a48a8ac8e96102c98ba56bc8da50d9
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:54:56 2024 +0100
+
+commit c40b942b4ff41a4f4f07db842066dfd3d17f3025
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:53:36 2024 +0100
+
+commit e202e7501cd7885389b23a85562f44a86d8b6724
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:49:51 2024 +0100
+
+commit 0be28edd55431fdccf057a764eea79920be65fea
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:46:48 2024 +0100
+
+commit e33085fade213ec1b5f0ce450dea950bdec40579
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:45:18 2024 +0100
+
+commit d9ab6404afacd7f52762ee5492a9d53c1ba736cb
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:44:03 2024 +0100
+
+commit c431137e9bdc5d2eff7ba8e7fb7018f83e2ecf30
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sun Nov 3 01:41:24 2024 +0000
+
+    Automated translation update
+
+commit 335d48126bda0559795c9d254aa43e7115a8fc05
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:40:06 2024 +0100
+
+commit fa45f744ca2563ffd3faf276d3c0709175c7ad8b
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:37:03 2024 +0100
+
+commit 7b6262262c6ee242048fd3ccb0eed57e5f32a42b
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 02:23:00 2024 +0100
+
+commit 62514ced11f2020e2d1d92b303f3a00f217ebdc0
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Nov 3 01:45:08 2024 +0100
+
+commit 98530cc84992bc91997811301ca658b922dd756f
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:50:59 2024 +0100
+
+commit c70228b94ae057105bf6a552c86eaf0f6f08b0b5
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:49:20 2024 +0100
+
+commit 5e8c5bf0bd7f79e669b89af8b676f1c6e6cee207
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:48:08 2024 +0100
+
+commit b004025307a10da645758aceb80189f2a3003f1d
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:45:16 2024 +0100
+
+commit ad2ca3025ff2e5fc9cf02e56c9d12adda2647de8
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sat Nov 2 22:43:34 2024 +0000
+
+    Automated translation update
+
+commit 5f3e67c4220477896968ed71c61658c30c991145
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:43:06 2024 +0100
+
+commit 2474bd68c7976581527e9d5b7070d20467d7ddc3
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:42:25 2024 +0100
+
+commit 2e081a786d624df4667933c00b78266fdd52f4c9
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sat Nov 2 22:35:16 2024 +0000
+
+    Automated translation update
+
+commit e330ef494d30f34544451456bd9310da48ab3851
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:33:02 2024 +0100
+
+commit c78be4d7096cf3abbb4b35850ff88bffa7136fce
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sat Nov 2 22:30:18 2024 +0000
+
+    Automated translation update
+
+commit be05e69f95246a3fda416462672b411b3068b0a5
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:23:46 2024 +0100
+
+commit 7243bdc9000d4ace1a812bccc302e2970c10aff7
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sat Nov 2 22:21:05 2024 +0000
+
+    Automated translation update
+
+commit 535ae4949737e78e25337d80270633697af78893
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 23:13:37 2024 +0100
+
+commit 4ca7a7041542403fdaa2001df48a381873d78e41
+Author: philffm <philffm@users.noreply.github.com>
+Date:   Sat Nov 2 21:49:50 2024 +0000
+
+    Automated translation update
+
+commit 8a222dd62828ac33fbe81e7918c3cdd7a23050e6
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:48:50 2024 +0100
+
+commit ecb6ea67d8b32d083f200cd8fd85792bf32dd1cc
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:48:07 2024 +0100
+
+commit d425689b840bd2f5cee880311deb8e167b89d1ba
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:44:32 2024 +0100
+
+commit e8ae178a7f25fe30b86788d0eb1a8f0f26775a0f
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:44:20 2024 +0100
+
+commit f809601fd06c55d9737e275e1f93f3dbd5794a68
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:43:13 2024 +0100
+
+commit 3f58272e3dd51ffe29499ab9416d3cce5ce68cc1
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:43:00 2024 +0100
+
+commit 1f250dd16b3b99d33626ae57183251b0ce2a1c2d
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:34:43 2024 +0100
+
+commit 878ed66b35b15f38c3d47dcdbb5227c93141e9cc
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:23:47 2024 +0100
+
+commit dbd21bd2d5c24de4eb61ceda4633f704086d9b4a
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:22:56 2024 +0100
+
+commit fb1bfed14d1f9aca0cca863e28c185ceff609131
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:11:21 2024 +0100
+
+commit e28ff15e1bfafc48d7b7fe5015cf7f7ba5d35abf
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:10:47 2024 +0100
+
+commit 2b28c6c2de943943a8770725c4b737064a1001fa
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:07:49 2024 +0100
+
+commit a59938cb4f666c689839ebfecba893f659bc81c9
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 22:06:38 2024 +0100
+
+commit 9b76b76144413d98d098f0498a1c27ae978f86b7
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:57:53 2024 +0100
+
+commit 4fedd6f36559a3c7470890c30be48924282df767
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:57:43 2024 +0100
+
+commit 7dcd34699241a6a57bd1d1994a3049dee8d3b459
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:53:06 2024 +0100
+
+commit 5e5a46f76a9b4ae48590f9785da400e960c1fda5
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:52:46 2024 +0100
+
+commit 7917b9bb1fa7726c4312bf535f31a5a72ed5990a
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:45:38 2024 +0100
+
+commit e85a8af4784e174f2c5b8890313a0534601e0c59
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:45:18 2024 +0100
+
+commit e459c1eab897801faaa522225914463eded43486
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:43:51 2024 +0100
+
+commit e337704f0fceb3cc659461121bde94380e572f37
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:43:20 2024 +0100
+
+commit 91fd1060941fbd7198b3b19f1002790ce954627b
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:39:22 2024 +0100
+
+commit bf3535e2f8b569b5dfb4abf44940176fd3a88a59
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:37:40 2024 +0100
+
+commit f43ca8653b7364d49aaec9ff8e9e8524edb2e00f
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:28:33 2024 +0100
+
+commit fe046ba7107bfcca9446f00cb9176dfcf68a1102
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:27:20 2024 +0100
+
+commit 513e23d644735d1169a2dae525d497ed043404f4
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:25:55 2024 +0100
+
+commit 33fcb73afcbd143a2028c78420074c9c08e69f0e
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:24:14 2024 +0100
+
+commit 206e667b645be59a58dd91ac675c1b6b11db44d2
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:22:03 2024 +0100
+
+commit c994ea39c62cff04f37bf0dc723ee4c431dbae5c
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:20:50 2024 +0100
+
+commit a1bf1aeb70f96d104b3022d2ec1aecaaef57b362
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:19:02 2024 +0100
+
+commit fc2696ee16625fdbc09c963fd2023f0bb5089465
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:16:27 2024 +0100
+
+commit b004ff4ef5f3180040b170c0e9bc9c619d68fc65
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:12:36 2024 +0100
+
+commit dab642eb30b751e9fa161b8142d4543c26c36e01
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:10:48 2024 +0100
+
+commit 5be6ea2b34cb300c8c54d9ed72d99ec347f9cabe
+Author: Phil W <philipp@wornath.de>
+Date:   Sat Nov 2 21:10:04 2024 +0100
+
+commit 558f75d980519d1edb25c81f63b9451b8113527f
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 15 00:24:38 2024 +0200
+
+commit 046569b2c61ea23f45846a2b04068c6dc1e33dd3
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 15 00:21:38 2024 +0200
+
+commit f5b9f030122cbb9185fbc77b4ca1c8aa229a0751
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 15 00:19:19 2024 +0200
+
+commit 4af9536b7d856008c5fe627b63e95a0ee3994af6
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Oct 14 23:57:03 2024 +0200
+
+commit 8d6df760082f25f8aa6b1a8621053bef34678a8c
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Oct 14 23:56:45 2024 +0200
+
+commit 5db07c9a972f5a844e104b0740182f95cebd093d
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Oct 14 23:56:21 2024 +0200
+
+commit eba3f69f7c8297ba004fe01d0e679478d3ee13bc
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Oct 14 23:53:58 2024 +0200
+
+commit d32874197117154140a11a63045c7607c27bf3e5
+Author: Phil W <philipp@wornath.de>
+Date:   Mon Oct 14 23:53:06 2024 +0200
+
+commit 0171c5c22f25ad46bd2ffc5b5686ef60db8c6e81
+Author: Phil W <philipp@wornath.de>
+Date:   Sun Oct 13 14:24:16 2024 +0200
+
+    Make insertion more clear
+
+commit 2d2602cdbebb712b6a7369de99e1c92d55d62f57
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 17:26:23 2024 +0200
+
+    Update
+
+commit a31569d5f99df11d843320432775967dba78c028
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 17:05:12 2024 +0200
+
+commit 6871b5d3a82e701e567b7d95754bda523feea5b4
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:55:26 2024 +0200
+
+commit b779acbf2f03ffbe3f1e14637efc828e1368b84d
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:53:18 2024 +0200
+
+commit 8911a220f2b87a68e193c195b4a99f3b4f835ff2
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:52:21 2024 +0200
+
+commit 3c8604ca1ecec694efdb15bd0e7be28002fa5677
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:51:09 2024 +0200
+
+commit d374aa2a97986b24dfc4e8afef74a03dc72c2079
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:50:26 2024 +0200
+
+commit 6e8be9becb6101b2142440b865aa84c193716e93
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:44:31 2024 +0200
+
+commit be87b8a4fac946dceaed89a9d04113de4e5ca30c
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:40:17 2024 +0200
+
+commit 6399ff37a1a302f3fcdf3844d48c7119694be3b6
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:36:49 2024 +0200
+
+commit ac21af8bde59de4a848b7a6c6d80a332d583449e
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 14:35:19 2024 +0200
+
+commit a4cb7c890b46c236c2a896c3744991d030108b11
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:56:21 2024 +0200
+
+commit e39e7beecf87b8beee702ec369a70e416f764032
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:54:01 2024 +0200
+
+commit 304aa95f29754aa1dc08cea6427b71a47ee5c803
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:52:23 2024 +0200
+
+commit dc0aaffbe595159f95a373b1e8644349833c28e7
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:49:29 2024 +0200
+
+commit c4a17e0d5b67b66786338d39a198852b15ddc541
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:48:49 2024 +0200
+
+commit 7412ca6a3811b3dcc4d4a0e1027217f9dc5c98d6
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:44:53 2024 +0200
+
+commit ea2ef93b96566b2f9f0cc718710d23729c2dc8b5
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:43:40 2024 +0200
+
+    Add createBookmarklet.png
+
+commit c9b6e25bc4cea647078a13f39151fa582f9860b7
+Author: Phil W <philipp@wornath.de>
+Date:   Tue Oct 1 12:31:44 2024 +0200
+
+commit 8bd0aecc887a9b30fafd2913dbdba261b5d8d507
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Sep 25 17:57:57 2024 +0200
+
+    Update Extension
+
+commit 31381035fdf6f830925a790ee1467f15e69c5899
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Sep 24 00:47:04 2024 +0200
+
+commit be65078ec0176a6af2ba7c38ca32a84e7250b025
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue Sep 24 00:33:57 2024 +0200
+
+    Update readme.md
+
+commit a6046d56c8f50236677c77e076ef312e442f161a
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 19:42:04 2024 +0200
+
+    Updates
+
+commit ce79915959d90721e9c56ba2857a4d82ba3d11fc
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 15:45:36 2024 +0200
+
+commit 28d3996d5fd4607888ba6a613d397b5471d6a513
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 15:40:44 2024 +0200
+
+    Update readme
+
+commit b12c8dc7d84aeb308c28149c1d6297cf7ded2a5b
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 15:39:30 2024 +0200
+
+    Update to support Mistral AI
+
+commit 4dbdf2db51be104eaca1002448322de08fedce68
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 01:39:46 2024 +0200
+
+commit c0c8b3a3a7d6ecd61e8c7c9bbda747a959398e9e
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 01:08:01 2024 +0200
+
+commit 38e66591d70fbf960ce61df67409692d82a7d780
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 00:56:20 2024 +0200
+
+    Update
+
+commit ef3c015a38c91c3049250e77bba0ab237c4ecab3
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 00:53:21 2024 +0200
+
+commit bed79584c0644d68e143424ab3fa4e909eaf49d6
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 00:43:57 2024 +0200
+
+    Update to work with both Mistral and OpenAI
+
+commit 32a47e59220ee10baff3d99c91c9b39a97454eaa
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Fri Sep 20 00:41:03 2024 +0200
+
+commit 0003b133d1bac335ab5d78ec6964d22470672e8b
+Author: Phil W <philipp@wornath.de>
+Date:   Fri Sep 13 14:21:03 2024 +0200
+
+    Add donation message
+
+commit 1185e3c77529ef4623b1c774ff5caf37a056d12a
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Sep 11 21:32:19 2024 +0200
+
+    Add donation message
+
+commit 2e5e9a741528a48889a410e80b74a52bab0682ca
+Author: Phil W <philipp@wornath.de>
+Date:   Wed Sep 11 21:30:03 2024 +0200
+
+commit 7254e0770487585e203941fca0653056c9ffd676
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Wed Jul 24 16:07:14 2024 +0200
+
+commit fd743a877ec4fbbed9e3b04fc9ffb3fd0b41f30f
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Tue Jul 23 11:59:03 2024 +0200
+
+commit 8ff46673bdab31f92ca5a7ea642b8d6e085cd68c
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Tue Jul 23 11:57:14 2024 +0200
+
+    UI update
+
+commit 9ad56f7c07c9f69679e65503d4d0688e4ee8dda7
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Fri Jul 19 12:31:47 2024 +0200
+
+    Update to gpt4o mini
+
+commit 6bdc10b06f59af3ccdca580b05723073c215590a
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 01:32:33 2024 +0200
+
+commit 83d01faf08ca37621d14d60b5c77944e52d2fbb5
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 01:09:46 2024 +0200
+
+commit 110df5881ff08afcb128d59e67799d9dcb54c2fe
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:58:35 2024 +0200
+
+commit e06a2b3de18f1449baece4c6f950f195a7e0c399
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:53:03 2024 +0200
+
+commit 92a2e205ebc7154aa890e0e91642d0ea3b84e64b
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:45:57 2024 +0200
+
+commit 576f68fdf839f0a703cdd2a72dc87e50b825a165
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:35:15 2024 +0200
+
+    Added style
+
+commit 9eee45be35d2f3cd0f42765411d23c59a755ce1c
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:21:29 2024 +0200
+
+commit ebefc21bfee257cc5fc431f8c94d6ba0e6638be5
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:18:47 2024 +0200
+
+commit 5cf63e7bf471cb5927ac8047186eac2fe74800ba
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 13 00:14:56 2024 +0200
+
+commit 5f52077538b7e7b01e7ade77886f53e4f9e3f54e
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Fri Jul 12 20:07:13 2024 +0200
+
+commit f356ccc6f4c820027a77b490fac67bbf2a291f24
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Fri Jul 12 19:47:45 2024 +0200
+
+commit 20eefd2fd3bded7cbfc38446f4d02e735517b2a2
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Fri Jul 12 17:55:44 2024 +0200
+
+commit 5e136e3aa78ccb01bce2962509ff467c02d0ed64
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Fri Jul 12 17:54:52 2024 +0200
+
+commit a732d3cf622bd8d3d5153d3a4e4e18dce63ec43e
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Fri Jul 12 17:45:52 2024 +0200
+
+commit e7068f8b9a3167dcb70f1e399077932d379e05d1
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Wed Jul 10 13:14:47 2024 +0200
+
+commit 08e435f15512046f20e889dee2ff00da7935c310
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 19:27:25 2024 +0200
+
+    Fixed Chrome plugin to follow new algorithm (users select element themselves)
+
+commit b2ac47b209517dbb3adc2968d3be640d41a38ffa
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 19:03:42 2024 +0200
+
+commit 00f6381eb11824928752e7b951413cec04d5c8f7
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 19:02:00 2024 +0200
+
+commit 375c789b432a8fbda1f13ad95f28c592c331586e
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 19:01:27 2024 +0200
+
+commit 0208b61f8005afe0529d912f85aa74fac6e6856f
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:59:51 2024 +0200
+
+commit 460c3e9da263733dc85ccfba8dd6b7332cd9e655
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:58:16 2024 +0200
+
+commit 554d57c0e5a1bda84a1467724be469e3da50413e
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:54:56 2024 +0200
+
+commit 21a954e707157811c26dce0235d5a42c08118554
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:54:35 2024 +0200
+
+commit 8e4efa5d867348297fc5b6d29a972d94855039f1
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:52:15 2024 +0200
+
+commit 522cb6a1a18a46aad85115d465573d755c0e5131
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:51:15 2024 +0200
+
+commit 08f47662000e5b32456898ecfde3a41d0152d55b
+Merge: bbb8422 ada29fe
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:48:22 2024 +0200
+
+    Merge remote-tracking branch 'origin/main'
+
+commit bbb84225a4feb13cab207bd629e1f7f5309a59fe
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jul 8 18:42:11 2024 +0200
+
+    Merge
+
+commit ada29febab44fa6f88c2d12d88ae60b7d354dcb2
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Mon Jul 8 13:40:56 2024 +0200
+
+    Update readme.md
+
+commit 5ff560aafa93654461f24812e5fc91ba78e6b401
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Mon Jul 8 13:40:14 2024 +0200
+
+    Update readme.md
+
+commit 4367e97ce2add7cb3a95cab9ad09df310d690ea7
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 01:13:24 2024 +0200
+
+commit 58086eae7c4b3da54ee4168ca6cb4b86ca255106
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 01:07:35 2024 +0200
+
+commit 1b5bc878104b72e810a6086ca368ffc3183694b7
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 01:00:34 2024 +0200
+
+commit 0f785573c29c0b6308ca6bd28fd2aead2d32cd42
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:58:13 2024 +0200
+
+commit 86ee2293441a0d73b139007fca5633956fc4e35d
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:26:30 2024 +0200
+
+commit c542dfc736dc2f6a848f5880ad983321ba101a45
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:25:51 2024 +0200
+
+commit 9ae123d24ffafa1e470672b405c6aa08971d314f
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:24:28 2024 +0200
+
+commit 24c93ae7d5503c4fba8e5a656ed52ad684697f58
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:23:15 2024 +0200
+
+commit 18d91e8cbd4e03b8e0d1a1b7b227de74abec4159
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:20:28 2024 +0200
+
+commit 2e7f0abdfde1a466b201b3d171ca5782939390f6
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:17:48 2024 +0200
+
+commit 5ecafec4e9e685326e1484d781143eed37e03575
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:14:10 2024 +0200
+
+commit 9d2222fcc501fcbf0e21e21e8f08386169cc04e1
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:13:50 2024 +0200
+
+commit 3792884b81d60efb91fc8ec34474234574dde6b9
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:11:59 2024 +0200
+
+commit fcc70aa237714b8b388247c50c79a9279efa3f67
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:10:18 2024 +0200
+
+commit 25888792eb52c074eba60f6417204d74c2e85160
+Author: philffm <philipp@wornath.de>
+Date:   Mon Jul 8 00:05:12 2024 +0200
+
+commit dad49d62998eb8da8c87acab8badb25d7163a497
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:45:23 2024 +0200
+
+commit 42838e5812cd256ebfddf39845490952840c1607
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:34:31 2024 +0200
+
+commit 8c11c494f2f0beb614027046819416295f392b15
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:30:08 2024 +0200
+
+commit e688a0fdfd4ff65dc0bc08220f3f24f33dc1a9c8
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:11:41 2024 +0200
+
+commit 2150b6965d44ef6b49d29b90d23d827bd7773a6a
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:11:00 2024 +0200
+
+commit 6bb37e0017b2711b474c188d63b1bcafe2362d19
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:05:45 2024 +0200
+
+commit 10647df0e880490045d3f20a73f35fac197230f8
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 23:01:24 2024 +0200
+
+commit 228fe09e151b32f19edfad297e2288085de3ca49
+Author: philffm <philipp@wornath.de>
+Date:   Sun Jul 7 22:23:32 2024 +0200
+
+    Add select dom feature
+
+commit 1cf508f7aa81b8d7547cdc60359ec95c7978d123
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 6 17:42:32 2024 +0200
+
+    Restructuring
+
+commit 1864d96be9eef3e87846dd688fff1b51db1c15e8
+Author: philffm <philipp@wornath.de>
+Date:   Sat Jul 6 17:26:03 2024 +0200
+
+    Restructuring
+
+commit 8cd99677fa1d6d34cc43a0f7787700a48f13ffd1
+Author: Philipp Wornath <philipp.wornath@merkle.com>
+Date:   Mon Jun 3 17:13:57 2024 +0200
+
+    Bugfix
+
+commit 1396c87f1816d5c59a6f4fed6050cd010a263384
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 30 21:22:44 2024 +0200
+
+commit 877f1606a7aff6b786cc979784469c4cd5a2da59
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 30 15:07:19 2024 +0200
+
+    Algorithm update
+
+commit e5cc34965d8c8f23579f9b58114a2b8e3ebead04
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 30 12:27:32 2024 +0200
+
+commit a1df319fbb6ad667b1f35c1a93f2f8e2b8f0525c
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 30 12:26:46 2024 +0200
+
+commit a4710b4313ad13e63d6186ec83d54da3a2b7944b
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Thu May 30 11:32:53 2024 +0200
+
+    Update
+    - UI
+    - Make it ready for Chrome Web Store
+
+commit aed6dc29db2146589acfbe7e274115cc592679db
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue May 28 22:05:43 2024 +0200
+
+commit 9d0043b1b53050c1205c64be799fa777a1f74890
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue May 28 21:00:04 2024 +0200
+
+commit e7b9dd533cad5cc21f991a82f1cba790c49cabc5
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue May 28 10:49:29 2024 +0200
+
+    Add readme
+
+commit 713c1e01a2750ecbd9cae67d78fda91be3409048
+Author: Phil Wornath <philipp@wornath.de>
+Date:   Tue May 28 10:47:39 2024 +0200
+
+    first commit
