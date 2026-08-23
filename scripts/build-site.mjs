@@ -30,7 +30,7 @@ const PAGES_DIR = path.join(SITE_SRC, 'pages');
 const PARTIALS_DIR = path.join(SITE_SRC, 'partials');
 const OUT_DIR = path.join(ROOT, 'docs');
 const LOCALES_PATH = path.join(OUT_DIR, 'i18n', 'locales.json');
-const SITE_BASE = 'https://aish.byphil.eu';
+const SITE_BASE = 'https://ai-summary-helper.byphil.eu';
 
 const INCLUDE_RE = /<!--include:([a-zA-Z0-9_-]+)-->/g;
 

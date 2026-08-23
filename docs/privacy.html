@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Privacy Policy — AI Summary Helper</title>
+<meta name="description" content="How AI Summary Helper collects, uses, and safeguards your information. Your API key stays on-device; nothing is sold or traded.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+
+<meta property="og:title" content="Privacy Policy — AI Summary Helper">
+<meta property="og:description" content="How AI Summary Helper collects, uses, and safeguards your information.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/privacy.html"><link rel="alternate" hreflang="pt" href="https://ai-summary-helper.byphil.eu/lang/pt/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Part of byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#digest">Digest</a>
+        <a href="#pricing">Pricing</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">My account</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">Features</a>
+      <a href="#digest">Digest</a>
+      <a href="#pricing">Pricing</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">My account</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Part of byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Switch to light mode</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Privacy Policy</span>
+      <h1>Privacy Policy</h1>
+      <p class="post-sub">How AI Summary Helper collects, uses, and safeguards your information when you use the extension.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Welcome to the AI Summary Extension. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Chrome Extension. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the extension.</p>
+
+        <h2>Information We Collect</h2>
+        <p>We do not collect personal information directly from users. The information we handle is primarily used for providing and improving the service. Here's what we handle:</p>
+
+        <h3>OpenAI API Key</h3>
+        <p>Your OpenAI API key is stored locally on your device and is used to authenticate requests to the OpenAI API. It is not transmitted to our servers or any third party.</p>
+
+        <h3>Content Data</h3>
+        <p>The text content of web pages you choose to summarize is sent to the OpenAI API for processing. This content is not stored or logged by us.</p>
+
+        <h2>Analytics</h2>
+        <p>We use Matomo, a GDPR-compliant analytics platform, to collect anonymous usage data to help us improve the extension. Matomo respects your privacy and does not track personal data.</p>
+
+        <h2>How We Use Your Information</h2>
+        <ul>
+          <li><strong>To Provide and Maintain Our Service</strong> — to generate and insert AI summaries into web pages based on the content you select.</li>
+          <li><strong>To Improve Our Service</strong> — to understand and analyze how you use our extension and improve its functionality and user experience.</li>
+        </ul>
+
+        <h2>Sharing Your Information</h2>
+        <p>We do not share your information with third parties, except as necessary to provide the service (e.g., sending content to OpenAI for summarization). We do not sell or trade your information.</p>
+
+        <h2>Data Security</h2>
+        <p>We implement appropriate technical and organizational measures to protect the security of your information. However, please be aware that no method of transmitting information over the internet or storing information is completely secure. We strive to use commercially acceptable means to protect your information, but we cannot guarantee its absolute security.</p>
+
+        <h2>Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:philipp@wornath.de">philipp@wornath.de</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source on GitHub</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Refunds &amp; Returns</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — independent software built in Germany. Payments handled by Stripe as Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU Consumer Dispute Resolution</a> · Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+
+</body></html>
