@@ -182,8 +182,18 @@ function injectUnits($, units, translations) {
  * duplicated per locale. Every other internal link (index <-> blog) keeps
  * working unchanged because the whole content tree is mirrored as a unit
  * under each locale folder.
+ *
+ * The extra depth to add is the number of path segments in the locale's
+ * own directory (e.g. locale.dir "lang/fr" is 2 segments deep), NOT a
+ * hardcoded single "../" — docs/ is the actual GitHub Pages web root, so
+ * docs/lang/fr/index.html is served at /lang/fr/index.html (2 levels
+ * under root) and docs/lang/fr/blog/index.html at /lang/fr/blog/... (3
+ * levels). A flat "add one ../" undercounts by exactly (segments - 1)
+ * for every locale, which is why every translated page's assets/ links
+ * were broken.
  */
-function rewriteAssetPaths($) {
+function rewriteAssetPaths($, locale) {
+    const extraUps = '../'.repeat(locale.dir.split('/').length);
     $('[href], [src]').each((_, el) => {
         const $el = $(el);
         for (const attr of ['href', 'src']) {
@@ -191,7 +201,7 @@ function rewriteAssetPaths($) {
             if (!val) continue;
             if (/^(https?:)?\/\//.test(val) || val.startsWith('#') || val.startsWith('mailto:')) continue;
             if (val.includes('assets/')) {
-                $el.attr(attr, '../' + val);
+                $el.attr(attr, extraUps + val);
             }
         }
     });
@@ -342,7 +352,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
 
         const translations = { ...cached, ...fresh };
         injectUnits($, units, translations);
-        rewriteAssetPaths($);
+        rewriteAssetPaths($, locale);
         addHreflangTags($, config, code, relPath);
 
         const outPath = path.join(ROOT, locale.dir, relPath);

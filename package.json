@@ -7,13 +7,7 @@
   "scripts": {
     "site:build": "node scripts/build-site.mjs",
     "translate": "npm run site:build && node scripts/translate.mjs",
-    "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
-    "build": "node plugin/scripts/build.js",
-    "build:chrome": "node plugin/scripts/build.js chrome",
-    "build:android": "node plugin/scripts/build.js android",
-    "build:firefox": "node plugin/scripts/build.js firefox",
-    "build:ios": "node plugin/scripts/build.js ios",
-    "build:release": "./plugin/build.sh"
+    "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run"
   },
   "dependencies": {
     "cheerio": "^1.2.0"
