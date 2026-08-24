@@ -223,6 +223,23 @@ The privacy policy for this project is available in the [Privacy section](/src/p
 
 2024 Phil Wornath - [MIT License](LICENSE)
 
+## Third-Party Libraries
+
+This extension vendors the following open-source libraries under
+`plugin/src/lib/`. Full license texts:
+[THIRD_PARTY_LICENSES.md](plugin/src/lib/THIRD_PARTY_LICENSES.md)
+
+| Library | Version | License | Source |
+| --- | --- | --- | --- |
+| pdf.js | 4.0.379 | Apache-2.0 | https://github.com/mozilla/pdf.js |
+| D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
+| AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
+
+> These libraries are vendored by hand (not via npm), so there's no
+> automatic drift detection. When you replace any `lib/*` file, bump the
+> version numbers above **and** in `THIRD_PARTY_LICENSES.md` — the table is
+> the only record of what's actually shipped.
+
 ## Troubleshooting
 
 ### Configuring CORS for Ollama (The "Failed to Fetch" Error)
