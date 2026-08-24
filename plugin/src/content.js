@@ -45,8 +45,14 @@ import {
   getGhostHighlightConfig,
   normalizeGhostQuotes,
   ensureGeneralTag,
-  saveToLocalStorage
+  saveToLocalStorage,
+  extractSummaryTitle
 } from './content/core.js';
+
+import {
+  isPdfPage,
+  extractPdfText
+} from './content/pdfExtractor.js';
 
 (() => {
   // ── Cross-browser shim ────────────────────────────────────────────────
@@ -334,7 +340,33 @@ import {
   async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension') {
     const tokenLimit = 20000;
 
-    const { html: contentHtml, text: contentText } = getAllTextContent();
+    // PDF pages have no DOM article to scrape — extract the document's own
+    // text via pdf.js. The return shape ({ html, text }) matches
+    // getAllTextContent(), so everything downstream keeps working unchanged.
+    // For regular HTML pages isPdfPage() is false and this branch never runs.
+    let contentHtml, contentText;
+    if (isPdfPage()) {
+      try {
+        const extracted = await extractPdfText();
+        contentHtml = extracted.html;
+        contentText = extracted.text;
+      } catch (err) {
+        // A real PDF page but extraction failed (e.g. a local file:// PDF
+        // whose read was denied). Fail loudly and helpfully rather than send
+        // an empty/scrubbed prompt upstream or leaving the UI stuck.
+        showPlaceholder(targetElement, 'Could not read this PDF.');
+        relay('summaryError', {
+          error: err?.message && !/Failed to fetch PDF/.test(err.message)
+            ? err.message
+            : 'Cannot read this PDF directly. If it is a local file, try opening the paper from its original web URL.'
+        });
+        throw err;
+      }
+    } else {
+      const scraped = getAllTextContent();
+      contentHtml = scraped.html;
+      contentText = scraped.text;
+    }
     const truncatedContent = truncateToTokenLimit(contentText, tokenLimit);
 
     // Start image compression immediately and let it run while AI is streaming.
@@ -563,8 +595,12 @@ import {
               // Finally, convert the cleaned text to HTML
               const cleanHtml = markdownToHtml(cleanRawText);
 
-              // Apply ghost highlights to the page now that it's safe to do so
-              if (ghostQuotes.length > 0) applyGhostHighlights(ghostQuotes);
+              // Apply ghost highlights to the page now that it's safe to do so.
+              // Skip on PDF pages: Chrome's built-in PDF viewer is a locked-down
+              // internal component with no injectable DOM, so there's nothing to
+              // highlight. The quotes are still saved in the article data and will
+              // render in our own history/detail view.
+              if (ghostQuotes.length > 0 && !isPdfPage()) applyGhostHighlights(ghostQuotes);
 
               // WAIT FOR IMAGE COMPRESSION TO FINISH BEFORE SAVING
               let finalContentHtml = contentHtml;
@@ -573,6 +609,12 @@ import {
               } catch (compressionError) {
                 console.warn('[AI Summary Helper] Background image compression failed. Falling back to original HTML.', compressionError);
               }
+
+              // document.title is often empty or unhelpful (PDFs especially
+              // never have one) — fall back to the AI summary's own <h2>, which
+              // the system prompt always requests, before resorting to a generic
+              // placeholder. Regular HTML pages still use document.title.
+              const articleTitle = document.title || extractSummaryTitle(cleanHtml) || 'Untitled';
 
               if (summaryMode === 'inline') {
                 const summaryContainer = document.createElement('blockquote');
@@ -583,7 +625,7 @@ import {
                 targetElement.remove();
                 relay('summaryComplete', {
                   summary: cleanHtml,
-                  title: document.title,
+                  title: articleTitle,
                   url: window.location.href,
                   timestamp: new Date().toISOString(),
                   tags: tags,
@@ -592,7 +634,7 @@ import {
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, document.title, '', tags, modelIdentifier, summaryLength)
+              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength)
                 .then(savedArticle => resolve({ success: true, article: savedArticle }))
                 .catch(err => {
                   console.error('Failed to save article:', err);

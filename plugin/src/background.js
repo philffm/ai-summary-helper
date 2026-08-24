@@ -268,7 +268,31 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         return true;
     }
 
+    // Fetch PDF bytes on behalf of a content script, bypassing page-level
+    // CORS. Content scripts follow the *page's* CORS rules for their own
+    // network requests (since Chrome 73), regardless of the extension's
+    // host_permissions — so an embedded PDF from a cross-origin host (e.g.
+    // Sci-Hub's embed pointing at a different domain) would fail to a
+    // content-script fetch. The background service worker is a genuinely
+    // privileged context, so it can fetch cross-origin freely (same
+    // precedent as fetchImageAsDataUrl above).
+    if (msg.action === 'fetchPdfBytes' && msg.url) {
+        fetch(msg.url)
+            .then(r => {
+                if (!r.ok) throw new Error(`Failed to fetch PDF (${r.status})`);
+                return r.arrayBuffer();
+            })
+            .then(buf => {
+                // ArrayBuffer isn't structured-cloneable across some contexts —
+                // send as a plain array of bytes, reassembled on the other end.
+                sendResponse({ success: true, bytes: Array.from(new Uint8Array(buf)) });
+            })
+            .catch(err => sendResponse({ success: false, error: err.message }));
+        return true;
+    }
+
     // Start a streaming fetch — message-based (not runtime.connect/ports).
+    // Safari's background page is a non-persistent event page, and it does
     // Safari's background page is a non-persistent event page, and it does
     // NOT reliably re-register onConnect listeners after being suspended and
     // woken back up — content scripts calling runtime.connect() at that

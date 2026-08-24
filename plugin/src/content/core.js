@@ -164,3 +164,18 @@ export async function ensureGeneralTag(tags, contentText = '', pageTitle = '', m
   }
   return finalTags;
 }
+
+/**
+ * Pull the AI summary's own <h2> heading as a title fallback, for pages
+ * (PDFs especially, but not exclusively) where document.title is empty or
+ * unusable. The system prompt always asks for an <h2>, so this is real,
+ * meaningful, AI-generated text — not a placeholder.
+ *
+ * @param {string} html - the cleaned summary HTML (post tag/ghost-quote strip)
+ * @returns {string} the heading text, or '' if none found
+ */
+export function extractSummaryTitle(html) {
+  const match = (html || '').match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+  if (!match) return '';
+  return match[1].replace(/<[^>]+>/g, '').trim();
+}

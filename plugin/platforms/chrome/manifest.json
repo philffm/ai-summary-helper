@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "default_locale": "en",
-  "version": "2.0.407",
+  "version": "2.0.412",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "tabs",
@@ -16,7 +16,8 @@
     "unlimitedStorage"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "<all_urls>",
+    "file:///*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -32,7 +33,8 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "<all_urls>",
+        "file:///*"
       ],
       "js": [
         "content.js"
