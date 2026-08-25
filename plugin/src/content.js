@@ -93,6 +93,28 @@ import {
     return donationMessages[randomIndex];
   }
 
+  /**
+   * Turn a server-side daily-limit error into a friendly, upgrade-oriented
+   * message. The byphil API enforces a free-tier daily summary cap (cloud
+   * mode); when it's hit it returns a non-OK status. We detect that here and
+   * show copy that nudges toward Pro / coming back tomorrow, instead of a
+   * raw "HTTP 429: ..." string.
+   *
+   * @param {string} error - the raw error string from the stream
+   * @returns {string} a user-facing message
+   */
+  function friendlyLimitError(error) {
+    const e = String(error || '');
+    // The byphil API returns a 402 with "Free trial exhausted (N requests
+    // per day)" when the free-tier daily cap is hit. Match on the trial /
+    // exhausted / per-day phrasing (plus the status code) rather than
+    // requiring a specific word, so it stays robust to minor copy tweaks.
+    const isLimit =
+      /402|429|trial exhausted|requests per day|requests per week|limit|quota|too many|rate/i.test(e);
+    if (!isLimit) return `Error: ${e}`;
+    return 'You\u2019ve reached your free daily summary limit. Come back tomorrow for 3 more \u2014 or upgrade to Pro for unlimited summaries.';
+  }
+
   let servicesData = [];
   let modelConfig = {};
 
@@ -546,8 +568,13 @@ import {
           streamHandlers.set(requestId, async (msg) => {
             if (msg.error) {
               console.error('❌ Error:', msg.error);
-              relay('summaryError', { error: msg.error });
-              targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${msg.error}`;
+              // A server-enforced daily limit (free tier, cloud mode) comes
+              // back as a non-OK status from the byphil API. Surface it as a
+              // friendly, upgrade-oriented message instead of a raw HTTP error
+              // — the whole point of the limit is to nudge toward Pro.
+              const friendly = friendlyLimitError(msg.error);
+              relay('summaryError', { error: friendly });
+              targetElement.querySelector('.placeholder').innerHTML = `<b>${friendly}</b>`;
               reject(new Error(msg.error));
               streamHandlers.delete(requestId);
               return;
