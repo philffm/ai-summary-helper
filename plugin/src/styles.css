@@ -1184,8 +1184,8 @@ ul#articleList {
   position: fixed;
   bottom: 0;
   border-radius: 1rem 1rem 0 0;
-  left: 0;
-  right: 0;
+  left: 12px;
+  right: 12px;
   z-index: 101;
   display: flex;
   justify-content: space-around;
