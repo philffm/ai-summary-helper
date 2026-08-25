@@ -35,7 +35,10 @@ export function getTopUserTags(limit = 10) {
 export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200) {
   return new Promise((resolve, reject) => {
     const timestamp = new Date().toISOString();
-    const articleData = { content, summary, url, title, description, timestamp, tags, modelId, summaryLength };
+    // lastOpened starts equal to the save time: a freshly saved article is
+    // by definition "opened" the moment it's created, so it shouldn't be
+    // flagged as neglected until it's actually sat unopened for a while.
+    const articleData = { content, summary, url, title, description, timestamp, tags, modelId, summaryLength, lastOpened: timestamp };
 
     chrome.storage.local.get({ articles: [] }, (data) => {
       const articles = data.articles || [];

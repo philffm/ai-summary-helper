@@ -16,6 +16,22 @@
 // a node placed at all. They now get one shot at attaching via content
 // similarity instead, reusing the TF-IDF index localSearch.js already
 // builds for search/"similar articles" (see mostSimilarIncluded below).
+//
+// v4 (interaction layer):
+// - Search box: dim-not-remove filtering (Obsidian-style) so matches keep
+//   their spatial context while everything else fades.
+// - Neglected-article surfacing: article nodes fade/shrink and shift toward
+//   the danger end of the palette the longer they sit unopened past
+//   NEGLECT_THRESHOLD_DAYS, turning the graph into "here's what you're
+//   quietly ignoring" rather than just "here's what you've read".
+// - Tag nodes are now clickable: they dispatch a `filter-by-tag` event so
+//   the archive list can filter to that tag (graph becomes a navigation
+//   surface, not just a read-only map).
+// - "View unconnected" link opens a plain list of still-orphaned articles
+//   (disproportionately the saved-and-forgotten ones) instead of leaving
+//   them as an opaque count in the status bar.
+// - A minimal legend explains the solid/arrowed tag links vs the dashed
+//   similarity links.
 
 import { cosineSim } from './localSearch.js';
 
@@ -38,6 +54,16 @@ const TAG_PALETTE = [
 const MIN_TAG_DEGREE_DEFAULT = 2; // default: hide tags used on fewer than 2 articles
 const NODE_CAP = 300;             // hard safety cap even when "show all" is on
 
+// Neglected-article surfacing: an article is "neglected" once it has sat
+// unopened for this many days. We fade/shrink it and shift its ring toward
+// the danger end of the palette, so the graph reads as "what you're quietly
+// ignoring" rather than treating every save identically.
+const NEGLECT_THRESHOLD_DAYS = 30;
+// How much a neglected article fades/shrinks. Kept gentle — the point is to
+// draw the eye to the stale ones, not to make the graph unreadable.
+const NEGLECT_FADE = 0.55;
+const NEGLECT_SHRINK = 0.8;
+
 // Deterministic color per tag name
 function tagColor(tagLabel) {
     let hash = 0;
@@ -45,6 +71,49 @@ function tagColor(tagLabel) {
         hash = (hash * 31 + tagLabel.charCodeAt(i)) >>> 0;
     }
     return TAG_PALETTE[hash % TAG_PALETTE.length];
+}
+
+/**
+ * Applies the search-box filter to the rendered graph. Dim-not-remove
+ * (Obsidian-style): matches and their direct neighbors stay at full
+ * opacity, everything else fades to a faint ghost so the user keeps their
+ * spatial orientation while narrowing focus. An empty query resets all
+ * opacity to normal.
+ *
+ * @param {string} query - raw input text (trimmed/lowercased inside).
+ * @param {d3.Selection} node - the bound circle selection.
+ * @param {d3.Selection} link - the bound line selection.
+ * @param {d3.Selection} label - the bound text selection.
+ */
+function applySearchFilter(query, node, link, label) {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+        node.style('opacity', 1);
+        link.style('opacity', null); // fall back to the per-link stroke-opacity
+        label.style('opacity', 1);
+        return;
+    }
+
+    const matchedIds = new Set(
+        node.data().filter(d => d.label.toLowerCase().includes(q)).map(d => d.id)
+    );
+    // Pull in direct neighbors so matches don't look disconnected from
+    // their context — a match with its cluster dimmed is confusing.
+    const neighborIds = new Set(matchedIds);
+    link.data().forEach(l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        if (matchedIds.has(s)) neighborIds.add(t);
+        if (matchedIds.has(t)) neighborIds.add(s);
+    });
+
+    node.style('opacity', d => neighborIds.has(d.id) ? 1 : 0.12);
+    label.style('opacity', d => neighborIds.has(d.id) ? 1 : 0.12);
+    link.style('opacity', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return neighborIds.has(s) && neighborIds.has(t) ? null : 0.05;
+    });
 }
 
 /**
@@ -139,9 +208,10 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     const includedArticleIds = new Set(nodes.filter(n => n.group === 'article').map(n => n.id));
     let reconnectedCount = 0;
     let stillOrphanCount = 0;
+    const stillOrphans = []; // the actual articles, so the UI can list them
 
     articles.forEach(article => {
-        if (!article.timestamp) { stillOrphanCount++; return; }
+        if (!article.timestamp) { stillOrphanCount++; stillOrphans.push(article); return; }
         const id = 'article-' + article.timestamp;
         if (includedArticleIds.has(id)) return; // already has a tag link
 
@@ -156,10 +226,11 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
             reconnectedCount++;
         } else {
             stillOrphanCount++;
+            stillOrphans.push(article);
         }
     });
 
-    return { nodes, links, nodeById, hiddenTagCount, reconnectedCount, stillOrphanCount };
+    return { nodes, links, nodeById, hiddenTagCount, reconnectedCount, stillOrphanCount, stillOrphans };
 }
 
 /**
@@ -229,7 +300,18 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
 function renderGraph(container, articles, highlightTimestamp, minTagDegree, similarityIndex) {
     const raw = buildGraphData(articles, minTagDegree, similarityIndex);
     const { nodes, links, nodeById, capped } = capGraphData(raw);
-    const { hiddenTagCount, reconnectedCount, stillOrphanCount } = raw;
+    const { hiddenTagCount, reconnectedCount, stillOrphanCount, stillOrphans } = raw;
+
+    // Neglect info: how long each article has sat unopened (0 = opened
+    // recently or no lastOpened recorded). Used to fade/shrink stale saves.
+    const now = Date.now();
+    const neglectDays = new Map(); // article id -> days since lastOpened
+    nodes.forEach(n => {
+        if (n.group !== 'article' || !n.data?.timestamp) return;
+        const lastOpened = n.data.lastOpened || n.data.timestamp;
+        neglectDays.set(n.id, Math.max(0, (now - new Date(lastOpened).getTime()) / 86400000));
+    });
+    const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     if (typeof d3 === 'undefined') {
         container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">D3 library failed to load.</div>';
@@ -335,7 +417,10 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
 
     function nodeRadius(d) {
         if (d.group === 'article') {
-            return highlightTimestamp && d.data?.timestamp === highlightTimestamp ? 12 : 8;
+            const base = highlightTimestamp && d.data?.timestamp === highlightTimestamp ? 12 : 8;
+            // Neglected articles shrink slightly on top of fading, so the
+            // stale ones read as smaller/quieter at a glance.
+            return (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS ? base * NEGLECT_SHRINK : base;
         }
         return tagRadiusScale(d.degree || 1);
     }
@@ -379,11 +464,20 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
             if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) {
                 return '#fbbf24'; // amber highlight ring
             }
+            // Neglected articles shift their ring toward the danger end of
+            // the palette — a quiet "this one's gone stale" cue.
+            if (d.group === 'article' && (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS) {
+                return 'var(--danger)';
+            }
             return 'var(--bg-primary, #fff)';
         })
         .attr('stroke-width', d => {
             if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) return 3;
             return 1.5;
+        })
+        .attr('opacity', d => {
+            if (d.group !== 'article') return 1;
+            return (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS ? NEGLECT_FADE : 1;
         })
         .style('cursor', 'pointer')
         .call(drag(simulation));
@@ -432,11 +526,20 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
             .attr('y', d => d.y);
     });
 
-    // Click handler for article nodes — show a preview card
+    // Click handler for article nodes — show a preview card. Tag nodes
+    // dispatch a `filter-by-tag` event so the archive list can filter to
+    // that tag, turning the graph into a navigation surface.
     node.on('click', (event, d) => {
         if (d.group === 'article' && d.data) {
             event.stopPropagation();
             showPreviewCard(container, d.data);
+        } else if (d.group === 'tag') {
+            event.stopPropagation();
+            container.dispatchEvent(new CustomEvent('filter-by-tag', {
+                detail: { tag: d.label },
+                bubbles: true,
+                composed: true
+            }));
         }
     });
 
@@ -473,13 +576,18 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
 
     // ── Filter toggle + status badge ────────────────────────────────────
     // Only bother showing the toggle/status when there's something to say.
-    if (hiddenTagCount > 0 || capped || stillOrphanCount > 0 || reconnectedCount > 0) {
+    if (hiddenTagCount > 0 || capped || stillOrphanCount > 0 || reconnectedCount > 0 || neglectedCount > 0) {
         renderGraphControls(container, {
             hiddenTagCount,
             capped,
             currentlyFiltered: minTagDegree > 1,
             reconnectedCount,
             stillOrphanCount,
+            stillOrphans,
+            neglectedCount,
+            node,
+            link,
+            label,
             onToggle: () => {
                 const nextMinDegree = minTagDegree > 1 ? 1 : MIN_TAG_DEGREE_DEFAULT;
                 simulation.stop();
@@ -490,12 +598,14 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
 }
 
 /**
- * Small overlay control in the corner of the graph: lets the user toggle
- * between "only tags with 2+ connections" (default, faster, readable) and
- * "show every tag". Also surfaces the NODE_CAP safety message and how many
- * articles were reconnected via content similarity vs. still not shown.
+ * Small overlay control in the corner of the graph: a search box, the
+ * toggle between "only tags with 2+ connections" (default, faster,
+ * readable) and "show every tag", a NODE_CAP safety message, how many
+ * articles were reconnected via content similarity vs. still not shown,
+ * how many are neglected (unopened past the threshold), a "view
+ * unconnected" link, and a minimal legend for the two link kinds.
  */
-function renderGraphControls(container, { hiddenTagCount, capped, currentlyFiltered, reconnectedCount, stillOrphanCount, onToggle }) {
+function renderGraphControls(container, { hiddenTagCount, capped, currentlyFiltered, reconnectedCount, stillOrphanCount, stillOrphans, neglectedCount, node, link, label, onToggle }) {
     const existing = container.querySelector('.graph-controls');
     if (existing) existing.remove();
 
@@ -513,11 +623,31 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
         max-width: 70%;
     `;
 
+    // ── Search box ─────────────────────────────────────────────────────
+    // Dim-not-remove filtering (Obsidian-style): matches + their direct
+    // neighbors stay at full opacity, everything else fades to a ghost so
+    // the user keeps spatial context while narrowing focus.
+    const search = document.createElement('input');
+    search.type = 'text';
+    search.placeholder = 'Search graph…';
+    search.style.cssText = `
+        font-size: 11px;
+        color: var(--text-primary, #111);
+        background: var(--glass-base, #fff);
+        border: 1px solid var(--outline, #ddd);
+        border-radius: 8px;
+        padding: 4px 8px;
+        width: 160px;
+        outline: none;
+    `;
+    search.addEventListener('input', () => applySearchFilter(search.value, node, link, label));
+    bar.appendChild(search);
+
     const row = document.createElement('div');
     row.style.cssText = 'display: flex; align-items: center; gap: 8px;';
 
-    const label = document.createElement('span');
-    label.style.cssText = `
+    const labelEl = document.createElement('span');
+    labelEl.style.cssText = `
         font-size: 11px;
         color: var(--text-muted);
         background: var(--glass-base, #fff);
@@ -534,10 +664,13 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     } else {
         parts.push('Showing all tags');
     }
+    if (neglectedCount > 0) {
+        parts.push(`${neglectedCount} unopened 30d+`);
+    }
     if (stillOrphanCount > 0) {
         parts.push(`${stillOrphanCount} article${stillOrphanCount === 1 ? '' : 's'} not shown`);
     }
-    label.textContent = parts.join(' · ');
+    labelEl.textContent = parts.join(' · ');
 
     const button = document.createElement('button');
     button.className = 'graph-controls-toggle';
@@ -554,9 +687,34 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     button.textContent = currentlyFiltered ? 'Show all tags' : 'Only well-connected tags';
     button.addEventListener('click', onToggle);
 
-    row.appendChild(label);
+    row.appendChild(labelEl);
     row.appendChild(button);
     bar.appendChild(row);
+
+    // ── "View unconnected" link ────────────────────────────────────────
+    // Orphans are disproportionately the saved-and-forgotten articles (they
+    // never even got a tag), so surface them as a plain list rather than an
+    // opaque count. Clicking one opens it in the archive detail view.
+    if (stillOrphanCount > 0) {
+        const orphanRow = document.createElement('div');
+        orphanRow.style.cssText = 'display: flex; align-items: center; gap: 8px;';
+
+        const orphanLink = document.createElement('button');
+        orphanLink.style.cssText = `
+            font-size: 11px;
+            border: 1px solid var(--outline, #ddd);
+            border-radius: 8px;
+            padding: 4px 10px;
+            background: var(--glass-base, #fff);
+            color: var(--accent, #007bff);
+            cursor: pointer;
+            white-space: nowrap;
+        `;
+        orphanLink.textContent = 'View unconnected';
+        orphanLink.addEventListener('click', () => showUnconnectedList(container, stillOrphans));
+        orphanRow.appendChild(orphanLink);
+        bar.appendChild(orphanRow);
+    }
 
     if (reconnectedCount > 0) {
         const legend = document.createElement('span');
@@ -572,7 +730,108 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
         bar.appendChild(legend);
     }
 
+    // ── Minimal legend ─────────────────────────────────────────────────
+    // The dashed/thin similarity links vs solid/arrowed tag links carry
+    // real meaning; make it visible instead of only documented in code.
+    const legendRow = document.createElement('div');
+    legendRow.style.cssText = `
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 10px;
+        color: var(--text-muted);
+        background: var(--glass-base, #fff);
+        border: 1px solid var(--outline, #ddd);
+        border-radius: 8px;
+        padding: 4px 8px;
+    `;
+    legendRow.innerHTML = `
+        <span style="display:inline-flex;align-items:center;gap:4px;">
+            <span style="display:inline-block;width:14px;height:0;border-top:2px solid var(--outline);"></span> shared tag
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:4px;">
+            <span style="display:inline-block;width:14px;height:0;border-top:1px dashed var(--text-muted);"></span> similar content
+        </span>
+    `;
+    bar.appendChild(legendRow);
+
     container.appendChild(bar);
+}
+
+/**
+ * Shows a plain list of the still-unconnected articles (those that never
+ * got a tag link and couldn't be reconnected by content similarity). These
+ * are disproportionately the "saved and forgotten" saves, so we surface
+ * them as a scannable list rather than forcing them into the noisy force
+ * layout. Clicking an entry opens it in the archive detail view.
+ */
+function showUnconnectedList(container, orphans) {
+    const existing = container.querySelector('.graph-orphan-list');
+    if (existing) existing.remove();
+
+    const panel = document.createElement('div');
+    panel.className = 'graph-orphan-list';
+    panel.style.cssText = `
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        background: var(--glass-base, #fff);
+        border: 1px solid var(--outline, #ddd);
+        border-radius: 12px;
+        padding: 14px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        z-index: 20;
+        overflow-y: auto;
+        font-size: 13px;
+    `;
+
+    const header = document.createElement('div');
+    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;';
+    header.innerHTML = `<strong>Unconnected articles (${orphans.length})</strong>`;
+    const close = document.createElement('button');
+    close.textContent = '✕';
+    close.style.cssText = 'background:none;border:none;font-size:16px;cursor:pointer;opacity:0.5;padding:0 4px;line-height:1;';
+    close.addEventListener('click', () => panel.remove());
+    header.appendChild(close);
+    panel.appendChild(header);
+
+    const hint = document.createElement('div');
+    hint.style.cssText = 'font-size:11px;color:var(--text-muted);margin-bottom:10px;';
+    hint.textContent = 'These articles have no shared tags and no similar-content link — they tend to be the ones that get saved and forgotten.';
+    panel.appendChild(hint);
+
+    const list = document.createElement('div');
+    list.style.cssText = 'display:flex;flex-direction:column;gap:6px;';
+    orphans.forEach(article => {
+        const title = article.title || (article.content && article.content.split('\n')[0]) || 'Untitled';
+        const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
+        const item = document.createElement('button');
+        item.style.cssText = `
+            text-align:left;
+            font-size:12px;
+            padding:8px 10px;
+            border:1px solid var(--outline, #ddd);
+            border-radius:8px;
+            background:var(--glass-base, #fff);
+            cursor:pointer;
+            color:var(--text-primary, #111);
+        `;
+        item.innerHTML = `<strong>${title.length > 60 ? title.slice(0, 60) + '…' : title}</strong> <span style="color:var(--text-muted);font-size:11px;">${date}</span>`;
+        item.addEventListener('click', () => {
+            panel.remove();
+            container.dispatchEvent(new CustomEvent('open-article', {
+                detail: article,
+                bubbles: true,
+                composed: true
+            }));
+        });
+        list.appendChild(item);
+    });
+    panel.appendChild(list);
+
+    container.appendChild(panel);
 }
 
 /**

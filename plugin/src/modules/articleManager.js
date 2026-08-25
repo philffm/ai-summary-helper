@@ -23,6 +23,30 @@ function invalidateSearchIndex() {
     searchIndexDirty = true;
 }
 
+/**
+ * Records that an article was opened (viewed in the detail view). This is
+ * the "follow-through" signal the knowledge graph uses to surface neglected
+ * saves — an article that sits unopened past the threshold fades/shrinks
+ * in the graph. Persisted to storage so it survives reloads.
+ */
+function recordArticleOpened(article) {
+    if (!article || !article.timestamp) return;
+    const now = new Date().toISOString();
+    article.lastOpened = now;
+    // Keep the in-memory cache in sync so the graph (which reads from
+    // cachedArticles) reflects the update immediately.
+    const idx = cachedArticles.findIndex(a => a.timestamp === article.timestamp);
+    if (idx !== -1) cachedArticles[idx].lastOpened = now;
+    StorageManager.getLocal({ articles: [] }).then(data => {
+        const articles = data.articles || [];
+        const stored = articles.find(a => a.timestamp === article.timestamp);
+        if (stored) {
+            stored.lastOpened = now;
+            StorageManager.setLocal({ articles });
+        }
+    }).catch(() => {});
+}
+
 function ensureSearchIndex() {
     if (!searchIndex || searchIndexDirty) {
         searchIndex = buildIndex(cachedArticles);
@@ -551,6 +575,25 @@ export function initArticleManager(uiManager) {
                 setTimeout(() => showArticleDetail(e.detail), 400);
             }
         });
+
+        // ── Listen for filter-by-tag events from the graph ────────────
+        // Clicking a tag node in the graph filters the archive list to
+        // that tag, turning the graph into a navigation surface.
+        graphContainer.addEventListener('filter-by-tag', (e) => {
+            const tag = e.detail?.tag;
+            if (!tag) return;
+            uiManager.showScreen('history');
+            const articleList = document.getElementById('articleList');
+            const historyTopBar = document.getElementById('historyTopBar');
+            if (articleList) articleList.style.display = 'block';
+            if (historyTopBar) historyTopBar.style.display = 'flex';
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = tag;
+                filterArticles();
+                searchInput.focus();
+            }
+        });
     }
 
     // ── Listen for tag-search events from the analytics report ────────
@@ -760,6 +803,7 @@ async function renderLocalInsights(article, container) {
  */
 export function showArticleDetail(article) {
     currentDetailArticle = article;
+    recordArticleOpened(article);
     const articleList = document.getElementById('articleList');
     const articleDetail = document.getElementById('articleDetail');
     const articleDetailContent = document.getElementById('articleDetailContent');
