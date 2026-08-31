@@ -2,8 +2,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>[hi] From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now — AI Summary Helper</title>
-<meta name="description" content="[hi] It started as a bookmarklet for one person's Kindle habit. Here's what changed between v1 and the open-source 2.0 rebuild — and why.">
+<title>एक Bookmarklet से 2.0 तक: अब असल में क्या बन चुका है AI Summary Helper — AI Summary Helper</title>
+<meta name="description" content="इसकी शुरुआत एक व्यक्ति की Kindle reading habit के लिए बने bookmarklet से हुई थी। जानिए v1 से open-source 2.0 rebuild के बीच क्या बदला — और क्यों।">
 
 <script>
   (function(){
@@ -77,8 +77,8 @@
   <div class="wrap">
     <div class="post-hero">
       <span class="blog-date">Product · अगस्त 2026</span>
-      <h1>[hi] From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now</h1>
-      <p class="post-sub">[hi] It started as a one-click bookmarklet for reading on a Kindle. Two years and a full rebuild later, most of what it does today didn't exist yet when the first hundred people signed up.</p>
+      <h1>Bookmarklet से 2.0 तक: AI Summary Helper अब असल में क्या है</h1>
+      <p class="post-sub">इसकी शुरुआत Kindle पर पढ़ने के लिए एक one-click bookmarklet के रूप में हुई थी। दो साल और एक पूरे rebuild के बाद, आज यह जो कुछ भी करता है, उसमें से ज़्यादातर चीज़ें तब मौजूद भी नहीं थीं जब पहले 100 लोगों ने साइन अप किया था।</p>
     </div>
   </div>
 
@@ -86,37 +86,37 @@
     <div class="wrap">
       <div class="prose">
 
-        <p><strong>[hi] AI Summary Helper is a free, open-source Chrome extension that summarizes any web page using your own AI provider or a fully local model, saves articles for later with timed reminders, and turns your reading history into a searchable, connected archive.</strong> [hi] None of that existed in the first version. Here's what did, and how it got from there to here.</p>
+        <p><strong>AI Summary Helper एक फ्री, open-source Chrome extension है जो आपके अपने AI provider या पूरी तरह offline local model का उपयोग करके किसी भी वेब पेज को summarize करता है, timed reminders के साथ articles को बाद के लिए save करता है, और आपकी reading history को एक searchable, connected archive में बदल देता है — बिना किसी recurring cost के।</strong> पहले वर्जन में इनमें से कुछ भी नहीं था। यहाँ जानिए कि तब क्या था, और यह वहाँ से यहाँ तक कैसे पहुँचा।</p>
 
-        <h2>[hi] How this actually started</h2>
-        <p>[hi] In July 2024, this was a bookmarklet — not even an extension. You'd hunt down interesting articles, open a dozen tabs, and, like almost everyone, never get around to reading most of them. The original pitch was narrow and personal: a custom-prompt summarizer that inserted its output directly into the page, so the summary could ride along when you sent the article to a Kindle using <a href="https://send.reabble.com/" target="_blank" rel="noopener">[hi] Reabble's Send-to-Kindle tool</a>[hi] . That was the whole product. One AI provider. One prompt field. A bookmarklet variant that worked anywhere, even iOS Safari, and a Chrome extension variant for people who wanted the prompt adjustable on the fly.</p>
-        <p>[hi] It crossed 100 active users a few weeks later — genuinely surprising, since it had been built to solve one person's own reading habit, not to be a product.</p>
+        <h2>इसकी असल शुरुआत कैसे हुई</h2>
+        <p>जुलाई 2024 में, यह सिर्फ एक bookmarklet था — कोई extension भी नहीं। आप दिलचस्प articles ढूंढते, दर्जनों tabs खोलते, और बाकी सबकी तरह उन्हें कभी पढ़ ही नहीं पाते। इसका ओरिजिनल आइडिया बेहद सीधा और पर्सनल था: एक custom-prompt summarizer जो अपने आउटपुट को सीधे पेज में insert कर देता था, ताकि जब आप आर्टिकल को <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble का Send-to-Kindle टूल</a>का इस्तेमाल करके Kindle पर भेजें, तो summary भी साथ चली जाए। बस इतना ही था पूरा प्रोडक्ट। एक AI provider, एक prompt field। एक bookmarklet वेरिएंट जो कहीं भी काम करता था, यहाँ तक कि iOS Safari पर भी, और एक Chrome extension वेरिएंट उन लोगों के लिए जो prompt को on-the-fly adjust करना चाहते थे।</p>
+        <p>कुछ ही हफ्तों में इसके 100 एक्टिव यूज़र्स हो गए — जो वाकई हैरान करने वाला था, क्योंकि इसे एक प्रोडक्ट बनाने के लिए नहीं, बल्कि सिर्फ एक इंसान की अपनी reading habit को सुधारने के लिए बनाया गया था।</p>
 
-        <h2>[hi] What actually changed between then and 2.0</h2>
-        <p>[hi] The core idea — summarize on your terms, read it somewhere better than a browser tab — never changed. Almost everything around it did:</p>
+        <h2>तब से 2.0 के बीच असल में क्या बदला</h2>
+        <p>कोर आइडिया कभी नहीं बदला — अपनी शर्तों पर summarize करें और browser tab से बेहतर जगह पढ़ें। लेकिन इसके इर्द-गिर्द की लगभग हर चीज़ बदल गई:</p>
 
-        <h3>[hi] One provider became your choice of five</h3>
-        <p>[hi] v1 was OpenAI-only, your key, one endpoint. 2.0 supports OpenAI, Google Gemini, Mistral, and DeepSeek with your own API key, plus a fully local option through Ollama — meaning page content never has to leave your machine at all if you don't want it to. There's also an optional hosted tier (byphil Cloud) for people who'd rather skip key management entirely, but it was never made mandatory. That wasn't a small feature addition; it changed what kind of product this is. v1 asked you to trust one company with your content by default. 2.0 doesn't ask you to trust anyone you didn't choose.</p>
+        <h3>एक provider की जगह अब 5 ऑप्शन्स का विकल्प</h3>
+        <p>v1 सिर्फ OpenAI-only था, आपकी key और एक endpoint। 2.0 आपकी अपनी API key के साथ OpenAI, Google Gemini, Mistral, और DeepSeek को सपोर्ट करता है, साथ ही Ollama के ज़रिए पूरी तरह on-device local execution का ऑप्शन भी देता है — यानी अगर आप न चाहें, तो पेज का कंटेंट आपकी मशीन से बाहर कभी नहीं जाएगा, वो भी zero recurring cost पर। उन लोगों के लिए एक optional hosted tier (byphil Cloud) भी है जो key management के झंझट से बचना चाहते हैं, लेकिन इसे कभी अनिवार्य नहीं बनाया गया। यह सिर्फ एक छोटा फीचर एडिशन नहीं था; इसने इस टूल का पूरा नेचर ही बदल दिया। v1 में आपको बाय डिफ़ॉल्ट एक कंपनी पर भरोसा करना पड़ता था। 2.0 आपको किसी ऐसे पर भरोसा करने के लिए मजबूर नहीं करता जिसे आपने खुद न चुना हो।</p>
 
-        <h3>[hi] "Insert into the page" became an actual workflow</h3>
-        <p>[hi] The original insight — read it later, somewhere calmer than a browser — is still here, but it's no longer just a summary pasted into the DOM. Right-clicking a page now offers <strong>[hi] Summarize &amp; Close Tab</strong>[hi] : pick a timeframe (Tomorrow, Weekend, This Week, Research Session), add a note, and the tab closes itself once you've sped through the summary in an RSVP overlay. A Chrome notification brings you back to it exactly when you asked to be — not "eventually," not "whenever you remember."</p>
+        <h3>"Insert into the page" अब एक पूरा workflow बन गया</h3>
+        <p>ओरिजिनल सोच — बाद में पढ़ें, ब्राउज़र से शांत किसी जगह पर — आज भी वही है, लेकिन अब यह सिर्फ DOM में पेस्ट की गई summary नहीं है। पेज पर right-click करने पर अब मिलता है <strong>Summarize &amp; Close Tab</strong>: एक timeframe चुनें (Tomorrow, Weekend, This Week, Research Session), एक note जोड़ें, और RSVP overlay में फटाफट summary पढ़ने के बाद tab अपने आप बंद हो जाता है। एक Chrome notification आपको ठीक उसी समय वापस इस पर लाता है जब आपने कहा था — न कि "कभी बाद में" या "जब याद आए तब।"</p>
 
-        <h3>[hi] A pile of saved articles became something you can actually navigate</h3>
-        <p>[hi] v1 had no history at all — the summary lived on the page and then it was gone. Every saved article now lives in a local, searchable archive, with text highlighting (plus AI-suggested "ghost" highlights on key passages), a reading-analytics heatmap, and a D3 knowledge graph that clusters what you've read by topic instead of leaving it as an undifferentiated list.</p>
+        <h3>Save किए गए articles का ढेर अब एक व्यवस्थित, नेविगेट करने लायक लाइब्रेरी बन गया</h3>
+        <p>v1 में कोई history नहीं थी — summary पेज पर दिखती थी और फिर गायब हो जाती थी। अब हर save किया गया आर्टिकल एक local, searchable archive में रहता है, जिसमें text highlighting (साथ ही ज़रूरी passages पर AI-suggested "ghost" highlights), एक reading-analytics heatmap, और एक D3 knowledge graph शामिल है जो आपके पढ़े गए कंटेंट को सिर्फ एक लंबी लिस्ट बनाने के बजाय टॉपिक के हिसाब से cluster करता है।</p>
 
-        <h3>[hi] Kindle was the whole point. Now it's one option among several</h3>
-        <p>[hi] Send-to-Kindle via Reabble's tool was the entire reason this existed. It's still supported natively, but reading away from your browser now also means AirDrop to an iPhone or iPad (opens straight in Apple Books) or LocalSend to something like KOReader over your own Wi-Fi. The underlying instinct — get it off the browser, onto something built for reading — just has more paths now.</p>
+        <h3>Kindle ही इसका मुख्य उद्देश्य था। अब यह कई विकल्पों में से एक है</h3>
+        <p>Reabble के टूल के ज़रिए Send-to-Kindle ही इस प्रोजेक्ट के बनने की मुख्य वजह थी। यह आज भी natively समर्थित है, लेकिन ब्राउज़र से दूर पढ़ने के लिए अब आपके पास iPhone या iPad पर AirDrop (जो सीधे Apple Books में खुलता है) या आपके अपने Wi-Fi पर KOReader जैसे ऐप्स के लिए LocalSend का विकल्प भी है। मूल सोच वही है — ब्राउज़र से हटाकर पढ़ने के लिए बनी किसी डिवाइस पर ले जाना — बस अब इसके तरीके और बढ़ गए हैं।</p>
 
-        <h2>[hi] What didn't change</h2>
-        <p>[hi] It's still free, still open source (MIT-licensed, full code on GitHub), and it still doesn't require an account for any core feature. That part was never up for negotiation — it's the same reason v1 existed as a bookmarklet in the first place: built by someone who wanted to own their own reading tool, not rent one.</p>
+        <h2>जो चीज़ें नहीं बदलीं</h2>
+        <p>यह अभी भी पूरी तरह फ्री है, open source है (MIT-licensed, पूरा कोड GitHub पर उपलब्ध है), और किसी भी कोर फीचर के लिए अकाउंट की ज़रूरत नहीं है। यह बात कभी समझौते का विषय नहीं थी — यही वजह थी कि v1 को एक bookmarklet के रूप में बनाया गया था: किसी ऐसे व्यक्ति द्वारा जो अपने reading tool का खुद मालिक होना चाहता था, उसे किराए पर नहीं लेना चाहता था।</p>
 
-        <h2>[hi] FAQ</h2>
-        <p><strong>[hi] Is this the same project as the original bookmarklet?</strong><br>
-        [hi] Yes — same open-source project, same GitHub repo, continuously developed since July 2024. The bookmarklet variant still exists for anyone who wants a browser-agnostic option with zero install.</p>
-        <p><strong>[hi] Do I need an OpenAI account to use it?</strong><br>
-        [hi] No. That was true in v1; it hasn't been true for a long time. Any supported provider works, or a fully local model through Ollama with no external account at all.</p>
-        <p><strong>[hi] What happened to the Gumroad version?</strong><br>
-        [hi] The project started there as a way to accept support from early users. The extension itself has always been free and open source — Gumroad was never a paywall for the tool.</p>
+        <h2>FAQ</h2>
+        <p><strong>क्या यह वही प्रोजेक्ट है जो ओरिजिनल bookmarklet था?</strong><br>
+        हाँ — वही open-source प्रोजेक्ट, वही GitHub repo, जो जुलाई 2024 से लगातार डेवलप हो रहा है। Bookmarklet वेरिएंट आज भी उन लोगों के लिए मौजूद है जो बिना किसी इंस्टॉलेशन के browser-agnostic विकल्प चाहते हैं।</p>
+        <p><strong>क्या इसे इस्तेमाल करने के लिए मुझे OpenAI अकाउंट की ज़रूरत है?</strong><br>
+        नहीं। v1 में ऐसा था, लेकिन अब ऐसा नहीं है। आप कोई भी समर्थित provider चुन सकते हैं, या फिर बिना किसी external account के Ollama के ज़रिए पूरी तरह offline local model चला सकते हैं।</p>
+        <p><strong>Gumroad वर्जन का क्या हुआ?</strong><br>
+        शुरुआती यूज़र्स से सपोर्ट पाने के लिए प्रोजेक्ट की शुरुआत वहाँ से हुई थी। यह extension हमेशा से फ्री और open source रहा है — Gumroad इस टूल के लिए कभी कोई paywall नहीं था।</p>
 
         <div class="post-cta">
           <p>AI Summary Helper एक फ़्री Chrome extension है।</p>
