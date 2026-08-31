@@ -2,8 +2,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>[de] From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now — AI Summary Helper</title>
-<meta name="description" content="[de] It started as a bookmarklet for one person's Kindle habit. Here's what changed between v1 and the open-source 2.0 rebuild — and why.">
+<title>Vom Bookmarklet zu 2.0: Was AI Summary Helper heute wirklich ist — AI Summary Helper</title>
+<meta name="description" content="Es begann als Bookmarklet für die Kindle-Lesegewohnheiten einer einzelnen Person. Das hat sich zwischen v1 und dem Open-Source-Neuaufbau 2.0 verändert – und warum.">
 
 <script>
   (function(){
@@ -77,8 +77,8 @@
   <div class="wrap">
     <div class="post-hero">
       <span class="blog-date">Produkt · August 2026</span>
-      <h1>[de] From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now</h1>
-      <p class="post-sub">[de] It started as a one-click bookmarklet for reading on a Kindle. Two years and a full rebuild later, most of what it does today didn't exist yet when the first hundred people signed up.</p>
+      <h1>Vom Bookmarklet zu 2.0: Was AI Summary Helper heute wirklich ist</h1>
+      <p class="post-sub">Es begann als Ein-Klick-Bookmarklet zum Lesen auf dem Kindle. Zwei Jahre und eine vollständige Neuentwicklung später existierte das meiste von dem, was das Tool heute leistet, noch gar nicht, als die ersten hundert Nutzer dazukamen.</p>
     </div>
   </div>
 
@@ -86,37 +86,37 @@
     <div class="wrap">
       <div class="prose">
 
-        <p><strong>[de] AI Summary Helper is a free, open-source Chrome extension that summarizes any web page using your own AI provider or a fully local model, saves articles for later with timed reminders, and turns your reading history into a searchable, connected archive.</strong> [de] None of that existed in the first version. Here's what did, and how it got from there to here.</p>
+        <p><strong>AI Summary Helper ist eine kostenlose Open-Source-Chrome-Erweiterung, die Webseiten mithilfe Ihres eigenen KI-Anbieters oder eines vollständig lokalen Modells zusammenfasst, Artikel mit zeitgesteuerten Erinnerungen für später speichert und Ihren Leseverlauf in ein durchsuchbares, vernetztes Archiv verwandelt.</strong> Nichts davon gab es in der ersten Version. Hier erfahren Sie, was damals vorhanden war – und wie der Weg von dort bis heute verlief.</p>
 
-        <h2>[de] How this actually started</h2>
-        <p>[de] In July 2024, this was a bookmarklet — not even an extension. You'd hunt down interesting articles, open a dozen tabs, and, like almost everyone, never get around to reading most of them. The original pitch was narrow and personal: a custom-prompt summarizer that inserted its output directly into the page, so the summary could ride along when you sent the article to a Kindle using <a href="https://send.reabble.com/" target="_blank" rel="noopener">[de] Reabble's Send-to-Kindle tool</a>[de] . That was the whole product. One AI provider. One prompt field. A bookmarklet variant that worked anywhere, even iOS Safari, and a Chrome extension variant for people who wanted the prompt adjustable on the fly.</p>
-        <p>[de] It crossed 100 active users a few weeks later — genuinely surprising, since it had been built to solve one person's own reading habit, not to be a product.</p>
+        <h2>Wie alles begann</h2>
+        <p>Im Juli 2024 war dies noch ein Bookmarklet – nicht einmal eine Erweiterung. Man stieß auf interessante Artikel, öffnete ein Dutzend Tabs und kam – wie fast jeder – nie dazu, die meisten davon zu lesen. Der ursprüngliche Ansatz war simpel und pragmatisch: Ein Tool zur Zusammenfassung mit benutzerdefinierten Prompts, das das Ergebnis direkt in die Seite einbettete, damit die Zusammenfassung beim Senden des Artikels an den Kindle über <a href="https://send.reabble.com/" target="_blank" rel="noopener">das Send-to-Kindle-Tool von Reabble</a> direkt mit übertragen wurde. Das war das gesamte Produkt. Ein KI-Anbieter. Ein Prompt-Eingabefeld. Eine Bookmarklet-Variante, die überall funktionierte – selbst in iOS Safari – und eine Chrome-Erweiterung für alle, die den Prompt flexibel anpassen wollten.</p>
+        <p>Wenige Wochen später zählte es bereits über 100 aktive Nutzer – eine echte Überraschung, da es ursprünglich nur zur Lösung einer persönlichen Lesegewohnheit gedacht war und nicht als Produkt.</p>
 
-        <h2>[de] What actually changed between then and 2.0</h2>
-        <p>[de] The core idea — summarize on your terms, read it somewhere better than a browser tab — never changed. Almost everything around it did:</p>
+        <h2>Was sich zwischen damals und Version 2.0 verändert hat</h2>
+        <p>Die Kernidee – Zusammenfassungen nach Ihren eigenen Regeln zu erstellen und sie an einem besseren Ort als einem Browser-Tab zu lesen – ist geblieben. Fast alles drumherum hat sich weiterentwickelt:</p>
 
-        <h3>[de] One provider became your choice of five</h3>
-        <p>[de] v1 was OpenAI-only, your key, one endpoint. 2.0 supports OpenAI, Google Gemini, Mistral, and DeepSeek with your own API key, plus a fully local option through Ollama — meaning page content never has to leave your machine at all if you don't want it to. There's also an optional hosted tier (byphil Cloud) for people who'd rather skip key management entirely, but it was never made mandatory. That wasn't a small feature addition; it changed what kind of product this is. v1 asked you to trust one company with your content by default. 2.0 doesn't ask you to trust anyone you didn't choose.</p>
+        <h3>Aus einem Anbieter wurde die freie Wahl aus fünf</h3>
+        <p>v1 funktionierte ausschließlich mit OpenAI, Ihrem eigenen Key und einem einzigen Endpunkt. 2.0 unterstützt OpenAI, Google Gemini, Mistral und DeepSeek über Ihren eigenen API-Schlüssel sowie eine vollständig lokale Option via Ollama – dadurch verlässt der Seiteninhalt Ihren Rechner zu keinem Zeitpunkt, wenn Sie das nicht möchten. Zudem gibt es eine optionale gehostete Variante (byphil Cloud) für alle, die sich die Schlüsselverwaltung sparen wollen – diese ist jedoch keineswegs verpflichtend. Das war keine bloße Detailverbesserung, sondern veränderte den Charakter des Tools grundlegend: v1 verlangte standardmäßig Vertrauen in ein bestimmtes Unternehmen. 2.0 überlässt Ihnen stets die volle Kontrolle darüber, wem Sie vertrauen.</p>
 
-        <h3>[de] "Insert into the page" became an actual workflow</h3>
-        <p>[de] The original insight — read it later, somewhere calmer than a browser — is still here, but it's no longer just a summary pasted into the DOM. Right-clicking a page now offers <strong>[de] Summarize &amp; Close Tab</strong>[de] : pick a timeframe (Tomorrow, Weekend, This Week, Research Session), add a note, and the tab closes itself once you've sped through the summary in an RSVP overlay. A Chrome notification brings you back to it exactly when you asked to be — not "eventually," not "whenever you remember."</p>
+        <h3>Aus „In die Seite einfügen“ wurde ein echter Workflow</h3>
+        <p>Die ursprüngliche Erkenntnis – später an einem ruhigeren Ort als im Browser zu lesen – gilt nach wie vor. Doch es handelt sich nicht mehr nur um eine Zusammenfassung, die ins DOM eingefügt wird. Ein Rechtsklick auf eine Seite bietet nun <strong>Zusammenfassen &amp; Tab schließen</strong>: Wählen Sie einen Zeitrahmen (Morgen, Wochenende, Diese Woche, Recherche-Session), fügen Sie eine Notiz hinzu, und der Tab schließt sich automatisch, sobald Sie die Zusammenfassung im RSVP-Overlay überflogen haben. Eine Chrome-Benachrichtigung erinnert Sie exakt zum gewünschten Zeitpunkt daran – nicht „irgendwann“ oder „wenn es Ihnen wieder einfällt“.</p>
 
-        <h3>[de] A pile of saved articles became something you can actually navigate</h3>
-        <p>[de] v1 had no history at all — the summary lived on the page and then it was gone. Every saved article now lives in a local, searchable archive, with text highlighting (plus AI-suggested "ghost" highlights on key passages), a reading-analytics heatmap, and a D3 knowledge graph that clusters what you've read by topic instead of leaving it as an undifferentiated list.</p>
+        <h3>Aus einem Stapel gespeicherter Artikel wurde ein navigierbares Wissensarchiv</h3>
+        <p>v1 bot keinerlei Verlauf – die Zusammenfassung existierte auf der Seite und verschwand danach. Heute wird jeder gespeicherte Artikel in einem lokalen, durchsuchbaren Archiv abgelegt – inklusive Texthervorhebungen (sowie KI-generierten „Ghost“-Markierungen für Kernaussagen), einer Heatmap zur Leseanalyse und einem D3-Wissensgraphen, der Gelesenes thematisch strukturiert, statt es in einer unübersichtlichen Liste zu belassen.</p>
 
-        <h3>[de] Kindle was the whole point. Now it's one option among several</h3>
-        <p>[de] Send-to-Kindle via Reabble's tool was the entire reason this existed. It's still supported natively, but reading away from your browser now also means AirDrop to an iPhone or iPad (opens straight in Apple Books) or LocalSend to something like KOReader over your own Wi-Fi. The underlying instinct — get it off the browser, onto something built for reading — just has more paths now.</p>
+        <h3>Der Kindle war der Ursprung. Heute ist er eine von vielen Optionen</h3>
+        <p>Send-to-Kindle über das Reabble-Tool war der eigentliche Existenzgrund des Projekts. Dies wird weiterhin nativ unterstützt, doch das Lesen abseits des Browsers umfasst nun auch AirDrop auf ein iPhone oder iPad (öffnet sich direkt in Apple Books) oder LocalSend an Geräte mit KOReader über das lokale WLAN. Das Grundprinzip – raus aus dem Browser, rein in eine dedizierte Leseumgebung – bietet heute schlicht deutlich mehr Möglichkeiten.</p>
 
-        <h2>[de] What didn't change</h2>
-        <p>[de] It's still free, still open source (MIT-licensed, full code on GitHub), and it still doesn't require an account for any core feature. That part was never up for negotiation — it's the same reason v1 existed as a bookmarklet in the first place: built by someone who wanted to own their own reading tool, not rent one.</p>
+        <h2>Was unverändert geblieben ist</h2>
+        <p>Es ist weiterhin kostenlos, Open Source (MIT-Lizenz, vollständiger Code auf GitHub) und erfordert für keine der Kernfunktionen ein Benutzerkonto. Dieser Grundsatz stand nie zur Debatte – aus demselben Grund entstand v1 überhaupt als Bookmarklet: Entwickelt von jemandem, der sein eigenes Lesewerkzeug besitzen und nicht mieten wollte.</p>
 
-        <h2>[de] FAQ</h2>
-        <p><strong>[de] Is this the same project as the original bookmarklet?</strong><br>
-        [de] Yes — same open-source project, same GitHub repo, continuously developed since July 2024. The bookmarklet variant still exists for anyone who wants a browser-agnostic option with zero install.</p>
-        <p><strong>[de] Do I need an OpenAI account to use it?</strong><br>
-        [de] No. That was true in v1; it hasn't been true for a long time. Any supported provider works, or a fully local model through Ollama with no external account at all.</p>
-        <p><strong>[de] What happened to the Gumroad version?</strong><br>
-        [de] The project started there as a way to accept support from early users. The extension itself has always been free and open source — Gumroad was never a paywall for the tool.</p>
+        <h2>FAQ</h2>
+        <p><strong>Handelt es sich hierbei um dasselbe Projekt wie das ursprüngliche Bookmarklet?</strong><br>
+        Ja – dasselbe Open-Source-Projekt, dasselbe GitHub-Repository, kontinuierlich weiterentwickelt seit Juli 2024. Die Bookmarklet-Variante existiert weiterhin für alle, die eine browserunabhängige Lösung ohne Installation bevorzugen.</p>
+        <p><strong>Benötige ich ein OpenAI-Konto zur Nutzung?</strong><br>
+        Nein. Das galt zwar für v1, ist aber schon lange nicht mehr der Fall. Sie können jeden unterstützten Anbieter nutzen oder ein vollständig lokales Modell über Ollama ganz ohne externes Konto betreiben.</p>
+        <p><strong>Was ist aus der Gumroad-Version geworden?</strong><br>
+        Das Projekt nutzte die Plattform anfangs, um Unterstützung von frühen Nutzern zu ermöglichen. Die Erweiterung selbst war schon immer kostenlos und quelloffen – Gumroad diente zu keinem Zeitpunkt als Paywall für das Tool.</p>
 
         <div class="post-cta">
           <p>AI Summary Helper ist eine kostenlose Chrome-Erweiterung.</p>

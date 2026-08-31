@@ -2,8 +2,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>[zh-Hans] From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now — AI Summary Helper</title>
-<meta name="description" content="[zh-Hans] It started as a bookmarklet for one person's Kindle habit. Here's what changed between v1 and the open-source 2.0 rebuild — and why.">
+<title>从小书签（Bookmarklet）到 2.0：现在的 AI Summary Helper 到底是什么 — AI Summary Helper</title>
+<meta name="description" content="它始于为了满足个人 Kindle 阅读习惯而写的一枚小书签。以下是 v1 到开源 2.0 重构版之间的演变与背后的思考。">
 
 <script>
   (function(){
@@ -77,8 +77,8 @@
   <div class="wrap">
     <div class="post-hero">
       <span class="blog-date">产品动态 · 2026年8月</span>
-      <h1>[zh-Hans] From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now</h1>
-      <p class="post-sub">[zh-Hans] It started as a one-click bookmarklet for reading on a Kindle. Two years and a full rebuild later, most of what it does today didn't exist yet when the first hundred people signed up.</p>
+      <h1>从 Bookmarklet 到 2.0：现在的 AI Summary Helper 究竟是什么</h1>
+      <p class="post-sub">它起初只是一枚用于推送到 Kindle 阅读的一键小书签。历经两年与彻底的架构重写，如今它所具备的大多数功能，在最初一百位用户加入时甚至都还不存在。</p>
     </div>
   </div>
 
@@ -86,37 +86,37 @@
     <div class="wrap">
       <div class="prose">
 
-        <p><strong>[zh-Hans] AI Summary Helper is a free, open-source Chrome extension that summarizes any web page using your own AI provider or a fully local model, saves articles for later with timed reminders, and turns your reading history into a searchable, connected archive.</strong> [zh-Hans] None of that existed in the first version. Here's what did, and how it got from there to here.</p>
+        <p><strong>AI Summary Helper 是一款免费开源的 Chrome 扩展，支持通过你自己的 AI 服务商或完全本地的模型总结任何网页，设置定时提醒以便稍后阅读，并将你的阅读记录转化为可检索、相互关联的知识归档。</strong> 最初版本并没有这些特性。以下是它当时的样子，以及一步步演进至今日的历程。</p>
 
-        <h2>[zh-Hans] How this actually started</h2>
-        <p>[zh-Hans] In July 2024, this was a bookmarklet — not even an extension. You'd hunt down interesting articles, open a dozen tabs, and, like almost everyone, never get around to reading most of them. The original pitch was narrow and personal: a custom-prompt summarizer that inserted its output directly into the page, so the summary could ride along when you sent the article to a Kindle using <a href="https://send.reabble.com/" target="_blank" rel="noopener">[zh-Hans] Reabble's Send-to-Kindle tool</a>[zh-Hans] . That was the whole product. One AI provider. One prompt field. A bookmarklet variant that worked anywhere, even iOS Safari, and a Chrome extension variant for people who wanted the prompt adjustable on the fly.</p>
-        <p>[zh-Hans] It crossed 100 active users a few weeks later — genuinely surprising, since it had been built to solve one person's own reading habit, not to be a product.</p>
+        <h2>这款工具究竟是如何诞生的</h2>
+        <p>2024 年 7 月，它还只是一枚小书签（Bookmarklet）——连扩展程序都算不上。当时的情景很熟悉：四处寻找有趣的文章，一口气打开十几个标签页，然后像大多数人一样，根本没时间读完。最初的设想非常简单且出于个人需求：一个支持自定义 Prompt 的摘要工具，将生成的内容直接插入页面，这样当你使用 <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble 的 Send-to-Kindle 工具</a>推送文章到 Kindle 时，摘要也能随之一并带过去。这就是当时产品的全部。单一 AI 服务商、一个 Prompt 输入框。一个可以在任何地方（包括 iOS Safari）运行的小书签版本，以及一个为希望随时调整 Prompt 的用户准备的 Chrome 扩展。</p>
+        <p>几周后它的活跃用户就突破了 100 人——这确实令人意外，因为它的初衷只是为了解决我个人的阅读习惯，而非做一款商业产品。</p>
 
-        <h2>[zh-Hans] What actually changed between then and 2.0</h2>
-        <p>[zh-Hans] The core idea — summarize on your terms, read it somewhere better than a browser tab — never changed. Almost everything around it did:</p>
+        <h2>从那时到 2.0，究竟改变了什么</h2>
+        <p>核心理念从未改变——按你的方式生成摘要，并在比浏览器标签页体验更好的地方阅读。但围绕这一理念的一切，都迎来了彻底升级：</p>
 
-        <h3>[zh-Hans] One provider became your choice of five</h3>
-        <p>[zh-Hans] v1 was OpenAI-only, your key, one endpoint. 2.0 supports OpenAI, Google Gemini, Mistral, and DeepSeek with your own API key, plus a fully local option through Ollama — meaning page content never has to leave your machine at all if you don't want it to. There's also an optional hosted tier (byphil Cloud) for people who'd rather skip key management entirely, but it was never made mandatory. That wasn't a small feature addition; it changed what kind of product this is. v1 asked you to trust one company with your content by default. 2.0 doesn't ask you to trust anyone you didn't choose.</p>
+        <h3>从单一服务商，扩展到 5 种自由选择</h3>
+        <p>v1 仅支持 OpenAI、自备 API key 及单一 Endpoint。2.0 则支持使用你自己的 API key 接入 OpenAI、Google Gemini、Mistral 和 DeepSeek，更提供了基于 Ollama 的纯本地运行方案——只要你愿意，网页内容完全无需离开你的本地设备。此外，我们也为不想折腾 API key 管理的用户提供了可选的托管服务（byphil Cloud），但从不强制。这绝非单纯的功能叠加，而是重塑了产品的本质。v1 默认需要你信任某一家公司，而 2.0 绝不强求你信任任何未经你许可的第三方。</p>
 
-        <h3>[zh-Hans] "Insert into the page" became an actual workflow</h3>
-        <p>[zh-Hans] The original insight — read it later, somewhere calmer than a browser — is still here, but it's no longer just a summary pasted into the DOM. Right-clicking a page now offers <strong>[zh-Hans] Summarize &amp; Close Tab</strong>[zh-Hans] : pick a timeframe (Tomorrow, Weekend, This Week, Research Session), add a note, and the tab closes itself once you've sped through the summary in an RSVP overlay. A Chrome notification brings you back to it exactly when you asked to be — not "eventually," not "whenever you remember."</p>
+        <h3>从简单的“插入页面”，演变为真正的工作流</h3>
+        <p>最初的核心初衷——稍后阅读，在比浏览器更专注的环境中阅读——依然未变，但它不再只是简单将摘要粘贴进 DOM 中。现在右键点击网页即可使用 <strong>Summarize &amp; Close Tab</strong>：选择提醒时间（明天、周末、本周、专题调研阶段），添加备注，并在 RSVP 浮层中快速浏览完摘要后自动关闭标签页。Chrome 通知会在你指定的精准时刻唤醒阅读——而不是遥遥无期的“改天”或“等想起来再说”。</p>
 
-        <h3>[zh-Hans] A pile of saved articles became something you can actually navigate</h3>
-        <p>[zh-Hans] v1 had no history at all — the summary lived on the page and then it was gone. Every saved article now lives in a local, searchable archive, with text highlighting (plus AI-suggested "ghost" highlights on key passages), a reading-analytics heatmap, and a D3 knowledge graph that clusters what you've read by topic instead of leaving it as an undifferentiated list.</p>
+        <h3>堆积如山的收藏文章，蜕变为清晰可导览的知识库</h3>
+        <p>v1 完全没有历史记录功能——摘要只存在于当前页面，关闭即消失。现在，每篇保存的文章都会存入本地可检索的归档中，配备文本高亮（以及 AI 自动推荐重点段落的“幽灵高亮”）、阅读分析热力图，以及基于 D3 的知识图谱，按主题聚合你的阅读轨迹，而非杂乱无章的列表。</p>
 
-        <h3>[zh-Hans] Kindle was the whole point. Now it's one option among several</h3>
-        <p>[zh-Hans] Send-to-Kindle via Reabble's tool was the entire reason this existed. It's still supported natively, but reading away from your browser now also means AirDrop to an iPhone or iPad (opens straight in Apple Books) or LocalSend to something like KOReader over your own Wi-Fi. The underlying instinct — get it off the browser, onto something built for reading — just has more paths now.</p>
+        <h3>曾经 Kindle 是全部意义，如今只是众多选择之一</h3>
+        <p>借助 Reabble 工具 Send-to-Kindle 曾是项目存在的唯一原因。这项原生支持依然保留，但如今脱离浏览器阅读有了更多选择：通过 AirDrop 发送到 iPhone 或 iPad（直接在 Apple Books 中打开），或通过局域网 Wi-Fi 使用 LocalSend 发送到 KOReader 等设备。将内容移出浏览器、转移到专为阅读而生的设备这一底层逻辑始终如一，只是实现路径更加丰富。</p>
 
-        <h2>[zh-Hans] What didn't change</h2>
-        <p>[zh-Hans] It's still free, still open source (MIT-licensed, full code on GitHub), and it still doesn't require an account for any core feature. That part was never up for negotiation — it's the same reason v1 existed as a bookmarklet in the first place: built by someone who wanted to own their own reading tool, not rent one.</p>
+        <h2>始终未变的初心</h2>
+        <p>它依然免费、依然开源（采用 MIT 协议，完整代码公开在 GitHub），且所有核心功能均无需注册账号。这一点绝不妥协——这也正是 v1 最初以小书签形式诞生的原因：由一个希望真正掌控属于自己的阅读工具、而非按月租用服务的人所构建。</p>
 
-        <h2>[zh-Hans] FAQ</h2>
-        <p><strong>[zh-Hans] Is this the same project as the original bookmarklet?</strong><br>
-        [zh-Hans] Yes — same open-source project, same GitHub repo, continuously developed since July 2024. The bookmarklet variant still exists for anyone who wants a browser-agnostic option with zero install.</p>
-        <p><strong>[zh-Hans] Do I need an OpenAI account to use it?</strong><br>
-        [zh-Hans] No. That was true in v1; it hasn't been true for a long time. Any supported provider works, or a fully local model through Ollama with no external account at all.</p>
-        <p><strong>[zh-Hans] What happened to the Gumroad version?</strong><br>
-        [zh-Hans] The project started there as a way to accept support from early users. The extension itself has always been free and open source — Gumroad was never a paywall for the tool.</p>
+        <h2>常见问题</h2>
+        <p><strong>这和最初的小书签是同一个项目吗？</strong><br>
+        是的——依然是同一个开源项目、同一个 GitHub 仓库，自 2024 年 7 月以来持续迭代。对于希望免安装、跨浏览器使用的用户，小书签版本也依然可用。</p>
+        <p><strong>使用它必须拥有 OpenAI 账号吗？</strong><br>
+        不需要。v1 时确实如此，但很久之前就已经不再受限。你可以使用任何支持的 AI 服务商，或者通过 Ollama 跑纯本地模型，完全不需要任何外部账号。</p>
+        <p><strong>Gumroad 版本后来怎么样了？</strong><br>
+        项目最初设立在 Gumroad 是为了接收早期用户的支持。扩展本身一直保持免费开源——Gumroad 从未作为该工具的付费门槛。</p>
 
         <div class="post-cta">
           <p>AI Summary Helper 是一款免费的 Chrome 扩展程序。</p>
