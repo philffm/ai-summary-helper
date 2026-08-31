@@ -11,53 +11,65 @@
     "blog/from-bookmarklet-to-2.html"
   ],
   "locales": {
+    "de": {
+      "name": "German",
+      "dir": "lang/de",
+      "hreflang": "de",
+      "marketNotes": "Germany, Austria, Switzerland. Use standard formal 'Sie' register throughout — this is a productivity tool for knowledge workers and researchers. Strongly emphasize data sovereignty, local-first processing, and EU/German hosting ('nothing leaves your machine' / Ollama support). Keep product terms (e.g. 'Digest', 'LocalSend', 'Kindle', 'Markdown') in their standard technical forms."
+    },
     "fr": {
       "name": "French",
       "dir": "lang/fr",
       "hreflang": "fr",
-      "marketNotes": "France + francophone Europe/Canada. Use 'vous' register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. GDPR/data-sovereignty framing already resonates strongly here, so the 'nothing leaves Europe' / byphil-hosted-in-Germany angle can be played up rather than softened. Keep EUR pricing as-is, no conversion needed."
+      "marketNotes": "France + francophone Europe/Canada. Use polite 'vous' register throughout. Emphasize GDPR compliance, local on-device LLM execution, and EU data privacy. Keep technical terms ('on-device', 'LocalSend', 'Kindle') natural; keep EUR pricing as-is."
     },
     "es": {
       "name": "Spanish",
       "dir": "lang/es",
       "hreflang": "es",
-      "marketNotes": "Use neutral, pan-regional Spanish that reads naturally in both Spain and Latin America — avoid Spain-only or Mexico-only slang. This is the widest-reach locale by native speaker count, spanning very different purchasing power levels, so keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
+      "marketNotes": "Neutral, pan-regional Spanish (avoid slang exclusive to Spain or Argentina). Use polite modern SaaS address ('tú' for web copy/guides, standard clear imperatives for UI). Emphasize local offline processing with Ollama and zero-data-leakage architecture. Keep EUR pricing neutral without qualifying it as cheap or expensive."
     },
     "zh": {
       "name": "Chinese (Simplified)",
       "dir": "lang/zh",
       "hreflang": "zh-Hans",
-      "marketNotes": "IMPORTANT CONTEXT FOR THIS TRANSLATION: the Chrome Web Store requires a VPN to reach from mainland China, so the realistic audience for this locale is Chinese speakers in Hong Kong, Taiwan, Singapore, and the overseas Chinese-speaking diaspora — not mainland China as a primary market. Do not write copy that assumes frictionless mainland access (e.g. no 'available everywhere' framing). Keep tone professional and direct; avoid overly casual internet slang. Use Simplified Chinese characters throughout."
+      "marketNotes": "Simplified Chinese (targeting Singapore, Malaysia, and global diaspora tech workers). Professional, modern developer/SaaS tone. Note that Chrome Web Store distribution requires external access, so avoid 'works seamlessly everywhere' mainland-specific claims. Emphasize on-device AI privacy and self-hosting/Ollama support. Keep key tech terms ('Ollama', 'LocalSend', 'Kindle', 'Markdown', 'API key') in English."
     },
-    "hi": {
-      "name": "Hindi",
-      "dir": "lang/hi",
-      "hreflang": "hi",
-      "marketNotes": "Primary audience is English-fluent Indian tech/knowledge workers who already read technical English comfortably — so lean toward the natural code-switched register common in Indian tech content (keep product terms, feature names like 'Digest', 'Kindle', 'LocalSend', and technical terms like 'on-device' in English rather than forcing awkward literal Hindi translations for them) rather than formal textbook Hindi. Mention Ollama/local-model support prominently — price sensitivity and data-cost awareness are real considerations in this market, and 'free, fully offline, no ongoing cost' is a genuinely strong angle here, more so than in other locales."
-    },
-    "de": {
-      "name": "German",
-      "dir": "lang/de",
-      "hreflang": "de",
-      "marketNotes": "Germany, Austria, Switzerland. Use formal 'Sie' register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. GDPR/data-sovereignty framing resonates strongly here, so the 'nothing leaves Europe' / byphil-hosted-in-Germany angle can be played up rather than softened. Keep EUR pricing as-is, no conversion needed."
-    },
-    "ko": {
-      "name": "Korean",
-      "dir": "lang/ko",
-      "hreflang": "ko",
-      "marketNotes": "South Korea. Use formal register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. Keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
+    "zh-TW": {
+      "name": "Chinese (Traditional)",
+      "dir": "lang/zh-tw",
+      "hreflang": "zh-Hant",
+      "marketNotes": "Taiwan and Hong Kong knowledge workers, researchers, and developers. Use Traditional Chinese characters (繁體中文) with natural Taiwan/HK tech phrasing (e.g., use 隱私, 伺服器 for server, 本地/本機 for local). Since Chrome Web Store access is unrestricted in both markets, focus copy on productivity workflows, privacy, and frictionless browser integration. Keep terms like 'Ollama', 'LocalSend', 'Kindle', 'Markdown', and 'API Key' in English."
     },
     "ja": {
       "name": "Japanese",
       "dir": "lang/ja",
       "hreflang": "ja",
-      "marketNotes": "Japan. Use formal register throughout — this is a productivity tool aimed at professionals and researchers, not a casual consumer app. Keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
+      "marketNotes": "Standard polite business register (丁寧語 - Desu/Masu form). Avoid stiff archaic honorifics (Kenjougo). Use standard Katakana for common developer/tech concepts (e.g., ダイジェスト for Digest, オンデバイス for on-device, ローカル for local). Emphasize privacy, zero server storage, and lightweight productivity."
+    },
+    "ko": {
+      "name": "Korean",
+      "dir": "lang/ko",
+      "hreflang": "ko",
+      "marketNotes": "Standard polite modern SaaS tone (해요체 / Haeyo-che for web pages and blog posts, clear concise 명사형 / verb stems for buttons/UI). Keep technical ecosystem terms ('Ollama', 'Kindle', 'LocalSend', 'Markdown') in English or widely accepted loanword forms. Highlight local processing speed and privacy."
     },
     "pt": {
-      "name": "Portuguese",
+      "name": "Portuguese (Brazil)",
       "dir": "lang/pt",
-      "hreflang": "pt",
-      "marketNotes": "Brazil. Use neutral, pan-regional Portuguese that reads naturally in both Portugal and Brazil — avoid Portugal-only or Brazil-only slang. This is the widest-reach locale by native speaker count, spanning very different purchasing power levels, so keep pricing in EUR but do not imply the price is 'cheap' or 'expensive' in the copy itself — let the number speak for itself across markets."
+      "hreflang": "pt-BR",
+      "marketNotes": "Standard Brazilian Portuguese (PT-BR) tech register (using 'você' and natural gerunds, e.g., 'processando no dispositivo'). Avoid trying to force a hybrid PT-PT/PT-BR neutral style. Emphasize the free, offline, local-model (Ollama) capability and lack of recurring API subscription costs."
+    },
+    "hi": {
+      "name": "Hindi",
+      "dir": "lang/hi",
+      "hreflang": "hi",
+      "marketNotes": "Modern conversational tech register (Hinglish-friendly) for Indian tech professionals and developers. Keep all core interface nouns, shortcuts, tool names, and commands in English/Latin script (e.g., 'Digest', 'Kindle', 'LocalSend', 'Ollama', 'on-device', 'API key'). Highlight offline local LLM execution and zero recurring cost prominently."
+    },
+    "vi": {
+      "name": "Vietnamese",
+      "dir": "lang/vi",
+      "hreflang": "vi",
+      "marketNotes": "Professional, modern tech tone. Use standard neutral tech vocabulary for UI actions. Emphasize speed, local offline AI processing, Kindle export, and privacy."
     }
   }
 }
