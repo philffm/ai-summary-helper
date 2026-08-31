@@ -97,26 +97,6 @@
     </div>
   </section>
 
-  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="mock-shell reveal">
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">AI</span><span class="mock-chip">ソフトウェア</span></div>
-          <h4>ソフトウェアエンジニアリングにおけるAIエージェントの台頭</h4>
-          <p>AIエージェントはソフトウェア開発チームのデリバリー手法を根本から変革しています。自律型コーディングツールが、ワークフロー全体で最小限の監視のもと設計・実装・テストを実行する時代が到来しました。</p>
-          <div class="mock-badge">📖 標準 · 難易度 8.2 &nbsp;·&nbsp; ⏱️ 読了目安 ~4分 &nbsp;·&nbsp; 🔗 アーカイブ内に類似記事3件</div>
-        </div>
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">🗞️ ダイジェスト</span></div>
-          <h4>あなたのダイジェスト — 厳選された5本の記事</h4>
-          <p>同じトピックの重複を避け、多様性を重視して選定。1つのファイルにまとめてKindleやLocalSendへ即座に送信できます。</p>
-          <div class="mock-badge">📚 Kindleへ送信 &nbsp;·&nbsp; 📱 LocalSendで送信</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── Features ────────────────────────────────────────────────── -->
   <section id="features">
     <div class="wrap">
@@ -126,33 +106,54 @@
         <p>保存し、理解し、再検索し、実際に読み返す。アーカイブが外部サブスクリプションに人質に取られる心配はありません。</p>
       </div>
 
-      <div class="feature-grid reveal">
-        <div class="feature-card">
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          プライバシー最優先
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          タブを大量に開く方
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          研究者
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb">使用するモデルやサーバーの選択から、データを端末外へ送信するかどうかまで、すべてご自身で管理・設定いただけます。</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI要約、モデルは自由に選択可能</h3>
           <p>OpenAI、Gemini、Mistral、DeepSeekのほか、OpenRouter経由で100以上のモデルに対応。ローカルのOllamaモデルを指定すれば、要約処理を完全オフラインで完結させることも可能です。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>オンデバイスでの本格的な全文検索</h3>
           <p>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>意図を持った「後で読む」</h3>
           <p>理由や期限を設定して「アクション/判断」としてフラグを立てることで、リマインドを受け取ることができます。二度と開かれないリストの山に埋もれさせることはありません。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>自動キュレーション型ダイジェスト</h3>
           <p>ワンクリックで保存記事から小規模かつ多様なセットを自動選定。同じ話題ばかりが重なるのを防ぎ、1つのファイルにまとめてKindleやLocalSendへ転送します。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>単なるリストを超えたナレッジグラフ</h3>
           <p>共有タグによる関連性だけでなく、タグが付いていなくても内容の類似度に基づいて保存記事間のつながりを可視化します。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20以上の言語に対応、クロスプラットフォーム</h3>
           <p>お好みの言語で閲覧・要約が可能。ブラウザ拡張機能、ネイティブサイドパネル、または拡張機能が利用できない環境向けのブックマークレットをご用意しています。</p>
@@ -160,6 +161,37 @@
       </div>
     </div>
   </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+      });
+    })();
+  </script>
 
   <!-- ── Digest spotlight ────────────────────────────────────────── -->
   <section id="digest">
@@ -169,7 +201,7 @@
         <h2>保存した記事のほとんどは、二度と読まれない</h2>
         <p>ブックマーク行動に関する調査では、保存された記事の大半が二度と開かれないことが一貫して示されています。これは利用者の規律の問題ではありません。保存を容易にする一方で、何を実際に読むべきかの選定を支援しないツールの構造的な課題です。</p>
       </div>
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card">
           <h3 style="margin-top:0;">1. 「ダイジェスト」をクリック</h3>
           <p>保存記事から5本を選定。最新性とテーマの多様性を重視するため、同一ニュースの類似記事ばかりが並ぶことはありません。</p>
@@ -297,6 +329,12 @@
         <p>検索、ダイジェスト、重複検出機能の開発プロセスで得られた知見と、「後で読む」ツールの比較検討における位置づけについて解説しています。</p>
       </div>
       <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">プロダクト</span>
+          <h3>[ja] From a bookmarklet to 2.0: what AI Summary Helper actually is now</h3>
+          <p>[ja] It started as a one-click Kindle bookmarklet in 2024. Here's everything that changed on the way to the open-source 2.0 rebuild.</p>
+          <span class="blog-read">記事を読む →</span>
+        </a>
         <a class="blog-card" href="blog/pocket-alternative.html">
           <span class="blog-date">ガイド</span>
           <h3>Pocket の代替ツールをお探しですか？ 真に重視すべき選定基準</h3>
@@ -307,12 +345,6 @@
           <span class="blog-date">プロダクト</span>
           <h3>保存した記事の大半は読まれません。その根本的な解決策とは。</h3>
           <p>保存した記事の多くは二度と開かれません。なぜ Digest を開発したのか、そしてなぜあえて未読記事を溜め込ませない設計にしているのかを解説します。</p>
-          <span class="blog-read">記事を読む →</span>
-        </a>
-        <a class="blog-card" href="blog/on-device-architecture.html">
-          <span class="blog-date">エンジニアリング</span>
-          <h3>検索、タグ付け、レコメンデーションをクラウドから移行した理由</h3>
-          <p>検索、重複排除、ダイジェストを支える TF-IDF インデックスの仕組みと、サーバー処理が不要であった技術的背景について。</p>
           <span class="blog-read">記事を読む →</span>
         </a>
       </div>
@@ -328,7 +360,7 @@
         <p>AI Summary Helperは、byphilが開発する独立したツール群のひとつです。ひとつのアカウントとSupport Passで、現在提供中および今後リリースされるすべてのツールのプレミアム機能をご利用いただけます。</p>
       </div>
 
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card ecosystem-card self">
           <span class="f-badge">現在のツール</span>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
@@ -363,7 +395,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
-        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">プライバシーとGDPR</a>
+        <a href="privacy.html">プライバシー</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">利用規約</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">返金および返品ポリシー</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>

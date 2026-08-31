@@ -17009,6 +17009,276 @@
           "model": "dry-run"
         }
       }
+    },
+    "c2cba904e810e744e272a262ba325cdb7dd07dd9e5e742449e932c13cef31ccc": {
+      "en": "Privacy-first",
+      "translations": {
+        "fr": {
+          "text": "Priorité à la vie privée",
+          "translatedAt": "2026-08-31T21:11:18.950Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Privacidad ante todo",
+          "translatedAt": "2026-08-31T21:11:24.716Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "隐私优先",
+          "translatedAt": "2026-08-31T21:11:31.089Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Privacy-first",
+          "translatedAt": "2026-08-31T21:11:39.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "de": {
+          "text": "Datenschutz an erster Stelle",
+          "translatedAt": "2026-08-31T21:11:46.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인정보 보호 최우선",
+          "translatedAt": "2026-08-31T21:11:59.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プライバシー最優先",
+          "translatedAt": "2026-08-31T21:12:09.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Privacidade em primeiro lugar",
+          "translatedAt": "2026-08-31T21:12:18.617Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ea53a1043e0bdf37f408b3ffdfc58ca89f35f4e57e05d63ba804902732424818": {
+      "en": "Tab hoarder",
+      "translations": {
+        "fr": {
+          "text": "Accumulateur d'onglets",
+          "translatedAt": "2026-08-31T21:11:18.950Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Acumulador de pestañas",
+          "translatedAt": "2026-08-31T21:11:24.716Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "标签页囤积者",
+          "translatedAt": "2026-08-31T21:11:31.089Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Tab hoarder",
+          "translatedAt": "2026-08-31T21:11:39.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "de": {
+          "text": "Tab-Sammler",
+          "translatedAt": "2026-08-31T21:11:46.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "탭 수집가",
+          "translatedAt": "2026-08-31T21:11:59.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "タブを大量に開く方",
+          "translatedAt": "2026-08-31T21:12:09.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Acumulador de abas",
+          "translatedAt": "2026-08-31T21:12:18.617Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "918fcd73c354a24535c25b8bcdcc9bbaf752f6c93acd51ca80c69d62fce901db": {
+      "en": "Researcher",
+      "translations": {
+        "fr": {
+          "text": "Chercheur",
+          "translatedAt": "2026-08-31T21:11:18.950Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Investigador",
+          "translatedAt": "2026-08-31T21:11:24.716Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "研究人员",
+          "translatedAt": "2026-08-31T21:11:31.089Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "रिसर्चर (Researcher)",
+          "translatedAt": "2026-08-31T21:11:39.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "de": {
+          "text": "Forschende",
+          "translatedAt": "2026-08-31T21:11:46.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "연구자",
+          "translatedAt": "2026-08-31T21:11:59.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "研究者",
+          "translatedAt": "2026-08-31T21:12:09.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Pesquisador",
+          "translatedAt": "2026-08-31T21:12:18.617Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4ecafb1daf5e9ef6cb77de8a86e5f1c93e1e5bb1083e47f68a999e2339ece82b": {
+      "en": "You choose the model, the server, and whether anything leaves your machine at all.",
+      "translations": {
+        "fr": {
+          "text": "Vous choisissez le modèle, le serveur, et si la moindre donnée quitte ou non votre machine.",
+          "translatedAt": "2026-08-31T21:11:18.950Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tú eliges el modelo, el servidor y si algo llega a salir de tu equipo.",
+          "translatedAt": "2026-08-31T21:11:24.716Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "你可以自由选择模型与服务器，并完全掌控数据是否离开你的本地设备。",
+          "translatedAt": "2026-08-31T21:11:31.089Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Model, server और आपकी machine से कोई data बाहर जाएगा या नहीं — यह सब आप खुद तय करते हैं।",
+          "translatedAt": "2026-08-31T21:11:39.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "de": {
+          "text": "Sie wählen das Modell, den Server und ob überhaupt Daten Ihr Gerät verlassen.",
+          "translatedAt": "2026-08-31T21:11:46.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모델과 서버는 물론, 데이터의 기기 외부 전송 여부까지 직접 선택할 수 있습니다.",
+          "translatedAt": "2026-08-31T21:11:59.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "使用するモデルやサーバーの選択から、データを端末外へ送信するかどうかまで、すべてご自身で管理・設定いただけます。",
+          "translatedAt": "2026-08-31T21:12:09.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Você escolhe o modelo, o servidor e se algo chega a sair da sua máquina.",
+          "translatedAt": "2026-08-31T21:12:18.617Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "54a57c3147c49f33de5898b87084ad2b14c4ab308f762454bf92aca907478ad5": {
+      "en": "Privacy",
+      "translations": {
+        "fr": {
+          "text": "Confidentialité",
+          "translatedAt": "2026-08-31T21:11:18.950Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Privacidad",
+          "translatedAt": "2026-08-31T21:11:24.716Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "隐私",
+          "translatedAt": "2026-08-31T21:11:31.089Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Privacy",
+          "translatedAt": "2026-08-31T21:11:39.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "de": {
+          "text": "Datenschutz",
+          "translatedAt": "2026-08-31T21:11:46.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인정보 보호",
+          "translatedAt": "2026-08-31T21:11:59.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プライバシー",
+          "translatedAt": "2026-08-31T21:12:09.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Privacidade",
+          "translatedAt": "2026-08-31T21:12:18.617Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "88e511c855a5cad19efb4a78636a56a94b6d4a3e342cc94b21e7f512a68ce391": {
+      "en": "It started as a one-click bookmarklet for reading on a Kindle. Here's what changed between v1 and the open-source 2.0 rebuild.",
+      "translations": {
+        "fr": {
+          "text": "Au départ, il s'agissait d'un simple bookmarklet en un clic pour lire sur Kindle. Voici ce qui a changé entre la v1 et la refonte open source 2.0.",
+          "translatedAt": "2026-08-31T21:12:23.795Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Comenzó como un bookmarklet de un solo clic para leer en Kindle. Esto es lo que cambió entre la v1 y la reconstrucción 2.0 de código abierto.",
+          "translatedAt": "2026-08-31T21:12:29.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "最初，这只是一个用于在 Kindle 上阅读的一键书签小工具。以下是 v1 与全新开源 2.0 重构版本之间的演进与变化。",
+          "translatedAt": "2026-08-31T21:12:33.377Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसकी शुरुआत Kindle पर पढ़ने के लिए एक one-click bookmarklet के रूप में हुई थी। यहाँ देखें कि v1 और open-source 2.0 rebuild के बीच क्या-क्या बदला।",
+          "translatedAt": "2026-08-31T21:12:38.239Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "de": {
+          "text": "Es begann als 1-Klick-Bookmarklet für das Lesen auf dem Kindle. Hier erfahren Sie, was sich zwischen v1 und dem Open-Source-Rebuild 2.0 geändert hat.",
+          "translatedAt": "2026-08-31T21:12:41.975Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Kindle 읽기를 위한 원클릭 북마클릿으로 시작되었습니다. v1에서 오픈소스 2.0으로 재구축되면서 변경된 사항은 다음과 같습니다.",
+          "translatedAt": "2026-08-31T21:12:47.480Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Kindleで閲覧するためのワンクリックブックマークレットとして始まった本ツールですが、v1からオープンソースとして再構築された2.0における変更点をご紹介します。",
+          "translatedAt": "2026-08-31T21:12:53.232Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Começou como um bookmarklet de um clique para ler no Kindle. Veja o que mudou entre a v1 e a reconstrução open-source da 2.0.",
+          "translatedAt": "2026-08-31T21:12:58.419Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

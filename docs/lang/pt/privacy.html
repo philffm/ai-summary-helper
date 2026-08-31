@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>[pt] Privacy Policy — AI Summary Helper</title>
+<meta name="description" content="[pt] How AI Summary Helper handles your data: your API keys and article history stay on your device, and page content is only ever sent to the AI provider you choose.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+
+<meta property="og:title" content="[pt] Privacy Policy — AI Summary Helper">
+<meta property="og:description" content="[pt] How AI Summary Helper handles your data: your API keys and article history stay on your device.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/privacy.html"><link rel="alternate" hreflang="pt" href="https://ai-summary-helper.byphil.eu/lang/pt/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Ir para o conteúdo</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte de byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Recursos</a>
+        <a href="#digest">Digest</a>
+        <a href="#pricing">Preços</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Minha conta</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">Recursos</a>
+      <a href="#digest">Digest</a>
+      <a href="#pricing">Preços</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Minha conta</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte de byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Alternar para modo claro</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">[pt] Privacy Policy</span>
+      <h1>[pt] Privacy Policy</h1>
+      <p class="post-sub">[pt] Your API keys, article history, and highlights stay on your device. Page content is only ever sent to the AI provider you choose — including a fully local model, if that's what you pick.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>[pt] Last updated: August 2026</em></p>
+
+        <p>[pt] This Privacy Policy explains what data AI Summary Helper handles, where it goes, and why. The short version: your API keys, your article history, and your highlights stay on your device. Page content is only ever sent to the AI provider you choose to connect — including, if you choose it, a fully local model where nothing leaves your machine at all. We do not run ads, do not sell data, and do not require an account for any core feature.</p>
+
+        <p>[pt] If you disagree with any part of this policy, please do not install or use the extension.</p>
+
+        <h2>[pt] No Account Required</h2>
+        <p>[pt] AI Summary Helper does not require you to create an account, sign in, or provide any personal information to use its core features. Your API key (if you use your own) and your entire article history live in your browser's local storage.</p>
+
+        <h2>[pt] What Data We Handle, and Where It Goes</h2>
+
+        <h3>[pt] Your AI provider connection</h3>
+        <p>[pt] You choose how summaries are generated:</p>
+        <ul>
+          <li><strong>[pt] Bring your own key (BYOK)</strong> [pt] — OpenAI, Google Gemini, Mistral AI, DeepSeek, or a custom endpoint. Your API key is stored locally on your device only (never synced, never sent to us). Page content you choose to summarize is sent directly from your browser to the provider you selected, using your own key and subject to that provider's own privacy policy. We do not see, log, or store this content.</li>
+          <li><strong>[pt] Local model via Ollama</strong> [pt] — if you run a model locally, page content is sent only to your own machine. Nothing leaves your device.</li>
+          <li><strong>[pt] byphil Cloud (optional, paid)</strong> [pt] — a hosted option for people who'd rather not manage an API key. If you choose this tier, page content is sent to our backend, which proxies the request to an underlying model provider on your behalf and returns the summary. We do not permanently store the content of pages processed this way.</li>
+        </ul>
+
+        <h3>[pt] License and subscription status</h3>
+        <p>[pt] If you activate a Pro license or byphil Cloud subscription, your license key is stored locally on your device (never synced) and used to verify subscription status with our backend. Basic account/billing metadata is handled by our payment processor and backend; we do not store your page content or reading history on our servers.</p>
+
+        <h3>[pt] Article history, highlights, and settings</h3>
+        <p>[pt] Everything you save is stored locally in your browser, using Chrome's built-in storage APIs — never on our servers:</p>
+        <table>
+          <thead>
+            <tr><th>[pt] Data</th><th>[pt] Storage</th><th>[pt] Synced via Chrome?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>[pt] Saved articles &amp; summaries</td><td>[pt] Local</td><td>[pt] No</td></tr>
+            <tr><td>[pt] API keys / provider config</td><td>[pt] Local</td><td>[pt] No — sensitive, device-only</td></tr>
+            <tr><td>[pt] License key</td><td>[pt] Local</td><td>[pt] No — sensitive, device-only</td></tr>
+            <tr><td>[pt] LocalSend network IP</td><td>[pt] Local</td><td>[pt] No</td></tr>
+            <tr><td>[pt] Text highlights &amp; AI ghost highlights</td><td>[pt] Local (per page)</td><td>[pt] No</td></tr>
+            <tr><td>[pt] Default prompt, language, summary length</td><td>[pt] Sync</td><td>[pt] Yes, via your own Chrome account</td></tr>
+            <tr><td>[pt] Highlighting on/off preference</td><td>[pt] Sync</td><td>[pt] Yes, via your own Chrome account</td></tr>
+          </tbody>
+        </table>
+        <p>[pt] Items marked "Sync" use Chrome's own built-in sync tied to your Google account — this data passes through Google's infrastructure, not ours, exactly like your bookmarks would. We have no separate access to it.</p>
+        <p>[pt] You can export or delete your full local history at any time via Settings → Backup &amp; Restore, or by removing the extension.</p>
+
+        <h3>[pt] Kindle, AirDrop, and LocalSend</h3>
+        <p>[pt] When you send an article to Kindle, AirDrop, or a LocalSend-compatible device, the formatted file is sent directly from your browser to the destination you chose. We do not act as an intermediary and do not see or store this content.</p>
+
+        <h2>[pt] Analytics</h2>
+        <p>[pt] We use Matomo, a privacy-respecting, GDPR-compliant analytics platform, to understand aggregate, anonymous usage patterns so we can improve the extension. Matomo does not track you individually across sites and does not sell data. No page content, API keys, or article data is ever included in analytics events.</p>
+
+        <h2>[pt] Permissions We Request, and Why</h2>
+        <table>
+          <thead>
+            <tr><th>[pt] Permission</th><th>[pt] Why we need it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[pt] activeTab</code></td><td>[pt] Read the content of the page you actively choose to summarize</td></tr>
+            <tr><td><code>[pt] storage</code></td><td>[pt] Save your settings, article history, and highlights locally</td></tr>
+            <tr><td><code>[pt] contextMenus</code></td><td>[pt] Provide right-click actions (Summarize, Highlight, etc.)</td></tr>
+            <tr><td><code>[pt] notifications</code></td><td>[pt] Show timed reminders for articles you've saved for later</td></tr>
+            <tr><td><code>[pt] alarms</code></td><td>[pt] Schedule those reminder notifications</td></tr>
+            <tr><td><code>[pt] tabs</code></td><td>[pt] Close the tab automatically after "Summarize &amp; Close"</td></tr>
+            <tr><td><code>[pt] sidePanel</code></td><td>[pt] Support Chrome's native side panel as a viewing option</td></tr>
+            <tr><td><code>[pt] scripting</code></td><td>[pt] Inject the content script needed to read and summarize a page</td></tr>
+            <tr><td><code>[pt] host_permissions (&lt;all_urls&gt;)</code></td><td>[pt] Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively</td></tr>
+          </tbody>
+        </table>
+        <p>[pt] We do not use these permissions to track your browsing, build an advertising profile, or collect data beyond providing the features described above.</p>
+
+        <h2>[pt] What We Don't Do</h2>
+        <ul>
+          <li>[pt] We don't run or serve ads, and we don't sell, rent, or trade your data to advertisers or data brokers.</li>
+          <li>[pt] We don't require an account or sign-in for any core feature.</li>
+          <li>[pt] We don't log or retain the content of pages you summarize via your own API key or a local model.</li>
+          <li>[pt] We don't have access to your locally stored article history, highlights, or API keys — they never leave your device unless you explicitly export them.</li>
+        </ul>
+
+        <h2>[pt] Third-Party Services</h2>
+        <p>[pt] Depending on how you configure the extension, your page content may be sent to:</p>
+        <ul>
+          <li>[pt] OpenAI, Google (Gemini), Mistral AI, or DeepSeek — only if you've entered your own API key for that provider, and only for the page you actively summarize.</li>
+          <li>[pt] Our byphil Cloud backend — only if you've opted into that tier.</li>
+          <li>[pt] Your own local Ollama instance — not a third party; stays on your machine.</li>
+        </ul>
+        <p>[pt] We are not responsible for the privacy practices of third-party AI providers you choose to connect. We encourage you to review their policies before connecting an account.</p>
+
+        <h2>[pt] Data Security</h2>
+        <p>[pt] We use reasonable technical measures appropriate to the data involved — most of which never reaches our servers in the first place, since it's stored locally in your browser. Communication with our backend (for byphil Cloud and license verification) is encrypted in transit. No method of transmission or storage is 100% secure, and we cannot guarantee absolute security, but we do not collect more than what's needed to provide the described features.</p>
+
+        <h2>[pt] Children's Privacy</h2>
+        <p>[pt] AI Summary Helper is not directed at children under 13 (or the relevant minimum age in your jurisdiction), and we do not knowingly collect personal information from children.</p>
+
+        <h2>[pt] Your Rights (GDPR / CCPA and similar)</h2>
+        <p>[pt] Since almost all of your data is stored locally on your own device, you already have direct control over it — you can view, export, or delete it at any time via the extension's Settings, or by uninstalling the extension. For any data we do hold on our servers (byphil Cloud subscription/billing metadata), you can request access, correction, or deletion by contacting us below.</p>
+
+        <h2>[pt] Changes to This Policy</h2>
+        <p>[pt] We may update this Privacy Policy as the extension's features change. Material changes will be reflected here with an updated "Last updated" date. Continued use of the extension after a change constitutes acceptance of the updated policy.</p>
+
+        <h2>[pt] Contact Us</h2>
+        <p>[pt] Questions about this Privacy Policy? Contact us at <a href="mailto:philipp@wornath.de">[pt] philipp@wornath.de</a>[pt] , or via <a href="https://github.com/philffm/ai-summary-helper/issues">[pt] GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+        <a href="privacy.html">Privacidade</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Termos de Serviço</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Reembolsos e Devoluções</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — software independente desenvolvido na Alemanha. Pagamentos processados pela Stripe como Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Resolução de Litígios de Consumo da UE</a> · Desenvolvido e mantido por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

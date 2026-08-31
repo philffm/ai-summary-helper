@@ -97,26 +97,6 @@
     </div>
   </section>
 
-  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="mock-shell reveal">
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">AI</span><span class="mock-chip">Software</span></div>
-          <h4>AI Agent 在软件工程领域的兴起</h4>
-          <p>AI Agent 正在重塑团队交付软件的方式——自主编程工具如今只需极少的人工干预，即可跨工作流完成规划、编码与测试。</p>
-          <div class="mock-badge">📖 标准 · 8.2 级阅读难度 &nbsp;·&nbsp; ⏱️ 约 4 分钟阅读 &nbsp;·&nbsp; 🔗 归档中有 3 篇相关内容</div>
-        </div>
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">🗞️ 文摘</span></div>
-          <h4>专属文摘 — 5 篇精选内容</h4>
-          <p>兼顾内容多样性，杜绝同类话题重复堆叠。可一键打包成单个文件发送至 Kindle 或 LocalSend。</p>
-          <div class="mock-badge">📚 发送到 Kindle &nbsp;·&nbsp; 📱 通过 LocalSend 发送</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── Features ────────────────────────────────────────────────── -->
   <section id="features">
     <div class="wrap">
@@ -126,33 +106,54 @@
         <p>保存、理解、检索并真正重读——无需再为绑定您个人归档的订阅服务买单。</p>
       </div>
 
-      <div class="feature-grid reveal">
-        <div class="feature-card">
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          隐私优先
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          标签页囤积者
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          研究人员
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb">你可以自由选择模型与服务器，并完全掌控数据是否离开你的本地设备。</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI 摘要，模型随心选择</h3>
           <p>支持 OpenAI、Gemini、Mistral、DeepSeek，或通过 OpenRouter 接入 100 多种模型；亦可连接本地 Ollama 模型，完全无需联网即可运行。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>真正的设备端本地搜索</h3>
           <p>依托浏览器内置的 TF-IDF 索引，支持对标题、标签和文章全文进行瞬时检索。无需网络往返，零延迟，数据绝不上云。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>带着目标保存，告别盲目囤积</h3>
           <p>标记“待办决定”，设定理由与时间节点并获得提醒——不再让收藏文章沉睡在永远不看的堆积列表里。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>智能精选文摘</h3>
           <p>一键精选小体量且主题多元的收藏内容，避免同质化，并自动打包为单一文件推送到 Kindle 或 LocalSend。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>知识图谱，超越简单列表</h3>
           <p>直观呈现收藏内容之间的关联——不仅基于共同标签，还能自动识别无共同标签但主题相似的文章。</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>支持 20 多种语言与跨平台</h3>
           <p>用您偏好的语言阅读与生成摘要。提供扩展程序、原生侧边栏或书签工具（Bookmarklet），覆盖无法直接安装扩展的场景。</p>
@@ -160,6 +161,37 @@
       </div>
     </div>
   </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+      });
+    })();
+  </script>
 
   <!-- ── Digest spotlight ────────────────────────────────────────── -->
   <section id="digest">
@@ -169,7 +201,7 @@
         <h2>大多数保存的内容，往往再未被打开</h2>
         <p>有关书签行为的各项研究表明，绝大多数保存的文章从未被重新阅读。这并非自律问题——而是工具只让“保存”变得极其容易，却在“协助筛选阅读”方面毫无作为。</p>
       </div>
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card">
           <h3 style="margin-top:0;">1. 点击“生成文摘”</h3>
           <p>系统会自动挑选 5 篇保存的内容——兼顾时效性与主题多样性，避免同类资讯扎堆。</p>
@@ -297,6 +329,12 @@
         <p>我们在开发搜索、文摘和去重功能时的经验总结，以及它们如何为您评估稍后读工具提供参考。</p>
       </div>
       <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">产品</span>
+          <h3>[zh-Hans] From a bookmarklet to 2.0: what AI Summary Helper actually is now</h3>
+          <p>[zh-Hans] It started as a one-click Kindle bookmarklet in 2024. Here's everything that changed on the way to the open-source 2.0 rebuild.</p>
+          <span class="blog-read">阅读全文 →</span>
+        </a>
         <a class="blog-card" href="blog/pocket-alternative.html">
           <span class="blog-date">指南</span>
           <h3>正在寻找 Pocket 的替代方案？这几点才是核心关键</h3>
@@ -307,12 +345,6 @@
           <span class="blog-date">产品</span>
           <h3>收藏的内容大多再也不会读？这里有真正的解决方案。</h3>
           <p>大部分被收藏的文章再也没被打开过。探讨 Digest 存在的原因，以及为何它刻意避免让你的未读清单越积越厚。</p>
-          <span class="blog-read">阅读全文 →</span>
-        </a>
-        <a class="blog-card" href="blog/on-device-architecture.html">
-          <span class="blog-date">技术工程</span>
-          <h3>为什么我们将搜索、标签与推荐功能移出云端</h3>
-          <p>支撑搜索、去重与 Digest 功能背后的 TF-IDF 索引技术 —— 以及为什么大部分处理从一开始就不需要服务器。</p>
           <span class="blog-read">阅读全文 →</span>
         </a>
       </div>
@@ -328,7 +360,7 @@
         <p>AI Summary Helper 是 byphil 打造的多个独立工具之一。一个账户搭配一张 Support Pass，即可畅享旗下所有现有及未来发布工具的高级权限。</p>
       </div>
 
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card ecosystem-card self">
           <span class="f-badge">当前产品</span>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
@@ -363,7 +395,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
-        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">隐私与 GDPR</a>
+        <a href="privacy.html">隐私</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">服务条款</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">退款与退换政策</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
