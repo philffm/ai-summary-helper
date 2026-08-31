@@ -210,7 +210,7 @@ nav.links a:hover{ color:var(--paper); }
 
 .mobile-menu{ border-bottom:1px solid var(--border-subtle); background:var(--nav-bg-solid); backdrop-filter:blur(16px); }
 .mobile-menu[hidden]{ display:none; }
-.mobile-menu-inner{ padding:8px 0 18px; display:flex; flex-direction:column; }
+.mobile-menu-inner{ padding:8px 24px 18px; display:flex; flex-direction:column; }
 .mobile-menu-inner a{ font-size:16px; font-weight:500; color:var(--paper); padding:14px 4px; border-bottom:1px solid var(--border-subtle); }
 .mobile-menu-inner .theme-toggle-mobile{ border-bottom:1px solid var(--border-subtle); }
 .mobile-menu-inner a:last-child{ border-bottom:none; }
