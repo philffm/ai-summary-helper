@@ -97,26 +97,6 @@
     </div>
   </section>
 
-  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="mock-shell reveal">
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">IA</span><span class="mock-chip">Software</span></div>
-          <h4>A ascensão dos agentes de IA na engenharia de software</h4>
-          <p>Agentes de IA estão remodelando como equipes entregam software — ferramentas autônomas de programação agora planejam, escrevem e testam com o mínimo de supervisão em todo o fluxo de trabalho.</p>
-          <div class="mock-badge">📖 Padrão · nível 8.2 &nbsp;·&nbsp; ⏱️ ~4 min de leitura &nbsp;·&nbsp; 🔗 3 similares no seu arquivo</div>
-        </div>
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">🗞️ Digest</span></div>
-          <h4>Seu resumo — 5 artigos selecionados</h4>
-          <p>Escolhidos pela variedade, não cinco versões do mesmo assunto. Prontos para enviar para o Kindle ou LocalSend em um único arquivo.</p>
-          <div class="mock-badge">📚 Enviar para o Kindle &nbsp;·&nbsp; 📱 Enviar via LocalSend</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── Features ────────────────────────────────────────────────── -->
   <section id="features">
     <div class="wrap">
@@ -126,33 +106,54 @@
         <p>Salve, compreenda, encontre novamente e realmente volte a ler — sem mais uma assinatura fazendo seu arquivo de refém.</p>
       </div>
 
-      <div class="feature-grid reveal">
-        <div class="feature-card">
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Privacidade em primeiro lugar
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          Acumulador de abas
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          Pesquisador
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb">Você escolhe o modelo, o servidor e se algo chega a sair da sua máquina.</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Resumos com IA no modelo que você escolher</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek ou mais de 100 modelos via OpenRouter — ou aponte para um modelo local do Ollama e não use a internet para esta etapa.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Pesquisa de verdade, no seu dispositivo</h3>
           <p>Pesquisa de texto completo em títulos, tags e conteúdo dos artigos — alimentada por um índice TF-IDF criado diretamente no seu navegador. Sem latência, sem atrasos e sem enviar nada para fora.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Salve para depois, com um propósito</h3>
           <p>Marque uma "decisão" com um motivo e um prazo, e receba lembretes — em vez de ver o artigo desaparecer em uma pilha que você nunca mais vai abrir.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Um compilado que se organiza sozinho</h3>
           <p>Com apenas um toque, selecione um conjunto variado de itens salvos — sem repetições do mesmo assunto — reunidos em um único arquivo para Kindle ou LocalSend.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Um grafo de conhecimento, não apenas uma lista</h3>
           <p>Veja como seus artigos salvos se conectam — por tags compartilhadas ou por similaridade de assunto, mesmo quando não compartilham nenhuma tag.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>Mais de 20 idiomas, multiplataforma</h3>
           <p>Leia e resuma no idioma de sua preferência. Extensão, painel lateral nativo ou bookmarklet — para onde a extensão do navegador não puder chegar.</p>
@@ -160,6 +161,37 @@
       </div>
     </div>
   </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+      });
+    })();
+  </script>
 
   <!-- ── Digest spotlight ────────────────────────────────────────── -->
   <section id="digest">
@@ -169,7 +201,7 @@
         <h2>A maioria do que você salva, você nunca mais lê</h2>
         <p>Pesquisas sobre o hábito de salvar links mostram com consistência que a grande maioria dos artigos salvos nunca mais é aberta. Isso não é falta de disciplina — é o resultado de ferramentas que facilitam salvar, mas não dão ajuda alguma para escolher o que realmente ler.</p>
       </div>
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card">
           <h3 style="margin-top:0;">1. Toque em Digest</h3>
           <p>Ele seleciona 5 dos seus salvamentos — equilibrando itens recentes e variedade, para que você não fique preso a cinco versões da mesma notícia.</p>
@@ -297,6 +329,12 @@
         <p>O que aprendemos criando os recursos de pesquisa, digest e detecção de duplicatas — e onde eles se encaixam se você estiver avaliando ferramentas de leitura posterior.</p>
       </div>
       <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">Produto</span>
+          <h3>[pt] From a bookmarklet to 2.0: what AI Summary Helper actually is now</h3>
+          <p>[pt] It started as a one-click Kindle bookmarklet in 2024. Here's everything that changed on the way to the open-source 2.0 rebuild.</p>
+          <span class="blog-read">Ler o artigo →</span>
+        </a>
         <a class="blog-card" href="blog/pocket-alternative.html">
           <span class="blog-date">Guia</span>
           <h3>Procurando uma alternativa ao Pocket? Veja o que realmente importa</h3>
@@ -307,12 +345,6 @@
           <span class="blog-date">Produto</span>
           <h3>Você não vai ler a maior parte do que salva. Aqui está a solução real.</h3>
           <p>A maioria dos artigos salvos nunca é reaberta. Por que o Digest existe e por que ele deliberadamente não tenta acumular mais conteúdo.</p>
-          <span class="blog-read">Ler o artigo →</span>
-        </a>
-        <a class="blog-card" href="blog/on-device-architecture.html">
-          <span class="blog-date">Engenharia</span>
-          <h3>Por que tiramos a busca, a organização por tags e as recomendações da nuvem</h3>
-          <p>O índice TF-IDF por trás da busca, desduplicação e do digest — e por que a maior parte disso nunca precisou de um servidor.</p>
           <span class="blog-read">Ler o artigo →</span>
         </a>
       </div>
@@ -328,7 +360,7 @@
         <p>O AI Summary Helper é uma das ferramentas independentes desenvolvidas pelo byphil. Uma conta e um Support Pass desbloqueiam acesso premium em todas elas — agora e em lançamentos futuros.</p>
       </div>
 
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card ecosystem-card self">
           <span class="f-badge">Você está aqui</span>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
@@ -363,7 +395,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
-        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">Privacidade e GDPR</a>
+        <a href="privacy.html">Privacidade</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Termos de Serviço</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Reembolsos e Devoluções</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

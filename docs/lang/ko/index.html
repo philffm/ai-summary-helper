@@ -97,26 +97,6 @@
     </div>
   </section>
 
-  <!-- ── Product preview (no screenshots — a live-styled mock) ─────── -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="mock-shell reveal">
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">AI</span><span class="mock-chip">소프트웨어</span></div>
-          <h4>소프트웨어 엔지니어링에서 AI 에이전트의 부상</h4>
-          <p>AI 에이전트는 팀의 소프트웨어 배포 방식을 혁신하고 있습니다. 자율 코딩 도구는 이제 전체 워크플로에서 최소한의 감독만으로 계획, 작성, 테스트를 수행합니다.</p>
-          <div class="mock-badge">📖 기본 · 읽기 수준 8.2 &nbsp;·&nbsp; ⏱️ 예상 읽기 시간 약 4분 &nbsp;·&nbsp; 🔗 보관함 내 유사한 글 3개</div>
-        </div>
-        <div class="mock-card">
-          <div class="mock-tags"><span class="mock-chip">🗞️ 다이제스트</span></div>
-          <h4>맞춤 다이제스트 — 엄선된 글 5편</h4>
-          <p>동일한 내용의 중복 없이 다양성을 고려해 선별되었습니다. 단일 파일로 묶어 Kindle 또는 LocalSend로 즉시 전송할 수 있습니다.</p>
-          <div class="mock-badge">📚 Kindle로 전송 &nbsp;·&nbsp; 📱 LocalSend로 전송</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── Features ────────────────────────────────────────────────── -->
   <section id="features">
     <div class="wrap">
@@ -126,33 +106,54 @@
         <p>추가 구독 결제에 아카이브가 묶이는 일 없이, 저장하고 이해하며 다시 찾아 실제로 읽어보세요.</p>
       </div>
 
-      <div class="feature-grid reveal">
-        <div class="feature-card">
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          개인정보 보호 최우선
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          탭 수집가
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          연구자
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb">모델과 서버는 물론, 데이터의 기기 외부 전송 여부까지 직접 선택할 수 있습니다.</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>원하는 모델로 생성하는 AI 요약</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek뿐만 아니라 OpenRouter를 통한 100개 이상의 모델을 지원합니다. 로컬 Ollama 모델을 지정하면 네트워크 통신 없이도 요약을 생성할 수 있습니다.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>진정한 온디바이스 검색</h3>
           <p>브라우저 내에서 구축된 TF-IDF 인덱스를 통해 제목, 태그, 본문 전체를 대상으로 전문 검색을 지원합니다. 서버 왕복이나 지연이 없으며 데이터가 외부로 전송되지 않습니다.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>목적 있는 나중에 읽기</h3>
           <p>다시 열어보지 않을 목록에 쌓아두는 대신, 이유와 기한을 설정해 "결정" 항목으로 표시하고 알림을 받아보세요.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="hoarder">
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>자동으로 선별되는 다이제스트</h3>
           <p>탭 한 번으로 저장한 글 중 중복되지 않는 다채로운 글을 선별하여, Kindle이나 LocalSend용 단일 파일로 묶어 제공합니다.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>단순한 목록을 넘어선 지식 그래프</h3>
           <p>공유 태그뿐만 아니라 공통 태그가 없더라도 주제별 유사성을 분석하여 저장된 글들의 연결 관계를 확인하세요.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20개 이상의 언어 지원 및 크로스 플랫폼</h3>
           <p>원하는 언어로 읽고 요약하세요. 확장 프로그램, 기본 사이드 패널, 북마클릿을 지원하여 브라우저 확장을 사용할 수 없는 환경에서도 활용할 수 있습니다.</p>
@@ -160,6 +161,37 @@
       </div>
     </div>
   </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+      });
+    })();
+  </script>
 
   <!-- ── Digest spotlight ────────────────────────────────────────── -->
   <section id="digest">
@@ -169,7 +201,7 @@
         <h2>저장한 글의 대부분은 다시 읽지 않게 됩니다</h2>
         <p>북마크 행동에 관한 연구에 따르면 저장된 글의 대다수는 다시 열리지 않는 것으로 나타납니다. 이는 사용자의 의지 부족이 아니라, 저장은 쉽게 만들면서 정작 무엇을 읽어야 할지 선택하는 데에는 아무런 도움을 주지 않는 도구의 구조적 문제입니다.</p>
       </div>
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card">
           <h3 style="margin-top:0;">1. 다이제스트 클릭</h3>
           <p>최신성과 다양성을 고려하여 저장된 글 5편을 선별하므로, 같은 주제의 뉴스를 반복해서 보지 않아도 됩니다.</p>
@@ -297,6 +329,12 @@
         <p>검색, 다이제스트, 중복 감지 기능을 구축하며 배운 점과 '나중에 읽기' 도구를 고민 중인 분들을 위한 안내입니다.</p>
       </div>
       <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">제품</span>
+          <h3>[ko] From a bookmarklet to 2.0: what AI Summary Helper actually is now</h3>
+          <p>[ko] It started as a one-click Kindle bookmarklet in 2024. Here's everything that changed on the way to the open-source 2.0 rebuild.</p>
+          <span class="blog-read">글 읽기 →</span>
+        </a>
         <a class="blog-card" href="blog/pocket-alternative.html">
           <span class="blog-date">가이드</span>
           <h3>Pocket 대체 서비스를 찾고 계신가요? 진정으로 고려해야 할 기준을 정리했습니다</h3>
@@ -307,12 +345,6 @@
           <span class="blog-date">제품</span>
           <h3>저장한 콘텐츠의 대부분은 다시 읽지 않게 됩니다. 이에 대한 실질적인 해결 방안을 소개합니다.</h3>
           <p>대부분의 저장된 글은 다시 열리지 않습니다. Digest 기능이 존재하는 이유와 무의미한 저장을 유도하지 않는 설계 철학을 공유합니다.</p>
-          <span class="blog-read">글 읽기 →</span>
-        </a>
-        <a class="blog-card" href="blog/on-device-architecture.html">
-          <span class="blog-date">엔지니어링</span>
-          <h3>검색, 태깅, 추천 기능을 클라우드에서 온디바이스로 이전한 이유</h3>
-          <p>검색, 중복 제거, 다이제스트를 구동하는 TF-IDF 인덱스 구조와 애초에 서버가 필요하지 않았던 이유를 설명합니다.</p>
           <span class="blog-read">글 읽기 →</span>
         </a>
       </div>
@@ -328,7 +360,7 @@
         <p>AI Summary Helper는 byphil이 개발한 여러 독립적인 도구 중 하나입니다. 하나의 계정과 Support Pass로 현재는 물론 향후 출시될 모든 도구의 프리미엄 기능을 이용할 수 있습니다.</p>
       </div>
 
-      <div class="feature-grid reveal" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="feature-grid digest-steps reveal">
         <div class="feature-card ecosystem-card self">
           <span class="f-badge">현재 위치</span>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
@@ -363,7 +395,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
-        <a href="https://byphil.eu/terms.html#privacy" target="_blank" rel="noopener">개인정보 보호 및 GDPR</a>
+        <a href="privacy.html">개인정보 보호</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">이용약관</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">환불 및 반품 정책</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>
