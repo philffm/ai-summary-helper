@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Từ Bookmarklet đến bản 2.0: AI Summary Helper thực sự là gì ở thời điểm hiện tại — AI Summary Helper</title>
+<meta name="description" content="Mọi thứ khởi đầu từ một bookmarklet phục vụ thói quen đọc trên Kindle của một cá nhân. Dưới đây là những điểm thay đổi từ v1 đến bản tái thiết kế mã nguồn mở 2.0 — và lý do vì sao.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Tính năng</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Quay lại ứng dụng</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#pricing">Bảng giá</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Sản phẩm · Tháng 8 năm 2026</span>
+      <h1>Từ Bookmarklet đến phiên bản 2.0: AI Summary Helper hiện nay thực sự là gì</h1>
+      <p class="post-sub">Dự án khởi đầu như một bookmarklet một chạm để đọc bài viết trên Kindle. Hai năm trôi qua cùng một đợt tái thiết kế toàn diện, hầu hết các tính năng hiện tại thậm chí còn chưa từng tồn tại khi 100 người đầu tiên đăng ký sử dụng.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper là tiện ích mở rộng Chrome miễn phí, mã nguồn mở, giúp tóm tắt bất kỳ trang web nào bằng nhà cung cấp AI của riêng bạn hoặc mô hình hoàn toàn cục bộ (local AI), lưu bài viết để đọc sau kèm lời nhắc theo thời gian, và biến lịch sử đọc thành kho lưu trữ liên kết có thể tìm kiếm.</strong> Không tính năng nào trong số đó từng có ở phiên bản đầu tiên. Dưới đây là những gì đã có, và hành trình phát triển để đạt đến ngày hôm nay.</p>
+
+        <h2>Dự án này thực sự bắt đầu như thế nào</h2>
+        <p>Vào tháng 7 năm 2024, đây chỉ là một bookmarklet — thậm chí chưa phải là một tiện ích mở rộng. Bạn tìm thấy các bài viết thú vị, mở hàng tá tab, và giống như hầu hết mọi người, chẳng bao giờ đọc hết chúng. Mục đích ban đầu rất cụ thể và mang tính cá nhân: một công cụ tóm tắt tùy chỉnh prompt có khả năng chèn trực tiếp nội dung tóm tắt vào trang, để phần tóm tắt được gửi kèm khi bạn chuyển bài viết sang Kindle bằng <a href="https://send.reabble.com/" target="_blank" rel="noopener">công cụ Send-to-Kindle của Reabble</a>. Đó là toàn bộ sản phẩm. Một nhà cung cấp AI. Một ô nhập prompt. Một phiên bản bookmarklet hoạt động ở mọi nơi, kể cả iOS Safari, và một phiên bản tiện ích mở rộng Chrome dành cho những ai muốn linh hoạt tùy chỉnh prompt ngay lập tức.</p>
+        <p>Nó đã vượt mốc 100 người dùng hoạt động chỉ vài tuần sau đó — một bất ngờ thực sự, vì ban đầu nó được tạo ra chỉ để giải quyết thói quen đọc của một người chứ không phải để trở thành một sản phẩm thương mại.</p>
+
+        <h2>Những thay đổi thực sự từ thời điểm đó đến phiên bản 2.0</h2>
+        <p>Ý tưởng cốt lõi — tóm tắt theo cách của bạn, đọc ở một nơi thoải mái hơn thay vì trên tab trình duyệt — chưa bao giờ thay đổi. Nhưng hầu như mọi thứ xung quanh nó đều đã đổi khác:</p>
+
+        <h3>Từ một nhà cung cấp duy nhất đến tùy chọn 5 nền tảng khác nhau</h3>
+        <p>Phiên bản v1 chỉ hỗ trợ OpenAI, dùng API key của bạn, một endpoint duy nhất. Bản 2.0 hỗ trợ OpenAI, Google Gemini, Mistral và DeepSeek bằng API key cá nhân, kèm tùy chọn chạy cục bộ hoàn toàn thông qua Ollama — nghĩa là nội dung trang web sẽ không bao giờ rời khỏi máy tính của bạn nếu bạn không muốn. Ngoài ra còn có gói dịch vụ lưu trữ đám mây tùy chọn (byphil Cloud) dành cho những ai không muốn tự quản lý API key, nhưng đây hoàn toàn không phải là bắt buộc. Đây không chỉ là việc bổ sung tính năng nhỏ; nó đã thay đổi bản chất của sản phẩm. v1 mặc định yêu cầu bạn tin tưởng một công ty với dữ liệu của mình. Bản 2.0 không ép bạn phải tin tưởng bất kỳ ai ngoài lựa chọn của chính bạn.</p>
+
+        <h3>"Chèn vào trang" đã trở thành một quy trình làm việc thực thụ</h3>
+        <p>Ý tưởng ban đầu — đọc lại sau ở một không gian tập trung hơn trình duyệt — vẫn được giữ nguyên, nhưng giờ đây không chỉ đơn thuần là dán bản tóm tắt vào mã nguồn trang (DOM). Giờ đây, khi nhấp chuột phải vào trang web, bạn sẽ thấy tùy chọn <strong>Tóm tắt &amp; Đóng tab</strong>: chọn một mốc thời gian (Ngày mai, Cuối tuần, Tuần này, Phiên nghiên cứu), thêm ghi chú, và tab sẽ tự động đóng sau khi bạn đọc nhanh bản tóm tắt qua lớp phủ RSVP. Thông báo của Chrome sẽ nhắc bạn mở lại bài viết chính xác vào thời điểm bạn đã đặt — không phải kiểu "để khi nào rảnh" hay "khi nào nhớ ra".</p>
+
+        <h3>Một danh sách bài viết lưu dồn dập nay trở thành một kho dữ liệu trực quan, dễ dàng duyệt tìm</h3>
+        <p>Bản v1 không hề có lịch sử lưu trữ — tóm tắt hiển thị trên trang rồi biến mất khi bạn tắt tab. Giờ đây, mỗi bài viết đã lưu đều nằm trong kho lưu trữ cục bộ có thể tìm kiếm, hỗ trợ highlight văn bản (kèm tính năng highlight mờ "ghost" do AI gợi ý cho các đoạn quan trọng), biểu đồ nhiệt (heatmap) phân tích việc đọc, và sơ đồ tri thức D3 (knowledge graph) gom cụm những gì bạn đã đọc theo chủ đề thay vì để dưới dạng một danh sách dàn trải.</p>
+
+        <h3>Kindle từng là mục đích duy nhất. Giờ đây nó là một trong nhiều tùy chọn</h3>
+        <p>Gửi đến Kindle (Send-to-Kindle) qua công cụ của Reabble từng là lý do duy nhất để tiện ích này ra đời. Tính năng này vẫn được hỗ trợ nguyên bản, nhưng việc đọc rời khỏi trình duyệt nay còn hỗ trợ AirDrop sang iPhone hoặc iPad (mở trực tiếp trong Apple Books) hay LocalSend tới các ứng dụng như KOReader qua mạng Wi-Fi nội bộ của bạn. Mục tiêu cốt lõi — đưa nội dung rời khỏi trình duyệt sang các thiết bị chuyên dụng cho việc đọc — giờ đây đã có nhiều phương thức linh hoạt hơn.</p>
+
+        <h2>Những điều không thay đổi</h2>
+        <p>Tiện ích này vẫn hoàn toàn miễn phí, mã nguồn mở (giấy phép MIT, toàn bộ mã nguồn trên GitHub) và tuyệt đối không yêu cầu tạo tài khoản cho bất kỳ tính năng cốt lõi nào. Nguyên tắc đó không bao giờ thay đổi — đó cũng chính là lý do v1 ra đời dưới dạng một bookmarklet ngay từ đầu: được tạo ra bởi một người muốn thực sự sở hữu công cụ đọc của riêng mình, chứ không phải đi thuê một dịch vụ.</p>
+
+        <h2>Câu hỏi thường gặp</h2>
+        <p><strong>Đây có phải là cùng một dự án với bookmarklet ban đầu không?</strong><br>
+        Đúng vậy — cùng là một dự án mã nguồn mở, cùng một kho mã nguồn GitHub và được phát triển liên tục kể từ tháng 7 năm 2024. Phiên bản bookmarklet vẫn tiếp tục duy trì cho những ai muốn sử dụng linh hoạt trên mọi trình duyệt mà không cần cài đặt.</p>
+        <p><strong>Tôi có cần tài khoản OpenAI để sử dụng không?</strong><br>
+        Không. Điều đó chỉ đúng ở bản v1; hiện tại thì không còn như vậy nữa. Bạn có thể sử dụng bất kỳ nhà cung cấp AI nào được hỗ trợ, hoặc chạy mô hình AI cục bộ hoàn toàn qua Ollama mà không cần bất kỳ tài khoản bên thứ ba nào.</p>
+        <p><strong>Chuyện gì đã xảy ra với phiên bản trên Gumroad?</strong><br>
+        Dự án ban đầu xuất hiện ở đó như một cách để nhận sự ủng hộ từ những người dùng đầu tiên. Bản thân tiện ích mở rộng luôn luôn miễn phí và là mã nguồn mở — Gumroad chưa bao giờ là một rào cản thu phí đối với công cụ này.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper là tiện ích mở rộng miễn phí dành cho Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../privacy.html">Quyền riêng tư</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/main.js"></script>
+
+
+</body></html>

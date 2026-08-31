@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>隱私權政策 — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helper 如何處理您的資料：您的 API Key 與文章歷史紀錄均保留在您的裝置上，網頁內容僅會傳送至您指定的 AI 服務商。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+
+<meta property="og:title" content="隱私權政策 — AI Summary Helper">
+<meta property="og:description" content="AI Summary Helper 如何處理您的資料：您的 API Key 與文章歷史紀錄均保留在您的裝置本機。">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">功能特色</a>
+        <a href="#digest">文摘</a>
+        <a href="#pricing">方案定價</a>
+        <a href="blog/">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">我的帳戶</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">功能特色</a>
+      <a href="#digest">文摘</a>
+      <a href="#pricing">方案定價</a>
+      <a href="blog/">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">我的帳戶</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">隱私權政策</span>
+      <h1>隱私權政策</h1>
+      <p class="post-sub">您的 API Key、文章歷史紀錄與劃線重點皆保存在您的裝置本機。網頁內容僅會發送至您選擇的 AI 服務商 — 若您選擇完全本地運行的模型，資料更絕不會離開您的電腦。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>最後更新日期：2026 年 8 月</em></p>
+
+        <p>本隱私權政策說明 AI Summary Helper 處理哪些資料、傳輸目的地及其原因。簡而言之：您的 API Key、文章歷史紀錄與劃線重點皆僅保留在您的裝置上。網頁內容僅會發送至您選擇連接的 AI 服務商 — 若您選擇完全本地運行的模型，所有資料皆完全不會離開您的本機。我們不投放廣告、不販售資料，且所有核心功能皆無需註冊帳號。</p>
+
+        <p>若您不同意本政策的任何部分，請勿安裝或使用本擴充功能。</p>
+
+        <h2>無需註冊帳號</h2>
+        <p>使用 AI Summary Helper 的核心功能無需註冊帳號、登入或提供任何個人資料。您的 API Key（若使用自備金鑰）以及所有文章歷史紀錄均儲存於瀏覽器的本地儲存空間（Local Storage）中。</p>
+
+        <h2>我們處理哪些資料及其流向</h2>
+
+        <h3>您的 AI 服務商連線</h3>
+        <p>由您決定摘要的生成方式：</p>
+        <ul>
+          <li><strong>自備金鑰（BYOK）</strong> — OpenAI、Google Gemini、Mistral AI、DeepSeek 或自訂端點（Custom Endpoint）。您的 API Key 僅儲存於您的本機裝置（絕不同步，亦絕不會傳送給我們）。您選擇摘要的網頁內容會直接從您的瀏覽器發送至指定的服務商，使用您自己的金鑰並受該服務商的隱私權政策規範。我們無法查看、記錄或儲存這些內容。</li>
+          <li><strong>透過 Ollama 運行本地模型</strong> — 若您在本地運行模型，網頁內容僅會發送至您自己的電腦。任何資料都不會離開您的裝置。</li>
+          <li><strong>byphil Cloud（可選，付費方案）</strong> — 適合不想自行管理 API Key 使用者的託管方案。若您選擇此方案，網頁內容將發送至我們的後端伺服器，由後端代為向底層模型服務商發出請求並回傳摘要。我們絕不會永久儲存以此方式處理的網頁內容。</li>
+        </ul>
+
+        <h3>授權與訂閱狀態</h3>
+        <p>若您啟用 Pro 授權或 byphil Cloud 訂閱，您的授權金鑰會儲存在本機裝置（絕不同步），並用於向我們的後端伺服器驗證訂閱狀態。基本帳戶/帳單中繼資料由我們的金流處理商與後端負責處理；我們絕不會在伺服器上儲存您的網頁內容或閱讀歷史紀錄。</p>
+
+        <h3>文章歷史紀錄、劃線重點與設定</h3>
+        <p>您儲存的所有內容均透過 Chrome 內建的儲存 API 保存在本機瀏覽器中，絕不會上傳至我們的伺服器：</p>
+        <table>
+          <thead>
+            <tr><th>資料類型</th><th>儲存位置</th><th>是否透過 Chrome 同步？</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>已儲存的文章與摘要</td><td>本機</td><td>否</td></tr>
+            <tr><td>API Key / 服務商設定</td><td>本機</td><td>否 — 敏感資料，僅限本機</td></tr>
+            <tr><td>授權金鑰</td><td>本機</td><td>否 — 敏感資料，僅限本機</td></tr>
+            <tr><td>LocalSend 網路 IP</td><td>本機</td><td>否</td></tr>
+            <tr><td>文字劃線與 AI 智慧劃線</td><td>本機（依各網頁儲存）</td><td>否</td></tr>
+            <tr><td>預設提示詞、語言、摘要長度</td><td>同步</td><td>是，透過您個人的 Chrome 帳號</td></tr>
+            <tr><td>劃線功能啟用/關閉偏好</td><td>同步</td><td>是，透過您個人的 Chrome 帳號</td></tr>
+          </tbody>
+        </table>
+        <p>標記為「同步」的項目採用與您的 Google 帳號繫結的 Chrome 內建同步功能 — 這些資料與您的書籤一樣，只會經過 Google 的基礎設施傳輸，絕不經過我們的伺服器，我們亦無法存取這些資料。</p>
+        <p>您可以隨時透過「設定」→「備份與還原」匯出或刪除完整的本機歷史紀錄，或是直接解除安裝擴充功能。</p>
+
+        <h3>Kindle、AirDrop 與 LocalSend</h3>
+        <p>當您將文章傳送至 Kindle、AirDrop 或支援 LocalSend 的裝置時，格式化後的檔案會直接從您的瀏覽器發送至目標裝置。我們不擔任中介伺服器，亦無法存取或儲存傳輸內容。</p>
+
+        <h2>數據分析</h2>
+        <p>我們使用重視隱私且符合 GDPR 規範的分析平台 Matomo，收集彙整且匿名的使用統計數據，以持續改進擴充功能。Matomo 不會跨網站追蹤您的個人行為，亦不販售任何資料。網頁內容、API Key 或文章資料絕不會被包含在分析事件中。</p>
+
+        <h2>我們請求的權限與用途</h2>
+        <table>
+          <thead>
+            <tr><th>權限</th><th>請求原因</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>讀取您主動選擇摘要的網頁內容</td></tr>
+            <tr><td><code>storage</code></td><td>在本地儲存您的設定、文章歷史紀錄與劃線重點</td></tr>
+            <tr><td><code>contextMenus</code></td><td>提供右鍵選單功能（摘要、劃線等）</td></tr>
+            <tr><td><code>notifications</code></td><td>針對您稍後閱讀的文章顯示定時提醒通知</td></tr>
+            <tr><td><code>alarms</code></td><td>排程管理提醒通知</td></tr>
+            <tr><td><code>tabs</code></td><td>在執行「摘要並關閉」後自動關閉該分頁</td></tr>
+            <tr><td><code>sidePanel</code></td><td>支援 Chrome 原生側邊欄作為檢視選項</td></tr>
+            <tr><td><code>scripting</code></td><td>插入讀取及摘要網頁內容所需的內容腳本</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>讓您能為瀏覽的任何網頁生成摘要 — 僅在您主動觸發摘要時才會讀取並傳輸內容，絕不會被動監聽或抓取</td></tr>
+          </tbody>
+        </table>
+        <p>我們絕不會利用這些權限追蹤您的瀏覽紀錄、建立廣告畫像，或收集上述功能所需之外的任何資料。</p>
+
+        <h2>我們絕不從事的事情</h2>
+        <ul>
+          <li>我們不投放或展示廣告，亦絕不向廣告商或資料經紀商出售、出租或交換您的資料。</li>
+          <li>所有核心功能皆無需註冊或登入帳號即可使用。</li>
+          <li>透過您自備的 API Key 或本地模型進行摘要時，我們絕不記錄或保留任何網頁內容。</li>
+          <li>我們無法存取您儲存於本地的文章歷史紀錄、劃線重點或 API Key — 除非您主動匯出，否則它們絕不會離開您的裝置。</li>
+        </ul>
+
+        <h2>第三方服務</h2>
+        <p>視乎您的擴充功能設定，網頁內容可能會傳送至：</p>
+        <ul>
+          <li>OpenAI、Google (Gemini)、Mistral AI 或 DeepSeek — 僅限於您已輸入該服務商的 API Key，且僅傳送您主動摘要的網頁。</li>
+          <li>我們的 byphil Cloud 後端伺服器 — 僅限於您選擇加入該方案。</li>
+          <li>您本地運行的 Ollama 執行個體 — 非第三方服務，資料完全保留於您的電腦。</li>
+        </ul>
+        <p>我們對您選擇連線之第三方 AI 服務商的隱私權措施概不負責。建議您在連線前先詳閱其隱私權政策。</p>
+
+        <h2>資料安全</h2>
+        <p>我們針對所涉及的資料採取了相稱且合理的技術安全措施 — 由於大部分資料均儲存在您的本機瀏覽器中，根本不會傳輸至我們的伺服器。與我們後端之間的通訊（用於 byphil Cloud 及授權驗證）均在傳輸過程中進行加密。儘管任何傳輸或儲存方式都無法保證 100% 安全，但我們絕不會收集超過提供所述功能所需之外的資料。</p>
+
+        <h2>兒童隱私權</h2>
+        <p>AI Summary Helper 並非針對 13 歲以下（或您所在司法管轄區規定的最低法定年齡）兒童設計，我們亦不會刻意收集兒童的個人資料。</p>
+
+        <h2>您的權利（GDPR / CCPA 等規範）</h2>
+        <p>由於絕大部分資料均直接儲存在您的本機裝置上，您對其擁有完全的自主控制權 — 您可以隨時透過擴充功能的「設定」檢視、匯出或刪除資料，或直接解除安裝擴充功能。針對我們伺服器上保存的少數資料（byphil Cloud 訂閱／帳單中繼資料），您可以透過下方的聯絡方式向我們要求查閱、更正或刪除。</p>
+
+        <h2>本政策的變更</h2>
+        <p>隨著擴充功能推陳出新，我們可能會適時更新本隱私權政策。若有重大變更，將更新本頁面頂部的「最後更新日期」。在變更發布後繼續使用本擴充功能，即代表您接受更新後的政策。</p>
+
+        <h2>聯絡我們</h2>
+        <p>若對本隱私權政策有任何疑問，歡迎來信至 <a href="mailto:philipp@wornath.de">philipp@wornath.de</a>，或透過 <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="privacy.html">隱私權政策</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">服務條款</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">退款與退換政策</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — 於德國開發的獨立軟體。付款服務由 Stripe 作為紀錄商家 (Merchant of Record) 處理。<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">歐盟消費者線上爭議解決平台</a> · 設計與開發者： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

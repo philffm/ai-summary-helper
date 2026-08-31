@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper — Tóm tắt, lưu trữ và tìm kiếm web trực tiếp trên thiết bị</title>
+<meta name="description" content="Tiện ích mở rộng Chrome giúp tóm tắt trang web bằng AI, lưu vào kho lưu trữ có thể tìm kiếm và gửi bản tin đọc chọn lọc đến Kindle hoặc LocalSend. Tìm kiếm, khử trùng lặp và gợi ý hoàn toàn chạy trên thiết bị.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="Tóm tắt, lưu và tìm kiếm trang web ngay trên thiết bị. Tiện ích mở rộng Chrome dành cho những ai không muốn để lạc mất danh sách đọc của mình lần nữa.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Tính năng</a>
+        <a href="#digest">Digest</a>
+        <a href="#pricing">Bảng giá</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Tài khoản của tôi</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">Tính năng</a>
+      <a href="#digest">Digest</a>
+      <a href="#pricing">Bảng giá</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Tài khoản của tôi</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Tiện ích Chrome · Một sản phẩm của byphil. <span class="dash"></span></div>
+      <h1>Tóm tắt thế giới web.<br><em>Giữ lại điều thực sự quan trọng.</em></h1>
+      <p class="sub">AI Summary Helper lưu bất kỳ trang web nào thành bài viết tóm tắt có thể tìm kiếm — sau đó giúp bạn thực sự đọc lại chúng, với tính năng tổng hợp digest ngay trên thiết bị để gửi nội dung đọc ngoại tuyến trực tiếp đến Kindle hoặc thiết bị khác.</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome — Hoàn toàn miễn phí</a>
+        <a href="#features" class="btn-secondary">Xem cách hoạt động</a>
+      </div>
+      <p class="hero-meta">Không cần tài khoản để bắt đầu · Sử dụng khóa API AI riêng của bạn hoặc chạy hoàn toàn ngoại tuyến với Ollama</p>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Tính năng nổi bật</div>
+        <h2>Tất cả những gì một danh sách đọc lẽ ra phải có ngay từ đầu</h2>
+        <p>Lưu trữ, thấu hiểu, tìm lại và thực sự đọc tiếp — mà không bị bất kỳ gói đăng ký nào giam giữ dữ liệu lưu trữ của bạn.</p>
+      </div>
+
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Ưu tiên quyền riêng tư
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          Người lưu nhiều tab
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          Nhà nghiên cứu
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb">Bạn toàn quyền chọn mô hình, máy chủ và quyết định xem liệu có dữ liệu nào rời khỏi thiết bị của mình hay không.</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>Tóm tắt bằng AI, tùy chọn mô hình của bạn</h3>
+          <p>OpenAI, Gemini, Mistral, DeepSeek hoặc hơn 100 mô hình qua OpenRouter — hoặc kết nối trực tiếp với mô hình Ollama cục bộ mà không cần kết nối mạng cho bước này.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Tìm kiếm thực thụ, ngay trên thiết bị</h3>
+          <p>Tìm kiếm toàn văn (full-text) theo tiêu đề, thẻ (tag) và nội dung bài viết — được hỗ trợ bởi chỉ mục TF-IDF tích hợp ngay trong trình duyệt. Không có độ trễ kết nối, không giật lag, không gửi dữ liệu ra bên ngoài.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>Lưu để đọc sau, có chủ đích</h3>
+          <p>Gắn nhãn "quyết định" kèm lý do và mốc thời gian để được nhắc nhở — thay vì để bài viết biến mất vào một đống danh sách không bao giờ mở lại.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>Bản tin Digest tự động chọn lọc</h3>
+          <p>Chỉ với một lần chạm, hệ thống sẽ tuyển chọn một danh sách bài lưu đa dạng — không bị trùng lặp chủ đề — và đóng gói thành một tệp duy nhất để gửi đến Kindle hoặc LocalSend.</p>
+        </div>
+        <div class="feature-card" data-personas="researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Sơ đồ tri thức, không chỉ là danh sách đơn thuần</h3>
+          <p>Khám phá mối liên hệ giữa các bài viết đã lưu — qua các thẻ chung hoặc mức độ tương đồng về chủ đề ngay cả khi không có cùng thẻ tag.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>Hơn 20 ngôn ngữ, đa nền tảng</h3>
+          <p>Đọc và tóm tắt bằng ngôn ngữ bạn chọn. Hỗ trợ tiện ích mở rộng, bảng điều khiển bên (side panel) hoặc bookmarklet — cho mọi nơi mà tiện ích mở rộng trình duyệt không tiếp cận được.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+      });
+    })();
+  </script>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Vấn đề 84%</div>
+        <h2>Hầu hết những gì bạn lưu, bạn không bao giờ đọc lại</h2>
+        <p>Các nghiên cứu về thói quen đánh dấu trang đều chỉ ra rằng phần lớn bài viết đã lưu không bao giờ được mở lại. Đó không phải do thiếu kỷ luật — mà là hệ quả khi công cụ giúp lưu quá dễ nhưng không hề hỗ trợ bạn chọn lọc nội dung thực sự cần đọc.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. Nhấn Digest</h3>
+          <p>Hệ thống chọn ra 5 bài lưu của bạn — ưu tiên tính cập nhật và sự đa dạng, giúp bạn không phải đọc lặp lại nhiều bài cùng một chủ đề tin tức.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. Tùy chỉnh tâm trạng đọc</h3>
+          <p>Tích cực, trung tính hay sâu lắng và nghiêm túc — bản digest sẽ ưu tiên chọn các bài viết phù hợp với tâm trạng thực tế của bạn.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. Gửi để đọc ngoại tuyến</h3>
+          <p>Đóng gói tất cả trong một tệp, gửi thẳng đến Kindle hoặc thiết bị trong mạng cục bộ của bạn. Tải về trước chuyến bay, trên đường đi làm hoặc kỳ nghỉ cuối tuần không có sóng mạng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Được xây dựng theo triết lý byphil</div>
+        <h2>Kho lưu trữ luôn thuộc về bạn</h2>
+        <p>Tìm kiếm, phát hiện trùng lặp, dọn dẹp thẻ, đánh giá cấp độ đọc và sắc thái bài viết, cùng gợi ý "bài viết tương tự" đều chạy hoàn toàn trên trình duyệt — không máy chủ, không cần tài khoản để sử dụng trọn vẹn giá trị. Thứ duy nhất rời khỏi máy bạn là yêu cầu tóm tắt gửi đến nhà cung cấp AI bạn chọn. Nếu dùng mô hình Ollama cục bộ, mọi thứ hoàn toàn nằm lại trên thiết bị.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Một chìa khóa, mở mọi công cụ byphil</div>
+        <h2>Bắt đầu miễn phí. Nâng cấp Pro khi cần.</h2>
+        <p>Support Pass không chỉ dành riêng cho tiện ích này — đó là chiếc chìa khóa duy nhất mở quyền truy cập cao cấp cho mọi công cụ do byphil phát triển, được quản lý thuận tiện từ tài khoản byphil của bạn.</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="tablist" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" onclick="setBilling('monthly')">Hàng tháng</button>
+          <button type="button" id="btnYearly" onclick="setBilling('yearly')">Hàng năm · Tiết kiệm 50%</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">Miễn phí</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">Mọi thứ luôn chạy trên thiết bị</div>
+          <ul>
+            <li>Tóm tắt không giới hạn với khóa API AI riêng hoặc Ollama</li>
+            <li>Tìm kiếm, digest, sơ đồ tri thức — tất cả chạy trên thiết bị</li>
+            <li>Bao gồm 3 lượt gửi đến Kindle</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">Thêm vào Chrome</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">Lựa chọn tốt nhất</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/tháng</span></span>
+            <span class="price-yearly">€29.94<span>/năm</span></span>
+          </div>
+          <div class="tier-note">Thanh toán <span class="price-monthly">hàng tháng</span><span class="price-yearly">hàng năm</span></div>
+          <ul>
+            <li>Gửi không giới hạn đến Kindle &amp; LocalSend, bao gồm cả các bản digest</li>
+            <li>Truy cập byphil Cloud AI — Không cần khóa API</li>
+            <li>Mở khóa tính năng Pro cho tất cả công cụ byphil</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Đăng ký Support Pass</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/một lần</span></div>
+          <div class="tier-note">12 tháng truy cập đầy đủ tính năng</div>
+          <ul>
+            <li>Toàn bộ quyền lợi của gói Support Pass</li>
+            <li>Hỗ trợ trực tiếp cho sự phát triển của các công cụ tương lai</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Ủng hộ &amp; mở khóa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Câu hỏi thường gặp</div>
+        <h2>Trước khi bạn cài đặt</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Tôi có cần tài khoản để sử dụng không?</summary>
+          <p>Không. Chỉ cần cài đặt, nhập khóa API của nhà cung cấp AI (hoặc dùng mô hình Ollama cục bộ) và bắt đầu lưu trữ. Bạn chỉ cần tài khoản nếu muốn dùng byphil Cloud hoặc gửi không giới hạn đến Kindle/LocalSend thông qua Support Pass.</p>
+        </details>
+        <details>
+          <summary>Dữ liệu nào thực sự được gửi ra ngoài trình duyệt?</summary>
+          <p>Chỉ có yêu cầu tóm tắt — được gửi đến nhà cung cấp AI mà bạn đã thiết lập. Tìm kiếm, phát hiện trùng lặp, dọn dẹp thẻ, chấm điểm cấp độ đọc và cảm xúc, cùng các gợi ý "bài viết tương tự" đều chạy cục bộ trên chính kho lưu trữ của bạn.</p>
+        </details>
+        <details>
+          <summary>Tôi có thể sử dụng mà hoàn toàn không phụ thuộc vào đám mây không?</summary>
+          <p>Có — hãy kết nối với mô hình Ollama cục bộ và bước tóm tắt cũng sẽ được xử lý hoàn toàn trên máy bạn. Tất cả các tính năng khác vốn đã chạy ngoại tuyến.</p>
+        </details>
+        <details>
+          <summary>Điều gì xảy ra với các bài lưu nếu tôi dừng gói Support Pass?</summary>
+          <p>Kho lưu trữ của bạn vẫn nằm nguyên ở nơi vốn có — trong bộ nhớ cục bộ (local storage) của trình duyệt trên thiết bị. Support Pass chỉ giới hạn các tính năng bổ trợ phụ thuộc đám mây (truy cập byphil Cloud AI, gửi không giới hạn đến Kindle/LocalSend), chứ không bao giờ khóa quyền truy cập vào nội dung bạn đã lưu.</p>
+        </details>
+        <details>
+          <summary>Công cụ này có phải là mã nguồn mở không?</summary>
+          <p>Có — mã nguồn của tiện ích mở rộng được công khai trên <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Từ blog</div>
+        <h2>Ghi chép về trải nghiệm đọc, tìm kiếm và xây dựng ứng dụng trên thiết bị</h2>
+        <p>Những gì chúng tôi học được khi xây dựng tính năng tìm kiếm, digest và phát hiện trùng lặp — cùng góc nhìn hữu ích nếu bạn đang cân nhắc các công cụ đọc sau (read-it-later).</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">Sản phẩm</span>
+          <h3>Từ bookmarklet đến 2.0: Diện mạo thực sự của AI Summary Helper hiện nay</h3>
+          <p>Khởi đầu là một bookmarklet gửi bài đến Kindle bằng một cú nhấp vào năm 2024. Đây là toàn bộ hành trình đổi mới để tái cấu trúc thành phiên bản mã nguồn mở 2.0.</p>
+          <span class="blog-read">Đọc bài viết →</span>
+        </a>
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">Hướng dẫn</span>
+          <h3>Tìm kiếm giải pháp thay thế Pocket? Đây là những điều thực sự quan trọng</h3>
+          <p>Việc Pocket ngừng hoạt động để lại một khoảng trống lớn. Hướng dẫn chọn công cụ dựa trên nhu cầu sử dụng thực tế của bạn — thay vì chỉ chọn ứng dụng có giao diện quen mắt.</p>
+          <span class="blog-read">Đọc bài viết →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">Sản phẩm</span>
+          <h3>Bạn sẽ không đọc phần lớn bài đã lưu. Đây là giải pháp thực tế.</h3>
+          <p>Hầu hết bài viết đã lưu không bao giờ được mở lại. Lý do Digest ra đời và tại sao nó không cố làm danh sách của bạn chất đống thêm.</p>
+          <span class="blog-read">Đọc bài viết →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Không chỉ là một dự án đơn lẻ</div>
+        <h2>Nằm trong hệ sinh thái byphil</h2>
+        <p>AI Summary Helper là một trong số các công cụ độc lập do byphil phát triển. Một tài khoản và một gói Support Pass sẽ mở khóa quyền truy cập cao cấp cho tất cả các công cụ — hiện tại và cả những sản phẩm mới ra mắt sau này.</p>
+      </div>
+
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">Bạn đang ở đây</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>Tóm tắt, lưu và tìm kiếm web — ngay trên thiết bị.</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">Cộng đồng du lịch cùng thú cưng</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>Cộng đồng dành cho người trông giữ thú cưng và chủ nhà có phong cách sống linh hoạt, tự do địa điểm.</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">Sơ đồ tri thức</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>Khám phá các ý tưởng liên kết và hành vi đọc, được thiết kế để xây dựng bản đồ tri thức dài hạn.</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">Khám phá toàn bộ sản phẩm của byphil →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="privacy.html">Quyền riêng tư</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Điều khoản dịch vụ</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Hoàn tiền &amp; Đổi trả</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — phần mềm độc lập được phát triển tại Đức. Thanh toán được xử lý bởi Stripe với tư cách là Đơn vị bán hàng chính thức (Merchant of Record).<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Giải quyết tranh chấp người tiêu dùng EU</a> · Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

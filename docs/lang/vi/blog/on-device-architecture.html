@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Vì sao chúng tôi chuyển Tìm kiếm, Gắn thẻ và Gợi ý ra khỏi đám mây — AI Summary Helper</title>
+<meta name="description" content="Chỉ mục TF-IDF đứng sau các tính năng tìm kiếm, phát hiện trùng lặp và tổng hợp của AI Summary Helper — và lý do vì sao phần lớn trong số đó chưa từng cần đến máy chủ.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Tính năng</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Quay lại ứng dụng</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#pricing">Bảng giá</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Kỹ thuật · Tháng 8 năm 2026</span>
+      <h1>Vì sao chúng tôi chuyển Tìm kiếm, Gắn thẻ và Gợi ý ra khỏi đám mây</h1>
+      <p class="post-sub">Tìm kiếm, loại bỏ trùng lặp, chuẩn hóa thẻ và gợi ý đều dùng chung một chỉ mục nhỏ ngay trên thiết bị. Dưới đây là cơ chế hoạt động, và lý do vì sao đây không đơn thuần là câu chuyện tiếp thị về quyền riêng tư.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Hầu hết các tiện ích mở rộng trình duyệt "tích hợp AI" đều gửi mọi thứ về máy chủ — bao gồm cả những phần hoàn toàn không liên quan gì đến AI. Tìm kiếm, dọn dẹp thẻ, "tìm mục tương tự": đây là những kỹ thuật đã có từ nhiều thập kỷ và được hiểu rất rõ. Chúng không cần mô hình ngôn ngữ lớn, và chắc chắn không cần độ trễ khứ hồi qua mạng. Chúng tôi đã rà soát từng tính năng của AI Summary Helper và tự đặt câu hỏi: liệu tính năng này có thực sự cần đám mây hay chúng tôi chỉ đang mặc định chọn nó vì kiến trúc đó dễ triển khai hơn?</p>
+        <p>Phần lớn trong số đó không hề cần đến.</p>
+
+        <h2>Những gì đã thực sự được chuyển về xử lý trên thiết bị</h2>
+        <p><strong>Tìm kiếm.</strong> Ban đầu, tiện ích mở rộng chỉ đối soát trên tiêu đề và thẻ của bài viết — nhanh, nhưng không thể tìm kiếm nội dung trong thân bài. Thay vì quét toàn văn theo kiểu vét cạn mỗi khi gõ phím hoặc gửi mọi truy vấn lên máy chủ, chúng tôi đã xây dựng một chỉ mục TF-IDF nhỏ từ chính kho lưu trữ của người dùng. Các trường dữ liệu nhẹ — tiêu đề, thẻ — vẫn được kiểm tra trước tiên và tức thì như trước. Các truy vấn dài hơn sẽ được mở rộng đối soát với chỉ mục, vốn được tạo một lần mỗi phiên và cập nhật tăng dần, chứ không quét lại sau từng phím gõ.</p>
+        <p><strong>Phát hiện trùng lặp.</strong> Trước khi quá trình lưu hoàn tất, một quy trình kiểm tra phân tầng sẽ chạy: khớp URL chuẩn hóa chính xác trước tiên (chi phí thấp, O(1)), sau đó là độ tương đồng tiêu đề trên số ít ứng viên vượt qua bộ lọc đó, và chỉ khi đó — đối với vài ứng viên còn lại — mới thực hiện so sánh độ tương đồng cosine qua TF-IDF toàn diện. Hầu hết các lượt lưu không bao giờ phải chạm tới tầng tốn kém tài nguyên nhất, vì các tầng chi phí thấp đã xử lý xong từ trước.</p>
+        <p><strong>Chuẩn hóa thẻ.</strong> Thẻ gắn thường bị phân mảnh theo thời gian — "ML", "Machine Learning", "machine-learning" đối với con người đều mang cùng một ý nghĩa nhưng với bộ lọc lại hoàn toàn khác nhau. Một bảng bí danh (alias) nhỏ sẽ bắt các trường hợp hiển nhiên; thuật toán so khớp mờ theo khoảng cách chỉnh sửa (fuzzy edit-distance) trên toàn bộ danh mục thẻ sẽ xử lý phần còn lại, tự động chọn cách viết mà người dùng thực tế dùng nhiều nhất làm dạng chuẩn thay vì ép buộc một chuẩn máy móc.</p>
+        <p><strong>Độ dễ đọc và giọng điệu.</strong> Thang đo cấp độ Flesch–Kincaid chỉ là phép tính số học thuần túy dựa trên số câu và số âm tiết — hoàn toàn không cần mô hình AI. Phân tích cảm xúc sử dụng danh sách từ AFINN tích hợp sẵn kèm theo kiểm tra phủ định ngắn gọn trên hai token liền trước. Cả hai tác vụ này đều không cần phải rời khỏi trình duyệt.</p>
+        <p><strong>"Bài viết tương tự" và Bản tin tổng hợp (Digest).</strong> Cả hai đều tái sử dụng chính xác các vector TF-IDF mà tính năng tìm kiếm đã xây dựng. Sẽ rất dễ nếu cứ xây ba hệ thống tương đồng riêng biệt cho ba tính năng khác nhau. Nhưng việc xây dựng một chỉ mục duy nhất và để tìm kiếm, gợi ý và tổng hợp thông tin (digest) cùng đọc từ đó giúp tổng thể hệ thống gọn nhẹ hơn, đồng thời chỉ cần tối ưu chỉ mục một lần là cải thiện được cả ba tính năng cùng lúc.</p>
+
+        <h2>Những gì chúng tôi chủ đích giữ lại trên đám mây</h2>
+        <p>Bước tóm tắt nội dung thực tế — phần thực sự đòi hỏi một mô hình ngôn ngữ — vẫn cần đến kết nối mạng. Không thể tránh khỏi điều đó với kích thước mô hình cục bộ hiện tại nếu bạn muốn chất lượng đầu ra tương đương các mô hình hàng đầu trên đám mây. Người dùng có thể tự cung cấp API key cho bước này (OpenAI, Gemini, Mistral, DeepSeek), hoặc trỏ tiện ích mở rộng về một phiên bản Ollama cục bộ để xử lý hoàn toàn ngoại tuyến không cần mạng. Đó là điểm duy nhất mà "xử lý trên thiết bị" không phải là mặc định — mà là tùy chọn kích hoạt, vì sự đánh đổi ở đây là rõ ràng: mô hình cục bộ chạy chậm hơn và chất lượng thấp hơn mô hình máy chủ lưu trữ, và chúng tôi không muốn nói khác đi sự thật đó.</p>
+
+        <h2>Tại sao điều này không chỉ dừng lại ở vấn đề quyền riêng tư</h2>
+        <p>Góc độ quyền riêng tư là hoàn toàn xác thực — một tiện ích mở rộng có quyền truy cập máy chủ rộng rãi gửi nội dung trang web về máy chủ cho những việc không cần thiết là một vấn đề niềm tin chính đáng, chứ không chỉ là bề nổi. Nhưng lý do thực tế hơn để làm điều này là: đó đơn giản là quyết định kỹ thuật chính xác. Tìm kiếm TF-IDF không cần chịu độ trễ mạng 200ms. Loại bỏ thẻ trùng lặp không cần phải phát sinh hóa đơn API. Chọn đúng công cụ cho từng tác vụ thực tế, thay vì mặc định đẩy mọi thứ lên đám mây, sẽ tạo ra sản phẩm nhanh hơn, tiết kiệm chi phí vận hành hơn và hoạt động bền bỉ ngay cả khi ngoại tuyến (offline) — lợi ích về quyền riêng tư đương nhiên sẽ đi kèm theo đó một cách tự nhiên.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper là tiện ích mở rộng miễn phí dành cho Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../privacy.html">Quyền riêng tư</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/main.js"></script>
+
+
+</body></html>

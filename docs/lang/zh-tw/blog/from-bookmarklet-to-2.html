@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>從 Bookmarklet 小書籤到 2.0：現在的 AI Summary Helper 究竟是什麼 — AI Summary Helper</title>
+<meta name="description" content="最初只是為了解決個人 Kindle 閱讀習慣而寫的 Bookmarklet。以下是從 v1 到開源 2.0 全新重構之間的轉變與背後的思考。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特色</a>
+        <a href="../index.html#pricing">方案定價</a>
+        <a href="./" aria-current="page">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回應用程式</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特色</a>
+      <a href="../index.html#pricing">方案定價</a>
+      <a href="./">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">產品 · 2026 年 8 月</span>
+      <h1>從書籤小工具到 2.0：現在的 AI Summary Helper 究竟是什麼？</h1>
+      <p class="post-sub">它最初只是一個為了在 Kindle 上閱讀而設計的一鍵 Bookmarklet 小書籤。經過兩年的演進與全面重構，如今它所擁有的大部分功能，在最初前一百名使用者加入時都還未曾出現。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper 是一款免費、開源的 Chrome 擴充功能。它能使用你自選的 AI 服務商或完全本機端執行的模型來摘要任何網頁，支援設定定時提醒以供日後閱讀，並能將你的閱讀歷程轉化為可搜尋、互相關聯的知識庫存檔。</strong> 第一版中完全沒有這些功能。以下是當時的面貌，以及它是如何一路演進至今的。</p>
+
+        <h2>這一切究竟是如何開始的</h2>
+        <p>在 2024 年 7 月，它還只是一個 Bookmarklet 小書籤——甚至連擴充功能都不是。那時你總是到處尋找有趣的文章，開了幾十個分頁，然後就像多數人一樣，大部分都再也沒打開讀過。最初的初衷非常純粹且個人化：一個自訂提示詞（Prompt）的摘要工具，能直接將摘要內容插入網頁中，這樣當你使用 <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble 的 Send-to-Kindle 工具</a>將文章傳送到 Kindle 時，摘要就能隨附在內。這就是當時整個產品的全部。單一 AI 服務商、單一提示詞欄位。一個在任何地方（甚至 iOS Safari）都能運作的 Bookmarklet 版本，以及一個讓想即時調整提示詞的使用者使用的 Chrome 擴充功能版本。</p>
+        <p>幾週後，活躍使用者就突破了 100 人——這著實令人驚喜，因為它最初只是為了解決個人的閱讀習慣而打造，並不是為了解決商業產品需求。</p>
+
+        <h2>從那時到 2.0 究竟改變了什麼</h2>
+        <p>核心理念——「以你自己的方式做摘要，並在比瀏覽器分頁更適合的地方閱讀」——從未改變。但圍繞著這個理念的一切幾乎都進化了：</p>
+
+        <h3>從單一服務商到支援 5 種彈性選擇</h3>
+        <p>v1 僅支援 OpenAI，使用你自己的金鑰與單一端點。2.0 則支援使用你自己的 API Key 串接 OpenAI、Google Gemini、Mistral 與 DeepSeek，更提供透過 Ollama 進行完全本機端運行的選項——這意味著如果你不想，網頁內容完全不需要離開你的電腦。針對不想自行管理金鑰的使用者，我們也提供了可選的託管方案（byphil Cloud），但這絕非強制性。這不僅僅是小功能的增加，而是徹底改變了這款產品的本質。v1 預設要求你信任單一公司；2.0 則絕不強迫你信任未經你選擇的任何第三方。</p>
+
+        <h3>「插入網頁」進化為真正完整的工作流程</h3>
+        <p>最初的洞察——「稍後閱讀，在比瀏覽器更沉靜的地方讀」——依然保留，但它不再只是將摘要貼到 DOM 網頁結構中。現在只要在網頁上點擊右鍵，即可選擇 <strong>摘要並關閉分頁</strong>：選擇時間範圍（明天、週末、本週、研究時段），新增備註，當你在 RSVP 快速閱讀浮層中迅速瀏覽完摘要後，該分頁就會自動關閉。Chrome 通知會在你想被提醒的確切時間帶你重溫內容——而不是「以後再說」或「想到的時候才讀」。</p>
+
+        <h3>從堆積如山的文章，變成能真正條理探索的知識庫</h3>
+        <p>v1 完全沒有歷史紀錄——摘要留在頁面上，關掉就沒了。現在每篇儲存的文章都會存放在本機的可搜尋知識庫中，支援文字螢光標記（加上針對關鍵段落的 AI 建議「幽靈」標記）、閱讀分析熱力圖，以及能依主題將已讀內容分群、而非零散列出的 D3 知識圖譜。</p>
+
+        <h3>Kindle 曾是唯一的核心，現在則是眾多選擇之一</h3>
+        <p>透過 Reabble 的工具 Send-to-Kindle 曾是這個專案誕生的唯一理由。現在它依然受到原生支援，但「離開瀏覽器去閱讀」現在還支援透過 AirDrop 傳送到 iPhone 或 iPad（直接在 Apple Books 中開啟），或是透過區網 Wi-Fi 以 LocalSend 傳送到像 KOReader 這樣的閱讀器。背後的初衷——「擺脫瀏覽器，轉移到專為閱讀打造的載體」——如今擁有了更多實現途徑。</p>
+
+        <h2>始終未變的堅持</h2>
+        <p>它依然完全免費、依然開源（MIT 授權，完整原始碼託管於 GitHub），而且所有核心功能依然無需註冊帳號。這一點從來沒有妥協的餘地——這正如 v1 最初作為 Bookmarklet 誕生的原因：由一個想要真正「擁有」而非「租用」自己閱讀工具的人所打造。</p>
+
+        <h2>常見問題</h2>
+        <p><strong>這和最初的 Bookmarklet 是同一個專案嗎？</strong><br>
+        是的——同一個開源專案、同一個 GitHub 儲存庫，自 2024 年 7 月以來持續開發維護。Bookmarklet 版本也依然存在，供需要跨瀏覽器、零安裝需求的使用者使用。</p>
+        <p><strong>我需要 OpenAI 帳號才能使用嗎？</strong><br>
+        不需要。v1 確實需要，但早就不是這樣了。你可以使用任何支援的服務商，或者透過 Ollama 運行完全本機端的模型，完全無需任何外部帳號。</p>
+        <p><strong>原本的 Gumroad 版本怎麼了？</strong><br>
+        專案最初在那裡是為了接受早期使用者的贊助支持。擴充功能本身一直都是免費且開源的——Gumroad 從來不是這款工具的付費牆。</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免費的 Chrome 擴充功能。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">新增至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 來自德國的獨立開發軟體。<br>
+      設計與開發： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/main.js"></script>
+
+
+</body></html>
