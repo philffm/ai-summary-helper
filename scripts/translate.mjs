@@ -353,6 +353,11 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
             for (const u of missing) {
                 const key = stringKey(u.text);
                 if (!fresh[u.id]) continue;
+                // NEVER inject mock dry-run placeholders into the shared cache.
+                // If a dry-run's "[fr] some text" placeholders were persisted
+                // here, the next real run would treat them as a permanent cache
+                // hit and serve literal "[fr] …" garbage instead of translating.
+                if (DRY_RUN) continue;
                 manifest.strings[key] = manifest.strings[key] || { en: u.text, translations: {} };
                 manifest.strings[key].en = u.text;
                 manifest.strings[key].translations[code] = { text: fresh[u.id], translatedAt: now, model };
@@ -397,7 +402,11 @@ async function main() {
         if (called) filesWithApiCalls++;
     }
 
-    await saveJson(MANIFEST_PATH, manifest);
+    // Only persist the cache on a REAL run. Dry-runs are preview-only and
+    // must never mutate docs/i18n/manifest.json.
+    if (!DRY_RUN) {
+        await saveJson(MANIFEST_PATH, manifest);
+    }
     console.log(`\nDone. ${filesWithApiCalls}/${targetFiles.length} file(s) needed new translation calls. ${Object.keys(manifest.strings).length} unique string(s) cached total.`);
     // Signal to the Action whether there's anything to commit/PR.
     if (process.env.GITHUB_OUTPUT) {
