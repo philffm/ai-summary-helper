@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper — 在本機端摘要、儲存並搜尋網頁內容</title>
+<meta name="description" content="一款透過 AI 摘要網頁、存入可搜尋檔案庫，並將精選閱讀文摘發送至 Kindle 或 LocalSend 的 Chrome 擴充功能。搜尋、重複內容偵測與推薦均在本機端完成。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="在本機端摘要、儲存並搜尋網頁。專為不想再讓閱讀清單石沉大海的人所打造的 Chrome 擴充功能。">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">功能特色</a>
+        <a href="#digest">文摘</a>
+        <a href="#pricing">方案定價</a>
+        <a href="blog/">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">我的帳戶</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">功能特色</a>
+      <a href="#digest">文摘</a>
+      <a href="#pricing">方案定價</a>
+      <a href="blog/">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">我的帳戶</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Chrome 擴充功能 · byphil. 旗下產品 <span class="dash"></span></div>
+      <h1>摘要網頁精華。<br><em>留下真正重要的內容。</em></h1>
+      <p class="sub">AI Summary Helper 將任何網頁儲存為條理分明、可搜尋的摘要文章，並透過本機端文摘機制，將離線閱讀內容直接推送到 Kindle 或其他裝置，助你真正把存下的內容讀完。</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免費新增至 Chrome</a>
+        <a href="#features" class="btn-secondary">探索完整功能</a>
+      </div>
+      <p class="hero-meta">無需註冊即可開始使用 · 自備 AI API Key，或搭配 Ollama 完全離線執行</p>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">功能簡介</div>
+        <h2>閱讀清單本該擁有的理想模樣</h2>
+        <p>隨手儲存、迅速掌握、精準回找，更能真正重溫閱讀 — 不必再被另一個訂閱服務綁架你的知識庫。</p>
+      </div>
+
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          隱私優先
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          分頁囤積狂
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          研究工作者
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb">模型與伺服器完全由你決定，甚至能確保任何資料都不離開你的電腦。</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI 智慧摘要，自由選擇模型</h3>
+          <p>支援 OpenAI、Gemini、Mistral、DeepSeek，或透過 OpenRouter 存取上百種模型；亦可直接連線本機 Ollama 模型，摘要過程全程無需連網。</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>真正的本機端全文搜尋</h3>
+          <p>涵蓋標題、標籤與文章內容的全文搜尋 — 由瀏覽器內建的 TF-IDF 索引驅動。零延遲、無網路往返，資料絕不上傳。</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>有目標地稍後閱讀</h3>
+          <p>為「決策」標記原因與時限並接收提醒 — 告別塞進收藏夾後就再也沒打開過的窘境。</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>智慧挑選的專屬文摘</h3>
+          <p>一鍵為你精選多樣化且不重複的已存內容 — 避免連續讀到同個話題的五個版本 — 並打包成單一檔案傳送至 Kindle 或 LocalSend。</p>
+        </div>
+        <div class="feature-card" data-personas="researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>超越清單的知識圖譜</h3>
+          <p>視覺化呈現已存文章之間的關聯 — 透過共同標籤，甚至在沒有相同標籤時根據主題相似度建立連結。</p>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>支援 20 多種語言，跨平台通用</h3>
+          <p>以你偏好的語言閱讀與摘要。支援擴充功能、原生側邊欄或 Bookmarklet 小工具 — 覆蓋瀏覽器外掛無法觸及的場景。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+      });
+    })();
+  </script>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">84% 的閱讀死角</div>
+        <h2>你儲存的大多數內容，其實再也沒打開過</h2>
+        <p>針對書籤收藏行為的研究一致顯示，絕大多數儲存的文章再也不會被重新打開。這不是自律問題 — 而是當工具讓「儲存」變得太容易，卻完全沒幫你「挑選該讀什麼」時的必然結果。</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. 點擊文摘（Digest）</h3>
+          <p>系統會挑選 5 篇儲存的內容 — 兼顧時效性與主題多樣性，讓你不再一次面對五篇相同時事的重複文章。</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. 隨心設定閱讀氛圍</h3>
+          <p>輕鬆、中立或深度嚴肅 — 文摘會依據你當下的閱讀心境微調推薦內容。</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. 傳送至離線裝置</h3>
+          <p>一鍵打包直接傳送至 Kindle 或同區域網路內的裝置。在搭機、通勤或無訊號的週末前輕鬆載入。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">貫徹 byphil 的設計哲學</div>
+        <h2>你的資料庫，永遠屬於你</h2>
+        <p>搜尋、重複偵測、標籤整理、閱讀難度與語氣評分，以及「相似文章」推薦全部完全在瀏覽器內執行 — 無需伺服器、無需帳號即可發揮完整價值。唯一會離開本機的只有發送至你所選 AI 服務商的摘要請求；若指定使用本機 Ollama 模型，甚至連這一點資料都完全留在本機。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">單一金鑰，通用於所有 byphil 工具</div>
+        <h2>免費起步，隨需升級 Pro。</h2>
+        <p>Support Pass 不僅適用於此擴充功能 — 只需一組金鑰即可解鎖 byphil 旗下所有工具的進階功能，並於你的 byphil 帳戶統一管理。</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="tablist" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" onclick="setBilling('monthly')">按月計費</button>
+          <button type="button" id="btnYearly" onclick="setBilling('yearly')">按年計費 · 省 50%</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">免費版</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">一切都在本機端運作，始終如一</div>
+          <ul>
+            <li>搭配自有 AI API Key 或 Ollama，享有無限次摘要</li>
+            <li>搜尋、文摘、知識圖譜 — 全程本機端處理</li>
+            <li>內含 3 次 Kindle 傳送額度</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">新增至 Chrome</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">超值首選</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/月</span></span>
+            <span class="price-yearly">€29.94<span>/年</span></span>
+          </div>
+          <div class="tier-note">計費方式為 <span class="price-monthly">按月</span><span class="price-yearly">按年</span></div>
+          <ul>
+            <li>無限次 Kindle 與 LocalSend 傳送（含文摘打包）</li>
+            <li>存取 byphil Cloud AI — 無需自行設定 API Key</li>
+            <li>解鎖所有 byphil 工具的 Pro 權限</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">取得 Support Pass</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">贊助者通行證 (Donator Pass)</div>
+          <div class="tier-price">€50<span>/單次付費</span></div>
+          <div class="tier-note">12 個月完整使用權限</div>
+          <ul>
+            <li>包含 Support Pass 的所有功能</li>
+            <li>直接支持未來新工具的開發</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">贊助並解鎖</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">常見問題</div>
+        <h2>安裝前須知</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>使用前需要先註冊帳號嗎？</summary>
+          <p>不需要。安裝後輸入你自己的 AI 服務商 API Key（或使用本機 Ollama 模型），即可開始儲存。只有在需要使用 byphil Cloud 或透過 Support Pass 享有無限次 Kindle/LocalSend 傳送時才需註冊帳號。</p>
+        </details>
+        <details>
+          <summary>究竟有哪些資料會離開我的瀏覽器？</summary>
+          <p>僅有摘要請求 — 且只會發送至你所設定的 AI 服務商。搜尋、重複偵測、標籤整理、閱讀難度與情緒分析，以及「相似文章」推薦全部都是針對你本機已存資料在本地執行。</p>
+        </details>
+        <details>
+          <summary>可以完全不依賴雲端執行嗎？</summary>
+          <p>可以 — 只要設定連接本機 Ollama 模型，就連摘要步驟也能完全在你的電腦上完成。其餘功能本來就完全在本機運行。</p>
+        </details>
+        <details>
+          <summary>如果停止訂閱 Support Pass，我存下來的資料會怎樣？</summary>
+          <p>你的檔案庫依然安全儲存在原處 — 即你裝置上的瀏覽器本機儲存空間（Local Storage）。Support Pass 僅限制依賴雲端的額外功能（byphil Cloud AI 存取、無限次 Kindle/LocalSend 傳送），絕不會鎖定或限制你已儲存的內容。</p>
+        </details>
+        <details>
+          <summary>這是開源專案嗎？</summary>
+          <p>是的 — 擴充功能原始碼已公開於 <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">精選部落格文章</div>
+        <h2>關於閱讀、搜尋與本機端架構的思考筆記</h2>
+        <p>我們在打造搜尋、文摘與重複內容偵測功能時獲得的經驗 — 提供給正在評估稍後閱讀工具的你參考。</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">產品故事</span>
+          <h3>從 Bookmarklet 到 2.0：AI Summary Helper 的演進歷程</h3>
+          <p>從 2024 年的一個一鍵傳送 Kindle 小工具起步。在此記錄邁向開源 2.0 全新架構的所有轉變。</p>
+          <span class="blog-read">閱讀全文 →</span>
+        </a>
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">指南</span>
+          <h3>尋找 Pocket 替代方案？這些才是核心考量</h3>
+          <p>Pocket 停止服務留下了空缺。這份挑選指南從你的實際使用場景出發 — 而非只看介面長得像不像。</p>
+          <span class="blog-read">閱讀全文 →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">產品故事</span>
+          <h3>你存下的大多數內容都不會再讀。這才是真正的解方。</h3>
+          <p>為什麼大部分儲存的文章都再也沒被打開？探討 Digest 功能誕生的原因，以及為何我們刻意不讓你的清單無止境膨脹。</p>
+          <span class="blog-read">閱讀全文 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">不僅僅是單一專案</div>
+        <h2>byphil 生態系的一環</h2>
+        <p>AI Summary Helper 是 byphil 獨立開發的眾多工具之一。只需一個帳戶與一組 Support Pass，即可解鎖目前及未來推出的所有工具進階功能。</p>
+      </div>
+
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">你目前在此</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>在本機端摘要、儲存並搜尋網頁內容。</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">寵物旅行社群</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>專為數位遊民與不受地點限制的寵物保姆、寄養家庭打造的社群。</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">知識圖譜</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>探索相連的概念與閱讀習慣，專為長期知識架構梳理打造。</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">查看 byphil 所有產品 →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="privacy.html">隱私權政策</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">服務條款</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">退款與退換政策</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — 於德國開發的獨立軟體。付款服務由 Stripe 作為紀錄商家 (Merchant of Record) 處理。<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">歐盟消費者線上爭議解決平台</a> · 設計與開發者： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

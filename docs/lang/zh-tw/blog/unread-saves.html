@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>你存下的文章大多永遠不會讀。這才是真正的解法。— AI Summary Helper</title>
+<meta name="description" content="絕大多數加入書籤的文章再也沒有被打開過。這就是為什麼 Digest 存在，以及為什麼它刻意不讓待讀清單越積越多。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/unread-saves.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/unread-saves.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特色</a>
+        <a href="../index.html#pricing">方案定價</a>
+        <a href="./" aria-current="page">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回應用程式</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特色</a>
+      <a href="../index.html#pricing">方案定價</a>
+      <a href="./">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">產品 · 2026 年 8 月</span>
+      <h1>你存下的文章大多永遠不會讀。這才是真正的解法。</h1>
+      <p class="post-sub">絕大多數儲存的文章再也沒有被重新打開。這不是自律問題——而是產品設計問題。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>關於書籤行為的研究（Bergman、Whittaker 與 Schooler）證實了一件我們心知肚明卻不願承認的事：人們儲存供稍後閱讀的內容中，絕大多數再也沒有被打開過。有些研究指出這個比例甚至高達 84%。</p>
+        <p>如果你的閱讀清單也是這種情況，這絕對不是你缺乏自律。這是工具設計上的問題，責任不在你。</p>
+
+        <h2>「先存再說」的反射動作不是問題。問題在於越堆越高的清單。</h2>
+        <p>儲存內容只需要點一下，花費不到半秒鐘的意念。但事後真正要讀時，你得重新打開應用程式，在已經累積到 60、100、甚至 200 篇的清單中不斷滑動，還得在零碎的五分鐘空檔裡做出決定：現在到底要讀哪一篇？幾乎所有人都放棄在第二步——不是因為文章不吸引人，而是因為 <em>在 200 個項目中做出選擇</em> 本身就是一種消耗心力的工作，而大多數稍後閱讀應用程式只是把整座堆積如山的清單丟給你，然後袖手旁觀。</p>
+        <p>換句話說，書籤就像一個你不斷打破的承諾。不是因為你懶惰，而是因為工具把最困難的部分——在當下決定到底該讀什麼——完全丟給你，沒有提供任何協助。</p>
+
+        <h2>大多數稍後閱讀工具真正優化的重點是什麼</h2>
+        <p>這類工具幾乎都致力於讓 <em>「儲存」</em> 變得毫無阻力。但如果真正的瓶頸是 <em>「選擇」</em>，那這就是完全錯誤的優化方向。如果你根本不會打開 App 來看，清單再長也不會比短清單更有價值。</p>
+
+        <h2>Digest 背後的設計理念</h2>
+        <p>與其讓你在不斷堆積的清單中滑動並陷入選擇困難，AI Summary Helper 的 Digest 功能會先為你做第一輪篩選。點一下，它就會從你的儲存清單中精選出一小組文章（預設為 5 篇），並偏好考量：</p>
+        <ul>
+          <li><strong>時效性</strong>，因此不會撈出你八個月前存下、現在早就沒興趣的內容</li>
+          <li><strong>多樣性</strong>，這樣你就不會一口氣拿到五篇主題重複的文章（例如在同一波新聞話題中存下的多篇報導）</li>
+          <li><strong>依心情挑選（可選）</strong> ——可選擇「輕鬆正面」、「中立客觀」或「深入嚴肅」，系統會根據儲存內容的語氣朝該方向推薦</li>
+        </ul>
+        <p>就這麼簡單。精選 5 篇，而不是 200 篇。讓你 10 秒內就能做出決定，不再因為清單太長而直接關閉分頁。</p>
+
+        <h2>接著，徹底脫離稍後閱讀 App 的束縛</h2>
+        <p>真正關鍵的部分在於：一旦 Digest 完成挑選，你不需要綁在擴充功能裡閱讀。它會將精選內容（摘要與原文連結）打包成單一檔案，你可以直接傳送到 Kindle 或區域網路內的任何裝置。在搭機、週末出遊或沒訊號的通勤途中隨時打開。這個打包功能的存在，正是為了讓你在真正有時間閱讀時，不必坐在筆電前、開著擴充功能。</p>
+
+        <h2>為什麼這件事比聽起來更為重要</h2>
+        <p>市面上每個稍後閱讀工具都會宣稱能幫你「閱讀更多儲存的內容」。但幾乎沒有任何工具改變「做選擇」的當下體驗。它們只是讓儲存變得更容易——根據前述研究，這只會讓待讀清單堆得更快，卻絲毫沒有解決真正出問題的環節。</p>
+        <p>真正的解法不是打造一個更好的清單，而是讓你根本不需要去看清單。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免費的 Chrome 擴充功能。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">新增至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 來自德國的獨立開發軟體。<br>
+      設計與開發： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/main.js"></script>
+
+
+</body></html>

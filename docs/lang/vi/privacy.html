@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Chính sách Bảo mật — AI Summary Helper</title>
+<meta name="description" content="Cách AI Summary Helper xử lý dữ liệu của bạn: API key và lịch sử bài viết luôn lưu trên thiết bị, nội dung trang web chỉ được gửi tới nhà cung cấp AI do bạn chọn.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+
+<meta property="og:title" content="Chính sách Bảo mật — AI Summary Helper">
+<meta property="og:description" content="Cách AI Summary Helper xử lý dữ liệu của bạn: API key và lịch sử bài viết luôn lưu trên thiết bị của bạn.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Tính năng</a>
+        <a href="#digest">Digest</a>
+        <a href="#pricing">Bảng giá</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Tài khoản của tôi</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">Tính năng</a>
+      <a href="#digest">Digest</a>
+      <a href="#pricing">Bảng giá</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Tài khoản của tôi</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Chính sách Bảo mật</span>
+      <h1>Chính sách Bảo mật</h1>
+      <p class="post-sub">API key, lịch sử bài viết và các đoạn đánh dấu luôn nằm trên thiết bị của bạn. Nội dung trang web chỉ được gửi đến nhà cung cấp AI do bạn chỉ định — bao gồm cả mô hình AI cục bộ chạy offline hoàn toàn nếu bạn lựa chọn.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>Cập nhật lần cuối: Tháng 8 năm 2026</em></p>
+
+        <p>Chính sách Bảo mật này giải thích dữ liệu nào được AI Summary Helper xử lý, gửi đến đâu và vì mục đích gì. Tóm tắt nhanh: API key, lịch sử bài viết và các đoạn đánh dấu (highlights) của bạn luôn được lưu trữ trên thiết bị. Nội dung trang web chỉ được gửi đến nhà cung cấp AI mà bạn chọn kết nối — kể cả mô hình AI cục bộ hoàn toàn, không có bất kỳ dữ liệu nào rời khỏi máy của bạn. Chúng tôi không chạy quảng cáo, không bán dữ liệu và không yêu cầu tài khoản cho bất kỳ tính năng cốt lõi nào.</p>
+
+        <p>Nếu bạn không đồng ý với bất kỳ phần nào trong chính sách này, vui lòng không cài đặt hoặc sử dụng tiện ích mở rộng.</p>
+
+        <h2>Không yêu cầu tài khoản</h2>
+        <p>AI Summary Helper không yêu cầu bạn tạo tài khoản, đăng nhập hoặc cung cấp bất kỳ thông tin cá nhân nào để sử dụng các tính năng chính. API key (nếu bạn dùng key riêng) và toàn bộ lịch sử bài viết của bạn được lưu hoàn toàn trong bộ nhớ cục bộ (local storage) của trình duyệt.</p>
+
+        <h2>Dữ liệu chúng tôi xử lý và nơi lưu trữ</h2>
+
+        <h3>Kết nối nhà cung cấp AI của bạn</h3>
+        <p>Bạn tự chọn cách thức tạo tóm tắt:</p>
+        <ul>
+          <li><strong>Sử dụng API key riêng (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek, hoặc endpoint tùy chỉnh. API key chỉ được lưu cục bộ trên thiết bị của bạn (không bao giờ đồng bộ hay gửi về máy chủ chúng tôi). Nội dung trang bạn chọn tóm tắt sẽ được gửi trực tiếp từ trình duyệt đến nhà cung cấp bạn đã chọn bằng key của bạn, tuân theo chính sách bảo mật của nhà cung cấp đó. Chúng tôi không thể xem, ghi nhật ký hoặc lưu trữ nội dung này.</li>
+          <li><strong>Mô hình cục bộ qua Ollama</strong> — nếu bạn chạy mô hình AI cục bộ, nội dung trang web chỉ được gửi đến chính máy tính của bạn. Hoàn toàn không có dữ liệu nào rời khỏi thiết bị.</li>
+          <li><strong>byphil Cloud (tùy chọn, trả phí)</strong> — tùy chọn máy chủ đám mây dành cho người không muốn tự quản lý API key. Nếu chọn gói này, nội dung trang sẽ được gửi tới backend của chúng tôi để ủy quyền (proxy) yêu cầu tới nhà cung cấp mô hình thay bạn và trả về bản tóm tắt. Chúng tôi không lưu trữ vĩnh viễn nội dung của các trang được xử lý theo cách này.</li>
+        </ul>
+
+        <h3>Trạng thái giấy phép và gói đăng ký</h3>
+        <p>Nếu bạn kích hoạt giấy phép Pro hoặc gói đăng ký byphil Cloud, license key sẽ được lưu cục bộ trên thiết bị (không bao giờ đồng bộ) và dùng để xác thực trạng thái đăng ký với backend của chúng tôi. Siêu dữ liệu tài khoản/thanh toán cơ bản được xử lý bởi đơn vị thanh toán và backend của chúng tôi; chúng tôi không lưu nội dung trang hoặc lịch sử đọc của bạn trên máy chủ.</p>
+
+        <h3>Lịch sử bài viết, đoạn đánh dấu và cài đặt</h3>
+        <p>Mọi thứ bạn lưu đều nằm cục bộ trong trình duyệt qua API lưu trữ tích hợp của Chrome — hoàn toàn không lưu trên máy chủ của chúng tôi:</p>
+        <table>
+          <thead>
+            <tr><th>Dữ liệu</th><th>Vị trí lưu trữ</th><th>Đồng bộ qua Chrome?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Bài viết &amp; tóm tắt đã lưu</td><td>Cục bộ (Local)</td><td>Không</td></tr>
+            <tr><td>API key / cấu hình nhà cung cấp</td><td>Cục bộ (Local)</td><td>Không — dữ liệu nhạy cảm, chỉ lưu trên thiết bị</td></tr>
+            <tr><td>License key</td><td>Cục bộ (Local)</td><td>Không — dữ liệu nhạy cảm, chỉ lưu trên thiết bị</td></tr>
+            <tr><td>IP mạng LocalSend</td><td>Cục bộ (Local)</td><td>Không</td></tr>
+            <tr><td>Đoạn văn bản đánh dấu &amp; AI ghost highlights</td><td>Cục bộ (theo từng trang)</td><td>Không</td></tr>
+            <tr><td>Prompt mặc định, ngôn ngữ, độ dài tóm tắt</td><td>Đồng bộ (Sync)</td><td>Có, thông qua tài khoản Chrome của bạn</td></tr>
+            <tr><td>Tùy chọn bật/tắt tính năng highlight</td><td>Đồng bộ (Sync)</td><td>Có, thông qua tài khoản Chrome của bạn</td></tr>
+          </tbody>
+        </table>
+        <p>Các mục được đánh dấu "Đồng bộ" sử dụng tính năng đồng bộ tích hợp sẵn của Chrome gắn liền với tài khoản Google của bạn — dữ liệu này đi qua hạ tầng của Google chứ không qua máy chủ chúng tôi, tương tự như dấu trang (bookmarks). Chúng tôi không có quyền truy cập riêng vào dữ liệu này.</p>
+        <p>Bạn có thể xuất hoặc xóa toàn bộ lịch sử cục bộ bất cứ lúc nào qua Cài đặt → Sao lưu &amp; Khôi phục, hoặc bằng cách gỡ cài đặt tiện ích.</p>
+
+        <h3>Kindle, AirDrop và LocalSend</h3>
+        <p>Khi bạn gửi bài viết sang Kindle, AirDrop hoặc thiết bị tương thích LocalSend, tệp định dạng sẽ được gửi trực tiếp từ trình duyệt đến đích bạn đã chọn. Chúng tôi không đóng vai trò trung gian, không xem hoặc lưu trữ nội dung này.</p>
+
+        <h2>Phân tích dữ liệu sử dụng (Analytics)</h2>
+        <p>Chúng tôi sử dụng Matomo, nền tảng phân tích tôn trọng quyền riêng tư và tuân thủ GDPR, để hiểu các xu hướng sử dụng ẩn danh, tổng hợp nhằm cải thiện tiện ích. Matomo không theo dõi bạn trên các trang web khác và không bán dữ liệu. Tuyệt đối không có nội dung trang web, API key hoặc dữ liệu bài viết nào được đưa vào các sự kiện phân tích.</p>
+
+        <h2>Các quyền chúng tôi yêu cầu và lý do</h2>
+        <table>
+          <thead>
+            <tr><th>Quyền</th><th>Lý do cần cấp quyền</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>Đọc nội dung của trang web mà bạn chủ động yêu cầu tóm tắt</td></tr>
+            <tr><td><code>storage</code></td><td>Lưu cục bộ cài đặt, lịch sử bài viết và các đoạn đánh dấu</td></tr>
+            <tr><td><code>contextMenus</code></td><td>Cung cấp các tác vụ menu chuột phải (Tóm tắt, Highlight, v.v.)</td></tr>
+            <tr><td><code>notifications</code></td><td>Hiển thị thông báo nhắc nhở theo thời gian cho các bài viết đã lưu để đọc sau</td></tr>
+            <tr><td><code>alarms</code></td><td>Lên lịch cho các thông báo nhắc nhở đó</td></tr>
+            <tr><td><code>tabs</code></td><td>Tự động đóng tab sau khi thực hiện lệnh "Tóm tắt &amp; Đóng"</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Hỗ trợ khung bảng điều khiển bên (side panel) mặc định của Chrome làm tùy chọn xem</td></tr>
+            <tr><td><code>scripting</code></td><td>Chèn tập lệnh (content script) cần thiết để đọc và tóm tắt nội dung trang web</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Cho phép bạn tóm tắt bất kỳ trang web nào bạn truy cập — nội dung chỉ được đọc và truyền đi khi bạn chủ động kích hoạt tóm tắt, hoàn toàn không chạy ngầm thụ động</td></tr>
+          </tbody>
+        </table>
+        <p>Chúng tôi không sử dụng các quyền này để theo dõi lịch sử duyệt web, lập hồ sơ quảng cáo hoặc thu thập dữ liệu ngoài việc cung cấp các tính năng được nêu ở trên.</p>
+
+        <h2>Những điều chúng tôi KHÔNG làm</h2>
+        <ul>
+          <li>Chúng tôi không chạy quảng cáo và không bán, cho thuê hoặc trao đổi dữ liệu của bạn cho các nhà quảng cáo hay bên môi giới dữ liệu.</li>
+          <li>Chúng tôi không yêu cầu tài khoản hay đăng nhập đối với bất kỳ tính năng cốt lõi nào.</li>
+          <li>Chúng tôi không ghi nhật ký hay giữ lại nội dung các trang bạn tóm tắt qua API key riêng hoặc mô hình AI cục bộ.</li>
+          <li>Chúng tôi không có quyền truy cập vào lịch sử bài viết, các đoạn highlight hoặc API key lưu trên máy bạn — chúng không bao giờ rời khỏi thiết bị trừ khi bạn chủ động xuất ra.</li>
+        </ul>
+
+        <h2>Dịch vụ của bên thứ ba</h2>
+        <p>Tùy thuộc vào cấu hình tiện ích của bạn, nội dung trang web có thể được gửi tới:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI, hoặc DeepSeek — chỉ khi bạn đã nhập API key riêng của nhà cung cấp đó, và chỉ đối với trang bạn chủ động tóm tắt.</li>
+          <li>Backend byphil Cloud của chúng tôi — chỉ khi bạn chọn đăng ký gói này.</li>
+          <li>Ứng dụng Ollama cục bộ của bạn — không phải bên thứ ba; dữ liệu hoàn toàn ở lại trên máy tính của bạn.</li>
+        </ul>
+        <p>Chúng tôi không chịu trách nhiệm về chính sách quyền riêng tư của các nhà cung cấp AI bên thứ ba mà bạn chọn kết nối. Chúng tôi khuyến khích bạn xem lại chính sách của họ trước khi kết nối tài khoản.</p>
+
+        <h2>Bảo mật dữ liệu</h2>
+        <p>Chúng tôi áp dụng các biện pháp kỹ thuật hợp lý và phù hợp — phần lớn dữ liệu vốn dĩ không bao giờ truyền tới máy chủ của chúng tôi vì đã được lưu cục bộ trong trình duyệt. Việc giao tiếp với backend của chúng tôi (cho byphil Cloud và xác thực giấy phép) luôn được mã hóa trong quá trình truyền tải. Không có phương thức truyền tải hay lưu trữ nào là an toàn 100%, và chúng tôi không thể đảm bảo an toàn tuyệt đối, nhưng chúng tôi không thu thập bất kỳ dữ liệu nào ngoài mức cần thiết để cung cấp các tính năng đã nêu.</p>
+
+        <h2>Quyền riêng tư của trẻ em</h2>
+        <p>AI Summary Helper không hướng tới trẻ em dưới 13 tuổi (hoặc độ tuổi tối thiểu theo quy định tại khu vực của bạn), và chúng tôi không cố ý thu thập thông tin cá nhân từ trẻ em.</p>
+
+        <h2>Quyền lợi của bạn (GDPR / CCPA và tương đương)</h2>
+        <p>Vì hầu như tất cả dữ liệu đều được lưu trữ cục bộ trên chính thiết bị của bạn, bạn hoàn toàn có toàn quyền kiểm soát trực tiếp — bạn có thể xem, xuất hoặc xóa dữ liệu bất kỳ lúc nào qua phần Cài đặt của tiện ích hoặc bằng cách gỡ bỏ tiện ích. Đối với bất kỳ dữ liệu nào chúng tôi lưu giữ trên máy chủ (siêu dữ liệu thanh toán/gói đăng ký byphil Cloud), bạn có thể yêu cầu truy cập, chỉnh sửa hoặc xóa bằng cách liên hệ với chúng tôi bên dưới.</p>
+
+        <h2>Thay đổi đối với Chính sách này</h2>
+        <p>Chúng tôi có thể cập nhật Chính sách Bảo mật này khi các tính năng của tiện ích thay đổi. Các thay đổi quan trọng sẽ được phản ánh tại đây cùng ngày "Cập nhật lần cuối" mới. Việc bạn tiếp tục sử dụng tiện ích sau khi có thay đổi đồng nghĩa với việc bạn chấp nhận chính sách đã được cập nhật.</p>
+
+        <h2>Liên hệ với chúng tôi</h2>
+        <p>Bạn có thắc mắc về Chính sách Bảo mật này? Vui lòng liên hệ qua <a href="mailto:philipp@wornath.de">philipp@wornath.de</a>, hoặc qua <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="privacy.html">Quyền riêng tư</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Điều khoản dịch vụ</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Hoàn tiền &amp; Đổi trả</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — phần mềm độc lập được phát triển tại Đức. Thanh toán được xử lý bởi Stripe với tư cách là Đơn vị bán hàng chính thức (Merchant of Record).<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Giải quyết tranh chấp người tiêu dùng EU</a> · Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

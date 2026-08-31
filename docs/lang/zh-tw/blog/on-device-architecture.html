@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>為什麼我們將搜尋、標籤與推薦功能移出雲端 — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helper 搜尋、重複偵測與摘要特輯背後的 TF-IDF 索引技術 — 以及為什麼大部分功能根本不需要伺服器。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特色</a>
+        <a href="../index.html#pricing">方案定價</a>
+        <a href="./" aria-current="page">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回應用程式</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特色</a>
+      <a href="../index.html#pricing">方案定價</a>
+      <a href="./">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">工程團隊 · 2026 年 8 月</span>
+      <h1>為什麼我們將搜尋、標籤與推薦功能移出雲端</h1>
+      <p class="post-sub">搜尋、重複消除、標籤整理與內容推薦共享同一個輕量的本機索引。以下是它的運作原理，以及為什麼這絕不僅僅是個隱私噱頭。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>多數標榜「AI 驅動」的瀏覽器擴充功能會把所有資料都傳送到伺服器 — 連完全與 AI 無關的部分也不例外。搜尋、標籤整理、「尋找相似項目」：這些都是存在數十年、非常成熟的技術。它們不需要大型語言模型，更絕對不需要透過網路往返請求。我們逐一檢視了 AI Summary Helper 的每一項功能，並反思：這真的需要雲端嗎？還是我們只是因為雲端架構最省事而盲目採用？</p>
+        <p>事實證明，絕大多數功能根本不需要。</p>
+
+        <h2>我們究竟把哪些功能移到了本機</h2>
+        <p><strong>搜尋功能。</strong> 這款擴充功能最初僅比對文章標題與標籤 — 速度雖快，卻無法檢索內文。我們沒有選擇在每次按鍵輸入時暴力掃描全文，也沒有將每個查詢都傳送到伺服器，而是根據使用者儲存的文章封存庫建立了一個小型的 TF-IDF 索引。低運算成本的欄位（如標題、標籤）依然會像以前一樣瞬間完成優先比對；較長的查詢則會在索引中擴展檢索。該索引在每次工作階段僅建立一次，並採增量更新，而非每次輸入按鍵時重新掃描。</p>
+        <p><strong>重複偵測。</strong> 在完成儲存之前，系統會執行分層檢查：首先進行標準化 URL 的完全比對（成本極低，O(1)）；接著對少數通過初篩的候選項進行標題相似度比對；最後，僅針對剩餘的極少數候選項目進行完整的 TF-IDF 餘弦相似度（Cosine Similarity）比較。多數儲存操作根本不會進入高成本層級，因為前置的低成本階段早已完成判斷。</p>
+        <p><strong>標籤正規化。</strong> 標籤隨著時間推移往往會出現分歧 —「ML」、「Machine Learning」、「machine-learning」對人類來說意義相同，但對過濾器而言卻完全不同。我們透過小型的別名表（alias table）捕捉明顯的情況；其餘部分則透過全標籤詞彙庫的模糊編輯距離（Edit Distance）進行合併，並選取使用者最常用的拼寫作為標準格式，而不是強加一套「正確標準」給使用者。</p>
+        <p><strong>可讀性與語氣分析。</strong> Flesch–Kincaid 可讀性分級純粹是基於句子與音節數量的算術計算 — 完全不需要模型。情緒分析則是內建 AFINN 單字清單搭配前兩個 token 的否定詞檢查。這兩者都完全不需要離開瀏覽器。</p>
+        <p><strong>「相關文章」與特輯（Digest）。</strong> 這兩項功能皆重複使用了搜尋功能已建置好的同一套 TF-IDF 向量。為三個獨立功能打造三套獨立的相似度系統或許很容易，但只建立一個通用索引，並讓搜尋、內容推薦與特輯整理共同讀取，不僅使整體系統保持輕巧，更意味著只要優化一次索引，就能同時提升這三項功能的表現。</p>
+
+        <h2>我們刻意保留在雲端的部分</h2>
+        <p>實際的重點摘要步驟 — 也就是真正需要語言模型的部分 — 依然需要呼叫網路。以目前本機模型的體積而言，若追求雲端頂級模型的產出品質，這是無法避免的。使用者可以在這個步驟自備 API Key（如 OpenAI、Gemini、Mistral、DeepSeek），或者將擴充功能指向本機的 Ollama 執行個體，徹底跳過網路傳輸。這是唯一沒有預設「本機運行」的地方 — 它是自由啟用的，因為這裡的取捨非常明確：本機模型的速度與品質確實不如雲端託管模型，我們也不想粉飾這一點。</p>
+
+        <h2>為什麼這絕非只是宣傳隱私的說詞</h2>
+        <p>隱私層面的考量十分真實 — 一個擁有廣泛主機權限的擴充功能，如果把本來不需要上傳的網頁內容傳送到伺服器，確實會引發信任問題，而不只是觀感問題而已。但另一個更實在的原因在於：從工程架構的角度來看，這本來就是正確的決策。TF-IDF 搜尋不需要承擔 200ms 的網路延遲；標籤重複消除也不該產生額外的 API 費用帳單。根據實際任務選擇合適的工具，而不是預設把所有事情都丟給「呼叫雲端」，往往能打造出更快、運行成本更低且離線相容性更佳的產品 — 隱私優勢只是自然而然隨之而來的紅利，而非本末倒置的初衷。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免費的 Chrome 擴充功能。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">新增至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 來自德國的獨立開發軟體。<br>
+      設計與開發： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/main.js"></script>
+
+
+</body></html>
