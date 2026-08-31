@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const savedApiKey = localStorage.getItem('apiKey');
+  const savedApiKey = sessionStorage.getItem('apiKey');
   const savedModel = localStorage.getItem('model');
 
   // If API key exists, prefill the input field
@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Store API key in localStorage
+// Store API key in sessionStorage (cleared when the browser/tab is closed,
+// unlike localStorage which persists indefinitely on disk)
 document.getElementById('apiKey').addEventListener('input', () => {
   const apiKey = document.getElementById('apiKey').value.trim();
   if (apiKey) {
-    localStorage.setItem('apiKey', apiKey);
+    sessionStorage.setItem('apiKey', apiKey);
   }
 });
 
@@ -234,12 +235,10 @@ function generateBookmarklet() {
 
 
 
-  var modalContent = `
-  <p>Drag the link below to your bookmarks bar 🔖 <br> (on iOS, hold to drag for 2 seconds): </p>
-  <a id="bookmarkletLink" href="${encodedBookmarklet}" icon="${favIcon}" draggable="true" >🪄 AI Summary (${selectedModel})</a>
-  
-  <p> ${getDonationMessage()}</p>
-`;
+  var modalContent =
+    '<p>Drag the link below to your bookmarks bar 🔖 <br> (on iOS, hold to drag for 2 seconds): </p>' +
+    '<a id="bookmarkletLink" href="' + encodedBookmarklet + '" icon="' + favIcon + '" draggable="true" >🪄 AI Summary (' + selectedModel + ')</a>' +
+    '<p> ' + getDonationMessage() + '</p>';
 
   // open modal with modalContent
   var modalOverlay = document.createElement('div'); // Create overlay element
