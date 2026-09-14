@@ -217,6 +217,7 @@ function setBilling(period) {
     shareLocalSend: document.getElementById('bmShareLocalSend'),
     localSendConfig: document.getElementById('bmLocalSendConfig'),
     localSendIp: document.getElementById('bmLocalSendIp'),
+    insertion: document.getElementById('bmInsertion'),
     config: document.getElementById('bmConfig')
   };
 
@@ -439,6 +440,17 @@ function setBilling(period) {
   })();
   updateShareConfig();
 
+  // ── Insertion option persistence ───────────────────────────────
+  els.insertion.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_insertion', els.insertion.value); } catch (e) {}
+  });
+  (function () {
+    try {
+      var savedInsertion = localStorage.getItem('aish_bm_insertion');
+      if (savedInsertion && ['floating', 'inline'].indexOf(savedInsertion) !== -1) els.insertion.value = savedInsertion;
+    } catch (e) {}
+  })();
+
   // Initialize the default mode (byPhil Cloud) and its panel visibility.
   setMode('cloud');
 
@@ -474,6 +486,9 @@ function setBilling(period) {
       if (!p.noKey && !apiKey) { alert('Enter your API key.'); return null; }
     }
 
+    // Insertion mode: floating box (default) or inline (click to place).
+    var insertion = els.insertion.value || 'floating';
+
     // Share options (the summary is always inserted on the page; these are
     // optional additional shares configured at generate time).
     var shareNative = els.shareNative.checked;
@@ -507,6 +522,7 @@ function setBilling(period) {
       'var isGemini=' + (isGemini ? 'true' : 'false') + ';',
       'var isCloud=' + (isCloud ? 'true' : 'false') + ';',
       'var prompt=' + JSON.stringify(prompt) + ';',
+      'var insertion=' + JSON.stringify(insertion) + ';',
       'var shareNative=' + (shareNative ? 'true' : 'false') + ';',
       'var shareKindle=' + (shareKindle ? 'true' : 'false') + ';',
       'var shareLocalSend=' + (shareLocalSend ? 'true' : 'false') + ';',
@@ -539,8 +555,25 @@ function setBilling(period) {
       '  var title=document.title||"AI Summary";',
       '  var url=location.href;',
       '  var docHtml="<!DOCTYPE html><html><head><meta charset=\\"utf-8\\"><title>"+title+"</title><style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}</style></head><body><h1>"+title+"</h1><div class=\\"meta\\">Captured via AI Summary Helper &middot; <a href=\\""+url+"\\">Source</a></div><div class=\\"summary\\"><h2>🧙 AI Summary</h2>"+summary+"</div><h2>📄 Content</h2><div>"+content.replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</div></body></html>";',
-      '  // Always insert the summary on the page.',
-      '  var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary;document.body.appendChild(box);var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
+      '  // Insert the summary: inline (click to place) or floating box.',
+      '  var insertSummary=function(){',
+      '    if(insertion==="inline"){',
+      '      var sc=document.createElement("div");sc.id="ai-summary-inline";sc.innerHTML="<h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary;',
+      '      return sc;',
+      '    }',
+      '    var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary;document.body.appendChild(box);var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
+      '    return null;',
+      '  };',
+      '  if(insertion==="inline"){',
+      '    msg.textContent="Click the spot where you want the summary inserted.";',
+      '    document.body.style.cursor="crosshair";',
+      '    var hover=function(e){e.target.style.outline="2px dashed #007bff";};',
+      '    var unhover=function(e){e.target.style.outline="";};',
+      '    document.addEventListener("mouseover",hover);document.addEventListener("mouseout",unhover);',
+      '    document.addEventListener("click",function handler(e){e.preventDefault();e.stopPropagation();document.body.style.cursor="default";document.removeEventListener("click",handler);document.removeEventListener("mouseover",hover);document.removeEventListener("mouseout",unhover);var sc=insertSummary();e.target.insertAdjacentElement("beforebegin",sc);msg.remove();},{once:true});',
+      '  }else{',
+      '    insertSummary();',
+      '  }',
       '  // Optional: system share sheet.',
       '  if(shareNative&&navigator.share){try{navigator.share({title:title,text:summary,url:url});}catch(e){}}',
       '  // Optional: send to Kindle via byPhil Cloud proxy.',
