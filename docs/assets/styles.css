@@ -305,6 +305,13 @@ section{ padding:76px 0; }
 .icon-violet{ background:linear-gradient(150deg, #A98AE8, #6B4CC4); }
 .icon-gold{ background:linear-gradient(150deg, #E4C88E, #B4863B); }
 
+/* Ghost-highlight style — mirrors the bookmarklet/extension highlight so the
+   landing-page card can demo the feature itself. */
+.ai-ghost-highlight{
+  background-color:rgba(186,230,253,0.65); color:#0369a1;
+  border-bottom:2px dashed #0284c7; border-radius:2px; padding:0 2px;
+}
+
 @media (max-width: 860px){ .feature-grid{ grid-template-columns:repeat(2, 1fr); } }
 @media (max-width: 560px){
   .feature-grid{ grid-template-columns:1fr; gap:12px; }
