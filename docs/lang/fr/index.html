@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helper transforme n'importe quelle page en article résumé et indexé — puis vous aide à le lire vraiment, grâce à un digest local qui envoie vos lectures hors-ligne directement sur votre Kindle ou un autre appareil.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Ajouter à Chrome — c'est gratuit</a>
-        <a href="#features" class="btn-secondary">Découvrir les fonctionnalités</a>
+        <a href="#bookmarklet" class="btn-secondary">Pas d'installation ? Utilisez le bookmarklet</a>
       </div>
       <p class="hero-meta">Aucun compte requis pour commencer · Utilisez votre propre clé d'API IA ou fonctionnez 100 % hors-ligne avec Ollama</p>
     </div>
@@ -131,7 +131,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Résumés IA, avec le modèle de votre choix</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek ou plus de 100 modèles via OpenRouter — ou connectez un modèle Ollama local pour ne rien envoyer sur le réseau à cette étape.</p>
+          <p>OpenAI, Gemini, Mistral, DeepSeek ou un endpoint personnalisé — ou connectez-le à un modèle local Ollama pour une exécution 100 % on-device sans aucun transfert réseau.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -225,6 +225,120 @@
         <div class="eyebrow">La philosophie byphil</div>
         <h2>Vos archives restent strictement à vous</h2>
         <p>Recherche, détection des doublons, nettoyage des tags, évaluation du niveau de lecture et du ton, recommandations d'articles similaires : tout s'exécute intégralement dans votre navigateur — aucun serveur, aucun compte requis pour en profiter pleinement. Seule la requête de résumé transite vers l'extérieur, vers le fournisseur d'IA de votre choix. Et avec un modèle Ollama local, rien ne quitte jamais votre machine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Aucune installation requise</div>
+        <h2>Obtenir le bookmarklet</h2>
+        <p>Fonctionne sur tous les navigateurs et systèmes d'exploitation — y compris sur iOS, où l'extension n'est pas disponible. Choisissez un fournisseur, générez un lien et faites-le glisser dans votre barre de favoris. Un simple clic sur n'importe quelle page y insère directement un résumé par IA.</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">Utiliser votre propre clé (BYOK)</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">Utilisez votre compte byPhil — aucune clé API à gérer. Le bookmarklet appelle l'API byPhil Cloud avec votre session.</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">E-mail</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">Envoyer le code magique</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">Code de vérification</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">Vérifier et connecter</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ Connecté en tant que <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">Modèle</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">Le modèle utilisé par l'API byPhil Cloud pour vos résumés.</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">Se déconnecter</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">Fournisseur</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (Local / On-device)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">Clé API</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 Stockée exclusivement dans le stockage local de votre navigateur. Le bookmarklet généré l'intègre directement, veillez donc à ne pas le partager.</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">Insertion du résumé</label>
+          <select id="bmInsertion">
+            <option value="floating">Fenêtre flottante</option>
+            <option value="inline">Intégré (inline) — cliquez pour choisir l'emplacement</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">La fenêtre flottante affiche le résumé dans un coin de la page. Le mode intégré vous permet de cliquer à l'endroit exact où insérer le résumé.</p>
+
+          <label class="bm-label" for="bmPrompt">Prompt</label>
+          <textarea id="bmPrompt" rows="6">Section de résumé d'article avec un titre créatif expliquant l'article en termes simples.
+Résumé plus détaillé avec un peu plus d'éléments (4-5 phrases).
+Clin d'œil amusant au sujet en lien avec mes compétences en design UX.
+Approche humoristique du sujet digne d'un stand-up.
+Recommandations de livres et de médias associés.
+Réponses à des questions complémentaires sur un ton sérieux et captivant.
+Ajoutez des émojis, des hashtags, utilisez du HTML, mettez en valeur les passages intéressants, 1 000 mots maximum.</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">Options de partage</legend>
+            <p class="bm-hint">Le résumé est toujours inséré sur la page. Vous pouvez également le partager après sa génération si vous le souhaitez.</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>Menu de partage du système</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>Envoyer vers Kindle</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Adresse e-mail Kindle</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">Nécessite une connexion byPhil Cloud. Ajoutez <strong>kindle@byphil.eu</strong> à vos expéditeurs approuvés Kindle au préalable — consultez <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">le guide d'Amazon</a>. L'offre gratuite inclut 3 envois vers Kindle ; les envois illimités nécessitent le Support Pass.</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>Envoyer vers LocalSend</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">Adresse IP LocalSend</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">L'adresse IP de l'appareil exécutant LocalSend (ou KOReader avec le plugin LocalSend) sur votre réseau local.</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">Générer le bookmarklet</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">Faites glisser le lien ci-dessous dans votre barre de favoris 🔖 <br>(sur iOS, maintenez enfoncé pendant 2 secondes pour faire glisser) :</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 Résumé IA</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -395,6 +509,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Code source sur GitHub</a>
+        <a href="index.html#bookmarklet">Bookmarklet (sans installation)</a>
         <a href="privacy.html">Confidentialité</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Conditions d'utilisation</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Remboursements &amp; retours</a>

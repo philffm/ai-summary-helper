@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helper는 웹 페이지를 요약 및 검색 가능한 글로 저장하며, 오프라인 읽기 자료를 Kindle이나 다른 기기로 바로 전송하는 온디바이스 다이제스트를 통해 저장한 글을 실제로 다시 읽을 수 있도록 돕습니다.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가 — 무료</a>
-        <a href="#features" class="btn-secondary">주요 기능 살펴보기</a>
+        <a href="#bookmarklet" class="btn-secondary">설치 없이 사용하고 싶으신가요? 북마클릿을 이용해 보세요</a>
       </div>
       <p class="hero-meta">계정 등록 없이 바로 시작 가능 · 보유 중인 AI 키를 사용하거나 Ollama를 통해 완전 오프라인으로 실행</p>
     </div>
@@ -131,7 +131,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>원하는 모델로 생성하는 AI 요약</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek뿐만 아니라 OpenRouter를 통한 100개 이상의 모델을 지원합니다. 로컬 Ollama 모델을 지정하면 네트워크 통신 없이도 요약을 생성할 수 있습니다.</p>
+          <p>OpenAI, Gemini, Mistral, DeepSeek 또는 커스텀 엔드포인트는 물론, 로컬 Ollama 모델을 지정해 외부 네트워크 통신 없이 완벽한 프라이버시로 빠르게 처리할 수도 있습니다.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -225,6 +225,120 @@
         <div class="eyebrow">byphil의 철학으로 제작</div>
         <h2>데이터의 소유권은 온전히 사용자에게 있습니다</h2>
         <p>검색, 중복 감지, 태그 정리, 읽기 수준 및 톤 분석, '유사한 글' 추천 등 모든 기능이 브라우저 내부에서만 실행됩니다. 서버나 계정 없이도 핵심 기능을 온전히 활용할 수 있습니다. 기기 외부로 나가는 데이터는 사용자가 직접 설정한 AI 제공업체로의 요약 요청 호출뿐이며, 로컬 Ollama 모델을 사용하는 경우 이 과정마저도 완전히 기기 내부에서 처리됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">별도 설치 불필요</div>
+        <h2>북마클릿 가져오기</h2>
+        <p>확장 프로그램을 사용할 수 없는 iOS를 포함해 모든 브라우저 및 OS에서 완벽하게 작동합니다. 제공업체를 선택하고 링크를 생성한 뒤 북마크 바에 끌어다 놓으세요. 어떤 페이지에서든 클릭 한 번으로 AI 요약이 바로 삽입됩니다.</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">보유 중인 API 키 사용 (BYOK)</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">byPhil 계정을 사용하면 API 키를 따로 관리할 필요가 없습니다. 북마클릿이 로그인 세션을 통해 byPhil Cloud API를 호출합니다.</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">이메일</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">인증 코드 발송</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">인증 코드</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">인증 및 연결</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ 연결된 계정: <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">모델</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">byPhil Cloud API에서 요약 생성 시 사용하는 모델입니다.</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">연결 해제</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">제공업체</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (로컬)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API 키</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 브라우저의 로컬 스토리지에만 안전하게 저장됩니다. 생성된 북마클릿에 키가 포함되므로 타인과 공유하지 마세요.</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">요약 삽입 방식</label>
+          <select id="bmInsertion">
+            <option value="floating">플로팅 박스</option>
+            <option value="inline">인라인 — 원하는 위치 클릭</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">플로팅 박스는 화면 모서리에 오버레이 형태로 요약을 표시합니다. 인라인 방식을 사용하면 웹페이지 내에서 요약을 삽입할 정확한 위치를 직접 클릭해 선택할 수 있습니다.</p>
+
+          <label class="bm-label" for="bmPrompt">프롬프트</label>
+          <textarea id="bmPrompt" rows="6">기사를 쉬운 말로 설명하는 독창적인 제목이 포함된 기사 요약 섹션.
+조금 더 자세한 내용이 담긴 심화 요약 (4-5문장).
+UX 디자이너로서의 역량과 관련된 재미있는 주제 연결.
+스탠드업 코미디언 스타일의 유머러스한 해석.
+관련 도서 및 미디어 추천.
+추가 질문에 대해 진지하면서도 흥미를 끄는 답변 제공.
+이모지 및 해시태그 추가, HTML 사용, 흥미로운 부분 강조, 최대 1,000자 이내 작성.</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">공유 옵션</legend>
+            <p class="bm-hint">요약은 항상 페이지에 직접 삽입됩니다. 생성이 완료된 후 추가로 공유할 수도 있습니다.</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>시스템 공유 메뉴</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>Kindle로 보내기</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Kindle 이메일 주소</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">byPhil Cloud 연결이 필요합니다. 먼저 <strong>kindle@byphil.eu</strong> 주소를 Kindle의 승인된 발신자 목록에 추가해 주세요. 자세한 내용은 다음을 참조하세요: <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon 안내 가이드</a>. 무료 티어에는 3회의 Kindle 전송이 포함되어 있으며, 무제한 전송을 이용하려면 Support Pass가 필요합니다.</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>LocalSend로 보내기</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">동일 네트워크 내에서 LocalSend(또는 LocalSend 플러그인이 설치된 KOReader)를 실행 중인 기기의 IP 주소입니다.</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">북마클릿 생성하기</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">아래 링크를 북마크 바로 드래그하세요 🔖 <br>(iOS에서는 2초 동안 길게 누른 후 드래그):</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI 요약</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -395,6 +509,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="index.html#bookmarklet">북마클릿 (설치 불필요)</a>
         <a href="privacy.html">개인정보 보호</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">이용약관</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">환불 및 반품 정책</a>
