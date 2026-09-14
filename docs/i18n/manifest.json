@@ -23979,6 +23979,556 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "0df4d231d65ec95042ae82d1cca9ad7d85521d00ac157784d60010efd54827f1": {
+      "en": "The AI lightly highlights the",
+      "translations": {
+        "de": {
+          "text": "Die KI hebt die",
+          "translatedAt": "2026-09-14T11:29:30.880Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'IA surligne délicatement les",
+          "translatedAt": "2026-09-14T11:29:35.512Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La IA resalta sutilmente los",
+          "translatedAt": "2026-09-14T11:29:41.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI 会轻度高亮标出",
+          "translatedAt": "2026-09-14T11:29:49.166Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI 會高亮標註文章中的",
+          "translatedAt": "2026-09-14T11:30:02.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIが",
+          "translatedAt": "2026-09-14T11:30:09.971Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI가 ",
+          "translatedAt": "2026-09-14T11:30:17.720Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A IA destaca sutilmente os",
+          "translatedAt": "2026-09-14T11:30:23.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI हल्के से highlight करता है",
+          "translatedAt": "2026-09-14T11:30:31.661Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI sẽ nhẹ nhàng làm nổi bật các",
+          "translatedAt": "2026-09-14T11:30:39.094Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "85f8b28ef16ebbcf05fe5adef9d52ce0892a53dcbedb3a93df9f104d1ad52d7e": {
+      "en": "in the article — so you can",
+      "translations": {
+        "de": {
+          "text": "im Artikel dezent hervor – so können Sie",
+          "translatedAt": "2026-09-14T11:29:30.880Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "de l'article — afin que vous puissiez",
+          "translatedAt": "2026-09-14T11:29:35.512Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "del artículo — para que puedas",
+          "translatedAt": "2026-09-14T11:29:41.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "——方便你",
+          "translatedAt": "2026-09-14T11:29:49.166Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "—— 讓你能",
+          "translatedAt": "2026-09-14T11:30:02.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "を記事内で自然にハイライトするため、",
+          "translatedAt": "2026-09-14T11:30:09.971Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": " 본문에서 은은하게 하이라이트하여 — ",
+          "translatedAt": "2026-09-14T11:30:17.720Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "no artigo — para que você possa",
+          "translatedAt": "2026-09-14T11:30:23.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आर्टिकल में — ताकि आप",
+          "translatedAt": "2026-09-14T11:30:31.661Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "trong bài viết — để bạn có thể",
+          "translatedAt": "2026-09-14T11:30:39.094Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "98699124584524d3443209b2c9de7db82204f273b78c9db948c42084e8632326": {
+      "en": ", and they travel with the summary to Kindle, LocalSend, or Markdown.",
+      "translations": {
+        "de": {
+          "text": ", und sie werden zusammen mit der Zusammenfassung an Kindle, LocalSend oder Markdown übertragen.",
+          "translatedAt": "2026-09-14T11:29:30.880Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ", et ils accompagnent le résumé vers Kindle, LocalSend ou Markdown.",
+          "translatedAt": "2026-09-14T11:29:35.512Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ", y se transfieren junto con el resumen a Kindle, LocalSend o Markdown.",
+          "translatedAt": "2026-09-14T11:29:41.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "，且高亮内容会随摘要一同导出至 Kindle、LocalSend 或 Markdown。",
+          "translatedAt": "2026-09-14T11:29:49.166Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "，並隨摘要一同匯出至 Kindle、LocalSend 或 Markdown。",
+          "translatedAt": "2026-09-14T11:30:02.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "、要約と一緒に Kindle、LocalSend、Markdown にも引き継がれます。",
+          "translatedAt": "2026-09-14T11:30:09.971Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ", 요약과 함께 Kindle, LocalSend 또는 Markdown으로 함께 전송됩니다.",
+          "translatedAt": "2026-09-14T11:30:17.720Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ", e eles acompanham o resumo para o Kindle, LocalSend ou Markdown.",
+          "translatedAt": "2026-09-14T11:30:23.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ", और ये summary के साथ Kindle, LocalSend, या Markdown पर भी चले जाते हैं।",
+          "translatedAt": "2026-09-14T11:30:31.661Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ", và chúng sẽ đi kèm bản tóm tắt sang Kindle, LocalSend hoặc Markdown.",
+          "translatedAt": "2026-09-14T11:30:39.094Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2a93e180a5cdcebaf1435e0bd8f9445bb4d56c8160d3d6627f5de6f94dee8e74": {
+      "en": "most important verbatim passages",
+      "translations": {
+        "de": {
+          "text": "wichtigsten Passagen im Originalwortlaut",
+          "translatedAt": "2026-09-14T11:29:30.880Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "passages textuels les plus importants",
+          "translatedAt": "2026-09-14T11:29:35.512Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "pasajes textuales más importantes",
+          "translatedAt": "2026-09-14T11:29:41.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "最关键的原文段落",
+          "translatedAt": "2026-09-14T11:29:49.166Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "最關鍵的原文段落",
+          "translatedAt": "2026-09-14T11:30:02.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "最も重要な原文の抜粋",
+          "translatedAt": "2026-09-14T11:30:09.971Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가장 중요한 원문 구절을",
+          "translatedAt": "2026-09-14T11:30:17.720Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "trechos literais mais importantes",
+          "translatedAt": "2026-09-14T11:30:23.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सबसे महत्वपूर्ण verbatim passages को",
+          "translatedAt": "2026-09-14T11:30:31.661Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "đoạn trích nguyên văn quan trọng nhất",
+          "translatedAt": "2026-09-14T11:30:39.094Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ff2e094c3240679b0d936171cad9ba683355f00e8560d5bee541786ff5296568": {
+      "en": "skim the key insights at a glance",
+      "translations": {
+        "de": {
+          "text": "die Kernaussagen auf einen Blick überfliegen",
+          "translatedAt": "2026-09-14T11:29:30.880Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "parcourir les points clés d'un coup d'œil",
+          "translatedAt": "2026-09-14T11:29:35.512Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "revisar las ideas clave de un vistazo",
+          "translatedAt": "2026-09-14T11:29:41.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一眼掌握核心洞见",
+          "translatedAt": "2026-09-14T11:29:49.166Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一眼掌握核心重點",
+          "translatedAt": "2026-09-14T11:30:02.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "重要なポイントを一目で把握でき",
+          "translatedAt": "2026-09-14T11:30:09.971Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "핵심 인사이트를 한눈에 훑어볼 수 있고",
+          "translatedAt": "2026-09-14T11:30:17.720Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "passar os olhos nos pontos-chave rapidamente",
+          "translatedAt": "2026-09-14T11:30:23.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "key insights को एक नज़र में skim कर सकें",
+          "translatedAt": "2026-09-14T11:30:31.661Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "nắm bắt nhanh các thông tin cốt lõi",
+          "translatedAt": "2026-09-14T11:30:39.094Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3659097f0ef5e2d6d1159e7089f2da89e474eaa3579ac9a9a854ded623950592": {
+      "en": "Our Matomo tracking is configured to run",
+      "translations": {
+        "de": {
+          "text": "Unser Matomo-Tracking ist so konfiguriert, dass es",
+          "translatedAt": "2026-09-14T11:30:45.271Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Notre suivi Matomo est configuré pour fonctionner",
+          "translatedAt": "2026-09-14T11:30:50.665Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Nuestro seguimiento con Matomo está configurado para ejecutarse",
+          "translatedAt": "2026-09-14T11:30:57.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "我们的 Matomo 统计已配置为",
+          "translatedAt": "2026-09-14T11:31:04.107Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "我們的 Matomo 追蹤設定為",
+          "translatedAt": "2026-09-14T11:31:09.392Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "当サイトのMatomoトラッキングは、",
+          "translatedAt": "2026-09-14T11:31:16.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "저희 Matomo 트래킹은 다음과 같이 실행되도록 설정되어 있습니다",
+          "translatedAt": "2026-09-14T11:31:25.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Nosso rastreamento com Matomo está configurado para funcionar",
+          "translatedAt": "2026-09-14T11:31:31.178Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हमारा Matomo tracking इस तरह configure किया गया है कि यह",
+          "translatedAt": "2026-09-14T11:31:38.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hệ thống theo dõi Matomo của chúng tôi được cấu hình để hoạt động",
+          "translatedAt": "2026-09-14T11:31:43.424Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8b374933c6b1627591bc21dba5bde7ae39614e9333d0fd04c48821c2fe6a87bf": {
+      "en": ": the tracker is loaded with cookie support disabled, so it does not set, read, or store any cookie and does not attempt to identify you across visits or devices. Because no cookies are used, this analytics does not require a separate consent banner under the EU ePrivacy Directive and GDPR — it is a legitimate-interest, privacy-friendly measurement of aggregate page views and feature usage on this website only.",
+      "translations": {
+        "de": {
+          "text": ": Der Tracker wird mit deaktivierter Cookie-Unterstützung geladen, sodass weder Cookies gesetzt, ausgelesen noch gespeichert werden und kein Versuch unternommen wird, Sie über Besuche oder Geräte hinweg zu identifizieren. Da keine Cookies verwendet werden, erfordert diese Analyse nach der EU-ePrivacy-Richtlinie und der DSGVO kein gesondertes Einwilligungs-Banner – es handelt sich um eine auf berechtigtem Interesse basierende, datenschutzfreundliche Messung aggregierter Seitenaufrufe und Funktionsnutzungen ausschließlich auf dieser Website.",
+          "translatedAt": "2026-09-14T11:30:45.271Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": " : le traceur est chargé avec la prise en charge des cookies désactivée ; il ne dépose, ne lit et ne stocke donc aucun cookie, et ne cherche pas à vous identifier d'une visite ou d'un appareil à l'autre. Dans la mesure où aucun cookie n'est utilisé, cette mesure d'audience ne nécessite pas de bandeau de consentement spécifique au titre de la directive européenne ePrivacy et du RGPD — il s'agit d'une mesure respectueuse de la vie privée, fondée sur l'intérêt légitime, portant uniquement sur les pages vues globales et l'utilisation des fonctionnalités sur ce site web.",
+          "translatedAt": "2026-09-14T11:30:50.665Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ": el rastreador se carga con el soporte de cookies desactivado, por lo que no crea, lee ni almacena ninguna cookie, ni intenta identificarte entre distintas visitas o dispositivos. Al no utilizar cookies, estas analíticas no requieren un banner de consentimiento independiente según la Directiva sobre la privacidad y las comunicaciones electrónicas de la UE y el RGPD: se trata de una medición de interés legítimo y respetuosa con la privacidad sobre las visitas a páginas y el uso de funciones de forma agregada únicamente en este sitio web.",
+          "translatedAt": "2026-09-14T11:30:57.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "：跟踪器在加载时已禁用 Cookie 支持，因此不会设置、读取或存储任何 Cookie，也不会尝试跨访问或跨设备识别您的身份。由于完全不使用 Cookie，根据欧盟《ePrivacy 指令》和 GDPR，此统计分析无需单独的授权提示条（Consent Banner）——这是一种基于合法利益、保护隐私的衡量方式，仅用于汇总统计本网站的页面浏览量和功能使用情况。",
+          "translatedAt": "2026-09-14T11:31:04.107Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "：追蹤器在載入時已停用 Cookie 支援，因此不會設定、讀取或儲存任何 Cookie，亦不會嘗試跨造訪或跨裝置識別您的身分。由於完全不使用 Cookie，依據歐盟《電子隱私權指令》（ePrivacy Directive）與 GDPR，此分析功能無需額外顯示同意橫幅——這是一項基於正當利益、注重隱私的衡量機制，僅用於統計本網站的彙總頁面瀏覽量與功能使用情況。",
+          "translatedAt": "2026-09-14T11:31:09.392Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "：トラッカーはCookieサポートを無効化して読み込まれるため、Cookieの設定・読み取り・保存を行うことはなく、複数回の訪問やデバイスをまたいでユーザーを特定することもありません。Cookieを使用しないため、このアナリティクスはEU ePrivacy指令およびGDPRに基づく個別の同意バナーを必要としません。これは、当ウェブサイト上での総ページビュー数や機能の利用状況を匿名で集計・測定する、正当な利益に基づいたプライバシーフレンドリーな仕組みです。",
+          "translatedAt": "2026-09-14T11:31:16.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ": 트래커는 쿠키 지원이 비활성화된 상태로 로드되므로 쿠키를 생성, 조회, 저장하지 않으며 방문이나 기기 간에 사용자를 식별하려고 시도하지도 않습니다. 쿠키를 전혀 사용하지 않으므로, 이 분석 방식은 EU ePrivacy 지침 및 GDPR에 따른 별도의 동의 배너가 필요하지 않습니다. 이는 오직 본 웹사이트의 총 페이지 뷰와 기능 사용량만을 측정하는 정당한 이익 기반의 개인정보 보호 친화적인 측정 방식입니다.",
+          "translatedAt": "2026-09-14T11:31:25.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ": o rastreador é carregado com o suporte a cookies desativado, portanto ele não define, lê ou armazena nenhum cookie e não tenta identificar você entre visitas ou dispositivos. Como nenhum cookie é utilizado, essa análise não requer um banner de consentimento separado sob a Diretiva de Privacidade Eletrônica da UE e a GDPR — trata-se de uma medição de legítimo interesse, que respeita a sua privacidade e analisa apenas dados agregados de visualizações de páginas e uso de recursos neste site.",
+          "translatedAt": "2026-09-14T11:31:31.178Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ": tracker को cookie support disabled के साथ load किया जाता है, इसलिए यह कोई भी cookie set, read या store नहीं करता है और visits या devices पर आपको identify करने की कोशिश नहीं करता। चूंकि कोई cookies use नहीं होती हैं, इसलिए इस analytics के लिए EU ePrivacy Directive और GDPR के तहत अलग consent banner की ज़रूरत नहीं है — यह केवल इसी website पर aggregate page views और feature usage का एक legitimate-interest, privacy-friendly measurement है।",
+          "translatedAt": "2026-09-14T11:31:38.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ": trình theo dõi được tải với tính năng cookie bị vô hiệu hóa, do đó không thiết lập, đọc hay lưu trữ bất kỳ cookie nào và không cố gắng nhận dạng bạn qua các lượt truy cập hoặc thiết bị. Vì không sử dụng cookie, phương thức phân tích này không yêu cầu biểu ngữ xin chấp thuận riêng theo Chỉ thị ePrivacy của EU và GDPR — đây là hoạt động đo lường dựa trên lợi ích hợp pháp, thân thiện với quyền riêng tư về tổng số lượt xem trang và mức độ sử dụng tính năng duy nhất trên trang web này.",
+          "translatedAt": "2026-09-14T11:31:43.424Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "91a5f9bdaf576511cd77ed89648412c61da484dfa039041ea3ca62a6eb7c5464": {
+      "en": "No cookies.",
+      "translations": {
+        "de": {
+          "text": "Keine Cookies.",
+          "translatedAt": "2026-09-14T11:30:45.271Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Aucun cookie.",
+          "translatedAt": "2026-09-14T11:30:50.665Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sin cookies.",
+          "translatedAt": "2026-09-14T11:30:57.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无 Cookie。",
+          "translatedAt": "2026-09-14T11:31:04.107Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無 Cookie。",
+          "translatedAt": "2026-09-14T11:31:09.392Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Cookieは使用していません。",
+          "translatedAt": "2026-09-14T11:31:16.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "쿠키를 사용하지 않습니다.",
+          "translatedAt": "2026-09-14T11:31:25.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sem cookies.",
+          "translatedAt": "2026-09-14T11:31:31.178Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई cookies नहीं।",
+          "translatedAt": "2026-09-14T11:31:38.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không sử dụng cookie.",
+          "translatedAt": "2026-09-14T11:31:43.424Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3d257d0d6b97d40c86e79509100a394c297c3c7f4087b5157b04e48e03cd3a1d": {
+      "en": "without cookies",
+      "translations": {
+        "de": {
+          "text": "ohne Cookies",
+          "translatedAt": "2026-09-14T11:30:45.271Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "sans cookies",
+          "translatedAt": "2026-09-14T11:30:50.665Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "sin cookies",
+          "translatedAt": "2026-09-14T11:30:57.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "不使用 Cookie",
+          "translatedAt": "2026-09-14T11:31:04.107Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在不使用 Cookie 的情況下運作",
+          "translatedAt": "2026-09-14T11:31:09.392Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Cookieを使用せずに動作するよう設定されています",
+          "translatedAt": "2026-09-14T11:31:16.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "쿠키 없이",
+          "translatedAt": "2026-09-14T11:31:25.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "sem cookies",
+          "translatedAt": "2026-09-14T11:31:31.178Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "बिना cookies के",
+          "translatedAt": "2026-09-14T11:31:38.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "không dùng cookie",
+          "translatedAt": "2026-09-14T11:31:43.424Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a0215a113474030295b590df9d74f3a609f34980f1afbcd8fb36243f9019bae7": {
+      "en": "Analytics events are limited to non-personal, aggregate signals such as page views, the language you're viewing, and which features you interact with (for example, generating a bookmarklet or choosing a provider). You are not personally identifiable from this data, and it is never combined with any of the locally stored article data described above.",
+      "translations": {
+        "de": {
+          "text": "Analyse-Ereignisse beschränken sich auf nicht-personenbezogene, aggregierte Signale wie Seitenaufrufe, die von Ihnen genutzte Sprache und Funktionen, mit denen Sie interagieren (beispielsweise das Erstellen eines Bookmarklets oder die Auswahl eines Anbieters). Anhand dieser Daten sind Sie nicht persönlich identifizierbar, und sie werden zu keinem Zeitpunkt mit den oben beschriebenen, lokal gespeicherten Artikeldaten zusammengeführt.",
+          "translatedAt": "2026-09-14T11:30:45.271Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les événements d'analyse se limitent à des signaux globaux non personnels, tels que les pages consultées, la langue d'affichage et les fonctionnalités avec lesquelles vous interagissez (par exemple, la génération d'un bookmarklet ou le choix d'un fournisseur). Ces données ne permettent pas de vous identifier personnellement et ne sont jamais associées aux données d'articles stockées localement décrites ci-dessus.",
+          "translatedAt": "2026-09-14T11:30:50.665Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Los eventos analíticos se limitan a señales agregadas y no personales, como páginas vistas, el idioma en el que estás visualizando el sitio y las funciones con las que interactúas (por ejemplo, generar un bookmarklet o elegir un proveedor). No es posible identificarte personalmente a partir de estos datos y nunca se combinan con la información de los artículos almacenada localmente que se describe arriba.",
+          "translatedAt": "2026-09-14T11:30:57.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "统计事件仅限于非个人身份识别的聚合指标，例如页面浏览量、浏览语言以及您使用的功能（例如生成 Bookmarklet 或选择 Provider）。这些数据无法识别您的个人身份，且绝不会与上述任何本地存储的文章数据进行关联。",
+          "translatedAt": "2026-09-14T11:31:04.107Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "分析事件僅限於非個人識別的彙總訊號，例如頁面瀏覽次數、瀏覽時使用的語言，以及您互動過的功能（例如：產生 Bookmarklet 書籤小工具或選擇提供者）。這些資料無法用來識別您的個人身分，且絕不會與上述任何儲存在本機的文章資料合併。",
+          "translatedAt": "2026-09-14T11:31:09.392Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "収集されるアナリティクスイベントは、ページビュー数、表示言語、操作した機能（例：ブックマークレットの生成やプロバイダーの選択など）といった、個人を特定しない集計データのみに限定されています。これらのデータから個人が特定されることはなく、前述のローカルに保存された記事データと組み合わされることも決してありません。",
+          "translatedAt": "2026-09-14T11:31:16.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "분석 이벤트는 페이지 뷰, 현재 보고 있는 언어, 상호작용하는 기능(예: 북마클릿 생성 또는 제공업체 선택)과 같은 비개인적이고 집계된 데이터로만 제한됩니다. 이 데이터로는 개인을 식별할 수 없으며, 위에서 설명한 로컬에 저장된 아티클 데이터와 결합되는 일도 절대 없습니다.",
+          "translatedAt": "2026-09-14T11:31:25.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Os eventos de análise limitam-se a dados agregados e não pessoais, como visualizações de página, o idioma em que você está navegando e com quais recursos você interage (por exemplo, ao gerar um bookmarklet ou escolher um provedor). Não é possível identificar você pessoalmente a partir desses dados, e eles nunca são combinados com nenhum dos dados de artigos armazenados localmente descritos acima.",
+          "translatedAt": "2026-09-14T11:31:31.178Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Analytics events केवल non-personal, aggregate signals तक सीमित हैं जैसे कि page views, आप कौन-सी language देख रहे हैं, और आप किन features के साथ interact करते हैं (उदाहरण के लिए, bookmarklet generate करना या provider चुनना)। इस data से आपकी व्यक्तिगत पहचान नहीं होती, और इसे ऊपर बताए गए locally stored article data के साथ कभी combine नहीं किया जाता है।",
+          "translatedAt": "2026-09-14T11:31:38.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các sự kiện phân tích chỉ giới hạn ở các tín hiệu tổng hợp, phi cá nhân như lượt xem trang, ngôn ngữ bạn đang xem và các tính năng bạn tương tác (ví dụ: tạo bookmarklet hoặc chọn nhà cung cấp). Bạn hoàn toàn không thể bị nhận dạng cá nhân từ dữ liệu này, và dữ liệu cũng không bao giờ được kết hợp với bất kỳ dữ liệu bài viết nào được lưu trữ cục bộ đã mô tả ở trên.",
+          "translatedAt": "2026-09-14T11:31:43.424Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

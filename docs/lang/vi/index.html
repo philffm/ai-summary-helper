@@ -29,6 +29,7 @@
 <meta property="og:description" content="Tóm tắt, lưu và tìm kiếm trang web ngay trên thiết bị. Tiện ích mở rộng Chrome dành cho những ai không muốn để lạc mất danh sách đọc của mình lần nữa.">
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
 <meta property="og:type" content="website">
+
 <!-- Matomo -->
 <script>
   var _paq = window._paq = window._paq || [];
@@ -45,7 +46,6 @@
   })();
 </script>
 <!-- End Matomo Code -->
-
 <link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
 <body>
 
@@ -153,7 +153,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Highlight mờ trực quan, ngay trên trang</h3>
-          <p>AI sẽ đánh dấu mờ các đoạn trích nguyên văn quan trọng nhất trong bài viết — giúp bạn nắm bắt nhanh ý chính trong nháy mắt và đồng bộ liền mạch cùng bản tóm tắt sang Kindle, LocalSend hoặc Markdown.</p>
+          <p>AI sẽ nhẹ nhàng làm nổi bật các <mark class="ai-ghost-highlight">đoạn trích nguyên văn quan trọng nhất</mark> trong bài viết — để bạn có thể <mark class="ai-ghost-highlight">nắm bắt nhanh các thông tin cốt lõi</mark>, và chúng sẽ đi kèm bản tóm tắt sang Kindle, LocalSend hoặc Markdown.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -210,7 +210,10 @@
       }
 
       buttons.forEach(function(b){
-        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona')); });
+        b.addEventListener('click', function(){
+          setPersona(b.getAttribute('data-persona'));
+          window.aishTrack && window.aishTrack('Persona', 'select', b.getAttribute('data-persona'));
+        });
       });
     })();
   </script>
