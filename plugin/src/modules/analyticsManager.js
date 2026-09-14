@@ -106,12 +106,78 @@ function articlesByDay(articles) {
     return result;
 }
 
+/**
+ * Aggregate articles into weekly buckets over the last 12 weeks (84 days),
+ * bucketed by 7-day windows ending today. Week index 0 is the current
+ * (in-progress) week; higher indices are further back.
+ *
+ * @param {Array} articles
+ * @returns {Array<{ week: number, label: string, count: number }>}
+ */
+function articlesByWeek(articles) {
+    const counts = {};
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayMs = today.getTime();
+
+    articles.forEach(a => {
+        const t = new Date(a.timestamp).getTime();
+        if (t > todayMs) return; // future-dated, ignore
+        const diffDays = Math.floor((todayMs - t) / 86400000);
+        const weekIndex = Math.floor(diffDays / 7); // 0 = current week
+        counts[weekIndex] = (counts[weekIndex] || 0) + 1;
+    });
+
+    const result = [];
+    for (let w = 11; w >= 0; w--) {
+        const end = new Date(today);
+        end.setDate(today.getDate() - w * 7);
+        const start = new Date(end);
+        start.setDate(end.getDate() - 6);
+        const label = `${start.toLocaleDateString('en-CA').slice(5)}–${end.toLocaleDateString('en-CA').slice(5)}`;
+        result.push({ week: w, label, count: counts[w] || 0 });
+    }
+    return result;
+}
+
+/**
+ * Decide the default activity view. Once the user has been using the
+ * extension for 3+ weeks (their oldest article is at least 21 days old),
+ * the weekly view is more meaningful than a 30-day daily view — so week
+ * becomes the default. Before that, day view is the default.
+ *
+ * @param {Array} articles
+ * @returns {'day' | 'week'}
+ */
+function defaultActivityView(articles) {
+    let oldest = Infinity;
+    articles.forEach(a => {
+        const t = new Date(a.timestamp).getTime();
+        if (t < oldest) oldest = t;
+    });
+    if (!Number.isFinite(oldest)) return 'day';
+    const ageDays = (Date.now() - oldest) / 86400000;
+    return ageDays >= 21 ? 'week' : 'day';
+}
+
 function renderBarChart(days) {
     const max = Math.max(...days.map(d => d.count), 1);
     const bars = days.map(d => {
         const pct = Math.round((d.count / max) * 100);
         const label = d.day.slice(5); // MM-DD
         return `<div class="ar-bar-wrap" title="${d.day}: ${d.count} article${d.count !== 1 ? 's' : ''}">
+          <div class="ar-bar" style="height:${pct}%"></div>
+          ${d.count > 0 ? `<span class="ar-bar-count">${d.count}</span>` : ''}
+        </div>`;
+    }).join('');
+    return `<div class="ar-chart">${bars}</div>`;
+}
+
+function renderWeekChart(weeks) {
+    const max = Math.max(...weeks.map(d => d.count), 1);
+    const bars = weeks.map(d => {
+        const pct = Math.round((d.count / max) * 100);
+        return `<div class="ar-bar-wrap" title="${d.label}: ${d.count} article${d.count !== 1 ? 's' : ''}">
           <div class="ar-bar" style="height:${pct}%"></div>
           ${d.count > 0 ? `<span class="ar-bar-count">${d.count}</span>` : ''}
         </div>`;
@@ -184,6 +250,7 @@ export function initAnalyticsReport(container, articles) {
     const cats = topCategories(articles);
     const words = wordFrequency(articles);
     const days = articlesByDay(articles);
+    const weeks = articlesByWeek(articles);
     const totalSummaryWords = articles.reduce((sum, a) => sum + countWords(a.summary), 0);
     const timeSavings = computeTimeSavings(articles);
 
@@ -252,8 +319,16 @@ export function initAnalyticsReport(container, articles) {
 
         <!-- Activity chart -->
         <div class="ar-section">
-          <h3 class="ar-section-title">📅 Activity — Last 30 Days</h3>
-          ${renderBarChart(days)}
+          <div class="ar-section-head">
+            <h3 class="ar-section-title">📅 Activity</h3>
+            <div class="ar-view-toggle" role="tablist" aria-label="Activity view">
+              <button type="button" class="ar-view-btn" data-view="day">Day</button>
+              <button type="button" class="ar-view-btn" data-view="week">Week</button>
+            </div>
+          </div>
+          <div class="ar-chart-wrap" data-view="${defaultActivityView(articles)}">
+            ${renderBarChart(days)}
+          </div>
         </div>
 
         <!-- Top categories -->
@@ -280,4 +355,38 @@ export function initAnalyticsReport(container, articles) {
             }));
         });
     });
+
+    // ── Activity day/week toggle ───────────────────────────────────────
+    // Switch the activity chart between a 30-day daily view and a 12-week
+    // weekly view. The active view is persisted so the user's choice sticks
+    // across popup opens. The default (when nothing is stored) is decided by
+    // defaultActivityView(): week once the archive spans 3+ weeks, day before.
+    const chartWrap = container.querySelector('.ar-chart-wrap');
+    const toggleBtns = container.querySelectorAll('.ar-view-btn');
+    if (chartWrap && toggleBtns.length) {
+        const applyView = (view) => {
+            chartWrap.dataset.view = view;
+            toggleBtns.forEach(b => {
+                b.classList.toggle('active', b.dataset.view === view);
+                b.setAttribute('aria-selected', b.dataset.view === view ? 'true' : 'false');
+            });
+            chartWrap.innerHTML = view === 'week' ? renderWeekChart(weeks) : renderBarChart(days);
+        };
+
+        // Restore persisted preference, else use the usage-based default.
+        chrome.storage.local.get(['activityView'], (res) => {
+            const saved = res.activityView === 'day' || res.activityView === 'week'
+                ? res.activityView
+                : defaultActivityView(articles);
+            applyView(saved);
+        });
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.dataset.view;
+                applyView(view);
+                chrome.storage.local.set({ activityView: view });
+            });
+        });
+    }
 }

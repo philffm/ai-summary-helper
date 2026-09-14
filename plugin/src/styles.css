@@ -2143,6 +2143,50 @@ ul#articleList {
   margin: 0 0 10px;
 }
 
+/* Activity section header + day/week toggle */
+.ar-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ar-section-head .ar-section-title {
+  margin: 0;
+}
+
+.ar-view-toggle {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--glass-base, rgba(255,255,255,0.6));
+  border: 1px solid var(--glass-border, rgba(148,163,184,0.25));
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.ar-view-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ar-view-btn:hover {
+  color: var(--text-primary);
+}
+
+.ar-view-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
 /* Bar chart */
 .ar-chart {
   display: flex;

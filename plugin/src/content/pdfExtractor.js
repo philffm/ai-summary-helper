@@ -79,8 +79,6 @@ async function extractPdfText(url) {
 
   const bytes = await fetchPdfBytes(targetUrl);
 
-  const pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
-
   // Bound full-page canvas renders on figure-heavy papers (mirrors the
   // NODE_CAP pattern in modules/archiveGraph.js). 8 is a starting guess.
   const MAX_RASTERIZED_PAGES = 8;
@@ -88,22 +86,54 @@ async function extractPdfText(url) {
   const pageTexts = [];
   let rasterizedCount = 0;
 
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const { html: textHtml, text } = reconstructPageLayout(content.items);
+  // The PDFDocumentProxy is a heavyweight object: it owns the worker
+  // transport, font caches, and (once we render) canvas bitmaps. If we
+  // never tear it down, every inspected PDF permanently leaks typed arrays
+  // (Uint8Array), font data, and detached canvases in the tab's renderer.
+  // We therefore:
+  //   1. call page.cleanup() after each page to release per-page caches,
+  //   2. call pdf.cleanup() after the loop to drop the document's font
+  //      cache, and
+  //   3. call pdf.destroy() in a finally block to terminate the worker
+  //      transport and free the whole document graph.
+  // The worker itself is shared/refcounted by pdf.js, so destroy() only
+  // tears it down once no other loading task references it.
+  let pdf = null;
+  try {
+    pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
 
-    let pageHtml = textHtml;
-    if (rasterizedCount < MAX_RASTERIZED_PAGES) {
-      const imageDataUrl = await extractPageImage(page, pdfjsLib);
-      if (imageDataUrl) {
-        pageHtml += `\n<img src="${imageDataUrl}" alt="Figure from page ${i}" style="max-width:100%;margin:12px 0;">`;
-        rasterizedCount++;
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      try {
+        const content = await page.getTextContent();
+        const { html: textHtml, text } = reconstructPageLayout(content.items);
+
+        let pageHtml = textHtml;
+        if (rasterizedCount < MAX_RASTERIZED_PAGES) {
+          const imageDataUrl = await extractPageImage(page, pdfjsLib);
+          if (imageDataUrl) {
+            pageHtml += `\n<img src="${imageDataUrl}" alt="Figure from page ${i}" style="max-width:100%;margin:12px 0;">`;
+            rasterizedCount++;
+          }
+        }
+
+        pageHtmls.push(pageHtml);
+        pageTexts.push(text);
+      } finally {
+        // Release this page's render caches (fonts, images, canvas) as soon
+        // as we're done with it, instead of holding every page's buffers
+        // until the whole document is processed.
+        try { page.cleanup(); } catch (e) { /* best-effort */ }
       }
     }
 
-    pageHtmls.push(pageHtml);
-    pageTexts.push(text);
+    // Drop the document-level font cache before returning.
+    try { pdf.cleanup(); } catch (e) { /* best-effort */ }
+  } finally {
+    // Always tear down the document + worker transport, even on error.
+    if (pdf) {
+      try { await pdf.destroy(); } catch (e) { /* best-effort */ }
+    }
   }
 
   return {

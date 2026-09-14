@@ -284,6 +284,13 @@ function loadD3() {
 export function initArchiveGraph(container, articles, highlightTimestamp, similarityIndex = null) {
     if (!container || !articles || articles.length === 0) return;
 
+    // If a previous graph is still running in this container, tear it down
+    // first. A D3 forceSimulation keeps ticking on an animation loop and
+    // retains the whole node/link object graph; leaving one running while
+    // we build a replacement leaks CPU + memory and stacks duplicate
+    // ResizeObserver/window listeners.
+    destroyArchiveGraph(container);
+
     container.innerHTML = '';
     container.style.position = 'relative';
     container.style.width = '100%';
@@ -295,6 +302,46 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
         .catch(() => {
             container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">D3 library failed to load.</div>';
         });
+}
+
+/**
+ * Stop the D3 force simulation and release every resource a graph render
+ * attached to `container`: the simulation's animation loop, the
+ * ResizeObserver, the window resize listener, and the pulse transition
+ * timers. Safe to call on a container that was never rendered (all the
+ * __archiveGraph* fields are absent). Call this when the graph tab is
+ * hidden, the popup closes, or before re-rendering the same container.
+ *
+ * @param {HTMLElement} container
+ */
+export function destroyArchiveGraph(container) {
+    if (!container) return;
+
+    // Stop the force simulation so it stops consuming CPU on its tick loop
+    // and releases its reference to the node/link object graph.
+    if (container.__archiveGraphSimulation) {
+        try { container.__archiveGraphSimulation.stop(); } catch (e) { /* best-effort */ }
+        container.__archiveGraphSimulation = null;
+    }
+
+    // Cancel any in-flight pulse transition on the highlighted node.
+    if (container.__archiveGraphPulse) {
+        try { container.__archiveGraphPulse.stop(); } catch (e) { /* best-effort */ }
+        container.__archiveGraphPulse = null;
+    }
+
+    if (container.__archiveGraphResizeObserver) {
+        try { container.__archiveGraphResizeObserver.disconnect(); } catch (e) { /* best-effort */ }
+        container.__archiveGraphResizeObserver = null;
+    }
+    if (container.__archiveGraphWindowResizeHandler) {
+        window.removeEventListener('resize', container.__archiveGraphWindowResizeHandler);
+        container.__archiveGraphWindowResizeHandler = null;
+    }
+    if (container.__archiveGraphResizeDebounce) {
+        clearTimeout(container.__archiveGraphResizeDebounce);
+        container.__archiveGraphResizeDebounce = null;
+    }
 }
 
 function renderGraph(container, articles, highlightTimestamp, minTagDegree, similarityIndex) {
@@ -322,14 +369,7 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     // ResizeObserver/window listener watching this container — stop them
     // before replacing the DOM, or we'd end up with duplicate handlers
     // stacking up.
-    if (container.__archiveGraphResizeObserver) {
-        container.__archiveGraphResizeObserver.disconnect();
-        container.__archiveGraphResizeObserver = null;
-    }
-    if (container.__archiveGraphWindowResizeHandler) {
-        window.removeEventListener('resize', container.__archiveGraphWindowResizeHandler);
-        container.__archiveGraphWindowResizeHandler = null;
-    }
+    destroyArchiveGraph(container);
 
     const width = container.clientWidth || 400;
     const height = container.clientHeight || 400;
@@ -383,6 +423,7 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     const scheduleResize = () => {
         clearTimeout(resizeDebounce);
         resizeDebounce = setTimeout(measureAndResize, 150);
+        container.__archiveGraphResizeDebounce = resizeDebounce;
     };
 
     const resizeObserver = new ResizeObserver(scheduleResize);
@@ -431,6 +472,11 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
         .force('charge', d3.forceManyBody().strength(-250))
         .force('center', d3.forceCenter(width / 2, height / 2))
         .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + 6));
+
+    // Keep a handle on the container so destroyArchiveGraph() (and the
+    // next initArchiveGraph call) can stop this simulation and release its
+    // node/link object graph instead of letting it tick forever.
+    container.__archiveGraphSimulation = simulation;
 
     // Draw links into mainContainer — color lookup via Map (O(1)) instead of
     // the old nodes.find() (O(n) per link).
@@ -488,9 +534,13 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
             .each(function() {
                 const el = d3.select(this);
                 (function pulse() {
-                    el.transition().duration(700).attr('r', 15).attr('stroke-opacity', 0.4)
+                    const t = el.transition().duration(700).attr('r', 15).attr('stroke-opacity', 0.4)
                       .transition().duration(700).attr('r', 12).attr('stroke-opacity', 1)
                       .on('end', pulse);
+                    // Keep a handle so destroyArchiveGraph() can stop the
+                    // loop; otherwise the pulse keeps scheduling transitions
+                    // forever even after the graph is hidden/closed.
+                    container.__archiveGraphPulse = t;
                 })();
             });
     }

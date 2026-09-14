@@ -69,9 +69,25 @@ export function restoreAnnotations() {
       return userHighlightingEnabled;
     });
 
-    pageAnnotations.forEach(ann => {
-      highlightTextOnPage(document.body, ann.text, ann.type === 'ghost');
-    });
+    if (pageAnnotations.length === 0) return;
+
+    // highlightTextOnPage() walks the whole document with a TreeWalker to
+    // locate each annotation's text. On large, dynamic pages that scan can
+    // block the main render thread. Defer it to an idle callback so it runs
+    // in the browser's spare time instead of during a paint/scroll frame.
+    // requestIdleCallback is available in all modern Chrome/Firefox/Safari
+    // content-script contexts; fall back to a macrotask if it isn't.
+    const run = () => {
+      pageAnnotations.forEach(ann => {
+        highlightTextOnPage(document.body, ann.text, ann.type === 'ghost');
+      });
+    };
+
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(run, { timeout: 2000 });
+    } else {
+      setTimeout(run, 0);
+    }
   });
 }
 

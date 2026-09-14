@@ -488,6 +488,10 @@ export function initArticleManager(uiManager) {
         const isGraph = graphContainer.style.display === 'block';
         if (isGraph) {
             graphContainer.style.display = 'none';
+            // Stop the D3 force simulation + release its listeners when the
+            // graph is hidden — otherwise it keeps ticking on an animation
+            // loop and retaining the node/link object graph in memory.
+            import('./archiveGraph.js').then(mod => mod.destroyArchiveGraph(graphContainer));
             if (detailTopBar?.style.display === 'flex') {
                 if (articleDetail) articleDetail.style.display = 'block';
             } else {
@@ -569,6 +573,19 @@ export function initArticleManager(uiManager) {
     // ── Listen for open-article events from the graph preview card ────
     const graphContainer = document.getElementById('graphContainer');
     if (graphContainer) {
+        // Stop the D3 force simulation whenever the graph container is
+        // hidden (toggle, back button, delete, report switch, screen
+        // change). A single observer covers every hide path instead of
+        // sprinkling destroyArchiveGraph() calls at each call site. The
+        // simulation otherwise keeps ticking on an animation loop and
+        // retains the node/link object graph while the graph is invisible.
+        const graphVisibilityObserver = new MutationObserver(() => {
+            if (graphContainer.style.display === 'none') {
+                import('./archiveGraph.js').then(mod => mod.destroyArchiveGraph(graphContainer));
+            }
+        });
+        graphVisibilityObserver.observe(graphContainer, { attributes: true, attributeFilter: ['style'] });
+
         graphContainer.addEventListener('open-article', (e) => {
             if (e.detail) {
                 uiManager.showScreen('history');
@@ -653,51 +670,123 @@ export function renderArticles(articles) {
         articleList.appendChild(emptyMessage);
         return;
     }
-    const sortedArticles = articles.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    sortedArticles.forEach((article) => {
-        const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || "No title available";
-        const listItem = document.createElement('li');
-        listItem.classList.add('article-card');
-        listItem.dataset.ts = String(article.timestamp);
-        const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-        let articleDomain = '';
-        if (article.url) {
-            articleDomain = new URL(article.url).hostname;
-        }
-        const tags = article.tags || [];
-        const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
-        const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
-        const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji} ${article.modelId}</span>` : '';
-        
-        // Decision metadata (timeframe + reason)
-        const decisionHtml = article.isDecision ? `
-          <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(148,163,184,0.1);">
-            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-              ${article.decisionTimeframe ? `<span style="font-size:11px;background:rgba(59,130,246,0.15);color:#3b82f6;padding:3px 8px;border-radius:12px;font-weight:600;">🔖 ${article.decisionTimeframe}</span>` : ''}
-              ${article.decisionReason ? `<span style="font-size:11px;color:#94a3b8;font-style:italic;">"${article.decisionReason}"</span>` : ''}
-            </div>
-          </div>
-        ` : '';
-        
-        listItem.innerHTML = `
-            <div class="article-header">
-              <div>
-                <h4>${articleHeader}</h4>
-                <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
-                ${tagsHtml}
-                ${modelBadge}
-                ${decisionHtml}
-              </div>
-            </div>
-        `;
-        articleList.appendChild(listItem);
 
-        // Click on the card itself opens detail
-        listItem.addEventListener('click', (event) => {
-            if (event.target.closest('button') || event.target.closest('a')) return;
-            showArticleDetail(article);
-        });
+    // Cancel any in-flight chunked render so a rapid re-render (e.g. a
+    // search keystroke) doesn't keep appending stale cards after we've
+    // cleared the list.
+    if (articleList.__renderChunkId) {
+        cancelIdleCallback(articleList.__renderChunkId);
+        articleList.__renderChunkId = null;
+    }
+
+    const sortedArticles = articles.slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    // Render in small idle-time chunks instead of building every card in
+    // one synchronous pass. On a large archive the old code blocked the
+    // main thread for the whole render — the list sat empty (the
+    // innerHTML='' above) until every card was built, which is the
+    // "empty screen for a split second" flash. Chunking lets the browser
+    // paint the first cards immediately and fill the rest in spare time.
+    const CHUNK = 20;
+    let index = 0;
+
+    const renderChunk = () => {
+        const end = Math.min(index + CHUNK, sortedArticles.length);
+        for (; index < end; index++) {
+            const article = sortedArticles[index];
+            const listItem = buildArticleCard(article);
+            articleList.appendChild(listItem);
+        }
+        if (index < sortedArticles.length) {
+            articleList.__renderChunkId = scheduleIdle(renderChunk);
+        } else {
+            articleList.__renderChunkId = null;
+        }
+    };
+
+    renderChunk();
+}
+
+/**
+ * Build a single archive list item (li.article-card) for `article`.
+ * Extracted from renderArticles() so the chunked renderer can build cards
+ * one at a time without duplicating the markup.
+ *
+ * @param {object} article
+ * @returns {HTMLLIElement}
+ */
+function buildArticleCard(article) {
+    const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || "No title available";
+    const listItem = document.createElement('li');
+    listItem.classList.add('article-card');
+    listItem.dataset.ts = String(article.timestamp);
+    const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    let articleDomain = '';
+    if (article.url) {
+        articleDomain = new URL(article.url).hostname;
+    }
+    const tags = article.tags || [];
+    const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
+    const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
+    const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji} ${article.modelId}</span>` : '';
+
+    // Decision metadata (timeframe + reason)
+    const decisionHtml = article.isDecision ? `
+      <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(148,163,184,0.1);">
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          ${article.decisionTimeframe ? `<span style="font-size:11px;background:rgba(59,130,246,0.15);color:#3b82f6;padding:3px 8px;border-radius:12px;font-weight:600;">🔖 ${article.decisionTimeframe}</span>` : ''}
+          ${article.decisionReason ? `<span style="font-size:11px;color:#94a3b8;font-style:italic;">"${article.decisionReason}"</span>` : ''}
+        </div>
+      </div>
+    ` : '';
+
+    listItem.innerHTML = `
+        <div class="article-header">
+          <div>
+            <h4>${articleHeader}</h4>
+            <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
+            ${tagsHtml}
+            ${modelBadge}
+            ${decisionHtml}
+          </div>
+        </div>
+    `;
+
+    // Click on the card itself opens detail
+    listItem.addEventListener('click', (event) => {
+        if (event.target.closest('button') || event.target.closest('a')) return;
+        showArticleDetail(article);
     });
+
+    return listItem;
+}
+
+/**
+ * Schedule `fn` to run during the browser's idle time, falling back to a
+ * macrotask when requestIdleCallback isn't available. Returns a handle that
+ * can be passed to cancelIdleCallback() (or clearTimeout() for the fallback).
+ *
+ * @param {() => void} fn
+ * @returns {number}
+ */
+function scheduleIdle(fn) {
+    if (typeof requestIdleCallback === 'function') {
+        return requestIdleCallback(fn, { timeout: 1000 });
+    }
+    return setTimeout(fn, 0);
+}
+
+/**
+ * Cancel a handle returned by scheduleIdle().
+ * @param {number} handle
+ */
+function cancelIdleCallback(handle) {
+    if (typeof handle !== 'number') return;
+    if (typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(handle);
+    } else {
+        clearTimeout(handle);
+    }
 }
 
 export function filterArticles() {
