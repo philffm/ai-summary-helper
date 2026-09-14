@@ -75,6 +75,22 @@ function bundleContentScript(entryPath) {
     const seen = new Set(); // absolute paths already inlined
     const parts = [];
 
+    // Guard-detection: if the entry file is already a bundled output (it
+    // contains the injection-guard marker we emit below), then src/content.js
+    // has been accidentally overwritten with a previously-bundled copy of
+    // itself. Bundling it again would wrap it in a SECOND injection guard,
+    // silently no-opping the entire content script at runtime. Fail loudly
+    // here instead of shipping a broken build.
+    const entrySrc = fs.readFileSync(entryPath, 'utf8');
+    if (entrySrc.includes('__AISH_CONTENT_LOADED')) {
+        throw new Error(
+            `Refusing to bundle ${entryPath}: it already contains the injection-guard ` +
+            `marker (__AISH_CONTENT_LOADED). This means src/content.js was overwritten ` +
+            `with an already-bundled copy of itself. Restore the modular source ` +
+            `(git checkout -- ${entryPath}) and re-run the build.`
+        );
+    }
+
     function stripModuleSyntax(src) {
         // Remove `import ... from '...';` and `export ` keywords.
         return src
@@ -155,6 +171,32 @@ function main() {
     const args = process.argv.slice(2);
     const clean = args.includes('--clean');
     const targets = args.filter(a => !a.startsWith('--'));
+
+    // Standalone bundling mode, used by plugin/build.sh. Collapses the
+    // content-script bundler into this single implementation (build.sh no
+    // longer carries its own inline copy). Usage: --bundle <target_dir>
+    const bundleIdx = args.indexOf('--bundle');
+    if (bundleIdx !== -1) {
+        const targetDir = args[bundleIdx + 1];
+        if (!targetDir) {
+            console.error('Usage: node scripts/build.js --bundle <target_dir>');
+            process.exit(1);
+        }
+        const entry = path.join(SRC, 'content.js');
+        if (!fs.existsSync(entry)) {
+            console.error(`No ${path.relative(ROOT, entry)} found to bundle.`);
+            process.exit(1);
+        }
+        try {
+            const bundled = bundleContentScript(entry);
+            fs.writeFileSync(path.join(targetDir, 'content.js'), bundled);
+            console.log(`  ✓ bundled content.js (${bundled.length} bytes)`);
+        } catch (err) {
+            console.error(`✗ ${err.message}`);
+            process.exit(1);
+        }
+        return;
+    }
 
     if (clean) {
         fs.rmSync(DEV, { recursive: true, force: true });

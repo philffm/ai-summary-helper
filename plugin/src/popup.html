@@ -17,7 +17,7 @@
         <h2>AI Summary Helper</h2>
       </div>
       <div class="header-buttons">
-        <button id="popoutButton" class="button-icon" title="Open in sidebar">↗️</button>
+        <button id="popoutButton" class="button-icon" title="Open in sidebar" aria-label="Open in sidebar">↗️</button>
       </div>
     </div>
 
@@ -120,7 +120,7 @@
                 <div id="modelIdGrid" class="tag-grid" style="border-top:1px solid var(--outline);padding-top:8px;"></div>
                 <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--outline);display:flex;gap:6px;">
                   <input type="text" id="customModelInput" class="chip-panel-search" placeholder="Add custom model ID…" style="margin-bottom:0;" />
-                  <button id="setCustomModelBtn" class="button-secondary" style="flex-shrink:0;font-size:11px;">+</button>
+                  <button id="setCustomModelBtn" class="button-secondary" aria-label="Add custom model" style="flex-shrink:0;font-size:11px;">+</button>
                 </div>
                 <button id="modelSettingsLink" class="button-secondary" style="width:100%;font-size:11px;margin-top:6px;">⚙️ Settings</button>
                 <select id="modelSelect" style="display:none"></select>
@@ -157,13 +157,13 @@
       <div id="historyScreen" class="screen">
         <div id="historyTopBar" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
           <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;flex:1;" />
-          <button id="graphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
-          <button id="reportToggleBtn" class="button-secondary" title="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
+          <button id="graphToggleBtn" class="button-secondary" title="View Graph" aria-label="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
+          <button id="reportToggleBtn" class="button-secondary" title="View Analytics Report" aria-label="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
         </div>
         <div id="detailTopBar" style="display:none;gap:8px;margin-bottom:12px;align-items:center;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
-          <button id="detailGraphToggleBtn" class="button-secondary" title="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
-          <button id="detailReportToggleBtn" class="button-secondary" title="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
+          <button id="detailGraphToggleBtn" class="button-secondary" title="View Graph" aria-label="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
+          <button id="detailReportToggleBtn" class="button-secondary" title="View Analytics Report" aria-label="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
           <button id="detailDeleteBtn" class="button-secondary delete-top-button" title="Delete Article" aria-label="Delete Article" style="height:44px;width:44px;flex-shrink:0;">🗑️</button>
         </div>
         <ul id="articleList"></ul>

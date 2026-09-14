@@ -292,10 +292,69 @@ export function isBackgroundDark() {
 }
 
 /**
- * Convert simple markdown to HTML.
+ * Sanitize AI-generated HTML against an explicit allowlist of tags.
+ *
+ * The summary HTML originates from an LLM API response (or a user-supplied
+ * custom endpoint) and is inserted into the visited page's DOM via
+ * innerHTML. Without sanitization, a malicious/compromised endpoint — or a
+ * prompt-injection where page content coerces the model into echoing
+ * attacker-supplied markup — could inject arbitrary script/event-handler
+ * markup into the page. This strips every tag and attribute not on the
+ * allowlist, keeping only the tags the system prompt actually asks for
+ * (plus the heading/list tags markdownToHtml itself emits).
+ *
+ * @param {string} html raw HTML to sanitize
+ * @returns {string} sanitized HTML containing only allowlisted tags, no attributes
+ */
+export function sanitizeHtml(html) {
+  // Tags markdownToHtml emits plus the ones the system prompt requests.
+  const ALLOWED_TAGS = new Set(['h1', 'h2', 'h3', 'p', 'ul', 'li', 'strong', 'em', 'br']);
+  // No attributes are needed for any of these tags; strip them all.
+  const ALLOWED_ATTRS = new Set();
+
+  if (typeof document === 'undefined') {
+    // Non-DOM context (e.g. tests): fall back to a conservative regex strip.
+    return String(html)
+      .replace(/<script[\s\S]*?<\/script>/gi, '')
+      .replace(/<[^>]*>/g, (tag) => {
+        const name = (tag.match(/^<\/?\s*([a-zA-Z0-9]+)/) || [])[1];
+        return name && ALLOWED_TAGS.has(name.toLowerCase()) ? tag : '';
+      });
+  }
+
+  const container = document.createElement('div');
+  container.innerHTML = String(html);
+
+  const walk = (node) => {
+    for (let i = node.children.length - 1; i >= 0; i--) {
+      const child = node.children[i];
+      const tag = child.tagName ? child.tagName.toLowerCase() : '';
+      if (tag && ALLOWED_TAGS.has(tag)) {
+        // Keep the element but strip every attribute.
+        for (let a = child.attributes.length - 1; a >= 0; a--) {
+          const attr = child.attributes[a].name;
+          if (!ALLOWED_ATTRS.has(attr.toLowerCase())) child.removeAttribute(attr);
+        }
+        walk(child);
+      } else {
+        // Disallowed element: unwrap, keeping its text/children.
+        const parent = child.parentNode;
+        while (child.firstChild) parent.insertBefore(child.firstChild, child);
+        parent.removeChild(child);
+      }
+    }
+  };
+
+  walk(container);
+  return container.innerHTML;
+}
+
+/**
+ * Convert simple markdown to HTML, then sanitize the result against an
+ * allowlist so it is safe to insert into the page via innerHTML.
  */
 export function markdownToHtml(text) {
-  return text
+  const html = text
     .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '') // Strip code blocks
     .replace(/^# (.*$)/gim, '<h1>$1</h1>')
     .replace(/^## (.*$)/gim, '<h2>$1</h2>')
@@ -304,4 +363,5 @@ export function markdownToHtml(text) {
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
     .replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>').replace(/<\/ul>\n<ul>/g, '') // Basic lists
     .replace(/\n/g, '<br>'); // Handle line breaks
+  return sanitizeHtml(html);
 }

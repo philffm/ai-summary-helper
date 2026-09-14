@@ -73,13 +73,19 @@ function generateBookmarklet() {
   const prompt = document.getElementById('prompt').value.trim();
   const selectedModel = document.getElementById('model').value.trim();
 
-  if (!apiKey || !prompt || !selectedModel) {
-    alert('Please provide the API key, model, and prompt.');
+  if (!prompt || !selectedModel) {
+    alert('Please provide the model and prompt.');
     return;
   }
 
   let apiUrl;
   let modelIdentifier;
+  // Ollama runs locally and needs no API key; other providers require one.
+  const needsApiKey = selectedModel !== 'ollama';
+  if (needsApiKey && !apiKey) {
+    alert('Please provide the API key.');
+    return;
+  }
 
   let favIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMFSURBVHgBXVNNaFRXFP7OnfcmphnTSX+SJmnNgBBiWzKBQmkqbTPtQiilitZFlYAgIoJg3IjiIiOIGzejLhQEcaHgQjGBKLqaqAkiik78QaOC4xhjXOiME+P45r57j+e9aIg+uIfH+fnO93HOIXzybb6seziC5Wx5BQgJImIwxpg5F2V3V6ab8vPz6cNPX5bjlYjfD+I+Ei9LIQVWYoz3Rh4zMrVGgFJUmgMIimeMzkIhqRTosxihrg5wo4C1BN9nVN4Ar6fB1gqKxZgfcVNHBcQJAMqe3y8Uu6I1BF16jMnbBSxQNAvPYX+8tUBDezuR2wStuQtVr1/cW2nd6UrCKnrkuIQnuSxWt8ewYdXSsGiyAsRcoN6ZlXn41CgGCxqNHUvZaEvCJqW0Vv22Cih+gw4u4tvGzzF64yH2HjmPllpgvAzcevgUZy/dQndnAh0ogsw0WV/kGFqhrNBhoVeeKqA7mcDN8QLODOfww+JvsDNzEl7+Pk4MXcaPi1tw9sIYfmpvAVenIQCwHi9XfpW7rBGlxoqRZ3zs2fofLl29i23r/8botXsC1oyR6+OwJmwbPmlMpsoJJQbVGUvak4AJgn6od/vGf3Fo6Brq62pQH1uANf/8GnQJ49oDdIURSHeMx3koaquULHHrLEgIcHAIba1N2LR22dzSBOwEAZILE0yHkHOs4QHW6KtMR8IOVuhdvHIbi5q/wv9/LMHu/SfC4sLT51jU2ohiqYzilI+6hnDKOaXf8mAgIxptxLFTWfSuTKHhiy+xetlvyE9M4fefv0dnRxu+E8DelX/hzoNnUKoeQY2uql3q3I6Fw0Yjo5w4T5gkdmeOw3iv4XgvUHpVRr4wic4lCfSu+hMHjgxgJN8kimOin/ed21GbD1e5J12MR3w3y6ba9XLiBl5O5qTDzEdHRsrlrxO/ULy5EypSkzOuTg2nG0pzx9TTV4zDddIyyi2zk+Bgi4Nrog93R8oBRdQ+1PrpoPija5wHlLBQadnNpAAkg7uULKHKg+IfGMksHJ6f/w6/N43lzJpMOAAAAABJRU5ErkJggg==';
 
@@ -89,6 +95,12 @@ function generateBookmarklet() {
   } else if (selectedModel === 'mistral') {
     apiUrl = 'https://api.mistral.ai/v1/chat/completions';
     modelIdentifier = 'mistral-large-latest';
+  } else if (selectedModel === 'ollama') {
+    // Ollama exposes an OpenAI-compatible endpoint on localhost and needs no
+    // API key (the generated bookmarklet only sends an Authorization header
+    // when a key is present).
+    apiUrl = 'http://localhost:11434/v1/chat/completions';
+    modelIdentifier = 'llama3.2';
   } else if (selectedModel === 'claude') {
     apiUrl = 'https://api.anthropic.com/v1/complete';  // Example URL, adjust based on actual API
     modelIdentifier = 'claude-v1';
@@ -181,12 +193,12 @@ function generateBookmarklet() {
 
       messageDiv.textContent = 'Retrieving summary...';
 
+      const headers = { 'Content-Type': 'application/json' };
+      if (apiKey) headers['Authorization'] = 'Bearer ' + apiKey;
+
       fetch(apiUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + apiKey
-        },
+        headers: headers,
         body: JSON.stringify({
           model: modelIdentifier,
           messages: [
