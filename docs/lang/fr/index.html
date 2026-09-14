@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek ou un endpoint personnalisé — ou connectez-le à un modèle local Ollama pour une exécution 100 % on-device sans aucun transfert réseau.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Surlignages subtils, directement sur la page</h3>
+          <p>L'IA surligne discrètement les passages textuels les plus importants de l'article — vous permettant de parcourir l'essentiel en un coup d'œil, tout en les intégrant au résumé vers Kindle, LocalSend ou Markdown.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Une vraie recherche, 100 % locale</h3>
           <p>Recherche plein texte dans les titres, tags et contenus d'articles — propulsée par un index TF-IDF généré dans votre navigateur. Zéro latence, aucun serveur externe, données strictement privées.</p>
@@ -238,6 +243,8 @@
         <p>Fonctionne sur tous les navigateurs et systèmes d'exploitation — y compris sur iOS, où l'extension n'est pas disponible. Choisissez un fournisseur, générez un lien et faites-le glisser dans votre barre de favoris. Un simple clic sur n'importe quelle page y insère directement un résumé par IA.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">Intégré (inline) — cliquez pour choisir l'emplacement</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">La fenêtre flottante affiche le résumé dans un coin de la page. Le mode intégré vous permet de cliquer à l'endroit exact où insérer le résumé.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Lecture rapide du résumé (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>Surligner discrètement les passages clés sur la page</span>
+          </label>
+          <p class="bm-hint">Surligne subtilement les passages textuels les plus importants de l'article. Les surlignages sont également conservés lors de l'envoi vers Kindle, LocalSend, du téléchargement au format .MD ou du partage.</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Section de résumé d'article avec un titre créatif expliquant l'article en termes simples.

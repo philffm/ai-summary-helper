@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek ou um endpoint personalizado — ou aponte para um modelo local do Ollama e rode tudo offline, sem usar a rede para essa etapa e sem custos com API.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Destaques sutis, direto na página</h3>
+          <p>A IA destaca sutilmente os trechos mais importantes e literais do artigo — assim você passa o olho nas ideias principais num instante, e eles acompanham o resumo para o Kindle, LocalSend ou Markdown.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Pesquisa de verdade, no seu dispositivo</h3>
           <p>Pesquisa de texto completo em títulos, tags e conteúdo dos artigos — alimentada por um índice TF-IDF criado diretamente no seu navegador. Sem latência, sem atrasos e sem enviar nada para fora.</p>
@@ -238,6 +243,8 @@
         <p>Funciona em qualquer navegador e sistema operacional — incluindo o iOS, onde a extensão não roda. Escolha um provedor, gere o link e arraste-o para a sua barra de favoritos. Com um clique em qualquer página, você insere um resumo por IA diretamente nela.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">No texto — clique para escolher o local</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">A caixa flutuante exibe o resumo em uma sobreposição no canto. A opção no texto permite que você clique no local exato da página onde o resumo deve ser inserido.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Leitura dinâmica do resumo (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>Destacar sutilmente trechos-chave na página</span>
+          </label>
+          <p class="bm-hint">Destaca sutilmente os trechos literais mais importantes do artigo. Os destaques também são incluídos ao enviar para o Kindle, LocalSend, baixar como .MD ou compartilhar.</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Seção de resumo do artigo com um título criativo explicando o artigo de forma simples.

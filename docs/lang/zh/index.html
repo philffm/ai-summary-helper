@@ -134,6 +134,11 @@
           <p>支持 OpenAI、Gemini、Mistral、DeepSeek 或自定义端点——也可以直接指向本地 Ollama 模型，这一步完全在本地运行、无需联网。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>原位幽灵高亮，直接呈现在页面上</h3>
+          <p>AI 会在文章中以浅色高亮标出最重要的原文段落——让你一眼抓住核心要点，高亮内容还会随摘要同步导出至 Kindle、LocalSend 或 Markdown。</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>真正的设备端本地搜索</h3>
           <p>依托浏览器内置的 TF-IDF 索引，支持对标题、标签和文章全文进行瞬时检索。无需网络往返，零延迟，数据绝不上云。</p>
@@ -238,6 +243,8 @@
         <p>适用于任何浏览器和操作系统——包括无法运行扩展程序的 iOS。选择服务商，生成链接并拖到书签栏即可。在任意网页上一键点击，即可直接插入 AI 摘要。</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">页面内嵌——点击选择插入位置</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">浮动窗口会在页面角落浮层展示摘要；页面内嵌则允许你点击网页上的具体位置直接插入摘要。</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>快速阅读摘要 (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>在页面上以幽灵高亮标出重点段落</span>
+          </label>
+          <p class="bm-hint">以浅色高亮标出文章中最重要的原文段落。发送至 Kindle、LocalSend、下载为 .MD 或分享时，高亮内容也会一并包含。</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">文章摘要部分包含富有创意的标题，用通俗易懂的语言解释文章核心。

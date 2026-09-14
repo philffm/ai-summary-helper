@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek, या कोई custom endpoint — या इसे local Ollama model पर point करें और बिना किसी network usage या recurring cost के पूरी तरह offline चलाएं।</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Ghost highlights, सीधे पेज पर</h3>
+          <p>AI आर्टिकल के सबसे ज़रूरी verbatim passages को हल्के से highlight करता है — ताकि आप एक नज़र में key insights को skim कर सकें, और ये summary के साथ Kindle, LocalSend, या Markdown में भी सेव होते हैं।</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Real search, सीधे on-device</h3>
           <p>Titles, tags और article content में full-text search — आपके ब्राउज़र में बने TF-IDF index द्वारा संचालित। कोई सर्वर round-trip नहीं, कोई lag नहीं, और कोई डेटा बाहर नहीं जाता।</p>
@@ -238,6 +243,8 @@
         <p>किसी भी browser और OS पर काम करता है — iOS पर भी, जहाँ extension नहीं चल सकता। एक provider चुनें, link generate करें, और इसे अपने bookmarks bar में drag करें। किसी भी page पर बस एक click से सीधे AI summary insert हो जाती है।</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">Inline — spot चुनने के लिए click करें</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">Floating box summary को corner overlay में दिखाता है। Inline mode में आप page पर ठीक उस जगह click कर सकते हैं जहाँ summary insert करनी हो।</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Summary को speed-read करें (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>पेज पर key passages को ghost-highlight करें</span>
+          </label>
+          <p class="bm-hint">आर्टिकल के सबसे ज़रूरी verbatim passages को हल्के से highlight करता है। Kindle, LocalSend पर भेजते समय, .MD के रूप में download करते समय या share करते समय भी ये highlights शामिल रहते हैं।</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.

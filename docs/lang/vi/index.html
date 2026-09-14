@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek hoặc endpoint tùy chỉnh — hoặc trỏ đến mô hình Ollama cục bộ để xử lý hoàn toàn ngoại tuyến mà không cần kết nối mạng.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Highlight mờ trực quan, ngay trên trang</h3>
+          <p>AI sẽ đánh dấu mờ các đoạn trích nguyên văn quan trọng nhất trong bài viết — giúp bạn nắm bắt nhanh ý chính trong nháy mắt và đồng bộ liền mạch cùng bản tóm tắt sang Kindle, LocalSend hoặc Markdown.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Tìm kiếm thực thụ, ngay trên thiết bị</h3>
           <p>Tìm kiếm toàn văn (full-text) theo tiêu đề, thẻ (tag) và nội dung bài viết — được hỗ trợ bởi chỉ mục TF-IDF tích hợp ngay trong trình duyệt. Không có độ trễ kết nối, không giật lag, không gửi dữ liệu ra bên ngoài.</p>
@@ -238,6 +243,8 @@
         <p>Hoạt động trên mọi trình duyệt và hệ điều hành — bao gồm cả iOS, nơi tiện ích mở rộng không thể chạy. Chọn một nhà cung cấp, tạo liên kết và kéo vào thanh dấu trang. Chỉ một cú nhấp chuột trên bất kỳ trang nào để chèn ngay tóm tắt AI vào trang đó.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">Nội dòng — nhấp để chọn vị trí</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">Khung nổi hiển thị tóm tắt dưới dạng lớp phủ ở góc màn hình. Chế độ nội dòng cho phép bạn nhấp vào vị trí chính xác trên trang muốn chèn tóm tắt.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Đọc nhanh bản tóm tắt (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>Highlight mờ các đoạn quan trọng trên trang</span>
+          </label>
+          <p class="bm-hint">Đánh dấu mờ các đoạn trích nguyên văn quan trọng nhất trong bài viết. Các phần highlight cũng được giữ nguyên khi gửi sang Kindle, LocalSend, tải về dưới dạng .MD hoặc chia sẻ.</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Phần tóm tắt bài viết với tiêu đề sáng tạo giải thích bài viết bằng thuật ngữ đơn giản.

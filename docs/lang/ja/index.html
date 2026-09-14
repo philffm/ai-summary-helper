@@ -134,6 +134,11 @@
           <p>OpenAI、Gemini、Mistral、DeepSeek、カスタムエンドポイントに対応。ローカルのOllamaモデルを指定すれば、このステップでネットワーク通信を一切行わずに処理することも可能です。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>ページ上に直接、さりげなくハイライト</h3>
+          <p>AIが記事内の最も重要な原文をさりげなくハイライトします。要点をひと目で把握でき、KindleやLocalSendへの送信、Markdownへの保存時にもハイライトがそのまま引き継がれます。</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>オンデバイスでの本格的な全文検索</h3>
           <p>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</p>
@@ -238,6 +243,8 @@
         <p>拡張機能が利用できないiOSを含め、あらゆるブラウザやOSで動作します。プロバイダーを選んでリンクを生成し、ブックマークバーにドラッグするだけ。ページ上で1クリックするだけで、AI要約が直接挿入されます。</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">インライン — クリックして挿入場所を選択</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">「フローティングボックス」は画面の隅にオーバーレイで要約を表示します。「インライン」はページ上の指定した位置をクリックして直接挿入できます。</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>要約を速読（RSVP）</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>ページ上の重要箇所をさりげなくハイライト</span>
+          </label>
+          <p class="bm-hint">記事内の最も重要な原文をさりげなくハイライトします。KindleやLocalSendへの送信、.MD形式でのダウンロード、共有時にもハイライトが保持されます。</p>
 
           <label class="bm-label" for="bmPrompt">プロンプト</label>
           <textarea id="bmPrompt" rows="6">記事の内容をわかりやすく説明するクリエイティブなタイトル付きの記事要約セクション。

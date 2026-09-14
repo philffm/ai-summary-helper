@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek o un endpoint personalizado; o vincúlalo a un modelo local con Ollama y procesa todo sin enviar datos a la red.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Resaltados sutiles, directamente en la página</h3>
+          <p>La IA resalta con suavidad los pasajes textuales más importantes del artículo, para que puedas captar las ideas clave de un vistazo y conservarlas junto con el resumen al exportar a Kindle, LocalSend o Markdown.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Búsqueda real en el dispositivo</h3>
           <p>Búsqueda de texto completo en títulos, etiquetas y contenido de artículos, impulsada por un índice TF-IDF generado en tu navegador. Sin retrasos y sin enviar datos a servidores.</p>
@@ -238,6 +243,8 @@
         <p>Funciona en cualquier navegador y sistema operativo, incluido iOS, donde la extensión no se puede ejecutar. Elige un proveedor, genera un enlace y arrástralo a tu barra de marcadores. Con un solo clic en cualquier página, inserta un resumen con IA directamente en ella.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">Integrado: haz clic para elegir la ubicación</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">La ventana flotante muestra el resumen superpuesto en una esquina. El modo integrado te permite hacer clic en el punto exacto de la página donde deseas insertar el resumen.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Lectura rápida del resumen (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>Resalta pasajes clave en la página</span>
+          </label>
+          <p class="bm-hint">Resalta de forma sutil los pasajes textuales más importantes del artículo. Los fragmentos destacados también se incluyen al enviar a Kindle, LocalSend, descargar como .MD o compartir.</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Sección de resumen del artículo con un título creativo que explique el tema en términos sencillos.

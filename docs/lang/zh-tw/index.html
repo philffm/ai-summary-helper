@@ -134,6 +134,11 @@
           <p>支援 OpenAI、Gemini、Mistral、DeepSeek 或自訂端點——或是直接指定本機 Ollama 模型，整個過程完全無需透過外網連線。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>幽靈高亮標註，直接呈現在網頁上</h3>
+          <p>AI 會自動以淡色標記文章中最關鍵的原文字句——讓您一眼掌握核心重點，並能隨摘要一同匯出至 Kindle、LocalSend 或 Markdown。</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>真正的本機端全文搜尋</h3>
           <p>涵蓋標題、標籤與文章內容的全文搜尋 — 由瀏覽器內建的 TF-IDF 索引驅動。零延遲、無網路往返，資料絕不上傳。</p>
@@ -238,6 +243,8 @@
         <p>適用於任何瀏覽器與作業系統——包括無法安裝擴充功能的 iOS。只需選擇模型提供者、產生連結並拖曳至書籤列。在任何網頁上一鍵點擊，即可直接插入 AI 摘要。</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">內嵌——點擊以選擇插入位置</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">浮動視窗會在角落顯示摘要浮層。內嵌模式則讓你能直接在網頁上點擊想要插入摘要的確切位置。</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>速讀摘要 (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>在網頁上以幽靈高亮標註關鍵段落</span>
+          </label>
+          <p class="bm-hint">以淡色高亮標記文章中最關鍵的原文字句。傳送至 Kindle、LocalSend、下載為 .MD 或分享時，也會一併包含高亮重點。</p>
 
           <label class="bm-label" for="bmPrompt">Prompt 提示詞</label>
           <textarea id="bmPrompt" rows="6">文章摘要區塊：附上富有創意的標題，以淺顯易懂的方式解釋文章內容。
