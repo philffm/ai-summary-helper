@@ -262,6 +262,7 @@ function setBilling(period) {
     localSendIp: document.getElementById('bmLocalSendIp'),
     insertion: document.getElementById('bmInsertion'),
     speedRead: document.getElementById('bmSpeedRead'),
+    ghostHighlights: document.getElementById('bmGhostHighlights'),
     config: document.getElementById('bmConfig')
   };
 
@@ -505,6 +506,16 @@ function setBilling(period) {
     } catch (e) {}
   })();
 
+  // ── Ghost highlights option persistence ────────────────────────
+  els.ghostHighlights.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_ghost', els.ghostHighlights.checked ? '1' : '0'); } catch (e) {}
+  });
+  (function () {
+    try {
+      if (localStorage.getItem('aish_bm_ghost') === '1') els.ghostHighlights.checked = true;
+    } catch (e) {}
+  })();
+
   // Initialize the default mode (byPhil Cloud) and its panel visibility.
   setMode('cloud');
 
@@ -544,6 +555,8 @@ function setBilling(period) {
     var insertion = els.insertion.value || 'floating';
     // Speed-read the summary via an RSVP overlay.
     var speedRead = els.speedRead.checked;
+    // Ghost-highlight key verbatim passages on the page.
+    var ghostHighlights = els.ghostHighlights.checked;
 
     // Share options (the summary is always inserted on the page; these are
     // optional additional shares configured at generate time).
@@ -580,6 +593,7 @@ function setBilling(period) {
       'var prompt=' + JSON.stringify(prompt) + ';',
       'var insertion=' + JSON.stringify(insertion) + ';',
       'var speedRead=' + (speedRead ? 'true' : 'false') + ';',
+      'var ghostHighlights=' + (ghostHighlights ? 'true' : 'false') + ';',
       'var shareNative=' + (shareNative ? 'true' : 'false') + ';',
       'var shareKindle=' + (shareKindle ? 'true' : 'false') + ';',
       'var shareLocalSend=' + (shareLocalSend ? 'true' : 'false') + ';',
@@ -617,10 +631,10 @@ function setBilling(period) {
       'if(isGemini){',
       '  var url="https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent?alt=sse";',
       '  headers["x-goog-api-key"]=apiKey;',
-      '  body=JSON.stringify({contents:[{role:"user",parts:[{text:"Produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. "+prompt+"\\n\\nContent:\\n"+content}]}]});',
+      '  body=JSON.stringify({contents:[{role:"user",parts:[{text:"Produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include an HTML comment with 3-5 short, EXACT verbatim string snippets from the source text representing the most critical key insights: <!-- GHOST_HIGHLIGHTS: [\\"exact key passage 1\\", \\"exact key passage 2\\"] -->. "+prompt+"\\n\\nContent:\\n"+content}]}]});',
       '  req=fetch(url,{method:"POST",headers:headers,body:body});',
       '}else{',
-      '  body=JSON.stringify({model:model,messages:[{role:"system",content:"You summarize content from websites in a tailored and meaningful manner."},{role:"user",content:"Summarize in valid HTML format with sections:"+prompt},{role:"user",content:content}],stream:true});',
+      '  body=JSON.stringify({model:model,messages:[{role:"system",content:"You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include an HTML comment with 3-5 short, EXACT verbatim string snippets from the source text representing the most critical key insights, core facts, or main arguments (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: [\\"exact key passage 1\\", \\"exact key passage 2\\"] -->."},{role:"user",content:"Summarize in valid HTML format with sections:"+prompt},{role:"user",content:content}],stream:true});',
       '  req=fetch(apiUrl,{method:"POST",headers:headers,body:body});',
       '}',
       'req',
@@ -629,15 +643,32 @@ function setBilling(period) {
       '.then(function(summary){msg.remove();if(!summary)throw new Error("No summary returned");',
       '  var title=document.title||"AI Summary";',
       '  var url=location.href;',
-      '  var docHtml="<!DOCTYPE html><html><head><meta charset=\\"utf-8\\"><title>"+title+"</title><style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}</style></head><body><h1>"+title+"</h1><div class=\\"meta\\">Captured via AI Summary Helper &middot; <a href=\\""+url+"\\">Source</a></div><div class=\\"summary\\"><h2>🧙 AI Summary</h2>"+summary+"</div><h2>📄 Content</h2><div>"+content.replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</div></body></html>";',
+      '  // Parse ghost highlights from the summary and strip the comment.',
+      '  var ghostQuotes=[];',
+      '  var gm=summary.match(/<!--\\s*GHOST_HIGHLIGHTS:\\s*([\\s\\S]*?)\\s*-->/i);',
+      '  if(gm){try{var raw=gm[1].trim().replace(/^```json/i,"").replace(/^```/,"").replace(/```$/,"").trim();ghostQuotes=JSON.parse(raw);}catch(e){}}',
+      '  summary=summary.replace(/<!--\\s*GHOST_HIGHLIGHTS:\\s*([\\s\\S]*?)\\s*-->/gi,"").trim();',
+      '  // Highlight matching verbatim passages on the page (light blue, like the extension).',
+      '  var highlightGhosts=function(){',
+      '    if(!ghostQuotes||!ghostQuotes.length)return;',
+      '    var style2=document.createElement("style");style2.innerHTML="mark.ai-ghost-highlight{background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;}";document.head.appendChild(style2);',
+      '    var findRange=function(root,text){var query=text.replace(/\\s+/g," ").trim();if(!query)return null;var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(node){if(!node||!node.nodeValue||!node.nodeValue.trim())return NodeFilter.FILTER_REJECT;var p=node.parentElement;if(!p)return NodeFilter.FILTER_REJECT;if(p.closest("script,style,noscript,mark.ai-ghost-highlight"))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});var spans=[];var full="";var cur=0;var n;while((n=walker.nextNode())){var v=n.nodeValue||"";spans.push({node:n,start:cur,end:cur+v.length});full+=v;cur+=v.length;}if(!full)return null;var idx=full.indexOf(text);if(idx===-1)idx=full.indexOf(query);if(idx===-1)return null;var match=idx===full.indexOf(text)&&full.indexOf(text)!==-1?text:query;var si=idx;var ei=idx+match.length;var sp=null,ep=null;for(var i=0;i<spans.length;i++){if(si<spans[i].end){sp={node:spans[i].node,offset:Math.max(0,si-spans[i].start)};break;}}for(var j=0;j<spans.length;j++){if(ei<=spans[j].end){ep={node:spans[j].node,offset:ei-spans[j].start};break;}}if(!sp||!ep)return null;var r=document.createRange();r.setStart(sp.node,sp.offset);r.setEnd(ep.node,ep.offset);return r;};',
+      '    ghostQuotes.forEach(function(q){var clean=(q||"").replace(/\\s+/g," ").trim();if(clean.length<5)return;var range=findRange(document.body,clean);if(!range)return;var mark=document.createElement("mark");mark.className="ai-ghost-highlight";mark.dataset.annotationText=clean;try{range.surroundContents(mark);}catch(e){var w=document.createElement("span");w.appendChild(range.extractContents());mark.appendChild(w);range.insertNode(mark);}});',
+      '  };',
+      '  if(ghostHighlights)highlightGhosts();',
+      '  var highlightsHtml="";',
+      '  if(ghostQuotes&&ghostQuotes.length){highlightsHtml="<h2>🔦 Key Highlights</h2><ul>"+ghostQuotes.map(function(q){return "<li>"+(q||"").replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</li>";}).join("")+"</ul>";}',
+      '  var docHtml="<!DOCTYPE html><html><head><meta charset=\\"utf-8\\"><title>"+title+"</title><style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}mark.ai-ghost-highlight{background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;}</style></head><body><h1>"+title+"</h1><div class=\\"meta\\">Captured via AI Summary Helper &middot; <a href=\\""+url+"\\">Source</a></div><div class=\\"summary\\"><h2>🧙 AI Summary</h2>"+summary+"</div>"+highlightsHtml+"<h2>📄 Content</h2><div>"+content.replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</div></body></html>";',
       '  // Build the summary container with share buttons.',
       '  var buildBox=function(){',
       '    var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<strong style=\\"display:block;margin-bottom:8px;\\">🧙 AI Summary</strong><div>"+summary+"</div>";',
       '    var actions=document.createElement("div");actions.className="asb-actions";',
       '    var mkBtn=function(label,fn){var b=document.createElement("button");b.className="asb-btn";b.textContent=label;b.addEventListener("click",fn);actions.appendChild(b);return b;};',
-      '    if(shareNative&&navigator.share)mkBtn("Share",function(){try{navigator.share({title:title,text:summary,url:url});}catch(e){}});',
-      '    mkBtn("Copy",function(){try{navigator.clipboard.writeText(summary);}catch(e){}});',
-      '    if(shareKindle)mkBtn("Kindle 📚",function(){fetch("https://api.byphil.eu/v1/projects/ai_summary_helper/kindle",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify({kindle_email:kindleEmail,title:title,content:content,summary:summary,url:url})}).then(function(r){return r.json();}).then(function(d){alert(d&&d.success?"Sent to Kindle! 📚":"Kindle delivery failed: "+(d&&d.error||"unknown"));}).catch(function(e){alert("Kindle error: "+e.message);});});',
+      '    var hlPlain="";if(ghostQuotes&&ghostQuotes.length){hlPlain="\\n\\n🔦 Key Highlights:\\n"+ghostQuotes.map(function(q){return "• "+(q||"").replace(/<[^>]*>/g,"").trim();}).join("\\n");}',
+      '    if(shareNative&&navigator.share)mkBtn("Share",function(){try{navigator.share({title:title,text:summary.replace(/<[^>]*>/g,"").trim()+hlPlain,url:url});}catch(e){}});',
+      '    mkBtn("Copy",function(){try{navigator.clipboard.writeText(summary.replace(/<[^>]*>/g,"").trim()+hlPlain);}catch(e){}});',
+      '    mkBtn(".MD 💾",function(){var plain=summary.replace(/<[^>]*>/g,"").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\\"").replace(/&#39;/g,"\'").trim();var hl="";if(ghostQuotes&&ghostQuotes.length){hl="\\n\\n## 🔦 Key Highlights\\n\\n"+ghostQuotes.map(function(q){return "- "+(q||"").replace(/<[^>]*>/g,"").trim();}).join("\\n");}var md="# "+title+"\\n\\n> Source: "+url+"\\n\\n## 🧙 AI Summary\\n\\n"+plain+hl+"\\n\\n---\\n\\n## 📄 Content\\n\\n"+content+"\\n";var blob=new Blob([md],{type:"text/markdown;charset=utf-8"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=title.replace(/[^a-z0-9_-]/gi,"_").toLowerCase()+"_summary.md";document.body.appendChild(a);a.click();document.body.removeChild(a);});',
+      '    if(shareKindle)mkBtn("Kindle 📚",function(){var kSummary=summary;if(ghostQuotes&&ghostQuotes.length){kSummary+="<h2>🔦 Key Highlights</h2><ul>"+ghostQuotes.map(function(q){return "<li>"+(q||"").replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</li>";}).join("")+"</ul>";}fetch("https://api.byphil.eu/v1/projects/ai_summary_helper/kindle",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify({kindle_email:kindleEmail,title:title,content:content,summary:kSummary,url:url})}).then(function(r){return r.json();}).then(function(d){alert(d&&d.success?"Sent to Kindle! 📚":"Kindle delivery failed: "+(d&&d.error||"unknown"));}).catch(function(e){alert("Kindle error: "+e.message);});});',
       '    if(shareLocalSend)mkBtn("LocalSend 📱",function(){var fileName=title.replace(/[^a-z0-9_-]/gi,"_")+".html";var enc=new TextEncoder();var bytes=enc.encode(docHtml);var fileId="file_"+Date.now();var prepare={info:{alias:"AI Summary Helper",version:"2.0",deviceModel:"Bookmarklet",deviceType:"browser"},files:{}};prepare.files[fileId]={id:fileId,fileName:fileName,size:bytes.length,fileType:"text/html",sha256:null,preview:null};var base="http://"+localSendIp+":53317/api/localsend/v1";fetch(base+"/prepare-upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(prepare)}).then(function(r){if(!r.ok)throw new Error("Handshake HTTP "+r.status);return r.json();}).then(function(d){var sid=d.sessionId||d.session_id;var files=d.files||{};var tok=files[fileId]||(d.tokens&&d.tokens[fileId]);var up=base+"/upload?sessionId="+encodeURIComponent(sid)+"&fileId="+encodeURIComponent(fileId);if(tok)up+="&token="+encodeURIComponent(tok);return fetch(up,{method:"POST",headers:{"Content-Type":"application/octet-stream"},body:bytes});}).then(function(r){if(!r.ok)throw new Error("Upload HTTP "+r.status);alert("Sent to LocalSend! 📖");}).catch(function(e){alert("LocalSend error: "+e.message);});});',
       '    if(speedRead)mkBtn("Speed-read ⚡",function(){var words=summary.replace(/<[^>]*>/g," ").split(/\\s+/).filter(function(w){return w.length>0;});var sr=document.createElement("div");sr.id="ai-speedread";sr.innerHTML="<div class=\\"sr-word\\"></div><div class=\\"sr-controls\\"><button id=\\"srPause\\">⏸</button><button id=\\"srClose\\">✕ Close</button></div>";var wordEl=sr.querySelector(".sr-word");var idx=0;var playing=true;var wpm=300;var timer=null;var tick=function(){if(idx>=words.length){clearInterval(timer);return;}wordEl.textContent=words[idx++];};tick();timer=setInterval(function(){if(playing)tick();},Math.round(60000/wpm));sr.querySelector("#srPause").addEventListener("click",function(){playing=!playing;this.textContent=playing?"⏸":"▶";});sr.querySelector("#srClose").addEventListener("click",function(){clearInterval(timer);sr.remove();});document.body.appendChild(sr);});',
       '    box.appendChild(actions);',
