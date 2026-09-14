@@ -1,5 +1,21 @@
 /* AI Summary Helper — shared site JS. Vanilla, no build step. */
 
+/* ── Matomo event tracking (no cookies) ──────────────────────────── */
+(function () {
+  // Safe no-op wrapper: only pushes if Matomo actually loaded. Never
+  // throws, never touches cookies — just fires an event when present.
+  window.aishTrack = function (category, action, name, value) {
+    try {
+      if (window._paq && typeof window._paq.push === 'function') {
+        var args = ['trackEvent', category, action];
+        if (name !== undefined && name !== null) args.push(String(name));
+        if (value !== undefined && value !== null) args.push(Number(value));
+        window._paq.push(args);
+      }
+    } catch (e) { /* analytics must never break the page */ }
+  };
+})();
+
 /* ── Theme toggle (light / dark) ─────────────────────────────────── */
 (function () {
   var root = document.documentElement;
@@ -24,6 +40,7 @@
   function toggleTheme() {
     var current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
     setTheme(current === 'light' ? 'dark' : 'light');
+    window.aishTrack && window.aishTrack('Theme', 'toggle', current === 'light' ? 'dark' : 'light');
   }
 
   applyThemeChrome(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
@@ -357,8 +374,8 @@ function setBilling(period) {
   }
 
   // ── Mode toggle ─────────────────────────────────────────────────
-  els.modeByok.addEventListener('click', function () { setMode('byok'); });
-  els.modeCloud.addEventListener('click', function () { setMode('cloud'); });
+  els.modeByok.addEventListener('click', function () { setMode('byok'); window.aishTrack && window.aishTrack('Bookmarklet', 'mode', 'byok'); });
+  els.modeCloud.addEventListener('click', function () { setMode('cloud'); window.aishTrack && window.aishTrack('Bookmarklet', 'mode', 'cloud'); });
 
   // ── Provider hint ───────────────────────────────────────────────
   els.provider.addEventListener('change', updateProviderHint);
@@ -370,6 +387,7 @@ function setBilling(period) {
   });
   els.provider.addEventListener('change', function () {
     try { localStorage.setItem('aish_bm_provider', els.provider.value); } catch (e) {}
+    window.aishTrack && window.aishTrack('Bookmarklet', 'provider', els.provider.value);
   });
   (function () {
     try {
@@ -398,6 +416,7 @@ function setBilling(period) {
       els.cloudOtp.hidden = false;
       els.cloudCode.focus();
       setCloudStatus('Magic code sent! Check your inbox.');
+      window.aishTrack && window.aishTrack('Bookmarklet', 'cloud_send_code');
     } catch (err) {
       setCloudStatus('Error: ' + err.message, true);
     } finally {
@@ -426,6 +445,7 @@ function setBilling(period) {
       els.cloudOtp.hidden = true;
       setCloudStatus('');
       refreshCloudAuth();
+      window.aishTrack && window.aishTrack('Bookmarklet', 'cloud_connected');
     } catch (err) {
       setCloudStatus('Error: ' + err.message, true);
     } finally {
@@ -459,12 +479,15 @@ function setBilling(period) {
   els.shareLocalSend.addEventListener('change', updateShareConfig);
   els.shareNative.addEventListener('change', function () {
     try { localStorage.setItem('aish_bm_share_native', els.shareNative.checked ? '1' : '0'); } catch (e) {}
+    window.aishTrack && window.aishTrack('Bookmarklet', 'share_native', els.shareNative.checked ? 'on' : 'off');
   });
   els.shareKindle.addEventListener('change', function () {
     try { localStorage.setItem('aish_bm_share_kindle', els.shareKindle.checked ? '1' : '0'); } catch (e) {}
+    window.aishTrack && window.aishTrack('Bookmarklet', 'share_kindle', els.shareKindle.checked ? 'on' : 'off');
   });
   els.shareLocalSend.addEventListener('change', function () {
     try { localStorage.setItem('aish_bm_share_localsend', els.shareLocalSend.checked ? '1' : '0'); } catch (e) {}
+    window.aishTrack && window.aishTrack('Bookmarklet', 'share_localsend', els.shareLocalSend.checked ? 'on' : 'off');
   });
   els.kindleEmail.addEventListener('input', function () {
     try { localStorage.setItem('aish_bm_kindle_email', els.kindleEmail.value.trim()); } catch (e) {}
@@ -714,5 +737,20 @@ function setBilling(period) {
     els.link.href = href;
     els.link.textContent = '🪄 AI Summary (' + (mode === 'cloud' ? 'byPhil Cloud' : els.provider.value) + ')';
     els.output.hidden = false;
+    window.aishTrack && window.aishTrack('Bookmarklet', 'generate', mode === 'cloud' ? 'cloud' : els.provider.value);
+  });
+})();
+
+/* ── Outbound CTA tracking (Add to Chrome, GitHub, etc.) ─────────── */
+(function () {
+  // Track clicks on the primary install CTA and other key outbound links.
+  // Matomo's enableLinkTracking already covers generic outlinks; this
+  // adds a named event for the most important conversion actions.
+  var SELECTOR = 'a[href*="chromewebstore.google.com"], a[href*="github.com/philffm/ai-summary-helper"]';
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest(SELECTOR) : null;
+    if (!a) return;
+    var label = a.href.indexOf('chromewebstore') !== -1 ? 'add_to_chrome' : 'github';
+    window.aishTrack && window.aishTrack('Outbound', 'click', label);
   });
 })();
