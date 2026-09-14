@@ -175,6 +175,49 @@ function setBilling(period) {
   var card = document.getElementById('bookmarkletCard');
   if (!card) return;
 
+  // ── Browser detection: recommend the extension on desktop browsers ──
+  // The bookmarklet is mainly for iOS / browsers where the extension can't
+  // run. On desktop Chrome/Firefox/Edge/Opera, nudge users toward the full
+  // extension instead (richer features, no bookmarklet quirks).
+  var browserNote = document.getElementById('bmBrowserNote');
+  if (browserNote) {
+    var ua = navigator.userAgent || '';
+    var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+    var isIOS = /iPhone|iPad|iPod/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
+    var isChrome = /Chrome\//i.test(ua) && !/Edg\//i.test(ua) && !/OPR\//i.test(ua);
+    var isFirefox = /Firefox\//i.test(ua);
+    var isEdge = /Edg\//i.test(ua);
+    var isOpera = /OPR\//i.test(ua);
+    var isSafari = /Safari\//i.test(ua) && !/Chrome\//i.test(ua);
+
+    var extUrl = 'https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb';
+    var note = null;
+
+    if (isIOS) {
+      note = '📱 You\u2019re on iOS — the extension can\u2019t run here, so the bookmarklet is the right choice.';
+    } else if (isAndroid) {
+      note = '📱 You\u2019re on Android — the bookmarklet works here.';
+    } else if (isChrome) {
+      note = '💻 You\u2019re on Chrome — the full <a href="' + extUrl + '" target="_blank" rel="noopener">extension</a> gives you history, search, highlighting, and more. The bookmarklet below still works if you prefer it.';
+    } else if (isFirefox) {
+      note = '💻 You\u2019re on Firefox — the <a href="https://addons.mozilla.org/firefox/" target="_blank" rel="noopener">extension</a> is the fuller experience. The bookmarklet below still works if you prefer it.';
+    } else if (isEdge) {
+      note = '💻 You\u2019re on Edge — the <a href="' + extUrl + '" target="_blank" rel="noopener">extension</a> is the fuller experience. The bookmarklet below still works if you prefer it.';
+    } else if (isOpera) {
+      note = '💻 You\u2019re on Opera — the <a href="' + extUrl + '" target="_blank" rel="noopener">extension</a> is the fuller experience. The bookmarklet below still works if you prefer it.';
+    } else if (isSafari) {
+      note = '💻 You\u2019re on Safari — the bookmarklet is a good fit here.';
+    } else if (!isMobile) {
+      note = '💻 The <a href="' + extUrl + '" target="_blank" rel="noopener">extension</a> is the fuller experience on desktop. The bookmarklet below still works if you prefer it.';
+    }
+
+    if (note) {
+      browserNote.innerHTML = note;
+      browserNote.hidden = false;
+    }
+  }
+
   var API_BASE = 'https://api.byphil.eu';
   var TOKEN_KEY = 'aish_bm_pb_token';
   var EMAIL_KEY = 'aish_bm_email';
@@ -218,6 +261,7 @@ function setBilling(period) {
     localSendConfig: document.getElementById('bmLocalSendConfig'),
     localSendIp: document.getElementById('bmLocalSendIp'),
     insertion: document.getElementById('bmInsertion'),
+    speedRead: document.getElementById('bmSpeedRead'),
     config: document.getElementById('bmConfig')
   };
 
@@ -451,6 +495,16 @@ function setBilling(period) {
     } catch (e) {}
   })();
 
+  // ── Speed-read option persistence ──────────────────────────────
+  els.speedRead.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_speedread', els.speedRead.checked ? '1' : '0'); } catch (e) {}
+  });
+  (function () {
+    try {
+      if (localStorage.getItem('aish_bm_speedread') === '1') els.speedRead.checked = true;
+    } catch (e) {}
+  })();
+
   // Initialize the default mode (byPhil Cloud) and its panel visibility.
   setMode('cloud');
 
@@ -488,6 +542,8 @@ function setBilling(period) {
 
     // Insertion mode: floating box (default) or inline (click to place).
     var insertion = els.insertion.value || 'floating';
+    // Speed-read the summary via an RSVP overlay.
+    var speedRead = els.speedRead.checked;
 
     // Share options (the summary is always inserted on the page; these are
     // optional additional shares configured at generate time).
@@ -523,6 +579,7 @@ function setBilling(period) {
       'var isCloud=' + (isCloud ? 'true' : 'false') + ';',
       'var prompt=' + JSON.stringify(prompt) + ';',
       'var insertion=' + JSON.stringify(insertion) + ';',
+      'var speedRead=' + (speedRead ? 'true' : 'false') + ';',
       'var shareNative=' + (shareNative ? 'true' : 'false') + ';',
       'var shareKindle=' + (shareKindle ? 'true' : 'false') + ';',
       'var shareLocalSend=' + (shareLocalSend ? 'true' : 'false') + ';',
@@ -535,11 +592,24 @@ function setBilling(period) {
       'var extractContent=function(){var article=document.querySelector("article")||document.querySelector("[role=\\"main\\"]")||document.querySelector("main")||document.querySelector("#content")||document.querySelector("#storytext")||document.body;var clone=article.cloneNode(true);stripNoise(clone);cleanAttrs(clone);var text=clone.textContent||"";text=text.replace(/[ \\t]+/g," ").replace(/\\n{3,}/g,"\\n\\n").trim();if(text.length<500&&article!==document.body){var bc=document.body.cloneNode(true);stripNoise(bc);cleanAttrs(bc);text=(bc.textContent||"").replace(/[ \\t]+/g," ").replace(/\\n{3,}/g,"\\n\\n").trim();}return text;};',
       'var content=extractContent();',
       'var style=document.createElement("style");',
-      'style.innerHTML="#ai-summary-message{position:fixed;top:0;left:0;width:100%;background:#007bff;color:#fff;text-align:center;padding:10px 0;z-index:10000;font-size:18px;font-weight:bold;}";',
+      'style.innerHTML="#ai-summary-message{position:fixed;top:0;left:0;width:100%;background:#007bff;color:#fff;text-align:center;padding:10px 0;z-index:10000;font-size:18px;font-weight:bold;}#ai-summary-box{position:fixed;top:60px;right:20px;max-width:420px;max-height:70vh;overflow:auto;background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid #007bff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:10000;}#ai-summary-box .asb-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}#ai-summary-box .asb-btn{font-size:12px;padding:4px 8px;border:1px solid #007bff;border-radius:6px;background:transparent;cursor:pointer;color:#007bff;}#ai-summary-box .asb-btn:hover{background:rgba(0,123,255,0.1);}#ai-speedread{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:10001;display:flex;flex-direction:column;align-items:center;justify-content:center;}#ai-speedread .sr-word{font-size:42px;color:#fff;font-weight:bold;}#ai-speedread .sr-controls{margin-top:20px;display:flex;gap:10px;}#ai-speedread button{font-size:14px;padding:6px 14px;border:none;border-radius:8px;background:#007bff;color:#fff;cursor:pointer;}";',
       'document.head.appendChild(style);',
       'var msg=document.createElement("div");msg.id="ai-summary-message";msg.textContent="Summarizing…";document.body.prepend(msg);',
       '// Optional update check (best-effort, never blocks summarization).',
       'try{fetch(BM_VERSION_URL).then(function(r){return r.json();}).then(function(v){if(v&&v.version&&v.version!==BM_VERSION){msg.textContent="⚠️ Bookmarklet outdated (v"+BM_VERSION+", latest v"+v.version+"). Regenerate it at ai-summary-helper.byphil.eu/#bookmarklet";setTimeout(function(){msg.textContent="Summarizing…";},4000);}}).catch(function(){});}catch(e){}',
+      '// For inline mode, ask the user where to insert BEFORE summarizing.',
+      'var targetEl=null;',
+      'if(insertion==="inline"){',
+      '  msg.textContent="Click the spot where you want the summary inserted.";',
+      '  document.body.style.cursor="crosshair";',
+      '  var hover=function(e){e.target.style.outline="2px dashed #007bff";};',
+      '  var unhover=function(e){e.target.style.outline="";};',
+      '  document.addEventListener("mouseover",hover);document.addEventListener("mouseout",unhover);',
+      '  document.addEventListener("click",function handler(e){e.preventDefault();e.stopPropagation();document.body.style.cursor="default";document.removeEventListener("click",handler);document.removeEventListener("mouseover",hover);document.removeEventListener("mouseout",unhover);targetEl=e.target;msg.textContent="Summarizing…";startFetch();},{once:true});',
+      '}else{',
+      '  startFetch();',
+      '}',
+      'var startFetch=function(){',
       'var headers={"Content-Type":"application/json"};',
       'if(apiKey)headers["Authorization"]="Bearer "+apiKey;',
       'var body;',
@@ -560,41 +630,28 @@ function setBilling(period) {
       '  var title=document.title||"AI Summary";',
       '  var url=location.href;',
       '  var docHtml="<!DOCTYPE html><html><head><meta charset=\\"utf-8\\"><title>"+title+"</title><style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}</style></head><body><h1>"+title+"</h1><div class=\\"meta\\">Captured via AI Summary Helper &middot; <a href=\\""+url+"\\">Source</a></div><div class=\\"summary\\"><h2>🧙 AI Summary</h2>"+summary+"</div><h2>📄 Content</h2><div>"+content.replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</div></body></html>";',
-      '  // Insert the summary: inline (click to place) or floating box.',
-      '  var insertSummary=function(){',
-      '    if(insertion==="inline"){',
-      '      var sc=document.createElement("blockquote");sc.id="ai-summary-inline";sc.style.cssText="border-left:4px solid #007bff;padding:15px;margin:20px 0;background:rgba(0,123,255,0.05);";sc.innerHTML="<div><h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary+"</div>";',
-      '      return sc;',
-      '    }',
-      '    var box=document.createElement("div");box.id="ai-summary-box";box.style.cssText="position:fixed;top:60px;right:20px;max-width:420px;max-height:70vh;overflow:auto;background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid #007bff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:10000;";box.innerHTML="<strong style=\\"display:block;margin-bottom:8px;\\">🧙 AI Summary</strong><div>"+summary+"</div>";document.body.appendChild(box);var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
-      '    return null;',
+      '  // Build the summary container with share buttons.',
+      '  var buildBox=function(){',
+      '    var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<strong style=\\"display:block;margin-bottom:8px;\\">🧙 AI Summary</strong><div>"+summary+"</div>";',
+      '    var actions=document.createElement("div");actions.className="asb-actions";',
+      '    var mkBtn=function(label,fn){var b=document.createElement("button");b.className="asb-btn";b.textContent=label;b.addEventListener("click",fn);actions.appendChild(b);return b;};',
+      '    if(shareNative&&navigator.share)mkBtn("Share",function(){try{navigator.share({title:title,text:summary,url:url});}catch(e){}});',
+      '    mkBtn("Copy",function(){try{navigator.clipboard.writeText(summary);}catch(e){}});',
+      '    if(shareKindle)mkBtn("Kindle 📚",function(){fetch("https://api.byphil.eu/v1/projects/ai_summary_helper/kindle",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify({kindle_email:kindleEmail,title:title,content:content,summary:summary,url:url})}).then(function(r){return r.json();}).then(function(d){alert(d&&d.success?"Sent to Kindle! 📚":"Kindle delivery failed: "+(d&&d.error||"unknown"));}).catch(function(e){alert("Kindle error: "+e.message);});});',
+      '    if(shareLocalSend)mkBtn("LocalSend 📱",function(){var fileName=title.replace(/[^a-z0-9_-]/gi,"_")+".html";var enc=new TextEncoder();var bytes=enc.encode(docHtml);var fileId="file_"+Date.now();var prepare={info:{alias:"AI Summary Helper",version:"2.0",deviceModel:"Bookmarklet",deviceType:"browser"},files:{}};prepare.files[fileId]={id:fileId,fileName:fileName,size:bytes.length,fileType:"text/html",sha256:null,preview:null};var base="http://"+localSendIp+":53317/api/localsend/v1";fetch(base+"/prepare-upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(prepare)}).then(function(r){if(!r.ok)throw new Error("Handshake HTTP "+r.status);return r.json();}).then(function(d){var sid=d.sessionId||d.session_id;var files=d.files||{};var tok=files[fileId]||(d.tokens&&d.tokens[fileId]);var up=base+"/upload?sessionId="+encodeURIComponent(sid)+"&fileId="+encodeURIComponent(fileId);if(tok)up+="&token="+encodeURIComponent(tok);return fetch(up,{method:"POST",headers:{"Content-Type":"application/octet-stream"},body:bytes});}).then(function(r){if(!r.ok)throw new Error("Upload HTTP "+r.status);alert("Sent to LocalSend! 📖");}).catch(function(e){alert("LocalSend error: "+e.message);});});',
+      '    if(speedRead)mkBtn("Speed-read ⚡",function(){var words=summary.replace(/<[^>]*>/g," ").split(/\\s+/).filter(function(w){return w.length>0;});var sr=document.createElement("div");sr.id="ai-speedread";sr.innerHTML="<div class=\\"sr-word\\"></div><div class=\\"sr-controls\\"><button id=\\"srPause\\">⏸</button><button id=\\"srClose\\">✕ Close</button></div>";var wordEl=sr.querySelector(".sr-word");var idx=0;var playing=true;var wpm=300;var timer=null;var tick=function(){if(idx>=words.length){clearInterval(timer);return;}wordEl.textContent=words[idx++];};tick();timer=setInterval(function(){if(playing)tick();},Math.round(60000/wpm));sr.querySelector("#srPause").addEventListener("click",function(){playing=!playing;this.textContent=playing?"⏸":"▶";});sr.querySelector("#srClose").addEventListener("click",function(){clearInterval(timer);sr.remove();});document.body.appendChild(sr);});',
+      '    box.appendChild(actions);',
+      '    var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
+      '    return box;',
       '  };',
-      '  if(insertion==="inline"){',
-      '    msg.textContent="Click the spot where you want the summary inserted.";',
-      '    document.body.style.cursor="crosshair";',
-      '    var hover=function(e){e.target.style.outline="2px dashed #007bff";};',
-      '    var unhover=function(e){e.target.style.outline="";};',
-      '    document.addEventListener("mouseover",hover);document.addEventListener("mouseout",unhover);',
-      '    document.addEventListener("click",function handler(e){e.preventDefault();e.stopPropagation();document.body.style.cursor="default";document.removeEventListener("click",handler);document.removeEventListener("mouseover",hover);document.removeEventListener("mouseout",unhover);var sc=insertSummary();e.target.insertAdjacentElement("beforebegin",sc);msg.remove();},{once:true});',
+      '  if(insertion==="inline"&&targetEl){',
+      '    var sc=document.createElement("blockquote");sc.id="ai-summary-inline";sc.style.cssText="border-left:4px solid #007bff;padding:15px;margin:20px 0;background:rgba(0,123,255,0.05);";sc.innerHTML="<div><h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary+"</div>";targetEl.insertAdjacentElement("beforebegin",sc);',
       '  }else{',
-      '    insertSummary();',
-      '  }',
-      '  // Optional: system share sheet.',
-      '  if(shareNative&&navigator.share){try{navigator.share({title:title,text:summary,url:url});}catch(e){}}',
-      '  // Optional: send to Kindle via byPhil Cloud proxy.',
-      '  if(shareKindle){',
-      '    fetch("https://api.byphil.eu/v1/projects/ai_summary_helper/kindle",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify({kindle_email:kindleEmail,title:title,content:content,summary:summary,url:url})}).then(function(r){return r.json();}).then(function(d){if(d&&d.success){alert("Sent to Kindle! 📚");}else{alert("Kindle delivery failed: "+(d&&d.error||"unknown"));}}).catch(function(e){alert("Kindle error: "+e.message);});',
-      '  }',
-      '  // Optional: send to LocalSend via direct P2P.',
-      '  if(shareLocalSend){',
-      '    var fileName=title.replace(/[^a-z0-9_-]/gi,"_")+".html";',
-      '    var enc=new TextEncoder();var bytes=enc.encode(docHtml);var fileId="file_"+Date.now();',
-      '    var prepare={info:{alias:"AI Summary Helper",version:"2.0",deviceModel:"Bookmarklet",deviceType:"browser"},files:{}};prepare.files[fileId]={id:fileId,fileName:fileName,size:bytes.length,fileType:"text/html",sha256:null,preview:null};',
-      '    var base="http://"+localSendIp+":53317/api/localsend/v1";',
-      '    fetch(base+"/prepare-upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(prepare)}).then(function(r){if(!r.ok)throw new Error("Handshake HTTP "+r.status);return r.json();}).then(function(d){var sid=d.sessionId||d.session_id;var files=d.files||{};var tok=files[fileId]||(d.tokens&&d.tokens[fileId]);var up=base+"/upload?sessionId="+encodeURIComponent(sid)+"&fileId="+encodeURIComponent(fileId);if(tok)up+="&token="+encodeURIComponent(tok);return fetch(up,{method:"POST",headers:{"Content-Type":"application/octet-stream"},body:bytes});}).then(function(r){if(!r.ok)throw new Error("Upload HTTP "+r.status);alert("Sent to LocalSend! 📖");}).catch(function(e){alert("LocalSend error: "+e.message);});',
+      '    document.body.appendChild(buildBox());',
       '  }',
       '})',
       '.catch(function(err){msg.remove();alert("Error: "+err.message);});',
+      '};',
       '})();'
     ].join('\n');
 

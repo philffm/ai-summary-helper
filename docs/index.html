@@ -238,6 +238,8 @@
         <p>Works on any browser and OS — including iOS, where the extension can't run. Pick a provider, generate a link, and drag it to your bookmarks bar. One click on any page inserts an AI summary right into it.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +295,11 @@
             <option value="inline">Inline — click to choose the spot</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">Floating box shows the summary in a corner overlay. Inline lets you click the exact spot on the page where the summary should be inserted.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Speed-read the summary (RSVP)</span>
+          </label>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.

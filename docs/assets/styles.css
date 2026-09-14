@@ -563,3 +563,11 @@ footer .copyright{ font-size:13px; color:var(--steel-400); margin-top:18px; line
   width:auto; height:auto; accent-color:var(--signal); cursor:pointer;
 }
 .bm-check:hover{ color:var(--paper); }
+.bookmarklet-browser-note{
+  max-width:560px; margin:0 auto 18px; padding:12px 14px;
+  border:1px solid var(--border-medium); border-radius:10px;
+  background:var(--surface-1-strong); font-size:13.5px; line-height:1.5;
+  color:var(--paper);
+}
+.bookmarklet-browser-note a{ color:var(--signal); }
+.bookmarklet-browser-note a:hover{ color:var(--signal-light); }
