@@ -92,7 +92,6 @@
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome — it's free</a>
         <a href="#bookmarklet" class="btn-secondary">No install? Use the bookmarklet</a>
-        <a href="#features" class="btn-secondary">See what it does</a>
       </div>
       <p class="hero-meta">No account required to start · Bring your own AI key, or run it fully offline with Ollama</p>
     </div>
@@ -241,29 +240,12 @@
 
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
-          <button type="button" class="active" id="bmModeByok" data-bm-mode="byok">Bring your own key</button>
-          <button type="button" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
-        </div>
-
-        <!-- BYOK mode -->
-        <div class="bookmarklet-mode" id="bmByokPanel">
-          <label class="bm-label" for="bmProvider">Provider</label>
-          <select id="bmProvider">
-            <option value="openai">OpenAI</option>
-            <option value="deepseek">DeepSeek</option>
-            <option value="mistral">Mistral</option>
-            <option value="gemini">Gemini</option>
-            <option value="ollama">Ollama (Local)</option>
-          </select>
-          <p class="bm-hint" id="bmProviderHint"></p>
-
-          <label class="bm-label" for="bmApiKey">API Key</label>
-          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
-          <p class="bm-hint">🔒 Stored only in your browser's local storage. The generated bookmarklet embeds it, so don't share it.</p>
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">Bring your own key</button>
         </div>
 
         <!-- byPhil Cloud mode -->
-        <div class="bookmarklet-mode" id="bmCloudPanel" hidden="">
+        <div class="bookmarklet-mode" id="bmCloudPanel">
           <p class="bm-hint">Use your byPhil account — no API key to manage. The bookmarklet calls the byPhil Cloud API with your session.</p>
           <div id="bmCloudAuth">
             <label class="bm-label" for="bmCloudEmail">Email</label>
@@ -287,8 +269,26 @@
           </div>
         </div>
 
-        <label class="bm-label" for="bmPrompt">Prompt</label>
-        <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">Provider</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (Local)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API Key</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 Stored only in your browser's local storage. The generated bookmarklet embeds it, so don't share it.</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmPrompt">Prompt</label>
+          <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.
 More extensive summary with a bit more detail (4-5 sentences).
 Fun reference to the topic related to my competence as a UX designer.
 Humorous take on the topic like a standup comedian.
@@ -296,40 +296,41 @@ Related book and media recommendations.
 Answer additional questions in a serious and engaging way.
 Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</textarea>
 
-        <fieldset class="bm-share-options">
-          <legend class="bm-label">Share options</legend>
-          <p class="bm-hint">The summary is always inserted on the page. Optionally also share it after generating.</p>
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">Share options</legend>
+            <p class="bm-hint">The summary is always inserted on the page. Optionally also share it after generating.</p>
 
-          <label class="bm-check">
-            <input type="checkbox" id="bmShareNative">
-            <span>System share sheet</span>
-          </label>
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>System share sheet</span>
+            </label>
 
-          <label class="bm-check">
-            <input type="checkbox" id="bmShareKindle">
-            <span>Send to Kindle</span>
-          </label>
-          <div id="bmKindleConfig" hidden="">
-            <label class="bm-label" for="bmKindleEmail">Kindle email</label>
-            <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
-            <p class="bm-hint">Requires a byPhil Cloud connection. Add <strong>kindle@byphil.eu</strong> to your Kindle's approved senders first — see <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon's guide</a>. Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.</p>
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>Send to Kindle</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Kindle email</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">Requires a byPhil Cloud connection. Add <strong>kindle@byphil.eu</strong> to your Kindle's approved senders first — see <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon's guide</a>. Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>Send to LocalSend</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">Generate bookmarklet</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">Drag the link below to your bookmarks bar 🔖 <br>(on iOS, hold to drag for 2 seconds):</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI Summary</a>
           </div>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmShareLocalSend">
-            <span>Send to LocalSend</span>
-          </label>
-          <div id="bmLocalSendConfig" hidden="">
-            <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
-            <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
-            <p class="bm-hint">The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.</p>
-          </div>
-        </fieldset>
-
-        <button type="button" class="btn-primary" id="bmGenerate">Generate bookmarklet</button>
-        <div id="bmOutput" hidden="">
-          <p class="bm-hint">Drag the link below to your bookmarks bar 🔖 <br>(on iOS, hold to drag for 2 seconds):</p>
-          <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI Summary</a>
         </div>
       </div>
     </div>

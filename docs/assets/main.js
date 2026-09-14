@@ -216,10 +216,11 @@ function setBilling(period) {
     kindleEmail: document.getElementById('bmKindleEmail'),
     shareLocalSend: document.getElementById('bmShareLocalSend'),
     localSendConfig: document.getElementById('bmLocalSendConfig'),
-    localSendIp: document.getElementById('bmLocalSendIp')
+    localSendIp: document.getElementById('bmLocalSendIp'),
+    config: document.getElementById('bmConfig')
   };
 
-  var mode = 'byok';
+  var mode = 'cloud';
   var otpId = null;
 
   function setMode(next) {
@@ -229,6 +230,10 @@ function setBilling(period) {
     els.byokPanel.hidden = next !== 'byok';
     els.cloudPanel.hidden = next !== 'cloud';
     els.output.hidden = true;
+    // The generation form (prompt, share options, generate) shows
+    // immediately in BYOK mode, but only after the user connects via
+    // byPhil Cloud.
+    els.config.hidden = next === 'cloud' && !getToken();
   }
 
   function updateProviderHint() {
@@ -296,9 +301,12 @@ function setBilling(period) {
       els.cloudConnected.hidden = false;
       els.cloudEmailLabel.textContent = email;
       loadCloudModels();
+      // Reveal the generation form once connected via byPhil Cloud.
+      if (mode === 'cloud') els.config.hidden = false;
     } else {
       els.cloudAuth.hidden = false;
       els.cloudConnected.hidden = true;
+      if (mode === 'cloud') els.config.hidden = true;
     }
   }
 
@@ -430,6 +438,9 @@ function setBilling(period) {
     } catch (e) {}
   })();
   updateShareConfig();
+
+  // Initialize the default mode (byPhil Cloud) and its panel visibility.
+  setMode('cloud');
 
   refreshCloudAuth();
 
