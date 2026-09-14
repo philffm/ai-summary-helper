@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helper 將任何網頁儲存為條理分明、可搜尋的摘要文章，並透過本機端文摘機制，將離線閱讀內容直接推送到 Kindle 或其他裝置，助你真正把存下的內容讀完。</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免費新增至 Chrome</a>
-        <a href="#features" class="btn-secondary">探索完整功能</a>
+        <a href="#bookmarklet" class="btn-secondary">無需安裝？使用 Bookmarklet 書籤小工具</a>
       </div>
       <p class="hero-meta">無需註冊即可開始使用 · 自備 AI API Key，或搭配 Ollama 完全離線執行</p>
     </div>
@@ -131,7 +131,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI 智慧摘要，自由選擇模型</h3>
-          <p>支援 OpenAI、Gemini、Mistral、DeepSeek，或透過 OpenRouter 存取上百種模型；亦可直接連線本機 Ollama 模型，摘要過程全程無需連網。</p>
+          <p>支援 OpenAI、Gemini、Mistral、DeepSeek 或自訂端點——或是直接指定本機 Ollama 模型，整個過程完全無需透過外網連線。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -225,6 +225,120 @@
         <div class="eyebrow">貫徹 byphil 的設計哲學</div>
         <h2>你的資料庫，永遠屬於你</h2>
         <p>搜尋、重複偵測、標籤整理、閱讀難度與語氣評分，以及「相似文章」推薦全部完全在瀏覽器內執行 — 無需伺服器、無需帳號即可發揮完整價值。唯一會離開本機的只有發送至你所選 AI 服務商的摘要請求；若指定使用本機 Ollama 模型，甚至連這一點資料都完全留在本機。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">無需安裝</div>
+        <h2>取得 Bookmarklet</h2>
+        <p>適用於任何瀏覽器與作業系統——包括無法安裝擴充功能的 iOS。只需選擇模型提供者、產生連結並拖曳至書籤列。在任何網頁上一鍵點擊，即可直接插入 AI 摘要。</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">自備 API Key</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">使用你的 byPhil 帳號——無需自行管理 API Key。Bookmarklet 會透過你的登入工作階段直接呼叫 byPhil Cloud API。</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">電子郵件</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">傳送驗證碼</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">驗證碼</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">驗證並連線</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ 已連線身分： <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">模型</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">byPhil Cloud API 用於生成摘要的模型。</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">中斷連線</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">模型提供者</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (本機)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API Key</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 僅儲存在你瀏覽器的本機儲存空間（Local Storage）。產生的 Bookmarklet 會包含此金鑰，請勿隨意分享。</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">插入摘要方式</label>
+          <select id="bmInsertion">
+            <option value="floating">浮動視窗</option>
+            <option value="inline">內嵌——點擊以選擇插入位置</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">浮動視窗會在角落顯示摘要浮層。內嵌模式則讓你能直接在網頁上點擊想要插入摘要的確切位置。</p>
+
+          <label class="bm-label" for="bmPrompt">Prompt 提示詞</label>
+          <textarea id="bmPrompt" rows="6">文章摘要區塊：附上富有創意的標題，以淺顯易懂的方式解釋文章內容。
+更詳盡的摘要：包含稍微深入的細節（4-5 句話）。
+趣味連結：將主題連結到我身為 UX 設計師的專業技能。
+幽默觀點：像脫口秀喜劇演員般幽默切入這個主題。
+相關書籍與媒體推薦。
+以認真且引人入勝的方式回答補充問題。
+加入表情符號、主題標籤（hashtags）、使用 HTML 格式、標記重點內容，字數上限 1000 字。</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">分享選項</legend>
+            <p class="bm-hint">摘要一律會插入至網頁中。你也可以選擇在產生後同步分享至其他平台。</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>系統分享選單</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>傳送至 Kindle</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Kindle 電子郵件信箱</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">需要連線至 byPhil Cloud。請先將 <strong>kindle@byphil.eu</strong> 加入至你的 Kindle 已認可寄件者名單——詳見 <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon 官方指南</a>。免費方案包含 3 次 Kindle 傳送額度；如需無限次傳送請升級 Support Pass。</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>傳送至 LocalSend</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">在你區域網路中運行 LocalSend（或安裝了 LocalSend 外掛程式的 KOReader）的裝置 IP 位址。</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">產生 Bookmarklet</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">將下方連結拖曳至你的書籤列 🔖 <br>（在 iOS 上，請按住 2 秒後拖曳）：</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI 摘要</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -395,6 +509,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="index.html#bookmarklet">Bookmarklet（免安裝）</a>
         <a href="privacy.html">隱私權政策</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">服務條款</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">退款與退換政策</a>

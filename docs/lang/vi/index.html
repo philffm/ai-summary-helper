@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helper lưu bất kỳ trang web nào thành bài viết tóm tắt có thể tìm kiếm — sau đó giúp bạn thực sự đọc lại chúng, với tính năng tổng hợp digest ngay trên thiết bị để gửi nội dung đọc ngoại tuyến trực tiếp đến Kindle hoặc thiết bị khác.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome — Hoàn toàn miễn phí</a>
-        <a href="#features" class="btn-secondary">Xem cách hoạt động</a>
+        <a href="#bookmarklet" class="btn-secondary">Không cần cài đặt? Dùng bookmarklet</a>
       </div>
       <p class="hero-meta">Không cần tài khoản để bắt đầu · Sử dụng khóa API AI riêng của bạn hoặc chạy hoàn toàn ngoại tuyến với Ollama</p>
     </div>
@@ -131,7 +131,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Tóm tắt bằng AI, tùy chọn mô hình của bạn</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek hoặc hơn 100 mô hình qua OpenRouter — hoặc kết nối trực tiếp với mô hình Ollama cục bộ mà không cần kết nối mạng cho bước này.</p>
+          <p>OpenAI, Gemini, Mistral, DeepSeek hoặc endpoint tùy chỉnh — hoặc trỏ đến mô hình Ollama cục bộ để xử lý hoàn toàn ngoại tuyến mà không cần kết nối mạng.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -225,6 +225,120 @@
         <div class="eyebrow">Được xây dựng theo triết lý byphil</div>
         <h2>Kho lưu trữ luôn thuộc về bạn</h2>
         <p>Tìm kiếm, phát hiện trùng lặp, dọn dẹp thẻ, đánh giá cấp độ đọc và sắc thái bài viết, cùng gợi ý "bài viết tương tự" đều chạy hoàn toàn trên trình duyệt — không máy chủ, không cần tài khoản để sử dụng trọn vẹn giá trị. Thứ duy nhất rời khỏi máy bạn là yêu cầu tóm tắt gửi đến nhà cung cấp AI bạn chọn. Nếu dùng mô hình Ollama cục bộ, mọi thứ hoàn toàn nằm lại trên thiết bị.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Không cần cài đặt</div>
+        <h2>Lấy bookmarklet</h2>
+        <p>Hoạt động trên mọi trình duyệt và hệ điều hành — bao gồm cả iOS, nơi tiện ích mở rộng không thể chạy. Chọn một nhà cung cấp, tạo liên kết và kéo vào thanh dấu trang. Chỉ một cú nhấp chuột trên bất kỳ trang nào để chèn ngay tóm tắt AI vào trang đó.</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">Dùng API key riêng</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">Sử dụng tài khoản byPhil của bạn — không cần quản lý API key. Bookmarklet sẽ gọi byPhil Cloud API thông qua phiên làm việc của bạn.</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">Email</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">Gửi mã xác thực</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">Mã xác thực</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">Xác thực &amp; kết nối</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ Đã kết nối với tài khoản <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">Mô hình</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">Mô hình được byPhil Cloud API sử dụng để tạo tóm tắt cho bạn.</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">Ngắt kết nối</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">Nhà cung cấp</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (Cục bộ)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API Key</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 Chỉ được lưu trữ trong bộ nhớ cục bộ của trình duyệt. Bookmarklet được tạo sẽ nhúng key này, vì vậy vui lòng không chia sẻ.</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">Chèn tóm tắt</label>
+          <select id="bmInsertion">
+            <option value="floating">Khung nổi</option>
+            <option value="inline">Nội dòng — nhấp để chọn vị trí</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">Khung nổi hiển thị tóm tắt dưới dạng lớp phủ ở góc màn hình. Chế độ nội dòng cho phép bạn nhấp vào vị trí chính xác trên trang muốn chèn tóm tắt.</p>
+
+          <label class="bm-label" for="bmPrompt">Prompt</label>
+          <textarea id="bmPrompt" rows="6">Phần tóm tắt bài viết với tiêu đề sáng tạo giải thích bài viết bằng thuật ngữ đơn giản.
+Tóm tắt chi tiết hơn một chút (4-5 câu).
+Liên hệ thú vị về chủ đề gắn với chuyên môn thiết kế UX của tôi.
+Góc nhìn hài hước về chủ đề như một diễn viên hài độc thoại.
+Gợi ý sách và tài liệu liên quan.
+Trả lời các câu hỏi bổ sung một cách nghiêm túc và lôi cuốn.
+Thêm emoji, hashtag, sử dụng HTML, làm nổi bật các phần thú vị, tối đa 1000 từ.</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">Tùy chọn chia sẻ</legend>
+            <p class="bm-hint">Tóm tắt luôn được chèn trực tiếp vào trang. Bạn cũng có thể tùy chọn chia sẻ sau khi tạo.</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>Bảng chia sẻ hệ thống</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>Gửi đến Kindle</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Email Kindle</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">Yêu cầu kết nối byPhil Cloud. Hãy thêm <strong>kindle@byphil.eu</strong> vào danh sách người gửi được phê duyệt của Kindle trước — xem <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">hướng dẫn của Amazon</a>. Gói miễn phí bao gồm 3 lượt gửi Kindle; để gửi không giới hạn cần có Support Pass.</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>Gửi đến LocalSend</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">Địa chỉ IP LocalSend</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">Địa chỉ IP của thiết bị đang chạy LocalSend (hoặc KOReader với plugin LocalSend) trong mạng của bạn.</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">Tạo bookmarklet</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">Kéo liên kết bên dưới vào thanh dấu trang của bạn 🔖 <br>(trên iOS, nhấn giữ trong 2 giây để kéo):</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 Tóm tắt AI</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -395,6 +509,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="index.html#bookmarklet">Bookmarklet (không cần cài đặt)</a>
         <a href="privacy.html">Quyền riêng tư</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Điều khoản dịch vụ</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Hoàn tiền &amp; Đổi trả</a>

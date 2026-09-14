@@ -21009,6 +21009,2701 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "d7776e81f86d5284e314e3b0d99f14066aa8766620b9b7132634ac5a32fd9531": {
+      "en": "No install? Use the bookmarklet",
+      "translations": {
+        "de": {
+          "text": "Keine Installation? Nutzen Sie das Bookmarklet",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Pas d'installation ? Utilisez le bookmarklet",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "¿Sin instalación? Usa el bookmarklet",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无需安装？使用 Bookmarklet",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無需安裝？使用 Bookmarklet 書籤小工具",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "インストール不要？ブックマークレットをご利用ください",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "설치 없이 사용하고 싶으신가요? 북마클릿을 이용해 보세요",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sem instalação? Use o bookmarklet",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Install नहीं करना? Bookmarklet यूज़ करें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không cần cài đặt? Dùng bookmarklet",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "df7274787796ec315aa87831cc100a4adbdaa9cb5b2376314ca12fc9f7e36899": {
+      "en": "OpenAI, Gemini, Mistral, DeepSeek, or a custom endpoint — or point it at a local Ollama model and never touch the network for this step at all.",
+      "translations": {
+        "de": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek oder ein benutzerdefinierter Endpunkt – oder binden Sie ein lokales Ollama-Modell an, sodass für diesen Schritt keine Daten Ihr Gerät verlassen.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek ou un endpoint personnalisé — ou connectez-le à un modèle local Ollama pour une exécution 100 % on-device sans aucun transfert réseau.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek o un endpoint personalizado; o vincúlalo a un modelo local con Ollama y procesa todo sin enviar datos a la red.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持 OpenAI、Gemini、Mistral、DeepSeek 或自定义端点——也可以直接指向本地 Ollama 模型，这一步完全在本地运行、无需联网。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "支援 OpenAI、Gemini、Mistral、DeepSeek 或自訂端點——或是直接指定本機 Ollama 模型，整個過程完全無需透過外網連線。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "OpenAI、Gemini、Mistral、DeepSeek、カスタムエンドポイントに対応。ローカルのOllamaモデルを指定すれば、このステップでネットワーク通信を一切行わずに処理することも可能です。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek 또는 커스텀 엔드포인트는 물론, 로컬 Ollama 모델을 지정해 외부 네트워크 통신 없이 완벽한 프라이버시로 빠르게 처리할 수도 있습니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek ou um endpoint personalizado — ou aponte para um modelo local do Ollama e rode tudo offline, sem usar a rede para essa etapa e sem custos com API.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek, या कोई custom endpoint — या इसे local Ollama model पर point करें और बिना किसी network usage या recurring cost के पूरी तरह offline चलाएं।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "OpenAI, Gemini, Mistral, DeepSeek hoặc endpoint tùy chỉnh — hoặc trỏ đến mô hình Ollama cục bộ để xử lý hoàn toàn ngoại tuyến mà không cần kết nối mạng.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ecc96e1c11ae718f852159b74b43ccca1d65960ae81d02b57b8724ba98e6f0bd": {
+      "en": "No install needed",
+      "translations": {
+        "de": {
+          "text": "Keine Installation erforderlich",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Aucune installation requise",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sin necesidad de instalación",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无需安装",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無需安裝",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "インストール不要",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "별도 설치 불필요",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Nenhuma instalação necessária",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई install की ज़रूरत नहीं",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không cần cài đặt",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5a4d5fae8fa5120ed3b467695b72dbcfbec5c7390822a32904436548a3bf24fc": {
+      "en": "Get the bookmarklet",
+      "translations": {
+        "de": {
+          "text": "Bookmarklet abrufen",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Obtenir le bookmarklet",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Obtener el bookmarklet",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "获取 Bookmarklet",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "取得 Bookmarklet",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレットを取得",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿 가져오기",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Obter o bookmarklet",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bookmarklet पाएं",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Lấy bookmarklet",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5b30e925a3859044b576348b671f22f7d85d2cd403f5dea18684c2471df1d772": {
+      "en": "Works on any browser and OS — including iOS, where the extension can't run. Pick a provider, generate a link, and drag it to your bookmarks bar. One click on any page inserts an AI summary right into it.",
+      "translations": {
+        "de": {
+          "text": "Funktioniert in jedem Browser und Betriebssystem – einschließlich iOS, wo Browser-Erweiterungen nicht unterstützt werden. Wählen Sie einen Anbieter, generieren Sie den Link und ziehen Sie ihn in Ihre Lesezeichenleiste. Ein Klick genügt, um eine KI-Zusammenfassung direkt in jede Seite einzubetten.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Fonctionne sur tous les navigateurs et systèmes d'exploitation — y compris sur iOS, où l'extension n'est pas disponible. Choisissez un fournisseur, générez un lien et faites-le glisser dans votre barre de favoris. Un simple clic sur n'importe quelle page y insère directement un résumé par IA.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Funciona en cualquier navegador y sistema operativo, incluido iOS, donde la extensión no se puede ejecutar. Elige un proveedor, genera un enlace y arrástralo a tu barra de marcadores. Con un solo clic en cualquier página, inserta un resumen con IA directamente en ella.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "适用于任何浏览器和操作系统——包括无法运行扩展程序的 iOS。选择服务商，生成链接并拖到书签栏即可。在任意网页上一键点击，即可直接插入 AI 摘要。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "適用於任何瀏覽器與作業系統——包括無法安裝擴充功能的 iOS。只需選擇模型提供者、產生連結並拖曳至書籤列。在任何網頁上一鍵點擊，即可直接插入 AI 摘要。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "拡張機能が利用できないiOSを含め、あらゆるブラウザやOSで動作します。プロバイダーを選んでリンクを生成し、ブックマークバーにドラッグするだけ。ページ上で1クリックするだけで、AI要約が直接挿入されます。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "확장 프로그램을 사용할 수 없는 iOS를 포함해 모든 브라우저 및 OS에서 완벽하게 작동합니다. 제공업체를 선택하고 링크를 생성한 뒤 북마크 바에 끌어다 놓으세요. 어떤 페이지에서든 클릭 한 번으로 AI 요약이 바로 삽입됩니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Funciona em qualquer navegador e sistema operacional — incluindo o iOS, onde a extensão não roda. Escolha um provedor, gere o link e arraste-o para a sua barra de favoritos. Com um clique em qualquer página, você insere um resumo por IA diretamente nela.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "किसी भी browser और OS पर काम करता है — iOS पर भी, जहाँ extension नहीं चल सकता। एक provider चुनें, link generate करें, और इसे अपने bookmarks bar में drag करें। किसी भी page पर बस एक click से सीधे AI summary insert हो जाती है।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hoạt động trên mọi trình duyệt và hệ điều hành — bao gồm cả iOS, nơi tiện ích mở rộng không thể chạy. Chọn một nhà cung cấp, tạo liên kết và kéo vào thanh dấu trang. Chỉ một cú nhấp chuột trên bất kỳ trang nào để chèn ngay tóm tắt AI vào trang đó.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "112200bbfc4ca0a2507f97b7a3aff119b3aa009ca7e7712926accaa11a040f62": {
+      "en": "byPhil Cloud",
+      "translations": {
+        "de": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "byPhil Cloud",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ceec5fa235f2fc26452077db2746cdffda9dede5bd344c3854d8b0927fd1c776": {
+      "en": "Bring your own key",
+      "translations": {
+        "de": {
+          "text": "Eigenen API-Schlüssel verwenden",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Utiliser votre propre clé (BYOK)",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Usa tu propia API key",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "自带 API key",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "自備 API Key",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "独自のAPIキーを使用",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "보유 중인 API 키 사용 (BYOK)",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Use sua própria chave",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bring your own key",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Dùng API key riêng",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bbb902f8ece24a05128c0440937fd060bacb46d40734d18a45513ce960605013": {
+      "en": "Use your byPhil account — no API key to manage. The bookmarklet calls the byPhil Cloud API with your session.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie Ihr byPhil-Konto – ganz ohne eigenen API-Schlüssel. Das Bookmarklet greift über Ihre Sitzung sicher auf die byPhil Cloud API zu.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Utilisez votre compte byPhil — aucune clé API à gérer. Le bookmarklet appelle l'API byPhil Cloud avec votre session.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Usa tu cuenta de byPhil: no necesitas gestionar ninguna API key. El bookmarklet se conecta a la API de byPhil Cloud mediante tu sesión.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "使用你的 byPhil 账号——无需管理 API key。Bookmarklet 会通过你的会话直接调用 byPhil Cloud API。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "使用你的 byPhil 帳號——無需自行管理 API Key。Bookmarklet 會透過你的登入工作階段直接呼叫 byPhil Cloud API。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byPhilアカウントを使用すれば、APIキーの管理は不要です。ブックマークレットはお客様のセッションを使ってbyPhil Cloud APIを呼び出します。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byPhil 계정을 사용하면 API 키를 따로 관리할 필요가 없습니다. 북마클릿이 로그인 세션을 통해 byPhil Cloud API를 호출합니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Use sua conta byPhil — sem precisar gerenciar chaves de API. O bookmarklet chama a API da byPhil Cloud com a sua sessão.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपने byPhil account का उपयोग करें — कोई API key manage करने की ज़रूरत नहीं। Bookmarklet आपके session के साथ byPhil Cloud API को call करता है।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sử dụng tài khoản byPhil của bạn — không cần quản lý API key. Bookmarklet sẽ gọi byPhil Cloud API thông qua phiên làm việc của bạn.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "969ccbd3cf6300ecd5c880459d81ae9027df7517563184a1b8b15282db230621": {
+      "en": "Email",
+      "translations": {
+        "de": {
+          "text": "E-Mail",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "E-mail",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Correo electrónico",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "邮箱",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "電子郵件",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "メールアドレス",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "이메일",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "E-mail",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Email",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Email",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a76e3ce472aad05934f7aa364135936f8dd6eab361fb699fedbcbc757dfa0bfe": {
+      "en": "Send magic code",
+      "translations": {
+        "de": {
+          "text": "Anmeldecode senden",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoyer le code magique",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enviar código de acceso",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "发送验证码",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "傳送驗證碼",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "認証コードを送信",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "인증 코드 발송",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Enviar código de acesso",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Magic code भेजें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi mã xác thực",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3ee75029c70e284c46b5af29eb87592f923e747f460353b02059a645f332b990": {
+      "en": "Verification code",
+      "translations": {
+        "de": {
+          "text": "Bestätigungscode",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Code de vérification",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Código de verificación",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "验证码",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "驗證碼",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "認証コード",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "인증 코드",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Código de verificação",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Verification code",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mã xác thực",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e15378262a6719d715e69d528a424d7e9e91d5c3f4a3b06c11075e0cb087717d": {
+      "en": "Verify & connect",
+      "translations": {
+        "de": {
+          "text": "Bestätigen & verbinden",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vérifier et connecter",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Verificar y conectar",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "验证并连接",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "驗證並連線",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "認証して接続",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "인증 및 연결",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Verificar e conectar",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Verify & connect करें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xác thực & kết nối",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "80f6ba1f93be3ba458ea7e04bb2b76c75b67db42796bf125c404ed99ca8e185e": {
+      "en": "✅ Connected as",
+      "translations": {
+        "de": {
+          "text": "✅ Verbunden als",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "✅ Connecté en tant que",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "✅ Conectado como",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "✅ 已连接为",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "✅ 已連線身分：",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "✅ 接続中：",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "✅ 연결된 계정:",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "✅ Conectado como",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "✅ Connected as",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "✅ Đã kết nối với tài khoản",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5e2c614c23f02239bc03c6c04fcb681950f9e72bf8fdff6be79c79841cbb10c0": {
+      "en": "Model",
+      "translations": {
+        "de": {
+          "text": "Modell",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Modèle",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Modelo",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "模型",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "模型",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "モデル",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모델",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Modelo",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Model",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mô hình",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4b8754e073f0d9dcdc1ec9785e49f71a8256d97acf63789104588b24f7ca354b": {
+      "en": "Gemini 2.5 Flash",
+      "translations": {
+        "de": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gemini 2.5 Flash",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b6d21efe4a0694d2ee13a51c83b66300a0df1f0aef3512410171a8f32b560f3e": {
+      "en": "The model used by the byPhil Cloud API for your summaries.",
+      "translations": {
+        "de": {
+          "text": "Das Modell, das von der byPhil Cloud API für Ihre Zusammenfassungen verwendet wird.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le modèle utilisé par l'API byPhil Cloud pour vos résumés.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El modelo utilizado por la API de byPhil Cloud para generar tus resúmenes.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "byPhil Cloud API 用于生成摘要的模型。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "byPhil Cloud API 用於生成摘要的模型。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約の生成にbyPhil Cloud APIで使用されるモデルです。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byPhil Cloud API에서 요약 생성 시 사용하는 모델입니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O modelo usado pela API da byPhil Cloud para gerar seus resumos.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी summaries के लिए byPhil Cloud API द्वारा इस्तेमाल किया जाने वाला model।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mô hình được byPhil Cloud API sử dụng để tạo tóm tắt cho bạn.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "acfc5be785a9bb3da11c9f05adb69bd5633096f09002aa44813a1b3207e912ad": {
+      "en": "Disconnect",
+      "translations": {
+        "de": {
+          "text": "Trennen",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Se déconnecter",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Desconectar",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "断开连接",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "中斷連線",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "接続を解除",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "연결 해제",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Desconectar",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Disconnect करें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ngắt kết nối",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "472590ae974d4c1f44b3780df0b152d9119f076c61bfb3e8cb6affd7889ac0a8": {
+      "en": "Provider",
+      "translations": {
+        "de": {
+          "text": "Anbieter",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Fournisseur",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Proveedor",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "服务商",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "模型提供者",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロバイダー",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "제공업체",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Provedor",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Provider",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nhà cung cấp",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8b7d1a3187ab355dc31bc683aaa71ab5ed217940c12196a9cd5f4ca984babfa4": {
+      "en": "OpenAI",
+      "translations": {
+        "de": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "OpenAI",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0648d2111ec0ca3d37d68ea020ce87e5c89caf06d3836a4388cd10bd1ebfd083": {
+      "en": "DeepSeek",
+      "translations": {
+        "de": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "DeepSeek",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0cb39762e6f13f493bdf28ae0306901eba3b845268b0b77240363923c46efc44": {
+      "en": "Mistral",
+      "translations": {
+        "de": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mistral",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f6ece80b88d6dfbd2f65dad5ccde8e5ec2a0d4dbfadc2fe87bdf58642f17e446": {
+      "en": "Gemini",
+      "translations": {
+        "de": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gemini",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5593c8b42bc83d538c47ba4eaa1f750028ffd8fb5e02ba73888022859bfd6aa6": {
+      "en": "Ollama (Local)",
+      "translations": {
+        "de": {
+          "text": "Ollama (Lokal)",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ollama (Local / On-device)",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ollama (Local)",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Ollama (本地)",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Ollama (本機)",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Ollama（ローカル）",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Ollama (로컬)",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ollama (Local)",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Ollama (Local)",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ollama (Cục bộ)",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "23189d55f6973f2ce5325707ab40ed9a145fd5b71f0f009448f0c15fc22b3d73": {
+      "en": "API Key",
+      "translations": {
+        "de": {
+          "text": "API-Schlüssel",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Clé API",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "API Key",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "API Key",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "API Key",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "APIキー",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "API 키",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Chave de API",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "API Key",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "API Key",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "07b57133fcbc3c0e5a2fb9beb154ba5f392220064507bf5175dc5f666bc3b50f": {
+      "en": "🔒 Stored only in your browser's local storage. The generated bookmarklet embeds it, so don't share it.",
+      "translations": {
+        "de": {
+          "text": "🔒 Wird ausschließlich lokal in Ihrem Browser gespeichert. Das generierte Bookmarklet bettet den Schlüssel ein – bitte nicht weitergeben.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "🔒 Stockée exclusivement dans le stockage local de votre navigateur. Le bookmarklet généré l'intègre directement, veillez donc à ne pas le partager.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "🔒 Se almacena únicamente en el almacenamiento local de tu navegador. El bookmarklet generado la incluye, por lo que no debes compartirlo.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "🔒 仅保存在浏览器的本地存储中。生成的 Bookmarklet 会包含此密钥，请勿分享给他人。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "🔒 僅儲存在你瀏覽器的本機儲存空間（Local Storage）。產生的 Bookmarklet 會包含此金鑰，請勿隨意分享。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "🔒 ブラウザのローカルストレージにのみ保存されます。生成されたブックマークレットにキーが埋め込まれるため、他人と共有しないでください。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "🔒 브라우저의 로컬 스토리지에만 안전하게 저장됩니다. 생성된 북마클릿에 키가 포함되므로 타인과 공유하지 마세요.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "🔒 Salva apenas no armazenamento local do seu navegador. O bookmarklet gerado a inclui no código, então não o compartilhe.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "🔒 सिर्फ आपके browser के local storage में सुरक्षित। Generated bookmarklet में यह embed होता है, इसलिए इसे किसी के साथ share न करें।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "🔒 Chỉ được lưu trữ trong bộ nhớ cục bộ của trình duyệt. Bookmarklet được tạo sẽ nhúng key này, vì vậy vui lòng không chia sẻ.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bb6210a755c40e9e8e862f52a9553081cbb39f7760ce840bdb131054c6a329c2": {
+      "en": "Insert summary",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassung einfügen",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Insertion du résumé",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Insertar resumen",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "摘要呈现方式",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "插入摘要方式",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約の挿入方法",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "요약 삽입 방식",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Inserir resumo",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Summary insert करें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chèn tóm tắt",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ff592ea4e65e5801ad7d23b88b0dffeb3ccfa6ef86480babe429f6f4180928fd": {
+      "en": "Floating box",
+      "translations": {
+        "de": {
+          "text": "Schwebendes Fenster",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Fenêtre flottante",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ventana flotante",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "浮动窗口",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "浮動視窗",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "フローティングボックス",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "플로팅 박스",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Caixa flutuante",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Floating box",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Khung nổi",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5a77b05966a43dc25cc894bc12f5407a44025a9cfe78f3013f379935e6fe3a7d": {
+      "en": "Inline — click to choose the spot",
+      "translations": {
+        "de": {
+          "text": "Inline – Position per Klick wählen",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Intégré (inline) — cliquez pour choisir l'emplacement",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Integrado: haz clic para elegir la ubicación",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "页面内嵌——点击选择插入位置",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "內嵌——點擊以選擇插入位置",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "インライン — クリックして挿入場所を選択",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "인라인 — 원하는 위치 클릭",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "No texto — clique para escolher o local",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Inline — spot चुनने के लिए click करें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nội dòng — nhấp để chọn vị trí",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "365e5b4df047b02df853cdf5860660fbe0c77ce13e161dcc54b3a118b8281fd9": {
+      "en": "Floating box shows the summary in a corner overlay. Inline lets you click the exact spot on the page where the summary should be inserted.",
+      "translations": {
+        "de": {
+          "text": "Das schwebende Fenster zeigt die Zusammenfassung als Overlay in der Ecke. Bei Inline wählen Sie per Klick genau die Stelle auf der Seite, an der der Text eingefügt werden soll.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "La fenêtre flottante affiche le résumé dans un coin de la page. Le mode intégré vous permet de cliquer à l'endroit exact où insérer le résumé.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La ventana flotante muestra el resumen superpuesto en una esquina. El modo integrado te permite hacer clic en el punto exacto de la página donde deseas insertar el resumen.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "浮动窗口会在页面角落浮层展示摘要；页面内嵌则允许你点击网页上的具体位置直接插入摘要。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "浮動視窗會在角落顯示摘要浮層。內嵌模式則讓你能直接在網頁上點擊想要插入摘要的確切位置。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "「フローティングボックス」は画面の隅にオーバーレイで要約を表示します。「インライン」はページ上の指定した位置をクリックして直接挿入できます。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "플로팅 박스는 화면 모서리에 오버레이 형태로 요약을 표시합니다. 인라인 방식을 사용하면 웹페이지 내에서 요약을 삽입할 정확한 위치를 직접 클릭해 선택할 수 있습니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A caixa flutuante exibe o resumo em uma sobreposição no canto. A opção no texto permite que você clique no local exato da página onde o resumo deve ser inserido.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Floating box summary को corner overlay में दिखाता है। Inline mode में आप page पर ठीक उस जगह click कर सकते हैं जहाँ summary insert करनी हो।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Khung nổi hiển thị tóm tắt dưới dạng lớp phủ ở góc màn hình. Chế độ nội dòng cho phép bạn nhấp vào vị trí chính xác trên trang muốn chèn tóm tắt.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5c39123805ffb4e2f01ba096f17a5b18afb43c4f223afa4ba2d5a3f31cf74e09": {
+      "en": "Prompt",
+      "translations": {
+        "de": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Prompt 提示詞",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロンプト",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "프롬프트",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Prompt",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "43c327b2d6bddd8ed887301dec44cb73f0ce2a643ab9ddb3e8c90a2ca2a7b980": {
+      "en": "Article summary section with creative title explaining the article in simple terms.\nMore extensive summary with a bit more detail (4-5 sentences).\nFun reference to the topic related to my competence as a UX designer.\nHumorous take on the topic like a standup comedian.\nRelated book and media recommendations.\nAnswer additional questions in a serious and engaging way.\nAdd emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.",
+      "translations": {
+        "de": {
+          "text": "Abschnitt zur Artikelzusammenfassung mit kreativem Titel, der den Artikel in einfachen Worten erklärt.\nAusführlichere Zusammenfassung mit etwas mehr Details (4–5 Sätze).\nUnterhaltsamer Bezug zum Thema passend zu meiner Kompetenz als UX-Designer.\nHumorvoller Blick auf das Thema im Stil eines Stand-up-Comedians.\nPassende Buch- und Medienempfehlungen.\nZusatzfragen sachlich und ansprechend beantworten.\nEmojis und Hashtags hinzufügen, HTML nutzen, interessante Passagen hervorheben, maximal 1000 Wörter.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Section de résumé d'article avec un titre créatif expliquant l'article en termes simples.\nRésumé plus détaillé avec un peu plus d'éléments (4-5 phrases).\nClin d'œil amusant au sujet en lien avec mes compétences en design UX.\nApproche humoristique du sujet digne d'un stand-up.\nRecommandations de livres et de médias associés.\nRéponses à des questions complémentaires sur un ton sérieux et captivant.\nAjoutez des émojis, des hashtags, utilisez du HTML, mettez en valeur les passages intéressants, 1 000 mots maximum.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sección de resumen del artículo con un título creativo que explique el tema en términos sencillos.\nResumen más detallado (4-5 frases).\nReferencia divertida al tema relacionada con mi experiencia en diseño UX.\nUn toque de humor sobre el tema al estilo de un monólogo de comedia.\nRecomendaciones de libros y contenidos multimedia relacionados.\nResponde a preguntas adicionales de forma seria y atractiva.\nAñade emojis, hashtags, usa HTML, resalta las partes más interesantes, máximo 1000 palabras.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "文章摘要部分包含富有创意的标题，用通俗易懂的语言解释文章核心。\n更详尽的摘要，提供稍多细节（4-5 句话）。\n结合我作为 UX 设计师的专业能力，对该主题进行趣味关联。\n以脱口秀演员的风格幽默解读该话题。\n推荐相关的书籍和媒体资源。\n以严谨且引人入胜的方式回答衍生问题。\n添加 Emoji 表情、标签，使用 HTML 格式高亮重点部分，字数上限 1000 字。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "文章摘要區塊：附上富有創意的標題，以淺顯易懂的方式解釋文章內容。\n更詳盡的摘要：包含稍微深入的細節（4-5 句話）。\n趣味連結：將主題連結到我身為 UX 設計師的專業技能。\n幽默觀點：像脫口秀喜劇演員般幽默切入這個主題。\n相關書籍與媒體推薦。\n以認真且引人入勝的方式回答補充問題。\n加入表情符號、主題標籤（hashtags）、使用 HTML 格式、標記重點內容，字數上限 1000 字。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "記事の内容をわかりやすく説明するクリエイティブなタイトル付きの記事要約セクション。\nもう少し詳しい内容を含む詳細な要約（4〜5文）。\nUXデザイナーとしてのスキルに関連した、トピックに関する面白い言及。\nスタンダップコメディアンのようなユーモアを交えたトピックへの見解。\n関連する書籍やメディアのおすすめ。\n追加の質問に対する真摯かつ魅力的な回答。\n絵文字やハッシュタグを追加し、HTMLを使用、興味深い部分をハイライト、最大1000語。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "기사를 쉬운 말로 설명하는 독창적인 제목이 포함된 기사 요약 섹션.\n조금 더 자세한 내용이 담긴 심화 요약 (4-5문장).\nUX 디자이너로서의 역량과 관련된 재미있는 주제 연결.\n스탠드업 코미디언 스타일의 유머러스한 해석.\n관련 도서 및 미디어 추천.\n추가 질문에 대해 진지하면서도 흥미를 끄는 답변 제공.\n이모지 및 해시태그 추가, HTML 사용, 흥미로운 부분 강조, 최대 1,000자 이내 작성.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Seção de resumo do artigo com um título criativo explicando o artigo de forma simples.\nResumo mais detalhado com um pouco mais de contexto (4 a 5 frases).\nReferência divertida ao tema relacionada à minha atuação como designer de UX.\nVisão bem-humorada sobre o assunto, como um comediante de stand-up.\nRecomendações de livros e mídias relacionadas.\nResponda a perguntas adicionais de forma séria e envolvente.\nAdicione emojis, hashtags, use HTML, destaque partes interessantes, máximo de 1000 palavras.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Article summary section with creative title explaining the article in simple terms.\nMore extensive summary with a bit more detail (4-5 sentences).\nFun reference to the topic related to my competence as a UX designer.\nHumorous take on the topic like a standup comedian.\nRelated book and media recommendations.\nAnswer additional questions in a serious and engaging way.\nAdd emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phần tóm tắt bài viết với tiêu đề sáng tạo giải thích bài viết bằng thuật ngữ đơn giản.\nTóm tắt chi tiết hơn một chút (4-5 câu).\nLiên hệ thú vị về chủ đề gắn với chuyên môn thiết kế UX của tôi.\nGóc nhìn hài hước về chủ đề như một diễn viên hài độc thoại.\nGợi ý sách và tài liệu liên quan.\nTrả lời các câu hỏi bổ sung một cách nghiêm túc và lôi cuốn.\nThêm emoji, hashtag, sử dụng HTML, làm nổi bật các phần thú vị, tối đa 1000 từ.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e65d2c5df1a4930485497f8db3bf2c6afc5215bf8f34a437bbdb538edd992b7a": {
+      "en": "Share options",
+      "translations": {
+        "de": {
+          "text": "Freigabeoptionen",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Options de partage",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Opciones para compartir",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "分享选项",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "分享選項",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "共有オプション",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "공유 옵션",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Opções de compartilhamento",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Share options",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tùy chọn chia sẻ",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "69ad637d727fdcce61e8319d3eeb1ee2f8d7fe4f1d76c8ba6e25f1ac1a708f04": {
+      "en": "The summary is always inserted on the page. Optionally also share it after generating.",
+      "translations": {
+        "de": {
+          "text": "Die Zusammenfassung wird immer direkt auf der Seite eingefügt. Optional können Sie diese nach der Generierung auch weiterleiten.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le résumé est toujours inséré sur la page. Vous pouvez également le partager après sa génération si vous le souhaitez.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El resumen siempre se inserta en la página. Opcionalmente, también puedes compartirlo tras generarlo.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "摘要始终会插入到页面中。生成后也可以选择将其分享出去。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "摘要一律會插入至網頁中。你也可以選擇在產生後同步分享至其他平台。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約は常にページ上に挿入されます。必要に応じて生成後に共有することも可能です。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "요약은 항상 페이지에 직접 삽입됩니다. 생성이 완료된 후 추가로 공유할 수도 있습니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O resumo é sempre inserido na página. Se quiser, você também pode compartilhá-lo após a geração.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Summary हमेशा page पर insert होती है। Generate करने के बाद आप चाहें तो इसे share भी कर सकते हैं।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt luôn được chèn trực tiếp vào trang. Bạn cũng có thể tùy chọn chia sẻ sau khi tạo.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ed7855a2732eed9f9356416e2d137c5420c181a5384af04930a3e44b713aa1ba": {
+      "en": "System share sheet",
+      "translations": {
+        "de": {
+          "text": "System-Freigabemenü",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Menu de partage du système",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Menú para compartir del sistema",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "系统分享面板",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "系統分享選單",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "システムの共有シート",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "시스템 공유 메뉴",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Menu de compartilhamento do sistema",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "System share sheet",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bảng chia sẻ hệ thống",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b52b474cef09a39ef0be793492d2751dca55b57b305ad1ddc64adfcdad387b64": {
+      "en": "Send to Kindle",
+      "translations": {
+        "de": {
+          "text": "An Kindle senden",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoyer vers Kindle",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enviar a Kindle",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "发送到 Kindle",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "傳送至 Kindle",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Kindleに送信",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Kindle로 보내기",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Enviar para o Kindle",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Kindle पर भेजें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi đến Kindle",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1ef0f672ac552c015190a324ae7de23bf9956b2e09f5f3cf4142aef0c9cd97bf": {
+      "en": "Kindle email",
+      "translations": {
+        "de": {
+          "text": "Kindle-E-Mail-Adresse",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Adresse e-mail Kindle",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Email de Kindle",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Kindle 邮箱",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Kindle 電子郵件信箱",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Kindleのメールアドレス",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Kindle 이메일 주소",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "E-mail do Kindle",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Kindle email",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Email Kindle",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "57719c7625694798cdc3c79890754a5c67cb389b4aad5f62cf82a5eac7bbd37b": {
+      "en": "Requires a byPhil Cloud connection. Add",
+      "translations": {
+        "de": {
+          "text": "Erfordert eine byPhil-Cloud-Verbindung. Fügen Sie",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Nécessite une connexion byPhil Cloud. Ajoutez",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Requiere conexión con byPhil Cloud. Primero añade",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "需要连接 byPhil Cloud。请先将",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "需要連線至 byPhil Cloud。請先將",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byPhil Cloudへの接続が必要です。まず",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byPhil Cloud 연결이 필요합니다. 먼저",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Requer conexão com a byPhil Cloud. Adicione",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसके लिए byPhil Cloud connection ज़रूरी है। पहले",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Yêu cầu kết nối byPhil Cloud. Hãy thêm",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4e5f0d72d85ed1963012e223108785ac8b3182bfd20d6262f8e9623a3d649334": {
+      "en": "to your Kindle's approved senders first — see",
+      "translations": {
+        "de": {
+          "text": "zunächst zu Ihren genehmigten Kindle-Absendern hinzu – siehe",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "à vos expéditeurs approuvés Kindle au préalable — consultez",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "a tu lista de remitentes autorizados en Kindle; consulta",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "添加到 Kindle 已认可的发件人列表中——参见",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "加入至你的 Kindle 已認可寄件者名單——詳見",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "をKindleの承認済み送信者リストに追加してください。詳しくは",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "주소를 Kindle의 승인된 발신자 목록에 추가해 주세요. 자세한 내용은 다음을 참조하세요:",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "à lista de remetentes aprovados do seu Kindle primeiro — veja o",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "को अपने Kindle के approved senders में जोड़ें — देखें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "vào danh sách người gửi được phê duyệt của Kindle trước — xem",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e6635cb7fa58edc1d21bc677126425e9255c203236e104eaa0240397a078d242": {
+      "en": ". Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.",
+      "translations": {
+        "de": {
+          "text": ". Die kostenlose Version enthält 3 Kindle-Sendungen; für unbegrenzte Sendungen ist der Support-Pass erforderlich.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ". L'offre gratuite inclut 3 envois vers Kindle ; les envois illimités nécessitent le Support Pass.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ". El plan gratuito incluye 3 envíos a Kindle; para envíos ilimitados se requiere el Support Pass.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "。免费方案包含 3 次 Kindle 发送；购买 Support Pass 可享无限次发送。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "。免費方案包含 3 次 Kindle 傳送額度；如需無限次傳送請升級 Support Pass。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "をご覧ください。無料プランではKindle送信が3回まで含まれます。無制限に送信するにはSupport Passが必要です。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ". 무료 티어에는 3회의 Kindle 전송이 포함되어 있으며, 무제한 전송을 이용하려면 Support Pass가 필요합니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ". O plano gratuito inclui 3 envios para o Kindle; envios ilimitados exigem o Support Pass.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "। Free tier में 3 Kindle sends शामिल हैं; unlimited sends के लिए Support Pass आवश्यक है।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ". Gói miễn phí bao gồm 3 lượt gửi Kindle; để gửi không giới hạn cần có Support Pass.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "70671050a5d17905e127edd6b05fcbff160b9cd73e3cfd315dd747be7794ca68": {
+      "en": "kindle@byphil.eu",
+      "translations": {
+        "de": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "kindle@byphil.eu",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8df2d339d86bfbcb317ad7e10b0daf5a7d232c6e3a413688bd32709b0b4e99b0": {
+      "en": "Amazon's guide",
+      "translations": {
+        "de": {
+          "text": "Amazons Anleitung",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "le guide d'Amazon",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "la guía de Amazon",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "亚马逊官方指南",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Amazon 官方指南",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Amazonのガイド",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Amazon 안내 가이드",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "guia da Amazon",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Amazon की guide",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "hướng dẫn của Amazon",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "838c7ad6eb699b695092e2021dc549a969739d481b003c908002f856048ecc06": {
+      "en": "Send to LocalSend",
+      "translations": {
+        "de": {
+          "text": "An LocalSend senden",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoyer vers LocalSend",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enviar a LocalSend",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "发送到 LocalSend",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "傳送至 LocalSend",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "LocalSendに送信",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "LocalSend로 보내기",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Enviar para o LocalSend",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "LocalSend पर भेजें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi đến LocalSend",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e2eed9665bb1644c23656c61c2c2795157001cb12aef804aab6eb4c8abcca0dc": {
+      "en": "LocalSend IP",
+      "translations": {
+        "de": {
+          "text": "LocalSend-IP",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Adresse IP LocalSend",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "IP de LocalSend",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "LocalSend IP",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "LocalSend IP",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "LocalSendのIPアドレス",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "LocalSend IP",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "IP do LocalSend",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "LocalSend IP",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Địa chỉ IP LocalSend",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5b927c239afad4f2ab860d80cf31557a74c55e859a7d0715c3609428574b060e": {
+      "en": "The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.",
+      "translations": {
+        "de": {
+          "text": "Die IP-Adresse des Geräts in Ihrem Netzwerk, auf dem LocalSend (oder KOReader mit dem LocalSend-Plugin) ausgeführt wird.",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'adresse IP de l'appareil exécutant LocalSend (ou KOReader avec le plugin LocalSend) sur votre réseau local.",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La dirección IP del dispositivo que ejecuta LocalSend (o KOReader con el plugin de LocalSend) en tu red local.",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "局域网中运行 LocalSend（或搭载 LocalSend 插件的 KOReader）设备的 IP 地址。",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在你區域網路中運行 LocalSend（或安裝了 LocalSend 外掛程式的 KOReader）的裝置 IP 位址。",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "お使いのネットワーク上でLocalSend（またはLocalSendプラグインを有効にしたKOReader）を実行しているデバイスのIPアドレスです。",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "동일 네트워크 내에서 LocalSend(또는 LocalSend 플러그인이 설치된 KOReader)를 실행 중인 기기의 IP 주소입니다.",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O IP do dispositivo executando o LocalSend (ou o KOReader com o plugin do LocalSend) na sua rede local.",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके network पर LocalSend (या LocalSend plugin वाला KOReader) चला रहे device का IP address।",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Địa chỉ IP của thiết bị đang chạy LocalSend (hoặc KOReader với plugin LocalSend) trong mạng của bạn.",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4845c763d8ea75a7686be67c74ceccc1a3b2730c58b56db79fcffc0127eaa09c": {
+      "en": "Generate bookmarklet",
+      "translations": {
+        "de": {
+          "text": "Bookmarklet generieren",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Générer le bookmarklet",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Generar bookmarklet",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "生成 Bookmarklet",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產生 Bookmarklet",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレットを生成",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿 생성하기",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Gerar bookmarklet",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bookmarklet generate करें",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tạo bookmarklet",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c77a1cbb40e0b7e94ecc27c96dcb5cc44c3ba6c56eace39a42f211553c214882": {
+      "en": "Drag the link below to your bookmarks bar 🔖",
+      "translations": {
+        "de": {
+          "text": "Ziehen Sie den Link unten in Ihre Lesezeichenleiste 🔖",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Faites glisser le lien ci-dessous dans votre barre de favoris 🔖",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Arrastra el siguiente enlace a tu barra de marcadores 🔖",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将下方链接拖动到你的书签栏 🔖",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "將下方連結拖曳至你的書籤列 🔖",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "以下のリンクをブックマークバーにドラッグしてください 🔖",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "아래 링크를 북마크 바로 드래그하세요 🔖",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Arraste o link abaixo para a sua barra de favoritos 🔖",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "नीचे दिए गए link को अपने bookmarks bar में drag करें 🔖",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Kéo liên kết bên dưới vào thanh dấu trang của bạn 🔖",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "53e9d95bc3af6c289105ab7e983c8cf1ad1b2f13012ea57fe7716ef7180c4ed9": {
+      "en": "(on iOS, hold to drag for 2 seconds):",
+      "translations": {
+        "de": {
+          "text": "(unter iOS: 2 Sekunden gedrückt halten zum Ziehen):",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(sur iOS, maintenez enfoncé pendant 2 secondes pour faire glisser) :",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(en iOS, mantén pulsado durante 2 segundos para arrastrar):",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "（在 iOS 上，按住 2 秒后再拖动）：",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "（在 iOS 上，請按住 2 秒後拖曳）：",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（iOSの場合は2秒間長押ししてドラッグ）:",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(iOS에서는 2초 동안 길게 누른 후 드래그):",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(no iOS, segure por 2 segundos para arrastar):",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(iOS पर, drag करने के लिए 2 सेकंड तक दबाकर रखें):",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(trên iOS, nhấn giữ trong 2 giây để kéo):",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "150fa538ef01e78ae1d30397418ae25538c5cadf73bfcc8e39b1701d03e8eb51": {
+      "en": "🪄 AI Summary",
+      "translations": {
+        "de": {
+          "text": "🪄 KI-Zusammenfassung",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "🪄 Résumé IA",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "🪄 Resumen con IA",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "🪄 AI 摘要",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "🪄 AI 摘要",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "🪄 AI要約",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "🪄 AI 요약",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "🪄 Resumo com IA",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "🪄 AI Summary",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "🪄 Tóm tắt AI",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "aa12bbd02913eb71a00756970ce70ea3f4f60f180c5872fcc31f3167fb10390e": {
+      "en": "Bookmarklet (no install)",
+      "translations": {
+        "de": {
+          "text": "Bookmarklet (keine Installation)",
+          "translatedAt": "2026-09-14T09:20:40.624Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Bookmarklet (sans installation)",
+          "translatedAt": "2026-09-14T09:20:56.919Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Bookmarklet (sin instalación)",
+          "translatedAt": "2026-09-14T09:21:10.722Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Bookmarklet（免安装）",
+          "translatedAt": "2026-09-14T09:21:28.396Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Bookmarklet（免安裝）",
+          "translatedAt": "2026-09-14T09:21:46.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレット（インストール不要）",
+          "translatedAt": "2026-09-14T09:22:04.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿 (설치 불필요)",
+          "translatedAt": "2026-09-14T09:22:12.487Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Bookmarklet (sem instalação)",
+          "translatedAt": "2026-09-14T09:22:29.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bookmarklet (बिना install के)",
+          "translatedAt": "2026-09-14T09:22:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bookmarklet (không cần cài đặt)",
+          "translatedAt": "2026-09-14T09:23:04.215Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

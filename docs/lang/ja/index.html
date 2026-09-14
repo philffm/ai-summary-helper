@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helperは、あらゆるWebページを要約付きの検索可能な記事として保存します。さらにオンデバイスのダイジェスト機能により、オフライン読書用のコンテンツをKindleや他端末へ直接転送し、保存した記事を確実に消化できるよう支援します。</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加（無料）</a>
-        <a href="#features" class="btn-secondary">機能を見る</a>
+        <a href="#bookmarklet" class="btn-secondary">インストール不要？ブックマークレットをご利用ください</a>
       </div>
       <p class="hero-meta">アカウント登録不要で利用開始可能 · お手持ちのAI APIキーを使用、またはOllamaによる完全オフライン動作に対応</p>
     </div>
@@ -131,7 +131,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI要約、モデルは自由に選択可能</h3>
-          <p>OpenAI、Gemini、Mistral、DeepSeekのほか、OpenRouter経由で100以上のモデルに対応。ローカルのOllamaモデルを指定すれば、要約処理を完全オフラインで完結させることも可能です。</p>
+          <p>OpenAI、Gemini、Mistral、DeepSeek、カスタムエンドポイントに対応。ローカルのOllamaモデルを指定すれば、このステップでネットワーク通信を一切行わずに処理することも可能です。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -225,6 +225,120 @@
         <div class="eyebrow">byphilの開発哲学</div>
         <h2>アーカイブは常にあなた自身のもの</h2>
         <p>検索、重複検出、タグ整理、読解難易度やトーンのスコアリング、「類似記事」の算出はすべてブラウザ内で完結します。サーバーへの依存はなく、アカウントを作成しなくてもすべての価値を享受できます。端末外へ送信されるのはAI要約リクエストのみであり、それもご自身が選択したAIプロバイダー宛てに限定されます。ローカルのOllamaモデルを指定すれば、その通信すらローカルで完結します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">インストール不要</div>
+        <h2>ブックマークレットを取得</h2>
+        <p>拡張機能が利用できないiOSを含め、あらゆるブラウザやOSで動作します。プロバイダーを選んでリンクを生成し、ブックマークバーにドラッグするだけ。ページ上で1クリックするだけで、AI要約が直接挿入されます。</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">独自のAPIキーを使用</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">byPhilアカウントを使用すれば、APIキーの管理は不要です。ブックマークレットはお客様のセッションを使ってbyPhil Cloud APIを呼び出します。</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">メールアドレス</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">認証コードを送信</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">認証コード</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">認証して接続</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ 接続中： <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">モデル</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">要約の生成にbyPhil Cloud APIで使用されるモデルです。</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">接続を解除</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">プロバイダー</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama（ローカル）</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">APIキー</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 ブラウザのローカルストレージにのみ保存されます。生成されたブックマークレットにキーが埋め込まれるため、他人と共有しないでください。</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">要約の挿入方法</label>
+          <select id="bmInsertion">
+            <option value="floating">フローティングボックス</option>
+            <option value="inline">インライン — クリックして挿入場所を選択</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">「フローティングボックス」は画面の隅にオーバーレイで要約を表示します。「インライン」はページ上の指定した位置をクリックして直接挿入できます。</p>
+
+          <label class="bm-label" for="bmPrompt">プロンプト</label>
+          <textarea id="bmPrompt" rows="6">記事の内容をわかりやすく説明するクリエイティブなタイトル付きの記事要約セクション。
+もう少し詳しい内容を含む詳細な要約（4〜5文）。
+UXデザイナーとしてのスキルに関連した、トピックに関する面白い言及。
+スタンダップコメディアンのようなユーモアを交えたトピックへの見解。
+関連する書籍やメディアのおすすめ。
+追加の質問に対する真摯かつ魅力的な回答。
+絵文字やハッシュタグを追加し、HTMLを使用、興味深い部分をハイライト、最大1000語。</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">共有オプション</legend>
+            <p class="bm-hint">要約は常にページ上に挿入されます。必要に応じて生成後に共有することも可能です。</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>システムの共有シート</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>Kindleに送信</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Kindleのメールアドレス</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">byPhil Cloudへの接続が必要です。まず <strong>kindle@byphil.eu</strong> をKindleの承認済み送信者リストに追加してください。詳しくは <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazonのガイド</a>をご覧ください。無料プランではKindle送信が3回まで含まれます。無制限に送信するにはSupport Passが必要です。</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>LocalSendに送信</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">LocalSendのIPアドレス</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">お使いのネットワーク上でLocalSend（またはLocalSendプラグインを有効にしたKOReader）を実行しているデバイスのIPアドレスです。</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">ブックマークレットを生成</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">以下のリンクをブックマークバーにドラッグしてください 🔖 <br>（iOSの場合は2秒間長押ししてドラッグ）:</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI要約</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -395,6 +509,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="index.html#bookmarklet">ブックマークレット（インストール不要）</a>
         <a href="privacy.html">プライバシー</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">利用規約</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">返金および返品ポリシー</a>

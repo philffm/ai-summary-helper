@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helper किसी भी पेज को summarized, searchable article के रूप में save करता है — और on-device digest के साथ आपको उसे वास्तव में पढ़ने में मदद करता है, जिसे आप offline reading के लिए सीधे Kindle या किसी अन्य डिवाइस पर भेज सकते हैं।</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें — बिल्कुल Free</a>
-        <a href="#features" class="btn-secondary">देखें यह कैसे काम करता है</a>
+        <a href="#bookmarklet" class="btn-secondary">Install नहीं करना? Bookmarklet यूज़ करें</a>
       </div>
       <p class="hero-meta">शुरू करने के लिए किसी account की ज़रूरत नहीं · अपनी खुद की AI key इस्तेमाल करें, या Ollama के साथ 100% offline चलाएं</p>
     </div>
@@ -131,7 +131,7 @@
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI summaries, आपकी पसंद का model</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek, या OpenRouter के ज़रिए 100+ models — या फिर इसे local Ollama model से जोड़ें और इस स्टेप के लिए नेटवर्क इस्तेमाल करने की बिल्कुल ज़रूरत नहीं।</p>
+          <p>OpenAI, Gemini, Mistral, DeepSeek, या कोई custom endpoint — या इसे local Ollama model पर point करें और बिना किसी network usage या recurring cost के पूरी तरह offline चलाएं।</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
@@ -225,6 +225,120 @@
         <div class="eyebrow">byphil के सिद्धांतों पर निर्मित</div>
         <h2>आपका Archive हमेशा आपका ही रहता है</h2>
         <p>Search, duplicate detection, tag cleanup, reading-level और tone scoring, और "similar articles" सब कुछ पूरी तरह आपके ब्राउज़र में चलता है — बिना किसी सर्वर या अकाउंट की ज़रूरत के। आपके डिवाइस से केवल summarization call बाहर जाती है, वह भी केवल आपके चुने हुए AI प्रोवाइडर के पास। इसे local Ollama model से जोड़ें और वह भी पूरी तरह आपके कंप्यूटर पर ही रहेगा।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">कोई install की ज़रूरत नहीं</div>
+        <h2>Bookmarklet पाएं</h2>
+        <p>किसी भी browser और OS पर काम करता है — iOS पर भी, जहाँ extension नहीं चल सकता। एक provider चुनें, link generate करें, और इसे अपने bookmarks bar में drag करें। किसी भी page पर बस एक click से सीधे AI summary insert हो जाती है।</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">Bring your own key</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">अपने byPhil account का उपयोग करें — कोई API key manage करने की ज़रूरत नहीं। Bookmarklet आपके session के साथ byPhil Cloud API को call करता है।</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">Email</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">Magic code भेजें</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">Verification code</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">Verify &amp; connect करें</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ Connected as <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">Model</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">आपकी summaries के लिए byPhil Cloud API द्वारा इस्तेमाल किया जाने वाला model।</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">Disconnect करें</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
+          <label class="bm-label" for="bmProvider">Provider</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (Local)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API Key</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 सिर्फ आपके browser के local storage में सुरक्षित। Generated bookmarklet में यह embed होता है, इसलिए इसे किसी के साथ share न करें।</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">Summary insert करें</label>
+          <select id="bmInsertion">
+            <option value="floating">Floating box</option>
+            <option value="inline">Inline — spot चुनने के लिए click करें</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">Floating box summary को corner overlay में दिखाता है। Inline mode में आप page पर ठीक उस जगह click कर सकते हैं जहाँ summary insert करनी हो।</p>
+
+          <label class="bm-label" for="bmPrompt">Prompt</label>
+          <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.
+More extensive summary with a bit more detail (4-5 sentences).
+Fun reference to the topic related to my competence as a UX designer.
+Humorous take on the topic like a standup comedian.
+Related book and media recommendations.
+Answer additional questions in a serious and engaging way.
+Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">Share options</legend>
+            <p class="bm-hint">Summary हमेशा page पर insert होती है। Generate करने के बाद आप चाहें तो इसे share भी कर सकते हैं।</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative">
+              <span>System share sheet</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle">
+              <span>Kindle पर भेजें</span>
+            </label>
+            <div id="bmKindleConfig" hidden="">
+              <label class="bm-label" for="bmKindleEmail">Kindle email</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+              <p class="bm-hint">इसके लिए byPhil Cloud connection ज़रूरी है। पहले <strong>kindle@byphil.eu</strong> को अपने Kindle के approved senders में जोड़ें — देखें <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon की guide</a>। Free tier में 3 Kindle sends शामिल हैं; unlimited sends के लिए Support Pass आवश्यक है।</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend">
+              <span>LocalSend पर भेजें</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden="">
+              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+              <p class="bm-hint">आपके network पर LocalSend (या LocalSend plugin वाला KOReader) चला रहे device का IP address।</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">Bookmarklet generate करें</button>
+          <div id="bmOutput" hidden="">
+            <p class="bm-hint">नीचे दिए गए link को अपने bookmarks bar में drag करें 🔖 <br>(iOS पर, drag करने के लिए 2 सेकंड तक दबाकर रखें):</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI Summary</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -395,6 +509,7 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="index.html#bookmarklet">Bookmarklet (बिना install के)</a>
         <a href="privacy.html">Privacy</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Refunds और Returns</a>
