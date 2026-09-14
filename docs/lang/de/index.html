@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek oder ein benutzerdefinierter Endpunkt – oder binden Sie ein lokales Ollama-Modell an, sodass für diesen Schritt keine Daten Ihr Gerät verlassen.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Ghost-Highlights direkt auf der Seite</h3>
+          <p>Die KI hebt die wichtigsten Originalpassagen des Artikels dezent hervor – so erfassen Sie die Kerninhalte auf einen Blick. Die Markierungen werden beim Export zu Kindle, LocalSend oder Markdown direkt übernommen.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Echte Volltextsuche, direkt auf Ihrem Gerät</h3>
           <p>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem im Browser erstellten TF-IDF-Index. Ohne Server-Roundtrip, ohne Verzögerung und ohne Datenweitergabe.</p>
@@ -238,6 +243,8 @@
         <p>Funktioniert in jedem Browser und Betriebssystem – einschließlich iOS, wo Browser-Erweiterungen nicht unterstützt werden. Wählen Sie einen Anbieter, generieren Sie den Link und ziehen Sie ihn in Ihre Lesezeichenleiste. Ein Klick genügt, um eine KI-Zusammenfassung direkt in jede Seite einzubetten.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">Inline – Position per Klick wählen</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">Das schwebende Fenster zeigt die Zusammenfassung als Overlay in der Ecke. Bei Inline wählen Sie per Klick genau die Stelle auf der Seite, an der der Text eingefügt werden soll.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>Zusammenfassung im Speed-Reading-Modus lesen (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>Schlüsselpassagen direkt auf der Seite dezent hervorheben</span>
+          </label>
+          <p class="bm-hint">Hebt die wichtigsten wörtlichen Textstellen im Artikel dezent hervor. Die Markierungen bleiben auch beim Senden an Kindle, LocalSend, beim Download als .MD oder beim Teilen erhalten.</p>
 
           <label class="bm-label" for="bmPrompt">Prompt</label>
           <textarea id="bmPrompt" rows="6">Abschnitt zur Artikelzusammenfassung mit kreativem Titel, der den Artikel in einfachen Worten erklärt.

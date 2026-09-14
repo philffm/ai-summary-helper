@@ -134,6 +134,11 @@
           <p>OpenAI, Gemini, Mistral, DeepSeek 또는 커스텀 엔드포인트는 물론, 로컬 Ollama 모델을 지정해 외부 네트워크 통신 없이 완벽한 프라이버시로 빠르게 처리할 수도 있습니다.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>웹페이지에서 바로 확인하는 고스트 하이라이트</h3>
+          <p>AI가 본문에서 가장 중요한 문장을 은은하게 하이라이트해 주어 핵심 인사이트를 한눈에 훑어볼 수 있습니다. 하이라이트된 내용은 요약과 함께 Kindle, LocalSend, Markdown으로도 간편하게 내보낼 수 있습니다.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>진정한 온디바이스 검색</h3>
           <p>브라우저 내에서 구축된 TF-IDF 인덱스를 통해 제목, 태그, 본문 전체를 대상으로 전문 검색을 지원합니다. 서버 왕복이나 지연이 없으며 데이터가 외부로 전송되지 않습니다.</p>
@@ -238,6 +243,8 @@
         <p>확장 프로그램을 사용할 수 없는 iOS를 포함해 모든 브라우저 및 OS에서 완벽하게 작동합니다. 제공업체를 선택하고 링크를 생성한 뒤 북마크 바에 끌어다 놓으세요. 어떤 페이지에서든 클릭 한 번으로 AI 요약이 바로 삽입됩니다.</p>
       </div>
 
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
+
       <div class="bookmarklet-card reveal" id="bookmarkletCard">
         <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
           <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
@@ -293,6 +300,17 @@
             <option value="inline">인라인 — 원하는 위치 클릭</option>
           </select>
           <p class="bm-hint" id="bmInsertionHint">플로팅 박스는 화면 모서리에 오버레이 형태로 요약을 표시합니다. 인라인 방식을 사용하면 웹페이지 내에서 요약을 삽입할 정확한 위치를 직접 클릭해 선택할 수 있습니다.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead">
+            <span>요약 속독하기 (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights">
+            <span>페이지 내 핵심 문장 고스트 하이라이트</span>
+          </label>
+          <p class="bm-hint">본문에서 가장 중요한 원문 구절을 은은하게 하이라이트합니다. 하이라이트는 Kindle이나 LocalSend로 전송하거나 .MD 파일로 다운로드 및 공유할 때도 그대로 유지됩니다.</p>
 
           <label class="bm-label" for="bmPrompt">프롬프트</label>
           <textarea id="bmPrompt" rows="6">기사를 쉬운 말로 설명하는 독창적인 제목이 포함된 기사 요약 섹션.

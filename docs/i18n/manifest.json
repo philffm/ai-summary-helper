@@ -23704,6 +23704,281 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "f1e7130bdba32d05ab7c9cb854b4ed40bcea31efd9594e239578cc9c2694b14b": {
+      "en": "Ghost highlights, right on the page",
+      "translations": {
+        "de": {
+          "text": "Ghost-Highlights direkt auf der Seite",
+          "translatedAt": "2026-09-14T09:53:13.632Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Surlignages subtils, directement sur la page",
+          "translatedAt": "2026-09-14T09:53:19.672Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Resaltados sutiles, directamente en la página",
+          "translatedAt": "2026-09-14T09:53:23.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "原位幽灵高亮，直接呈现在页面上",
+          "translatedAt": "2026-09-14T09:53:28.500Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "幽靈高亮標註，直接呈現在網頁上",
+          "translatedAt": "2026-09-14T09:53:37.751Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ページ上に直接、さりげなくハイライト",
+          "translatedAt": "2026-09-14T09:53:45.501Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "웹페이지에서 바로 확인하는 고스트 하이라이트",
+          "translatedAt": "2026-09-14T09:53:49.858Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Destaques sutis, direto na página",
+          "translatedAt": "2026-09-14T09:53:57.650Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Ghost highlights, सीधे पेज पर",
+          "translatedAt": "2026-09-14T09:54:08.840Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Highlight mờ trực quan, ngay trên trang",
+          "translatedAt": "2026-09-14T09:54:13.191Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "008adac1da3bec0cc950ae47fb2bd7382011298e9e47c43455b5bf7d283a540b": {
+      "en": "The AI lightly highlights the most important verbatim passages in the article — so you can skim the key insights at a glance, and they travel with the summary to Kindle, LocalSend, or Markdown.",
+      "translations": {
+        "de": {
+          "text": "Die KI hebt die wichtigsten Originalpassagen des Artikels dezent hervor – so erfassen Sie die Kerninhalte auf einen Blick. Die Markierungen werden beim Export zu Kindle, LocalSend oder Markdown direkt übernommen.",
+          "translatedAt": "2026-09-14T09:53:13.632Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'IA surligne discrètement les passages textuels les plus importants de l'article — vous permettant de parcourir l'essentiel en un coup d'œil, tout en les intégrant au résumé vers Kindle, LocalSend ou Markdown.",
+          "translatedAt": "2026-09-14T09:53:19.672Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La IA resalta con suavidad los pasajes textuales más importantes del artículo, para que puedas captar las ideas clave de un vistazo y conservarlas junto con el resumen al exportar a Kindle, LocalSend o Markdown.",
+          "translatedAt": "2026-09-14T09:53:23.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI 会在文章中以浅色高亮标出最重要的原文段落——让你一眼抓住核心要点，高亮内容还会随摘要同步导出至 Kindle、LocalSend 或 Markdown。",
+          "translatedAt": "2026-09-14T09:53:28.500Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI 會自動以淡色標記文章中最關鍵的原文字句——讓您一眼掌握核心重點，並能隨摘要一同匯出至 Kindle、LocalSend 或 Markdown。",
+          "translatedAt": "2026-09-14T09:53:37.751Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIが記事内の最も重要な原文をさりげなくハイライトします。要点をひと目で把握でき、KindleやLocalSendへの送信、Markdownへの保存時にもハイライトがそのまま引き継がれます。",
+          "translatedAt": "2026-09-14T09:53:45.501Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI가 본문에서 가장 중요한 문장을 은은하게 하이라이트해 주어 핵심 인사이트를 한눈에 훑어볼 수 있습니다. 하이라이트된 내용은 요약과 함께 Kindle, LocalSend, Markdown으로도 간편하게 내보낼 수 있습니다.",
+          "translatedAt": "2026-09-14T09:53:49.858Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A IA destaca sutilmente os trechos mais importantes e literais do artigo — assim você passa o olho nas ideias principais num instante, e eles acompanham o resumo para o Kindle, LocalSend ou Markdown.",
+          "translatedAt": "2026-09-14T09:53:57.650Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI आर्टिकल के सबसे ज़रूरी verbatim passages को हल्के से highlight करता है — ताकि आप एक नज़र में key insights को skim कर सकें, और ये summary के साथ Kindle, LocalSend, या Markdown में भी सेव होते हैं।",
+          "translatedAt": "2026-09-14T09:54:08.840Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI sẽ đánh dấu mờ các đoạn trích nguyên văn quan trọng nhất trong bài viết — giúp bạn nắm bắt nhanh ý chính trong nháy mắt và đồng bộ liền mạch cùng bản tóm tắt sang Kindle, LocalSend hoặc Markdown.",
+          "translatedAt": "2026-09-14T09:54:13.191Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f6f9970b15eb8347ce69d3f9963df93a3612ffd8d2f3536cf1266fa794e338c9": {
+      "en": "Speed-read the summary (RSVP)",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassung im Speed-Reading-Modus lesen (RSVP)",
+          "translatedAt": "2026-09-14T09:53:13.632Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lecture rapide du résumé (RSVP)",
+          "translatedAt": "2026-09-14T09:53:19.672Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Lectura rápida del resumen (RSVP)",
+          "translatedAt": "2026-09-14T09:53:23.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "快速阅读摘要 (RSVP)",
+          "translatedAt": "2026-09-14T09:53:28.500Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "速讀摘要 (RSVP)",
+          "translatedAt": "2026-09-14T09:53:37.751Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約を速読（RSVP）",
+          "translatedAt": "2026-09-14T09:53:45.501Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "요약 속독하기 (RSVP)",
+          "translatedAt": "2026-09-14T09:53:49.858Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Leitura dinâmica do resumo (RSVP)",
+          "translatedAt": "2026-09-14T09:53:57.650Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Summary को speed-read करें (RSVP)",
+          "translatedAt": "2026-09-14T09:54:08.840Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đọc nhanh bản tóm tắt (RSVP)",
+          "translatedAt": "2026-09-14T09:54:13.191Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "90b8e6e147004dd22e037972d96fd13ff5c586ef3ec4fc6c228ec60dd5ad531c": {
+      "en": "Ghost-highlight key passages on the page",
+      "translations": {
+        "de": {
+          "text": "Schlüsselpassagen direkt auf der Seite dezent hervorheben",
+          "translatedAt": "2026-09-14T09:53:13.632Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Surligner discrètement les passages clés sur la page",
+          "translatedAt": "2026-09-14T09:53:19.672Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Resalta pasajes clave en la página",
+          "translatedAt": "2026-09-14T09:53:23.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在页面上以幽灵高亮标出重点段落",
+          "translatedAt": "2026-09-14T09:53:28.500Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在網頁上以幽靈高亮標註關鍵段落",
+          "translatedAt": "2026-09-14T09:53:37.751Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ページ上の重要箇所をさりげなくハイライト",
+          "translatedAt": "2026-09-14T09:53:45.501Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "페이지 내 핵심 문장 고스트 하이라이트",
+          "translatedAt": "2026-09-14T09:53:49.858Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Destacar sutilmente trechos-chave na página",
+          "translatedAt": "2026-09-14T09:53:57.650Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "पेज पर key passages को ghost-highlight करें",
+          "translatedAt": "2026-09-14T09:54:08.840Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Highlight mờ các đoạn quan trọng trên trang",
+          "translatedAt": "2026-09-14T09:54:13.191Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5fba3eb55fdcf8f51ffd0bb8373ef874986f14582eb5cf68b9c2e3890ab2061a": {
+      "en": "Lightly highlights the most important verbatim passages in the article. Highlights are also included when sending to Kindle, LocalSend, downloading as .MD, or sharing.",
+      "translations": {
+        "de": {
+          "text": "Hebt die wichtigsten wörtlichen Textstellen im Artikel dezent hervor. Die Markierungen bleiben auch beim Senden an Kindle, LocalSend, beim Download als .MD oder beim Teilen erhalten.",
+          "translatedAt": "2026-09-14T09:53:13.632Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Surligne subtilement les passages textuels les plus importants de l'article. Les surlignages sont également conservés lors de l'envoi vers Kindle, LocalSend, du téléchargement au format .MD ou du partage.",
+          "translatedAt": "2026-09-14T09:53:19.672Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Resalta de forma sutil los pasajes textuales más importantes del artículo. Los fragmentos destacados también se incluyen al enviar a Kindle, LocalSend, descargar como .MD o compartir.",
+          "translatedAt": "2026-09-14T09:53:23.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "以浅色高亮标出文章中最重要的原文段落。发送至 Kindle、LocalSend、下载为 .MD 或分享时，高亮内容也会一并包含。",
+          "translatedAt": "2026-09-14T09:53:28.500Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "以淡色高亮標記文章中最關鍵的原文字句。傳送至 Kindle、LocalSend、下載為 .MD 或分享時，也會一併包含高亮重點。",
+          "translatedAt": "2026-09-14T09:53:37.751Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "記事内の最も重要な原文をさりげなくハイライトします。KindleやLocalSendへの送信、.MD形式でのダウンロード、共有時にもハイライトが保持されます。",
+          "translatedAt": "2026-09-14T09:53:45.501Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "본문에서 가장 중요한 원문 구절을 은은하게 하이라이트합니다. 하이라이트는 Kindle이나 LocalSend로 전송하거나 .MD 파일로 다운로드 및 공유할 때도 그대로 유지됩니다.",
+          "translatedAt": "2026-09-14T09:53:49.858Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Destaca sutilmente os trechos literais mais importantes do artigo. Os destaques também são incluídos ao enviar para o Kindle, LocalSend, baixar como .MD ou compartilhar.",
+          "translatedAt": "2026-09-14T09:53:57.650Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आर्टिकल के सबसे ज़रूरी verbatim passages को हल्के से highlight करता है। Kindle, LocalSend पर भेजते समय, .MD के रूप में download करते समय या share करते समय भी ये highlights शामिल रहते हैं।",
+          "translatedAt": "2026-09-14T09:54:08.840Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đánh dấu mờ các đoạn trích nguyên văn quan trọng nhất trong bài viết. Các phần highlight cũng được giữ nguyên khi gửi sang Kindle, LocalSend, tải về dưới dạng .MD hoặc chia sẻ.",
+          "translatedAt": "2026-09-14T09:54:13.191Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
