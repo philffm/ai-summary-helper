@@ -297,24 +297,35 @@ Related book and media recommendations.
 Answer additional questions in a serious and engaging way.
 Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</textarea>
 
-        <label class="bm-label" for="bmDelivery">After summarizing</label>
-        <select id="bmDelivery">
-          <option value="page">Insert summary on the page</option>
-          <option value="kindle">Send to Kindle</option>
-          <option value="localsend">Send to LocalSend</option>
-        </select>
+        <fieldset class="bm-share-options">
+          <legend class="bm-label">Share options</legend>
+          <p class="bm-hint">The summary is always inserted on the page. Optionally also share it after generating.</p>
 
-        <div id="bmKindleConfig" hidden="">
-          <label class="bm-label" for="bmKindleEmail">Kindle email</label>
-          <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
-          <p class="bm-hint">Requires a byPhil Cloud connection. Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.</p>
-        </div>
+          <label class="bm-check">
+            <input type="checkbox" id="bmShareNative">
+            <span>System share sheet</span>
+          </label>
 
-        <div id="bmLocalSendConfig" hidden="">
-          <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
-          <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
-          <p class="bm-hint">The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.</p>
-        </div>
+          <label class="bm-check">
+            <input type="checkbox" id="bmShareKindle">
+            <span>Send to Kindle</span>
+          </label>
+          <div id="bmKindleConfig" hidden="">
+            <label class="bm-label" for="bmKindleEmail">Kindle email</label>
+            <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+            <p class="bm-hint">Requires a byPhil Cloud connection. Your byPhil email must be whitelisted for Kindle delivery first. Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.</p>
+          </div>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmShareLocalSend">
+            <span>Send to LocalSend</span>
+          </label>
+          <div id="bmLocalSendConfig" hidden="">
+            <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+            <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+            <p class="bm-hint">The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.</p>
+          </div>
+        </fieldset>
 
         <button type="button" class="btn-primary" id="bmGenerate">Generate bookmarklet</button>
         <div id="bmOutput" hidden="">

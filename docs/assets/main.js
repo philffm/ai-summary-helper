@@ -210,9 +210,11 @@ function setBilling(period) {
     cloudEmailLabel: document.getElementById('bmCloudEmailLabel'),
     cloudModel: document.getElementById('bmCloudModel'),
     cloudLogout: document.getElementById('bmCloudLogout'),
-    delivery: document.getElementById('bmDelivery'),
+    shareNative: document.getElementById('bmShareNative'),
+    shareKindle: document.getElementById('bmShareKindle'),
     kindleConfig: document.getElementById('bmKindleConfig'),
     kindleEmail: document.getElementById('bmKindleEmail'),
+    shareLocalSend: document.getElementById('bmShareLocalSend'),
     localSendConfig: document.getElementById('bmLocalSendConfig'),
     localSendIp: document.getElementById('bmLocalSendIp')
   };
@@ -364,15 +366,21 @@ function setBilling(period) {
     } catch (e) {}
   })();
 
-  // ── Delivery config toggle ──────────────────────────────────────
-  function updateDeliveryConfig() {
-    var d = els.delivery.value;
-    els.kindleConfig.hidden = d !== 'kindle';
-    els.localSendConfig.hidden = d !== 'localsend';
+  // ── Share options toggle ────────────────────────────────────────
+  function updateShareConfig() {
+    els.kindleConfig.hidden = !els.shareKindle.checked;
+    els.localSendConfig.hidden = !els.shareLocalSend.checked;
   }
-  els.delivery.addEventListener('change', updateDeliveryConfig);
-  els.delivery.addEventListener('change', function () {
-    try { localStorage.setItem('aish_bm_delivery', els.delivery.value); } catch (e) {}
+  els.shareKindle.addEventListener('change', updateShareConfig);
+  els.shareLocalSend.addEventListener('change', updateShareConfig);
+  els.shareNative.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_share_native', els.shareNative.checked ? '1' : '0'); } catch (e) {}
+  });
+  els.shareKindle.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_share_kindle', els.shareKindle.checked ? '1' : '0'); } catch (e) {}
+  });
+  els.shareLocalSend.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_share_localsend', els.shareLocalSend.checked ? '1' : '0'); } catch (e) {}
   });
   els.kindleEmail.addEventListener('input', function () {
     try { localStorage.setItem('aish_bm_kindle_email', els.kindleEmail.value.trim()); } catch (e) {}
@@ -382,15 +390,16 @@ function setBilling(period) {
   });
   (function () {
     try {
-      var savedDelivery = localStorage.getItem('aish_bm_delivery');
+      if (localStorage.getItem('aish_bm_share_native') === '1') els.shareNative.checked = true;
+      if (localStorage.getItem('aish_bm_share_kindle') === '1') els.shareKindle.checked = true;
+      if (localStorage.getItem('aish_bm_share_localsend') === '1') els.shareLocalSend.checked = true;
       var savedKindle = localStorage.getItem('aish_bm_kindle_email');
       var savedLocalSend = localStorage.getItem('aish_bm_localsend_ip');
-      if (savedDelivery && ['page', 'kindle', 'localsend'].indexOf(savedDelivery) !== -1) els.delivery.value = savedDelivery;
       if (savedKindle) els.kindleEmail.value = savedKindle;
       if (savedLocalSend) els.localSendIp.value = savedLocalSend;
     } catch (e) {}
   })();
-  updateDeliveryConfig();
+  updateShareConfig();
 
   refreshCloudAuth();
 
@@ -424,15 +433,18 @@ function setBilling(period) {
       if (!p.noKey && !apiKey) { alert('Enter your API key.'); return null; }
     }
 
-    // Delivery config.
-    var delivery = els.delivery.value || 'page';
+    // Share options (the summary is always inserted on the page; these are
+    // optional additional shares configured at generate time).
+    var shareNative = els.shareNative.checked;
+    var shareKindle = els.shareKindle.checked;
+    var shareLocalSend = els.shareLocalSend.checked;
     var kindleEmail = els.kindleEmail.value.trim();
     var localSendIp = els.localSendIp.value.trim();
-    if (delivery === 'kindle') {
+    if (shareKindle) {
       if (!isCloud) { alert('Send to Kindle requires a byPhil Cloud connection.'); return null; }
       if (!kindleEmail) { alert('Enter your Kindle email.'); return null; }
     }
-    if (delivery === 'localsend' && !localSendIp) { alert('Enter your LocalSend IP.'); return null; }
+    if (shareLocalSend && !localSendIp) { alert('Enter your LocalSend IP.'); return null; }
 
     // The bookmarklet body. It runs in the context of whatever page the user
     // is on, so it must be fully self-contained (no external deps). It:
@@ -441,8 +453,9 @@ function setBilling(period) {
     //   2. Sends the page content to the chosen provider.
     //   3. Parses the SSE stream from response.text() (works in any browser,
     //      unlike WebExtension-only TextDecoder/getReader()).
-    //   4. Delivers the enriched article: inserts it on the page, sends it to
-    //      Kindle (byPhil Cloud proxy), or sends it to a LocalSend device.
+    //   4. Always inserts the summary on the page, then optionally shares it
+    //      via the system share sheet, Kindle (byPhil Cloud proxy), or
+    //      LocalSend (direct P2P).
     var code = [
       '(function(){',
       'var BM_VERSION=' + JSON.stringify(BM_VERSION) + ';',
@@ -453,7 +466,9 @@ function setBilling(period) {
       'var isGemini=' + (isGemini ? 'true' : 'false') + ';',
       'var isCloud=' + (isCloud ? 'true' : 'false') + ';',
       'var prompt=' + JSON.stringify(prompt) + ';',
-      'var delivery=' + JSON.stringify(delivery) + ';',
+      'var shareNative=' + (shareNative ? 'true' : 'false') + ';',
+      'var shareKindle=' + (shareKindle ? 'true' : 'false') + ';',
+      'var shareLocalSend=' + (shareLocalSend ? 'true' : 'false') + ';',
       'var kindleEmail=' + JSON.stringify(kindleEmail) + ';',
       'var localSendIp=' + JSON.stringify(localSendIp) + ';',
       'var content=document.body.innerText;',
@@ -483,16 +498,21 @@ function setBilling(period) {
       '  var title=document.title||"AI Summary";',
       '  var url=location.href;',
       '  var docHtml="<!DOCTYPE html><html><head><meta charset=\\"utf-8\\"><title>"+title+"</title><style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}</style></head><body><h1>"+title+"</h1><div class=\\"meta\\">Captured via AI Summary Helper &middot; <a href=\\""+url+"\\">Source</a></div><div class=\\"summary\\"><h2>🧙 AI Summary</h2>"+summary+"</div><h2>📄 Content</h2><div>"+content.replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</div></body></html>";',
-      '  if(delivery==="kindle"){',
+      '  // Always insert the summary on the page.',
+      '  var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary;document.body.appendChild(box);var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
+      '  // Optional: system share sheet.',
+      '  if(shareNative&&navigator.share){try{navigator.share({title:title,text:summary,url:url});}catch(e){}}',
+      '  // Optional: send to Kindle via byPhil Cloud proxy.',
+      '  if(shareKindle){',
       '    fetch("https://api.byphil.eu/v1/projects/ai_summary_helper/kindle",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify({kindle_email:kindleEmail,title:title,content:content,summary:summary,url:url})}).then(function(r){return r.json();}).then(function(d){if(d&&d.success){alert("Sent to Kindle! 📚");}else{alert("Kindle delivery failed: "+(d&&d.error||"unknown"));}}).catch(function(e){alert("Kindle error: "+e.message);});',
-      '  }else if(delivery==="localsend"){',
+      '  }',
+      '  // Optional: send to LocalSend via direct P2P.',
+      '  if(shareLocalSend){',
       '    var fileName=title.replace(/[^a-z0-9_-]/gi,"_")+".html";',
       '    var enc=new TextEncoder();var bytes=enc.encode(docHtml);var fileId="file_"+Date.now();',
       '    var prepare={info:{alias:"AI Summary Helper",version:"2.0",deviceModel:"Bookmarklet",deviceType:"browser"},files:{}};prepare.files[fileId]={id:fileId,fileName:fileName,size:bytes.length,fileType:"text/html",sha256:null,preview:null};',
       '    var base="http://"+localSendIp+":53317/api/localsend/v1";',
       '    fetch(base+"/prepare-upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(prepare)}).then(function(r){if(!r.ok)throw new Error("Handshake HTTP "+r.status);return r.json();}).then(function(d){var sid=d.sessionId||d.session_id;var files=d.files||{};var tok=files[fileId]||(d.tokens&&d.tokens[fileId]);var up=base+"/upload?sessionId="+encodeURIComponent(sid)+"&fileId="+encodeURIComponent(fileId);if(tok)up+="&token="+encodeURIComponent(tok);return fetch(up,{method:"POST",headers:{"Content-Type":"application/octet-stream"},body:bytes});}).then(function(r){if(!r.ok)throw new Error("Upload HTTP "+r.status);alert("Sent to LocalSend! 📖");}).catch(function(e){alert("LocalSend error: "+e.message);});',
-      '  }else{',
-      '    var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary;document.body.appendChild(box);var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
       '  }',
       '})',
       '.catch(function(err){msg.remove();alert("Error: "+err.message);});',

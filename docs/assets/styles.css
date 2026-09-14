@@ -550,3 +550,16 @@ footer .copyright{ font-size:13px; color:var(--steel-400); margin-top:18px; line
   font-size:12.5px; text-decoration:underline; padding:0;
 }
 .bookmarklet-card .btn-link:hover{ color:var(--paper); }
+.bm-share-options{
+  border:1px solid var(--border-subtle); border-radius:10px;
+  padding:12px 14px; margin:14px 0 0;
+}
+.bm-share-options legend.bm-label{ padding:0 6px; }
+.bm-check{
+  display:flex; align-items:center; gap:10px; margin:6px 0;
+  font-size:14px; color:var(--paper); cursor:pointer;
+}
+.bm-check input[type="checkbox"]{
+  width:auto; height:auto; accent-color:var(--signal); cursor:pointer;
+}
+.bm-check:hover{ color:var(--paper); }
