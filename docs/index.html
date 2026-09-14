@@ -91,7 +91,7 @@
       <p class="sub">AI Summary Helper saves any page as a summarized, searchable article — then helps you actually get back to it, with an on-device digest that sends offline reading straight to your Kindle or another device.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome — it's free</a>
-        <a href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/" target="_blank" rel="noopener" class="btn-secondary">No install? Use the bookmarklet</a>
+        <a href="#bookmarklet" class="btn-secondary">No install? Use the bookmarklet</a>
         <a href="#features" class="btn-secondary">See what it does</a>
       </div>
       <p class="hero-meta">No account required to start · Bring your own AI key, or run it fully offline with Ollama</p>
@@ -226,6 +226,101 @@
         <div class="eyebrow">Built the byphil way</div>
         <h2>Your archive stays yours</h2>
         <p>Search, duplicate detection, tag cleanup, reading-level and tone scoring, and "similar articles" all run entirely in your browser — no server, no account required to get real value. The only thing that leaves your machine is the actual summarization call, and only to whichever AI provider you chose. Point it at a local Ollama model and even that stays home.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">No install needed</div>
+        <h2>Get the bookmarklet</h2>
+        <p>Works on any browser and OS — including iOS, where the extension can't run. Pick a provider, generate a link, and drag it to your bookmarks bar. One click on any page inserts an AI summary right into it.</p>
+      </div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeByok" data-bm-mode="byok">Bring your own key</button>
+          <button type="button" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel">
+          <label class="bm-label" for="bmProvider">Provider</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (Local)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API Key</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
+          <p class="bm-hint">🔒 Stored only in your browser's local storage. The generated bookmarklet embeds it, so don't share it.</p>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel" hidden="">
+          <p class="bm-hint">Use your byPhil account — no API key to manage. The bookmarklet calls the byPhil Cloud API with your session.</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">Email</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">Send magic code</button>
+            <div id="bmCloudOtp" hidden="">
+              <label class="bm-label" for="bmCloudCode">Verification code</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
+              <button type="button" class="btn-secondary" id="bmCloudVerify">Verify &amp; connect</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden="">
+            <p class="bm-hint">✅ Connected as <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">Model</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+              <option value="google/gemini-3.5-flash">Gemini 3.5 Flash</option>
+            </select>
+            <p class="bm-hint">The model used by the byPhil Cloud API for your summaries.</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">Disconnect</button>
+          </div>
+        </div>
+
+        <label class="bm-label" for="bmPrompt">Prompt</label>
+        <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.
+More extensive summary with a bit more detail (4-5 sentences).
+Fun reference to the topic related to my competence as a UX designer.
+Humorous take on the topic like a standup comedian.
+Related book and media recommendations.
+Answer additional questions in a serious and engaging way.
+Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</textarea>
+
+        <label class="bm-label" for="bmDelivery">After summarizing</label>
+        <select id="bmDelivery">
+          <option value="page">Insert summary on the page</option>
+          <option value="kindle">Send to Kindle</option>
+          <option value="localsend">Send to LocalSend</option>
+        </select>
+
+        <div id="bmKindleConfig" hidden="">
+          <label class="bm-label" for="bmKindleEmail">Kindle email</label>
+          <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
+          <p class="bm-hint">Requires a byPhil Cloud connection. Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.</p>
+        </div>
+
+        <div id="bmLocalSendConfig" hidden="">
+          <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+          <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
+          <p class="bm-hint">The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.</p>
+        </div>
+
+        <button type="button" class="btn-primary" id="bmGenerate">Generate bookmarklet</button>
+        <div id="bmOutput" hidden="">
+          <p class="bm-hint">Drag the link below to your bookmarks bar 🔖 <br>(on iOS, hold to drag for 2 seconds):</p>
+          <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI Summary</a>
+        </div>
       </div>
     </div>
   </section>
@@ -396,7 +491,7 @@
       <div class="wordmark"><img src="assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source on GitHub</a>
-        <a href="https://philffm.github.io/ai-summary-helper/bookmarklet-generator/" target="_blank" rel="noopener">Bookmarklet (no install)</a>
+        <a href="index.html#bookmarklet">Bookmarklet (no install)</a>
         <a href="privacy.html">Privacy</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Refunds &amp; Returns</a>

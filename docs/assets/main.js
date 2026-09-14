@@ -169,3 +169,344 @@ function setBilling(period) {
 
   if (!dismissed) document.body.prepend(banner);
 })();
+
+/* ── Bookmarklet generator (BYOK + byPhil Cloud) ────────────────── */
+(function () {
+  var card = document.getElementById('bookmarkletCard');
+  if (!card) return;
+
+  var API_BASE = 'https://api.byphil.eu';
+  var TOKEN_KEY = 'aish_bm_pb_token';
+  var EMAIL_KEY = 'aish_bm_email';
+
+  var PROVIDERS = {
+    openai: { name: 'OpenAI', endpoint: 'https://api.openai.com/v1/chat/completions', model: 'gpt-5-mini', keyUrl: 'https://platform.openai.com/api-keys' },
+    deepseek: { name: 'DeepSeek', endpoint: 'https://api.deepseek.com/chat/completions', model: 'deepseek-v4-flash', keyUrl: 'https://platform.deepseek.com/api_keys' },
+    mistral: { name: 'Mistral', endpoint: 'https://api.mistral.ai/v1/chat/completions', model: 'mistral-large-latest', keyUrl: 'https://console.mistral.ai/api-keys/' },
+    gemini: { name: 'Gemini', endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent', model: 'gemini-3.5-flash', keyUrl: 'https://aistudio.google.com/apikey' },
+    ollama: { name: 'Ollama (Local)', endpoint: 'http://localhost:11434/v1/chat/completions', model: 'llama3.2', keyUrl: null, noKey: true }
+  };
+
+  var els = {
+    modeByok: document.getElementById('bmModeByok'),
+    modeCloud: document.getElementById('bmModeCloud'),
+    byokPanel: document.getElementById('bmByokPanel'),
+    cloudPanel: document.getElementById('bmCloudPanel'),
+    provider: document.getElementById('bmProvider'),
+    providerHint: document.getElementById('bmProviderHint'),
+    apiKey: document.getElementById('bmApiKey'),
+    prompt: document.getElementById('bmPrompt'),
+    generate: document.getElementById('bmGenerate'),
+    output: document.getElementById('bmOutput'),
+    link: document.getElementById('bmBookmarkletLink'),
+    cloudAuth: document.getElementById('bmCloudAuth'),
+    cloudConnected: document.getElementById('bmCloudConnected'),
+    cloudEmail: document.getElementById('bmCloudEmail'),
+    cloudSendCode: document.getElementById('bmCloudSendCode'),
+    cloudOtp: document.getElementById('bmCloudOtp'),
+    cloudCode: document.getElementById('bmCloudCode'),
+    cloudVerify: document.getElementById('bmCloudVerify'),
+    cloudStatus: document.getElementById('bmCloudStatus'),
+    cloudEmailLabel: document.getElementById('bmCloudEmailLabel'),
+    cloudModel: document.getElementById('bmCloudModel'),
+    cloudLogout: document.getElementById('bmCloudLogout'),
+    delivery: document.getElementById('bmDelivery'),
+    kindleConfig: document.getElementById('bmKindleConfig'),
+    kindleEmail: document.getElementById('bmKindleEmail'),
+    localSendConfig: document.getElementById('bmLocalSendConfig'),
+    localSendIp: document.getElementById('bmLocalSendIp')
+  };
+
+  var mode = 'byok';
+  var otpId = null;
+
+  function setMode(next) {
+    mode = next;
+    els.modeByok.classList.toggle('active', next === 'byok');
+    els.modeCloud.classList.toggle('active', next === 'cloud');
+    els.byokPanel.hidden = next !== 'byok';
+    els.cloudPanel.hidden = next !== 'cloud';
+    els.output.hidden = true;
+  }
+
+  function updateProviderHint() {
+    var p = PROVIDERS[els.provider.value];
+    if (!p) { els.providerHint.textContent = ''; return; }
+    if (p.noKey) {
+      els.providerHint.textContent = 'Runs fully local via Ollama — no API key needed.';
+    } else {
+      els.providerHint.innerHTML = 'Get your <a href="' + p.keyUrl + '" target="_blank" rel="noopener">' + p.name + ' API key</a>.';
+    }
+  }
+
+  function getToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; }
+  }
+  function setToken(t) {
+    try { if (t) localStorage.setItem(TOKEN_KEY, t); else localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+  }
+  function getEmail() {
+    try { return localStorage.getItem(EMAIL_KEY) || ''; } catch (e) { return ''; }
+  }
+  function setEmail(e) {
+    try { if (e) localStorage.setItem(EMAIL_KEY, e); else localStorage.removeItem(EMAIL_KEY); } catch (e) {}
+  }
+
+  function setCloudStatus(msg, isError) {
+    els.cloudStatus.textContent = msg || '';
+    els.cloudStatus.style.color = isError ? 'var(--danger, #e74c3c)' : '';
+  }
+
+  function refreshCloudAuth() {
+    var token = getToken();
+    var email = getEmail();
+    if (token && email) {
+      els.cloudAuth.hidden = true;
+      els.cloudConnected.hidden = false;
+      els.cloudEmailLabel.textContent = email;
+    } else {
+      els.cloudAuth.hidden = false;
+      els.cloudConnected.hidden = true;
+    }
+  }
+
+  // ── Mode toggle ─────────────────────────────────────────────────
+  els.modeByok.addEventListener('click', function () { setMode('byok'); });
+  els.modeCloud.addEventListener('click', function () { setMode('cloud'); });
+
+  // ── Provider hint ───────────────────────────────────────────────
+  els.provider.addEventListener('change', updateProviderHint);
+  updateProviderHint();
+
+  // ── Persist BYOK key + provider locally ─────────────────────────
+  els.apiKey.addEventListener('input', function () {
+    try { localStorage.setItem('aish_bm_api_key', els.apiKey.value.trim()); } catch (e) {}
+  });
+  els.provider.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_provider', els.provider.value); } catch (e) {}
+  });
+  (function () {
+    try {
+      var savedKey = localStorage.getItem('aish_bm_api_key');
+      var savedProvider = localStorage.getItem('aish_bm_provider');
+      if (savedKey) els.apiKey.value = savedKey;
+      if (savedProvider && PROVIDERS[savedProvider]) els.provider.value = savedProvider;
+    } catch (e) {}
+  })();
+
+  // ── byPhil Cloud OTP flow ───────────────────────────────────────
+  els.cloudSendCode.addEventListener('click', async function () {
+    var email = els.cloudEmail.value.trim();
+    if (!email) { setCloudStatus('Enter your email first.', true); return; }
+    setCloudStatus('Sending magic code…');
+    els.cloudSendCode.disabled = true;
+    try {
+      var res = await fetch(API_BASE + '/v1/auth/request-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to send code');
+      otpId = data.otpId;
+      els.cloudOtp.hidden = false;
+      els.cloudCode.focus();
+      setCloudStatus('Magic code sent! Check your inbox.');
+    } catch (err) {
+      setCloudStatus('Error: ' + err.message, true);
+    } finally {
+      els.cloudSendCode.disabled = false;
+    }
+  });
+
+  els.cloudVerify.addEventListener('click', async function () {
+    var code = els.cloudCode.value.replace(/\s+/g, '').trim();
+    if (!code) { setCloudStatus('Enter the verification code.', true); return; }
+    if (!otpId) { setCloudStatus('Session lost. Request a new code.', true); return; }
+    setCloudStatus('Verifying…');
+    els.cloudVerify.disabled = true;
+    try {
+      var res = await fetch(API_BASE + '/v1/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ otpId: otpId, code: code })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Invalid code');
+      setToken(data.token);
+      setEmail(els.cloudEmail.value.trim());
+      otpId = null;
+      els.cloudCode.value = '';
+      els.cloudOtp.hidden = true;
+      setCloudStatus('');
+      refreshCloudAuth();
+    } catch (err) {
+      setCloudStatus('Error: ' + err.message, true);
+    } finally {
+      els.cloudVerify.disabled = false;
+    }
+  });
+
+  els.cloudLogout.addEventListener('click', function () {
+    setToken(null);
+    setEmail(null);
+    refreshCloudAuth();
+  });
+
+  // Persist the selected cloud model locally.
+  els.cloudModel.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_cloud_model', els.cloudModel.value); } catch (e) {}
+  });
+  (function () {
+    try {
+      var savedModel = localStorage.getItem('aish_bm_cloud_model');
+      if (savedModel) els.cloudModel.value = savedModel;
+    } catch (e) {}
+  })();
+
+  // ── Delivery config toggle ──────────────────────────────────────
+  function updateDeliveryConfig() {
+    var d = els.delivery.value;
+    els.kindleConfig.hidden = d !== 'kindle';
+    els.localSendConfig.hidden = d !== 'localsend';
+  }
+  els.delivery.addEventListener('change', updateDeliveryConfig);
+  els.delivery.addEventListener('change', function () {
+    try { localStorage.setItem('aish_bm_delivery', els.delivery.value); } catch (e) {}
+  });
+  els.kindleEmail.addEventListener('input', function () {
+    try { localStorage.setItem('aish_bm_kindle_email', els.kindleEmail.value.trim()); } catch (e) {}
+  });
+  els.localSendIp.addEventListener('input', function () {
+    try { localStorage.setItem('aish_bm_localsend_ip', els.localSendIp.value.trim()); } catch (e) {}
+  });
+  (function () {
+    try {
+      var savedDelivery = localStorage.getItem('aish_bm_delivery');
+      var savedKindle = localStorage.getItem('aish_bm_kindle_email');
+      var savedLocalSend = localStorage.getItem('aish_bm_localsend_ip');
+      if (savedDelivery && ['page', 'kindle', 'localsend'].indexOf(savedDelivery) !== -1) els.delivery.value = savedDelivery;
+      if (savedKindle) els.kindleEmail.value = savedKindle;
+      if (savedLocalSend) els.localSendIp.value = savedLocalSend;
+    } catch (e) {}
+  })();
+  updateDeliveryConfig();
+
+  refreshCloudAuth();
+
+  // ── Bookmarklet generation ──────────────────────────────────────
+  // Version of the generated bookmarklet. Bump this whenever the bookmarklet
+  // template changes so saved bookmarklets can detect they're outdated.
+  var BM_VERSION = '1.0.0';
+  // Where the bookmarklet checks for a newer version (served from this site).
+  var BM_VERSION_URL = 'https://ai-summary-helper.byphil.eu/bookmarklet-version.json';
+
+  function buildBookmarklet() {
+    var prompt = els.prompt.value.trim();
+    if (!prompt) { alert('Please enter a prompt.'); return null; }
+
+    var apiUrl, modelIdentifier, apiKey, isGemini, isCloud;
+
+    if (mode === 'cloud') {
+      var token = getToken();
+      if (!token) { alert('Connect your byPhil account first.'); return null; }
+      isCloud = true;
+      apiUrl = API_BASE + '/v1/projects/ai_summary_helper/chat';
+      modelIdentifier = els.cloudModel.value || 'google/gemini-2.5-flash';
+      apiKey = token;
+    } else {
+      var p = PROVIDERS[els.provider.value];
+      if (!p) { alert('Select a provider.'); return null; }
+      apiUrl = p.endpoint;
+      modelIdentifier = p.model;
+      apiKey = els.apiKey.value.trim();
+      isGemini = els.provider.value === 'gemini';
+      if (!p.noKey && !apiKey) { alert('Enter your API key.'); return null; }
+    }
+
+    // Delivery config.
+    var delivery = els.delivery.value || 'page';
+    var kindleEmail = els.kindleEmail.value.trim();
+    var localSendIp = els.localSendIp.value.trim();
+    if (delivery === 'kindle') {
+      if (!isCloud) { alert('Send to Kindle requires a byPhil Cloud connection.'); return null; }
+      if (!kindleEmail) { alert('Enter your Kindle email.'); return null; }
+    }
+    if (delivery === 'localsend' && !localSendIp) { alert('Enter your LocalSend IP.'); return null; }
+
+    // The bookmarklet body. It runs in the context of whatever page the user
+    // is on, so it must be fully self-contained (no external deps). It:
+    //   1. Checks the site's version manifest and warns if this bookmarklet
+    //      is outdated (the user should regenerate it).
+    //   2. Sends the page content to the chosen provider.
+    //   3. Parses the SSE stream from response.text() (works in any browser,
+    //      unlike WebExtension-only TextDecoder/getReader()).
+    //   4. Delivers the enriched article: inserts it on the page, sends it to
+    //      Kindle (byPhil Cloud proxy), or sends it to a LocalSend device.
+    var code = [
+      '(function(){',
+      'var BM_VERSION=' + JSON.stringify(BM_VERSION) + ';',
+      'var BM_VERSION_URL=' + JSON.stringify(BM_VERSION_URL) + ';',
+      'var apiUrl=' + JSON.stringify(apiUrl) + ';',
+      'var model=' + JSON.stringify(modelIdentifier) + ';',
+      'var apiKey=' + JSON.stringify(apiKey) + ';',
+      'var isGemini=' + (isGemini ? 'true' : 'false') + ';',
+      'var isCloud=' + (isCloud ? 'true' : 'false') + ';',
+      'var prompt=' + JSON.stringify(prompt) + ';',
+      'var delivery=' + JSON.stringify(delivery) + ';',
+      'var kindleEmail=' + JSON.stringify(kindleEmail) + ';',
+      'var localSendIp=' + JSON.stringify(localSendIp) + ';',
+      'var content=document.body.innerText;',
+      'var style=document.createElement("style");',
+      'style.innerHTML="#ai-summary-message{position:fixed;top:0;left:0;width:100%;background:#007bff;color:#fff;text-align:center;padding:10px 0;z-index:10000;font-size:18px;font-weight:bold;}#ai-summary-box{position:fixed;top:60px;right:20px;max-width:420px;max-height:70vh;overflow:auto;background:#fff;border:1px solid #007bff;border-radius:10px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:10000;}";',
+      'document.head.appendChild(style);',
+      'var msg=document.createElement("div");msg.id="ai-summary-message";msg.textContent="Summarizing…";document.body.prepend(msg);',
+      '// Optional update check (best-effort, never blocks summarization).',
+      'try{fetch(BM_VERSION_URL).then(function(r){return r.json();}).then(function(v){if(v&&v.version&&v.version!==BM_VERSION){msg.textContent="⚠️ Bookmarklet outdated (v"+BM_VERSION+", latest v"+v.version+"). Regenerate it at ai-summary-helper.byphil.eu/#bookmarklet";setTimeout(function(){msg.textContent="Summarizing…";},4000);}}).catch(function(){});}catch(e){}',
+      'var headers={"Content-Type":"application/json"};',
+      'if(apiKey)headers["Authorization"]="Bearer "+apiKey;',
+      'var body;',
+      'var req;',
+      'if(isGemini){',
+      '  var url="https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent?alt=sse";',
+      '  headers["x-goog-api-key"]=apiKey;',
+      '  body=JSON.stringify({contents:[{role:"user",parts:[{text:"Produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. "+prompt+"\\n\\nContent:\\n"+content}]}]});',
+      '  req=fetch(url,{method:"POST",headers:headers,body:body});',
+      '}else{',
+      '  body=JSON.stringify({model:model,messages:[{role:"system",content:"You summarize content from websites in a tailored and meaningful manner."},{role:"user",content:"Summarize in valid HTML format with sections:"+prompt},{role:"user",content:content}],stream:true});',
+      '  req=fetch(apiUrl,{method:"POST",headers:headers,body:body});',
+      '}',
+      'req',
+      '.then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text();})',
+      '.then(function(text){var out="";var lines=text.split("\\n");for(var i=0;i<lines.length;i++){var line=lines[i].trim();if(!line||line.indexOf("data:")!==0)continue;var json=line.substring(5).trim();if(json==="[DONE]")continue;try{var j=JSON.parse(json);var piece=isGemini?(j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts&&j.candidates[0].content.parts[0]?j.candidates[0].content.parts[0].text:""):(j.choices&&j.choices[0]&&(j.choices[0].delta&&j.choices[0].delta.content||j.choices[0].message&&j.choices[0].message.content)||j.message&&j.message.content||j.response||"");if(piece)out+=piece;}catch(e){}}return out;})',
+      '.then(function(summary){msg.remove();if(!summary)throw new Error("No summary returned");',
+      '  var title=document.title||"AI Summary";',
+      '  var url=location.href;',
+      '  var docHtml="<!DOCTYPE html><html><head><meta charset=\\"utf-8\\"><title>"+title+"</title><style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}</style></head><body><h1>"+title+"</h1><div class=\\"meta\\">Captured via AI Summary Helper &middot; <a href=\\""+url+"\\">Source</a></div><div class=\\"summary\\"><h2>🧙 AI Summary</h2>"+summary+"</div><h2>📄 Content</h2><div>"+content.replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</div></body></html>";',
+      '  if(delivery==="kindle"){',
+      '    fetch("https://api.byphil.eu/v1/projects/ai_summary_helper/kindle",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify({kindle_email:kindleEmail,title:title,content:content,summary:summary,url:url})}).then(function(r){return r.json();}).then(function(d){if(d&&d.success){alert("Sent to Kindle! 📚");}else{alert("Kindle delivery failed: "+(d&&d.error||"unknown"));}}).catch(function(e){alert("Kindle error: "+e.message);});',
+      '  }else if(delivery==="localsend"){',
+      '    var fileName=title.replace(/[^a-z0-9_-]/gi,"_")+".html";',
+      '    var enc=new TextEncoder();var bytes=enc.encode(docHtml);var fileId="file_"+Date.now();',
+      '    var prepare={info:{alias:"AI Summary Helper",version:"2.0",deviceModel:"Bookmarklet",deviceType:"browser"},files:{}};prepare.files[fileId]={id:fileId,fileName:fileName,size:bytes.length,fileType:"text/html",sha256:null,preview:null};',
+      '    var base="http://"+localSendIp+":53317/api/localsend/v1";',
+      '    fetch(base+"/prepare-upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(prepare)}).then(function(r){if(!r.ok)throw new Error("Handshake HTTP "+r.status);return r.json();}).then(function(d){var sid=d.sessionId||d.session_id;var files=d.files||{};var tok=files[fileId]||(d.tokens&&d.tokens[fileId]);var up=base+"/upload?sessionId="+encodeURIComponent(sid)+"&fileId="+encodeURIComponent(fileId);if(tok)up+="&token="+encodeURIComponent(tok);return fetch(up,{method:"POST",headers:{"Content-Type":"application/octet-stream"},body:bytes});}).then(function(r){if(!r.ok)throw new Error("Upload HTTP "+r.status);alert("Sent to LocalSend! 📖");}).catch(function(e){alert("LocalSend error: "+e.message);});',
+      '  }else{',
+      '    var box=document.createElement("div");box.id="ai-summary-box";box.innerHTML="<h2 style=\\"margin-top:0\\">AI Summary 🧙</h2>"+summary;document.body.appendChild(box);var close=document.createElement("button");close.textContent="✕";close.style.cssText="position:absolute;top:6px;right:8px;border:none;background:none;font-size:16px;cursor:pointer;";box.prepend(close);close.addEventListener("click",function(){box.remove();});',
+      '  }',
+      '})',
+      '.catch(function(err){msg.remove();alert("Error: "+err.message);});',
+      '})();'
+    ].join('\n');
+
+    return 'javascript:' + encodeURIComponent(code);
+  }
+
+  els.generate.addEventListener('click', function () {
+    var href = buildBookmarklet();
+    if (!href) return;
+    els.link.href = href;
+    els.link.textContent = '🪄 AI Summary (' + (mode === 'cloud' ? 'byPhil Cloud' : els.provider.value) + ')';
+    els.output.hidden = false;
+  });
+})();
