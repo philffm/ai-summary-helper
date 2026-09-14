@@ -293,7 +293,7 @@ async function sendToKindle(article) {
 
     const isPro = config.pb_user?.subscription_status === 'active';
     if (!isPro) {
-        const confirmation = confirm('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nSend this article to Kindle?');
+        const confirmation = confirm('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?');
         if (!confirmation) return;
     }
 

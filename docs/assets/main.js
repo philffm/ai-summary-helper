@@ -259,6 +259,35 @@ function setBilling(period) {
     els.cloudStatus.style.color = isError ? 'var(--danger, #e74c3c)' : '';
   }
 
+  // Fetch the available byPhil Cloud models and populate the dropdown.
+  // Mirrors the extension's settingsManager: GET /v1/projects/ai_summary_helper/models
+  // returns { success, models: [{ id, name, context }] }.
+  function loadCloudModels() {
+    fetch(API_BASE + '/v1/projects/ai_summary_helper/models')
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && data.success && data.models && data.models.length > 0) {
+          var current = els.cloudModel.value;
+          els.cloudModel.innerHTML = '';
+          data.models.forEach(function (model) {
+            var opt = document.createElement('option');
+            opt.value = model.id;
+            var label = model.name;
+            if (model.context) label += ' (Context: ' + Math.round(model.context / 1000) + 'k)';
+            opt.textContent = label;
+            els.cloudModel.appendChild(opt);
+          });
+          // Restore the user's previous selection if it's still available.
+          if (current && Array.from(els.cloudModel.options).some(function (o) { return o.value === current; })) {
+            els.cloudModel.value = current;
+          }
+        }
+      })
+      .catch(function () {
+        // Keep the fallback option on failure.
+      });
+  }
+
   function refreshCloudAuth() {
     var token = getToken();
     var email = getEmail();
@@ -266,6 +295,7 @@ function setBilling(period) {
       els.cloudAuth.hidden = true;
       els.cloudConnected.hidden = false;
       els.cloudEmailLabel.textContent = email;
+      loadCloudModels();
     } else {
       els.cloudAuth.hidden = false;
       els.cloudConnected.hidden = true;
