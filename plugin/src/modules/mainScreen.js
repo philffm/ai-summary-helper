@@ -58,10 +58,17 @@ export function initMainScreen(ui) {
         feed.appendChild(bubble);
     };
 
+    // Tracks the highest % shown so far in the current streaming session —
+    // updateStreamProgress() uses it to ignore any out-of-order/lower update
+    // (e.g. a delayed "connecting" message arriving after streaming has
+    // already moved the bar further along), so the bar only ever advances.
+    let lastShownStreamProgress = 0;
+
     const addStreamBubble = (modelName = '', mode = 'local') => {
         // Remove any existing stream bubble
         const old = feed.querySelector('.stream-bubble');
         if (old) old.remove();
+        lastShownStreamProgress = 0;
 
         const emoji = mode === 'cloud' ? '☁️' : '💻';
         const bubble = document.createElement('div');
@@ -121,8 +128,15 @@ export function initMainScreen(ui) {
         const bar = document.getElementById('streamProgressBar');
         if (!wrap || !bar) return;
         if (typeof pct !== 'number' || Number.isNaN(pct) || pct <= 0) return;
+        const clamped = Math.min(99, Math.max(0, pct));
+        // Never let the bar move backwards within a session — the various
+        // progress sources (click-time estimate, waiting ramp, word-count
+        // estimate) can arrive slightly out of order, and a visible regress
+        // reads as broken even though it's just noise in the estimate.
+        if (clamped < lastShownStreamProgress) return;
+        lastShownStreamProgress = clamped;
         wrap.style.display = 'block';
-        bar.style.width = `${Math.min(99, Math.max(0, pct))}%`;
+        bar.style.width = `${clamped}%`;
     };
 
     const removeStreamBubble = () => {
@@ -294,6 +308,12 @@ export function initMainScreen(ui) {
                 
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');
                 updateStream('Contacting content script…');
+                // Show the bar immediately on click rather than waiting for
+                // the content script's own progress relay to arrive — that
+                // relay can be delayed by page content extraction/injection,
+                // which is exactly what made the bar look like it only
+                // appeared once real content started streaming in.
+                updateStreamProgress(10);
             }
 
             try {

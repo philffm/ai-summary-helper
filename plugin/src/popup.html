@@ -386,18 +386,30 @@
                     </select>
                   </div>
 
+                  <!-- Multiple devices can be configured per delivery method; the
+                       ★ button on a row marks it the active send target (see
+                       settingsManager.js / StorageManager.getActiveDevice). -->
                   <div id="kindleDeliveryConfig" style="margin-top:6px;">
-                    <label for="kindleEmail" style="display:block;margin:0 0 6px;font-size:12px;">Kindle Email</label>
-                    <input type="email" id="kindleEmail" placeholder="yourname@kindle.com"
-                      style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
+                    <div id="kindleDeviceList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;"></div>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                      <input type="text" id="newKindleLabel" placeholder="Label"
+                        style="width:80px;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
+                      <input type="email" id="newKindleEmail" placeholder="yourname@kindle.com"
+                        style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
+                      <button type="button" id="addKindleDeviceButton" class="button-secondary" style="white-space:nowrap;">Add</button>
+                    </div>
                     <div style="font-size:11px;margin-top:6px;color:var(--text-muted);">Used for Send to Kindle delivery. Add <strong>kindle@byphil.eu</strong> to your Kindle's approved senders first — <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon's guide</a>.</div>
                   </div>
 
                   <div id="localSendDeliveryConfig" style="margin-top:6px;">
+                    <div id="localSendDeviceList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;"></div>
                     <div style="display:flex;gap:8px;align-items:center;">
-                      <input type="text" id="localSendIp" placeholder="e.g. 192.168.1.142"
+                      <input type="text" id="newLocalSendLabel" placeholder="Label"
+                        style="width:80px;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
+                      <input type="text" id="newLocalSendIp" placeholder="e.g. 192.168.1.142"
                         style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
                       <button type="button" id="scanLocalSendButton" class="button-secondary" style="white-space:nowrap;">Auto-Detect</button>
+                      <button type="button" id="addLocalSendDeviceButton" class="button-secondary" style="white-space:nowrap;">Add</button>
                     </div>
                     <div id="localSendStatus" style="font-size:11px;margin-top:6px;min-height:14px;color:var(--text-muted);"></div>
                   </div>

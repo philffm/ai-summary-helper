@@ -319,7 +319,11 @@ async function copyArticleToClipboard(article) {
  */
 async function sendToKindle(article) {
     const config = await StorageManager.getAll();
-    if (!config.kindleEmail) {
+    // Multiple Kindle devices can be configured; always send to the active
+    // one (last used, or the first configured if none has been used yet).
+    const device = StorageManager.getActiveDevice(config, 'kindle');
+    const kindleEmail = (device?.addresses?.[0] || '').replace(/^mailto:/i, '');
+    if (!kindleEmail) {
         if (uiManagerRef) {
             uiManagerRef.showToast('Set your Kindle email in Settings first.');
             uiManagerRef.showScreen('settings');
@@ -355,7 +359,7 @@ async function sendToKindle(article) {
             method: 'POST',
             headers,
             body: JSON.stringify({
-                kindle_email: config.kindleEmail,
+                kindle_email: kindleEmail,
                 title: article.title || 'AI Summary Document',
                 content: [article.content || article.summary || '', annotationsHtml].filter(Boolean).join('\n'),
                 summary: article.summary || '',
@@ -366,6 +370,7 @@ async function sendToKindle(article) {
         const resData = await response.json();
         if (response.ok && resData.success) {
             if (uiManagerRef) uiManagerRef.showToast('Sent to Kindle! 📚');
+            if (device) StorageManager.setActiveDevice('kindle', device.id);
         } else {
             const msg = resData.error || 'Kindle delivery failed.';
             if (resData.error?.includes('Free tier limit') || resData.error?.includes('402')) {
@@ -384,7 +389,10 @@ async function sendToKindle(article) {
 
 async function dispatchToLocalSend(article) {
     const config = await StorageManager.getAll();
-    const readerIp = (config.localSendIp || '').trim();
+    // Multiple LocalSend receivers can be configured; always send to the
+    // active one (last used, or the first configured if none has been used yet).
+    const device = StorageManager.getActiveDevice(config, 'localsend');
+    const readerIp = (device?.addresses?.[0] || '').trim();
 
     if (!readerIp) {
         if (uiManagerRef) {
@@ -404,6 +412,7 @@ async function dispatchToLocalSend(article) {
         await sendToLocalSend(readerIp, fileName, docHtml, 'text/html');
 
         if (uiManagerRef) uiManagerRef.showToast('Sent successfully! 📖');
+        if (device) StorageManager.setActiveDevice('localsend', device.id);
     } catch (err) {
         console.error('[LocalSend Error]', err);
         if (uiManagerRef) uiManagerRef.showToast(`Transfer failed: ${err?.message || 'Check if receiver is online.'}`);

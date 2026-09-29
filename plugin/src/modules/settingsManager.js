@@ -613,22 +613,101 @@ function initSummaryLengthSlider() {
     });
 }
 
-// ── Section: LocalSend Configuration ─────────────────────────────────
+// ── Section: Send-target devices (Kindle emails, LocalSend receivers) ──
+// Each device is {id, label, type: 'kindle'|'localsend', addresses: [...]}
+// — a single generic shape shared by both delivery methods (see
+// StorageManager.migrateDeviceSettings / getActiveDevice). Multiple devices
+// per type can be configured; the ★'d one is the active send target,
+// updated automatically to whichever device a send last used.
 function initLocalSendSettings(storageData) {
-    const kindleEmailInput = document.getElementById('kindleEmail');
-    const localSendIpInput = document.getElementById('localSendIp');
     const scanBtn = document.getElementById('scanLocalSendButton');
     const statusLabel = document.getElementById('localSendStatus');
     const deliveryPreferenceSelect = document.getElementById('deliveryPreference');
     const kindleConfigBlock = document.getElementById('kindleDeliveryConfig');
     const localSendConfigBlock = document.getElementById('localSendDeliveryConfig');
+    const kindleDeviceList = document.getElementById('kindleDeviceList');
+    const localSendDeviceList = document.getElementById('localSendDeviceList');
+    const newKindleLabel = document.getElementById('newKindleLabel');
+    const newKindleEmail = document.getElementById('newKindleEmail');
+    const addKindleDeviceButton = document.getElementById('addKindleDeviceButton');
+    const newLocalSendLabel = document.getElementById('newLocalSendLabel');
+    const newLocalSendIp = document.getElementById('newLocalSendIp');
+    const addLocalSendDeviceButton = document.getElementById('addLocalSendDeviceButton');
 
-    if (!localSendIpInput) return;
+    if (!localSendDeviceList) return;
 
-    if (kindleEmailInput) {
-        kindleEmailInput.value = storageData.kindleEmail || '';
-        kindleEmailInput.addEventListener('input', () => {
-            autoSave('kindleEmail', kindleEmailInput.value.trim());
+    // devices is mutated in place and persisted after every add/remove/
+    // activate, then re-rendered from that same in-memory copy — avoids a
+    // re-fetch from storage after each change.
+    let devices = Array.isArray(storageData.devices) ? [...storageData.devices] : [];
+    let activeDeviceIds = { ...(storageData.activeDeviceIds || {}) };
+
+    const persistDevices = () => autoSave('devices', devices);
+    const persistActiveIds = () => autoSave('activeDeviceIds', activeDeviceIds);
+
+    const addressLabel = (device) => {
+        const addr = device.addresses?.[0] || '';
+        return device.type === 'kindle' ? addr.replace(/^mailto:/i, '') : addr.replace(/^https?:\/\//i, '');
+    };
+
+    const renderDeviceList = (type, container) => {
+        const list = devices.filter(d => d.type === type);
+        if (list.length === 0) {
+            container.innerHTML = `<div style="font-size:11px;color:var(--text-muted);">No devices added yet.</div>`;
+            return;
+        }
+        container.innerHTML = list.map(d => {
+            const isActive = activeDeviceIds[type] === d.id || (!activeDeviceIds[type] && list[0].id === d.id);
+            return `
+                <div class="device-row" data-id="${d.id}" style="display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--outline);border-radius:6px;background:var(--glass-input);">
+                    <button type="button" class="device-active-btn" data-type="${type}" title="${isActive ? 'Active send target' : 'Set as active send target'}" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;line-height:1;color:${isActive ? '#f5b301' : 'var(--text-muted)'};">${isActive ? '★' : '☆'}</button>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.label || (type === 'kindle' ? 'Kindle' : 'Device')}</div>
+                        <div style="font-size:11px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${addressLabel(d)}</div>
+                    </div>
+                    <button type="button" class="device-delete-btn" title="Remove device" style="background:none;border:none;cursor:pointer;font-size:13px;opacity:0.6;padding:0;line-height:1;">🗑</button>
+                </div>`;
+        }).join('');
+
+        container.querySelectorAll('.device-active-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                activeDeviceIds[type] = btn.closest('.device-row').dataset.id;
+                persistActiveIds();
+                renderDeviceList(type, container);
+            });
+        });
+        container.querySelectorAll('.device-delete-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.closest('.device-row').dataset.id;
+                devices = devices.filter(d => d.id !== id);
+                if (activeDeviceIds[type] === id) delete activeDeviceIds[type];
+                persistDevices();
+                persistActiveIds();
+                renderDeviceList(type, container);
+            });
+        });
+    };
+
+    const addDevice = (type, label, address) => {
+        const id = `device_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+        devices.push({ id, label: label || (type === 'kindle' ? 'Kindle' : 'Device'), type, addresses: [address] });
+        // First device of its type becomes active automatically.
+        if (!activeDeviceIds[type]) activeDeviceIds[type] = id;
+        persistDevices();
+        persistActiveIds();
+        renderDeviceList(type, type === 'kindle' ? kindleDeviceList : localSendDeviceList);
+    };
+
+    renderDeviceList('kindle', kindleDeviceList);
+    renderDeviceList('localsend', localSendDeviceList);
+
+    if (addKindleDeviceButton) {
+        addKindleDeviceButton.addEventListener('click', () => {
+            const email = (newKindleEmail?.value || '').trim();
+            if (!email) return;
+            addDevice('kindle', (newKindleLabel?.value || '').trim(), `mailto:${email}`);
+            if (newKindleLabel) newKindleLabel.value = '';
+            if (newKindleEmail) newKindleEmail.value = '';
         });
     }
 
@@ -660,12 +739,17 @@ function initLocalSendSettings(storageData) {
         applyDeliveryModeVisibility('kindle');
     }
 
-    localSendIpInput.value = storageData.localSendIp || '';
-
-    localSendIpInput.addEventListener('input', () => {
-        autoSave('localSendIp', localSendIpInput.value.trim());
-        if (statusLabel) statusLabel.textContent = '';
-    });
+    if (addLocalSendDeviceButton) {
+        addLocalSendDeviceButton.addEventListener('click', () => {
+            const raw = (newLocalSendIp?.value || '').trim();
+            if (!raw) return;
+            const address = /^https?:\/\//i.test(raw) ? raw : `http://${raw}`;
+            addDevice('localsend', (newLocalSendLabel?.value || '').trim(), address);
+            if (newLocalSendLabel) newLocalSendLabel.value = '';
+            if (newLocalSendIp) newLocalSendIp.value = '';
+            if (statusLabel) statusLabel.textContent = '';
+        });
+    }
 
     if (scanBtn) {
         scanBtn.addEventListener('click', async () => {
@@ -680,10 +764,9 @@ function initLocalSendSettings(storageData) {
             try {
                 const foundIp = await discoverLocalSendDevice();
                 if (foundIp) {
-                    localSendIpInput.value = foundIp;
-                    await autoSave('localSendIp', foundIp);
+                    if (newLocalSendIp) newLocalSendIp.value = foundIp;
                     if (statusLabel) {
-                        statusLabel.textContent = `Found device at ${foundIp} ✓`;
+                        statusLabel.textContent = `Found device at ${foundIp} — click Add to save it ✓`;
                         statusLabel.style.color = '#2ecc40';
                     }
                 } else if (statusLabel) {

@@ -156,10 +156,19 @@ class UIManager {
     }
 
     showToast(message, duration = 3000) {
+        // Shared stack container so concurrent toasts lay out one below the
+        // other via normal flex flow instead of each being independently
+        // fixed-positioned at the same spot and overlapping.
+        let stack = document.getElementById('toastStack');
+        if (!stack) {
+            stack = document.createElement('div');
+            stack.id = 'toastStack';
+            document.body.appendChild(stack);
+        }
         const toast = document.createElement('div');
         toast.className = 'toast-message';
         toast.textContent = message;
-        document.body.appendChild(toast);
+        stack.appendChild(toast);
         setTimeout(() => toast.remove(), duration);
     }
 

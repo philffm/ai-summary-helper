@@ -51,7 +51,15 @@ class StorageManager {
         // Sensitive / network-local data — never send to Google's sync cloud.
         'servicesConfig',   // contains API keys, model endpoints
         'licenseKey',
-        'localSendIp'
+        'localSendIp',
+        // Unified send-target list (LocalSend receivers, Kindle emails, …).
+        // Kept local rather than sync: LocalSend addresses are LAN-specific
+        // and meaningless on another network, and since both device types
+        // now share one list it's simpler to keep the whole list local than
+        // to split it.
+        'devices',
+        'activeDeviceIds',
+        'devicesMigrated'
     ];
 
     static isLocalKey(key) {
@@ -390,6 +398,58 @@ class StorageManager {
     }
 
     // ─────────────────────────────────────────────
+    // Send-target devices (Kindle emails, LocalSend receivers, …)
+    // ─────────────────────────────────────────────
+
+    /**
+     * One-time migration: fold the old single-value 'kindleEmail'/'localSendIp'
+     * settings into the unified 'devices' list (each entry: {id, label, type,
+     * addresses}), so multiple Kindle/LocalSend targets can be configured
+     * instead of just one of each. A dedicated 'devicesMigrated' flag makes
+     * this an O(1) no-op on every subsequent startup.
+     */
+    static async migrateDeviceSettings() {
+        const { devicesMigrated } = await this.getLocal(['devicesMigrated']);
+        if (devicesMigrated) return;
+
+        const data = await this.getAll();
+        const devices = Array.isArray(data.devices) ? [...data.devices] : [];
+        const activeDeviceIds = { ...(data.activeDeviceIds || {}) };
+
+        if (data.kindleEmail && !devices.some(d => d.type === 'kindle')) {
+            const id = `device_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+            devices.push({ id, label: 'Kindle', type: 'kindle', addresses: [`mailto:${data.kindleEmail}`] });
+            activeDeviceIds.kindle = id;
+        }
+        if (data.localSendIp && !devices.some(d => d.type === 'localsend')) {
+            const raw = String(data.localSendIp).trim();
+            const address = /^https?:\/\//i.test(raw) ? raw : `http://${raw}`;
+            const id = `device_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+            devices.push({ id, label: 'LocalSend Device', type: 'localsend', addresses: [address] });
+            activeDeviceIds.localsend = id;
+        }
+
+        await this.setLocal({ devices, activeDeviceIds, devicesMigrated: true });
+    }
+
+    /**
+     * The device to send to for a given type ('kindle' | 'localsend'): the
+     * one explicitly marked active (last used, or picked in Settings), or
+     * the first configured device of that type as a fallback.
+     */
+    static getActiveDevice(config, type) {
+        const devices = Array.isArray(config.devices) ? config.devices.filter(d => d.type === type) : [];
+        if (devices.length === 0) return null;
+        const activeId = config.activeDeviceIds?.[type];
+        return devices.find(d => d.id === activeId) || devices[0];
+    }
+
+    static async setActiveDevice(type, deviceId) {
+        const { activeDeviceIds } = await this.getLocal(['activeDeviceIds']);
+        await this.setLocal({ activeDeviceIds: { ...(activeDeviceIds || {}), [type]: deviceId } });
+    }
+
+    // ─────────────────────────────────────────────
     // Services config & migration
     // ─────────────────────────────────────────────
 
@@ -430,6 +490,10 @@ class StorageManager {
         // switched to the articlesIndex/article:<id> shape, so it's now safe to
         // run this on every popup/service-worker startup.
         await this.migrateArticlesToIndexedRecords();
+
+        // Fold the old single kindleEmail/localSendIp settings into the
+        // unified multi-device 'devices' list. Cheap no-op after first run.
+        await this.migrateDeviceSettings();
 
         const data = await this.getAll();
 

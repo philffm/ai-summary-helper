@@ -1064,11 +1064,23 @@ ul#articleList {
 
 /* ── Toast ─────────────────────────────────────────────────────────────── */
 
-.toast-message {
+/* All toasts are appended into this single fixed-position stack instead of
+   each being independently `position: fixed` at the same coordinates —
+   that used to make concurrent toasts render directly on top of each
+   other. Normal flex flow here lays each new one out below the last. */
+#toastStack {
   position: fixed;
   top: 56px;
   right: 12px;
   z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast-message {
   max-width: 280px;
   padding: 10px 14px;
   border-radius: var(--radius-md);

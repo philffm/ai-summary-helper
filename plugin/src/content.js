@@ -551,11 +551,30 @@ import {
           outputArea.style.paddingTop = '10px';
           streamContainer.appendChild(outputArea);
 
-          relay('summaryProgress', { chunk: 'Connected to API, waiting for response…' });
+          relay('summaryProgress', { chunk: 'Connected to API, waiting for response…', progress: 20 });
 
           const streamStart = Date.now();
           const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
           let buffer = '';
+          let firstTokenReceived = false;
+          let lastProgressRelayTime = 0;
+
+          // The model "thinking" before its first token often eats the
+          // biggest chunk of the wait, and previously the progress bar sat
+          // hidden the whole time (nothing to show a percentage for) — so it
+          // only ever appeared right as the response was nearly done. Ramp a
+          // small fake percentage while waiting so the bar shows up
+          // immediately and stays visibly alive; real word-based progress
+          // below takes over the moment the first token arrives.
+          let waitingRampInterval = null;
+          if (summaryMode === 'extension') {
+            waitingRampInterval = setInterval(() => {
+              if (firstTokenReceived) { clearInterval(waitingRampInterval); waitingRampInterval = null; return; }
+              const elapsed = Date.now() - streamStart;
+              const waitingPct = Math.min(28, 20 + Math.floor(elapsed / 500));
+              relay('summaryProgress', { chunk: 'Waiting for the model to start responding…', progress: waitingPct });
+            }, 500);
+          }
 
           // Message-based streaming (not runtime.connect/ports) — see the
           // comment on streamHandlers above for why. We still send the
@@ -576,6 +595,7 @@ import {
           // response…" — nothing was left to resolve it.
           streamHandlers.set(requestId, async (msg) => {
             if (msg.error) {
+              if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
               console.error('❌ Error:', msg.error);
               // A server-enforced daily limit (free tier, cloud mode) comes
               // back as a non-OK status from the byphil API. Surface it as a
@@ -590,6 +610,7 @@ import {
             }
 
             if (msg.done) {
+              if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
               streamContainer.remove();
 
               // 🔥 EXTRACT METADATA FROM RAW TEXT BEFORE HTML CONVERSION TO PREVENT BREAKING JSON
@@ -682,7 +703,17 @@ import {
             }
 
             if (msg.chunk) {
-              relay('summaryProgress', { chunk: 'Receiving data…' });
+              if (!firstTokenReceived) {
+                // Raw stream data has started arriving even before it's
+                // been parsed into actual summary text — stop the waiting
+                // ramp here and jump straight to 30% instead of leaving it
+                // capped at 18% until the first real word shows up.
+                firstTokenReceived = true;
+                if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
+                relay('summaryProgress', { chunk: 'Receiving data…', progress: 30 });
+              } else {
+                relay('summaryProgress', { chunk: 'Receiving data…' });
+              }
               buffer += msg.chunk;
               const lines = buffer.split('\n');
               buffer = lines.pop();
@@ -706,6 +737,9 @@ import {
                   }
 
                   if (contentPiece) {
+                    // firstTokenReceived is already set + the waiting ramp
+                    // already cleared as soon as the raw msg.chunk arrived
+                    // above, ahead of parsing it into actual summary text.
                     summary += contentPiece;
 
                     outputArea.innerHTML = `<small style="opacity:0.7; color: #666;">Drafting summary...</small><br>${markdownToHtml(summary)}`;
@@ -717,13 +751,22 @@ import {
                     }
 
                     const wordCount = summary.split(/\s+/).filter(Boolean).length;
-                    if (summaryMode === 'extension' && wordCount % 10 < 2) {
-                      const elapsed = Math.floor((Date.now() - streamStart) / 1000);
+                    const now = Date.now();
+                    // Throttled by elapsed time rather than word count — a
+                    // fixed "every 10 words" gate stayed silent for a long
+                    // stretch when a provider streamed in large multi-word
+                    // chunks, which is what made the bar look frozen/late.
+                    // A time gate keeps updates flowing smoothly regardless
+                    // of how the provider chunks its output.
+                    if (summaryMode === 'extension' && now - lastProgressRelayTime > 200) {
+                      lastProgressRelayTime = now;
+                      const elapsed = Math.floor((now - streamStart) / 1000);
 
                       // Estimate output progress from received words vs. the
-                      // target summary length. Clamp to [0, 99] until done.
+                      // target summary length. Clamp to [0, 99] until done,
+                      // and never let it drop below the waiting-phase ramp.
                       const targetWords = Number(summaryLength) || 200;
-                      const estimatedPct = Math.min(99, Math.round((wordCount / targetWords) * 100));
+                      const estimatedPct = Math.min(99, Math.max(30, Math.round((wordCount / targetWords) * 100)));
 
                       relay('summaryProgress', {
                         chunk: `${wordCount} words · ${elapsed}s · ${estimatedPct}%`,
