@@ -156,7 +156,17 @@
       <!-- HISTORY SCREEN -->
       <div id="historyScreen" class="screen">
         <div id="historyTopBar" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
-          <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;flex:1;" />
+          <div id="searchInputWrap" style="position:relative;flex:1;">
+            <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;width:100%;" />
+            <div id="searchInputActions" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px;">
+              <button id="searchClearBtn" type="button" hidden title="Clear search" aria-label="Clear search" style="width:24px;height:24px;padding:0;border:none;background:transparent;color:var(--text-muted);cursor:pointer;font-size:14px;line-height:1;border-radius:6px;">✕</button>
+              <!-- Only shown while the graph view is open (see articleManager.js) —
+                   toggles whether the search box filters the graph's node set down
+                   to matches ("View: Filtered") or keeps every node and just
+                   highlights matches ("View: Highlighted"). -->
+              <button id="graphScopeInlineToggle" type="button" title="Filtering graph to matches only" aria-label="Switch graph search to highlight mode" style="display:none;padding:4px 9px;border:1px solid var(--outline);border-radius:999px;background:var(--glass-card);color:var(--text-secondary);cursor:pointer;font-size:10px;font-weight:600;white-space:nowrap;">View: Filtered</button>
+            </div>
+          </div>
           <button id="graphToggleBtn" class="button-secondary" title="View Graph" aria-label="View Graph" style="height:44px;width:44px;flex-shrink:0;">🕸️</button>
           <button id="reportToggleBtn" class="button-secondary" title="View Analytics Report" aria-label="View Analytics Report" style="height:44px;width:44px;flex-shrink:0;">📊</button>
         </div>
@@ -445,7 +455,7 @@
           <p>
             Open Source software by
             <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.0.422</span> — Feel free to
+            <br />AI Summary Helper v<span id="versionNumber">2.0.424</span> — Feel free to
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank">contribute on GitHub 💙</a>
           </p>
         </form>

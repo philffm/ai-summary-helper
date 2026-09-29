@@ -209,8 +209,12 @@ function computeTimeSavings(articles) {
     let covered = 0; // articles where we have both content and summary
 
     articles.forEach(a => {
-        const articleW = countWords(a.content || a.html || a.text || '');
-        const summaryW = countWords(a.summary || '');
+        // articlesIndex carries precomputed word counts (not full content —
+        // that stays in the article:<id> record, loaded only when an
+        // article is opened) with a raw-field fallback for callers that
+        // still pass full article objects.
+        const articleW = typeof a.contentWordCount === 'number' ? a.contentWordCount : countWords(a.content || a.html || a.text || '');
+        const summaryW = typeof a.summaryWordCount === 'number' ? a.summaryWordCount : countWords(a.summary || '');
         if (articleW > 0 && summaryW > 0) {
             totalArticleWords += articleW;
             totalSummaryWords += summaryW;
@@ -251,7 +255,7 @@ export function initAnalyticsReport(container, articles) {
     const words = wordFrequency(articles);
     const days = articlesByDay(articles);
     const weeks = articlesByWeek(articles);
-    const totalSummaryWords = articles.reduce((sum, a) => sum + countWords(a.summary), 0);
+    const totalSummaryWords = articles.reduce((sum, a) => sum + (typeof a.summaryWordCount === 'number' ? a.summaryWordCount : countWords(a.summary)), 0);
     const timeSavings = computeTimeSavings(articles);
 
     const catsHtml = cats.length

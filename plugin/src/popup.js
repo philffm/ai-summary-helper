@@ -29,7 +29,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     const ui = new UIManager();
 
-    StorageManager.initializeDefaults();
+    // Must be awaited: this runs the articlesIndex/article:<id> storage
+    // migration (see StorageManager.migrateArticlesToIndexedRecords()).
+    // initMainScreen() below reads articlesIndex immediately on load — firing
+    // it before migration finishes would read an empty index while the
+    // migration is still mid-write, showing an empty main-screen feed even
+    // though articles exist (History looks fine because it only loads on
+    // first navigation there, by which point migration has long finished).
+    await StorageManager.initializeDefaults();
 
     // ── Apply UI language setting ───────────────────────────────────────
     import('./modules/i18n.js').then(({ applyTranslations }) => {

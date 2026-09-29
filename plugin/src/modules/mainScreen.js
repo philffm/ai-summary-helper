@@ -135,7 +135,7 @@ export function initMainScreen(ui) {
     };
 
     const loadFeed = async () => {
-        const { articles } = await chrome.storage.local.get({ articles: [] });
+        const articles = await StorageManager.getArticlesIndex();
         feed.innerHTML = '';
         if (articles && articles.length > 0) {
             if (recentEntry) recentEntry.style.display = 'none';
@@ -178,7 +178,7 @@ export function initMainScreen(ui) {
 
     const evaluateOnboarding = async () => {
         const data = await StorageManager.getAll();
-        const hasArticles = Array.isArray(data.articles) && data.articles.length > 0;
+        const hasArticles = Array.isArray(data.articlesIndex) && data.articlesIndex.length > 0;
         const isCloudAuthed = !!data.pb_token;
         const hasCustomApi = data.connectionMode === 'local'
             && !!data.servicesConfig?.[data.activeService]?.apiKey;

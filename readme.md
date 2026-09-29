@@ -132,7 +132,7 @@ ai-summary-helper/
 | `promptManager.js` | Prompt dropdown + custom prompt logic |
 | `languageManager.js` | Language dropdown + persistence |
 | `articleManager.js` | Article rendering, expand/collapse, search, detail view |
-| `archiveManager.js` | Archive/history UI and logic for saved articles |
+| `archiveManager.js` | Podcast-in-history overlay (beta); history rendering itself lives in `articleManager.js` |
 | `archiveGraph.js` | D3.js knowledge-graph visualization of article tags |
 | `analyticsManager.js` | Reading analytics / report view (heatmap, streaks, model stats) |
 | `audioManager.js` | Podcast audio generation and saving |

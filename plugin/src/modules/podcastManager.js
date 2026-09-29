@@ -415,8 +415,8 @@ function renderStep4(container) {
 
 function loadArticles() {
     return new Promise(resolve => {
-        chrome.storage.local.get(["articles"], data => {
-            let articles = Object.values(data.articles || {});
+        chrome.storage.local.get(["articlesIndex"], data => {
+            let articles = Object.values(data.articlesIndex || {});
 
             articles = articles.map(a => ({
                 ...a,

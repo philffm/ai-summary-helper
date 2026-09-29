@@ -7,9 +7,9 @@
  */
 export function getTopUserTags(limit = 10) {
   return new Promise((resolve) => {
-    chrome.storage.local.get({ articles: [] }, (data) => {
+    chrome.storage.local.get({ articlesIndex: [] }, (data) => {
       const tagCounts = {};
-      const articles = data.articles || [];
+      const articles = data.articlesIndex || [];
       articles.forEach(art => {
         if (Array.isArray(art.tags)) {
           art.tags.forEach(t => {
@@ -29,21 +29,44 @@ export function getTopUserTags(limit = 10) {
   });
 }
 
+function countWords(html) {
+  return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+}
+
 /**
  * Save an article to local storage.
+ *
+ * Storage is split into a small 'articlesIndex' (everything list/search/
+ * graph/analytics views need) plus one 'article:<id>' record per article
+ * (full content, loaded only when that article is opened) — see
+ * StorageManager.saveArticle() in modules/storageManager.js, which this
+ * mirrors. Content scripts can't import that module (the build's content
+ * script bundler only inlines relative imports under src/content/, and
+ * doesn't resolve modules/storageManager.js's default export), so the same
+ * shape is written by hand here via raw chrome.storage.local calls.
  */
 export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200) {
   return new Promise((resolve, reject) => {
     const timestamp = new Date().toISOString();
+    const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     // lastOpened starts equal to the save time: a freshly saved article is
     // by definition "opened" the moment it's created, so it shouldn't be
     // flagged as neglected until it's actually sat unopened for a while.
-    const articleData = { content, summary, url, title, description, timestamp, tags, modelId, summaryLength, lastOpened: timestamp };
+    const indexEntry = {
+      id, title: title || 'Untitled', url, timestamp, tags, modelId, summaryLength,
+      summary: summary || '',
+      contentWordCount: countWords(content || ''),
+      summaryWordCount: countWords(summary || ''),
+      archived: false,
+      lastOpened: timestamp
+    };
+    const record = { content, summary, description };
 
-    chrome.storage.local.get({ articles: [] }, (data) => {
-      const articles = data.articles || [];
-      articles.push(articleData);
-      chrome.storage.local.set({ articles }, () => {
+    chrome.storage.local.get({ articlesIndex: [] }, (data) => {
+      const articlesIndex = data.articlesIndex || [];
+      articlesIndex.push(indexEntry);
+      chrome.storage.local.set({ articlesIndex, [`article:${id}`]: record }, () => {
+        const articleData = { ...indexEntry, ...record };
         console.log('Article saved to local storage:', articleData);
         resolve(articleData);
       });

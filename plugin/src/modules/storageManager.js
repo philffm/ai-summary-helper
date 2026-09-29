@@ -1,5 +1,12 @@
 // storageManager.js
 
+// Precomputed once per save/migration so analyticsManager.js's reading-time
+// and word-cloud stats can run off the lean articlesIndex, without loading
+// every article's full content record just to open the report screen.
+function countWordsForIndex(html) {
+    return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+}
+
 class StorageManager {
     static API_BASE = 'https://api.byphil.eu';
     // static API_BASE = 'http://127.0.0.1:3000'; // for local testing - comment out for production
@@ -27,6 +34,8 @@ class StorageManager {
     // session state, or sensitive credentials that should never sync to cloud).
     static LOCAL_KEYS = [
         'articles',
+        'articlesIndex',
+        'articlesSchemaVersion',
         'annotations',
         'ghostHighlights',
         'articleHistory',
@@ -46,7 +55,9 @@ class StorageManager {
     ];
 
     static isLocalKey(key) {
-        return this.LOCAL_KEYS.includes(key);
+        // Per-article records (see migrateArticlesToIndexedRecords) are dynamic
+        // keys, not in the static list.
+        return this.LOCAL_KEYS.includes(key) || key.startsWith('article:');
     }
 
     // ─────────────────────────────────────────────
@@ -179,6 +190,192 @@ class StorageManager {
         }
     }
 
+    // Separate from MIGRATION_VERSION — this needs to be checkable without
+    // ever touching the (potentially 40MB+) old 'articles' blob.
+    static ARTICLES_SCHEMA_VERSION = 2;
+
+    /**
+     * Pure: splits an old-shape 'articles' array into the new
+     * articlesIndex/article:<id> shape. No storage I/O, so both the startup
+     * migration and backup restore can share this.
+     */
+    static splitArticlesArray(articles) {
+        const index = [];
+        const records = {};
+        const seenIds = new Set();
+
+        for (const article of articles) {
+            let id = `article_${new Date(article.timestamp).getTime() || Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+            while (seenIds.has(id)) id += `_${Math.random().toString(36).slice(2, 4)}`;
+            seenIds.add(id);
+
+            index.push({
+                id,
+                title: article.title || 'Untitled',
+                url: article.url || '',
+                timestamp: article.timestamp,
+                tags: article.tags || [],
+                modelId: article.modelId || '',
+                connectionMode: article.connectionMode || '',
+                summaryLength: article.summaryLength || 200,
+                // Full summary (not just a preview) — needed as-is by
+                // analyticsManager.js's word cloud and by list/feed previews,
+                // without loading the heavier article:<id> content record.
+                summary: article.summary || '',
+                contentWordCount: countWordsForIndex(article.content || ''),
+                summaryWordCount: countWordsForIndex(article.summary || ''),
+                archived: false,
+                // Read by archiveGraph.js to fade/shrink saves that haven't
+                // been reopened — index-only field, no content needed.
+                ...(article.lastOpened ? { lastOpened: article.lastOpened } : {}),
+                ...(article.isDecision ? {
+                    isDecision: true,
+                    decisionTimeframe: article.decisionTimeframe,
+                    decisionReason: article.decisionReason,
+                    decisionSavedAt: article.decisionSavedAt
+                } : {})
+            });
+
+            records[`article:${id}`] = {
+                content: article.content || '',
+                summary: article.summary || '',
+                description: article.description || ''
+            };
+        }
+
+        return { index, records };
+    }
+
+    /**
+     * One-time migration: split the single 'articles' array (title + full
+     * content + summary in one blob) into a small 'articlesIndex' (everything
+     * list/search/graph/analytics views need) plus one 'article:<id>' record
+     * per article (heavy content, loaded only when that article is opened).
+     * Also assigns each article a stable id, replacing timestamp/array-index
+     * identity used by older call sites.
+     */
+    static async migrateArticlesToIndexedRecords() {
+        // Cheap check: a tiny dedicated flag, not the big blob. After the first
+        // run, every subsequent initialize() call resolves this in O(1).
+        const { articlesSchemaVersion } = await this.getLocal(['articlesSchemaVersion']);
+        if (articlesSchemaVersion === this.ARTICLES_SCHEMA_VERSION) return;
+
+        const { articles } = await this.getLocal({ articles: [] });
+        if (!articles || !articles.length) {
+            // New install, or already empty — nothing to migrate, just mark done.
+            await this.setLocal({ articlesSchemaVersion: this.ARTICLES_SCHEMA_VERSION });
+            return;
+        }
+
+        console.log(`⏳ Migrating ${articles.length} articles to indexed storage...`);
+
+        const { index, records: recordWrites } = this.splitArticlesArray(articles);
+
+        // Write in chunks rather than one giant set() call with hundreds of new
+        // keys and all their content at once — spreads the cost, avoids a single
+        // enormous synchronous write.
+        const CHUNK_SIZE = 25;
+        const recordKeys = Object.keys(recordWrites);
+        for (let i = 0; i < recordKeys.length; i += CHUNK_SIZE) {
+            const chunk = {};
+            recordKeys.slice(i, i + CHUNK_SIZE).forEach(k => chunk[k] = recordWrites[k]);
+            await this.setLocal(chunk);
+        }
+
+        await this.setLocal({
+            articlesIndex: index,
+            articlesSchemaVersion: this.ARTICLES_SCHEMA_VERSION
+        });
+
+        // Only remove the old blob once the new shape is confirmed written —
+        // never delete data before its replacement is safely persisted.
+        await new Promise(resolve => chrome.storage.local.remove('articles', resolve));
+
+        console.log(`✅ Migrated ${index.length} articles to indexed storage (old 'articles' blob removed).`);
+    }
+
+    // ─────────────────────────────────────────────
+    // Articles read/write API (post-migration shape)
+    // ─────────────────────────────────────────────
+
+    static async getArticlesIndex({ includeArchived = false } = {}) {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        return includeArchived ? articlesIndex : articlesIndex.filter(a => !a.archived);
+    }
+
+    static async getArchivedArticles() {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        return articlesIndex.filter(a => a.archived);
+    }
+
+    static async getArticleFull(id) {
+        const key = `article:${id}`;
+        const [recordData, { articlesIndex = [] }] = await Promise.all([
+            this.getLocal([key]),
+            this.getLocal({ articlesIndex: [] })
+        ]);
+        const meta = articlesIndex.find(a => a.id === id) || {};
+        return { ...meta, ...(recordData[key] || {}) };
+    }
+
+    static async saveArticle({ content, summary, url, title, description, tags = [], modelId = '', connectionMode = '', summaryLength = 200, extra = {} }) {
+        const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+        const timestamp = new Date().toISOString();
+
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        articlesIndex.push({
+            id, title: title || 'Untitled', url, timestamp, tags, modelId, connectionMode, summaryLength,
+            summary: summary || '',
+            contentWordCount: countWordsForIndex(content || ''),
+            summaryWordCount: countWordsForIndex(summary || ''),
+            archived: false,
+            ...extra
+        });
+
+        await this.setLocal({
+            articlesIndex,
+            [`article:${id}`]: { content, summary, description }
+        });
+
+        return { id, timestamp };
+    }
+
+    static async deleteArticle(id) {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        await this.setLocal({ articlesIndex: articlesIndex.filter(a => a.id !== id) });
+        await new Promise(resolve => chrome.storage.local.remove(`article:${id}`, resolve));
+    }
+
+    // Deletes every article record, not just the index — a plain
+    // setLocal({ articlesIndex: [] }) would leave every article:<id> record
+    // orphaned in storage forever.
+    static async clearAllArticles() {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const recordKeys = articlesIndex.map(a => `article:${a.id}`);
+        if (recordKeys.length) await new Promise(resolve => chrome.storage.local.remove(recordKeys, resolve));
+        await this.setLocal({ articlesIndex: [] });
+    }
+
+    // Archiving is essentially free with this shape: flip a flag on the small
+    // index, touch nothing else.
+    static async setArticleArchived(id, archived = true) {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const entry = articlesIndex.find(a => a.id === id);
+        if (entry) entry.archived = archived;
+        await this.setLocal({ articlesIndex });
+    }
+
+    // Records that an article was opened, for archiveGraph.js's
+    // reopen-neglect fade. Index-only — no content read/write needed.
+    static async touchArticleOpened(id) {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const entry = articlesIndex.find(a => a.id === id);
+        if (!entry) return null;
+        entry.lastOpened = new Date().toISOString();
+        await this.setLocal({ articlesIndex });
+        return entry.lastOpened;
+    }
+
     /**
      * Get or generate a stable installId for anonymous cloud tracking
      */
@@ -224,6 +421,15 @@ class StorageManager {
         // This keeps credentials off Google's sync cloud and fixes the
         // split-brain where servicesConfig existed in both storages.
         await this.migrateSensitiveToLocal();
+
+        // Split the old single 'articles' blob into a small index + per-article
+        // records. Cheap no-op after the first run (checked via a dedicated flag,
+        // not the blob itself). Every read/write call site (background.js,
+        // content.js, content/core.js, mainScreen.js, articleManager.js,
+        // podcastManager.js, analyticsManager.js, settingsManager.js) has been
+        // switched to the articlesIndex/article:<id> shape, so it's now safe to
+        // run this on every popup/service-worker startup.
+        await this.migrateArticlesToIndexedRecords();
 
         const data = await this.getAll();
 

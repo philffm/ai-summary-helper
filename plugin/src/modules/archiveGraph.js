@@ -18,8 +18,13 @@
 // builds for search/"similar articles" (see mostSimilarIncluded below).
 //
 // v4 (interaction layer):
-// - Search box: dim-not-remove filtering (Obsidian-style) so matches keep
-//   their spatial context while everything else fades.
+// - No graph-local search box — the archive's own search (history top bar)
+//   already decides what this graph reacts to; a second search input here
+//   would just duplicate it. Instead there's a Filtered/Entire-archive scope
+//   switch for HOW it reacts: 'filtered' rebuilds to only the matching
+//   articles (nodes for non-matches disappear); 'all' keeps every node in
+//   the graph and just dims non-matches (Obsidian-style: matches + their
+//   direct neighbors stay full opacity), so spatial context never breaks.
 // - Neglected-article surfacing: article nodes fade/shrink and shift toward
 //   the danger end of the palette the longer they sit unopened past
 //   NEGLECT_THRESHOLD_DAYS, turning the graph into "here's what you're
@@ -27,9 +32,6 @@
 // - Tag nodes are now clickable: they dispatch a `filter-by-tag` event so
 //   the archive list can filter to that tag (graph becomes a navigation
 //   surface, not just a read-only map).
-// - "View unconnected" link opens a plain list of still-orphaned articles
-//   (disproportionately the saved-and-forgotten ones) instead of leaving
-//   them as an opaque count in the status bar.
 // - A minimal legend explains the solid/arrowed tag links vs the dashed
 //   similarity links.
 
@@ -63,6 +65,9 @@ const NEGLECT_THRESHOLD_DAYS = 30;
 // draw the eye to the stale ones, not to make the graph unreadable.
 const NEGLECT_FADE = 0.55;
 const NEGLECT_SHRINK = 0.8;
+// CSS class applied to non-matching nodes/links/labels by applyGraphSearchDim()
+// (see styles.css) instead of a per-element inline opacity style.
+const DIM_CLASS = 'graph-search-dim';
 
 // Deterministic color per tag name
 function tagColor(tagLabel) {
@@ -71,49 +76,6 @@ function tagColor(tagLabel) {
         hash = (hash * 31 + tagLabel.charCodeAt(i)) >>> 0;
     }
     return TAG_PALETTE[hash % TAG_PALETTE.length];
-}
-
-/**
- * Applies the search-box filter to the rendered graph. Dim-not-remove
- * (Obsidian-style): matches and their direct neighbors stay at full
- * opacity, everything else fades to a faint ghost so the user keeps their
- * spatial orientation while narrowing focus. An empty query resets all
- * opacity to normal.
- *
- * @param {string} query - raw input text (trimmed/lowercased inside).
- * @param {d3.Selection} node - the bound circle selection.
- * @param {d3.Selection} link - the bound line selection.
- * @param {d3.Selection} label - the bound text selection.
- */
-function applySearchFilter(query, node, link, label) {
-    const q = query.trim().toLowerCase();
-    if (!q) {
-        node.style('opacity', 1);
-        link.style('opacity', null); // fall back to the per-link stroke-opacity
-        label.style('opacity', 1);
-        return;
-    }
-
-    const matchedIds = new Set(
-        node.data().filter(d => d.label.toLowerCase().includes(q)).map(d => d.id)
-    );
-    // Pull in direct neighbors so matches don't look disconnected from
-    // their context — a match with its cluster dimmed is confusing.
-    const neighborIds = new Set(matchedIds);
-    link.data().forEach(l => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        if (matchedIds.has(s)) neighborIds.add(t);
-        if (matchedIds.has(t)) neighborIds.add(s);
-    });
-
-    node.style('opacity', d => neighborIds.has(d.id) ? 1 : 0.12);
-    label.style('opacity', d => neighborIds.has(d.id) ? 1 : 0.12);
-    link.style('opacity', l => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return neighborIds.has(s) && neighborIds.has(t) ? null : 0.05;
-    });
 }
 
 /**
@@ -208,10 +170,9 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     const includedArticleIds = new Set(nodes.filter(n => n.group === 'article').map(n => n.id));
     let reconnectedCount = 0;
     let stillOrphanCount = 0;
-    const stillOrphans = []; // the actual articles, so the UI can list them
 
     articles.forEach(article => {
-        if (!article.timestamp) { stillOrphanCount++; stillOrphans.push(article); return; }
+        if (!article.timestamp) { stillOrphanCount++; return; }
         const id = 'article-' + article.timestamp;
         if (includedArticleIds.has(id)) return; // already has a tag link
 
@@ -226,11 +187,10 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
             reconnectedCount++;
         } else {
             stillOrphanCount++;
-            stillOrphans.push(article);
         }
     });
 
-    return { nodes, links, nodeById, hiddenTagCount, reconnectedCount, stillOrphanCount, stillOrphans };
+    return { nodes, links, nodeById, hiddenTagCount, reconnectedCount, stillOrphanCount };
 }
 
 /**
@@ -281,8 +241,22 @@ function loadD3() {
     return d3LoadPromise;
 }
 
+/**
+ * @param {HTMLElement} container
+ * @param {Array} articles - the node set to render. articleManager.js
+ *        decides what this is (whole archive, or already narrowed to a
+ *        search match) before calling in — this module never filters
+ *        `articles` itself. Dimming non-matches when showing the whole
+ *        archive is a separate step; see applyGraphSearchDim().
+ * @param {string|number} highlightTimestamp
+ * @param {object|null} similarityIndex
+ * @returns {Promise<void>|undefined} resolves once the graph has finished
+ *        rendering (undefined if `articles` was empty and nothing was
+ *        rendered) — callers that need to act on the finished DOM, e.g.
+ *        applying search dimming right after a scope switch, can chain on it.
+ */
 export function initArchiveGraph(container, articles, highlightTimestamp, similarityIndex = null) {
-    if (!container || !articles || articles.length === 0) return;
+    if (!container || !articles || articles.length === 0) return undefined;
 
     // If a previous graph is still running in this container, tear it down
     // first. A D3 forceSimulation keeps ticking on an animation loop and
@@ -297,11 +271,116 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     container.style.height = '90%';
     container.style.overflow = 'hidden';
 
-    loadD3()
+    return loadD3()
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
         .catch(() => {
             container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">D3 library failed to load.</div>';
         });
+}
+
+/**
+ * Restyles an already-rendered graph's opacity to dim non-matches against
+ * `query`, without rebuilding — no simulation restart, nodes stay put. This
+ * is what 'all' scope uses so search narrows visually (matches + their
+ * direct neighbors at full opacity, everything else faded) while every
+ * node/link stays present, instead of 'filtered' scope's hard rebuild that
+ * removes non-matching nodes outright.
+ *
+ * No-ops if `container` has no rendered graph (e.g. still loading, or torn
+ * down) — callers don't need to guard for that themselves.
+ *
+ * The actual DOM pass is deferred to the next animation frame rather than
+ * run synchronously here, and a call that arrives before that frame paints
+ * cancels and replaces the pending one — so even an un-debounced caller
+ * can't stack up more than one restyle per frame. articleManager.js also
+ * debounces its keystroke-driven calls (GRAPH_SEARCH_DIM_DELAY) on top of
+ * this. Within that one pass, applyGraphSearchDimNow() dims via a CSS class
+ * (not a per-node inline style) and only touches nodes/links/labels whose
+ * dim state actually changed since the last query, so it stays cheap even
+ * on a large archive.
+ *
+ * @param {HTMLElement} container
+ * @param {string} query - raw search text (trimmed/lowercased inside); an
+ *        empty query restores every node/link/label to its natural opacity.
+ */
+export function applyGraphSearchDim(container, query) {
+    if (!container?.__archiveGraphSelections) return;
+
+    // One rAF in flight per container — a call that arrives before the
+    // previous one has painted replaces it instead of stacking, so bursts
+    // (even post-debounce ones) still only ever do one DOM pass per frame.
+    if (container.__archiveGraphDimRaf) {
+        cancelAnimationFrame(container.__archiveGraphDimRaf);
+    }
+    container.__archiveGraphDimRaf = requestAnimationFrame(() => {
+        container.__archiveGraphDimRaf = null;
+        const selections = container.__archiveGraphSelections;
+        if (!selections) return; // graph was torn down before this frame ran
+        applyGraphSearchDimNow(selections, query);
+    });
+}
+
+function applyGraphSearchDimNow(selections, query) {
+    const { node, link, label } = selections;
+    const q = (query || '').trim().toLowerCase();
+
+    // A DIM_CLASS is a CSS class (see styles.css), not a per-element inline
+    // style — the browser can restyle a class toggle without the layout
+    // engine evaluating a function per node, which is what made the old
+    // .style('opacity', fn) pass slow on large archives. On top of that,
+    // we diff against the previously-dimmed set and only touch elements
+    // whose dim state actually changed between keystrokes, instead of
+    // rewriting the class on every node/link/label every time — so typing
+    // one more character into an already-narrow match set costs O(delta),
+    // not O(graph size).
+    const prevNeighborIds = selections.__prevNeighborIds || null;
+
+    if (!q) {
+        if (prevNeighborIds) {
+            node.each(function(d) { if (!prevNeighborIds.has(d.id)) this.classList.remove(DIM_CLASS); });
+            label.each(function(d) { if (!prevNeighborIds.has(d.id)) this.classList.remove(DIM_CLASS); });
+            link.each(function(l) {
+                const s = typeof l.source === 'object' ? l.source.id : l.source;
+                const t = typeof l.target === 'object' ? l.target.id : l.target;
+                if (!(prevNeighborIds.has(s) && prevNeighborIds.has(t))) this.classList.remove(DIM_CLASS);
+            });
+        }
+        selections.__prevNeighborIds = null;
+        return;
+    }
+
+    const matchedIds = new Set(
+        node.data().filter(d => d.label.toLowerCase().includes(q)).map(d => d.id)
+    );
+    // Pull in direct neighbors so matches don't look disconnected from
+    // their context — a match with its cluster dimmed is confusing.
+    const neighborIds = new Set(matchedIds);
+    link.data().forEach(l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        if (matchedIds.has(s)) neighborIds.add(t);
+        if (matchedIds.has(t)) neighborIds.add(s);
+    });
+
+    node.each(function(d) {
+        const shouldDim = !neighborIds.has(d.id);
+        const wasDim = prevNeighborIds ? !prevNeighborIds.has(d.id) : false;
+        if (shouldDim !== wasDim) this.classList.toggle(DIM_CLASS, shouldDim);
+    });
+    label.each(function(d) {
+        const shouldDim = !neighborIds.has(d.id);
+        const wasDim = prevNeighborIds ? !prevNeighborIds.has(d.id) : false;
+        if (shouldDim !== wasDim) this.classList.toggle(DIM_CLASS, shouldDim);
+    });
+    link.each(function(l) {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        const shouldDim = !(neighborIds.has(s) && neighborIds.has(t));
+        const wasDim = prevNeighborIds ? !(prevNeighborIds.has(s) && prevNeighborIds.has(t)) : false;
+        if (shouldDim !== wasDim) this.classList.toggle(DIM_CLASS, shouldDim);
+    });
+
+    selections.__prevNeighborIds = neighborIds;
 }
 
 /**
@@ -342,12 +421,19 @@ export function destroyArchiveGraph(container) {
         clearTimeout(container.__archiveGraphResizeDebounce);
         container.__archiveGraphResizeDebounce = null;
     }
+    if (container.__archiveGraphSelections) {
+        container.__archiveGraphSelections = null;
+    }
+    if (container.__archiveGraphDimRaf) {
+        cancelAnimationFrame(container.__archiveGraphDimRaf);
+        container.__archiveGraphDimRaf = null;
+    }
 }
 
 function renderGraph(container, articles, highlightTimestamp, minTagDegree, similarityIndex) {
     const raw = buildGraphData(articles, minTagDegree, similarityIndex);
     const { nodes, links, nodeById, capped } = capGraphData(raw);
-    const { hiddenTagCount, reconnectedCount, stillOrphanCount, stillOrphans } = raw;
+    const { hiddenTagCount, stillOrphanCount } = raw;
 
     // Neglect info: how long each article has sat unopened (0 = opened
     // recently or no lastOpened recorded). Used to fade/shrink stale saves.
@@ -522,6 +608,10 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
             return 1.5;
         })
         .attr('opacity', d => {
+            // Set as the SVG attr, not a style — applyGraphSearchDim() dims
+            // via the DIM_CLASS CSS class instead, so a node's own baseline
+            // opacity here (e.g. the neglect fade) stays intact underneath
+            // and comes back untouched once the class is removed.
             if (d.group !== 'article') return 1;
             return (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS ? NEGLECT_FADE : 1;
         })
@@ -558,6 +648,12 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
         .attr('dy', d => -(nodeRadius(d) + 4))
         .style('pointer-events', 'none')
         .style('text-shadow', '0 1px 2px var(--bg-primary)');
+
+    // Kept on the container so applyGraphSearchDim() can restyle the
+    // already-rendered graph (no rebuild, no simulation restart) when the
+    // 'all' scope wants to dim non-matches against the archive search box
+    // instead of removing them.
+    container.__archiveGraphSelections = { node, link, label };
 
     // Tick function
     simulation.on('tick', () => {
@@ -624,46 +720,147 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     const initialTransform = d3.zoomIdentity.translate(0, 0).scale(1);
     svg.call(zoom.transform, initialTransform);
 
-    // ── Filter toggle + status badge ────────────────────────────────────
-    // Only bother showing the toggle/status when there's something to say.
-    if (hiddenTagCount > 0 || capped || stillOrphanCount > 0 || reconnectedCount > 0 || neglectedCount > 0) {
-        renderGraphControls(container, {
-            hiddenTagCount,
-            capped,
-            currentlyFiltered: minTagDegree > 1,
-            reconnectedCount,
-            stillOrphanCount,
-            stillOrphans,
-            neglectedCount,
-            node,
-            link,
-            label,
-            onToggle: () => {
-                const nextMinDegree = minTagDegree > 1 ? 1 : MIN_TAG_DEGREE_DEFAULT;
-                simulation.stop();
-                renderGraph(container, articles, highlightTimestamp, nextMinDegree, similarityIndex);
-            },
-        });
-    }
+    // ── Controls ─────────────────────────────────────────────────────────
+    // Always shown, not just when there's a status message to display — the
+    // well-connected/all-tags toggle is primary navigation, not optional
+    // status text. (The filtered/highlight scope switch lives in the
+    // archive search box itself now, not here — see articleManager.js.)
+    renderGraphControls(container, {
+        hiddenTagCount,
+        capped,
+        currentlyFiltered: minTagDegree > 1,
+        stillOrphanCount,
+        neglectedCount,
+        onToggleDegree: () => {
+            const nextMinDegree = minTagDegree > 1 ? 1 : MIN_TAG_DEGREE_DEFAULT;
+            simulation.stop();
+            renderGraph(container, articles, highlightTimestamp, nextMinDegree, similarityIndex);
+        },
+    });
 }
 
 /**
- * Small overlay control in the corner of the graph: a search box, the
- * toggle between "only tags with 2+ connections" (default, faster,
- * readable) and "show every tag", a NODE_CAP safety message, how many
- * articles were reconnected via content similarity vs. still not shown,
- * how many are neglected (unopened past the threshold), a "view
- * unconnected" link, and a minimal legend for the two link kinds.
+ * Overlay controls around the graph: a stats readout (top-right), the
+ * well-connected/all-tags toggle and its dismissable stats readout
+ * (bottom-center, stacked above the toggle, alongside the bottom nav's
+ * visual language), and the link-kind legend (bottom-right). (The
+ * filtered/highlight search scope switch lives in the archive search box
+ * itself now, not here — see articleManager.js.)
  */
-function renderGraphControls(container, { hiddenTagCount, capped, currentlyFiltered, reconnectedCount, stillOrphanCount, stillOrphans, neglectedCount, node, link, label, onToggle }) {
-    const existing = container.querySelector('.graph-controls');
-    if (existing) existing.remove();
+function renderGraphControls(container, { hiddenTagCount, capped, currentlyFiltered, stillOrphanCount, neglectedCount, onToggleDegree }) {
+    container.querySelectorAll('.graph-controls, .graph-controls-bottom-center, .graph-controls-bottom-right').forEach(el => el.remove());
 
-    const bar = document.createElement('div');
-    bar.className = 'graph-controls';
-    bar.style.cssText = `
+    // ── Bottom-center: stats readout + well-connected/all toggle ─────────
+    // Sits higher than the bottom-right legend (bottom: 10px) so the two
+    // don't collide on a narrow graph view.
+    const centerBar = document.createElement('div');
+    centerBar.className = 'graph-controls-bottom-center';
+    centerBar.style.cssText = `
         position: absolute;
-        top: 10px;
+        bottom: 46px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        max-width: 90%;
+    `;
+
+    // Dismissable — re-appears on the next render (e.g. toggling well-
+    // connected/all-tags) since the underlying counts may have changed, but
+    // won't reappear from an unrelated re-render within the same session
+    // once the user has closed it (tracked on the container, not per-render
+    // local state).
+    const parts = [];
+    if (capped) {
+        parts.push('Showing top tags (archive is large)');
+    } else if (currentlyFiltered && hiddenTagCount > 0) {
+        parts.push(`${hiddenTagCount} rarely-used tag${hiddenTagCount === 1 ? '' : 's'} hidden`);
+    }
+    if (neglectedCount > 0) {
+        parts.push(`${neglectedCount} unopened 30d+`);
+    }
+    if (stillOrphanCount > 0) {
+        parts.push(`${stillOrphanCount} article${stillOrphanCount === 1 ? '' : 's'} not shown`);
+    }
+    if (parts.length && !container.__archiveGraphStatsDismissed) {
+        const statsRow = document.createElement('div');
+        statsRow.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+            background: var(--glass-base, #fff);
+            border: 1px solid var(--outline, #ddd);
+            border-radius: 8px;
+            padding: 4px 6px 4px 10px;
+        `;
+        const labelEl = document.createElement('span');
+        labelEl.textContent = parts.join(' · ');
+        statsRow.appendChild(labelEl);
+
+        const dismissBtn = document.createElement('button');
+        dismissBtn.type = 'button';
+        dismissBtn.textContent = '✕';
+        dismissBtn.title = 'Dismiss';
+        dismissBtn.setAttribute('aria-label', 'Dismiss graph stats');
+        dismissBtn.style.cssText = `
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 11px;
+            line-height: 1;
+            padding: 2px 4px;
+        `;
+        dismissBtn.addEventListener('click', () => {
+            container.__archiveGraphStatsDismissed = true;
+            statsRow.remove();
+        });
+        statsRow.appendChild(dismissBtn);
+
+        centerBar.appendChild(statsRow);
+    }
+
+    // A two-segment pill (same visual language as the bottom nav bar)
+    // instead of a single "Show all tags" / "Only well-connected tags"
+    // button whose label changes meaning depending on current state —
+    // both options are always visible, so the current view is a glance,
+    // not a read.
+    const toggleGroup = document.createElement('div');
+    toggleGroup.className = 'segmented-control segmented-control-buttons graph-toggle-large';
+    toggleGroup.style.cssText = `
+        background: var(--glass-base, #fff);
+        border: 1px solid var(--outline, #ddd);
+    `;
+
+    const wellBtn = document.createElement('button');
+    wellBtn.type = 'button';
+    wellBtn.textContent = 'Well-connected';
+    wellBtn.className = currentlyFiltered ? 'active' : '';
+
+    const allBtn = document.createElement('button');
+    allBtn.type = 'button';
+    allBtn.textContent = 'All';
+    allBtn.className = currentlyFiltered ? '' : 'active';
+
+    wellBtn.addEventListener('click', () => { if (!currentlyFiltered) onToggleDegree(); });
+    allBtn.addEventListener('click', () => { if (currentlyFiltered) onToggleDegree(); });
+
+    toggleGroup.appendChild(wellBtn);
+    toggleGroup.appendChild(allBtn);
+    centerBar.appendChild(toggleGroup);
+    container.appendChild(centerBar);
+
+    // ── Bottom-right: link-kind legend ────────────────────────────────────
+    const rightBar = document.createElement('div');
+    rightBar.className = 'graph-controls-bottom-right';
+    rightBar.style.cssText = `
+        position: absolute;
+        bottom: 10px;
         right: 10px;
         display: flex;
         flex-direction: column;
@@ -673,114 +870,6 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
         max-width: 70%;
     `;
 
-    // ── Search box ─────────────────────────────────────────────────────
-    // Dim-not-remove filtering (Obsidian-style): matches + their direct
-    // neighbors stay at full opacity, everything else fades to a ghost so
-    // the user keeps spatial context while narrowing focus.
-    const search = document.createElement('input');
-    search.type = 'text';
-    search.placeholder = 'Search graph…';
-    search.style.cssText = `
-        font-size: 11px;
-        color: var(--text-primary, #111);
-        background: var(--glass-base, #fff);
-        border: 1px solid var(--outline, #ddd);
-        border-radius: 8px;
-        padding: 4px 8px;
-        width: 160px;
-        outline: none;
-    `;
-    search.addEventListener('input', () => applySearchFilter(search.value, node, link, label));
-    bar.appendChild(search);
-
-    const row = document.createElement('div');
-    row.style.cssText = 'display: flex; align-items: center; gap: 8px;';
-
-    const labelEl = document.createElement('span');
-    labelEl.style.cssText = `
-        font-size: 11px;
-        color: var(--text-muted);
-        background: var(--glass-base, #fff);
-        border: 1px solid var(--outline, #ddd);
-        border-radius: 8px;
-        padding: 4px 8px;
-        text-align: right;
-    `;
-    const parts = [];
-    if (capped) {
-        parts.push('Showing top tags (archive is large)');
-    } else if (currentlyFiltered && hiddenTagCount > 0) {
-        parts.push(`${hiddenTagCount} rarely-used tag${hiddenTagCount === 1 ? '' : 's'} hidden`);
-    } else {
-        parts.push('Showing all tags');
-    }
-    if (neglectedCount > 0) {
-        parts.push(`${neglectedCount} unopened 30d+`);
-    }
-    if (stillOrphanCount > 0) {
-        parts.push(`${stillOrphanCount} article${stillOrphanCount === 1 ? '' : 's'} not shown`);
-    }
-    labelEl.textContent = parts.join(' · ');
-
-    const button = document.createElement('button');
-    button.className = 'graph-controls-toggle';
-    button.style.cssText = `
-        font-size: 11px;
-        border: 1px solid var(--outline, #ddd);
-        border-radius: 8px;
-        padding: 4px 10px;
-        background: var(--accent, #007bff);
-        color: #fff;
-        cursor: pointer;
-        white-space: nowrap;
-    `;
-    button.textContent = currentlyFiltered ? 'Show all tags' : 'Only well-connected tags';
-    button.addEventListener('click', onToggle);
-
-    row.appendChild(labelEl);
-    row.appendChild(button);
-    bar.appendChild(row);
-
-    // ── "View unconnected" link ────────────────────────────────────────
-    // Orphans are disproportionately the saved-and-forgotten articles (they
-    // never even got a tag), so surface them as a plain list rather than an
-    // opaque count. Clicking one opens it in the archive detail view.
-    if (stillOrphanCount > 0) {
-        const orphanRow = document.createElement('div');
-        orphanRow.style.cssText = 'display: flex; align-items: center; gap: 8px;';
-
-        const orphanLink = document.createElement('button');
-        orphanLink.style.cssText = `
-            font-size: 11px;
-            border: 1px solid var(--outline, #ddd);
-            border-radius: 8px;
-            padding: 4px 10px;
-            background: var(--glass-base, #fff);
-            color: var(--accent, #007bff);
-            cursor: pointer;
-            white-space: nowrap;
-        `;
-        orphanLink.textContent = 'View unconnected';
-        orphanLink.addEventListener('click', () => showUnconnectedList(container, stillOrphans));
-        orphanRow.appendChild(orphanLink);
-        bar.appendChild(orphanRow);
-    }
-
-    if (reconnectedCount > 0) {
-        const legend = document.createElement('span');
-        legend.style.cssText = `
-            font-size: 10px;
-            color: var(--text-muted);
-            background: var(--glass-base, #fff);
-            border: 1px solid var(--outline, #ddd);
-            border-radius: 8px;
-            padding: 3px 8px;
-        `;
-        legend.textContent = `- - - ${reconnectedCount} connected by similar content, no shared tag`;
-        bar.appendChild(legend);
-    }
-
-    // ── Minimal legend ─────────────────────────────────────────────────
     // The dashed/thin similarity links vs solid/arrowed tag links carry
     // real meaning; make it visible instead of only documented in code.
     const legendRow = document.createElement('div');
@@ -803,85 +892,9 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
             <span style="display:inline-block;width:14px;height:0;border-top:1px dashed var(--text-muted);"></span> similar content
         </span>
     `;
-    bar.appendChild(legendRow);
+    rightBar.appendChild(legendRow);
 
-    container.appendChild(bar);
-}
-
-/**
- * Shows a plain list of the still-unconnected articles (those that never
- * got a tag link and couldn't be reconnected by content similarity). These
- * are disproportionately the "saved and forgotten" saves, so we surface
- * them as a scannable list rather than forcing them into the noisy force
- * layout. Clicking an entry opens it in the archive detail view.
- */
-function showUnconnectedList(container, orphans) {
-    const existing = container.querySelector('.graph-orphan-list');
-    if (existing) existing.remove();
-
-    const panel = document.createElement('div');
-    panel.className = 'graph-orphan-list';
-    panel.style.cssText = `
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        background: var(--glass-base, #fff);
-        border: 1px solid var(--outline, #ddd);
-        border-radius: 12px;
-        padding: 14px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        z-index: 20;
-        overflow-y: auto;
-        font-size: 13px;
-    `;
-
-    const header = document.createElement('div');
-    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;';
-    header.innerHTML = `<strong>Unconnected articles (${orphans.length})</strong>`;
-    const close = document.createElement('button');
-    close.textContent = '✕';
-    close.style.cssText = 'background:none;border:none;font-size:16px;cursor:pointer;opacity:0.5;padding:0 4px;line-height:1;';
-    close.addEventListener('click', () => panel.remove());
-    header.appendChild(close);
-    panel.appendChild(header);
-
-    const hint = document.createElement('div');
-    hint.style.cssText = 'font-size:11px;color:var(--text-muted);margin-bottom:10px;';
-    hint.textContent = 'These articles have no shared tags and no similar-content link — they tend to be the ones that get saved and forgotten.';
-    panel.appendChild(hint);
-
-    const list = document.createElement('div');
-    list.style.cssText = 'display:flex;flex-direction:column;gap:6px;';
-    orphans.forEach(article => {
-        const title = article.title || (article.content && article.content.split('\n')[0]) || 'Untitled';
-        const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
-        const item = document.createElement('button');
-        item.style.cssText = `
-            text-align:left;
-            font-size:12px;
-            padding:8px 10px;
-            border:1px solid var(--outline, #ddd);
-            border-radius:8px;
-            background:var(--glass-base, #fff);
-            cursor:pointer;
-            color:var(--text-primary, #111);
-        `;
-        item.innerHTML = `<strong>${title.length > 60 ? title.slice(0, 60) + '…' : title}</strong> <span style="color:var(--text-muted);font-size:11px;">${date}</span>`;
-        item.addEventListener('click', () => {
-            panel.remove();
-            container.dispatchEvent(new CustomEvent('open-article', {
-                detail: article,
-                bubbles: true,
-                composed: true
-            }));
-        });
-        list.appendChild(item);
-    });
-    panel.appendChild(list);
-
-    container.appendChild(panel);
+    container.appendChild(rightBar);
 }
 
 /**
@@ -903,39 +916,46 @@ function showPreviewCard(container, article) {
 
     const card = document.createElement('div');
     card.className = 'graph-preview-card';
+    // Flush to the bottom edge of the graph view (no outer border/margin),
+    // and split into a scrollable content area + a pinned action row so the
+    // "Open in History" button stays reachable without scrolling no matter
+    // how long the summary/tag list is.
     card.style.cssText = `
         position: absolute;
-        bottom: 12px;
-        left: 12px;
-        right: 12px;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: var(--glass-base, #fff);
-        border: 1px solid var(--outline, #ddd);
-        border-radius: 12px;
-        padding: 14px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
         z-index: 10;
-        max-height: 180px;
-        overflow-y: auto;
+        max-height: 70%;
+        display: flex;
+        flex-direction: column;
         font-size: 13px;
         line-height: 1.4;
     `;
     card.innerHTML = `
-        <div class="graph-preview-card-close" style="
-            float: right;
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            opacity: 0.5;
-            padding: 0 4px;
-            line-height: 1;
-        ">✕</div>
-        <strong style="display:block;margin-bottom:4px;padding-right:24px;">${safeTitle.length > 60 ? safeTitle.slice(0, 60) + '…' : safeTitle}</strong>
-        <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">${date}</div>
-        <div style="font-size:12px;margin-bottom:6px;max-height:48px;overflow:hidden;">${summaryPlain}${summaryPlain.length >= 200 ? '…' : ''}</div>
-        <div style="display:flex;flex-wrap:wrap;gap:4px;">${tags}</div>
-        <div style="margin-top:8px;display:flex;gap:6px;">
-            <button class="graph-preview-open" style="flex:1;padding:6px;border:none;border-radius:6px;background:var(--accent,#007bff);color:#fff;font-size:11px;cursor:pointer;">Open in History</button>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:14px 14px 0;flex-shrink:0;">
+            <strong style="flex:1;">${safeTitle.length > 60 ? safeTitle.slice(0, 60) + '…' : safeTitle}</strong>
+            <div class="graph-preview-card-close" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                opacity: 0.5;
+                padding: 0 4px;
+                line-height: 1;
+                flex-shrink: 0;
+            ">✕</div>
+        </div>
+        <div class="graph-preview-card-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:6px 14px 8px;">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">${date}</div>
+            <div style="font-size:12px;margin-bottom:6px;">${summaryPlain}${summaryPlain.length >= 200 ? '…' : ''}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;">${tags}</div>
+        </div>
+        <div style="padding:8px 14px 14px;flex-shrink:0;">
+            <button class="graph-preview-open" style="width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent,#007bff);color:#fff;font-size:11px;cursor:pointer;">Open in History</button>
         </div>
     `;
 

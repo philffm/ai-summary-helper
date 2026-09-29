@@ -860,6 +860,43 @@ ul#articleList {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
+/* Button-based variant (no radio/label pair) for controls built dynamically
+   in JS, e.g. archiveGraph.js's well-connected/all-tags view switch, where
+   re-render-on-every-toggle makes fixed radio ids awkward. */
+.segmented-control.segmented-control-buttons {
+    padding: 2px;
+}
+
+.segmented-control-buttons button {
+    flex: 1;
+    text-align: center;
+    padding: 6px 10px;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: calc(var(--radius-md) - 2px);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.segmented-control-buttons button.active {
+    background: var(--glass-card);
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Larger variant — archiveGraph.js's well-connected/all-tags toggle is
+   primary navigation for that view, not a secondary control, so it gets
+   more presence than the default compact size. */
+.segmented-control-buttons.graph-toggle-large button {
+    padding: 10px 16px;
+    font-size: 13px;
+}
+
 /* ── Status Badges & New Components ────────────────────────────────────── */
 
 .type-badge {
@@ -1120,6 +1157,25 @@ ul#articleList {
   margin-bottom: var(--spacing-s-4);
 }
 
+/* Reserve room in the input for #searchInputActions' children — added/
+   removed by articleManager.js alongside each button's own visibility, so
+   the reserved space only grows when a given control is actually shown. */
+#searchInput.has-clear {
+  padding-right: 34px;
+}
+#searchInput.graph-scope-toggle-visible {
+  padding-right: 112px;
+}
+#searchInput.has-clear.graph-scope-toggle-visible {
+  padding-right: 142px;
+}
+
+#searchClearBtn:hover,
+#graphScopeInlineToggle:hover {
+  background: var(--glass-card);
+  color: var(--text-primary);
+}
+
 /* ── History Toolbar ───────────────────────────────────────────────────── */
 
 .history-toolbar {
@@ -1176,6 +1232,20 @@ ul#articleList {
   stroke: var(--outline);
   stroke-width: 1.5px;
   stroke-opacity: 0.6;
+}
+
+/* Applied by archiveGraph.js's applyGraphSearchDim() to non-matching
+   nodes/links/labels when the graph search scope is "highlight" instead of
+   "filter" — a class toggle so the browser can restyle it directly rather
+   than re-evaluating a per-node function to set an inline style. */
+circle.graph-search-dim {
+  opacity: 0.12;
+}
+text.graph-search-dim {
+  opacity: 0.12;
+}
+.graph-link.graph-search-dim {
+  opacity: 0.05;
 }
 
 /* ── Bottom Navigation ─────────────────────────────────────────────────── */

@@ -279,12 +279,21 @@ import {
               article.decisionSavedAt = decision.savedAt;
               article.isDecision = true;
 
-              chrome.storage.local.get({ articles: [] }, (data) => {
-                const articles = data.articles || [];
-                const idx = articles.findIndex(a => a.timestamp === article.timestamp);
+              // article.id identifies its entry in 'articlesIndex' (see
+              // saveToLocalStorage in content/core.js) — patch the decision
+              // fields onto that index entry rather than the old flat array.
+              chrome.storage.local.get({ articlesIndex: [] }, (data) => {
+                const articlesIndex = data.articlesIndex || [];
+                const idx = articlesIndex.findIndex(a => a.id === article.id);
                 if (idx >= 0) {
-                  articles[idx] = article;
-                  chrome.storage.local.set({ articles }, () => {
+                  articlesIndex[idx] = {
+                    ...articlesIndex[idx],
+                    decisionTimeframe: article.decisionTimeframe,
+                    decisionReason: article.decisionReason,
+                    decisionSavedAt: article.decisionSavedAt,
+                    isDecision: true
+                  };
+                  chrome.storage.local.set({ articlesIndex }, () => {
                     chrome.runtime.sendMessage({ action: 'scheduleDecisionAlarm', article });
                     waitForSpeedReadingComplete(streamOverlay, () => {
                       chrome.runtime.sendMessage({ action: 'closeTabSelf' });

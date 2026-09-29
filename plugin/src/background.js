@@ -59,11 +59,24 @@ function decisionAlarmDelayMinutes(timeframe) {
     }
 }
 
+// The articlesIndex/article:<id> migration only runs from popup.js's
+// StorageManager.initialize() on popup open — this service worker can't run
+// it itself (classic, non-module worker; storageManager.js's ES `import`
+// syntax isn't usable via importScripts). An alarm can fire before the user
+// ever reopens the popup after an update, while storage is still in the old
+// shape, so fall back to the legacy 'articles' array in that narrow window.
+async function findDecisionArticle(timestamp) {
+    const { articlesIndex = [] } = await chrome.storage.local.get({ articlesIndex: [] });
+    let article = articlesIndex.find(a => a.timestamp === timestamp && a.isDecision);
+    if (article) return article;
+    const { articles = [] } = await chrome.storage.local.get({ articles: [] });
+    return articles.find(a => a.timestamp === timestamp && a.isDecision) || null;
+}
+
 chrome.alarms.onAlarm.addListener(async (alarm) => {
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
-    const { articles = [] } = await chrome.storage.local.get({ articles: [] });
-    const article = articles.find(a => a.timestamp === decodeURIComponent(timestamp) && a.isDecision);
+    const article = await findDecisionArticle(decodeURIComponent(timestamp));
     if (!article) return;
     chrome.notifications.create(`decision_notif_${timestamp}`, {
         type: 'basic',
@@ -79,8 +92,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
     if (!notifId.startsWith('decision_notif_')) return;
     const timestamp = notifId.replace('decision_notif_', '');
-    const { articles = [] } = await chrome.storage.local.get({ articles: [] });
-    const article = articles.find(a => a.timestamp === decodeURIComponent(timestamp) && a.isDecision);
+    const article = await findDecisionArticle(decodeURIComponent(timestamp));
     if (!article) return;
     if (btnIdx === 0 && article.url) chrome.tabs.create({ url: article.url });
     chrome.notifications.clear(notifId);

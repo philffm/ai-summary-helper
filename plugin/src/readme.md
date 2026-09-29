@@ -91,7 +91,7 @@ Right-click on any page to access:
 | Action | Shortcut |
 |--------|----------|
 | Open popup | Click extension icon |
-| Fetch summary | `Ctrl+Shift+S` (configurable) |
+| Fetch summary | `Ctrl+Shift+E` (configurable) |
 
 ## Permissions Used
 

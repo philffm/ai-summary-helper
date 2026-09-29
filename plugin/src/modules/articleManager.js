@@ -12,6 +12,14 @@ let uiManagerRef = null;
 let currentDetailArticle = null;
 let cachedArticles = [];
 
+// Whether the knowledge graph's node set is hard-filtered by the archive
+// search box ('filtered', the default — nodes for non-matches are removed)
+// or the whole archive stays rendered and the search box just dims
+// non-matches instead ('all'). Set via the inline toggle button in the
+// search input itself (only shown while the graph is open — see
+// setGraphScopeMode()/graphScopeToggleBtn in initArticleManager()).
+let graphScopeMode = 'filtered';
+
 // On-device TF-IDF index, shared by search, "similar articles", and (via
 // tagIntelligence.js elsewhere) tag suggestions. Built lazily on first use
 // and rebuilt only when the archive actually changes — not on every
@@ -23,6 +31,43 @@ function invalidateSearchIndex() {
     searchIndexDirty = true;
 }
 
+// Debounces applyGraphSearchDim() calls driven by search-box keystrokes.
+// Dimming touches every node/link/label in the graph (O(archive size)); on
+// a large archive, running that on every single keystroke visibly lags
+// typing. Waiting for a short pause collapses a fast typing burst into one
+// pass instead of one per character.
+let graphSearchDimTimer = null;
+const GRAPH_SEARCH_DIM_DELAY = 150;
+
+function scheduleGraphSearchDim(container, query) {
+    if (graphSearchDimTimer) clearTimeout(graphSearchDimTimer);
+    graphSearchDimTimer = setTimeout(() => {
+        graphSearchDimTimer = null;
+        import('./archiveGraph.js').then(mod => mod.applyGraphSearchDim(container, query));
+    }, GRAPH_SEARCH_DIM_DELAY);
+}
+
+/**
+ * The article set to actually render as graph nodes, given graphScopeMode:
+ * the full archive when scope is 'all' (the search box narrows via dimming
+ * instead — see applyGraphSearchDim, applied separately, not here),
+ * otherwise the cheap title/tag match against the search text for a hard
+ * rebuild — falling back to the full archive if that match is empty, so an
+ * over-narrow query doesn't leave the graph blank.
+ */
+function graphScopeVisibleArticles() {
+    if (graphScopeMode === 'all') return cachedArticles;
+    const searchInput = document.getElementById('searchInput');
+    const filterText = (searchInput?.value || '').toLowerCase();
+    if (!filterText) return cachedArticles;
+    const filtered = cachedArticles.filter(a => {
+        const titleMatch = (a.title || '').toLowerCase().includes(filterText);
+        const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(filterText));
+        return titleMatch || tagMatch;
+    });
+    return filtered.length > 0 ? filtered : cachedArticles;
+}
+
 /**
  * Records that an article was opened (viewed in the detail view). This is
  * the "follow-through" signal the knowledge graph uses to surface neglected
@@ -30,21 +75,14 @@ function invalidateSearchIndex() {
  * in the graph. Persisted to storage so it survives reloads.
  */
 function recordArticleOpened(article) {
-    if (!article || !article.timestamp) return;
+    if (!article || !article.id) return;
     const now = new Date().toISOString();
     article.lastOpened = now;
     // Keep the in-memory cache in sync so the graph (which reads from
     // cachedArticles) reflects the update immediately.
-    const idx = cachedArticles.findIndex(a => a.timestamp === article.timestamp);
+    const idx = cachedArticles.findIndex(a => a.id === article.id);
     if (idx !== -1) cachedArticles[idx].lastOpened = now;
-    StorageManager.getLocal({ articles: [] }).then(data => {
-        const articles = data.articles || [];
-        const stored = articles.find(a => a.timestamp === article.timestamp);
-        if (stored) {
-            stored.lastOpened = now;
-            StorageManager.setLocal({ articles });
-        }
-    }).catch(() => {});
+    StorageManager.touchArticleOpened(article.id).catch(() => {});
 }
 
 function ensureSearchIndex() {
@@ -387,30 +425,84 @@ export function initArticleManager(uiManager) {
         if (detailTopBar) detailTopBar.classList.toggle('scroll-hidden', hidden);
     };
 
+    // ── Graph search-scope toggle (lives inline in the search input) ──────
+    const graphScopeToggleBtn = document.getElementById('graphScopeInlineToggle');
+
+    const syncGraphScopeToggleBtn = () => {
+        if (!graphScopeToggleBtn) return;
+        if (graphScopeMode === 'all') {
+            graphScopeToggleBtn.textContent = 'View: Highlighted';
+            graphScopeToggleBtn.title = 'Highlighting matches in the whole archive — click to filter to matches only';
+            graphScopeToggleBtn.setAttribute('aria-label', 'Switch graph search to filter mode');
+        } else {
+            graphScopeToggleBtn.textContent = 'View: Filtered';
+            graphScopeToggleBtn.title = 'Filtering graph to matches only — click to highlight matches in the whole archive instead';
+            graphScopeToggleBtn.setAttribute('aria-label', 'Switch graph search to highlight mode');
+        }
+    };
+
+    const setGraphScopeToggleVisible = (visible) => {
+        if (graphScopeToggleBtn) graphScopeToggleBtn.style.display = visible ? 'flex' : 'none';
+        if (searchInput) searchInput.classList.toggle('graph-scope-toggle-visible', visible);
+    };
+
+    // Only relevant once there's something to filter/highlight against —
+    // shown while the graph is open AND the search box has text, hidden
+    // otherwise (including as soon as the box is cleared).
+    const updateGraphScopeToggleVisibility = () => {
+        const graphContainer = document.getElementById('graphContainer');
+        const graphOpen = !!graphContainer && graphContainer.style.display === 'block';
+        setGraphScopeToggleVisible(graphOpen && !!(searchInput && searchInput.value.length > 0));
+    };
+
+    // Switches graphScopeMode and, if the graph is currently open, re-renders
+    // it immediately in the new scope (mirrors what toggleGraph's fresh-open
+    // path does, just triggered by the inline button instead).
+    const setGraphScopeMode = (nextMode) => {
+        if (nextMode === graphScopeMode) return;
+        graphScopeMode = nextMode;
+        syncGraphScopeToggleBtn();
+
+        const graphContainer = document.getElementById('graphContainer');
+        if (!graphContainer || graphContainer.style.display !== 'block') return;
+        if (nextMode === 'all') graphContainer.style.opacity = '1';
+
+        const source = graphScopeVisibleArticles();
+        import('./archiveGraph.js').then(mod => {
+            const rendered = mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp, ensureSearchIndex());
+            if (nextMode === 'all') {
+                Promise.resolve(rendered).then(() => mod.applyGraphSearchDim(graphContainer, searchInput?.value || ''));
+            }
+        });
+    };
+
+    if (graphScopeToggleBtn) {
+        graphScopeToggleBtn.addEventListener('click', () => {
+            setGraphScopeMode(graphScopeMode === 'all' ? 'filtered' : 'all');
+        });
+    }
+
     const deleteCurrentDetailArticle = () => {
         if (!currentDetailArticle) return;
         if (!confirm('Are you sure you want to delete this article?')) return;
 
-        StorageManager.getLocal('articles').then(data => {
-            const articles = data.articles || [];
-            const updated = articles.filter(item => item.timestamp !== currentDetailArticle.timestamp);
-            StorageManager.setLocal({ articles: updated }, () => {
-                currentDetailArticle = null;
-                cachedArticles = updated;
-                invalidateSearchIndex();
-                renderArticles(updated);
+        StorageManager.deleteArticle(currentDetailArticle.id).then(() => {
+            const updated = cachedArticles.filter(item => item.id !== currentDetailArticle.id);
+            currentDetailArticle = null;
+            cachedArticles = updated;
+            invalidateSearchIndex();
+            renderArticles(updated);
 
-                const articleDetail = document.getElementById('articleDetail');
-                const articleList = document.getElementById('articleList');
-                const graphContainer = document.getElementById('graphContainer');
-                const reportContainer = document.getElementById('reportContainer');
-                if (articleDetail) articleDetail.style.display = 'none';
-                if (graphContainer) graphContainer.style.display = 'none';
-                if (reportContainer) reportContainer.style.display = 'none';
-                if (articleList) articleList.style.display = 'block';
-                if (historyTopBar) historyTopBar.style.display = 'flex';
-                if (detailTopBar) detailTopBar.style.display = 'none';
-            });
+            const articleDetail = document.getElementById('articleDetail');
+            const articleList = document.getElementById('articleList');
+            const graphContainer = document.getElementById('graphContainer');
+            const reportContainer = document.getElementById('reportContainer');
+            if (articleDetail) articleDetail.style.display = 'none';
+            if (graphContainer) graphContainer.style.display = 'none';
+            if (reportContainer) reportContainer.style.display = 'none';
+            if (articleList) articleList.style.display = 'block';
+            if (historyTopBar) historyTopBar.style.display = 'flex';
+            if (detailTopBar) detailTopBar.style.display = 'none';
         });
     };
 
@@ -453,17 +545,22 @@ export function initArticleManager(uiManager) {
 
     if (searchInput) {
         searchInput.addEventListener('input', filterArticles);
+        searchInput.addEventListener('input', updateGraphScopeToggleVisibility);
 
         // Show/hide clear button as user types
         const clearBtn = document.getElementById('searchClearBtn');
         if (clearBtn) {
             searchInput.addEventListener('input', () => {
-                clearBtn.hidden = searchInput.value.length === 0;
+                const hasText = searchInput.value.length > 0;
+                clearBtn.hidden = !hasText;
+                searchInput.classList.toggle('has-clear', hasText);
             });
             clearBtn.addEventListener('click', () => {
                 searchInput.value = '';
                 clearBtn.hidden = true;
+                searchInput.classList.remove('has-clear');
                 filterArticles();
+                updateGraphScopeToggleVisibility();
                 searchInput.focus();
             });
         }
@@ -491,6 +588,9 @@ export function initArticleManager(uiManager) {
             // Stop the D3 force simulation + release its listeners when the
             // graph is hidden — otherwise it keeps ticking on an animation
             // loop and retaining the node/link object graph in memory.
+            // Hiding the inline scope toggle happens via the shared
+            // graphVisibilityObserver below (covers every hide path, not
+            // just this one).
             import('./archiveGraph.js').then(mod => mod.destroyArchiveGraph(graphContainer));
             if (detailTopBar?.style.display === 'flex') {
                 if (articleDetail) articleDetail.style.display = 'block';
@@ -501,24 +601,24 @@ export function initArticleManager(uiManager) {
             if (articleList) articleList.style.display = 'none';
             if (articleDetail) articleDetail.style.display = 'none';
             graphContainer.style.display = 'block';
-            const searchInput = document.getElementById('searchInput');
-            const filterText = (searchInput?.value || '').toLowerCase();
-            const articlesToShow = filterText
-                ? cachedArticles.filter(a => {
-                    const titleMatch = (a.title || '').toLowerCase().includes(filterText);
-                    const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(filterText));
-                    return titleMatch || tagMatch;
-                  })
-                : cachedArticles;
-            const source = articlesToShow.length > 0 ? articlesToShow : cachedArticles;
+            graphContainer.style.opacity = '1';
+            // Fresh open: default back to 'filtered' rather than remembering
+            // the scope from a previous graph session, and bring back the
+            // stats banner if it was dismissed in a previous session (it
+            // persists through same-session re-renders — e.g. toggling
+            // well-connected/all-tags — but not across a full close/reopen).
+            graphScopeMode = 'filtered';
+            graphContainer.__archiveGraphStatsDismissed = false;
+            syncGraphScopeToggleBtn();
+            updateGraphScopeToggleVisibility();
+            const source = graphScopeVisibleArticles();
             if (source.length > 0) {
                     import('./archiveGraph.js').then(mod => {
                         mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp, ensureSearchIndex());
                     });
                 } else {
                     // Fall back to storage if cache is empty (e.g. first load)
-                    StorageManager.getLocal({ articles: [] }).then(data => {
-                        const articles = data.articles || [];
+                    StorageManager.getArticlesIndex().then(articles => {
                         if (articles.length > 0) {
                             import('./archiveGraph.js').then(mod => {
                                 mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp, buildIndex(articles));
@@ -556,8 +656,7 @@ export function initArticleManager(uiManager) {
             if (articleDetail) articleDetail.style.display = 'none';
             if (graphContainer) graphContainer.style.display = 'none';
             reportContainer.style.display = 'block';
-            StorageManager.getLocal({ articles: [] }).then(data => {
-                const articles = data.articles || [];
+            StorageManager.getArticlesIndex({ includeArchived: true }).then(articles => {
                 import('./analyticsManager.js').then(mod => {
                     mod.initAnalyticsReport(reportContainer, articles);
                 });
@@ -582,6 +681,7 @@ export function initArticleManager(uiManager) {
         const graphVisibilityObserver = new MutationObserver(() => {
             if (graphContainer.style.display === 'none') {
                 import('./archiveGraph.js').then(mod => mod.destroyArchiveGraph(graphContainer));
+                setGraphScopeToggleVisible(false);
             }
         });
         graphVisibilityObserver.observe(graphContainer, { attributes: true, attributeFilter: ['style'] });
@@ -594,23 +694,23 @@ export function initArticleManager(uiManager) {
         });
 
         // ── Listen for filter-by-tag events from the graph ────────────
-        // Clicking a tag node in the graph filters the archive list to
-        // that tag, turning the graph into a navigation surface.
+        // Clicking a tag node in the graph filters to that tag via the
+        // shared search box, but stays in graph mode (dims/narrows the
+        // graph itself per the current filter/highlight scope) rather than
+        // switching away to the plain article list.
         graphContainer.addEventListener('filter-by-tag', (e) => {
             const tag = e.detail?.tag;
             if (!tag) return;
-            uiManager.showScreen('history');
-            const articleList = document.getElementById('articleList');
-            const historyTopBar = document.getElementById('historyTopBar');
-            if (articleList) articleList.style.display = 'block';
-            if (historyTopBar) historyTopBar.style.display = 'flex';
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
                 searchInput.value = tag;
-                filterArticles();
-                searchInput.focus();
+                // A real 'input' event, not a direct filterArticles() call,
+                // so the clear button's own 'input' listener (toggling its
+                // visibility + the input's has-clear class) fires too.
+                searchInput.dispatchEvent(new Event('input'));
             }
         });
+
     }
 
     // ── Listen for tag-search events from the analytics report ────────
@@ -629,7 +729,7 @@ export function initArticleManager(uiManager) {
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
                 searchInput.value = tag;
-                filterArticles();
+                searchInput.dispatchEvent(new Event('input'));
                 searchInput.focus();
             }
         });
@@ -651,12 +751,10 @@ export function loadHistory() {
     if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
     if (historyTopBar) historyTopBar.style.display = 'flex';
     if (articleList) articleList.style.display = 'block';
-    StorageManager.getLocal({ articles: [] }).then(data => {
-        if (data && data.articles) {
-            cachedArticles = data.articles;
-            invalidateSearchIndex();
-            renderArticles(cachedArticles);
-        }
+    StorageManager.getArticlesIndex().then(articles => {
+        cachedArticles = articles;
+        invalidateSearchIndex();
+        renderArticles(cachedArticles);
     }).catch(() => {});
 }
 
@@ -803,9 +901,16 @@ export function filterArticles() {
         return titleMatch || tagMatch;
     };
 
-    // If graph is visible, re-render it with matching articles. The graph
-    // is keyed on tags anyway, so it stays on the cheap tier only.
+    // If graph is visible, react to the search box per graphScopeMode:
+    // 'filtered' rebuilds to only the matching articles (nodes for
+    // non-matches disappear); 'all' keeps every node and just dims
+    // non-matches in place (no rebuild, no simulation restart). The graph
+    // is keyed on tags anyway, so filtered mode stays on the cheap tier only.
     if (graphContainer && graphContainer.style.display === 'block') {
+        if (graphScopeMode === 'all') {
+            scheduleGraphSearchDim(graphContainer, filterText);
+            return;
+        }
         const filtered = cachedArticles.filter(cheapMatch);
         import('./archiveGraph.js').then(mod => {
             mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : cachedArticles, currentDetailArticle?.timestamp, ensureSearchIndex());
@@ -890,7 +995,20 @@ async function renderLocalInsights(article, container) {
 /**
  * Shows the full article detail view with back button
  */
-export function showArticleDetail(article) {
+export async function showArticleDetail(article) {
+    // List/graph/search cards only carry the lean articlesIndex shape (no
+    // content) — load the full article:<id> record before rendering detail.
+    // Callers that already pass a full in-memory article (e.g. mainScreen.js
+    // right after a save) have `content` set and skip this fetch.
+    if (article && article.id && article.content === undefined) {
+        try {
+            const full = await StorageManager.getArticleFull(article.id);
+            article = { ...article, ...full };
+        } catch (err) {
+            console.error('[AISH] Failed to load article content:', err);
+        }
+    }
+
     currentDetailArticle = article;
     recordArticleOpened(article);
     const articleList = document.getElementById('articleList');

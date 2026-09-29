@@ -1,9 +1,7 @@
 // archiveManager.js
-// Handles archive/history UI and logic for saved articles
-import StorageManager from './storageManager.js';
+// Shows the podcast manager overlaid on the history screen, and restores
+// the history list (owned by articleManager.js) when the user backs out.
 import { renderPodcastUI } from './podcastManager.js';
-
-let uiManagerRef = null;
 
 // Show podcast manager in history view
 export function showPodcastManagerInHistory() {
@@ -20,258 +18,21 @@ export function showPodcastManagerInHistory() {
         backBtn.textContent = '← Back to History';
         backBtn.className = 'button-secondary';
         backBtn.style.marginBottom = '1em';
-        backBtn.onclick = () => {
-            // Always restore history screen and re-initialize content
-            if (uiManagerRef && typeof uiManagerRef.showScreen === 'function') {
-                uiManagerRef.showScreen('history');
-            }
+        backBtn.onclick = async () => {
             // Show article list and search input again
             if (articleList) articleList.style.display = 'block';
             if (searchInput) searchInput.style.display = 'block';
             // Clear podcast screen content to avoid DOM conflicts
             podcastScreen.innerHTML = '';
-            // Re-initialize history content and listeners
-            initArchive(uiManagerRef);
+            // podcastScreen lives inside historyScreen, so the "screen" never
+            // changed - just refresh the list content via articleManager.js,
+            // whose search listener is already attached once at popup startup.
+            const { loadHistory } = await import('./articleManager.js');
+            loadHistory();
         };
         podcastScreen.appendChild(backBtn);
         // Render podcast UI
         renderPodcastUI(podcastScreen);
         podcastScreen.style.display = 'block';
     }
-}
-
-export function initArchive(uiManager) {
-    uiManagerRef = uiManager;
-    const historyScreen = document.getElementById('historyScreen');
-    if (!historyScreen) return;
-    loadHistory();
-    setupSearch();
-}
-
-function loadHistory() {
-    const articleList = document.getElementById('articleList');
-    if (!articleList) return;
-    articleList.innerHTML = '<div>Loading…</div>';
-    StorageManager.getLocal({ articles: [] }).then(data => {
-        const articles = (data.articles || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        if (!articles.length) {
-            articleList.innerHTML = '<div class="explanatory-card">No articles saved yet.</div>';
-            return;
-        }
-        articleList.innerHTML = '';
-        articles.forEach((article, idx) => {
-            const card = document.createElement('div');
-            card.className = 'history-card';
-            card.innerHTML = `
-                <div class="history-card-content">
-                    <h3>${article.title || 'Untitled'}</h3>
-                    <div class="history-card-meta">${new Date(article.timestamp).toLocaleString()}${article.url ? ` · ${new URL(article.url).hostname}` : ''}</div>
-                    <div class="history-card-summary">${stripHtml(article.summary || '')}</div>
-                    <div class="history-card-actions">
-                        <button class="share-article-button">Share</button>
-                        <button class="copy-article-button">Copy</button>
-                        <button class="save-md-button">Save .md</button>
-                        <button class="delete-article-button">Delete</button>
-                    </div>
-                </div>
-            `;
-            articleList.appendChild(card);
-
-            const summaryClean = stripHtml(article.summary || '');
-            const shareText = `${article.title || 'Summary'}\n\n${summaryClean}\n\nSource: ${article.url || ''}`;
-
-            card.querySelector('.share-article-button').addEventListener('click', async () => {
-                if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            title: article.title || 'AI Summary',
-                            text: shareText,
-                            url: article.url
-                        });
-                    } catch (err) {
-                        console.error('Share failed:', err);
-                    }
-                } else {
-                    uiManagerRef.showToast('Native sharing not supported');
-                }
-            });
-
-            card.querySelector('.copy-article-button').addEventListener('click', () => {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    uiManagerRef.showToast('Copied to clipboard');
-                });
-            });
-
-            card.querySelector('.save-md-button').addEventListener('click', () => {
-                const summaryClean = stripHtml(article.summary || '');
-
-                // Parse stored clean HTML and convert tags to Markdown syntax
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(article.content || '', 'text/html');
-
-                // Convert <img> to ![alt](src)
-                const images = doc.querySelectorAll('img');
-                images.forEach(img => {
-                    const alt = img.getAttribute('alt') || 'image';
-                    const src = img.getAttribute('src') || '';
-                    if (src) {
-                        img.parentNode.replaceChild(doc.createTextNode(`\n\n![${alt}](${src})\n\n`), img);
-                    } else {
-                        img.remove();
-                    }
-                });
-
-                // Convert <a> to [text](url)
-                const links = doc.querySelectorAll('a');
-                links.forEach(link => {
-                    const text = link.textContent.trim() || 'Link';
-                    const href = link.getAttribute('href') || '';
-                    if (href) {
-                        link.parentNode.replaceChild(doc.createTextNode(`[${text}](${href})`), link);
-                    }
-                });
-
-                const originalContentMarkdown = doc.body.textContent || '';
-
-                const mdContent = `# ${article.title || 'Summary'}\n\n## AI Summary\n\n${summaryClean}\n\n---\n\n## Original Article\n\n${originalContentMarkdown.trim().replace(/\n{3,}/g, '\n\n')}\n\n---\n\nSource: ${article.url || ''}`;
-                const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `${(article.title || 'summary').replace(/[^a-z0-9]/gi, '_').toLowerCase()}.md`;
-                a.click();
-                URL.revokeObjectURL(url);
-            });
-
-            card.querySelector('.delete-article-button').addEventListener('click', () => {
-                if (!confirm('Delete this article?')) return;
-                const updated = articles.filter((_, i) => i !== idx);
-                StorageManager.setLocal({ articles: updated }, loadHistory);
-            });
-        });
-    });
-}
-
-function setupSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
-    searchInput.addEventListener('input', () => {
-        filterHistory(searchInput.value.trim());
-    });
-}
-
-function filterHistory(query) {
-    const articleList = document.getElementById('articleList');
-    if (!articleList) return;
-    StorageManager.getLocal({ articles: [] }).then(data => {
-        let articles = (data.articles || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        if (query) {
-            const q = query.toLowerCase();
-            articles = articles.filter(a =>
-                (a.title && a.title.toLowerCase().includes(q)) ||
-                (a.summary && stripHtml(a.summary).toLowerCase().includes(q))
-            );
-        }
-        articleList.innerHTML = '';
-        if (!articles.length) {
-            articleList.innerHTML = '<div class="explanatory-card">No matching articles found.</div>';
-            return;
-        }
-        articles.forEach((article, idx) => {
-            const card = document.createElement('div');
-            card.className = 'history-card';
-            card.innerHTML = `
-                <div class="history-card-content">
-                    <h3>${article.title || 'Untitled'}</h3>
-                    <div class="history-card-meta">${new Date(article.timestamp).toLocaleString()}${article.url ? ` · ${new URL(article.url).hostname}` : ''}</div>
-                    <div class="history-card-summary">${stripHtml(article.summary || '')}</div>
-                    <div class="history-card-actions">
-                        <button class="share-article-button">Share</button>
-                        <button class="copy-article-button">Copy</button>
-                        <button class="save-md-button">Save .md</button>
-                        <button class="delete-article-button">Delete</button>
-                    </div>
-                </div>
-            `;
-            articleList.appendChild(card);
-
-            const summaryClean = stripHtml(article.summary || '');
-            const shareText = `${article.title || 'Summary'}\n\n${summaryClean}\n\nSource: ${article.url || ''}`;
-
-            card.querySelector('.share-article-button').addEventListener('click', async () => {
-                if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            title: article.title || 'AI Summary',
-                            text: shareText,
-                            url: article.url
-                        });
-                    } catch (err) {
-                        console.error('Share failed:', err);
-                    }
-                } else {
-                    uiManagerRef.showToast('Native sharing not supported');
-                }
-            });
-
-            card.querySelector('.copy-article-button').addEventListener('click', () => {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    uiManagerRef.showToast('Copied to clipboard');
-                });
-            });
-
-            card.querySelector('.save-md-button').addEventListener('click', () => {
-                const summaryClean = stripHtml(article.summary || '');
-
-                // Parse stored clean HTML and convert tags to Markdown syntax
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(article.content || '', 'text/html');
-
-                // Convert <img> to ![alt](src)
-                const images = doc.querySelectorAll('img');
-                images.forEach(img => {
-                    const alt = img.getAttribute('alt') || 'image';
-                    const src = img.getAttribute('src') || '';
-                    if (src) {
-                        img.parentNode.replaceChild(doc.createTextNode(`\n\n\n![${alt}](${src})\n\n`), img);
-                    } else {
-                        img.remove();
-                    }
-                });
-
-                // Convert <a> to [text](url)
-                const links = doc.querySelectorAll('a');
-                links.forEach(link => {
-                    const text = link.textContent.trim() || 'Link';
-                    const href = link.getAttribute('href') || '';
-                    if (href) {
-                        link.parentNode.replaceChild(doc.createTextNode(`[${text}](${href})`), link);
-                    }
-                });
-
-                const originalContentMarkdown = doc.body.textContent || '';
-
-                const mdContent = `# ${article.title || 'Summary'}\n\n## AI Summary\n\n${summaryClean}\n\n---\n\n## Original Article\n\n${originalContentMarkdown.trim().replace(/\n{3,}/g, '\n\n')}\n\n---\n\nSource: ${article.url || ''}`;
-                const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `${(article.title || 'summary').replace(/[^a-z0-9]/gi, '_').toLowerCase()}.md`;
-                a.click();
-                URL.revokeObjectURL(url);
-            });
-
-            card.querySelector('.delete-article-button').addEventListener('click', () => {
-                if (!confirm('Delete this article?')) return;
-                const updated = articles.filter((_, i) => i !== idx);
-                StorageManager.setLocal({ articles: updated }, () => filterHistory(query));
-            });
-        });
-    });
-}
-
-function stripHtml(html = '') {
-    const tmp = document.createElement('DIV');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
 }

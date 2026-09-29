@@ -4,6 +4,7 @@
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
 let annotationObserver = null;
 let annotationUrlWatcher = null;
+let storageChangeListenerAttached = false;
 let restoreTimer = null;
 let restoreScheduledAt = 0;
 const RESTORE_MAX_WAIT_MS = 1000;
@@ -264,11 +265,14 @@ export function startAnnotationWatchers() {
     }, 700);
   }
 
-  chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && 'annotations' in changes && isAnyHighlightingEnabled()) {
-      scheduleRestoreAnnotations(80);
-    }
-  });
+  if (!storageChangeListenerAttached) {
+    storageChangeListenerAttached = true;
+    chrome.storage.onChanged.addListener((changes, area) => {
+      if (area === 'local' && 'annotations' in changes && isAnyHighlightingEnabled()) {
+        scheduleRestoreAnnotations(80);
+      }
+    });
+  }
 }
 
 // ── 1. Yellow User Annotations ───────────────────────────────────────────────
@@ -327,24 +331,78 @@ function showHighlightTooltip(x, y, onClick) {
   }, 100);
 }
 
+function generateHighlightGroupId() {
+  return 'hl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+}
+
+// Wraps a Range that may span multiple block-level elements by wrapping each
+// intersecting text node individually (splitting partial nodes at the
+// boundary as needed), instead of surroundContents()-ing the whole range at
+// once. range.surroundContents() throws InvalidStateError whenever the range
+// partially contains a non-Text node — i.e. any selection spanning more than
+// one paragraph/list item/block. Wrapping per text node is always confined
+// to a single node, so the restriction never applies, no matter how many
+// blocks the highlight visually spans. CSS makes the fragments look like one
+// continuous highlight.
+function wrapRangeAcrossNodes(range, createMark) {
+  const groupId = generateHighlightGroupId();
+  const root = range.commonAncestorContainer;
+  const walker = document.createTreeWalker(
+    root.nodeType === Node.TEXT_NODE ? root.parentNode : root,
+    NodeFilter.SHOW_TEXT,
+    { acceptNode: (node) => range.intersectsNode(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT }
+  );
+
+  // Collect nodes fully before mutating anything — splitting/wrapping while
+  // the walker is mid-traversal would disrupt it.
+  const textNodes = [];
+  let n;
+  while ((n = walker.nextNode())) textNodes.push(n);
+
+  const marks = [];
+  for (const node of textNodes) {
+    const parent = node.parentElement;
+    if (parent && parent.closest('script, style, noscript')) continue;
+
+    let start = node === range.startContainer ? range.startOffset : 0;
+    let end = node === range.endContainer ? range.endOffset : node.nodeValue.length;
+    if (start >= end) continue;
+
+    // Isolate exactly the intersecting substring as its own text node.
+    let target = node;
+    if (end < target.nodeValue.length) target.splitText(end);
+    if (start > 0) target = target.splitText(start);
+
+    const nodeRange = document.createRange();
+    nodeRange.selectNode(target);
+
+    const mark = createMark();
+    mark.dataset.highlightGroup = groupId; // ties fragments of one logical highlight together
+    nodeRange.surroundContents(mark); // always safe — confined to one text node
+    marks.push(mark);
+  }
+
+  return { groupId, marks };
+}
+
 export function applyHighlightFromRange(range, text) {
   if (!range || range.collapsed) return;
   const highlightText = text || range.toString().trim();
   if (!highlightText) return;
 
-  const mark  = document.createElement('mark');
-  mark.className = 'ai-user-highlight';
-  mark.title = 'Click to remove highlight';
-  mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
-  try {
-    range.surroundContents(mark);
-  } catch (e) {
-    const wrapper = document.createElement('span');
-    wrapper.appendChild(range.extractContents());
-    mark.appendChild(wrapper);
-    range.insertNode(mark);
-  }
-  saveAnnotationToStorage(highlightText, 'user');
+  const { marks } = wrapRangeAcrossNodes(range, () => {
+    const mark = document.createElement('mark');
+    mark.className = 'ai-user-highlight';
+    mark.title = 'Click to remove highlight';
+    mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
+    return mark;
+  });
+
+  // Every fragment carries the FULL original text (not its own partial
+  // slice) — needed so duplicate-detection and click-removal act on the
+  // whole logical highlight, not just whichever fragment was touched.
+  marks.forEach(m => m.dataset.annotationText = highlightText);
+  if (marks.length) saveAnnotationToStorage(highlightText, 'user');
 }
 
 export function highlightTextOnPage(element, text, isGhost) {
@@ -353,37 +411,31 @@ export function highlightTextOnPage(element, text, isGhost) {
   if (!compactText) return;
 
   const existingSelector = isGhost ? '.ai-ghost-highlight' : '.ai-user-highlight';
-  const alreadyExists = Array.from(document.querySelectorAll(existingSelector)).some(el => {
-    const existingText = (el.dataset.annotationText || el.textContent || '').replace(/\s+/g, ' ').trim();
-    return existingText === compactText;
-  });
+  const alreadyExists = Array.from(document.querySelectorAll(existingSelector)).some(el =>
+    (el.dataset.annotationText || '').replace(/\s+/g, ' ').trim() === compactText
+  );
   if (alreadyExists) return;
 
   let range = findTextRangeAcrossNodes(element, text);
   if (!range) range = findTextRangeAcrossNodes(element, compactText);
   if (!range) return;
 
-  const mark = document.createElement('mark');
-  mark.dataset.annotationText = compactText;
-  if (isGhost) {
-    mark.className = 'ai-ghost-highlight';
-    mark.dataset.ghostText = compactText;
-    mark.title = 'AI Ghost Highlight — click to keep or dismiss';
-    mark.style.cssText = 'background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;cursor:pointer;';
-  } else {
-    mark.className = 'ai-user-highlight';
-    mark.title = 'Click to remove highlight';
-    mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
-  }
+  const { marks } = wrapRangeAcrossNodes(range, () => {
+    const mark = document.createElement('mark');
+    if (isGhost) {
+      mark.className = 'ai-ghost-highlight';
+      mark.dataset.ghostText = compactText;
+      mark.title = 'AI Ghost Highlight — click to keep or dismiss';
+      mark.style.cssText = 'background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;cursor:pointer;';
+    } else {
+      mark.className = 'ai-user-highlight';
+      mark.title = 'Click to remove highlight';
+      mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
+    }
+    return mark;
+  });
 
-  try {
-    range.surroundContents(mark);
-  } catch (e) {
-    const wrapper = document.createElement('span');
-    wrapper.appendChild(range.extractContents());
-    mark.appendChild(wrapper);
-    range.insertNode(mark);
-  }
+  marks.forEach(m => m.dataset.annotationText = compactText);
 }
 
 function findTextRangeAcrossNodes(root, text) {
@@ -482,9 +534,18 @@ export function handleHighlightClick(event) {
   const target = event.target;
   if (target && target.classList.contains('ai-user-highlight')) {
     const textToRemove = (target.dataset.annotationText || target.textContent || '').replace(/\s+/g, ' ').trim();
-    const parent = target.parentNode;
-    while (target.firstChild) parent.insertBefore(target.firstChild, target);
-    parent.removeChild(target);
+    const groupId = target.dataset.highlightGroup;
+    const fragments = groupId
+      ? document.querySelectorAll(`.ai-user-highlight[data-highlight-group="${groupId}"]`)
+      : [target];
+
+    fragments.forEach(el => {
+      const parent = el.parentNode;
+      if (!parent) return;
+      while (el.firstChild) parent.insertBefore(el.firstChild, el);
+      parent.removeChild(el);
+    });
+
     removeAnnotationFromStorage(textToRemove, 'user');
   }
 }
@@ -532,22 +593,31 @@ function showGhostActionMenu(x, y, markElement) {
   menu.style.display = 'flex';
 
   const text = (markElement.dataset.ghostText || markElement.dataset.annotationText || markElement.textContent || '').replace(/\s+/g, ' ').trim();
+  const groupId = markElement.dataset.highlightGroup;
+  const fragments = groupId
+    ? Array.from(document.querySelectorAll(`.ai-ghost-highlight[data-highlight-group="${groupId}"]`))
+    : [markElement];
 
   document.getElementById('btn-convert-yellow').onclick = () => {
     removeAnnotationFromStorage(text, 'ghost');
-    markElement.className = 'ai-user-highlight';
-    markElement.title = 'Click to remove highlight';
-    markElement.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
-    delete markElement.dataset.ghostText;
+    fragments.forEach(el => {
+      el.className = 'ai-user-highlight';
+      el.title = 'Click to remove highlight';
+      el.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
+      delete el.dataset.ghostText;
+    });
     saveAnnotationToStorage(text, 'user');
     menu.style.display = 'none';
   };
 
   document.getElementById('btn-dismiss-ghost').onclick = () => {
     removeAnnotationFromStorage(text, 'ghost');
-    const parent = markElement.parentNode;
-    while (markElement.firstChild) parent.insertBefore(markElement.firstChild, markElement);
-    parent.removeChild(markElement);
+    fragments.forEach(el => {
+      const parent = el.parentNode;
+      if (!parent) return;
+      while (el.firstChild) parent.insertBefore(el.firstChild, el);
+      parent.removeChild(el);
+    });
     menu.style.display = 'none';
   };
 

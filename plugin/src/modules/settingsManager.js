@@ -823,8 +823,9 @@ function initLocalIntelligence() {
         if (resultEl) resultEl.style.display = 'none';
 
         try {
-            const data = await StorageManager.getLocal({ articles: [] });
-            const articles = data.articles || [];
+            // Tags live entirely in articlesIndex post-migration — this pass
+            // never needs to touch per-article content.
+            const articles = await StorageManager.getArticlesIndex({ includeArchived: true });
 
             if (articles.length === 0) {
                 if (resultEl) { resultEl.textContent = 'No articles saved yet.'; resultEl.style.display = 'block'; }
@@ -847,7 +848,7 @@ function initLocalIntelligence() {
                 return { ...article, tags: after };
             });
 
-            await StorageManager.setLocal({ articles: updated });
+            await StorageManager.setLocal({ articlesIndex: updated });
 
             if (resultEl) {
                 resultEl.textContent = changedArticles > 0
@@ -883,7 +884,10 @@ function initDangerZone() {
     if (btnHistory) {
         btnHistory.addEventListener('click', async () => {
             if (confirm('Are you sure you want to delete all saved summaries?')) {
-                await StorageManager.setLocal({ articles: [] });
+                // Deletes every article:<id> record too, not just the index —
+                // a plain articlesIndex reset would leave every record
+                // orphaned in storage.
+                await StorageManager.clearAllArticles();
                 alert('History deleted.');
             }
         });
@@ -933,7 +937,10 @@ function initBackupRestore() {
                 const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
 
                 if (includeContent) {
-                    const count = (localData.articles || []).length;
+                    // articlesIndex is the post-migration shape; the articles
+                    // fallback only matters if exporting mid-transition,
+                    // before migration has run in this session.
+                    const count = (localData.articlesIndex || localData.articles || []).length;
                     backup = {
                         _backup_version: 2,
                         _exported_at: new Date().toISOString(),
@@ -1000,9 +1007,34 @@ function initBackupRestore() {
                         // FIX: Leverage the new StorageManager routing
                         const { settings, local } = importedData;
                         if (settings) await StorageManager.set(settings);
-                        if (local) await StorageManager.set(local);
 
-                        const count = (local?.articles || []).length;
+                        if (local) {
+                            if (Array.isArray(local.articles)) {
+                                // Old-shape backup (pre-migration) — split it the
+                                // same way the startup migration does, don't
+                                // write the flat array back verbatim or every
+                                // migrated screen will simply never see it again.
+                                const { index, records } = StorageManager.splitArticlesArray(local.articles);
+                                const { articles, ...rest } = local; // drop the old key from the pass-through write
+                                await StorageManager.set({ ...rest, articlesIndex: index });
+
+                                // Write per-article records in chunks rather than
+                                // one call with hundreds of keys and all their
+                                // content at once (same reasoning as the startup
+                                // migration's chunked write).
+                                const CHUNK_SIZE = 25;
+                                const recordKeys = Object.keys(records);
+                                for (let i = 0; i < recordKeys.length; i += CHUNK_SIZE) {
+                                    const chunk = {};
+                                    recordKeys.slice(i, i + CHUNK_SIZE).forEach(k => chunk[k] = records[k]);
+                                    await StorageManager.setLocal(chunk);
+                                }
+                            } else {
+                                await StorageManager.set(local); // already new-shape
+                            }
+                        }
+
+                        const count = (local?.articlesIndex || local?.articles || []).length;
                         alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);
                     } else {
                         // Legacy v1 backup — settings only
