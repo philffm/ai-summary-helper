@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — 온디바이스 웹 요약, 저장 및 검색</title>
-<meta name="description" content="AI로 웹 페이지를 요약하고 검색 가능한 아카이브에 저장하며, 큐레이션된 읽기 다이제스트를 Kindle 또는 LocalSend로 전송하는 Chrome 확장 프로그램입니다. 검색, 중복 제거, 추천 기능이 온디바이스로 실행됩니다.">
+<meta name="description" content="AI로 웹페이지를 요약하고, 내장 RSS 리더로 자주 찾는 사이트를 구독하며, 검색 가능한 아카이브에 페이지를 저장하고, 선별된 읽기 다이제스트를 Kindle이나 LocalSend로 전송해 주는 Chrome 확장 프로그램입니다. 검색, 중복 제거, 추천 기능은 기기 내(On-device)에서 안전하게 실행됩니다.">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome 확장 프로그램 · byphil 제품군 <span class="dash"></span></div>
       <h1>웹을 요약하세요.<br><em>중요한 내용만 간직하세요.</em></h1>
-      <p class="sub">AI Summary Helper는 웹 페이지를 요약 및 검색 가능한 글로 저장하며, 오프라인 읽기 자료를 Kindle이나 다른 기기로 바로 전송하는 온디바이스 다이제스트를 통해 저장한 글을 실제로 다시 읽을 수 있도록 돕습니다.</p>
+      <p class="sub">AI Summary Helper는 내장 RSS 리더로 즐겨 찾는 사이트를 구독하고, 모든 페이지를 요약된 검색 가능한 문서로 저장합니다. 또한 기기 내에서 다이제스트를 생성하여 Kindle이나 다른 기기로 오프라인 읽기 콘텐츠를 전송해 언제든 다시 찾아볼 수 있도록 돕습니다.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가 — 무료</a>
         <a href="#bookmarklet" class="btn-secondary">설치 없이 사용하고 싶으신가요? 북마클릿을 이용해 보세요</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>단순한 목록을 넘어선 지식 그래프</h3>
           <p>공유 태그뿐만 아니라 공통 태그가 없더라도 주제별 유사성을 분석하여 저장된 글들의 연결 관계를 확인하세요.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>내장 RSS 리더</h3>
+          <p>블로그와 뉴스 사이트를 구독하고, OPML 파일을 가져오며, 클릭 한 번으로 콘텐츠를 열람하거나 요약해 보세요. 즐겨찾기한 항목은 아카이브에 보관되며 피드는 기기에 안전하게 저장됩니다.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ UX 디자이너로서의 역량과 관련된 재미있는 주제 연결.
         </details>
         <details>
           <summary>브라우저 외부로 전송되는 데이터는 무엇인가요?</summary>
-          <p>설정하신 AI 제공업체로 전달되는 요약 요청 데이터뿐입니다. 검색, 중복 감지, 태그 정리, 읽기 수준 및 감성 분석, '유사한 글' 추천 등은 모두 사용자가 저장한 로컬 아카이브 내에서 직접 실행됩니다.</p>
+          <p>직접 설정한 AI 제공업체로 전송되는 요약 요청과, RSS 리더 이용 시 구독 피드에 보내는 요청만 외부로 나갑니다. 검색, 중복 감지, 태그 정리, 읽기 난이도 및 감성 점수 측정, '유사한 글' 추천 기능은 모두 저장된 아카이브를 기반으로 로컬 기기 내에서 처리됩니다.</p>
         </details>
         <details>
           <summary>클라우드 의존성 없이 완전히 독립적으로 실행할 수 있나요?</summary>

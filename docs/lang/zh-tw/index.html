@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — 在本機端摘要、儲存並搜尋網頁內容</title>
-<meta name="description" content="一款透過 AI 摘要網頁、存入可搜尋檔案庫，並將精選閱讀文摘發送至 Kindle 或 LocalSend 的 Chrome 擴充功能。搜尋、重複內容偵測與推薦均在本機端完成。">
+<meta name="description" content="一款強大的 Chrome 擴充功能，能透過 AI 摘要網頁、以內建 RSS 閱讀器追蹤喜愛網站、將頁面存入可搜尋的歸檔庫，並將精選閱讀摘要發送至 Kindle 或 LocalSend。搜尋、去重與推薦演算法皆在本地端運算完成。">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome 擴充功能 · byphil. 旗下產品 <span class="dash"></span></div>
       <h1>摘要網頁精華。<br><em>留下真正重要的內容。</em></h1>
-      <p class="sub">AI Summary Helper 將任何網頁儲存為條理分明、可搜尋的摘要文章，並透過本機端文摘機制，將離線閱讀內容直接推送到 Kindle 或其他裝置，助你真正把存下的內容讀完。</p>
+      <p class="sub">AI Summary Helper 具備內建 RSS 閱讀器以追蹤喜愛的網站，可將任何網頁儲存為帶有摘要、可搜尋的文章——並透過本機生成的閱讀摘要，直接將內容傳送至你的 Kindle 或其他裝置進行離線閱讀，助你真正消化吸收。</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免費新增至 Chrome</a>
         <a href="#bookmarklet" class="btn-secondary">無需安裝？使用 Bookmarklet 書籤小工具</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>超越清單的知識圖譜</h3>
           <p>視覺化呈現已存文章之間的關聯 — 透過共同標籤，甚至在沒有相同標籤時根據主題相似度建立連結。</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>內建 RSS 閱讀器</h3>
+          <p>追蹤部落格與新聞網站、匯入 OPML 檔案，一鍵開啟或產生摘要。收藏的內容會直接歸檔，所有訂閱源資料皆安全儲存在你的本機裝置上。</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@
         </details>
         <details>
           <summary>究竟有哪些資料會離開我的瀏覽器？</summary>
-          <p>僅有摘要請求 — 且只會發送至你所設定的 AI 服務商。搜尋、重複偵測、標籤整理、閱讀難度與情緒分析，以及「相似文章」推薦全部都是針對你本機已存資料在本地執行。</p>
+          <p>只有摘要請求會發送到你所設定的 AI 服務商；若使用 RSS 閱讀器，則會向你訂閱的來源發出請求。其餘如搜尋、重複內容偵測、標籤整理、閱讀難易度與情緒評分，以及「相關文章」推薦等功能，全都完全在本機針對你已儲存的檔案庫執行。</p>
         </details>
         <details>
           <summary>可以完全不依賴雲端執行嗎？</summary>

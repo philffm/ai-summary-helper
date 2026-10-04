@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — Résumez, sauvegardez et explorez le web en local</title>
-<meta name="description" content="Une extension Chrome qui résume les pages web grâce à l'IA, les enregistre dans une archive indexée et envoie des sélections de lecture sur Kindle ou LocalSend. Recherche, déduplication et recommandations fonctionnent entièrement en local.">
+<meta name="description" content="Une extension Chrome qui résume les pages web grâce à l'IA, suit vos sites préférés via un lecteur RSS intégré, enregistre vos pages dans des archives consultables et envoie des sélections de lecture vers Kindle ou LocalSend. Recherche, déduplication et recommandations s'exécutent directement on-device, en toute confidentialité.">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Extension Chrome · Un projet byphil. <span class="dash"></span></div>
       <h1>Résumez le web.<br><em>Gardez l'essentiel.</em></h1>
-      <p class="sub">AI Summary Helper transforme n'importe quelle page en article résumé et indexé — puis vous aide à le lire vraiment, grâce à un digest local qui envoie vos lectures hors-ligne directement sur votre Kindle ou un autre appareil.</p>
+      <p class="sub">AI Summary Helper suit vos sites favoris grâce à un lecteur RSS intégré, enregistre n'importe quelle page sous forme d'article résumé et consultable, puis vous aide à y revenir facilement grâce à une synthèse générée on-device, prête pour une lecture hors ligne sur votre Kindle ou un autre appareil.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Ajouter à Chrome — c'est gratuit</a>
         <a href="#bookmarklet" class="btn-secondary">Pas d'installation ? Utilisez le bookmarklet</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Un graphe de connaissances, pas une simple liste</h3>
           <p>Visualisez les liens entre vos articles sauvegardés — par tags communs ou par proximité thématique, même sans aucun tag partagé.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>Un lecteur RSS intégré</h3>
+          <p>Suivez vos blogs et sites d'actualités, importez votre fichier OPML, puis ouvrez ou résumez chaque contenu en un clic. Vos éléments favoris sont archivés et vos flux restent stockés localement sur votre appareil.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ Ajoutez des émojis, des hashtags, utilisez du HTML, mettez en valeur les passag
         </details>
         <details>
           <summary>Quelles données quittent réellement mon navigateur ?</summary>
-          <p>Uniquement la requête de résumé — transmise au fournisseur d'IA que vous avez configuré. La recherche, la détection des doublons, le nettoyage des tags, l'analyse du ton et du niveau de lecture, ainsi que les recommandations d'articles similaires s'exécutent tous localement sur votre propre archive.</p>
+          <p>Seule la demande de résumé — transmise au fournisseur d'IA que vous avez configuré — ainsi que, si vous utilisez le lecteur RSS, les requêtes vers vos flux d'abonnement. La recherche, la détection des doublons, le nettoyage des tags, l'évaluation de la lisibilité et de la tonalité, ainsi que les recommandations d'« articles similaires » s'exécutent tous localement sur vos propres archives, dans le strict respect du RGPD.</p>
         </details>
         <details>
           <summary>Puis-je l'utiliser sans aucune dépendance au cloud ?</summary>
