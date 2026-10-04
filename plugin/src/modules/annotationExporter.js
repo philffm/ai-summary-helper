@@ -23,8 +23,11 @@ function pageKeyForUrl(url) {
 
 /**
  * Escape HTML so annotation text survives interpolation into HTML/XML docs.
+ * Exported so other modules building their own (differently-styled) markup
+ * around the same annotation text — e.g. archiveGraph.js's preview card —
+ * don't need to duplicate it.
  */
-function escapeHtml(str) {
+export function escapeHtml(str) {
     return (str || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 

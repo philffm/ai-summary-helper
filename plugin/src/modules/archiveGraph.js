@@ -36,6 +36,7 @@
 //   similarity links.
 
 import { cosineSim } from './localSearch.js';
+import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 
 let d3LoadPromise = null;
 
@@ -898,6 +899,56 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
 }
 
 /**
+ * Fetches the article's highlights (user + AI ghost annotations, same
+ * source annotationExporter.js's export paths use) and appends a compact
+ * list into the preview card's scroll area. Fire-and-forget from
+ * showPreviewCard — the card renders immediately with title/summary/tags,
+ * this fills in underneath once storage responds, instead of blocking the
+ * card open on a chrome.storage round trip.
+ *
+ * No-ops if the card was already closed (or replaced by a newer one) by
+ * the time the fetch resolves, and if the article has no highlights at
+ * all — an empty section would just be dead space.
+ */
+async function renderPreviewHighlights(card, article) {
+    const scrollEl = card.querySelector('.graph-preview-card-scroll');
+    if (!scrollEl) return;
+
+    let list;
+    try {
+        list = await fetchAnnotationsForArticle(article);
+    } catch (_) {
+        return;
+    }
+    if (!card.isConnected) return; // closed/replaced while the fetch was in flight
+    if (!Array.isArray(list) || list.length === 0) return;
+
+    const userItems = list.filter(a => a.type !== 'ghost');
+    const ghostItems = list.filter(a => a.type === 'ghost');
+
+    const itemsHtml = items => items.map(a => `
+        <li style="margin-bottom:6px;line-height:1.4;">"${escapeHtml(a.text)}"</li>`).join('');
+
+    const parts = [];
+    if (userItems.length) {
+        parts.push(`
+            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">📝 Your highlights</div>
+            <ul style="margin:0;padding-left:16px;font-size:12px;">${itemsHtml(userItems)}</ul>`);
+    }
+    if (ghostItems.length) {
+        parts.push(`
+            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">🤖 AI-suggested highlights</div>
+            <ul style="margin:0;padding-left:16px;font-size:12px;">${itemsHtml(ghostItems)}</ul>`);
+    }
+    if (!parts.length) return;
+
+    const highlightsEl = document.createElement('div');
+    highlightsEl.className = 'graph-preview-highlights';
+    highlightsEl.innerHTML = parts.join('');
+    scrollEl.appendChild(highlightsEl);
+}
+
+/**
  * Shows a floating preview card for an article inside the graph container.
  * Card can be dismissed by clicking its close button or clicking outside it.
  */
@@ -977,4 +1028,5 @@ function showPreviewCard(container, article) {
     });
 
     containerEl.appendChild(card);
+    renderPreviewHighlights(card, article);
 }

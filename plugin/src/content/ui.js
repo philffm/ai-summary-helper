@@ -271,8 +271,9 @@ export function toggleHybridSidebar() {
         position: fixed;
         top: 12px;
         right: 12px;
-        width: 420px;
+        width: min(420px, 100vw - 24px);
         height: calc(100vh - 24px);
+        height: calc(100dvh - 24px); /* overrides the line above wherever dvh is supported */
         border: none;
         border-radius: 16px;
         box-shadow: -8px 0 32px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);

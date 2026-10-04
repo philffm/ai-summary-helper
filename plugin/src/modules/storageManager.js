@@ -236,6 +236,7 @@ class StorageManager {
                 // Read by archiveGraph.js to fade/shrink saves that haven't
                 // been reopened — index-only field, no content needed.
                 ...(article.lastOpened ? { lastOpened: article.lastOpened } : {}),
+                ...(article.favorite ? { favorite: true } : {}),
                 ...(article.isDecision ? {
                     isDecision: true,
                     decisionTimeframe: article.decisionTimeframe,
@@ -382,6 +383,19 @@ class StorageManager {
         entry.lastOpened = new Date().toISOString();
         await this.setLocal({ articlesIndex });
         return entry.lastOpened;
+    }
+
+    /**
+     * Toggle the favorite (star) flag on an article. Index-only field, so no
+     * content record is touched. Returns the new state, or null if not found.
+     */
+    static async toggleFavorite(id) {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const entry = articlesIndex.find(a => a.id === id);
+        if (!entry) return null;
+        entry.favorite = !entry.favorite;
+        await this.setLocal({ articlesIndex });
+        return entry.favorite;
     }
 
     /**
