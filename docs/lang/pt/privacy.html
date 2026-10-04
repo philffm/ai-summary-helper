@@ -123,6 +123,7 @@
           </thead>
           <tbody>
             <tr><td>Artigos e resumos salvos</td><td>Local</td><td>Não</td></tr>
+            <tr><td>Inscrições e itens de feeds RSS</td><td>Local</td><td>Não</td></tr>
             <tr><td>Chaves de API / configuração de provedores</td><td>Local</td><td>Não — confidencial, apenas no dispositivo</td></tr>
             <tr><td>Chave de licença</td><td>Local</td><td>Não — confidencial, apenas no dispositivo</td></tr>
             <tr><td>IP de rede do LocalSend</td><td>Local</td><td>Não</td></tr>
@@ -133,6 +134,9 @@
         </table>
         <p>Itens marcados como "Sync" utilizam a sincronização nativa do Chrome vinculada à sua conta Google — esses dados passam pela infraestrutura do Google, e não pela nossa, exatamente como acontece com os seus favoritos. Não temos nenhum acesso a eles.</p>
         <p>Você pode exportar ou excluir todo o seu histórico local a qualquer momento em Configurações → Backup e Restauração, ou desinstalando a extensão.</p>
+
+        <h3>Feeds RSS</h3>
+        <p>O leitor de Feeds integrado armazena suas inscrições e os itens de feed baixados localmente no seu navegador — sem nunca sincronizar ou enviar nada para nós. Ao adicionar ou atualizar um feed, a extensão solicita o endereço desse feed diretamente do servidor da fonte, exatamente como o seu navegador faria ao visitar o site, permitindo que a fonte veja a solicitação. Nós não usamos proxy, não registramos logs e não temos acesso às suas inscrições ou lista de leitura. A importação de OPML é processada inteiramente no seu dispositivo. Resumir um item de feed funciona como resumir qualquer outra página: o conteúdo só é enviado ao provedor de IA que você escolheu e apenas quando você solicita um resumo.</p>
 
         <h3>Kindle, AirDrop e LocalSend</h3>
         <p>Quando você envia um artigo para o Kindle, AirDrop ou um dispositivo compatível com LocalSend, o arquivo formatado é enviado diretamente do seu navegador para o destino escolhido. Não atuamos como intermediários, não vemos nem armazenamos esse conteúdo.</p>

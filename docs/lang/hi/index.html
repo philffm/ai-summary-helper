@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — वेब को on-device summarize करें, save करें और search करें</title>
-<meta name="description" content="एक Chrome extension जो AI के साथ वेब पेजों को summarize करता है, उन्हें एक searchable archive में save करता है, और Kindle या LocalSend पर curated reading digests भेजता है। Search, dedup और recommendations पूरी तरह on-device चलते हैं।">
+<meta name="description" content="एक Chrome extension जो AI की मदद से web pages को summarize करता है, built-in RSS reader के साथ आपकी पसंदीदा साइट्स को follow करता है, pages को searchable archive में save करता है, और curated reading digests सीधे Kindle या LocalSend पर भेजता है। Search, dedup और recommendations पूरी तरह on-device रन होते हैं।">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome Extension · byphil का हिस्सा <span class="dash"></span></div>
       <h1>वेब को Summarize करें।<br><em>जो काम का है, सिर्फ वही रखें।</em></h1>
-      <p class="sub">AI Summary Helper किसी भी पेज को summarized, searchable article के रूप में save करता है — और on-device digest के साथ आपको उसे वास्तव में पढ़ने में मदद करता है, जिसे आप offline reading के लिए सीधे Kindle या किसी अन्य डिवाइस पर भेज सकते हैं।</p>
+      <p class="sub">AI Summary Helper built-in RSS reader के ज़रिए आपकी पसंदीदा साइट्स को follow करता है, किसी भी पेज को summarized और searchable article के रूप में save करता है — और on-device digest के साथ offline reading सीधे आपके Kindle या अन्य device पर भेजता है ताकि आप इसे आसानी से पढ़ सकें।</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें — बिल्कुल Free</a>
         <a href="#bookmarklet" class="btn-secondary">Install नहीं करना? Bookmarklet यूज़ करें</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>सिर्फ एक लिस्ट नहीं, एक Knowledge Graph</h3>
           <p>देखें कि आपके सेव किए गए आर्टिकल्स कैसे जुड़े हैं — shared tags से, और टॉपिक सिमिलरिटी से भी भले ही उनमें कोई कॉमन टैग न हो।</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>एक built-in RSS reader</h3>
+          <p>Blogs और news sites को follow करें, अपना OPML import करें, और बस एक click में किसी भी item को open या summarize करें। Favorite items आपके archive में जाते हैं और feeds सीधे आपके device पर store होती हैं।</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</te
         </details>
         <details>
           <summary>मेरे ब्राउज़र से वास्तव में क्या डेटा बाहर जाता है?</summary>
-          <p>सिर्फ summarization रिक्वेस्ट — जो आपके कॉन्फ़िगर किए गए AI प्रोवाइडर को भेजी जाती है। Search, duplicate detection, tag cleanup, reading-level और sentiment scoring, और "similar articles" के सुझाव सब कुछ आपके लोकल सेव किए गए आर्काइव पर ही चलते हैं।</p>
+          <p>सिर्फ summarization request — जो आपके configure किए गए AI provider को भेजी जाती है — और अगर आप RSS reader यूज़ करते हैं, तो आपके subscribed feeds की requests। बाकी Search, duplicate detection, tag cleanup, reading-level व sentiment scoring, और "similar articles" recommendations सब कुछ आपके saved archive पर locally ही रन होते हैं।</p>
         </details>
         <details>
           <summary>क्या मैं इसे बिना किसी Cloud निर्भरता के (पूरी तरह offline) चला सकता हूँ?</summary>

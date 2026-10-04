@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — Resuma, salve e pesquise na web direto no seu dispositivo</title>
-<meta name="description" content="Uma extensão para o Chrome que resume páginas web com IA, salva tudo em um arquivo pesquisável e envia resumos de leitura selecionados para o Kindle ou LocalSend. Pesquisa, desduplicação e recomendações rodam localmente no seu dispositivo.">
+<meta name="description" content="Uma extensão para o Chrome que resume páginas da web com IA, acompanha seus sites favoritos com um leitor de RSS integrado, salva páginas em um arquivo pesquisável e envia compilações de leitura selecionadas para o Kindle ou LocalSend. Busca, remoção de duplicatas e recomendações rodam direto no seu dispositivo.">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Extensão para Chrome · Parte do byphil. <span class="dash"></span></div>
       <h1>Resuma a web.<br><em>Guarde o que importa.</em></h1>
-      <p class="sub">O AI Summary Helper salva qualquer página como um artigo resumido e pesquisável — ajudando você a realmente lê-la depois, com um compilado no dispositivo que envia leituras offline direto para o seu Kindle ou outro aparelho.</p>
+      <p class="sub">O AI Summary Helper acompanha seus sites favoritos com um leitor de RSS integrado, salva qualquer página como um artigo resumido e pesquisável — e ajuda você a realmente retomar a leitura, com um compilado gerado no próprio dispositivo que envia leituras offline direto para o seu Kindle ou outro aparelho.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Adicionar ao Chrome — é grátis</a>
         <a href="#bookmarklet" class="btn-secondary">Sem instalação? Use o bookmarklet</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Um grafo de conhecimento, não apenas uma lista</h3>
           <p>Veja como seus artigos salvos se conectam — por tags compartilhadas ou por similaridade de assunto, mesmo quando não compartilham nenhuma tag.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>Um leitor de RSS integrado</h3>
+          <p>Acompanhe blogs e portais de notícias, importe seu OPML e abra ou resuma qualquer conteúdo com um clique. Os itens favoritos vão direto para o seu arquivo e os feeds ficam salvos no seu dispositivo.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ Adicione emojis, hashtags, use HTML, destaque partes interessantes, máximo de 1
         </details>
         <details>
           <summary>O que realmente sai do meu navegador?</summary>
-          <p>Apenas a solicitação de resumo — enviada exclusivamente para o provedor de IA configurado por você. Pesquisa, detecção de duplicatas, organização de tags, pontuação de leitura/sentimento e sugestões de "artigos similares" rodam localmente no seu arquivo salvo.</p>
+          <p>Apenas a solicitação de resumo — enviada para o provedor de IA que você configurou — e, se você usar o leitor de RSS, as requisições para os feeds que você assina. Busca, detecção de duplicatas, organização de tags, pontuação de nível de leitura e sentimento, além de recomendações de "artigos semelhantes", rodam todos localmente no seu próprio arquivo salvo.</p>
         </details>
         <details>
           <summary>Posso usar a extensão sem nenhuma dependência de nuvem?</summary>

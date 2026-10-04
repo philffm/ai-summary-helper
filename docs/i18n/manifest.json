@@ -24529,6 +24529,446 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "11368ad798a2429a7748d2bfe89151c6fee1b01d397bbfbdf80c8deab47f9e8d": {
+      "en": "A Chrome extension that summarizes web pages with AI, follows your favorite sites with a built-in RSS reader, saves pages into a searchable archive, and sends curated reading digests to Kindle or LocalSend. Search, dedup, and recommendations run on-device.",
+      "translations": {
+        "de": {
+          "text": "Eine Chrome-Erweiterung, die Webseiten mittels KI zusammenfasst, Ihre bevorzugten Websites über einen integrierten RSS-Reader verfolgt, Seiten in einem durchsuchbaren Archiv sichert und kuratierte Lese-Digests an Kindle oder LocalSend überträgt. Suche, Deduplizierung und Empfehlungen laufen vollständig lokal auf Ihrem Gerät.",
+          "translatedAt": "2026-10-04T21:16:52.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une extension Chrome qui résume les pages web grâce à l'IA, suit vos sites préférés via un lecteur RSS intégré, enregistre vos pages dans des archives consultables et envoie des sélections de lecture vers Kindle ou LocalSend. Recherche, déduplication et recommandations s'exécutent directement on-device, en toute confidentialité.",
+          "translatedAt": "2026-10-04T21:17:00.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Una extensión de Chrome que resume páginas web con IA, sigue tus sitios favoritos con un lector RSS integrado, guarda páginas en un archivo con búsqueda y envía selecciones de lectura a Kindle o LocalSend. La búsqueda, la desduplicación y las recomendaciones se ejecutan de forma local en tu dispositivo.",
+          "translatedAt": "2026-10-04T21:17:05.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一款通过 AI 总结网页内容的 Chrome 扩展。内置 RSS 阅读器关注心仪站点，将网页保存为可检索的归档库，并可将精选阅读文摘推送至 Kindle 或 LocalSend。搜索、去重及推荐均在本地设备端运行。",
+          "translatedAt": "2026-10-04T21:17:12.078Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一款強大的 Chrome 擴充功能，能透過 AI 摘要網頁、以內建 RSS 閱讀器追蹤喜愛網站、將頁面存入可搜尋的歸檔庫，並將精選閱讀摘要發送至 Kindle 或 LocalSend。搜尋、去重與推薦演算法皆在本地端運算完成。",
+          "translatedAt": "2026-10-04T21:17:15.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIによるWebページ要約、内蔵RSSリーダーでのお気に入りサイト購読、検索可能なアーカイブ保存、KindleやLocalSendへの読書ダイジェスト送信ができるChrome拡張機能です。検索、重複排除、おすすめ機能はすべてオンデバイスで動作します。",
+          "translatedAt": "2026-10-04T21:17:23.616Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI로 웹페이지를 요약하고, 내장 RSS 리더로 자주 찾는 사이트를 구독하며, 검색 가능한 아카이브에 페이지를 저장하고, 선별된 읽기 다이제스트를 Kindle이나 LocalSend로 전송해 주는 Chrome 확장 프로그램입니다. 검색, 중복 제거, 추천 기능은 기기 내(On-device)에서 안전하게 실행됩니다.",
+          "translatedAt": "2026-10-04T21:17:30.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Uma extensão para o Chrome que resume páginas da web com IA, acompanha seus sites favoritos com um leitor de RSS integrado, salva páginas em um arquivo pesquisável e envia compilações de leitura selecionadas para o Kindle ou LocalSend. Busca, remoção de duplicatas e recomendações rodam direto no seu dispositivo.",
+          "translatedAt": "2026-10-04T21:17:37.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एक Chrome extension जो AI की मदद से web pages को summarize करता है, built-in RSS reader के साथ आपकी पसंदीदा साइट्स को follow करता है, pages को searchable archive में save करता है, और curated reading digests सीधे Kindle या LocalSend पर भेजता है। Search, dedup और recommendations पूरी तरह on-device रन होते हैं।",
+          "translatedAt": "2026-10-04T21:17:43.717Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tiện ích mở rộng Chrome giúp tóm tắt trang web bằng AI, theo dõi các trang yêu thích với trình đọc RSS tích hợp, lưu trang vào kho lưu trữ có thể tìm kiếm và gửi bản tin đọc tuyển chọn đến Kindle hoặc LocalSend. Tìm kiếm, lọc trùng lặp và đề xuất nội dung đều chạy trực tiếp trên thiết bị.",
+          "translatedAt": "2026-10-04T21:17:50.832Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7356d0b055ab77600a7dbb130f58091f1c878fde1baa556a3b044528c8bd63ee": {
+      "en": "AI Summary Helper follows your favorite sites with a built-in RSS reader, saves any page as a summarized, searchable article — then helps you actually get back to it, with an on-device digest that sends offline reading straight to your Kindle or another device.",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper verfolgt Ihre bevorzugten Websites über einen integrierten RSS-Reader und speichert jede Seite als zusammengefassten, durchsuchbaren Artikel – damit Sie das Gelesene auch tatsächlich nutzen können: mit einem lokalen Digest, der Lesestoff für die Offline-Lektüre direkt an Ihren Kindle oder ein anderes Gerät überträgt.",
+          "translatedAt": "2026-10-04T21:16:52.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "AI Summary Helper suit vos sites favoris grâce à un lecteur RSS intégré, enregistre n'importe quelle page sous forme d'article résumé et consultable, puis vous aide à y revenir facilement grâce à une synthèse générée on-device, prête pour une lecture hors ligne sur votre Kindle ou un autre appareil.",
+          "translatedAt": "2026-10-04T21:17:00.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "AI Summary Helper sigue tus sitios favoritos con un lector RSS integrado, guarda cualquier página como un artículo resumido con búsqueda y te ayuda a retomarlo fácilmente con un boletín generado en tu dispositivo que envía lecturas sin conexión directo a tu Kindle u otro equipo.",
+          "translatedAt": "2026-10-04T21:17:05.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI Summary Helper 通过内置 RSS 阅读器追踪你关注的站点，将任意网页保存为带有 AI 总结且可检索的文章——更提供本地生成的阅读文摘，直接发送离线内容至 Kindle 或其他设备，助你轻松重温与深度阅读。",
+          "translatedAt": "2026-10-04T21:17:12.078Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI Summary Helper 具備內建 RSS 閱讀器以追蹤喜愛的網站，可將任何網頁儲存為帶有摘要、可搜尋的文章——並透過本機生成的閱讀摘要，直接將內容傳送至你的 Kindle 或其他裝置進行離線閱讀，助你真正消化吸收。",
+          "translatedAt": "2026-10-04T21:17:15.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AI Summary Helperは、内蔵RSSリーダーでお気に入りのサイトをフォローし、あらゆるWebページを要約付きで検索可能な記事として保存します。さらに、オンデバイスで作成されるダイジェストを通じてKindleや他のデバイスへ直接送信し、オフラインでもスムーズに読み返せるようサポートします。",
+          "translatedAt": "2026-10-04T21:17:23.616Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI Summary Helper는 내장 RSS 리더로 즐겨 찾는 사이트를 구독하고, 모든 페이지를 요약된 검색 가능한 문서로 저장합니다. 또한 기기 내에서 다이제스트를 생성하여 Kindle이나 다른 기기로 오프라인 읽기 콘텐츠를 전송해 언제든 다시 찾아볼 수 있도록 돕습니다.",
+          "translatedAt": "2026-10-04T21:17:30.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O AI Summary Helper acompanha seus sites favoritos com um leitor de RSS integrado, salva qualquer página como um artigo resumido e pesquisável — e ajuda você a realmente retomar a leitura, com um compilado gerado no próprio dispositivo que envia leituras offline direto para o seu Kindle ou outro aparelho.",
+          "translatedAt": "2026-10-04T21:17:37.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI Summary Helper built-in RSS reader के ज़रिए आपकी पसंदीदा साइट्स को follow करता है, किसी भी पेज को summarized और searchable article के रूप में save करता है — और on-device digest के साथ offline reading सीधे आपके Kindle या अन्य device पर भेजता है ताकि आप इसे आसानी से पढ़ सकें।",
+          "translatedAt": "2026-10-04T21:17:43.717Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI Summary Helper theo dõi các trang web bạn yêu thích bằng trình đọc RSS tích hợp, lưu mọi trang thành bài viết tóm tắt dễ tìm kiếm — sau đó giúp bạn thực sự đọc lại chúng với bản tin tổng hợp xử lý ngay trên thiết bị, gửi nội dung đọc offline trực tiếp đến Kindle hoặc thiết bị khác.",
+          "translatedAt": "2026-10-04T21:17:50.832Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9676496cf941bf1032f4cf25bb79a58665f008554d681bed7dd9cd2cd923140d": {
+      "en": "A built-in RSS reader",
+      "translations": {
+        "de": {
+          "text": "Ein integrierter RSS-Reader",
+          "translatedAt": "2026-10-04T21:16:52.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un lecteur RSS intégré",
+          "translatedAt": "2026-10-04T21:17:00.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un lector RSS integrado",
+          "translatedAt": "2026-10-04T21:17:05.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "内置 RSS 阅读器",
+          "translatedAt": "2026-10-04T21:17:12.078Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "內建 RSS 閱讀器",
+          "translatedAt": "2026-10-04T21:17:15.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "内蔵RSSリーダー",
+          "translatedAt": "2026-10-04T21:17:23.616Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내장 RSS 리더",
+          "translatedAt": "2026-10-04T21:17:30.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um leitor de RSS integrado",
+          "translatedAt": "2026-10-04T21:17:37.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एक built-in RSS reader",
+          "translatedAt": "2026-10-04T21:17:43.717Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Trình đọc RSS tích hợp sẵn",
+          "translatedAt": "2026-10-04T21:17:50.832Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "553204f1946af638f0bd3ea5282385fadcc4bc640b877fafbce971452ca66e29": {
+      "en": "Follow blogs and news sites, import your OPML, and open or summarize any item in one click. Favorite items land in your archive, and feeds are stored on your device.",
+      "translations": {
+        "de": {
+          "text": "Folgen Sie Blogs und Nachrichtenseiten, importieren Sie Ihre OPML-Dateien und öffnen oder fassen Sie beliebige Beiträge mit einem Klick zusammen. Favoriten werden in Ihrem Archiv gesichert und Feeds verbleiben lokal auf Ihrem Gerät.",
+          "translatedAt": "2026-10-04T21:16:52.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Suivez vos blogs et sites d'actualités, importez votre fichier OPML, puis ouvrez ou résumez chaque contenu en un clic. Vos éléments favoris sont archivés et vos flux restent stockés localement sur votre appareil.",
+          "translatedAt": "2026-10-04T21:17:00.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sigue blogs y sitios de noticias, importa tu OPML y abre o resume cualquier publicación en un clic. Tus elementos favoritos van a tu archivo y los feeds se almacenan en tu dispositivo.",
+          "translatedAt": "2026-10-04T21:17:05.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "订阅博客与新闻站点，支持导入 OPML，一键打开或总结任意内容。收藏的文章将存入个人归档库，订阅源数据完全保存在你的本地设备中。",
+          "translatedAt": "2026-10-04T21:17:12.078Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "追蹤部落格與新聞網站、匯入 OPML 檔案，一鍵開啟或產生摘要。收藏的內容會直接歸檔，所有訂閱源資料皆安全儲存在你的本機裝置上。",
+          "translatedAt": "2026-10-04T21:17:15.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブログやニュースサイトをフォローし、OPMLをインポートして、ワンクリックで記事の閲覧や要約が可能です。お気に入りの記事はアーカイブに保存され、フィードデータはお使いのデバイス内に安全に保持されます。",
+          "translatedAt": "2026-10-04T21:17:23.616Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "블로그와 뉴스 사이트를 구독하고, OPML 파일을 가져오며, 클릭 한 번으로 콘텐츠를 열람하거나 요약해 보세요. 즐겨찾기한 항목은 아카이브에 보관되며 피드는 기기에 안전하게 저장됩니다.",
+          "translatedAt": "2026-10-04T21:17:30.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Acompanhe blogs e portais de notícias, importe seu OPML e abra ou resuma qualquer conteúdo com um clique. Os itens favoritos vão direto para o seu arquivo e os feeds ficam salvos no seu dispositivo.",
+          "translatedAt": "2026-10-04T21:17:37.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Blogs और news sites को follow करें, अपना OPML import करें, और बस एक click में किसी भी item को open या summarize करें। Favorite items आपके archive में जाते हैं और feeds सीधे आपके device पर store होती हैं।",
+          "translatedAt": "2026-10-04T21:17:43.717Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Theo dõi các blog và trang tin tức, nhập tệp OPML, đồng thời mở hoặc tóm tắt bất kỳ nội dung nào chỉ với một cú nhấp chuột. Các mục yêu thích sẽ được lưu vào kho lưu trữ cá nhân và toàn bộ nguồn cấp dữ liệu đều được lưu an toàn ngay trên thiết bị của bạn.",
+          "translatedAt": "2026-10-04T21:17:50.832Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c4f62487a786e3dcee813e26342f2d2ca2389775456d0af241142c19bbf2c09c": {
+      "en": "Only the summarization request — sent to whichever AI provider you configured — plus, if you use the RSS reader, requests to the feeds you subscribed to. Search, duplicate detection, tag cleanup, reading-level and sentiment scoring, and \"similar articles\" recommendations all run locally against your own saved archive.",
+      "translations": {
+        "de": {
+          "text": "Ausschließlich die Anfrage zur Zusammenfassung – gesendet an den von Ihnen gewählten KI-Anbieter – sowie, bei Nutzung des RSS-Readers, die Abrufe der von Ihnen abonnierten Feeds. Suche, Duplikaterkennung, Tag-Bereinigung, Lesbarkeits- und Sentiment-Analysen sowie Empfehlungen für „ähnliche Artikel“ laufen ausnahmslos lokal über Ihr eigenes gespeichertes Archiv.",
+          "translatedAt": "2026-10-04T21:16:52.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Seule la demande de résumé — transmise au fournisseur d'IA que vous avez configuré — ainsi que, si vous utilisez le lecteur RSS, les requêtes vers vos flux d'abonnement. La recherche, la détection des doublons, le nettoyage des tags, l'évaluation de la lisibilité et de la tonalité, ainsi que les recommandations d'« articles similaires » s'exécutent tous localement sur vos propres archives, dans le strict respect du RGPD.",
+          "translatedAt": "2026-10-04T21:17:00.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Únicamente la solicitud de resumen enviada al proveedor de IA que hayas configurado y, si usas el lector RSS, las solicitudes a los feeds a los que te suscribiste. La búsqueda, la detección de duplicados, la limpieza de etiquetas, la puntuación de sentimiento y nivel de lectura, y las recomendaciones de \"artículos similares\" se ejecutan de forma local en tu propio archivo guardado.",
+          "translatedAt": "2026-10-04T21:17:05.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "仅向你配置的 AI 服务商发送总结请求；若使用 RSS 阅读器，则仅请求你订阅的 Feed 源。搜索、内容去重、标签整理、阅读难度与情绪评分，以及“相似文章”推荐，全部在本地基于你的归档库离线运行。",
+          "translatedAt": "2026-10-04T21:17:12.078Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "只有摘要請求會發送到你所設定的 AI 服務商；若使用 RSS 閱讀器，則會向你訂閱的來源發出請求。其餘如搜尋、重複內容偵測、標籤整理、閱讀難易度與情緒評分，以及「相關文章」推薦等功能，全都完全在本機針對你已儲存的檔案庫執行。",
+          "translatedAt": "2026-10-04T21:17:15.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "外部通信が発生するのは、ご自身が設定したAIプロバイダーへの要約リクエストと、RSSリーダー利用時の購読フィードへのリクエストのみです。検索、重複検出、タグ整理、難易度・感情スコアリング、「類似記事」のレコメンドなどはすべて、保存されたアーカイブに対してローカル環境で実行されます。",
+          "translatedAt": "2026-10-04T21:17:23.616Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "직접 설정한 AI 제공업체로 전송되는 요약 요청과, RSS 리더 이용 시 구독 피드에 보내는 요청만 외부로 나갑니다. 검색, 중복 감지, 태그 정리, 읽기 난이도 및 감성 점수 측정, '유사한 글' 추천 기능은 모두 저장된 아카이브를 기반으로 로컬 기기 내에서 처리됩니다.",
+          "translatedAt": "2026-10-04T21:17:30.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apenas a solicitação de resumo — enviada para o provedor de IA que você configurou — e, se você usar o leitor de RSS, as requisições para os feeds que você assina. Busca, detecção de duplicatas, organização de tags, pontuação de nível de leitura e sentimento, além de recomendações de \"artigos semelhantes\", rodam todos localmente no seu próprio arquivo salvo.",
+          "translatedAt": "2026-10-04T21:17:37.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सिर्फ summarization request — जो आपके configure किए गए AI provider को भेजी जाती है — और अगर आप RSS reader यूज़ करते हैं, तो आपके subscribed feeds की requests। बाकी Search, duplicate detection, tag cleanup, reading-level व sentiment scoring, और \"similar articles\" recommendations सब कुछ आपके saved archive पर locally ही रन होते हैं।",
+          "translatedAt": "2026-10-04T21:17:43.717Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ có yêu cầu tóm tắt — được gửi đến nhà cung cấp AI do bạn cấu hình — cùng các yêu cầu tới nguồn cấp dữ liệu bạn đã đăng ký nếu sử dụng trình đọc RSS. Tìm kiếm, phát hiện nội dung trùng lặp, dọn dẹp thẻ, đánh giá độ dễ đọc cùng cảm xúc, và gợi ý \"bài viết tương tự\" đều chạy hoàn toàn cục bộ trên kho lưu trữ của bạn.",
+          "translatedAt": "2026-10-04T21:17:50.832Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4ddc6a957b73bc3b9e0cd30b87b0ca3778efb6d5d3b4e2486f008bf3ff04eb30": {
+      "en": "RSS feed subscriptions & items",
+      "translations": {
+        "de": {
+          "text": "RSS-Feed-Abonnements & -Einträge",
+          "translatedAt": "2026-10-04T21:17:55.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Abonnements & articles des flux RSS",
+          "translatedAt": "2026-10-04T21:18:03.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Suscripciones y elementos de feeds RSS",
+          "translatedAt": "2026-10-04T21:18:11.687Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "RSS 订阅源与条目",
+          "translatedAt": "2026-10-04T21:18:17.597Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "RSS 訂閱與文章項目",
+          "translatedAt": "2026-10-04T21:18:25.225Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "RSSフィードの購読とアイテム",
+          "translatedAt": "2026-10-04T21:18:33.493Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "RSS 피드 구독 및 항목",
+          "translatedAt": "2026-10-04T21:18:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Inscrições e itens de feeds RSS",
+          "translatedAt": "2026-10-04T21:18:45.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "RSS feed subscriptions और items",
+          "translatedAt": "2026-10-04T21:18:51.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Kênh đăng ký & bài viết RSS feed",
+          "translatedAt": "2026-10-04T21:19:00.977Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "80ae1450aeacf30a56ea8c5aaa18dc8809bb169ca521e8580062d4ec177a6228": {
+      "en": "RSS feeds",
+      "translations": {
+        "de": {
+          "text": "RSS-Feeds",
+          "translatedAt": "2026-10-04T21:17:55.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Flux RSS",
+          "translatedAt": "2026-10-04T21:18:03.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Feeds RSS",
+          "translatedAt": "2026-10-04T21:18:11.687Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "RSS 订阅源",
+          "translatedAt": "2026-10-04T21:18:17.597Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "RSS 訂閱來源",
+          "translatedAt": "2026-10-04T21:18:25.225Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "RSSフィード",
+          "translatedAt": "2026-10-04T21:18:33.493Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "RSS 피드",
+          "translatedAt": "2026-10-04T21:18:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Feeds RSS",
+          "translatedAt": "2026-10-04T21:18:45.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "RSS feeds",
+          "translatedAt": "2026-10-04T21:18:51.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nguồn cấp RSS",
+          "translatedAt": "2026-10-04T21:19:00.977Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5710f3ef7da3b4882b55c0e4b484f8100827034b88d7e1169681bf7d7f8ccb10": {
+      "en": "The built-in Feeds reader stores your subscriptions and the fetched feed items locally in your browser — never synced, never sent to us. When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. OPML import is processed entirely on your device. Summarizing a feed item works like summarizing any other page: its content is only sent to the AI provider you chose, and only when you trigger a summary.",
+      "translations": {
+        "de": {
+          "text": "Der integrierte Feeds-Reader speichert Ihre Abonnements und die abgerufenen Feed-Einträge lokal in Ihrem Browser – ohne Synchronisierung und ohne Übertragung an uns. Wenn Sie einen Feed hinzufügen oder aktualisieren, ruft die Erweiterung die Adresse dieses Feeds direkt vom Server des Herausgebers ab – genau wie Ihr Browser beim regulären Besuch der Website, sodass der Herausgeber die Anfrage sehen kann. Wir leiten Ihre Abonnements oder Leselisten weder über Proxys weiter, noch protokollieren oder sehen wir diese ein. Der OPML-Import wird vollständig auf Ihrem Gerät verarbeitet. Das Zusammenfassen eines Feed-Eintrags funktioniert wie bei jeder anderen Seite: Die Inhalte werden ausschließlich an den von Ihnen gewählten KI-Anbieter übermittelt, und das auch nur, wenn Sie eine Zusammenfassung manuell anfordern.",
+          "translatedAt": "2026-10-04T21:17:55.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le lecteur de flux intégré stocke vos abonnements ainsi que les articles récupérés localement dans votre navigateur — ils ne sont jamais synchronisés ni transmis à nos serveurs. Lorsque vous ajoutez ou actualisez un flux, l'extension interroge directement l'adresse de ce flux auprès du serveur de l'éditeur, exactement comme le ferait votre navigateur en visitant le site ; l'éditeur peut donc voir la requête. Nous n'utilisons aucun serveur proxy, n'enregistrons aucun journal et n'avons aucun accès à vos abonnements ou à votre liste de lecture. L'importation OPML est traitée intégralement sur votre appareil (on-device). Résumer un article de flux fonctionne comme pour n'importe quelle autre page : son contenu est uniquement transmis au fournisseur d'IA de votre choix, et seulement lorsque vous déclenchez la génération du résumé.",
+          "translatedAt": "2026-10-04T21:18:03.352Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El lector integrado Feeds almacena tus suscripciones y los elementos obtenidos localmente en tu navegador — nunca se sincronizan ni se nos envían. Cuando agregas o actualizas un feed, la extensión solicita la dirección directamente al servidor del editor, tal como lo haría tu navegador al visitar el sitio, por lo que el editor puede ver la solicitud. No intermediamos mediante proxy, no registramos ni vemos tus suscripciones o tu lista de lectura. La importación OPML se procesa por completo en tu dispositivo. Resumir un elemento de un feed funciona igual que resumir cualquier otra página: su contenido solo se envía al proveedor de IA que hayas elegido y únicamente cuando solicitas un resumen.",
+          "translatedAt": "2026-10-04T21:18:11.687Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "内置的 Feeds 阅读器会将您的订阅源及抓取的条目仅保存在本地浏览器中——从不同步，也绝不上传至我们的服务器。当您添加或刷新订阅源时，扩展程序会直接向发布者的服务器请求该订阅源地址（与您直接在浏览器中访问网站无异），因此发布者可以看到该网络请求。我们不会代理、记录或查看您的订阅与阅读列表。OPML 导入完全在本地设备上处理。对订阅条目生成摘要的逻辑与总结普通网页一致：仅在您主动触发摘要时，内容才会发送至您选定的 AI 服务商。",
+          "translatedAt": "2026-10-04T21:18:17.597Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "內建的 Feeds 閱讀器會將您的訂閱頻道與抓取的文章內容儲存在本機瀏覽器中——絕不同步，也絕不會傳送給我們。當您新增或重新整理訂閱時，擴充功能會直接向發布者的伺服器請求該來源網址，就像您使用瀏覽器造訪該網站一樣，因此發布者能看到該請求。我們絕不會代理、記錄或查看您的訂閱或閱讀清單。OPML 匯入完全在您的裝置本機處理。摘要 RSS 文章的運作方式與摘要其他網頁相同：只有在您主動觸發摘要時，內容才會傳送至您選擇的 AI 提供商。",
+          "translatedAt": "2026-10-04T21:18:25.225Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "内蔵のFeedsリーダーは、購読情報および取得したフィードアイテムをお使いのブラウザ内にローカル保存します。外部と同期されたり、当方に送信されたりすることは一切ありません。フィードを追加または更新する際、本拡張機能は通常のWebサイト閲覧時と同様に配信元のサーバーへ直接リクエストを送信するため、配信元サーバー側にリクエストが届きます。当方がお客様の購読情報やリーディングリストをプロキシ経由で中継したり、ログを記録したり、閲覧したりすることは一切ありません。OPMLのインポート処理はすべてお使いの端末上（オンデバイス）で完結します。フィードアイテムの要約は通常のWebページ要約と同様に動作し、要約を実行した時のみ、選択したAIプロバイダーにコンテンツが送信されます。",
+          "translatedAt": "2026-10-04T21:18:33.493Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내장된 Feeds 리더는 구독 정보와 가져온 피드 항목을 브라우저에 로컬로 저장하며, 외부와 동기화되거나 당사로 전송되지 않습니다. 피드를 추가하거나 새로고침할 때 확장 프로그램은 브라우저로 사이트를 직접 방문할 때와 마찬가지로 발행사 서버에 피드 주소를 직접 요청하므로, 발행사 측에서 해당 요청을 확인할 수 있습니다. 당사는 사용자의 구독 정보나 읽기 목록을 프록시 처리하거나, 기록(로그)하거나, 열람하지 않습니다. OPML 가져오기는 전적으로 사용자 기기에서 처리됩니다. 피드 항목 요약은 다른 웹페이지를 요약할 때와 동일하게 작동하며, 요약을 직접 실행할 때만 사용자가 선택한 AI 제공업체로 콘텐츠가 전송됩니다.",
+          "translatedAt": "2026-10-04T21:18:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O leitor de Feeds integrado armazena suas inscrições e os itens de feed baixados localmente no seu navegador — sem nunca sincronizar ou enviar nada para nós. Ao adicionar ou atualizar um feed, a extensão solicita o endereço desse feed diretamente do servidor da fonte, exatamente como o seu navegador faria ao visitar o site, permitindo que a fonte veja a solicitação. Nós não usamos proxy, não registramos logs e não temos acesso às suas inscrições ou lista de leitura. A importação de OPML é processada inteiramente no seu dispositivo. Resumir um item de feed funciona como resumir qualquer outra página: o conteúdo só é enviado ao provedor de IA que você escolheu e apenas quando você solicita um resumo.",
+          "translatedAt": "2026-10-04T21:18:45.517Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इन-बिल्ट Feeds reader आपकी subscriptions और fetched feed items को आपके browser में locally स्टोर करता है — कभी sync नहीं होता, कभी हमें नहीं भेजा जाता। जब आप कोई feed ऐड या refresh करते हैं, तो extension सीधे publisher के server से उस feed address की request करता है, ठीक वैसे ही जैसे site visit करते समय आपका browser करता है, इसलिए publisher को यह request दिख सकती है। हम आपकी subscriptions या reading list को proxy, log या view नहीं करते। OPML import पूरी तरह से आपके device पर ही process होता है। Feed item को summarize करना किसी भी अन्य page को summarize करने जैसा ही है: इसका content सिर्फ आपके चुने हुए AI provider को भेजा जाता है, और वह भी सिर्फ तब जब आप summary trigger करते हैं।",
+          "translatedAt": "2026-10-04T21:18:51.418Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Trình đọc Feeds tích hợp sẵn lưu trữ các kênh đăng ký và bài viết feed đã tải về cục bộ ngay trong trình duyệt của bạn — không bao giờ đồng bộ, không bao giờ gửi cho chúng tôi. Khi bạn thêm hoặc làm mới một feed, tiện ích mở rộng sẽ gửi yêu cầu trực tiếp đến địa chỉ feed từ máy chủ của nhà xuất bản, giống như khi trình duyệt của bạn truy cập trang web, vì vậy nhà xuất bản có thể nhìn thấy yêu cầu đó. Chúng tôi không proxy, không ghi nhật ký và không xem danh sách đăng ký hay danh sách đọc của bạn. Việc nhập tệp OPML được xử lý hoàn toàn trên thiết bị của bạn. Tính năng tóm tắt bài viết trong feed hoạt động tương tự như tóm tắt bất kỳ trang web nào khác: nội dung chỉ được gửi đến nhà cung cấp AI do bạn chọn và chỉ khi bạn chủ động kích hoạt lệnh tóm tắt.",
+          "translatedAt": "2026-10-04T21:19:00.977Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
