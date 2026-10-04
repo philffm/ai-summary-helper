@@ -31,6 +31,7 @@ Everything you save is stored **locally in your browser**, using Chrome's built-
 | Data | Storage | Synced across your devices via Chrome? |
 |---|---|---|
 | Saved articles & summaries | Local | No |
+| RSS feed subscriptions & items | Local | No |
 | API keys / provider config | Local | No — sensitive, kept device-only |
 | License key | Local | No — sensitive, kept device-only |
 | LocalSend network IP | Local | No |
@@ -41,6 +42,9 @@ Everything you save is stored **locally in your browser**, using Chrome's built-
 Items marked "Sync" use Chrome's own built-in sync feature tied to your Google account — this data passes through Google's infrastructure, not ours, exactly like your bookmarks or browser settings would. We have no separate access to it.
 
 You can export or delete your full local history at any time via Settings → Backup & Restore, or by removing the extension.
+
+### RSS feeds
+The built-in Feeds reader stores your subscriptions and the fetched feed items **locally in your browser** (`feedSubs`, `feedItems`; never synced, never sent to us). When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. Importing an OPML file is processed entirely on your device. Opening a feed item, or summarizing it, works like summarizing any other page: the page is opened in a tab, and its content is only sent to the AI provider you chose, and only when you trigger a summary.
 
 ### Kindle, AirDrop, and LocalSend
 When you send an article to Kindle, AirDrop, or a LocalSend-compatible device, the formatted file is sent directly from your browser to the destination you chose (your Kindle's email address, a nearby Apple device, or a device on your local network). We do not act as an intermediary and do not see or store this content.
@@ -58,7 +62,7 @@ We use Matomo, a privacy-respecting, GDPR-compliant analytics platform, to under
 | `contextMenus` | Provide right-click actions (Summarize, Highlight, etc.) |
 | `notifications` | Show timed reminders for articles you've saved for later |
 | `alarms` | Schedule those reminder notifications |
-| `tabs` | Close the tab automatically after "Summarize & Close" |
+| `tabs` | Close the tab automatically after "Summarize & Close", and open or reuse tabs for feed items you choose to read or summarize |
 | `sidePanel` | Support Chrome's native side panel as a viewing option |
 | `scripting` | Inject the content script needed to read and summarize a page |
 | `host_permissions (<all_urls>)` | Let you summarize any page you visit, on any site — this is required for the extension to work on arbitrary pages, but content is only read and transmitted when you actively trigger a summary, never passively |

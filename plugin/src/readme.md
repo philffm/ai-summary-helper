@@ -22,6 +22,14 @@ A powerful browser extension for summarizing web pages with a custom AI prompt, 
 - **Extension mode** — summary shown in the popup/sidebar  
 - **Inline mode** — summary inserted into the page (great for Send-to-Kindle)
 
+### 📰 Feeds (RSS reader)
+- Subscribe by pasting a site or feed address, or use **Current site** to autodiscover its feed (Atom, RSS, RDF)
+- Import your subscriptions from an OPML file
+- One-click **Summarize** follows your last summary mode (extension by default, or inline); a page that is already open is reused instead of reopened
+- Click a card to open the website, or its saved summary if you already summarized it; summarized items carry a **Summarized** badge
+- Favorite items to add them to History, then summarize them later with one click
+- Feeds and items are stored locally on your device
+
 ### 🔖 Save for Later (Tab Management)
 Right-click any page → **Summarize & Close tab**:
 1. An in-page dialog asks *why* you're saving and *when* to be reminded (Tomorrow / Weekend / This Week / Research Session)

@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "用自己的 AI 金鑰或 Ollama 做摘要。內建 RSS 閱讀器、稍後閱讀、標註、傳送到 Kindle。開源，免登入。"
   },
   "fetchSummary": {
     "message": "取得摘要"
@@ -244,5 +244,83 @@
   },
   "settingsScreen": {
     "message": "設定螢幕"
+  },
+  "navFeeds": {
+    "message": "訂閱來源"
+  },
+  "feedAddPlaceholder": {
+    "message": "網站或訂閱來源網址…"
+  },
+  "feedCurrentSite": {
+    "message": "目前網站"
+  },
+  "feedImportOpml": {
+    "message": "匯入 OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "全部標為已讀"
+  },
+  "feedSubscriptions": {
+    "message": "訂閱"
+  },
+  "searchSettings": {
+    "message": "搜尋設定…"
+  },
+  "settingsBack": {
+    "message": "‹ 設定"
+  },
+  "settingsAccount": {
+    "message": "帳號與方案"
+  },
+  "settingsModels": {
+    "message": "模型與 API"
+  },
+  "settingsPrompts": {
+    "message": "提示詞"
+  },
+  "settingsReading": {
+    "message": "閱讀與標示"
+  },
+  "settingsSend": {
+    "message": "傳送與分享"
+  },
+  "settingsAppearance": {
+    "message": "外觀與語言"
+  },
+  "settingsLibrary": {
+    "message": "資料庫與資料"
+  },
+  "settingsAbout": {
+    "message": "關於與工具"
+  },
+  "settingsCapAccount": {
+    "message": "帳號"
+  },
+  "settingsCapSummarizing": {
+    "message": "摘要"
+  },
+  "settingsCapReading": {
+    "message": "閱讀"
+  },
+  "settingsCapApp": {
+    "message": "應用程式"
+  },
+  "historyGraph": {
+    "message": "圖譜"
+  },
+  "historyReport": {
+    "message": "分析"
+  },
+  "viewGraph": {
+    "message": "檢視圖譜"
+  },
+  "viewAnalytics": {
+    "message": "檢視分析報告"
+  },
+  "modelDesc": {
+    "message": "選擇用於產生摘要的大型語言模型。"
+  },
+  "promptDesc": {
+    "message": "自訂 AI 分析文字的方式。"
   }
 }

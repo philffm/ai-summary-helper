@@ -402,7 +402,10 @@ function setupOnboardingExtras(ui) {
     if (customApiBtn && !customApiBtn.dataset.bound) {
         customApiBtn.dataset.bound = 'true';
         customApiBtn.addEventListener('click', () => {
-            if (ui && typeof ui.showScreen === 'function') ui.showScreen('settings');
+            if (ui && typeof ui.showScreen === 'function') {
+                ui.showScreen('settings');
+                import('./settingsNav.js').then(m => m.openSettingsPanel('models')).catch(() => {});
+            }
         });
     }
 }

@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "내 AI 키나 Ollama로 요약. RSS 리더 내장, 나중에 읽기, 하이라이트, Kindle 전송. 오픈소스, 로그인 불필요."
   },
   "fetchSummary": {
     "message": "요약 가져오기"
@@ -238,5 +238,77 @@
   },
   "configured": {
     "message": "구성됨"
+  },
+  "navFeeds": {
+    "message": "피드"
+  },
+  "feedAddPlaceholder": {
+    "message": "사이트 또는 피드 주소…"
+  },
+  "feedCurrentSite": {
+    "message": "현재 사이트"
+  },
+  "feedImportOpml": {
+    "message": "OPML 가져오기"
+  },
+  "feedMarkAllRead": {
+    "message": "모두 읽음으로 표시"
+  },
+  "feedSubscriptions": {
+    "message": "구독"
+  },
+  "searchSettings": {
+    "message": "설정 검색…"
+  },
+  "settingsBack": {
+    "message": "‹ 설정"
+  },
+  "settingsAccount": {
+    "message": "계정 및 요금제"
+  },
+  "settingsModels": {
+    "message": "모델 및 API"
+  },
+  "settingsPrompts": {
+    "message": "프롬프트"
+  },
+  "settingsReading": {
+    "message": "읽기 및 하이라이트"
+  },
+  "settingsSend": {
+    "message": "보내기 및 공유"
+  },
+  "settingsAppearance": {
+    "message": "화면 및 언어"
+  },
+  "settingsLibrary": {
+    "message": "보관함 및 데이터"
+  },
+  "settingsAbout": {
+    "message": "정보 및 도구"
+  },
+  "settingsCapAccount": {
+    "message": "계정"
+  },
+  "settingsCapSummarizing": {
+    "message": "요약"
+  },
+  "settingsCapReading": {
+    "message": "읽기"
+  },
+  "settingsCapApp": {
+    "message": "앱"
+  },
+  "historyGraph": {
+    "message": "그래프"
+  },
+  "historyReport": {
+    "message": "분석"
+  },
+  "viewGraph": {
+    "message": "그래프 보기"
+  },
+  "viewAnalytics": {
+    "message": "분석 리포트 보기"
   }
 }

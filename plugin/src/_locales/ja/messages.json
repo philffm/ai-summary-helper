@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "自分のAIキーやOllamaで要約。RSSリーダー内蔵、後で読む、ハイライト、Kindle送信。オープンソース、ログイン不要。"
   },
   "fetchSummary": {
     "message": "要約を取得"
@@ -256,5 +256,77 @@
   },
   "settingsScreen": {
     "message": "設定画面"
+  },
+  "navFeeds": {
+    "message": "フィード"
+  },
+  "feedAddPlaceholder": {
+    "message": "サイトまたはフィードのURL…"
+  },
+  "feedCurrentSite": {
+    "message": "現在のサイト"
+  },
+  "feedImportOpml": {
+    "message": "OPMLをインポート"
+  },
+  "feedMarkAllRead": {
+    "message": "すべて既読にする"
+  },
+  "feedSubscriptions": {
+    "message": "購読中"
+  },
+  "searchSettings": {
+    "message": "設定を検索…"
+  },
+  "settingsBack": {
+    "message": "‹ 設定"
+  },
+  "settingsAccount": {
+    "message": "アカウントとプラン"
+  },
+  "settingsModels": {
+    "message": "モデルとAPI"
+  },
+  "settingsPrompts": {
+    "message": "プロンプト"
+  },
+  "settingsReading": {
+    "message": "閲覧とハイライト"
+  },
+  "settingsSend": {
+    "message": "送信と共有"
+  },
+  "settingsAppearance": {
+    "message": "表示と言語"
+  },
+  "settingsLibrary": {
+    "message": "ライブラリとデータ"
+  },
+  "settingsAbout": {
+    "message": "情報とツール"
+  },
+  "settingsCapAccount": {
+    "message": "アカウント"
+  },
+  "settingsCapSummarizing": {
+    "message": "要約"
+  },
+  "settingsCapReading": {
+    "message": "閲覧"
+  },
+  "settingsCapApp": {
+    "message": "アプリ"
+  },
+  "historyGraph": {
+    "message": "グラフ"
+  },
+  "historyReport": {
+    "message": "分析"
+  },
+  "viewGraph": {
+    "message": "グラフを表示"
+  },
+  "viewAnalytics": {
+    "message": "分析レポートを表示"
   }
 }

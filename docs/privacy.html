@@ -123,6 +123,7 @@
           </thead>
           <tbody>
             <tr><td>Saved articles &amp; summaries</td><td>Local</td><td>No</td></tr>
+            <tr><td>RSS feed subscriptions &amp; items</td><td>Local</td><td>No</td></tr>
             <tr><td>API keys / provider config</td><td>Local</td><td>No — sensitive, device-only</td></tr>
             <tr><td>License key</td><td>Local</td><td>No — sensitive, device-only</td></tr>
             <tr><td>LocalSend network IP</td><td>Local</td><td>No</td></tr>
@@ -133,6 +134,9 @@
         </table>
         <p>Items marked "Sync" use Chrome's own built-in sync tied to your Google account — this data passes through Google's infrastructure, not ours, exactly like your bookmarks would. We have no separate access to it.</p>
         <p>You can export or delete your full local history at any time via Settings → Backup &amp; Restore, or by removing the extension.</p>
+
+        <h3>RSS feeds</h3>
+        <p>The built-in Feeds reader stores your subscriptions and the fetched feed items locally in your browser — never synced, never sent to us. When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. OPML import is processed entirely on your device. Summarizing a feed item works like summarizing any other page: its content is only sent to the AI provider you chose, and only when you trigger a summary.</p>
 
         <h3>Kindle, AirDrop, and LocalSend</h3>
         <p>When you send an article to Kindle, AirDrop, or a LocalSend-compatible device, the formatted file is sent directly from your browser to the destination you chose. We do not act as an intermediary and do not see or store this content.</p>

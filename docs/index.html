@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — Summarize, save, and search the web on-device</title>
-<meta name="description" content="A Chrome extension that summarizes web pages with AI, saves them into a searchable archive, and sends curated reading digests to Kindle or LocalSend. Search, dedup, and recommendations run on-device.">
+<meta name="description" content="A Chrome extension that summarizes web pages with AI, follows your favorite sites with a built-in RSS reader, saves pages into a searchable archive, and sends curated reading digests to Kindle or LocalSend. Search, dedup, and recommendations run on-device.">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome Extension · Part of byphil. <span class="dash"></span></div>
       <h1>Summarize the web.<br><em>Keep what matters.</em></h1>
-      <p class="sub">AI Summary Helper saves any page as a summarized, searchable article — then helps you actually get back to it, with an on-device digest that sends offline reading straight to your Kindle or another device.</p>
+      <p class="sub">AI Summary Helper follows your favorite sites with a built-in RSS reader, saves any page as a summarized, searchable article — then helps you actually get back to it, with an on-device digest that sends offline reading straight to your Kindle or another device.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome — it's free</a>
         <a href="#bookmarklet" class="btn-secondary">No install? Use the bookmarklet</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>A knowledge graph, not just a list</h3>
           <p>See how your saved articles connect — by shared tags, and by topic similarity even when they don't share a tag at all.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>A built-in RSS reader</h3>
+          <p>Follow blogs and news sites, import your OPML, and open or summarize any item in one click. Favorite items land in your archive, and feeds are stored on your device.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</te
         </details>
         <details>
           <summary>What actually leaves my browser?</summary>
-          <p>Only the summarization request — sent to whichever AI provider you configured. Search, duplicate detection, tag cleanup, reading-level and sentiment scoring, and "similar articles" recommendations all run locally against your own saved archive.</p>
+          <p>Only the summarization request — sent to whichever AI provider you configured — plus, if you use the RSS reader, requests to the feeds you subscribed to. Search, duplicate detection, tag cleanup, reading-level and sentiment scoring, and "similar articles" recommendations all run locally against your own saved archive.</p>
         </details>
         <details>
           <summary>Can I run this with zero cloud dependency?</summary>

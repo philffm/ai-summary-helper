@@ -438,7 +438,16 @@ function initGeneralSettings(storageData) {
     // ── UI Language ────────────────────────────────────────────────
     const uiLangSelect = document.getElementById('uiLangSelect');
     if (uiLangSelect) {
-        uiLangSelect.value = storageData.uiLanguage || '';
+        const savedUiLang = storageData.uiLanguage || '';
+        if (savedUiLang && ![...uiLangSelect.options].some(o => o.value === savedUiLang)) {
+            // Language no longer offered (not actively maintained): keep it
+            // visible for people who already picked it, so the control isn't blank.
+            const legacy = document.createElement('option');
+            legacy.value = savedUiLang;
+            legacy.textContent = ({ ar: 'العربية', it: 'Italiano', ru: 'Русский', bn: 'বাংলা' }[savedUiLang] || savedUiLang) + ' (no longer updated)';
+            uiLangSelect.appendChild(legacy);
+        }
+        uiLangSelect.value = savedUiLang;
         uiLangSelect.addEventListener('change', async () => {
             const val = uiLangSelect.value;
             await autoSave('uiLanguage', val);

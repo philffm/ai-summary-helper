@@ -119,6 +119,34 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     }
 });
 
+
+// ── Feed background tabs ────────────────────────────────────────────────────
+// Tabs opened by the Feeds screen in extension mode. Kept in storage.session
+// (when available) so a restarted service worker still knows which tabs to close.
+const feedTabsMem = new Set();
+async function readFeedTabs() {
+    try {
+        if (chrome.storage.session) {
+            const d = await chrome.storage.session.get({ feedBgTabs: [] });
+            return new Set(d.feedBgTabs);
+        }
+    } catch (_) {}
+    return feedTabsMem;
+}
+async function writeFeedTabs(set) {
+    feedTabsMem.clear(); set.forEach(v => feedTabsMem.add(v));
+    try { if (chrome.storage.session) await chrome.storage.session.set({ feedBgTabs: [...set] }); } catch (_) {}
+}
+async function trackFeedTab(tabId) {
+    const set = await readFeedTabs(); set.add(tabId); await writeFeedTabs(set);
+}
+async function untrackFeedTab(tabId, closeNow = false, delay = 0) {
+    const set = await readFeedTabs();
+    if (!set.has(tabId)) return;
+    set.delete(tabId); await writeFeedTabs(set);
+    setTimeout(() => chrome.tabs.remove(tabId).catch(() => {}), closeNow ? 0 : delay);
+}
+
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     // Dummy endpoint to force Safari to wake the background script before a
@@ -127,6 +155,116 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.action === 'wakeup') {
         sendResponse({ status: 'awake' });
         return true; // Keep the message channel open for the response
+    }
+
+    // ── Feeds (RSS reader) ──────────────────────────────────────────────
+    // Fetch a feed or site page on behalf of the popup. Returns raw text; the
+    // popup parses it (DOMParser doesn't exist in this service worker).
+    if (msg.action === 'fetchFeedText' && msg.url) {
+        (async () => {
+            try {
+                if (!/^https?:\/\//i.test(msg.url)) throw new Error('Unsupported address');
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 15000);
+                const res = await fetch(msg.url, {
+                    credentials: 'omit',
+                    redirect: 'follow',
+                    signal: ctrl.signal,
+                    headers: { 'Accept': 'application/rss+xml, application/atom+xml, application/xml, text/xml, text/html;q=0.8, */*;q=0.5' }
+                });
+                clearTimeout(timer);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const text = (await res.text()).slice(0, 3 * 1024 * 1024);
+                sendResponse({ ok: true, text, url: res.url || msg.url, contentType: res.headers.get('content-type') || '' });
+            } catch (e) {
+                sendResponse({ ok: false, error: e.name === 'AbortError' ? 'Timed out' : (e.message || 'Request failed') });
+            }
+        })();
+        return true;
+    }
+
+    // Open a feed item in a new tab; optionally summarize it once the page has
+    // loaded, following the mode last picked on the Summarize screen:
+    //   inline    → foreground tab, summary inserted into the page
+    //   extension → background tab, summary streams to the popup/History and the
+    //               tab closes itself when done
+    if (msg.action === 'openFeedItem' && msg.url) {
+        if (!/^https?:\/\//i.test(msg.url)) { sendResponse({ success: false }); return false; }
+        (async () => {
+            let mode = 'extension';
+            let summaryLength = 200;
+            if (msg.summarize) {
+                const d = await chrome.storage.local.get(['summaryMode', 'summaryLength']).catch(() => ({}));
+                mode = d.summaryMode === 'inline' ? 'inline' : 'extension';
+                summaryLength = d.summaryLength || 200;
+            }
+            const background = !!msg.summarize && mode === 'extension';
+            const normKey = (u) => {
+                try {
+                    const x = new URL(u);
+                    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','ref','source'].forEach(k => x.searchParams.delete(k));
+                    const qs = x.searchParams.toString();
+                    return (x.hostname.replace(/^www\./, '') + x.pathname.replace(/\/+$/, '') + (qs ? '?' + qs : '')).toLowerCase();
+                } catch (_) { return String(u || '').toLowerCase().trim(); }
+            };
+            // Is the page already open somewhere? Then reuse that tab.
+            let existing = null;
+            try {
+                const want = normKey(msg.url);
+                const all = await chrome.tabs.query({});
+                existing = all.find(tb => tb.url && normKey(tb.url) === want) || null;
+            } catch (_) {}
+
+            const startSummary = (tabId, track) => {
+                const start = async (attempt = 0) => {
+                    try {
+                        await chrome.tabs.sendMessage(tabId, { action: 'ping' });
+                    } catch (e) {
+                        if (attempt === 2) {
+                            try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); } catch (_) {}
+                        }
+                        if (attempt < 6) return setTimeout(() => start(attempt + 1), 800);
+                        if (track) untrackFeedTab(tabId, true);
+                        return;
+                    }
+                    chrome.tabs.sendMessage(tabId, { action: 'fetchSummary', summaryMode: mode, summaryLength }).catch(() => {});
+                };
+                return start;
+            };
+
+            if (existing) {
+                // Already open: never open it again; never close it afterwards (it's the user's tab).
+                if (!msg.summarize || mode === 'inline') {
+                    try { await chrome.tabs.update(existing.id, { active: true }); await chrome.windows.update(existing.windowId, { focused: true }); } catch (_) {}
+                }
+                if (msg.summarize) startSummary(existing.id, false)();
+                sendResponse({ success: true, mode: msg.summarize ? mode : null, reused: true });
+                return;
+            }
+
+            chrome.tabs.create({ url: msg.url, active: !background }, (tab) => {
+                if (!msg.summarize || !tab) return;
+                const tabId = tab.id;
+                if (background) trackFeedTab(tabId);
+                const start = startSummary(tabId, background);
+                const onUpdated = (id, info) => {
+                    if (id !== tabId || info.status !== 'complete') return;
+                    chrome.tabs.onUpdated.removeListener(onUpdated);
+                    start();
+                };
+                chrome.tabs.onUpdated.addListener(onUpdated);
+                // Safety: stop listening if the tab never finishes loading.
+                setTimeout(() => chrome.tabs.onUpdated.removeListener(onUpdated), 60000);
+            });
+            sendResponse({ success: true, mode: msg.summarize ? mode : null });
+        })();
+        return true;
+    }
+
+    // A feed-opened background tab reports it's finished → close it shortly
+    // after (the content script saves the article right after relaying).
+    if ((msg.action === 'summaryComplete' || msg.action === 'summaryError') && sender.tab) {
+        untrackFeedTab(sender.tab.id, false, msg.action === 'summaryComplete' ? 6000 : 8000);
     }
 
     // ── Tab proxy handlers ──────────────────────────────────────────────

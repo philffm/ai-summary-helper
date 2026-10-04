@@ -327,6 +327,7 @@ async function sendToKindle(article) {
         if (uiManagerRef) {
             uiManagerRef.showToast('Set your Kindle email in Settings first.');
             uiManagerRef.showScreen('settings');
+            import('./settingsNav.js').then(m => m.openSettingsPanel('send', 'newKindleEmail')).catch(() => {});
         } else {
             alert('Please configure your Kindle delivery email address inside settings first.');
         }
@@ -398,6 +399,7 @@ async function dispatchToLocalSend(article) {
         if (uiManagerRef) {
             uiManagerRef.showToast('Please set your LocalSend IP in Settings first.');
             uiManagerRef.showScreen('settings');
+            import('./settingsNav.js').then(m => m.openSettingsPanel('send', 'newLocalSendIp')).catch(() => {});
         } else {
             alert('Configure your LocalSend IP address inside settings first.');
         }
@@ -760,11 +762,15 @@ export function loadHistory() {
     if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
     if (historyTopBar) historyTopBar.style.display = 'flex';
     if (articleList) articleList.style.display = 'block';
-    StorageManager.getArticlesIndex().then(articles => {
-        cachedArticles = articles;
-        invalidateSearchIndex();
-        renderArticles(cachedArticles);
-    }).catch(() => {});
+    import('./feedManager.js')
+        .then(m => m.reconcileStubs())
+        .catch(() => {})
+        .then(() => StorageManager.getArticlesIndex())
+        .then(articles => {
+            cachedArticles = articles;
+            invalidateSearchIndex();
+            renderArticles(cachedArticles);
+        }).catch(() => {});
 }
 
 export function renderArticles(articles) {
@@ -856,8 +862,60 @@ function buildArticleCard(article) {
             ${modelBadge}
             ${decisionHtml}
           </div>
+          <button class="star-button" title="Favorite" aria-label="Favorite" aria-pressed="${article.favorite ? 'true' : 'false'}">${article.favorite ? '★' : '☆'}</button>
         </div>
     `;
+    listItem.classList.toggle('is-favorite', !!article.favorite);
+
+    // Favorited from a feed but never summarized: one-click summarize.
+    if (article.feedStub && article.url) {
+        const sumBtn = document.createElement('button');
+        sumBtn.type = 'button';
+        sumBtn.className = 'button-primary feed-btn';
+        sumBtn.style.marginTop = '8px';
+        sumBtn.textContent = '✨ Summarize';
+        sumBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            sumBtn.disabled = true;
+            sumBtn.textContent = '⏳ Summarizing…';
+            chrome.runtime.sendMessage({ action: 'openFeedItem', url: article.url, summarize: true }, (res) => {
+                if (chrome.runtime.lastError || !res || !res.success) {
+                    sumBtn.disabled = false;
+                    sumBtn.textContent = '✨ Summarize';
+                    return;
+                }
+                // Re-check shortly; the summary replaces this placeholder when saved.
+                let tries = 0;
+                const poll = setInterval(async () => {
+                    tries++;
+                    try {
+                        const idx = await StorageManager.getArticlesIndex();
+                        const done = idx.some(a => !a.feedStub && a.url === article.url);
+                        if (done || tries > 40) {
+                            clearInterval(poll);
+                            if (done && document.getElementById('articleList')?.style.display !== 'none') loadHistory();
+                            else { sumBtn.disabled = false; sumBtn.textContent = '✨ Summarize'; }
+                        }
+                    } catch (_) { clearInterval(poll); }
+                }, 3000);
+            });
+        });
+        const hdr = listItem.querySelector('.article-header > div');
+        if (hdr) hdr.appendChild(sumBtn);
+    }
+
+    listItem.querySelector('.star-button').addEventListener('click', async (event) => {
+        event.stopPropagation();
+        const btn = event.currentTarget;
+        const next = await StorageManager.toggleFavorite(article.id);
+        if (next === null) return;
+        article.favorite = next;
+        const cached = cachedArticles.find(a => a.id === article.id);
+        if (cached) cached.favorite = next;
+        listItem.classList.toggle('is-favorite', next);
+        btn.textContent = next ? '★' : '☆';
+        btn.setAttribute('aria-pressed', String(next));
+    });
 
     // Click on the card itself opens detail
     listItem.addEventListener('click', (event) => {

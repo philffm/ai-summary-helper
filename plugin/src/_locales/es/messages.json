@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "Resume con tu clave de IA u Ollama. Lector RSS, guardar para después, resaltados, envío a Kindle. Código abierto, sin registro."
   },
   "fetchSummary": {
     "message": "Obtener Resumen"
@@ -244,5 +244,83 @@
   },
   "settingsScreen": {
     "message": "Pantalla de configuración"
+  },
+  "navFeeds": {
+    "message": "Fuentes"
+  },
+  "feedAddPlaceholder": {
+    "message": "Dirección del sitio o del feed…"
+  },
+  "feedCurrentSite": {
+    "message": "Sitio actual"
+  },
+  "feedImportOpml": {
+    "message": "Importar OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Marcar todo como leído"
+  },
+  "feedSubscriptions": {
+    "message": "Suscripciones"
+  },
+  "searchSettings": {
+    "message": "Buscar ajustes…"
+  },
+  "settingsBack": {
+    "message": "‹ Ajustes"
+  },
+  "settingsAccount": {
+    "message": "Cuenta y plan"
+  },
+  "settingsModels": {
+    "message": "Modelos y API"
+  },
+  "settingsPrompts": {
+    "message": "Prompts"
+  },
+  "settingsReading": {
+    "message": "Lectura y resaltado"
+  },
+  "settingsSend": {
+    "message": "Enviar y compartir"
+  },
+  "settingsAppearance": {
+    "message": "Apariencia e idioma"
+  },
+  "settingsLibrary": {
+    "message": "Biblioteca y datos"
+  },
+  "settingsAbout": {
+    "message": "Acerca de y herramientas"
+  },
+  "settingsCapAccount": {
+    "message": "CUENTA"
+  },
+  "settingsCapSummarizing": {
+    "message": "RESÚMENES"
+  },
+  "settingsCapReading": {
+    "message": "LECTURA"
+  },
+  "settingsCapApp": {
+    "message": "APP"
+  },
+  "historyGraph": {
+    "message": "Grafo"
+  },
+  "historyReport": {
+    "message": "Analítica"
+  },
+  "viewGraph": {
+    "message": "Ver grafo"
+  },
+  "viewAnalytics": {
+    "message": "Ver informe de analítica"
+  },
+  "modelDesc": {
+    "message": "Elige el modelo de lenguaje que generará tus resúmenes."
+  },
+  "promptDesc": {
+    "message": "Personaliza cómo analiza el texto la IA."
   }
 }

@@ -9,6 +9,8 @@ import { initLanguageManager } from './modules/languageManager.js';
 import { initShortcuts } from './modules/shortcuts.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initToolsManager } from './modules/toolsManager.js';
+import { initFeedManager } from './modules/feedManager.js';
+import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
 
 // ── Cross-browser shim ─────────────────────────────────────────────────────
@@ -49,6 +51,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     initSettingsManager(ui);
     initLanguageManager(ui);
     initToolsManager(ui);
+    initFeedManager(ui);
+    initSettingsNav(ui);
     if (window.initPodcastManager) {
         window.initPodcastManager(ui);
     }
@@ -284,6 +288,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById('panelModel').style.display = 'none';
             document.querySelector('.chip[data-panel="model"]').classList.remove('active');
             ui.showScreen('settings');
+            openSettingsPanel('models');
         });
     }
 
@@ -563,11 +568,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const screen = item.dataset.screen;
-            if (screen === 'main' || screen === 'history' || screen === 'settings' || screen === 'apps') {
+            if (screen === 'main' || screen === 'history' || screen === 'settings' || screen === 'feeds') {
                 ui.showScreen(screen);
             }
         });
     });
+
+    // Settings lives in the header (top right). Clicking it again returns to
+    // the screen the user came from.
+    const settingsButton = document.getElementById('settingsButton');
+    if (settingsButton) {
+        settingsButton.addEventListener('click', () => {
+            const onSettings = settingsButton.classList.contains('active');
+            ui.showScreen(onSettings ? (ui._lastNavScreen || 'main') : 'settings');
+        });
+    }
 
     // Reposition the nav blob when the window resizes
     window.addEventListener('resize', () => {

@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "अपनी AI key या Ollama से सारांश। RSS रीडर, बाद में पढ़ें, हाइलाइट, Kindle एक्सपोर्ट। ओपन सोर्स, बिना लॉगिन।"
   },
   "fetchSummary": {
     "message": "सारांश प्राप्त करें"
@@ -244,5 +244,83 @@
   },
   "settingsScreen": {
     "message": "सेटिंग्स स्क्रीन"
+  },
+  "navFeeds": {
+    "message": "फ़ीड"
+  },
+  "feedAddPlaceholder": {
+    "message": "साइट या फ़ीड का पता…"
+  },
+  "feedCurrentSite": {
+    "message": "वर्तमान साइट"
+  },
+  "feedImportOpml": {
+    "message": "OPML आयात करें"
+  },
+  "feedMarkAllRead": {
+    "message": "सभी को पढ़ा हुआ चिह्नित करें"
+  },
+  "feedSubscriptions": {
+    "message": "सदस्यताएँ"
+  },
+  "searchSettings": {
+    "message": "सेटिंग खोजें…"
+  },
+  "settingsBack": {
+    "message": "‹ सेटिंग"
+  },
+  "settingsAccount": {
+    "message": "खाता और प्लान"
+  },
+  "settingsModels": {
+    "message": "मॉडल और API"
+  },
+  "settingsPrompts": {
+    "message": "प्रॉम्प्ट"
+  },
+  "settingsReading": {
+    "message": "पढ़ना और हाइलाइट"
+  },
+  "settingsSend": {
+    "message": "भेजें और साझा करें"
+  },
+  "settingsAppearance": {
+    "message": "दिखावट और भाषा"
+  },
+  "settingsLibrary": {
+    "message": "लाइब्रेरी और डेटा"
+  },
+  "settingsAbout": {
+    "message": "परिचय और टूल"
+  },
+  "settingsCapAccount": {
+    "message": "खाता"
+  },
+  "settingsCapSummarizing": {
+    "message": "सारांश"
+  },
+  "settingsCapReading": {
+    "message": "पढ़ना"
+  },
+  "settingsCapApp": {
+    "message": "ऐप"
+  },
+  "historyGraph": {
+    "message": "ग्राफ़"
+  },
+  "historyReport": {
+    "message": "विश्लेषण"
+  },
+  "viewGraph": {
+    "message": "ग्राफ़ देखें"
+  },
+  "viewAnalytics": {
+    "message": "विश्लेषण रिपोर्ट देखें"
+  },
+  "modelDesc": {
+    "message": "चुनें कि आपके सारांश कौन-सा LLM मॉडल बनाए।"
+  },
+  "promptDesc": {
+    "message": "तय करें कि AI टेक्स्ट का विश्लेषण कैसे करे।"
   }
 }

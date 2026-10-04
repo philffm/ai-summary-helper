@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "Zusammenfassen mit eigenem KI-Key oder Ollama. RSS-Reader, Später-lesen, Markierungen, Kindle-Export. Open Source, ohne Login."
   },
   "fetchSummary": {
     "message": "Zusammenfassung abrufen"
@@ -256,5 +256,77 @@
   },
   "settingsScreen": {
     "message": "Einstellungen"
+  },
+  "navFeeds": {
+    "message": "Feeds"
+  },
+  "feedAddPlaceholder": {
+    "message": "Website- oder Feed-Adresse…"
+  },
+  "feedCurrentSite": {
+    "message": "Aktuelle Seite"
+  },
+  "feedImportOpml": {
+    "message": "OPML importieren"
+  },
+  "feedMarkAllRead": {
+    "message": "Alle als gelesen markieren"
+  },
+  "feedSubscriptions": {
+    "message": "Abonnements"
+  },
+  "searchSettings": {
+    "message": "Einstellungen durchsuchen…"
+  },
+  "settingsBack": {
+    "message": "‹ Einstellungen"
+  },
+  "settingsAccount": {
+    "message": "Konto & Tarif"
+  },
+  "settingsModels": {
+    "message": "Modelle & API"
+  },
+  "settingsPrompts": {
+    "message": "Prompts"
+  },
+  "settingsReading": {
+    "message": "Lesen & Markieren"
+  },
+  "settingsSend": {
+    "message": "Senden & Teilen"
+  },
+  "settingsAppearance": {
+    "message": "Darstellung & Sprache"
+  },
+  "settingsLibrary": {
+    "message": "Bibliothek & Daten"
+  },
+  "settingsAbout": {
+    "message": "Info & Tools"
+  },
+  "settingsCapAccount": {
+    "message": "KONTO"
+  },
+  "settingsCapSummarizing": {
+    "message": "ZUSAMMENFASSEN"
+  },
+  "settingsCapReading": {
+    "message": "LESEN"
+  },
+  "settingsCapApp": {
+    "message": "APP"
+  },
+  "historyGraph": {
+    "message": "Graph"
+  },
+  "historyReport": {
+    "message": "Analysen"
+  },
+  "viewGraph": {
+    "message": "Graph anzeigen"
+  },
+  "viewAnalytics": {
+    "message": "Analysebericht anzeigen"
   }
 }

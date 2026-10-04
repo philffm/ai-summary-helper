@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "用自己的 AI 密钥或 Ollama 做摘要。内置 RSS 阅读器、稍后阅读、高亮、发送到 Kindle。开源，无需登录。"
   },
   "fetchSummary": {
     "message": "获取摘要"
@@ -244,5 +244,83 @@
   },
   "settingsScreen": {
     "message": "设置屏幕"
+  },
+  "navFeeds": {
+    "message": "订阅源"
+  },
+  "feedAddPlaceholder": {
+    "message": "网站或订阅源地址…"
+  },
+  "feedCurrentSite": {
+    "message": "当前网站"
+  },
+  "feedImportOpml": {
+    "message": "导入 OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "全部标为已读"
+  },
+  "feedSubscriptions": {
+    "message": "订阅"
+  },
+  "searchSettings": {
+    "message": "搜索设置…"
+  },
+  "settingsBack": {
+    "message": "‹ 设置"
+  },
+  "settingsAccount": {
+    "message": "账户与套餐"
+  },
+  "settingsModels": {
+    "message": "模型与 API"
+  },
+  "settingsPrompts": {
+    "message": "提示词"
+  },
+  "settingsReading": {
+    "message": "阅读与高亮"
+  },
+  "settingsSend": {
+    "message": "发送与分享"
+  },
+  "settingsAppearance": {
+    "message": "外观与语言"
+  },
+  "settingsLibrary": {
+    "message": "资料库与数据"
+  },
+  "settingsAbout": {
+    "message": "关于与工具"
+  },
+  "settingsCapAccount": {
+    "message": "账户"
+  },
+  "settingsCapSummarizing": {
+    "message": "摘要"
+  },
+  "settingsCapReading": {
+    "message": "阅读"
+  },
+  "settingsCapApp": {
+    "message": "应用"
+  },
+  "historyGraph": {
+    "message": "图谱"
+  },
+  "historyReport": {
+    "message": "分析"
+  },
+  "viewGraph": {
+    "message": "查看图谱"
+  },
+  "viewAnalytics": {
+    "message": "查看分析报告"
+  },
+  "modelDesc": {
+    "message": "选择用于生成摘要的大语言模型。"
+  },
+  "promptDesc": {
+    "message": "自定义 AI 分析文本的方式。"
   }
 }

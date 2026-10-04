@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "Resuma com a sua chave de IA ou Ollama. Leitor RSS, guardar para depois, destaques, envio Kindle. Código aberto, sem login."
   },
   "fetchSummary": {
     "message": "Obter Resumo"
@@ -244,5 +244,83 @@
   },
   "settingsScreen": {
     "message": "Ecrã de Definições"
+  },
+  "navFeeds": {
+    "message": "Feeds"
+  },
+  "feedAddPlaceholder": {
+    "message": "Endereço do site ou do feed…"
+  },
+  "feedCurrentSite": {
+    "message": "Site atual"
+  },
+  "feedImportOpml": {
+    "message": "Importar OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Marcar tudo como lido"
+  },
+  "feedSubscriptions": {
+    "message": "Subscrições"
+  },
+  "searchSettings": {
+    "message": "Pesquisar definições…"
+  },
+  "settingsBack": {
+    "message": "‹ Definições"
+  },
+  "settingsAccount": {
+    "message": "Conta e plano"
+  },
+  "settingsModels": {
+    "message": "Modelos e API"
+  },
+  "settingsPrompts": {
+    "message": "Prompts"
+  },
+  "settingsReading": {
+    "message": "Leitura e destaques"
+  },
+  "settingsSend": {
+    "message": "Enviar e partilhar"
+  },
+  "settingsAppearance": {
+    "message": "Aspeto e idioma"
+  },
+  "settingsLibrary": {
+    "message": "Biblioteca e dados"
+  },
+  "settingsAbout": {
+    "message": "Sobre e ferramentas"
+  },
+  "settingsCapAccount": {
+    "message": "CONTA"
+  },
+  "settingsCapSummarizing": {
+    "message": "RESUMOS"
+  },
+  "settingsCapReading": {
+    "message": "LEITURA"
+  },
+  "settingsCapApp": {
+    "message": "APP"
+  },
+  "historyGraph": {
+    "message": "Grafo"
+  },
+  "historyReport": {
+    "message": "Análises"
+  },
+  "viewGraph": {
+    "message": "Ver grafo"
+  },
+  "viewAnalytics": {
+    "message": "Ver relatório de análises"
+  },
+  "modelDesc": {
+    "message": "Escolha o modelo de linguagem que gera os seus resumos."
+  },
+  "promptDesc": {
+    "message": "Personalize a forma como a IA analisa o texto."
   }
 }

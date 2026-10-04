@@ -3,7 +3,7 @@
     "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "Summarize with your own AI key or Ollama. Built-in RSS reader, save for later, highlights, Kindle export. Open source, no login."
   },
   "fetchSummary": {
     "message": "Fetch Summary"
@@ -94,6 +94,66 @@
   },
   "navHistory": {
     "message": "History"
+  },
+  "navFeeds": {
+    "message": "Feeds"
+  },
+  "feedAddPlaceholder": {
+    "message": "Site or feed address…"
+  },
+  "feedCurrentSite": {
+    "message": "Current site"
+  },
+  "feedImportOpml": {
+    "message": "Import OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Mark all read"
+  },
+  "feedSubscriptions": {
+    "message": "Subscriptions"
+  },
+  "searchSettings": {
+    "message": "Search settings…"
+  },
+  "settingsBack": {
+    "message": "‹ Settings"
+  },
+  "settingsAccount": {
+    "message": "Account & Plan"
+  },
+  "settingsModels": {
+    "message": "Models & API"
+  },
+  "settingsPrompts": {
+    "message": "Prompts"
+  },
+  "settingsReading": {
+    "message": "Reading & Highlighting"
+  },
+  "settingsSend": {
+    "message": "Send & Share"
+  },
+  "settingsAppearance": {
+    "message": "Appearance & Language"
+  },
+  "settingsLibrary": {
+    "message": "Library & Data"
+  },
+  "settingsAbout": {
+    "message": "About & Tools"
+  },
+  "settingsCapAccount": {
+    "message": "ACCOUNT"
+  },
+  "settingsCapSummarizing": {
+    "message": "SUMMARIZING"
+  },
+  "settingsCapReading": {
+    "message": "READING"
+  },
+  "settingsCapApp": {
+    "message": "APP"
   },
   "navApps": {
     "message": "Apps"
@@ -238,5 +298,17 @@
   },
   "configured": {
     "message": "Configured"
+  },
+  "historyGraph": {
+    "message": "Graph"
+  },
+  "historyReport": {
+    "message": "Analytics"
+  },
+  "viewGraph": {
+    "message": "View graph"
+  },
+  "viewAnalytics": {
+    "message": "View analytics report"
   }
 }

@@ -1,14 +1,14 @@
 // uiManager.js
 class UIManager {
     constructor() {
-        this.screenOrder = ['main', 'history', 'apps', 'settings'];
+        this.screenOrder = ['feeds', 'main', 'history', 'settings'];
         this._currentScreenIdx = undefined;
 
         this.screens = {
             main: document.getElementById('mainScreen'),
             settings: document.getElementById('settingsScreen'),
             history: document.getElementById('historyScreen'),
-            apps: document.getElementById('appsScreen'),
+            feeds: document.getElementById('feedsScreen'),
             podcast: document.getElementById('podcastScreen')
         };
     }
@@ -17,6 +17,8 @@ class UIManager {
         const blob = document.getElementById('navBlob');
         if (!blob) return;
         const activeItem = document.querySelector(`.nav-item[data-screen="${screenName}"]`);
+        // Settings lives in the header, not the bottom nav — no tab to highlight.
+        blob.style.opacity = activeItem ? '' : '0';
         if (!activeItem) return;
         const nav = document.getElementById('bottomNav');
         if (!nav) return;
@@ -58,6 +60,11 @@ class UIManager {
         });
         this.positionNavBlob(screenName);
 
+        // Header gear mirrors the nav's active state for the settings screen
+        const settingsBtn = document.getElementById('settingsButton');
+        if (settingsBtn) settingsBtn.classList.toggle('active', screenName === 'settings');
+        if (screenName !== 'settings') this._lastNavScreen = screenName;
+
         // Show the floating Save button only on the settings screen
         const saveFab = document.getElementById('settingsSaveFab');
         if (saveFab) {
@@ -85,6 +92,10 @@ class UIManager {
             if (screenName === 'history') {
                 const { loadHistory } = await import('./articleManager.js');
                 loadHistory();
+            }
+            if (screenName === 'feeds') {
+                const { onFeedsScreenShown } = await import('./feedManager.js');
+                onFeedsScreenShown(this);
             }
             return;
         }
@@ -130,6 +141,17 @@ class UIManager {
                 try {
                     const { loadHistory } = await import('./articleManager.js');
                     loadHistory();
+                } catch (e) {
+                    // Ignore if extension context was invalidated (popup closed)
+                }
+            }, 350);
+        }
+
+        if (screenName === 'feeds') {
+            setTimeout(async () => {
+                try {
+                    const { onFeedsScreenShown } = await import('./feedManager.js');
+                    onFeedsScreenShown(this);
                 } catch (e) {
                     // Ignore if extension context was invalidated (popup closed)
                 }

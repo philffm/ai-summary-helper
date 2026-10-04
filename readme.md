@@ -4,7 +4,7 @@
 
 >You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
-Summary Helper allows to summarize articles with a custom prompt - so it can be as tailored to your language, profession or point of view as you define it. The summary gets inserted in the content area itself. This way you can easily forward the article including the generated summary to your Kindle device e.g. using [Reabbles Send-to-Kindle tool](https://send.reabble.com/). 
+Summary Helper also includes a small built-in RSS reader, so you can follow your favorite sites and summarize new posts in one click. It allows you to summarize articles with a custom prompt - so it can be as tailored to your language, profession or point of view as you define it. The summary gets inserted in the content area itself. This way you can easily forward the article including the generated summary to your Kindle device e.g. using [Reabbles Send-to-Kindle tool](https://send.reabble.com/). 
 
 > **Kindle sending limit:** The free tier includes 3 Kindle sends; unlimited Kindle & LocalSend sends require the [Support Pass](https://byphil.eu/#pass). 
 
@@ -122,7 +122,9 @@ ai-summary-helper/
 
 | Module | Responsibility |
 | --- | --- |
-| `uiManager.js` | Screen navigation (main/history/apps/settings), bottom-nav blob, `showScreen()` |
+| `uiManager.js` | Screen navigation (feeds/main/history/settings), bottom-nav blob, `showScreen()` |
+| `feedManager.js` | RSS reader: subscriptions, feed parsing/autodiscovery, OPML import, favorites, one-click summarize |
+| `settingsNav.js` | Settings home, grouped panels and search |
 | `storageManager.js` | Storage abstraction (sync/local), services config, migration, `updateService()` |
 | `extensionApi.js` | Cross-browser `browser`/`chrome` namespace wrapper |
 | `mainScreen.js` | Main screen chat feed, streaming bubbles, onboarding/empty state |
