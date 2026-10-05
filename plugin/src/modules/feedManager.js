@@ -22,7 +22,7 @@ import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feed
 import { T, TN, TU, N_, locale } from './feedI18n.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
-import { openRollup, coverage, recapKeyTs, isDayRecapKey } from './feedRollup.js';
+import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
@@ -985,6 +985,7 @@ function initSearchAndViews() {
 }
 
 // Same behaviour as the History screen: scrolling down hides the top bar, scrolling up (from anywhere) brings it back.
+let spyQueued = false;
 function initScrollHide() {
     const sc = els.screen, bar = els.controlsBar;
     if (!sc || !bar) return;
@@ -994,6 +995,7 @@ function initScrollHide() {
         if (top <= 8 || d < -4) bar.classList.remove('scroll-hidden');
         else if (d > 6) bar.classList.add('scroll-hidden');
         last = top;
+        if (!spyQueued) { spyQueued = true; (typeof requestAnimationFrame === 'function' ? requestAnimationFrame : setTimeout)(() => { spyQueued = false; renderRecapCard(); }); }
     }, { passive: true });
 }
 
@@ -1074,10 +1076,12 @@ function dayStops() {
     return [...set].sort((a, b) => a - b);
 }
 
-function render() {
+function render() { renderList(); renderRecapCard(true); }
+function renderList() {
     if (!els.list) return;
     renderControls();
     els.list.replaceChildren();
+    recapSig = '';
 
     if (!subs.length) { els.list.hidden = true; renderFirstRun(); return; }
     els.list.hidden = false;
@@ -1091,7 +1095,6 @@ function render() {
     if (!all.length) { renderEmptyFiltered(items.length > 0); return; }
     const visible = all.slice(0, shown);
     els.empty.style.display = 'none';
-    if (isDayRange(ui.date) && ui.sort !== 'mood') els.list.appendChild(recapBar());
 
     let lastKey = null;
     let group = [];
@@ -1435,22 +1438,85 @@ function rollCtx(source = ui.source) {
     };
 }
 
-// Day | Week | Month scope switch shown above the list while a date range is active.
-function recapBar() {
-    const from = ui.date.from;
-    const li = el('li', 'feed-recap-bar');
-    li.append(el('span', 'feed-recap-bar-label', T('✨ Recap')));
-    const seg = el('div', 'feed-recap-seg');
-    seg.setAttribute('role', 'group');
-    seg.setAttribute('aria-label', T('Recap scope'));
-    seg.append(btn('feed-btn', T('Day'), () => openRecap(from, dayLabel(from)), T('AI recap of this day')),
-        btn('feed-btn', T('Week'), () => openRollup('week', from, rollCtx()), T('AI recap of this week, built from its day recaps')),
-        btn('feed-btn', T('Month'), () => openRollup('month', from, rollCtx()), T('AI recap of this month, built from its week and day recaps')));
-    li.append(seg);
-    const cv = coverage('week', from, rollCtx());
-    if (cv.of) li.append(el('span', 'feed-muted feed-recap-cov', T('{a} of {b} days have a recap', { a: cv.have, b: cv.of })));
-    return li;
+// ── Recap card: Day | Week | Month, follows the day you are looking at ──────────
+let recapAnchor = null;       // day (start-of-day ts) the card currently describes
+let recapPin = null;          // set by ‹ › / strip taps until the scroll they cause has settled
+let recapPinUntil = 0;
+let recapSig = '';
+
+function currentRecapAnchor() {
+    if (isDayRange(ui.date)) return ui.date.from;
+    if (recapPin != null && Date.now() < recapPinUntil) return recapPin;
+    const hs = els.list ? [...els.list.querySelectorAll('.feed-day[data-day]')] : [];
+    if (!hs.length) return recapAnchor != null ? recapAnchor : startOfDay(Date.now());
+    const bar = els.controlsBar;
+    const edge = bar && !bar.classList.contains('scroll-hidden') ? bar.getBoundingClientRect().bottom : (els.screen ? els.screen.getBoundingClientRect().top : 0);
+    let cur = hs[0];
+    for (const h of hs) { if (h.getBoundingClientRect().top <= edge + 24) cur = h; else break; }
+    return Number(cur.dataset.day);
 }
+
+function goToRecapDay(t) {
+    if (isDayRange(ui.date)) { ui.date = { from: t, to: t }; persistUi(); render(); return; }
+    const h = els.list && els.list.querySelector(`.feed-day[data-day="${t}"]`);
+    if (!h) { ui.date = { from: t, to: t }; persistUi(); render(); return; }   // not rendered (paged out): show that day on its own
+    recapPin = t; recapPinUntil = Date.now() + 700;
+    recapAnchor = t;
+    h.scrollIntoView({ block: 'start', behavior: 'auto' });
+    renderRecapCard(true);
+}
+
+function renderRecapCard(force) {
+    const box = els.recapCard;
+    if (!box) return;
+    if (!subs.length || view !== 'list' || (!isDayRange(ui.date) && !(els.list && els.list.querySelector('.feed-day[data-day]')))) { box.hidden = true; recapSig = ''; return; }
+    const scope = ui.recapScope || 'day';
+    const anchor = currentRecapAnchor();
+    const sig = `${scope}|${anchor}|${ui.source}|${Object.keys(recaps).length}|${items.length}|${isDayRange(ui.date)}`;
+    if (!force && sig === recapSig && !box.hidden) return;
+    recapSig = sig; recapAnchor = anchor;
+    box.hidden = false;
+    box.replaceChildren();
+    const ctx = rollCtx();
+    const ps = scope === 'week' ? weekStart(anchor) : scope === 'month' ? monthStart(anchor) : anchor;
+    const pe = periodEnd(scope, ps);
+    const stops = dayStops();
+    const prev = [...stops].reverse().find(t => t < ps), next = stops.find(t => t >= pe);
+
+    const seg = el('div', 'feed-rc-seg');
+    seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', T('Recap scope'));
+    [['day', T('Day')], ['week', T('Week')], ['month', T('Month')]].forEach(([k, l]) => {
+        const b = btn('feed-rc-segbtn' + (k === scope ? ' active' : ''), l, () => { ui.recapScope = k; persistUi(); renderRecapCard(true); });
+        b.setAttribute('aria-pressed', k === scope ? 'true' : 'false');
+        seg.append(b);
+    });
+    const label = scope === 'day' ? fmtDayShort(anchor)
+        : scope === 'week' ? `${T('Week {n}', { n: isoWeek(ps) })} · ${rangeText(ps, Math.min(addDaysTs(ps, 6), startOfDay(Date.now())))}`
+        : new Date(ps).toLocaleDateString(locale(), { month: 'long', year: 'numeric' });
+    const pb = btn('feed-rc-step', '‹', () => goToRecapDay(prev), T('Older')); pb.disabled = prev == null;
+    const nb = btn('feed-rc-step', '›', () => goToRecapDay(next), T('Newer')); nb.disabled = next == null;
+    const has = scope === 'day' ? !!recaps[`${anchor}|${ui.source}`] : !!recaps[rollKey(scope, ps, ui.source)];
+    const act = btn('button-primary feed-btn feed-rc-act', T('✨ Recap') + (has ? ' ✓' : ''), () => {
+        if (scope === 'day') openRecap(anchor, dayLabel(anchor)); else openRollup(scope, anchor, rollCtx());
+    }, scope === 'day' ? T('AI recap of this day') : scope === 'week' ? T('AI recap of this week, built from its day recaps') : T('AI recap of this month, built from its week and day recaps'));
+    const top = el('div', 'feed-rc-row'); top.append(seg, act);
+    const nav = el('div', 'feed-rc-row feed-rc-nav'); nav.append(pb, el('span', 'feed-rc-label', label), nb);
+    box.append(top, nav);
+    if (scope === 'week') {
+        const strip = el('div', 'feed-rc-strip');
+        weekCells(anchor, ctx).forEach(c => {
+            const b = btn('feed-rc-cell ' + c.status + (c.day === anchor ? ' cur' : ''), new Date(c.day).toLocaleDateString(locale(), { weekday: 'narrow' }), () => goToRecapDay(c.day), fmtDayShort(c.day));
+            b.disabled = c.status === 'off' || c.status === 'none';
+            strip.append(b);
+        });
+        box.append(strip);
+    }
+    if (scope !== 'day') {
+        const cv = coverage(scope, anchor, ctx);
+        if (cv.of) box.append(el('p', 'feed-muted feed-rc-cov', T('{a} of {b} days have a recap', { a: cv.have, b: cv.of })));
+    }
+}
+function addDaysTs(ts, n) { const d = new Date(ts); d.setDate(d.getDate() + n); d.setHours(0, 0, 0, 0); return d.getTime(); }
 
 async function openRecap(dayStart, label, source = ui.source) {
     const list = recapScope(dayStart, source);
@@ -1758,6 +1824,7 @@ export function initFeedManager(uiObj) {
         refreshBtn: document.getElementById('feedRefreshBtn'),
         addBtn: document.getElementById('feedAddBtn'),
         chipRow: document.getElementById('feedChipRow'),
+        recapCard: document.getElementById('feedRecapCard'),
         filterChip: document.getElementById('feedFilterChip'),
         opmlInput: document.getElementById('feedOpmlInput'),
         list: document.getElementById('feedItemList'),

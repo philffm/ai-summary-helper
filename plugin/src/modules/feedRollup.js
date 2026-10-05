@@ -22,6 +22,8 @@ export function isoWeek(ts) {
     const w1 = new Date(d.getFullYear(), 0, 4);
     return 1 + Math.round(((d - w1) / DAY_MS - 3 + ((w1.getDay() + 6) % 7)) / 7);
 }
+/** Exclusive end of the period that starts at `start`. */
+export const periodEnd = (scope, start) => scope === 'week' ? addDays(start, 7) : scope === 'month' ? new Date(new Date(start).getFullYear(), new Date(start).getMonth() + 1, 1).getTime() : addDays(start, 1);
 export const rollKey = (scope, start, source) => scope === 'day' ? `${start}|${source}` : `${scope === 'week' ? 'w' : 'm'}:${start}|${source}`;
 /** Timestamp a recap key belongs to (null for anything unknown) — used for retention and the calendar marker. */
 export function recapKeyTs(k) { const m = String(k).match(/^(?:[wm]:)?(\d+)\|/); return m ? Number(m[1]) : null; }
@@ -29,7 +31,7 @@ export const isDayRecapKey = (k) => /^\d+\|/.test(String(k));
 
 const dayText = (ts) => new Date(ts).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
 const dayTextLocal = (ts) => new Date(ts).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short' });
-const rangeText = (a, b) => `${new Date(a).toLocaleDateString(locale(), { day: 'numeric', month: 'short' })} – ${new Date(b).toLocaleDateString(locale(), { day: 'numeric', month: 'short' })}`;
+export const rangeText = (a, b) => `${new Date(a).toLocaleDateString(locale(), { day: 'numeric', month: 'short' })} – ${new Date(b).toLocaleDateString(locale(), { day: 'numeric', month: 'short' })}`;
 
 /**
  * Everything the plan needs: which days/weeks are reused, empty or missing, and the recaps the AI will read.
@@ -216,4 +218,12 @@ export function openRollup(scope, anchor, ctx) {
     if (cached && cached.covered) drawResult(cached, P);
     else if (!P.rows.length) body.append(el('p', 'feed-muted', T('No items to recap here.')));
     else drawPlan(P, null);
+}
+
+/** Seven cells (Mon..Sun) of a week for the coverage strip: reused | missing | none | off (future). */
+export function weekCells(anchor, ctx) {
+    const start = weekStart(anchor), today = ctx.startOfDay(Date.now());
+    const P = buildParts('week', start, ctx, today);
+    const byDay = new Map(P.rows.filter(r => r.kind === 'day').map(r => [r.day, r.status]));
+    return Array.from({ length: 7 }, (_, k) => { const d = addDays(start, k); return { day: d, status: d > today ? 'off' : (byDay.get(d) || 'none') }; });
 }

@@ -2785,8 +2785,8 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-cal-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 12px; color: var(--text-secondary); }
 .feed-cal-clear { width: auto; padding: 4px 6px; border: none; background: transparent; box-shadow: none; font-size: 12px; font-weight: 700; color: var(--accent); cursor: pointer; }
 .feed-day-open { background: transparent; border: none; box-shadow: none; width: auto; padding: 2px 0; text-align: left; font: inherit; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; }
-.feed-day-step { width: 26px; padding: 2px; border: none; background: transparent; box-shadow: none; font-size: 16px; color: var(--accent); cursor: pointer; }
-.feed-day-step:disabled { opacity: .3; cursor: default; }
+.feed-day-step, .feed-rc-step { width: 26px; padding: 2px; border: none; background: transparent; box-shadow: none; font-size: 16px; color: var(--accent); cursor: pointer; }
+.feed-day-step:disabled, .feed-rc-step:disabled { opacity: .3; cursor: default; }
 
 .feed-cal-recap { position: absolute; top: 1px; right: 3px; font-size: 8px; line-height: 1; }
 .feed-cal-cell.recap .feed-cal-num { text-decoration: none; }
@@ -2826,11 +2826,23 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-ins-pod { grid-template-columns: repeat(3, 1fr); }
 
 /* ── Week / month recaps ─────────────────────────────────────────────── */
-.feed-recap-bar { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 6px 0 8px; font-size: 12px; }
-.feed-recap-bar-label { font-weight: 600; }
-.feed-recap-seg { display: inline-flex; gap: 4px; }
-.feed-recap-seg .feed-btn { padding: 3px 10px; font-size: 12px; }
-.feed-recap-cov { margin-left: auto; font-size: 11px; }
+.feed-recapcard { margin-top: 8px; padding: 8px; border: 1px solid var(--glass-border); border-radius: var(--radius-md); background: var(--glass-card); }
+.feed-recapcard[hidden] { display: none; }
+.feed-rc-row { display: flex; align-items: center; gap: 8px; }
+.feed-rc-row + .feed-rc-row { margin-top: 6px; }
+.feed-rc-seg { display: inline-flex; gap: 2px; padding: 2px; border-radius: 10px; background: color-mix(in srgb, var(--text-secondary) 14%, transparent); }
+.feed-rc-segbtn { border: none; background: transparent; box-shadow: none; width: auto; padding: 3px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
+.feed-rc-segbtn.active { background: var(--accent); color: #fff; }
+.feed-rc-act { margin-left: auto; width: auto; padding: 4px 12px; font-size: 12px; }
+.feed-rc-nav { justify-content: space-between; }
+.feed-rc-label { flex: 1; text-align: center; font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+.feed-rc-strip { display: flex; gap: 4px; margin-top: 6px; }
+.feed-rc-cell { flex: 1; width: auto; padding: 4px 0; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid var(--glass-border); background: transparent; box-shadow: none; color: var(--text-secondary); }
+.feed-rc-cell.reused { background: var(--accent); border-color: var(--accent); color: #fff; }
+.feed-rc-cell.missing { background: rgba(245,158,11,.18); border-color: #f59e0b; color: #b45309; }
+.feed-rc-cell.off, .feed-rc-cell.none { opacity: .45; cursor: default; }
+.feed-rc-cell.cur { outline: 2px solid var(--accent); outline-offset: 1px; }
+.feed-rc-cov { margin: 6px 0 0; font-size: 11px; }
 .feed-roll-rows { border: 1px solid var(--border-color, rgba(127,127,127,.3)); border-radius: 12px; padding: 4px 10px; margin: 8px 0; }
 .feed-roll-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 12px; }
 .feed-roll-day { font-weight: 600; flex: 0 0 auto; min-width: 92px; }
