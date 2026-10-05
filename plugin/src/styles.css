@@ -2931,3 +2931,13 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-pick-head .feed-pick-label { margin: 0; }
 .feed-pick-edit { width: auto; flex: none; background: transparent; border: none; box-shadow: none; padding: 2px 6px; min-height: 0; font-size: 12px; font-weight: 700; color: var(--accent); cursor: pointer; border-radius: 6px; }
 .feed-pick-edit:hover { background: rgba(37, 99, 235, 0.10); }
+
+/* Calendar heat: log-scaled levels so one busy day doesn't wash out the rest */
+.feed-cal-cell.has[data-lvl="1"] { background: rgba(37, 99, 235, 0.12); }
+.feed-cal-cell.has[data-lvl="2"] { background: rgba(37, 99, 235, 0.24); }
+.feed-cal-cell.has[data-lvl="3"] { background: rgba(37, 99, 235, 0.38); }
+.feed-cal-cell.has[data-lvl="4"] { background: rgba(37, 99, 235, 0.54); }
+.feed-cal-cell.has[data-lvl="5"] { background: rgba(37, 99, 235, 0.72); }
+.feed-cal-cell.has[data-lvl="4"] .feed-cal-num, .feed-cal-cell.has[data-lvl="5"] .feed-cal-num { color: #fff; }
+.feed-cal-cell.has[data-lvl="5"] .feed-cal-count, .feed-cal-cell.has[data-lvl="4"] .feed-cal-count { color: rgba(255,255,255,.85); }
+.feed-cal-cell.sel, .feed-cal-cell.has.sel[data-lvl] { background: var(--accent); color: #fff; }

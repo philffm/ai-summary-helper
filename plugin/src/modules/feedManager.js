@@ -1409,7 +1409,7 @@ function openFilterSheet(opts = {}) {
             const future = ts > today; const outside = ts < addDays(today, -settings.keepDays);
             const cell = el('button', 'feed-cal-cell' + (inSel(ts) ? ' sel' : '') + (ts === today ? ' today' : '') + (future || outside ? ' off' : '') + (c ? ' has' : '') + (recapDays.has(ts) ? ' recap' : ''));
             cell.type = 'button'; cell.dataset.day = String(ts); cell.disabled = future || outside;
-            if (c) cell.style.setProperty('--heat', (c.n / max).toFixed(2));
+            if (c) { cell.dataset.lvl = String(Math.min(5, Math.max(1, Math.ceil(5 * Math.log(1 + c.n) / Math.log(1 + max))))); cell.style.setProperty('--heat', (Math.log(1 + c.n) / Math.log(1 + max)).toFixed(2)); }
             const label = (d.getDate() === 1 || ts === pageStart) ? fmtDayNoWeek(ts) : String(d.getDate());
             cell.append(el('span', 'feed-cal-num' + (label.length > 2 ? ' small' : ''), label));
             if (c) cell.append(el('span', 'feed-cal-count', String(c.n)));
