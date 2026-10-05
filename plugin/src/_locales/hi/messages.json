@@ -973,5 +973,68 @@
   },
   "f_podcasts_7c90": {
     "message": "पॉडकास्ट"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI-रेटेड"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "सबसे सटीक · {n} आइटम"
+  },
+  "f_day_229d": {
+    "message": "दिन"
+  },
+  "f_episodes_fc93": {
+    "message": "एपिसोड"
+  },
+  "f_graph_77e7": {
+    "message": "ग्राफ़"
+  },
+  "f_insights_f1e8": {
+    "message": "इनसाइट्स"
+  },
+  "f_items_382f": {
+    "message": "आइटम"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "इस सोर्स में अभी कोई आइटम नहीं।"
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "अभी पर्याप्त टेक्स्ट डेटा नहीं।"
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "अभी कुछ रेट नहीं हुआ — “तारीख़ और मूड” शीट में “AI से स्कोर करें” चुनें।"
+  },
+  "f_search_feeds_2a1e": {
+    "message": "फ़ीड खोजें…"
+  },
+  "f_search_368e": {
+    "message": "“{term}” खोजें"
+  },
+  "f_show_only_9eef": {
+    "message": "सिर्फ़ {name} दिखाएँ"
+  },
+  "f_to_listen_78b7": {
+    "message": "सुनने के लिए"
+  },
+  "f_unplayed_7435": {
+    "message": "अनसुने"
+  },
+  "f_week_e27d": {
+    "message": "सप्ताह"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ टॉप शब्द"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 पॉडकास्ट"
+  },
+  "f_volume_74ff": {
+    "message": "📅 वॉल्यूम"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 टॉप सोर्स"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 मूड और श्रेणियाँ"
   }
 }

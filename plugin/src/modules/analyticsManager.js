@@ -88,7 +88,7 @@ function wordFrequency(articles, topN = 60) {
         .slice(0, topN);
 }
 
-function articlesByDay(articles) {
+export function articlesByDay(articles) {
     const counts = {};
     articles.forEach(a => {
         const day = new Date(a.timestamp).toLocaleDateString('en-CA');
@@ -114,7 +114,7 @@ function articlesByDay(articles) {
  * @param {Array} articles
  * @returns {Array<{ week: number, label: string, count: number }>}
  */
-function articlesByWeek(articles) {
+export function articlesByWeek(articles) {
     const counts = {};
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -160,7 +160,7 @@ function defaultActivityView(articles) {
     return ageDays >= 21 ? 'week' : 'day';
 }
 
-function renderBarChart(days) {
+export function renderBarChart(days) {
     const max = Math.max(...days.map(d => d.count), 1);
     const bars = days.map(d => {
         const pct = Math.round((d.count / max) * 100);
@@ -173,7 +173,7 @@ function renderBarChart(days) {
     return `<div class="ar-chart">${bars}</div>`;
 }
 
-function renderWeekChart(weeks) {
+export function renderWeekChart(weeks) {
     const max = Math.max(...weeks.map(d => d.count), 1);
     const bars = weeks.map(d => {
         const pct = Math.round((d.count / max) * 100);

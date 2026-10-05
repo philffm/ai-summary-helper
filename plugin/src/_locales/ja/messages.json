@@ -979,5 +979,68 @@
   },
   "f_podcasts_7c90": {
     "message": "ポッドキャスト"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI評価済み"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "関連度順 · {n}件"
+  },
+  "f_day_229d": {
+    "message": "日"
+  },
+  "f_episodes_fc93": {
+    "message": "エピソード"
+  },
+  "f_graph_77e7": {
+    "message": "グラフ"
+  },
+  "f_insights_f1e8": {
+    "message": "インサイト"
+  },
+  "f_items_382f": {
+    "message": "件数"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "このソースにはまだ項目がありません。"
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "テキストデータがまだ足りません。"
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "まだ評価がありません。「日付と気分」シートの「AIでスコア」を使ってください。"
+  },
+  "f_search_feeds_2a1e": {
+    "message": "フィードを検索…"
+  },
+  "f_search_368e": {
+    "message": "「{term}」を検索"
+  },
+  "f_show_only_9eef": {
+    "message": "{name}のみ表示"
+  },
+  "f_to_listen_78b7": {
+    "message": "あとで聴く"
+  },
+  "f_unplayed_7435": {
+    "message": "未再生"
+  },
+  "f_week_e27d": {
+    "message": "週"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ 頻出語"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 ポッドキャスト"
+  },
+  "f_volume_74ff": {
+    "message": "📅 件数推移"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 人気ソース"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 気分とカテゴリ"
   }
 }

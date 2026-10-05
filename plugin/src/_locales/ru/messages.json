@@ -889,5 +889,68 @@
   },
   "f_podcasts_7c90": {
     "message": "Подкасты"
+  },
+  "f_ai_rated_6770": {
+    "message": "Оценено ИИ"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "Лучшие · {n}"
+  },
+  "f_day_229d": {
+    "message": "День"
+  },
+  "f_episodes_fc93": {
+    "message": "Выпуски"
+  },
+  "f_graph_77e7": {
+    "message": "График"
+  },
+  "f_insights_f1e8": {
+    "message": "Аналитика"
+  },
+  "f_items_382f": {
+    "message": "Записи"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "В источнике пока пусто."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Пока мало текста."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Нет оценок — нажмите «Оценить ИИ» в окне «Дата и настроение»."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Поиск лент…"
+  },
+  "f_search_368e": {
+    "message": "Искать «{term}»"
+  },
+  "f_show_only_9eef": {
+    "message": "Только {name}"
+  },
+  "f_to_listen_78b7": {
+    "message": "Послушать"
+  },
+  "f_unplayed_7435": {
+    "message": "Не прослушано"
+  },
+  "f_week_e27d": {
+    "message": "Неделя"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Топ слов"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Подкасты"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Объём"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 Топ источников"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Настроение и темы"
   }
 }

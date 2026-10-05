@@ -979,5 +979,68 @@
   },
   "f_podcasts_7c90": {
     "message": "Podcasts"
+  },
+  "f_ai_rated_6770": {
+    "message": "KI-bewertet"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "Beste Treffer · {n} Einträge"
+  },
+  "f_day_229d": {
+    "message": "Tag"
+  },
+  "f_episodes_fc93": {
+    "message": "Folgen"
+  },
+  "f_graph_77e7": {
+    "message": "Grafik"
+  },
+  "f_insights_f1e8": {
+    "message": "Einblicke"
+  },
+  "f_items_382f": {
+    "message": "Einträge"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "Noch keine Einträge in dieser Quelle."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Noch nicht genug Textdaten."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Noch nichts bewertet — nutze „Mit KI bewerten“ im Blatt „Datum & Stimmung“."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Feeds durchsuchen…"
+  },
+  "f_search_368e": {
+    "message": "„{term}“ suchen"
+  },
+  "f_show_only_9eef": {
+    "message": "Nur {name} zeigen"
+  },
+  "f_to_listen_78b7": {
+    "message": "Zum Anhören"
+  },
+  "f_unplayed_7435": {
+    "message": "Ungespielt"
+  },
+  "f_week_e27d": {
+    "message": "Woche"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Top-Begriffe"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Podcasts"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Volumen"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 Top-Quellen"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Stimmung & Kategorien"
   }
 }

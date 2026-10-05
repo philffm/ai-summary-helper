@@ -2792,3 +2792,35 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-cal-cell.recap .feed-cal-num { text-decoration: none; }
 
 .feed-actions .feed-play-btn.button-primary.feed-btn { margin-left: 0; }
+
+/* ── Feeds: sticky top bar (hides on scroll down, returns on scroll up — like History) ── */
+#feedControls {
+  position: sticky; top: 0; z-index: 25; padding: 8px; margin-bottom: 8px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--glass-base) 88%, transparent);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.22s ease, opacity 0.22s ease; will-change: transform, opacity;
+}
+#feedControls.scroll-hidden { transform: translateY(calc(-100% - 8px)); opacity: 0; pointer-events: none; }
+.feed-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+.feed-search { flex: 1; min-width: 0; height: 36px; margin: 0; padding: 0 12px; font-size: 13px; }
+.feed-square-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.feed-graph { width: 100%; height: 68vh; min-height: 380px; border-radius: var(--radius-lg); background: var(--glass-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); overflow: hidden; position: relative; }
+.feed-graph[hidden], .feed-insights[hidden] { display: none; }
+.feed-ins-empty { padding: 20px; text-align: center; }
+.feed-ins-scope { margin: 0 0 4px; font-weight: 700; }
+.feed-insights .ar-report { padding-top: 4px; }
+.feed-mood-bar { display: flex; height: 22px; border-radius: 8px; overflow: hidden; margin: 6px 0; }
+.feed-mood-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; min-width: 22px; }
+.feed-mood-seg.neg { background: hsl(8, 70%, 48%); }
+.feed-mood-seg.neu { background: var(--outline); color: var(--text-secondary); }
+.feed-mood-seg.pos { background: hsl(135, 55%, 40%); }
+.feed-mood-trend { display: flex; gap: 3px; height: 56px; margin: 8px 0; }
+.feed-mood-col { flex: 1; position: relative; display: flex; border-bottom: 1px solid var(--outline); }
+.feed-mood-col.up { align-items: flex-end; }
+.feed-mood-col.down { align-items: flex-start; }
+.feed-mood-pt { width: 100%; max-height: 100%; border-radius: 3px; }
+.feed-mood-pt.pos { background: hsl(135, 55%, 40%); }
+.feed-mood-pt.neg { background: hsl(8, 70%, 48%); }
+.feed-ins-pod { grid-template-columns: repeat(3, 1fr); }

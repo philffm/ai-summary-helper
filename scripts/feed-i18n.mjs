@@ -14,7 +14,7 @@ const SRC = path.join(ROOT, 'plugin/src');
 const LOC = path.join(SRC, '_locales');
 const { keyOf } = await import(pathToFileURL(path.join(SRC, 'modules/feedI18n.js')).href);
 
-const FILES = ['feedManager.js', 'feedPlayer.js', 'feedAi.js'].map(f => path.join(SRC, 'modules', f));
+const FILES = ['feedManager.js', 'feedPlayer.js', 'feedAi.js', 'feedInsights.js'].map(f => path.join(SRC, 'modules', f));
 const unq = (q, body) => { try { return new Function('return ' + q + body + q)(); } catch (e) { return null; } };
 
 export function extract() {
@@ -30,11 +30,11 @@ export function extract() {
     }
     // popup.html: data-i18n / data-i18n-title / data-i18n-aria with an f_ key; English comes from the element itself
     const html = fs.readFileSync(path.join(SRC, 'popup.html'), 'utf8');
-    for (const m of html.matchAll(/<(\w+)([^>]*\sdata-i18n(?:-title|-aria)?="f_[^"]*"[^>]*)>([^<]*)/g)) {
+    for (const m of html.matchAll(/<(\w+)([^>]*\sdata-i18n(?:-title|-aria|-placeholder)?="f_[^"]*"[^>]*)>([^<]*)/g)) {
         const attrs = m[2], text = m[3].trim();
         const pick = (a) => (attrs.match(new RegExp('\\s' + a + '="([^"]*)"')) || [])[1];
-        const key = (attrs.match(/data-i18n(?:-title|-aria)?="(f_[^"]*)"/) || [])[1];
-        const en = /\sdata-i18n="f_/.test(attrs) ? text : (/data-i18n-title/.test(attrs) ? pick('title') : pick('aria-label'));
+        const key = (attrs.match(/data-i18n(?:-title|-aria|-placeholder)?="(f_[^"]*)"/) || [])[1];
+        const en = /\sdata-i18n="f_/.test(attrs) ? text : (/data-i18n-title/.test(attrs) ? pick('title') : /data-i18n-placeholder/.test(attrs) ? pick('placeholder') : pick('aria-label'));
         if (en && keyOf(en) === key) out.add(en);
         else console.error('WARN popup.html: key/text mismatch for', key, JSON.stringify(en));
     }

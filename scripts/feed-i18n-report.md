@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 215. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 236. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 215 | 0 | 0 | 5 |
-| de | 215 | 0 | 0 | 25 |
-| es | 215 | 0 | 0 | 18 |
-| fr | 215 | 0 | 0 | 12 |
-| hi | 215 | 0 | 0 | 1 |
-| it | 215 | 0 | 0 | 14 |
-| ja | 215 | 0 | 0 | 1 |
-| ko | 215 | 0 | 0 | 0 |
-| pt_PT | 215 | 0 | 0 | 17 |
-| ru | 215 | 0 | 0 | 2 |
-| zh_CN | 215 | 0 | 0 | 0 |
-| zh_HK | 215 | 0 | 0 | 0 |
-| zh_TW | 215 | 0 | 0 | 0 |
+| ar | 236 | 0 | 0 | 5 |
+| de | 236 | 0 | 0 | 25 |
+| es | 236 | 0 | 0 | 20 |
+| fr | 236 | 0 | 0 | 15 |
+| hi | 236 | 0 | 0 | 1 |
+| it | 236 | 0 | 0 | 14 |
+| ja | 236 | 0 | 0 | 2 |
+| ko | 236 | 0 | 0 | 1 |
+| pt_PT | 236 | 0 | 0 | 20 |
+| ru | 236 | 0 | 0 | 2 |
+| zh_CN | 236 | 0 | 0 | 0 |
+| zh_HK | 236 | 0 | 0 | 0 |
+| zh_TW | 236 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -71,10 +71,12 @@ Strings: 215. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Any time | Cualquier fecha | 15 vs 8 | 1.88× |
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
 | Newest first | Más recientes primero | 21 vs 12 | 1.75× |
+| Unplayed | Sin reproducir | 14 vs 8 | 1.75× |
 | Feed name | Nombre del feed | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} marcados como leídos | 23 vs 14 | 1.64× |
 | Marked {n} unread | {n} marcados como no leídos | 26 vs 16 | 1.63× |
 | Recap failed | Error en el resumen | 19 vs 12 | 1.58× |
+| Best match · {n} items | Mejor coincidencia · {n} elementos | 33 vs 21 | 1.57× |
 | Podcast player | Reproductor de podcast | 22 vs 14 | 1.57× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
@@ -91,8 +93,11 @@ Strings: 215. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
+| ☁️ Top terms | ☁️ Termes fréquents | 19 vs 12 | 1.58× |
 | Copy failed | Échec de la copie | 17 vs 11 | 1.55× |
+| Search feeds… | Rechercher des flux… | 20 vs 13 | 1.54× |
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |
+| Best match · {n} items | Meilleur résultat · {n} éléments | 31 vs 21 | 1.48× |
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
 
@@ -123,6 +128,12 @@ Strings: 215. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
+| 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
+
+### ko
+| English | Translation | width | ratio |
+|---|---|---|---|
+| Nothing rated yet — use “Score with AI” in the Date & mood sheet. | 아직 평가한 항목이 없습니다. ‘날짜 및 기분’ 시트에서 ‘AI로 점수 매기기’를 사용하세요. | 85 vs 65 | 1.31× |
 
 ### pt_PT
 | English | Translation | width | ratio |
@@ -132,16 +143,19 @@ Strings: 215. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Add tag | Adicionar etiqueta | 18 vs 7 | 2.57× |
 | Play | Reproduzir | 10 vs 4 | 2.5× |
 | Older | Mais antigos | 12 vs 5 | 2.4× |
+| AI-rated | Avaliados por IA | 16 vs 8 | 2× |
 | ▶ Play | ▶ Reproduzir | 12 vs 6 | 2× |
 | ＋ Add | ＋ Adicionar | 12 vs 6 | 2× |
 | Newest first | Mais recentes primeiro | 22 vs 12 | 1.83× |
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
+| ☁️ Top terms | ☁️ Termos principais | 20 vs 12 | 1.67× |
 | AI-rated: heavy news | Avaliado por IA: notícias pesadas | 33 vs 20 | 1.65× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
 | Unsubscribe | Anular subscrição | 17 vs 11 | 1.55× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
+| Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
 | Could not add feed | Não foi possível adicionar | 26 vs 18 | 1.44× |
 

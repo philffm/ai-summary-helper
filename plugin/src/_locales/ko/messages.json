@@ -961,5 +961,68 @@
   },
   "f_podcasts_7c90": {
     "message": "팟캐스트"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI 평가됨"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "관련도순 · {n}개"
+  },
+  "f_day_229d": {
+    "message": "일"
+  },
+  "f_episodes_fc93": {
+    "message": "에피소드"
+  },
+  "f_graph_77e7": {
+    "message": "그래프"
+  },
+  "f_insights_f1e8": {
+    "message": "인사이트"
+  },
+  "f_items_382f": {
+    "message": "항목"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "이 소스에 아직 항목이 없습니다."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "텍스트 데이터가 아직 부족합니다."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "아직 평가한 항목이 없습니다. ‘날짜 및 기분’ 시트에서 ‘AI로 점수 매기기’를 사용하세요."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "피드 검색…"
+  },
+  "f_search_368e": {
+    "message": "“{term}” 검색"
+  },
+  "f_show_only_9eef": {
+    "message": "{name}만 보기"
+  },
+  "f_to_listen_78b7": {
+    "message": "들을 목록"
+  },
+  "f_unplayed_7435": {
+    "message": "안 들음"
+  },
+  "f_week_e27d": {
+    "message": "주"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ 인기 키워드"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 팟캐스트"
+  },
+  "f_volume_74ff": {
+    "message": "📅 수량"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 인기 소스"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 기분 및 카테고리"
   }
 }

@@ -20,6 +20,8 @@ import { normalizeUrl } from './textUtils.js';
 import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
 import { T, TN, TU, N_, locale } from './feedI18n.js';
+import { buildIndex, search as indexSearch } from './localSearch.js';
+import { renderInsights } from './feedInsights.js';
 import { generateRecap, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
@@ -58,6 +60,9 @@ let shown = PAGE_SIZE;
 // Items read by opening/tapping stay in the Unread view (dimmed) until the view changes,
 // so the list doesn't jump under your finger.
 const stickyRead = new Set();
+let searchQuery = '';          // free-text search over the items (TF-IDF, same engine as History)
+let view = 'list';             // 'list' | 'graph' | 'insights'
+let searchCache = null;        // { ref, len, rated, idx, byStamp, stampOf }
 // normalized URL -> { fav: boolean, summarized: boolean } built from the History index
 let historyByUrl = new Map();
 
@@ -721,12 +726,41 @@ function passes(i, sm, skipDate = false) {
     return true;
 }
 
+// Items as "articles" so the History search index and graph can be reused (unique numeric timestamp per item).
+function toArticle(item, stamp, sm) {
+    const s = sm.get(item.feedId);
+    const tags = [];
+    if (item.cat) tags.push(item.cat);
+    if (s) tags.push(subTitle(s), ...(s.tags || []));
+    if (item.audio) tags.push('🎧');
+    return { timestamp: stamp, title: item.title, summary: item.snippet || '', description: '', tags, url: item.link, _item: item };
+}
+function feedIndex() {
+    const rated = items.reduce((n, i) => n + (i.cat ? 1 : 0), 0);
+    if (searchCache && searchCache.ref === items && searchCache.len === items.length && searchCache.rated === rated) return searchCache;
+    const sm = subMap(); const used = new Set(); const stampOf = new Map(); const arts = [];
+    for (const i of items) {
+        let st = Math.floor(i.published) || 0; while (used.has(st)) st++;
+        used.add(st); stampOf.set(i.id, st); arts.push(toArticle(i, st, sm));
+    }
+    searchCache = { ref: items, len: items.length, rated, idx: buildIndex(arts), arts, stampOf };
+    return searchCache;
+}
+function applySearch(list) {
+    const q = searchQuery.trim();
+    if (!q || !list.length) return list;
+    const c = feedIndex();
+    const byId = new Map(c.arts.map(a => [a._item.id, a]));
+    const arts = list.map(i => byId.get(i.id)).filter(Boolean);
+    return indexSearch(c.idx, arts, q, { limit: 1000 }).map(a => a._item);
+}
+
 function visibleItems() {
     const sm = subMap();
     const list = items.filter(i => passes(i, sm));
     if (ui.sort === 'mood') list.sort((a, b) => (itemMood(b) ? b.sent : -2) - (itemMood(a) ? a.sent : -2) || b.published - a.published);
     else list.sort((a, b) => b.published - a.published);
-    return list;
+    return searchQuery.trim() ? applySearch(list) : list;
 }
 
 function unreadCount(pred) { return items.filter(i => !i.read && pred(i)).length; }
@@ -869,6 +903,97 @@ function renderEmptyFiltered(hasAny) {
     }));
 }
 
+// ── Search, graph and insights ──────────────────────────────────────────────
+const GRAPH_MAX = 150;
+let graphSig = '', graphToken = 0;
+
+function setSearch(term, nextView = 'list') {
+    searchQuery = term || '';
+    if (els.search) els.search.value = searchQuery;
+    view = nextView; shown = PAGE_SIZE; render();
+}
+function setView(v) { view = view === v ? 'list' : v; render(); }
+function syncViewButtons() {
+    [[els.graphBtn, 'graph'], [els.insightsBtn, 'insights']].forEach(([b, v]) => {
+        if (!b) return;
+        b.classList.toggle('active', view === v);
+        b.setAttribute('aria-pressed', String(view === v));
+    });
+}
+
+function renderAltView() {
+    els.list.hidden = true; els.empty.style.display = 'none';
+    if (els.graph) els.graph.hidden = view !== 'graph';
+    if (els.insights) els.insights.hidden = view !== 'insights';
+    if (view === 'graph') renderGraphView(); else renderInsightsView();
+}
+
+async function renderGraphView() {
+    const box = els.graph; if (!box) return;
+    const all = visibleItems();
+    const sig = [items.length, all.length, all[0] && all[0].id, ui.source, ui.status, JSON.stringify(ui.date), ui.mood, searchQuery].join('|');
+    if (sig === graphSig && box.childElementCount) return;
+    graphSig = sig;
+    if (!all.length) { box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Nothing matches these filters.'))); return; }
+    const c = feedIndex(); const byId = new Map(c.arts.map(a => [a._item.id, a]));
+    const arts = all.slice(0, GRAPH_MAX).map(i => byId.get(i.id)).filter(Boolean);
+    const token = ++graphToken;
+    box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Loading…')));
+    try {
+        const mod = await import('./archiveGraph.js');
+        if (token !== graphToken || view !== 'graph') { graphSig = ''; return; }
+        mod.initArchiveGraph(box, arts, undefined, c.idx);
+    } catch (e) { graphSig = ''; box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Failed'))); }
+}
+
+function renderInsightsView() {
+    const box = els.insights; if (!box) return;
+    const sm = subMap();
+    renderInsights(box, {
+        items: items.filter(i => inSource(i, sm)),
+        scopeLabel: sourceLabel(),
+        subTitle: (id) => subTitle(sm.get(id)),
+        isSummarized: (i) => histOf(i).summarized,
+        onSource: (id) => { ui.source = 'sub:' + id; persistUi(); render(); },
+        onSearch: (term) => setSearch(term, 'list')
+    });
+}
+
+function initSearchAndViews() {
+    if (els.search) {
+        let t = null;
+        els.search.addEventListener('input', () => {
+            clearTimeout(t);
+            t = setTimeout(() => { searchQuery = els.search.value; shown = PAGE_SIZE; if (view === 'insights') view = 'list'; render(); }, 150);
+        });
+        els.search.addEventListener('keydown', (e) => { if (e.key === 'Escape') { els.search.value = ''; searchQuery = ''; render(); } });
+    }
+    if (els.graphBtn) els.graphBtn.addEventListener('click', () => setView('graph'));
+    if (els.insightsBtn) els.insightsBtn.addEventListener('click', () => setView('insights'));
+    if (els.graph) {
+        // Tag nodes → search for that tag; article nodes → open the item (the preview card's button says "Open in History").
+        els.graph.addEventListener('filter-by-tag', (e) => { if (e.detail && e.detail.tag) setSearch(e.detail.tag, 'list'); });
+        els.graph.addEventListener('open-article', (e) => { const it = e.detail && e.detail._item; if (it) openItem(it, false); });
+        if (typeof MutationObserver !== 'undefined') new MutationObserver(() => {
+            const b = els.graph.querySelector('.graph-preview-open');
+            if (b && !b.dataset.feed) { b.dataset.feed = '1'; b.textContent = T('Open ↗'); }
+        }).observe(els.graph, { childList: true, subtree: true });
+    }
+}
+
+// Same behaviour as the History screen: scrolling down hides the top bar, scrolling up (from anywhere) brings it back.
+function initScrollHide() {
+    const sc = els.screen, bar = els.controlsBar;
+    if (!sc || !bar) return;
+    let last = 0;
+    sc.addEventListener('scroll', () => {
+        const top = Math.max(0, sc.scrollTop), d = top - last;
+        if (top <= 8 || d < -4) bar.classList.remove('scroll-hidden');
+        else if (d > 6) bar.classList.add('scroll-hidden');
+        last = top;
+    }, { passive: true });
+}
+
 function renderCard(item, sm) {
     const hist = histOf(item);
     const mood = itemMood(item);
@@ -953,9 +1078,13 @@ function render() {
 
     if (!subs.length) { els.list.hidden = true; renderFirstRun(); return; }
     els.list.hidden = false;
+    if (els.graph) els.graph.hidden = true;
+    if (els.insights) els.insights.hidden = true;
+    syncViewButtons();
 
     const sm = subMap();
     const all = visibleItems();
+    if (view !== 'list') { renderAltView(); return; }
     if (!all.length) { renderEmptyFiltered(items.length > 0); return; }
     const visible = all.slice(0, shown);
     els.empty.style.display = 'none';
@@ -995,9 +1124,9 @@ function render() {
         group.forEach(i => els.list.appendChild(renderCard(i, sm)));
         group = [];
     };
-    if (ui.sort === 'mood') {
+    if (ui.sort === 'mood' || searchQuery.trim()) {
         const header = el('li', 'feed-day');
-        header.append(el('span', 'feed-day-label', T('Most positive first · {n} items', { n: all.length })));
+        header.append(el('span', 'feed-day-label', searchQuery.trim() ? T('Best match · {n} items', { n: all.length }) : T('Most positive first · {n} items', { n: all.length })));
         els.list.appendChild(header);
         visible.forEach(i => els.list.appendChild(renderCard(i, sm)));
     } else {
@@ -1527,6 +1656,8 @@ function renderFeedSettings() {
 export async function onFeedsScreenShown(uiObj) {
     uiRef = uiObj;
     closeSheet(); hideUndo(); stickyRead.clear(); shown = PAGE_SIZE;
+    searchQuery = ''; view = 'list'; if (els.search) els.search.value = '';
+    if (els.controlsBar) els.controlsBar.classList.remove('scroll-hidden');
     await load();
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
     await loadHistoryMap();
@@ -1549,12 +1680,21 @@ export function initFeedManager(uiObj) {
         filterChip: document.getElementById('feedFilterChip'),
         opmlInput: document.getElementById('feedOpmlInput'),
         list: document.getElementById('feedItemList'),
-        empty: document.getElementById('feedEmpty')
+        empty: document.getElementById('feedEmpty'),
+        screen: document.getElementById('feedsScreen'),
+        controlsBar: document.getElementById('feedControls'),
+        search: document.getElementById('feedSearch'),
+        graphBtn: document.getElementById('feedGraphBtn'),
+        insightsBtn: document.getElementById('feedInsightsBtn'),
+        graph: document.getElementById('feedGraph'),
+        insights: document.getElementById('feedInsights')
     };
     if (!els.list) return;
     initPlayer(syncPlayButtons).catch(() => {});
 
     els.sourcePill.addEventListener('click', openSourcePicker);
+    initSearchAndViews();
+    initScrollHide();
     els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));
     els.addBtn.addEventListener('click', openAddSheet);
     els.filterChip.addEventListener('click', openFilterSheet);

@@ -973,5 +973,68 @@
   },
   "f_podcasts_7c90": {
     "message": "播客"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI已评分"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "最佳匹配 · {n}项"
+  },
+  "f_day_229d": {
+    "message": "日"
+  },
+  "f_episodes_fc93": {
+    "message": "剧集"
+  },
+  "f_graph_77e7": {
+    "message": "图表"
+  },
+  "f_insights_f1e8": {
+    "message": "洞察"
+  },
+  "f_items_382f": {
+    "message": "条目"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "此来源暂无条目。"
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "文本数据暂不足。"
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "暂无评分，请在“日期与心情”面板使用“AI评分”。"
+  },
+  "f_search_feeds_2a1e": {
+    "message": "搜索订阅源…"
+  },
+  "f_search_368e": {
+    "message": "搜索“{term}”"
+  },
+  "f_show_only_9eef": {
+    "message": "仅显示{name}"
+  },
+  "f_to_listen_78b7": {
+    "message": "待收听"
+  },
+  "f_unplayed_7435": {
+    "message": "未播放"
+  },
+  "f_week_e27d": {
+    "message": "周"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ 热门词"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 播客"
+  },
+  "f_volume_74ff": {
+    "message": "📅 数量"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 热门来源"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 心情与分类"
   }
 }

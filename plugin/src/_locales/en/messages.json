@@ -1003,5 +1003,71 @@
   },
   "f_podcasts_7c90": {
     "message": "Podcasts"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI-rated"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "Best match · {n} items",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_229d": {
+    "message": "Day"
+  },
+  "f_episodes_fc93": {
+    "message": "Episodes"
+  },
+  "f_graph_77e7": {
+    "message": "Graph"
+  },
+  "f_insights_f1e8": {
+    "message": "Insights"
+  },
+  "f_items_382f": {
+    "message": "Items"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "No items in this source yet."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Not enough text data yet."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Nothing rated yet — use “Score with AI” in the Date & mood sheet."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Search feeds…"
+  },
+  "f_search_368e": {
+    "message": "Search “{term}”",
+    "description": "Placeholders: {term} (keep as is)"
+  },
+  "f_show_only_9eef": {
+    "message": "Show only {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_to_listen_78b7": {
+    "message": "To listen"
+  },
+  "f_unplayed_7435": {
+    "message": "Unplayed"
+  },
+  "f_week_e27d": {
+    "message": "Week"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Top terms"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Podcasts"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Volume"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 Top sources"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Mood & categories"
   }
 }

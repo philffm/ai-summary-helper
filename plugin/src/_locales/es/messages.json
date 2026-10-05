@@ -973,5 +973,68 @@
   },
   "f_podcasts_7c90": {
     "message": "Podcasts"
+  },
+  "f_ai_rated_6770": {
+    "message": "Con IA"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "Mejor coincidencia · {n} elementos"
+  },
+  "f_day_229d": {
+    "message": "Día"
+  },
+  "f_episodes_fc93": {
+    "message": "Episodios"
+  },
+  "f_graph_77e7": {
+    "message": "Gráfico"
+  },
+  "f_insights_f1e8": {
+    "message": "Resumen"
+  },
+  "f_items_382f": {
+    "message": "Elementos"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "Aún no hay elementos en esta fuente."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Aún no hay suficiente texto."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Nada valorado aún: usa “Puntuar con IA” en la hoja Fecha y estado de ánimo."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Buscar feeds…"
+  },
+  "f_search_368e": {
+    "message": "Buscar “{term}”"
+  },
+  "f_show_only_9eef": {
+    "message": "Solo {name}"
+  },
+  "f_to_listen_78b7": {
+    "message": "Por escuchar"
+  },
+  "f_unplayed_7435": {
+    "message": "Sin reproducir"
+  },
+  "f_week_e27d": {
+    "message": "Semana"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Términos top"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Podcasts"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Volumen"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 Fuentes top"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Ánimo y categorías"
   }
 }

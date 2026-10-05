@@ -889,5 +889,68 @@
   },
   "f_podcasts_7c90": {
     "message": "بودكاست"
+  },
+  "f_ai_rated_6770": {
+    "message": "بالذكاء"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "الأفضل · {n} عنصر"
+  },
+  "f_day_229d": {
+    "message": "يوم"
+  },
+  "f_episodes_fc93": {
+    "message": "حلقات"
+  },
+  "f_graph_77e7": {
+    "message": "رسم"
+  },
+  "f_insights_f1e8": {
+    "message": "رؤى"
+  },
+  "f_items_382f": {
+    "message": "عناصر"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "لا عناصر في هذا المصدر بعد."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "لا بيانات نصية كافية بعد."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "لا تقييمات بعد — استخدم “تقييم بالذكاء” في شاشة التاريخ والمزاج."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "ابحث في الخلاصات…"
+  },
+  "f_search_368e": {
+    "message": "بحث “{term}”"
+  },
+  "f_show_only_9eef": {
+    "message": "عرض {name} فقط"
+  },
+  "f_to_listen_78b7": {
+    "message": "للاستماع"
+  },
+  "f_unplayed_7435": {
+    "message": "غير مشغّلة"
+  },
+  "f_week_e27d": {
+    "message": "أسبوع"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ أهم المصطلحات"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 البودكاست"
+  },
+  "f_volume_74ff": {
+    "message": "📅 الحجم"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 أهم المصادر"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 المزاج والفئات"
   }
 }
