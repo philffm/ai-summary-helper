@@ -24969,6 +24969,171 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "c043e994d72bddac741b96db142a78427024cf89f3cf8ed41573b435be0e3683": {
+      "en": "Follow blogs and news sites, filter by source, tag, date or mood, import your OPML, and open or summarize any item in one click. Play podcast feeds right in the extension, and get an optional AI recap of each day from the headlines. Favorites land in your archive, and feeds are stored on your device.",
+      "translations": {
+        "de": {
+          "text": "Folgen Sie Blogs und Nachrichtenseiten, filtern Sie nach Quelle, Tag, Datum oder Stimmung, importieren Sie Ihre OPML-Dateien und öffnen oder fassen Sie beliebige Einträge mit einem Klick zusammen. Spielen Sie Podcast-Feeds direkt in der Erweiterung ab und erhalten Sie optional einen täglichen KI-Überblick aus den Schlagzeilen. Favoriten landen in Ihrem Archiv – und alle Feeds bleiben lokal auf Ihrem Gerät gespeichert.",
+          "translatedAt": "2026-10-05T12:31:47.018Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Suivez des blogs et sites d'actualités, filtrez par source, tag, date ou humeur, importez votre OPML, et ouvrez ou résumez n'importe quel contenu en un clic. Écoutez vos flux de podcasts directement dans l'extension et profitez d'un récapitulatif IA quotidien optionnel à partir des gros titres. Vos favoris rejoignent vos archives et vos flux restent stockés localement sur votre appareil.",
+          "translatedAt": "2026-10-05T12:31:54.963Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sigue blogs y sitios de noticias, filtra por fuente, etiqueta, fecha o estado de ánimo, importa tu OPML y abre o resume cualquier elemento con un solo clic. Reproduce podcasts directamente en la extensión y obtén un resumen diario opcional con IA a partir de los titulares. Tus favoritos se guardan en tu archivo y los feeds permanecen almacenados en tu dispositivo.",
+          "translatedAt": "2026-10-05T12:31:59.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "关注博客与新闻网站，按来源、标签、日期或心情筛选，支持导入 OPML，一键即可打开或生成摘要。直接在扩展程序内播放播客 Feed，还可选择通过每日头条生成 AI 每日回顾。收藏的内容会保存至归档，订阅源数据完全保存在您的本地设备上。",
+          "translatedAt": "2026-10-05T12:32:04.520Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "追蹤各大部落格與新聞網站，依來源、標籤、日期或情緒進行篩選，支援匯入 OPML，並能一鍵開啟或產生任何內容的摘要。直接在擴充功能內播放 Podcast，還可自由選擇由 AI 為你彙整每日頭條摘要。收藏的內容將自動歸檔，所有訂閱資料皆安全儲存於你的本機裝置。",
+          "translatedAt": "2026-10-05T12:32:12.913Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブログやニュースサイトをフォローし、ソース、タグ、日付、ムード別に絞り込んだり、OPMLをインポートしてワンクリックで記事を開いたり要約したりできます。拡張機能内でポッドキャストを直接再生できるほか、日々のヘッドラインからAIダイジェストを受け取ることも可能です。お気に入りはアーカイブに保存され、フィードデータはお使いのデバイス内に安全に保存されます。",
+          "translatedAt": "2026-10-05T12:32:21.217Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "블로그와 뉴스 사이트를 구독하고 출처, 태그, 날짜 또는 분위기별로 필터링해 보세요. OPML 파일을 손쉽게 가져올 수 있으며, 클릭 한 번으로 콘텐츠를 열람하거나 요약할 수 있습니다. 확장 프로그램에서 팟캐스트 피드를 바로 재생하고, 헤드라인을 바탕으로 매일 제공되는 AI 요약 브리핑도 확인할 수 있습니다. 즐겨찾기한 항목은 아카이브에 보관되며, 모든 피드 데이터는 내 기기에 안전하게 저장됩니다.",
+          "translatedAt": "2026-10-05T12:32:27.417Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Acompanhe blogs e sites de notícias, filtre por fonte, tag, data ou humor, importe seu OPML e abra ou resuma qualquer item com apenas um clique. Ouça podcasts diretamente na extensão e receba uma recapitulação opcional por IA do seu dia com base nas principais manchetes. Seus favoritos ficam salvos no seu arquivo pessoal, e todos os feeds são armazenados no seu dispositivo.",
+          "translatedAt": "2026-10-05T12:32:32.475Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Blogs और news sites को follow करें, source, tag, date या mood के हिसाब से filter करें, अपना OPML import करें, और बस एक click में किसी भी item को open या summarize करें। सीधे extension में ही podcast feeds play करें, और headlines से हर दिन का एक optional AI recap पाएं। Favorites आपके archive में save होते हैं, और feeds आपके device पर ही store रहती हैं।",
+          "translatedAt": "2026-10-05T12:32:36.886Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Theo dõi blog và các trang tin tức, lọc theo nguồn, thẻ, ngày hoặc cảm xúc, nhập tệp OPML và mở hoặc tóm tắt bất kỳ mục nào chỉ với một cú nhấp. Phát các kênh podcast ngay trên tiện ích mở rộng và tùy chọn nhận bản tóm tắt AI mỗi ngày từ các tiêu đề nổi bật. Mục yêu thích sẽ được lưu vào kho lưu trữ cá nhân, và toàn bộ dữ liệu nguồn cấp đều được lưu trữ trực tiếp trên thiết bị của bạn.",
+          "translatedAt": "2026-10-05T12:32:42.712Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c66e44e3a3f80beda798ae67d4158187dbb7af6b921964bd0e514fad288ffe82": {
+      "en": "Only the summarization request — sent to whichever AI provider you configured — plus, if you use the RSS reader, requests to the feeds you subscribed to, and, only when you click an AI recap, the headlines and short snippets of that day. Search, duplicate detection, tag cleanup, reading-level and sentiment scoring, and \"similar articles\" recommendations all run locally against your own saved archive.",
+      "translations": {
+        "de": {
+          "text": "Lediglich die Zusammenfassungsanfrage – gesendet an den von Ihnen konfigurierten KI-Anbieter –, die Feed-Abrufe bei Nutzung des RSS-Readers sowie, ausschließlich bei Klick auf den KI-Tagesüberblick, die Schlagzeilen und Kurzauszüge des jeweiligen Tages verlassen Ihr System. Suche, Duplikaterkennung, Tag-Bereinigung, Lesbarkeits- und Sentiment-Analysen sowie Empfehlungen für „ähnliche Artikel“ laufen ausnahmslos lokal über Ihr eigenes gespeichertes Archiv.",
+          "translatedAt": "2026-10-05T12:31:47.018Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Uniquement la requête de résumé — transmise au fournisseur d'IA que vous avez configuré —, ainsi que, si vous utilisez le lecteur RSS, les requêtes vers les flux auxquels vous êtes abonné, et, seulement si vous cliquez sur un récapitulatif IA, les gros titres et courts extraits de la journée. La recherche, la détection des doublons, le nettoyage des tags, l'évaluation du niveau de lecture et du sentiment, ainsi que les recommandations d'« articles similaires » s'exécutent tous localement sur votre appareil à partir de vos propres archives sauvegardées.",
+          "translatedAt": "2026-10-05T12:31:54.963Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Únicamente la solicitud de resumen —enviada al proveedor de IA que hayas configurado— más, si usas el lector RSS, las solicitudes a los feeds a los que te hayas suscrito y, solo al hacer clic en un resumen con IA, los titulares y fragmentos breves de ese día. La búsqueda, la detección de duplicados, la limpieza de etiquetas, la evaluación del nivel de lectura y de sentimiento, y las recomendaciones de \"artículos similares\" se ejecutan localmente en tu propio archivo guardado.",
+          "translatedAt": "2026-10-05T12:31:59.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "仅有摘要请求会发送至您所配置的 AI 服务商；如果您使用 RSS 阅读器，则会向您订阅的 Feed 发出网络请求；此外，仅在您点击 AI 回顾时，才会发送当天的头条和简短摘要。搜索、内容去重、标签整理、阅读难度与情绪评分，以及“相似文章”推荐，全部基于您保存的归档在本地运行。",
+          "translatedAt": "2026-10-05T12:32:04.520Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "系統只會發送摘要請求至你所設定的 AI 提供商；若使用 RSS 閱讀器，則會向你訂閱的 Feed 發出連線請求；且僅在點擊 AI 重點回顧時，才會傳送當日的頭條與簡短摘要。搜尋、重複內容偵測、標籤清理、閱讀難度與情緒分析，以及「相關文章」推薦等功能，皆完全在本機端針對你已儲存的封存庫進行運算。",
+          "translatedAt": "2026-10-05T12:32:12.913Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "外部へ送信されるのは、設定したAIプロバイダーへの要約リクエストのみです（RSSリーダー使用時の購読フィードへのリクエスト、およびAIダイジェストをクリックした際のその日のヘッドラインと短いスニペットを含みます）。検索、重複検出、タグの整理、読解レベルや感情分析のスコアリング、「関連記事」のレコメンドは、すべて保存されたアーカイブに対してローカル環境で実行されます。",
+          "translatedAt": "2026-10-05T12:32:21.217Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "직접 설정한 AI 제공업체로 전송되는 요약 요청, RSS 리더 이용 시 구독한 피드로 전송되는 요청, 그리고 AI 요약 브리핑을 클릭했을 때 전송되는 당일 헤드라인과 짧은 발췌본만 외부로 전송됩니다. 검색, 중복 감지, 태그 정리, 읽기 난이도 및 감성 점수 산출, '유사한 글' 추천 기능은 모두 저장된 로컬 아카이브를 바탕으로 기기 내에서 안전하고 빠르게 처리됩니다.",
+          "translatedAt": "2026-10-05T12:32:27.417Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apenas a solicitação de resumo — enviada para o provedor de IA que você configurou — além de, se você usar o leitor RSS, as requisições para os feeds que você assina e, apenas quando você clica em uma recapitulação por IA, as manchetes e pequenos trechos daquele dia. Busca, detecção de duplicados, limpeza de tags, avaliação de nível de leitura e sentimento, e recomendações de \"artigos semelhantes\" rodam 100% localmente no seu próprio arquivo salvo.",
+          "translatedAt": "2026-10-05T12:32:32.475Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सिर्फ summarization request — जो आपके configured AI provider को भेजी जाती है — इसके अलावा, अगर आप RSS reader use करते हैं, तो आपके subscribed feeds की requests, और सिर्फ तब जब आप AI recap पर click करते हैं, उस दिन की headlines और short snippets। Search, duplicate detection, tag cleanup, reading-level और sentiment scoring, और \"similar articles\" recommendations सब कुछ आपके अपने saved archive पर पूरी तरह locally run होते हैं।",
+          "translatedAt": "2026-10-05T12:32:36.886Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ có yêu cầu tóm tắt — được gửi tới nhà cung cấp AI mà bạn đã cấu hình — cùng với các yêu cầu tới nguồn cấp dữ liệu bạn đã đăng ký (nếu dùng trình đọc RSS), và chỉ khi bạn nhấp xem bản tóm tắt AI: các tiêu đề cùng đoạn trích ngắn trong ngày. Tính năng tìm kiếm, phát hiện trùng lặp, dọn dẹp thẻ, đánh giá độ đọc hiểu và cảm xúc, cùng các đề xuất \"bài viết tương tự\" đều chạy hoàn toàn cục bộ trên kho lưu trữ của riêng bạn.",
+          "translatedAt": "2026-10-05T12:32:42.712Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "13973c0c865276bf3ad208da3b2ad0674a29be958eced47b4282de6cb1a58680": {
+      "en": "The built-in Feeds reader stores your subscriptions and the fetched feed items locally in your browser — never synced, never sent to us. When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. OPML import is processed entirely on your device. If you turn on background checks (off by default), the extension re-requests your feeds on the interval you choose, only to show a count on the toolbar icon. Summarizing a feed item works like summarizing any other page: its content is only sent to the AI provider you chose, and only when you trigger a summary. The optional AI day recap and AI tone scoring work the same way: only when you click them, the extension sends item titles, source names and short snippets (not full articles) to the AI provider you chose, and the resulting recap is cached on your device. Podcast episodes in a feed are streamed directly from the publisher's server when you press Play.",
+      "translations": {
+        "de": {
+          "text": "Der integrierte Feeds-Reader speichert Ihre Abonnements und die abgerufenen Feed-Einträge lokal in Ihrem Browser – sie werden niemals synchronisiert und niemals an uns übertragen. Wenn Sie einen Feed hinzufügen oder aktualisieren, ruft die Erweiterung die Feed-Adresse direkt vom Server des Herausgebers ab, genau wie Ihr Browser beim direkten Besuch der Website – der Herausgeber kann die Anfrage somit sehen. Wir leiten Ihre Abonnements oder Leselisten nicht über Proxys weiter, protokollieren sie nicht und haben keinerlei Einblick darin. Der OPML-Import wird vollständig lokal auf Ihrem Gerät verarbeitet. Wenn Sie die Hintergrundprüfung aktivieren (standardmäßig deaktiviert), ruft die Erweiterung Ihre Feeds im gewählten Intervall erneut ab, ausschließlich um einen Zähler im Symbolleistensymbol anzuzeigen. Das Zusammenfassen eines Feed-Eintrags funktioniert wie bei jeder anderen Seite: Der Inhalt wird nur an den von Ihnen gewählten KI-Anbieter gesendet, und auch nur dann, wenn Sie eine Zusammenfassung aktiv anfordern. Der optionale KI-Tagesrückblick und die KI-Tonalitätsbewertung funktionieren genauso: Nur bei Klick sendet die Erweiterung Beitragstitel, Quellennamen und kurze Textausschnitte (keine vollständigen Artikel) an den von Ihnen gewählten KI-Anbieter; der erstellte Rückblick wird auf Ihrem Gerät zwischengespeichert. Podcast-Episoden in einem Feed werden direkt vom Server des Herausgebers gestreamt, sobald Sie auf Play drücken.",
+          "translatedAt": "2026-10-05T12:32:50.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le lecteur de flux intégré stocke vos abonnements et les éléments de flux récupérés localement dans votre navigateur — sans jamais les synchroniser ni nous les transmettre. Lorsque vous ajoutez ou actualisez un flux, l'extension interroge directement l'adresse de ce flux auprès du serveur de l'éditeur, exactement comme le ferait votre navigateur en visitant le site ; l'éditeur peut donc voir la requête. Nous ne faisons transiter, n'enregistrons et ne voyons aucun de vos abonnements ni votre liste de lecture. L'importation OPML est traitée intégralement sur votre appareil. Si vous activez les vérifications en arrière-plan (désactivées par défaut), l'extension réinterroge vos flux selon l'intervalle de votre choix, uniquement pour afficher un compteur sur l'icône de la barre d'outils. Le résumé d'un élément de flux fonctionne comme celui de n'importe quelle autre page : son contenu est uniquement envoyé au fournisseur d'IA que vous avez choisi, et seulement lorsque vous déclenchez la génération d'un résumé. Le récapitulatif quotidien et l'analyse de tonalité par IA (facultatifs) fonctionnent de la même manière : uniquement lorsque vous cliquez dessus, l'extension transmet les titres des éléments, le nom des sources et de courts extraits (jamais les articles complets) au fournisseur d'IA sélectionné, et le récapitulatif obtenu est mis en cache sur votre appareil. Les épisodes de podcast d'un flux sont diffusés en streaming directement depuis le serveur de l'éditeur lorsque vous appuyez sur Lecture.",
+          "translatedAt": "2026-10-05T12:32:58.916Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El lector integrado de Feeds almacena tus suscripciones y los elementos obtenidos del feed de forma local en tu navegador: nunca se sincronizan ni se nos envían. Cuando añades o actualizas un feed, la extensión solicita la dirección de dicho feed directamente al servidor del editor, tal como lo haría tu navegador al visitar el sitio web, por lo que el editor puede ver la solicitud. Nosotros no intermediamos mediante proxy, no registramos ni vemos tus suscripciones ni tu lista de lectura. La importación OPML se procesa íntegramente en tu dispositivo. Si activas las comprobaciones en segundo plano (desactivadas por defecto), la extensión vuelve a solicitar tus feeds según el intervalo que elijas, únicamente para mostrar un contador en el icono de la barra de herramientas. Resumir un elemento del feed funciona igual que resumir cualquier otra página: su contenido solo se envía al proveedor de IA que hayas elegido y únicamente cuando solicitas un resumen. El resumen diario con IA y el análisis de tono con IA (ambos opcionales) funcionan del mismo modo: solo cuando haces clic en ellos, la extensión envía los títulos de los elementos, los nombres de las fuentes y fragmentos breves (no los artículos completos) al proveedor de IA que hayas seleccionado, y el resumen resultante se guarda en la caché de tu dispositivo. Los episodios de podcasts de un feed se transmiten directamente desde el servidor del editor al pulsar Reproducir.",
+          "translatedAt": "2026-10-05T12:33:09.125Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "内置的 Feeds 阅读器会将您的订阅和抓取的 Feed 内容完整保存在本地浏览器中——绝不同步，也绝不会发送给我们。当您添加或刷新订阅源时，插件会直接向发布者的服务器发起请求（就像您在浏览器中直接访问该网站一样），因此发布者端可以看到该网络请求。我们绝不代理、记录或查看您的任何订阅与阅读列表。OPML 导入完全在您的本地设备上处理。若开启后台检查（默认关闭），插件仅会按您设定的时间间隔重新请求 Feed，以在工具栏图标上显示未读计数。对 Feed 内容生成摘要的机制与普通网页相同：仅在您主动触发摘要时，内容才会被发送至您指定的 AI 提供商。可选的 AI 每日回顾与 AI 语气评分机制亦然：只有在您点击时，插件才会将条目标题、来源名称及简短摘要片段（非全文）发送至您选择的 AI 提供商，生成的总结内容也仅缓存在您的本地设备上。点击播放时，Feed 中的播客单集将直接从发布者服务器进行流式传输播放。",
+          "translatedAt": "2026-10-05T12:33:18.416Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "內建的 Feeds 閱讀器會將您的訂閱項目與擷取的內容儲存在本機瀏覽器中——絕不同步，也絕不會傳送給我們。當您新增或重新整理訂閱來源時，擴充功能會直接向發布者的伺服器請求該來源網址，就像您用瀏覽器造訪該網站一樣，因此發布者會看到此請求。我們不會代理、記錄或查看您的訂閱項目或閱讀清單。OPML 匯入作業完全在您的裝置上處理。若您開啟背景檢查功能（預設關閉），擴充功能只會依照您自訂的時間間隔重新請求訂閱來源，僅用於在工具列圖示上顯示計數。為摘要項目產生 AI 摘要的運作方式與摘要任何其他網頁相同：只有在您觸發摘要時，內容才會傳送至您選擇的 AI 提供者。選用的 AI 每日回顧與 AI 語氣評分也是如此：只有在您點擊時，擴充功能才會將文章標題、來源名稱與簡短摘要（非完整全文）傳送給您選擇的 AI 提供者，而產生的回顧內容則會快取在您的裝置上。摘要中的 Podcast 單集會在您按下 Play 時，直接從發布者的伺服器串流播放。",
+          "translatedAt": "2026-10-05T12:33:25.912Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "内蔵のFeedsリーダーは、購読情報や取得したフィードアイテムをお使いのブラウザ内にローカル保存します。外部と同期されたり、当社に送信されたりすることは一切ありません。フィードを追加または更新すると、通常のブラウザでサイトを閲覧するときと同様に、拡張機能が配信元のサーバーへ直接フィードアドレスをリクエストします（そのため配信元側にはアクセスが認識されます）。当社がお客様の購読情報やリーディングリストをプロキシ経由で中継、ログ記録、または閲覧することはありません。OPMLのインポートもすべてお使いのデバイス上（オンデバイス）で処理されます。バックグラウンドチェック（デフォルトではオフ）を有効にした場合、拡張機能は設定した間隔でフィードを再取得しますが、これはツールバーアイコンに未読件数を表示するためだけのものです。フィードアイテムの要約は他のWebページの要約と同様に機能し、要約を実行したときにのみ、選択したAIプロバイダーに対象コンテンツが送信されます。オプションのAIデイリーダイジェストやAIトーンスコアリングも同様に、クリックしたときにのみ、記事タイトル、ソース名、短いスニペット（記事全文ではありません）が選択したAIプロバイダーへ送信され、生成された要約はお使いのデバイス上にキャッシュされます。フィード内のポッドキャストエピソードは、「再生」を押すと配信元のサーバーから直接ストリーミング再生されます。",
+          "translatedAt": "2026-10-05T12:33:41.569Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내장된 Feeds 리더는 구독 정보와 가져온 피드 항목을 브라우저에 로컬로 저장하며, 외부와 동기화되거나 당사 서버로 전송되지 않습니다. 피드를 추가하거나 새로고침하면 브라우저에서 사이트를 직접 방문할 때와 마찬가지로 확장 프로그램이 발행사 서버에 피드 주소를 직접 요청하므로 발행사에서 해당 요청을 확인할 수 있습니다. 당사는 사용자의 구독 정보나 읽기 목록을 프록시 처리하거나 기록(로그)을 남기거나 열람하지 않습니다. OPML 가져오기는 전적으로 기기 내에서 처리됩니다. 백그라운드 확인 기능(기본값: 꺼짐)을 켜면 툴바 아이콘에 개수를 표시하기 위해서만 설정한 주기에 따라 피드를 다시 요청합니다. 피드 항목 요약은 일반 페이지 요약과 동일하게 작동하며, 요약을 실행할 때만 사용자가 선택한 AI 제공업체로 콘텐츠가 전송됩니다. 선택 기능인 AI 일일 요약(AI day recap) 및 AI 톤 스코어링(AI tone scoring)도 동일하게 작동합니다. 클릭할 때만 확장 프로그램이 전체 본문이 아닌 항목 제목, 출처 이름, 짧은 발췌문만을 선택한 AI 제공업체로 전송하며, 생성된 요약 결과는 기기에 캐시됩니다. 피드의 팟캐스트 에피소드는 재생(Play)을 누를 때 발행사 서버에서 직접 스트리밍됩니다.",
+          "translatedAt": "2026-10-05T12:33:51.725Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O leitor de Feeds integrado armazena suas inscrições e os itens de feed obtidos localmente no seu navegador — nunca sincronizados, nunca enviados para nós. Quando você adiciona ou atualiza um feed, a extensão solicita o endereço desse feed diretamente ao servidor do publicador, assim como seu navegador faria ao acessar o site, permitindo que o publicador veja a solicitação. Nós não intermediamos via proxy, não registramos em log nem visualizamos suas inscrições ou lista de leitura. A importação de OPML é processada inteiramente no seu dispositivo. Se você ativar as verificações em segundo plano (desativadas por padrão), a extensão solicitará novamente seus feeds no intervalo que você escolher, apenas para exibir a contagem no ícone da barra de ferramentas. Resumir um item de feed funciona como resumir qualquer outra página: seu conteúdo só é enviado ao provedor de IA que você escolheu e apenas quando você solicita um resumo. O resumo diário por IA e a análise de tom por IA opcionais funcionam da mesma forma: somente quando você clica neles, a extensão envia títulos de itens, nomes das fontes e pequenos trechos (e não os artigos completos) para o provedor de IA escolhido, e o resumo resultante fica em cache no seu dispositivo. Os episódios de podcast em um feed são transmitidos via streaming diretamente do servidor do publicador quando você clica em Play.",
+          "translatedAt": "2026-10-05T12:34:06.175Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Built-in Feeds reader आपके subscriptions और fetched feed items को locally आपके browser में ही स्टोर करता है — यह कभी sync नहीं होता, न ही हमारे पास भेजा जाता है। जब आप कोई feed ऐड या refresh करते हैं, तो extension सीधे publisher के server से उस feed के address को request करता है, ठीक वैसे ही जैसे साइट विज़िट करते समय आपका browser करता है, ताकि publisher उस request को देख सके। हम आपके subscriptions या reading list को कभी proxy, log या view नहीं करते। OPML import पूरी तरह से आपके device पर ही प्रोसेस होता है। अगर आप background checks ऑन करते हैं (जो by default ऑफ रहता है), तो extension आपके चुने हुए interval पर feeds को re-request करता है, सिर्फ toolbar icon पर count दिखाने के लिए। किसी feed item को summarize करना किसी अन्य page को summarize करने जैसा ही है: इसका content सिर्फ आपके चुने हुए AI provider को भेजा जाता है, और वह भी सिर्फ तब जब आप summary trigger करते हैं। Optional AI day recap और AI tone scoring भी इसी तरह काम करते हैं: केवल तब जब आप उन पर क्लिक करते हैं, extension item titles, source names और छोटे snippets (पूरे articles नहीं) आपके चुने हुए AI provider को भेजता है, और बनने वाला recap आपके device पर cache हो जाता है। Feed में मौजूद Podcast episodes सीधे publisher के server से stream होते हैं जब आप Play पर क्लिक करते हैं।",
+          "translatedAt": "2026-10-05T12:34:13.363Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Trình đọc Feeds tích hợp sẵn lưu trữ các đăng ký và các mục tin đã tải về cục bộ ngay trong trình duyệt của bạn — tuyệt đối không đồng bộ, không bao giờ gửi về chúng tôi. Khi bạn thêm hoặc làm mới một nguồn cấp, tiện ích mở rộng sẽ gửi yêu cầu trực tiếp đến địa chỉ của nguồn cấp đó từ máy chủ của nhà xuất bản, tương tự như cách trình duyệt của bạn truy cập trang web, do đó nhà xuất bản có thể thấy yêu cầu này. Chúng tôi không chuyển tiếp qua proxy, không ghi nhật ký hay xem danh sách đăng ký cũng như danh sách đọc của bạn. Thao tác nhập tệp OPML được xử lý hoàn toàn trên thiết bị của bạn. Nếu bạn bật tính năng kiểm tra trong nền (mặc định tắt), tiện ích mở rộng sẽ gửi lại yêu cầu đến các nguồn cấp theo khoảng thời gian bạn chọn, chỉ nhằm mục đích hiển thị số lượng trên biểu tượng thanh công cụ. Việc tóm tắt một mục tin hoạt động tương tự như tóm tắt bất kỳ trang nào khác: nội dung chỉ được gửi đến nhà cung cấp AI do bạn chọn và chỉ khi bạn kích hoạt lệnh tóm tắt. Các tính năng tùy chọn như tổng kết ngày bằng AI và chấm điểm sắc thái bằng AI cũng hoạt động tương tự: chỉ khi bạn nhấp chọn, tiện ích mở rộng mới gửi tiêu đề mục tin, tên nguồn và đoạn trích ngắn (không phải toàn bộ bài viết) đến nhà cung cấp AI bạn đã chọn, và bản tổng kết kết quả sẽ được lưu tạm trên thiết bị của bạn. Các tập podcast trong nguồn cấp được phát trực tiếp từ máy chủ của nhà xuất bản khi bạn nhấn Phát.",
+          "translatedAt": "2026-10-05T12:34:23.419Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
