@@ -449,9 +449,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "재생 실패"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "진할수록 많음 · 테두리=오늘 · 날짜 길게 누르고 다른 날로 범위 선택"
-  },
   "f_date_7379": {
     "message": "날짜"
   },
@@ -517,9 +514,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "열거나 요약한 글은 읽지 않음에서 빠져요"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "날짜로 이동"
   },
   "f_last_7_days_d98f": {
     "message": "최근 7일"
@@ -587,9 +581,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "피드가 없어요. 아래에서 추가하거나 OPML을 가져오세요."
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "이 날 글 없음"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "요약할 글 없음"
   },
@@ -620,14 +611,8 @@
   "f_nothing_to_score_cb41": {
     "message": "채점할 항목 없음"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "현재 필터로 볼 항목 없음"
-  },
   "f_older_d101": {
     "message": "이전"
-  },
-  "f_only_show_day_efde": {
-    "message": "이 날만 보기"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "먼저 탭에서 사이트를 여세요"
@@ -754,9 +739,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "{n}개 백그라운드 요약 중 — 기록 확인"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "날짜 이동은 최신순으로 바꾸세요"
   },
   "f_tags_a0c0": {
     "message": "태그"
@@ -970,5 +952,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ 추가"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "진할수록 항목 많음 · ✨ = 요약 완료 · 날짜를 길게 누른 뒤 다른 날짜를 눌러 범위 선택"
+  },
+  "f_recap_done_b098": {
+    "message": "요약 완료"
   }
 }

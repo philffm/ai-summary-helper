@@ -461,9 +461,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "Lecture impossible"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "Plus foncé = plus d’éléments · contour = aujourd’hui · appui long sur un jour, puis un autre, pour une plage"
-  },
   "f_date_7379": {
     "message": "Date"
   },
@@ -529,9 +526,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "Les éléments ouverts ou résumés quittent vos non lus"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "Aller au jour"
   },
   "f_last_7_days_d98f": {
     "message": "7 derniers jours"
@@ -599,9 +593,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "Aucun flux. Ajoutez-en un ci-dessous ou importez un fichier OPML."
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "Rien ce jour-là"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "Rien à résumer ici."
   },
@@ -632,14 +623,8 @@
   "f_nothing_to_score_cb41": {
     "message": "Rien à évaluer"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "Rien de visible ce jour avec les filtres actuels"
-  },
   "f_older_d101": {
     "message": "Plus anciens"
-  },
-  "f_only_show_day_efde": {
-    "message": "Ce jour seulement"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "Ouvrez d’abord un site dans l’onglet actuel"
@@ -766,9 +751,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "Résumé de {n} en arrière-plan : voir Historique"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "Triez par Plus récents pour aller à un jour"
   },
   "f_tags_a0c0": {
     "message": "Tags"
@@ -982,5 +964,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ Ajouter"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Plus foncé = plus d’articles · ✨ = récap fait · appui long sur un jour, puis un autre, pour une période"
+  },
+  "f_recap_done_b098": {
+    "message": "récap fait"
   }
 }

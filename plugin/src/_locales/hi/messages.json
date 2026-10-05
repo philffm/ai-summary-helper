@@ -461,9 +461,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "प्लेबैक शुरू नहीं हुआ"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "गहरा = ज़्यादा आइटम · आउटलाइन = आज · रेंज के लिए एक दिन दबाए रखें, फिर दूसरा"
-  },
   "f_date_7379": {
     "message": "तारीख़"
   },
@@ -529,9 +526,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "खोले या सारांशित आइटम अनपढ़ी सूची से हट जाते हैं"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "दिन पर जाएँ"
   },
   "f_last_7_days_d98f": {
     "message": "पिछले 7 दिन"
@@ -599,9 +593,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "अभी कोई फ़ीड नहीं। नीचे जोड़ें या OPML फ़ाइल इंपोर्ट करें।"
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "इस दिन कोई आइटम नहीं"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "यहाँ सार के लिए कोई आइटम नहीं।"
   },
@@ -632,14 +623,8 @@
   "f_nothing_to_score_cb41": {
     "message": "स्कोर के लिए कुछ नहीं"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "इन फ़िल्टर के साथ उस दिन कुछ नहीं दिखता"
-  },
   "f_older_d101": {
     "message": "पुराना"
-  },
-  "f_only_show_day_efde": {
-    "message": "सिर्फ़ यह दिन"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "पहले इस टैब में कोई वेबसाइट खोलें"
@@ -766,9 +751,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "{n} का सारांश बैकग्राउंड में — इतिहास देखें"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "दिन पर जाने के लिए क्रम 'सबसे नया पहले' करें"
   },
   "f_tags_a0c0": {
     "message": "टैग"
@@ -982,5 +964,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ जोड़ें"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "गहरा = ज़्यादा आइटम · ✨ = रीकैप हो गया · रेंज के लिए एक दिन दबाए रखें, फिर दूसरा चुनें"
+  },
+  "f_recap_done_b098": {
+    "message": "रीकैप हो गया"
   }
 }

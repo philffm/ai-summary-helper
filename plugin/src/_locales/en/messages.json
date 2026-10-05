@@ -452,9 +452,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "Could not start playback"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "Darker = more items · outlined = today · long-press a day, then another, for a range"
-  },
   "f_date_7379": {
     "message": "Date"
   },
@@ -522,9 +519,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "Items you open or summarize leave your unread list"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "Jump to day"
   },
   "f_last_7_days_d98f": {
     "message": "Last 7 days"
@@ -597,9 +591,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "No feeds yet. Add one below or import an OPML file."
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "No items on that day"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "No items to recap here."
   },
@@ -630,14 +621,8 @@
   "f_nothing_to_score_cb41": {
     "message": "Nothing to score"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "Nothing visible on that day with the current filters"
-  },
   "f_older_d101": {
     "message": "Older"
-  },
-  "f_only_show_day_efde": {
-    "message": "Only show day"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "Open a website in the current tab first"
@@ -774,9 +759,6 @@
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "Summarizing {n} in the background — see History",
     "description": "Placeholders: {n} (keep as is)"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "Switch sort to Newest first to jump to a day"
   },
   "f_tags_a0c0": {
     "message": "Tags"
@@ -1012,5 +994,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ Add"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Darker = more items · ✨ = recap done · long-press a day, then another, for a range"
+  },
+  "f_recap_done_b098": {
+    "message": "recap done"
   }
 }

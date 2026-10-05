@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 218. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 214. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 218 | 0 | 0 | 5 |
-| de | 218 | 0 | 0 | 24 |
-| es | 218 | 0 | 0 | 18 |
-| fr | 218 | 0 | 0 | 12 |
-| hi | 218 | 0 | 0 | 1 |
-| it | 218 | 0 | 0 | 14 |
-| ja | 218 | 0 | 0 | 0 |
-| ko | 218 | 0 | 0 | 0 |
-| pt_PT | 218 | 0 | 0 | 17 |
-| ru | 218 | 0 | 0 | 2 |
-| zh_CN | 218 | 0 | 0 | 0 |
-| zh_HK | 218 | 0 | 0 | 0 |
-| zh_TW | 218 | 0 | 0 | 0 |
+| ar | 214 | 0 | 0 | 5 |
+| de | 214 | 0 | 0 | 25 |
+| es | 214 | 0 | 0 | 18 |
+| fr | 214 | 0 | 0 | 12 |
+| hi | 214 | 0 | 0 | 1 |
+| it | 214 | 0 | 0 | 14 |
+| ja | 214 | 0 | 0 | 0 |
+| ko | 214 | 0 | 0 | 0 |
+| pt_PT | 214 | 0 | 0 | 17 |
+| ru | 214 | 0 | 0 | 2 |
+| zh_CN | 214 | 0 | 0 | 0 |
+| zh_HK | 214 | 0 | 0 | 0 |
+| zh_TW | 214 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -49,6 +49,7 @@ Strings: 218. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
 | ✨ Writing recap… | ✨ Rückblick wird erstellt… | 26 vs 16 | 1.63× |
 | Import failed | Import fehlgeschlagen | 21 vs 13 | 1.62× |
+| recap done | Rückblick fertig | 16 vs 10 | 1.6× |
 | 😟 Mostly heavy | 😟 Überwiegend belastend | 24 vs 15 | 1.6× |
 | AI scoring failed | KI-Bewertung fehlgeschlagen | 27 vs 17 | 1.59× |
 | Request failed | Anfrage fehlgeschlagen | 22 vs 14 | 1.57× |

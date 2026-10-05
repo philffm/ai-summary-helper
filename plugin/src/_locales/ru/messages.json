@@ -377,9 +377,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "Не удалось запустить"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "Темнее — больше записей · рамка — сегодня · удерживайте день, затем другой — диапазон"
-  },
   "f_date_7379": {
     "message": "Дата"
   },
@@ -445,9 +442,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "Открытые и сжатые записи исчезают из непрочитанных"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "К дню"
   },
   "f_last_7_days_d98f": {
     "message": "За 7 дней"
@@ -515,9 +509,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "Лент пока нет. Добавьте ниже или импортируйте OPML."
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "В этот день записей нет"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "Нечего пересказывать"
   },
@@ -548,14 +539,8 @@
   "f_nothing_to_score_cb41": {
     "message": "Нечего оценивать"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "В этот день с фильтрами ничего нет"
-  },
   "f_older_d101": {
     "message": "Старее"
-  },
-  "f_only_show_day_efde": {
-    "message": "Только этот день"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "Сначала откройте сайт во вкладке"
@@ -682,9 +667,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "Резюме в фоне: {n} — см. «История»"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "Для перехода к дню выберите «Сначала новые»"
   },
   "f_tags_a0c0": {
     "message": "Теги"
@@ -898,5 +880,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ Добавить"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Темнее — больше записей · ✨ — сводка готова · зажмите день, затем другой — период"
+  },
+  "f_recap_done_b098": {
+    "message": "сводка готова"
   }
 }

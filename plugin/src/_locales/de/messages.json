@@ -467,9 +467,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "Wiedergabe nicht gestartet"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "Dunkler = mehr Einträge · Umrandung = heute · Tag gedrückt halten, dann zweiten für Zeitraum"
-  },
   "f_date_7379": {
     "message": "Datum"
   },
@@ -535,9 +532,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "Geöffnete oder zusammengefasste Einträge verlassen „Ungelesen“"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "Zu Tag springen"
   },
   "f_last_7_days_d98f": {
     "message": "Letzte 7 Tage"
@@ -605,9 +599,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "Noch keine Feeds. Unten hinzufügen oder OPML-Datei importieren."
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "Keine Einträge an diesem Tag"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "Nichts zum Zusammenfassen."
   },
@@ -638,14 +629,8 @@
   "f_nothing_to_score_cb41": {
     "message": "Nichts zu bewerten"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "Mit den aktuellen Filtern nichts sichtbar"
-  },
   "f_older_d101": {
     "message": "Älter"
-  },
-  "f_only_show_day_efde": {
-    "message": "Nur dieser Tag"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "Zuerst eine Website im Tab öffnen"
@@ -772,9 +757,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "{n} werden im Hintergrund zusammengefasst – siehe Verlauf"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "Für Tagessprung nach „Neueste zuerst“ sortieren"
   },
   "f_tags_a0c0": {
     "message": "Tags"
@@ -988,5 +970,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ Hinzufügen"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Dunkler = mehr Beiträge · ✨ = Rückblick fertig · Tag lange drücken, dann einen zweiten für einen Zeitraum"
+  },
+  "f_recap_done_b098": {
+    "message": "Rückblick fertig"
   }
 }

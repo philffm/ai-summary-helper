@@ -467,9 +467,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "再生できません"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "濃い＝多い · 枠＝今日 · 日を長押し後、別の日で範囲選択"
-  },
   "f_date_7379": {
     "message": "日付"
   },
@@ -535,9 +532,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "開く・要約した記事は未読から消えます"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "日付へ移動"
   },
   "f_last_7_days_d98f": {
     "message": "直近7日"
@@ -605,9 +599,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "フィードなし。下から追加かOPML取り込み"
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "この日の記事なし"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "要約する記事なし"
   },
@@ -638,14 +629,8 @@
   "f_nothing_to_score_cb41": {
     "message": "採点対象なし"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "この条件では表示なし"
-  },
   "f_older_d101": {
     "message": "古い"
-  },
-  "f_only_show_day_efde": {
-    "message": "この日だけ表示"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "先にタブでサイトを開いて"
@@ -772,9 +757,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "{n}件をバックグラウンドで要約中。履歴を確認"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "日付移動は新しい順に切替"
   },
   "f_tags_a0c0": {
     "message": "タグ"
@@ -988,5 +970,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ 追加"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "濃い＝件数が多い · ✨＝要約済み · 日を長押しして別の日を選ぶと範囲指定"
+  },
+  "f_recap_done_b098": {
+    "message": "要約済み"
   }
 }

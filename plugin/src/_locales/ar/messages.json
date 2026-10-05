@@ -377,9 +377,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "تعذّر بدء التشغيل"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "الأغمق = عناصر أكثر · الإطار = اليوم · اضغط مطولًا على يوم ثم آخر لتحديد نطاق"
-  },
   "f_date_7379": {
     "message": "التاريخ"
   },
@@ -445,9 +442,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "العناصر التي تفتحها أو تلخصها تغادر قائمة غير المقروء"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "انتقل إلى يوم"
   },
   "f_last_7_days_d98f": {
     "message": "آخر 7 أيام"
@@ -515,9 +509,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "لا خلاصات بعد. أضف واحدة أدناه أو استورد ملف OPML."
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "لا عناصر في هذا اليوم"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "لا عناصر للتلخيص هنا."
   },
@@ -548,14 +539,8 @@
   "f_nothing_to_score_cb41": {
     "message": "لا شيء للتقييم"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "لا شيء ظاهر في هذا اليوم مع الفلاتر الحالية"
-  },
   "f_older_d101": {
     "message": "الأقدم"
-  },
-  "f_only_show_day_efde": {
-    "message": "هذا اليوم فقط"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "افتح موقعًا في التبويب الحالي أولًا"
@@ -682,9 +667,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "تلخيص {n} في الخلفية — انظر «السجل»"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "للانتقال إلى يوم، رتّب حسب «الأحدث أولًا»"
   },
   "f_tags_a0c0": {
     "message": "الوسوم"
@@ -898,5 +880,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ إضافة"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "أغمق = عناصر أكثر · ✨ = تم الملخص · اضغط مطولًا على يوم ثم آخر لتحديد نطاق"
+  },
+  "f_recap_done_b098": {
+    "message": "تم الملخص"
   }
 }

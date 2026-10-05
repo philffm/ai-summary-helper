@@ -377,9 +377,6 @@
   "f_could_not_start_playback_6a64": {
     "message": "無法播放"
   },
-  "f_darker_more_items_outlined_t_7196": {
-    "message": "越深項目越多 · 外框為今天 · 長按一天再點另一天可選範圍"
-  },
   "f_date_7379": {
     "message": "日期"
   },
@@ -445,9 +442,6 @@
   },
   "f_items_you_open_or_summarize__a71f": {
     "message": "開啟或摘要的項目會移出未讀"
-  },
-  "f_jump_to_day_8bf4": {
-    "message": "跳至某日"
   },
   "f_last_7_days_d98f": {
     "message": "近 7 天"
@@ -515,9 +509,6 @@
   "f_no_feeds_yet_add_one_below_o_49ba": {
     "message": "還沒有訂閱。在下方新增，或匯入 OPML 檔案。"
   },
-  "f_no_items_on_that_day_b59e": {
-    "message": "當天沒有項目"
-  },
   "f_no_items_to_recap_here_a024": {
     "message": "這裡沒有可摘要的項目。"
   },
@@ -548,14 +539,8 @@
   "f_nothing_to_score_cb41": {
     "message": "無需評分"
   },
-  "f_nothing_visible_on_that_day__5871": {
-    "message": "目前篩選下當天無內容"
-  },
   "f_older_d101": {
     "message": "較早"
-  },
-  "f_only_show_day_efde": {
-    "message": "僅看當天"
   },
   "f_open_a_website_in_the_curren_6a05": {
     "message": "請先在目前分頁開啟網站"
@@ -682,9 +667,6 @@
   },
   "f_summarizing_in_the_backgroun_6f16": {
     "message": "背景摘要 {n} 項，見「歷史」"
-  },
-  "f_switch_sort_to_newest_first__3205": {
-    "message": "將排序切換為「最新優先」才能跳至日期"
   },
   "f_tags_a0c0": {
     "message": "標籤"
@@ -898,5 +880,11 @@
   },
   "f_add_8e3d": {
     "message": "＋ 新增"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "顏色越深項目越多 · ✨ = 已摘要 · 長按一天再點另一天可選範圍"
+  },
+  "f_recap_done_b098": {
+    "message": "已摘要"
   }
 }

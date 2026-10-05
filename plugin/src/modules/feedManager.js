@@ -984,7 +984,7 @@ function render() {
         if (ui.sort !== 'mood') {
             const dayStart = startOfDay(group[0].published);
             const dayName = dayLabel(group[0].published);
-            header.append(btn('feed-day-action feed-day-ai', T('✨ Recap'), () => openRecap(dayStart, dayName), T('AI recap of this day')));
+            header.append(btn('feed-day-action feed-day-ai', T('✨ Recap') + (recaps[`${dayStart}|${ui.source}`] ? ' ✓' : ''), () => openRecap(dayStart, dayName), T('AI recap of this day')));
         }
         if (unread.length) {
             const snapshot = [...unread];
@@ -1089,7 +1089,6 @@ function openFilterSheet(opts = {}) {
     let calSel = opts.day || null;          // tentatively highlighted day (from a day-header shortcut)
     let anchor = null;                      // first day of a range being picked
     let calPage = 0;                        // 0 = newest weeks
-    if (!['only', 'jump'].includes(ui.dayMode)) ui.dayMode = 'only';
 
     const reset = () => { ui.date = 'any'; ui.mood = 'any'; ui.sort = 'new'; persistUi(); render(); draw(); };
     const head = (left, title) => {
@@ -1131,15 +1130,6 @@ function openFilterSheet(opts = {}) {
         const body = el('div', 'feed-picker feed-cal');
         const back = btn('feed-sheet-done feed-sheet-back', T('‹ Date & mood'), () => { view = 'main'; anchor = null; draw(); });
 
-        // segmented mode switch
-        const seg = el('div', 'feed-seg'); seg.setAttribute('role', 'group');
-        [['jump', T('Jump to day')], ['only', T('Only show day')]].forEach(([val, label]) => {
-            const b = btn('feed-seg-btn' + (ui.dayMode === val ? ' on' : ''), label, () => { ui.dayMode = val; persistUi(); draw(); });
-            b.setAttribute('aria-pressed', String(ui.dayMode === val));
-            seg.append(b);
-        });
-        body.append(seg);
-
         // counts per day within the current source scope
         const sm = subMap(); const counts = new Map();
         items.forEach(i => {
@@ -1147,6 +1137,7 @@ function openFilterSheet(opts = {}) {
             const k = startOfDay(i.published); const c = counts.get(k) || { n: 0, unread: 0 };
             c.n++; if (!i.read) c.unread++; counts.set(k, c);
         });
+        const recapDays = new Set(Object.keys(recaps).map(k => Number(k.split('|')[0])));
         const today = startOfDay(Date.now());
         const mondayOf = (ts) => { const d = new Date(ts); const dow = (d.getDay() + 6) % 7; d.setDate(d.getDate() - dow); d.setHours(0, 0, 0, 0); return d.getTime(); };
         const addDays = (ts, n) => { const d = new Date(ts); d.setDate(d.getDate() + n); d.setHours(0, 0, 0, 0); return d.getTime(); };
@@ -1185,22 +1176,19 @@ function openFilterSheet(opts = {}) {
         for (let ts = pageStart; ts <= pageEnd; ts = addDays(ts, 1)) {
             const d = new Date(ts); const c = counts.get(ts);
             const future = ts > today; const outside = ts < addDays(today, -settings.keepDays);
-            const cell = el('button', 'feed-cal-cell' + (inSel(ts) ? ' sel' : '') + (ts === today ? ' today' : '') + (future || outside ? ' off' : '') + (c ? ' has' : ''));
+            const cell = el('button', 'feed-cal-cell' + (inSel(ts) ? ' sel' : '') + (ts === today ? ' today' : '') + (future || outside ? ' off' : '') + (c ? ' has' : '') + (recapDays.has(ts) ? ' recap' : ''));
             cell.type = 'button'; cell.dataset.day = String(ts); cell.disabled = future || outside;
             if (c) cell.style.setProperty('--heat', (c.n / max).toFixed(2));
             const label = (d.getDate() === 1 || ts === pageStart) ? fmtDayNoWeek(ts) : String(d.getDate());
             cell.append(el('span', 'feed-cal-num' + (label.length > 2 ? ' small' : ''), label));
             if (c) cell.append(el('span', 'feed-cal-count', String(c.n)));
-            cell.setAttribute('aria-label', (c ? TN(c.n, '{day}, {n} item', '{day}, {n} items', { day: fmtDayShort(ts) }) : T('{day}, no items', { day: fmtDayShort(ts) })));
+            if (recapDays.has(ts)) cell.append(el('span', 'feed-cal-recap', '✨'));
+            cell.setAttribute('aria-label', (c ? TN(c.n, '{day}, {n} item', '{day}, {n} items', { day: fmtDayShort(ts) }) : T('{day}, no items', { day: fmtDayShort(ts) })) + (recapDays.has(ts) ? ' · ' + T('recap done') : ''));
             const choose = (shift) => {
                 if (shift && anchor == null) { anchor = ts; draw(); return; }
                 if (anchor != null) {
                     const a = Math.min(anchor, ts), b = Math.max(anchor, ts); anchor = null;
                     ui.date = { from: a, to: b }; persistUi(); render(); closeSheet(); return;
-                }
-                if (ui.dayMode === 'jump') {
-                    if (!c) { toast(uiRef, T('No items on that day')); return; }
-                    closeSheet(); jumpToDay(ts); return;
                 }
                 ui.date = { from: ts, to: ts }; persistUi(); render(); closeSheet();
             };
@@ -1214,7 +1202,7 @@ function openFilterSheet(opts = {}) {
 
         body.append(el('p', 'feed-muted feed-cal-hint', anchor != null
             ? T('Range starts {day} — tap the last day.', { day: fmtDayNoWeek(anchor) })
-            : T('Darker = more items · outlined = today · long-press a day, then another, for a range')));
+            : T('Darker = more items · ✨ = recap done · long-press a day, then another, for a range')));
 
         // footer: clear + summary of what is selected
         const foot = el('div', 'feed-cal-foot');
@@ -1234,24 +1222,6 @@ function openFilterSheet(opts = {}) {
 
     const draw = () => (view === 'cal' ? drawCal() : drawMain());
     draw();
-}
-
-// Scroll to a day's group (filters stay as they are) and flash it.
-function jumpToDay(dayStart) {
-    const find = () => els.list && els.list.querySelector(`[data-day="${dayStart}"]`);
-    let target = find();
-    if (!target) {
-        const all = visibleItems();
-        const idx = all.findIndex(i => startOfDay(i.published) === dayStart);
-        if (idx < 0 || ui.sort === 'mood') { toast(uiRef, ui.sort === 'mood' ? T('Switch sort to Newest first to jump to a day') : T('Nothing visible on that day with the current filters')); return; }
-        shown = Math.max(shown, idx + PAGE_SIZE);
-        render();
-        target = find();
-    }
-    if (!target) return;
-    if (target.scrollIntoView) target.scrollIntoView({ block: 'start', behavior: 'smooth' });
-    target.classList.add('feed-day-flash');
-    setTimeout(() => target.classList.remove('feed-day-flash'), 1500);
 }
 
 async function useCurrentSite() {

@@ -2766,9 +2766,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-pick-link .feed-pick-name { flex: 1; text-align: left; }
 .feed-pick-link.selected .feed-pick-count { color: var(--accent); font-weight: 700; }
 .feed-pick-chevron { color: var(--text-muted); font-size: 18px; line-height: 1; }
-.feed-seg { display: flex; padding: 3px; gap: 3px; border-radius: 10px; background: var(--outline); margin-bottom: 10px; }
-.feed-seg-btn { flex: 1; width: auto; padding: 6px 8px; border: none; border-radius: 8px; background: transparent; box-shadow: none; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; }
-.feed-seg-btn.on { background: var(--accent); color: #fff; }
 .feed-cal-month { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .feed-cal-title { flex: 1; text-align: center; font-size: 13px; font-weight: 700; }
 .feed-cal-nav { width: 28px; padding: 2px; border: none; background: transparent; box-shadow: none; font-size: 18px; color: var(--accent); cursor: pointer; }
@@ -2790,5 +2787,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-day-open { background: transparent; border: none; box-shadow: none; width: auto; padding: 2px 0; text-align: left; font: inherit; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; }
 .feed-day-step { width: 26px; padding: 2px; border: none; background: transparent; box-shadow: none; font-size: 16px; color: var(--accent); cursor: pointer; }
 .feed-day-step:disabled { opacity: .3; cursor: default; }
-.feed-day-flash { animation: feed-day-flash 1.2s ease-out; }
-@keyframes feed-day-flash { 0% { background: var(--accent-glow); } 100% { background: transparent; } }
+
+.feed-cal-recap { position: absolute; top: 1px; right: 3px; font-size: 8px; line-height: 1; }
+.feed-cal-cell.recap .feed-cal-num { text-decoration: none; }
