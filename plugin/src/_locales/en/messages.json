@@ -1249,5 +1249,9 @@
   },
   "f_filter_6421": {
     "message": "🎛️ Filter"
+  },
+  "f__c725": {
+    "message": "⏳ {n}%",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

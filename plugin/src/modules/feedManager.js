@@ -675,6 +675,54 @@ function hideUndo() {
 }
 
 // ── Item actions ───────────────────────────────────────────────────────────
+// Summaries started from a feed card report progress through the same relay as the Summarize screen
+// (summaryProgress / summaryComplete / summaryError). The card's button shows it as a ring.
+const sumBusy = new Map();   // item.id -> { pct, key, timer }
+function paintSum(id) {
+    const st = sumBusy.get(id);
+    document.querySelectorAll('.feed-sum-btn').forEach(b => {
+        if (b.dataset.id !== id) return;
+        b.classList.toggle('busy', !!st);
+        b.disabled = !!st;
+        b.setAttribute('aria-busy', st ? 'true' : 'false');
+        if (st) {
+            b.style.setProperty('--p', String(st.pct));
+            b.textContent = T('⏳ {n}%', { n: Math.round(st.pct) });
+            b.setAttribute('role', 'progressbar'); b.setAttribute('aria-valuenow', String(Math.round(st.pct)));
+        } else { b.style.removeProperty('--p'); b.removeAttribute('aria-valuenow'); b.removeAttribute('role'); }
+    });
+}
+function startSumProgress(item) {
+    const prev = sumBusy.get(item.id); if (prev) clearTimeout(prev.timer);
+    const timer = setTimeout(() => endSumProgress(item.id), 5 * 60 * 1000);   // safety net
+    sumBusy.set(item.id, { pct: 5, key: normalizeUrl(item.link), timer });
+    paintSum(item.id);
+}
+function endSumProgress(id) {
+    const st = sumBusy.get(id); if (!st) return;
+    clearTimeout(st.timer); sumBusy.delete(id); paintSum(id);
+}
+function sumTargetFor(msg, sender) {
+    if (!sumBusy.size) return null;
+    const urls = [sender && sender.tab && sender.tab.url, msg && msg.url].filter(Boolean).map(u => normalizeUrl(u));
+    for (const [id, st] of sumBusy) if (urls.includes(st.key)) return id;
+    // redirected pages: a single running summary from a tab is almost certainly ours
+    return sumBusy.size === 1 && sender && sender.tab ? [...sumBusy.keys()][0] : null;
+}
+function onSummaryMessage(msg, sender) {
+    if (!msg || !['summaryProgress', 'summaryComplete', 'summaryError'].includes(msg.action)) return;
+    const id = sumTargetFor(msg, sender); if (!id) return;
+    const st = sumBusy.get(id);
+    if (msg.action === 'summaryProgress') {
+        if (typeof msg.progress === 'number' && msg.progress > st.pct) { st.pct = Math.min(99, msg.progress); paintSum(id); }
+    } else if (msg.action === 'summaryComplete') {
+        st.pct = 100; paintSum(id);
+        setTimeout(async () => { endSumProgress(id); await loadHistoryMap(); render(); }, 400);
+    } else {
+        endSumProgress(id); toast(uiRef, msg.error || T('Failed'));
+    }
+}
+
 async function onSummarizeClick(item) {
     const art = await findSummarizedArticle(item.link);
     if (art) return viewSummary(item, art);
@@ -683,8 +731,9 @@ async function onSummarizeClick(item) {
 
 function openItem(item, summarize) {
     if (settings.markReadOnOpen) setRead([item], true, { silent: true, keep: true });
+    if (summarize) startSumProgress(item);
     chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize }, (res) => {
-        if (chrome.runtime.lastError) return;
+        if (chrome.runtime.lastError || !res || !res.success || (summarize && res.mode !== 'extension')) { if (summarize) endSumProgress(item.id); if (chrome.runtime.lastError) return; }
         if (summarize && res && res.mode === 'extension') {
             toast(uiRef, res.reused
                 ? T('Summarizing the open tab — it will show up under Summarize and History')
@@ -1059,7 +1108,9 @@ function renderCard(item, sm) {
     if (item.snippet) li.appendChild(el('p', 'feed-snippet', item.snippet));
 
     const actions = el('div', 'feed-actions');
-    const sum = btn('button-primary feed-btn', hist.summarized ? T('📄 View summary') : T('✨ Summarize'), (e) => { e.stopPropagation(); onSummarizeClick(item); });
+    const sum = btn('button-primary feed-btn feed-sum-btn', hist.summarized ? T('📄 View summary') : T('✨ Summarize'), (e) => { e.stopPropagation(); onSummarizeClick(item); });
+    sum.dataset.id = item.id;
+    if (sumBusy.has(item.id)) queueMicrotask(() => paintSum(item.id));
     const open = btn('button-secondary feed-btn', T('Open ↗'), (e) => { e.stopPropagation(); openItem(item, false); });
     const read = btn('button-secondary feed-btn', item.read ? T('Mark unread') : T('Mark read'), (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true, keep: true }); });
     if (item.audio) {
@@ -1928,6 +1979,7 @@ export function initFeedManager(uiObj) {
     els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));
     els.addBtn.addEventListener('click', openAddSheet);
     els.filterChip.addEventListener('click', openFilterSheet);
+    if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage);
     els.chipRow.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
         ui.status = b.dataset.status; persistUi(); render();
     }));

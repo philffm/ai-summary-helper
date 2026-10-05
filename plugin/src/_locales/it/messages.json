@@ -1114,5 +1114,8 @@
   },
   "f_filter_6421": {
     "message": "🎛️ Filtro"
+  },
+  "f__c725": {
+    "message": "⏳ {n}%"
   }
 }

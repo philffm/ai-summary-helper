@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 284. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 284 | 0 | 0 | 7 |
-| de | 284 | 0 | 0 | 30 |
-| es | 284 | 0 | 0 | 27 |
-| fr | 284 | 0 | 0 | 23 |
-| hi | 284 | 0 | 0 | 5 |
-| it | 284 | 0 | 0 | 26 |
-| ja | 284 | 0 | 0 | 3 |
-| ko | 284 | 0 | 0 | 1 |
-| pt_PT | 284 | 0 | 0 | 22 |
-| ru | 284 | 0 | 0 | 9 |
-| zh_CN | 284 | 0 | 0 | 0 |
-| zh_HK | 284 | 0 | 0 | 0 |
-| zh_TW | 284 | 0 | 0 | 0 |
+| ar | 285 | 0 | 0 | 7 |
+| de | 285 | 0 | 0 | 30 |
+| es | 285 | 0 | 0 | 27 |
+| fr | 285 | 0 | 0 | 23 |
+| hi | 285 | 0 | 0 | 5 |
+| it | 285 | 0 | 0 | 26 |
+| ja | 285 | 0 | 0 | 3 |
+| ko | 285 | 0 | 0 | 1 |
+| pt_PT | 285 | 0 | 0 | 22 |
+| ru | 285 | 0 | 0 | 9 |
+| zh_CN | 285 | 0 | 0 | 0 |
+| zh_HK | 285 | 0 | 0 | 0 |
+| zh_TW | 285 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
