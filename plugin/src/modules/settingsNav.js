@@ -16,6 +16,13 @@ const INDEX = [
     ['models', 'Endpoint URL', 'customEndpoint', 'ollama local server custom'],
     ['prompts', 'Preset prompt', 'promptSelect', 'prompt preset template'],
     ['prompts', 'Custom prompt text', 'prompt', 'prompt instructions system custom'],
+    ['feeds', 'Feed subscriptions · rename · folders', 'feedSubsCard', 'rss feeds subscriptions folder rename mute unsubscribe sources'],
+    ['feeds', 'Import / export OPML', 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
+    ['feeds', 'Mark read when opened', 'feedSetMarkRead', 'feed read unread open'],
+    ['feeds', 'Auto-summarize favorites', 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
+    ['feeds', 'Check feeds in the background', 'feedSetPoll', 'feed badge notification new items poll background'],
+    ['feeds', 'Feed refresh interval', 'feedSetRefresh', 'feed refresh update minutes hour interval'],
+    ['feeds', 'Keep feed items for', 'feedSetKeep', 'feed retention days delete old cleanup'],
     ['reading', 'Page highlighting', 'highlightingToggle', 'highlight yellow marker annotate'],
     ['reading', 'AI ghost highlighting', 'aiHighlightingToggle', 'ghost highlight ai quotes blue'],
     ['reading', 'Ghost highlight amount', 'ghostHighlightAmount', 'ghost highlight few regular a lot'],
@@ -37,7 +44,7 @@ const INDEX = [
 ];
 
 const PANEL_TITLES = {
-    account: 'Account & Plan', models: 'Models & API', prompts: 'Prompts', reading: 'Reading & Highlighting',
+    account: 'Account & Plan', models: 'Models & API', prompts: 'Prompts', feeds: 'Feeds', reading: 'Reading & Highlighting',
     send: 'Send & Share', appearance: 'Appearance & Language', library: 'Library & Data', about: 'About & Tools'
 };
 
@@ -92,6 +99,7 @@ function showHome() {
 export function openSettingsPanel(name, targetId) {
     const panel = $('settingsPanel-' + name);
     if (!panel) return;
+    document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: { name } }));
     $('settingsHome').hidden = true;
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = p !== panel; });
     if (screenEl) screenEl.scrollTop = 0;

@@ -328,5 +328,11 @@
   },
   "viewAnalytics": {
     "message": "Analysebericht anzeigen"
+  },
+  "settingsCapFeeds": {
+    "message": "FEEDS"
+  },
+  "settingsFeeds": {
+    "message": "Feeds"
   }
 }

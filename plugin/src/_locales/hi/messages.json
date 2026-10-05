@@ -322,5 +322,11 @@
   },
   "promptDesc": {
     "message": "तय करें कि AI टेक्स्ट का विश्लेषण कैसे करे।"
+  },
+  "settingsCapFeeds": {
+    "message": "फ़ीड्स"
+  },
+  "settingsFeeds": {
+    "message": "फ़ीड्स"
   }
 }

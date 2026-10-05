@@ -310,5 +310,11 @@
   },
   "viewAnalytics": {
     "message": "분석 리포트 보기"
+  },
+  "settingsCapFeeds": {
+    "message": "피드"
+  },
+  "settingsFeeds": {
+    "message": "피드"
   }
 }

@@ -322,5 +322,11 @@
   },
   "promptDesc": {
     "message": "Personalize a forma como a IA analisa o texto."
+  },
+  "settingsCapFeeds": {
+    "message": "FEEDS"
+  },
+  "settingsFeeds": {
+    "message": "Feeds"
   }
 }

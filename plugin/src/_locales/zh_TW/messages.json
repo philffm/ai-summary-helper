@@ -322,5 +322,11 @@
   },
   "promptDesc": {
     "message": "自訂 AI 分析文字的方式。"
+  },
+  "settingsCapFeeds": {
+    "message": "訂閱源"
+  },
+  "settingsFeeds": {
+    "message": "訂閱源"
   }
 }

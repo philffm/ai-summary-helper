@@ -23,11 +23,15 @@ A powerful browser extension for summarizing web pages with a custom AI prompt, 
 - **Inline mode** — summary inserted into the page (great for Send-to-Kindle)
 
 ### 📰 Feeds (RSS reader)
-- Subscribe by pasting a site or feed address, or use **Current site** to autodiscover its feed (Atom, RSS, RDF)
-- Import your subscriptions from an OPML file
+- Built for triage: a compact control bar (source picker, refresh, add) and status chips (Unread / All / Favorites / Summarized)
+- Filter by **source** or **folder**, by **date** (Today / 7 days) and by **mood** (positive only, hide negative, most positive first). Mood is estimated on-device from headlines and snippets
+- Items are grouped by day; **Mark read** clears a day (or the whole view) with an undo bar
+- Add a feed with a site address (feed autodiscovery for Atom, RSS, RDF), from the current site, or by OPML import/export with folders
 - One-click **Summarize** follows your last summary mode (extension by default, or inline); a page that is already open is reused instead of reopened
 - Click a card to open the website, or its saved summary if you already summarized it; summarized items carry a **Summarized** badge
-- Favorite items to add them to History, then summarize them later with one click
+- Favorite items to add them to History (optionally auto-summarized in the background)
+- **Today's briefing** lists the day's headlines per source and can summarize the top 5 unread in one go
+- **Settings > Feeds**: rename, folder and mute per feed, OPML, refresh interval, retention, mark-read-on-open, and optional background checks with a toolbar badge
 - Feeds and items are stored locally on your device
 
 ### 🔖 Save for Later (Tab Management)

@@ -73,7 +73,92 @@ async function findDecisionArticle(timestamp) {
     return articles.find(a => a.timestamp === timestamp && a.isDecision) || null;
 }
 
+// ── Feeds: background polling + toolbar badge ────────────────────────────────
+// Opt-in (Settings > Feeds > "Check in the background"). The service worker has
+// no DOMParser, so it only extracts item links with a small regex pass and
+// compares them with what the popup already stored. The first poll of a feed
+// just records a baseline, so subscribing never produces a burst of "new".
+const FEED_ALARM = 'feedPoll';
+
+async function applyFeedPollConfig() {
+    if (!chrome.alarms) return;
+    const { feedSettings } = await chrome.storage.local.get('feedSettings');
+    await chrome.alarms.clear(FEED_ALARM);
+    if (feedSettings && feedSettings.backgroundPoll) {
+        chrome.alarms.create(FEED_ALARM, { delayInMinutes: 1, periodInMinutes: Math.max(15, feedSettings.refreshMinutes || 30) });
+    } else {
+        await clearFeedBadge();
+    }
+}
+
+async function clearFeedBadge() {
+    await chrome.storage.local.set({ feedPending: 0 });
+    try { await chrome.action.setBadgeText({ text: '' }); } catch (_) {}
+}
+
+function extractFeedLinks(xml) {
+    const links = [];
+    const re = /<(item|entry)[\s>][\s\S]*?<\/\1>/gi;
+    let m;
+    while ((m = re.exec(xml)) && links.length < 100) {
+        const blk = m[0];
+        let link = '';
+        const tags = blk.match(/<link\b[^>]*>/gi) || [];
+        for (const t of tags) {
+            const rel = (t.match(/\brel=["']([^"']+)["']/i) || [])[1];
+            const href = (t.match(/\bhref=["']([^"']+)["']/i) || [])[1];
+            if (href && (!rel || rel === 'alternate')) { link = href; break; }
+        }
+        if (!link) {
+            const inner = blk.match(/<link[^>]*>([\s\S]*?)<\/link>/i);
+            if (inner) link = inner[1].replace(/<!\[CDATA\[|\]\]>/g, '').trim();
+        }
+        link = link.replace(/&amp;/g, '&');
+        if (/^https?:\/\//i.test(link)) links.push(link);
+    }
+    return links;
+}
+
+async function pollFeeds() {
+    try {
+        const d = await chrome.storage.local.get({ feedSubs: [], feedItems: [], feedBgSeen: {}, feedPending: 0, feedSettings: {} });
+        if (!d.feedSettings.backgroundPoll) return;
+        const known = new Set(d.feedItems.map(i => i.link));
+        const seen = d.feedBgSeen || {};
+        let fresh = 0;
+        for (const sub of d.feedSubs) {
+            if (sub.muted) continue;
+            try {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 15000);
+                const res = await fetch(sub.url, { credentials: 'omit', redirect: 'follow', signal: ctrl.signal });
+                clearTimeout(timer);
+                if (!res.ok) continue;
+                const links = extractFeedLinks((await res.text()).slice(0, 3 * 1024 * 1024));
+                const prev = seen[sub.id];
+                if (prev) {
+                    const prevSet = new Set(prev);
+                    fresh += links.filter(l => !prevSet.has(l) && !known.has(l)).length;
+                }
+                seen[sub.id] = [...new Set([...links, ...(prev || [])])].slice(0, 300);
+            } catch (_) { /* skip this feed this round */ }
+        }
+        const pending = (d.feedPending || 0) + fresh;
+        await chrome.storage.local.set({ feedBgSeen: seen, feedPending: pending });
+        if (pending > 0) {
+            await chrome.action.setBadgeBackgroundColor({ color: '#2563eb' });
+            await chrome.action.setBadgeText({ text: pending > 99 ? '99+' : String(pending) });
+        }
+    } catch (e) {
+        console.warn('[feeds] poll failed', e);
+    }
+}
+
+chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); });
+chrome.runtime.onInstalled.addListener(() => { applyFeedPollConfig(); });
+
 chrome.alarms.onAlarm.addListener(async (alarm) => {
+    if (alarm.name === FEED_ALARM) { pollFeeds(); return; }
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));
@@ -158,6 +243,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
+    if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
+    if (msg.action === 'feedBadgeClear') { clearFeedBadge().then(() => sendResponse({ ok: true })); return true; }
+
     // Fetch a feed or site page on behalf of the popup. Returns raw text; the
     // popup parses it (DOMParser doesn't exist in this service worker).
     if (msg.action === 'fetchFeedText' && msg.url) {
@@ -195,7 +283,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             let summaryLength = 200;
             if (msg.summarize) {
                 const d = await chrome.storage.local.get(['summaryMode', 'summaryLength']).catch(() => ({}));
-                mode = d.summaryMode === 'inline' ? 'inline' : 'extension';
+                mode = (d.summaryMode === 'inline' && !msg.forceExtension) ? 'inline' : 'extension';
                 summaryLength = d.summaryLength || 200;
             }
             const background = !!msg.summarize && mode === 'extension';

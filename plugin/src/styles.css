@@ -2564,3 +2564,110 @@ text.graph-search-dim {
 .feed-btn { width: auto; flex: 0 0 auto; padding: 5px 10px; min-height: 30px; font-size: 12px; font-weight: 600; box-shadow: none; }
 .feed-actions { flex-wrap: nowrap; align-items: center; }
 .feed-actions .button-primary.feed-btn { margin-left: auto; }
+
+/* ── Feeds v2: control bar, chips, day groups, sheets, settings panel ─────── */
+.feed-controlbar { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.feed-source-pill {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px;
+  background: var(--glass-input); border: 1px solid var(--outline); border-radius: 10px;
+  color: var(--text-primary); font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; box-shadow: none;
+}
+.feed-source-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed-source-count { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+.feed-source-caret { color: var(--text-secondary); font-size: 12px; }
+.feed-square-btn {
+  width: 36px; height: 36px; flex-shrink: 0; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--glass-input); border: 1px solid var(--outline); border-radius: 10px; color: var(--text-primary);
+  font-size: 16px; cursor: pointer; box-shadow: none;
+}
+.feed-square-btn:hover, .feed-source-pill:hover { border-color: var(--accent); }
+#feedRefreshBtn.spinning { opacity: 0.6; animation: feed-spin 1s linear infinite; }
+.feed-chiprow { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.feed-chip-spacer { flex: 1; }
+.feed-chip {
+  width: auto; flex: 0 0 auto; padding: 5px 12px; min-height: 30px; font-size: 12px; font-weight: 600; border-radius: 999px;
+  background: var(--glass-input); border: 1px solid var(--outline); color: var(--text-primary); cursor: pointer; box-shadow: none; white-space: nowrap;
+}
+.feed-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.feed-day { display: flex; align-items: center; gap: 8px; padding: 6px 2px 0; list-style: none; }
+.feed-day-label { flex: 1; font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+.feed-day-action { background: transparent; border: none; padding: 2px 4px; width: auto; font-size: 12px; font-weight: 700; color: var(--accent); cursor: pointer; box-shadow: none; }
+.feed-mood { font-size: 12px; }
+.feed-muted { margin: 4px 0; font-size: 12px; color: var(--text-muted); }
+.feed-list[hidden] { display: none; }
+.feed-emptycard { text-align: center; }
+.feed-firstrun { flex-direction: column; align-items: center; gap: 12px; padding-top: 28px; text-align: center; }
+.feed-firstrun h3 { margin: 0; font-size: 18px; }
+.feed-firstrun p { margin: 0; color: var(--text-secondary); font-size: 13px; max-width: 300px; }
+.feed-firstrun-icon { font-size: 44px; line-height: 1; }
+.feed-add-row { display: flex; gap: 8px; width: 100%; align-items: center; }
+.feed-add-row input { flex: 1; min-width: 0; margin: 0; }
+.feed-wide-btn { width: 100%; }
+.feed-actions-row { display: flex; gap: 8px; margin-top: 8px; }
+
+/* Bottom sheet */
+.feed-sheet-layer { position: fixed; inset: 0; z-index: 300; display: flex; flex-direction: column; justify-content: flex-end; }
+.feed-sheet-layer[hidden] { display: none; }
+.feed-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+.feed-sheet {
+  position: relative; max-height: 82%; overflow-y: auto; padding: 10px 16px 20px;
+  background: var(--glass-base-solid, var(--bg-page, #fff)); color: var(--text-primary);
+  border-radius: 20px 20px 0 0; box-shadow: 0 -8px 30px rgba(0,0,0,0.25);
+}
+.feed-sheet-handle { width: 40px; height: 4px; border-radius: 2px; background: var(--outline); margin: 0 auto 8px; }
+.feed-sheet-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.feed-sheet-head h3 { flex: 1; margin: 0; font-size: 16px; }
+.feed-sheet-done { background: transparent; border: none; width: auto; padding: 4px; font-size: 14px; font-weight: 700; color: var(--accent); cursor: pointer; box-shadow: none; }
+.feed-picker { display: flex; flex-direction: column; gap: 6px; }
+.feed-picker input[type="search"], .feed-picker input[type="text"] { margin: 0; width: 100%; }
+.feed-picker-list { display: flex; flex-direction: column; gap: 2px; }
+.feed-pick-label { margin: 10px 0 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); }
+.feed-pick-row {
+  display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: none; border-radius: 10px;
+  background: transparent; color: var(--text-primary); text-align: left; font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: none;
+}
+.feed-pick-row:hover { background: var(--glass-input); }
+.feed-pick-row.selected { background: rgba(37, 99, 235, 0.12); }
+.feed-pick-row.selected .feed-pick-radio, .feed-pick-row.selected .feed-pick-count { color: var(--accent); }
+.feed-pick-row.indent { padding-left: 24px; }
+.feed-pick-row.is-muted { opacity: 0.55; }
+.feed-pick-radio { color: var(--text-muted); }
+.feed-pick-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed-pick-count { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+.feed-manage-link {
+  width: 100%; margin-top: 6px; padding: 10px 12px; border: none; border-radius: 10px; background: transparent;
+  color: var(--accent); font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; box-shadow: none;
+}
+.feed-manage-link:hover { background: var(--glass-input); }
+.feed-option-card {
+  width: 100%; padding: 12px; border: 1px solid var(--outline); border-radius: 10px; background: var(--glass-card);
+  color: var(--text-primary); text-align: left; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: none;
+}
+.feed-brief-summary { margin: 0; font-size: 14px; font-weight: 700; }
+.feed-brief-item {
+  width: 100%; padding: 8px 10px; border: none; border-radius: 8px; background: transparent; color: var(--text-primary);
+  text-align: left; font-size: 13px; line-height: 1.35; cursor: pointer; box-shadow: none;
+}
+.feed-brief-item:hover { background: var(--glass-input); }
+.feed-brief-item.is-read { opacity: 0.55; }
+
+/* Undo bar */
+.feed-undo {
+  position: fixed; left: 16px; right: 16px; bottom: calc(var(--bottom-nav-height, 60px) + 24px); z-index: 250;
+  display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px;
+  background: #1f2937; color: #fff; font-size: 13px; box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.feed-undo[hidden] { display: none; }
+.feed-undo span { flex: 1; }
+.feed-undo button { width: auto; padding: 4px 8px; background: transparent; border: none; color: #93c5fd; font-weight: 700; cursor: pointer; box-shadow: none; }
+
+/* Settings > Feeds */
+.feed-set-card { background: var(--glass-card); border: 1px solid var(--outline); border-radius: var(--radius-md, 14px); padding: 10px; margin-bottom: 12px; }
+.feed-sub-card { padding: 8px 0; border-bottom: 1px solid var(--outline); }
+.feed-sub-card.is-muted .feed-sub-input { opacity: 0.6; }
+.feed-sub-line { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.feed-sub-input { flex: 1; min-width: 0; margin: 0; padding: 6px 8px; font-size: 13px; }
+.feed-sub-folder { flex: 0 0 140px; font-size: 12px; }
+.feed-sub-error { font-size: 11px; color: var(--danger, #ef4444); }
+.feed-set-card .feed-add-row { margin-top: 10px; }
+.feed-set-card .setting-group:last-of-type { margin-bottom: 0; }

@@ -310,5 +310,11 @@
   },
   "viewAnalytics": {
     "message": "View analytics report"
+  },
+  "settingsCapFeeds": {
+    "message": "FEEDS"
+  },
+  "settingsFeeds": {
+    "message": "Feeds"
   }
 }

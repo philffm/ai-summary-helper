@@ -322,5 +322,11 @@
   },
   "promptDesc": {
     "message": "Personnalisez la façon dont l’IA analyse le texte."
+  },
+  "settingsCapFeeds": {
+    "message": "FLUX"
+  },
+  "settingsFeeds": {
+    "message": "Flux RSS"
   }
 }

@@ -1,40 +1,86 @@
 // feedManager.js
-// Small RSS/Atom reader. Feeds + items live in their own chrome.storage.local
-// keys (feedSubs / feedItems) and are deliberately NOT mixed into the article
-// archive: an item only reaches History once the user actually summarizes it
-// (the content script saves summaries itself).
+// Small RSS/Atom reader built for fast triage. Feeds + items live in their own
+// chrome.storage.local keys (feedSubs / feedItems) and are deliberately NOT mixed
+// into the article archive: an item only reaches History once the user actually
+// summarizes (or favorites) it.
 //
 // Network access goes through the background page (`fetchFeedText`) so it works
 // in every context (popup, native side panel, hybrid iframe on Firefox where
 // the iframe has no privileged fetch). XML parsing happens here because
 // DOMParser isn't available in the MV3 service worker.
+//
+// Screen model (see Figma "Feeds UX sprint"):
+//   control bar  = source pill (opens source picker) + refresh + add (opens sheet)
+//   chip row     = status (Unread / All / ★ / ✓) + date & mood sheet
+//   list         = day groups with a scoped "Mark read" and an undo bar
+//   Settings > Feeds = subscriptions (rename / folder / mute / remove), OPML, behavior
 
 import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
+import { scoreSentiment, moodOf, MOOD_EMOJI } from './feedSentiment.js';
 
 const SUBS_KEY = 'feedSubs';
 const ITEMS_KEY = 'feedItems';
-const STALE_MS = 30 * 60 * 1000;      // refresh feeds older than 30 min when screen opens
+const UI_KEY = 'feedUi';
+const SETTINGS_KEY = 'feedSettings';
 const MAX_ITEMS_PER_FEED = 50;
 const MAX_ITEMS_TOTAL = 500;
 const MAX_RENDERED = 100;
 const CONCURRENCY = 4;
 const COMMON_FEED_PATHS = ['/feed', '/rss', '/atom.xml', '/feed.xml', '/rss.xml', '/index.xml'];
+const DAY_MS = 86400000;
+
+export const FEED_DEFAULTS = {
+    markReadOnOpen: true,
+    autoSummarizeFavs: false,
+    backgroundPoll: false,
+    refreshMinutes: 30,
+    keepDays: 30
+};
 
 let subs = [];
 let items = [];
-let unreadOnly = false;
+let settings = { ...FEED_DEFAULTS };
+// UI filter state (persisted so the screen reopens the way you left it)
+let ui = { source: 'all', status: 'unread', date: 'any', mood: 'any', sort: 'new' };
 let refreshing = false;
 let els = {};
 let uiRef = null;
+let undoTimer = null;
 // normalized URL -> { fav: boolean, summarized: boolean } built from the History index
 let historyByUrl = new Map();
 
 // ── Storage ────────────────────────────────────────────────────────────────
 async function load() {
-    const data = await chrome.storage.local.get({ [SUBS_KEY]: [], [ITEMS_KEY]: [] });
+    const data = await chrome.storage.local.get({
+        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null
+    });
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
+    settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
+    if (data[UI_KEY]) ui = { ...ui, ...data[UI_KEY] };
+    // Older items were stored before mood scoring existed.
+    items.forEach(i => { if (typeof i.sent !== 'number') i.sent = scoreSentiment(i.title + ' ' + (i.snippet || '')); });
+    // A filter pointing at a source that no longer exists falls back to "all".
+    if (!sourceExists(ui.source)) ui.source = 'all';
+}
+
+function persist() {
+    return chrome.storage.local.set({ [SUBS_KEY]: subs, [ITEMS_KEY]: items });
+}
+function persistUi() { return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
+function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: settings }).catch(() => {}); }
+
+function sourceExists(src) {
+    if (!src || src === 'all') return true;
+    const [kind, val] = splitSource(src);
+    if (kind === 'sub') return subs.some(s => s.id === val);
+    if (kind === 'folder') return subs.some(s => s.folder === val);
+    return false;
+}
+function splitSource(src) {
+    const i = src.indexOf(':');
+    return i < 0 ? [src, ''] : [src.slice(0, i), src.slice(i + 1)];
 }
 
 async function loadHistoryMap() {
@@ -50,6 +96,7 @@ async function loadHistoryMap() {
     }
     historyByUrl = map;
 }
+function histOf(item) { return historyByUrl.get(normalizeUrl(item.link)) || { fav: false, summarized: false }; }
 
 // A favorited-but-never-summarized item lives in History as a "stub". Once the
 // page has been summarized for real, the stub's star moves to the real entry
@@ -82,7 +129,7 @@ async function findSummarizedArticle(url) {
 }
 
 async function viewSummary(item, article) {
-    markRead(item).then(render);
+    if (settings.markReadOnOpen) setRead([item], true, { silent: true });
     if (!uiRef) return;
     uiRef.showScreen('history');
     const mod = await import('./articleManager.js');
@@ -100,13 +147,14 @@ async function toggleFavorite(item) {
     const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
     const matches = articlesIndex.filter(a => a.url && normalizeUrl(a.url) === key);
     const isFav = matches.some(a => a.favorite);
+    let createdStub = false;
 
     if (!isFav) {
         if (matches.length) {
             matches.forEach(a => { a.favorite = true; });
             await StorageManager.setLocal({ articlesIndex });
         } else {
-            const feedName = (subs.find(x => x.id === item.feedId) || {}).title || '';
+            const feedName = subTitle(subs.find(x => x.id === item.feedId) || {});
             await StorageManager.saveArticle({
                 content: '',
                 summary: '',
@@ -116,6 +164,7 @@ async function toggleFavorite(item) {
                 tags: ['feed'],
                 extra: { favorite: true, feedStub: true, fromFeed: feedName, lastOpened: new Date().toISOString() }
             });
+            createdStub = true;
         }
     } else {
         const removeIds = [];
@@ -126,11 +175,14 @@ async function toggleFavorite(item) {
     }
     await loadHistoryMap();
     render();
+    // Optional: favorites summarize themselves in a background tab (always
+    // extension mode so nothing steals focus).
+    if (createdStub && settings.autoSummarizeFavs) {
+        chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize: true, forceExtension: true }, () => void chrome.runtime.lastError);
+    }
 }
 
-function persist() {
-    return chrome.storage.local.set({ [SUBS_KEY]: subs, [ITEMS_KEY]: items });
-}
+function subTitle(s) { return (s && (s.customTitle || s.title || s.url)) || ''; }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 function hash(str) {
@@ -308,6 +360,7 @@ function mergeItems(sub, parsedItems) {
             link: p.link,
             published: p.published || (prev && prev.published) || Date.now(),
             snippet: p.snippet,
+            sent: scoreSentiment(p.title + ' ' + (p.snippet || '')),
             read: prev ? prev.read : false
         });
     }
@@ -319,12 +372,19 @@ function mergeItems(sub, parsedItems) {
     items = items.filter(i => i.feedId !== sub.id).concat(kept);
 }
 
+// Drop items older than the retention window (favorites are kept; they also
+// live in History).
+function pruneItems() {
+    const cutoff = Date.now() - settings.keepDays * DAY_MS;
+    items = items.filter(i => i.published >= cutoff || histOf(i).fav);
+}
+
 async function refreshSub(sub) {
     try {
         const res = await fetchText(sub.url);
         const parsed = parseFeed(res.text, res.url);
         if (!parsed) throw new Error('Not a valid feed');
-        if (!sub.title && parsed.title) sub.title = parsed.title;
+        if (!sub.customTitle && parsed.title) sub.title = parsed.title;
         if (parsed.siteUrl) sub.siteUrl = parsed.siteUrl;
         mergeItems(sub, parsed.items);
         sub.lastFetched = Date.now();
@@ -335,9 +395,10 @@ async function refreshSub(sub) {
     }
 }
 
-async function refreshAll(ui, { force = false } = {}) {
+async function refreshAll(uiObj, { force = false } = {}) {
     if (refreshing) return;
-    const due = subs.filter(s => force || !s.lastFetched || Date.now() - s.lastFetched > STALE_MS);
+    const staleMs = settings.refreshMinutes * 60 * 1000;
+    const due = subs.filter(s => force || !s.lastFetched || Date.now() - s.lastFetched > staleMs);
     if (!due.length) return;
     refreshing = true;
     setRefreshState(true);
@@ -348,26 +409,28 @@ async function refreshAll(ui, { force = false } = {}) {
         };
         await Promise.all(Array.from({ length: Math.min(CONCURRENCY, due.length) }, worker));
         items.sort((a, b) => b.published - a.published);
+        pruneItems();
         items = items.slice(0, MAX_ITEMS_TOTAL);
         await persist();
     } finally {
         refreshing = false;
         setRefreshState(false);
         render();
+        renderFeedSettings();
     }
     const failed = subs.filter(s => s.error).length;
-    if (force && failed) toast(ui, `${failed} feed${failed > 1 ? 's' : ''} could not be loaded`);
+    if (force && failed) toast(uiObj, `${failed} feed${failed > 1 ? 's' : ''} could not be loaded`);
 }
 
-// ── Add / remove / import ──────────────────────────────────────────────────
-async function addFeed(ui, rawUrl) {
+// ── Add / remove / import / export ─────────────────────────────────────────
+async function addFeed(uiObj, rawUrl, inputEl) {
     const url = normalizeInputUrl(rawUrl);
-    if (!url) return toast(ui, 'Enter a valid web address');
+    if (!url) return toast(uiObj, 'Enter a valid web address');
     setBusy(true);
     try {
         const { feedUrl, parsed } = await resolveFeed(url);
         if (subs.some(s => s.url === feedUrl)) {
-            toast(ui, 'Already subscribed');
+            toast(uiObj, 'Already subscribed');
             return;
         }
         const sub = {
@@ -375,6 +438,7 @@ async function addFeed(ui, rawUrl) {
             url: feedUrl,
             title: parsed.title || new URL(feedUrl).hostname,
             siteUrl: parsed.siteUrl || '',
+            folder: '',
             addedAt: Date.now(),
             lastFetched: Date.now(),
             error: ''
@@ -383,11 +447,13 @@ async function addFeed(ui, rawUrl) {
         mergeItems(sub, parsed.items);
         items.sort((a, b) => b.published - a.published);
         await persist();
-        els.input.value = '';
-        toast(ui, `Subscribed to ${sub.title}`);
+        if (inputEl) inputEl.value = '';
+        closeSheet();
+        toast(uiObj, `Subscribed to ${subTitle(sub)}`);
         render();
+        renderFeedSettings();
     } catch (e) {
-        toast(ui, e.message || 'Could not add feed');
+        toast(uiObj, e.message || 'Could not add feed');
     } finally {
         setBusy(false);
     }
@@ -396,17 +462,19 @@ async function addFeed(ui, rawUrl) {
 async function removeFeed(id) {
     subs = subs.filter(s => s.id !== id);
     items = items.filter(i => i.feedId !== id);
+    if (ui.source === 'sub:' + id) ui.source = 'all';
     await persist();
     render();
+    renderFeedSettings();
 }
 
-async function importOpml(ui, file) {
+async function importOpml(uiObj, file) {
     try {
         const text = await file.text();
         const doc = new DOMParser().parseFromString(text, 'text/xml');
         if (doc.querySelector('parsererror')) throw new Error('Not a valid OPML file');
         let added = 0;
-        doc.querySelectorAll('outline[xmlUrl], outline[xmlurl]').forEach(o => {
+        const addOutline = (o, folder) => {
             const url = safeHttpUrl(o.getAttribute('xmlUrl') || o.getAttribute('xmlurl'));
             if (!url || subs.some(s => s.url === url)) return;
             subs.push({
@@ -414,28 +482,87 @@ async function importOpml(ui, file) {
                 url,
                 title: o.getAttribute('title') || o.getAttribute('text') || new URL(url).hostname,
                 siteUrl: safeHttpUrl(o.getAttribute('htmlUrl')) || '',
+                folder: folder || '',
                 addedAt: Date.now(),
                 lastFetched: 0,
                 error: ''
             });
             added++;
-        });
+        };
+        // One folder level: a top-level outline without xmlUrl is a folder whose
+        // (possibly nested) feed outlines all land in that folder.
+        const body = doc.querySelector('body');
+        const top = body ? [...body.children].filter(n => n.localName === 'outline') : [];
+        for (const o of top) {
+            if (o.getAttribute('xmlUrl') || o.getAttribute('xmlurl')) { addOutline(o, ''); continue; }
+            const folder = (o.getAttribute('title') || o.getAttribute('text') || '').trim();
+            o.querySelectorAll('outline[xmlUrl], outline[xmlurl]').forEach(c => addOutline(c, folder));
+        }
         await persist();
-        toast(ui, added ? `Imported ${added} feed${added > 1 ? 's' : ''}` : 'No new feeds in that file');
+        toast(uiObj, added ? `Imported ${added} feed${added > 1 ? 's' : ''}` : 'No new feeds in that file');
+        closeSheet();
         render();
-        if (added) refreshAll(ui, { force: false });
+        renderFeedSettings();
+        if (added) refreshAll(uiObj, { force: false });
     } catch (e) {
-        toast(ui, e.message || 'Import failed');
+        toast(uiObj, e.message || 'Import failed');
     }
 }
 
-// ── Item actions ───────────────────────────────────────────────────────────
-async function markRead(item, read = true) {
-    if (item.read === read) return;
-    item.read = read;
-    await persist();
+function escXml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function exportOpml() {
+    const line = (s, ind) => `${ind}<outline type="rss" text="${escXml(subTitle(s))}" title="${escXml(subTitle(s))}" xmlUrl="${escXml(s.url)}"${s.siteUrl ? ` htmlUrl="${escXml(s.siteUrl)}"` : ''}/>`;
+    const folders = [...new Set(subs.map(s => s.folder).filter(Boolean))].sort();
+    const out = ['<?xml version="1.0" encoding="UTF-8"?>', '<opml version="2.0">', '  <head><title>AI Summary Helper feeds</title></head>', '  <body>'];
+    subs.filter(s => !s.folder).forEach(s => out.push(line(s, '    ')));
+    folders.forEach(f => {
+        out.push(`    <outline text="${escXml(f)}" title="${escXml(f)}">`);
+        subs.filter(s => s.folder === f).forEach(s => out.push(line(s, '      ')));
+        out.push('    </outline>');
+    });
+    out.push('  </body>', '</opml>');
+    const blob = new Blob([out.join('\n')], { type: 'text/x-opml' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ai-summary-helper-feeds.opml';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 
+// ── Read state (with undo) ─────────────────────────────────────────────────
+async function setRead(list, read, { silent = false, label = '' } = {}) {
+    const prev = new Map();
+    list.forEach(i => { if (i.read !== read) { prev.set(i.id, i.read); i.read = read; } });
+    if (!prev.size) return;
+    await persist();
+    render();
+    if (!silent) {
+        showUndo(label || (read ? `Marked ${prev.size} read` : `Marked ${prev.size} unread`), async () => {
+            items.forEach(i => { if (prev.has(i.id)) i.read = prev.get(i.id); });
+            await persist();
+            render();
+        });
+    }
+}
+
+function showUndo(msg, restore) {
+    const bar = document.getElementById('feedUndo');
+    if (!bar) return;
+    document.getElementById('feedUndoMsg').textContent = msg;
+    const btn = document.getElementById('feedUndoBtn');
+    btn.onclick = async () => { hideUndo(); await restore(); };
+    bar.hidden = false;
+    clearTimeout(undoTimer);
+    undoTimer = setTimeout(hideUndo, 6000);
+}
+function hideUndo() {
+    clearTimeout(undoTimer);
+    const bar = document.getElementById('feedUndo');
+    if (bar) bar.hidden = true;
+}
+
+// ── Item actions ───────────────────────────────────────────────────────────
 async function onSummarizeClick(item) {
     const art = await findSummarizedArticle(item.link);
     if (art) return viewSummary(item, art);
@@ -443,7 +570,7 @@ async function onSummarizeClick(item) {
 }
 
 function openItem(item, summarize) {
-    markRead(item).then(render);
+    if (settings.markReadOnOpen) setRead([item], true, { silent: true });
     chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize }, (res) => {
         if (chrome.runtime.lastError) return;
         if (summarize && res && res.mode === 'extension') {
@@ -454,9 +581,62 @@ function openItem(item, summarize) {
     });
 }
 
+// ── Filtering ──────────────────────────────────────────────────────────────
+function startOfDay(ts) { const d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime(); }
+function subMap() { return new Map(subs.map(s => [s.id, s])); }
+
+function inSource(i, sm) {
+    const s = sm.get(i.feedId);
+    if (!s) return false;
+    const [kind, val] = splitSource(ui.source);
+    if (kind === 'sub') return i.feedId === val;
+    if (kind === 'folder') return s.folder === val && !s.muted;
+    return !s.muted;
+}
+
+function passes(i, sm) {
+    if (!inSource(i, sm)) return false;
+    const h = histOf(i);
+    if (ui.status === 'unread' && i.read) return false;
+    if (ui.status === 'fav' && !h.fav) return false;
+    if (ui.status === 'sum' && !h.summarized) return false;
+    if (ui.date === 'today' && i.published < startOfDay(Date.now())) return false;
+    if (ui.date === '7d' && i.published < Date.now() - 7 * DAY_MS) return false;
+    const mood = moodOf(i.sent || 0);
+    if (ui.mood === 'pos' && mood !== 'pos') return false;
+    if (ui.mood === 'nonneg' && mood === 'neg') return false;
+    return true;
+}
+
+function visibleItems() {
+    const sm = subMap();
+    const list = items.filter(i => passes(i, sm));
+    if (ui.sort === 'mood') list.sort((a, b) => (b.sent || 0) - (a.sent || 0) || b.published - a.published);
+    else list.sort((a, b) => b.published - a.published);
+    return list.slice(0, MAX_RENDERED);
+}
+
+function unreadCount(pred) { return items.filter(i => !i.read && pred(i)).length; }
+
+function dayLabel(ts) {
+    const diff = Math.round((startOfDay(Date.now()) - startOfDay(ts)) / DAY_MS);
+    if (diff <= 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    if (diff < 7) return new Date(ts).toLocaleDateString(undefined, { weekday: 'long' });
+    return new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
+function filterChipLabel() {
+    const parts = [];
+    if (ui.date === 'today') parts.push('Today'); else if (ui.date === '7d') parts.push('7 days');
+    if (ui.mood === 'pos') parts.push('😊'); else if (ui.mood === 'nonneg') parts.push('No 😟');
+    if (ui.sort === 'mood') parts.push('Mood ↓');
+    return (parts.join(' · ') || 'Any time') + ' ▾';
+}
+
 // ── Rendering ──────────────────────────────────────────────────────────────
 function setBusy(busy) {
-    if (els.addBtn) { els.addBtn.disabled = busy; els.addBtn.textContent = busy ? '…' : '＋'; }
+    document.querySelectorAll('[data-feed-add]').forEach(b => { b.disabled = busy; });
 }
 
 function setRefreshState(on) {
@@ -470,142 +650,494 @@ function el(tag, className, text) {
     return n;
 }
 
+function btn(className, text, onClick, title) {
+    const b = el('button', className, text);
+    b.type = 'button';
+    if (title) { b.title = title; b.setAttribute('aria-label', title); }
+    if (onClick) b.addEventListener('click', onClick);
+    return b;
+}
+
+function sourceLabel() {
+    const [kind, val] = splitSource(ui.source);
+    if (kind === 'sub') { const s = subs.find(x => x.id === val); return '📰  ' + (s ? subTitle(s) : 'Source'); }
+    if (kind === 'folder') return '📁  ' + val;
+    return '📰  All sources';
+}
+
+function renderControls() {
+    const sm = subMap();
+    const hasSubs = subs.length > 0;
+    if (els.controls) els.controls.hidden = !hasSubs;
+    if (!hasSubs) return;
+    els.sourceLabel.textContent = sourceLabel();
+    const [kind, val] = splitSource(ui.source);
+    const scoped = i => {
+        const s = sm.get(i.feedId);
+        if (!s) return false;
+        if (kind === 'sub') return i.feedId === val;
+        if (kind === 'folder') return s.folder === val && !s.muted;
+        return !s.muted;
+    };
+    const unread = unreadCount(scoped);
+    els.sourceCount.textContent = unread ? String(unread) : '';
+    els.chipRow.querySelectorAll('[data-status]').forEach(b => {
+        const on = b.dataset.status === ui.status;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', String(on));
+        if (b.dataset.status === 'unread') b.textContent = unread ? `Unread · ${unread}` : 'Unread';
+    });
+    els.filterChip.textContent = filterChipLabel();
+    els.filterChip.classList.toggle('active', ui.date !== 'any' || ui.mood !== 'any' || ui.sort !== 'new');
+}
+
+function renderFirstRun() {
+    const box = els.empty;
+    box.replaceChildren();
+    box.className = 'feed-firstrun';
+    box.style.display = 'flex';
+    box.append(el('div', 'feed-firstrun-icon', '📰'), el('h3', null, 'Follow the sites you read'),
+        el('p', null, 'New posts land here. Skim, summarize what matters, clear the rest.'));
+    const row = el('div', 'feed-add-row');
+    const input = el('input');
+    input.type = 'text'; input.placeholder = 'Site or feed address…'; input.autocomplete = 'off'; input.spellcheck = false;
+    const add = btn('button-primary feed-btn', 'Add', () => addFeed(uiRef, input.value, input));
+    add.setAttribute('data-feed-add', '');
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
+    row.append(input, add);
+    box.append(row, btn('button-secondary feed-wide-btn', '＋  Use current site', useCurrentSite),
+        btn('button-secondary feed-wide-btn', '📥  Import OPML file', () => els.opmlInput.click()),
+        el('p', 'feed-muted', 'Your feeds stay on this device.'));
+}
+
+function renderEmptyFiltered(hasAny) {
+    const box = els.empty;
+    box.replaceChildren();
+    box.className = 'explanatory-card feed-emptycard';
+    box.style.display = 'block';
+    if (refreshing && !hasAny) { box.textContent = 'Loading…'; return; }
+    const unreadMode = ui.status === 'unread' && ui.source === 'all' && ui.date === 'any' && ui.mood === 'any';
+    box.append(el('p', null, unreadMode ? 'You’re all caught up. 🎉' : 'Nothing matches these filters.'));
+    box.append(btn('button-secondary feed-btn', unreadMode ? 'Show all items' : 'Clear filters', () => {
+        ui = { source: 'all', status: unreadMode ? 'all' : 'unread', date: 'any', mood: 'any', sort: 'new' };
+        persistUi(); render();
+    }));
+}
+
+function renderCard(item, sm) {
+    const hist = histOf(item);
+    const mood = moodOf(item.sent || 0);
+    const li = el('li', 'article-card feed-item' + (item.read ? ' is-read' : '') + (hist.fav ? ' is-favorite' : ''));
+    const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
+    if (MOOD_EMOJI[mood]) {
+        const m = el('span', 'feed-mood', ' ' + MOOD_EMOJI[mood]);
+        m.title = mood === 'pos' ? 'Positive tone' : 'Heavy tone';
+        meta.append(m);
+    }
+    const title = el('h4', null, item.title);
+    const head = el('div', 'article-header');
+    const headText = el('div');
+    headText.append(title, meta);
+    if (hist.summarized) {
+        const badge = el('span', 'feed-badge', '✓ Summarized');
+        badge.title = 'You have a saved summary of this page';
+        headText.append(badge);
+    }
+    const star = btn('star-button', hist.fav ? '★' : '☆', (e) => { e.stopPropagation(); toggleFavorite(item); }, 'Favorite');
+    star.setAttribute('aria-pressed', String(hist.fav));
+    head.append(headText, star);
+    li.appendChild(head);
+    if (item.snippet) li.appendChild(el('p', 'feed-snippet', item.snippet));
+
+    const actions = el('div', 'feed-actions');
+    const sum = btn('button-primary feed-btn', hist.summarized ? '📄 View summary' : '✨ Summarize', (e) => { e.stopPropagation(); onSummarizeClick(item); });
+    const open = btn('button-secondary feed-btn', 'Open ↗', (e) => { e.stopPropagation(); openItem(item, false); });
+    const read = btn('button-secondary feed-btn', item.read ? 'Mark unread' : 'Mark read', (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true }); });
+    actions.append(open, read, sum);
+    li.appendChild(actions);
+    li.tabIndex = 0;
+    li.setAttribute('role', 'link');
+    li.addEventListener('click', () => onCardClick(item));
+    li.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target === li) onCardClick(item); });
+    return li;
+}
+
 function render() {
     if (!els.list) return;
-    const subById = new Map(subs.map(s => [s.id, s]));
-    els.subsCount.textContent = String(subs.length);
-
-    // Subscriptions list
-    els.subsList.replaceChildren();
-    subs.forEach(s => {
-        const row = el('li', 'feed-sub-row');
-        const name = el('span', 'feed-sub-name', s.title || s.url);
-        name.title = s.url;
-        row.appendChild(name);
-        if (s.error) row.appendChild(el('span', 'feed-sub-error', '⚠ ' + s.error));
-        const rm = el('button', 'feed-icon-btn', '✕');
-        rm.type = 'button';
-        rm.title = 'Unsubscribe';
-        rm.addEventListener('click', () => removeFeed(s.id));
-        row.appendChild(rm);
-        els.subsList.appendChild(row);
-    });
-
-    // Items
+    renderControls();
     els.list.replaceChildren();
-    const unread = items.filter(i => !i.read).length;
-    els.unreadToggle.textContent = unreadOnly ? `Unread (${unread})` : `All · ${unread} unread`;
-    els.unreadToggle.classList.toggle('active', unreadOnly);
 
-    const visible = items
-        .filter(i => subById.has(i.feedId) && (!unreadOnly || !i.read))
-        .sort((a, b) => b.published - a.published)
-        .slice(0, MAX_RENDERED);
+    if (!subs.length) { els.list.hidden = true; renderFirstRun(); return; }
+    els.list.hidden = false;
 
-    els.empty.style.display = visible.length ? 'none' : 'block';
-    els.empty.textContent = !subs.length
-        ? 'No feeds yet. Paste a site or feed address above, use “Current site”, or import an OPML file from your old reader.'
-        : (unreadOnly ? 'You’re all caught up. 🎉' : (refreshing ? 'Loading…' : 'No items yet — try Refresh.'));
+    const sm = subMap();
+    const visible = visibleItems();
+    if (!visible.length) { renderEmptyFiltered(items.length > 0); return; }
+    els.empty.style.display = 'none';
 
-    visible.forEach(item => {
-        const hist = historyByUrl.get(normalizeUrl(item.link)) || { fav: false, summarized: false };
-        const li = el('li', 'article-card feed-item' + (item.read ? ' is-read' : '') + (hist.fav ? ' is-favorite' : ''));
-        const metaText = `${subById.get(item.feedId).title || ''} · ${timeAgo(item.published)}`;
-        const meta = el('p', 'article-date', metaText);
-        const title = el('h4', null, item.title);
-        const head = el('div', 'article-header');
-        const headText = el('div');
-        headText.append(title, meta);
-        if (hist.summarized) {
-            const badge = el('span', 'feed-badge', '✓ Summarized');
-            badge.title = 'You have a saved summary of this page';
-            headText.append(badge);
+    let lastKey = null;
+    let group = [];
+    const flush = () => {
+        if (!group.length) return;
+        const unread = group.filter(i => !i.read);
+        const header = el('li', 'feed-day');
+        header.append(el('span', 'feed-day-label', `${dayLabel(group[0].published)} · ${group.length} item${group.length > 1 ? 's' : ''}`));
+        if (unread.length) {
+            const snapshot = [...unread];
+            header.append(btn('feed-day-action', 'Mark read', () => setRead(snapshot, true, { label: `Marked ${snapshot.length} read` }), `Mark ${snapshot.length} read`));
         }
-        const star = el('button', 'star-button', hist.fav ? '★' : '☆');
-        star.type = 'button';
-        star.title = 'Favorite';
-        star.setAttribute('aria-label', 'Favorite');
-        star.setAttribute('aria-pressed', String(hist.fav));
-        star.addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(item); });
-        head.append(headText, star);
-        li.appendChild(head);
-        if (item.snippet) li.appendChild(el('p', 'feed-snippet', item.snippet));
+        els.list.appendChild(header);
+        group.forEach(i => els.list.appendChild(renderCard(i, sm)));
+        group = [];
+    };
+    if (ui.sort === 'mood') {
+        const header = el('li', 'feed-day');
+        header.append(el('span', 'feed-day-label', `Most positive first · ${visible.length} items`));
+        els.list.appendChild(header);
+        visible.forEach(i => els.list.appendChild(renderCard(i, sm)));
+    } else {
+        for (const i of visible) {
+            const key = startOfDay(i.published);
+            if (key !== lastKey) { flush(); lastKey = key; }
+            group.push(i);
+        }
+        flush();
+    }
+}
 
-        const actions = el('div', 'feed-actions');
-        const sum = el('button', 'button-primary feed-btn', hist.summarized ? '📄 View summary' : '✨ Summarize');
-        sum.type = 'button';
-        sum.addEventListener('click', (e) => { e.stopPropagation(); onSummarizeClick(item); });
-        const open = el('button', 'button-secondary feed-btn', 'Open ↗');
-        open.type = 'button';
-        open.addEventListener('click', (e) => { e.stopPropagation(); openItem(item, false); });
-        const read = el('button', 'button-secondary feed-btn', item.read ? 'Mark unread' : 'Mark read');
-        read.type = 'button';
-        read.addEventListener('click', async (e) => { e.stopPropagation(); await markRead(item, !item.read); render(); });
-        actions.append(open, read, sum);
-        li.appendChild(actions);
-        li.tabIndex = 0;
-        li.setAttribute('role', 'link');
-        li.addEventListener('click', () => onCardClick(item));
-        li.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target === li) onCardClick(item); });
-        els.list.appendChild(li);
+// ── Sheets (source picker, filters, add, briefing) ─────────────────────────
+function openSheet(title, bodyNode) {
+    const layer = document.getElementById('feedSheetLayer');
+    const body = document.getElementById('feedSheetBody');
+    if (!layer || !body) return;
+    body.replaceChildren();
+    const head = el('div', 'feed-sheet-head');
+    head.append(el('h3', null, title), btn('feed-sheet-done', 'Done', closeSheet));
+    body.append(head, bodyNode);
+    layer.hidden = false;
+}
+function closeSheet() {
+    const layer = document.getElementById('feedSheetLayer');
+    if (layer) layer.hidden = true;
+}
+
+function radioRow(label, count, selected, onClick, { muted = false, indent = false } = {}) {
+    const b = el('button', 'feed-pick-row' + (selected ? ' selected' : '') + (muted ? ' is-muted' : '') + (indent ? ' indent' : ''));
+    b.type = 'button';
+    b.append(el('span', 'feed-pick-radio', selected ? '●' : '○'), el('span', 'feed-pick-name', label), el('span', 'feed-pick-count', count || ''));
+    b.addEventListener('click', onClick);
+    return b;
+}
+
+function openSourcePicker() {
+    const body = el('div', 'feed-picker');
+    const search = el('input');
+    search.type = 'search'; search.placeholder = 'Search sources…'; search.autocomplete = 'off'; search.spellcheck = false;
+    const list = el('div', 'feed-picker-list');
+    const choose = (src) => { ui.source = src; persistUi(); closeSheet(); render(); };
+    const draw = () => {
+        list.replaceChildren();
+        const q = search.value.trim().toLowerCase();
+        const sm = subMap();
+        const cnt = (pred) => { const n = unreadCount(i => sm.has(i.feedId) && pred(i)); return n ? String(n) : ''; };
+        if (!q) list.append(radioRow('All sources', cnt(i => !sm.get(i.feedId).muted), ui.source === 'all', () => choose('all')));
+        const folders = [...new Set(subs.map(s => s.folder).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+        const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.folder || '').toLowerCase().includes(q);
+        const addSubs = (arr, indent) => arr.filter(matching).sort((a, b) => subTitle(a).localeCompare(subTitle(b))).forEach(s => {
+            list.append(radioRow((s.muted ? '🔕 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted, indent }));
+        });
+        folders.forEach(f => {
+            const inFolder = subs.filter(s => s.folder === f);
+            if (!inFolder.some(matching)) return;
+            list.append(el('div', 'feed-pick-label', f.toUpperCase()));
+            if (!q) list.append(radioRow(`All in ${f}`, cnt(i => sm.get(i.feedId).folder === f && !sm.get(i.feedId).muted), ui.source === 'folder:' + f, () => choose('folder:' + f), { indent: true }));
+            addSubs(inFolder, true);
+        });
+        const loose = subs.filter(s => !s.folder);
+        if (loose.some(matching)) {
+            if (folders.length) list.append(el('div', 'feed-pick-label', 'NO FOLDER'));
+            addSubs(loose, false);
+        }
+        if (!list.children.length) list.append(el('p', 'feed-muted', 'No sources match.'));
+    };
+    search.addEventListener('input', draw);
+    body.append(search, list, btn('feed-manage-link', '⚙️  Manage feeds & folders in Settings  ›', async () => {
+        closeSheet();
+        const nav = await import('./settingsNav.js');
+        uiRef.showScreen('settings');
+        setTimeout(() => nav.openSettingsPanel('feeds'), 50);
+    }));
+    openSheet('Sources', body);
+    draw();
+}
+
+function openFilterSheet() {
+    const body = el('div', 'feed-picker');
+    const draw = () => {
+        body.replaceChildren();
+        const section = (title, key, opts) => {
+            body.append(el('div', 'feed-pick-label', title));
+            opts.forEach(([val, label]) => body.append(radioRow(label, '', ui[key] === val, () => { ui[key] = val; persistUi(); render(); draw(); })));
+        };
+        section('DATE', 'date', [['any', 'Any time'], ['today', 'Today'], ['7d', 'Last 7 days']]);
+        section('MOOD', 'mood', [['any', 'Any mood'], ['pos', '😊  Positive only'], ['nonneg', 'Hide negative']]);
+        section('SORT', 'sort', [['new', 'Newest first'], ['mood', 'Most positive first']]);
+        body.append(el('div', 'feed-pick-label', 'MORE'));
+        body.append(btn('feed-manage-link', '☀️  Today’s briefing', () => { closeSheet(); openBriefing(); }));
+        body.append(btn('feed-manage-link', '✓  Mark everything in this view read', () => {
+            const list = visibleItems().filter(i => !i.read);
+            closeSheet();
+            if (list.length) setRead(list, true, { label: `Marked ${list.length} read` });
+        }));
+        body.append(el('p', 'feed-muted', 'Mood is estimated on your device from headlines and snippets — a rough guide, not a verdict.'));
+    };
+    openSheet('Date & mood', body);
+    draw();
+}
+
+async function useCurrentSite() {
+    try {
+        const { getActiveTab } = await import('./mainScreen.js');
+        const tab = await getActiveTab();
+        if (tab && /^https?:/i.test(tab.url || '')) {
+            addFeed(uiRef, tab.url, null);
+        } else {
+            toast(uiRef, 'Open a website in the current tab first');
+        }
+    } catch (e) {
+        toast(uiRef, 'Could not read the current tab');
+    }
+}
+
+function openAddSheet() {
+    const body = el('div', 'feed-picker');
+    const row = el('div', 'feed-add-row');
+    const input = el('input');
+    input.type = 'text'; input.placeholder = 'Site or feed address…'; input.autocomplete = 'off'; input.spellcheck = false;
+    const add = btn('button-primary feed-btn', 'Add', () => addFeed(uiRef, input.value, input));
+    add.setAttribute('data-feed-add', '');
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
+    row.append(input, add);
+    body.append(row, el('p', 'feed-muted', 'Paste any site address. We find its feed for you.'),
+        btn('feed-option-card', '＋  Use current site', useCurrentSite),
+        btn('feed-option-card', '📥  Import OPML file…', () => els.opmlInput.click()));
+    openSheet('Add a feed', body);
+    setTimeout(() => input.focus(), 50);
+}
+
+// ── Today's briefing ───────────────────────────────────────────────────────
+function openBriefing() {
+    const sm = subMap();
+    const start = startOfDay(Date.now());
+    const today = items.filter(i => sm.has(i.feedId) && !sm.get(i.feedId).muted && i.published >= start)
+        .sort((a, b) => b.published - a.published);
+    const body = el('div', 'feed-picker');
+    if (!today.length) {
+        body.append(el('p', 'feed-muted', 'Nothing new today yet. Try Refresh.'));
+        return openSheet('Today’s briefing', body);
+    }
+    const bySub = new Map();
+    today.forEach(i => { if (!bySub.has(i.feedId)) bySub.set(i.feedId, []); bySub.get(i.feedId).push(i); });
+    const tally = { pos: 0, neu: 0, neg: 0 };
+    today.forEach(i => { tally[moodOf(i.sent || 0)]++; });
+    const unread = today.filter(i => !i.read);
+    body.append(el('p', 'feed-brief-summary', `${today.length} new today across ${bySub.size} source${bySub.size > 1 ? 's' : ''} · ${unread.length} unread`),
+        el('p', 'feed-muted', `Mood: 😊 ${tally.pos} · 😐 ${tally.neu} · 😟 ${tally.neg}`));
+    bySub.forEach((list, id) => {
+        body.append(el('div', 'feed-pick-label', `${subTitle(sm.get(id)).toUpperCase()} · ${list.length}`));
+        list.slice(0, 2).forEach(i => {
+            const emoji = MOOD_EMOJI[moodOf(i.sent || 0)];
+            body.append(btn('feed-brief-item' + (i.read ? ' is-read' : ''), (emoji ? emoji + '  ' : '') + i.title, () => { closeSheet(); onCardClick(i); }));
+        });
+        if (list.length > 2) body.append(el('p', 'feed-muted', `+ ${list.length - 2} more`));
     });
+    body.append(btn('button-primary feed-wide-btn', '✨ Summarize top 5 unread', async () => {
+        const { summaryMode } = await chrome.storage.local.get('summaryMode');
+        if (summaryMode === 'inline') { toast(uiRef, 'Batch summarizing runs in extension mode. Switch on the Summarize screen.'); return; }
+        const picks = unread.filter(i => !histOf(i).summarized).slice(0, 5);
+        if (!picks.length) { toast(uiRef, 'Everything unread is already summarized'); return; }
+        picks.forEach((i, k) => setTimeout(() => chrome.runtime.sendMessage({ action: 'openFeedItem', url: i.link, summarize: true, forceExtension: true }, () => void chrome.runtime.lastError), k * 1500));
+        toast(uiRef, `Summarizing ${picks.length} in the background — see History`);
+        closeSheet();
+    }));
+    openSheet('Today’s briefing', body);
+}
+
+// ── Settings > Feeds panel ─────────────────────────────────────────────────
+function updateSettingsSub() {
+    const sub = document.querySelector('.settings-row-sub[data-sub="feeds"]');
+    if (!sub) return;
+    const folders = new Set(subs.map(s => s.folder).filter(Boolean)).size;
+    sub.textContent = subs.length
+        ? `${subs.length} feed${subs.length > 1 ? 's' : ''}${folders ? ` · ${folders} folder${folders > 1 ? 's' : ''}` : ''}`
+        : 'Subscriptions · OPML · behavior';
+}
+
+function sendPollConfig() {
+    chrome.runtime.sendMessage({ action: 'feedPollConfig' }, () => void chrome.runtime.lastError);
+}
+
+async function setSetting(key, value) {
+    settings[key] = value;
+    await persistSettings();
+    if (key === 'backgroundPoll' || key === 'refreshMinutes') sendPollConfig();
+    if (key === 'keepDays') { pruneItems(); await persist(); render(); }
+}
+
+function subRow(s) {
+    const row = el('div', 'feed-sub-card' + (s.muted ? ' is-muted' : ''));
+    const l1 = el('div', 'feed-sub-line');
+    const name = el('input', 'feed-sub-input');
+    name.type = 'text'; name.value = subTitle(s); name.setAttribute('aria-label', 'Feed name');
+    name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); name.blur(); } });
+    name.addEventListener('change', async () => {
+        const v = name.value.trim();
+        if (v) s.customTitle = v; else { delete s.customTitle; name.value = subTitle(s); }
+        await persist(); render();
+    });
+    const mute = btn('feed-icon-btn', s.muted ? '🔕' : '🔔', async () => {
+        s.muted = !s.muted;
+        await persist(); render(); renderFeedSettings();
+    }, s.muted ? 'Unmute (include in All sources)' : 'Mute (leave out of All sources)');
+    const rm = btn('feed-icon-btn', '✕', () => { removeFeed(s.id); }, 'Unsubscribe');
+    l1.append(name, mute, rm);
+    const l2 = el('div', 'feed-sub-line');
+    const folder = el('input', 'feed-sub-input feed-sub-folder');
+    folder.type = 'text'; folder.placeholder = 'Folder'; folder.value = s.folder || ''; folder.setAttribute('list', 'feedFolderList'); folder.setAttribute('aria-label', 'Folder');
+    folder.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); folder.blur(); } });
+    folder.addEventListener('change', async () => {
+        s.folder = folder.value.trim();
+        if (!sourceExists(ui.source)) ui.source = 'all';
+        await persist(); render(); updateSettingsSub();
+    });
+    const n = items.filter(i => i.feedId === s.id && !i.read).length;
+    l2.append(folder, el('span', s.error ? 'feed-sub-error' : 'feed-muted', s.error ? '⚠ ' + s.error : `${n} unread`));
+    row.append(l1, l2);
+    return row;
+}
+
+function toggleRow(id, title, hint, key) {
+    const row = el('div', 'setting-group flex justify-between align-center mb-3');
+    const left = el('div'); left.style.cssText = 'flex:1;min-width:0;';
+    const lab = el('label', null, title); lab.htmlFor = id; lab.style.cssText = 'display:block;margin:0;font-weight:normal;cursor:pointer;';
+    const p = el('p', null, hint); p.style.cssText = 'font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;';
+    left.append(lab, p);
+    const sw = el('label', 'switch'); sw.style.cssText = 'flex-shrink:0;margin-left:12px;';
+    const cb = el('input'); cb.type = 'checkbox'; cb.id = id; cb.checked = !!settings[key];
+    cb.addEventListener('change', () => setSetting(key, cb.checked));
+    sw.append(cb, el('span', 'slider-toggle'));
+    row.append(left, sw);
+    return row;
+}
+
+function selectRow(id, title, key, opts) {
+    const row = el('div', 'setting-group flex justify-between align-center mb-3');
+    const lab = el('label', null, title); lab.htmlFor = id; lab.style.cssText = 'margin:0;font-weight:normal;flex:1;';
+    const sel = el('select'); sel.id = id; sel.style.cssText = 'width:auto;min-width:120px;margin:0;';
+    opts.forEach(([v, t]) => { const o = el('option', null, t); o.value = String(v); if (Number(settings[key]) === v) o.selected = true; sel.append(o); });
+    sel.addEventListener('change', () => setSetting(key, Number(sel.value)));
+    row.append(lab, sel);
+    return row;
+}
+
+function renderFeedSettings() {
+    const root = document.getElementById('feedSettingsRoot');
+    if (!root) return;
+    updateSettingsSub();
+    root.replaceChildren();
+
+    root.append(el('p', 'settings-caption', `SUBSCRIPTIONS · ${subs.length}`));
+    const dl = el('datalist'); dl.id = 'feedFolderList';
+    [...new Set(subs.map(s => s.folder).filter(Boolean))].sort().forEach(f => { const o = el('option'); o.value = f; dl.append(o); });
+    root.append(dl);
+
+    const card = el('div', 'feed-set-card');
+    card.id = 'feedSubsCard';
+    if (!subs.length) card.append(el('p', 'feed-muted', 'No feeds yet. Add one below or import an OPML file.'));
+    subs.forEach(s => card.append(subRow(s)));
+    const addRow = el('div', 'feed-add-row');
+    const input = el('input'); input.type = 'text'; input.placeholder = 'Add a site or feed address…'; input.autocomplete = 'off'; input.spellcheck = false;
+    const add = btn('button-secondary feed-btn', '＋ Add', () => addFeed(uiRef, input.value, input));
+    add.setAttribute('data-feed-add', '');
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
+    addRow.append(input, add);
+    const io = el('div', 'feed-actions-row');
+    io.id = 'feedOpmlActions';
+    io.append(btn('button-secondary feed-btn', '📥 Import OPML', () => els.opmlInput.click()),
+        btn('button-secondary feed-btn', '📤 Export OPML', () => { if (!subs.length) return toast(uiRef, 'Nothing to export yet'); exportOpml(); }));
+    card.append(addRow, io);
+    root.append(card);
+
+    root.append(el('p', 'settings-caption', 'BEHAVIOR'));
+    const beh = el('div', 'feed-set-card');
+    beh.id = 'feedBehaviorCard';
+    beh.append(
+        toggleRow('feedSetMarkRead', '✓ Mark read when opened', 'Items you open or summarize leave your unread list', 'markReadOnOpen'),
+        toggleRow('feedSetAutoSum', '✨ Auto-summarize favorites', 'Starring an item summarizes it in a background tab', 'autoSummarizeFavs'),
+        toggleRow('feedSetPoll', '🔔 Check in the background', 'Shows a badge on the toolbar icon when new items arrive', 'backgroundPoll'),
+        selectRow('feedSetRefresh', '🔄 Refresh feeds every', 'refreshMinutes', [[15, '15 minutes'], [30, '30 minutes'], [60, '1 hour'], [180, '3 hours']]),
+        selectRow('feedSetKeep', '🗂️ Keep items for', 'keepDays', [[7, '7 days'], [30, '30 days'], [90, '90 days'], [365, '1 year']]),
+        el('p', 'feed-muted', 'Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.')
+    );
+    root.append(beh);
 }
 
 // ── Public API ─────────────────────────────────────────────────────────────
-export async function onFeedsScreenShown(ui) {
-    uiRef = ui;
+export async function onFeedsScreenShown(uiObj) {
+    uiRef = uiObj;
+    closeSheet(); hideUndo();
     await load();
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
     await loadHistoryMap();
     render();
-    refreshAll(ui);
+    renderFeedSettings();
+    chrome.runtime.sendMessage({ action: 'feedBadgeClear' }, () => void chrome.runtime.lastError);
+    refreshAll(uiObj);
 }
 
-export function initFeedManager(ui) {
-    uiRef = ui;
+export function initFeedManager(uiObj) {
+    uiRef = uiObj;
     els = {
-        input: document.getElementById('feedUrlInput'),
-        addBtn: document.getElementById('feedAddBtn'),
-        currentBtn: document.getElementById('feedCurrentSiteBtn'),
-        opmlBtn: document.getElementById('feedOpmlBtn'),
-        opmlInput: document.getElementById('feedOpmlInput'),
+        controls: document.getElementById('feedControls'),
+        sourcePill: document.getElementById('feedSourcePill'),
+        sourceLabel: document.getElementById('feedSourceLabel'),
+        sourceCount: document.getElementById('feedSourceCount'),
         refreshBtn: document.getElementById('feedRefreshBtn'),
-        unreadToggle: document.getElementById('feedUnreadToggle'),
-        markAllBtn: document.getElementById('feedMarkAllBtn'),
-        subsCount: document.getElementById('feedSubsCount'),
-        subsList: document.getElementById('feedSubsList'),
+        addBtn: document.getElementById('feedAddBtn'),
+        chipRow: document.getElementById('feedChipRow'),
+        filterChip: document.getElementById('feedFilterChip'),
+        opmlInput: document.getElementById('feedOpmlInput'),
         list: document.getElementById('feedItemList'),
         empty: document.getElementById('feedEmpty')
     };
     if (!els.list) return;
 
-    els.addBtn.addEventListener('click', () => addFeed(ui, els.input.value));
-    els.input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(ui, els.input.value); } });
-    els.refreshBtn.addEventListener('click', () => refreshAll(ui, { force: true }));
-    els.unreadToggle.addEventListener('click', () => { unreadOnly = !unreadOnly; render(); });
-    els.markAllBtn.addEventListener('click', async () => {
-        items.forEach(i => { i.read = true; });
-        await persist();
-        render();
-    });
-    els.opmlBtn.addEventListener('click', () => els.opmlInput.click());
+    els.sourcePill.addEventListener('click', openSourcePicker);
+    els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));
+    els.addBtn.addEventListener('click', openAddSheet);
+    els.filterChip.addEventListener('click', openFilterSheet);
+    els.chipRow.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
+        ui.status = b.dataset.status; persistUi(); render();
+    }));
     els.opmlInput.addEventListener('change', () => {
         const f = els.opmlInput.files && els.opmlInput.files[0];
-        if (f) importOpml(ui, f);
+        if (f) importOpml(uiObj, f);
         els.opmlInput.value = '';
     });
-    els.currentBtn.addEventListener('click', async () => {
-        try {
-            const { getActiveTab } = await import('./mainScreen.js');
-            const tab = await getActiveTab();
-            if (tab && /^https?:/i.test(tab.url || '')) {
-                els.input.value = tab.url;
-                addFeed(ui, tab.url);
-            } else {
-                toast(ui, 'Open a website in the current tab first');
-            }
-        } catch (e) {
-            toast(ui, 'Could not read the current tab');
-        }
+    const layer = document.getElementById('feedSheetLayer');
+    if (layer) layer.querySelector('.feed-scrim').addEventListener('click', closeSheet);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+    // Leaving the screen dismisses transient UI.
+    document.querySelectorAll('.nav-item, #settingsButton').forEach(b => b.addEventListener('click', () => { closeSheet(); hideUndo(); }));
+    document.addEventListener('aish:settings-panel', async (e) => {
+        if (!e.detail || e.detail.name !== 'feeds') return;
+        renderFeedSettings();                       // immediately, so search deep-links find their target
+        await load(); await loadHistoryMap();
+        const root = document.getElementById('feedSettingsRoot');
+        if (!(root && root.contains(document.activeElement))) renderFeedSettings();
     });
+
+    // Warm the data so the Settings row subtitle is right, and make sure the
+    // background poller matches the saved settings.
+    load().then(() => { updateSettingsSub(); sendPollConfig(); }).catch(() => {});
 }

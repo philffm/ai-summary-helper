@@ -322,5 +322,11 @@
   },
   "promptDesc": {
     "message": "自定义 AI 分析文本的方式。"
+  },
+  "settingsCapFeeds": {
+    "message": "订阅源"
+  },
+  "settingsFeeds": {
+    "message": "订阅源"
   }
 }

@@ -328,5 +328,11 @@
   },
   "viewAnalytics": {
     "message": "分析レポートを表示"
+  },
+  "settingsCapFeeds": {
+    "message": "フィード"
+  },
+  "settingsFeeds": {
+    "message": "フィード"
   }
 }

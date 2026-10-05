@@ -213,6 +213,12 @@
   <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsPrompts">Prompts</span><span class="settings-row-sub" data-sub="prompts">Preset and custom prompt</span></span>
   <span class="settings-row-chev">›</span>
 </button>
+<p class="settings-caption" data-i18n="settingsCapFeeds">FEEDS</p>
+<button type="button" class="settings-row" data-panel="feeds">
+  <span class="settings-row-icon">📰</span>
+  <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsFeeds">Feeds</span><span class="settings-row-sub" data-sub="feeds">Subscriptions · OPML · behavior</span></span>
+  <span class="settings-row-chev">›</span>
+</button>
 <p class="settings-caption" data-i18n="settingsCapReading">READING</p>
 <button type="button" class="settings-row" data-panel="reading">
   <span class="settings-row-icon">✏️</span>
@@ -334,6 +340,13 @@
                 <label for="promptSelect">Preset Prompt <a href="https://github.com/philffm/ai-summary-helper/blob/main/src/prompts.json" target="_blank">(View all & contribute)</a></label>
                 <select id="promptSelect"></select>
                 <textarea id="prompt" placeholder="Enter your custom prompt here..."></textarea>
+</section>
+<section class="settings-panel" id="settingsPanel-feeds" data-panel="feeds" hidden>
+  <div class="settings-panel-head">
+    <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
+    <h2><span data-i18n="settingsFeeds">Feeds</span></h2>
+  </div>
+  <div id="feedSettingsRoot"></div>
 </section>
 <section class="settings-panel" id="settingsPanel-reading" data-panel="reading" hidden>
   <div class="settings-panel-head">
@@ -529,26 +542,28 @@
 
       <!-- FEEDS SCREEN -->
       <div id="feedsScreen" class="screen">
-        <div class="feed-topbar">
-          <input type="text" id="feedUrlInput" placeholder="Site or feed address…" data-i18n-placeholder="feedAddPlaceholder" autocomplete="off" spellcheck="false" />
-          <button type="button" id="feedAddBtn" class="button-primary" title="Add feed" aria-label="Add feed">＋</button>
-        </div>
-        <div class="feed-toolbar">
-          <button type="button" id="feedCurrentSiteBtn" class="button-secondary feed-btn" data-i18n="feedCurrentSite">Current site</button>
-          <button type="button" id="feedOpmlBtn" class="button-secondary feed-btn" data-i18n="feedImportOpml">Import OPML</button>
-          <button type="button" id="feedRefreshBtn" class="button-secondary feed-btn" title="Refresh" aria-label="Refresh">⟳</button>
-          <input type="file" id="feedOpmlInput" accept=".opml,.xml,text/xml,application/xml" hidden />
-        </div>
-        <div class="feed-toolbar">
-          <button type="button" id="feedUnreadToggle" class="button-secondary feed-btn">All</button>
-          <button type="button" id="feedMarkAllBtn" class="button-secondary feed-btn" data-i18n="feedMarkAllRead">Mark all read</button>
+        <div id="feedControls">
+          <div class="feed-controlbar">
+            <button type="button" id="feedSourcePill" class="feed-source-pill" aria-haspopup="dialog" title="Choose a source">
+              <span id="feedSourceLabel" class="feed-source-label">📰  All sources</span>
+              <span id="feedSourceCount" class="feed-source-count"></span>
+              <span class="feed-source-caret">▾</span>
+            </button>
+            <button type="button" id="feedRefreshBtn" class="feed-square-btn" title="Refresh" aria-label="Refresh">⟳</button>
+            <button type="button" id="feedAddBtn" class="feed-square-btn" title="Add feed" aria-label="Add feed">＋</button>
+          </div>
+          <div id="feedChipRow" class="feed-chiprow">
+            <button type="button" class="feed-chip active" data-status="unread">Unread</button>
+            <button type="button" class="feed-chip" data-status="all">All</button>
+            <button type="button" class="feed-chip" data-status="fav" title="Favorites" aria-label="Favorites">★</button>
+            <button type="button" class="feed-chip" data-status="sum" title="Summarized" aria-label="Summarized">✓</button>
+            <span class="feed-chip-spacer"></span>
+            <button type="button" id="feedFilterChip" class="feed-chip" aria-haspopup="dialog">Any time ▾</button>
+          </div>
         </div>
         <ul id="feedItemList" class="feed-list"></ul>
         <div id="feedEmpty" class="explanatory-card" style="display:none;"></div>
-        <details class="feed-subs">
-          <summary><span data-i18n="feedSubscriptions">Subscriptions</span> (<span id="feedSubsCount">0</span>)</summary>
-          <ul id="feedSubsList"></ul>
-        </details>
+        <input type="file" id="feedOpmlInput" accept=".opml,.xml,text/xml,application/xml" hidden />
       </div>
     </div>
 
@@ -556,6 +571,20 @@
          position:fixed isn't broken by the screens' transform/backdrop-filter.
          Visibility is toggled by uiManager when the settings screen is active. -->
     <button type="submit" form="settingsForm" class="button-primary settings-save-fab" id="settingsSaveFab" data-i18n="save" style="display:none;">Save 💾</button>
+
+    <!-- Feeds: bottom sheet (source picker, filters, add, briefing) + undo bar.
+         Outside .screen-container for the same reason as the FAB above. -->
+    <div id="feedSheetLayer" class="feed-sheet-layer" hidden>
+      <div class="feed-scrim"></div>
+      <div class="feed-sheet" role="dialog" aria-modal="true">
+        <div class="feed-sheet-handle"></div>
+        <div id="feedSheetBody"></div>
+      </div>
+    </div>
+    <div id="feedUndo" class="feed-undo" hidden role="status">
+      <span id="feedUndoMsg"></span>
+      <button type="button" id="feedUndoBtn">Undo</button>
+    </div>
 
     <!-- ── Bottom Nav ──────────────────────────────────────────────────── -->
     <nav class="bottom-nav" id="bottomNav">
