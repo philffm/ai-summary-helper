@@ -1222,5 +1222,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} と {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "アクティビティ表示"
+  },
+  "f_articles_b83e": {
+    "message": "記事"
+  },
+  "f_best_streak_8513": {
+    "message": "最長連続"
+  },
+  "f_day_streak_6d31": {
+    "message": "連続日数"
+  },
+  "f_full_reading_37c0": {
+    "message": "全文を読む"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "ムードのある記事はまだありません — AIに評価させましょう。"
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "まだ記事がありません — ページを要約すると分析が表示されます！📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "タグが見つかりません。要約にタグを追加しましょう！"
+  },
+  "f_saved_79e4": {
+    "message": "節約"
+  },
+  "f_with_summaries_5619": {
+    "message": "要約あり"
+  },
+  "f_words_read_f576": {
+    "message": "読んだ語数"
+  },
+  "f_article_09dd": {
+    "message": "{n}件の記事"
+  },
+  "f_articles_3cea": {
+    "message": "{n}件の記事"
+  },
+  "f_compression_across_e24c": {
+    "message": "{a}で{p}%圧縮"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ AISHで節約した時間"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ ワードクラウド"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ 人気カテゴリ"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 アクティビティ"
   }
 }

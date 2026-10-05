@@ -1132,5 +1132,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} и {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "Вид активности"
+  },
+  "f_articles_b83e": {
+    "message": "Статьи"
+  },
+  "f_best_streak_8513": {
+    "message": "Лучшая серия"
+  },
+  "f_day_streak_6d31": {
+    "message": "Дней подряд"
+  },
+  "f_full_reading_37c0": {
+    "message": "Полное чтение"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "Ни у одной статьи пока нет настроения — пусть ИИ их оценит."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "Статей пока нет — сделайте сводку страниц, чтобы увидеть аналитику! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "Теги не найдены. Добавьте теги к своим сводкам!"
+  },
+  "f_saved_79e4": {
+    "message": "Сэкономлено"
+  },
+  "f_with_summaries_5619": {
+    "message": "Со сводками"
+  },
+  "f_words_read_f576": {
+    "message": "Прочитано слов"
+  },
+  "f_article_09dd": {
+    "message": "Статей: {n}"
+  },
+  "f_articles_3cea": {
+    "message": "Статей: {n}"
+  },
+  "f_compression_across_e24c": {
+    "message": "Сжатие {p}% по материалам: {a}"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ Сэкономленное время с AISH"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Облако слов"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ Главные категории"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 Активность"
   }
 }

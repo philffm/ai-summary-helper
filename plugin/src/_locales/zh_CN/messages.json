@@ -1216,5 +1216,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} 对比 {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "活动视图"
+  },
+  "f_articles_b83e": {
+    "message": "文章"
+  },
+  "f_best_streak_8513": {
+    "message": "最长连续"
+  },
+  "f_day_streak_6d31": {
+    "message": "连续天数"
+  },
+  "f_full_reading_37c0": {
+    "message": "完整阅读"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "还没有文章带有情绪 — 让 AI 来评分。"
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "还没有文章 — 总结网页即可查看分析！📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "未找到标签。请为你的摘要添加标签！"
+  },
+  "f_saved_79e4": {
+    "message": "节省"
+  },
+  "f_with_summaries_5619": {
+    "message": "使用摘要"
+  },
+  "f_words_read_f576": {
+    "message": "已读字数"
+  },
+  "f_article_09dd": {
+    "message": "{n} 篇文章"
+  },
+  "f_articles_3cea": {
+    "message": "{n} 篇文章"
+  },
+  "f_compression_across_e24c": {
+    "message": "{a}的压缩率为 {p}%"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ 使用 AISH 节省的时间"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ 词云"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ 热门分类"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 活动"
   }
 }

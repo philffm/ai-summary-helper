@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 308. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 290 | 0 | 0 | 7 |
-| de | 290 | 0 | 0 | 32 |
-| es | 290 | 0 | 0 | 28 |
-| fr | 290 | 0 | 0 | 25 |
-| hi | 290 | 0 | 0 | 6 |
-| it | 290 | 0 | 0 | 26 |
-| ja | 290 | 0 | 0 | 3 |
-| ko | 290 | 0 | 0 | 1 |
-| pt_PT | 290 | 0 | 0 | 22 |
-| ru | 290 | 0 | 0 | 9 |
-| zh_CN | 290 | 0 | 0 | 0 |
-| zh_HK | 290 | 0 | 0 | 0 |
-| zh_TW | 290 | 0 | 0 | 0 |
+| ar | 308 | 0 | 0 | 8 |
+| de | 308 | 0 | 0 | 33 |
+| es | 308 | 0 | 0 | 30 |
+| fr | 308 | 0 | 0 | 26 |
+| hi | 308 | 0 | 0 | 7 |
+| it | 308 | 0 | 0 | 27 |
+| ja | 308 | 0 | 0 | 4 |
+| ko | 308 | 0 | 0 | 1 |
+| pt_PT | 308 | 0 | 0 | 24 |
+| ru | 308 | 0 | 0 | 10 |
+| zh_CN | 308 | 0 | 0 | 0 |
+| zh_HK | 308 | 0 | 0 | 0 |
+| zh_TW | 308 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -26,6 +26,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | vs {label} | مقارنةً بـ {label} | 13 vs 5 | 2.6× |
 | reused | مُعاد استخدامه | 14 vs 6 | 2.33× |
 | AI category | فئة الذكاء الاصطناعي | 20 vs 11 | 1.82× |
+| Words Read | الكلمات المقروءة | 16 vs 10 | 1.6× |
 | ✨  AI recap of today | ✨  ملخص اليوم بالذكاء الاصطناعي | 31 vs 20 | 1.55× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
 | 🗂️ Keep items for | 🗂️ الاحتفاظ بالعناصر لمدة | 26 vs 18 | 1.44× |
@@ -63,6 +64,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
 | Edit feeds & tags in Settings | Feeds & Tags in den Einstellungen bearbeiten | 44 vs 29 | 1.52× |
+| No tags found. Add tags to your summaries! | Keine Tags gefunden. Füge deinen Zusammenfassungen Tags hinzu! | 62 vs 42 | 1.48× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
 | No sources match. | Keine passenden Quellen. | 24 vs 17 | 1.41× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
@@ -93,7 +95,9 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Podcast player | Reproductor de podcast | 22 vs 14 | 1.57× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
+| No tags found. Add tags to your summaries! | No se encontraron etiquetas. ¡Añade etiquetas a tus resúmenes! | 62 vs 42 | 1.48× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
+| 🏷️ Top Categories | 🏷️ Categorías principales | 26 vs 18 | 1.44× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
 | AI request failed | Error de la solicitud IA | 24 vs 17 | 1.41× |
@@ -124,6 +128,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles. | 73 vs 50 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
+| 🏷️ Top Categories | 🏷️ Principales catégories | 26 vs 18 | 1.44× |
 | Creating day recaps… {a}/{b} | Création des récaps quotidiens… {a}/{b} | 37 vs 26 | 1.42× |
 | Only {r} of {n} items are rated | Seulement {r} articles sur {n} sont évalués | 41 vs 29 | 1.41× |
 | Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
@@ -136,6 +141,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | vs {label} | {label} की तुलना में | 15 vs 5 | 3× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
+| Best Streak | सर्वश्रेष्ठ स्ट्रीक | 19 vs 11 | 1.73× |
 | ✨ Updating recap… | ✨ रीकैप अपडेट हो रहा है… | 24 vs 17 | 1.41× |
 
 ### it
@@ -143,6 +149,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 |---|---|---|---|
 | Older | Meno recenti | 12 vs 5 | 2.4× |
 | Newer | Più recenti | 11 vs 5 | 2.2× |
+| Saved | Risparmiato | 11 vs 5 | 2.2× |
 | Week recap | Riepilogo settimanale | 21 vs 10 | 2.1× |
 | Failed | Non riuscito | 12 vs 6 | 2× |
 | {n} day recap | {n} riepilogo giornaliero | 24 vs 12 | 2× |
@@ -173,6 +180,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 |---|---|---|---|
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
 | 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
+| 📅 Activity | 📅 アクティビティ | 17 vs 11 | 1.55× |
 | Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
 
 ### ko
@@ -198,7 +206,9 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | AI-rated: heavy news | Avaliado por IA: notícias pesadas | 33 vs 20 | 1.65× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
+| No tags found. Add tags to your summaries! | Nenhuma etiqueta encontrada. Adicione etiquetas aos seus resumos! | 65 vs 42 | 1.55× |
 | Unsubscribe | Anular subscrição | 17 vs 11 | 1.55× |
+| ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
 | Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
@@ -210,6 +220,7 @@ Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Copy | Копировать | 10 vs 4 | 2.5× |
+| Saved | Сэкономлено | 11 vs 5 | 2.2× |
 | Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | reused | использована | 12 vs 6 | 2× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |

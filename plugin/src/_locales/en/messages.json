@@ -1271,5 +1271,62 @@
   "f_vs_16ff": {
     "message": "{a} vs {b}",
     "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_activity_view_00dd": {
+    "message": "Activity view"
+  },
+  "f_articles_b83e": {
+    "message": "Articles"
+  },
+  "f_best_streak_8513": {
+    "message": "Best Streak"
+  },
+  "f_day_streak_6d31": {
+    "message": "Day Streak"
+  },
+  "f_full_reading_37c0": {
+    "message": "Full reading"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "No article has a mood yet — let the AI score them."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "No articles yet — start summarizing pages to see your analytics! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "No tags found. Add tags to your summaries!"
+  },
+  "f_saved_79e4": {
+    "message": "Saved"
+  },
+  "f_with_summaries_5619": {
+    "message": "With summaries"
+  },
+  "f_words_read_f576": {
+    "message": "Words Read"
+  },
+  "f_article_09dd": {
+    "message": "{n} article",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_3cea": {
+    "message": "{n} articles",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_compression_across_e24c": {
+    "message": "{p}% compression across {a}",
+    "description": "Placeholders: {p} {a} (keep as is)"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ Time Saved with AISH"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Word Cloud"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ Top Categories"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 Activity"
   }
 }

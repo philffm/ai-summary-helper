@@ -349,6 +349,15 @@ class StorageManager {
         return { id, timestamp };
     }
 
+    // Mood scores (-1..1) for History articles; an existing score is never overwritten.
+    static async setArticleMoods(map) {
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        let changed = false;
+        articlesIndex.forEach(e => { if (map[e.id] != null && typeof e.moodScore !== 'number') { e.moodScore = map[e.id]; changed = true; } });
+        if (changed) await this.setLocal({ articlesIndex });
+        return changed;
+    }
+
     static async deleteArticle(id) {
         const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
         await this.setLocal({ articlesIndex: articlesIndex.filter(a => a.id !== id) });

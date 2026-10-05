@@ -1216,5 +1216,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} बनाम {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "गतिविधि दृश्य"
+  },
+  "f_articles_b83e": {
+    "message": "लेख"
+  },
+  "f_best_streak_8513": {
+    "message": "सर्वश्रेष्ठ स्ट्रीक"
+  },
+  "f_day_streak_6d31": {
+    "message": "दिन की स्ट्रीक"
+  },
+  "f_full_reading_37c0": {
+    "message": "पूरा पढ़ना"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "अभी किसी लेख का मूड नहीं है — AI से रेट करवाएँ।"
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "अभी कोई लेख नहीं — अपना विश्लेषण देखने के लिए पेज का सारांश बनाएँ! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "कोई टैग नहीं मिला। अपने सारांशों में टैग जोड़ें!"
+  },
+  "f_saved_79e4": {
+    "message": "बचाया"
+  },
+  "f_with_summaries_5619": {
+    "message": "सारांश के साथ"
+  },
+  "f_words_read_f576": {
+    "message": "पढ़े गए शब्द"
+  },
+  "f_article_09dd": {
+    "message": "{n} लेख"
+  },
+  "f_articles_3cea": {
+    "message": "{n} लेख"
+  },
+  "f_compression_across_e24c": {
+    "message": "{a} में {p}% संपीड़न"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ AISH से बचा समय"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ शब्द क्लाउड"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ शीर्ष श्रेणियाँ"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 गतिविधि"
   }
 }

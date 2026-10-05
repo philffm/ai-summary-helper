@@ -1132,5 +1132,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} مقابل {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "عرض النشاط"
+  },
+  "f_articles_b83e": {
+    "message": "المقالات"
+  },
+  "f_best_streak_8513": {
+    "message": "أفضل سلسلة"
+  },
+  "f_day_streak_6d31": {
+    "message": "أيام متتالية"
+  },
+  "f_full_reading_37c0": {
+    "message": "القراءة الكاملة"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "لا توجد مقالة بمزاج بعد — دع الذكاء الاصطناعي يقيّمها."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "لا توجد مقالات بعد — لخّص صفحات لعرض تحليلاتك! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "لم يتم العثور على وسوم. أضف وسومًا إلى ملخصاتك!"
+  },
+  "f_saved_79e4": {
+    "message": "تم توفيره"
+  },
+  "f_with_summaries_5619": {
+    "message": "مع الملخصات"
+  },
+  "f_words_read_f576": {
+    "message": "الكلمات المقروءة"
+  },
+  "f_article_09dd": {
+    "message": "{n} مقالة"
+  },
+  "f_articles_3cea": {
+    "message": "{n} مقالات"
+  },
+  "f_compression_across_e24c": {
+    "message": "ضغط بنسبة {p}% عبر {a}"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ الوقت الموفَّر مع AISH"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ سحابة الكلمات"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ أبرز الفئات"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 النشاط"
   }
 }

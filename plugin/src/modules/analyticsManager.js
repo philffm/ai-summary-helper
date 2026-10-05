@@ -160,6 +160,21 @@ function defaultActivityView(articles) {
     return ageDays >= 21 ? 'week' : 'day';
 }
 
+import { T, TN, locale } from './feedI18n.js';
+import { moodSection } from './moodView.js';
+import { moodStoreFor, unscoredIn, scoreArticles } from './historyMood.js';
+import StorageManager from './storageManager.js';
+
+/** Localized bar tooltips; `cnt(n)` formats the count with the right noun (articles / items). */
+export function chartTips(cnt) {
+    const fmtD = (ts) => new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+    return {
+        day: (d) => { const [y, m, dd] = d.day.split('-').map(Number); return `${fmtD(new Date(y, m - 1, dd).getTime())}: ${cnt(d.count)}`; },
+        week: (d) => { const e = new Date(); e.setHours(0, 0, 0, 0); e.setDate(e.getDate() - d.week * 7); const s = new Date(e); s.setDate(e.getDate() - 6); return `${fmtD(s.getTime())} – ${fmtD(e.getTime())}: ${cnt(d.count)}`; }
+    };
+}
+const artCnt = (n) => TN(n, '{n} article', '{n} articles');
+
 export function renderBarChart(days, tip) {
     const max = Math.max(...days.map(d => d.count), 1);
     const bars = days.map(d => {
@@ -186,7 +201,7 @@ export function renderWeekChart(weeks, tip) {
 }
 
 function renderWordCloud(words) {
-    if (!words.length) return '<p class="ar-empty">Not enough text data yet.</p>';
+    if (!words.length) return `<p class="ar-empty">${T('Not enough text data yet.')}</p>`;
     const max = words[0][1];
     const items = words.map(([w, c]) => {
         const size = 11 + Math.round((c / max) * 18);
@@ -246,10 +261,11 @@ export function initAnalyticsReport(container, articles) {
     container.innerHTML = '';
 
     if (!articles || articles.length === 0) {
-        container.innerHTML = '<div class="ar-empty-state">No articles yet — start summarizing pages to see your analytics! 📖</div>';
+        container.innerHTML = `<div class="ar-empty-state">${T('No articles yet — start summarizing pages to see your analytics! 📖')}</div>`;
         return;
     }
 
+    const tips = chartTips(artCnt);
     const streak = computeStreak(articles);
     const cats = topCategories(articles);
     const words = wordFrequency(articles);
@@ -261,38 +277,38 @@ export function initAnalyticsReport(container, articles) {
     const catsHtml = cats.length
         ? cats.map(([tag, count]) => {
             const pct = Math.round((count / cats[0][1]) * 100);
-            return `<div class="ar-cat-row" data-tag="${tag}" title="Search articles tagged \"${tag}\"" style="cursor:pointer;">
+            return `<div class="ar-cat-row" data-tag="${tag}" title="${T('Search “{term}”', { term: tag })}" style="cursor:pointer;">
               <span class="ar-cat-label">${tag}</span>
               <div class="ar-cat-bar-track"><div class="ar-cat-bar" style="width:${pct}%"></div></div>
               <span class="ar-cat-count">${count}</span>
             </div>`;
           }).join('')
-        : '<p class="ar-empty">No tags found. Add tags to your summaries!</p>';
+        : `<p class="ar-empty">${T('No tags found. Add tags to your summaries!')}</p>`;
 
     const timeSavingsHtml = timeSavings ? `
         <!-- Time savings section -->
         <div class="ar-section">
-          <h3 class="ar-section-title">⏱️ Time Saved with AISH</h3>
+          <h3 class="ar-section-title">${T('⏱️ Time Saved with AISH')}</h3>
           <div class="ar-savings-row">
             <div class="ar-savings-block ar-savings-full">
               <span class="ar-savings-value">${formatMinutes(timeSavings.fullMinutes)}</span>
-              <span class="ar-savings-label">Full reading</span>
+              <span class="ar-savings-label">${T('Full reading')}</span>
             </div>
             <div class="ar-savings-arrow">→</div>
             <div class="ar-savings-block ar-savings-summary">
               <span class="ar-savings-value">${formatMinutes(timeSavings.summaryMinutes)}</span>
-              <span class="ar-savings-label">With summaries</span>
+              <span class="ar-savings-label">${T('With summaries')}</span>
             </div>
             <div class="ar-savings-arrow">=</div>
             <div class="ar-savings-block ar-savings-saved">
               <span class="ar-savings-value">${formatMinutes(timeSavings.savedMinutes)}⚡</span>
-              <span class="ar-savings-label">Saved</span>
+              <span class="ar-savings-label">${T('Saved')}</span>
             </div>
           </div>
           <div class="ar-savings-bar-wrap">
             <div class="ar-savings-bar-fill" style="width:${timeSavings.ratio}%"></div>
           </div>
-          <p class="ar-savings-caption">${timeSavings.ratio}% compression across ${timeSavings.covered} article${timeSavings.covered !== 1 ? 's' : ''}</p>
+          <p class="ar-savings-caption">${T('{p}% compression across {a}', { p: timeSavings.ratio, a: artCnt(timeSavings.covered) })}</p>
         </div>` : '';
 
     container.innerHTML = `
@@ -302,19 +318,19 @@ export function initAnalyticsReport(container, articles) {
         <div class="ar-stats-row">
           <div class="ar-stat-card">
             <span class="ar-stat-value">${articles.length}</span>
-            <span class="ar-stat-label">Articles</span>
+            <span class="ar-stat-label">${T('Articles')}</span>
           </div>
           <div class="ar-stat-card ar-streak">
             <span class="ar-stat-value">${streak.current}🔥</span>
-            <span class="ar-stat-label">Day Streak</span>
+            <span class="ar-stat-label">${T('Day Streak')}</span>
           </div>
           <div class="ar-stat-card">
             <span class="ar-stat-value">${streak.longest}</span>
-            <span class="ar-stat-label">Best Streak</span>
+            <span class="ar-stat-label">${T('Best Streak')}</span>
           </div>
           <div class="ar-stat-card">
             <span class="ar-stat-value">${(totalSummaryWords / 1000).toFixed(1)}k</span>
-            <span class="ar-stat-label">Words Read</span>
+            <span class="ar-stat-label">${T('Words Read')}</span>
           </div>
         </div>
 
@@ -324,31 +340,52 @@ export function initAnalyticsReport(container, articles) {
         <!-- Activity chart -->
         <div class="ar-section">
           <div class="ar-section-head">
-            <h3 class="ar-section-title">📅 Activity</h3>
-            <div class="ar-view-toggle" role="tablist" aria-label="Activity view">
-              <button type="button" class="ar-view-btn" data-view="day">Day</button>
-              <button type="button" class="ar-view-btn" data-view="week">Week</button>
+            <h3 class="ar-section-title">${T('📅 Activity')}</h3>
+            <div class="ar-view-toggle" role="tablist" aria-label="${T('Activity view')}">
+              <button type="button" class="ar-view-btn" data-view="day">${T('Day')}</button>
+              <button type="button" class="ar-view-btn" data-view="week">${T('Week')}</button>
             </div>
           </div>
           <div class="ar-chart-wrap" data-view="${defaultActivityView(articles)}">
-            ${renderBarChart(days)}
+            ${renderBarChart(days, tips.day)}
           </div>
         </div>
 
+        <div id="arMoodMount"></div>
+
         <!-- Top categories -->
         <div class="ar-section">
-          <h3 class="ar-section-title">🏷️ Top Categories</h3>
+          <h3 class="ar-section-title">${T('🏷️ Top Categories')}</h3>
           <div class="ar-cat-list">${catsHtml}</div>
         </div>
 
         <!-- Word cloud -->
         <div class="ar-section">
-          <h3 class="ar-section-title">☁️ Word Cloud</h3>
+          <h3 class="ar-section-title">${T('☁️ Word Cloud')}</h3>
           ${renderWordCloud(words)}
         </div>
 
       </div>
     `;
+
+    // Mood over time (needs AI scores on the articles; same card as Feeds insights)
+    const mount = container.querySelector('#arMoodMount');
+    if (mount) {
+        const rerender = async () => { const arts = await StorageManager.getArticlesIndex({ includeArchived: true }); initAnalyticsReport(container, arts); };
+        mount.replaceWith(moodSection({
+            moodStore: moodStoreFor(articles),
+            unscored: (from, to) => unscoredIn(articles, from, to),
+            onScore: async (list) => {
+                const btns = [...container.querySelectorAll('.feed-mt .feed-btn')];
+                btns.forEach(b => { b.disabled = true; b.textContent = T('Scoring with AI… {a}/{b}', { a: 0, b: list.length }); });
+                try { await scoreArticles(list, (a, b) => btns.forEach(x => { x.textContent = T('Scoring with AI… {a}/{b}', { a, b }); })); }
+                catch (e) { btns.forEach(b => { b.disabled = false; b.textContent = (e && e.message) || T('AI scoring failed'); }); return; }
+                rerender();
+            },
+            emptyHint: T('No article has a mood yet — let the AI score them.'),
+            scoreMax: 120
+        }));
+    }
 
     // Attach click handlers to category rows after rendering
     container.querySelectorAll('.ar-cat-row[data-tag]').forEach(row => {
@@ -374,7 +411,7 @@ export function initAnalyticsReport(container, articles) {
                 b.classList.toggle('active', b.dataset.view === view);
                 b.setAttribute('aria-selected', b.dataset.view === view ? 'true' : 'false');
             });
-            chartWrap.innerHTML = view === 'week' ? renderWeekChart(weeks) : renderBarChart(days);
+            chartWrap.innerHTML = view === 'week' ? renderWeekChart(weeks, tips.week) : renderBarChart(days, tips.day);
         };
 
         // Restore persisted preference, else use the usage-based default.

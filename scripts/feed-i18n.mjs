@@ -14,7 +14,7 @@ const SRC = path.join(ROOT, 'plugin/src');
 const LOC = path.join(SRC, '_locales');
 const { keyOf } = await import(pathToFileURL(path.join(SRC, 'modules/feedI18n.js')).href);
 
-const FILES = ['feedManager.js', 'feedPlayer.js', 'feedAi.js', 'feedInsights.js', 'feedRollup.js', 'feedMood.js'].map(f => path.join(SRC, 'modules', f));
+const FILES = ['feedManager.js', 'feedPlayer.js', 'feedAi.js', 'feedInsights.js', 'feedRollup.js', 'feedMood.js', 'analyticsManager.js', 'moodView.js', 'historyMood.js'].map(f => path.join(SRC, 'modules', f));
 const unq = (q, body) => { try { return new Function('return ' + q + body + q)(); } catch (e) { return null; } };
 
 export function extract() {

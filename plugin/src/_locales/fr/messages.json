@@ -1216,5 +1216,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} vs {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "Vue de l’activité"
+  },
+  "f_articles_b83e": {
+    "message": "Articles"
+  },
+  "f_best_streak_8513": {
+    "message": "Meilleure série"
+  },
+  "f_day_streak_6d31": {
+    "message": "Série de jours"
+  },
+  "f_full_reading_37c0": {
+    "message": "Lecture complète"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "Aucun article n’a encore d’humeur — laissez l’IA les évaluer."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "Pas encore d’articles — résumez des pages pour voir vos statistiques ! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "Aucun tag trouvé. Ajoutez des tags à vos résumés !"
+  },
+  "f_saved_79e4": {
+    "message": "Gagné"
+  },
+  "f_with_summaries_5619": {
+    "message": "Avec résumés"
+  },
+  "f_words_read_f576": {
+    "message": "Mots lus"
+  },
+  "f_article_09dd": {
+    "message": "{n} article"
+  },
+  "f_articles_3cea": {
+    "message": "{n} articles"
+  },
+  "f_compression_across_e24c": {
+    "message": "{p} % de compression sur {a}"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ Temps gagné avec AISH"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Nuage de mots"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ Principales catégories"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 Activité"
   }
 }

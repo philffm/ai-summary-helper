@@ -137,6 +137,18 @@ function splitSource(src) {
     return i < 0 ? [src, ''] : [src.slice(0, i), src.slice(i + 1)];
 }
 
+// A feed item that was already AI-scored hands its mood to the History entry once it is summarized/saved.
+async function carryMoodToHistory() {
+    try {
+        const scored = new Map(items.filter(i => i.ai && typeof i.sent === 'number' && i.link).map(i => [normalizeUrl(i.link), i.sent]));
+        if (!scored.size) return;
+        const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
+        const map = {};
+        articlesIndex.forEach(a => { if (a.url && typeof a.moodScore !== 'number' && scored.has(normalizeUrl(a.url))) map[a.id] = scored.get(normalizeUrl(a.url)); });
+        if (Object.keys(map).length) await StorageManager.setArticleMoods(map);
+    } catch (e) { /* mood carry-over is best effort */ }
+}
+
 async function loadHistoryMap() {
     const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
     const map = new Map();
@@ -723,7 +735,7 @@ function onSummaryMessage(msg, sender) {
             for (let k = 0; k < 8; k++) {
                 await new Promise(r => setTimeout(r, k ? 500 : 300));
                 await loadHistoryMap();
-                if (!item || histOf(item).summarized) break;
+                if (!item || histOf(item).summarized) { await carryMoodToHistory(); break; }
             }
             endSumProgress(id); render();
         })();
@@ -1967,6 +1979,7 @@ export async function onFeedsScreenShown(uiObj) {
     await load();
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
     await loadHistoryMap();
+    carryMoodToHistory();
     render();
     renderFeedSettings();
     chrome.runtime.sendMessage({ action: 'feedBadgeClear' }, () => void chrome.runtime.lastError);
@@ -2014,7 +2027,7 @@ export function initFeedManager(uiObj) {
         chrome.storage.onChanged.addListener((ch) => {
             if (!ch || !ch.articlesIndex) return;
             clearTimeout(histTimer);
-            histTimer = setTimeout(async () => { await loadHistoryMap(); if (els && els.list) render(); }, 250);
+            histTimer = setTimeout(async () => { await loadHistoryMap(); await carryMoodToHistory(); if (els && els.list) render(); }, 250);
         });
     }
     els.chipRow.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {

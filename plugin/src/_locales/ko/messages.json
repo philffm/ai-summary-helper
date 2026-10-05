@@ -1204,5 +1204,59 @@
   },
   "f_vs_16ff": {
     "message": "{a} 대 {b}"
+  },
+  "f_activity_view_00dd": {
+    "message": "활동 보기"
+  },
+  "f_articles_b83e": {
+    "message": "기사"
+  },
+  "f_best_streak_8513": {
+    "message": "최장 연속"
+  },
+  "f_day_streak_6d31": {
+    "message": "연속 일수"
+  },
+  "f_full_reading_37c0": {
+    "message": "전체 읽기"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "아직 분위기가 있는 기사가 없습니다 — AI로 평가해 보세요."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "아직 기사가 없습니다 — 페이지를 요약하면 분석이 표시됩니다! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "태그를 찾을 수 없습니다. 요약에 태그를 추가하세요!"
+  },
+  "f_saved_79e4": {
+    "message": "절약"
+  },
+  "f_with_summaries_5619": {
+    "message": "요약 사용 시"
+  },
+  "f_words_read_f576": {
+    "message": "읽은 단어"
+  },
+  "f_article_09dd": {
+    "message": "기사 {n}개"
+  },
+  "f_articles_3cea": {
+    "message": "기사 {n}개"
+  },
+  "f_compression_across_e24c": {
+    "message": "{a}에서 {p}% 압축"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ AISH로 절약한 시간"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ 워드 클라우드"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ 인기 카테고리"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 활동"
   }
 }
