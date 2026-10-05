@@ -170,7 +170,10 @@ export function openRollup(scope, anchor, ctx) {
         if (r.overview) body.append(el('p', 'feed-recap-overview', r.overview));
         if (r.themes.length) { const ul = el('ul', 'feed-recap-themes'); r.themes.forEach(t => ul.append(el('li', null, t))); body.append(ul); }
         const tl = tally(ctx.getItems(), ctx, P.from, P.last, ctx.itemMood);
-        if (tl.rated) body.append(el('p', 'feed-roll-mood', `😊 ${tl.pos}% · 😐 ${tl.neu}% · 😟 ${tl.neg}%` + (tl.cats.length ? '   ' + tl.cats.map(([c, n]) => `${c} ${n}`).join(' · ') : '')));
+        if (tl.rated) {
+            body.append(moodBar(el, tl));
+            if (tl.cats.length) body.append(el('p', 'feed-roll-mood', tl.cats.map(([c, n]) => `${c} ${n}`).join(' · ')));
+        }
         if (stale) body.append(el('p', 'feed-recap-stale', T('A source recap changed since this one was written — Refresh to include it.')));
         const row = el('div', 'feed-recap-actions');
         row.append(btn('feed-btn', T('↻ Refresh'), () => refresh(r)),
@@ -234,4 +237,16 @@ export function isStale(scope, anchor, ctx) {
     const cached = ctx.getRecaps()[rollKey(scope, start, ctx.source)];
     if (!cached || !cached.covered) return false;
     return buildParts(scope, start, ctx).parts.some(p => cached.covered[p.key] !== recapSig(p.recap));
+}
+
+/** Stacked green / yellow / red bar (positive / mixed / heavy) with a legend of percentages — no emoji to squint at. */
+export function moodBar(el, tl) {
+    const wrap = el('div', 'feed-mood-wrap');
+    const bar = el('div', 'feed-mood-bar small');
+    const parts = [['neg', tl.neg, T('😟 Mostly heavy')], ['neu', tl.neu, T('😐 Mixed')], ['pos', tl.pos, T('😊 Mostly positive')]];
+    parts.forEach(([k, v, label]) => { if (!v) return; const seg = el('span', 'feed-mood-seg ' + k); seg.style.flex = String(v); seg.title = `${label} ${v}%`; bar.append(seg); });
+    const legend = el('div', 'feed-mood-legend');
+    parts.forEach(([k, v, label]) => { const it = el('span', k); it.title = label; it.append(el('i'), document.createTextNode(`${v}%`)); legend.append(it); });
+    wrap.append(bar, legend);
+    return wrap;
 }

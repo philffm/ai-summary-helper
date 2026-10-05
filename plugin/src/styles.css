@@ -2858,3 +2858,16 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-roll-opts { margin: 6px 0; }
 .feed-roll-save { font-size: 12px; font-weight: 600; color: #15803d; background: rgba(34,197,94,.14); border-radius: 10px; padding: 6px 10px; margin: 8px 0; }
 .feed-roll-mood { font-size: 12px; opacity: .85; margin: 0 0 8px; }
+
+#feedControls > .feed-toolbar { margin: 0 0 8px; }
+/* mood: red / yellow / green */
+.feed-mood-seg.neu { background: hsl(45, 92%, 52%); color: #422006; }
+.feed-mood-seg.pos { background: hsl(142, 60%, 40%); }
+.feed-mood-seg.neg { background: hsl(4, 75%, 50%); }
+.feed-mood-bar.small { height: 12px; margin: 4px 0; border-radius: 6px; }
+.feed-mood-bar.small .feed-mood-seg { font-size: 0; min-width: 4px; }
+.feed-mood-legend { display: flex; gap: 12px; margin: 0 0 6px; font-size: 11px; font-weight: 600; opacity: .9; }
+.feed-mood-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.feed-mood-legend .pos i { background: hsl(142, 60%, 40%); }
+.feed-mood-legend .neu i { background: hsl(45, 92%, 52%); }
+.feed-mood-legend .neg i { background: hsl(4, 75%, 50%); }

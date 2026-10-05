@@ -22,7 +22,7 @@ import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feed
 import { T, TN, TU, N_, locale } from './feedI18n.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
-import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, recapKeyTs, isDayRecapKey } from './feedRollup.js';
+import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
@@ -964,20 +964,7 @@ function renderInsightsView() {
     });
 }
 
-let toolbarOpen = false;
-function syncToolbar() {
-    if (!els.toolbar) return;
-    const open = toolbarOpen || !!searchQuery.trim() || view !== 'list';
-    els.toolbar.hidden = !open;
-    if (els.searchBtn) { els.searchBtn.classList.toggle('active', open); els.searchBtn.setAttribute('aria-pressed', open ? 'true' : 'false'); }
-}
-
 function initSearchAndViews() {
-    if (els.searchBtn) els.searchBtn.addEventListener('click', () => {
-        const open = !els.toolbar.hidden;
-        if (open) { toolbarOpen = false; searchQuery = ''; view = 'list'; if (els.search) els.search.value = ''; render(); }
-        else { toolbarOpen = true; syncToolbar(); if (els.search) els.search.focus(); }
-    });
     if (els.search) {
         let t = null;
         els.search.addEventListener('input', () => {
@@ -1089,7 +1076,7 @@ function dayStops() {
     return [...set].sort((a, b) => a - b);
 }
 
-function render() { renderList(); renderScopeRow(); renderRecapCard(); syncToolbar(); }
+function render() { renderList(); renderScopeRow(); renderRecapCard(); }
 function renderList() {
     if (!els.list) return;
     renderControls();
@@ -1547,7 +1534,7 @@ function renderRecapCard() {
     if (rec && rec.overview) box.append(el('p', 'feed-rc-sum', rec.overview));
     if (rec) {
         const tl = tally(items, ctx, ps, Math.min(addDaysTs(pe, -1), startOfDay(Date.now())), itemMood);
-        if (tl.rated) box.append(el('p', 'feed-muted feed-rc-cov', `😊 ${tl.pos}% · 😐 ${tl.neu}% · 😟 ${tl.neg}%`));
+        if (tl.rated) box.append(moodBar(el, tl));
     }
     if (sc !== 'day') {
         const cv = coverage(sc, a, ctx);
@@ -1891,8 +1878,6 @@ export function initFeedManager(uiObj) {
         chipRow: document.getElementById('feedChipRow'),
         recapCard: document.getElementById('feedRecapCard'),
         scopeRow: document.getElementById('feedScopeRow'),
-        searchBtn: document.getElementById('feedSearchBtn'),
-        toolbar: document.getElementById('feedToolbar'),
         filterChip: document.getElementById('feedFilterChip'),
         opmlInput: document.getElementById('feedOpmlInput'),
         list: document.getElementById('feedItemList'),
