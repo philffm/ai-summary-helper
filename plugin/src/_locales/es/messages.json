@@ -1135,5 +1135,56 @@
   },
   "f_feed_b245": {
     "message": "Feed"
+  },
+  "f_6_months_1bc4": {
+    "message": "6 meses"
+  },
+  "f_categories_e98d": {
+    "message": "Categorías"
+  },
+  "f_mood_history_is_kept_for_13__0fc8": {
+    "message": "El historial de ánimo se conserva 13 meses, incluso después de eliminar los artículos."
+  },
+  "f_mood_index_518e": {
+    "message": "Índice de ánimo"
+  },
+  "f_only_of_items_are_rated_3794": {
+    "message": "Solo {r} de {n} artículos están valorados"
+  },
+  "f_open_day_791d": {
+    "message": "Abrir día ›"
+  },
+  "f_open_month_dc55": {
+    "message": "Abrir mes ›"
+  },
+  "f_open_week_a281": {
+    "message": "Abrir semana ›"
+  },
+  "f_these_items_are_no_longer_st_45c7": {
+    "message": "Estos artículos ya no están guardados, así que no se pueden valorar."
+  },
+  "f_what_moved_98f8": {
+    "message": "Qué cambió"
+  },
+  "f_n_a_e041": {
+    "message": "n/d"
+  },
+  "f_vs_5622": {
+    "message": "frente a {label}"
+  },
+  "f_pts_d40a": {
+    "message": "{n} pts"
+  },
+  "f_of_items_rated_mood_comes_fr_688e": {
+    "message": "{r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA"
+  },
+  "f_categories_06df": {
+    "message": "🏷️ Categorías"
+  },
+  "f_mood_over_time_2258": {
+    "message": "📈 Ánimo a lo largo del tiempo"
+  },
+  "f_score_unscored_items_79e0": {
+    "message": "🤖 Valorar {n} artículos sin valorar"
   }
 }

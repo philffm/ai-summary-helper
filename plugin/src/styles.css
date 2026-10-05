@@ -2871,3 +2871,39 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-mood-legend .pos i { background: hsl(142, 60%, 40%); }
 .feed-mood-legend .neu i { background: hsl(45, 92%, 52%); }
 .feed-mood-legend .neg i { background: hsl(4, 75%, 50%); }
+
+/* ── Insights: mood over time ────────────────────────────────────────── */
+.feed-mt { display: flex; flex-direction: column; gap: 10px; }
+.feed-mt-hero { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.feed-mt-idx { display: flex; flex-direction: column; }
+.feed-mt-big { font-size: 28px; font-weight: 700; line-height: 1.1; }
+.feed-mt-delta { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+.feed-mt-delta.up { color: hsl(142, 60%, 30%); background: hsla(142, 60%, 40%, .16); }
+.feed-mt-delta.down { color: hsl(4, 75%, 42%); background: hsla(4, 75%, 50%, .16); }
+.feed-mt-delta.flat { color: var(--text-secondary); background: color-mix(in srgb, var(--text-secondary) 14%, transparent); }
+.feed-mt-chart { display: flex; gap: 4px; align-items: stretch; }
+.feed-mt-col { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: stretch; gap: 3px; padding: 2px 0; border: 0; background: none; cursor: pointer; color: inherit; font: inherit; border-radius: 6px; }
+.feed-mt-stack { height: 88px; display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; background: color-mix(in srgb, var(--text-secondary) 10%, transparent); }
+.feed-mt-col.na .feed-mt-stack { background: none; border: 1px dashed var(--outline); }
+.feed-mt-stack .feed-mood-seg { display: block; min-height: 0; padding: 0; }
+.feed-mt-x { font-size: 10px; text-align: center; color: var(--text-secondary); }
+.feed-mt-col.now .feed-mt-x { font-weight: 700; color: var(--text-primary, inherit); }
+.feed-mt-col.sel { background: color-mix(in srgb, var(--text-secondary) 14%, transparent); outline: 2px solid color-mix(in srgb, var(--text-secondary) 45%, transparent); }
+.feed-mt-card { display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 10px; border: 1px solid var(--outline); }
+.feed-mt-card-title { font-weight: 600; font-size: 13px; }
+.feed-mt-acts { display: flex; gap: 8px; }
+.feed-mt-prog { height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--text-secondary) 18%, transparent); overflow: hidden; }
+.feed-mt-prog i { display: block; height: 100%; background: hsl(45, 92%, 52%); }
+.feed-mt-whatmoved { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-secondary); margin-top: 4px; }
+.feed-mt-mv-title { font-size: 12px; color: var(--text-secondary); margin: 2px 0; }
+.feed-mt-mv-row { display: grid; grid-template-columns: 90px 1fr 38px; align-items: center; gap: 6px; font-size: 12px; padding: 2px 0; }
+.feed-mt-mv-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed-mt-mv-track { position: relative; height: 8px; }
+.feed-mt-mv-track::before { content: ''; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--outline); }
+.feed-mt-mv-track i { position: absolute; top: 0; height: 100%; border-radius: 3px; }
+.feed-mt-mv-track i.up { left: 50%; background: hsl(142, 60%, 40%); }
+.feed-mt-mv-track i.down { right: 50%; background: hsl(4, 75%, 50%); }
+.feed-mt-mv-val { text-align: right; font-weight: 600; }
+.feed-mt-mv-val.up { color: hsl(142, 60%, 32%); }
+.feed-mt-mv-val.down { color: hsl(4, 75%, 45%); }
+.feed-mt-foot { font-size: 11px; margin: 0; }

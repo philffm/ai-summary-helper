@@ -2,6 +2,8 @@
 // Reuses the chart renderers + .ar-* styles of the History report so both look alike.
 import { articlesByDay, articlesByWeek, renderBarChart, renderWeekChart } from './analyticsManager.js';
 import { T, TN, locale } from './feedI18n.js';
+import { isoWeek, moodBar } from './feedRollup.js';
+import { buildBuckets, movers, pct } from './feedMood.js';
 
 const DAY = 86400000;
 // Short stop-word list for the mixed-language (en/de) term cloud.
@@ -53,6 +55,116 @@ function barRows(rows, onClick, title) {
     return list;
 }
 
+
+// ── Mood over time ─────────────────────────────────────────────────────────
+let mScope = 'week', mSel = null;
+
+function periodLabel(scope, ts) {
+    if (scope === 'day') return new Date(ts).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short' });
+    if (scope === 'week') return T('Week {n}', { n: isoWeek(ts) });
+    return new Date(ts).toLocaleDateString(locale(), { month: 'long', year: 'numeric' });
+}
+function shortLabel(scope, ts) {
+    if (scope === 'day') return String(new Date(ts).getDate());
+    if (scope === 'week') return 'W' + isoWeek(ts);
+    return new Date(ts).toLocaleDateString(locale(), { month: 'short' });
+}
+const signed = (n) => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n);
+
+function moodSection(ctx) {
+    const sec = section(T('📈 Mood over time')); sec.classList.add('feed-mt-sec');
+    const head = h('div', 'ar-section-head'); head.append(sec.firstChild);
+    const tg = h('div', 'ar-view-toggle'); tg.setAttribute('role', 'tablist');
+    const body = h('div', 'feed-mt');
+    const draw = () => {
+        [...tg.children].forEach(b => b.classList.toggle('active', b.dataset.view === mScope));
+        body.replaceChildren();
+        const bs = buildBuckets(ctx.moodStore || {}, mScope, Date.now(), ctx.feedIds || null);
+        if (!bs.some(b => b.rated)) { body.append(h('p', 'ar-empty', T('Nothing rated yet — use “Score with AI” in the Date & mood sheet.'))); return; }
+        const sel = mSel != null && bs[mSel] ? mSel : bs.length - 1;
+        const cur = bs[sel], prev = bs[sel - 1] || null;
+
+        // hero: index + change vs previous period
+        const hero = h('div', 'feed-mt-hero');
+        const idx = h('div', 'feed-mt-idx');
+        idx.append(h('span', 'feed-mt-big', cur.index == null ? T('n/a') : signed(cur.index)), h('span', 'feed-muted', T('Mood index') + ' · ' + periodLabel(mScope, cur.start)));
+        hero.append(idx);
+        if (prev && cur.index != null && prev.index != null) {
+            const d = cur.index - prev.index;
+            const pill = h('span', 'feed-mt-delta ' + (d > 0 ? 'up' : d < 0 ? 'down' : 'flat'), `${d > 0 ? '▲' : d < 0 ? '▼' : '='} ${T('{n} pts', { n: Math.abs(d) })}`);
+            pill.title = T('vs {label}', { label: periodLabel(mScope, prev.start) });
+            hero.append(pill);
+        }
+        body.append(hero);
+
+        // trend: 100% stacked columns
+        const chart = h('div', 'feed-mt-chart'); chart.setAttribute('role', 'listbox');
+        bs.forEach((b, k) => {
+            const col = h('button', 'feed-mt-col' + (k === sel ? ' sel' : '') + (k === bs.length - 1 ? ' now' : '') + (b.index == null ? ' na' : ''));
+            col.type = 'button'; col.dataset.i = String(k); col.setAttribute('role', 'option'); col.setAttribute('aria-selected', String(k === sel));
+            const stack = h('div', 'feed-mt-stack'); const p = pct(b);
+            if (b.index != null) [['neg', p.neg], ['neu', p.neu], ['pos', p.pos]].forEach(([c, v]) => { if (v) { const sg = h('i', 'feed-mood-seg ' + c); sg.style.flex = String(v); stack.append(sg); } });
+            col.append(stack, h('span', 'feed-mt-x', shortLabel(mScope, b.start)));
+            col.title = `${periodLabel(mScope, b.start)} · ${b.index == null ? T('n/a') : signed(b.index)}`;
+            col.addEventListener('click', () => { mSel = k; draw(); });
+            chart.append(col);
+        });
+        body.append(chart);
+
+        // selected period
+        const card = h('div', 'feed-mt-card');
+        card.append(h('div', 'feed-mt-card-title', periodLabel(mScope, cur.start) + ' · ' + TN(cur.t, '{n} item', '{n} items')));
+        if (cur.index != null) {
+            card.append(moodBar(h, pct(cur)));
+        } else {
+            const need = cur.t - cur.rated;
+            card.append(h('div', 'feed-muted', T('Only {r} of {n} items are rated', { r: cur.rated, n: cur.t })));
+            const prog = h('div', 'feed-mt-prog'); const fill = h('i'); fill.style.width = (cur.t ? Math.round(cur.rated * 100 / cur.t) : 0) + '%'; prog.append(fill); card.append(prog);
+            const todo = ctx.unscored ? ctx.unscored(cur.start, cur.end) : [];
+            if (todo.length) { const bt = h('button', 'feed-btn', T('🤖 Score {n} unscored items', { n: todo.length })); bt.type = 'button'; bt.addEventListener('click', () => ctx.onScore(todo)); card.append(bt); }
+            else if (need > 0) card.append(h('p', 'feed-muted', T('These items are no longer stored, so they cannot be scored.')));
+        }
+        const acts = h('div', 'feed-mt-acts');
+        const open = h('button', 'feed-btn', mScope === 'day' ? T('Open day ›') : mScope === 'week' ? T('Open week ›') : T('Open month ›')); open.type = 'button';
+        open.addEventListener('click', () => ctx.onOpen(mScope, cur.start));
+        const rc = h('button', 'feed-btn', T('✨ Recap') + (ctx.hasRecap && ctx.hasRecap(mScope, cur.start) ? ' ✓' : '')); rc.type = 'button';
+        rc.addEventListener('click', () => ctx.onRecap(mScope, cur.start));
+        acts.append(open, rc); card.append(acts);
+        body.append(card);
+
+        // what moved
+        if (prev && cur.index != null && prev.index != null) {
+            const mv = movers(cur, prev);
+            const rows = (title, list, label) => {
+                if (!list.length) return;
+                const box = h('div', 'feed-mt-mv'); box.append(h('div', 'feed-mt-mv-title', title));
+                const max = Math.max(...list.map(x => Math.abs(x[1])), 1);
+                list.forEach(([k, d]) => {
+                    const r = h('div', 'feed-mt-mv-row');
+                    const track = h('div', 'feed-mt-mv-track'); const bar = h('i', d > 0 ? 'up' : 'down'); bar.style.width = Math.round(Math.abs(d) / max * 50) + '%'; track.append(bar);
+                    r.append(h('span', 'feed-mt-mv-label', label(k)), track, h('span', 'feed-mt-mv-val ' + (d > 0 ? 'up' : 'down'), signed(d)));
+                    box.append(r);
+                });
+                body.append(box);
+            };
+            const head2 = h('div', 'feed-mt-whatmoved', T('What moved') + ' · ' + shortLabel(mScope, cur.start) + ' vs ' + shortLabel(mScope, prev.start));
+            if (mv.cats.length || mv.srcs.length) body.append(head2);
+            rows(T('Categories'), mv.cats, (k) => k);
+            rows(T('Sources'), mv.srcs, (k) => ctx.subTitle(k));
+        }
+        const all = bs.reduce((a, b) => ({ t: a.t + b.t, r: a.r + b.rated }), { t: 0, r: 0 });
+        body.append(h('p', 'feed-muted feed-mt-foot', T('{r} of {n} items rated · mood comes from AI scoring only', { r: all.r, n: all.t })),
+            h('p', 'feed-muted feed-mt-foot', T('Mood history is kept for 13 months, even after items are removed.')));
+    };
+    [['day', T('Day')], ['week', T('Week')], ['month', T('Month')]].forEach(([v, l]) => {
+        const b = h('button', 'ar-view-btn', l); b.type = 'button'; b.dataset.view = v;
+        b.addEventListener('click', () => { mScope = v; mSel = null; draw(); }); tg.append(b);
+    });
+    head.append(tg); sec.prepend(head); sec.append(body);
+    draw();
+    return sec;
+}
+
 export function renderInsights(container, ctx) {
     const { items, scopeLabel, subTitle, isSummarized, onSource, onSearch } = ctx;
     container.replaceChildren();
@@ -90,41 +202,17 @@ export function renderInsights(container, ctx) {
         root.append(s);
     }
 
-    // Mood & categories (AI-rated items only)
-    const m = section(T('🙂 Mood & categories'));
-    if (!rated.length) {
-        m.append(h('p', 'ar-empty', T('Nothing rated yet — use “Score with AI” in the Date & mood sheet.')));
-    } else {
-        const tally = { pos: 0, neu: 0, neg: 0 };
-        rated.forEach(i => { tally[i.sent > 0.25 ? 'pos' : i.sent < -0.25 ? 'neg' : 'neu']++; });
-        const bar = h('div', 'feed-mood-bar');
-        ['neg', 'neu', 'pos'].forEach(k => { if (tally[k]) { const seg = h('span', 'feed-mood-seg ' + k, String(tally[k])); seg.style.flexGrow = String(tally[k]); bar.append(seg); } });
-        m.append(bar, h('p', 'feed-muted', T('Mood (AI-rated {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}', { r: rated.length, n: items.length, p: tally.pos, m: tally.neu, g: tally.neg })));
-        // daily average mood, last 14 days
-        const days = []; const today = new Date(); today.setHours(0, 0, 0, 0);
-        for (let k = 13; k >= 0; k--) {
-            const a = today.getTime() - k * DAY, b = a + DAY;
-            const xs = rated.filter(i => i.published >= a && i.published < b);
-            days.push({ a, avg: xs.length ? xs.reduce((s, i) => s + i.sent, 0) / xs.length : null, n: xs.length });
-        }
-        if (days.some(d => d.avg != null)) {
-            const tr = h('div', 'feed-mood-trend');
-            days.forEach(d => {
-                const col = h('div', 'feed-mood-col');
-                if (d.avg != null) {
-                    const b = h('div', 'feed-mood-pt ' + (d.avg >= 0 ? 'pos' : 'neg')); b.style.height = Math.max(6, Math.round(Math.abs(d.avg) * 100)) + '%';
-                    col.title = `${new Date(d.a).toLocaleDateString(locale(), { day: 'numeric', month: 'short' })}: ${d.avg.toFixed(2)} (${d.n})`;
-                    col.classList.add(d.avg >= 0 ? 'up' : 'down'); col.append(b);
-                }
-                tr.append(col);
-            });
-            m.append(tr);
-        }
-        const cats = new Map();
-        items.forEach(i => { if (i.cat) cats.set(i.cat, (cats.get(i.cat) || 0) + 1); });
-        if (cats.size) m.append(barRows([...cats].sort((a, b) => b[1] - a[1]).slice(0, 8), onSearch, (l) => T('Search “{term}”', { term: l })));
+    // Mood over time (daily store, outlives item retention)
+    root.append(moodSection(ctx));
+
+    // Categories (AI-labelled items)
+    const cats = new Map();
+    items.forEach(i => { if (i.cat) cats.set(i.cat, (cats.get(i.cat) || 0) + 1); });
+    if (cats.size) {
+        const m = section(T('🏷️ Categories'));
+        m.append(barRows([...cats].sort((a, b) => b[1] - a[1]).slice(0, 8), onSearch, (l) => T('Search “{term}”', { term: l })));
+        root.append(m);
     }
-    root.append(m);
 
     // Top terms
     const w = section(T('☁️ Top terms'));

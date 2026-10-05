@@ -22,6 +22,7 @@ import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feed
 import { T, TN, TU, N_, locale } from './feedI18n.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
+import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
@@ -30,6 +31,7 @@ const ITEMS_KEY = 'feedItems';
 const UI_KEY = 'feedUi';
 const SETTINGS_KEY = 'feedSettings';
 const RECAPS_KEY = 'feedRecaps';
+const MOOD_KEY = 'feedMoodDaily';   // per-day mood counts; outlives item retention (see feedMood.js)
 // Items are kept until the retention window (Settings > Feeds) runs out; favorites are kept longer.
 // These are only safety nets so storage can't grow without bound.
 const MAX_ITEMS_PER_FEED = 1500;
@@ -51,6 +53,7 @@ export const FEED_DEFAULTS = {
 let subs = [];
 let items = [];
 let recaps = {};
+let moodDaily = {};
 let settings = { ...FEED_DEFAULTS };
 // UI filter state (persisted so the screen reopens the way you left it)
 let ui = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new' };
@@ -72,8 +75,9 @@ let historyByUrl = new Map();
 // ── Storage ────────────────────────────────────────────────────────────────
 async function load() {
     const data = await chrome.storage.local.get({
-        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null, [RECAPS_KEY]: {}
+        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null, [RECAPS_KEY]: {}, [MOOD_KEY]: {}
     });
+    moodDaily = data[MOOD_KEY] || {};
     recaps = data[RECAPS_KEY] || {};
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
@@ -89,9 +93,16 @@ async function load() {
     items.forEach(i => { if (!i.ai) delete i.sent; });
     // A filter pointing at a source that no longer exists falls back to "all".
     if (!sourceExists(ui.source)) ui.source = 'all';
+    syncMood();
+}
+
+// Count the current items' moods into the long-lived daily store (older days survive item pruning).
+function syncMood() {
+    if (snapshotMood(moodDaily, items, itemMood, startOfDay)) chrome.storage.local.set({ [MOOD_KEY]: moodDaily }).catch(() => {});
 }
 
 function persist() {
+    syncMood();
     return chrome.storage.local.set({ [SUBS_KEY]: subs, [ITEMS_KEY]: items });
 }
 function persistUi() { stickyRead.clear(); shown = PAGE_SIZE; return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
@@ -468,6 +479,7 @@ function mergeItems(sub, parsedItems) {
 // Drop items older than the retention window (favorites are kept; they also
 // live in History).
 function pruneItems() {
+    syncMood();   // keep the mood of days that are about to be pruned
     const cutoff = Date.now() - settings.keepDays * DAY_MS;
     items = items.filter(i => i.published >= cutoff || histOf(i).fav);
     // Recaps follow the same retention window (key starts with the day's timestamp).
@@ -951,6 +963,11 @@ async function renderGraphView() {
     } catch (e) { graphSig = ''; box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Failed'))); }
 }
 
+function openPeriod(sc, ts) {
+    view = 'list'; searchQuery = ''; if (els.search) els.search.value = '';
+    ui.date = 'any'; ui.scope = sc; ui.anchor = ts; persistUi(); render();
+}
+
 function renderInsightsView() {
     const box = els.insights; if (!box) return;
     const sm = subMap();
@@ -958,6 +975,13 @@ function renderInsightsView() {
         items: items.filter(i => inSource(i, sm)),
         scopeLabel: sourceLabel(),
         subTitle: (id) => subTitle(sm.get(id)),
+        moodStore: moodDaily,
+        feedIds: new Set(subs.filter(s => inSource({ feedId: s.id }, sm)).map(s => s.id)),
+        unscored: (from, to) => items.filter(i => inSource(i, sm) && !i.ai && i.published >= from && i.published < startOfDay(to) + DAY_MS),
+        onScore: (list) => scoreWithAi(list),
+        hasRecap: (sc, st) => !!recaps[sc === 'day' ? `${st}|${ui.source}` : rollKey(sc, st, ui.source)],
+        onOpen: (sc, st) => openPeriod(sc, st),
+        onRecap: (sc, st) => { openPeriod(sc, st); if (sc === 'day') openRecap(st, dayLabel(st)); else openRollup(sc, st, rollCtx()); },
         isSummarized: (i) => histOf(i).summarized,
         onSource: (id) => { ui.source = 'sub:' + id; persistUi(); render(); },
         onSearch: (term) => setSearch(term, 'list')
@@ -1845,7 +1869,7 @@ function renderFeedSettings() {
         toggleRow('feedSetAutoSum', T('✨ Auto-summarize favorites'), T('Starring an item summarizes it in a background tab'), 'autoSummarizeFavs'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
         selectRow('feedSetRefresh', T('🔄 Refresh feeds every'), 'refreshMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')]]),
-        selectRow('feedSetKeep', T('🗂️ Keep items for'), 'keepDays', [[7, T('7 days')], [30, T('30 days')], [90, T('90 days')], [365, T('1 year')]]),
+        selectRow('feedSetKeep', T('🗂️ Keep items for'), 'keepDays', [[7, T('7 days')], [30, T('30 days')], [90, T('90 days')], [180, T('6 months')], [365, T('1 year')]]),
         el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.'))
     );
     root.append(beh);
