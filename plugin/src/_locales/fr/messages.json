@@ -1036,5 +1036,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 Humeur et catégories"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Ajoute humeur et catégorie à chaque article dans la même requête IA"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Évaluer les articles avec le récap"
   }
 }

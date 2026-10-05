@@ -1069,5 +1069,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 Mood & categories"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Adds mood and category to each item in the same AI request"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Rate items with the recap"
   }
 }

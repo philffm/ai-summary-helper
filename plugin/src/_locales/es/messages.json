@@ -1036,5 +1036,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 Ánimo y categorías"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Añade ánimo y categoría a cada elemento en la misma petición de IA"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Valorar elementos con el resumen"
   }
 }

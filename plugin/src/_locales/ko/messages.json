@@ -1024,5 +1024,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 기분 및 카테고리"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "같은 AI 요청으로 각 항목에 분위기와 카테고리 추가"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 요약과 함께 평가"
   }
 }

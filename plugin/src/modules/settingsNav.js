@@ -19,6 +19,7 @@ const INDEX = [
     ['feeds', 'Feed subscriptions · rename · tags', 'feedSubsCard', 'rss feeds subscriptions tags folder group rename mute unsubscribe sources'],
     ['feeds', 'Import / export OPML', 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
     ['feeds', 'Mark read when opened', 'feedSetMarkRead', 'feed read unread open'],
+    ['feeds', 'Rate items with the recap', 'feedSetRate', 'feed ai recap rate score sentiment mood category label automatic'],
     ['feeds', 'Auto-summarize favorites', 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
     ['feeds', 'Check feeds in the background', 'feedSetPoll', 'feed badge notification new items poll background'],
     ['feeds', 'Feed refresh interval', 'feedSetRefresh', 'feed refresh update minutes hour interval'],

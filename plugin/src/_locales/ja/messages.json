@@ -1042,5 +1042,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 気分とカテゴリ"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "同じAIリクエストで各記事のムードとカテゴリを追加"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 要約と同時に評価"
   }
 }

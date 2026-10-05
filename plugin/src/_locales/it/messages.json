@@ -952,5 +952,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 Umore e categorie"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Aggiunge umore e categoria a ogni articolo nella stessa richiesta IA"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Valuta gli articoli con il riepilogo"
   }
 }

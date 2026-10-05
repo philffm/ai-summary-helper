@@ -63,15 +63,30 @@ export function parseLabelLine(line, n) {
     return out;
 }
 
+/** "1:0.6 | 2:-0.4" -> sentiment array aligned to n items (null where missing), clamped to [-1, 1]. */
+export function parseScoreLine(line, n) {
+    const out = new Array(n).fill(null);
+    String(line || '').split(/[|;]/).forEach(part => {
+        const m = part.match(/(\d+)\s*[:=]\s*([+-]?\d*\.?\d+)/);
+        if (!m) return;
+        const k = Number(m[1]) - 1, v = Number(m[2]);
+        if (k >= 0 && k < n && Number.isFinite(v)) out[k] = Math.max(-1, Math.min(1, v));
+    });
+    return out;
+}
+
 export function parseRecap(text, n = 0) {
     const lines = String(text || '').split('\n').map(l => l.trim()).filter(Boolean);
     let mood = 'neu';
     const overview = [];
     const themes = [];
     let labels = null;
+    let scores = null;
     for (const l of lines) {
         const lm = l.match(/^LABELS\s*:\s*(.*)$/i);
         if (lm) { labels = parseLabelLine(lm[1], n); continue; }
+        const sm = l.match(/^SCORES\s*:\s*(.*)$/i);
+        if (sm) { scores = parseScoreLine(sm[1], n); continue; }
         const m = l.match(/^MOOD\s*:\s*(positive|mixed|negative|neutral)/i);
         if (m) {
             const v = m[1].toLowerCase();
@@ -79,18 +94,22 @@ export function parseRecap(text, n = 0) {
         } else if (/^[-•*]\s+/.test(l)) themes.push(l.replace(/^[-•*]\s+/, ''));
         else overview.push(l);
     }
-    return { overview: overview.join(' '), themes: themes.slice(0, 5), mood, labels };
+    return { overview: overview.join(' '), themes: themes.slice(0, 5), mood, labels, scores };
 }
 
-export async function generateRecap(list, subTitleFn) {
+/** rate = also return a category label and a sentiment score for every item (one extra line, no extra request). */
+export async function generateRecap(list, subTitleFn, { rate = true } = {}) {
     const lang = await languageName();
     const system = 'You write brief news-digest recaps from headlines and snippets. '
         + `Reply in the language with code ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
         + 'First, 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
         + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
-        + 'Finally one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered item a category label of one or two words '
-        + '(e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design). Reuse the same label for similar items; use at most 8 different labels.\n'
+        + (rate
+            ? 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered item a category label of one or two words '
+              + '(e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design). Reuse the same label for similar items; use at most 8 different labels.\n'
+              + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered item a sentiment number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content.\n'
+            : '')
         + 'No headings, no markdown other than the "- " lines.';
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(list, subTitleFn)}`);
     const chunk = list.slice(0, MAX_RECAP_ITEMS);

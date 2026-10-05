@@ -1042,5 +1042,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 Stimmung & Kategorien"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Ergänzt Stimmung und Kategorie im selben KI-Aufruf"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Einträge beim Rückblick bewerten"
   }
 }

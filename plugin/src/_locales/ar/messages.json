@@ -952,5 +952,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 المزاج والفئات"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "يضيف المزاج والفئة لكل عنصر في نفس طلب الذكاء الاصطناعي"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 تقييم العناصر مع الملخص"
   }
 }

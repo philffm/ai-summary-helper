@@ -952,5 +952,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 心情與分類"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "在同一次 AI 請求中為每則加入情緒與分類"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 摘要時一併評分"
   }
 }

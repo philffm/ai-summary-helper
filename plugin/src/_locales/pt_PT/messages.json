@@ -1036,5 +1036,11 @@
   },
   "f_mood_categories_c0c1": {
     "message": "🙂 Humor e categorias"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Acrescenta humor e categoria a cada item no mesmo pedido de IA"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Avaliar itens com o resumo"
   }
 }

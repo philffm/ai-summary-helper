@@ -40,6 +40,7 @@ const DAY_MS = 86400000;
 
 export const FEED_DEFAULTS = {
     markReadOnOpen: true,
+    rateWithRecap: true,
     autoSummarizeFavs: false,
     backgroundPoll: false,
     refreshMinutes: 30,
@@ -51,7 +52,8 @@ let items = [];
 let recaps = {};
 let settings = { ...FEED_DEFAULTS };
 // UI filter state (persisted so the screen reopens the way you left it)
-let ui = { source: 'all', status: 'unread', date: 'any', mood: 'any', sort: 'new' };
+let ui = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new' };
+const DEFAULT_STATUS = 'all';
 let refreshing = false;
 let els = {};
 let uiRef = null;
@@ -898,7 +900,7 @@ function renderEmptyFiltered(hasAny) {
     const unreadMode = ui.status === 'unread' && ui.source === 'all' && ui.date === 'any' && ui.mood === 'any';
     box.append(el('p', null, unreadMode ? T('You’re all caught up. 🎉') : T('Nothing matches these filters.')));
     box.append(btn('button-secondary feed-btn', unreadMode ? T('Show all items') : T('Clear filters'), () => {
-        ui = { source: 'all', status: unreadMode ? 'all' : 'unread', date: 'any', mood: 'any', sort: 'new' };
+        ui = { source: 'all', status: unreadMode ? 'all' : DEFAULT_STATUS, date: 'any', mood: 'any', sort: 'new' };
         persistUi(); render();
     }));
 }
@@ -1431,9 +1433,17 @@ async function openRecap(dayStart, label, source = ui.source) {
         body.replaceChildren(el('p', 'feed-recap-loading', T('✨ Writing recap…')),
             el('p', 'feed-muted', T('Sending {n} titles and short snippets to your AI connection.', { n: list.length })));
         try {
-            const r = await generateRecap(list, aiTitleOf(sm));
-            if (r.labels) { list.forEach((i, n) => { if (!i.cat && r.labels[n]) i.cat = r.labels[n]; }); persist(); render(); }
-            const { labels: _l, ...rc } = r;
+            const rate = settings.rateWithRecap !== false;
+            const r = await generateRecap(list, aiTitleOf(sm), { rate });
+            if (rate && (r.labels || r.scores)) {
+                // Rate/categorize in the same request. Existing ratings and categories are never overwritten.
+                list.forEach((i, n) => {
+                    if (r.labels && !i.cat && r.labels[n]) i.cat = r.labels[n];
+                    if (r.scores && !i.ai && r.scores[n] != null) { i.sent = r.scores[n]; i.ai = true; }
+                });
+                persist(); render();
+            }
+            const { labels: _l, scores: _s, ...rc } = r;
             recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length };
             chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
             draw(recaps[key], false);
@@ -1643,6 +1653,7 @@ function renderFeedSettings() {
     beh.id = 'feedBehaviorCard';
     beh.append(
         toggleRow('feedSetMarkRead', T('✓ Mark read when opened'), T('Items you open or summarize leave your unread list'), 'markReadOnOpen'),
+        toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'),
         toggleRow('feedSetAutoSum', T('✨ Auto-summarize favorites'), T('Starring an item summarizes it in a background tab'), 'autoSummarizeFavs'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
         selectRow('feedSetRefresh', T('🔄 Refresh feeds every'), 'refreshMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')]]),
