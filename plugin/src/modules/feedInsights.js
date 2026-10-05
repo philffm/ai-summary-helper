@@ -66,7 +66,7 @@ function periodLabel(scope, ts) {
 }
 function shortLabel(scope, ts) {
     if (scope === 'day') return String(new Date(ts).getDate());
-    if (scope === 'week') return 'W' + isoWeek(ts);
+    if (scope === 'week') return T('W{n}', { n: isoWeek(ts) });
     return new Date(ts).toLocaleDateString(locale(), { month: 'short' });
 }
 const signed = (n) => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n);
@@ -118,7 +118,7 @@ function moodSection(ctx) {
             card.append(moodBar(h, pct(cur)));
         } else {
             const need = cur.t - cur.rated;
-            card.append(h('div', 'feed-muted', T('Only {r} of {n} items are rated', { r: cur.rated, n: cur.t })));
+            card.append(h('div', 'feed-muted', need > 0 ? T('Only {r} of {n} items are rated', { r: cur.rated, n: cur.t }) : T('Only {r} rated items — at least 5 are needed', { r: cur.rated })));
             const prog = h('div', 'feed-mt-prog'); const fill = h('i'); fill.style.width = (cur.t ? Math.round(cur.rated * 100 / cur.t) : 0) + '%'; prog.append(fill); card.append(prog);
             const todo = ctx.unscored ? ctx.unscored(cur.start, cur.end) : [];
             if (todo.length) { const bt = h('button', 'feed-btn', T('🤖 Score {n} unscored items', { n: todo.length })); bt.type = 'button'; bt.addEventListener('click', () => ctx.onScore(todo)); card.append(bt); }
@@ -147,7 +147,7 @@ function moodSection(ctx) {
                 });
                 body.append(box);
             };
-            const head2 = h('div', 'feed-mt-whatmoved', T('What moved') + ' · ' + shortLabel(mScope, cur.start) + ' vs ' + shortLabel(mScope, prev.start));
+            const head2 = h('div', 'feed-mt-whatmoved', T('What moved') + ' · ' + T('{a} vs {b}', { a: shortLabel(mScope, cur.start), b: shortLabel(mScope, prev.start) }));
             if (mv.cats.length || mv.srcs.length) body.append(head2);
             rows(T('Categories'), mv.cats, (k) => k);
             rows(T('Sources'), mv.srcs, (k) => ctx.subTitle(k));
@@ -186,7 +186,11 @@ export function renderInsights(container, ctx) {
     const tg = h('div', 'ar-view-toggle'); tg.setAttribute('role', 'tablist');
     const arts = items.map(i => ({ timestamp: i.published }));
     const chart = h('div', 'ar-chart-wrap');
-    const draw = (v) => { chart.innerHTML = v === 'week' ? renderWeekChart(articlesByWeek(arts)) : renderBarChart(articlesByDay(arts)); [...tg.children].forEach(b => b.classList.toggle('active', b.dataset.view === v)); };
+    const fmtD = (ts) => new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+    const cnt = (n) => TN(n, '{n} item', '{n} items');
+    const tipDay = (d) => { const [y, m, dd] = d.day.split('-').map(Number); return `${fmtD(new Date(y, m - 1, dd).getTime())}: ${cnt(d.count)}`; };
+    const tipWeek = (d) => { const e = new Date(); e.setHours(0, 0, 0, 0); e.setDate(e.getDate() - d.week * 7); const s = new Date(e); s.setDate(e.getDate() - 6); return `${fmtD(s.getTime())} – ${fmtD(e.getTime())}: ${cnt(d.count)}`; };
+    const draw = (v) => { chart.innerHTML = v === 'week' ? renderWeekChart(articlesByWeek(arts), tipWeek) : renderBarChart(articlesByDay(arts), tipDay); [...tg.children].forEach(b => b.classList.toggle('active', b.dataset.view === v)); };
     [['day', T('Day')], ['week', T('Week')]].forEach(([v, l]) => { const b = h('button', 'ar-view-btn', l); b.type = 'button'; b.dataset.view = v; b.addEventListener('click', () => draw(v)); tg.append(b); });
     head.append(tg); vol.prepend(head); vol.append(chart); root.append(vol);
     const span = (Date.now() - Math.min(...items.map(i => i.published))) / DAY;

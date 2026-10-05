@@ -1207,5 +1207,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "सेटिंग्स में फ़ीड और टैग संपादित करें"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "केवल {r} रेट किए गए — कम से कम 5 चाहिए"
+  },
+  "f_w_66b2": {
+    "message": "{n}"
+  },
+  "f_vs_16ff": {
+    "message": "{a} बनाम {b}"
   }
 }

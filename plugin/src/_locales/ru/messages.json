@@ -1123,5 +1123,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "Изменить ленты и теги в настройках"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Оценено только {r} — нужно не менее 5"
+  },
+  "f_w_66b2": {
+    "message": "Н{n}"
+  },
+  "f_vs_16ff": {
+    "message": "{a} и {b}"
   }
 }

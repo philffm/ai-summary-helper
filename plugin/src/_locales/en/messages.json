@@ -1259,5 +1259,17 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "Edit feeds & tags in Settings"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Only {r} rated items — at least 5 are needed",
+    "description": "Placeholders: {r} (keep as is)"
+  },
+  "f_w_66b2": {
+    "message": "W{n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_vs_16ff": {
+    "message": "{a} vs {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
   }
 }

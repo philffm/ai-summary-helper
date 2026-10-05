@@ -1207,5 +1207,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "Editar feeds y etiquetas en Ajustes"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Solo {r} artículos valorados: se necesitan al menos 5"
+  },
+  "f_w_66b2": {
+    "message": "S{n}"
+  },
+  "f_vs_16ff": {
+    "message": "{a} frente a {b}"
   }
 }

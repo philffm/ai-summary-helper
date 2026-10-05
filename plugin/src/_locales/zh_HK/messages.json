@@ -1123,5 +1123,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "在設定中編輯訂閱源與標籤"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "僅 {r} 則已評分 — 至少需要 5 則"
+  },
+  "f_w_66b2": {
+    "message": "第{n}週"
+  },
+  "f_vs_16ff": {
+    "message": "{a} 對比 {b}"
   }
 }

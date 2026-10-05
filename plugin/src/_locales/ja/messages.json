@@ -1213,5 +1213,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "設定でフィードとタグを編集"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "評価済みは{r}件のみ — 最低5件が必要です"
+  },
+  "f_w_66b2": {
+    "message": "{n}週"
+  },
+  "f_vs_16ff": {
+    "message": "{a} と {b}"
   }
 }

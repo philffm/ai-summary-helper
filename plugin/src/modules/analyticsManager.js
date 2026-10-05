@@ -160,12 +160,12 @@ function defaultActivityView(articles) {
     return ageDays >= 21 ? 'week' : 'day';
 }
 
-export function renderBarChart(days) {
+export function renderBarChart(days, tip) {
     const max = Math.max(...days.map(d => d.count), 1);
     const bars = days.map(d => {
         const pct = Math.round((d.count / max) * 100);
         const label = d.day.slice(5); // MM-DD
-        return `<div class="ar-bar-wrap" title="${d.day}: ${d.count} article${d.count !== 1 ? 's' : ''}">
+        return `<div class="ar-bar-wrap" title="${tip ? tip(d) : `${d.day}: ${d.count} article${d.count !== 1 ? 's' : ''}`}">
           <div class="ar-bar" style="height:${pct}%"></div>
           ${d.count > 0 ? `<span class="ar-bar-count">${d.count}</span>` : ''}
         </div>`;
@@ -173,11 +173,11 @@ export function renderBarChart(days) {
     return `<div class="ar-chart">${bars}</div>`;
 }
 
-export function renderWeekChart(weeks) {
+export function renderWeekChart(weeks, tip) {
     const max = Math.max(...weeks.map(d => d.count), 1);
     const bars = weeks.map(d => {
         const pct = Math.round((d.count / max) * 100);
-        return `<div class="ar-bar-wrap" title="${d.label}: ${d.count} article${d.count !== 1 ? 's' : ''}">
+        return `<div class="ar-bar-wrap" title="${tip ? tip(d) : `${d.label}: ${d.count} article${d.count !== 1 ? 's' : ''}`}">
           <div class="ar-bar" style="height:${pct}%"></div>
           ${d.count > 0 ? `<span class="ar-bar-count">${d.count}</span>` : ''}
         </div>`;

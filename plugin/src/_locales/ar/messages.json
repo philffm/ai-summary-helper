@@ -1123,5 +1123,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "تعديل الخلاصات والوسوم في الإعدادات"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "تم تقييم {r} فقط — يلزم 5 على الأقل"
+  },
+  "f_w_66b2": {
+    "message": "أ{n}"
+  },
+  "f_vs_16ff": {
+    "message": "{a} مقابل {b}"
   }
 }

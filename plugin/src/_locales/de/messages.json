@@ -1213,5 +1213,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "Feeds & Tags in den Einstellungen bearbeiten"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Nur {r} bewertete Artikel — mindestens 5 nötig"
+  },
+  "f_w_66b2": {
+    "message": "KW{n}"
+  },
+  "f_vs_16ff": {
+    "message": "{a} vs. {b}"
   }
 }

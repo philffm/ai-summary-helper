@@ -1207,5 +1207,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "Modifier les flux et tags dans les réglages"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Seulement {r} articles évalués — au moins 5 sont nécessaires"
+  },
+  "f_w_66b2": {
+    "message": "S{n}"
+  },
+  "f_vs_16ff": {
+    "message": "{a} vs {b}"
   }
 }

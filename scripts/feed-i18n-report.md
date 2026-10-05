@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 287. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 290. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 287 | 0 | 0 | 7 |
-| de | 287 | 0 | 0 | 32 |
-| es | 287 | 0 | 0 | 27 |
-| fr | 287 | 0 | 0 | 24 |
-| hi | 287 | 0 | 0 | 6 |
-| it | 287 | 0 | 0 | 26 |
-| ja | 287 | 0 | 0 | 3 |
-| ko | 287 | 0 | 0 | 1 |
-| pt_PT | 287 | 0 | 0 | 22 |
-| ru | 287 | 0 | 0 | 9 |
-| zh_CN | 287 | 0 | 0 | 0 |
-| zh_HK | 287 | 0 | 0 | 0 |
-| zh_TW | 287 | 0 | 0 | 0 |
+| ar | 290 | 0 | 0 | 7 |
+| de | 290 | 0 | 0 | 32 |
+| es | 290 | 0 | 0 | 28 |
+| fr | 290 | 0 | 0 | 25 |
+| hi | 290 | 0 | 0 | 6 |
+| it | 290 | 0 | 0 | 26 |
+| ja | 290 | 0 | 0 | 3 |
+| ko | 290 | 0 | 0 | 1 |
+| pt_PT | 290 | 0 | 0 | 22 |
+| ru | 290 | 0 | 0 | 9 |
+| zh_CN | 290 | 0 | 0 | 0 |
+| zh_HK | 290 | 0 | 0 | 0 |
+| zh_TW | 290 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -83,6 +83,7 @@ Strings: 287. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | 📈 Mood over time | 📈 Ánimo a lo largo del tiempo | 30 vs 17 | 1.76× |
 | Newest first | Más recientes primero | 21 vs 12 | 1.75× |
 | Unplayed | Sin reproducir | 14 vs 8 | 1.75× |
+| {a} vs {b} | {a} frente a {b} | 14 vs 8 | 1.75× |
 | Recap scope | Alcance del resumen | 19 vs 11 | 1.73× |
 | Feed name | Nombre del feed | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} marcados como leídos | 23 vs 14 | 1.64× |
@@ -125,6 +126,7 @@ Strings: 287. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
 | Creating day recaps… {a}/{b} | Création des récaps quotidiens… {a}/{b} | 37 vs 26 | 1.42× |
 | Only {r} of {n} items are rated | Seulement {r} articles sur {n} sont évalués | 41 vs 29 | 1.41× |
+| Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
 
 ### hi
 | English | Translation | width | ratio |

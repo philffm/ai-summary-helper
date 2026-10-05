@@ -1195,5 +1195,14 @@
   },
   "f_edit_feeds_tags_in_settings_48ab": {
     "message": "설정에서 피드와 태그 편집"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "평가된 항목 {r}개뿐 — 최소 5개 필요"
+  },
+  "f_w_66b2": {
+    "message": "{n}주"
+  },
+  "f_vs_16ff": {
+    "message": "{a} 대 {b}"
   }
 }
