@@ -26,9 +26,11 @@ const ITEMS_KEY = 'feedItems';
 const UI_KEY = 'feedUi';
 const SETTINGS_KEY = 'feedSettings';
 const RECAPS_KEY = 'feedRecaps';
-const MAX_ITEMS_PER_FEED = 50;
-const MAX_ITEMS_TOTAL = 500;
-const MAX_RENDERED = 100;
+// Items are kept until the retention window (Settings > Feeds) runs out; favorites are kept longer.
+// These are only safety nets so storage can't grow without bound.
+const MAX_ITEMS_PER_FEED = 1500;
+const MAX_ITEMS_TOTAL = 6000;
+const PAGE_SIZE = 100;          // cards rendered at once; "Show more" adds another page
 const CONCURRENCY = 4;
 const COMMON_FEED_PATHS = ['/feed', '/rss', '/atom.xml', '/feed.xml', '/rss.xml', '/index.xml'];
 const DAY_MS = 86400000;
@@ -51,6 +53,7 @@ let refreshing = false;
 let els = {};
 let uiRef = null;
 let undoTimer = null;
+let shown = PAGE_SIZE;
 // Items read by opening/tapping stay in the Unread view (dimmed) until the view changes,
 // so the list doesn't jump under your finger.
 const stickyRead = new Set();
@@ -82,7 +85,7 @@ async function load() {
 function persist() {
     return chrome.storage.local.set({ [SUBS_KEY]: subs, [ITEMS_KEY]: items });
 }
-function persistUi() { stickyRead.clear(); return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
+function persistUi() { stickyRead.clear(); shown = PAGE_SIZE; return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
 function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: settings }).catch(() => {}); }
 
 // ── Tags (a feed can have several) ─────────────────────────────────────────
@@ -446,7 +449,10 @@ function mergeItems(sub, parsedItems) {
     const seen = new Set(merged.map(m => m.id));
     existing.forEach((v, k) => { if (!seen.has(k)) merged.push(v); });
     merged.sort((a, b) => b.published - a.published);
-    const kept = merged.slice(0, MAX_ITEMS_PER_FEED);
+    // Keep everything we have (retention prunes by age); only favorites survive the safety cap.
+    const kept = merged.length > MAX_ITEMS_PER_FEED
+        ? merged.filter((i, k) => k < MAX_ITEMS_PER_FEED || histOf(i).fav)
+        : merged;
     items = items.filter(i => i.feedId !== sub.id).concat(kept);
 }
 
@@ -492,7 +498,7 @@ async function refreshAll(uiObj, { force = false } = {}) {
         await Promise.all(Array.from({ length: Math.min(CONCURRENCY, due.length) }, worker));
         items.sort((a, b) => b.published - a.published);
         pruneItems();
-        items = items.slice(0, MAX_ITEMS_TOTAL);
+        if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
         await persist();
     } finally {
         refreshing = false;
@@ -698,7 +704,7 @@ function visibleItems() {
     const list = items.filter(i => passes(i, sm));
     if (ui.sort === 'mood') list.sort((a, b) => (itemMood(b) ? b.sent : -2) - (itemMood(a) ? a.sent : -2) || b.published - a.published);
     else list.sort((a, b) => b.published - a.published);
-    return list.slice(0, MAX_RENDERED);
+    return list;
 }
 
 function unreadCount(pred) { return items.filter(i => !i.read && pred(i)).length; }
@@ -920,8 +926,9 @@ function render() {
     els.list.hidden = false;
 
     const sm = subMap();
-    const visible = visibleItems();
-    if (!visible.length) { renderEmptyFiltered(items.length > 0); return; }
+    const all = visibleItems();
+    if (!all.length) { renderEmptyFiltered(items.length > 0); return; }
+    const visible = all.slice(0, shown);
     els.empty.style.display = 'none';
 
     let lastKey = null;
@@ -946,7 +953,7 @@ function render() {
     };
     if (ui.sort === 'mood') {
         const header = el('li', 'feed-day');
-        header.append(el('span', 'feed-day-label', `Most positive first · ${visible.length} items`));
+        header.append(el('span', 'feed-day-label', `Most positive first · ${all.length} items`));
         els.list.appendChild(header);
         visible.forEach(i => els.list.appendChild(renderCard(i, sm)));
     } else {
@@ -956,6 +963,11 @@ function render() {
             group.push(i);
         }
         flush();
+    }
+    if (all.length > visible.length) {
+        const more = el('li', 'feed-more');
+        more.append(btn('button-secondary feed-wide-btn', `Show ${Math.min(PAGE_SIZE, all.length - visible.length)} more · ${all.length - visible.length} older`, () => { shown += PAGE_SIZE; render(); }));
+        els.list.appendChild(more);
     }
 }
 
@@ -1034,7 +1046,7 @@ function openFilterSheet() {
         section('SORT', 'sort', [['new', 'Newest first'], ['mood', 'Most positive first']]);
         body.append(el('div', 'feed-pick-label', 'MORE'));
         body.append(btn('feed-manage-link', '☀️  Today’s briefing', () => { closeSheet(); openBriefing(); }));
-        body.append(btn('feed-manage-link', '🤖  Score visible items with AI', () => { closeSheet(); scoreWithAi(visibleItems()); }));
+        body.append(btn('feed-manage-link', '🤖  Score visible items with AI', () => { closeSheet(); scoreWithAi(visibleItems().slice(0, shown)); }));
         body.append(btn('feed-manage-link', '✓  Mark everything in this view read', () => {
             const list = visibleItems().filter(i => !i.read);
             closeSheet();
@@ -1334,7 +1346,7 @@ function renderFeedSettings() {
 // ── Public API ─────────────────────────────────────────────────────────────
 export async function onFeedsScreenShown(uiObj) {
     uiRef = uiObj;
-    closeSheet(); hideUndo(); stickyRead.clear();
+    closeSheet(); hideUndo(); stickyRead.clear(); shown = PAGE_SIZE;
     await load();
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
     await loadHistoryMap();

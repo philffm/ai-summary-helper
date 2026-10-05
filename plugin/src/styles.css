@@ -2755,3 +2755,4 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-tag-x { width: auto !important; margin: 0 !important; padding: 0 4px !important; background: transparent !important; border: none !important; box-shadow: none !important; color: inherit; font-size: 14px; line-height: 1; cursor: pointer; opacity: .6; }
 .feed-tag-x:hover { opacity: 1; }
 .feed-tag-input { flex: 1; min-width: 70px; width: auto; max-width: 140px; font-size: 12px; padding: 3px 6px; border: 1px dashed var(--glass-border); border-radius: 999px; background: transparent; }
+.feed-more { list-style: none; margin: 4px 0 16px; }
