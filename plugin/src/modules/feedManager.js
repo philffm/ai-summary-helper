@@ -284,6 +284,21 @@ function enclosureOf(e, feedUrl) {
     return '';
 }
 
+function imageOf(node, base) {
+    for (const c of node.children) {
+        const n = c.localName;
+        if ((n === 'image' || n === 'thumbnail') && (c.getAttribute('href') || c.getAttribute('url'))) {
+            const u = safeHttpUrl(c.getAttribute('href') || c.getAttribute('url'), base);
+            if (u) return u;
+        }
+        if (n === 'image') {            // <image><url>…</url></image>
+            const u = safeHttpUrl(childByLocalName(c, 'url'), base);
+            if (u) return u;
+        }
+    }
+    return '';
+}
+
 /** @returns {{title:string, siteUrl:string, items:Array}|null} */
 function parseFeed(xmlText, feedUrl) {
     const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
@@ -320,7 +335,7 @@ function parseFeed(xmlText, feedUrl) {
                 dur: parseDuration(childByLocalName(e, 'duration'))
             });
         }
-        return { title, siteUrl, items: out };
+        return { title, siteUrl, image: '', items: out };
     }
 
     if (rootName === 'rss' || rootName === 'rdf') {  // RSS 2.0 / RSS 1.0
@@ -338,10 +353,11 @@ function parseFeed(xmlText, feedUrl) {
                 published: Date.parse(when) || 0,
                 snippet: htmlToText(childByLocalName(e, 'description') || childByLocalName(e, 'encoded')).slice(0, 220),
                 audio: enclosureOf(e, feedUrl),
-                dur: parseDuration(childByLocalName(e, 'duration'))
+                dur: parseDuration(childByLocalName(e, 'duration')),
+                img: imageOf(e, feedUrl)
             };
         });
-        return { title, siteUrl, items: out };
+        return { title, siteUrl, image: imageOf(channel, feedUrl), items: out };
     }
     return null;
 }
@@ -393,6 +409,7 @@ function mergeItems(sub, parsedItems) {
             snippet: p.snippet,
             audio: p.audio || '',
             dur: p.dur || 0,
+            img: p.img || '',
             sent: prev && prev.ai ? prev.sent : undefined,
             ai: !!(prev && prev.ai),
             read: prev ? prev.read : false
@@ -423,6 +440,7 @@ async function refreshSub(sub) {
         if (!parsed) throw new Error('Not a valid feed');
         if (!sub.customTitle && parsed.title) sub.title = parsed.title;
         if (parsed.siteUrl) sub.siteUrl = parsed.siteUrl;
+        if (parsed.image) sub.image = parsed.image;
         mergeItems(sub, parsed.items);
         sub.lastFetched = Date.now();
         sub.error = '';
@@ -807,7 +825,8 @@ function renderCard(item, sm) {
 
 async function onPlayClick(item) {
     try {
-        await playAudio(item, subTitle(subMap().get(item.feedId)));
+        const sub = subMap().get(item.feedId);
+        await playAudio(item, subTitle(sub), item.img || (sub && sub.image) || '');
     } catch (e) {
         toast(uiRef, e.message || 'Could not start playback');
     }

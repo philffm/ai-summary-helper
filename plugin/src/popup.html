@@ -581,19 +581,28 @@
         <div id="feedSheetBody"></div>
       </div>
     </div>
-    <div id="feedPlayer" class="feed-player" hidden>
-      <div class="feed-player-top">
-        <span id="fpTitle" class="feed-player-title"></span>
-        <button type="button" id="fpClose" aria-label="Close player" title="Close player">✕</button>
+    <div id="feedPlayer" class="feed-player" hidden role="region" aria-label="Podcast player">
+      <div class="fp-row">
+        <div id="fpCoverWrap" class="fp-cover no-cover"><img id="fpCover" alt="" hidden></div>
+        <div class="fp-info">
+          <span id="fpTitle" class="fp-title"></span>
+          <span id="fpSource" class="fp-source"></span>
+        </div>
+        <button type="button" id="fpClose" class="fp-icon fp-close" aria-label="Close player" title="Close player">✕</button>
       </div>
-      <div class="feed-player-ctl">
-        <button type="button" id="fpBack" aria-label="Back 15 seconds" title="Back 15s">↺15</button>
-        <button type="button" id="fpToggle" class="feed-player-play" aria-label="Play">▶</button>
-        <button type="button" id="fpFwd" aria-label="Forward 30 seconds" title="Forward 30s">30↻</button>
-        <input type="range" id="fpSeek" min="0" max="1" value="0" step="1" aria-label="Seek">
-        <button type="button" id="fpRate" title="Playback speed">1×</button>
+      <div class="fp-seekrow">
+        <span id="fpTime" class="fp-time">0:00</span>
+        <input type="range" id="fpSeek" class="fp-seek" min="0" max="1" value="0" step="1" aria-label="Seek">
+        <span id="fpLeft" class="fp-time fp-time-right">--:--</span>
       </div>
-      <div class="feed-player-meta"><span id="fpTime">0:00</span><span id="fpErr" class="feed-player-err" hidden></span></div>
+      <div class="fp-ctl">
+        <button type="button" id="fpRate" class="fp-pill" title="Playback speed">1×</button>
+        <button type="button" id="fpBack" class="fp-icon" aria-label="Back 15 seconds" title="Back 15s"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5a7 7 0 1 1-6.6 4.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 1.5 8 5l4 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="15.4" text-anchor="middle" font-size="7" font-weight="700" fill="currentColor" font-family="system-ui,sans-serif">15</text></svg></button>
+        <button type="button" id="fpToggle" class="fp-play" data-state="paused" aria-label="Play"><svg class="i-play" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor"/></svg><svg class="i-pause" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1.4" fill="currentColor"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.4" fill="currentColor"/></svg></button>
+        <button type="button" id="fpFwd" class="fp-icon" aria-label="Forward 30 seconds" title="Forward 30s"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5a7 7 0 1 0 6.6 4.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 1.5 16 5l-4 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="15.4" text-anchor="middle" font-size="7" font-weight="700" fill="currentColor" font-family="system-ui,sans-serif">30</text></svg></button>
+        <span class="fp-spacer"></span>
+      </div>
+      <div id="fpErr" class="fp-err" hidden></div>
     </div>
     <div id="feedUndo" class="feed-undo" hidden role="status">
       <span id="feedUndoMsg"></span>

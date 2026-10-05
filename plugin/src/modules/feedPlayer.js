@@ -60,12 +60,18 @@ function paint() {
     $.bar.hidden = !cur;
     if (!cur) return;
     $.title.textContent = cur.title || 'Episode';
-    $.title.title = (cur.source ? cur.source + ' — ' : '') + (cur.title || '');
-    $.toggle.textContent = st.playing ? '⏸' : '▶';
+    $.title.title = cur.title || '';
+    $.source.textContent = cur.source || '';
+    if (cur.cover) { if ($.cover.dataset.src !== cur.cover) { $.cover.dataset.src = cur.cover; $.cover.src = cur.cover; } $.cover.hidden = false; $.coverWrap.classList.remove('no-cover'); }
+    else { $.cover.hidden = true; $.coverWrap.classList.add('no-cover'); }
+    $.toggle.dataset.state = st.playing ? 'playing' : 'paused';
     $.toggle.setAttribute('aria-label', st.playing ? 'Pause' : 'Play');
     $.seek.max = String(Math.max(1, Math.floor(st.duration || cur.dur || 1)));
     if (!$.seek.matches(':active')) $.seek.value = String(Math.floor(st.time));
-    $.time.textContent = `${fmt(st.time)} / ${st.duration || cur.dur ? fmt(st.duration || cur.dur) : '--:--'}`;
+    const total = st.duration || cur.dur || 0;
+    $.time.textContent = fmt(st.time);
+    $.left.textContent = total ? '-' + fmt(Math.max(0, total - st.time)) : '--:--';
+    $.seek.style.setProperty('--p', total ? Math.min(100, st.time / total * 100) + '%' : '0%');
     $.rate.textContent = (st.rate || 1) + '×';
     $.err.textContent = st.error || (backend === 'local' ? 'Plays only while this window is open' : '');
     $.err.hidden = !$.err.textContent;
@@ -95,12 +101,12 @@ async function run(cmd) {
 
 export function isPlaying(id) { return !!(st && st.cur && st.cur.id === id && st.playing); }
 
-export async function play(item, sourceName) {
+export async function play(item, sourceName, cover) {
     await ensureBackend();
     if (st && st.cur && st.cur.id === item.id) { await run({ cmd: 'toggle' }); startPolling(); return; }
     await run({
         cmd: 'load', src: item.audio, start: positions[item.id] || 0,
-        meta: { id: item.id, title: item.title, source: sourceName || '', dur: item.dur || 0 }
+        meta: { id: item.id, title: item.title, source: sourceName || '', dur: item.dur || 0, cover: cover || '' }
     });
     startPolling();
 }
@@ -111,7 +117,7 @@ export async function initPlayer(changeCb) {
         bar: document.getElementById('feedPlayer'), title: document.getElementById('fpTitle'),
         toggle: document.getElementById('fpToggle'), back: document.getElementById('fpBack'),
         fwd: document.getElementById('fpFwd'), seek: document.getElementById('fpSeek'),
-        time: document.getElementById('fpTime'), rate: document.getElementById('fpRate'),
+        time: document.getElementById('fpTime'), left: document.getElementById('fpLeft'), source: document.getElementById('fpSource'), cover: document.getElementById('fpCover'), coverWrap: document.getElementById('fpCoverWrap'), rate: document.getElementById('fpRate'),
         close: document.getElementById('fpClose'), err: document.getElementById('fpErr')
     };
     try { positions = (await chrome.storage.local.get(POS_KEY))[POS_KEY] || {}; } catch (e) { positions = {}; }
@@ -119,7 +125,8 @@ export async function initPlayer(changeCb) {
     $.toggle.addEventListener('click', () => run({ cmd: 'toggle' }).then(startPolling));
     $.back.addEventListener('click', () => run({ cmd: 'skip', delta: -15 }));
     $.fwd.addEventListener('click', () => run({ cmd: 'skip', delta: 30 }));
-    $.seek.addEventListener('input', () => { $.time.textContent = fmt($.seek.value) + ' / ' + fmt($.seek.max); });
+    $.cover.addEventListener('error', () => { $.cover.hidden = true; $.coverWrap.classList.add('no-cover'); });
+    $.seek.addEventListener('input', () => { $.time.textContent = fmt($.seek.value); $.seek.style.setProperty('--p', (Number($.seek.value) / Number($.seek.max) * 100) + '%'); });
     $.seek.addEventListener('change', () => run({ cmd: 'seek', time: Number($.seek.value) }));
     $.rate.addEventListener('click', () => {
         const i = RATES.indexOf((st && st.rate) || 1);
