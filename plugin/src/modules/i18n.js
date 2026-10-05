@@ -53,6 +53,8 @@ export async function applyTranslations(langCode) {
     });
 
     document.documentElement.lang = code.replace('_', '-');
+    // Screens that build text in JS (Feeds) re-render with the new dictionary.
+    try { document.dispatchEvent(new CustomEvent('aish:translationsApplied', { detail: { code } })); } catch (e) {}
 }
 
 export function t(key) {

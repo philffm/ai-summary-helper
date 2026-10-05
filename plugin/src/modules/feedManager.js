@@ -1589,11 +1589,11 @@ function renderScopeRow() {
     if (!row) return;
     row.hidden = !subs.length;
     const cur = effScope();
-    if (!row.children.length) {
-        const labels = { feed: T('Feed'), day: T('Day'), week: T('Week'), month: T('Month') };
-        SCOPES.forEach(k => { const b = btn('feed-scope-btn', labels[k], () => setScope(k)); b.dataset.scope = k; row.append(b); });
-    }
-    [...row.children].forEach(b => { const on = b.dataset.scope === cur; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    // Labels are re-read on every render: the dictionary may finish loading after the row was first built.
+    const labels = { feed: T('Feed'), day: T('Day'), week: T('Week'), month: T('Month') };
+    if (!row.children.length) SCOPES.forEach(k => { const b = btn('feed-scope-btn', labels[k], () => setScope(k)); b.dataset.scope = k; row.append(b); });
+    [...row.children].forEach(b => { const on = b.dataset.scope === cur; b.textContent = labels[b.dataset.scope]; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    row.setAttribute('aria-label', T('Recap scope'));
 }
 
 function scopeLabel(sc, ps) {
@@ -2006,6 +2006,7 @@ export function initFeedManager(uiObj) {
     els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));
     els.addBtn.addEventListener('click', openAddSheet);
     els.filterChip.addEventListener('click', openFilterSheet);
+    document.addEventListener('aish:translationsApplied', () => { if (els && els.list && subs) { try { render(); } catch (e) {} } });
     if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage);
     // Any new summary (also from the Summarize screen or a background tab) flips the matching card to "View summary".
     if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
