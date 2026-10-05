@@ -2927,3 +2927,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-tag-chip.selected { background: rgba(37, 99, 235, 0.16); border-color: var(--accent); color: var(--accent); }
 .feed-tag-n { font-size: 11px; font-weight: 700; color: var(--text-muted); }
 .feed-tag-chip.selected .feed-tag-n { color: var(--accent); }
+.feed-pick-head { display: flex; align-items: center; justify-content: space-between; margin: 10px 0 2px; }
+.feed-pick-head .feed-pick-label { margin: 0; }
+.feed-pick-edit { width: auto; flex: none; background: transparent; border: none; box-shadow: none; padding: 2px 6px; min-height: 0; font-size: 12px; font-weight: 700; color: var(--accent); cursor: pointer; border-radius: 6px; }
+.feed-pick-edit:hover { background: rgba(37, 99, 235, 0.10); }

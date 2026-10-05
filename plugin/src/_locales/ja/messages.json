@@ -1207,5 +1207,11 @@
   },
   "f__c725": {
     "message": "⏳ {n}%"
+  },
+  "f_edit_6cb1": {
+    "message": "編集"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "設定でフィードとタグを編集"
   }
 }

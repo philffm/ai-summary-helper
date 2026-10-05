@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 287. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 285 | 0 | 0 | 7 |
-| de | 285 | 0 | 0 | 30 |
-| es | 285 | 0 | 0 | 27 |
-| fr | 285 | 0 | 0 | 23 |
-| hi | 285 | 0 | 0 | 5 |
-| it | 285 | 0 | 0 | 26 |
-| ja | 285 | 0 | 0 | 3 |
-| ko | 285 | 0 | 0 | 1 |
-| pt_PT | 285 | 0 | 0 | 22 |
-| ru | 285 | 0 | 0 | 9 |
-| zh_CN | 285 | 0 | 0 | 0 |
-| zh_HK | 285 | 0 | 0 | 0 |
-| zh_TW | 285 | 0 | 0 | 0 |
+| ar | 287 | 0 | 0 | 7 |
+| de | 287 | 0 | 0 | 32 |
+| es | 287 | 0 | 0 | 27 |
+| fr | 287 | 0 | 0 | 24 |
+| hi | 287 | 0 | 0 | 6 |
+| it | 287 | 0 | 0 | 26 |
+| ja | 287 | 0 | 0 | 3 |
+| ko | 287 | 0 | 0 | 1 |
+| pt_PT | 287 | 0 | 0 | 22 |
+| ru | 287 | 0 | 0 | 9 |
+| zh_CN | 287 | 0 | 0 | 0 |
+| zh_HK | 287 | 0 | 0 | 0 |
+| zh_TW | 287 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -35,6 +35,7 @@ Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Add | Hinzufügen | 10 vs 3 | 3.33× |
+| Edit | Bearbeiten | 10 vs 4 | 2.5× |
 | Undo | Rückgängig | 10 vs 4 | 2.5× |
 | Reset | Zurücksetzen | 12 vs 5 | 2.4× |
 | Failed | Fehlgeschlagen | 14 vs 6 | 2.33× |
@@ -61,6 +62,7 @@ Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Marked {n} unread | {n} als ungelesen markiert | 25 vs 16 | 1.56× |
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
+| Edit feeds & tags in Settings | Feeds & Tags in den Einstellungen bearbeiten | 44 vs 29 | 1.52× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
 | No sources match. | Keine passenden Quellen. | 24 vs 17 | 1.41× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
@@ -117,6 +119,7 @@ Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |
 | Best match · {n} items | Meilleur résultat · {n} éléments | 31 vs 21 | 1.48× |
+| Edit feeds & tags in Settings | Modifier les flux et tags dans les réglages | 43 vs 29 | 1.48× |
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles. | 73 vs 50 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
@@ -127,6 +130,7 @@ Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | English | Translation | width | ratio |
 |---|---|---|---|
 | n/a | उपलब्ध नहीं | 11 vs 3 | 3.67× |
+| Edit | संपादित करें | 12 vs 4 | 3× |
 | vs {label} | {label} की तुलना में | 15 vs 5 | 3× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |

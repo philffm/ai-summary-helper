@@ -1253,5 +1253,11 @@
   "f__c725": {
     "message": "⏳ {n}%",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_edit_6cb1": {
+    "message": "Edit"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "Edit feeds & tags in Settings"
   }
 }

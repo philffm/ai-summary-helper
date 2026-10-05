@@ -1117,5 +1117,11 @@
   },
   "f__c725": {
     "message": "⏳ {n}%"
+  },
+  "f_edit_6cb1": {
+    "message": "تعديل"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "تعديل الخلاصات والوسوم في الإعدادات"
   }
 }

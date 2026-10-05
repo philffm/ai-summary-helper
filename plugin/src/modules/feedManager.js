@@ -1261,6 +1261,20 @@ function radioRow(label, count, selected, onClick, { muted = false, indent = fal
     return b;
 }
 
+async function openFeedSettings() {
+    closeSheet();
+    const nav = await import('./settingsNav.js');
+    uiRef.showScreen('settings');
+    setTimeout(() => nav.openSettingsPanel('feeds'), 50);
+}
+// Section label with a small Edit link to the feed settings.
+function pickHead(label) {
+    const row = el('div', 'feed-pick-head');
+    const e = btn('feed-pick-edit', T('Edit'), openFeedSettings, T('Edit feeds & tags in Settings'));
+    row.append(el('div', 'feed-pick-label', label), e);
+    return row;
+}
+
 function openSourcePicker() {
     const body = el('div', 'feed-picker');
     const search = el('input');
@@ -1275,7 +1289,7 @@ function openSourcePicker() {
         if (!q) list.append(radioRow(T('All sources'), cnt(i => !sm.get(i.feedId).muted), ui.source === 'all', () => choose('all')));
         const tags = allTags().filter(t => !q || t.toLowerCase().includes(q));
         if (tags.length) {
-            list.append(el('div', 'feed-pick-label', TU('Tags')));
+            list.append(pickHead(TU('Tags')));
             const chips = el('div', 'feed-tag-chips');
             tags.forEach(t => {
                 const on = ui.source === 'tag:' + t, n = cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted);
@@ -1290,7 +1304,7 @@ function openSourcePicker() {
         const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.tags || []).some(t => t.toLowerCase().includes(q));
         const shown = subs.filter(matching);
         if (shown.length) {
-            if (tags.length) list.append(el('div', 'feed-pick-label', TU('Feeds')));
+            if (tags.length) list.append(pickHead(TU('Feeds')));
             shown.sort((a, b) => subTitle(a).localeCompare(subTitle(b))).forEach(s => {
                 list.append(radioRow((s.muted ? '🔕 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted }));
             });
@@ -1298,12 +1312,7 @@ function openSourcePicker() {
         if (!list.children.length) list.append(el('p', 'feed-muted', T('No sources match.')));
     };
     search.addEventListener('input', draw);
-    body.append(search, list, btn('feed-manage-link', T('⚙️  Manage feeds & tags in Settings  ›'), async () => {
-        closeSheet();
-        const nav = await import('./settingsNav.js');
-        uiRef.showScreen('settings');
-        setTimeout(() => nav.openSettingsPanel('feeds'), 50);
-    }));
+    body.append(search, list, btn('feed-manage-link', T('⚙️  Manage feeds & tags in Settings  ›'), openFeedSettings));
     openSheet(T('Sources'), body);
     draw();
 }
