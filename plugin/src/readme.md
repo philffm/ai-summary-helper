@@ -24,7 +24,7 @@ A powerful browser extension for summarizing web pages with a custom AI prompt, 
 
 ### 📰 Feeds (RSS reader)
 - Built for triage: a compact control bar (source picker, refresh, add) and status chips (Unread / All / Favorites / Summarized)
-- Filter by **source** or **folder**, by **date** (Today / 7 days) and by **mood** (positive only, hide negative, most positive first). Mood is estimated on-device from headlines and snippets
+- Filter by **source** or **folder**, by **date** (Today / 7 days) and by **mood** (positive only, hide negative, most positive first). Mood comes only from the optional **Score with AI** action (no on-device guessing); unscored items are never hidden by the mood filter
 - **✨ Recap** on any day header (and in Today's briefing) writes a short AI overview from headlines and snippets; **Score with AI** rates item tone. Both run only when you click, are cached locally, and send just titles and short snippets to your AI connection
 - **Podcasts**: feeds with audio enclosures get a **▶ Play** button and a mini-player (±15/30s, speed, seek, resume position). In Chrome and Firefox playback continues when the popup closes
 - Items are grouped by day; **Mark read** clears a day (or the whole view) with an undo bar

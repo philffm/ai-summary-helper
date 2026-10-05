@@ -17,7 +17,7 @@
 
 import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
-import { scoreSentiment, moodOf, MOOD_EMOJI } from './feedSentiment.js';
+import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
 import { generateRecap, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
@@ -64,8 +64,8 @@ async function load() {
     items = data[ITEMS_KEY] || [];
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
     if (data[UI_KEY]) ui = { ...ui, ...data[UI_KEY] };
-    // Older items were stored before mood scoring existed.
-    items.forEach(i => { if (typeof i.sent !== 'number') i.sent = scoreSentiment(i.title + ' ' + (i.snippet || '')); });
+    // Older builds scored mood on-device; only AI scores are kept now.
+    items.forEach(i => { if (!i.ai) delete i.sent; });
     // A filter pointing at a source that no longer exists falls back to "all".
     if (!sourceExists(ui.source)) ui.source = 'all';
 }
@@ -393,7 +393,7 @@ function mergeItems(sub, parsedItems) {
             snippet: p.snippet,
             audio: p.audio || '',
             dur: p.dur || 0,
-            sent: prev && prev.ai && typeof prev.sent === 'number' ? prev.sent : scoreSentiment(p.title + ' ' + (p.snippet || '')),
+            sent: prev && prev.ai ? prev.sent : undefined,
             ai: !!(prev && prev.ai),
             read: prev ? prev.read : false
         });
@@ -639,7 +639,7 @@ function passes(i, sm) {
     if (ui.status === 'sum' && !h.summarized) return false;
     if (ui.date === 'today' && i.published < startOfDay(Date.now())) return false;
     if (ui.date === '7d' && i.published < Date.now() - 7 * DAY_MS) return false;
-    const mood = moodOf(i.sent || 0);
+    const mood = itemMood(i) || 'neu';
     if (ui.mood === 'pos' && mood !== 'pos') return false;
     if (ui.mood === 'nonneg' && mood === 'neg') return false;
     return true;
@@ -648,7 +648,7 @@ function passes(i, sm) {
 function visibleItems() {
     const sm = subMap();
     const list = items.filter(i => passes(i, sm));
-    if (ui.sort === 'mood') list.sort((a, b) => (b.sent || 0) - (a.sent || 0) || b.published - a.published);
+    if (ui.sort === 'mood') list.sort((a, b) => (itemMood(b) ? b.sent : -2) - (itemMood(a) ? a.sent : -2) || b.published - a.published);
     else list.sort((a, b) => b.published - a.published);
     return list.slice(0, MAX_RENDERED);
 }
@@ -763,13 +763,13 @@ function renderEmptyFiltered(hasAny) {
 
 function renderCard(item, sm) {
     const hist = histOf(item);
-    const mood = moodOf(item.sent || 0);
+    const mood = itemMood(item);
     const li = el('li', 'article-card feed-item' + (item.read ? ' is-read' : '') + (hist.fav ? ' is-favorite' : ''));
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
     if (item.audio) meta.append(el('span', 'feed-dur', ` · 🎧${item.dur ? ' ' + formatDuration(item.dur) : ''}`));
     if (MOOD_EMOJI[mood]) {
         const m = el('span', 'feed-mood', ' ' + MOOD_EMOJI[mood]);
-        m.title = (item.ai ? 'AI-rated: ' : '') + (mood === 'pos' ? 'Positive tone' : 'Heavy tone');
+        m.title = 'AI-rated: ' + (mood === 'pos' ? 'positive news' : 'heavy news');
         meta.append(m);
     }
     const title = el('h4', null, item.title);
@@ -954,7 +954,7 @@ function openFilterSheet() {
             closeSheet();
             if (list.length) setRead(list, true, { label: `Marked ${list.length} read` });
         }));
-        body.append(el('p', 'feed-muted', 'Mood is estimated on your device from headlines and snippets — a rough guide, not a verdict. “Score with AI” sends titles and short snippets to your AI connection.'));
+        body.append(el('p', 'feed-muted', 'Mood comes from AI scoring only — items you haven’t scored have no mood and are never hidden by the mood filter. Scoring sends titles and short snippets to your AI connection when you click it.'));
     };
     openSheet('Date & mood', body);
     draw();
@@ -1079,14 +1079,15 @@ function openBriefing() {
     const bySub = new Map();
     today.forEach(i => { if (!bySub.has(i.feedId)) bySub.set(i.feedId, []); bySub.get(i.feedId).push(i); });
     const tally = { pos: 0, neu: 0, neg: 0 };
-    today.forEach(i => { tally[moodOf(i.sent || 0)]++; });
+    today.forEach(i => { const m = itemMood(i); if (m) tally[m]++; });
+    const rated = tally.pos + tally.neu + tally.neg;
     const unread = today.filter(i => !i.read);
     body.append(el('p', 'feed-brief-summary', `${today.length} new today across ${bySub.size} source${bySub.size > 1 ? 's' : ''} · ${unread.length} unread`),
-        el('p', 'feed-muted', `Mood: 😊 ${tally.pos} · 😐 ${tally.neu} · 😟 ${tally.neg}`));
+        el('p', 'feed-muted', rated ? `Mood (AI-rated ${rated}/${today.length}): 😊 ${tally.pos} · 😐 ${tally.neu} · 😟 ${tally.neg}` : 'Mood: not rated yet — use “Score with AI”.'));
     bySub.forEach((list, id) => {
         body.append(el('div', 'feed-pick-label', `${subTitle(sm.get(id)).toUpperCase()} · ${list.length}`));
         list.slice(0, 2).forEach(i => {
-            const emoji = MOOD_EMOJI[moodOf(i.sent || 0)];
+            const emoji = MOOD_EMOJI[itemMood(i) || 'neu'];
             body.append(btn('feed-brief-item' + (i.read ? ' is-read' : ''), (emoji ? emoji + '  ' : '') + i.title, () => { closeSheet(); onCardClick(i); }));
         });
         if (list.length > 2) body.append(el('p', 'feed-muted', `+ ${list.length - 2} more`));
