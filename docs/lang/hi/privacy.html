@@ -123,6 +123,7 @@
           </thead>
           <tbody>
             <tr><td>सेव किए गए आर्टिकल्स और समरीज़</td><td>Local</td><td>नहीं</td></tr>
+            <tr><td>RSS feed subscriptions और items</td><td>Local</td><td>नहीं</td></tr>
             <tr><td>API keys / प्रोवाइडर कॉन्फ़िगरेशन</td><td>Local</td><td>नहीं — संवेदनशील, केवल डिवाइस पर</td></tr>
             <tr><td>लाइसेंस की</td><td>Local</td><td>नहीं — संवेदनशील, केवल डिवाइस पर</td></tr>
             <tr><td>LocalSend नेटवर्क IP</td><td>Local</td><td>नहीं</td></tr>
@@ -133,6 +134,9 @@
         </table>
         <p>"Sync" के रूप में मार्क किए गए आइटम्स आपके Google अकाउंट से जुड़े Chrome के इन-बिल्ट सिंक का उपयोग करते हैं — यह डेटा Google के इन्फ्रास्ट्रक्चर से होकर गुज़रता है, हमारे नहीं, बिल्कुल वैसे ही जैसे आपके बुकमार्क। हमारे पास इसका कोई अलग एक्सेस नहीं है।</p>
         <p>आप Settings → Backup &amp; Restore के ज़रिए, या एक्सटेंशन को हटाकर किसी भी समय अपनी पूरी लोकल हिस्ट्री को एक्सपोर्ट या डिलीट कर सकते हैं।</p>
+
+        <h3>RSS feeds</h3>
+        <p>इन-बिल्ट Feeds reader आपकी subscriptions और fetched feed items को आपके browser में locally स्टोर करता है — कभी sync नहीं होता, कभी हमें नहीं भेजा जाता। जब आप कोई feed ऐड या refresh करते हैं, तो extension सीधे publisher के server से उस feed address की request करता है, ठीक वैसे ही जैसे site visit करते समय आपका browser करता है, इसलिए publisher को यह request दिख सकती है। हम आपकी subscriptions या reading list को proxy, log या view नहीं करते। OPML import पूरी तरह से आपके device पर ही process होता है। Feed item को summarize करना किसी भी अन्य page को summarize करने जैसा ही है: इसका content सिर्फ आपके चुने हुए AI provider को भेजा जाता है, और वह भी सिर्फ तब जब आप summary trigger करते हैं।</p>
 
         <h3>Kindle, AirDrop, और LocalSend</h3>
         <p>जब आप किसी आर्टिकल को Kindle, AirDrop, या किसी LocalSend-कंपैटिबल डिवाइस पर भेजते हैं, तो फ़ॉर्मेट की गई फ़ाइल सीधे आपके ब्राउज़र से आपके चुने हुए डेस्टिनेशन पर भेजी जाती है। हम बीच में मध्यस्थ (intermediary) के रूप में कार्य नहीं करते हैं और इस कंटेंट को न देखते हैं और न ही स्टोर करते हैं।</p>

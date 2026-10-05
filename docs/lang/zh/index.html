@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — 本地化网页总结、归档与搜索</title>
-<meta name="description" content="一款利用 AI 总结网页、归档并支持搜索的 Chrome 扩展程序。可将精选阅读文摘直接发送至 Kindle 或 LocalSend。搜索、去重与推荐算法均在本地设备端运行。">
+<meta name="description" content="一款通过 AI 总结网页内容的 Chrome 扩展。内置 RSS 阅读器关注心仪站点，将网页保存为可检索的归档库，并可将精选阅读文摘推送至 Kindle 或 LocalSend。搜索、去重及推荐均在本地设备端运行。">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome 扩展 · byphil. 旗下产品 <span class="dash"></span></div>
       <h1>智能提炼网页。<br><em>留存核心价值。</em></h1>
-      <p class="sub">AI Summary Helper 可将任意网页保存为结构化、可检索的摘要文章，并通过设备端生成的离线文摘直接发送至您的 Kindle 或其他设备，助您真正重拾阅读。</p>
+      <p class="sub">AI Summary Helper 通过内置 RSS 阅读器追踪你关注的站点，将任意网页保存为带有 AI 总结且可检索的文章——更提供本地生成的阅读文摘，直接发送离线内容至 Kindle 或其他设备，助你轻松重温与深度阅读。</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免费添加到 Chrome</a>
         <a href="#bookmarklet" class="btn-secondary">无需安装？使用 Bookmarklet</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>知识图谱，超越简单列表</h3>
           <p>直观呈现收藏内容之间的关联——不仅基于共同标签，还能自动识别无共同标签但主题相似的文章。</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>内置 RSS 阅读器</h3>
+          <p>订阅博客与新闻站点，支持导入 OPML，一键打开或总结任意内容。收藏的文章将存入个人归档库，订阅源数据完全保存在你的本地设备中。</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@
         </details>
         <details>
           <summary>哪些数据会被发送到外部？</summary>
-          <p>仅有摘要生成请求会发送至您所配置的 AI 服务商。搜索、重复检测、标签整理、阅读难度与情绪分析，以及“相似文章”推荐，全部基于您本地保存的数据在设备端计算。</p>
+          <p>仅向你配置的 AI 服务商发送总结请求；若使用 RSS 阅读器，则仅请求你订阅的 Feed 源。搜索、内容去重、标签整理、阅读难度与情绪评分，以及“相似文章”推荐，全部在本地基于你的归档库离线运行。</p>
         </details>
         <details>
           <summary>是否可以完全脱离云端依赖运行？</summary>

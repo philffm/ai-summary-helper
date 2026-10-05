@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — オンデバイスでWebを要約、保存、検索</title>
-<meta name="description" content="WebページをAIで要約して検索可能なアーカイブに保存し、厳選された読書ダイジェストをKindleやLocalSendへ送信するChrome拡張機能。検索、重複排除、レコメンドはすべてオンデバイスで動作します。">
+<meta name="description" content="AIによるWebページ要約、内蔵RSSリーダーでのお気に入りサイト購読、検索可能なアーカイブ保存、KindleやLocalSendへの読書ダイジェスト送信ができるChrome拡張機能です。検索、重複排除、おすすめ機能はすべてオンデバイスで動作します。">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome拡張機能 · byphil. プロジェクト <span class="dash"></span></div>
       <h1>Webを要約する。<br><em>重要な情報を、確実に手元に。</em></h1>
-      <p class="sub">AI Summary Helperは、あらゆるWebページを要約付きの検索可能な記事として保存します。さらにオンデバイスのダイジェスト機能により、オフライン読書用のコンテンツをKindleや他端末へ直接転送し、保存した記事を確実に消化できるよう支援します。</p>
+      <p class="sub">AI Summary Helperは、内蔵RSSリーダーでお気に入りのサイトをフォローし、あらゆるWebページを要約付きで検索可能な記事として保存します。さらに、オンデバイスで作成されるダイジェストを通じてKindleや他のデバイスへ直接送信し、オフラインでもスムーズに読み返せるようサポートします。</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加（無料）</a>
         <a href="#bookmarklet" class="btn-secondary">インストール不要？ブックマークレットをご利用ください</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>単なるリストを超えたナレッジグラフ</h3>
           <p>共有タグによる関連性だけでなく、タグが付いていなくても内容の類似度に基づいて保存記事間のつながりを可視化します。</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>内蔵RSSリーダー</h3>
+          <p>ブログやニュースサイトをフォローし、OPMLをインポートして、ワンクリックで記事の閲覧や要約が可能です。お気に入りの記事はアーカイブに保存され、フィードデータはお使いのデバイス内に安全に保持されます。</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ UXデザイナーとしてのスキルに関連した、トピックに関する
         </details>
         <details>
           <summary>ブラウザから外部へ送信されるデータは何ですか？</summary>
-          <p>ご自身が設定したAIプロバイダーへの要約リクエストのみです。検索、重複検出、タグ整理、読解難易度や感情分析スコアリング、「類似記事」のレコメンドは、すべてローカルに保存されたアーカイブに対して端末上で実行されます。</p>
+          <p>外部通信が発生するのは、ご自身が設定したAIプロバイダーへの要約リクエストと、RSSリーダー利用時の購読フィードへのリクエストのみです。検索、重複検出、タグ整理、難易度・感情スコアリング、「類似記事」のレコメンドなどはすべて、保存されたアーカイブに対してローカル環境で実行されます。</p>
         </details>
         <details>
           <summary>クラウドに一切依存せずに運用することは可能ですか？</summary>

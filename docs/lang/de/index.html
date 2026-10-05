@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — Webseiten zusammenfassen, speichern und lokal durchsuchen</title>
-<meta name="description" content="Eine Chrome-Erweiterung, die Webseiten mittels KI zusammenfasst, in einem durchsuchbaren Archiv speichert und kuratierte Lesedigests an Kindle oder LocalSend sendet. Suche, Deduplizierung und Empfehlungen laufen direkt auf Ihrem Gerät.">
+<meta name="description" content="Eine Chrome-Erweiterung, die Webseiten mittels KI zusammenfasst, Ihre bevorzugten Websites über einen integrierten RSS-Reader verfolgt, Seiten in einem durchsuchbaren Archiv sichert und kuratierte Lese-Digests an Kindle oder LocalSend überträgt. Suche, Deduplizierung und Empfehlungen laufen vollständig lokal auf Ihrem Gerät.">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Chrome-Erweiterung · Teil von byphil. <span class="dash"></span></div>
       <h1>Das Web zusammenfassen.<br><em>Das Wesentliche behalten.</em></h1>
-      <p class="sub">AI Summary Helper speichert jede Seite als zusammengefassten, durchsuchbaren Artikel – und sorgt dafür, dass Sie ihn tatsächlich lesen: mit einem lokalen Digest, der Offline-Lektüre direkt an Ihren Kindle oder ein anderes Gerät sendet.</p>
+      <p class="sub">AI Summary Helper verfolgt Ihre bevorzugten Websites über einen integrierten RSS-Reader und speichert jede Seite als zusammengefassten, durchsuchbaren Artikel – damit Sie das Gelesene auch tatsächlich nutzen können: mit einem lokalen Digest, der Lesestoff für die Offline-Lektüre direkt an Ihren Kindle oder ein anderes Gerät überträgt.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Zu Chrome hinzufügen — kostenlos</a>
         <a href="#bookmarklet" class="btn-secondary">Keine Installation? Nutzen Sie das Bookmarklet</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Ein Wissensgraph statt einer simplen Liste</h3>
           <p>Erkennen Sie Zusammenhänge zwischen Ihren Artikeln — anhand gemeinsamer Tags sowie thematischer Ähnlichkeiten, selbst wenn keine gemeinsamen Schlagwörter vorliegen.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>Ein integrierter RSS-Reader</h3>
+          <p>Folgen Sie Blogs und Nachrichtenseiten, importieren Sie Ihre OPML-Dateien und öffnen oder fassen Sie beliebige Beiträge mit einem Klick zusammen. Favoriten werden in Ihrem Archiv gesichert und Feeds verbleiben lokal auf Ihrem Gerät.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ Emojis und Hashtags hinzufügen, HTML nutzen, interessante Passagen hervorheben,
         </details>
         <details>
           <summary>Welche Daten verlassen meinen Browser?</summary>
-          <p>Ausschließlich die konkrete Anfrage zur Textzusammenfassung — und zwar direkt an den von Ihnen gewählten KI-Anbieter. Suche, Duplikaterkennung, Tag-Bereinigung, Bewertung von Lesbarkeit und Tonalität sowie Empfehlungen ähnlicher Artikel werden vollständig lokal über Ihr gespeichertes Archiv verarbeitet.</p>
+          <p>Ausschließlich die Anfrage zur Zusammenfassung – gesendet an den von Ihnen gewählten KI-Anbieter – sowie, bei Nutzung des RSS-Readers, die Abrufe der von Ihnen abonnierten Feeds. Suche, Duplikaterkennung, Tag-Bereinigung, Lesbarkeits- und Sentiment-Analysen sowie Empfehlungen für „ähnliche Artikel“ laufen ausnahmslos lokal über Ihr eigenes gespeichertes Archiv.</p>
         </details>
         <details>
           <summary>Kann ich die Erweiterung vollkommen ohne Cloud-Dienste betreiben?</summary>

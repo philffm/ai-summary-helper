@@ -123,6 +123,7 @@
           </thead>
           <tbody>
             <tr><td>Articles enregistrés et résumés</td><td>Local</td><td>Non</td></tr>
+            <tr><td>Abonnements &amp; articles des flux RSS</td><td>Local</td><td>Non</td></tr>
             <tr><td>Clés d'API / configuration des fournisseurs</td><td>Local</td><td>Non — sensible, sur l'appareil uniquement</td></tr>
             <tr><td>Clé de licence</td><td>Local</td><td>Non — sensible, sur l'appareil uniquement</td></tr>
             <tr><td>Adresse IP réseau LocalSend</td><td>Local</td><td>Non</td></tr>
@@ -133,6 +134,9 @@
         </table>
         <p>Les éléments marqués « Sync » utilisent la synchronisation native de Chrome liée à votre compte Google — ces données transitent par l'infrastructure de Google et non la nôtre, exactement comme vos favoris. Nous n'y avons aucun accès.</p>
         <p>Vous pouvez exporter ou supprimer l'intégralité de votre historique local à tout moment via Paramètres → Sauvegarde et restauration, ou en désinstallant l'extension.</p>
+
+        <h3>Flux RSS</h3>
+        <p>Le lecteur de flux intégré stocke vos abonnements ainsi que les articles récupérés localement dans votre navigateur — ils ne sont jamais synchronisés ni transmis à nos serveurs. Lorsque vous ajoutez ou actualisez un flux, l'extension interroge directement l'adresse de ce flux auprès du serveur de l'éditeur, exactement comme le ferait votre navigateur en visitant le site ; l'éditeur peut donc voir la requête. Nous n'utilisons aucun serveur proxy, n'enregistrons aucun journal et n'avons aucun accès à vos abonnements ou à votre liste de lecture. L'importation OPML est traitée intégralement sur votre appareil (on-device). Résumer un article de flux fonctionne comme pour n'importe quelle autre page : son contenu est uniquement transmis au fournisseur d'IA de votre choix, et seulement lorsque vous déclenchez la génération du résumé.</p>
 
         <h3>Kindle, AirDrop et LocalSend</h3>
         <p>Lorsque vous envoyez un article vers Kindle, AirDrop ou un appareil compatible LocalSend, le fichier formaté est envoyé directement depuis votre navigateur vers la destination choisie. Nous n'agissons pas en tant qu'intermédiaire et ne voyons ni ne stockons ce contenu.</p>

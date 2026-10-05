@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper — Tóm tắt, lưu trữ và tìm kiếm web trực tiếp trên thiết bị</title>
-<meta name="description" content="Tiện ích mở rộng Chrome giúp tóm tắt trang web bằng AI, lưu vào kho lưu trữ có thể tìm kiếm và gửi bản tin đọc chọn lọc đến Kindle hoặc LocalSend. Tìm kiếm, khử trùng lặp và gợi ý hoàn toàn chạy trên thiết bị.">
+<meta name="description" content="Tiện ích mở rộng Chrome giúp tóm tắt trang web bằng AI, theo dõi các trang yêu thích với trình đọc RSS tích hợp, lưu trang vào kho lưu trữ có thể tìm kiếm và gửi bản tin đọc tuyển chọn đến Kindle hoặc LocalSend. Tìm kiếm, lọc trùng lặp và đề xuất nội dung đều chạy trực tiếp trên thiết bị.">
 
 <script>
   (function(){
@@ -105,7 +105,7 @@
     <div class="wrap">
       <div class="eyebrow"><span class="dash"></span> Tiện ích Chrome · Một sản phẩm của byphil. <span class="dash"></span></div>
       <h1>Tóm tắt thế giới web.<br><em>Giữ lại điều thực sự quan trọng.</em></h1>
-      <p class="sub">AI Summary Helper lưu bất kỳ trang web nào thành bài viết tóm tắt có thể tìm kiếm — sau đó giúp bạn thực sự đọc lại chúng, với tính năng tổng hợp digest ngay trên thiết bị để gửi nội dung đọc ngoại tuyến trực tiếp đến Kindle hoặc thiết bị khác.</p>
+      <p class="sub">AI Summary Helper theo dõi các trang web bạn yêu thích bằng trình đọc RSS tích hợp, lưu mọi trang thành bài viết tóm tắt dễ tìm kiếm — sau đó giúp bạn thực sự đọc lại chúng với bản tin tổng hợp xử lý ngay trên thiết bị, gửi nội dung đọc offline trực tiếp đến Kindle hoặc thiết bị khác.</p>
       <div class="hero-cta">
         <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome — Hoàn toàn miễn phí</a>
         <a href="#bookmarklet" class="btn-secondary">Không cần cài đặt? Dùng bookmarklet</a>
@@ -174,6 +174,11 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Sơ đồ tri thức, không chỉ là danh sách đơn thuần</h3>
           <p>Khám phá mối liên hệ giữa các bài viết đã lưu — qua các thẻ chung hoặc mức độ tương đồng về chủ đề ngay cả khi không có cùng thẻ tag.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>Trình đọc RSS tích hợp sẵn</h3>
+          <p>Theo dõi các blog và trang tin tức, nhập tệp OPML, đồng thời mở hoặc tóm tắt bất kỳ nội dung nào chỉ với một cú nhấp chuột. Các mục yêu thích sẽ được lưu vào kho lưu trữ cá nhân và toàn bộ nguồn cấp dữ liệu đều được lưu an toàn ngay trên thiết bị của bạn.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
@@ -454,7 +459,7 @@ Thêm emoji, hashtag, sử dụng HTML, làm nổi bật các phần thú vị, 
         </details>
         <details>
           <summary>Dữ liệu nào thực sự được gửi ra ngoài trình duyệt?</summary>
-          <p>Chỉ có yêu cầu tóm tắt — được gửi đến nhà cung cấp AI mà bạn đã thiết lập. Tìm kiếm, phát hiện trùng lặp, dọn dẹp thẻ, chấm điểm cấp độ đọc và cảm xúc, cùng các gợi ý "bài viết tương tự" đều chạy cục bộ trên chính kho lưu trữ của bạn.</p>
+          <p>Chỉ có yêu cầu tóm tắt — được gửi đến nhà cung cấp AI do bạn cấu hình — cùng các yêu cầu tới nguồn cấp dữ liệu bạn đã đăng ký nếu sử dụng trình đọc RSS. Tìm kiếm, phát hiện nội dung trùng lặp, dọn dẹp thẻ, đánh giá độ dễ đọc cùng cảm xúc, và gợi ý "bài viết tương tự" đều chạy hoàn toàn cục bộ trên kho lưu trữ của bạn.</p>
         </details>
         <details>
           <summary>Tôi có thể sử dụng mà hoàn toàn không phụ thuộc vào đám mây không?</summary>
