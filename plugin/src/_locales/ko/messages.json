@@ -1174,5 +1174,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 미평가 {n}개 평가하기"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "오늘로 이동"
   }
 }

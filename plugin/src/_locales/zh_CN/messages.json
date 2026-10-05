@@ -1186,5 +1186,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 为 {n} 条未评分条目评分"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "跳转到今天"
   }
 }

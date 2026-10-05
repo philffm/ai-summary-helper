@@ -1237,5 +1237,8 @@
   "f_score_unscored_items_79e0": {
     "message": "🤖 Score {n} unscored items",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Jump to today"
   }
 }

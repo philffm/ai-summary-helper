@@ -1102,5 +1102,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 Valuta {n} articoli non valutati"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Vai a oggi"
   }
 }

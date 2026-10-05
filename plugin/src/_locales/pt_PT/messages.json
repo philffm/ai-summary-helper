@@ -1186,5 +1186,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 Avaliar {n} artigos por avaliar"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Ir para hoje"
   }
 }

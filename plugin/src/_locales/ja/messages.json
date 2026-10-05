@@ -1192,5 +1192,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 未評価の{n}件を評価"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "今日へ移動"
   }
 }

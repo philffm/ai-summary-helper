@@ -1192,5 +1192,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 {n} unbewertete Artikel bewerten"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Zu heute springen"
   }
 }

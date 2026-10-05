@@ -1136,8 +1136,11 @@ function renderList() {
             const step = (t) => { ui.date = { from: t, to: t }; persistUi(); render(); };
             const pb = btn('feed-day-step', '‹', () => step(prev), T('Previous day with items')); pb.disabled = prev == null;
             const nb = btn('feed-day-step', '›', () => step(next), T('Next day with items')); nb.disabled = next == null;
-            const lab = el('span', 'feed-day-label'); lab.append(pb, document.createTextNode(` ${fmtDayShort(groupDay)} · ${TN(group.length, '{n} item', '{n} items')} `), nb);
+            const lab = el('span', 'feed-day-label');
+            const pick = btn('feed-day-open', `${fmtDayShort(groupDay)} · ${TN(group.length, '{n} item', '{n} items')}  ▾`, () => openFilterSheet({ view: 'calendar', day: groupDay }), T('Pick a day'));
+            lab.append(pb, pick, nb);
             header.append(lab);
+            if (groupDay !== startOfDay(Date.now())) header.append(btn('feed-day-action feed-day-today', T('Today'), () => step(startOfDay(Date.now())), T('Jump to today')));
         } else {
             const lab = btn('feed-day-label feed-day-open', labelText + '  ▾', () => openFilterSheet({ view: 'calendar', day: groupDay }), T('Pick a day'));
             header.append(lab);
@@ -1351,6 +1354,7 @@ function openFilterSheet(opts = {}) {
                     const a = Math.min(anchor, ts), b = Math.max(anchor, ts); anchor = null;
                     ui.date = { from: a, to: b }; persistUi(); render(); closeSheet(); return;
                 }
+                if (opts.onPick) { opts.onPick(ts); closeSheet(); return; }
                 ui.date = { from: ts, to: ts }; persistUi(); render(); closeSheet();
             };
             let timer = null, fired = false;
@@ -1536,7 +1540,10 @@ function renderRecapCard() {
     const step = (t) => { ui.anchor = t; persistUi(); render(); };
     const pb = btn('feed-rc-step', '‹', () => step(prev), T('Older')); pb.disabled = prev == null;
     const nb = btn('feed-rc-step', '›', () => step(next), T('Newer')); nb.disabled = next == null;
-    const nav = el('div', 'feed-rc-row feed-rc-nav'); nav.append(pb, el('span', 'feed-rc-label', scopeLabel(sc, ps)), nb);
+    const lab = btn('feed-rc-label feed-rc-open', scopeLabel(sc, ps) + '  ▾', () => openFilterSheet({ view: 'calendar', day: a, onPick: (t) => { ui.anchor = t; persistUi(); render(); } }), T('Pick a day'));
+    const nav = el('div', 'feed-rc-row feed-rc-nav'); nav.append(pb, lab, nb);
+    const todayTs = startOfDay(Date.now());
+    if (!(ps <= todayTs && todayTs < pe)) nav.append(btn('feed-rc-today', T('Today'), () => step(todayTs), T('Jump to today')));
     box.append(nav);
     if (sc === 'week') {
         const strip = el('div', 'feed-rc-strip');

@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 285 | 0 | 0 | 7 |
-| de | 285 | 0 | 0 | 29 |
-| es | 285 | 0 | 0 | 26 |
-| fr | 285 | 0 | 0 | 22 |
-| hi | 285 | 0 | 0 | 5 |
-| it | 285 | 0 | 0 | 25 |
-| ja | 285 | 0 | 0 | 2 |
-| ko | 285 | 0 | 0 | 2 |
-| pt_PT | 285 | 0 | 0 | 22 |
-| ru | 285 | 0 | 0 | 7 |
-| zh_CN | 285 | 0 | 0 | 0 |
-| zh_HK | 285 | 0 | 0 | 0 |
-| zh_TW | 285 | 0 | 0 | 0 |
+| ar | 286 | 0 | 0 | 7 |
+| de | 286 | 0 | 0 | 29 |
+| es | 286 | 0 | 0 | 26 |
+| fr | 286 | 0 | 0 | 22 |
+| hi | 286 | 0 | 0 | 5 |
+| it | 286 | 0 | 0 | 25 |
+| ja | 286 | 0 | 0 | 2 |
+| ko | 286 | 0 | 0 | 2 |
+| pt_PT | 286 | 0 | 0 | 22 |
+| ru | 286 | 0 | 0 | 8 |
+| zh_CN | 286 | 0 | 0 | 0 |
+| zh_HK | 286 | 0 | 0 | 0 |
+| zh_TW | 286 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -200,6 +200,7 @@ Strings: 285. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Copy | Копировать | 10 vs 4 | 2.5× |
+| Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | reused | использована | 12 vs 6 | 2× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |
 | Mood index | Индекс настроения | 17 vs 10 | 1.7× |

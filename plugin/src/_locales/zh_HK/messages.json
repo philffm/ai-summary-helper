@@ -1102,5 +1102,8 @@
   },
   "f_score_unscored_items_79e0": {
     "message": "🤖 為 {n} 則未評分項目評分"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "跳到今天"
   }
 }

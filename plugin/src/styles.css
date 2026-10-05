@@ -2907,3 +2907,5 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-mt-mv-val.up { color: hsl(142, 60%, 32%); }
 .feed-mt-mv-val.down { color: hsl(4, 75%, 45%); }
 .feed-mt-foot { font-size: 11px; margin: 0; }
+.feed-rc-open { background: transparent; border: none; box-shadow: none; color: inherit; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; padding: 2px 4px; }
+.feed-rc-today { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--outline); background: transparent; color: inherit; cursor: pointer; }
