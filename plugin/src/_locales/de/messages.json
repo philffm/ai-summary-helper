@@ -1048,5 +1048,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 Einträge beim Rückblick bewerten"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Seit diesem Rückblick nichts Neues"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Sende {n} neue oder geänderte Titel und kurze Auszüge an deine KI-Verbindung."
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Rückblick wird aktualisiert…"
   }
 }

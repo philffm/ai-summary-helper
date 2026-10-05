@@ -1075,5 +1075,15 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 Rate items with the recap"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Nothing new since this recap"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Sending {n} new or edited titles and short snippets to your AI connection.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Updating recap…"
   }
 }

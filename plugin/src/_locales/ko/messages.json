@@ -1030,5 +1030,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 요약과 함께 평가"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "이 요약 이후 새 항목 없음"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "새로 추가·수정된 제목 {n}개와 짧은 발췌를 AI 연결로 전송 중."
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ 요약 업데이트 중…"
   }
 }

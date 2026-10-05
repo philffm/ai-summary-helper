@@ -958,5 +958,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 Оценивать записи в сводке"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Нового со времени сводки нет"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Отправка {n} новых или изменённых заголовков и коротких фрагментов в ваше ИИ-подключение."
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Обновление сводки…"
   }
 }

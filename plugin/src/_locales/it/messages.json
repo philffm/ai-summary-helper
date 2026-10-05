@@ -958,5 +958,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 Valuta gli articoli con il riepilogo"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Niente di nuovo dal riepilogo"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Invio di {n} titoli nuovi o modificati e brevi estratti alla tua connessione IA."
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Aggiornamento riepilogo…"
   }
 }

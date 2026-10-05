@@ -22,7 +22,7 @@ import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feed
 import { T, TN, TU, N_, locale } from './feedI18n.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
-import { generateRecap, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
+import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
 const ITEMS_KEY = 'feedItems';
@@ -1426,25 +1426,49 @@ async function openRecap(dayStart, label, source = ui.source) {
             btn('feed-manage-link', list.some(needsAi) ? TN(list.filter(needsAi).length, '🤖  Score {n} unscored item with AI', '🤖  Score {n} unscored items with AI') : T('✓  All items here are scored'), () => { closeSheet(); scoreWithAi(list); }),
             el('p', 'feed-muted', T('AI-generated from {n} headlines and snippets. Generated at {time}. Not a substitute for reading.', { n: list.length, time: new Date(r.at).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' }) })));
     };
+    const sigsOf = (arr) => Object.fromEntries(arr.map(x => [x.id, itemSig(x)]));
+    // Items the recap has not seen yet, or whose title/snippet changed since (news articles get edited).
+    const changedSince = (rc) => list.filter(x => rc.covered[x.id] !== itemSig(x));
+    const applyRatings = (arr, r, rate) => {
+        if (!rate || !(r.labels || r.scores)) return;
+        // Rate/categorize in the same request. Existing ratings and categories are never overwritten.
+        arr.forEach((x, n) => {
+            if (r.labels && !x.cat && r.labels[n]) x.cat = r.labels[n];
+            if (r.scores && !x.ai && r.scores[n] != null) { x.sent = r.scores[n]; x.ai = true; }
+        });
+        persist(); render();
+    };
     const run = async (force) => {
         const cached = recaps[key];
         const hsh = idsHash(list);
-        if (cached && !force) return draw(cached, cached.hash !== hsh);
+        const fresh = cached && cached.covered ? changedSince(cached) : null;
+        if (cached && !force) return draw(cached, fresh ? fresh.length > 0 : cached.hash !== hsh);
+        const rate = settings.rateWithRecap !== false;
+        // Refresh = previous recap + only the new/edited items; nothing new means no AI request at all.
+        if (cached && fresh) {
+            if (!fresh.length) { toast(uiRef, T('Nothing new since this recap')); return draw(cached, false); }
+            body.replaceChildren(el('p', 'feed-recap-loading', T('✨ Updating recap…')),
+                el('p', 'feed-muted', T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, MAX_RECAP_ITEMS) })));
+            try {
+                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered });
+                applyRatings(r.sent, r, rate);
+                const { labels: _l, scores: _s, sent: sentItems, ...rc } = r;
+                recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, covered: { ...cached.covered, ...sigsOf(sentItems) } };
+                chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
+                draw(recaps[key], changedSince(recaps[key]).length > 0);
+            } catch (e) {
+                body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
+                    btn('feed-btn', T('Try again'), () => run(true)));
+            }
+            return;
+        }
         body.replaceChildren(el('p', 'feed-recap-loading', T('✨ Writing recap…')),
             el('p', 'feed-muted', T('Sending {n} titles and short snippets to your AI connection.', { n: list.length })));
         try {
-            const rate = settings.rateWithRecap !== false;
             const r = await generateRecap(list, aiTitleOf(sm), { rate });
-            if (rate && (r.labels || r.scores)) {
-                // Rate/categorize in the same request. Existing ratings and categories are never overwritten.
-                list.forEach((i, n) => {
-                    if (r.labels && !i.cat && r.labels[n]) i.cat = r.labels[n];
-                    if (r.scores && !i.ai && r.scores[n] != null) { i.sent = r.scores[n]; i.ai = true; }
-                });
-                persist(); render();
-            }
+            applyRatings(list, r, rate);
             const { labels: _l, scores: _s, ...rc } = r;
-            recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length };
+            recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, covered: sigsOf(list) };
             chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
             draw(recaps[key], false);
         } catch (e) {

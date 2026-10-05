@@ -1042,5 +1042,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 总结时同时评分"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "自上次总结后无新内容"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "正在向你的 AI 连接发送 {n} 个新增或修改的标题和简短摘录。"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ 正在更新总结…"
   }
 }

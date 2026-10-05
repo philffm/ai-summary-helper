@@ -1042,5 +1042,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 Évaluer les articles avec le récap"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Rien de nouveau depuis ce récap"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Envoi de {n} titres nouveaux ou modifiés et de courts extraits à ta connexion IA."
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Mise à jour du récap…"
   }
 }

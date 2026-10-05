@@ -1042,5 +1042,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 摘要時一併評分"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "自上次摘要後沒有新內容"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "正在向你的 AI 連線傳送 {n} 個新增或修改的標題與簡短摘錄。"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ 正在更新摘要…"
   }
 }

@@ -1042,5 +1042,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 रीकैप के साथ आइटम रेट करें"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "इस रीकैप के बाद कुछ नया नहीं"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "{n} नए या बदले शीर्षक और छोटे अंश आपके AI कनेक्शन को भेजे जा रहे हैं।"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ रीकैप अपडेट हो रहा है…"
   }
 }

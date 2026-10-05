@@ -1048,5 +1048,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 要約と同時に評価"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "前回の要約以降の新着なし"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "新規・更新された{n}件のタイトルと短い抜粋をAI接続に送信中。"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ 要約を更新中…"
   }
 }

@@ -37,9 +37,17 @@ function clip(s, n) {
     return s.length > n ? s.slice(0, n - 1) + '…' : s;
 }
 
-export function itemsForPrompt(list, subTitleFn) {
+/** Fingerprint of what the AI actually sees of an item (title + snippet) — changes when a news article is edited. */
+export function itemSig(i) {
+    const t = `${clip(i.title, 140)}|${clip(i.snippet, SNIPPET_MAX)}`;
+    let h = 0x811c9dc5;
+    for (let k = 0; k < t.length; k++) { h ^= t.charCodeAt(k); h = Math.imul(h, 0x01000193); }
+    return (h >>> 0).toString(36);
+}
+
+export function itemsForPrompt(list, subTitleFn, mark) {
     return list.slice(0, MAX_RECAP_ITEMS).map((i, k) => {
-        const parts = [`[${k + 1}] ${clip(subTitleFn(i), 40)} — ${clip(i.title, 140)}`];
+        const parts = [`[${k + 1}] ${clip(subTitleFn(i), 40)} — ${clip(i.title, 140)}${mark ? mark(i) : ''}`];
         const sn = clip(i.snippet, SNIPPET_MAX);
         if (sn) parts.push(sn);
         return parts.join(' — ');
@@ -116,6 +124,31 @@ export async function generateRecap(list, subTitleFn, { rate = true } = {}) {
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
+}
+
+/**
+ * Refresh an existing recap with ONLY the items that are new or were edited since it was written
+ * (the previous recap text stands in for everything already covered, so no old headline is sent again).
+ */
+export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false } = {}) {
+    const lang = await languageName();
+    const system = 'You maintain a brief news-digest recap. You get the CURRENT recap and a numbered list of NEW or EDITED items (edited ones are marked). '
+        + `Update the recap so it covers the earlier points and the new items. Reply in the language with code ${lang}. Use ONLY the given text; do not invent facts. `
+        + 'Keep still-relevant points, add new standout stories naming the source, and drop or correct anything an edited item contradicts. Format exactly:\n'
+        + 'First, 2-3 sentences of overview.\n'
+        + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
+        + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of ALL the news).\n'
+        + (rate
+            ? 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered NEW/EDITED item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design).\n'
+              + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered NEW/EDITED item a sentiment number from -1 (very negative news) through 0 to 1 (very positive news).\n'
+            : '')
+        + 'No headings, no markdown other than the "- " lines.';
+    const chunk = fresh.slice(0, MAX_RECAP_ITEMS);
+    const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
+    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`);
+    const r = parseRecap(text, chunk.length);
+    if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
+    return { ...r, sent: chunk };
 }
 
 export function parseScores(text, n) {

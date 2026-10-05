@@ -958,5 +958,14 @@
   },
   "f_rate_items_with_the_recap_6027": {
     "message": "🤖 تقييم العناصر مع الملخص"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "لا جديد منذ هذا الملخص"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "إرسال {n} عنوانًا جديدًا أو معدّلًا ومقتطفات قصيرة إلى اتصال الذكاء الاصطناعي."
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ جارٍ تحديث الملخص…"
   }
 }

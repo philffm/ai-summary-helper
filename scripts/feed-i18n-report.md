@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 241. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 238 | 0 | 0 | 5 |
-| de | 238 | 0 | 0 | 25 |
-| es | 238 | 0 | 0 | 20 |
-| fr | 238 | 0 | 0 | 15 |
-| hi | 238 | 0 | 0 | 1 |
-| it | 238 | 0 | 0 | 14 |
-| ja | 238 | 0 | 0 | 2 |
-| ko | 238 | 0 | 0 | 1 |
-| pt_PT | 238 | 0 | 0 | 20 |
-| ru | 238 | 0 | 0 | 2 |
-| zh_CN | 238 | 0 | 0 | 0 |
-| zh_HK | 238 | 0 | 0 | 0 |
-| zh_TW | 238 | 0 | 0 | 0 |
+| ar | 241 | 0 | 0 | 5 |
+| de | 241 | 0 | 0 | 26 |
+| es | 241 | 0 | 0 | 20 |
+| fr | 241 | 0 | 0 | 15 |
+| hi | 241 | 0 | 0 | 2 |
+| it | 241 | 0 | 0 | 15 |
+| ja | 241 | 0 | 0 | 2 |
+| ko | 241 | 0 | 0 | 1 |
+| pt_PT | 241 | 0 | 0 | 20 |
+| ru | 241 | 0 | 0 | 2 |
+| zh_CN | 241 | 0 | 0 | 0 |
+| zh_HK | 241 | 0 | 0 | 0 |
+| zh_TW | 241 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -44,6 +44,7 @@ Strings: 238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
 | Refresh | Aktualisieren | 13 vs 7 | 1.86× |
 | Try again | Erneut versuchen | 16 vs 9 | 1.78× |
+| ✨ Updating recap… | ✨ Rückblick wird aktualisiert… | 30 vs 17 | 1.76× |
 | 📄 View summary | 📄 Zusammenfassung ansehen | 26 vs 15 | 1.73× |
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
@@ -105,6 +106,7 @@ Strings: 238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
+| ✨ Updating recap… | ✨ रीकैप अपडेट हो रहा है… | 24 vs 17 | 1.41× |
 
 ### it
 | English | Translation | width | ratio |
@@ -122,6 +124,7 @@ Strings: 238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Next day with items | Giorno successivo con articoli | 30 vs 19 | 1.58× |
 | {day}, no items | {day}, nessun articolo | 19 vs 12 | 1.58× |
 | Request failed | Richiesta non riuscita | 22 vs 14 | 1.57× |
+| ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
 
 ### ja
