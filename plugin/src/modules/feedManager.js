@@ -51,6 +51,9 @@ let refreshing = false;
 let els = {};
 let uiRef = null;
 let undoTimer = null;
+// Items read by opening/tapping stay in the Unread view (dimmed) until the view changes,
+// so the list doesn't jump under your finger.
+const stickyRead = new Set();
 // normalized URL -> { fav: boolean, summarized: boolean } built from the History index
 let historyByUrl = new Map();
 
@@ -73,7 +76,7 @@ async function load() {
 function persist() {
     return chrome.storage.local.set({ [SUBS_KEY]: subs, [ITEMS_KEY]: items });
 }
-function persistUi() { return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
+function persistUi() { stickyRead.clear(); return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
 function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: settings }).catch(() => {}); }
 
 function sourceExists(src) {
@@ -134,7 +137,7 @@ async function findSummarizedArticle(url) {
 }
 
 async function viewSummary(item, article) {
-    if (settings.markReadOnOpen) setRead([item], true, { silent: true });
+    if (settings.markReadOnOpen) setRead([item], true, { silent: true, keep: true });
     if (!uiRef) return;
     uiRef.showScreen('history');
     const mod = await import('./articleManager.js');
@@ -587,9 +590,9 @@ function exportOpml() {
 }
 
 // ── Read state (with undo) ─────────────────────────────────────────────────
-async function setRead(list, read, { silent = false, label = '' } = {}) {
+async function setRead(list, read, { silent = false, label = '', keep = false } = {}) {
     const prev = new Map();
-    list.forEach(i => { if (i.read !== read) { prev.set(i.id, i.read); i.read = read; } });
+    list.forEach(i => { if (i.read !== read) { prev.set(i.id, i.read); i.read = read; } if (keep && read) stickyRead.add(i.id); else stickyRead.delete(i.id); });
     if (!prev.size) return;
     await persist();
     render();
@@ -626,7 +629,7 @@ async function onSummarizeClick(item) {
 }
 
 function openItem(item, summarize) {
-    if (settings.markReadOnOpen) setRead([item], true, { silent: true });
+    if (settings.markReadOnOpen) setRead([item], true, { silent: true, keep: true });
     chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize }, (res) => {
         if (chrome.runtime.lastError) return;
         if (summarize && res && res.mode === 'extension') {
@@ -653,7 +656,7 @@ function inSource(i, sm, source = ui.source) {
 function passes(i, sm) {
     if (!inSource(i, sm)) return false;
     const h = histOf(i);
-    if (ui.status === 'unread' && i.read) return false;
+    if (ui.status === 'unread' && i.read && !stickyRead.has(i.id)) return false;
     if (ui.status === 'fav' && !h.fav) return false;
     if (ui.status === 'sum' && !h.summarized) return false;
     if (ui.date === 'today' && i.published < startOfDay(Date.now())) return false;
@@ -850,7 +853,7 @@ function renderCard(item, sm) {
     const actions = el('div', 'feed-actions');
     const sum = btn('button-primary feed-btn', hist.summarized ? '📄 View summary' : '✨ Summarize', (e) => { e.stopPropagation(); onSummarizeClick(item); });
     const open = btn('button-secondary feed-btn', 'Open ↗', (e) => { e.stopPropagation(); openItem(item, false); });
-    const read = btn('button-secondary feed-btn', item.read ? 'Mark unread' : 'Mark read', (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true }); });
+    const read = btn('button-secondary feed-btn', item.read ? 'Mark unread' : 'Mark read', (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true, keep: true }); });
     if (item.audio) {
         const playing = isPlaying(item.id);
         const pb = btn('button-primary feed-btn feed-play-btn' + (playing ? ' is-playing' : ''), playing ? '⏸ Pause' : '▶ Play', (e) => { e.stopPropagation(); onPlayClick(item); }, 'Play episode in AISH');
@@ -1292,7 +1295,7 @@ function renderFeedSettings() {
 // ── Public API ─────────────────────────────────────────────────────────────
 export async function onFeedsScreenShown(uiObj) {
     uiRef = uiObj;
-    closeSheet(); hideUndo();
+    closeSheet(); hideUndo(); stickyRead.clear();
     await load();
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
     await loadHistoryMap();
