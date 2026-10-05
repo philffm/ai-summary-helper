@@ -967,5 +967,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ Aggiornamento riepilogo…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "Un riepilogo di origine è cambiato: aggiorna per includerlo."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "Riepilogo IA di questo mese, da riepiloghi settimanali e giornalieri"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "Riepilogo IA di questa settimana, da quelli giornalieri"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Dai tuoi riepiloghi giornalieri. Gli articoli già riassunti non vengono inviati di nuovo."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Da {n} riepilogo"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Da {n} riepiloghi"
+  },
+  "f_cancel_ca3b": {
+    "message": "Annulla"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Crea prima {n} riepilogo giornaliero mancante"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Crea prima {n} riepiloghi giornalieri mancanti"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Creazione riepiloghi giornalieri… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Generato alle {time}"
+  },
+  "f_month_1ba5": {
+    "message": "Mese"
+  },
+  "f_no_items_43fa": {
+    "message": "Nessun articolo"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Ancora nulla da combinare."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Ambito del riepilogo"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Invia {n} brevi riepiloghi, non {m} titoli"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Salta i giorni senza riepilogo"
+  },
+  "f_week_recap_2446": {
+    "message": "Riepilogo settimanale"
+  },
+  "f_week_c909": {
+    "message": "Settimana {n}"
+  },
+  "f_missing_0207": {
+    "message": "manca"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "ancora senza riepilogo"
+  },
+  "f_reused_af15": {
+    "message": "riusato"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} giorni su {b} con riepilogo"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} riepilogo giornaliero"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} riepiloghi giornalieri"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} senza riepilogo"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Crea riepilogo"
   }
 }

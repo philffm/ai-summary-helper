@@ -1085,5 +1085,98 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ Updating recap…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "A source recap changed since this one was written — Refresh to include it."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "AI recap of this month, built from its week and day recaps"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "AI recap of this week, built from its day recaps"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Built from your day recaps. Items that already have a day recap are not sent again."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Built from {n} recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Built from {n} recaps",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancel_ca3b": {
+    "message": "Cancel"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Create {n} missing day recap first",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Create {n} missing day recaps first",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Creating day recaps… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Generated at {time}",
+    "description": "Placeholders: {time} (keep as is)"
+  },
+  "f_month_1ba5": {
+    "message": "Month"
+  },
+  "f_no_items_43fa": {
+    "message": "No items"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Nothing to combine yet."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Recap scope"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Sends {n} short recaps, not {m} headlines",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Skip the days without a recap"
+  },
+  "f_week_recap_2446": {
+    "message": "Week recap"
+  },
+  "f_week_c909": {
+    "message": "Week {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_missing_0207": {
+    "message": "missing"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "no recap yet"
+  },
+  "f_reused_af15": {
+    "message": "reused"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} of {b} days have a recap",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} day recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} day recaps",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} without recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Create recap"
   }
 }

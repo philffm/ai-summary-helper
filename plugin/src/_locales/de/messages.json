@@ -1057,5 +1057,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ Rückblick wird aktualisiert…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "Ein Quell-Recap hat sich geändert – mit Aktualisieren übernehmen."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "KI-Recap dieses Monats, aus Wochen- und Tages-Recaps"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "KI-Recap dieser Woche, aus den Tages-Recaps"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Aus deinen Tages-Recaps. Einträge mit Tages-Recap werden nicht erneut gesendet."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Aus {n} Recap"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Aus {n} Recaps"
+  },
+  "f_cancel_ca3b": {
+    "message": "Abbrechen"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "{n} fehlenden Tages-Recap zuerst erstellen"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "{n} fehlende Tages-Recaps zuerst erstellen"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Tages-Recaps werden erstellt… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Erstellt um {time}"
+  },
+  "f_month_1ba5": {
+    "message": "Monat"
+  },
+  "f_no_items_43fa": {
+    "message": "Keine Einträge"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Noch nichts zu kombinieren."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Recap-Umfang"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Sendet {n} kurze Recaps statt {m} Schlagzeilen"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Tage ohne Recap überspringen"
+  },
+  "f_week_recap_2446": {
+    "message": "Wochen-Recap"
+  },
+  "f_week_c909": {
+    "message": "Woche {n}"
+  },
+  "f_missing_0207": {
+    "message": "fehlt"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "noch kein Recap"
+  },
+  "f_reused_af15": {
+    "message": "genutzt"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} von {b} Tagen mit Recap"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} Tages-Recap"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} Tages-Recaps"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} ohne Recap"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Recap erstellen"
   }
 }

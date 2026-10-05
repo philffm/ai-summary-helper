@@ -967,5 +967,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ Обновление сводки…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "Исходная сводка изменилась — обновите, чтобы учесть её."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "ИИ-сводка месяца из недельных и дневных сводок"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "ИИ-сводка недели из дневных сводок"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Из ваших дневных сводок. Записи с дневной сводкой повторно не отправляются."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Из сводок: {n}"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Из сводок: {n}"
+  },
+  "f_cancel_ca3b": {
+    "message": "Отмена"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Сначала создать пропущенные дневные сводки: {n}"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Сначала создать пропущенные дневные сводки: {n}"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Создаём дневные сводки… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Создано в {time}"
+  },
+  "f_month_1ba5": {
+    "message": "Месяц"
+  },
+  "f_no_items_43fa": {
+    "message": "Нет записей"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Пока нечего объединять."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Охват сводки"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Отправит сводок: {n}, а не {m} заголовков"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Пропустить дни без сводки"
+  },
+  "f_week_recap_2446": {
+    "message": "Сводка недели"
+  },
+  "f_week_c909": {
+    "message": "Неделя {n}"
+  },
+  "f_missing_0207": {
+    "message": "нет"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "сводки ещё нет"
+  },
+  "f_reused_af15": {
+    "message": "использована"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "Дней со сводкой: {a} из {b}"
+  },
+  "f_day_recap_cb92": {
+    "message": "Дневных сводок: {n}"
+  },
+  "f_day_recaps_f333": {
+    "message": "Дневных сводок: {n}"
+  },
+  "f_without_recap_7d68": {
+    "message": "Без сводки: {n}"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Создать сводку"
   }
 }

@@ -22,6 +22,7 @@ import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feed
 import { T, TN, TU, N_, locale } from './feedI18n.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
+import { openRollup, coverage, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
@@ -470,7 +471,7 @@ function pruneItems() {
     const cutoff = Date.now() - settings.keepDays * DAY_MS;
     items = items.filter(i => i.published >= cutoff || histOf(i).fav);
     // Recaps follow the same retention window (key starts with the day's timestamp).
-    Object.keys(recaps).forEach(k => { if (Number(k.split('|')[0]) < startOfDay(cutoff)) delete recaps[k]; });
+    Object.keys(recaps).forEach(k => { const ts = recapKeyTs(k); if (ts != null && ts < startOfDay(cutoff)) delete recaps[k]; });
     chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
 }
 
@@ -1090,6 +1091,7 @@ function render() {
     if (!all.length) { renderEmptyFiltered(items.length > 0); return; }
     const visible = all.slice(0, shown);
     els.empty.style.display = 'none';
+    if (isDayRange(ui.date) && ui.sort !== 'mood') els.list.appendChild(recapBar());
 
     let lastKey = null;
     let group = [];
@@ -1269,7 +1271,7 @@ function openFilterSheet(opts = {}) {
             const k = startOfDay(i.published); const c = counts.get(k) || { n: 0, unread: 0 };
             c.n++; if (!i.read) c.unread++; counts.set(k, c);
         });
-        const recapDays = new Set(Object.keys(recaps).map(k => Number(k.split('|')[0])));
+        const recapDays = new Set(Object.keys(recaps).filter(isDayRecapKey).map(k => Number(k.split('|')[0])));
         const today = startOfDay(Date.now());
         const mondayOf = (ts) => { const d = new Date(ts); const dow = (d.getDay() + 6) % 7; d.setDate(d.getDate() - dow); d.setHours(0, 0, 0, 0); return d.getTime(); };
         const addDays = (ts, n) => { const d = new Date(ts); d.setDate(d.getDate() + n); d.setHours(0, 0, 0, 0); return d.getTime(); };
@@ -1397,6 +1399,59 @@ function recapScope(dayStart, source) {
 function idsHash(list) { return hash(list.map(i => i.id).sort().join(',')); }
 function aiTitleOf(sm) { return i => subTitle(sm.get(i.feedId)); }
 
+// Rate/categorize in the same request as a recap. Existing ratings and categories are never overwritten.
+function applyRatings(arr, r, rate) {
+    if (!rate || !(r.labels || r.scores)) return;
+    arr.forEach((x, n) => {
+        if (r.labels && !x.cat && r.labels[n]) x.cat = r.labels[n];
+        if (r.scores && !x.ai && r.scores[n] != null) { x.sent = r.scores[n]; x.ai = true; }
+    });
+    persist(); render();
+}
+
+/** Write (and store) a day recap without opening its sheet — used by week/month recaps for days that have none yet. */
+async function buildDayRecap(dayStart, source) {
+    const list = recapScope(dayStart, source);
+    if (!list.length) return null;
+    const rate = settings.rateWithRecap !== false;
+    const r = await generateRecap(list, aiTitleOf(subMap()), { rate });
+    applyRatings(list, r, rate);
+    const { labels: _l, scores: _s, ...rc } = r;
+    const key = `${dayStart}|${source}`;
+    recaps[key] = { ...rc, hash: idsHash(list), at: Date.now(), n: list.length, covered: Object.fromEntries(list.map(x => [x.id, itemSig(x)])) };
+    chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
+    return recaps[key];
+}
+
+function rollCtx(source = ui.source) {
+    const sm = subMap();
+    return {
+        source, el, btn, T, TN, startOfDay, itemMood, openSheet, closeSheet,
+        getItems: () => items, getRecaps: () => recaps,
+        saveRecaps: () => chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {}),
+        inSource: (i) => inSource(i, sm, source),
+        buildDay: buildDayRecap,
+        toast: (m) => toast(uiRef, m),
+    };
+}
+
+// Day | Week | Month scope switch shown above the list while a date range is active.
+function recapBar() {
+    const from = ui.date.from;
+    const li = el('li', 'feed-recap-bar');
+    li.append(el('span', 'feed-recap-bar-label', T('✨ Recap')));
+    const seg = el('div', 'feed-recap-seg');
+    seg.setAttribute('role', 'group');
+    seg.setAttribute('aria-label', T('Recap scope'));
+    seg.append(btn('feed-btn', T('Day'), () => openRecap(from, dayLabel(from)), T('AI recap of this day')),
+        btn('feed-btn', T('Week'), () => openRollup('week', from, rollCtx()), T('AI recap of this week, built from its day recaps')),
+        btn('feed-btn', T('Month'), () => openRollup('month', from, rollCtx()), T('AI recap of this month, built from its week and day recaps')));
+    li.append(seg);
+    const cv = coverage('week', from, rollCtx());
+    if (cv.of) li.append(el('span', 'feed-muted feed-recap-cov', T('{a} of {b} days have a recap', { a: cv.have, b: cv.of })));
+    return li;
+}
+
 async function openRecap(dayStart, label, source = ui.source) {
     const list = recapScope(dayStart, source);
     const key = `${dayStart}|${source}`;
@@ -1429,15 +1484,6 @@ async function openRecap(dayStart, label, source = ui.source) {
     const sigsOf = (arr) => Object.fromEntries(arr.map(x => [x.id, itemSig(x)]));
     // Items the recap has not seen yet, or whose title/snippet changed since (news articles get edited).
     const changedSince = (rc) => list.filter(x => rc.covered[x.id] !== itemSig(x));
-    const applyRatings = (arr, r, rate) => {
-        if (!rate || !(r.labels || r.scores)) return;
-        // Rate/categorize in the same request. Existing ratings and categories are never overwritten.
-        arr.forEach((x, n) => {
-            if (r.labels && !x.cat && r.labels[n]) x.cat = r.labels[n];
-            if (r.scores && !x.ai && r.scores[n] != null) { x.sent = r.scores[n]; x.ai = true; }
-        });
-        persist(); render();
-    };
     const run = async (force) => {
         const cached = recaps[key];
         const hsh = idsHash(list);

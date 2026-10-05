@@ -1039,5 +1039,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ 요약 업데이트 중…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "원본 요약이 바뀌었습니다. 새로고침하면 반영됩니다."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "이번 달 AI 요약(주간·일간 요약 기반)"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "이번 주 AI 요약(일간 요약 기반)"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "일간 요약으로 만듭니다. 일간 요약이 있는 글은 다시 보내지 않습니다."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "요약 {n}개 기반"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "요약 {n}개 기반"
+  },
+  "f_cancel_ca3b": {
+    "message": "취소"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "없는 일간 요약 {n}개 먼저 만들기"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "없는 일간 요약 {n}개 먼저 만들기"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "일간 요약 만드는 중… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "{time}에 생성"
+  },
+  "f_month_1ba5": {
+    "message": "월"
+  },
+  "f_no_items_43fa": {
+    "message": "항목 없음"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "아직 합칠 것이 없습니다."
+  },
+  "f_recap_scope_40ec": {
+    "message": "요약 범위"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "제목 {m}개 대신 짧은 요약 {n}개 전송"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "요약 없는 날 건너뛰기"
+  },
+  "f_week_recap_2446": {
+    "message": "주간 요약"
+  },
+  "f_week_c909": {
+    "message": "{n}주차"
+  },
+  "f_missing_0207": {
+    "message": "없음"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "요약 아직 없음"
+  },
+  "f_reused_af15": {
+    "message": "재사용"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{b}일 중 {a}일 요약 있음"
+  },
+  "f_day_recap_cb92": {
+    "message": "일간 요약 {n}개"
+  },
+  "f_day_recaps_f333": {
+    "message": "일간 요약 {n}개"
+  },
+  "f_without_recap_7d68": {
+    "message": "요약 없음 {n}개"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ 요약 만들기"
   }
 }

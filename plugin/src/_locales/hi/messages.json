@@ -1051,5 +1051,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ रीकैप अपडेट हो रहा है…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "एक स्रोत सार बदल गया — शामिल करने के लिए रीफ़्रेश करें।"
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "इस महीने का AI सार, साप्ताहिक और दैनिक सारों से"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "इस सप्ताह का AI सार, दैनिक सारों से"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "आपके दैनिक सारों से। जिनका दैनिक सार है, वे दोबारा नहीं भेजे जाते।"
+  },
+  "f_built_from_recap_5b76": {
+    "message": "{n} सार से"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "{n} सारों से"
+  },
+  "f_cancel_ca3b": {
+    "message": "रद्द करें"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "पहले {n} छूटा दैनिक सार बनाएँ"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "पहले {n} छूटे दैनिक सार बनाएँ"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "दैनिक सार बन रहे हैं… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "{time} पर बना"
+  },
+  "f_month_1ba5": {
+    "message": "महीना"
+  },
+  "f_no_items_43fa": {
+    "message": "कोई आइटम नहीं"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "अभी जोड़ने को कुछ नहीं।"
+  },
+  "f_recap_scope_40ec": {
+    "message": "सार का दायरा"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "{m} शीर्षक नहीं, {n} छोटे सार भेजेगा"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "बिना सार वाले दिन छोड़ें"
+  },
+  "f_week_recap_2446": {
+    "message": "साप्ताहिक सार"
+  },
+  "f_week_c909": {
+    "message": "सप्ताह {n}"
+  },
+  "f_missing_0207": {
+    "message": "छूटा"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "अभी सार नहीं"
+  },
+  "f_reused_af15": {
+    "message": "दोबारा उपयोग"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{b} में से {a} दिनों का सार है"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} दैनिक सार"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} दैनिक सार"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} बिना सार"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ सार बनाएँ"
   }
 }

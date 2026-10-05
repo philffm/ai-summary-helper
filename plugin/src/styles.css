@@ -2824,3 +2824,20 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-mood-pt.pos { background: hsl(135, 55%, 40%); }
 .feed-mood-pt.neg { background: hsl(8, 70%, 48%); }
 .feed-ins-pod { grid-template-columns: repeat(3, 1fr); }
+
+/* ── Week / month recaps ─────────────────────────────────────────────── */
+.feed-recap-bar { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 6px 0 8px; font-size: 12px; }
+.feed-recap-bar-label { font-weight: 600; }
+.feed-recap-seg { display: inline-flex; gap: 4px; }
+.feed-recap-seg .feed-btn { padding: 3px 10px; font-size: 12px; }
+.feed-recap-cov { margin-left: auto; font-size: 11px; }
+.feed-roll-rows { border: 1px solid var(--border-color, rgba(127,127,127,.3)); border-radius: 12px; padding: 4px 10px; margin: 8px 0; }
+.feed-roll-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 12px; }
+.feed-roll-day { font-weight: 600; flex: 0 0 auto; min-width: 92px; }
+.feed-roll-text { flex: 1 1 auto; opacity: .85; }
+.feed-roll-tag { font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 999px; }
+.feed-roll-tag.reused { background: rgba(34,197,94,.18); color: #15803d; }
+.feed-roll-tag.missing { background: rgba(245,158,11,.22); color: #b45309; }
+.feed-roll-opts { margin: 6px 0; }
+.feed-roll-save { font-size: 12px; font-weight: 600; color: #15803d; background: rgba(34,197,94,.14); border-radius: 10px; padding: 6px 10px; margin: 8px 0; }
+.feed-roll-mood { font-size: 12px; opacity: .85; margin: 0 0 8px; }

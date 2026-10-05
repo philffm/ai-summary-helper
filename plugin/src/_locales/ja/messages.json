@@ -1057,5 +1057,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ 要約を更新中…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "元の要約が変わりました。更新して反映できます。"
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "今月のAI要約（週・日の要約から）"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "今週のAI要約（日の要約から）"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "日ごとの要約から作成します。日次要約のある記事は再送されません。"
+  },
+  "f_built_from_recap_5b76": {
+    "message": "{n}件の要約から"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "{n}件の要約から"
+  },
+  "f_cancel_ca3b": {
+    "message": "キャンセル"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "不足する日次要約{n}件を先に作成"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "不足する日次要約{n}件を先に作成"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "日次要約を作成中… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "{time}に生成"
+  },
+  "f_month_1ba5": {
+    "message": "月"
+  },
+  "f_no_items_43fa": {
+    "message": "記事なし"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "まとめるものがまだありません。"
+  },
+  "f_recap_scope_40ec": {
+    "message": "要約の範囲"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "見出し{m}件ではなく短い要約{n}件を送信"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "要約のない日を除く"
+  },
+  "f_week_recap_2446": {
+    "message": "週の要約"
+  },
+  "f_week_c909": {
+    "message": "第{n}週"
+  },
+  "f_missing_0207": {
+    "message": "不足"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "要約なし"
+  },
+  "f_reused_af15": {
+    "message": "再利用"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{b}日中{a}日に要約あり"
+  },
+  "f_day_recap_cb92": {
+    "message": "日次要約{n}件"
+  },
+  "f_day_recaps_f333": {
+    "message": "日次要約{n}件"
+  },
+  "f_without_recap_7d68": {
+    "message": "要約なし{n}件"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ 要約を作成"
   }
 }

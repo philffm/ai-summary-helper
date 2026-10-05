@@ -967,5 +967,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ جارٍ تحديث الملخص…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "تغيّر ملخص مصدر — حدّث لتضمينه."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "ملخص الذكاء الاصطناعي لهذا الشهر من الملخصات الأسبوعية واليومية"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "ملخص الذكاء الاصطناعي لهذا الأسبوع من الملخصات اليومية"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "من ملخصاتك اليومية. العناصر التي لها ملخص يومي لا تُرسل مجددًا."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "من {n} ملخص"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "من {n} ملخصات"
+  },
+  "f_cancel_ca3b": {
+    "message": "إلغاء"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "أنشئ أولًا {n} ملخصًا يوميًا ناقصًا"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "أنشئ أولًا {n} ملخصات يومية ناقصة"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "جارٍ إنشاء الملخصات اليومية… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "أُنشئ في {time}"
+  },
+  "f_month_1ba5": {
+    "message": "الشهر"
+  },
+  "f_no_items_43fa": {
+    "message": "لا عناصر"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "لا شيء لدمجه بعد."
+  },
+  "f_recap_scope_40ec": {
+    "message": "نطاق الملخص"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "يرسل {n} ملخصات قصيرة بدل {m} عنوانًا"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "تخطَّ الأيام بلا ملخص"
+  },
+  "f_week_recap_2446": {
+    "message": "ملخص الأسبوع"
+  },
+  "f_week_c909": {
+    "message": "الأسبوع {n}"
+  },
+  "f_missing_0207": {
+    "message": "ناقص"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "لا ملخص بعد"
+  },
+  "f_reused_af15": {
+    "message": "مُعاد استخدامه"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} من {b} أيام لها ملخص"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} ملخص يومي"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} ملخصات يومية"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} بلا ملخص"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ أنشئ الملخص"
   }
 }

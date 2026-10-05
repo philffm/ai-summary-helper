@@ -1051,5 +1051,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ 正在更新总结…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "来源摘要已更改，刷新即可纳入。"
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "本月 AI 摘要（基于周摘要和日摘要）"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "本周 AI 摘要（基于日摘要）"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "基于你的日摘要生成。已有日摘要的条目不会再次发送。"
+  },
+  "f_built_from_recap_5b76": {
+    "message": "基于 {n} 条摘要"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "基于 {n} 条摘要"
+  },
+  "f_cancel_ca3b": {
+    "message": "取消"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "先创建 {n} 个缺失的日摘要"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "先创建 {n} 个缺失的日摘要"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "正在创建日摘要… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "生成于 {time}"
+  },
+  "f_month_1ba5": {
+    "message": "月"
+  },
+  "f_no_items_43fa": {
+    "message": "无条目"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "暂无可合并的内容。"
+  },
+  "f_recap_scope_40ec": {
+    "message": "摘要范围"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "发送 {n} 条短摘要，而非 {m} 个标题"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "跳过没有摘要的日子"
+  },
+  "f_week_recap_2446": {
+    "message": "周摘要"
+  },
+  "f_week_c909": {
+    "message": "第 {n} 周"
+  },
+  "f_missing_0207": {
+    "message": "缺失"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "暂无摘要"
+  },
+  "f_reused_af15": {
+    "message": "已复用"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{b} 天中有 {a} 天有摘要"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} 个日摘要"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} 个日摘要"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} 个无摘要"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ 创建摘要"
   }
 }

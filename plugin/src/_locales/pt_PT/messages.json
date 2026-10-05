@@ -1051,5 +1051,86 @@
   },
   "f_updating_recap_902a": {
     "message": "✨ A atualizar resumo…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "Um resumo de origem mudou: atualize para o incluir."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "Resumo IA deste mês, a partir dos resumos semanais e diários"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "Resumo IA desta semana, a partir dos resumos diários"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "A partir dos seus resumos diários. O que já tem resumo diário não é enviado outra vez."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Baseado em {n} resumo"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Baseado em {n} resumos"
+  },
+  "f_cancel_ca3b": {
+    "message": "Cancelar"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Criar primeiro {n} resumo diário em falta"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Criar primeiro {n} resumos diários em falta"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "A criar resumos diários… {a}/{b}"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Gerado às {time}"
+  },
+  "f_month_1ba5": {
+    "message": "Mês"
+  },
+  "f_no_items_43fa": {
+    "message": "Sem artigos"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Ainda nada para combinar."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Âmbito do resumo"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Envia {n} resumos curtos, não {m} títulos"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Ignorar os dias sem resumo"
+  },
+  "f_week_recap_2446": {
+    "message": "Resumo semanal"
+  },
+  "f_week_c909": {
+    "message": "Semana {n}"
+  },
+  "f_missing_0207": {
+    "message": "em falta"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "ainda sem resumo"
+  },
+  "f_reused_af15": {
+    "message": "reutilizado"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} de {b} dias com resumo"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} resumo diário"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} resumos diários"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} sem resumo"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Criar resumo"
   }
 }

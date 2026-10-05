@@ -191,3 +191,40 @@ export async function scoreItems(list, subTitleFn) {
     if (!scores) throw new Error(T('The AI reply could not be read'));
     return { scores, labels: parseLabelsJson(text, chunk.length) };
 }
+
+/** Stable fingerprint of a recap (what a week/month recap was built from) — changes when a day/week recap is regenerated. */
+export function recapSig(r) {
+    const t = [r.overview, (r.themes || []).join('|'), r.mood].join('¦');
+    let h = 0x811c9dc5;
+    for (let k = 0; k < t.length; k++) { h ^= t.charCodeAt(k); h = Math.imul(h, 0x01000193); }
+    return (h >>> 0).toString(36);
+}
+
+function partText(p) {
+    const r = p.recap;
+    return [`[${p.label}] ${clip(r.overview, 400)}`,
+        ...(r.themes || []).slice(0, 5).map(t => '- ' + clip(t, 160)),
+        `Mood: ${{ pos: 'positive', neg: 'negative' }[r.mood] || 'mixed'}`].join('\n');
+}
+
+/**
+ * Week / month recap built ONLY from already-written recaps (day recaps, or week recaps for a month) — no article is sent again.
+ * With `prev`, only the new or changed parts are sent and the previous roll-up stands in for everything else.
+ * parts = [{ label, recap }]
+ */
+export async function generateRollup(parts, { label = '', prev = null, edited = () => false } = {}) {
+    const lang = await languageName();
+    const system = 'You merge brief news-digest recaps of several days or weeks into ONE recap for the whole period. '
+        + (prev ? 'You get the CURRENT period recap plus only the NEW or CHANGED recaps (changed ones are marked); keep still-relevant points and correct anything a changed recap contradicts. ' : '')
+        + `Reply in the language with code ${lang}. Use ONLY the given recaps; do not invent facts. Format exactly:\n`
+        + 'First, 2-3 sentences of overview of the whole period.\n'
+        + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the day or week and the source.\n'
+        + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the whole period).\n'
+        + 'No headings, no markdown other than the "- " lines.';
+    const body = parts.map(p => partText(p) + (edited(p) ? ' (changed)' : '')).join('\n\n');
+    const cur = prev ? [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n') : '';
+    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`);
+    const r = parseRecap(text, 0);
+    if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
+    return r;
+}
