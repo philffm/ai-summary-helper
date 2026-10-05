@@ -1276,7 +1276,16 @@ function openSourcePicker() {
         const tags = allTags().filter(t => !q || t.toLowerCase().includes(q));
         if (tags.length) {
             list.append(el('div', 'feed-pick-label', TU('Tags')));
-            tags.forEach(t => list.append(radioRow('# ' + t, cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted), ui.source === 'tag:' + t, () => choose('tag:' + t))));
+            const chips = el('div', 'feed-tag-chips');
+            tags.forEach(t => {
+                const on = ui.source === 'tag:' + t, n = cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted);
+                const c = el('button', 'feed-tag-chip' + (on ? ' selected' : ''));
+                c.type = 'button'; c.setAttribute('aria-pressed', String(on));
+                c.append(el('span', null, '# ' + t)); if (n) c.append(el('span', 'feed-tag-n', n));
+                c.addEventListener('click', () => choose('tag:' + t));
+                chips.append(c);
+            });
+            list.append(chips);
         }
         const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.tags || []).some(t => t.toLowerCase().includes(q));
         const shown = subs.filter(matching);
