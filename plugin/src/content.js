@@ -511,14 +511,14 @@ import {
           let finalApiUrl = apiUrl;
 
           // 🔥 IMPORTANT: This tells the AI to return EXACT verbatim quotes so `indexOf()` never fails
-          const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include two HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] -->.`;
+          const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include three HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->.`;
 
           // ── Route based on API format ──
           if (activeService === 'gemini') {
             finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:streamGenerateContent?alt=sse`;
             headers['x-goog-api-key'] = apiKey;
             const parts = [
-              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include two HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] -->. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
+              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include three HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
               { text: `Additional Questions/Instructions: ${additionalQuestions}` },
               { text: truncatedContent }
             ];
@@ -642,11 +642,19 @@ import {
                 }
               }
               ghostQuotes = normalizeGhostQuotes(ghostQuotes, ghostCfg.max);
+              // Mood (-1..1) the model rated for the whole article; anything unparsable or out of range is ignored.
+              let moodScore;
+              const moodMatch = summary.match(/<!--\s*MOOD:\s*(-?\d*\.?\d+)\s*-->/i);
+              if (moodMatch) {
+                const v = parseFloat(moodMatch[1]);
+                if (isFinite(v) && v >= -1 && v <= 1) moodScore = Math.round(v * 100) / 100;
+              }
 
               // Strip tags and ghost comments from the raw summary string
               let cleanRawText = summary
                 .replace(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/gi, '')
                 .replace(/<!--\s*TAGS:\s*[^>]+\s*-->/gi, '')
+                .replace(/<!--\s*MOOD:[^>]*-->/gi, '')
                 .trim();
 
               // Finally, convert the cleaned text to HTML
@@ -687,11 +695,12 @@ import {
                   timestamp: new Date().toISOString(),
                   tags: tags,
                   modelId: modelIdentifier,
+                  moodScore,
                   content: finalContentHtml
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength)
+              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore)
                 .then(savedArticle => resolve({ success: true, article: savedArticle }))
                 .catch(err => {
                   console.error('Failed to save article:', err);
