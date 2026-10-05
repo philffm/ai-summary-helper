@@ -45,12 +45,32 @@ export function itemsForPrompt(list, subTitleFn) {
     }).join('\n');
 }
 
-export function parseRecap(text) {
+export function cleanLabel(v) {
+    const t = String(v || '').replace(/["'`*#]/g, '').replace(/\s+/g, ' ').trim().slice(0, 24);
+    return t || null;
+}
+
+/** "1:Tech | 2:Politics" -> array aligned to n items (null where missing). */
+export function parseLabelLine(line, n) {
+    const out = new Array(n).fill(null);
+    String(line || '').split(/[|;]/).forEach(part => {
+        const m = part.match(/(\d+)\s*[:=]\s*(.+)/);
+        if (!m) return;
+        const k = Number(m[1]) - 1;
+        if (k >= 0 && k < n) out[k] = cleanLabel(m[2]);
+    });
+    return out;
+}
+
+export function parseRecap(text, n = 0) {
     const lines = String(text || '').split('\n').map(l => l.trim()).filter(Boolean);
     let mood = 'neu';
     const overview = [];
     const themes = [];
+    let labels = null;
     for (const l of lines) {
+        const lm = l.match(/^LABELS\s*:\s*(.*)$/i);
+        if (lm) { labels = parseLabelLine(lm[1], n); continue; }
         const m = l.match(/^MOOD\s*:\s*(positive|mixed|negative|neutral)/i);
         if (m) {
             const v = m[1].toLowerCase();
@@ -58,7 +78,7 @@ export function parseRecap(text) {
         } else if (/^[-•*]\s+/.test(l)) themes.push(l.replace(/^[-•*]\s+/, ''));
         else overview.push(l);
     }
-    return { overview: overview.join(' '), themes: themes.slice(0, 5), mood };
+    return { overview: overview.join(' '), themes: themes.slice(0, 5), mood, labels };
 }
 
 export async function generateRecap(list, subTitleFn) {
@@ -67,10 +87,13 @@ export async function generateRecap(list, subTitleFn) {
         + `Reply in the language with code ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
         + 'First, 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
-        + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
+        + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
+        + 'Finally one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered item a category label of one or two words '
+        + '(e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design). Reuse the same label for similar items; use at most 8 different labels.\n'
         + 'No headings, no markdown other than the "- " lines.';
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(list, subTitleFn)}`);
-    const r = parseRecap(text);
+    const chunk = list.slice(0, MAX_RECAP_ITEMS);
+    const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error('The AI returned an empty recap');
     return r;
 }
@@ -93,13 +116,25 @@ export function parseScores(text, n) {
     return out;
 }
 
+export function parseLabelsJson(text, n) {
+    const out = new Array(n).fill(null);
+    try {
+        const s = String(text || '');
+        const obj = JSON.parse(s.slice(s.indexOf('{'), s.lastIndexOf('}') + 1));
+        if (Array.isArray(obj.labels)) obj.labels.slice(0, n).forEach((v, k) => { out[k] = typeof v === 'string' ? cleanLabel(v) : null; });
+    } catch (e) { /* labels are optional */ }
+    return out;
+}
+
 export async function scoreItems(list, subTitleFn) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const system = 'You rate the sentiment of news headlines. For each numbered item return a number from -1 '
         + '(very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content, not tone of voice. '
-        + `Reply with ONLY JSON: {"scores":[...]} with exactly ${chunk.length} numbers in item order.`;
+        + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
+        + 'reuse the same label for similar items, at most 8 different labels. '
+        + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`;
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`);
     const scores = parseScores(text, chunk.length);
     if (!scores) throw new Error('The AI reply could not be read');
-    return scores;
+    return { scores, labels: parseLabelsJson(text, chunk.length) };
 }

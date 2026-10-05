@@ -2728,3 +2728,12 @@ text.graph-search-dim {
 .feed-dur { opacity: .75; }
 body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px); }
 .has-player #feedItemList { padding-bottom: 190px; }
+
+/* Feeds: AI category label + sentiment tint */
+.feed-cat { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 10.5px; font-weight: 700; line-height: 17px; background: rgba(99,102,241,.14); color: var(--accent, #4f46e5); vertical-align: 1px; }
+.feed-item.has-mood {
+  background-image: linear-gradient(100deg, var(--mood-tint), transparent 70%);
+  box-shadow: inset 3px 0 0 var(--mood-bar), var(--glass-inner-glow), var(--shadow-card);
+}
+.feed-item.has-mood:hover { box-shadow: inset 3px 0 0 var(--mood-bar), var(--glass-inner-glow), var(--shadow-raised); }
+.feed-item.has-mood.is-favorite { background-image: linear-gradient(rgba(250,204,21,.10), rgba(250,204,21,.10)), linear-gradient(100deg, var(--mood-tint), transparent 70%); }

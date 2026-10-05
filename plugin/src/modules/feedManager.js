@@ -412,6 +412,7 @@ function mergeItems(sub, parsedItems) {
             img: p.img || '',
             sent: prev && prev.ai ? prev.sent : undefined,
             ai: !!(prev && prev.ai),
+            cat: prev && prev.cat ? prev.cat : undefined,
             read: prev ? prev.read : false
         });
     }
@@ -783,7 +784,16 @@ function renderCard(item, sm) {
     const hist = histOf(item);
     const mood = itemMood(item);
     const li = el('li', 'article-card feed-item' + (item.read ? ' is-read' : '') + (hist.fav ? ' is-favorite' : ''));
+    if (mood && mood !== 'neu') {
+        // subtle tint: red/orange for heavy news through green for good news, stronger with the score
+        const sc = item.sent, a = Math.min(1, Math.abs(sc));
+        const hue = sc >= 0 ? 95 + sc * 45 : 5 + (1 + sc) * 30;
+        li.classList.add('has-mood');
+        li.style.setProperty('--mood-tint', `hsla(${Math.round(hue)}, 75%, 48%, ${(0.07 + 0.10 * a).toFixed(3)})`);
+        li.style.setProperty('--mood-bar', `hsla(${Math.round(hue)}, 70%, 46%, ${(0.55 + 0.35 * a).toFixed(2)})`);
+    }
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
+    if (item.cat) { const c = el('span', 'feed-cat', item.cat); c.title = 'AI category'; meta.append(' · ', c); }
     if (item.audio) meta.append(el('span', 'feed-dur', ` · 🎧${item.dur ? ' ' + formatDuration(item.dur) : ''}`));
     if (MOOD_EMOJI[mood]) {
         const m = el('span', 'feed-mood', ' ' + MOOD_EMOJI[mood]);
@@ -1055,7 +1065,9 @@ async function openRecap(dayStart, label, source = ui.source) {
             el('p', 'feed-muted', `Sending ${list.length} titles and short snippets to your AI connection.`));
         try {
             const r = await generateRecap(list, aiTitleOf(sm));
-            recaps[key] = { ...r, hash: hsh, at: Date.now(), n: list.length };
+            if (r.labels) { list.forEach((i, n) => { if (r.labels[n]) i.cat = r.labels[n]; }); persist(); render(); }
+            const { labels: _l, ...rc } = r;
+            recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length };
             chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
             draw(recaps[key], false);
         } catch (e) {
@@ -1075,8 +1087,8 @@ async function scoreWithAi(list) {
         for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
             toast(uiRef, `Scoring with AI… ${Math.min(k + chunk.length, list.length)}/${list.length}`);
-            const scores = await scoreItems(chunk, aiTitleOf(sm));
-            chunk.forEach((i, n) => { if (scores[n] !== null) { i.sent = scores[n]; i.ai = true; done++; } });
+            const { scores, labels } = await scoreItems(chunk, aiTitleOf(sm));
+            chunk.forEach((i, n) => { if (scores[n] !== null) { i.sent = scores[n]; i.ai = true; done++; } if (labels && labels[n]) i.cat = labels[n]; });
         }
     } catch (e) {
         toast(uiRef, e.message || 'AI scoring failed');
