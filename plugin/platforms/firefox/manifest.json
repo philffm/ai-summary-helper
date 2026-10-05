@@ -32,6 +32,7 @@
   ],
   "background": {
     "scripts": [
+      "audioEngine.js",
       "background.js"
     ]
   },

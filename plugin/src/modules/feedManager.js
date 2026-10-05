@@ -18,6 +18,7 @@
 import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
 import { scoreSentiment, moodOf, MOOD_EMOJI } from './feedSentiment.js';
+import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
 import { generateRecap, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
@@ -262,6 +263,27 @@ function childByLocalName(parent, name) {
     return '';
 }
 
+const AUDIO_EXT = /\.(mp3|m4a|aac|ogg|oga|opus|wav|flac)(\?|#|$)/i;
+function parseDuration(v) {
+    if (!v) return 0;
+    const parts = String(v).trim().split(':').map(Number);
+    if (parts.some(n => !Number.isFinite(n))) return 0;
+    return parts.reduce((t, n) => t * 60 + n, 0);
+}
+function enclosureOf(e, feedUrl) {
+    for (const c of e.children) {
+        if (c.localName !== 'enclosure' && !(c.localName === 'link' && c.getAttribute('rel') === 'enclosure')) continue;
+        const type = (c.getAttribute('type') || '').toLowerCase();
+        const href = c.getAttribute('url') || c.getAttribute('href');
+        if (!href) continue;
+        if (type.startsWith('audio/') || (!type.startsWith('video/') && AUDIO_EXT.test(href))) {
+            const url = safeHttpUrl(href, feedUrl);
+            if (url) return url;
+        }
+    }
+    return '';
+}
+
 /** @returns {{title:string, siteUrl:string, items:Array}|null} */
 function parseFeed(xmlText, feedUrl) {
     const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
@@ -293,7 +315,9 @@ function parseFeed(xmlText, feedUrl) {
                 title: htmlToText(childByLocalName(e, 'title')),
                 link,
                 published: Date.parse(when) || 0,
-                snippet: htmlToText(childByLocalName(e, 'summary') || childByLocalName(e, 'content')).slice(0, 220)
+                snippet: htmlToText(childByLocalName(e, 'summary') || childByLocalName(e, 'content')).slice(0, 220),
+                audio: enclosureOf(e, feedUrl),
+                dur: parseDuration(childByLocalName(e, 'duration'))
             });
         }
         return { title, siteUrl, items: out };
@@ -312,7 +336,9 @@ function parseFeed(xmlText, feedUrl) {
                 title: htmlToText(childByLocalName(e, 'title')),
                 link,
                 published: Date.parse(when) || 0,
-                snippet: htmlToText(childByLocalName(e, 'description') || childByLocalName(e, 'encoded')).slice(0, 220)
+                snippet: htmlToText(childByLocalName(e, 'description') || childByLocalName(e, 'encoded')).slice(0, 220),
+                audio: enclosureOf(e, feedUrl),
+                dur: parseDuration(childByLocalName(e, 'duration'))
             };
         });
         return { title, siteUrl, items: out };
@@ -354,7 +380,8 @@ function mergeItems(sub, parsedItems) {
     const existing = new Map(items.filter(i => i.feedId === sub.id).map(i => [i.id, i]));
     const merged = [];
     for (const p of parsedItems) {
-        if (!p.link || !p.title) continue;
+        if (!p.title || (!p.link && !p.audio)) continue;
+        if (!p.link) p.link = p.audio;
         const id = hash(sub.id + '|' + (p.guid || p.link));
         const prev = existing.get(id);
         merged.push({
@@ -364,6 +391,8 @@ function mergeItems(sub, parsedItems) {
             link: p.link,
             published: p.published || (prev && prev.published) || Date.now(),
             snippet: p.snippet,
+            audio: p.audio || '',
+            dur: p.dur || 0,
             sent: prev && prev.ai && typeof prev.sent === 'number' ? prev.sent : scoreSentiment(p.title + ' ' + (p.snippet || '')),
             ai: !!(prev && prev.ai),
             read: prev ? prev.read : false
@@ -737,6 +766,7 @@ function renderCard(item, sm) {
     const mood = moodOf(item.sent || 0);
     const li = el('li', 'article-card feed-item' + (item.read ? ' is-read' : '') + (hist.fav ? ' is-favorite' : ''));
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
+    if (item.audio) meta.append(el('span', 'feed-dur', ` · 🎧${item.dur ? ' ' + formatDuration(item.dur) : ''}`));
     if (MOOD_EMOJI[mood]) {
         const m = el('span', 'feed-mood', ' ' + MOOD_EMOJI[mood]);
         m.title = (item.ai ? 'AI-rated: ' : '') + (mood === 'pos' ? 'Positive tone' : 'Heavy tone');
@@ -761,13 +791,34 @@ function renderCard(item, sm) {
     const sum = btn('button-primary feed-btn', hist.summarized ? '📄 View summary' : '✨ Summarize', (e) => { e.stopPropagation(); onSummarizeClick(item); });
     const open = btn('button-secondary feed-btn', 'Open ↗', (e) => { e.stopPropagation(); openItem(item, false); });
     const read = btn('button-secondary feed-btn', item.read ? 'Mark unread' : 'Mark read', (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true }); });
-    actions.append(open, read, sum);
+    if (item.audio) {
+        const playing = isPlaying(item.id);
+        const pb = btn('button-primary feed-btn feed-play-btn' + (playing ? ' is-playing' : ''), playing ? '⏸ Pause' : '▶ Play', (e) => { e.stopPropagation(); onPlayClick(item); }, 'Play episode in AISH');
+        pb.dataset.id = item.id;
+        actions.append(pb, open, read, sum);
+    } else actions.append(open, read, sum);
     li.appendChild(actions);
     li.tabIndex = 0;
     li.setAttribute('role', 'link');
     li.addEventListener('click', () => onCardClick(item));
     li.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target === li) onCardClick(item); });
     return li;
+}
+
+async function onPlayClick(item) {
+    try {
+        await playAudio(item, subTitle(subMap().get(item.feedId)));
+    } catch (e) {
+        toast(uiRef, e.message || 'Could not start playback');
+    }
+}
+function syncPlayButtons(st) {
+    document.body.classList.toggle('has-player', !!(st && st.cur));
+    document.querySelectorAll('.feed-play-btn').forEach(b => {
+        const on = isPlaying(b.dataset.id);
+        b.classList.toggle('is-playing', on);
+        b.textContent = on ? '⏸ Pause' : '▶ Play';
+    });
 }
 
 function render() {
@@ -1201,6 +1252,7 @@ export function initFeedManager(uiObj) {
         empty: document.getElementById('feedEmpty')
     };
     if (!els.list) return;
+    initPlayer(syncPlayButtons).catch(() => {});
 
     els.sourcePill.addEventListener('click', openSourcePicker);
     els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));

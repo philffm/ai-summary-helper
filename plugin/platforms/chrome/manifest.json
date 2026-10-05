@@ -13,6 +13,7 @@
     "contextMenus",
     "notifications",
     "alarms",
+    "offscreen",
     "unlimitedStorage"
   ],
   "host_permissions": [

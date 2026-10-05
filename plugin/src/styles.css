@@ -2682,3 +2682,25 @@ text.graph-search-dim {
 .feed-recap-actions { display: flex; gap: 8px; margin: 6px 0 10px; }
 .feed-recap-loading { font-size: 14px; margin: 6px 0; }
 .feed-error { color: #b91c1c; font-size: 13px; }
+
+/* ── Feeds: podcast player ───────────────────────────────────────────── */
+.feed-player {
+  position: fixed; left: 16px; right: 16px; bottom: calc(var(--bottom-nav-height, 60px) + 16px); z-index: 240;
+  padding: 10px 12px 8px; border-radius: 14px; background: #111827; color: #fff; font-size: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.feed-player[hidden] { display: none; }
+.feed-player-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.feed-player-title { flex: 1; font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed-player button { width: auto; padding: 4px 8px; background: rgba(255,255,255,0.12); border: none; border-radius: 8px; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: none; }
+.feed-player button:hover { background: rgba(255,255,255,0.22); }
+.feed-player-top button { background: transparent; padding: 2px 6px; }
+.feed-player-ctl { display: flex; align-items: center; gap: 6px; }
+.feed-player-ctl input[type=range] { flex: 1; min-width: 0; accent-color: #93c5fd; }
+.feed-player-play { font-size: 15px !important; padding: 5px 12px !important; background: #3b82f6 !important; }
+.feed-player-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; opacity: .8; }
+.feed-player-err { color: #fca5a5; }
+.feed-play-btn.is-playing { background: #3b82f6; color: #fff; }
+.feed-dur { opacity: .75; }
+body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 130px); }
+.has-player #feedItemList { padding-bottom: 130px; }

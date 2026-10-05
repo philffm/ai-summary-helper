@@ -581,6 +581,20 @@
         <div id="feedSheetBody"></div>
       </div>
     </div>
+    <div id="feedPlayer" class="feed-player" hidden>
+      <div class="feed-player-top">
+        <span id="fpTitle" class="feed-player-title"></span>
+        <button type="button" id="fpClose" aria-label="Close player" title="Close player">✕</button>
+      </div>
+      <div class="feed-player-ctl">
+        <button type="button" id="fpBack" aria-label="Back 15 seconds" title="Back 15s">↺15</button>
+        <button type="button" id="fpToggle" class="feed-player-play" aria-label="Play">▶</button>
+        <button type="button" id="fpFwd" aria-label="Forward 30 seconds" title="Forward 30s">30↻</button>
+        <input type="range" id="fpSeek" min="0" max="1" value="0" step="1" aria-label="Seek">
+        <button type="button" id="fpRate" title="Playback speed">1×</button>
+      </div>
+      <div class="feed-player-meta"><span id="fpTime">0:00</span><span id="fpErr" class="feed-player-err" hidden></span></div>
+    </div>
     <div id="feedUndo" class="feed-undo" hidden role="status">
       <span id="feedUndoMsg"></span>
       <button type="button" id="feedUndoBtn">Undo</button>
@@ -603,6 +617,7 @@
       </button>
     </nav>
 
+    <script src="audioEngine.js"></script>
     <script type="module" src="popup.js"></script>
   </body>
 </html>

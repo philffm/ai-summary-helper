@@ -157,6 +157,8 @@ async function pollFeeds() {
 // ── One-shot AI completion (feed recaps, tone scoring) ──────────────────────
 // Same connection logic as the page summarizer (byPhil Cloud, own key, or a
 // local Ollama), but non-streaming and callable from any extension page.
+if (typeof AishAudio !== 'undefined' && typeof Audio !== 'undefined') AishAudio.host();
+
 const AISH_API_BASE = 'https://api.byphil.eu';
 
 function aiFriendlyError(status, body) {
@@ -352,6 +354,22 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         return true;
     }
     if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
+    if (msg.action === 'audioEnsure') {
+        // Chrome: audio must live in an offscreen document. Others: the background page hosts it.
+        if (chrome.offscreen && chrome.offscreen.createDocument) {
+            (async () => {
+                try {
+                    const has = chrome.runtime.getContexts
+                        ? (await chrome.runtime.getContexts({ contextTypes: ['OFFSCREEN_DOCUMENT'] })).length > 0 : false;
+                    if (!has) await chrome.offscreen.createDocument({ url: 'offscreen.html', reasons: ['AUDIO_PLAYBACK'], justification: 'Play podcast episodes from feeds while the popup is closed' });
+                    sendResponse({ ok: true });
+                } catch (e) { sendResponse({ ok: false, error: String(e && e.message || e) }); }
+            })();
+            return true;
+        }
+        sendResponse({ ok: typeof AishAudio !== 'undefined' });
+        return false;
+    }
     if (msg.action === 'feedBadgeClear') { clearFeedBadge().then(() => sendResponse({ ok: true })); return true; }
 
     // Fetch a feed or site page on behalf of the popup. Returns raw text; the

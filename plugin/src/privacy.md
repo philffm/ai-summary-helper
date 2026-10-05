@@ -18,7 +18,7 @@ The text content of web pages you choose to summarize is sent to the OpenAI API 
 
 ### RSS feeds
 
-The built-in Feeds reader stores your subscriptions and fetched items locally in your browser; they are never synced or sent to us. Feeds are requested directly from each publisher's server. The optional AI day recap and AI tone scoring run only when you click them and send item titles, source names and short snippets to the AI provider you chose; results are cached on your device.
+The built-in Feeds reader stores your subscriptions and fetched items locally in your browser; they are never synced or sent to us. Feeds are requested directly from each publisher's server. The optional AI day recap and AI tone scoring run only when you click them and send item titles, source names and short snippets to the AI provider you chose; results are cached on your device. Podcast episodes are streamed directly from the publisher's server when you press Play.
 
 ## Analytics
 
