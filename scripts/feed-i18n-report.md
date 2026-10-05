@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 214. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 215. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 214 | 0 | 0 | 5 |
-| de | 214 | 0 | 0 | 25 |
-| es | 214 | 0 | 0 | 18 |
-| fr | 214 | 0 | 0 | 12 |
-| hi | 214 | 0 | 0 | 1 |
-| it | 214 | 0 | 0 | 14 |
-| ja | 214 | 0 | 0 | 0 |
-| ko | 214 | 0 | 0 | 0 |
-| pt_PT | 214 | 0 | 0 | 17 |
-| ru | 214 | 0 | 0 | 2 |
-| zh_CN | 214 | 0 | 0 | 0 |
-| zh_HK | 214 | 0 | 0 | 0 |
-| zh_TW | 214 | 0 | 0 | 0 |
+| ar | 215 | 0 | 0 | 5 |
+| de | 215 | 0 | 0 | 25 |
+| es | 215 | 0 | 0 | 18 |
+| fr | 215 | 0 | 0 | 12 |
+| hi | 215 | 0 | 0 | 1 |
+| it | 215 | 0 | 0 | 14 |
+| ja | 215 | 0 | 0 | 1 |
+| ko | 215 | 0 | 0 | 0 |
+| pt_PT | 215 | 0 | 0 | 17 |
+| ru | 215 | 0 | 0 | 2 |
+| zh_CN | 215 | 0 | 0 | 0 |
+| zh_HK | 215 | 0 | 0 | 0 |
+| zh_TW | 215 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -118,6 +118,11 @@ Strings: 214. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | {day}, no items | {day}, nessun articolo | 19 vs 12 | 1.58× |
 | Request failed | Richiesta non riuscita | 22 vs 14 | 1.57× |
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
+
+### ja
+| English | Translation | width | ratio |
+|---|---|---|---|
+| Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
 
 ### pt_PT
 | English | Translation | width | ratio |
