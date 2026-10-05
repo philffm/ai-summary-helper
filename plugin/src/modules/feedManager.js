@@ -1046,7 +1046,7 @@ function openFilterSheet() {
         section('SORT', 'sort', [['new', 'Newest first'], ['mood', 'Most positive first']]);
         body.append(el('div', 'feed-pick-label', 'MORE'));
         body.append(btn('feed-manage-link', '☀️  Today’s briefing', () => { closeSheet(); openBriefing(); }));
-        body.append(btn('feed-manage-link', '🤖  Score visible items with AI', () => { closeSheet(); scoreWithAi(visibleItems().slice(0, shown)); }));
+        body.append(btn('feed-manage-link', '🤖  Score unscored visible items with AI', () => { closeSheet(); scoreWithAi(visibleItems().slice(0, shown)); }));
         body.append(btn('feed-manage-link', '✓  Mark everything in this view read', () => {
             const list = visibleItems().filter(i => !i.read);
             closeSheet();
@@ -1125,7 +1125,7 @@ async function openRecap(dayStart, label, source = ui.source) {
                 catch (e) { toast(uiRef, 'Copy failed'); }
             }));
         body.append(row,
-            btn('feed-manage-link', `🤖  Score these ${list.length} items with AI`, () => { closeSheet(); scoreWithAi(list); }),
+            btn('feed-manage-link', list.some(needsAi) ? `🤖  Score ${list.filter(needsAi).length} unscored item${list.filter(needsAi).length > 1 ? 's' : ''} with AI` : '✓  All items here are scored', () => { closeSheet(); scoreWithAi(list); }),
             el('p', 'feed-muted', `AI-generated from ${list.length} headlines and snippets. Generated at ${new Date(r.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}. Not a substitute for reading.`));
     };
     const run = async (force) => {
@@ -1136,7 +1136,7 @@ async function openRecap(dayStart, label, source = ui.source) {
             el('p', 'feed-muted', `Sending ${list.length} titles and short snippets to your AI connection.`));
         try {
             const r = await generateRecap(list, aiTitleOf(sm));
-            if (r.labels) { list.forEach((i, n) => { if (r.labels[n]) i.cat = r.labels[n]; }); persist(); render(); }
+            if (r.labels) { list.forEach((i, n) => { if (!i.cat && r.labels[n]) i.cat = r.labels[n]; }); persist(); render(); }
             const { labels: _l, ...rc } = r;
             recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length };
             chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
@@ -1149,22 +1149,35 @@ async function openRecap(dayStart, label, source = ui.source) {
     run(false);
 }
 
+// An item needs the AI only if it has no AI score or no category yet.
+const needsAi = (i) => !i.ai || !i.cat;
+let scoring = false;
+
 async function scoreWithAi(list) {
-    list = (list || []).filter(Boolean);
-    if (!list.length) { toast(uiRef, 'Nothing to score'); return; }
+    if (scoring) { toast(uiRef, 'Already scoring — one moment'); return; }
+    const all = (list || []).filter(Boolean);
+    list = all.filter(needsAi);
+    if (!all.length) { toast(uiRef, 'Nothing to score'); return; }
+    if (!list.length) { toast(uiRef, 'These items are already scored'); return; }
     const sm = subMap();
     let done = 0;
+    scoring = true;
     try {
         for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
             toast(uiRef, `Scoring with AI… ${Math.min(k + chunk.length, list.length)}/${list.length}`);
             const { scores, labels } = await scoreItems(chunk, aiTitleOf(sm));
-            chunk.forEach((i, n) => { if (scores[n] !== null) { i.sent = scores[n]; i.ai = true; done++; } if (labels && labels[n]) i.cat = labels[n]; });
+            chunk.forEach((i, n) => {
+                // never overwrite an existing AI score or category
+                if (!i.ai && scores[n] !== null) { i.sent = scores[n]; i.ai = true; done++; }
+                if (!i.cat && labels && labels[n]) { i.cat = labels[n]; done = Math.max(done, 1); }
+            });
+            await persist();
         }
     } catch (e) {
         toast(uiRef, e.message || 'AI scoring failed');
-    }
-    if (done) { await persist(); render(); toast(uiRef, `Scored ${done} item${done > 1 ? 's' : ''} with AI`); }
+    } finally { scoring = false; }
+    if (done) { render(); toast(uiRef, `Scored ${list.length} item${list.length > 1 ? 's' : ''} with AI${all.length > list.length ? ` (${all.length - list.length} already done)` : ''}`); }
 }
 
 // ── Today's briefing ───────────────────────────────────────────────────────
