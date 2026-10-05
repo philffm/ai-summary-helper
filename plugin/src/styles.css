@@ -2756,3 +2756,39 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-tag-x:hover { opacity: 1; }
 .feed-tag-input { flex: 1; min-width: 70px; width: auto; max-width: 140px; font-size: 12px; padding: 3px 6px; border: 1px dashed var(--glass-border); border-radius: 999px; background: transparent; }
 .feed-more { list-style: none; margin: 4px 0 16px; }
+
+/* ── Feeds: date jump / calendar ── */
+.feed-day { scroll-margin-top: 96px; }
+.feed-sheet-head3 h3 { text-align: center; }
+.feed-sheet-reset, .feed-sheet-back { min-width: 52px; text-align: left; }
+.feed-sheet-head3 .feed-sheet-done:last-child { min-width: 52px; text-align: right; }
+.feed-pick-link { display: flex; align-items: center; gap: 8px; width: 100%; }
+.feed-pick-link .feed-pick-name { flex: 1; text-align: left; }
+.feed-pick-link.selected .feed-pick-count { color: var(--accent); font-weight: 700; }
+.feed-pick-chevron { color: var(--text-muted); font-size: 18px; line-height: 1; }
+.feed-seg { display: flex; padding: 3px; gap: 3px; border-radius: 10px; background: var(--outline); margin-bottom: 10px; }
+.feed-seg-btn { flex: 1; width: auto; padding: 6px 8px; border: none; border-radius: 8px; background: transparent; box-shadow: none; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; }
+.feed-seg-btn.on { background: var(--accent); color: #fff; }
+.feed-cal-month { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.feed-cal-title { flex: 1; text-align: center; font-size: 13px; font-weight: 700; }
+.feed-cal-nav { width: 28px; padding: 2px; border: none; background: transparent; box-shadow: none; font-size: 18px; color: var(--accent); cursor: pointer; }
+.feed-cal-nav:disabled { opacity: .3; cursor: default; }
+.feed-cal-weekdays, .feed-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.feed-cal-weekdays span { text-align: center; font-size: 10px; font-weight: 700; color: var(--text-muted); }
+.feed-cal-cell { position: relative; width: auto; aspect-ratio: 1; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border: 1px solid transparent; border-radius: 10px; background: transparent; box-shadow: none; color: var(--text-primary); cursor: pointer; user-select: none; -webkit-user-select: none; }
+.feed-cal-cell.has { background: rgba(37,99,235, calc(0.08 + 0.34 * var(--heat, 0))); }
+.feed-cal-cell.today { border-color: var(--accent); }
+.feed-cal-cell.sel { background: var(--accent); color: #fff; }
+.feed-cal-cell.off { opacity: .3; cursor: default; }
+.feed-cal-num { font-size: 13px; font-weight: 600; }
+.feed-cal-num.small { font-size: 9px; }
+.feed-cal-count { font-size: 9px; color: var(--text-muted); }
+.feed-cal-cell.sel .feed-cal-count { color: rgba(255,255,255,.85); }
+.feed-cal-hint { text-align: center; margin-top: 8px; }
+.feed-cal-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 12px; color: var(--text-secondary); }
+.feed-cal-clear { width: auto; padding: 4px 6px; border: none; background: transparent; box-shadow: none; font-size: 12px; font-weight: 700; color: var(--accent); cursor: pointer; }
+.feed-day-open { background: transparent; border: none; box-shadow: none; width: auto; padding: 2px 0; text-align: left; font: inherit; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; }
+.feed-day-step { width: 26px; padding: 2px; border: none; background: transparent; box-shadow: none; font-size: 16px; color: var(--accent); cursor: pointer; }
+.feed-day-step:disabled { opacity: .3; cursor: default; }
+.feed-day-flash { animation: feed-day-flash 1.2s ease-out; }
+@keyframes feed-day-flash { 0% { background: var(--accent-glow); } 100% { background: transparent; } }

@@ -685,14 +685,34 @@ function inSource(i, sm, source = ui.source) {
     return !s.muted;
 }
 
-function passes(i, sm) {
+// ui.date: 'any' | 'today' | '7d' | { from, to } (start-of-day timestamps, both inclusive)
+function isDayRange(d) { return d && typeof d === 'object' && Number.isFinite(d.from) && Number.isFinite(d.to); }
+function isOneDay(d) { return isDayRange(d) && d.from === d.to; }
+function inDateFilter(i) {
+    const d = ui.date;
+    if (d === 'today') return i.published >= startOfDay(Date.now());
+    if (d === '7d') return i.published >= Date.now() - 7 * DAY_MS;
+    if (isDayRange(d)) return i.published >= d.from && i.published < startOfDay(d.to + DAY_MS * 1.5);
+    return true;
+}
+const fmtDayShort = (ts) => new Date(ts).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+const fmtDayNoWeek = (ts) => new Date(ts).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+function dateText(d = ui.date) {
+    if (d === 'today') return 'Today';
+    if (d === '7d') return '7 days';
+    if (isOneDay(d)) return fmtDayShort(d.from);
+    if (isDayRange(d)) return `${fmtDayNoWeek(d.from)} – ${fmtDayNoWeek(d.to)}`;
+    return '';
+}
+const filtersActive = () => ui.date !== 'any' || ui.mood !== 'any' || ui.sort !== 'new';
+
+function passes(i, sm, skipDate = false) {
     if (!inSource(i, sm)) return false;
     const h = histOf(i);
     if (ui.status === 'unread' && i.read && !stickyRead.has(i.id)) return false;
     if (ui.status === 'fav' && !h.fav) return false;
     if (ui.status === 'sum' && !h.summarized) return false;
-    if (ui.date === 'today' && i.published < startOfDay(Date.now())) return false;
-    if (ui.date === '7d' && i.published < Date.now() - 7 * DAY_MS) return false;
+    if (!skipDate && !inDateFilter(i)) return false;
     const mood = itemMood(i) || 'neu';
     if (ui.mood === 'pos' && mood !== 'pos') return false;
     if (ui.mood === 'nonneg' && mood === 'neg') return false;
@@ -719,10 +739,10 @@ function dayLabel(ts) {
 
 function filterChipLabel() {
     const parts = [];
-    if (ui.date === 'today') parts.push('Today'); else if (ui.date === '7d') parts.push('7 days');
+    if (ui.date !== 'any') parts.push(dateText());
     if (ui.mood === 'pos') parts.push('😊'); else if (ui.mood === 'nonneg') parts.push('No 😟');
     if (ui.sort === 'mood') parts.push('Mood ↓');
-    return (parts.join(' · ') || 'Any time') + ' ▾';
+    return (parts.join(' · ') || 'Date & mood') + ' ▾';
 }
 
 // ── Rendering ──────────────────────────────────────────────────────────────
@@ -779,7 +799,7 @@ function renderControls() {
         if (b.dataset.status === 'unread') b.textContent = unread ? `Unread · ${unread}` : 'Unread';
     });
     els.filterChip.textContent = filterChipLabel();
-    els.filterChip.classList.toggle('active', ui.date !== 'any' || ui.mood !== 'any' || ui.sort !== 'new');
+    els.filterChip.classList.toggle('active', filtersActive());
 }
 
 // Starter suggestions (shown on first run and in the Add sheet). Feeds are only
@@ -917,6 +937,13 @@ function syncPlayButtons(st) {
     });
 }
 
+// Days (start-of-day timestamps, ascending) that have items under every filter except the date.
+function dayStops() {
+    const sm = subMap(); const set = new Set();
+    items.forEach(i => { if (passes(i, sm, true)) set.add(startOfDay(i.published)); });
+    return [...set].sort((a, b) => a - b);
+}
+
 function render() {
     if (!els.list) return;
     renderControls();
@@ -937,7 +964,22 @@ function render() {
         if (!group.length) return;
         const unread = group.filter(i => !i.read);
         const header = el('li', 'feed-day');
-        header.append(el('span', 'feed-day-label', `${dayLabel(group[0].published)} · ${group.length} item${group.length > 1 ? 's' : ''}`));
+        const groupDay = startOfDay(group[0].published);
+        header.dataset.day = String(groupDay);
+        const labelText = `${dayLabel(group[0].published)} · ${group.length} item${group.length > 1 ? 's' : ''}`;
+        if (isOneDay(ui.date)) {
+            // single-day view: ‹ › step between days that have items
+            const stops = dayStops();
+            const prev = [...stops].reverse().find(t => t < groupDay), next = stops.find(t => t > groupDay);
+            const step = (t) => { ui.date = { from: t, to: t }; persistUi(); render(); };
+            const pb = btn('feed-day-step', '‹', () => step(prev), 'Previous day with items'); pb.disabled = prev == null;
+            const nb = btn('feed-day-step', '›', () => step(next), 'Next day with items'); nb.disabled = next == null;
+            const lab = el('span', 'feed-day-label'); lab.append(pb, document.createTextNode(` ${fmtDayShort(groupDay)} · ${group.length} item${group.length > 1 ? 's' : ''} `), nb);
+            header.append(lab);
+        } else {
+            const lab = btn('feed-day-label feed-day-open', labelText + '  ▾', () => openFilterSheet({ view: 'calendar', day: groupDay }), 'Pick a day');
+            header.append(lab);
+        }
         if (ui.sort !== 'mood') {
             const dayStart = startOfDay(group[0].published);
             const dayName = dayLabel(group[0].published);
@@ -980,6 +1022,14 @@ function openSheet(title, bodyNode) {
     const head = el('div', 'feed-sheet-head');
     head.append(el('h3', null, title), btn('feed-sheet-done', 'Done', closeSheet));
     body.append(head, bodyNode);
+    layer.hidden = false;
+}
+// Replace the whole sheet content (custom header) — used by the two-level Date & mood sheet.
+function showSheet(...nodes) {
+    const layer = document.getElementById('feedSheetLayer');
+    const body = document.getElementById('feedSheetBody');
+    if (!layer || !body) return;
+    body.replaceChildren(...nodes);
     layer.hidden = false;
 }
 function closeSheet() {
@@ -1033,15 +1083,35 @@ function openSourcePicker() {
     draw();
 }
 
-function openFilterSheet() {
-    const body = el('div', 'feed-picker');
-    const draw = () => {
-        body.replaceChildren();
-        const section = (title, key, opts) => {
+function openFilterSheet(opts = {}) {
+    let view = opts.view === 'calendar' ? 'cal' : 'main';
+    let calSel = opts.day || null;          // tentatively highlighted day (from a day-header shortcut)
+    let anchor = null;                      // first day of a range being picked
+    let calPage = 0;                        // 0 = newest weeks
+    if (!['only', 'jump'].includes(ui.dayMode)) ui.dayMode = 'only';
+
+    const reset = () => { ui.date = 'any'; ui.mood = 'any'; ui.sort = 'new'; persistUi(); render(); draw(); };
+    const head = (left, title) => {
+        const h = el('div', 'feed-sheet-head feed-sheet-head3');
+        h.append(left, el('h3', null, title), btn('feed-sheet-done', 'Done', closeSheet));
+        return h;
+    };
+
+    const drawMain = () => {
+        const body = el('div', 'feed-picker');
+        const left = btn('feed-sheet-done feed-sheet-reset', 'Reset', reset);
+        if (!filtersActive()) left.style.visibility = 'hidden';
+        const section = (title, key, opts2) => {
             body.append(el('div', 'feed-pick-label', title));
-            opts.forEach(([val, label]) => body.append(radioRow(label, '', ui[key] === val, () => { ui[key] = val; persistUi(); render(); draw(); })));
+            opts2.forEach(([val, label]) => body.append(radioRow(label, '', ui[key] === val, () => { ui[key] = val; persistUi(); render(); draw(); })));
         };
         section('DATE', 'date', [['any', 'Any time'], ['today', 'Today'], ['7d', 'Last 7 days']]);
+        const custom = isDayRange(ui.date);
+        const pick = el('button', 'feed-pick-row feed-pick-link' + (custom ? ' selected' : ''));
+        pick.type = 'button';
+        pick.append(el('span', 'feed-pick-name', '📅  Pick a day or range…'), el('span', 'feed-pick-count', custom ? dateText() : ''), el('span', 'feed-pick-chevron', '›'));
+        pick.addEventListener('click', () => { view = 'cal'; calSel = null; draw(); });
+        body.append(pick);
         section('MOOD', 'mood', [['any', 'Any mood'], ['pos', '😊  Positive only'], ['nonneg', 'Hide negative']]);
         section('SORT', 'sort', [['new', 'Newest first'], ['mood', 'Most positive first']]);
         body.append(el('div', 'feed-pick-label', 'MORE'));
@@ -1053,9 +1123,134 @@ function openFilterSheet() {
             if (list.length) setRead(list, true, { label: `Marked ${list.length} read` });
         }));
         body.append(el('p', 'feed-muted', 'Mood comes from AI scoring only — items you haven’t scored have no mood and are never hidden by the mood filter. Scoring sends titles and short snippets to your AI connection when you click it.'));
+        showSheet(head(left, 'Date & mood'), body);
     };
-    openSheet('Date & mood', body);
+
+    const drawCal = () => {
+        const body = el('div', 'feed-picker feed-cal');
+        const back = btn('feed-sheet-done feed-sheet-back', '‹ Date & mood', () => { view = 'main'; anchor = null; draw(); });
+
+        // segmented mode switch
+        const seg = el('div', 'feed-seg'); seg.setAttribute('role', 'group');
+        [['jump', 'Jump to day'], ['only', 'Only show day']].forEach(([val, label]) => {
+            const b = btn('feed-seg-btn' + (ui.dayMode === val ? ' on' : ''), label, () => { ui.dayMode = val; persistUi(); draw(); });
+            b.setAttribute('aria-pressed', String(ui.dayMode === val));
+            seg.append(b);
+        });
+        body.append(seg);
+
+        // counts per day within the current source scope
+        const sm = subMap(); const counts = new Map();
+        items.forEach(i => {
+            if (!inSource(i, sm)) return;
+            const k = startOfDay(i.published); const c = counts.get(k) || { n: 0, unread: 0 };
+            c.n++; if (!i.read) c.unread++; counts.set(k, c);
+        });
+        const today = startOfDay(Date.now());
+        const mondayOf = (ts) => { const d = new Date(ts); const dow = (d.getDay() + 6) % 7; d.setDate(d.getDate() - dow); d.setHours(0, 0, 0, 0); return d.getTime(); };
+        const addDays = (ts, n) => { const d = new Date(ts); d.setDate(d.getDate() + n); d.setHours(0, 0, 0, 0); return d.getTime(); };
+        const first = mondayOf(addDays(today, -settings.keepDays));
+        const lastMon = mondayOf(today);
+        const weeksTotal = Math.round((lastMon - first) / (7 * DAY_MS)) + 1;
+        const perPage = 5;
+        const pages = Math.max(1, Math.ceil(weeksTotal / perPage));
+        calPage = Math.min(calPage, pages - 1);
+        const endWeekIdx = weeksTotal - 1 - calPage * perPage;           // newest week of this page
+        const startWeekIdx = Math.max(0, endWeekIdx - perPage + 1);
+        const pageStart = addDays(first, startWeekIdx * 7);
+        const pageEnd = addDays(first, endWeekIdx * 7 + 6);
+        const max = Math.max(1, ...[...counts.values()].map(c => c.n));
+
+        // month header with paging
+        const mh = el('div', 'feed-cal-month');
+        const older = btn('feed-cal-nav', '‹', () => { calPage++; draw(); }, 'Older'); older.disabled = calPage >= pages - 1;
+        const newer = btn('feed-cal-nav', '›', () => { calPage--; draw(); }, 'Newer'); newer.disabled = calPage <= 0;
+        const m1 = new Date(pageStart).toLocaleDateString(undefined, { month: 'short' });
+        const m2 = new Date(pageEnd).toLocaleDateString(undefined, { month: 'short' });
+        const yr = new Date(pageEnd).getFullYear();
+        mh.append(older, el('span', 'feed-cal-title', `${m1 === m2 ? m1 : m1 + ' – ' + m2} ${yr}${pages === 1 ? ` · last ${settings.keepDays} days` : ''}`), newer);
+        body.append(mh);
+
+        const wd = el('div', 'feed-cal-weekdays');
+        for (let k = 0; k < 7; k++) wd.append(el('span', null, new Date(addDays(first, k)).toLocaleDateString(undefined, { weekday: 'narrow' })));
+        body.append(wd);
+
+        const inSel = (ts) => {
+            if (anchor != null) return ts === anchor;
+            if (isDayRange(ui.date)) return ts >= ui.date.from && ts <= ui.date.to;
+            return calSel === ts;
+        };
+        const grid = el('div', 'feed-cal-grid');
+        for (let ts = pageStart; ts <= pageEnd; ts = addDays(ts, 1)) {
+            const d = new Date(ts); const c = counts.get(ts);
+            const future = ts > today; const outside = ts < addDays(today, -settings.keepDays);
+            const cell = el('button', 'feed-cal-cell' + (inSel(ts) ? ' sel' : '') + (ts === today ? ' today' : '') + (future || outside ? ' off' : '') + (c ? ' has' : ''));
+            cell.type = 'button'; cell.dataset.day = String(ts); cell.disabled = future || outside;
+            if (c) cell.style.setProperty('--heat', (c.n / max).toFixed(2));
+            const label = (d.getDate() === 1 || ts === pageStart) ? fmtDayNoWeek(ts) : String(d.getDate());
+            cell.append(el('span', 'feed-cal-num' + (label.length > 2 ? ' small' : ''), label));
+            if (c) cell.append(el('span', 'feed-cal-count', String(c.n)));
+            cell.setAttribute('aria-label', `${fmtDayShort(ts)}${c ? `, ${c.n} items` : ', no items'}`);
+            const choose = (shift) => {
+                if (shift && anchor == null) { anchor = ts; draw(); return; }
+                if (anchor != null) {
+                    const a = Math.min(anchor, ts), b = Math.max(anchor, ts); anchor = null;
+                    ui.date = { from: a, to: b }; persistUi(); render(); closeSheet(); return;
+                }
+                if (ui.dayMode === 'jump') {
+                    if (!c) { toast(uiRef, 'No items on that day'); return; }
+                    closeSheet(); jumpToDay(ts); return;
+                }
+                ui.date = { from: ts, to: ts }; persistUi(); render(); closeSheet();
+            };
+            let timer = null, fired = false;
+            cell.addEventListener('pointerdown', () => { fired = false; timer = setTimeout(() => { fired = true; choose(true); }, 520); });
+            ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => cell.addEventListener(ev, () => clearTimeout(timer)));
+            cell.addEventListener('click', (e) => { if (fired) { fired = false; return; } choose(e.shiftKey); });
+            grid.append(cell);
+        }
+        body.append(grid);
+
+        body.append(el('p', 'feed-muted feed-cal-hint', anchor != null
+            ? `Range starts ${fmtDayNoWeek(anchor)} — tap the last day.`
+            : 'Darker = more items · outlined = today · long-press a day, then another, for a range'));
+
+        // footer: clear + summary of what is selected
+        const foot = el('div', 'feed-cal-foot');
+        const clear = btn('feed-cal-clear', 'Clear date filter', () => { ui.date = 'any'; persistUi(); render(); closeSheet(); });
+        clear.disabled = ui.date === 'any';
+        const selDays = isDayRange(ui.date) ? [ui.date.from, ui.date.to] : calSel != null ? [calSel, calSel] : null;
+        let summary = '';
+        if (selDays) {
+            let n = 0, u = 0;
+            counts.forEach((c, k) => { if (k >= selDays[0] && k <= selDays[1]) { n += c.n; u += c.unread; } });
+            summary = `${selDays[0] === selDays[1] ? fmtDayShort(selDays[0]) : dateText({ from: selDays[0], to: selDays[1] })} · ${n} item${n === 1 ? '' : 's'} · ${u} unread`;
+        }
+        foot.append(clear, el('span', 'feed-muted', summary));
+        body.append(foot);
+        showSheet(head(back, 'Pick a day'), body);
+    };
+
+    const draw = () => (view === 'cal' ? drawCal() : drawMain());
     draw();
+}
+
+// Scroll to a day's group (filters stay as they are) and flash it.
+function jumpToDay(dayStart) {
+    const find = () => els.list && els.list.querySelector(`[data-day="${dayStart}"]`);
+    let target = find();
+    if (!target) {
+        const all = visibleItems();
+        const idx = all.findIndex(i => startOfDay(i.published) === dayStart);
+        if (idx < 0 || ui.sort === 'mood') { toast(uiRef, ui.sort === 'mood' ? 'Switch sort to Newest first to jump to a day' : 'Nothing visible on that day with the current filters'); return; }
+        shown = Math.max(shown, idx + PAGE_SIZE);
+        render();
+        target = find();
+    }
+    if (!target) return;
+    if (target.scrollIntoView) target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    target.classList.add('feed-day-flash');
+    setTimeout(() => target.classList.remove('feed-day-flash'), 1500);
 }
 
 async function useCurrentSite() {
