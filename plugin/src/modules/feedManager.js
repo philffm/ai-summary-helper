@@ -717,7 +717,16 @@ function onSummaryMessage(msg, sender) {
         if (typeof msg.progress === 'number' && msg.progress > st.pct) { st.pct = Math.min(99, msg.progress); paintSum(id); }
     } else if (msg.action === 'summaryComplete') {
         st.pct = 100; paintSum(id);
-        setTimeout(async () => { endSumProgress(id); await loadHistoryMap(); render(); }, 400);
+        // The article is written to History right around the completion message: wait until the index has it.
+        const item = items.find(x => x.id === id);
+        (async () => {
+            for (let k = 0; k < 8; k++) {
+                await new Promise(r => setTimeout(r, k ? 500 : 300));
+                await loadHistoryMap();
+                if (!item || histOf(item).summarized) break;
+            }
+            endSumProgress(id); render();
+        })();
     } else {
         endSumProgress(id); toast(uiRef, msg.error || T('Failed'));
     }
@@ -1998,6 +2007,15 @@ export function initFeedManager(uiObj) {
     els.addBtn.addEventListener('click', openAddSheet);
     els.filterChip.addEventListener('click', openFilterSheet);
     if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage);
+    // Any new summary (also from the Summarize screen or a background tab) flips the matching card to "View summary".
+    if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
+        let histTimer = null;
+        chrome.storage.onChanged.addListener((ch) => {
+            if (!ch || !ch.articlesIndex) return;
+            clearTimeout(histTimer);
+            histTimer = setTimeout(async () => { await loadHistoryMap(); if (els && els.list) render(); }, 250);
+        });
+    }
     els.chipRow.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
         ui.status = b.dataset.status; persistUi(); render();
     }));
