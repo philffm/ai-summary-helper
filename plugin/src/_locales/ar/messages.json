@@ -244,5 +244,659 @@
   },
   "settingsScreen": {
     "message": "شاشة الإعدادات"
+  },
+  "f_already_done_9f26": {
+    "message": "(تم {n} مسبقًا)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ وسم"
+  },
+  "f_tag_2f9e": {
+    "message": "+ وسم"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} أخرى"
+  },
+  "f_1_hour_fb4a": {
+    "message": "ساعة"
+  },
+  "f_1_year_98a5": {
+    "message": "سنة"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 دقيقة"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 ساعات"
+  },
+  "f_30_days_2af9": {
+    "message": "30 يومًا"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 دقيقة"
+  },
+  "f_7_days_8279": {
+    "message": "7 أيام"
+  },
+  "f_90_days_9817": {
+    "message": "90 يومًا"
+  },
+  "f_ai_category_acf9": {
+    "message": "فئة الذكاء الاصطناعي"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "ملخص اليوم بالذكاء الاصطناعي"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "فشل طلب الذكاء الاصطناعي"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "فشل التقييم"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "أُنشئ بالذكاء الاصطناعي من {n} عنوانًا ومقتطفًا. وقت الإنشاء: {time}. لا يغني عن القراءة."
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "تقييم الذكاء: أخبار قاتمة"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "تقييم الذكاء: أخبار إيجابية"
+  },
+  "f_add_aa14": {
+    "message": "إضافة"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "إضافة خلاصة"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "أضف موقعًا أو عنوان خلاصة…"
+  },
+  "f_add_feed_1688": {
+    "message": "إضافة خلاصة"
+  },
+  "f_add_tag_1074": {
+    "message": "إضافة وسم"
+  },
+  "f_all_e364": {
+    "message": "الكل"
+  },
+  "f_all_sources_0e1e": {
+    "message": "كل المصادر"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "التقييم جارٍ بالفعل"
+  },
+  "f_already_subscribed_0935": {
+    "message": "مشترك بالفعل"
+  },
+  "f_any_mood_9630": {
+    "message": "أي مزاج"
+  },
+  "f_any_time_95a6": {
+    "message": "أي وقت"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "تشغيل الصوت غير متاح هنا"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "رجوع 15 ثانية"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "النص الخلفي قديم — أعد تحميل الإضافة من chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "التلخيص الجماعي يعمل في وضع الإضافة. بدّل من شاشة «تلخيص»."
+  },
+  "f_behavior_a447": {
+    "message": "السلوك"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "اختر مصدرًا"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "مسح فلتر التاريخ"
+  },
+  "f_clear_filters_53c9": {
+    "message": "مسح الفلاتر"
+  },
+  "f_close_player_c464": {
+    "message": "إغلاق المشغّل"
+  },
+  "f_copy_3664": {
+    "message": "نسخ"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "فشل النسخ"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "تعذّرت إضافة الخلاصة"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "تعذّرت قراءة التبويب الحالي"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "تعذّر بدء التشغيل"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "الأغمق = عناصر أكثر · الإطار = اليوم · اضغط مطولًا على يوم ثم آخر لتحديد نطاق"
+  },
+  "f_date_7379": {
+    "message": "التاريخ"
+  },
+  "f_date_mood_799e": {
+    "message": "التاريخ والمزاج"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · أخبار دولية"
+  },
+  "f_done_1791": {
+    "message": "تم"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "أدخل عنوان ويب صالحًا"
+  },
+  "f_episode_f972": {
+    "message": "حلقة"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "كل غير المقروء ملخّص بالفعل"
+  },
+  "f_failed_c3d4": {
+    "message": "فشل"
+  },
+  "f_favorite_19ed": {
+    "message": "مفضلة"
+  },
+  "f_favorites_53ba": {
+    "message": "المفضلة"
+  },
+  "f_feed_name_68fc": {
+    "message": "اسم الخلاصة"
+  },
+  "f_feeds_8b02": {
+    "message": "الخلاصات"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "تابع المواقع التي تقرأها"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "تقديم 30 ثانية"
+  },
+  "f_hide_negative_6410": {
+    "message": "إخفاء السلبي"
+  },
+  "f_import_failed_aa11": {
+    "message": "فشل الاستيراد"
+  },
+  "f_imported_feed_349f": {
+    "message": "تم استيراد الخلاصات: {n}"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "تم استيراد الخلاصات: {n}"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "صحافة استقصائية مستقلة"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "مساءلة مستقلة للتقنية"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "صحافة تقنية مستقلة"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "العناصر التي تفتحها أو تلخصها تغادر قائمة غير المقروء"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "انتقل إلى يوم"
+  },
+  "f_last_7_days_d98f": {
+    "message": "آخر 7 أيام"
+  },
+  "f_loading_4ae3": {
+    "message": "جارٍ التحميل…"
+  },
+  "f_mark_read_94d4": {
+    "message": "تعليم كمقروء"
+  },
+  "f_mark_unread_7147": {
+    "message": "تعليم كغير مقروء"
+  },
+  "f_mark_read_c994": {
+    "message": "تعليم {n} كمقروء"
+  },
+  "f_marked_read_2e9b": {
+    "message": "تم تعليم {n} كمقروء"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "تم تعليم {n} كغير مقروء"
+  },
+  "f_mood_551e": {
+    "message": "المزاج"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "المزاج (بالذكاء {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "يأتي المزاج من تقييم الذكاء الاصطناعي فقط — العناصر غير المقيَّمة بلا مزاج ولا يخفيها فلتر المزاج. عند النقر تُرسل العناوين ومقتطفات قصيرة إلى اتصال الذكاء الاصطناعي لديك."
+  },
+  "f_mood_d12b": {
+    "message": "المزاج ↓"
+  },
+  "f_more_d900": {
+    "message": "المزيد"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "الأكثر إيجابية أولًا"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "الأكثر إيجابية أولًا · العناصر: {n}"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "كتم (استبعاد من كل المصادر)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "وصلت عناصر جديدة بعد هذا الملخص — حدّث لتضمينها."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "تصل المنشورات الجديدة هنا. تصفّح، لخّص المهم، وامسح الباقي."
+  },
+  "f_newer_f04a": {
+    "message": "الأحدث"
+  },
+  "f_newest_first_b9c5": {
+    "message": "الأحدث أولًا"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "اليوم التالي بعناصر"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "لا توجد خلاصة بهذا العنوان"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "لا خلاصات بعد. أضف واحدة أدناه أو استورد ملف OPML."
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "لا عناصر في هذا اليوم"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "لا عناصر للتلخيص هنا."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "لا خلاصات جديدة في الملف"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "لا مصادر مطابقة."
+  },
+  "f_no_b8a2": {
+    "message": "بدون 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "ملف OPML غير صالح"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "خلاصة غير صالحة"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "لا شيء يطابق هذه الفلاتر."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "لا جديد اليوم بعد. جرّب التحديث."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "لا شيء للتصدير بعد"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "لا شيء للتقييم"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "لا شيء ظاهر في هذا اليوم مع الفلاتر الحالية"
+  },
+  "f_older_d101": {
+    "message": "الأقدم"
+  },
+  "f_only_show_day_efde": {
+    "message": "هذا اليوم فقط"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "افتح موقعًا في التبويب الحالي أولًا"
+  },
+  "f_open_c3b4": {
+    "message": "فتح ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "الصق أي عنوان موقع. نجد خلاصته لك."
+  },
+  "f_pause_bf2d": {
+    "message": "إيقاف مؤقت"
+  },
+  "f_pick_a_day_d249": {
+    "message": "اختر يومًا"
+  },
+  "f_play_6f83": {
+    "message": "تشغيل"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "تشغيل الحلقة في AISH"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "سرعة التشغيل"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "يعمل فقط والنافذة مفتوحة"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "بودكاست المؤلف · تصميم وحياة وتقنية"
+  },
+  "f_podcast_player_4be4": {
+    "message": "مشغّل البودكاست"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "اليوم السابق بعناصر"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "يبدأ النطاق {day} — اضغط اليوم الأخير."
+  },
+  "f_recap_copied_dc3c": {
+    "message": "تم نسخ الملخص"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "فشل الملخص"
+  },
+  "f_refresh_aad4": {
+    "message": "تحديث"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "إزالة الوسم {tag}"
+  },
+  "f_request_failed_3b37": {
+    "message": "فشل الطلب"
+  },
+  "f_reset_a560": {
+    "message": "إعادة ضبط"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "قُيّم بالذكاء الاصطناعي: {n}"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "قُيّم بالذكاء الاصطناعي: {n}"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "جارٍ التقييم… {a}/{b}"
+  },
+  "f_search_sources_e053": {
+    "message": "ابحث في المصادر…"
+  },
+  "f_seek_13d1": {
+    "message": "تنقّل"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "جارٍ إرسال العناوين والمقتطفات ({n}) إلى اتصال الذكاء الاصطناعي."
+  },
+  "f_show_all_items_7eb7": {
+    "message": "عرض كل العناصر"
+  },
+  "f_show_more_older_6f85": {
+    "message": "عرض {n} أخرى · {m} أقدم"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "يعرض شارة على الأيقونة عند وصول عناصر جديدة"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "عنوان موقع أو خلاصة…"
+  },
+  "f_sort_a7f1": {
+    "message": "الترتيب"
+  },
+  "f_source_a3f8": {
+    "message": "المصدر"
+  },
+  "f_sources_73d1": {
+    "message": "المصادر"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "تمييز عنصر بنجمة يلخصه في تبويب خلفي"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "تم الاشتراك في {name}"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "الاشتراكات · OPML · السلوك"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "الاشتراكات · {n}"
+  },
+  "f_suggested_fdec": {
+    "message": "مقترحة"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "يتبع «تلخيص» على عنصر الخلاصة الوضع المختار في شاشة «تلخيص» (الإضافة افتراضيًا). المفضلة تبقى دائمًا."
+  },
+  "f_summarized_415a": {
+    "message": "ملخّص"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "يجري التلخيص في الخلفية — سيظهر ضمن «تلخيص» و«السجل»"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "يجري تلخيص التبويب المفتوح — سيظهر ضمن «تلخيص» و«السجل»"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "تلخيص {n} في الخلفية — انظر «السجل»"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "للانتقال إلى يوم، رتّب حسب «الأحدث أولًا»"
+  },
+  "f_tags_a0c0": {
+    "message": "الوسوم"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "تعذّرت قراءة رد الذكاء الاصطناعي"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "أعاد الذكاء الاصطناعي ملخصًا فارغًا"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "هذه العناصر مقيَّمة بالفعل"
+  },
+  "f_today_775e": {
+    "message": "اليوم"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "موجز اليوم"
+  },
+  "f_try_again_90fa": {
+    "message": "أعد المحاولة"
+  },
+  "f_undo_4acf": {
+    "message": "تراجع"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "إلغاء الكتم (تضمين في كل المصادر)"
+  },
+  "f_unread_c982": {
+    "message": "غير مقروء"
+  },
+  "f_unread_4dff": {
+    "message": "غير مقروء · {n}"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "إلغاء الاشتراك"
+  },
+  "f_world_news_0f72": {
+    "message": "أخبار العالم"
+  },
+  "f_yesterday_68c7": {
+    "message": "أمس"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "لديك ملخص محفوظ لهذه الصفحة"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "خلاصاتك تبقى على هذا الجهاز."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "لا جديد لديك. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "آخر {n} يوم"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}، لا عناصر"
+  },
+  "f_item_9b88": {
+    "message": "{day}، العناصر: {n}"
+  },
+  "f_items_8c21": {
+    "message": "{day}، العناصر: {n}"
+  },
+  "f_recap_8d18": {
+    "message": "ملخص {label}"
+  },
+  "f_feed_d469": {
+    "message": "الخلاصات: {n}"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "تعذّر تحميل الخلاصات: {n}"
+  },
+  "f_feeds_e4ee": {
+    "message": "الخلاصات: {n}"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "تعذّر تحميل الخلاصات: {n}"
+  },
+  "f_item_9ea2": {
+    "message": "العناصر: {n}"
+  },
+  "f_items_0303": {
+    "message": "العناصر: {n}"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "جديد اليوم: {n} · المصادر: {s} · غير المقروء: {u}"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "جديد اليوم: {n} · المصادر: {s} · غير المقروء: {u}"
+  },
+  "f_tag_63cf": {
+    "message": "الوسوم: {n}"
+  },
+  "f_tags_00f4": {
+    "message": "الوسوم: {n}"
+  },
+  "f_unread_e786": {
+    "message": "غير مقروء: {n}"
+  },
+  "f_d_7af5": {
+    "message": "{n}ي"
+  },
+  "f_h_8141": {
+    "message": "{n}س"
+  },
+  "f_m_85fa": {
+    "message": "{n}د"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ التاريخ والمزاج"
+  },
+  "f_refresh_f095": {
+    "message": "↻ تحديث"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ إيقاف"
+  },
+  "f_play_ffa1": {
+    "message": "▶ تشغيل"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  موجز اليوم"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  إدارة الخلاصات والوسوم في الإعدادات  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  كل العناصر مقيَّمة"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  تعليم كل ما هنا كمقروء"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ تعليم كمقروء عند الفتح"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ ملخّص"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  ملخص اليوم بالذكاء الاصطناعي"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ تلخيص المفضلة تلقائيًا"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ ملخص"
+  },
+  "f_summarize_570a": {
+    "message": "✨ تلخيص"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ تلخيص أهم 5 غير مقروءة"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ جارٍ كتابة الملخص…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 عرض الملخص"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  اختر يومًا أو نطاقًا…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 تصدير OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  استيراد ملف OPML"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  استيراد ملف OPML…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 استيراد OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  كل المصادر"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 تحديث الخلاصات كل"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 الفحص في الخلفية"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ الاحتفاظ بالعناصر لمدة"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  الإيجابي فقط"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 غالبًا إيجابي"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 متباين"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 غالبًا قاتم"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  تقييم العناصر الظاهرة غير المقيَّمة"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  تقييم غير المقيَّم: {n}"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  تقييم غير المقيَّم: {n}"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  استخدام الموقع الحالي"
+  },
+  "f_add_8e3d": {
+    "message": "＋ إضافة"
   }
 }

@@ -316,5 +316,701 @@
   },
   "settingsFeeds": {
     "message": "Feeds"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} already done)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Add tag"
+  },
+  "f_tag_2f9e": {
+    "message": "+ tag"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} more",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 hour"
+  },
+  "f_1_year_98a5": {
+    "message": "1 year"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 minutes"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 hours"
+  },
+  "f_30_days_2af9": {
+    "message": "30 days"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 minutes"
+  },
+  "f_7_days_8279": {
+    "message": "7 days"
+  },
+  "f_90_days_9817": {
+    "message": "90 days"
+  },
+  "f_ai_category_acf9": {
+    "message": "AI category"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "AI recap of this day"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "AI request failed"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "AI scoring failed"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "AI-generated from {n} headlines and snippets. Generated at {time}. Not a substitute for reading.",
+    "description": "Placeholders: {n} {time} (keep as is)"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "AI-rated: heavy news"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "AI-rated: positive news"
+  },
+  "f_add_aa14": {
+    "message": "Add"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Add a feed"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Add a site or feed address…"
+  },
+  "f_add_feed_1688": {
+    "message": "Add feed"
+  },
+  "f_add_tag_1074": {
+    "message": "Add tag"
+  },
+  "f_all_e364": {
+    "message": "All"
+  },
+  "f_all_sources_0e1e": {
+    "message": "All sources"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Already scoring — one moment"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Already subscribed"
+  },
+  "f_any_mood_9630": {
+    "message": "Any mood"
+  },
+  "f_any_time_95a6": {
+    "message": "Any time"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Audio playback is not available here"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "Back 15 seconds"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Background script is outdated — reload the extension at chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "Batch summarizing runs in extension mode. Switch on the Summarize screen."
+  },
+  "f_behavior_a447": {
+    "message": "Behavior"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Choose a source"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Clear date filter"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Clear filters"
+  },
+  "f_close_player_c464": {
+    "message": "Close player"
+  },
+  "f_copy_3664": {
+    "message": "Copy"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Copy failed"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "Could not add feed"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "Could not read the current tab"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "Could not start playback"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "Darker = more items · outlined = today · long-press a day, then another, for a range"
+  },
+  "f_date_7379": {
+    "message": "Date"
+  },
+  "f_date_mood_799e": {
+    "message": "Date & mood"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · international news"
+  },
+  "f_done_1791": {
+    "message": "Done"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Enter a valid web address"
+  },
+  "f_episode_f972": {
+    "message": "Episode"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Everything unread is already summarized"
+  },
+  "f_failed_c3d4": {
+    "message": "Failed"
+  },
+  "f_favorite_19ed": {
+    "message": "Favorite"
+  },
+  "f_favorites_53ba": {
+    "message": "Favorites"
+  },
+  "f_feed_name_68fc": {
+    "message": "Feed name"
+  },
+  "f_feeds_8b02": {
+    "message": "Feeds"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Follow the sites you read"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "Forward 30 seconds"
+  },
+  "f_hide_negative_6410": {
+    "message": "Hide negative"
+  },
+  "f_import_failed_aa11": {
+    "message": "Import failed"
+  },
+  "f_imported_feed_349f": {
+    "message": "Imported {n} feed",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "Imported {n} feeds",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Independent investigative journalism"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Independent tech accountability"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Independent tech journalism"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Items you open or summarize leave your unread list"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "Jump to day"
+  },
+  "f_last_7_days_d98f": {
+    "message": "Last 7 days"
+  },
+  "f_loading_4ae3": {
+    "message": "Loading…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Mark read"
+  },
+  "f_mark_unread_7147": {
+    "message": "Mark unread"
+  },
+  "f_mark_read_c994": {
+    "message": "Mark {n} read",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_read_2e9b": {
+    "message": "Marked {n} read",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "Marked {n} unread",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mood_551e": {
+    "message": "Mood"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Mood (AI-rated {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}",
+    "description": "Placeholders: {r} {n} {p} {m} {g} (keep as is)"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "Mood comes from AI scoring only — items you haven’t scored have no mood and are never hidden by the mood filter. Scoring sends titles and short snippets to your AI connection when you click it."
+  },
+  "f_mood_d12b": {
+    "message": "Mood ↓"
+  },
+  "f_more_d900": {
+    "message": "More"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Most positive first"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Most positive first · {n} items",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Mute (leave out of All sources)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "New items arrived since this recap — Refresh to include them."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "New posts land here. Skim, summarize what matters, clear the rest."
+  },
+  "f_newer_f04a": {
+    "message": "Newer"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Newest first"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Next day with items"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "No feed found at that address"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "No feeds yet. Add one below or import an OPML file."
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "No items on that day"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "No items to recap here."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "No new feeds in that file"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "No sources match."
+  },
+  "f_no_b8a2": {
+    "message": "No 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Not a valid OPML file"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Not a valid feed"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Nothing matches these filters."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Nothing new today yet. Try Refresh."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Nothing to export yet"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Nothing to score"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "Nothing visible on that day with the current filters"
+  },
+  "f_older_d101": {
+    "message": "Older"
+  },
+  "f_only_show_day_efde": {
+    "message": "Only show day"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Open a website in the current tab first"
+  },
+  "f_open_c3b4": {
+    "message": "Open ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Paste any site address. We find its feed for you."
+  },
+  "f_pause_bf2d": {
+    "message": "Pause"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Pick a day"
+  },
+  "f_play_6f83": {
+    "message": "Play"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Play episode in AISH"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Playback speed"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Plays only while this window is open"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Podcast by the author · design, life & tech"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Podcast player"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Previous day with items"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "Range starts {day} — tap the last day.",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Recap copied"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Recap failed"
+  },
+  "f_refresh_aad4": {
+    "message": "Refresh"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "Remove tag {tag}",
+    "description": "Placeholders: {tag} (keep as is)"
+  },
+  "f_request_failed_3b37": {
+    "message": "Request failed"
+  },
+  "f_reset_a560": {
+    "message": "Reset"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "Scored {n} item with AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "Scored {n} items with AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "Scoring with AI… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_search_sources_e053": {
+    "message": "Search sources…"
+  },
+  "f_seek_13d1": {
+    "message": "Seek"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "Sending {n} titles and short snippets to your AI connection.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Show all items"
+  },
+  "f_show_more_older_6f85": {
+    "message": "Show {n} more · {m} older",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Shows a badge on the toolbar icon when new items arrive"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Site or feed address…"
+  },
+  "f_sort_a7f1": {
+    "message": "Sort"
+  },
+  "f_source_a3f8": {
+    "message": "Source"
+  },
+  "f_sources_73d1": {
+    "message": "Sources"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Starring an item summarizes it in a background tab"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "Subscribed to {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Subscriptions · OPML · behavior"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Subscriptions · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_suggested_fdec": {
+    "message": "Suggested"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept."
+  },
+  "f_summarized_415a": {
+    "message": "Summarized"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Summarizing in the background — it will show up under Summarize and History"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Summarizing the open tab — it will show up under Summarize and History"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "Summarizing {n} in the background — see History",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "Switch sort to Newest first to jump to a day"
+  },
+  "f_tags_a0c0": {
+    "message": "Tags"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "The AI reply could not be read"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "The AI returned an empty recap"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "These items are already scored"
+  },
+  "f_today_775e": {
+    "message": "Today"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Today’s briefing"
+  },
+  "f_try_again_90fa": {
+    "message": "Try again"
+  },
+  "f_undo_4acf": {
+    "message": "Undo"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Unmute (include in All sources)"
+  },
+  "f_unread_c982": {
+    "message": "Unread"
+  },
+  "f_unread_4dff": {
+    "message": "Unread · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Unsubscribe"
+  },
+  "f_world_news_0f72": {
+    "message": "World news"
+  },
+  "f_yesterday_68c7": {
+    "message": "Yesterday"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "You have a saved summary of this page"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Your feeds stay on this device."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "You’re all caught up. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "last {n} days",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, no items",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} item",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} items",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_recap_8d18": {
+    "message": "{label} recap",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_feed_d469": {
+    "message": "{n} feed",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} feed could not be loaded",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} feeds",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} feeds could not be loaded",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_item_9ea2": {
+    "message": "{n} item",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_0303": {
+    "message": "{n} items",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "{n} new today across {s} source · {u} unread",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "{n} new today across {s} sources · {u} unread",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_tag_63cf": {
+    "message": "{n} tag",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_00f4": {
+    "message": "{n} tags",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unread_e786": {
+    "message": "{n} unread",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_d_7af5": {
+    "message": "{n}d",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_h_8141": {
+    "message": "{n}h",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_m_85fa": {
+    "message": "{n}m",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Date & mood"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Refresh"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Pause"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Play"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Today’s briefing"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Manage feeds & tags in Settings  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  All items here are scored"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Mark everything in this view read"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Mark read when opened"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ Summarized"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  AI recap of today"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Auto-summarize favorites"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Recap"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Summarize"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ Summarize top 5 unread"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Writing recap…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 View summary"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  Pick a day or range…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 Export OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  Import OPML file"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  Import OPML file…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 Import OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  All sources"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Refresh feeds every"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Check in the background"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Keep items for"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Positive only"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 Mostly positive"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Mixed"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 Mostly heavy"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Score unscored visible items with AI"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  Score {n} unscored item with AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  Score {n} unscored items with AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Use current site"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Add"
   }
 }

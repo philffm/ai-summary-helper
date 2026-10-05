@@ -334,5 +334,659 @@
   },
   "settingsFeeds": {
     "message": "Feeds"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} bereits erledigt)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Tag"
+  },
+  "f_tag_2f9e": {
+    "message": "+ Tag"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} weitere"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 Std."
+  },
+  "f_1_year_98a5": {
+    "message": "1 Jahr"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 Min."
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 Std."
+  },
+  "f_30_days_2af9": {
+    "message": "30 Tage"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 Min."
+  },
+  "f_7_days_8279": {
+    "message": "7 Tage"
+  },
+  "f_90_days_9817": {
+    "message": "90 Tage"
+  },
+  "f_ai_category_acf9": {
+    "message": "KI-Kategorie"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "KI-Rückblick des Tages"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "KI-Anfrage fehlgeschlagen"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "KI-Bewertung fehlgeschlagen"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "KI-generiert aus {n} Schlagzeilen und Snippets. Erstellt um {time}. Ersetzt kein Lesen."
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "KI: belastende News"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "KI: positive News"
+  },
+  "f_add_aa14": {
+    "message": "Hinzufügen"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Feed hinzufügen"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Website oder Feed-URL…"
+  },
+  "f_add_feed_1688": {
+    "message": "Feed hinzufügen"
+  },
+  "f_add_tag_1074": {
+    "message": "Tag hinzufügen"
+  },
+  "f_all_e364": {
+    "message": "Alle"
+  },
+  "f_all_sources_0e1e": {
+    "message": "Alle Quellen"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Bewertung läuft bereits"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Bereits abonniert"
+  },
+  "f_any_mood_9630": {
+    "message": "Jede Stimmung"
+  },
+  "f_any_time_95a6": {
+    "message": "Jederzeit"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Audiowiedergabe hier nicht verfügbar"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "15 Sek. zurück"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Hintergrundskript veraltet – Erweiterung unter chrome://extensions neu laden"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "Sammelzusammenfassung läuft im Erweiterungsmodus. Im Bildschirm „Zusammenfassen“ umschalten."
+  },
+  "f_behavior_a447": {
+    "message": "Verhalten"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Quelle wählen"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Datum zurücksetzen"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Filter löschen"
+  },
+  "f_close_player_c464": {
+    "message": "Player schließen"
+  },
+  "f_copy_3664": {
+    "message": "Kopieren"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Kopieren fehlgeschlagen"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "Feed nicht hinzugefügt"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "Tab nicht lesbar"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "Wiedergabe nicht gestartet"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "Dunkler = mehr Einträge · Umrandung = heute · Tag gedrückt halten, dann zweiten für Zeitraum"
+  },
+  "f_date_7379": {
+    "message": "Datum"
+  },
+  "f_date_mood_799e": {
+    "message": "Datum & Stimmung"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · internationale Nachrichten"
+  },
+  "f_done_1791": {
+    "message": "Fertig"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Gültige Adresse eingeben"
+  },
+  "f_episode_f972": {
+    "message": "Folge"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Alles Ungelesene bereits zusammengefasst"
+  },
+  "f_failed_c3d4": {
+    "message": "Fehlgeschlagen"
+  },
+  "f_favorite_19ed": {
+    "message": "Favorit"
+  },
+  "f_favorites_53ba": {
+    "message": "Favoriten"
+  },
+  "f_feed_name_68fc": {
+    "message": "Feed-Name"
+  },
+  "f_feeds_8b02": {
+    "message": "Feeds"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Folge deinen Seiten"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "30 Sek. vor"
+  },
+  "f_hide_negative_6410": {
+    "message": "Negatives ausblenden"
+  },
+  "f_import_failed_aa11": {
+    "message": "Import fehlgeschlagen"
+  },
+  "f_imported_feed_349f": {
+    "message": "{n} Feed importiert"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "{n} Feeds importiert"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Unabhängiger Investigativjournalismus"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Unabhängige Tech-Kontrolle"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Unabhängiger Tech-Journalismus"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Geöffnete oder zusammengefasste Einträge verlassen „Ungelesen“"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "Zu Tag springen"
+  },
+  "f_last_7_days_d98f": {
+    "message": "Letzte 7 Tage"
+  },
+  "f_loading_4ae3": {
+    "message": "Lädt…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Gelesen"
+  },
+  "f_mark_unread_7147": {
+    "message": "Ungelesen"
+  },
+  "f_mark_read_c994": {
+    "message": "{n} als gelesen markieren"
+  },
+  "f_marked_read_2e9b": {
+    "message": "{n} als gelesen markiert"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "{n} als ungelesen markiert"
+  },
+  "f_mood_551e": {
+    "message": "Stimmung"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Stimmung (KI {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "Die Stimmung stammt nur aus der KI-Bewertung – nicht bewertete Einträge haben keine Stimmung und werden vom Filter nie ausgeblendet. Beim Klick werden Titel und kurze Snippets an deine KI-Verbindung gesendet."
+  },
+  "f_mood_d12b": {
+    "message": "Stimmung ↓"
+  },
+  "f_more_d900": {
+    "message": "Mehr"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Positivste zuerst"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Positivste zuerst · {n} Einträge"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Stumm (nicht in Alle Quellen)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "Neue Einträge seit diesem Rückblick – Aktualisieren, um sie einzubeziehen."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "Neue Beiträge landen hier. Überfliegen, Wichtiges zusammenfassen, Rest löschen."
+  },
+  "f_newer_f04a": {
+    "message": "Neuer"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Neueste zuerst"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Nächster Tag mit Einträgen"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "Kein Feed unter dieser Adresse"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "Noch keine Feeds. Unten hinzufügen oder OPML-Datei importieren."
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "Keine Einträge an diesem Tag"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "Nichts zum Zusammenfassen."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "Keine neuen Feeds in der Datei"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "Keine passenden Quellen."
+  },
+  "f_no_b8a2": {
+    "message": "Kein 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Ungültige OPML-Datei"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Ungültiger Feed"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Keine Treffer für diese Filter."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Heute noch nichts Neues. Aktualisieren versuchen."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Noch nichts zu exportieren"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Nichts zu bewerten"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "Mit den aktuellen Filtern nichts sichtbar"
+  },
+  "f_older_d101": {
+    "message": "Älter"
+  },
+  "f_only_show_day_efde": {
+    "message": "Nur dieser Tag"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Zuerst eine Website im Tab öffnen"
+  },
+  "f_open_c3b4": {
+    "message": "Öffnen ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Beliebige Website-Adresse einfügen. Wir finden den Feed."
+  },
+  "f_pause_bf2d": {
+    "message": "Pause"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Tag wählen"
+  },
+  "f_play_6f83": {
+    "message": "Abspielen"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Folge in AISH abspielen"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Tempo"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Läuft nur bei geöffnetem Fenster"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Podcast des Autors · Design, Leben & Tech"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Podcast-Player"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Voriger Tag mit Einträgen"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "Zeitraum ab {day} – letzten Tag tippen."
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Rückblick kopiert"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Rückblick fehlgeschlagen"
+  },
+  "f_refresh_aad4": {
+    "message": "Aktualisieren"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "Tag {tag} entfernen"
+  },
+  "f_request_failed_3b37": {
+    "message": "Anfrage fehlgeschlagen"
+  },
+  "f_reset_a560": {
+    "message": "Zurücksetzen"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "{n} Eintrag mit KI bewertet"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "{n} Einträge mit KI bewertet"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "KI-Bewertung… {a}/{b}"
+  },
+  "f_search_sources_e053": {
+    "message": "Quellen suchen…"
+  },
+  "f_seek_13d1": {
+    "message": "Springen"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "{n} Titel und kurze Snippets werden an deine KI-Verbindung gesendet."
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Alle anzeigen"
+  },
+  "f_show_more_older_6f85": {
+    "message": "{n} weitere · {m} ältere zeigen"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Zeigt ein Badge am Symbol bei neuen Einträgen"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Website oder Feed-URL…"
+  },
+  "f_sort_a7f1": {
+    "message": "Sortieren"
+  },
+  "f_source_a3f8": {
+    "message": "Quelle"
+  },
+  "f_sources_73d1": {
+    "message": "Quellen"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Mit Stern wird im Hintergrund-Tab zusammengefasst"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "{name} abonniert"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Abos · OPML · Verhalten"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Abos · {n}"
+  },
+  "f_suggested_fdec": {
+    "message": "Vorschläge"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "„Zusammenfassen“ bei einem Eintrag folgt dem Modus im Bildschirm „Zusammenfassen“ (standardmäßig Erweiterung). Favoriten bleiben immer erhalten."
+  },
+  "f_summarized_415a": {
+    "message": "Zusammengefasst"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Wird im Hintergrund zusammengefasst – erscheint unter Zusammenfassen und Verlauf"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Offener Tab wird zusammengefasst – erscheint unter Zusammenfassen und Verlauf"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "{n} werden im Hintergrund zusammengefasst – siehe Verlauf"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "Für Tagessprung nach „Neueste zuerst“ sortieren"
+  },
+  "f_tags_a0c0": {
+    "message": "Tags"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "KI-Antwort nicht lesbar"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "KI lieferte leeren Rückblick"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "Bereits bewertet"
+  },
+  "f_today_775e": {
+    "message": "Heute"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Heute im Überblick"
+  },
+  "f_try_again_90fa": {
+    "message": "Erneut versuchen"
+  },
+  "f_undo_4acf": {
+    "message": "Rückgängig"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Stumm aus (in Alle Quellen)"
+  },
+  "f_unread_c982": {
+    "message": "Ungelesen"
+  },
+  "f_unread_4dff": {
+    "message": "Ungelesen · {n}"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Abbestellen"
+  },
+  "f_world_news_0f72": {
+    "message": "Weltnachrichten"
+  },
+  "f_yesterday_68c7": {
+    "message": "Gestern"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "Zusammenfassung dieser Seite gespeichert"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Deine Feeds bleiben auf diesem Gerät."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "Alles gelesen. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "letzte {n} Tage"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, keine Einträge"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} Eintrag"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} Einträge"
+  },
+  "f_recap_8d18": {
+    "message": "Rückblick: {label}"
+  },
+  "f_feed_d469": {
+    "message": "{n} Feed"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} Feed nicht ladbar"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} Feeds"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} Feeds nicht ladbar"
+  },
+  "f_item_9ea2": {
+    "message": "{n} Eintrag"
+  },
+  "f_items_0303": {
+    "message": "{n} Einträge"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "heute {n} neu aus {s} Quelle · {u} ungelesen"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "heute {n} neu aus {s} Quellen · {u} ungelesen"
+  },
+  "f_tag_63cf": {
+    "message": "{n} Tag"
+  },
+  "f_tags_00f4": {
+    "message": "{n} Tags"
+  },
+  "f_unread_e786": {
+    "message": "{n} ungelesen"
+  },
+  "f_d_7af5": {
+    "message": "{n} T"
+  },
+  "f_h_8141": {
+    "message": "{n} Std"
+  },
+  "f_m_85fa": {
+    "message": "{n} Min"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Datum & Stimmung"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Aktualisieren"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Pause"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Abspielen"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Heute im Überblick"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Feeds & Tags in Einstellungen  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  Alles bewertet"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Alle hier als gelesen markieren"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Beim Öffnen gelesen"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ Zusammengefasst"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  KI-Rückblick heute"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Favoriten auto-zusammenfassen"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Rückblick"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Zusammenfassen"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ Top 5 Ungelesene zusammenfassen"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Rückblick wird erstellt…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 Zusammenfassung ansehen"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  Tag oder Zeitraum wählen…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 OPML exportieren"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  OPML-Datei importieren"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  OPML-Datei importieren…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 OPML importieren"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  Alle Quellen"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Feeds aktualisieren alle"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Im Hintergrund prüfen"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Einträge behalten"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Nur positive"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 Überwiegend positiv"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Gemischt"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 Überwiegend belastend"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Sichtbare unbewertete per KI bewerten"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  {n} unbewerteten Eintrag bewerten"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  {n} unbewertete Einträge bewerten"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Aktuelle Seite nutzen"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Hinzufügen"
   }
 }

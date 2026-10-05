@@ -328,5 +328,659 @@
   },
   "settingsFeeds": {
     "message": "訂閱源"
+  },
+  "f_already_done_9f26": {
+    "message": "(已完成 {n})"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ 標籤"
+  },
+  "f_tag_2f9e": {
+    "message": "+ 標籤"
+  },
+  "f_more_95cf": {
+    "message": "+ 另 {n} 項"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1小時"
+  },
+  "f_1_year_98a5": {
+    "message": "1年"
+  },
+  "f_15_minutes_276a": {
+    "message": "15分鐘"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3小時"
+  },
+  "f_30_days_2af9": {
+    "message": "30天"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30分鐘"
+  },
+  "f_7_days_8279": {
+    "message": "7天"
+  },
+  "f_90_days_9817": {
+    "message": "90天"
+  },
+  "f_ai_category_acf9": {
+    "message": "AI 分類"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "當日 AI 摘要"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "AI 請求失敗"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "AI 評分失敗"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "AI 根據 {n} 則標題與摘要生成於 {time}，僅供參考。"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "AI 評級：負面"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "AI 評級：正面"
+  },
+  "f_add_aa14": {
+    "message": "新增"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "新增訂閱源"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "輸入網站或訂閱網址…"
+  },
+  "f_add_feed_1688": {
+    "message": "新增訂閱"
+  },
+  "f_add_tag_1074": {
+    "message": "新增標籤"
+  },
+  "f_all_e364": {
+    "message": "全部"
+  },
+  "f_all_sources_0e1e": {
+    "message": "全部來源"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "評分中，請稍候"
+  },
+  "f_already_subscribed_0935": {
+    "message": "已訂閱"
+  },
+  "f_any_mood_9630": {
+    "message": "不限情緒"
+  },
+  "f_any_time_95a6": {
+    "message": "不限時間"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "此處無法播放音訊"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "倒退 15 秒"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "背景指令碼已過期，請至 chrome://extensions 重新載入擴充功能"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "批次摘要僅限擴充功能模式，請至「摘要」頁切換。"
+  },
+  "f_behavior_a447": {
+    "message": "行為"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "選擇來源"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "清除日期"
+  },
+  "f_clear_filters_53c9": {
+    "message": "清除篩選"
+  },
+  "f_close_player_c464": {
+    "message": "關閉播放器"
+  },
+  "f_copy_3664": {
+    "message": "複製"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "複製失敗"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "新增失敗"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "無法讀取目前分頁"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "無法播放"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "越深項目越多 · 外框為今天 · 長按一天再點另一天可選範圍"
+  },
+  "f_date_7379": {
+    "message": "日期"
+  },
+  "f_date_mood_799e": {
+    "message": "日期與情緒"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · 國際新聞"
+  },
+  "f_done_1791": {
+    "message": "完成"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "請輸入有效網址"
+  },
+  "f_episode_f972": {
+    "message": "單集"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "未讀皆已摘要"
+  },
+  "f_failed_c3d4": {
+    "message": "失敗"
+  },
+  "f_favorite_19ed": {
+    "message": "收藏"
+  },
+  "f_favorites_53ba": {
+    "message": "收藏"
+  },
+  "f_feed_name_68fc": {
+    "message": "訂閱名稱"
+  },
+  "f_feeds_8b02": {
+    "message": "訂閱"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "追蹤你常讀的網站"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "快轉 30 秒"
+  },
+  "f_hide_negative_6410": {
+    "message": "隱藏負面"
+  },
+  "f_import_failed_aa11": {
+    "message": "匯入失敗"
+  },
+  "f_imported_feed_349f": {
+    "message": "已匯入 {n} 個訂閱"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "已匯入 {n} 個訂閱"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "獨立調查報導"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "獨立科技問責"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "獨立科技報導"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "開啟或摘要的項目會移出未讀"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "跳至某日"
+  },
+  "f_last_7_days_d98f": {
+    "message": "近 7 天"
+  },
+  "f_loading_4ae3": {
+    "message": "載入中…"
+  },
+  "f_mark_read_94d4": {
+    "message": "標為已讀"
+  },
+  "f_mark_unread_7147": {
+    "message": "標為未讀"
+  },
+  "f_mark_read_c994": {
+    "message": "標 {n} 項已讀"
+  },
+  "f_marked_read_2e9b": {
+    "message": "已讀 {n} 項"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "未讀 {n} 項"
+  },
+  "f_mood_551e": {
+    "message": "情緒"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "情緒（AI 已評 {r}/{n}）：😊 {p} · 😐 {m} · 😟 {g}"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "情緒僅來自 AI 評分；未評分的項目沒有情緒，也不會被情緒篩選隱藏。點擊評分時，標題與簡短摘要會傳送至你的 AI 連線。"
+  },
+  "f_mood_d12b": {
+    "message": "情緒 ↓"
+  },
+  "f_more_d900": {
+    "message": "更多"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "最正面優先"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "最正面優先 · {n} 項"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "靜音（不納入全部來源）"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "有新項目，重新整理即可納入。"
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "新文章會彙整於此：瀏覽、摘要重點、清空其餘。"
+  },
+  "f_newer_f04a": {
+    "message": "較新"
+  },
+  "f_newest_first_b9c5": {
+    "message": "最新優先"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "下一個有內容的日期"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "該網址找不到訂閱源"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "還沒有訂閱。在下方新增，或匯入 OPML 檔案。"
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "當天沒有項目"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "這裡沒有可摘要的項目。"
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "檔案中沒有新訂閱"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "沒有符合的來源。"
+  },
+  "f_no_b8a2": {
+    "message": "無 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "不是有效的 OPML 檔案"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "不是有效的訂閱源"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "沒有符合篩選的內容。"
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "今天還沒有新內容，試試重新整理。"
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "暫無可匯出內容"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "無需評分"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "目前篩選下當天無內容"
+  },
+  "f_older_d101": {
+    "message": "較早"
+  },
+  "f_only_show_day_efde": {
+    "message": "僅看當天"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "請先在目前分頁開啟網站"
+  },
+  "f_open_c3b4": {
+    "message": "開啟 ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "貼上任一網址，自動尋找訂閱源。"
+  },
+  "f_pause_bf2d": {
+    "message": "暫停"
+  },
+  "f_pick_a_day_d249": {
+    "message": "選擇日期"
+  },
+  "f_play_6f83": {
+    "message": "播放"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "在 AISH 播放"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "播放速度"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "僅在此視窗開啟時播放"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "作者的 Podcast · 設計、生活與科技"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Podcast 播放器"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "上一個有內容的日期"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "範圍起於 {day}，點選結束日。"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "已複製摘要"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "摘要失敗"
+  },
+  "f_refresh_aad4": {
+    "message": "重新整理"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "移除標籤 {tag}"
+  },
+  "f_request_failed_3b37": {
+    "message": "請求失敗"
+  },
+  "f_reset_a560": {
+    "message": "重設"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "AI 已評分 {n} 項"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "AI 已評分 {n} 項"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "AI 評分中… {a}/{b}"
+  },
+  "f_search_sources_e053": {
+    "message": "搜尋來源…"
+  },
+  "f_seek_13d1": {
+    "message": "跳轉"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "正在向 AI 傳送 {n} 則標題與簡短摘要。"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "顯示全部"
+  },
+  "f_show_more_older_6f85": {
+    "message": "再顯示 {n} · 更早 {m}"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "有新項目時在工具列圖示顯示徽章"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "網站或訂閱網址…"
+  },
+  "f_sort_a7f1": {
+    "message": "排序"
+  },
+  "f_source_a3f8": {
+    "message": "來源"
+  },
+  "f_sources_73d1": {
+    "message": "來源"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "收藏後在背景分頁自動摘要"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "已訂閱 {name}"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "訂閱 · OPML · 行為"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "訂閱 · {n}"
+  },
+  "f_suggested_fdec": {
+    "message": "推薦"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "訂閱項目上的「摘要」依摘要頁所選模式（預設為擴充功能）。收藏一律保留。"
+  },
+  "f_summarized_415a": {
+    "message": "已摘要"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "背景摘要中，完成後見「摘要」與「歷史」"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "正在摘要目前頁面，完成後見「摘要」與「歷史」"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "背景摘要 {n} 項，見「歷史」"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "將排序切換為「最新優先」才能跳至日期"
+  },
+  "f_tags_a0c0": {
+    "message": "標籤"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "無法解析 AI 回覆"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "AI 回傳了空白摘要"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "這些項目已評分"
+  },
+  "f_today_775e": {
+    "message": "今天"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "今日簡報"
+  },
+  "f_try_again_90fa": {
+    "message": "重試"
+  },
+  "f_undo_4acf": {
+    "message": "復原"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "取消靜音（納入全部來源）"
+  },
+  "f_unread_c982": {
+    "message": "未讀"
+  },
+  "f_unread_4dff": {
+    "message": "未讀 · {n}"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "取消訂閱"
+  },
+  "f_world_news_0f72": {
+    "message": "國際新聞"
+  },
+  "f_yesterday_68c7": {
+    "message": "昨天"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "已儲存此頁摘要"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "訂閱僅儲存於本裝置。"
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "已全部看完。🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "近 {n} 天"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}，無項目"
+  },
+  "f_item_9b88": {
+    "message": "{day}，{n} 項"
+  },
+  "f_items_8c21": {
+    "message": "{day}，{n} 項"
+  },
+  "f_recap_8d18": {
+    "message": "{label}摘要"
+  },
+  "f_feed_d469": {
+    "message": "{n} 個訂閱"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} 個訂閱載入失敗"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} 個訂閱"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} 個訂閱載入失敗"
+  },
+  "f_item_9ea2": {
+    "message": "{n} 項"
+  },
+  "f_items_0303": {
+    "message": "{n} 項"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "今日新增 {n} · {s} 個來源 · 未讀 {u}"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "今日新增 {n} · {s} 個來源 · 未讀 {u}"
+  },
+  "f_tag_63cf": {
+    "message": "{n} 個標籤"
+  },
+  "f_tags_00f4": {
+    "message": "{n} 個標籤"
+  },
+  "f_unread_e786": {
+    "message": "{n} 未讀"
+  },
+  "f_d_7af5": {
+    "message": "{n}天"
+  },
+  "f_h_8141": {
+    "message": "{n}小時"
+  },
+  "f_m_85fa": {
+    "message": "{n}分"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ 日期與情緒"
+  },
+  "f_refresh_f095": {
+    "message": "↻ 重新整理"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ 暫停"
+  },
+  "f_play_ffa1": {
+    "message": "▶ 播放"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  今日簡報"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  在設定中管理訂閱和標籤  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  此處已全部評分"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  全部標為已讀"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ 開啟即標已讀"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ 已摘要"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  今日 AI 摘要"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ 自動摘要收藏"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ 摘要"
+  },
+  "f_summarize_570a": {
+    "message": "✨ 摘要"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ 摘要前 5 則未讀"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ 產生摘要…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 檢視摘要"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  選擇日期或範圍…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 匯出 OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  匯入 OPML 檔案"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  匯入 OPML 檔案…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 匯入 OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  全部來源"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 更新間隔"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 背景檢查"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ 保留時間"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  僅正面"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 偏正面"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 混合"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 偏負面"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  AI 評分未評分項"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  AI 評分 {n} 項未評分"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  AI 評分 {n} 項未評分"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  用目前網站"
+  },
+  "f_add_8e3d": {
+    "message": "＋ 新增"
   }
 }

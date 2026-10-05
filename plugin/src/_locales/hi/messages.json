@@ -328,5 +328,659 @@
   },
   "settingsFeeds": {
     "message": "फ़ीड्स"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} पहले ही हो चुके)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ टैग"
+  },
+  "f_tag_2f9e": {
+    "message": "+ टैग"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} और"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 घंटा"
+  },
+  "f_1_year_98a5": {
+    "message": "1 साल"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 मिनट"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 घंटे"
+  },
+  "f_30_days_2af9": {
+    "message": "30 दिन"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 मिनट"
+  },
+  "f_7_days_8279": {
+    "message": "7 दिन"
+  },
+  "f_90_days_9817": {
+    "message": "90 दिन"
+  },
+  "f_ai_category_acf9": {
+    "message": "AI श्रेणी"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "इस दिन का AI सार"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "AI अनुरोध विफल"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "AI स्कोरिंग विफल"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "{n} शीर्षकों और अंशों से AI ने {time} पर बनाया। पढ़ने का विकल्प नहीं।"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "AI: नकारात्मक ख़बरें"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "AI: सकारात्मक ख़बरें"
+  },
+  "f_add_aa14": {
+    "message": "जोड़ें"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "फ़ीड जोड़ें"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "साइट या फ़ीड का पता…"
+  },
+  "f_add_feed_1688": {
+    "message": "फ़ीड जोड़ें"
+  },
+  "f_add_tag_1074": {
+    "message": "टैग जोड़ें"
+  },
+  "f_all_e364": {
+    "message": "सभी"
+  },
+  "f_all_sources_0e1e": {
+    "message": "सभी स्रोत"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "स्कोरिंग जारी है — रुकें"
+  },
+  "f_already_subscribed_0935": {
+    "message": "पहले से सब्सक्राइब्ड"
+  },
+  "f_any_mood_9630": {
+    "message": "कोई भी मूड"
+  },
+  "f_any_time_95a6": {
+    "message": "कभी भी"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "यहाँ ऑडियो उपलब्ध नहीं"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "15 सेकंड पीछे"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "बैकग्राउंड स्क्रिप्ट पुरानी है — chrome://extensions पर एक्सटेंशन रीलोड करें"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "बैच सारांश एक्सटेंशन मोड में चलता है। सारांश स्क्रीन पर बदलें।"
+  },
+  "f_behavior_a447": {
+    "message": "व्यवहार"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "स्रोत चुनें"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "तारीख़ फ़िल्टर हटाएँ"
+  },
+  "f_clear_filters_53c9": {
+    "message": "फ़िल्टर हटाएँ"
+  },
+  "f_close_player_c464": {
+    "message": "प्लेयर बंद करें"
+  },
+  "f_copy_3664": {
+    "message": "कॉपी"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "कॉपी विफल"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "फ़ीड नहीं जुड़ी"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "मौजूदा टैब नहीं पढ़ा जा सका"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "प्लेबैक शुरू नहीं हुआ"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "गहरा = ज़्यादा आइटम · आउटलाइन = आज · रेंज के लिए एक दिन दबाए रखें, फिर दूसरा"
+  },
+  "f_date_7379": {
+    "message": "तारीख़"
+  },
+  "f_date_mood_799e": {
+    "message": "तारीख़ व मूड"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · अंतरराष्ट्रीय ख़बरें"
+  },
+  "f_done_1791": {
+    "message": "हो गया"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "सही वेब पता डालें"
+  },
+  "f_episode_f972": {
+    "message": "एपिसोड"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "सभी अनपढ़े का सारांश बन चुका"
+  },
+  "f_failed_c3d4": {
+    "message": "विफल"
+  },
+  "f_favorite_19ed": {
+    "message": "पसंदीदा"
+  },
+  "f_favorites_53ba": {
+    "message": "पसंदीदा"
+  },
+  "f_feed_name_68fc": {
+    "message": "फ़ीड का नाम"
+  },
+  "f_feeds_8b02": {
+    "message": "फ़ीड"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "पसंदीदा साइट फ़ॉलो करें"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "30 सेकंड आगे"
+  },
+  "f_hide_negative_6410": {
+    "message": "नकारात्मक छिपाएँ"
+  },
+  "f_import_failed_aa11": {
+    "message": "इंपोर्ट विफल"
+  },
+  "f_imported_feed_349f": {
+    "message": "{n} फ़ीड इंपोर्ट हुईं"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "{n} फ़ीड इंपोर्ट हुईं"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "स्वतंत्र खोजी पत्रकारिता"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "टेक जवाबदेही, स्वतंत्र"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "स्वतंत्र टेक पत्रकारिता"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "खोले या सारांशित आइटम अनपढ़ी सूची से हट जाते हैं"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "दिन पर जाएँ"
+  },
+  "f_last_7_days_d98f": {
+    "message": "पिछले 7 दिन"
+  },
+  "f_loading_4ae3": {
+    "message": "लोड हो रहा है…"
+  },
+  "f_mark_read_94d4": {
+    "message": "पढ़ा हुआ"
+  },
+  "f_mark_unread_7147": {
+    "message": "अनपढ़ा"
+  },
+  "f_mark_read_c994": {
+    "message": "{n} पढ़ा हुआ करें"
+  },
+  "f_marked_read_2e9b": {
+    "message": "{n} पढ़े गए"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "{n} अनपढ़े किए"
+  },
+  "f_mood_551e": {
+    "message": "मूड"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "मूड (AI रेटेड {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "मूड सिर्फ़ AI स्कोरिंग से आता है — बिना स्कोर वाले आइटम का कोई मूड नहीं होता और वे मूड फ़िल्टर से कभी नहीं छिपते। क्लिक करने पर शीर्षक और छोटे अंश आपके AI कनेक्शन को भेजे जाते हैं।"
+  },
+  "f_mood_d12b": {
+    "message": "मूड ↓"
+  },
+  "f_more_d900": {
+    "message": "और"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "पहले सकारात्मक"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "पहले सकारात्मक · {n}"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "म्यूट (सभी स्रोत से बाहर)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "इस सार के बाद नए आइटम आए — शामिल करने को रीफ़्रेश करें।"
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "नई पोस्ट यहाँ आती हैं। देखें, ज़रूरी का सारांश बनाएँ, बाक़ी हटाएँ।"
+  },
+  "f_newer_f04a": {
+    "message": "नया"
+  },
+  "f_newest_first_b9c5": {
+    "message": "सबसे नया पहले"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "आइटम वाला अगला दिन"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "इस पते पर फ़ीड नहीं मिली"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "अभी कोई फ़ीड नहीं। नीचे जोड़ें या OPML फ़ाइल इंपोर्ट करें।"
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "इस दिन कोई आइटम नहीं"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "यहाँ सार के लिए कोई आइटम नहीं।"
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "फ़ाइल में कोई नई फ़ीड नहीं"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "कोई स्रोत नहीं मिला।"
+  },
+  "f_no_b8a2": {
+    "message": "😟 नहीं"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "OPML फ़ाइल सही नहीं"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "फ़ीड सही नहीं"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "फ़िल्टर से कुछ नहीं मिला।"
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "आज अभी कुछ नया नहीं। रीफ़्रेश करें।"
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "एक्सपोर्ट के लिए कुछ नहीं"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "स्कोर के लिए कुछ नहीं"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "इन फ़िल्टर के साथ उस दिन कुछ नहीं दिखता"
+  },
+  "f_older_d101": {
+    "message": "पुराना"
+  },
+  "f_only_show_day_efde": {
+    "message": "सिर्फ़ यह दिन"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "पहले इस टैब में कोई वेबसाइट खोलें"
+  },
+  "f_open_c3b4": {
+    "message": "खोलें ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "कोई भी साइट पता पेस्ट करें। फ़ीड हम ढूँढेंगे।"
+  },
+  "f_pause_bf2d": {
+    "message": "रोकें"
+  },
+  "f_pick_a_day_d249": {
+    "message": "दिन चुनें"
+  },
+  "f_play_6f83": {
+    "message": "चलाएँ"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "AISH में चलाएँ"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "स्पीड"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "सिर्फ़ तब चलता है जब यह विंडो खुली हो"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "लेखक का पॉडकास्ट · डिज़ाइन, जीवन और टेक"
+  },
+  "f_podcast_player_4be4": {
+    "message": "पॉडकास्ट प्लेयर"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "आइटम वाला पिछला दिन"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "रेंज {day} से शुरू — आख़िरी दिन चुनें।"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "सार कॉपी हुआ"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "सार विफल"
+  },
+  "f_refresh_aad4": {
+    "message": "रीफ़्रेश"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "टैग {tag} हटाएँ"
+  },
+  "f_request_failed_3b37": {
+    "message": "अनुरोध विफल"
+  },
+  "f_reset_a560": {
+    "message": "रीसेट"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "AI से स्कोर किए: {n}"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "AI से स्कोर किए: {n}"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "AI स्कोरिंग… {a}/{b}"
+  },
+  "f_search_sources_e053": {
+    "message": "स्रोत खोजें…"
+  },
+  "f_seek_13d1": {
+    "message": "सीक"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "{n} शीर्षक और छोटे अंश आपके AI को भेजे जा रहे हैं।"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "सभी दिखाएँ"
+  },
+  "f_show_more_older_6f85": {
+    "message": "{n} और दिखाएँ · {m} पुराने"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "नए आइटम आने पर टूलबार आइकन पर बैज दिखता है"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "साइट या फ़ीड का पता…"
+  },
+  "f_sort_a7f1": {
+    "message": "क्रम"
+  },
+  "f_source_a3f8": {
+    "message": "स्रोत"
+  },
+  "f_sources_73d1": {
+    "message": "स्रोत"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "स्टार करने पर आइटम का सारांश बैकग्राउंड टैब में बनता है"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "{name} सब्सक्राइब किया"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "सब्सक्रिप्शन · OPML · व्यवहार"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "सब्सक्रिप्शन · {n}"
+  },
+  "f_suggested_fdec": {
+    "message": "सुझाव"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "फ़ीड आइटम पर सारांश वही मोड लेता है जो सारांश स्क्रीन पर चुना है (डिफ़ॉल्ट: एक्सटेंशन)। पसंदीदा हमेशा रखे जाते हैं।"
+  },
+  "f_summarized_415a": {
+    "message": "सारांशित"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "बैकग्राउंड में सारांश बन रहा है — सारांश और इतिहास में दिखेगा"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "खुले टैब का सारांश बन रहा है — सारांश और इतिहास में दिखेगा"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "{n} का सारांश बैकग्राउंड में — इतिहास देखें"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "दिन पर जाने के लिए क्रम 'सबसे नया पहले' करें"
+  },
+  "f_tags_a0c0": {
+    "message": "टैग"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "AI का जवाब पढ़ा नहीं जा सका"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "AI ने खाली सार लौटाया"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "ये आइटम पहले ही स्कोर हो चुके"
+  },
+  "f_today_775e": {
+    "message": "आज"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "आज की ब्रीफ़िंग"
+  },
+  "f_try_again_90fa": {
+    "message": "दोबारा करें"
+  },
+  "f_undo_4acf": {
+    "message": "पूर्ववत"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "अनम्यूट (सभी स्रोत में)"
+  },
+  "f_unread_c982": {
+    "message": "अनपढ़े"
+  },
+  "f_unread_4dff": {
+    "message": "अनपढ़े · {n}"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "अनसब्सक्राइब"
+  },
+  "f_world_news_0f72": {
+    "message": "दुनिया"
+  },
+  "f_yesterday_68c7": {
+    "message": "कल"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "इस पेज का सारांश सेव है"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "आपकी फ़ीड इसी डिवाइस पर रहती हैं।"
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "सब देख लिया। 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "पिछले {n} दिन"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, कोई आइटम नहीं"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} आइटम"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} आइटम"
+  },
+  "f_recap_8d18": {
+    "message": "{label} का सार"
+  },
+  "f_feed_d469": {
+    "message": "{n} फ़ीड"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} फ़ीड लोड नहीं हुई"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} फ़ीड"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} फ़ीड लोड नहीं हुईं"
+  },
+  "f_item_9ea2": {
+    "message": "{n} आइटम"
+  },
+  "f_items_0303": {
+    "message": "{n} आइटम"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "आज {n} नए, {s} स्रोत · {u} अनपढ़े"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "आज {n} नए, {s} स्रोत · {u} अनपढ़े"
+  },
+  "f_tag_63cf": {
+    "message": "{n} टैग"
+  },
+  "f_tags_00f4": {
+    "message": "{n} टैग"
+  },
+  "f_unread_e786": {
+    "message": "{n} अनपढ़े"
+  },
+  "f_d_7af5": {
+    "message": "{n} दि"
+  },
+  "f_h_8141": {
+    "message": "{n} घं"
+  },
+  "f_m_85fa": {
+    "message": "{n} मि"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ तारीख़ व मूड"
+  },
+  "f_refresh_f095": {
+    "message": "↻ रीफ़्रेश"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ रोकें"
+  },
+  "f_play_ffa1": {
+    "message": "▶ चलाएँ"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  आज की ब्रीफ़िंग"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  फ़ीड व टैग सेटिंग्स में  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  सब स्कोर हो चुका"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  यहाँ सब पढ़ा हुआ करें"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ खोलने पर पढ़ा हुआ"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ सारांशित"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  आज का AI सार"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ पसंदीदा का ऑटो-सारांश"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ सार"
+  },
+  "f_summarize_570a": {
+    "message": "✨ सारांश"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ टॉप 5 अनपढ़े का सारांश"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ सार लिख रहा है…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 सारांश देखें"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  दिन या रेंज चुनें…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 OPML एक्सपोर्ट"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  OPML फ़ाइल इंपोर्ट"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  OPML फ़ाइल इंपोर्ट…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 OPML इंपोर्ट"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  सभी स्रोत"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 फ़ीड रीफ़्रेश हर"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 बैकग्राउंड में जाँचें"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ आइटम रखें"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  सिर्फ़ सकारात्मक"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 ज़्यादातर सकारात्मक"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 मिला-जुला"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 ज़्यादातर भारी"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  दिखते बिना-स्कोर आइटम स्कोर करें"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  {n} आइटम AI से स्कोर करें"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  {n} आइटम AI से स्कोर करें"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  मौजूदा साइट"
+  },
+  "f_add_8e3d": {
+    "message": "＋ जोड़ें"
   }
 }

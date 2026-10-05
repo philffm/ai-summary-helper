@@ -6,6 +6,7 @@
  * the background worker's `aiComplete` action.
  */
 
+import { T } from './feedI18n.js';
 export const MAX_RECAP_ITEMS = 40;
 const SNIPPET_MAX = 160;
 
@@ -15,10 +16,10 @@ export function aiComplete(system, user) {
             if (chrome.runtime.lastError) {
                 const m = chrome.runtime.lastError.message || '';
                 return reject(new Error(/port closed|Receiving end/i.test(m)
-                    ? 'Background script is outdated — reload the extension at chrome://extensions'
+                    ? T('Background script is outdated — reload the extension at chrome://extensions')
                     : m));
             }
-            if (!res || !res.ok) return reject(new Error((res && res.error) || 'AI request failed'));
+            if (!res || !res.ok) return reject(new Error((res && res.error) || T('AI request failed')));
             resolve(res.text || '');
         });
     });
@@ -94,7 +95,7 @@ export async function generateRecap(list, subTitleFn) {
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(list, subTitleFn)}`);
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const r = parseRecap(text, chunk.length);
-    if (!r.overview && !r.themes.length) throw new Error('The AI returned an empty recap');
+    if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
 }
 
@@ -135,6 +136,6 @@ export async function scoreItems(list, subTitleFn) {
         + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`;
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`);
     const scores = parseScores(text, chunk.length);
-    if (!scores) throw new Error('The AI reply could not be read');
+    if (!scores) throw new Error(T('The AI reply could not be read'));
     return { scores, labels: parseLabelsJson(text, chunk.length) };
 }

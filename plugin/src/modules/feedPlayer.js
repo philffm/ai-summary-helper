@@ -5,6 +5,7 @@
  * Chrome, background page in Firefox/Safari) so it keeps going when the popup
  * closes. Otherwise it falls back to an engine inside the popup.
  */
+import { T } from './feedI18n.js';
 const POS_KEY = 'feedAudioPos';
 const RATES = [1, 1.25, 1.5, 2, 0.75];
 
@@ -48,7 +49,7 @@ async function ensureBackend() {
         if (!probe) backend = null;
     }
     if (!backend) {
-        if (typeof AishAudio === 'undefined') throw new Error('Audio playback is not available here');
+        if (typeof AishAudio === 'undefined') throw new Error(T('Audio playback is not available here'));
         local = AishAudio.create();
         backend = 'local';
     }
@@ -59,13 +60,13 @@ function paint() {
     const cur = st && st.cur;
     $.bar.hidden = !cur;
     if (!cur) return;
-    $.title.textContent = cur.title || 'Episode';
+    $.title.textContent = cur.title || T('Episode');
     $.title.title = cur.title || '';
     $.source.textContent = cur.source || '';
     if (cur.cover) { if ($.cover.dataset.src !== cur.cover) { $.cover.dataset.src = cur.cover; $.cover.src = cur.cover; } $.cover.hidden = false; $.coverWrap.classList.remove('no-cover'); }
     else { $.cover.hidden = true; $.coverWrap.classList.add('no-cover'); }
     $.toggle.dataset.state = st.playing ? 'playing' : 'paused';
-    $.toggle.setAttribute('aria-label', st.playing ? 'Pause' : 'Play');
+    $.toggle.setAttribute('aria-label', st.playing ? T('Pause') : T('Play'));
     $.seek.max = String(Math.max(1, Math.floor(st.duration || cur.dur || 1)));
     if (!$.seek.matches(':active')) $.seek.value = String(Math.floor(st.time));
     const total = st.duration || cur.dur || 0;
@@ -73,7 +74,7 @@ function paint() {
     $.left.textContent = total ? '-' + fmt(Math.max(0, total - st.time)) : '--:--';
     $.seek.style.setProperty('--p', total ? Math.min(100, st.time / total * 100) + '%' : '0%');
     $.rate.textContent = (st.rate || 1) + '×';
-    $.err.textContent = st.error || (backend === 'local' ? 'Plays only while this window is open' : '');
+    $.err.textContent = st.error || (backend === 'local' ? T('Plays only while this window is open') : '');
     $.err.hidden = !$.err.textContent;
 }
 

@@ -46,6 +46,12 @@ export async function applyTranslations(langCode) {
         if (msg) { el.setAttribute('title', msg); el.setAttribute('aria-label', msg); }
     });
 
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        const msg = currentDictionary[key]?.message || fallbackDictionary[key]?.message;
+        if (msg) el.setAttribute('aria-label', msg);
+    });
+
     document.documentElement.lang = code.replace('_', '-');
 }
 

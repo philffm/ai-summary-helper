@@ -244,5 +244,659 @@
   },
   "settingsScreen": {
     "message": "Экран настроек"
+  },
+  "f_already_done_9f26": {
+    "message": "(уже готово: {n})"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Тег"
+  },
+  "f_tag_2f9e": {
+    "message": "+ тег"
+  },
+  "f_more_95cf": {
+    "message": "+ ещё {n}"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 час"
+  },
+  "f_1_year_98a5": {
+    "message": "1 год"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 минут"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 часа"
+  },
+  "f_30_days_2af9": {
+    "message": "30 дней"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 минут"
+  },
+  "f_7_days_8279": {
+    "message": "7 дней"
+  },
+  "f_90_days_9817": {
+    "message": "90 дней"
+  },
+  "f_ai_category_acf9": {
+    "message": "Категория ИИ"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "ИИ-обзор дня"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "Ошибка запроса ИИ"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "Ошибка оценки ИИ"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "Создано ИИ по заголовкам и фрагментам ({n}) в {time}. Не заменяет чтение."
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "ИИ: мрачные новости"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "ИИ: позитивные новости"
+  },
+  "f_add_aa14": {
+    "message": "Добавить"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Добавить ленту"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Адрес сайта или ленты…"
+  },
+  "f_add_feed_1688": {
+    "message": "Добавить ленту"
+  },
+  "f_add_tag_1074": {
+    "message": "Добавить тег"
+  },
+  "f_all_e364": {
+    "message": "Все"
+  },
+  "f_all_sources_0e1e": {
+    "message": "Все источники"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Уже оцениваю — секунду"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Вы уже подписаны"
+  },
+  "f_any_mood_9630": {
+    "message": "Любой тон"
+  },
+  "f_any_time_95a6": {
+    "message": "Любое время"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Аудио здесь недоступно"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "Назад на 15 с"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Фоновый скрипт устарел — перезагрузите расширение в chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "Пакетное резюме работает в режиме расширения. Переключите на экране «Резюме»."
+  },
+  "f_behavior_a447": {
+    "message": "Поведение"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Выберите источник"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Сбросить дату"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Сбросить фильтры"
+  },
+  "f_close_player_c464": {
+    "message": "Закрыть плеер"
+  },
+  "f_copy_3664": {
+    "message": "Копировать"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Не скопировано"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "Не удалось добавить"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "Не удалось прочитать вкладку"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "Не удалось запустить"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "Темнее — больше записей · рамка — сегодня · удерживайте день, затем другой — диапазон"
+  },
+  "f_date_7379": {
+    "message": "Дата"
+  },
+  "f_date_mood_799e": {
+    "message": "Дата и тон"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · мировые новости"
+  },
+  "f_done_1791": {
+    "message": "Готово"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Введите корректный адрес"
+  },
+  "f_episode_f972": {
+    "message": "Выпуск"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Всё непрочитанное уже в резюме"
+  },
+  "f_failed_c3d4": {
+    "message": "Ошибка"
+  },
+  "f_favorite_19ed": {
+    "message": "В избранное"
+  },
+  "f_favorites_53ba": {
+    "message": "Избранное"
+  },
+  "f_feed_name_68fc": {
+    "message": "Название ленты"
+  },
+  "f_feeds_8b02": {
+    "message": "Ленты"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Следите за любимыми сайтами"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "Вперёд на 30 с"
+  },
+  "f_hide_negative_6410": {
+    "message": "Скрыть негатив"
+  },
+  "f_import_failed_aa11": {
+    "message": "Ошибка импорта"
+  },
+  "f_imported_feed_349f": {
+    "message": "Импортировано лент: {n}"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "Импортировано лент: {n}"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Независимые расследования"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Независимый контроль техиндустрии"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Независимая техжурналистика"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Открытые и сжатые записи исчезают из непрочитанных"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "К дню"
+  },
+  "f_last_7_days_d98f": {
+    "message": "За 7 дней"
+  },
+  "f_loading_4ae3": {
+    "message": "Загрузка…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Прочитано"
+  },
+  "f_mark_unread_7147": {
+    "message": "Непрочитано"
+  },
+  "f_mark_read_c994": {
+    "message": "Прочитано: {n}"
+  },
+  "f_marked_read_2e9b": {
+    "message": "Прочитано: {n}"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "Непрочитано: {n}"
+  },
+  "f_mood_551e": {
+    "message": "Тон"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Тон (оценено ИИ {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "Тон определяет только оценка ИИ — неоценённые записи не имеют тона и не скрываются фильтром. При нажатии заголовки и краткие фрагменты отправляются вашему ИИ-подключению."
+  },
+  "f_mood_d12b": {
+    "message": "Тон ↓"
+  },
+  "f_more_d900": {
+    "message": "Ещё"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Сначала позитивные"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Сначала позитивные · {n}"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Скрыть (не в «Все источники»)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "Появились новые записи — обновите, чтобы учесть."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "Новые посты здесь. Просмотрите, сожмите важное, остальное уберите."
+  },
+  "f_newer_f04a": {
+    "message": "Новее"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Сначала новые"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Следующий день с записями"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "По адресу нет ленты"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "Лент пока нет. Добавьте ниже или импортируйте OPML."
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "В этот день записей нет"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "Нечего пересказывать"
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "В файле нет новых лент"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "Источники не найдены"
+  },
+  "f_no_b8a2": {
+    "message": "Без 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Некорректный файл OPML"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Некорректная лента"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Нет совпадений с фильтрами"
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Сегодня пока ничего нового. Нажмите «Обновить»."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Нечего экспортировать"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Нечего оценивать"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "В этот день с фильтрами ничего нет"
+  },
+  "f_older_d101": {
+    "message": "Старее"
+  },
+  "f_only_show_day_efde": {
+    "message": "Только этот день"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Сначала откройте сайт во вкладке"
+  },
+  "f_open_c3b4": {
+    "message": "Открыть ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Вставьте адрес сайта — найдём ленту."
+  },
+  "f_pause_bf2d": {
+    "message": "Пауза"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Выберите день"
+  },
+  "f_play_6f83": {
+    "message": "Играть"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Слушать в AISH"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Скорость"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Играет, пока окно открыто"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Подкаст автора · дизайн, жизнь и технологии"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Плеер подкастов"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Предыдущий день с записями"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "Диапазон с {day} — выберите последний день."
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Обзор скопирован"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Ошибка обзора"
+  },
+  "f_refresh_aad4": {
+    "message": "Обновить"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "Удалить тег {tag}"
+  },
+  "f_request_failed_3b37": {
+    "message": "Ошибка запроса"
+  },
+  "f_reset_a560": {
+    "message": "Сбросить"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "Оценено ИИ: {n}"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "Оценено ИИ: {n}"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "Оценка ИИ… {a}/{b}"
+  },
+  "f_search_sources_e053": {
+    "message": "Поиск источников…"
+  },
+  "f_seek_13d1": {
+    "message": "Перемотка"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "Отправка заголовков и фрагментов ({n}) вашему ИИ."
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Показать все"
+  },
+  "f_show_more_older_6f85": {
+    "message": "Ещё {n} · старее: {m}"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Значок на иконке при новых записях"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Адрес сайта или ленты…"
+  },
+  "f_sort_a7f1": {
+    "message": "Порядок"
+  },
+  "f_source_a3f8": {
+    "message": "Источник"
+  },
+  "f_sources_73d1": {
+    "message": "Источники"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Избранное резюмируется в фоновой вкладке"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "Подписка: {name}"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Подписки · OPML · поведение"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Подписки · {n}"
+  },
+  "f_suggested_fdec": {
+    "message": "Советуем"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "«Резюме» для записи следует режиму на экране «Резюме» (по умолчанию — расширение). Избранное всегда сохраняется."
+  },
+  "f_summarized_415a": {
+    "message": "В резюме"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Резюме готовится в фоне — появится в «Резюме» и «История»"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Резюме открытой вкладки — появится в «Резюме» и «История»"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "Резюме в фоне: {n} — см. «История»"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "Для перехода к дню выберите «Сначала новые»"
+  },
+  "f_tags_a0c0": {
+    "message": "Теги"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "Не удалось разобрать ответ ИИ"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "ИИ вернул пустой обзор"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "Эти записи уже оценены"
+  },
+  "f_today_775e": {
+    "message": "Сегодня"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Сводка дня"
+  },
+  "f_try_again_90fa": {
+    "message": "Повторить"
+  },
+  "f_undo_4acf": {
+    "message": "Отменить"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Вернуть (в «Все источники»)"
+  },
+  "f_unread_c982": {
+    "message": "Новые"
+  },
+  "f_unread_4dff": {
+    "message": "Новые · {n}"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Отписаться"
+  },
+  "f_world_news_0f72": {
+    "message": "Мир"
+  },
+  "f_yesterday_68c7": {
+    "message": "Вчера"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "У вас есть резюме этой страницы"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Ленты хранятся на устройстве."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "Всё прочитано. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "за {n} дн."
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, пусто"
+  },
+  "f_item_9b88": {
+    "message": "{day}, записей: {n}"
+  },
+  "f_items_8c21": {
+    "message": "{day}, записей: {n}"
+  },
+  "f_recap_8d18": {
+    "message": "Обзор: {label}"
+  },
+  "f_feed_d469": {
+    "message": "Лент: {n}"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "Не загружено лент: {n}"
+  },
+  "f_feeds_e4ee": {
+    "message": "Лент: {n}"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "Не загружено лент: {n}"
+  },
+  "f_item_9ea2": {
+    "message": "Записей: {n}"
+  },
+  "f_items_0303": {
+    "message": "Записей: {n}"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "Сегодня новых: {n} · источников: {s} · непрочитано: {u}"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "Сегодня новых: {n} · источников: {s} · непрочитано: {u}"
+  },
+  "f_tag_63cf": {
+    "message": "Тегов: {n}"
+  },
+  "f_tags_00f4": {
+    "message": "Тегов: {n}"
+  },
+  "f_unread_e786": {
+    "message": "Новых: {n}"
+  },
+  "f_d_7af5": {
+    "message": "{n} д"
+  },
+  "f_h_8141": {
+    "message": "{n} ч"
+  },
+  "f_m_85fa": {
+    "message": "{n} м"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Дата и тон"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Обновить"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Пауза"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Играть"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Сводка дня"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Ленты и теги — в настройках  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  Всё здесь оценено"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Всё здесь прочитано"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Отмечать при открытии"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ В резюме"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  ИИ-обзор дня"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Авторезюме избранного"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Обзор"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Резюме"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ Резюме топ-5 новых"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Пишу обзор…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 Открыть резюме"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  День или период…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 Экспорт OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  Импорт OPML"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  Импорт OPML…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 Импорт OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  Все источники"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Обновлять каждые"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Проверка в фоне"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Хранить записи"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Только позитив"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 В основном позитив"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Разное"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 В основном мрачно"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Оценить видимые записи ИИ"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  Оценить ИИ: {n}"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  Оценить ИИ: {n}"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Текущий сайт"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Добавить"
   }
 }

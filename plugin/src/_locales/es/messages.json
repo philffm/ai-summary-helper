@@ -328,5 +328,659 @@
   },
   "settingsFeeds": {
     "message": "Feeds"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} ya hechos)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Añadir etiqueta"
+  },
+  "f_tag_2f9e": {
+    "message": "+ etiqueta"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} más"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 hora"
+  },
+  "f_1_year_98a5": {
+    "message": "1 año"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 minutos"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 horas"
+  },
+  "f_30_days_2af9": {
+    "message": "30 días"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 minutos"
+  },
+  "f_7_days_8279": {
+    "message": "7 días"
+  },
+  "f_90_days_9817": {
+    "message": "90 días"
+  },
+  "f_ai_category_acf9": {
+    "message": "Categoría IA"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "Resumen IA de este día"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "Error de la solicitud IA"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "Error al puntuar con IA"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "Generado por IA a partir de {n} titulares y extractos. Generado a las {time}. No sustituye la lectura."
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "Según IA: noticias duras"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "Según IA: noticias positivas"
+  },
+  "f_add_aa14": {
+    "message": "Añadir"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Añadir feed"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Añade un sitio o feed…"
+  },
+  "f_add_feed_1688": {
+    "message": "Añadir feed"
+  },
+  "f_add_tag_1074": {
+    "message": "Añadir etiqueta"
+  },
+  "f_all_e364": {
+    "message": "Todo"
+  },
+  "f_all_sources_0e1e": {
+    "message": "Todas las fuentes"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Ya puntuando, un momento"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Ya suscrito"
+  },
+  "f_any_mood_9630": {
+    "message": "Cualquier ánimo"
+  },
+  "f_any_time_95a6": {
+    "message": "Cualquier fecha"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Audio no disponible aquí"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "Atrás 15 s"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Script en segundo plano obsoleto: recarga la extensión en chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "El resumen por lotes funciona en modo extensión. Cámbialo en Resumir."
+  },
+  "f_behavior_a447": {
+    "message": "Ajustes"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Elige una fuente"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Quitar fecha"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Quitar filtros"
+  },
+  "f_close_player_c464": {
+    "message": "Cerrar reproductor"
+  },
+  "f_copy_3664": {
+    "message": "Copiar"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Error al copiar"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "No se pudo añadir"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "No se pudo leer la pestaña"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "No se pudo reproducir"
+  },
+  "f_darker_more_items_outlined_t_7196": {
+    "message": "Más oscuro = más elementos · contorno = hoy · mantén pulsado un día y luego otro para un rango"
+  },
+  "f_date_7379": {
+    "message": "Fecha"
+  },
+  "f_date_mood_799e": {
+    "message": "Fecha y ánimo"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · noticias internacionales"
+  },
+  "f_done_1791": {
+    "message": "Hecho"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Introduce una dirección web válida"
+  },
+  "f_episode_f972": {
+    "message": "Episodio"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Todo lo no leído ya está resumido"
+  },
+  "f_failed_c3d4": {
+    "message": "Error"
+  },
+  "f_favorite_19ed": {
+    "message": "Favorito"
+  },
+  "f_favorites_53ba": {
+    "message": "Favoritos"
+  },
+  "f_feed_name_68fc": {
+    "message": "Nombre del feed"
+  },
+  "f_feeds_8b02": {
+    "message": "Feeds"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Sigue los sitios que lees"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "Adelante 30 s"
+  },
+  "f_hide_negative_6410": {
+    "message": "Ocultar negativas"
+  },
+  "f_import_failed_aa11": {
+    "message": "Error al importar"
+  },
+  "f_imported_feed_349f": {
+    "message": "{n} feed importado"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "{n} feeds importados"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Periodismo de investigación independiente"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Responsabilidad tecnológica independiente"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Periodismo tecnológico independiente"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Lo que abres o resumes sale de tus no leídos"
+  },
+  "f_jump_to_day_8bf4": {
+    "message": "Ir al día"
+  },
+  "f_last_7_days_d98f": {
+    "message": "Últimos 7 días"
+  },
+  "f_loading_4ae3": {
+    "message": "Cargando…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Marcar leído"
+  },
+  "f_mark_unread_7147": {
+    "message": "Marcar no leído"
+  },
+  "f_mark_read_c994": {
+    "message": "Marcar {n} leídos"
+  },
+  "f_marked_read_2e9b": {
+    "message": "{n} marcados como leídos"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "{n} marcados como no leídos"
+  },
+  "f_mood_551e": {
+    "message": "Ánimo"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Ánimo (IA {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "El ánimo solo viene de la puntuación IA: los elementos sin puntuar no tienen ánimo y nunca se ocultan con el filtro. Al pulsar, se envían títulos y extractos breves a tu conexión IA."
+  },
+  "f_mood_d12b": {
+    "message": "Ánimo ↓"
+  },
+  "f_more_d900": {
+    "message": "Más"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Más positivas primero"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Más positivas primero · {n}"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Silenciar (fuera de Todas las fuentes)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "Hay novedades desde este resumen: actualiza para incluirlas."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "Las novedades llegan aquí. Hojea, resume lo importante, limpia el resto."
+  },
+  "f_newer_f04a": {
+    "message": "Más nuevos"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Más recientes primero"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Siguiente día con elementos"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "No hay ningún feed en esa dirección"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "Aún no hay feeds. Añade uno abajo o importa un archivo OPML."
+  },
+  "f_no_items_on_that_day_b59e": {
+    "message": "Nada ese día"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "Nada que resumir aquí."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "No hay feeds nuevos en el archivo"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "Sin coincidencias."
+  },
+  "f_no_b8a2": {
+    "message": "Sin 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Archivo OPML no válido"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Feed no válido"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Nada coincide con estos filtros."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Aún no hay novedades hoy. Prueba a actualizar."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Nada que exportar"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Nada que puntuar"
+  },
+  "f_nothing_visible_on_that_day__5871": {
+    "message": "Nada visible ese día con los filtros actuales"
+  },
+  "f_older_d101": {
+    "message": "Más antiguos"
+  },
+  "f_only_show_day_efde": {
+    "message": "Solo este día"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Abre antes un sitio web en la pestaña actual"
+  },
+  "f_open_c3b4": {
+    "message": "Abrir ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Pega la dirección de cualquier sitio. Buscamos su feed."
+  },
+  "f_pause_bf2d": {
+    "message": "Pausa"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Elegir día"
+  },
+  "f_play_6f83": {
+    "message": "Reproducir"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Reproducir episodio en AISH"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Velocidad"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Solo suena con esta ventana abierta"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Podcast del autor · diseño, vida y tecnología"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Reproductor de podcast"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Día anterior con elementos"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "El rango empieza el {day}: toca el último día."
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Resumen copiado"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Error en el resumen"
+  },
+  "f_refresh_aad4": {
+    "message": "Actualizar"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "Quitar etiqueta {tag}"
+  },
+  "f_request_failed_3b37": {
+    "message": "Error de solicitud"
+  },
+  "f_reset_a560": {
+    "message": "Restablecer"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "{n} elemento puntuado con IA"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "{n} elementos puntuados con IA"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "Puntuando con IA… {a}/{b}"
+  },
+  "f_search_sources_e053": {
+    "message": "Buscar fuentes…"
+  },
+  "f_seek_13d1": {
+    "message": "Buscar"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "Enviando {n} títulos y extractos breves a tu conexión IA."
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Mostrar todo"
+  },
+  "f_show_more_older_6f85": {
+    "message": "Ver {n} más · {m} antiguos"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Muestra una insignia en el icono al llegar novedades"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Dirección del sitio o feed…"
+  },
+  "f_sort_a7f1": {
+    "message": "Orden"
+  },
+  "f_source_a3f8": {
+    "message": "Fuente"
+  },
+  "f_sources_73d1": {
+    "message": "Fuentes"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Marcar con estrella resume en una pestaña en segundo plano"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "Suscrito a {name}"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Suscripciones · OPML · ajustes"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Suscripciones · {n}"
+  },
+  "f_suggested_fdec": {
+    "message": "Sugeridos"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "Resumir en un elemento sigue el modo elegido en Resumir (extensión por defecto). Los favoritos siempre se conservan."
+  },
+  "f_summarized_415a": {
+    "message": "Resumido"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Resumiendo en segundo plano: aparecerá en Resumir e Historial"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Resumiendo la pestaña abierta: aparecerá en Resumir e Historial"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "Resumiendo {n} en segundo plano: ver Historial"
+  },
+  "f_switch_sort_to_newest_first__3205": {
+    "message": "Ordena por Más recientes para ir a un día"
+  },
+  "f_tags_a0c0": {
+    "message": "Etiquetas"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "No se pudo leer la respuesta de la IA"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "La IA devolvió un resumen vacío"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "Estos elementos ya están puntuados"
+  },
+  "f_today_775e": {
+    "message": "Hoy"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Resumen de hoy"
+  },
+  "f_try_again_90fa": {
+    "message": "Reintentar"
+  },
+  "f_undo_4acf": {
+    "message": "Deshacer"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Reactivar (incluir en Todas las fuentes)"
+  },
+  "f_unread_c982": {
+    "message": "No leídos"
+  },
+  "f_unread_4dff": {
+    "message": "No leídos · {n}"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Cancelar suscripción"
+  },
+  "f_world_news_0f72": {
+    "message": "Mundo"
+  },
+  "f_yesterday_68c7": {
+    "message": "Ayer"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "Tienes un resumen guardado de esta página"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Tus feeds se quedan en este dispositivo."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "Todo al día. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "últimos {n} días"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, nada"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} elemento"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} elementos"
+  },
+  "f_recap_8d18": {
+    "message": "Resumen {label}"
+  },
+  "f_feed_d469": {
+    "message": "{n} feed"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} feed no se pudo cargar"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} feeds"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} feeds no se pudieron cargar"
+  },
+  "f_item_9ea2": {
+    "message": "{n} elemento"
+  },
+  "f_items_0303": {
+    "message": "{n} elementos"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "{n} nuevos hoy en {s} fuente · {u} sin leer"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "{n} nuevos hoy en {s} fuentes · {u} sin leer"
+  },
+  "f_tag_63cf": {
+    "message": "{n} etiqueta"
+  },
+  "f_tags_00f4": {
+    "message": "{n} etiquetas"
+  },
+  "f_unread_e786": {
+    "message": "{n} sin leer"
+  },
+  "f_d_7af5": {
+    "message": "{n} d"
+  },
+  "f_h_8141": {
+    "message": "{n} h"
+  },
+  "f_m_85fa": {
+    "message": "{n} min"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Fecha y ánimo"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Actualizar"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Pausa"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Reproducir"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Resumen de hoy"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Gestiona feeds y etiquetas en Ajustes  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  Todo está puntuado"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Marcar todo como leído"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Marcar leído al abrir"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ Resumido"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  Resumen IA de hoy"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Autoresumir favoritos"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Resumen"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Resumir"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ Resumir 5 no leídos"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Redactando resumen…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 Ver resumen"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  Elegir día o rango…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 Exportar OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  Importar archivo OPML"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  Importar archivo OPML…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 Importar OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  Todas las fuentes"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Actualizar feeds cada"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Comprobar en segundo plano"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Conservar elementos"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Solo positivas"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 Más bien positivo"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Mixto"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 Más bien duro"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Puntuar con IA los visibles sin puntuar"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  Puntuar {n} sin puntuar con IA"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  Puntuar {n} sin puntuar con IA"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Usar sitio actual"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Añadir"
   }
 }
