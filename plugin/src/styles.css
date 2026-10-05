@@ -2737,3 +2737,13 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 }
 .feed-item.has-mood:hover { box-shadow: inset 3px 0 0 var(--mood-bar), var(--glass-inner-glow), var(--shadow-raised); }
 .feed-item.has-mood.is-favorite { background-image: linear-gradient(rgba(250,204,21,.10), rgba(250,204,21,.10)), linear-gradient(100deg, var(--mood-tint), transparent 70%); }
+
+/* Feeds: suggestions */
+.feed-suggest { width: 100%; margin-top: 14px; text-align: left; }
+.feed-suggest-row { display: flex; align-items: center; gap: 12px; width: 100%; margin: 0 0 6px; padding: 9px 12px; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--glass-card); cursor: pointer; text-align: left; font-family: inherit; color: inherit; box-shadow: none; }
+.feed-suggest-row:hover { background: var(--glass-input); }
+.feed-suggest-icon { font-size: 20px; width: 28px; text-align: center; flex: none; }
+.feed-suggest-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.feed-suggest-name { font-size: 13.5px; font-weight: 700; }
+.feed-suggest-note { font-size: 11.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.feed-suggest-add { font-size: 18px; font-weight: 700; color: var(--accent); flex: none; }

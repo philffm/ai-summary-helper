@@ -747,6 +747,36 @@ function renderControls() {
     els.filterChip.classList.toggle('active', ui.date !== 'any' || ui.mood !== 'any' || ui.sort !== 'new');
 }
 
+// Starter suggestions (shown on first run and in the Add sheet). Feeds are only
+// requested after a click.
+const SUGGESTED_FEEDS = [
+    { name: 'Street Phil-osophy', note: 'Podcast by the author · design, life & tech', url: 'https://philwornath.com/api/podcast.xml', icon: '🎧' },
+    { name: 'BBC News', note: 'World news', url: 'https://feeds.bbci.co.uk/news/rss.xml', icon: '🌍' },
+    { name: 'DW', note: 'Deutsche Welle · international news', url: 'https://rss.dw.com/rdf/rss-en-all', icon: '📡' },
+    { name: 'Al Jazeera', note: 'World news', url: 'https://www.aljazeera.com/xml/rss/all.xml', icon: '🗞️' },
+    { name: 'ProPublica', note: 'Independent investigative journalism', url: 'https://www.propublica.org/feeds/propublica/main', icon: '🔎' },
+    { name: '404 Media', note: 'Independent tech journalism', url: 'https://www.404media.co/rss/', icon: '💾' },
+    { name: 'The Markup', note: 'Independent tech accountability', url: 'https://themarkup.org/feeds/rss.xml', icon: '🔬' }
+];
+
+function suggestionsNode() {
+    const have = new Set(subs.map(x => x.url));
+    const list = SUGGESTED_FEEDS.filter(f => !have.has(f.url));
+    if (!list.length) return null;
+    const wrap = el('div', 'feed-suggest');
+    wrap.append(el('div', 'feed-pick-label', 'SUGGESTED'));
+    list.forEach(f => {
+        const b = el('button', 'feed-suggest-row');
+        b.type = 'button';
+        b.append(el('span', 'feed-suggest-icon', f.icon),
+            (() => { const t = el('span', 'feed-suggest-text'); t.append(el('span', 'feed-suggest-name', f.name), el('span', 'feed-suggest-note', f.note)); return t; })(),
+            el('span', 'feed-suggest-add', '＋'));
+        b.addEventListener('click', () => { closeSheet(); addFeed(uiRef, f.url, null); });
+        wrap.append(b);
+    });
+    return wrap;
+}
+
 function renderFirstRun() {
     const box = els.empty;
     box.replaceChildren();
@@ -764,6 +794,8 @@ function renderFirstRun() {
     box.append(row, btn('button-secondary feed-wide-btn', '＋  Use current site', useCurrentSite),
         btn('button-secondary feed-wide-btn', '📥  Import OPML file', () => els.opmlInput.click()),
         el('p', 'feed-muted', 'Your feeds stay on this device.'));
+    const sg = suggestionsNode();
+    if (sg) box.append(sg);
 }
 
 function renderEmptyFiltered(hasAny) {
@@ -1015,6 +1047,8 @@ function openAddSheet() {
     body.append(row, el('p', 'feed-muted', 'Paste any site address. We find its feed for you.'),
         btn('feed-option-card', '＋  Use current site', useCurrentSite),
         btn('feed-option-card', '📥  Import OPML file…', () => els.opmlInput.click()));
+    const sg = suggestionsNode();
+    if (sg) body.append(sg);
     openSheet('Add a feed', body);
     setTimeout(() => input.focus(), 50);
 }
