@@ -16,7 +16,7 @@ const INDEX = [
     ['models', 'Endpoint URL', 'customEndpoint', 'ollama local server custom'],
     ['prompts', 'Preset prompt', 'promptSelect', 'prompt preset template'],
     ['prompts', 'Custom prompt text', 'prompt', 'prompt instructions system custom'],
-    ['feeds', 'Feed subscriptions · rename · folders', 'feedSubsCard', 'rss feeds subscriptions folder rename mute unsubscribe sources'],
+    ['feeds', 'Feed subscriptions · rename · tags', 'feedSubsCard', 'rss feeds subscriptions tags folder group rename mute unsubscribe sources'],
     ['feeds', 'Import / export OPML', 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
     ['feeds', 'Mark read when opened', 'feedSetMarkRead', 'feed read unread open'],
     ['feeds', 'Auto-summarize favorites', 'feedSetAutoSum', 'feed favorite star summarize automatic background'],

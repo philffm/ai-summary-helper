@@ -24,16 +24,16 @@ A powerful browser extension for summarizing web pages with a custom AI prompt, 
 
 ### 📰 Feeds (RSS reader)
 - Built for triage: a compact control bar (source picker, refresh, add) and status chips (Unread / All / Favorites / Summarized)
-- Filter by **source** or **folder**, by **date** (Today / 7 days) and by **mood** (positive only, hide negative, most positive first). Mood comes only from the optional **Score with AI** action (no on-device guessing); unscored items are never hidden by the mood filter
+- Filter by **source** or **tag** (a feed can have several tags), by **date** (Today / 7 days) and by **mood** (positive only, hide negative, most positive first). Mood comes only from the optional **Score with AI** action (no on-device guessing); unscored items are never hidden by the mood filter
 - **✨ Recap** on any day header (and in Today's briefing) writes a short AI overview from headlines and snippets; **Score with AI** rates item tone. The recap also gives each article a short category label, and AI-scored cards get a subtle red/orange-to-green tint. Both run only when you click, are cached locally, and send just titles and short snippets to your AI connection
 - **Podcasts**: feeds with audio enclosures get a **▶ Play** button and a mini-player (±15/30s, speed, seek, resume position). In Chrome and Firefox playback continues when the popup closes
 - Items are grouped by day; **Mark read** clears a day (or the whole view) with an undo bar
-- Add a feed with a site address (feed autodiscovery for Atom, RSS, RDF), from the current site, or by OPML import/export with folders
+- Add a feed with a site address (feed autodiscovery for Atom, RSS, RDF), from the current site, or by OPML import/export (folders and categories become tags)
 - One-click **Summarize** follows your last summary mode (extension by default, or inline); a page that is already open is reused instead of reopened
 - Click a card to open the website, or its saved summary if you already summarized it; summarized items carry a **Summarized** badge
 - Favorite items to add them to History (optionally auto-summarized in the background)
 - **Today's briefing** lists the day's headlines per source and can summarize the top 5 unread in one go
-- **Settings > Feeds**: rename, folder and mute per feed, OPML, refresh interval, retention, mark-read-on-open, and optional background checks with a toolbar badge
+- **Settings > Feeds**: rename, tags and mute per feed, OPML, refresh interval, retention, mark-read-on-open, and optional background checks with a toolbar badge
 - Feeds and items are stored locally on your device
 
 ### 🔖 Save for Later (Tab Management)

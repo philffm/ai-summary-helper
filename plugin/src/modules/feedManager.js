@@ -13,7 +13,7 @@
 //   control bar  = source pill (opens source picker) + refresh + add (opens sheet)
 //   chip row     = status (Unread / All / ★ / ✓) + date & mood sheet
 //   list         = day groups with a scoped "Mark read" and an undo bar
-//   Settings > Feeds = subscriptions (rename / folder / mute / remove), OPML, behavior
+//   Settings > Feeds = subscriptions (rename / tags / mute / remove), OPML, behavior
 
 import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
@@ -67,6 +67,12 @@ async function load() {
     items = data[ITEMS_KEY] || [];
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
     if (data[UI_KEY]) ui = { ...ui, ...data[UI_KEY] };
+    // Folders became tags: each feed's folder turns into its first tag.
+    subs.forEach(s => {
+        if ('folder' in s) { s.tags = cleanTags([...(s.tags || []), s.folder]); delete s.folder; }
+        if (!Array.isArray(s.tags)) s.tags = [];
+    });
+    if (typeof ui.source === 'string' && ui.source.startsWith('folder:')) ui.source = 'tag:' + ui.source.slice(7);
     // Older builds scored mood on-device; only AI scores are kept now.
     items.forEach(i => { if (!i.ai) delete i.sent; });
     // A filter pointing at a source that no longer exists falls back to "all".
@@ -79,11 +85,28 @@ function persist() {
 function persistUi() { stickyRead.clear(); return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
 function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: settings }).catch(() => {}); }
 
+// ── Tags (a feed can have several) ─────────────────────────────────────────
+const tagKey = (t) => String(t || '').trim().toLowerCase();
+function cleanTags(list) {
+    const seen = new Set(), out = [];
+    (Array.isArray(list) ? list : String(list || '').split(',')).forEach(t => {
+        const v = String(t || '').replace(/^\/+/, '').replace(/[#,]/g, '').replace(/\s+/g, ' ').trim().slice(0, 24);
+        if (v && !seen.has(tagKey(v))) { seen.add(tagKey(v)); out.push(v); }
+    });
+    return out;
+}
+const hasTag = (s, t) => (s.tags || []).some(x => tagKey(x) === tagKey(t));
+function allTags() {
+    const m = new Map();
+    subs.forEach(s => (s.tags || []).forEach(t => { if (!m.has(tagKey(t))) m.set(tagKey(t), t); }));
+    return [...m.values()].sort((a, b) => a.localeCompare(b));
+}
+
 function sourceExists(src) {
     if (!src || src === 'all') return true;
     const [kind, val] = splitSource(src);
     if (kind === 'sub') return subs.some(s => s.id === val);
-    if (kind === 'folder') return subs.some(s => s.folder === val);
+    if (kind === 'tag') return subs.some(s => hasTag(s, val));
     return false;
 }
 function splitSource(src) {
@@ -482,7 +505,7 @@ async function refreshAll(uiObj, { force = false } = {}) {
 }
 
 // ── Add / remove / import / export ─────────────────────────────────────────
-async function addFeed(uiObj, rawUrl, inputEl) {
+async function addFeed(uiObj, rawUrl, inputEl, tags = []) {
     const url = normalizeInputUrl(rawUrl);
     if (!url) return toast(uiObj, 'Enter a valid web address');
     setBusy(true);
@@ -497,7 +520,7 @@ async function addFeed(uiObj, rawUrl, inputEl) {
             url: feedUrl,
             title: parsed.title || new URL(feedUrl).hostname,
             siteUrl: parsed.siteUrl || '',
-            folder: '',
+            tags: cleanTags(tags),
             addedAt: Date.now(),
             lastFetched: Date.now(),
             error: ''
@@ -534,6 +557,7 @@ async function importOpml(uiObj, file) {
         if (doc.querySelector('parsererror')) throw new Error('Not a valid OPML file');
         let added = 0;
         const addOutline = (o, folder) => {
+            const own = cleanTags(String(o.getAttribute('category') || '').split(','));
             const url = safeHttpUrl(o.getAttribute('xmlUrl') || o.getAttribute('xmlurl'));
             if (!url || subs.some(s => s.url === url)) return;
             subs.push({
@@ -541,15 +565,15 @@ async function importOpml(uiObj, file) {
                 url,
                 title: o.getAttribute('title') || o.getAttribute('text') || new URL(url).hostname,
                 siteUrl: safeHttpUrl(o.getAttribute('htmlUrl')) || '',
-                folder: folder || '',
+                tags: cleanTags([...(folder ? [folder] : []), ...own]),
                 addedAt: Date.now(),
                 lastFetched: 0,
                 error: ''
             });
             added++;
         };
-        // One folder level: a top-level outline without xmlUrl is a folder whose
-        // (possibly nested) feed outlines all land in that folder.
+        // A top-level outline without xmlUrl is a folder: its feeds get the folder name as a tag.
+        // OPML `category` attributes (comma-separated) become tags too.
         const body = doc.querySelector('body');
         const top = body ? [...body.children].filter(n => n.localName === 'outline') : [];
         for (const o of top) {
@@ -570,13 +594,15 @@ async function importOpml(uiObj, file) {
 
 function escXml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function exportOpml() {
-    const line = (s, ind) => `${ind}<outline type="rss" text="${escXml(subTitle(s))}" title="${escXml(subTitle(s))}" xmlUrl="${escXml(s.url)}"${s.siteUrl ? ` htmlUrl="${escXml(s.siteUrl)}"` : ''}/>`;
-    const folders = [...new Set(subs.map(s => s.folder).filter(Boolean))].sort();
+    const line = (s, ind) => `${ind}<outline type="rss" text="${escXml(subTitle(s))}" title="${escXml(subTitle(s))}" xmlUrl="${escXml(s.url)}"${s.siteUrl ? ` htmlUrl="${escXml(s.siteUrl)}"` : ''}${(s.tags || []).length ? ` category="${escXml(s.tags.join(','))}"` : ''}/>`;
+    // Readers without tags get the first tag as a folder; all tags also go in `category`.
+    const first = (s) => (s.tags || [])[0] || '';
+    const folders = [...new Set(subs.map(first).filter(Boolean))].sort();
     const out = ['<?xml version="1.0" encoding="UTF-8"?>', '<opml version="2.0">', '  <head><title>AI Summary Helper feeds</title></head>', '  <body>'];
-    subs.filter(s => !s.folder).forEach(s => out.push(line(s, '    ')));
+    subs.filter(s => !first(s)).forEach(s => out.push(line(s, '    ')));
     folders.forEach(f => {
         out.push(`    <outline text="${escXml(f)}" title="${escXml(f)}">`);
-        subs.filter(s => s.folder === f).forEach(s => out.push(line(s, '      ')));
+        subs.filter(s => first(s) === f).forEach(s => out.push(line(s, '      ')));
         out.push('    </outline>');
     });
     out.push('  </body>', '</opml>');
@@ -649,7 +675,7 @@ function inSource(i, sm, source = ui.source) {
     if (!s) return false;
     const [kind, val] = splitSource(source);
     if (kind === 'sub') return i.feedId === val;
-    if (kind === 'folder') return s.folder === val && !s.muted;
+    if (kind === 'tag') return hasTag(s, val) && !s.muted;
     return !s.muted;
 }
 
@@ -720,7 +746,7 @@ function btn(className, text, onClick, title) {
 function sourceLabel() {
     const [kind, val] = splitSource(ui.source);
     if (kind === 'sub') { const s = subs.find(x => x.id === val); return '📰  ' + (s ? subTitle(s) : 'Source'); }
-    if (kind === 'folder') return '📁  ' + val;
+    if (kind === 'tag') return '🏷️  ' + val;
     return '📰  All sources';
 }
 
@@ -735,7 +761,7 @@ function renderControls() {
         const s = sm.get(i.feedId);
         if (!s) return false;
         if (kind === 'sub') return i.feedId === val;
-        if (kind === 'folder') return s.folder === val && !s.muted;
+        if (kind === 'tag') return hasTag(s, val) && !s.muted;
         return !s.muted;
     };
     const unread = unreadCount(scoped);
@@ -753,13 +779,13 @@ function renderControls() {
 // Starter suggestions (shown on first run and in the Add sheet). Feeds are only
 // requested after a click.
 const SUGGESTED_FEEDS = [
-    { name: 'Street Phil-osophy', note: 'Podcast by the author · design, life & tech', url: 'https://philwornath.com/api/podcast.xml', icon: '🎧' },
-    { name: 'BBC News', note: 'World news', url: 'https://feeds.bbci.co.uk/news/rss.xml', icon: '🌍' },
-    { name: 'DW', note: 'Deutsche Welle · international news', url: 'https://rss.dw.com/rdf/rss-en-all', icon: '📡' },
-    { name: 'Al Jazeera', note: 'World news', url: 'https://www.aljazeera.com/xml/rss/all.xml', icon: '🗞️' },
-    { name: 'ProPublica', note: 'Independent investigative journalism', url: 'https://www.propublica.org/feeds/propublica/main', icon: '🔎' },
-    { name: '404 Media', note: 'Independent tech journalism', url: 'https://www.404media.co/rss/', icon: '💾' },
-    { name: 'The Markup', note: 'Independent tech accountability', url: 'https://themarkup.org/feeds/rss.xml', icon: '🔬' }
+    { name: 'Street Phil-osophy', tags: ['Podcast', 'Design', 'Independent'], note: 'Podcast by the author · design, life & tech', url: 'https://philwornath.com/api/podcast.xml', icon: '🎧' },
+    { name: 'BBC News', tags: ['News'], note: 'World news', url: 'https://feeds.bbci.co.uk/news/rss.xml', icon: '🌍' },
+    { name: 'DW', tags: ['News'], note: 'Deutsche Welle · international news', url: 'https://rss.dw.com/rdf/rss-en-all', icon: '📡' },
+    { name: 'Al Jazeera', tags: ['News'], note: 'World news', url: 'https://www.aljazeera.com/xml/rss/all.xml', icon: '🗞️' },
+    { name: 'ProPublica', tags: ['Independent', 'News'], note: 'Independent investigative journalism', url: 'https://www.propublica.org/feeds/propublica/main', icon: '🔎' },
+    { name: '404 Media', tags: ['Independent', 'Tech'], note: 'Independent tech journalism', url: 'https://www.404media.co/rss/', icon: '💾' },
+    { name: 'The Markup', tags: ['Independent', 'Tech'], note: 'Independent tech accountability', url: 'https://themarkup.org/feeds/rss.xml', icon: '🔬' }
 ];
 
 function suggestionsNode() {
@@ -774,7 +800,7 @@ function suggestionsNode() {
         b.append(el('span', 'feed-suggest-icon', f.icon),
             (() => { const t = el('span', 'feed-suggest-text'); t.append(el('span', 'feed-suggest-name', f.name), el('span', 'feed-suggest-note', f.note)); return t; })(),
             el('span', 'feed-suggest-add', '＋'));
-        b.addEventListener('click', () => { closeSheet(); addFeed(uiRef, f.url, null); });
+        b.addEventListener('click', () => { closeSheet(); addFeed(uiRef, f.url, null, f.tags); });
         wrap.append(b);
     });
     return wrap;
@@ -969,27 +995,23 @@ function openSourcePicker() {
         const sm = subMap();
         const cnt = (pred) => { const n = unreadCount(i => sm.has(i.feedId) && pred(i)); return n ? String(n) : ''; };
         if (!q) list.append(radioRow('All sources', cnt(i => !sm.get(i.feedId).muted), ui.source === 'all', () => choose('all')));
-        const folders = [...new Set(subs.map(s => s.folder).filter(Boolean))].sort((a, b) => a.localeCompare(b));
-        const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.folder || '').toLowerCase().includes(q);
-        const addSubs = (arr, indent) => arr.filter(matching).sort((a, b) => subTitle(a).localeCompare(subTitle(b))).forEach(s => {
-            list.append(radioRow((s.muted ? '🔕 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted, indent }));
-        });
-        folders.forEach(f => {
-            const inFolder = subs.filter(s => s.folder === f);
-            if (!inFolder.some(matching)) return;
-            list.append(el('div', 'feed-pick-label', f.toUpperCase()));
-            if (!q) list.append(radioRow(`All in ${f}`, cnt(i => sm.get(i.feedId).folder === f && !sm.get(i.feedId).muted), ui.source === 'folder:' + f, () => choose('folder:' + f), { indent: true }));
-            addSubs(inFolder, true);
-        });
-        const loose = subs.filter(s => !s.folder);
-        if (loose.some(matching)) {
-            if (folders.length) list.append(el('div', 'feed-pick-label', 'NO FOLDER'));
-            addSubs(loose, false);
+        const tags = allTags().filter(t => !q || t.toLowerCase().includes(q));
+        if (tags.length) {
+            list.append(el('div', 'feed-pick-label', 'TAGS'));
+            tags.forEach(t => list.append(radioRow('# ' + t, cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted), ui.source === 'tag:' + t, () => choose('tag:' + t))));
+        }
+        const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.tags || []).some(t => t.toLowerCase().includes(q));
+        const shown = subs.filter(matching);
+        if (shown.length) {
+            if (tags.length) list.append(el('div', 'feed-pick-label', 'FEEDS'));
+            shown.sort((a, b) => subTitle(a).localeCompare(subTitle(b))).forEach(s => {
+                list.append(radioRow((s.muted ? '🔕 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted }));
+            });
         }
         if (!list.children.length) list.append(el('p', 'feed-muted', 'No sources match.'));
     };
     search.addEventListener('input', draw);
-    body.append(search, list, btn('feed-manage-link', '⚙️  Manage feeds & folders in Settings  ›', async () => {
+    body.append(search, list, btn('feed-manage-link', '⚙️  Manage feeds & tags in Settings  ›', async () => {
         closeSheet();
         const nav = await import('./settingsNav.js');
         uiRef.showScreen('settings');
@@ -1177,9 +1199,9 @@ function openBriefing() {
 function updateSettingsSub() {
     const sub = document.querySelector('.settings-row-sub[data-sub="feeds"]');
     if (!sub) return;
-    const folders = new Set(subs.map(s => s.folder).filter(Boolean)).size;
+    const folders = allTags().length;
     sub.textContent = subs.length
-        ? `${subs.length} feed${subs.length > 1 ? 's' : ''}${folders ? ` · ${folders} folder${folders > 1 ? 's' : ''}` : ''}`
+        ? `${subs.length} feed${subs.length > 1 ? 's' : ''}${folders ? ` · ${folders} tag${folders > 1 ? 's' : ''}` : ''}`
         : 'Subscriptions · OPML · behavior';
 }
 
@@ -1212,17 +1234,34 @@ function subRow(s) {
     const rm = btn('feed-icon-btn', '✕', () => { removeFeed(s.id); }, 'Unsubscribe');
     l1.append(name, mute, rm);
     const l2 = el('div', 'feed-sub-line');
-    const folder = el('input', 'feed-sub-input feed-sub-folder');
-    folder.type = 'text'; folder.placeholder = 'Folder'; folder.value = s.folder || ''; folder.setAttribute('list', 'feedFolderList'); folder.setAttribute('aria-label', 'Folder');
-    folder.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); folder.blur(); } });
-    folder.addEventListener('change', async () => {
-        s.folder = folder.value.trim();
+    const tagBox = el('div', 'feed-tags');
+    const saveTags = async (next) => {
+        s.tags = cleanTags(next);
         if (!sourceExists(ui.source)) ui.source = 'all';
-        await persist(); render(); updateSettingsSub();
+        await persist(); render(); renderFeedSettings();
+    };
+    (s.tags || []).forEach(t => {
+        const chip = el('span', 'feed-tag-chip', t);
+        const x = btn('feed-tag-x', '×', () => saveTags(s.tags.filter(y => tagKey(y) !== tagKey(t))), `Remove tag ${t}`);
+        chip.append(x);
+        tagBox.append(chip);
     });
+    const tagIn = el('input', 'feed-tag-input');
+    tagIn.type = 'text'; tagIn.placeholder = (s.tags || []).length ? '+ tag' : '+ Add tag'; tagIn.setAttribute('list', 'feedTagList'); tagIn.setAttribute('aria-label', 'Add tag');
+    tagIn.autocomplete = 'off'; tagIn.spellcheck = false;
+    const commit = () => { const v = tagIn.value.trim(); if (v) saveTags([...(s.tags || []), v]); };
+    tagIn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); commit(); }
+        else if (e.key === 'Backspace' && !tagIn.value && (s.tags || []).length) saveTags(s.tags.slice(0, -1));
+    });
+    tagIn.addEventListener('change', commit);
+    tagBox.append(tagIn);
     const n = items.filter(i => i.feedId === s.id && !i.read).length;
-    l2.append(folder, el('span', s.error ? 'feed-sub-error' : 'feed-muted', s.error ? '⚠ ' + s.error : `${n} unread`));
-    row.append(l1, l2);
+    l2.className = 'feed-sub-line feed-sub-tags';
+    l2.append(tagBox);
+    const status = el('div', 'feed-sub-line');
+    status.append(el('span', s.error ? 'feed-sub-error' : 'feed-muted', s.error ? '⚠ ' + s.error : `${n} unread`));
+    row.append(l1, l2, status);
     return row;
 }
 
@@ -1257,8 +1296,8 @@ function renderFeedSettings() {
     root.replaceChildren();
 
     root.append(el('p', 'settings-caption', `SUBSCRIPTIONS · ${subs.length}`));
-    const dl = el('datalist'); dl.id = 'feedFolderList';
-    [...new Set(subs.map(s => s.folder).filter(Boolean))].sort().forEach(f => { const o = el('option'); o.value = f; dl.append(o); });
+    const dl = el('datalist'); dl.id = 'feedTagList';
+    allTags().forEach(f => { const o = el('option'); o.value = f; dl.append(o); });
     root.append(dl);
 
     const card = el('div', 'feed-set-card');
