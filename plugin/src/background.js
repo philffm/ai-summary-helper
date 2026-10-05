@@ -154,6 +154,108 @@ async function pollFeeds() {
     }
 }
 
+// ── One-shot AI completion (feed recaps, tone scoring) ──────────────────────
+// Same connection logic as the page summarizer (byPhil Cloud, own key, or a
+// local Ollama), but non-streaming and callable from any extension page.
+const AISH_API_BASE = 'https://api.byphil.eu';
+
+function aiFriendlyError(status, body) {
+    const e = `${status} ${body || ''}`;
+    if (/402|429|trial exhausted|requests per day|requests per week|quota|too many|rate/i.test(e)) {
+        return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.';
+    }
+    return `AI request failed (${status}${body ? ': ' + String(body).slice(0, 160) : ''})`;
+}
+
+function parseAiResponseText(raw) {
+    const t = (raw || '').trim();
+    // SSE (some providers stream even when asked not to): accumulate deltas.
+    if (/^data:/m.test(t) && !t.startsWith('{')) {
+        let out = '';
+        for (const line of t.split('\n')) {
+            if (!line.startsWith('data:')) continue;
+            const payload = line.slice(5).trim();
+            if (!payload || payload === '[DONE]') continue;
+            try {
+                const j = JSON.parse(payload);
+                out += j.choices?.[0]?.delta?.content ?? j.choices?.[0]?.message?.content ?? j.message?.content
+                    ?? (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('') ?? '';
+            } catch (_) { /* ignore partial lines */ }
+        }
+        return out.trim();
+    }
+    let j;
+    try { j = JSON.parse(t); } catch (_) { return t; }
+    const gem = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
+    return String(j.choices?.[0]?.message?.content ?? j.message?.content ?? j.choices?.[0]?.text ?? gem ?? '').trim();
+}
+
+async function aiComplete({ system, user }) {
+    const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
+    const local = await chrome.storage.local.get(['servicesConfig', 'licenseKey', 'pb_token', 'installId']).catch(() => ({}));
+    const connectionMode = sync.connectionMode || 'cloud';
+    let service = sync.activeService || 'openai';
+    const cfg = (local.servicesConfig || {})[service] || {};
+    const modelId = (m) => (!m ? '' : typeof m === 'string' ? m : (m.id || ''));
+
+    let url = cfg.endpointUrl || cfg.endpoint;
+    let model = modelId(cfg.activeModelId) || (Array.isArray(cfg.customModel) ? modelId(cfg.customModel[0]) : modelId(cfg.customModel)) || cfg.model;
+    let apiKey = cfg.apiKey || '';
+    let keyOptional = false;
+
+    if (connectionMode === 'cloud') {
+        service = 'cloud';
+        url = `${AISH_API_BASE}/v1/projects/ai_summary_helper/chat`;
+        model = sync.preferredCloudModel || 'google/gemini-2.5-flash';
+        apiKey = local.pb_token || local.licenseKey || '';
+        keyOptional = true;
+    } else {
+        url = cfg.endpointUrl || url;
+        model = cfg.modelIdentifier || model;
+        try {
+            const list = await (await fetch(chrome.runtime.getURL('services.json'))).json();
+            const meta = list.find(x => (x.id || '').toLowerCase() === service.toLowerCase());
+            if (meta) {
+                keyOptional = !!meta.apiKeyOptional;
+                url = url || meta.endpointUrl;
+                model = model || meta.defaultModel;
+            }
+        } catch (_) { /* services.json unavailable */ }
+        if (service === 'ollama') keyOptional = true;
+    }
+    if (!apiKey && !keyOptional) throw new Error('Set your API key under Settings \u203a Models & API first.');
+    if (!url && service !== 'gemini') throw new Error('Model endpoint is not configured.');
+    if (url) new URL(url);
+
+    const headers = { 'Content-Type': 'application/json' };
+    let body;
+    if (service === 'gemini') {
+        url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
+        headers['x-goog-api-key'] = apiKey;
+        body = JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${system}\n\n${user}` }] }] });
+    } else {
+        if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
+        if (local.installId) headers['X-Install-ID'] = local.installId;
+        body = JSON.stringify({ model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }], stream: false });
+    }
+
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 90000);
+    try {
+        const res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
+        const raw = await res.text();
+        if (!res.ok) throw new Error(aiFriendlyError(res.status, raw));
+        const text = parseAiResponseText(raw);
+        if (!text) throw new Error('The model returned an empty response.');
+        return { text, model };
+    } catch (e) {
+        if (e.name === 'AbortError') throw new Error('The AI request timed out.');
+        throw e;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
 chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); });
 chrome.runtime.onInstalled.addListener(() => { applyFeedPollConfig(); });
 
@@ -243,6 +345,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
+    if (msg.action === 'aiComplete' && msg.user) {
+        aiComplete({ system: msg.system || '', user: msg.user })
+            .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
+            .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
+        return true;
+    }
     if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
     if (msg.action === 'feedBadgeClear') { clearFeedBadge().then(() => sendResponse({ ok: true })); return true; }
 

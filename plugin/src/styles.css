@@ -2671,3 +2671,14 @@ text.graph-search-dim {
 .feed-sub-error { font-size: 11px; color: var(--danger, #ef4444); }
 .feed-set-card .feed-add-row { margin-top: 10px; }
 .feed-set-card .setting-group:last-of-type { margin-bottom: 0; }
+
+/* ── Feeds: AI recap ─────────────────────────────────────────────────── */
+.feed-day-ai { margin-right: 6px; }
+.feed-recap-mood { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--card-bg, rgba(127,127,127,.12)); margin-bottom: 8px; }
+.feed-recap-overview { font-size: 14px; line-height: 1.5; margin: 0 0 8px; }
+.feed-recap-themes { margin: 0 0 10px; padding-left: 18px; font-size: 13px; line-height: 1.45; }
+.feed-recap-themes li { margin-bottom: 4px; }
+.feed-recap-stale { font-size: 12px; color: #b45309; margin: 0 0 8px; }
+.feed-recap-actions { display: flex; gap: 8px; margin: 6px 0 10px; }
+.feed-recap-loading { font-size: 14px; margin: 6px 0; }
+.feed-error { color: #b91c1c; font-size: 13px; }

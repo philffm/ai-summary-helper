@@ -16,6 +16,10 @@ Your OpenAI API key is stored locally on your device and is used to authenticate
 ### Content Data
 The text content of web pages you choose to summarize is sent to the OpenAI API for processing. This content is not stored or logged by us.
 
+### RSS feeds
+
+The built-in Feeds reader stores your subscriptions and fetched items locally in your browser; they are never synced or sent to us. Feeds are requested directly from each publisher's server. The optional AI day recap and AI tone scoring run only when you click them and send item titles, source names and short snippets to the AI provider you chose; results are cached on your device.
+
 ## Analytics
 
 We use Matomo, a GDPR-compliant analytics platform, to collect anonymous usage data to help us improve the extension. Matomo respects your privacy and does not track personal data. 

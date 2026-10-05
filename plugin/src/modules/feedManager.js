@@ -18,11 +18,13 @@
 import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
 import { scoreSentiment, moodOf, MOOD_EMOJI } from './feedSentiment.js';
+import { generateRecap, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 
 const SUBS_KEY = 'feedSubs';
 const ITEMS_KEY = 'feedItems';
 const UI_KEY = 'feedUi';
 const SETTINGS_KEY = 'feedSettings';
+const RECAPS_KEY = 'feedRecaps';
 const MAX_ITEMS_PER_FEED = 50;
 const MAX_ITEMS_TOTAL = 500;
 const MAX_RENDERED = 100;
@@ -40,6 +42,7 @@ export const FEED_DEFAULTS = {
 
 let subs = [];
 let items = [];
+let recaps = {};
 let settings = { ...FEED_DEFAULTS };
 // UI filter state (persisted so the screen reopens the way you left it)
 let ui = { source: 'all', status: 'unread', date: 'any', mood: 'any', sort: 'new' };
@@ -53,8 +56,9 @@ let historyByUrl = new Map();
 // ── Storage ────────────────────────────────────────────────────────────────
 async function load() {
     const data = await chrome.storage.local.get({
-        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null
+        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null, [RECAPS_KEY]: {}
     });
+    recaps = data[RECAPS_KEY] || {};
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
@@ -360,7 +364,8 @@ function mergeItems(sub, parsedItems) {
             link: p.link,
             published: p.published || (prev && prev.published) || Date.now(),
             snippet: p.snippet,
-            sent: scoreSentiment(p.title + ' ' + (p.snippet || '')),
+            sent: prev && prev.ai && typeof prev.sent === 'number' ? prev.sent : scoreSentiment(p.title + ' ' + (p.snippet || '')),
+            ai: !!(prev && prev.ai),
             read: prev ? prev.read : false
         });
     }
@@ -377,6 +382,9 @@ function mergeItems(sub, parsedItems) {
 function pruneItems() {
     const cutoff = Date.now() - settings.keepDays * DAY_MS;
     items = items.filter(i => i.published >= cutoff || histOf(i).fav);
+    // Recaps follow the same retention window (key starts with the day's timestamp).
+    Object.keys(recaps).forEach(k => { if (Number(k.split('|')[0]) < startOfDay(cutoff)) delete recaps[k]; });
+    chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
 }
 
 async function refreshSub(sub) {
@@ -585,10 +593,10 @@ function openItem(item, summarize) {
 function startOfDay(ts) { const d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime(); }
 function subMap() { return new Map(subs.map(s => [s.id, s])); }
 
-function inSource(i, sm) {
+function inSource(i, sm, source = ui.source) {
     const s = sm.get(i.feedId);
     if (!s) return false;
-    const [kind, val] = splitSource(ui.source);
+    const [kind, val] = splitSource(source);
     if (kind === 'sub') return i.feedId === val;
     if (kind === 'folder') return s.folder === val && !s.muted;
     return !s.muted;
@@ -731,7 +739,7 @@ function renderCard(item, sm) {
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
     if (MOOD_EMOJI[mood]) {
         const m = el('span', 'feed-mood', ' ' + MOOD_EMOJI[mood]);
-        m.title = mood === 'pos' ? 'Positive tone' : 'Heavy tone';
+        m.title = (item.ai ? 'AI-rated: ' : '') + (mood === 'pos' ? 'Positive tone' : 'Heavy tone');
         meta.append(m);
     }
     const title = el('h4', null, item.title);
@@ -782,6 +790,11 @@ function render() {
         const unread = group.filter(i => !i.read);
         const header = el('li', 'feed-day');
         header.append(el('span', 'feed-day-label', `${dayLabel(group[0].published)} · ${group.length} item${group.length > 1 ? 's' : ''}`));
+        if (ui.sort !== 'mood') {
+            const dayStart = startOfDay(group[0].published);
+            const dayName = dayLabel(group[0].published);
+            header.append(btn('feed-day-action feed-day-ai', '✨ Recap', () => openRecap(dayStart, dayName), 'AI recap of this day'));
+        }
         if (unread.length) {
             const snapshot = [...unread];
             header.append(btn('feed-day-action', 'Mark read', () => setRead(snapshot, true, { label: `Marked ${snapshot.length} read` }), `Mark ${snapshot.length} read`));
@@ -884,12 +897,13 @@ function openFilterSheet() {
         section('SORT', 'sort', [['new', 'Newest first'], ['mood', 'Most positive first']]);
         body.append(el('div', 'feed-pick-label', 'MORE'));
         body.append(btn('feed-manage-link', '☀️  Today’s briefing', () => { closeSheet(); openBriefing(); }));
+        body.append(btn('feed-manage-link', '🤖  Score visible items with AI', () => { closeSheet(); scoreWithAi(visibleItems()); }));
         body.append(btn('feed-manage-link', '✓  Mark everything in this view read', () => {
             const list = visibleItems().filter(i => !i.read);
             closeSheet();
             if (list.length) setRead(list, true, { label: `Marked ${list.length} read` });
         }));
-        body.append(el('p', 'feed-muted', 'Mood is estimated on your device from headlines and snippets — a rough guide, not a verdict.'));
+        body.append(el('p', 'feed-muted', 'Mood is estimated on your device from headlines and snippets — a rough guide, not a verdict. “Score with AI” sends titles and short snippets to your AI connection.'));
     };
     openSheet('Date & mood', body);
     draw();
@@ -925,6 +939,81 @@ function openAddSheet() {
     setTimeout(() => input.focus(), 50);
 }
 
+// ── AI recap + scoring (explicit clicks only) ──────────────────────────────
+function recapScope(dayStart, source) {
+    const sm = subMap();
+    return items.filter(i => inSource(i, sm, source) && startOfDay(i.published) === dayStart)
+        .sort((a, b) => b.published - a.published).slice(0, MAX_RECAP_ITEMS);
+}
+function idsHash(list) { return hash(list.map(i => i.id).sort().join(',')); }
+function aiTitleOf(sm) { return i => subTitle(sm.get(i.feedId)); }
+
+async function openRecap(dayStart, label, source = ui.source) {
+    const list = recapScope(dayStart, source);
+    const key = `${dayStart}|${source}`;
+    const body = el('div', 'feed-picker feed-recap');
+    openSheet(`${label} recap`, body);
+    if (!list.length) { body.append(el('p', 'feed-muted', 'No items to recap here.')); return; }
+    const sm = subMap();
+
+    const draw = (r, stale) => {
+        body.replaceChildren();
+        const chip = { pos: '😊 Mostly positive', neu: '😐 Mixed', neg: '😟 Mostly heavy' }[r.mood] || '😐 Mixed';
+        body.append(el('span', 'feed-recap-mood', chip));
+        if (r.overview) body.append(el('p', 'feed-recap-overview', r.overview));
+        if (r.themes.length) {
+            const ul = el('ul', 'feed-recap-themes');
+            r.themes.forEach(t => ul.append(el('li', null, t)));
+            body.append(ul);
+        }
+        if (stale) body.append(el('p', 'feed-recap-stale', 'New items arrived since this recap — Refresh to include them.'));
+        const row = el('div', 'feed-recap-actions');
+        row.append(btn('feed-btn', '↻ Refresh', () => run(true)),
+            btn('feed-btn', 'Copy', async () => {
+                try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); toast(uiRef, 'Recap copied'); }
+                catch (e) { toast(uiRef, 'Copy failed'); }
+            }));
+        body.append(row,
+            btn('feed-manage-link', `🤖  Score these ${list.length} items with AI`, () => { closeSheet(); scoreWithAi(list); }),
+            el('p', 'feed-muted', `AI-generated from ${list.length} headlines and snippets. Generated at ${new Date(r.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}. Not a substitute for reading.`));
+    };
+    const run = async (force) => {
+        const cached = recaps[key];
+        const hsh = idsHash(list);
+        if (cached && !force) return draw(cached, cached.hash !== hsh);
+        body.replaceChildren(el('p', 'feed-recap-loading', '✨ Writing recap…'),
+            el('p', 'feed-muted', `Sending ${list.length} titles and short snippets to your AI connection.`));
+        try {
+            const r = await generateRecap(list, aiTitleOf(sm));
+            recaps[key] = { ...r, hash: hsh, at: Date.now(), n: list.length };
+            chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
+            draw(recaps[key], false);
+        } catch (e) {
+            body.replaceChildren(el('p', 'feed-error', e.message || 'Recap failed'),
+                btn('feed-btn', 'Try again', () => run(true)));
+        }
+    };
+    run(false);
+}
+
+async function scoreWithAi(list) {
+    list = (list || []).filter(Boolean);
+    if (!list.length) { toast(uiRef, 'Nothing to score'); return; }
+    const sm = subMap();
+    let done = 0;
+    try {
+        for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
+            const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
+            toast(uiRef, `Scoring with AI… ${Math.min(k + chunk.length, list.length)}/${list.length}`);
+            const scores = await scoreItems(chunk, aiTitleOf(sm));
+            chunk.forEach((i, n) => { if (scores[n] !== null) { i.sent = scores[n]; i.ai = true; done++; } });
+        }
+    } catch (e) {
+        toast(uiRef, e.message || 'AI scoring failed');
+    }
+    if (done) { await persist(); render(); toast(uiRef, `Scored ${done} item${done > 1 ? 's' : ''} with AI`); }
+}
+
 // ── Today's briefing ───────────────────────────────────────────────────────
 function openBriefing() {
     const sm = subMap();
@@ -951,6 +1040,7 @@ function openBriefing() {
         });
         if (list.length > 2) body.append(el('p', 'feed-muted', `+ ${list.length - 2} more`));
     });
+    body.append(btn('feed-manage-link', '✨  AI recap of today', () => openRecap(start, 'Today', 'all')));
     body.append(btn('button-primary feed-wide-btn', '✨ Summarize top 5 unread', async () => {
         const { summaryMode } = await chrome.storage.local.get('summaryMode');
         if (summaryMode === 'inline') { toast(uiRef, 'Batch summarizing runs in extension mode. Switch on the Summarize screen.'); return; }
