@@ -79,7 +79,6 @@ async function load() {
     if (typeof ui.source === 'string' && ui.source.startsWith('folder:')) ui.source = 'tag:' + ui.source.slice(7);
     // Older builds scored mood on-device; only AI scores are kept now.
     items.forEach(i => { if (!i.ai) delete i.sent; });
-    markPodcasts();
     // A filter pointing at a source that no longer exists falls back to "all".
     if (!sourceExists(ui.source)) ui.source = 'all';
 }
@@ -100,20 +99,11 @@ function cleanTags(list) {
     });
     return out;
 }
-// Feeds with audio enclosures get a built-in 🎧 tag (no setup needed; s.podcast is derived, see markPodcasts()).
-const POD_TAG = '🎧';
-const hasTag = (s, t) => (tagKey(t) === POD_TAG && !!s.podcast) || (s.tags || []).some(x => tagKey(x) === tagKey(t));
-const tagText = (t) => tagKey(t) === POD_TAG ? '🎧 ' + T('Podcasts') : '# ' + t;
-function markPodcasts() {
-    const ids = new Set();
-    items.forEach(i => { if (i.audio) ids.add(i.feedId); });
-    subs.forEach(s => { if (ids.has(s.id)) s.podcast = true; });
-}
+const hasTag = (s, t) => (s.tags || []).some(x => tagKey(x) === tagKey(t));
 function allTags() {
     const m = new Map();
-    if (subs.some(s => s.podcast)) m.set(POD_TAG, POD_TAG);
     subs.forEach(s => (s.tags || []).forEach(t => { if (!m.has(tagKey(t))) m.set(tagKey(t), t); }));
-    return [...m.values()].sort((a, b) => (tagKey(b) === POD_TAG) - (tagKey(a) === POD_TAG) || a.localeCompare(b));
+    return [...m.values()].sort((a, b) => a.localeCompare(b));
 }
 
 function sourceExists(src) {
@@ -465,7 +455,6 @@ function mergeItems(sub, parsedItems) {
         ? merged.filter((i, k) => k < MAX_ITEMS_PER_FEED || histOf(i).fav)
         : merged;
     items = items.filter(i => i.feedId !== sub.id).concat(kept);
-    if (kept.some(i => i.audio)) sub.podcast = true;
 }
 
 // Drop items older than the retention window (favorites are kept; they also
@@ -724,6 +713,7 @@ function passes(i, sm, skipDate = false) {
     if (ui.status === 'unread' && i.read && !stickyRead.has(i.id)) return false;
     if (ui.status === 'fav' && !h.fav) return false;
     if (ui.status === 'sum' && !h.summarized) return false;
+    if (ui.status === 'audio' && !i.audio) return false;
     if (!skipDate && !inDateFilter(i)) return false;
     const mood = itemMood(i) || 'neu';
     if (ui.mood === 'pos' && mood !== 'pos') return false;
@@ -784,7 +774,7 @@ function btn(className, text, onClick, title) {
 function sourceLabel() {
     const [kind, val] = splitSource(ui.source);
     if (kind === 'sub') { const s = subs.find(x => x.id === val); return '📰  ' + (s ? subTitle(s) : T('Source')); }
-    if (kind === 'tag') return tagKey(val) === POD_TAG ? '🎧  ' + T('Podcasts') : '🏷️  ' + val;
+    if (kind === 'tag') return '🏷️  ' + val;
     return T('📰  All sources');
 }
 
@@ -817,7 +807,7 @@ function renderControls() {
 // Starter suggestions (shown on first run and in the Add sheet). Feeds are only
 // requested after a click.
 const SUGGESTED_FEEDS = [
-    { name: 'Street Phil-osophy', tags: ['Design', 'Independent'], note: N_('Podcast by the author · design, life & tech'), url: 'https://philwornath.com/api/podcast.xml', icon: '🎧' },
+    { name: 'Street Phil-osophy', tags: ['Podcast', 'Design', 'Independent'], note: N_('Podcast by the author · design, life & tech'), url: 'https://philwornath.com/api/podcast.xml', icon: '🎧' },
     { name: 'BBC News', tags: ['News'], note: N_('World news'), url: 'https://feeds.bbci.co.uk/news/rss.xml', icon: '🌍' },
     { name: 'DW', tags: ['News'], note: N_('Deutsche Welle · international news'), url: 'https://rss.dw.com/rdf/rss-en-all', icon: '📡' },
     { name: 'Al Jazeera', tags: ['News'], note: N_('World news'), url: 'https://www.aljazeera.com/xml/rss/all.xml', icon: '🗞️' },
@@ -1072,14 +1062,14 @@ function openSourcePicker() {
         const tags = allTags().filter(t => !q || t.toLowerCase().includes(q));
         if (tags.length) {
             list.append(el('div', 'feed-pick-label', TU('Tags')));
-            tags.forEach(t => list.append(radioRow(tagText(t), cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted), ui.source === 'tag:' + t, () => choose('tag:' + t))));
+            tags.forEach(t => list.append(radioRow('# ' + t, cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted), ui.source === 'tag:' + t, () => choose('tag:' + t))));
         }
         const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.tags || []).some(t => t.toLowerCase().includes(q));
         const shown = subs.filter(matching);
         if (shown.length) {
             if (tags.length) list.append(el('div', 'feed-pick-label', TU('Feeds')));
             shown.sort((a, b) => subTitle(a).localeCompare(subTitle(b))).forEach(s => {
-                list.append(radioRow((s.muted ? '🔕 ' : s.podcast ? '🎧 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted }));
+                list.append(radioRow((s.muted ? '🔕 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted }));
             });
         }
         if (!list.children.length) list.append(el('p', 'feed-muted', T('No sources match.')));
@@ -1401,7 +1391,7 @@ function openBriefing() {
 function updateSettingsSub() {
     const sub = document.querySelector('.settings-row-sub[data-sub="feeds"]');
     if (!sub) return;
-    const folders = allTags().filter(t => tagKey(t) !== POD_TAG).length;
+    const folders = allTags().length;
     sub.textContent = subs.length
         ? TN(subs.length, '{n} feed', '{n} feeds') + (folders ? ' · ' + TN(folders, '{n} tag', '{n} tags') : '')
         : T('Subscriptions · OPML · behavior');
@@ -1499,7 +1489,7 @@ function renderFeedSettings() {
 
     root.append(el('p', 'settings-caption', TU('Subscriptions · {n}', { n: subs.length })));
     const dl = el('datalist'); dl.id = 'feedTagList';
-    allTags().filter(f => tagKey(f) !== POD_TAG).forEach(f => { const o = el('option'); o.value = f; dl.append(o); });
+    allTags().forEach(f => { const o = el('option'); o.value = f; dl.append(o); });
     root.append(dl);
 
     const card = el('div', 'feed-set-card');

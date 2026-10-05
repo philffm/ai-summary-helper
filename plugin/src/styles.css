@@ -2790,3 +2790,5 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 
 .feed-cal-recap { position: absolute; top: 1px; right: 3px; font-size: 8px; line-height: 1; }
 .feed-cal-cell.recap .feed-cal-num { text-decoration: none; }
+
+.feed-actions .feed-play-btn.button-primary.feed-btn { margin-left: 0; }
