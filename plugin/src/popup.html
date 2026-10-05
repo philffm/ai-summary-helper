@@ -549,6 +549,7 @@
               <span id="feedSourceCount" class="feed-source-count"></span>
               <span class="feed-source-caret">▾</span>
             </button>
+            <button type="button" id="feedSearchBtn" class="feed-square-btn" title="Search feeds…" aria-label="Search feeds…" aria-pressed="false" data-i18n-title="f_search_feeds_2a1e">🔍</button>
             <button type="button" id="feedRefreshBtn" class="feed-square-btn" title="Refresh" aria-label="Refresh" data-i18n-title="f_refresh_aad4">⟳</button>
             <button type="button" id="feedAddBtn" class="feed-square-btn" title="Add feed" aria-label="Add feed" data-i18n-title="f_add_feed_1688">＋</button>
           </div>
@@ -561,13 +562,14 @@
             <span class="feed-chip-spacer"></span>
             <button type="button" id="feedFilterChip" class="feed-chip" aria-haspopup="dialog">Any time ▾</button>
           </div>
-          <div class="feed-toolbar">
+          <div id="feedScopeRow" class="feed-scope" role="group" aria-label="Recap scope" data-i18n-aria="f_recap_scope_40ec"></div>
+          <div class="feed-toolbar" id="feedToolbar" hidden>
             <input type="search" id="feedSearch" class="feed-search" placeholder="Search feeds…" data-i18n-placeholder="f_search_feeds_2a1e" autocomplete="off" spellcheck="false" />
             <button type="button" id="feedGraphBtn" class="feed-square-btn" title="Graph" aria-label="Graph" aria-pressed="false" data-i18n-title="f_graph_77e7">🕸️</button>
             <button type="button" id="feedInsightsBtn" class="feed-square-btn" title="Insights" aria-label="Insights" aria-pressed="false" data-i18n-title="f_insights_f1e8">📊</button>
           </div>
-          <div id="feedRecapCard" class="feed-recapcard" hidden></div>
         </div>
+        <div id="feedRecapCard" class="feed-recapcard" hidden></div>
         <ul id="feedItemList" class="feed-list"></ul>
         <div id="feedGraph" class="feed-graph" hidden></div>
         <div id="feedInsights" class="feed-insights" hidden></div>

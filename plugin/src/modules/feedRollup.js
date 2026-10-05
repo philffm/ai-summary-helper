@@ -227,3 +227,11 @@ export function weekCells(anchor, ctx) {
     const byDay = new Map(P.rows.filter(r => r.kind === 'day').map(r => [r.day, r.status]));
     return Array.from({ length: 7 }, (_, k) => { const d = addDays(start, k); return { day: d, status: d > today ? 'off' : (byDay.get(d) || 'none') }; });
 }
+
+/** Is the stored week/month recap older than one of the recaps it was built from? (false when there is none) */
+export function isStale(scope, anchor, ctx) {
+    const start = scope === 'week' ? weekStart(anchor) : monthStart(anchor);
+    const cached = ctx.getRecaps()[rollKey(scope, start, ctx.source)];
+    if (!cached || !cached.covered) return false;
+    return buildParts(scope, start, ctx).parts.some(p => cached.covered[p.key] !== recapSig(p.recap));
+}
