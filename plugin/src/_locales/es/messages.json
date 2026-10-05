@@ -1189,5 +1189,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "Ir a hoy"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Filtro"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Filtro"
   }
 }

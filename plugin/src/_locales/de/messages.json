@@ -1195,5 +1195,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "Zu heute springen"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Filter"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Filter"
   }
 }

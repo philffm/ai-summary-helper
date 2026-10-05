@@ -80,7 +80,7 @@ function moodSection(ctx) {
         [...tg.children].forEach(b => b.classList.toggle('active', b.dataset.view === mScope));
         body.replaceChildren();
         const bs = buildBuckets(ctx.moodStore || {}, mScope, Date.now(), ctx.feedIds || null);
-        if (!bs.some(b => b.rated)) { body.append(h('p', 'ar-empty', T('Nothing rated yet — use “Score with AI” in the Date & mood sheet.'))); return; }
+        if (!bs.some(b => b.rated)) { body.append(h('p', 'ar-empty', T('Nothing rated yet — write a ✨ Recap to rate items.'))); return; }
         const sel = mSel != null && bs[mSel] ? mSel : bs.length - 1;
         const cur = bs[sel], prev = bs[sel - 1] || null;
 

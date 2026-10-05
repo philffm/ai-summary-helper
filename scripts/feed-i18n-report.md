@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 284. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 286 | 0 | 0 | 7 |
-| de | 286 | 0 | 0 | 29 |
-| es | 286 | 0 | 0 | 26 |
-| fr | 286 | 0 | 0 | 22 |
-| hi | 286 | 0 | 0 | 5 |
-| it | 286 | 0 | 0 | 25 |
-| ja | 286 | 0 | 0 | 2 |
-| ko | 286 | 0 | 0 | 2 |
-| pt_PT | 286 | 0 | 0 | 22 |
-| ru | 286 | 0 | 0 | 8 |
-| zh_CN | 286 | 0 | 0 | 0 |
-| zh_HK | 286 | 0 | 0 | 0 |
-| zh_TW | 286 | 0 | 0 | 0 |
+| ar | 284 | 0 | 0 | 7 |
+| de | 284 | 0 | 0 | 30 |
+| es | 284 | 0 | 0 | 27 |
+| fr | 284 | 0 | 0 | 23 |
+| hi | 284 | 0 | 0 | 5 |
+| it | 284 | 0 | 0 | 26 |
+| ja | 284 | 0 | 0 | 3 |
+| ko | 284 | 0 | 0 | 1 |
+| pt_PT | 284 | 0 | 0 | 22 |
+| ru | 284 | 0 | 0 | 9 |
+| zh_CN | 284 | 0 | 0 | 0 |
+| zh_HK | 284 | 0 | 0 | 0 |
+| zh_TW | 284 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -63,6 +63,7 @@ Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
 | No sources match. | Keine passenden Quellen. | 24 vs 17 | 1.41× |
+| Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
 
 ### es
 | English | Translation | width | ratio |
@@ -91,6 +92,7 @@ Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
+| Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
 | AI request failed | Error de la solicitud IA | 24 vs 17 | 1.41× |
 | Mood history is kept for 13 months, even after items are removed. | El historial de ánimo se conserva 13 meses, incluso después de eliminar los artículos. | 86 vs 65 | 1.32× |
 
@@ -116,6 +118,7 @@ Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |
 | Best match · {n} items | Meilleur résultat · {n} éléments | 31 vs 21 | 1.48× |
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
+| Nothing rated yet — write a ✨ Recap to rate items. | Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles. | 73 vs 50 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
 | Creating day recaps… {a}/{b} | Création des récaps quotidiens… {a}/{b} | 37 vs 26 | 1.42× |
 | Only {r} of {n} items are rated | Seulement {r} articles sur {n} sont évalués | 41 vs 29 | 1.41× |
@@ -155,6 +158,7 @@ Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
 | Creating day recaps… {a}/{b} | Creazione riepiloghi giornalieri… {a}/{b} | 39 vs 26 | 1.5× |
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
+| Nothing rated yet — write a ✨ Recap to rate items. | Ancora nulla di valutato: crea un ✨ Riepilogo per valutare gli articoli. | 72 vs 50 | 1.44× |
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 
@@ -163,12 +167,12 @@ Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 |---|---|---|---|
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
 | 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
+| Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
 
 ### ko
 | English | Translation | width | ratio |
 |---|---|---|---|
 | n/a | 해당 없음 | 9 vs 3 | 3× |
-| Nothing rated yet — use “Score with AI” in the Date & mood sheet. | 아직 평가한 항목이 없습니다. ‘날짜 및 기분’ 시트에서 ‘AI로 점수 매기기’를 사용하세요. | 85 vs 65 | 1.31× |
 
 ### pt_PT
 | English | Translation | width | ratio |
@@ -206,4 +210,5 @@ Strings: 286. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Mood index | Индекс настроения | 17 vs 10 | 1.7× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |
 | 📈 Mood over time | 📈 Настроение во времени | 24 vs 17 | 1.41× |
+| Nothing rated yet — write a ✨ Recap to rate items. | Пока ничего не оценено — составьте ✨ сводку, чтобы оценить материалы. | 69 vs 50 | 1.38× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |

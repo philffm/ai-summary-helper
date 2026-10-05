@@ -1189,5 +1189,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "跳转到今天"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "尚无评分 — 生成 ✨ 摘要即可为条目评分。"
+  },
+  "f_filter_e5fe": {
+    "message": "‹ 筛选"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ 筛选"
   }
 }

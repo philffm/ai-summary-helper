@@ -1240,5 +1240,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "Jump to today"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Nothing rated yet — write a ✨ Recap to rate items."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Filter"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Filter"
   }
 }

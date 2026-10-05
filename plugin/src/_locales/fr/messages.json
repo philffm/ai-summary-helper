@@ -1189,5 +1189,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "Aller à aujourd’hui"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Filtre"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Filtre"
   }
 }

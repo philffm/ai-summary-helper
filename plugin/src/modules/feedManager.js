@@ -795,7 +795,7 @@ function filterChipLabel() {
     if (ui.date !== 'any') parts.push(dateText());
     if (ui.mood === 'pos') parts.push('😊'); else if (ui.mood === 'nonneg') parts.push(T('No 😟'));
     if (ui.sort === 'mood') parts.push(T('Mood ↓'));
-    return (parts.join(' · ') || T('Date & mood')) + ' ▾';
+    return (parts.join(' · ') || T('🎛️ Filter')) + ' ▾';
 }
 
 // ── Rendering ──────────────────────────────────────────────────────────────
@@ -1137,12 +1137,12 @@ function renderList() {
             const pb = btn('feed-day-step', '‹', () => step(prev), T('Previous day with items')); pb.disabled = prev == null;
             const nb = btn('feed-day-step', '›', () => step(next), T('Next day with items')); nb.disabled = next == null;
             const lab = el('span', 'feed-day-label');
-            const pick = btn('feed-day-open', `${fmtDayShort(groupDay)} · ${TN(group.length, '{n} item', '{n} items')}  ▾`, () => openFilterSheet({ view: 'calendar', day: groupDay }), T('Pick a day'));
+            const pick = btn('feed-day-open', `📅 ${fmtDayShort(groupDay)} · ${TN(group.length, '{n} item', '{n} items')}  ▾`, () => openFilterSheet({ view: 'calendar', day: groupDay }), T('Pick a day'));
             lab.append(pb, pick, nb);
             header.append(lab);
             if (groupDay !== startOfDay(Date.now())) header.append(btn('feed-day-action feed-day-today', T('Today'), () => step(startOfDay(Date.now())), T('Jump to today')));
         } else {
-            const lab = btn('feed-day-label feed-day-open', labelText + '  ▾', () => openFilterSheet({ view: 'calendar', day: groupDay }), T('Pick a day'));
+            const lab = btn('feed-day-label feed-day-open', '📅 ' + labelText + '  ▾', () => openFilterSheet({ view: 'calendar', day: groupDay }), T('Pick a day'));
             header.append(lab);
         }
         if (ui.sort !== 'mood') {
@@ -1279,20 +1279,18 @@ function openFilterSheet(opts = {}) {
         section(TU('Mood'), 'mood', [['any', T('Any mood')], ['pos', T('😊  Positive only')], ['nonneg', T('Hide negative')]]);
         section(TU('Sort'), 'sort', [['new', T('Newest first')], ['mood', T('Most positive first')]]);
         body.append(el('div', 'feed-pick-label', TU('More')));
-        body.append(btn('feed-manage-link', T('☀️  Today’s briefing'), () => { closeSheet(); openBriefing(); }));
-        body.append(btn('feed-manage-link', T('🤖  Score unscored visible items with AI'), () => { closeSheet(); scoreWithAi(visibleItems().slice(0, shown)); }));
         body.append(btn('feed-manage-link', T('✓  Mark everything in this view read'), () => {
             const list = visibleItems().filter(i => !i.read);
             closeSheet();
             if (list.length) setRead(list, true, { label: T('Marked {n} read', { n: list.length }) });
         }));
         body.append(el('p', 'feed-muted', T('Mood comes from AI scoring only — items you haven’t scored have no mood and are never hidden by the mood filter. Scoring sends titles and short snippets to your AI connection when you click it.')));
-        showSheet(head(left, T('Date & mood')), body);
+        showSheet(head(left, T('🎛️ Filter')), body);
     };
 
     const drawCal = () => {
         const body = el('div', 'feed-picker feed-cal');
-        const back = btn('feed-sheet-done feed-sheet-back', T('‹ Date & mood'), () => { view = 'main'; anchor = null; draw(); });
+        const back = btn('feed-sheet-done feed-sheet-back', T('‹ Filter'), () => { view = 'main'; anchor = null; draw(); });
 
         // counts per day within the current source scope
         const sm = subMap(); const counts = new Map();

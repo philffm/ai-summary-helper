@@ -1195,5 +1195,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "今日へ移動"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。"
+  },
+  "f_filter_e5fe": {
+    "message": "‹ フィルター"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ フィルター"
   }
 }

@@ -1177,5 +1177,14 @@
   },
   "f_jump_to_today_94c7": {
     "message": "오늘로 이동"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "아직 평가된 항목이 없습니다 — ✨ 요약을 만들면 항목이 평가됩니다."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ 필터"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ 필터"
   }
 }

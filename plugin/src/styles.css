@@ -2582,7 +2582,9 @@ text.graph-search-dim {
 }
 .feed-square-btn:hover, .feed-source-pill:hover { border-color: var(--accent); }
 #feedRefreshBtn.spinning { opacity: 0.6; animation: feed-spin 1s linear infinite; }
-.feed-chiprow { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.feed-chiprow { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.feed-chiprow::-webkit-scrollbar { display: none; }
+.feed-chiprow > * { flex: none; }
 .feed-chip-spacer { flex: 1; }
 .feed-chip {
   width: auto; flex: 0 0 auto; padding: 5px 12px; min-height: 30px; font-size: 12px; font-weight: 600; border-radius: 999px;
