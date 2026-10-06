@@ -1495,5 +1495,41 @@
   },
   "f_archived_84d9": {
     "message": "🗄️ {n} arquivados"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 frases"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "Uma nota simpática para ti próprio"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "A IA acrescenta 2–3 frases no início do resumo conjunto"
+  },
+  "f_briefing_d739": {
+    "message": "Briefing"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "Uma frase"
+  },
+  "f_personal_8cad": {
+    "message": "Pessoal"
+  },
+  "f_short_dd75": {
+    "message": "Curto"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "Usa o teu modelo de IA · uma chamada extra · no idioma da app"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ Intro ignorada — o resumo conjunto segue sem ela"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ Intro escrita"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ Escrever uma intro curta"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ A escrever a intro…"
   }
 }

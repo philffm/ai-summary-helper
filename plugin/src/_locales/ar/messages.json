@@ -1411,5 +1411,41 @@
   },
   "f_archived_84d9": {
     "message": "🗄️ تمت أرشفة {n}"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 جمل"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "ملاحظة ودّية لنفسك"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "يضيف الذكاء الاصطناعي 2–3 جمل في بداية الملخص المجمّع"
+  },
+  "f_briefing_d739": {
+    "message": "موجز"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "جملة واحدة"
+  },
+  "f_personal_8cad": {
+    "message": "شخصي"
+  },
+  "f_short_dd75": {
+    "message": "قصير"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "يستخدم نموذج الذكاء الاصطناعي لديك · استدعاء إضافي واحد · بلغة التطبيق"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ تم تخطي المقدمة — سيُرسل الملخص بدونها"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ تمت كتابة المقدمة"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ اكتب مقدمة قصيرة"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ جارٍ كتابة المقدمة…"
   }
 }

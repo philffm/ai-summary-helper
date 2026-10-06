@@ -1495,5 +1495,41 @@
   },
   "f_archived_84d9": {
     "message": "🗄️ {n} आर्काइव किए गए"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 वाक्य"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "खुद के लिए एक दोस्ताना नोट"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI डाइजेस्ट की शुरुआत में 2–3 वाक्य जोड़ता है"
+  },
+  "f_briefing_d739": {
+    "message": "ब्रीफ़िंग"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "एक वाक्य"
+  },
+  "f_personal_8cad": {
+    "message": "व्यक्तिगत"
+  },
+  "f_short_dd75": {
+    "message": "छोटा"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "आपके AI मॉडल का उपयोग · एक अतिरिक्त कॉल · ऐप की भाषा में"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ परिचय छोड़ा गया — डाइजेस्ट उसके बिना भेजा जाएगा"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ परिचय लिखा गया"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ छोटा परिचय लिखें"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ परिचय लिखा जा रहा है…"
   }
 }

@@ -25,7 +25,7 @@ function escapeHtml(str) {
  * bundle of full text would be huge and mostly redundant with just
  * reading each article individually.
  */
-export function buildMagazineArticle(articles, { title, includeContent = false } = {}) {
+export function buildMagazineArticle(articles, { title, includeContent = false, intro = '' } = {}) {
     const ordered = [...articles].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
     const magazineTitle = title || `Reading bundle — ${new Date().toLocaleDateString()} (${ordered.length} article${ordered.length === 1 ? '' : 's'})`;
 
@@ -48,6 +48,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false }
       <div>
         <h1>${escapeHtml(magazineTitle)}</h1>
         <p>${ordered.length} article${ordered.length === 1 ? '' : 's'}, curated from your AI Summary Helper archive.</p>
+        ${intro ? `<blockquote class="aish-intro" style="border-left:4px solid #c9a227;margin:14px 0;padding:2px 0 2px 12px;font-style:italic;">${escapeHtml(intro)}</blockquote>` : ''}
         <ol>${toc}</ol>
         <hr />
         ${sections}
@@ -57,7 +58,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false }
     return {
         title: magazineTitle,
         content,
-        summary: `A bundle of ${ordered.length} article${ordered.length === 1 ? '' : 's'}: ${ordered.map(a => a.title).filter(Boolean).slice(0, 5).join(', ')}${ordered.length > 5 ? '…' : ''}`,
+        summary: `${intro ? intro + ' ' : ''}A bundle of ${ordered.length} article${ordered.length === 1 ? '' : 's'}: ${ordered.map(a => a.title).filter(Boolean).slice(0, 5).join(', ')}${ordered.length > 5 ? '…' : ''}`,
         url: '',
         timestamp: new Date().toISOString(),
         tags: Array.from(new Set(ordered.flatMap(a => a.tags || []))).slice(0, 10),

@@ -7,6 +7,7 @@
 import StorageManager from './storageManager.js';
 import { buildMagazineArticle } from './digestBuilder.js';
 import { T, TN } from './feedI18n.js';
+import { generateDigestIntro } from './feedAi.js';
 
 let deps = null;
 const sel = new Set();                 // selected article ids
@@ -93,7 +94,7 @@ function paintBar() {
 
 // ───────────────────────────── sheet ─────────────────────────────
 
-const state = { format: 'digest', include: 'summary' };
+const state = { format: 'digest', include: 'summary', intro: 'off', introStyle: 'briefing' };
 
 function closeSheet() { if (sheet) { sheet.remove(); sheet = null; } }
 
@@ -114,13 +115,13 @@ function shell(title, subtitle) {
     return body;
 }
 
-function segmented(body, key, options) {
+function segmented(body, key, options, onChange) {
     const seg = el('div', 'sendsheet-seg');
     seg.setAttribute('role', 'radiogroup');
     options.forEach(([v, label]) => {
         const b = el('button', 'sendsheet-seg-btn' + (state[key] === v ? ' on' : ''), label);
         b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state[key] === v));
-        b.addEventListener('click', () => { state[key] = v; seg.querySelectorAll('.sendsheet-seg-btn').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', String(on)); }); });
+        b.addEventListener('click', () => { state[key] = v; seg.querySelectorAll('.sendsheet-seg-btn').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', String(on)); }); if (onChange) onChange(); });
         seg.append(b);
     });
     body.append(seg);
@@ -162,8 +163,10 @@ async function viewChoose() {
     const n = list.length;
     const names = list.slice(0, 2).map(a => a.title || T('Untitled')).join(', ') + (n > 2 ? ' ' + T('and {n} more', { n: n - 2 }) : '');
     const body = shell(TN(n, 'Send {n} summary', 'Send {n} summaries'), names);
-    if (n > 1) segmented(body, 'format', [['digest', T('One digest')], ['files', T('Separate files')]]); else state.format = 'files';
+    const intro = introBlock();
+    if (n > 1) segmented(body, 'format', [['digest', T('One digest')], ['files', T('Separate files')]], () => intro.paint()); else state.format = 'files';
     segmented(body, 'include', [['summary', T('Summary only')], ['full', T('Summary + full article')]]);
+    body.append(intro);
     const cfg = await StorageManager.getAll();
     if (!sheet) return;
     const l = (Array.isArray(cfg.devices) ? cfg.devices : []).filter(d => d.type === 'localsend');
@@ -221,6 +224,39 @@ async function viewLocalSend() {
     body.append(btn(T('Back'), false, viewChoose));
 }
 
+/** Optional AI intro for a digest: toggle (A) and, when on, the style chips (C). Only for "One digest". */
+function introBlock() {
+    const wrap = el('div', 'sendsheet-intro');
+    const paint = () => {
+        wrap.textContent = '';
+        if (state.format !== 'digest' || selected().length < 2) return;
+        const on = state.intro === 'on';
+        const tg = el('button', 'sendsheet-row sendsheet-toggle' + (on ? ' on' : ''));
+        tg.type = 'button'; tg.setAttribute('role', 'switch'); tg.setAttribute('aria-checked', String(on));
+        const tx = el('span', 'sendsheet-row-tx');
+        tx.append(el('span', 'sendsheet-row-t', T('✨ Write a short intro')),
+            el('span', 'sendsheet-row-s sendsheet-wrap', on ? T('Uses your AI model · one extra call · in your app language') : T('AI adds 2–3 sentences on top of the digest')));
+        const sw = el('span', 'sendsheet-switch'); sw.append(el('span', 'sendsheet-knob'));
+        tg.append(tx, sw);
+        tg.addEventListener('click', () => { state.intro = on ? 'off' : 'on'; paint(); });
+        wrap.append(tg);
+        if (on) {
+            const chips = el('div', 'sendsheet-seg'); chips.setAttribute('role', 'radiogroup');
+            [['short', T('Short')], ['briefing', T('Briefing')], ['personal', T('Personal')]].forEach(([v, label]) => {
+                const b = el('button', 'sendsheet-seg-btn' + (state.introStyle === v ? ' on' : ''), label);
+                b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state.introStyle === v));
+                b.addEventListener('click', () => { state.introStyle = v; paint(); });
+                chips.append(b);
+            });
+            const hint = { short: T('One sentence'), briefing: T('2–3 sentences'), personal: T('A friendly note to yourself') }[state.introStyle];
+            wrap.append(chips, el('div', 'sendsheet-row-s sendsheet-hint', hint));
+        }
+    };
+    wrap.paint = paint;
+    paint();
+    return wrap;
+}
+
 /** Small toast with an Undo action (used after archiving). */
 export function undoToast(msg, onUndo) {
     document.querySelectorAll('.undo-toast').forEach(n => n.remove());
@@ -255,7 +291,7 @@ function viewMark() {
 }
 
 /** Jobs to run: one digest, or one file per article. */
-async function buildJobs() {
+async function buildJobs(intro = '') {
     const list = selected();
     const full = state.include === 'full';
     const load = async (a) => {
@@ -266,7 +302,7 @@ async function buildJobs() {
     const items = [];
     for (const a of list) items.push(await load(a));
     if (state.format === 'digest' && list.length > 1) {
-        return [{ label: T('Digest of {n} summaries', { n: list.length }), ids: list.map(a => a.id), article: buildMagazineArticle(items, { includeContent: full }) }];
+        return [{ label: T('Digest of {n} summaries', { n: list.length }), ids: list.map(a => a.id), article: buildMagazineArticle(items, { includeContent: full, intro }) }];
     }
     return items.map(a => ({ label: a.title || T('Untitled'), ids: [a.id], article: a }));
 }
@@ -285,7 +321,17 @@ async function run(kind, device) {
     const track = el('div', 'sendsheet-track'); const fillEl = el('div', 'sendsheet-fill'); track.append(fillEl);
     const steps = el('div', 'sendsheet-steps');
     body.append(track, steps);
-    const jobs = await buildJobs();
+    let intro = '';
+    let introFailed = false;
+    const wantIntro = state.intro === 'on' && state.format === 'digest' && selected().length > 1;
+    if (wantIntro) {
+        const il = el('div', 'sendsheet-step', T('✨ Writing intro…'));
+        steps.append(il);
+        try { intro = await generateDigestIntro(selected(), state.introStyle); il.textContent = T('✨ Intro written'); }
+        catch (e) { introFailed = true; il.textContent = T('⚠️ Intro skipped — the digest goes out without it'); }
+        if (!sheet) return;
+    }
+    const jobs = await buildJobs(intro);
     const lines = jobs.map(j => { const d = el('div', 'sendsheet-step', '○ ' + j.label); steps.append(d); return d; });
     let cancelled = false;
     body.append(btn(T('Cancel'), false, () => { cancelled = true; }));
@@ -311,7 +357,7 @@ async function run(kind, device) {
     await markSent(kind, device, deliveredIds);
     if (cancelled && done < jobs.length) return finish(false, { kind, target, done, total: jobs.length, error: T('Cancelled') });
     StorageManager.setActiveDevice(kind, device.id);
-    finish(true, { kind, target, done, total: jobs.length, ids: deliveredIds });
+    finish(true, { kind, target, done, total: jobs.length, ids: deliveredIds, introFailed });
 }
 
 function finish(ok, r) {
@@ -326,6 +372,7 @@ function finish(ok, r) {
             ? (r.kind === 'kindle' ? T('It will show up on your Kindle in a few minutes.') : TN(r.done, '{n} file sent', '{n} files sent'))
             : T('{done} of {total} sent. {error}', { done: r.done, total: r.total, error: r.error || '' })));
     body.append(box);
+    if (ok && r.introFailed) body.append(el('div', 'sendsheet-note', T('⚠️ Intro skipped — the digest goes out without it')));
     if (ok) {
         const note = el('div', 'sendsheet-note', T('Status updated automatically:') + ' ' + (r.kind === 'kindle' ? T('📚 Sent to Kindle') : T('📡 Sent via LocalSend')));
         body.append(note);

@@ -1576,5 +1576,41 @@
   "f_archived_84d9": {
     "message": "🗄️ {n} archived",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 sentences"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "A friendly note to yourself"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI adds 2–3 sentences on top of the digest"
+  },
+  "f_briefing_d739": {
+    "message": "Briefing"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "One sentence"
+  },
+  "f_personal_8cad": {
+    "message": "Personal"
+  },
+  "f_short_dd75": {
+    "message": "Short"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "Uses your AI model · one extra call · in your app language"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ Intro skipped — the digest goes out without it"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ Intro written"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ Write a short intro"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ Writing intro…"
   }
 }

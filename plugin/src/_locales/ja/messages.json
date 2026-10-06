@@ -1501,5 +1501,41 @@
   },
   "f_archived_84d9": {
     "message": "🗄️ {n}件をアーカイブしました"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2〜3文"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "自分宛ての親しみやすいメモ"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AIがダイジェストの冒頭に2〜3文を追加します"
+  },
+  "f_briefing_d739": {
+    "message": "ブリーフィング"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "1文"
+  },
+  "f_personal_8cad": {
+    "message": "パーソナル"
+  },
+  "f_short_dd75": {
+    "message": "短め"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "お使いのAIモデルを使用 · 追加で1回呼び出し · アプリの言語で"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ イントロを省略しました — ダイジェストはそのまま送信されます"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ イントロを作成しました"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ 短いイントロを書く"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ イントロを作成中…"
   }
 }

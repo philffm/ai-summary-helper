@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 395. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 383 | 0 | 0 | 11 |
-| de | 383 | 0 | 0 | 55 |
-| es | 383 | 0 | 0 | 33 |
-| fr | 383 | 0 | 0 | 35 |
-| hi | 383 | 0 | 0 | 11 |
-| it | 383 | 0 | 0 | 30 |
-| ja | 383 | 0 | 0 | 13 |
-| ko | 383 | 0 | 0 | 2 |
-| pt_PT | 383 | 0 | 0 | 31 |
-| ru | 383 | 0 | 0 | 15 |
-| zh_CN | 383 | 0 | 0 | 0 |
-| zh_HK | 383 | 0 | 0 | 0 |
-| zh_TW | 383 | 0 | 0 | 0 |
+| ar | 395 | 0 | 0 | 11 |
+| de | 395 | 0 | 0 | 56 |
+| es | 395 | 0 | 0 | 34 |
+| fr | 395 | 0 | 0 | 36 |
+| hi | 395 | 0 | 0 | 12 |
+| it | 395 | 0 | 0 | 31 |
+| ja | 395 | 0 | 0 | 15 |
+| ko | 395 | 0 | 0 | 2 |
+| pt_PT | 395 | 0 | 0 | 32 |
+| ru | 395 | 0 | 0 | 17 |
+| zh_CN | 395 | 0 | 0 | 0 |
+| zh_HK | 395 | 0 | 0 | 0 |
+| zh_TW | 395 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -78,6 +78,7 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Marked {n} unread | {n} als ungelesen markiert | 25 vs 16 | 1.56× |
 | Not set up yet — add a receiver in Settings | Noch nicht eingerichtet — Empfänger in den Einstellungen hinzufügen | 67 vs 43 | 1.56× |
 | Restore to Inbox | In den Posteingang zurück | 25 vs 16 | 1.56× |
+| ✨ Writing intro… | ✨ Intro wird geschrieben… | 25 vs 16 | 1.56× |
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
@@ -125,6 +126,7 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
 | No tags found. Add tags to your summaries! | No se encontraron etiquetas. ¡Añade etiquetas a tus resúmenes! | 62 vs 42 | 1.48× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
+| ✨ Writing intro… | ✨ Escribiendo la intro… | 23 vs 16 | 1.44× |
 | 🏷️ Top Categories | 🏷️ Categorías principales | 26 vs 18 | 1.44× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
@@ -162,6 +164,7 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Nothing rated yet — write a ✨ Recap to rate items. | Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles. | 73 vs 50 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
 | Nothing here yet | Rien ici pour l’instant | 23 vs 16 | 1.44× |
+| ✨ Writing intro… | ✨ Rédaction de l’intro… | 23 vs 16 | 1.44× |
 | 🏷️ Top Categories | 🏷️ Principales catégories | 26 vs 18 | 1.44× |
 | Creating day recaps… {a}/{b} | Création des récaps quotidiens… {a}/{b} | 37 vs 26 | 1.42× |
 | Not set up yet — add a receiver in Settings | Pas encore configuré — ajoutez un récepteur dans les Réglages | 61 vs 43 | 1.42× |
@@ -182,6 +185,7 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
 | Best Streak | सर्वश्रेष्ठ स्ट्रीक | 19 vs 11 | 1.73× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
+| ✨ Writing intro… | ✨ परिचय लिखा जा रहा है… | 23 vs 16 | 1.44× |
 | {done} of {total} sent. {error} | {total} में से {done} भेजे गए। {error} | 24 vs 17 | 1.41× |
 | ✨ Updating recap… | ✨ रीकैप अपडेट हो रहा है… | 24 vs 17 | 1.41× |
 
@@ -216,6 +220,7 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Not set up yet — add your Kindle in Settings | Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni | 65 vs 44 | 1.48× |
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Ancora nulla di valutato: crea un ✨ Riepilogo per valutare gli articoli. | 72 vs 50 | 1.44× |
+| ✨ Writing intro… | ✨ Scrittura dell’intro… | 23 vs 16 | 1.44× |
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 
@@ -227,9 +232,11 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Cancelled | キャンセルしました | 18 vs 9 | 2× |
 | 🗄️ {n} archived | 🗄️ {n}件をアーカイブしました | 28 vs 15 | 1.87× |
 | Archived | アーカイブ済み | 14 vs 8 | 1.75× |
+| Briefing | ブリーフィング | 14 vs 8 | 1.75× |
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
 | {done} of {total} sent. {error} | {total}件中{done}件を送信しました。{error} | 28 vs 17 | 1.65× |
 | Sent to {name} | {name}に送信しました | 16 vs 10 | 1.6× |
+| ✨ Intro written | ✨ イントロを作成しました | 24 vs 15 | 1.6× |
 | 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
 | 📅 Activity | 📅 アクティビティ | 17 vs 11 | 1.55× |
 | Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
@@ -276,6 +283,7 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Mood history is kept for 13 months, even after items are removed. | O histórico de humor é mantido durante 13 meses, mesmo depois de os artigos serem removidos. | 92 vs 65 | 1.42× |
 | Not set up yet — add your Kindle in Settings | Ainda não configurado — adiciona o teu Kindle nas Definições | 60 vs 44 | 1.36× |
 | Not set up yet — add a receiver in Settings | Ainda não configurado — adiciona um recetor nas Definições | 58 vs 43 | 1.35× |
+| AI adds 2–3 sentences on top of the digest | A IA acrescenta 2–3 frases no início do resumo conjunto | 55 vs 42 | 1.31× |
 
 ### ru
 | English | Translation | width | ratio |
@@ -291,7 +299,9 @@ Strings: 383. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Sent to {name} | Отправлено на {name} | 16 vs 10 | 1.6× |
 | ✅ Sent · {date} | ✅ Отправлено · {date} | 17 vs 11 | 1.55× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |
+| ✨ Write a short intro | ✨ Написать короткое вступление | 30 vs 21 | 1.43× |
 | 📈 Mood over time | 📈 Настроение во времени | 24 vs 17 | 1.41× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Пока ничего не оценено — составьте ✨ сводку, чтобы оценить материалы. | 69 vs 50 | 1.38× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
+| Uses your AI model · one extra call · in your app language | Использует вашу модель ИИ · один дополнительный запрос · на языке приложения | 76 vs 58 | 1.31× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |

@@ -1483,5 +1483,41 @@
   },
   "f_archived_84d9": {
     "message": "🗄️ {n}개 보관됨"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3문장"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "나에게 쓰는 친근한 메모"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI가 다이제스트 맨 앞에 2–3문장을 추가합니다"
+  },
+  "f_briefing_d739": {
+    "message": "브리핑"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "한 문장"
+  },
+  "f_personal_8cad": {
+    "message": "개인용"
+  },
+  "f_short_dd75": {
+    "message": "짧게"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "내 AI 모델 사용 · 추가 호출 1회 · 앱 언어로"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ 소개글을 건너뜀 — 다이제스트는 소개글 없이 전송됩니다"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ 소개글 작성 완료"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ 짧은 소개글 쓰기"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ 소개글 작성 중…"
   }
 }

@@ -1411,5 +1411,41 @@
   },
   "f_archived_84d9": {
     "message": "🗄️ 已封存 {n} 篇"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 句"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "寫給自己的友善便條"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI 會在合集開頭加上 2–3 句話"
+  },
+  "f_briefing_d739": {
+    "message": "簡報"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "一句話"
+  },
+  "f_personal_8cad": {
+    "message": "個人"
+  },
+  "f_short_dd75": {
+    "message": "簡短"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "使用你的 AI 模型 · 額外呼叫一次 · 使用 App 語言"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ 已略過導語 — 合集將不含導語傳送"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ 導語已產生"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ 寫一段簡短導語"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ 正在撰寫導語…"
   }
 }

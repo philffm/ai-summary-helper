@@ -3029,3 +3029,9 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .sel-bar .sel-sub { display: none; }
 .sel-bar .sel-all { flex: 0 1 auto; }
 .sel-bar .sel-send { flex: 1 1 100px; max-width: 100%; display: inline-flex; align-items: center; justify-content: center; }
+
+.sendsheet-intro { display: flex; flex-direction: column; gap: 8px; }
+.sendsheet-intro:empty { display: none; }
+.sendsheet-toggle.on { border-color: var(--accent); border-width: 2px; }
+.sendsheet-row-s.sendsheet-wrap { white-space: normal; }
+.sendsheet-hint { padding: 0 4px; }

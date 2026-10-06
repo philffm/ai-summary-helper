@@ -192,6 +192,29 @@ export async function scoreItems(list, subTitleFn) {
     return { scores, labels: parseLabelsJson(text, chunk.length) };
 }
 
+const INTRO_STYLES = {
+    short: 'exactly one sentence (at most 25 words)',
+    briefing: '2 to 3 sentences in a neutral, informative briefing tone',
+    personal: '2 to 3 sentences in a friendly, personal tone, like a note to myself (you may address the reader as "you")',
+};
+
+/**
+ * Short introduction for a reading digest, written ONLY from the already-written summaries
+ * (title + start of each) — no article text is sent. style: 'short' | 'briefing' | 'personal'.
+ */
+export async function generateDigestIntro(list, style = 'briefing') {
+    const lang = await languageName();
+    const plain = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ');
+    const system = `You write the short introduction at the top of a reading digest made of several article summaries. Write it in ${lang}. `
+        + `Length and tone: ${INTRO_STYLES[style] || INTRO_STYLES.briefing}. `
+        + 'Mention what the pieces have in common or how they differ. Use ONLY information from the summaries: no new facts, no quotes, no markdown, no lists, no title, no greeting. Reply with the intro text only.';
+    const user = list.slice(0, 12).map((a, i) => `[${i + 1}] ${clip(a.title, 140)} — ${clip(plain(a.summary), 400)}`).join('\n');
+    const raw = await aiComplete(system, user);
+    const text = String(raw || '').replace(/[*#_`>]/g, '').replace(/^["“”'\s]+|["“”'\s]+$/g, '').replace(/\s+/g, ' ').trim().slice(0, 700);
+    if (!text) throw new Error(T('The AI reply could not be read'));
+    return text;
+}
+
 /** Stable fingerprint of a recap (what a week/month recap was built from) — changes when a day/week recap is regenerated. */
 export function recapSig(r) {
     const t = [r.overview, (r.themes || []).join('|'), r.mood].join('¦');
