@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 395. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 396. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 395 | 0 | 0 | 11 |
-| de | 395 | 0 | 0 | 56 |
-| es | 395 | 0 | 0 | 34 |
-| fr | 395 | 0 | 0 | 36 |
-| hi | 395 | 0 | 0 | 12 |
-| it | 395 | 0 | 0 | 31 |
-| ja | 395 | 0 | 0 | 15 |
-| ko | 395 | 0 | 0 | 2 |
-| pt_PT | 395 | 0 | 0 | 32 |
-| ru | 395 | 0 | 0 | 17 |
-| zh_CN | 395 | 0 | 0 | 0 |
-| zh_HK | 395 | 0 | 0 | 0 |
-| zh_TW | 395 | 0 | 0 | 0 |
+| ar | 396 | 0 | 0 | 11 |
+| de | 396 | 0 | 0 | 56 |
+| es | 396 | 0 | 0 | 34 |
+| fr | 396 | 0 | 0 | 37 |
+| hi | 396 | 0 | 0 | 12 |
+| it | 396 | 0 | 0 | 31 |
+| ja | 396 | 0 | 0 | 15 |
+| ko | 396 | 0 | 0 | 2 |
+| pt_PT | 396 | 0 | 0 | 32 |
+| ru | 396 | 0 | 0 | 18 |
+| zh_CN | 396 | 0 | 0 | 0 |
+| zh_HK | 396 | 0 | 0 | 0 |
+| zh_TW | 396 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -149,6 +149,7 @@ Strings: 395. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Select all | Tout sélectionner | 17 vs 10 | 1.7× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
+| Good mood only | Bonne humeur uniquement | 23 vs 14 | 1.64× |
 | Open day › | Ouvrir le jour › | 16 vs 10 | 1.6× |
 | no recap yet | pas encore de récap | 19 vs 12 | 1.58× |
 | ☁️ Top terms | ☁️ Termes fréquents | 19 vs 12 | 1.58× |
@@ -293,6 +294,7 @@ Strings: 395. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Saved | Сэкономлено | 11 vs 5 | 2.2× |
 | Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | reused | использована | 12 vs 6 | 2× |
+| Good mood only | Только хорошее настроение | 25 vs 14 | 1.79× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |
 | Mood index | Индекс настроения | 17 vs 10 | 1.7× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |

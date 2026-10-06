@@ -797,7 +797,7 @@ function dateText(d = ui.date) {
     if (isDayRange(d)) return `${fmtDayNoWeek(d.from)} – ${fmtDayNoWeek(d.to)}`;
     return '';
 }
-const filtersActive = () => ui.date !== 'any' || ui.mood !== 'any' || ui.sort !== 'new';
+const filtersActive = () => ui.date !== 'any' || ui.mood === 'nonneg' || ui.sort !== 'new';
 
 function passes(i, sm, skipDate = false) {
     if (!inSource(i, sm)) return false;
@@ -863,7 +863,7 @@ function dayLabel(ts) {
 function filterChipLabel() {
     const parts = [];
     if (ui.date !== 'any') parts.push(dateText());
-    if (ui.mood === 'pos') parts.push('😊'); else if (ui.mood === 'nonneg') parts.push(T('No 😟'));
+    if (ui.mood === 'nonneg') parts.push(T('No 😟'));
     if (ui.sort === 'mood') parts.push(T('Mood ↓'));
     return (parts.join(' · ') || T('🎛️ Filter')) + ' ▾';
 }
@@ -921,6 +921,12 @@ function renderControls() {
         b.setAttribute('aria-pressed', String(on));
         if (b.dataset.status === 'unread') b.textContent = unread ? T('Unread · {n}', { n: unread }) : T('Unread');
     });
+    if (els.moodChip) {
+        const on = ui.mood === 'pos';
+        els.moodChip.classList.toggle('active', on);
+        els.moodChip.setAttribute('aria-pressed', String(on));
+        els.moodChip.title = els.moodChip.ariaLabel = T('Good mood only');
+    }
     els.filterChip.textContent = filterChipLabel();
     els.filterChip.classList.toggle('active', filtersActive());
 }
@@ -1999,6 +2005,7 @@ export function initFeedManager(uiObj) {
         recapCard: document.getElementById('feedRecapCard'),
         scopeRow: document.getElementById('feedScopeRow'),
         filterChip: document.getElementById('feedFilterChip'),
+        moodChip: document.getElementById('feedMoodChip'),
         opmlInput: document.getElementById('feedOpmlInput'),
         list: document.getElementById('feedItemList'),
         empty: document.getElementById('feedEmpty'),
@@ -2030,6 +2037,9 @@ export function initFeedManager(uiObj) {
             histTimer = setTimeout(async () => { await loadHistoryMap(); await carryMoodToHistory(); if (els && els.list) render(); }, 250);
         });
     }
+    if (els.moodChip) els.moodChip.addEventListener('click', () => {
+        ui.mood = ui.mood === 'pos' ? 'any' : 'pos'; persistUi(); render();
+    });
     els.chipRow.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
         ui.status = b.dataset.status; persistUi(); render();
     }));

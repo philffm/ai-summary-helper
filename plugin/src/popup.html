@@ -559,12 +559,14 @@
             <button type="button" id="feedAddBtn" class="feed-square-btn" title="Add feed" aria-label="Add feed" data-i18n-title="f_add_feed_1688">＋</button>
           </div>
           <div id="feedChipRow" class="feed-chiprow">
+          <div class="feed-chipscroll">
             <button type="button" class="feed-chip active" data-status="all" data-i18n="f_all_e364">All</button>
             <button type="button" class="feed-chip" data-status="unread" data-i18n="f_unread_c982">Unread</button>
             <button type="button" class="feed-chip" data-status="fav" title="Favorites" aria-label="Favorites" data-i18n-title="f_favorites_53ba">★</button>
             <button type="button" class="feed-chip" data-status="sum" title="Summarized" aria-label="Summarized" data-i18n-title="f_summarized_415a">✓</button>
             <button type="button" class="feed-chip" data-status="audio" title="Podcasts" aria-label="Podcasts" data-i18n-title="f_podcasts_7c90">🎧</button>
-            <span class="feed-chip-spacer"></span>
+            <button type="button" class="feed-chip" id="feedMoodChip" aria-pressed="false">😊</button>
+          </div>
             <button type="button" id="feedFilterChip" class="feed-chip" aria-haspopup="dialog">Any time ▾</button>
           </div>
           <div id="feedScopeRow" class="feed-scope" role="group" aria-label="Recap scope" data-i18n-aria="f_recap_scope_40ec"></div>
