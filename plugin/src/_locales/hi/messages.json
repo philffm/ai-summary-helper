@@ -1411,5 +1411,14 @@
   },
   "f_send_aff2": {
     "message": "📤 {n} भेजें"
+  },
+  "f_full_article_765e": {
+    "message": "पूरा लेख"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "सारांश + पूरा लेख"
+  },
+  "f_summary_only_bd43": {
+    "message": "केवल सारांश"
   }
 }

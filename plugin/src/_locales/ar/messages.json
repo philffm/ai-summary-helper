@@ -1327,5 +1327,14 @@
   },
   "f_send_aff2": {
     "message": "📤 إرسال {n}"
+  },
+  "f_full_article_765e": {
+    "message": "المقال كاملًا"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "الملخص + المقال كاملًا"
+  },
+  "f_summary_only_bd43": {
+    "message": "الملخص فقط"
   }
 }

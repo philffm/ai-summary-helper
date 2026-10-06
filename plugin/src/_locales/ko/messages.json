@@ -1399,5 +1399,14 @@
   },
   "f_send_aff2": {
     "message": "📤 {n}개 보내기"
+  },
+  "f_full_article_765e": {
+    "message": "전체 기사"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "요약 + 전체 기사"
+  },
+  "f_summary_only_bd43": {
+    "message": "요약만"
   }
 }

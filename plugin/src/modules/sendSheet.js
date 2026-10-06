@@ -89,7 +89,7 @@ function paintBar() {
 
 // ───────────────────────────── sheet ─────────────────────────────
 
-const state = { format: 'digest' };
+const state = { format: 'digest', include: 'summary' };
 
 function closeSheet() { if (sheet) { sheet.remove(); sheet = null; } }
 
@@ -110,13 +110,13 @@ function shell(title, subtitle) {
     return body;
 }
 
-function segmented(body) {
+function segmented(body, key, options) {
     const seg = el('div', 'sendsheet-seg');
     seg.setAttribute('role', 'radiogroup');
-    [['digest', T('One digest')], ['files', T('Separate files')]].forEach(([v, label]) => {
-        const b = el('button', 'sendsheet-seg-btn' + (state.format === v ? ' on' : ''), label);
-        b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state.format === v));
-        b.addEventListener('click', () => { state.format = v; seg.querySelectorAll('.sendsheet-seg-btn').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', String(on)); }); });
+    options.forEach(([v, label]) => {
+        const b = el('button', 'sendsheet-seg-btn' + (state[key] === v ? ' on' : ''), label);
+        b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state[key] === v));
+        b.addEventListener('click', () => { state[key] = v; seg.querySelectorAll('.sendsheet-seg-btn').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', String(on)); }); });
         seg.append(b);
     });
     body.append(seg);
@@ -158,7 +158,8 @@ async function viewChoose() {
     const n = list.length;
     const names = list.slice(0, 2).map(a => a.title || T('Untitled')).join(', ') + (n > 2 ? ' ' + T('and {n} more', { n: n - 2 }) : '');
     const body = shell(TN(n, 'Send {n} summary', 'Send {n} summaries'), names);
-    if (n > 1) segmented(body); else state.format = 'files';
+    if (n > 1) segmented(body, 'format', [['digest', T('One digest')], ['files', T('Separate files')]]); else state.format = 'files';
+    segmented(body, 'include', [['summary', T('Summary only')], ['full', T('Summary + full article')]]);
     const cfg = await StorageManager.getAll();
     if (!sheet) return;
     const l = (Array.isArray(cfg.devices) ? cfg.devices : []).filter(d => d.type === 'localsend');
@@ -219,16 +220,18 @@ async function viewLocalSend() {
 /** Jobs to run: one digest, or one file per article. */
 async function buildJobs() {
     const list = selected();
+    const full = state.include === 'full';
+    const load = async (a) => {
+        if (!full) return { ...a, content: '' };            // index entries carry the summary only
+        try { const f = await StorageManager.getArticleFull(a.id); if (f) return { ...a, ...f }; } catch (_) { /* summary only */ }
+        return { ...a, content: '' };
+    };
+    const items = [];
+    for (const a of list) items.push(await load(a));
     if (state.format === 'digest' && list.length > 1) {
-        return [{ label: T('Digest of {n} summaries', { n: list.length }), article: buildMagazineArticle(list) }];
+        return [{ label: T('Digest of {n} summaries', { n: list.length }), article: buildMagazineArticle(items, { includeContent: full }) }];
     }
-    const jobs = [];
-    for (const a of list) {
-        let full = a;
-        try { const f = await StorageManager.getArticleFull(a.id); if (f) full = { ...a, ...f }; } catch (_) { /* summary only */ }
-        jobs.push({ label: a.title || T('Untitled'), article: full });
-    }
-    return jobs;
+    return items.map(a => ({ label: a.title || T('Untitled'), article: a }));
 }
 
 async function run(kind, device) {

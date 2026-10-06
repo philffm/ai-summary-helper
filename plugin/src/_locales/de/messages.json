@@ -1417,5 +1417,14 @@
   },
   "f_send_aff2": {
     "message": "📤 {n} senden"
+  },
+  "f_full_article_765e": {
+    "message": "Vollständiger Artikel"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "Zusammenfassung + ganzer Artikel"
+  },
+  "f_summary_only_bd43": {
+    "message": "Nur Zusammenfassung"
   }
 }

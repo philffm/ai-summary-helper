@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 355. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 358. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 355 | 0 | 0 | 9 |
-| de | 355 | 0 | 0 | 46 |
-| es | 355 | 0 | 0 | 32 |
-| fr | 355 | 0 | 0 | 32 |
-| hi | 355 | 0 | 0 | 8 |
-| it | 355 | 0 | 0 | 29 |
-| ja | 355 | 0 | 0 | 11 |
-| ko | 355 | 0 | 0 | 2 |
-| pt_PT | 355 | 0 | 0 | 28 |
-| ru | 355 | 0 | 0 | 12 |
-| zh_CN | 355 | 0 | 0 | 0 |
-| zh_HK | 355 | 0 | 0 | 0 |
-| zh_TW | 355 | 0 | 0 | 0 |
+| ar | 358 | 0 | 0 | 9 |
+| de | 358 | 0 | 0 | 49 |
+| es | 358 | 0 | 0 | 32 |
+| fr | 358 | 0 | 0 | 32 |
+| hi | 358 | 0 | 0 | 8 |
+| it | 358 | 0 | 0 | 29 |
+| ja | 358 | 0 | 0 | 11 |
+| ko | 358 | 0 | 0 | 2 |
+| pt_PT | 358 | 0 | 0 | 28 |
+| ru | 358 | 0 | 0 | 12 |
+| zh_CN | 358 | 0 | 0 | 0 |
+| zh_HK | 358 | 0 | 0 | 0 |
+| zh_TW | 358 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -52,6 +52,7 @@ Strings: 355. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | {n} summary | {n} Zusammenfassung | 18 vs 10 | 1.8× |
 | Try again | Erneut versuchen | 16 vs 9 | 1.78× |
 | ✨ Updating recap… | ✨ Rückblick wird aktualisiert… | 30 vs 17 | 1.76× |
+| Full article | Vollständiger Artikel | 21 vs 12 | 1.75× |
 | No items | Keine Einträge | 14 vs 8 | 1.75× |
 | 📄 View summary | 📄 Zusammenfassung ansehen | 26 vs 15 | 1.73× |
 | Select summaries | Zusammenfassungen auswählen | 27 vs 16 | 1.69× |
@@ -66,6 +67,7 @@ Strings: 355. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | AI scoring failed | KI-Bewertung fehlgeschlagen | 27 vs 17 | 1.59× |
 | Send {n} summaries | {n} Zusammenfassungen senden | 27 vs 17 | 1.59× |
 | Select summaries to send | Zusammenfassungen zum Senden auswählen | 38 vs 24 | 1.58× |
+| Summary only | Nur Zusammenfassung | 19 vs 12 | 1.58× |
 | Request failed | Anfrage fehlgeschlagen | 22 vs 14 | 1.57× |
 | Marked {n} unread | {n} als ungelesen markiert | 25 vs 16 | 1.56× |
 | Not set up yet — add a receiver in Settings | Noch nicht eingerichtet — Empfänger in den Einstellungen hinzufügen | 67 vs 43 | 1.56× |
@@ -77,6 +79,7 @@ Strings: 355. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Set your Kindle email in Settings first. | Hinterlege zuerst deine Kindle-E-Mail in den Einstellungen. | 59 vs 40 | 1.48× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
 | Not set up yet — add your Kindle in Settings | Noch nicht eingerichtet — Kindle in den Einstellungen hinzufügen | 64 vs 44 | 1.45× |
+| Summary + full article | Zusammenfassung + ganzer Artikel | 32 vs 22 | 1.45× |
 | Only summarized articles can be sent | Nur zusammengefasste Artikel können gesendet werden | 51 vs 36 | 1.42× |
 | Digest of {n} summaries | Digest aus {n} Zusammenfassungen | 31 vs 22 | 1.41× |
 | No sources match. | Keine passenden Quellen. | 24 vs 17 | 1.41× |

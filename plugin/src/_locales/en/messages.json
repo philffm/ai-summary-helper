@@ -1485,5 +1485,14 @@
   "f_send_aff2": {
     "message": "📤 Send {n}",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_full_article_765e": {
+    "message": "Full article"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "Summary + full article"
+  },
+  "f_summary_only_bd43": {
+    "message": "Summary only"
   }
 }

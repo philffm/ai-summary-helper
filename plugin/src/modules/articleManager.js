@@ -109,7 +109,7 @@ async function buildArticleDocumentHtml(article) {
 <div class="meta">Captured via AI Summary Helper &middot; <a href="${article.url || '#'}">Source</a></div>
 ${article.summary ? `<div class="summary"><h2>🧙 AI Summary</h2>${article.summary}</div>` : ''}
 ${annotationsHtml}
-<h2>📄 Content</h2><div>${article.content || ''}</div></body></html>`;
+${article.content ? `<h2>📄 Content</h2><div>${article.content}</div>` : ''}</body></html>`;
 }
 
 async function buildArticleHtmlFile(article) {
