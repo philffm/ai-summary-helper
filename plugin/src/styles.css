@@ -2998,3 +2998,23 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .sendsheet-step { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sendsheet-done { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 8px; text-align: center; }
 .sendsheet-done-ic { font-size: 36px; }
+
+/* ── History status: tabs, badges, toggle, undo toast ── */
+#articleList > .history-tabs { display: flex; gap: 2px; padding: 3px; margin-bottom: 12px; border-radius: 12px; background: var(--glass-input); list-style: none; }
+.history-tab { flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 7px 4px; border: 0; border-radius: 10px; background: transparent; color: var(--text-muted); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.history-tab.on { background: var(--glass-card, #fff); color: var(--text-primary); font-weight: 600; box-shadow: 0 1px 2px rgba(15,23,42,0.08); }
+.history-tab-n { font-size: 11px; font-weight: 400; color: var(--text-muted); }
+.status-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.status-badge { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; background: #e5e7eb; color: #475569; }
+.status-badge.sent { background: #dbeafe; color: #1d4ed8; }
+.status-badge.new { background: #dcfce7; color: #166534; }
+.status-badge.arch { background: #fef3c7; color: #92400e; }
+.status-restore { margin-top: 8px; font-size: 12px; padding: 6px 12px; }
+.sel-bar .sel-more { width: 36px; height: 36px; padding: 0; flex: none; font-size: 18px; line-height: 1; }
+.sel-bar .sel-more:disabled { opacity: 0.4; }
+.sendsheet-toggle .sendsheet-switch { position: relative; width: 44px; height: 26px; border-radius: 999px; background: #cbd5e1; flex: none; transition: background 0.15s; }
+.sendsheet-toggle .sendsheet-knob { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: transform 0.15s; }
+.sendsheet-toggle.on .sendsheet-switch { background: var(--accent); }
+.sendsheet-toggle.on .sendsheet-knob { transform: translateX(18px); }
+.undo-toast { position: fixed; left: 12px; right: 12px; bottom: 76px; z-index: 1100; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 12px; background: #0f172a; color: #fff; font-size: 13px; }
+.undo-toast-btn { border: 0; background: transparent; color: #93c5fd; font-weight: 600; font-size: 13px; cursor: pointer; }

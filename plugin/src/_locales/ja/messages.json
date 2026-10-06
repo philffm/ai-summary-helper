@@ -1426,5 +1426,80 @@
   },
   "f_summary_only_bd43": {
     "message": "要約のみ"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "自動でも更新：開くと既読、送信すると送信済みになります"
+  },
+  "f_archive_0b65": {
+    "message": "アーカイブ"
+  },
+  "f_archived_5293": {
+    "message": "アーカイブ済み"
+  },
+  "f_inbox_46db": {
+    "message": "受信箱"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "受信箱に「送信済み」として残す"
+  },
+  "f_mark_as_8ab2": {
+    "message": "マーク："
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "{n}件の要約をマーク："
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "{n}件の要約をマーク："
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "アーカイブに移動します — いつでもそこで見つかります"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "まだ何もありません"
+  },
+  "f_read_efe5": {
+    "message": "既読"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "受信箱に戻す"
+  },
+  "f_sent_fb9f": {
+    "message": "送信済み"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "ステータスを自動更新しました："
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ 受信箱に戻す"
+  },
+  "f_sent_03c9": {
+    "message": "✅ 送信済み · {date}"
+  },
+  "f_new_b748": {
+    "message": "🆕 新着"
+  },
+  "f_read_bb5c": {
+    "message": "👀 既読"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 Kindleに送信済み"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 Kindleに送信済み · {date}"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 LocalSendで送信済み"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 LocalSendで送信済み · {date}"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ アーカイブも行う"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ アーカイブ済み · {date}"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ {n}件をアーカイブしました"
   }
 }

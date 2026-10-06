@@ -7,11 +7,80 @@ import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
+import { T, locale } from './feedI18n.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText } from './annotationExporter.js';
 
 let uiManagerRef = null;
 let currentDetailArticle = null;
-let cachedArticles = [];
+let cachedArticles = [];          // not archived: graph, search and the Inbox/Read/Sent tabs read from here
+let archivedCache = [];           // archived entries (Archive tab)
+let historyTab = 'inbox';         // 'inbox' | 'read' | 'sent' | 'archive'
+let pendingRender = false;
+
+const isSent = (a) => Array.isArray(a.sentTo) && a.sentTo.length > 0;
+const TAB_DEFS = [['inbox', () => T('Inbox')], ['read', () => T('Read')], ['sent', () => T('Sent')], ['archive', () => T('Archive')]];
+
+function tabList(tab) {
+    if (tab === 'read') return cachedArticles.filter(a => a.readAt);
+    if (tab === 'sent') return cachedArticles.filter(isSent);
+    if (tab === 'archive') return archivedCache;
+    return cachedArticles;
+}
+
+export const currentHistoryTab = () => historyTab;
+
+/** Re-render the list for the active tab (Inbox = everything not archived). */
+export function renderTab() { renderArticles(tabList(historyTab)); }
+
+function buildTabs() {
+    const nav = document.createElement('li');
+    nav.className = 'history-tabs';
+    nav.setAttribute('role', 'tablist');
+    TAB_DEFS.forEach(([id, label]) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'history-tab' + (historyTab === id ? ' on' : '');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', String(historyTab === id));
+        b.dataset.tab = id;
+        const n = tabList(id).length;
+        b.append(Object.assign(document.createElement('span'), { textContent: label() }), Object.assign(document.createElement('span'), { className: 'history-tab-n', textContent: String(n) }));
+        b.addEventListener('click', () => { if (historyTab === id) return; historyTab = id; renderTab(); const f = document.getElementById('searchInput'); if (f && f.value.trim()) filterArticles(); });
+        nav.appendChild(b);
+    });
+    return nav;
+}
+
+function fmtDay(iso) { try { return new Date(iso).toLocaleDateString(locale(), { month: 'short', day: 'numeric' }); } catch (_) { return ''; } }
+
+/** [tone, text] badges for a card: Sent (per target) else Read else New; Archived is added first. */
+export function statusBadges(a) {
+    if (!a || a.feedStub) return [];
+    const out = [];
+    if (a.archived) out.push(['arch', T('🗄️ Archived · {date}', { date: fmtDay(a.archivedAt || a.timestamp) })]);
+    const latest = new Map();
+    (isSent(a) ? a.sentTo : []).forEach(x => latest.set(x.kind + '|' + (x.label || ''), x));
+    [...latest.values()].sort((x, y) => String(x.at).localeCompare(String(y.at))).slice(-2).forEach(x => {
+        const date = fmtDay(x.at);
+        out.push(['sent', x.kind === 'kindle' ? T('📚 Sent to Kindle · {date}', { date }) : x.kind === 'localsend' ? T('📡 Sent via LocalSend · {date}', { date }) : T('✅ Sent · {date}', { date })]);
+    });
+    if (!isSent(a)) out.push(a.readAt ? ['read', T('👀 Read')] : ['new', T('🆕 New')]);
+    return out;
+}
+
+/**
+ * Change reading status for several articles (storage + caches + list).
+ * patch: { read?, sent?: {kind,label}, archived? } — see StorageManager.patchArticleStatus.
+ */
+export async function applyStatus(ids, patch) {
+    await StorageManager.patchArticleStatus(ids, patch);
+    const all = await StorageManager.getArticlesIndex({ includeArchived: true });
+    cachedArticles = all.filter(a => !a.archived);
+    archivedCache = all.filter(a => a.archived);
+    invalidateSearchIndex();
+    const list = document.getElementById('articleList');
+    if (list && list.style.display !== 'none') renderTab(); else pendingRender = true;
+}
 
 // Whether the knowledge graph's node set is hard-filtered by the archive
 // search box ('filtered', the default — nodes for non-matches are removed)
@@ -373,6 +442,7 @@ async function sendToKindle(article) {
         if (response.ok && resData.success) {
             if (uiManagerRef) uiManagerRef.showToast('Sent to Kindle! 📚');
             if (device) StorageManager.setActiveDevice('kindle', device.id);
+            if (article.id) applyStatus([article.id], { sent: { kind: 'kindle', label: device?.label || '' } }).catch(() => {});
         } else {
             const msg = resData.error || 'Kindle delivery failed.';
             if (resData.error?.includes('Free tier limit') || resData.error?.includes('402')) {
@@ -416,6 +486,7 @@ async function dispatchToLocalSend(article) {
 
         if (uiManagerRef) uiManagerRef.showToast('Sent successfully! 📖');
         if (device) StorageManager.setActiveDevice('localsend', device.id);
+        if (article.id) applyStatus([article.id], { sent: { kind: 'localsend', label: device?.label || '' } }).catch(() => {});
     } catch (err) {
         console.error('[LocalSend Error]', err);
         if (uiManagerRef) uiManagerRef.showToast(`Transfer failed: ${err?.message || 'Check if receiver is online.'}`);
@@ -470,9 +541,14 @@ export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
     initSelection({
         deliverKindle, deliverLocalSend,
+        applyStatus, currentTab: () => historyTab,
         toast: (m) => uiManager.showToast(m),
         openSettings: (section, target) => { uiManager.showScreen('settings'); import('./settingsNav.js').then(m => m.openSettingsPanel(section, target)).catch(() => {}); }
     });
+    {   // re-render the list once it becomes visible again after a status change made elsewhere (detail view)
+        const list = document.getElementById('articleList');
+        if (list) new MutationObserver(() => { if (pendingRender && list.style.display !== 'none') { pendingRender = false; renderTab(); } }).observe(list, { attributes: true, attributeFilter: ['style'] });
+    }
     const searchInput = document.getElementById('searchInput');
     const detailBackBtn = document.getElementById('detailBackButton');
     const detailDeleteBtn = document.getElementById('detailDeleteBtn');
@@ -548,11 +624,13 @@ export function initArticleManager(uiManager) {
         if (!confirm('Are you sure you want to delete this article?')) return;
 
         StorageManager.deleteArticle(currentDetailArticle.id).then(() => {
-            const updated = cachedArticles.filter(item => item.id !== currentDetailArticle.id);
+            const deletedId = currentDetailArticle.id;
+            const updated = cachedArticles.filter(item => item.id !== deletedId);
             currentDetailArticle = null;
             cachedArticles = updated;
+            archivedCache = archivedCache.filter(item => item.id !== deletedId);
             invalidateSearchIndex();
-            renderArticles(updated);
+            renderTab();
 
             const articleDetail = document.getElementById('articleDetail');
             const articleList = document.getElementById('articleList');
@@ -815,21 +893,26 @@ export function loadHistory() {
     import('./feedManager.js')
         .then(m => m.reconcileStubs())
         .catch(() => {})
-        .then(() => StorageManager.getArticlesIndex())
+        .then(() => StorageManager.getArticlesIndex({ includeArchived: true }))
         .then(articles => {
-            cachedArticles = articles;
+            cachedArticles = articles.filter(a => !a.archived);
+            archivedCache = articles.filter(a => a.archived);
             invalidateSearchIndex();
-            renderArticles(cachedArticles);
+            renderTab();
         }).catch(() => {});
 }
 
 export function renderArticles(articles) {
     const articleList = document.getElementById('articleList');
     articleList.innerHTML = '';
+    articleList.appendChild(buildTabs());
     if (!articles || articles.length === 0) {
         const emptyMessage = document.createElement('div');
         emptyMessage.id = 'emptyMessage';
-        emptyMessage.innerHTML = `<p>🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵</p>`;
+        const p = document.createElement('p');
+        if (historyTab === 'inbox' && cachedArticles.length === 0 && archivedCache.length === 0) p.textContent = '🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵';
+        else p.textContent = T('Nothing here yet');
+        emptyMessage.appendChild(p);
         articleList.appendChild(emptyMessage);
         return;
     }
@@ -968,6 +1051,22 @@ function buildArticleCard(article) {
     });
 
     // Click on the card itself opens detail
+    {   // reading status: badges (and Restore in the Archive tab)
+        const host = listItem.querySelector('.article-header > div');
+        const badges = statusBadges(article);
+        if (host && badges.length) {
+            const row = document.createElement('div');
+            row.className = 'status-badges';
+            badges.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'status-badge ' + tone; b.textContent = text; row.appendChild(b); });
+            host.appendChild(row);
+        }
+        if (host && article.archived) {
+            const r = document.createElement('button');
+            r.type = 'button'; r.className = 'button-secondary status-restore'; r.textContent = T('↩ Restore to Inbox');
+            r.addEventListener('click', (e) => { e.stopPropagation(); applyStatus([article.id], { archived: false }); });
+            host.appendChild(r);
+        }
+    }
     registerCard(article, listItem);
     listItem.addEventListener('click', (event) => {
         if (event.target.closest('button') || event.target.closest('a')) return;
@@ -1130,6 +1229,7 @@ export async function showArticleDetail(article) {
 
     currentDetailArticle = article;
     recordArticleOpened(article);
+    if (article && article.id && !article.readAt && !article.feedStub) { article.readAt = new Date().toISOString(); applyStatus([article.id], { read: true }).catch(() => {}); }
     const articleList = document.getElementById('articleList');
     const articleDetail = document.getElementById('articleDetail');
     const articleDetailContent = document.getElementById('articleDetailContent');

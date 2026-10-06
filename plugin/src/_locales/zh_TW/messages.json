@@ -1420,5 +1420,80 @@
   },
   "f_summary_only_bd43": {
     "message": "僅摘要"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "也會自動更新：開啟標為已讀，傳送標為已傳送"
+  },
+  "f_archive_0b65": {
+    "message": "封存"
+  },
+  "f_archived_5293": {
+    "message": "已封存"
+  },
+  "f_inbox_46db": {
+    "message": "收件匣"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "保留在收件匣，標為「已傳送」"
+  },
+  "f_mark_as_8ab2": {
+    "message": "標記為…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "將 {n} 篇摘要標記為…"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "將 {n} 篇摘要標記為…"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "移到封存，之後隨時可以在那裡找到"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "這裡還沒有內容"
+  },
+  "f_read_efe5": {
+    "message": "已讀"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "移回收件匣"
+  },
+  "f_sent_fb9f": {
+    "message": "已傳送"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "狀態已自動更新："
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ 移回收件匣"
+  },
+  "f_sent_03c9": {
+    "message": "✅ 已傳送 · {date}"
+  },
+  "f_new_b748": {
+    "message": "🆕 新"
+  },
+  "f_read_bb5c": {
+    "message": "👀 已讀"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 已傳送到 Kindle"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 已傳送到 Kindle · {date}"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 已透過 LocalSend 傳送"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 已透過 LocalSend 傳送 · {date}"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ 同時封存"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ 已封存 · {date}"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ 已封存 {n} 篇"
   }
 }

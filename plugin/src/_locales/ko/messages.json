@@ -1408,5 +1408,80 @@
   },
   "f_summary_only_bd43": {
     "message": "요약만"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "자동으로도 바뀝니다: 열면 읽음, 보내면 전송됨"
+  },
+  "f_archive_0b65": {
+    "message": "보관함"
+  },
+  "f_archived_5293": {
+    "message": "보관됨"
+  },
+  "f_inbox_46db": {
+    "message": "받은편지함"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "받은편지함에 ‘전송됨’으로 두기"
+  },
+  "f_mark_as_8ab2": {
+    "message": "표시하기…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "요약 {n}개 표시하기…"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "요약 {n}개 표시하기…"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "보관함으로 옮깁니다 — 언제든 거기서 찾을 수 있어요"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "아직 아무것도 없습니다"
+  },
+  "f_read_efe5": {
+    "message": "읽음"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "받은편지함으로 복원"
+  },
+  "f_sent_fb9f": {
+    "message": "전송됨"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "상태가 자동으로 업데이트되었습니다:"
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ 받은편지함으로 복원"
+  },
+  "f_sent_03c9": {
+    "message": "✅ 전송됨 · {date}"
+  },
+  "f_new_b748": {
+    "message": "🆕 새 글"
+  },
+  "f_read_bb5c": {
+    "message": "👀 읽음"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 Kindle로 전송됨"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 Kindle로 전송됨 · {date}"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 LocalSend로 전송됨"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 LocalSend로 전송됨 · {date}"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ 보관도 함께"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ 보관됨 · {date}"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ {n}개 보관됨"
   }
 }

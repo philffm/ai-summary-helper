@@ -65,6 +65,7 @@ Right-click any page → **Summarize & Close tab**:
 - Export to Markdown (Obsidian-compatible YAML frontmatter)
 - Share, Copy, Kindle, Reader, and Delete actions
 - **Multi-select send** — ☑️ Select in History, tap summarized articles (or “Select all”), then 📤 Send: choose one digest or separate files and send to a Kindle or a configured LocalSend receiver, with per-item progress
+- **Reading status** — History has **Inbox / Read / Sent / Archive** tabs with counts. Opening an article marks it Read, sending it (single or multi-select) marks it Sent with target and date, and after a multi-send you can archive the batch in one tap (with Undo). In select mode, ⋯ marks the selection Read / Unread / Sent / Archived; the Archive tab has Restore
 
 ### 🕸️ Archive Graph
 - D3.js force-directed graph of your article archive

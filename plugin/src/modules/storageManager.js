@@ -383,6 +383,37 @@ class StorageManager {
         await this.setLocal({ articlesIndex });
     }
 
+    // Reading status on the index entries (no content touched):
+    //   readAt            set when opened (or marked Read), removed by "Unread"
+    //   sentTo            [{ kind: 'kindle'|'localsend'|'manual', label, at }] — one entry per kind+label, newest wins
+    //   archived/archivedAt   existing flag + when it happened
+    // patch: { read?: boolean, sent?: { kind, label? }, archived?: boolean }
+    static async patchArticleStatus(ids, patch) {
+        const set = new Set(ids || []);
+        if (!set.size) return false;
+        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const now = new Date().toISOString();
+        let changed = false;
+        articlesIndex.forEach(e => {
+            if (!set.has(e.id)) return;
+            if (patch.read === true && !e.readAt) { e.readAt = now; changed = true; }
+            if (patch.read === false && e.readAt) { delete e.readAt; changed = true; }
+            if (patch.sent) {
+                const label = patch.sent.label || '';
+                e.sentTo = (Array.isArray(e.sentTo) ? e.sentTo : []).filter(x => !(x.kind === patch.sent.kind && (x.label || '') === label));
+                e.sentTo.push({ kind: patch.sent.kind, label, at: now });
+                changed = true;
+            }
+            if (typeof patch.archived === 'boolean' && !!e.archived !== patch.archived) {
+                e.archived = patch.archived;
+                if (patch.archived) e.archivedAt = now; else delete e.archivedAt;
+                changed = true;
+            }
+        });
+        if (changed) await this.setLocal({ articlesIndex });
+        return changed;
+    }
+
     // Records that an article was opened, for archiveGraph.js's
     // reopen-neglect fade. Index-only — no content read/write needed.
     static async touchArticleOpened(id) {

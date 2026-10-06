@@ -71,10 +71,13 @@ function buildBar() {
         list.forEach(a => { if (every) sel.delete(a.id); else sel.add(a.id); const r = reg.get(a.id); if (r) r.li.classList.toggle('sel-on', !every); });
         paintBar();
     });
+    const more = el('button', 'sel-more button-secondary', '⋯');
+    more.type = 'button'; more.title = T('Mark as…'); more.setAttribute('aria-label', T('Mark as…'));
+    more.addEventListener('click', () => { if (sel.size) openSheet(viewMark); });
     const send = el('button', 'sel-send button-primary');
     send.type = 'button';
     send.addEventListener('click', () => { if (sel.size) openSheet(); });
-    bar.append(x, info, all, send);
+    bar.append(x, info, all, more, send);
     (screenEl() || document.body).append(bar);
 }
 
@@ -85,6 +88,7 @@ function paintBar() {
     const send = bar.querySelector('.sel-send');
     send.textContent = n ? T('📤 Send {n}', { n }) : T('📤 Send');
     send.disabled = n === 0;
+    bar.querySelector('.sel-more').disabled = n === 0;
 }
 
 // ───────────────────────────── sheet ─────────────────────────────
@@ -140,7 +144,7 @@ function btn(label, primary, onClick) {
     return b;
 }
 
-function openSheet() {
+function openSheet(view) {
     closeSheet();
     sheet = el('div', 'sendsheet');
     sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true');
@@ -150,7 +154,7 @@ function openSheet() {
     panel.append(el('div', 'sendsheet-grab'), el('div', 'sendsheet-body'));
     sheet.append(scrim, panel);
     document.body.append(sheet);
-    viewChoose();
+    (view || viewChoose)();
 }
 
 async function viewChoose() {
@@ -217,6 +221,39 @@ async function viewLocalSend() {
     body.append(btn(T('Back'), false, viewChoose));
 }
 
+/** Small toast with an Undo action (used after archiving). */
+export function undoToast(msg, onUndo) {
+    document.querySelectorAll('.undo-toast').forEach(n => n.remove());
+    const t = el('div', 'undo-toast');
+    t.append(el('span', null, msg));
+    const u = el('button', 'undo-toast-btn', T('Undo'));
+    u.type = 'button';
+    u.addEventListener('click', () => { t.remove(); onUndo(); });
+    t.append(u);
+    document.body.append(t);
+    setTimeout(() => t.remove(), 7000);
+}
+
+/** Bulk status change for the selection: Read / Unread / Sent / Archived (or Restore in the Archive tab). */
+function viewMark() {
+    const list = selected();
+    const ids = list.map(a => a.id);
+    const body = shell(TN(list.length, 'Mark {n} summary as…', 'Mark {n} summaries as…'), T('Also automatic: opening marks Read, sending marks Sent'));
+    const inArchive = deps.currentTab() === 'archive';
+    const opts = [
+        ['👀', T('Read'), { read: true }],
+        ['🆕', T('Unread'), { read: false }],
+        ['✅', T('Sent'), { sent: { kind: 'manual', label: '' } }],
+        inArchive ? ['↩', T('Restore to Inbox'), { archived: false }] : ['🗄️', T('Archived'), { archived: true }],
+    ];
+    opts.forEach(([ic, label, patch]) => body.append(row(ic, label, '', async () => {
+        await deps.applyStatus(ids, patch);
+        closeSheet(); setActive(false);
+        if (patch.archived === true) undoToast(TN(ids.length, '🗄️ {n} archived', '🗄️ {n} archived'), () => deps.applyStatus(ids, { archived: false }));
+    }, '')));
+    body.append(btn(T('Cancel'), false, closeSheet));
+}
+
 /** Jobs to run: one digest, or one file per article. */
 async function buildJobs() {
     const list = selected();
@@ -229,9 +266,15 @@ async function buildJobs() {
     const items = [];
     for (const a of list) items.push(await load(a));
     if (state.format === 'digest' && list.length > 1) {
-        return [{ label: T('Digest of {n} summaries', { n: list.length }), article: buildMagazineArticle(items, { includeContent: full }) }];
+        return [{ label: T('Digest of {n} summaries', { n: list.length }), ids: list.map(a => a.id), article: buildMagazineArticle(items, { includeContent: full }) }];
     }
-    return items.map(a => ({ label: a.title || T('Untitled'), article: a }));
+    return items.map(a => ({ label: a.title || T('Untitled'), ids: [a.id], article: a }));
+}
+
+/** Everything that really went out is marked Sent (with target and date) — also on a partial failure. */
+async function markSent(kind, device, ids) {
+    if (!ids.length) return;
+    try { await deps.applyStatus(ids, { sent: { kind, label: device.label || '' } }); } catch (_) { /* status is a nicety */ }
 }
 
 async function run(kind, device) {
@@ -249,6 +292,7 @@ async function run(kind, device) {
     const paint = (done, cur) => { fillEl.style.width = Math.max(4, Math.round(((done + (cur ? 0.5 : 0)) / jobs.length) * 100)) + '%'; };
     paint(0, true);
     let done = 0;
+    const deliveredIds = [];
     for (let i = 0; i < jobs.length; i++) {
         if (cancelled) break;
         lines[i].textContent = '⏳ ' + jobs[i].label; paint(done, true);
@@ -258,13 +302,16 @@ async function run(kind, device) {
         if (!sheet) return;
         if (!res || !res.ok) {
             lines[i].textContent = '⚠️ ' + jobs[i].label;
+            await markSent(kind, device, deliveredIds);
             return finish(false, { kind, target, done, total: jobs.length, error: res?.error });
         }
         lines[i].textContent = '✅ ' + jobs[i].label; done++; paint(done, false);
+        deliveredIds.push(...jobs[i].ids);
     }
+    await markSent(kind, device, deliveredIds);
     if (cancelled && done < jobs.length) return finish(false, { kind, target, done, total: jobs.length, error: T('Cancelled') });
     StorageManager.setActiveDevice(kind, device.id);
-    finish(true, { kind, target, done, total: jobs.length });
+    finish(true, { kind, target, done, total: jobs.length, ids: deliveredIds });
 }
 
 function finish(ok, r) {
@@ -279,7 +326,30 @@ function finish(ok, r) {
             ? (r.kind === 'kindle' ? T('It will show up on your Kindle in a few minutes.') : TN(r.done, '{n} file sent', '{n} files sent'))
             : T('{done} of {total} sent. {error}', { done: r.done, total: r.total, error: r.error || '' })));
     body.append(box);
-    if (ok) body.append(btn(T('Done'), true, () => { closeSheet(); setActive(false); }));
+    if (ok) {
+        const note = el('div', 'sendsheet-note', T('Status updated automatically:') + ' ' + (r.kind === 'kindle' ? T('📚 Sent to Kindle') : T('📡 Sent via LocalSend')));
+        body.append(note);
+        let archive = false;
+        const tg = el('button', 'sendsheet-row sendsheet-toggle');
+        tg.type = 'button'; tg.setAttribute('role', 'switch'); tg.setAttribute('aria-checked', 'false');
+        const tx = el('span', 'sendsheet-row-tx');
+        tx.append(el('span', 'sendsheet-row-t', T('🗄️ Archive them too')), el('span', 'sendsheet-row-s', T('Keep them in your inbox as “Sent”')));
+        const sw = el('span', 'sendsheet-switch'); sw.append(el('span', 'sendsheet-knob'));
+        tg.append(tx, sw);
+        tg.addEventListener('click', () => {
+            archive = !archive; tg.setAttribute('aria-checked', String(archive)); tg.classList.toggle('on', archive);
+            tx.lastChild.textContent = archive ? T('Moves them to Archive — find them there anytime') : T('Keep them in your inbox as “Sent”');
+        });
+        body.append(tg);
+        body.append(btn(T('Done'), true, async () => {
+            const ids = r.ids || [];
+            closeSheet(); setActive(false);
+            if (archive && ids.length) {
+                await deps.applyStatus(ids, { archived: true });
+                undoToast(TN(ids.length, '🗄️ {n} archived', '🗄️ {n} archived'), () => deps.applyStatus(ids, { archived: false }));
+            }
+        }));
+    }
     else body.append(btn(T('Try again'), true, () => (r.kind === 'kindle' ? viewKindle() : viewLocalSend())), btn(T('Close'), false, closeSheet));
 }
 

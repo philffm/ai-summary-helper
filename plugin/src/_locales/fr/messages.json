@@ -1420,5 +1420,80 @@
   },
   "f_summary_only_bd43": {
     "message": "Résumé seul"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "Aussi automatique : ouvrir marque Lu, envoyer marque Envoyé"
+  },
+  "f_archive_0b65": {
+    "message": "Archives"
+  },
+  "f_archived_5293": {
+    "message": "Archivé"
+  },
+  "f_inbox_46db": {
+    "message": "Boîte de réception"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "Les garder dans la boîte comme « Envoyé »"
+  },
+  "f_mark_as_8ab2": {
+    "message": "Marquer comme…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "Marquer {n} résumés comme…"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "Marquer {n} résumé comme…"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "Les déplace dans les Archives — retrouvez-les à tout moment"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "Rien ici pour l’instant"
+  },
+  "f_read_efe5": {
+    "message": "Lu"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "Remettre dans la boîte"
+  },
+  "f_sent_fb9f": {
+    "message": "Envoyé"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "Statut mis à jour automatiquement :"
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ Remettre dans la boîte"
+  },
+  "f_sent_03c9": {
+    "message": "✅ Envoyé · {date}"
+  },
+  "f_new_b748": {
+    "message": "🆕 Nouveau"
+  },
+  "f_read_bb5c": {
+    "message": "👀 Lu"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 Envoyé vers Kindle"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 Envoyé vers Kindle · {date}"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 Envoyé via LocalSend"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 Envoyé via LocalSend · {date}"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ Les archiver aussi"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ Archivé · {date}"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ {n} archivés"
   }
 }
