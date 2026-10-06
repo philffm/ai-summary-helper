@@ -31,6 +31,62 @@ export function escapeHtml(str) {
     return (str || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
+const MARK_STYLE = {
+    user: 'background-color:#fff3a3;color:inherit;padding:0 1px;',
+    ghost: 'background-color:#cfe3ff;color:inherit;padding:0 1px;border-bottom:1px solid #93c5fd;',
+};
+
+/**
+ * Wrap every annotation's text (user highlights AND AI ghost highlights) in <mark> inside an HTML string,
+ * so a delivered article/digest shows the highlighted passages in place. Matching ignores whitespace
+ * differences and works across inline tags; quotes that cannot be found are simply left unmarked
+ * (they still appear in the Highlights list).
+ */
+export function markHighlights(html, annotations) {
+    if (!html || !Array.isArray(annotations) || annotations.length === 0) return html || '';
+    const doc = new DOMParser().parseFromString(`<div id="aish-root">${html}</div>`, 'text/html');
+    const root = doc.getElementById('aish-root');
+    if (!root) return html;
+    const textNodes = () => {
+        const out = [];
+        const walk = (n) => {
+            for (let c = n.firstChild; c; c = c.nextSibling) {
+                if (c.nodeType === 3) out.push(c);
+                else if (c.nodeType === 1 && !/^(MARK|SCRIPT|STYLE)$/i.test(c.nodeName)) walk(c);
+            }
+        };
+        walk(root);
+        return out;
+    };
+    for (const a of annotations) {
+        const t = String((a && a.text) || '').replace(/\s+/g, ' ').trim();
+        if (t.length < 5) continue;
+        const re = new RegExp(t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+'));
+        const nodes = textNodes();
+        let full = '';
+        const starts = nodes.map(n => { const st = full.length; full += n.nodeValue; return st; });
+        const m = re.exec(full);
+        if (!m) continue;
+        const s0 = m.index, e0 = m.index + m[0].length;
+        const style = MARK_STYLE[a.type === 'ghost' ? 'ghost' : 'user'];
+        nodes.forEach((n, i) => {
+            const ns = starts[i], ne = ns + n.nodeValue.length;
+            if (ne <= s0 || ns >= e0) return;
+            const from = Math.max(s0, ns) - ns, to = Math.min(e0, ne) - ns;
+            const val = n.nodeValue;
+            const frag = doc.createDocumentFragment();
+            if (from > 0) frag.append(doc.createTextNode(val.slice(0, from)));
+            const mk = doc.createElement('mark');
+            mk.setAttribute('style', style);
+            mk.textContent = val.slice(from, to);
+            frag.append(mk);
+            if (to < val.length) frag.append(doc.createTextNode(val.slice(to)));
+            n.parentNode.replaceChild(frag, n);
+        });
+    }
+    return root.innerHTML;
+}
+
 /**
  * Fetch stored annotations (both user highlights AND ghost/AI annotations —
  * the latter included even if never marked "keep") for a given article URL.
@@ -62,26 +118,32 @@ export async function fetchAnnotationsForArticle(article) {
  */
 export async function buildAnnotationsSection(article, annotations = null) {
     const list = annotations || await fetchAnnotationsForArticle(article);
+    return renderAnnotationsHtml(list, { level: 2 });
+}
+
+/** Synchronous renderer behind buildAnnotationsSection; `level` is the heading level (2 for a document, 3 inside a digest). */
+export function renderAnnotationsHtml(list, { level = 2 } = {}) {
     if (!Array.isArray(list) || list.length === 0) return '';
 
     const userItems = list.filter(a => a.type !== 'ghost');
     const ghostItems = list.filter(a => a.type === 'ghost');
+    const H = `h${level}`;
 
     const itemHtml = (items, cls) => items.map(a => `
           <li style="margin-bottom:8px;line-height:1.5;">
-            <span style="color:#333;">"${escapeHtml(a.text)}"</span>
+            <mark style="${MARK_STYLE[cls]}">${escapeHtml(a.text)}</mark>
             <span style="display:block;font-size:11px;color:#888;margin-top:2px;">${cls === 'ghost' ? '🤖 AI highlight' : '📝 Your highlight'}</span>
           </li>`).join('');
 
     const parts = [];
     if (userItems.length) {
         parts.push(`
-      <h2 style="font-size:18px;margin:24px 0 8px;color:#444;">📝 Highlights &amp; Notes</h2>
+      <${H} style="font-size:${level === 2 ? 18 : 15}px;margin:24px 0 8px;color:#444;">📝 Highlights &amp; Notes</${H}>
       <ul style="margin:0;padding-left:20px;color:#333;">${itemHtml(userItems, 'user')}</ul>`);
     }
     if (ghostItems.length) {
         parts.push(`
-      <h2 style="font-size:18px;margin:24px 0 8px;color:#444;">🤖 AI Suggested Highlights</h2>
+      <${H} style="font-size:${level === 2 ? 18 : 15}px;margin:24px 0 8px;color:#444;">🤖 AI Suggested Highlights</${H}>
       <ul style="margin:0;padding-left:20px;color:#333;">${itemHtml(ghostItems, 'ghost')}</ul>`);
     }
 

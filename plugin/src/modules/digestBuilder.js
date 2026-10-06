@@ -14,6 +14,7 @@
 import { cosineSim } from './localSearch.js';
 import { sentiment as scoreSentiment } from './textMetrics.js';
 import { T } from './feedI18n.js';
+import { markHighlights, renderAnnotationsHtml } from './annotationExporter.js';
 
 function escapeHtml(str) {
     return (str || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -38,8 +39,9 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
         return `
           <h2 id="aish-mag-${i}">${escapeHtml(a.title || 'Untitled')}</h2>
           <p style="color:#666;font-style:italic;">${a.url ? `<a href="${a.url}">${domain}</a> &middot; ` : ''}${new Date(a.timestamp).toLocaleDateString()}</p>
-          <div>${a.summary || ''}</div>
-          ${includeContent && a.content ? `<h3>${escapeHtml(T('Full article'))}</h3><div>${a.content}</div>` : ''}
+          <div>${markHighlights(a.summary || '', a.annotations)}</div>
+          ${includeContent && a.content ? `<h3>${escapeHtml(T('Full article'))}</h3><div>${markHighlights(a.content, a.annotations)}</div>` : ''}
+          ${renderAnnotationsHtml(a.annotations, { level: 3 })}
           <hr />
         `;
     }).join('\n');

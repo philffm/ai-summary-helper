@@ -8,7 +8,7 @@ import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
 import { T, locale } from './feedI18n.js';
-import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText } from './annotationExporter.js';
+import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 let uiManagerRef = null;
 let currentDetailArticle = null;
@@ -170,15 +170,18 @@ function buildSafeArticleTitle(title) {
 async function buildArticleDocumentHtml(article) {
     // Include the article's highlights & AI suggested highlights (ghosts
     // included even if never marked "keep").
-    const annotationsHtml = await buildAnnotationsSection(article);
+    const annotations = await fetchAnnotationsForArticle(article);
+    const annotationsHtml = await buildAnnotationsSection(article, annotations);
+    const summaryHtml = markHighlights(article.summary, annotations);
+    const contentHtml = markHighlights(article.content, annotations);
     return `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>${article.title || 'AI Summary'}</title>
 <style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}img{max-width:100%;height:auto;}</style>
 </head><body><h1>${article.title || 'AI Summary'}</h1>
 <div class="meta">Captured via AI Summary Helper &middot; <a href="${article.url || '#'}">Source</a></div>
-${article.summary ? `<div class="summary"><h2>🧙 AI Summary</h2>${article.summary}</div>` : ''}
+${summaryHtml ? `<div class="summary"><h2>🧙 AI Summary</h2>${summaryHtml}</div>` : ''}
 ${annotationsHtml}
-${article.content ? `<h2>📄 Content</h2><div>${article.content}</div>` : ''}</body></html>`;
+${contentHtml ? `<h2>📄 Content</h2><div>${contentHtml}</div>` : ''}</body></html>`;
 }
 
 async function buildArticleHtmlFile(article) {
@@ -344,11 +347,11 @@ async function copyArticleToClipboard(article) {
             <p><a href="${article.url}">${article.url}</a></p>
             <hr>
             <h2>🧙 AI Summary</h2>
-            <div>${summary}</div>
+            <div>${markHighlights(summary, annotations)}</div>
             ${annotationsHtml ? `<hr><div>${annotationsHtml}</div>` : ''}
             <hr>
             <h2>📄 Original Content</h2>
-            <div>${content}</div>
+            <div>${markHighlights(content, annotations)}</div>
         </div>
     `.replace(/style="[^"]*"/gi, (match) => {
         // Keep ONLY the top-level font family for the container, strip all other styles
@@ -424,7 +427,8 @@ async function sendToKindle(article) {
             headers['Authorization'] = `Bearer ${config.licenseKey}`;
         }
 
-        const annotationsHtml = await buildAnnotationsSection(article);
+        const annotations = await fetchAnnotationsForArticle(article);
+        const annotationsHtml = await buildAnnotationsSection(article, annotations);
 
         const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
             method: 'POST',
@@ -432,8 +436,8 @@ async function sendToKindle(article) {
             body: JSON.stringify({
                 kindle_email: kindleEmail,
                 title: article.title || 'AI Summary Document',
-                content: [article.content || article.summary || '', annotationsHtml].filter(Boolean).join('\n'),
-                summary: article.summary || '',
+                content: [markHighlights(article.content || article.summary || '', annotations), annotationsHtml].filter(Boolean).join('\n'),
+                summary: markHighlights(article.summary || '', annotations),
                 url: article.url || ''
             })
         });
@@ -506,14 +510,15 @@ export async function deliverKindle(article, device) {
         const headers = { 'Content-Type': 'application/json' };
         if (config.pb_token) headers['Authorization'] = `Bearer ${config.pb_token}`;
         else if (config.licenseKey) headers['Authorization'] = `Bearer ${config.licenseKey}`;
-        const annotationsHtml = article.id ? await buildAnnotationsSection(article) : '';
+        const annotations = article.id ? await fetchAnnotationsForArticle(article) : [];
+        const annotationsHtml = article.id ? await buildAnnotationsSection(article, annotations) : '';
         const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
             method: 'POST', headers,
             body: JSON.stringify({
                 kindle_email: kindleEmail,
                 title: article.title || 'AI Summary Document',
-                content: [article.content || article.summary || '', annotationsHtml].filter(Boolean).join('\n'),
-                summary: article.summary || '',
+                content: [markHighlights(article.content || article.summary || '', annotations), annotationsHtml].filter(Boolean).join('\n'),
+                summary: markHighlights(article.summary || '', annotations),
                 url: article.url || ''
             })
         });

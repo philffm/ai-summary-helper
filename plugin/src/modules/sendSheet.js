@@ -8,6 +8,7 @@ import StorageManager from './storageManager.js';
 import { buildMagazineArticle } from './digestBuilder.js';
 import { T, TN } from './feedI18n.js';
 import { generateDigestIntro } from './feedAi.js';
+import { fetchAnnotationsForArticle } from './annotationExporter.js';
 
 let deps = null;
 const sel = new Set();                 // selected article ids
@@ -295,9 +296,11 @@ async function buildJobs(intro = '') {
     const list = selected();
     const full = state.include === 'full';
     const load = async (a) => {
-        if (!full) return { ...a, content: '' };            // index entries carry the summary only
-        try { const f = await StorageManager.getArticleFull(a.id); if (f) return { ...a, ...f }; } catch (_) { /* summary only */ }
-        return { ...a, content: '' };
+        let annotations = [];
+        try { annotations = await fetchAnnotationsForArticle(a); } catch (_) { /* no highlights */ }
+        if (!full) return { ...a, content: '', annotations };            // index entries carry the summary only
+        try { const f = await StorageManager.getArticleFull(a.id); if (f) return { ...a, ...f, annotations }; } catch (_) { /* summary only */ }
+        return { ...a, content: '', annotations };
     };
     const items = [];
     for (const a of list) items.push(await load(a));

@@ -65,6 +65,7 @@ Right-click any page → **Summarize & Close tab**:
 - Export to Markdown (Obsidian-compatible YAML frontmatter)
 - Share, Copy, Kindle, Reader, and Delete actions
 - **Multi-select send** — ☑️ Select in History, tap summarized articles (or “Select all”), then 📤 Send: choose one digest or separate files and send to a Kindle or a configured LocalSend receiver, with per-item progress
+- **Highlights travel with the article** — digests and sent/shared/copied articles include your highlights and the AI ghost highlights: passages are marked in place (<mark>, yellow = yours, blue = AI) and listed under each article
 - **Digest intro (optional)** — in the multi-select send sheet, “✨ Write a short intro” (One digest only) has the AI write 2–3 sentences from the summaries (styles: Short / Briefing / Personal, in the app language) above the digest’s table of contents; if the AI call fails the digest is sent without it
 - **Reading status** — History has **Inbox / Read / Sent / Archive** tabs with counts. Opening an article marks it Read, sending it (single or multi-select) marks it Sent with target and date, and after a multi-send you can archive the batch in one tap (with Undo). In select mode, ⋯ marks the selection Read / Unread / Sent / Archived; the Archive tab has Restore
 
