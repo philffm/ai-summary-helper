@@ -3018,3 +3018,14 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .sendsheet-toggle.on .sendsheet-knob { transform: translateX(18px); }
 .undo-toast { position: fixed; left: 12px; right: 12px; bottom: 76px; z-index: 1100; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 12px; background: #0f172a; color: #fff; font-size: 13px; }
 .undo-toast-btn { border: 0; background: transparent; color: #93c5fd; font-weight: 600; font-size: 13px; cursor: pointer; }
+
+/* selection bar: never overflow in long languages — wrap onto a second row instead */
+.sel-bar { flex-wrap: wrap; row-gap: 8px; box-sizing: border-box; max-width: 100%; }
+.sel-bar > * { min-width: 0; }
+.sel-bar button { width: auto; white-space: nowrap; margin: 0; }
+.sel-bar .sel-x, .sel-bar .sel-more { width: 36px; }
+.sel-bar .sel-info { flex: 1 1 110px; }
+.sel-bar .sel-count { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sel-bar .sel-sub { display: none; }
+.sel-bar .sel-all { flex: 0 1 auto; }
+.sel-bar .sel-send { flex: 1 1 100px; max-width: 100%; display: inline-flex; align-items: center; justify-content: center; }
