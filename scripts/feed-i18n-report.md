@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 447. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 452. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 447 | 0 | 0 | 13 |
-| de | 447 | 0 | 0 | 61 |
-| es | 447 | 0 | 0 | 39 |
-| fr | 447 | 0 | 0 | 46 |
-| hi | 447 | 0 | 0 | 16 |
-| it | 447 | 0 | 0 | 38 |
-| ja | 447 | 0 | 0 | 18 |
-| ko | 447 | 0 | 0 | 2 |
-| pt_PT | 447 | 0 | 0 | 38 |
-| ru | 447 | 0 | 0 | 21 |
-| zh_CN | 447 | 0 | 0 | 0 |
-| zh_HK | 447 | 0 | 0 | 0 |
-| zh_TW | 447 | 0 | 0 | 0 |
+| ar | 452 | 0 | 0 | 13 |
+| de | 452 | 0 | 0 | 61 |
+| es | 452 | 0 | 0 | 39 |
+| fr | 452 | 0 | 0 | 46 |
+| hi | 452 | 0 | 0 | 17 |
+| it | 452 | 0 | 0 | 39 |
+| ja | 452 | 0 | 0 | 19 |
+| ko | 452 | 0 | 0 | 2 |
+| pt_PT | 452 | 0 | 0 | 38 |
+| ru | 452 | 0 | 0 | 21 |
+| zh_CN | 452 | 0 | 0 | 0 |
+| zh_HK | 452 | 0 | 0 | 0 |
+| zh_TW | 452 | 0 | 0 | 0 |
 
 ## Over-long translations (check these in the UI)
 
@@ -209,6 +209,7 @@ Strings: 447. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
 | Best Streak | सर्वश्रेष्ठ स्ट्रीक | 19 vs 11 | 1.73× |
 | Why it matters | यह क्यों मायने रखता है | 22 vs 14 | 1.57× |
+| Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
 | ✨ Writing intro… | ✨ परिचय लिखा जा रहा है… | 23 vs 16 | 1.44× |
 | e.g. Prefer European news and keep it upbeat. | जैसे: यूरोपीय समाचारों को प्राथमिकता दें और लहजा सकारात्मक रखें। | 64 vs 45 | 1.42× |
@@ -253,6 +254,7 @@ Strings: 447. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Ancora nulla di valutato: crea un ✨ Riepilogo per valutare gli articoli. | 72 vs 50 | 1.44× |
 | ✨ Writing intro… | ✨ Scrittura dell’intro… | 23 vs 16 | 1.44× |
+| ⭐ Leave a review | ⭐ Lascia una recensione | 23 vs 16 | 1.44× |
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 | e.g. Prefer European news and keep it upbeat. | es. Preferisci notizie europee e mantieni un tono positivo. | 59 vs 45 | 1.31× |
@@ -265,6 +267,7 @@ Strings: 447. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Cancelled | キャンセルしました | 18 vs 9 | 2× |
 | 🗄️ {n} archived | 🗄️ {n}件をアーカイブしました | 28 vs 15 | 1.87× |
 | Standup humor | スタンドアップ風ユーモア | 24 vs 13 | 1.85× |
+| Enjoying AI Summary Helper? | AI Summary Helper を気に入っていただけましたか？ | 48 vs 27 | 1.78× |
 | Archived | アーカイブ済み | 14 vs 8 | 1.75× |
 | Briefing | ブリーフィング | 14 vs 8 | 1.75× |
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |

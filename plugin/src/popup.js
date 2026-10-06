@@ -8,6 +8,7 @@ import { initLanguageManager } from './modules/languageManager.js';
 // Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
 import { initMainScreen } from './modules/mainScreen.js';
+import { initReviewPrompt } from './modules/reviewPrompt.js';
 import { initToolsManager } from './modules/toolsManager.js';
 import { initFeedManager } from './modules/feedManager.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     initShortcuts(ui);
     initMainScreen(ui);
+    initReviewPrompt();
     initArticleManager(ui);
     initAccordion(ui);
 

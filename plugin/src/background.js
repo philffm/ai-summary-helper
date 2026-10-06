@@ -22,6 +22,26 @@ function arrayBufferToBase64(buffer) {
 }
 
 // ── Context Menu ─────────────────────────────────────────────────────────────
+// ── Uninstall feedback + review timing ───────────────────────────────────────
+// Chrome opens this page after the extension is removed. Only the version and the days of use are
+// appended — no ids, no content. Re-set on every worker start so "days" stays current.
+const GOODBYE_URL = 'https://ai-summary-helper.byphil.eu/goodbye.html';
+async function refreshUninstallUrl() {
+    try {
+        const { installedAt } = await chrome.storage.local.get('installedAt');
+        const days = installedAt ? Math.max(0, Math.floor((Date.now() - installedAt) / 86400e3)) : '';
+        chrome.runtime.setUninstallURL(`${GOODBYE_URL}?v=${encodeURIComponent(chrome.runtime.getManifest().version)}&d=${days}`);
+    } catch (e) { /* not supported on this platform */ }
+}
+refreshUninstallUrl();
+chrome.runtime.onInstalled.addListener(async () => {
+    try {
+        const { installedAt } = await chrome.storage.local.get('installedAt');
+        if (!installedAt) await chrome.storage.local.set({ installedAt: Date.now() });
+    } catch (e) { /* ignore */ }
+    refreshUninstallUrl();
+});
+
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.removeAll(() => {
         chrome.contextMenus.create({ id: 'aish-highlight',        title: '✏️ Highlight selection',    contexts: ['selection'] });

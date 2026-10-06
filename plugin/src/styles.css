@@ -3153,3 +3153,13 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .ps-knob { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--knob); transition: transform 0.15s; }
 .ps-row.toggle.on .ps-switch { background: var(--accent); }
 .ps-row.toggle.on .ps-knob { transform: translateX(18px); }
+
+/* ── Review nudge ── */
+.review-card { display: flex; flex-direction: column; gap: 10px; margin: 0 0 12px; padding: 12px 14px; border-radius: 14px; background: var(--note-bg); border: 1px solid var(--sheet-border); color: var(--text-primary); }
+.review-card[hidden] { display: none; }
+.review-card-text { display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+.review-card-text span { font-size: 12px; color: var(--text-muted); }
+.review-card-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.review-btn { width: auto; padding: 7px 14px; border-radius: 10px; border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: none; }
+.review-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.review-link { width: auto; border: 0; background: transparent; box-shadow: none; padding: 7px 4px; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-left: auto; }

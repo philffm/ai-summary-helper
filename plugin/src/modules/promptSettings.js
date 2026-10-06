@@ -28,7 +28,7 @@ let root = null;
 let presets = [];
 const S = {
     tab: 'articles',
-    art: { type: 'preset', preset: 'Default', builder: normalizeBuilder(null, ARTICLE_DEFAULTS), text: '', open: false },
+    art: { type: 'preset', preset: 'Default', builder: normalizeBuilder(null, ARTICLE_DEFAULTS), text: '', customText: '', open: false },
     scope: 'briefing',
     feed: { briefing: { mode: 'builder', builder: normalizeBuilder(null, FEED_DEFAULTS), text: '' }, recap: null, open: false },
     test: { articles: '', feeds: '', busy: false }
@@ -36,12 +36,23 @@ const S = {
 
 /* ── storage ── */
 async function load() {
-    const d = await chrome.storage.sync.get(['prompt', 'presetPrompt', 'promptType', 'promptBuilder', 'feedPromptCfg']).catch(() => ({}));
-    const type = d.promptType === 'builder' || d.promptType === 'custom' ? d.promptType : 'preset';
+    const d = await chrome.storage.sync.get(['prompt', 'presetPrompt', 'promptType', 'promptBuilder', 'promptCustomText', 'feedPromptCfg']).catch(() => ({}));
+    const stored = String(d.prompt || '');
+    let type = d.promptType === 'builder' || d.promptType === 'custom' ? d.promptType : 'preset';
+    // Migration: a prompt that is not (or no longer) one of the presets is the user's own text — keep it as "Custom",
+    // untouched. Covers installs from before promptType existed and presets whose wording changed.
+    if (type === 'preset' && stored.trim() && presets.length) {
+        const p = presets.find(x => x.name === d.presetPrompt);
+        if (!p || p.prompt !== stored) {
+            type = 'custom';
+            chrome.storage.sync.set({ promptType: 'custom', presetPrompt: 'custom', promptCustomText: stored }).catch(() => {});
+        }
+    }
     S.art.type = type;
     S.art.preset = type === 'preset' ? (d.presetPrompt && d.presetPrompt !== 'custom' && d.presetPrompt !== 'builder' ? d.presetPrompt : 'Default') : (S.art.preset || 'Default');
     S.art.builder = normalizeBuilder(d.promptBuilder, ARTICLE_DEFAULTS);
-    S.art.text = d.prompt || '';
+    S.art.text = stored;
+    S.art.customText = d.promptCustomText || (type === 'custom' ? stored : '');
     const cfg = d.feedPromptCfg || {};
     const norm = x => x && (x.mode === 'custom' || x.mode === 'builder')
         ? { mode: x.mode, builder: normalizeBuilder(x.builder, FEED_DEFAULTS), text: String(x.text || '') } : null;
@@ -53,12 +64,12 @@ function saveArticle() {
     const a = S.art;
     if (a.type === 'builder') {
         a.text = buildArticlePrompt(a.builder);
-        return chrome.storage.sync.set({ promptType: 'builder', presetPrompt: 'builder', promptBuilder: a.builder, prompt: a.text });
+        return chrome.storage.sync.set({ promptType: 'builder', presetPrompt: 'builder', promptBuilder: a.builder, prompt: a.text, promptCustomText: a.customText || '' });
     }
-    if (a.type === 'custom') return chrome.storage.sync.set({ promptType: 'custom', presetPrompt: 'custom', prompt: a.text });
+    if (a.type === 'custom') { a.customText = a.text; return chrome.storage.sync.set({ promptType: 'custom', presetPrompt: 'custom', prompt: a.text, promptCustomText: a.text }); }
     const p = presets.find(x => x.name === a.preset);
     if (p) a.text = p.prompt;
-    return chrome.storage.sync.set({ promptType: 'preset', presetPrompt: a.preset, prompt: a.text });
+    return chrome.storage.sync.set({ promptType: 'preset', presetPrompt: a.preset, prompt: a.text, promptCustomText: a.customText || '' });
 }
 
 function saveFeed() {
@@ -228,7 +239,7 @@ function onChange(e) {
         const v = e.target.value;
         if (v === 'builder' || v === 'custom') S.art.type = v;
         else { S.art.type = 'preset'; S.art.preset = v; }
-        if (v === 'custom' && !S.art.text) S.art.text = '';
+        if (v === 'custom') S.art.text = S.art.customText || S.art.text || '';
         saveArticle().then(render);
     }
 }

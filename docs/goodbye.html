@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Sorry to see you go — AI Summary Helper</title>
+<meta name="description" content="Tell us why you uninstalled AI Summary Helper. It takes ten seconds and helps make it better.">
+<meta name="robots" content="noindex">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark' ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .bye { max-width: 640px; margin: 0 auto; padding: 8px 0 72px; }
+  .bye h2 { font-family: var(--font-display); font-size: 18px; margin: 32px 0 12px; }
+  .bye-reasons { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; }
+  .bye-reason { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border-medium); background: var(--input-bg); color: var(--paper); cursor: pointer; font-size: 15px; }
+  .bye-reason:hover { border-color: var(--border-strong); }
+  .bye-reason input { accent-color: var(--signal); width: 18px; height: 18px; flex: none; }
+  .bye-reason:has(input:checked) { border-color: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
+  .bye textarea, .bye input[type=email] { width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border-medium); background: var(--input-bg); color: var(--paper); font: inherit; font-size: 15px; }
+  .bye textarea { min-height: 110px; resize: vertical; }
+  .bye label.f { display: block; font-size: 13px; color: var(--paper-dim); margin: 16px 0 6px; }
+  .bye-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 24px; }
+  .bye-note { font-size: 13px; color: var(--paper-dim); margin-top: 16px; }
+  .bye-done { display: none; text-align: center; padding: 32px 0; }
+  .bye-done.show { display: block; }
+  .bye-form.hide { display: none; }
+  .bye-err { color: var(--paper-dim); font-size: 14px; margin-top: 12px; }
+</style>
+<meta property="og:title" content="Sorry to see you go — AI Summary Helper">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/goodbye.html">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/goodbye.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/goodbye.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/goodbye.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/goodbye.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/goodbye.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/goodbye.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/goodbye.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/goodbye.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/goodbye.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/goodbye.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/goodbye.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/goodbye.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Part of byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#digest">Digest</a>
+        <a href="#pricing">Pricing</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">My account</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="#features">Features</a>
+      <a href="#digest">Digest</a>
+      <a href="#pricing">Pricing</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">My account</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Part of byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Switch to light mode</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="bye">
+      <div class="post-hero">
+        <span class="blog-date">Uninstalled</span>
+        <h1>Sorry to see you go</h1>
+        <p class="post-sub">AI Summary Helper is built by one person, and every answer here gets read. Ten seconds, one tap — what made you leave?</p>
+      </div>
+
+      <form id="byeForm" class="bye-form" novalidate="">
+        <h2>Main reason</h2>
+        <fieldset class="bye-reasons" aria-label="Reason for uninstalling">
+          <label class="bye-reason"><input type="radio" name="reason" value="not_working"> It didn’t work on the sites I use</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="quality"> The summaries weren’t good enough</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="setup"> Setup was too complicated (API key, models)</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="price"> It costs too much, or I don’t want to pay</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="privacy"> I had privacy concerns</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="alternative"> I found something better</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="one_time"> I only needed it once</label>
+          <label class="bye-reason"><input type="radio" name="reason" value="other"> Something else</label>
+        </fieldset>
+
+        <label class="f" for="byeComment">What could be better? <span>(optional)</span></label>
+        <textarea id="byeComment" maxlength="2000" placeholder="A broken page, a missing feature, a name of an alternative…"></textarea>
+
+        <label class="f" for="byeEmail">Want a reply? Leave your email <span>(optional)</span></label>
+        <input id="byeEmail" type="email" autocomplete="email" placeholder="you@example.com">
+
+        <div class="bye-actions">
+          <button type="submit" class="btn-primary" id="byeSend">Send feedback</button>
+          <a class="btn-secondary" id="byeBugs" href="https://github.com/philffm/ai-summary-helper/issues" target="_blank" rel="noopener">Report a bug instead</a>
+        </div>
+        <p class="bye-note">We only receive your answers above, the extension version and how many days you used it. No page content, no history, no identifiers.</p>
+        <p class="bye-err" id="byeErr" role="status" hidden=""></p>
+      </form>
+
+      <div class="bye-done" id="byeDone" role="status">
+        <h2>Thank you — really.</h2>
+        <p class="post-sub">Your feedback is on its way to the developer. If this was a mistake, you can reinstall any time.</p>
+        <div class="bye-actions" style="justify-content:center">
+          <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener">Reinstall</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source on GitHub</a>
+        <a href="index.html#bookmarklet">Bookmarklet (no install)</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Refunds &amp; Returns</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — independent software built in Germany. Payments handled by Stripe as Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU Consumer Dispute Resolution</a> · Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+(function () {
+  // ── Formbricks target ─────────────────────────────────────────────────────
+  // Create a survey in Formbricks with three optional questions, then fill these in
+  // (Formbricks › Survey › Share › API / Environment ID; question IDs are shown in the survey editor).
+  var FORMBRICKS = {
+    host: 'https://app.formbricks.com',
+    environmentId: '',           // e.g. 'clx…'
+    surveyId: '',                // e.g. 'cm…'
+    questions: { reason: 'reason', comment: 'comment', email: 'email' }
+  };
+  // Until Formbricks is configured the answers open as a pre-filled email instead.
+  var FALLBACK_EMAIL = 'philipp@wornath.de';
+
+  var q = new URLSearchParams(location.search);
+  var form = document.getElementById('byeForm'), done = document.getElementById('byeDone'), err = document.getElementById('byeErr'), send = document.getElementById('byeSend');
+
+  function configured() { return FORMBRICKS.environmentId && FORMBRICKS.surveyId; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var reason = (form.querySelector('input[name=reason]:checked') || {}).value || '';
+    var comment = document.getElementById('byeComment').value.trim();
+    var email = document.getElementById('byeEmail').value.trim();
+    if (!reason && !comment) { err.hidden = false; err.textContent = 'Pick a reason or write a few words — either is fine.'; return; }
+    if (!configured()) {
+      var body = 'Reason: ' + reason + '\n\n' + comment + '\n\n(v' + (q.get('v') || '?') + ', ' + (q.get('d') || '?') + ' days)';
+      window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject=' + encodeURIComponent('AI Summary Helper uninstall feedback') + '&body=' + encodeURIComponent(body);
+      form.classList.add('hide'); done.classList.add('show'); return;
+    }
+    send.disabled = true; err.hidden = true;
+    var data = {};
+    if (reason) data[FORMBRICKS.questions.reason] = reason;
+    if (comment) data[FORMBRICKS.questions.comment] = comment;
+    if (email) data[FORMBRICKS.questions.email] = email;
+    fetch(FORMBRICKS.host + '/api/v1/client/' + FORMBRICKS.environmentId + '/responses', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        surveyId: FORMBRICKS.surveyId,
+        finished: true,
+        data: data,
+        meta: { source: 'uninstall', url: location.origin + location.pathname + '?v=' + encodeURIComponent(q.get('v') || '') + '&d=' + encodeURIComponent(q.get('d') || '') }
+      })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      form.classList.add('hide'); done.classList.add('show');
+    }).catch(function () {
+      send.disabled = false; err.hidden = false;
+      err.textContent = 'Could not send — please try again, or use the bug-report link.';
+    });
+  });
+})();
+</script>
+
+
+</body></html>
