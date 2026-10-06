@@ -3,7 +3,7 @@
 // this file handles logic, auto-save, and wiring event listeners.
 
 import StorageManager from './storageManager.js';
-import { initPromptManager } from './promptManager.js';
+import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
@@ -29,11 +29,7 @@ export async function initSettingsManager(ui) {
     initAuthManager(ui);
 
     // Initialize prompt manager with the static DOM elements
-    const promptSelect = document.getElementById('promptSelect');
-    const promptInput = document.getElementById('prompt');
-    if (promptSelect && promptInput) {
-        initPromptManager(promptSelect, promptInput);
-    }
+    initPromptSettings(document.getElementById('promptSettingsRoot'));
 
     // Prevent form submission page reloads AND persist model settings
     // (API key, endpoint, active service) when the user clicks Save.

@@ -1450,5 +1450,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "المزاج الجيد فقط"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(عرض الكل والمساهمة)"
+  },
+  "f_action_items_c1a7": {
+    "message": "بنود العمل"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "العودة إلى المُنشئ"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "كتب ووسائط مقترحة"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "تحتفظ الموجزات والملخصات بتخطيطها الثابت (نظرة عامة، مواضيع، مزاج)؛ هذه الإعدادات تغيّر النبرة والصياغة فقط."
+  },
+  "f_casual_faa4": {
+    "message": "ودّي"
+  },
+  "f_creative_title_c49e": {
+    "message": "عنوان إبداعي"
+  },
+  "f_custom_b78e": {
+    "message": "مخصص"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "خصّص طريقة كتابة الذكاء الاصطناعي."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "الموجز اليومي"
+  },
+  "f_edit_style_for_2773": {
+    "message": "تعديل الأسلوب لـ"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "رموز تعبيرية وهاشتاغات"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "أدخل موجّهك المخصص هنا…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "تعليمات إضافية"
+  },
+  "f_extras_1d8e": {
+    "message": "إضافات"
+  },
+  "f_focus_on_f114": {
+    "message": "التركيز على"
+  },
+  "f_formal_253a": {
+    "message": "رسمي"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "الموجّه الكامل"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "نص الأسلوب الكامل"
+  },
+  "f_hard_facts_f743": {
+    "message": "حقائق صلبة"
+  },
+  "f_hide_8e7c": {
+    "message": "إخفاء ⌃"
+  },
+  "f_include_5607": {
+    "message": "تضمين"
+  },
+  "f_key_facts_41d3": {
+    "message": "حقائق أساسية"
+  },
+  "f_key_quotes_81c9": {
+    "message": "اقتباسات مهمة"
+  },
+  "f_length_1935": {
+    "message": "الطول"
+  },
+  "f_light_humor_8590": {
+    "message": "دعابة خفيفة"
+  },
+  "f_long_9473": {
+    "message": "طويل"
+  },
+  "f_medium_5f96": {
+    "message": "متوسط"
+  },
+  "f_neutral_0778": {
+    "message": "محايد"
+  },
+  "f_numbers_77c9": {
+    "message": "أرقام"
+  },
+  "f_opinions_1d4a": {
+    "message": "آراء"
+  },
+  "f_preset_b13e": {
+    "message": "قالب"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "نفس أسلوب الموجز اليومي"
+  },
+  "f_standup_humor_7d49": {
+    "message": "فكاهة ستاند أب"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "أسلوب موجزات الذكاء الاصطناعي والملخصات الأسبوعية والشهرية."
+  },
+  "f_test_on_sample_853c": {
+    "message": "جرّب على مثال"
+  },
+  "f_testing_28a7": {
+    "message": "جارٍ الاختبار…"
+  },
+  "f_tone_2da1": {
+    "message": "النبرة"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "إشارة لمصمم UX"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "يُستخدم عند تلخيص صفحة أو مقال."
+  },
+  "f_view_edit_bf74": {
+    "message": "عرض وتعديل ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "الملخصات الأسبوعية والشهرية"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "لماذا يهم"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "مثال: اذكر دائمًا الكاتب والمطبوعة."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "مثال: فضّل الأخبار الأوروبية وحافظ على نبرة إيجابية."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ عُدّل يدويًا — لن تغيّره الخيارات حتى تعود إلى المُنشئ."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ أنشئ بنفسي"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ خلطة فيل"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 المقالات الكاملة"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 المصادر والموجزات"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 تُضاف الوسوم والمقتطفات المميزة ودرجة المزاج تلقائيًا دائمًا — أنت تتحكم في الأسلوب فقط."
   }
 }

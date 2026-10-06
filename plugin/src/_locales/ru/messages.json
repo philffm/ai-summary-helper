@@ -1450,5 +1450,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "Только хорошее настроение"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Все и вклад)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Действия"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Назад к конструктору"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Книги и медиа"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Брифинги и обзоры сохраняют фиксированный формат (обзор, темы, настроение) — эти настройки меняют только тон и формулировки."
+  },
+  "f_casual_faa4": {
+    "message": "Непринуждённый"
+  },
+  "f_creative_title_c49e": {
+    "message": "Креативный заголовок"
+  },
+  "f_custom_b78e": {
+    "message": "Свой"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Настройте, как пишет ИИ."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Ежедневный брифинг"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Изменить стиль для"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Эмодзи и хештеги"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Введите здесь свой промпт…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Дополнительные указания"
+  },
+  "f_extras_1d8e": {
+    "message": "Дополнения"
+  },
+  "f_focus_on_f114": {
+    "message": "Акцент на"
+  },
+  "f_formal_253a": {
+    "message": "Официальный"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Полный промпт"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Полный текст стиля"
+  },
+  "f_hard_facts_f743": {
+    "message": "Голые факты"
+  },
+  "f_hide_8e7c": {
+    "message": "Скрыть ⌃"
+  },
+  "f_include_5607": {
+    "message": "Включить"
+  },
+  "f_key_facts_41d3": {
+    "message": "Ключевые факты"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Ключевые цитаты"
+  },
+  "f_length_1935": {
+    "message": "Длина"
+  },
+  "f_light_humor_8590": {
+    "message": "Лёгкий юмор"
+  },
+  "f_long_9473": {
+    "message": "Длинная"
+  },
+  "f_medium_5f96": {
+    "message": "Средняя"
+  },
+  "f_neutral_0778": {
+    "message": "Нейтральный"
+  },
+  "f_numbers_77c9": {
+    "message": "Цифры"
+  },
+  "f_opinions_1d4a": {
+    "message": "Мнения"
+  },
+  "f_preset_b13e": {
+    "message": "Шаблон"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Тот же стиль, что у ежедневного брифинга"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Юмор стендапера"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Стиль для ИИ-брифингов и недельных и месячных обзоров."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Проверить на примере"
+  },
+  "f_testing_28a7": {
+    "message": "Проверка…"
+  },
+  "f_tone_2da1": {
+    "message": "Тон"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "Отсылка к UX-дизайну"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Используется, когда вы делаете сводку страницы или статьи."
+  },
+  "f_view_edit_bf74": {
+    "message": "Смотреть и править ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Недельные и месячные обзоры"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Почему это важно"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "напр. Всегда указывай автора и издание."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "напр. Предпочитай европейские новости и пиши бодро."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Изменено вручную — чипы ничего не изменят, пока вы не вернётесь к конструктору."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Собрать свой"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Микс Фила"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Полные статьи"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Ленты и брифинги"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Теги, ключевые цитаты и оценка настроения всегда добавляются автоматически — вы управляете только стилем."
   }
 }

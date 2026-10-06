@@ -1522,5 +1522,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "좋은 분위기만"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(전체 보기 및 기여)"
+  },
+  "f_action_items_c1a7": {
+    "message": "실행 항목"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "빌더로 돌아가기"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "책·미디어 추천"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "브리핑과 요약은 고정된 형식(개요, 주제, 분위기)을 유지하며, 이 설정은 어조와 표현만 바꿉니다."
+  },
+  "f_casual_faa4": {
+    "message": "캐주얼"
+  },
+  "f_creative_title_c49e": {
+    "message": "창의적인 제목"
+  },
+  "f_custom_b78e": {
+    "message": "사용자 지정"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "AI가 글을 쓰는 방식을 설정하세요."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "일일 브리핑"
+  },
+  "f_edit_style_for_2773": {
+    "message": "스타일 편집 대상"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "이모지와 해시태그"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "여기에 나만의 프롬프트를 입력하세요…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "추가 지시사항"
+  },
+  "f_extras_1d8e": {
+    "message": "추가 요소"
+  },
+  "f_focus_on_f114": {
+    "message": "중점"
+  },
+  "f_formal_253a": {
+    "message": "격식체"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "전체 프롬프트"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "전체 스타일 텍스트"
+  },
+  "f_hard_facts_f743": {
+    "message": "확실한 사실"
+  },
+  "f_hide_8e7c": {
+    "message": "숨기기 ⌃"
+  },
+  "f_include_5607": {
+    "message": "포함"
+  },
+  "f_key_facts_41d3": {
+    "message": "핵심 사실"
+  },
+  "f_key_quotes_81c9": {
+    "message": "주요 인용문"
+  },
+  "f_length_1935": {
+    "message": "길이"
+  },
+  "f_light_humor_8590": {
+    "message": "가벼운 유머"
+  },
+  "f_long_9473": {
+    "message": "길게"
+  },
+  "f_medium_5f96": {
+    "message": "보통"
+  },
+  "f_neutral_0778": {
+    "message": "중립"
+  },
+  "f_numbers_77c9": {
+    "message": "숫자"
+  },
+  "f_opinions_1d4a": {
+    "message": "의견"
+  },
+  "f_preset_b13e": {
+    "message": "프리셋"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "일일 브리핑과 같은 스타일"
+  },
+  "f_standup_humor_7d49": {
+    "message": "스탠드업 유머"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "AI 브리핑과 주간·월간 요약의 스타일입니다."
+  },
+  "f_test_on_sample_853c": {
+    "message": "샘플로 테스트"
+  },
+  "f_testing_28a7": {
+    "message": "테스트 중…"
+  },
+  "f_tone_2da1": {
+    "message": "어조"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX 디자이너 한마디"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "페이지나 글을 요약할 때 사용됩니다."
+  },
+  "f_view_edit_bf74": {
+    "message": "보기 및 편집 ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "주간·월간 요약"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "왜 중요한가"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "예: 항상 저자와 매체명을 밝혀 주세요."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "예: 유럽 뉴스를 우선하고 밝은 톤을 유지해 주세요."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ 직접 편집됨 — 빌더로 돌아가기 전에는 칩으로 바뀌지 않습니다."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ 직접 만들기"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Phil의 믹스"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 전체 글"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 피드 및 브리핑"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 태그, 핵심 하이라이트, 분위기 점수는 항상 자동으로 추가됩니다. 스타일만 조정할 수 있어요."
   }
 }

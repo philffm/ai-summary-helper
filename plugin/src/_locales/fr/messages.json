@@ -1534,5 +1534,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "Bonne humeur uniquement"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Tout voir et contribuer)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Actions à mener"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Retour au créateur"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Livres et médias"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Les briefings et récapitulatifs gardent leur mise en page fixe (aperçu, thèmes, humeur) ; ces réglages ne changent que le ton et la formulation."
+  },
+  "f_casual_faa4": {
+    "message": "Décontracté"
+  },
+  "f_creative_title_c49e": {
+    "message": "Titre créatif"
+  },
+  "f_custom_b78e": {
+    "message": "Personnalisé"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Personnalisez la façon d’écrire de l’IA."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Briefing du jour"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Modifier le style pour"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emojis et hashtags"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Saisissez ici votre prompt personnalisé…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Instructions supplémentaires"
+  },
+  "f_extras_1d8e": {
+    "message": "Extras"
+  },
+  "f_focus_on_f114": {
+    "message": "Axe principal"
+  },
+  "f_formal_253a": {
+    "message": "Formel"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Prompt complet"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Texte de style complet"
+  },
+  "f_hard_facts_f743": {
+    "message": "Faits bruts"
+  },
+  "f_hide_8e7c": {
+    "message": "Masquer ⌃"
+  },
+  "f_include_5607": {
+    "message": "Inclure"
+  },
+  "f_key_facts_41d3": {
+    "message": "Faits clés"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Citations clés"
+  },
+  "f_length_1935": {
+    "message": "Longueur"
+  },
+  "f_light_humor_8590": {
+    "message": "Humour léger"
+  },
+  "f_long_9473": {
+    "message": "Long"
+  },
+  "f_medium_5f96": {
+    "message": "Moyen"
+  },
+  "f_neutral_0778": {
+    "message": "Neutre"
+  },
+  "f_numbers_77c9": {
+    "message": "Chiffres"
+  },
+  "f_opinions_1d4a": {
+    "message": "Opinions"
+  },
+  "f_preset_b13e": {
+    "message": "Préréglage"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Même style que le briefing du jour"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Humour de stand-up"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Style des briefings IA et des récapitulatifs hebdo et mensuels."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Tester sur un exemple"
+  },
+  "f_testing_28a7": {
+    "message": "Test en cours…"
+  },
+  "f_tone_2da1": {
+    "message": "Ton"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "Clin d’œil UX design"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Utilisé quand vous résumez une page ou un article."
+  },
+  "f_view_edit_bf74": {
+    "message": "Voir et modifier ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Récapitulatifs hebdo et mensuels"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Pourquoi c’est important"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "p. ex. Citez toujours l’auteur et la publication."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "p. ex. Privilégie l’actualité européenne et reste positif."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Modifié à la main : les puces n’y changeront rien tant que vous ne revenez pas au créateur."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Créer le mien"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Le mix de Phil"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Articles complets"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Flux et briefings"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Les tags, les passages clés et le score d’humeur sont toujours ajoutés automatiquement ; vous ne contrôlez que le style."
   }
 }

@@ -1540,5 +1540,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "Nur gute Stimmung"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Alle ansehen & mitwirken)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Aufgaben"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Zurück zum Baukasten"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Buch- & Medientipps"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Briefings und Rückblicke behalten ihr festes Layout (Überblick, Themen, Stimmung) – diese Einstellungen ändern nur Ton und Wortwahl."
+  },
+  "f_casual_faa4": {
+    "message": "Locker"
+  },
+  "f_creative_title_c49e": {
+    "message": "Kreativer Titel"
+  },
+  "f_custom_b78e": {
+    "message": "Eigener"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Passe an, wie die KI schreibt."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Tagesbriefing"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Stil bearbeiten für"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emojis & Hashtags"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Gib hier deinen eigenen Prompt ein …"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Zusatzanweisungen"
+  },
+  "f_extras_1d8e": {
+    "message": "Extras"
+  },
+  "f_focus_on_f114": {
+    "message": "Schwerpunkt"
+  },
+  "f_formal_253a": {
+    "message": "Formell"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Gesamter Prompt"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Gesamter Stiltext"
+  },
+  "f_hard_facts_f743": {
+    "message": "Harte Fakten"
+  },
+  "f_hide_8e7c": {
+    "message": "Ausblenden ⌃"
+  },
+  "f_include_5607": {
+    "message": "Einbeziehen"
+  },
+  "f_key_facts_41d3": {
+    "message": "Kernfakten"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Zitate"
+  },
+  "f_length_1935": {
+    "message": "Länge"
+  },
+  "f_light_humor_8590": {
+    "message": "Leichter Humor"
+  },
+  "f_long_9473": {
+    "message": "Lang"
+  },
+  "f_medium_5f96": {
+    "message": "Mittel"
+  },
+  "f_neutral_0778": {
+    "message": "Neutral"
+  },
+  "f_numbers_77c9": {
+    "message": "Zahlen"
+  },
+  "f_opinions_1d4a": {
+    "message": "Meinungen"
+  },
+  "f_preset_b13e": {
+    "message": "Vorlage"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Gleicher Stil wie das Tagesbriefing"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Stand-up-Humor"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Stil für KI-Briefings und Wochen- & Monatsrückblicke."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Mit Beispiel testen"
+  },
+  "f_testing_28a7": {
+    "message": "Teste …"
+  },
+  "f_tone_2da1": {
+    "message": "Ton"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX-Designer-Bezug"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Wird verwendet, wenn du eine Seite oder einen Artikel zusammenfasst."
+  },
+  "f_view_edit_bf74": {
+    "message": "Ansehen & bearbeiten ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Wochen- & Monatsrückblicke"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Warum es wichtig ist"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "z. B. Nenne immer Autor und Publikation."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "z. B. Bevorzuge europäische Nachrichten und halte es positiv."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Von Hand bearbeitet – die Chips ändern nichts, bis du zum Baukasten zurückkehrst."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Selbst zusammenstellen"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Phils Mix"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Ganze Artikel"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Feeds & Briefings"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Tags, Kernzitate und Stimmungswert werden immer automatisch ergänzt – du steuerst nur den Stil."
   }
 }

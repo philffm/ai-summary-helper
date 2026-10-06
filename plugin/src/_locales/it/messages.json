@@ -1450,5 +1450,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "Solo buon umore"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Vedi tutti e contribuisci)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Azioni da fare"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Torna al costruttore"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Libri e media"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Briefing e riepiloghi mantengono il loro formato fisso (panoramica, temi, umore); queste impostazioni cambiano solo tono e formulazione."
+  },
+  "f_casual_faa4": {
+    "message": "Informale"
+  },
+  "f_creative_title_c49e": {
+    "message": "Titolo creativo"
+  },
+  "f_custom_b78e": {
+    "message": "Personalizzato"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Personalizza come scrive l’IA."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Briefing giornaliero"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Modifica lo stile per"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emoji e hashtag"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Inserisci qui il tuo prompt personalizzato…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Istruzioni extra"
+  },
+  "f_extras_1d8e": {
+    "message": "Extra"
+  },
+  "f_focus_on_f114": {
+    "message": "Focus su"
+  },
+  "f_formal_253a": {
+    "message": "Formale"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Prompt completo"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Testo di stile completo"
+  },
+  "f_hard_facts_f743": {
+    "message": "Fatti concreti"
+  },
+  "f_hide_8e7c": {
+    "message": "Nascondi ⌃"
+  },
+  "f_include_5607": {
+    "message": "Includi"
+  },
+  "f_key_facts_41d3": {
+    "message": "Fatti chiave"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Citazioni chiave"
+  },
+  "f_length_1935": {
+    "message": "Lunghezza"
+  },
+  "f_light_humor_8590": {
+    "message": "Umorismo leggero"
+  },
+  "f_long_9473": {
+    "message": "Lungo"
+  },
+  "f_medium_5f96": {
+    "message": "Medio"
+  },
+  "f_neutral_0778": {
+    "message": "Neutro"
+  },
+  "f_numbers_77c9": {
+    "message": "Numeri"
+  },
+  "f_opinions_1d4a": {
+    "message": "Opinioni"
+  },
+  "f_preset_b13e": {
+    "message": "Preset"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Stesso stile del briefing giornaliero"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Umorismo da stand-up"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Stile per briefing IA e riepiloghi settimanali e mensili."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Prova su un esempio"
+  },
+  "f_testing_28a7": {
+    "message": "Prova in corso…"
+  },
+  "f_tone_2da1": {
+    "message": "Tono"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "Riferimento da UX designer"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Usato quando riassumi una pagina o un articolo."
+  },
+  "f_view_edit_bf74": {
+    "message": "Vedi e modifica ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Riepiloghi settimanali e mensili"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Perché conta"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "es. Cita sempre autore e testata."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "es. Preferisci notizie europee e mantieni un tono positivo."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Modificato a mano: i chip non lo cambieranno finché non torni al costruttore."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Crea il mio"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Il mix di Phil"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Articoli completi"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Feed e briefing"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Tag, passaggi chiave e punteggio d’umore vengono sempre aggiunti automaticamente: controlli solo lo stile."
   }
 }

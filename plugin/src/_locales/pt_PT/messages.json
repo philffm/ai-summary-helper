@@ -1534,5 +1534,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "Só bom humor"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Ver todos e contribuir)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Ações a tomar"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Voltar ao criador"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Livros e media"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Os briefings e resumos mantêm o formato fixo (visão geral, temas, humor); estas definições só mudam o tom e a redação."
+  },
+  "f_casual_faa4": {
+    "message": "Descontraído"
+  },
+  "f_creative_title_c49e": {
+    "message": "Título criativo"
+  },
+  "f_custom_b78e": {
+    "message": "Personalizado"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Personaliza a forma como a IA escreve."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Briefing diário"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Editar estilo para"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emojis e hashtags"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Escreve aqui o teu prompt personalizado…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Instruções extra"
+  },
+  "f_extras_1d8e": {
+    "message": "Extras"
+  },
+  "f_focus_on_f114": {
+    "message": "Foco em"
+  },
+  "f_formal_253a": {
+    "message": "Formal"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Prompt completo"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Texto de estilo completo"
+  },
+  "f_hard_facts_f743": {
+    "message": "Factos concretos"
+  },
+  "f_hide_8e7c": {
+    "message": "Ocultar ⌃"
+  },
+  "f_include_5607": {
+    "message": "Incluir"
+  },
+  "f_key_facts_41d3": {
+    "message": "Factos-chave"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Citações-chave"
+  },
+  "f_length_1935": {
+    "message": "Extensão"
+  },
+  "f_light_humor_8590": {
+    "message": "Humor leve"
+  },
+  "f_long_9473": {
+    "message": "Longa"
+  },
+  "f_medium_5f96": {
+    "message": "Média"
+  },
+  "f_neutral_0778": {
+    "message": "Neutro"
+  },
+  "f_numbers_77c9": {
+    "message": "Números"
+  },
+  "f_opinions_1d4a": {
+    "message": "Opiniões"
+  },
+  "f_preset_b13e": {
+    "message": "Predefinição"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Mesmo estilo do briefing diário"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Humor de stand-up"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Estilo para briefings com IA e resumos semanais e mensais."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Testar com exemplo"
+  },
+  "f_testing_28a7": {
+    "message": "A testar…"
+  },
+  "f_tone_2da1": {
+    "message": "Tom"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "Referência de UX designer"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Usado quando resumes uma página ou um artigo."
+  },
+  "f_view_edit_bf74": {
+    "message": "Ver e editar ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Resumos semanais e mensais"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Porque importa"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "p. ex. Indica sempre o autor e a publicação."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "p. ex. Prefere notícias europeias e mantém um tom positivo."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Editado à mão — os chips não o alteram até voltares ao criador."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Criar o meu"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Mistura do Phil"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Artigos completos"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Feeds e briefings"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 As etiquetas, os destaques e a pontuação de humor são sempre adicionados automaticamente — tu só controlas o estilo."
   }
 }

@@ -1540,5 +1540,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "ポジティブな気分のみ"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "（すべて見る・投稿する）"
+  },
+  "f_action_items_c1a7": {
+    "message": "アクション項目"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "ビルダーに戻る"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "本・メディアのおすすめ"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "ブリーフィングとまとめのレイアウト（概要・テーマ・ムード）は固定です。この設定で変わるのはトーンと言い回しだけです。"
+  },
+  "f_casual_faa4": {
+    "message": "カジュアル"
+  },
+  "f_creative_title_c49e": {
+    "message": "クリエイティブなタイトル"
+  },
+  "f_custom_b78e": {
+    "message": "カスタム"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "AIの書き方をカスタマイズします。"
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "デイリーブリーフィング"
+  },
+  "f_edit_style_for_2773": {
+    "message": "スタイルを編集："
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "絵文字とハッシュタグ"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "ここに独自のプロンプトを入力…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "追加の指示"
+  },
+  "f_extras_1d8e": {
+    "message": "エクストラ"
+  },
+  "f_focus_on_f114": {
+    "message": "重点"
+  },
+  "f_formal_253a": {
+    "message": "フォーマル"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "プロンプト全文"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "スタイル全文"
+  },
+  "f_hard_facts_f743": {
+    "message": "確かな事実"
+  },
+  "f_hide_8e7c": {
+    "message": "隠す ⌃"
+  },
+  "f_include_5607": {
+    "message": "含める"
+  },
+  "f_key_facts_41d3": {
+    "message": "重要な事実"
+  },
+  "f_key_quotes_81c9": {
+    "message": "重要な引用"
+  },
+  "f_length_1935": {
+    "message": "長さ"
+  },
+  "f_light_humor_8590": {
+    "message": "軽いユーモア"
+  },
+  "f_long_9473": {
+    "message": "長め"
+  },
+  "f_medium_5f96": {
+    "message": "標準"
+  },
+  "f_neutral_0778": {
+    "message": "中立"
+  },
+  "f_numbers_77c9": {
+    "message": "数字"
+  },
+  "f_opinions_1d4a": {
+    "message": "意見"
+  },
+  "f_preset_b13e": {
+    "message": "プリセット"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "デイリーブリーフィングと同じスタイル"
+  },
+  "f_standup_humor_7d49": {
+    "message": "スタンドアップ風ユーモア"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "AIブリーフィングと週間・月間まとめのスタイル。"
+  },
+  "f_test_on_sample_853c": {
+    "message": "サンプルで試す"
+  },
+  "f_testing_28a7": {
+    "message": "テスト中…"
+  },
+  "f_tone_2da1": {
+    "message": "トーン"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UXデザイナーならではの小ネタ"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "ページや記事を要約するときに使います。"
+  },
+  "f_view_edit_bf74": {
+    "message": "表示・編集 ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "週間・月間まとめ"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "なぜ重要か"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "例：著者名と媒体名を必ず入れる。"
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "例：欧州のニュースを優先し、前向きなトーンで。"
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ 手動で編集済み — ビルダーに戻るまでチップでは変わりません。"
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ 自分で組み立てる"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Philのミックス"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 記事全文"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 フィードとブリーフィング"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 タグ、重要な引用、ムードスコアは常に自動で追加されます。調整できるのはスタイルのみです。"
   }
 }

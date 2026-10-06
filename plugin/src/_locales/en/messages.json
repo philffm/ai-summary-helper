@@ -1615,5 +1615,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "Good mood only"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(View all & contribute)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Action items"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Back to builder"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Book & media tips"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Briefings and recaps keep their fixed layout (overview, themes, mood) — these settings only change tone and wording."
+  },
+  "f_casual_faa4": {
+    "message": "Casual"
+  },
+  "f_creative_title_c49e": {
+    "message": "Creative title"
+  },
+  "f_custom_b78e": {
+    "message": "Custom"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Customize how the AI writes."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Daily briefing"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Edit style for"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emojis & hashtags"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Enter your custom prompt here..."
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Extra instructions"
+  },
+  "f_extras_1d8e": {
+    "message": "Extras"
+  },
+  "f_focus_on_f114": {
+    "message": "Focus on"
+  },
+  "f_formal_253a": {
+    "message": "Formal"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Full prompt"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Full style text"
+  },
+  "f_hard_facts_f743": {
+    "message": "Hard facts"
+  },
+  "f_hide_8e7c": {
+    "message": "Hide ⌃"
+  },
+  "f_include_5607": {
+    "message": "Include"
+  },
+  "f_key_facts_41d3": {
+    "message": "Key facts"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Key quotes"
+  },
+  "f_length_1935": {
+    "message": "Length"
+  },
+  "f_light_humor_8590": {
+    "message": "Light humor"
+  },
+  "f_long_9473": {
+    "message": "Long"
+  },
+  "f_medium_5f96": {
+    "message": "Medium"
+  },
+  "f_neutral_0778": {
+    "message": "Neutral"
+  },
+  "f_numbers_77c9": {
+    "message": "Numbers"
+  },
+  "f_opinions_1d4a": {
+    "message": "Opinions"
+  },
+  "f_preset_b13e": {
+    "message": "Preset"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Same style as the daily briefing"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Standup humor"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Style for AI briefings and week & month recaps."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Test on sample"
+  },
+  "f_testing_28a7": {
+    "message": "Testing…"
+  },
+  "f_tone_2da1": {
+    "message": "Tone"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX designer reference"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Used whenever you summarize a page or article."
+  },
+  "f_view_edit_bf74": {
+    "message": "View & edit ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Week & month recaps"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Why it matters"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "e.g. Always name the author and publication."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "e.g. Prefer European news and keep it upbeat."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Edited by hand — the chips won’t change it until you go back to the builder."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Build my own"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Phil’s mix"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Full articles"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Feeds & briefings"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Tags, key highlights and the mood score are always added automatically — you only control the style."
   }
 }

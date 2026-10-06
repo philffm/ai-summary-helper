@@ -1534,5 +1534,158 @@
   },
   "f_good_mood_only_5aab": {
     "message": "仅显示好心情"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "（查看全部并参与贡献）"
+  },
+  "f_action_items_c1a7": {
+    "message": "行动事项"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "返回构建器"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "书籍与媒体推荐"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "简报和回顾保持固定版式（概述、主题、情绪），这些设置只影响语气和措辞。"
+  },
+  "f_casual_faa4": {
+    "message": "轻松"
+  },
+  "f_creative_title_c49e": {
+    "message": "创意标题"
+  },
+  "f_custom_b78e": {
+    "message": "自定义"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "自定义 AI 的写作方式。"
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "每日简报"
+  },
+  "f_edit_style_for_2773": {
+    "message": "编辑样式："
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "表情符号和话题标签"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "在此输入你的自定义提示词…"
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "额外说明"
+  },
+  "f_extras_1d8e": {
+    "message": "附加内容"
+  },
+  "f_focus_on_f114": {
+    "message": "侧重点"
+  },
+  "f_formal_253a": {
+    "message": "正式"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "完整提示词"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "完整样式文本"
+  },
+  "f_hard_facts_f743": {
+    "message": "硬事实"
+  },
+  "f_hide_8e7c": {
+    "message": "收起 ⌃"
+  },
+  "f_include_5607": {
+    "message": "包含"
+  },
+  "f_key_facts_41d3": {
+    "message": "关键事实"
+  },
+  "f_key_quotes_81c9": {
+    "message": "重点引文"
+  },
+  "f_length_1935": {
+    "message": "篇幅"
+  },
+  "f_light_humor_8590": {
+    "message": "轻松幽默"
+  },
+  "f_long_9473": {
+    "message": "详细"
+  },
+  "f_medium_5f96": {
+    "message": "适中"
+  },
+  "f_neutral_0778": {
+    "message": "中性"
+  },
+  "f_numbers_77c9": {
+    "message": "数字"
+  },
+  "f_opinions_1d4a": {
+    "message": "观点"
+  },
+  "f_preset_b13e": {
+    "message": "预设"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "与每日简报样式相同"
+  },
+  "f_standup_humor_7d49": {
+    "message": "脱口秀式幽默"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "AI 简报与周、月回顾的样式。"
+  },
+  "f_test_on_sample_853c": {
+    "message": "用示例测试"
+  },
+  "f_testing_28a7": {
+    "message": "测试中…"
+  },
+  "f_tone_2da1": {
+    "message": "语气"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX 设计师梗"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "在你总结网页或文章时使用。"
+  },
+  "f_view_edit_bf74": {
+    "message": "查看并编辑 ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "周、月回顾"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "为什么重要"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "例如：始终注明作者和出处。"
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "例如：优先欧洲新闻，保持积极基调。"
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ 已手动编辑 — 返回构建器之前，选项不会改变它。"
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ 自己搭配"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Phil 的组合"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 完整文章"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 订阅源与简报"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 标签、重点高亮和情绪评分始终自动添加，你只需控制样式。"
   }
 }

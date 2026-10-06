@@ -4,6 +4,10 @@
         "prompt": "- Article summary section with creative title explaining the article in simple terms. - More extensive summary with a bit more detail (4-5 sentences) and most significant quotes (as stated, in original language) - Fun reference to the topic related to my competence as a UX designer. - Humorous take on the topic like a standup comedian. - Related book and media recommendations. - Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
     },
     {
+        "name": "Phil's secret prompt",
+        "prompt": "- Article summary section with creative title explaining the article in simple terms. - More extensive summary with a bit more detail (4-5 sentences) and most significant quotes (as stated, in original language) - Fun reference to the topic related to my competence as a UX designer. - Humorous take on the topic like a standup comedian. - Related book and media recommendations. - Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
+    },
+    {
         "name": "Technical Deep Dive",
         "prompt": "- Technical overview of the article with detailed analysis. - Break down complex concepts into simpler terms. - Include diagrams or code snippets if applicable. - Discuss potential applications and implications in the tech industry. - Recommend further reading or resources for deeper understanding."
     },

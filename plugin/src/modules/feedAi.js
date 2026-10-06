@@ -7,6 +7,7 @@
  */
 
 import { T } from './feedI18n.js';
+import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;
 const SNIPPET_MAX = 160;
 
@@ -30,6 +31,14 @@ async function languageName() {
         const { selectedLanguage } = await chrome.storage.sync.get('selectedLanguage');
         return selectedLanguage || 'en-US';
     } catch (e) { return 'en-US'; }
+}
+
+/** The user's saved style preferences for 'briefing' or 'recap' as a system-prompt suffix ('' when none). */
+async function feedStyle(scope) {
+    try {
+        const { feedPromptCfg } = await chrome.storage.sync.get('feedPromptCfg');
+        return styleSuffix(resolveFeedStyle(feedPromptCfg, scope));
+    } catch (e) { return ''; }
 }
 
 function clip(s, n) {
@@ -106,8 +115,9 @@ export function parseRecap(text, n = 0) {
 }
 
 /** rate = also return a category label and a sentiment score for every item (one extra line, no extra request). */
-export async function generateRecap(list, subTitleFn, { rate = true } = {}) {
+export async function generateRecap(list, subTitleFn, { rate = true, styleText } = {}) {
     const lang = await languageName();
+    const suffix = styleText !== undefined ? styleSuffix(styleText) : await feedStyle('briefing');
     const system = 'You write brief news-digest recaps from headlines and snippets. '
         + `Reply in the language with code ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
         + 'First, 2-3 sentences of overview.\n'
@@ -118,7 +128,7 @@ export async function generateRecap(list, subTitleFn, { rate = true } = {}) {
               + '(e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design). Reuse the same label for similar items; use at most 8 different labels.\n'
               + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered item a sentiment number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content.\n'
             : '')
-        + 'No headings, no markdown other than the "- " lines.';
+        + 'No headings, no markdown other than the "- " lines.' + suffix;
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(list, subTitleFn)}`);
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const r = parseRecap(text, chunk.length);
@@ -132,6 +142,7 @@ export async function generateRecap(list, subTitleFn, { rate = true } = {}) {
  */
 export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false } = {}) {
     const lang = await languageName();
+    const suffix = await feedStyle('briefing');
     const system = 'You maintain a brief news-digest recap. You get the CURRENT recap and a numbered list of NEW or EDITED items (edited ones are marked). '
         + `Update the recap so it covers the earlier points and the new items. Reply in the language with code ${lang}. Use ONLY the given text; do not invent facts. `
         + 'Keep still-relevant points, add new standout stories naming the source, and drop or correct anything an edited item contradicts. Format exactly:\n'
@@ -142,7 +153,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
             ? 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered NEW/EDITED item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design).\n'
               + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered NEW/EDITED item a sentiment number from -1 (very negative news) through 0 to 1 (very positive news).\n'
             : '')
-        + 'No headings, no markdown other than the "- " lines.';
+        + 'No headings, no markdown other than the "- " lines.' + suffix;
     const chunk = fresh.slice(0, MAX_RECAP_ITEMS);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
     const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`);
@@ -237,13 +248,14 @@ function partText(p) {
  */
 export async function generateRollup(parts, { label = '', prev = null, edited = () => false } = {}) {
     const lang = await languageName();
+    const suffix = await feedStyle('recap');
     const system = 'You merge brief news-digest recaps of several days or weeks into ONE recap for the whole period. '
         + (prev ? 'You get the CURRENT period recap plus only the NEW or CHANGED recaps (changed ones are marked); keep still-relevant points and correct anything a changed recap contradicts. ' : '')
         + `Reply in the language with code ${lang}. Use ONLY the given recaps; do not invent facts. Format exactly:\n`
         + 'First, 2-3 sentences of overview of the whole period.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the day or week and the source.\n'
         + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the whole period).\n'
-        + 'No headings, no markdown other than the "- " lines.';
+        + 'No headings, no markdown other than the "- " lines.' + suffix;
     const body = parts.map(p => partText(p) + (edited(p) ? ' (changed)' : '')).join('\n\n');
     const cur = prev ? [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n') : '';
     const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`);
