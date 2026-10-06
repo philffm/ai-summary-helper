@@ -1186,5 +1186,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 Активность"
+  },
+  "f_back_4bc2": {
+    "message": "Назад"
+  },
+  "f_cancelled_09bc": {
+    "message": "Отменено"
+  },
+  "f_close_acc3": {
+    "message": "Закрыть"
+  },
+  "f_device_b413": {
+    "message": "Устройство"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "Дайджест из {n} сводок"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "Бесплатный тариф: 3 отправки на Kindle включены."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "Появится на вашем Kindle через несколько минут."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "Убедитесь, что kindle@byphil.eu есть в списке «Разрешённые отправители» Amazon."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "Отправлено не всё"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "Пока не настроено — добавьте получателя в настройках"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "Пока не настроено — добавьте Kindle в настройках"
+  },
+  "f_one_digest_a1c5": {
+    "message": "Один дайджест"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "Отправлять можно только статьи со сводкой"
+  },
+  "f_open_settings_88b6": {
+    "message": "Открыть настройки"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "Выберите получателя. Его приложение должно быть открыто и в той же сети Wi‑Fi."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "Не закрывайте это окно"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "Сначала укажите IP LocalSend в настройках."
+  },
+  "f_select_2b4d": {
+    "message": "Выбрать"
+  },
+  "f_select_all_1072": {
+    "message": "Выбрать все"
+  },
+  "f_select_summaries_2cad": {
+    "message": "Выбор сводок"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "Выберите сводки для отправки"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Отправить на Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "Отправить {n} сводок"
+  },
+  "f_send_summary_164f": {
+    "message": "Отправить {n} сводку"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Отправка на Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "Отправка на {name}…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Отправлено на Kindle"
+  },
+  "f_sent_to_0f59": {
+    "message": "Отправлено на {name}"
+  },
+  "f_separate_files_fc17": {
+    "message": "Отдельные файлы"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "Сначала укажите e-mail Kindle в настройках."
+  },
+  "f_untitled_a678": {
+    "message": "Без названия"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "Ждём подтверждения на другом устройстве"
+  },
+  "f_and_more_871b": {
+    "message": "и ещё {n}"
+  },
+  "f_of_sent_941e": {
+    "message": "Отправлено {done} из {total}. {error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "Отправлен {n} файл"
+  },
+  "f_files_sent_a952": {
+    "message": "Отправлено файлов: {n}"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} получатель"
+  },
+  "f_receivers_1ca5": {
+    "message": "Получателей: {n}"
+  },
+  "f_selected_8468": {
+    "message": "Выбрано: {n}"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} сводок"
+  },
+  "f_summary_0c47": {
+    "message": "{n} сводка"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Отправить на Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 Отправить {n} на Kindle"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 Отправить"
+  },
+  "f_send_aff2": {
+    "message": "📤 Отправить {n}"
   }
 }

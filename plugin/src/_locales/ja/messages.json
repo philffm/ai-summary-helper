@@ -1276,5 +1276,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 アクティビティ"
+  },
+  "f_back_4bc2": {
+    "message": "戻る"
+  },
+  "f_cancelled_09bc": {
+    "message": "キャンセルしました"
+  },
+  "f_close_acc3": {
+    "message": "閉じる"
+  },
+  "f_device_b413": {
+    "message": "デバイス"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "{n}件の要約のダイジェスト"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "無料プラン：Kindle送信は3回まで含まれます。"
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "数分でKindleに届きます。"
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "kindle@byphil.eu がAmazonの「承認済み送信者」リストにあることを確認してください。"
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "一部が送信されませんでした"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "未設定です — 設定で受信先を追加してください"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "未設定です — 設定でKindleを追加してください"
+  },
+  "f_one_digest_a1c5": {
+    "message": "ダイジェスト1つ"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "要約済みの記事のみ送信できます"
+  },
+  "f_open_settings_88b6": {
+    "message": "設定を開く"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "受信先を選択してください。相手のアプリを開き、同じWi‑Fiに接続しておく必要があります。"
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "このウィンドウを開いたままにしてください"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "先に設定でLocalSendのIPを入力してください。"
+  },
+  "f_select_2b4d": {
+    "message": "選択"
+  },
+  "f_select_all_1072": {
+    "message": "すべて選択"
+  },
+  "f_select_summaries_2cad": {
+    "message": "要約を選択"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "送信する要約を選択"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Kindleに送信"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "{n}件の要約を送信"
+  },
+  "f_send_summary_164f": {
+    "message": "{n}件の要約を送信"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Kindleに送信中…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "{name}に送信中…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Kindleに送信しました"
+  },
+  "f_sent_to_0f59": {
+    "message": "{name}に送信しました"
+  },
+  "f_separate_files_fc17": {
+    "message": "個別のファイル"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "先に設定でKindleのメールアドレスを入力してください。"
+  },
+  "f_untitled_a678": {
+    "message": "無題"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "相手のデバイスが承認するのを待っています"
+  },
+  "f_and_more_871b": {
+    "message": "ほか{n}件"
+  },
+  "f_of_sent_941e": {
+    "message": "{total}件中{done}件を送信しました。{error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n}件のファイルを送信しました"
+  },
+  "f_files_sent_a952": {
+    "message": "{n}件のファイルを送信しました"
+  },
+  "f_receiver_2b94": {
+    "message": "受信先{n}件"
+  },
+  "f_receivers_1ca5": {
+    "message": "受信先{n}件"
+  },
+  "f_selected_8468": {
+    "message": "{n}件選択中"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n}件の要約"
+  },
+  "f_summary_0c47": {
+    "message": "{n}件の要約"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Kindleに送信"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 {n}件をKindleに送信"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 送信"
+  },
+  "f_send_aff2": {
+    "message": "📤 {n}件を送信"
   }
 }

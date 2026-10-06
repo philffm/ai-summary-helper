@@ -64,6 +64,7 @@ Right-click any page → **Summarize & Close tab**:
 - Full article detail view with summary, source link, model info
 - Export to Markdown (Obsidian-compatible YAML frontmatter)
 - Share, Copy, Kindle, Reader, and Delete actions
+- **Multi-select send** — ☑️ Select in History, tap summarized articles (or “Select all”), then 📤 Send: choose one digest or separate files and send to a Kindle or a configured LocalSend receiver, with per-item progress
 
 ### 🕸️ Archive Graph
 - D3.js force-directed graph of your article archive

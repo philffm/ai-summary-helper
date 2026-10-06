@@ -1270,5 +1270,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 गतिविधि"
+  },
+  "f_back_4bc2": {
+    "message": "वापस"
+  },
+  "f_cancelled_09bc": {
+    "message": "रद्द किया गया"
+  },
+  "f_close_acc3": {
+    "message": "बंद करें"
+  },
+  "f_device_b413": {
+    "message": "डिवाइस"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "{n} सारांशों का डाइजेस्ट"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "फ़्री प्लान: 3 Kindle भेजना शामिल है।"
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "यह कुछ ही मिनटों में आपके Kindle पर दिखेगा।"
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "पक्का करें कि kindle@byphil.eu आपकी Amazon की “स्वीकृत प्रेषक” सूची में है।"
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "सब कुछ नहीं भेजा गया"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "अभी सेट नहीं है — सेटिंग्स में रिसीवर जोड़ें"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "अभी सेट नहीं है — सेटिंग्स में अपना Kindle जोड़ें"
+  },
+  "f_one_digest_a1c5": {
+    "message": "एक डाइजेस्ट"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "केवल सारांशित लेख भेजे जा सकते हैं"
+  },
+  "f_open_settings_88b6": {
+    "message": "सेटिंग्स खोलें"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "रिसीवर चुनें। उसका ऐप खुला और उसी Wi‑Fi पर होना चाहिए।"
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "इस विंडो को खुला रखें"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "पहले सेटिंग्स में LocalSend का IP डालें।"
+  },
+  "f_select_2b4d": {
+    "message": "चुनें"
+  },
+  "f_select_all_1072": {
+    "message": "सभी चुनें"
+  },
+  "f_select_summaries_2cad": {
+    "message": "सारांश चुनें"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "भेजने के लिए सारांश चुनें"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Kindle पर भेजें"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "{n} सारांश भेजें"
+  },
+  "f_send_summary_164f": {
+    "message": "{n} सारांश भेजें"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Kindle पर भेजा जा रहा है…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "{name} को भेजा जा रहा है…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Kindle पर भेजा गया"
+  },
+  "f_sent_to_0f59": {
+    "message": "{name} को भेजा गया"
+  },
+  "f_separate_files_fc17": {
+    "message": "अलग-अलग फ़ाइलें"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "पहले सेटिंग्स में अपना Kindle ईमेल डालें।"
+  },
+  "f_untitled_a678": {
+    "message": "बिना शीर्षक"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "दूसरे डिवाइस के स्वीकार करने का इंतज़ार"
+  },
+  "f_and_more_871b": {
+    "message": "और {n}"
+  },
+  "f_of_sent_941e": {
+    "message": "{total} में से {done} भेजे गए। {error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n} फ़ाइल भेजी गई"
+  },
+  "f_files_sent_a952": {
+    "message": "{n} फ़ाइलें भेजी गईं"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} रिसीवर"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} रिसीवर"
+  },
+  "f_selected_8468": {
+    "message": "{n} चुने गए"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} सारांश"
+  },
+  "f_summary_0c47": {
+    "message": "{n} सारांश"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Kindle पर भेजें"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 {n} Kindle पर भेजें"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 भेजें"
+  },
+  "f_send_aff2": {
+    "message": "📤 {n} भेजें"
   }
 }

@@ -6,6 +6,7 @@ import StorageManager from './storageManager.js';
 import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
+import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText } from './annotationExporter.js';
 
 let uiManagerRef = null;
@@ -421,8 +422,57 @@ async function dispatchToLocalSend(article) {
     }
 }
 
+/**
+ * Non-interactive deliveries used by the History multi-select sheet (sendSheet.js).
+ * They return {ok, error?} instead of toasting, so the sheet can show progress per item.
+ */
+export async function deliverKindle(article, device) {
+    const config = await StorageManager.getAll();
+    const kindleEmail = (device?.addresses?.[0] || '').replace(/^mailto:/i, '');
+    if (!kindleEmail) return { ok: false, error: 'No Kindle email set.' };
+    try {
+        const apiBase = StorageManager.getApiBase();
+        const headers = { 'Content-Type': 'application/json' };
+        if (config.pb_token) headers['Authorization'] = `Bearer ${config.pb_token}`;
+        else if (config.licenseKey) headers['Authorization'] = `Bearer ${config.licenseKey}`;
+        const annotationsHtml = article.id ? await buildAnnotationsSection(article) : '';
+        const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
+            method: 'POST', headers,
+            body: JSON.stringify({
+                kindle_email: kindleEmail,
+                title: article.title || 'AI Summary Document',
+                content: [article.content || article.summary || '', annotationsHtml].filter(Boolean).join('\n'),
+                summary: article.summary || '',
+                url: article.url || ''
+            })
+        });
+        const resData = await response.json().catch(() => ({}));
+        if (response.ok && resData.success) return { ok: true };
+        return { ok: false, error: resData.error || 'Kindle delivery failed.' };
+    } catch (err) {
+        return { ok: false, error: err?.message || 'Network error' };
+    }
+}
+
+export async function deliverLocalSend(article, device) {
+    const ip = (device?.addresses?.[0] || '').trim();
+    if (!ip) return { ok: false, error: 'No receiver address set.' };
+    try {
+        const { fileName, docHtml } = await buildArticleHtmlFile(article);
+        await sendToLocalSend(ip, fileName, docHtml, 'text/html');
+        return { ok: true };
+    } catch (err) {
+        return { ok: false, error: err?.message || 'Check if the receiver is online.' };
+    }
+}
+
 export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
+    initSelection({
+        deliverKindle, deliverLocalSend,
+        toast: (m) => uiManager.showToast(m),
+        openSettings: (section, target) => { uiManager.showScreen('settings'); import('./settingsNav.js').then(m => m.openSettingsPanel(section, target)).catch(() => {}); }
+    });
     const searchInput = document.getElementById('searchInput');
     const detailBackBtn = document.getElementById('detailBackButton');
     const detailDeleteBtn = document.getElementById('detailDeleteBtn');
@@ -918,8 +968,10 @@ function buildArticleCard(article) {
     });
 
     // Click on the card itself opens detail
+    registerCard(article, listItem);
     listItem.addEventListener('click', (event) => {
         if (event.target.closest('button') || event.target.closest('a')) return;
+        if (selectionActive()) { toggleCard(article); return; }
         showArticleDetail(article);
     });
 

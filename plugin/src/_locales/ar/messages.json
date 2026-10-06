@@ -1186,5 +1186,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 النشاط"
+  },
+  "f_back_4bc2": {
+    "message": "رجوع"
+  },
+  "f_cancelled_09bc": {
+    "message": "تم الإلغاء"
+  },
+  "f_close_acc3": {
+    "message": "إغلاق"
+  },
+  "f_device_b413": {
+    "message": "الجهاز"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "ملخص يضم {n} ملخصات"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "الخطة المجانية: تتضمن 3 عمليات إرسال إلى Kindle."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "سيظهر على جهاز Kindle خلال دقائق."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "تأكد من وجود kindle@byphil.eu في قائمة «المرسلين المعتمدين» في أمازون."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "لم يتم إرسال كل شيء"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "لم يُعدّ بعد — أضف جهاز استقبال من الإعدادات"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "لم يُعدّ بعد — أضف جهاز Kindle من الإعدادات"
+  },
+  "f_one_digest_a1c5": {
+    "message": "ملخص واحد مجمّع"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "يمكن إرسال المقالات الملخّصة فقط"
+  },
+  "f_open_settings_88b6": {
+    "message": "فتح الإعدادات"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "اختر جهاز الاستقبال. يجب أن يكون تطبيقه مفتوحًا وعلى نفس شبكة Wi‑Fi."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "أبقِ هذه النافذة مفتوحة"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "اضبط عنوان IP لـ LocalSend في الإعدادات أولًا."
+  },
+  "f_select_2b4d": {
+    "message": "تحديد"
+  },
+  "f_select_all_1072": {
+    "message": "تحديد الكل"
+  },
+  "f_select_summaries_2cad": {
+    "message": "تحديد الملخصات"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "حدد الملخصات للإرسال"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "إرسال إلى Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "إرسال {n} ملخصات"
+  },
+  "f_send_summary_164f": {
+    "message": "إرسال {n} ملخص"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "جارٍ الإرسال إلى Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "جارٍ الإرسال إلى {name}…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "تم الإرسال إلى Kindle"
+  },
+  "f_sent_to_0f59": {
+    "message": "تم الإرسال إلى {name}"
+  },
+  "f_separate_files_fc17": {
+    "message": "ملفات منفصلة"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "اضبط بريد Kindle في الإعدادات أولًا."
+  },
+  "f_untitled_a678": {
+    "message": "بلا عنوان"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "بانتظار قبول الجهاز الآخر"
+  },
+  "f_and_more_871b": {
+    "message": "و{n} أخرى"
+  },
+  "f_of_sent_941e": {
+    "message": "تم إرسال {done} من {total}. {error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "تم إرسال {n} ملف"
+  },
+  "f_files_sent_a952": {
+    "message": "تم إرسال {n} ملفات"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} جهاز استقبال"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} أجهزة استقبال"
+  },
+  "f_selected_8468": {
+    "message": "تم تحديد {n}"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} ملخصات"
+  },
+  "f_summary_0c47": {
+    "message": "{n} ملخص"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 إرسال إلى Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 إرسال {n} إلى Kindle"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 إرسال"
+  },
+  "f_send_aff2": {
+    "message": "📤 إرسال {n}"
   }
 }

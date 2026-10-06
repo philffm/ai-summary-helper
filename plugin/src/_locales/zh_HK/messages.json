@@ -1186,5 +1186,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 活動"
+  },
+  "f_back_4bc2": {
+    "message": "返回"
+  },
+  "f_cancelled_09bc": {
+    "message": "已取消"
+  },
+  "f_close_acc3": {
+    "message": "關閉"
+  },
+  "f_device_b413": {
+    "message": "裝置"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "{n} 篇摘要合集"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "免費方案：包含 3 次 Kindle 傳送。"
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "幾分鐘後會出現在你的 Kindle 上。"
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "請確認 kindle@byphil.eu 已在你的 Amazon「已核准的寄件者」清單中。"
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "部分內容未傳送"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "尚未設定 — 請在設定中新增接收裝置"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "尚未設定 — 請在設定中新增 Kindle"
+  },
+  "f_one_digest_a1c5": {
+    "message": "合併為一份"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "只能傳送已產生摘要的文章"
+  },
+  "f_open_settings_88b6": {
+    "message": "開啟設定"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "選擇接收裝置。對方的 App 需要開啟並連上同一個 Wi‑Fi。"
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "請保持此視窗開啟"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "請先在設定中填寫 LocalSend 的 IP。"
+  },
+  "f_select_2b4d": {
+    "message": "選取"
+  },
+  "f_select_all_1072": {
+    "message": "全選"
+  },
+  "f_select_summaries_2cad": {
+    "message": "選取摘要"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "選取要傳送的摘要"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "傳送到 Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "傳送 {n} 篇摘要"
+  },
+  "f_send_summary_164f": {
+    "message": "傳送 {n} 篇摘要"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "正在傳送到 Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "正在傳送到 {name}…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "已傳送到 Kindle"
+  },
+  "f_sent_to_0f59": {
+    "message": "已傳送到 {name}"
+  },
+  "f_separate_files_fc17": {
+    "message": "分開傳送"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "請先在設定中填寫 Kindle 電子郵件。"
+  },
+  "f_untitled_a678": {
+    "message": "無標題"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "等待對方裝置接受"
+  },
+  "f_and_more_871b": {
+    "message": "另有 {n} 篇"
+  },
+  "f_of_sent_941e": {
+    "message": "已傳送 {done}/{total}。{error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "已傳送 {n} 個檔案"
+  },
+  "f_files_sent_a952": {
+    "message": "已傳送 {n} 個檔案"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} 個接收裝置"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} 個接收裝置"
+  },
+  "f_selected_8468": {
+    "message": "已選 {n} 篇"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} 篇摘要"
+  },
+  "f_summary_0c47": {
+    "message": "{n} 篇摘要"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 傳送到 Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 傳送 {n} 篇到 Kindle"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 傳送"
+  },
+  "f_send_aff2": {
+    "message": "📤 傳送 {n} 篇"
   }
 }

@@ -1258,5 +1258,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 활동"
+  },
+  "f_back_4bc2": {
+    "message": "뒤로"
+  },
+  "f_cancelled_09bc": {
+    "message": "취소됨"
+  },
+  "f_close_acc3": {
+    "message": "닫기"
+  },
+  "f_device_b413": {
+    "message": "기기"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "요약 {n}개 다이제스트"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "무료 요금제: Kindle 전송 3회 포함."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "몇 분 안에 Kindle에 나타납니다."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "kindle@byphil.eu가 Amazon의 ‘승인된 발신자’ 목록에 있는지 확인하세요."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "일부가 전송되지 않았습니다"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "아직 설정되지 않음 — 설정에서 수신기를 추가하세요"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "아직 설정되지 않음 — 설정에서 Kindle을 추가하세요"
+  },
+  "f_one_digest_a1c5": {
+    "message": "다이제스트 하나"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "요약된 글만 보낼 수 있습니다"
+  },
+  "f_open_settings_88b6": {
+    "message": "설정 열기"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "수신기를 선택하세요. 상대 앱이 열려 있고 같은 Wi‑Fi에 있어야 합니다."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "이 창을 열어 두세요"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "먼저 설정에서 LocalSend IP를 입력하세요."
+  },
+  "f_select_2b4d": {
+    "message": "선택"
+  },
+  "f_select_all_1072": {
+    "message": "모두 선택"
+  },
+  "f_select_summaries_2cad": {
+    "message": "요약 선택"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "보낼 요약 선택"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Kindle로 보내기"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "요약 {n}개 보내기"
+  },
+  "f_send_summary_164f": {
+    "message": "요약 {n}개 보내기"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Kindle로 전송 중…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "{name}(으)로 전송 중…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Kindle로 전송했습니다"
+  },
+  "f_sent_to_0f59": {
+    "message": "{name}(으)로 전송했습니다"
+  },
+  "f_separate_files_fc17": {
+    "message": "개별 파일"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "먼저 설정에서 Kindle 이메일을 입력하세요."
+  },
+  "f_untitled_a678": {
+    "message": "제목 없음"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "상대 기기가 수락하기를 기다리는 중"
+  },
+  "f_and_more_871b": {
+    "message": "외 {n}개"
+  },
+  "f_of_sent_941e": {
+    "message": "{total}개 중 {done}개 전송됨. {error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "파일 {n}개 전송됨"
+  },
+  "f_files_sent_a952": {
+    "message": "파일 {n}개 전송됨"
+  },
+  "f_receiver_2b94": {
+    "message": "수신기 {n}개"
+  },
+  "f_receivers_1ca5": {
+    "message": "수신기 {n}개"
+  },
+  "f_selected_8468": {
+    "message": "{n}개 선택됨"
+  },
+  "f_summaries_7bdf": {
+    "message": "요약 {n}개"
+  },
+  "f_summary_0c47": {
+    "message": "요약 {n}개"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Kindle로 보내기"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 {n}개를 Kindle로 보내기"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 보내기"
+  },
+  "f_send_aff2": {
+    "message": "📤 {n}개 보내기"
   }
 }

@@ -1186,5 +1186,146 @@
   },
   "f_activity_b9dc": {
     "message": "📅 Attività"
+  },
+  "f_back_4bc2": {
+    "message": "Indietro"
+  },
+  "f_cancelled_09bc": {
+    "message": "Annullato"
+  },
+  "f_close_acc3": {
+    "message": "Chiudi"
+  },
+  "f_device_b413": {
+    "message": "Dispositivo"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "Digest di {n} riassunti"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "Piano gratuito: 3 invii a Kindle inclusi."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "Comparirà sul tuo Kindle tra pochi minuti."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "Assicurati che kindle@byphil.eu sia nella tua lista Amazon dei “Mittenti approvati”."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "Non tutto è stato inviato"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "Non ancora configurato: aggiungi un ricevitore nelle Impostazioni"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni"
+  },
+  "f_one_digest_a1c5": {
+    "message": "Un solo digest"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "Si possono inviare solo articoli riassunti"
+  },
+  "f_open_settings_88b6": {
+    "message": "Apri Impostazioni"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "Scegli il ricevitore. La sua app deve essere aperta e sulla stessa Wi‑Fi."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "Tieni aperta questa finestra"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "Imposta prima l’IP di LocalSend nelle Impostazioni."
+  },
+  "f_select_2b4d": {
+    "message": "Seleziona"
+  },
+  "f_select_all_1072": {
+    "message": "Seleziona tutto"
+  },
+  "f_select_summaries_2cad": {
+    "message": "Seleziona riassunti"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "Seleziona riassunti da inviare"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Invia a Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "Invia {n} riassunti"
+  },
+  "f_send_summary_164f": {
+    "message": "Invia {n} riassunto"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Invio a Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "Invio a {name}…"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Inviato a Kindle"
+  },
+  "f_sent_to_0f59": {
+    "message": "Inviato a {name}"
+  },
+  "f_separate_files_fc17": {
+    "message": "File separati"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "Imposta prima la tua email Kindle nelle Impostazioni."
+  },
+  "f_untitled_a678": {
+    "message": "Senza titolo"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "In attesa che l’altro dispositivo accetti"
+  },
+  "f_and_more_871b": {
+    "message": "e altri {n}"
+  },
+  "f_of_sent_941e": {
+    "message": "{done} di {total} inviati. {error}"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n} file inviato"
+  },
+  "f_files_sent_a952": {
+    "message": "{n} file inviati"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} ricevitore"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} ricevitori"
+  },
+  "f_selected_8468": {
+    "message": "{n} selezionati"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} riassunti"
+  },
+  "f_summary_0c47": {
+    "message": "{n} riassunto"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Invia a Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 Invia {n} a Kindle"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 Invia"
+  },
+  "f_send_aff2": {
+    "message": "📤 Invia {n}"
   }
 }

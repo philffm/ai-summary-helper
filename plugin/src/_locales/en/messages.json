@@ -1328,5 +1328,162 @@
   },
   "f_activity_b9dc": {
     "message": "📅 Activity"
+  },
+  "f_back_4bc2": {
+    "message": "Back"
+  },
+  "f_cancelled_09bc": {
+    "message": "Cancelled"
+  },
+  "f_close_acc3": {
+    "message": "Close"
+  },
+  "f_device_b413": {
+    "message": "Device"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "Digest of {n} summaries",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "Free tier: 3 Kindle sends included."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "It will show up on your Kindle in a few minutes."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "Make sure kindle@byphil.eu is on your Amazon “Approved senders” list."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "Not everything was sent"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "Not set up yet — add a receiver in Settings"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "Not set up yet — add your Kindle in Settings"
+  },
+  "f_one_digest_a1c5": {
+    "message": "One digest"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "Only summarized articles can be sent"
+  },
+  "f_open_settings_88b6": {
+    "message": "Open Settings"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "Pick the receiver. Its app has to be open and on the same Wi‑Fi."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "Please keep this window open"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "Please set your LocalSend IP in Settings first."
+  },
+  "f_select_2b4d": {
+    "message": "Select"
+  },
+  "f_select_all_1072": {
+    "message": "Select all"
+  },
+  "f_select_summaries_2cad": {
+    "message": "Select summaries"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "Select summaries to send"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Send to Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "Send {n} summaries",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_summary_164f": {
+    "message": "Send {n} summary",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Sending to Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "Sending to {name}…",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Sent to Kindle"
+  },
+  "f_sent_to_0f59": {
+    "message": "Sent to {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_separate_files_fc17": {
+    "message": "Separate files"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "Set your Kindle email in Settings first."
+  },
+  "f_untitled_a678": {
+    "message": "Untitled"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "Waiting for the other device to accept"
+  },
+  "f_and_more_871b": {
+    "message": "and {n} more",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_sent_941e": {
+    "message": "{done} of {total} sent. {error}",
+    "description": "Placeholders: {done} {total} {error} (keep as is)"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n} file sent",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_sent_a952": {
+    "message": "{n} files sent",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} receiver",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} receivers",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_selected_8468": {
+    "message": "{n} selected",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} summaries",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_0c47": {
+    "message": "{n} summary",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Send to Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 Send {n} to Kindle",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 Send"
+  },
+  "f_send_aff2": {
+    "message": "📤 Send {n}",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }
