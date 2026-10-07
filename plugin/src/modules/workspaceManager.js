@@ -14,7 +14,7 @@ export const maxPanes = () => (window.innerWidth >= 1100 ? 3 : window.innerWidth
 const effective = () => Math.min(layout, maxPanes());
 
 const SCREENS = [
-    { scope: 'history', id: 'historyScreen', bar: 'historyTopBar',
+    { scope: 'history', id: 'historyScreen', bar: 'historyTopRow',
       ids: { list: ['articleList', 'articleDetail'], graph: ['graphContainer'], report: ['reportContainer'] } },
     { scope: 'feeds', id: 'feedsScreen', bar: 'feedToolbar',
       ids: { list: ['feedListPane'], graph: ['feedGraph'], report: ['feedInsights'] } },

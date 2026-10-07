@@ -2911,7 +2911,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .tabbar.tb-ready > .tabbar-ind { opacity: 1; }
 .tabbar.tb-nomove > .tabbar-ind { transition: none; }
 @media (prefers-reduced-motion: reduce) { .tabbar-ind { transition: none; } }
-#articleList > .history-tabs { margin-bottom: 12px; list-style: none; }
+.history-tabs { margin-top: 8px; }
 .feed-scope { margin-top: 8px; }
 
 /* ── Top bar (shared by History, Article detail, Feeds) ──────────────────────────
@@ -2929,6 +2929,8 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
   transition: transform 0.22s ease, opacity 0.22s ease; will-change: transform, opacity;
 }
 .topbar--row { display: flex; gap: 8px; align-items: center; }
+.topbar--stack { flex-direction: column; align-items: stretch; }
+.topbar-row { display: flex; gap: 8px; align-items: center; }
 .topbar.scroll-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
 /* ── Split-screen workspace (History, wide windows) ────────────────────── */

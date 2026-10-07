@@ -38,7 +38,7 @@ export function renderTab() { renderArticles(tabList(historyTab)); }
 let historyNav = null;
 function buildTabs() {
     if (!historyNav) {
-        const nav = document.createElement('li');
+        const nav = document.createElement('div');
         nav.className = 'history-tabs tabbar';
         nav.dataset.tabbar = 'history';
         nav.setAttribute('role', 'tablist');
@@ -952,7 +952,10 @@ export function loadHistory() {
 export function renderArticles(articles) {
     const articleList = document.getElementById('articleList');
     articleList.innerHTML = '';
-    articleList.appendChild(buildTabs());
+    // The tabs live in the top bar (like Feeds' scope row), mounted once.
+    const tabsBar = document.getElementById('historyTopBar');
+    const tabsNav = buildTabs();
+    if (tabsBar && tabsNav.parentNode !== tabsBar) tabsBar.appendChild(tabsNav);
     if (!articles || articles.length === 0) {
         const emptyMessage = document.createElement('div');
         emptyMessage.id = 'emptyMessage';

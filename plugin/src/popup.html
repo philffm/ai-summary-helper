@@ -157,7 +157,8 @@
 
       <!-- HISTORY SCREEN -->
       <div id="historyScreen" class="screen has-topbar">
-        <div id="historyTopBar" class="topbar topbar--row" style="display:flex;">
+        <div id="historyTopBar" class="topbar topbar--stack" style="display:flex;">
+        <div id="historyTopRow" class="topbar-row">
           <div id="searchInputWrap" style="position:relative;flex:1;">
             <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;width:100%;" />
             <div id="searchInputActions" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px;">
@@ -172,6 +173,7 @@
           <button id="selectModeBtn" class="button-secondary action-btn" type="button" aria-pressed="false" title="Select summaries to send"><span class="btn-icon" aria-hidden="true">☑️</span><span class="btn-label">Select</span></button>
           <button id="graphToggleBtn" class="button-secondary action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
           <button id="reportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
+        </div>
         </div>
         <div id="detailTopBar" class="topbar topbar--row" style="display:none;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
