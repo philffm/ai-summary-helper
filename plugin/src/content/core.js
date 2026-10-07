@@ -47,7 +47,26 @@ function countWords(html) {
  * doesn't resolve modules/storageManager.js's default export), so the same
  * shape is written by hand here via raw chrome.storage.local calls.
  */
-export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200, moodScore, extra) {
+/** Page metadata worth keeping with a summary (shown again when the conversation is resumed). All fields optional, capped. */
+export function collectPageMeta(doc = document, loc = window.location) {
+  const cap = (v, n) => String(v || '').replace(/\s+/g, ' ').trim().slice(0, n);
+  const attr = (sel, a = 'content') => { const el = doc.querySelector(sel); return el ? el.getAttribute(a) || '' : ''; };
+  const abs = (u) => { try { return u ? new URL(u, loc.href).href : ''; } catch (_) { return ''; } };
+  const iconEl = doc.querySelector('link[rel~="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]');
+  const meta = {
+    description: cap(attr('meta[name="description"]') || attr('meta[property="og:description"]') || attr('meta[name="twitter:description"]'), 400),
+    favicon: cap(abs(iconEl ? iconEl.getAttribute('href') : '') || (loc.origin && loc.origin !== 'null' ? loc.origin + '/favicon.ico' : ''), 400),
+    siteName: cap(attr('meta[property="og:site_name"]'), 80),
+    image: cap(abs(attr('meta[property="og:image"]')), 400),
+    author: cap(attr('meta[name="author"]') || attr('meta[property="article:author"]'), 120),
+    published: cap(attr('meta[property="article:published_time"]') || attr('meta[name="date"]'), 40),
+    lang: cap(doc.documentElement ? doc.documentElement.getAttribute('lang') : '', 20)
+  };
+  Object.keys(meta).forEach(k => { if (!meta[k]) delete meta[k]; });
+  return meta;
+}
+
+export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200, moodScore, extra, pageMeta) {
   return new Promise((resolve, reject) => {
     const timestamp = new Date().toISOString();
     const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -63,8 +82,10 @@ export function saveToLocalStorage(content, summary, url, title, description, ta
       lastOpened: timestamp
     };
     if (typeof moodScore === 'number' && isFinite(moodScore)) indexEntry.moodScore = moodScore;
+    if (pageMeta && pageMeta.favicon) indexEntry.favicon = pageMeta.favicon;   // lean: lists can show it without loading the record
     if (extra && typeof extra === 'object') Object.assign(indexEntry, extra);
-    const record = { content, summary, description };
+    const record = { content, summary, description: description || (pageMeta && pageMeta.description) || '' };
+    if (pageMeta && Object.keys(pageMeta).length) record.meta = pageMeta;
 
     chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
       const articlesIndex = data[SK.articlesIndex] || [];

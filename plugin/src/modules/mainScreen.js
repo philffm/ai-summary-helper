@@ -289,10 +289,17 @@ export function initMainScreen(ui) {
         const chip = document.createElement('div');
         chip.id = 'convChip';
         chip.className = 'page-chip page-chip--conv';
+        const fav = conversation.meta && conversation.meta.favicon;
+        if (fav && /^https?:|^data:/.test(fav)) {
+            const ic = document.createElement('img'); ic.className = 'page-chip-ic'; ic.alt = ''; ic.src = fav;
+            ic.addEventListener('error', () => ic.remove());
+            chip.appendChild(ic);
+        }
+        if (conversation.meta && conversation.meta.description) chip.title = conversation.meta.description;
         const txt = document.createElement('div'); txt.className = 'page-chip-txt';
         const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(conversation.title || hostOf(conversation.url), 80);
         const meta = document.createElement('div'); meta.className = 'page-chip-meta';
-        meta.textContent = [conversation.detached ? T('Continuing') : T('This page'), hostOf(conversation.url)].filter(Boolean).join(' · ');
+        meta.textContent = [conversation.detached ? T('Continuing') : T('This page'), (conversation.meta && conversation.meta.siteName) || hostOf(conversation.url)].filter(Boolean).join(' · ');
         txt.append(title, meta); chip.appendChild(txt);
         inputCard.insertBefore(chip, additionalQuestionsInput);
     };
@@ -323,6 +330,7 @@ export function initMainScreen(ui) {
             const full = await StorageManager.getArticleFull(articleEntry.id);
             conversation = {
                 id: full.id, url: full.url || '', title: full.title || '', content: full.content || '', summary: full.summary || '',
+                meta: full.meta || (full.favicon ? { favicon: full.favicon } : {}),
                 turns: Array.isArray(full.conversation) ? full.conversation : []
             };
             feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
@@ -556,6 +564,7 @@ export function initMainScreen(ui) {
                     tags: msg.tags || [],
                     modelId: msg.modelId || '',
                     connectionMode: msg.connectionMode || 'local',
+                    meta: msg.meta || {},
                     content: msg.content || ''
                 };
                 addBubble(bubbleArticle);
@@ -569,7 +578,7 @@ export function initMainScreen(ui) {
                 }
                 conversation = {
                     url: msg.url || '', title: msg.title || '', content: msg.content || '',
-                    summary: msg.summary, turns: []
+                    summary: msg.summary, meta: msg.meta || {}, turns: []
                 };
                 clearNote();
                 const sug = document.createElement('div');

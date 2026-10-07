@@ -1406,7 +1406,8 @@ export async function showArticleDetail(article) {
 
     articleDetailContent.innerHTML = `
       <div class="article-detail-card">
-        <h3 style="margin-bottom:8px;">${safeTitle}</h3>
+        <h3 style="margin-bottom:8px;"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>
+        <p class="detail-desc" hidden></p>
         <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
           ${article.url ? `<a href="${article.url}" target="_blank">${domain} ↗</a> · ` : ''}
           ${new Date(article.timestamp).toLocaleDateString()}
@@ -1442,6 +1443,15 @@ export async function showArticleDetail(article) {
     // of the detail view from rendering.
     renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
+    {   // saved page metadata: favicon + description (set as text, never as HTML)
+        const m = article.meta || {};
+        const fav = m.favicon || article.favicon;
+        const img = articleDetailContent.querySelector('.detail-fav');
+        if (img && fav && /^https?:|^data:/.test(fav)) { img.src = fav; img.hidden = false; img.addEventListener('error', () => { img.hidden = true; }); }
+        const desc = articleDetailContent.querySelector('.detail-desc');
+        const text = m.description || article.description || '';
+        if (desc && text) { desc.textContent = text; desc.hidden = false; }
+    }
 
     // Wire up buttons
     const shareBtn = articleDetailContent.querySelector('.share-button');

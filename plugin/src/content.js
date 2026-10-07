@@ -46,7 +46,8 @@ import {
   normalizeGhostQuotes,
   ensureGeneralTag,
   saveToLocalStorage,
-  extractSummaryTitle
+  extractSummaryTitle,
+  collectPageMeta
 } from './content/core.js';
 
 import {
@@ -688,6 +689,9 @@ import {
                 if (isFinite(v) && v >= -1 && v <= 1) moodScore = Math.round(v * 100) / 100;
               }
 
+              let pageMeta = {};
+              try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ }
+
               // Suggested follow-up questions (shown as chips under the summary); invalid output is ignored.
               let suggestedQuestions = [];
               const qMatch = summary.match(/<!--\s*QUESTIONS:\s*([\s\S]*?)\s*-->/i);
@@ -747,11 +751,12 @@ import {
                   modelId: modelIdentifier,
                   moodScore,
                   questions: suggestedQuestions,
+                  meta: pageMeta,
                   content: finalContentHtml
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : undefined)
+              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : undefined, pageMeta)
                 .then(savedArticle => {
                   if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: window.location.href });
                   resolve({ success: true, article: savedArticle });

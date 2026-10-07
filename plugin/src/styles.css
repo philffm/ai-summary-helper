@@ -3297,3 +3297,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 }
 
 .controls-bar[data-state="followup"] .page-chip, .controls-bar[data-state="working"] .page-chip { grid-area: page; margin-bottom: 0; padding: 4px 10px; }
+
+.detail-fav { width: 16px; height: 16px; border-radius: 3px; margin-right: 8px; vertical-align: -2px; }
+.detail-fav[hidden], .detail-desc[hidden] { display: none; }
+.detail-desc { font-size: var(--fs-xs); color: var(--text-muted); margin: 0 0 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
