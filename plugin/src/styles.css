@@ -3249,7 +3249,8 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 /* ── Composer (B · docked pill): page pill, one quiet settings line, pill input with the button inside ── */
 .controls-bar .input-card {
   position: relative; display: flex; flex-direction: column; gap: 8px;
-  padding: 0; background: transparent; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none;
+  padding: 8px; border-radius: 26px;
+  background: var(--bg-page); border: 1px solid var(--glass-border); box-shadow: var(--shadow-card);   /* opaque: the feed must never show through the controls */
 }
 .controls-bar .input-card-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0; }
 .controls-bar .chip-row { position: static; order: 2; padding: 0 6px; border-top: 0; gap: 0; flex-wrap: wrap; }
@@ -3273,3 +3274,19 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .page-chip-meta { flex: none; white-space: nowrap; }
 .controls-bar, .controls-bar .composer-pill { transition: padding 0.2s ease; }
 @media (prefers-reduced-motion: reduce) { .controls-bar, .controls-bar .composer-pill { transition: none; } }
+
+/* Accessibility pass for the docked composer */
+.controls-bar .chip { font-size: 11px; color: var(--text-secondary); padding: 6px 8px 6px 2px; min-height: 28px; }
+.controls-bar .chip-icon { font-size: 11px; }
+.controls-bar .chip:focus-visible, .composer-pill #fetchSummary:focus-visible, .resume-card:focus-visible, .chat-suggest-chip:focus-visible, .new-summary-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.composer-pill:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-a30); }
+.page-chip { background: var(--glass-input); }
+.page-chip-title { font-size: 12px; color: var(--text-primary); }
+.page-chip-meta { font-size: 11px; color: var(--text-secondary); }
+.page-chip--different .page-chip-title { color: #78350f; }
+.composer-pill #fetchSummary { min-width: 44px; }
+.composer-pill .input-card-textarea::placeholder { color: var(--text-secondary); opacity: 0.8; }
+@media (forced-colors: active) {
+  .composer-pill, .page-chip, .resume-card, .chip { border: 1px solid CanvasText; }
+  .composer-pill #fetchSummary { border: 1px solid ButtonText; }
+}

@@ -61,6 +61,7 @@ export function createComposer(bar, { onChange } = {}) {
             textarea.placeholder = state === 'fetch' ? textarea.dataset.fetchPlaceholder
                 : state === 'followup' ? T('Ask a follow-up…')
                 : T('Queue a question…');
+            textarea.setAttribute('aria-label', textarea.placeholder);   // the visible label only fits the fetch state
         }
     };
     apply();

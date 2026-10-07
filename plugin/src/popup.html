@@ -74,7 +74,7 @@
         <!-- Floating controls -->
         <div class="controls-bar">
           <div class="input-card">
-            <label class="input-card-label" data-i18n="whatShouldAiFocus">What should the AI focus on?</label>
+            <label class="input-card-label" for="additionalQuestions" data-i18n="whatShouldAiFocus">What should the AI focus on?</label>
             <!-- Quick-action chips row (parent for popup panels) -->
             <div class="chip-row" id="chipRow">
 
@@ -144,6 +144,7 @@
               <textarea
                 id="additionalQuestions"
                 class="input-card-textarea"
+                rows="1"
                 data-i18n-placeholder="askSpecificQuestions"
                 placeholder="Ask specific questions about this page…"
               ></textarea>
