@@ -1907,7 +1907,7 @@ function subRow(s) {
         await persist(); render(); renderFeedSettings();
     };
     (s.tags || []).forEach(t => {
-        const chip = el('span', 'feed-tag-chip', t);
+        const chip = el('span', 'feed-sub-tag', t);
         const x = btn('feed-tag-x', '×', () => saveTags(s.tags.filter(y => tagKey(y) !== tagKey(t))), T('Remove tag {tag}', { tag: t }));
         chip.append(x);
         tagBox.append(chip);
