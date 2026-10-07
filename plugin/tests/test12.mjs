@@ -1,0 +1,17 @@
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import fs from 'fs';
+const pod = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8');
+const now = Date.now();
+const art = `<?xml version="1.0"?><rss version="2.0"><channel><title>Blog</title><link>https://blog.test</link><item><title>Post</title><link>https://blog.test/1</link><pubDate>${new Date(now - 3600e3).toUTCString()}</pubDate><description>x</description></item></channel></rss>`;
+const { store, w } = setup({ 'https://pod.test/feed': pod, 'https://blog.test/feed': art });
+const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelectorAll(s)];
+const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+store.feedSubs = [{ id: 'p', url: 'https://pod.test/feed', title: 'Pod', tags: [], lastFetched: 0 }, { id: 'b', url: 'https://blog.test/feed', title: 'Blog', tags: [], lastFetched: 0 }];
+const fm = await imp('modules/feedManager.js'); const ui = { showToast() {}, showScreen() {} };
+fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(300);
+const all = $$('.feed-item').length;
+click($('#feedChipRow [data-status=audio]')); await tick(30);
+const n = $$('.feed-item').length; console.log('all', all, 'audio items', n);
+assert.ok(n > 0 && n < all); assert.ok($$('.feed-item').every(li => li.querySelector('.feed-play-btn')), 'only items with media');
+assert.ok($('#feedChipRow [data-status=audio]').classList.contains('active'));
+console.log('TEST 12 OK');

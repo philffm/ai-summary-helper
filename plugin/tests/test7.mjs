@@ -1,0 +1,12 @@
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
+const xml = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8');
+const u = 'https://philwornath.com/api/podcast.xml';
+const { store, w } = setup({ [u]: xml });
+const $$ = s => [...w.document.querySelectorAll(s)];
+const fm = await imp('modules/feedManager.js'); const ui = { showToast() {}, showScreen() {} };
+fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(50);
+const rows = $$('.feed-suggest-row'); console.log(rows.map(r => r.querySelector('.feed-suggest-name').textContent));
+assert.equal(rows.length, 7); assert.equal(rows[0].querySelector('.feed-suggest-name').textContent, 'Street Phil-osophy');
+rows[0].click(); await tick(200);
+assert.equal(store.feedSubs.length, 1); assert.equal(store.feedSubs[0].url, u); assert.ok(store.feedItems.length > 0);
+console.log('TEST 7 OK');

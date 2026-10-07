@@ -24,6 +24,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq zip gawk
 
+      - name: Run tests
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+
       - name: Always use the latest version file from main
         run: |
           git fetch origin main

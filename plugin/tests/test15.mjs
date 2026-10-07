@@ -1,0 +1,33 @@
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+const now = Date.now();
+const { store, w } = setup({});
+const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelectorAll(s)];
+const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+const mk = (id, t, ageH) => ({ id, feedId: 's1', title: t, link: 'https://x/' + id, published: now - ageH * 3600e3, snippet: 'snip ' + id, read: false });
+store.feedSubs = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: now }];
+store.feedItems = [mk('a', 'Alpha headline', 0.03), mk('b', 'Bravo headline', 0.02), mk('c', 'Charlie headline', 0.01)];
+const calls = [];
+globalThis.__ai = (m) => { calls.push(m); return { ok: true, text: `Overview v${calls.length}.\n- theme\nMOOD: mixed\nLABELS: 1:Tech | 2:World | 3:Sports\nSCORES: 1:0.5 | 2:-0.5 | 3:0` }; };
+const fm = await imp('modules/feedManager.js'); const toasts = []; const ui = { showToast: m => toasts.push(m), showScreen() {} };
+fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(50);
+click($('.feed-day-ai')); await tick(80);
+assert.equal(calls.length, 1); assert.equal(Object.keys(Object.values(store.feedRecaps)[0].covered).length, 3);
+// nothing new → refresh sends nothing
+const refresh = () => click($$('.feed-recap-actions button').find(b => /Refresh/.test(b.textContent)));
+refresh(); await tick(50);
+assert.equal(calls.length, 1, 'no AI call without new/edited items'); assert.ok(toasts.some(t => /Nothing new/.test(t)));
+// a new article arrives and one gets edited
+store.feedItems = store.feedItems.map(i => i.id === 'b' ? { ...i, title: 'Bravo headline (updated: 12 dead)' } : i).concat(mk('d', 'Delta breaking story', 0.001));
+await fm.onFeedsScreenShown(ui); await tick(80);
+click($('.feed-day-ai')); await tick(60);
+assert.ok($('.feed-recap-stale'), 'stale banner shows for new/edited');
+refresh(); await tick(80);
+assert.equal(calls.length, 2);
+const u = calls[1].user; console.log(u);
+assert.ok(u.includes('Delta breaking') && u.includes('updated: 12 dead') && /\(edited\)/.test(u), 'new + edited sent');
+assert.ok(!u.includes('Alpha headline') && !u.includes('Charlie headline'), 'unchanged items not re-sent');
+assert.ok(u.includes('Overview v1.'), 'previous recap is the context');
+assert.ok(/Overview v2/.test($('.feed-recap-overview').textContent));
+assert.equal(Object.keys(Object.values(store.feedRecaps)[0].covered).length, 4);
+assert.ok(!$('.feed-recap-stale'), 'up to date again');
+console.log('TEST 15 OK');

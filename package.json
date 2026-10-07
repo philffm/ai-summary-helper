@@ -2,14 +2,19 @@
   "name": "aish-website-i18n",
   "private": true,
   "version": "1.0.0",
-  "description": "CI-only tooling that translates and market-adapts the AI Summary Helper website. Not part of the site itself — the site remains plain HTML/CSS/JS with no build step.",
+  "description": "Repo tooling: site build + i18n translation (CI) and the jsdom test-suite for the extension (npm test). The site itself remains plain HTML/CSS/JS with no build step.",
   "type": "module",
   "scripts": {
     "site:build": "node scripts/build-site.mjs",
     "translate": "npm run site:build && node scripts/translate.mjs",
-    "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run"
+    "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
+    "test": "node plugin/tests/run.mjs"
   },
   "dependencies": {
     "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.2",
+    "acorn": "^8.18.0"
   }
 }
