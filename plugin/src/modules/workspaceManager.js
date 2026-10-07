@@ -17,7 +17,7 @@ const SCREENS = [
     { scope: 'history', id: 'historyScreen', bar: 'historyTopBar',
       ids: { list: ['articleList', 'articleDetail'], graph: ['graphContainer'], report: ['reportContainer'] } },
     { scope: 'feeds', id: 'feedsScreen', bar: 'feedToolbar',
-      ids: { list: ['feedRecapCard', 'feedItemList', 'feedEmpty'], graph: ['feedGraph'], report: ['feedInsights'] } },
+      ids: { list: ['feedListPane'], graph: ['feedGraph'], report: ['feedInsights'] } },
 ];
 const elsOf = (cfg) => Object.fromEntries(VIEWS.map(v => [v, cfg.ids[v].map(i => document.getElementById(i)).filter(Boolean)]));
 const emit = (scope, view, open) => document.dispatchEvent(new CustomEvent('aish:ws-view', { detail: { scope, view, open } }));
@@ -117,6 +117,16 @@ function buildSwitchers() {
 }
 
 export async function initWorkspace() {
+    // Feeds: recap card + list + empty state must stack inside ONE pane, so group them.
+    if (!document.getElementById('feedListPane')) {
+        const first = document.getElementById('feedRecapCard');
+        const wrap = document.createElement('div');
+        wrap.id = 'feedListPane'; wrap.className = 'ws-listpane';
+        if (first && first.parentNode) {
+            first.parentNode.insertBefore(wrap, first);
+            ['feedRecapCard', 'feedItemList', 'feedEmpty'].forEach(i => { const n = document.getElementById(i); if (n) wrap.appendChild(n); });
+        }
+    }
     try {
         const r = await chrome.storage?.local?.get(STORE_KEY);
         const s = r?.[STORE_KEY];

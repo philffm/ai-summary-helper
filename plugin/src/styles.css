@@ -551,6 +551,10 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap));
   padding: 0 var(--spacing-s-5);
   z-index: var(--z-header);
+  box-sizing: border-box;
+  /* align with the 720px reading column of the summary feed */
+  max-width: calc(720px + 2 * var(--spacing-s-5));
+  margin-inline: auto;
 }
 
 /* ── Forms ─────────────────────────────────────────────────────────────── */
@@ -2948,7 +2952,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .screen.ws-active > .ws-p1 { grid-column: 1; }
 .screen.ws-active > .ws-p2 { grid-column: 2; }
 .screen.ws-active > .ws-p3 { grid-column: 3; }
-.screen.ws-active > :is(#articleList, #articleDetail, #graphContainer, #reportContainer, #feedItemList, #feedRecapCard, #feedEmpty, #feedGraph, #feedInsights) {
+.screen.ws-active > :is(#articleList, #articleDetail, #graphContainer, #reportContainer, #feedListPane, #feedGraph, #feedInsights) {
   grid-row: 3; min-height: 0; overflow-y: auto; margin: 0;
 }
 /* panes fill the available height (the graph sets 90% inline) */
@@ -2967,3 +2971,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
   padding-inline: max(var(--spacing-s-4), calc((100% - 720px) / 2));
 }
 .screen:not(.ws-active) #articleDetail { max-width: 760px; margin-inline: auto; }
+
+/* Feeds list pane groups recap card + list + empty state; transparent outside the split layout. */
+.ws-listpane { display: contents; }
+.screen.ws-active > .ws-listpane { display: flex; flex-direction: column; gap: 8px; }
