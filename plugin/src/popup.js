@@ -347,9 +347,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
                 grid.appendChild(btn);
             });
+            const show = (id, on) => { const e = document.getElementById(id); if (e) e.style.display = on ? '' : 'none'; };
+            show('modelNote', mode === 'cloud'); show('providerLabel', mode !== 'cloud'); show('modelProviderGrid', mode !== 'cloud');
+            const note = document.getElementById('modelNote');
+            if (note) note.textContent = 'Included with your byPhil account — no API key needed.';
+            const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? 'Recent models' : 'Model';
             customModelInput.placeholder = mode === 'cloud' ? 'Search cloud models…' : 'Add model ID, e.g. gemma3:4b';
             customModelInput.setAttribute('aria-label', customModelInput.placeholder);
             if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'cloud' ? 'none' : '';
+        };
+
+        const setModelStatus = (text, state) => {
+            const t = document.getElementById('modelStatusText'); if (t) t.textContent = text;
+            const d = document.querySelector('#modelStatus .model-dot'); if (d) d.dataset.state = state || '';
         };
 
         const renderUI = () => {
@@ -369,6 +379,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     chipModelLabel.textContent = chipLabel;
 
                     modelProviderGrid.innerHTML = '';
+                    setModelStatus('byPhil Cloud', '');
 
                     // Model ID tags: Fetch from local proxy for quick select
                     const { recentCloudModels = ['google/gemini-3.8-flash'] } = await chrome.storage.sync.get('recentCloudModels');
@@ -380,7 +391,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                             const btn = document.createElement('button');
                             btn.className = 'pill pill--sm pill--soft';
                             const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
-                            btn.innerHTML = `${shortName} <span class="remove-recent" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>`;
+                            btn.innerHTML = modelId === activeCloudModel
+                                ? `${shortName} <span aria-hidden="true">✓</span>`
+                                : `${shortName} <span class="remove-recent" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>`;
                             if (modelId === activeCloudModel) btn.classList.add('active');
                             
                             btn.addEventListener('click', async (e) => {
@@ -465,6 +478,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Update chip label to show only the active model ID
                 chipModelLabel.textContent = activeModel;
+                if (meta?.apiKeyOptional) setModelStatus(`${meta.name} · local, no API key`, '');
+                else if (cfg.apiKey) setModelStatus(`${meta?.name || curSvcId} · API key set`, '');
+                else setModelStatus(`${meta?.name || curSvcId} · API key missing — add it in Settings`, 'warn');
 
                 // Provider tags
                 modelProviderGrid.innerHTML = '';

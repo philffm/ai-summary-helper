@@ -112,13 +112,19 @@
               <div id="panelModel" class="chip-panel popup-panel" style="display:none">
                 <label class="chip-panel-label">AI Model</label>
                 <div id="modelModeGrid" class="tag-grid model-mode" role="group" aria-label="Model source" style="margin-bottom:8px;"></div>
+                <p id="modelNote" class="model-note"></p>
+                <div id="providerLabel" class="model-sublabel">Provider</div>
                 <div id="modelProviderGrid" class="tag-grid" style="margin-bottom:8px;"></div>
-                <div id="modelIdGrid" class="tag-grid" style="border-top:1px solid var(--outline);padding-top:8px;"></div>
-                <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--outline);display:flex;gap:6px;">
+                <div id="modelIdLabel" class="model-sublabel">Model</div>
+                <div id="modelIdGrid" class="tag-grid" style="margin-bottom:8px;"></div>
+                <div style="display:flex;gap:6px;">
                   <input type="text" id="customModelInput" class="chip-panel-search" placeholder="Add custom model ID…" style="margin-bottom:0;" />
-                  <button id="setCustomModelBtn" class="button-secondary" aria-label="Add custom model" style="flex-shrink:0;font-size:11px;">+</button>
+                  <button id="setCustomModelBtn" class="button-secondary" aria-label="Add custom model" style="flex-shrink:0;font-size:11px;">+ Add</button>
                 </div>
-                <button id="modelSettingsLink" class="button-secondary" style="width:100%;font-size:11px;margin-top:6px;">⚙️ Settings</button>
+                <div class="model-foot">
+                  <span id="modelStatus" class="model-status"><span class="model-dot" aria-hidden="true"></span><span id="modelStatusText"></span></span>
+                  <button id="modelSettingsLink" class="button-secondary model-settings-btn">⚙️ Settings</button>
+                </div>
                 <select id="modelSelect" style="display:none"></select>
               </div>
 

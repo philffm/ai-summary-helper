@@ -3338,3 +3338,16 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 /* Ollama setup hint under a failed summary */
 .ollama-hint{ margin-top:10px; padding:10px 12px; border-radius:var(--radius-md, 10px); background:var(--accent-a15, rgba(76,141,255,.15)); border:1px solid var(--accent-a30, rgba(76,141,255,.3)); display:flex; flex-direction:column; gap:8px; align-items:flex-start; font-size:12.5px; line-height:1.45; }
 .ollama-hint-btn{ font-size:12px; }
+
+/* Model panel (variant 1): source switch, labels, note, footer status */
+.model-mode{ display:flex; gap:4px; padding:4px; border-radius:12px; background:var(--surface-2, rgba(255,255,255,.04)); border:1px solid var(--outline); }
+.model-mode .pill{ flex:1; justify-content:center; border-color:transparent; background:transparent; }
+.model-mode .pill.active{ background:var(--accent-a15); border-color:var(--accent-a30); color:var(--accent); }
+.model-note{ margin:0 0 8px; font-size:11.5px; color:var(--text-muted); }
+.model-sublabel{ font-size:11px; font-weight:500; color:var(--text-muted); margin:2px 0 4px; }
+.model-foot{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:10px; }
+.model-status{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--text-muted); min-width:0; }
+.model-dot{ width:7px; height:7px; border-radius:50%; background:var(--ok, #3fb950); flex-shrink:0; }
+.model-dot[data-state="warn"]{ background:var(--warn, #e4a83e); }
+.model-dot[data-state="off"]{ display:none; }
+.model-settings-btn{ font-size:12px; flex-shrink:0; }

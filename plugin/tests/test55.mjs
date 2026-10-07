@@ -22,6 +22,8 @@ store.connectionMode = 'cloud'; store.activeService = 'ollama';
 try { await imp('popup.js'); } catch (e) { console.log('import', e.message); }
 d.dispatchEvent(new w.Event('DOMContentLoaded'));
 await tick(300);
+assert(/byPhil Cloud/.test(d.getElementById('modelStatusText').textContent), 'cloud footer status');
+assert(d.getElementById('modelNote').style.display !== 'none', 'cloud note visible');
 const seg = () => [...d.querySelectorAll('#modelModeGrid button')];
 assert.equal(seg().length, 2, 'two source buttons in cloud mode');
 assert.equal(seg()[0].getAttribute('aria-pressed'), 'true');
@@ -32,6 +34,8 @@ assert.equal(seg().length, 2, 'both source buttons still present in own-model mo
 assert.equal(seg()[1].getAttribute('aria-pressed'), 'true');
 assert(!d.getElementById('modelProviderGrid').textContent.includes('Cloud Mode'), 'no dashed Cloud Mode pill');
 assert(d.getElementById('modelProviderGrid').querySelectorAll('button').length >= 3, 'providers shown');
+assert(/Ollama · local, no API key/.test(d.getElementById('modelStatusText').textContent), 'own-model footer status: ' + d.getElementById('modelStatusText').textContent);
+assert.equal(d.getElementById('modelNote').style.display, 'none', 'note hidden in own mode');
 const inp = d.getElementById('customModelInput');
 inp.value = 'gemma4:e2b';
 inp.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
