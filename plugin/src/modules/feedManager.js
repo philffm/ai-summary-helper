@@ -759,7 +759,8 @@ function renderControls() {
     const unread = unreadCount(scoped);
     els.sourceCount.textContent = unread ? String(unread) : '';
     els.chipRow.querySelectorAll('[data-status]').forEach(b => {
-        const on = b.dataset.status === ui.status;
+        // The chips are one quick-filter group: 😊 replaces the status chip (incl. All).
+        const on = b.dataset.status === ui.status && !(moodEnabled() && ui.mood === 'pos');
         b.classList.toggle('active', on);
         b.setAttribute('aria-pressed', String(on));
         if (b.dataset.status === 'unread') b.textContent = unread ? T('Unread · {n}', { n: unread }) : T('Unread');
@@ -2000,10 +2001,12 @@ export function initFeedManager(uiObj) {
         });
     }
     if (els.moodChip) els.moodChip.addEventListener('click', () => {
-        ui.mood = ui.mood === 'pos' ? 'any' : 'pos'; persistUi(); render();
+        if (ui.mood === 'pos') ui.mood = 'any';
+        else { ui.mood = 'pos'; ui.status = 'all'; }
+        persistUi(); render();
     });
     els.chipRow.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
-        ui.status = b.dataset.status; persistUi(); render();
+        ui.status = b.dataset.status; if (ui.mood === 'pos') ui.mood = 'any'; persistUi(); render();
     }));
     els.opmlInput.addEventListener('change', () => {
         const f = els.opmlInput.files && els.opmlInput.files[0];
