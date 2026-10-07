@@ -824,6 +824,21 @@ export function initArticleManager(uiManager) {
         }
     });
 
+    // Graph / Analytics buttons mirror what is open (same as the Feeds toolbar): pressed = that view is showing.
+    const syncViewButtons = () => {
+        const open = (id) => { const c = document.getElementById(id); return !!c && c.style.display === 'block'; };
+        const g = open('graphContainer'), r = open('reportContainer');
+        [['graphToggleBtn', g], ['detailGraphToggleBtn', g], ['reportToggleBtn', r], ['detailReportToggleBtn', r]].forEach(([id, on]) => {
+            const b = document.getElementById(id);
+            if (!b) return;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-pressed', String(on));
+        });
+    };
+    const viewObserver = new MutationObserver(syncViewButtons);
+    ['graphContainer', 'reportContainer'].forEach(id => { const c = document.getElementById(id); if (c) viewObserver.observe(c, { attributes: true, attributeFilter: ['style'] }); });
+    syncViewButtons();
+
     // ── Shared graph toggle ─────────────────────────────────────────────
     const toggleGraph = () => {
         const articleList = document.getElementById('articleList');
@@ -848,10 +863,14 @@ export function initArticleManager(uiManager) {
         } else {
             if (articleList) articleList.style.display = 'none';
             if (articleDetail) articleDetail.style.display = 'none';
+            const rc = document.getElementById('reportContainer');
+            const split = document.getElementById('historyScreen')?.classList.contains('ws-active');
+            if (rc && !split) rc.style.display = 'none';   // one pane: one view at a time, graph replaces analytics
             graphContainer.style.display = 'block';
             graphContainer.style.opacity = '1';
             initGraphView();
         }
+        syncViewButtons();
     };
 
     const graphToggleBtn = document.getElementById('graphToggleBtn');
@@ -881,6 +900,7 @@ export function initArticleManager(uiManager) {
             reportContainer.style.display = 'block';
             initReportView();
         }
+        syncViewButtons();
     };
 
     const reportToggleBtn = document.getElementById('reportToggleBtn');
