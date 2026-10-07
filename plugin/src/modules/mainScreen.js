@@ -218,14 +218,15 @@ export function initMainScreen(ui) {
         else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Fetch Summary'; }
     };
 
-    // Fetch state extras under the feed: a card for the page in the active tab, and a way back into a conversation.
+    // Fetch state extras: the page in the active tab as a chip INSIDE the input card (it flies into the thread on Fetch),
+    // and the last summary as a resume card at the end of the feed.
     let extrasToken = 0;
     const clip = (x, n) => { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; };
     const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
     const clearNote = () => {
         extrasToken++;
         document.getElementById('pageCard')?.remove();
-        document.getElementById('composerContinue')?.remove();
+        document.getElementById('resumeCard')?.remove();
     };
     const latestArticle = async () => {
         try {
@@ -241,37 +242,60 @@ export function initMainScreen(ui) {
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
         const latest = conversation ? null : await latestArticle();
         if (token !== extrasToken || composer.state !== 'fetch') return;
-        if (tab && tab.url && isInjectableUrl(tab.url)) {
+        const inputCard = bar.querySelector('.input-card');
+        if (tab && tab.url && isInjectableUrl(tab.url) && inputCard) {
             const different = !!conversation && !samePage(conversation.url, tab.url);
-            const card = document.createElement('div');
-            card.id = 'pageCard';
-            card.className = 'page-card' + (different ? ' page-card--different' : '');
+            const chip = document.createElement('div');
+            chip.id = 'pageCard';
+            chip.className = 'page-chip' + (different ? ' page-chip--different' : '');
+            chip.dataset.title = tab.title || ''; chip.dataset.host = hostOf(tab.url);
             if (tab.favIconUrl && /^https?:|^data:/.test(tab.favIconUrl)) {
-                const ic = document.createElement('img'); ic.className = 'page-card-ic'; ic.alt = ''; ic.src = tab.favIconUrl;
+                const ic = document.createElement('img'); ic.className = 'page-chip-ic'; ic.alt = ''; ic.src = tab.favIconUrl;
                 ic.addEventListener('error', () => ic.remove());
-                card.appendChild(ic);
+                chip.appendChild(ic);
             }
-            const txt = document.createElement('div'); txt.className = 'page-card-txt';
-            const head = document.createElement('div'); head.className = 'page-card-kicker';
-            head.textContent = different ? '📄 ' + T("You're on a different page") : T('This page');
-            const title = document.createElement('div'); title.className = 'page-card-title'; title.textContent = clip(tab.title || hostOf(tab.url), 90);
-            const meta = document.createElement('div'); meta.className = 'page-card-meta'; meta.textContent = hostOf(tab.url);
-            txt.append(head, title, meta);
-            card.appendChild(txt);
-            feed.appendChild(card);
-            scrollFeed();
+            const txt = document.createElement('div'); txt.className = 'page-chip-txt';
+            const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(tab.title || chip.dataset.host, 80);
+            const meta = document.createElement('div'); meta.className = 'page-chip-meta';
+            meta.textContent = (different ? T("You're on a different page") + ' · ' : T('This page') + ' · ') + chip.dataset.host;
+            txt.append(title, meta);
+            chip.appendChild(txt);
+            inputCard.insertBefore(chip, additionalQuestionsInput);
         }
         const target = conversation
             ? { title: conversation.title, n: conversation.turns.length }
             : (latest ? { title: latest.title, n: latest.qaCount || 0, latest } : null);
         if (target) {
-            const link = document.createElement('button');
-            link.type = 'button'; link.id = 'composerContinue'; link.className = 'btn-link composer-continue';
-            link.textContent = '‹ ' + T('Continue "{title}" conversation', { title: clip(target.title || T('Summary'), 28) })
-                + (target.n ? ' · ' + TN(target.n, '{n} follow-up', '{n} follow-ups') : '');
-            link.addEventListener('click', () => resumeConversation(target.latest));
-            bar.querySelector('.input-card').appendChild(link);
+            const card = document.createElement('button');
+            card.type = 'button'; card.id = 'resumeCard'; card.className = 'resume-card';
+            const ic = document.createElement('span'); ic.className = 'resume-card-ic'; ic.textContent = '✨';
+            const txt = document.createElement('span'); txt.className = 'resume-card-txt';
+            const t = document.createElement('span'); t.className = 'resume-card-title'; t.textContent = clip(target.title || T('Summary'), 90);
+            const m = document.createElement('span'); m.className = 'resume-card-meta';
+            m.textContent = [T('Last summary'), target.n ? TN(target.n, '{n} follow-up', '{n} follow-ups') : '', T('Resume') + ' ›'].filter(Boolean).join(' · ');
+            txt.append(t, m); card.append(ic, txt);
+            card.addEventListener('click', () => resumeConversation(target.latest));
+            feed.appendChild(card);
+            scrollFeed();
         }
+    };
+
+    /** The page chip leaves the input card and lands as the first bubble of the thread (FLIP). */
+    const flyIn = (el, from) => {
+        if (!from || typeof el.animate !== 'function') return;
+        try {
+            const scroller = document.getElementById('feedScroll');
+            if (scroller) scroller.scrollTop = scroller.scrollHeight;
+            const reduce = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduce) { el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 100 }); return; }
+            const to = el.getBoundingClientRect();
+            if (!to.width || !to.height) return;
+            el.style.transformOrigin = 'top left';
+            el.animate([
+                { transform: `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width}, ${from.height / to.height})`, opacity: 0.5 },
+                { transform: 'none', opacity: 1 }
+            ], { duration: 280, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        } catch (_) { /* animation is cosmetic */ }
     };
 
     /** Back into a conversation: the in-memory one, or the stored one of a past summary. */
@@ -299,7 +323,7 @@ export function initMainScreen(ui) {
     /** ＋ New: back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
     const startNew = () => {
         if (composer && composer.state === 'working') return;
-        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest, .composer-note').forEach(n => n.remove());
+        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
         conversation = null; lastContext = null;
         clearNote();
         additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
@@ -586,6 +610,9 @@ export function initMainScreen(ui) {
             return;
         }
         const additionalQuestions = additionalQuestionsInput.value;
+        const chipEl = document.getElementById('pageCard');
+        const chipRect = chipEl ? chipEl.getBoundingClientRect() : null;
+        const pageInfo = chipEl ? { title: chipEl.dataset.title, host: chipEl.dataset.host } : null;
         const selectedLanguage = languageSelect.value;
 
         chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt'], async (data) => {
@@ -598,7 +625,7 @@ export function initMainScreen(ui) {
                 composer.set('working');
                 additionalQuestionsInput.value = '';   // the focus question is on its way; the box is free for the next question
                 clearNote();
-                feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest, .composer-note').forEach(n => n.remove());
+                feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
             } else {
                 fetchSummaryButton.disabled = true;
                 fetchSummaryButton.textContent = '⏳ Summarizing…';
@@ -615,8 +642,11 @@ export function initMainScreen(ui) {
                 first.className = 'chat-turn chat-q chat-q--first';
                 const l1 = document.createElement('div'); l1.textContent = T('Summarize this page');
                 first.appendChild(l1);
+                const pageLine = [pageInfo && pageInfo.title, pageInfo && pageInfo.host].filter(Boolean).join(' · ');
+                if (pageLine) { const lp = document.createElement('div'); lp.className = 'chat-q-sub'; lp.textContent = clip(pageLine, 80); first.appendChild(lp); }
                 if ((additionalQuestions || '').trim()) { const l2 = document.createElement('div'); l2.className = 'chat-q-sub'; l2.textContent = T('Focus: {text}', { text: additionalQuestions.trim() }); first.appendChild(l2); }
                 feed.appendChild(first);
+                flyIn(first, chipRect);
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');
                 updateStream('Contacting content script…');
                 // Show the bar immediately on click rather than waiting for

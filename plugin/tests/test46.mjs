@@ -1,4 +1,4 @@
-// Fetch state: current-page card + "Continue … conversation" link; resuming restores the stored follow-ups.
+// Fetch state: this-page chip inside the input card + last-summary resume card; resuming restores the stored follow-ups.
 import assert from 'assert';
 import { setup, imp, tick } from './harness.mjs';
 const { w } = setup({}); const d = w.document;
@@ -14,18 +14,18 @@ const MS = await imp('modules/mainScreen.js');
 MS.initMainScreen({ showScreen() {} });
 await tick(60);
 const card = d.getElementById('pageCard');
-assert(card, 'page card in the fetch state');
+assert(card && card.closest('.input-card'), 'page chip sits inside the input card');
 assert(card.textContent.includes('Other story') && card.textContent.includes('news.example.com'), 'page metadata');
-assert(!card.classList.contains('page-card--different'), 'neutral when no conversation is active');
-const link = d.getElementById('composerContinue');
-assert(link && link.textContent.includes('First article') && /1 follow-up/.test(link.textContent), 'continue link: ' + (link && link.textContent));
+assert(!card.classList.contains('page-chip--different'), 'neutral when no conversation is active');
+const link = d.getElementById('resumeCard');
+assert(link && link.closest('#summaryFeed') && link.textContent.includes('First article') && /Last summary/.test(link.textContent) && /1 follow-up/.test(link.textContent), 'resume card: ' + (link && link.textContent));
 link.click(); await tick(60);
 assert.equal(d.querySelector('.controls-bar').dataset.state, 'followup', 'composer morphed to follow-up');
 assert(d.querySelector('#summaryFeed .chat-turn-group')?.textContent.includes('Because.'), 'stored turn restored');
-assert(!d.getElementById('pageCard') && !d.getElementById('composerContinue'), 'extras gone in follow-up');
+assert(!d.getElementById('pageCard') && !d.getElementById('resumeCard'), 'extras gone in follow-up');
 assert(!d.getElementById('newSummaryButton').hidden, '＋ New visible');
 // ＋ New returns to fetch with the page card and a link back
 d.getElementById('newSummaryButton').click(); await tick(60);
 assert.equal(d.querySelector('.controls-bar').dataset.state, 'fetch');
-assert(d.getElementById('pageCard') && d.getElementById('composerContinue'), 'extras back after ＋ New');
+assert(d.getElementById('pageCard') && d.getElementById('resumeCard'), 'extras back after ＋ New');
 console.log('TEST 46 OK');
