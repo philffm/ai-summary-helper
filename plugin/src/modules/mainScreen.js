@@ -1,3 +1,4 @@
+import { debug } from './log.js';
 // mainScreen.js
 // Handles main screen UI — chat-style summary feed
 
@@ -565,7 +566,7 @@ export async function ensureContentScript(tabId, url) {
     }
 
     // Content script not present — inject it
-    console.log('Injecting content script due to ping failure...');
+    debug('Injecting content script due to ping failure...');
     try {
         await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
     } catch (e) {

@@ -1,3 +1,4 @@
+import { debug } from './log.js';
 // storageManager.js
 
 // Precomputed once per save/migration so analyticsManager.js's reading-time
@@ -22,7 +23,6 @@ class StorageManager {
     - book recommendations`,
         promptType: 'custom',
         selectedLanguage: 'en-US',
-        betaPodcast: false,
         connectionMode: 'cloud',
         preferredCloudModel: 'google/gemini-3.6-flash'
     };
@@ -194,7 +194,7 @@ class StorageManager {
         if (found) {
             await new Promise(resolve => chrome.storage.local.set(toLocal, resolve));
             await new Promise(resolve => chrome.storage.sync.remove(Object.keys(toLocal), resolve));
-            console.log('✅ Migrated sensitive keys from sync → local:', Object.keys(toLocal).join(', '));
+            debug('✅ Migrated sensitive keys from sync → local:', Object.keys(toLocal).join(', '));
         }
     }
 
@@ -276,7 +276,7 @@ class StorageManager {
             return;
         }
 
-        console.log(`⏳ Migrating ${articles.length} articles to indexed storage...`);
+        debug(`⏳ Migrating ${articles.length} articles to indexed storage...`);
 
         const { index, records: recordWrites } = this.splitArticlesArray(articles);
 
@@ -300,7 +300,7 @@ class StorageManager {
         // never delete data before its replacement is safely persisted.
         await new Promise(resolve => chrome.storage.local.remove('articles', resolve));
 
-        console.log(`✅ Migrated ${index.length} articles to indexed storage (old 'articles' blob removed).`);
+        debug(`✅ Migrated ${index.length} articles to indexed storage (old 'articles' blob removed).`);
     }
 
     // ─────────────────────────────────────────────
@@ -615,7 +615,7 @@ class StorageManager {
         // Ensure prompt defaults
         await this.ensurePromptDefaults();
 
-        console.log('✅ Storage migration to multidimensional servicesConfig completed.');
+        debug('✅ Storage migration to multidimensional servicesConfig completed.');
     }
 
     static async ensureServicesIntegrity() {

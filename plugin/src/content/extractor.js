@@ -1,3 +1,4 @@
+import { debug } from '../modules/log.js';
 // content/extractor.js
 // Pure page-content extraction & parsing helpers. No DOM event wiring here —
 // these are called by the content.js orchestrator.
@@ -7,7 +8,7 @@
  * @returns {{ html: string, text: string }}
  */
 export function getAllTextContent() {
-  console.log('Getting all text content');
+  debug('Getting all text content');
 
   // 🔥 Prepend any yellow user highlights as high-priority context for the AI
   const activeHighlights = Array.from(document.querySelectorAll('.ai-user-highlight'))
@@ -118,7 +119,7 @@ export function getAllTextContent() {
     .trim();
 
   if (cleanText.length < 500 && articleEl !== document.body) {
-    console.log("Extracted content too short, falling back to full body.");
+    debug("Extracted content too short, falling back to full body.");
     const bodyClone = document.body.cloneNode(true);
     for (const selector of noiseSelectors) {
       const nodes = bodyClone.querySelectorAll(selector);
@@ -152,7 +153,7 @@ export function getAllTextContent() {
     cleanText = text.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
   }
 
-  console.log('Collected content length:', cleanText.length);
+  debug('Collected content length:', cleanText.length);
   return { html: clone.innerHTML, text: highlightPrefix + cleanText };
 }
 

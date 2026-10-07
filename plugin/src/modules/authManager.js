@@ -133,16 +133,18 @@ const scheduleOtpExpiry = (expiresAt) => {
 
 const ensureInstallId = async () => StorageManager.getInstallId();
 
-// Usage-analytics is a Settings-only concept — only the Settings view will
-// ever have these elements, so this is a no-op for every other view.
+// Fetches plan/usage for the signed-in account and resolves the "Checking..." badge.
+// The optional usage readout (#analyticsStatus & co) is not in the current Settings layout, so every
+// write to it is guarded — the badge must be resolved either way (it used to stay on "Checking...").
 const refreshUsageAnalytics = async (view, token) => {
-    const analyticsStatus = document.getElementById('analyticsStatus');
-    const analyticsTrialRemaining = document.getElementById('analyticsTrialRemaining');
-    const analyticsCompletedRequests = document.getElementById('analyticsCompletedRequests');
-    const analyticsLastModel = document.getElementById('analyticsLastModel');
-    if (!analyticsStatus || !analyticsTrialRemaining || !analyticsCompletedRequests || !analyticsLastModel) return;
-
-    analyticsStatus.textContent = 'Loading...';
+    const out = {
+        status: document.getElementById('analyticsStatus'),
+        trial: document.getElementById('analyticsTrialRemaining'),
+        done: document.getElementById('analyticsCompletedRequests'),
+        model: document.getElementById('analyticsLastModel'),
+    };
+    const show = (o) => { for (const k of Object.keys(out)) if (out[k] && k in o) out[k].textContent = o[k]; };
+    show({ status: 'Loading...' });
 
     try {
         const installId = await ensureInstallId();
@@ -164,22 +166,17 @@ const refreshUsageAnalytics = async (view, token) => {
             throw new Error(result?.error || `HTTP ${response.status}`);
         }
 
-        analyticsTrialRemaining.textContent = String(result?.trial?.remaining ?? '-');
-        analyticsCompletedRequests.textContent = String(result?.account?.completed_requests ?? 0);
-        analyticsLastModel.textContent = result?.account?.last_model || '-';
-        analyticsStatus.textContent = result?.account?.logged_in ? 'Account' : 'Free Tier';
+        show({
+            trial: String(result?.trial?.remaining ?? '-'),
+            done: String(result?.account?.completed_requests ?? 0),
+            model: result?.account?.last_model || '-',
+            status: result?.account?.logged_in ? 'Account' : 'Free Tier',
+        });
 
         const isPro = result?.account?.subscription_status === 'active';
         setStatusBadge(view.authStatusLabel, isPro);
     } catch (error) {
-        analyticsTrialRemaining.textContent = '-';
-        analyticsCompletedRequests.textContent = '-';
-        analyticsLastModel.textContent = '-';
-        analyticsStatus.textContent = 'Unavailable';
-        // CRITICAL FIX: The status label was set to 'Checking...' by
-        // refreshAuthState before this call. If the usage fetch fails or
-        // hangs, we must resolve it here — otherwise it stays stuck on
-        // 'Checking...' forever.
+        show({ trial: '-', done: '-', model: '-', status: 'Unavailable' });
         setStatusBadge(view.authStatusLabel, false);
         console.error('Usage analytics refresh failed:', error.message);
     }
@@ -193,17 +190,10 @@ function setStatusBadge(label, isPro) {
 }
 
 function setLoggedInOnlySectionsVisible(isLoggedIn) {
-    // Settings-only extras (analytics, legacy license key, cloud-model
-    // picker). Harmless no-op for views that don't have them (onboarding).
+    // Settings-only extras (legacy license key). Harmless no-op for views that don't have them (onboarding).
     const displayValue = isLoggedIn ? 'block' : 'none';
-    const analyticsSection = document.getElementById('analyticsSection');
     const legacyLicenseGroup = document.getElementById('legacyLicenseGroup');
-    const cloudModelGroup = document.getElementById('cloudModelGroup');
-    const cloudModelTeaser = document.getElementById('cloudModelTeaser');
-    if (analyticsSection) analyticsSection.style.display = displayValue;
     if (legacyLicenseGroup) legacyLicenseGroup.style.display = displayValue;
-    if (cloudModelGroup) cloudModelGroup.style.display = displayValue;
-    if (cloudModelTeaser) cloudModelTeaser.style.display = isLoggedIn ? 'none' : 'block';
 }
 
 // ── Core: render current auth/OTP state into every registered view ─────

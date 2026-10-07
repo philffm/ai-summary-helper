@@ -1,3 +1,4 @@
+import { debug } from '../modules/log.js';
 // content/ui.js
 // DOM/UI injection helpers for the content script. These create and manage
 // in-page UI (tooltips, menus, overlays, sidebar, placeholder, debug panel).
@@ -292,7 +293,7 @@ export function toggleHybridSidebar() {
 // ── Placeholder / Insertion helpers ──
 
 export function showPlaceholder(targetElement, donationMessage) {
-  console.log('Showing placeholder in the selected element');
+  debug('Showing placeholder in the selected element');
 
   const placeholder = document.createElement('div');
   placeholder.classList.add('placeholder');
@@ -334,14 +335,14 @@ export function showPlaceholder(targetElement, donationMessage) {
 }
 
 export function insertSummary(targetElement, summaryContainer) {
-  console.log('Inserting summary into the target element');
+  debug('Inserting summary into the target element');
   targetElement.style.backgroundColor = '';
   targetElement.style.border = '';
   targetElement.appendChild(summaryContainer);
 }
 
 export function selectTargetElement() {
-  console.log('Prompting user to select the target element');
+  debug('Prompting user to select the target element');
   return new Promise((resolve) => {
     const messageDiv = document.createElement('div');
     messageDiv.id = 'ai-summary-message';

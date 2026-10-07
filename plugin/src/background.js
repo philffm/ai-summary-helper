@@ -714,7 +714,6 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 });
 
 chrome.commands.onCommand.addListener((command) => {
-    console.log(`Command received: ${command}`);
     if (command === 'toggle-popup') {
         chrome.action.openPopup();
     } else if (command === 'fetch-summary') {

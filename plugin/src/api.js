@@ -1,4 +1,5 @@
-    // ...existing code...
+import { debug } from './modules/log.js';
+
 /**
  * Create a chat completion using the active service config.
  * Falls back to StorageManager.getActiveServiceConfig() when apiKey/service/model are not provided.
@@ -12,7 +13,7 @@
  * @param {string} modelIdentifier - (optional) model id/name to use
  */
 export async function createChatCompletion(inputText, apiKey, selectedLanguage, podcastName, activeService = null, modelIdentifier = null) {
-    console.log('[API] createChatCompletion called with:', { inputText, apiKey, selectedLanguage, podcastName, activeService, modelIdentifier });
+    debug('createChatCompletion', { chars: (inputText || '').length, selectedLanguage, activeService, modelIdentifier });
     try {
         // If caller didn't provide service/model/apiKey, load active service config
         if (!apiKey || !activeService || !modelIdentifier) {
@@ -40,7 +41,6 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
         const systemInstruction = `Podcast Name: ${podcastName || 'Untitled Podcast'}\nIn language code "${selectedLanguage || 'en-US'}" you are a creative and engaging podcast host. Transform the provided article summaries into an exciting ~1 minute podcast script that captivates the audience. Include the source domain when appropriate.`;
 
         // Gemini branch
-        console.log('[API] createChatCompletion - systemInstruction:', systemInstruction);
         if ((activeService || '').toLowerCase() === 'gemini') {
             const finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:generateContent`;
             const fullText = `${systemInstruction}\n\n${inputText}`;
@@ -52,7 +52,7 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
                 contents: [ { parts: [ { text: fullText } ] } ]
             };
 
-            console.log('📤 Sending request to Gemini:', { url: finalApiUrl, model: modelIdentifier, length: fullText.length, reqObj });
+            debug('Gemini request', { model: modelIdentifier, chars: fullText.length });
 
             const resp = await fetch(finalApiUrl, {
                 method: 'POST',
@@ -70,7 +70,6 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
             }
 
             const data = await resp.json();
-            console.log('[API] Gemini response:', data);
             // Try several known Gemini shapes
             const candidates = data.candidates || [];
             let out = candidates[0]?.content?.parts?.[0]?.text || data.output?.[0]?.content?.[0]?.text || data.candidates?.[0]?.text || data.message?.content || JSON.stringify(data);
@@ -99,7 +98,7 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
             requestBody.temperature = 1;
         }
 
-        console.log('� Sending chat completion request to OpenAI-like endpoint:', { apiUrl, model: requestBody.model, requestBody });
+        debug('OpenAI-like request', { model: requestBody.model });
 
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -123,7 +122,6 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
         }
 
         const result = await response.json();
-        console.log('[API] OpenAI-like response:', result);
         const podcastScript = result.choices?.[0]?.message?.content || result.choices?.[0]?.text || JSON.stringify(result);
         return String(podcastScript).trim();
     } catch (error) {
@@ -171,7 +169,7 @@ export async function generateAudioFromText(text, apiKey = '', activeService = n
                 audioConfig: { audioEncoding: 'MP3' }
             };
 
-            console.log('📤 Sending TTS request to Google TTS:', { apiUrl });
+            debug('Google TTS request');
 
             const resp = await fetch(apiUrl, {
                 method: 'POST',

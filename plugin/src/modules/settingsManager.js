@@ -520,15 +520,6 @@ function initGeneralSettings(storageData) {
             autoSave('ghostHighlightAmount', ghostHighlightAmount.value);
         });
     }
-
-    // ── Beta Podcast ───────────────────────────────────────────────
-    const betaPodcastToggle = document.getElementById('betaPodcastToggle');
-    if (betaPodcastToggle) {
-        betaPodcastToggle.checked = !!storageData.betaPodcast;
-        betaPodcastToggle.addEventListener('change', () => {
-            autoSave('betaPodcast', betaPodcastToggle.checked);
-        });
-    }
 }
 
 // ── Section: Bookmarklet Generator ───────────────────────────────────

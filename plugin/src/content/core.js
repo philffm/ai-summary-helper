@@ -1,3 +1,4 @@
+import { debug } from '../modules/log.js';
 // content/core.js
 // Core helpers for the content script: tag generation, ghost-quote parsing,
 // storage saving, and the Safari-safe streaming port connection.
@@ -68,7 +69,7 @@ export function saveToLocalStorage(content, summary, url, title, description, ta
       articlesIndex.push(indexEntry);
       chrome.storage.local.set({ articlesIndex, [`article:${id}`]: record }, () => {
         const articleData = { ...indexEntry, ...record };
-        console.log('Article saved to local storage:', articleData);
+        debug('Article saved to local storage');
         resolve(articleData);
       });
     });
