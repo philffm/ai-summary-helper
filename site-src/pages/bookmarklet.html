@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Create your bookmarklet — AI Summary Helper</title>
+<meta name="description" content="Generate a one-click AI summary bookmarklet for any browser or OS, including iOS. Use byPhil Cloud with no API key, or bring your own OpenAI, Gemini, Mistral, DeepSeek or Ollama.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{base}}assets/styles.css">
+
+<meta property="og:title" content="Create your bookmarklet — AI Summary Helper">
+<meta property="og:description" content="One link in your bookmarks bar summarizes any page, in any browser, on any OS.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/bookmarklet.html">
+<meta property="og:type" content="website">
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['disableCookies']);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.philwornath.de/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-home-->
+
+<main id="main">
+  <div class="wrap wrap-narrow bm-back"><a href="{{base}}index.html" class="btn-link">← Back to AI Summary Helper</a></div>
+
+  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
+  <section id="bookmarklet" class="bookmarklet-page">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">No install needed</div>
+        <h1>Get the bookmarklet</h1>
+        <p>Works on any browser and OS — including iOS, where the extension can't run. Pick a provider, generate a link, and drag it to your bookmarks bar. One click on any page inserts an AI summary right into it.</p>
+      </div>
+
+      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden></div>
+
+      <div class="bookmarklet-card reveal" id="bookmarkletCard">
+        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
+          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
+          <button type="button" id="bmModeByok" data-bm-mode="byok">Bring your own key</button>
+        </div>
+
+        <!-- byPhil Cloud mode -->
+        <div class="bookmarklet-mode" id="bmCloudPanel">
+          <p class="bm-hint">Use your byPhil account — no API key to manage. The bookmarklet calls the byPhil Cloud API with your session.</p>
+          <div id="bmCloudAuth">
+            <label class="bm-label" for="bmCloudEmail">Email</label>
+            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email" />
+            <button type="button" class="btn-secondary" id="bmCloudSendCode">Send magic code</button>
+            <div id="bmCloudOtp" hidden>
+              <label class="bm-label" for="bmCloudCode">Verification code</label>
+              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric" />
+              <button type="button" class="btn-secondary" id="bmCloudVerify">Verify &amp; connect</button>
+            </div>
+            <p class="bm-hint" id="bmCloudStatus"></p>
+          </div>
+          <div id="bmCloudConnected" hidden>
+            <p class="bm-hint">✅ Connected as <strong id="bmCloudEmailLabel"></strong></p>
+            <label class="bm-label" for="bmCloudModel">Model</label>
+            <select id="bmCloudModel">
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+            </select>
+            <p class="bm-hint">The model used by the byPhil Cloud API for your summaries.</p>
+            <button type="button" class="btn-link" id="bmCloudLogout">Disconnect</button>
+          </div>
+        </div>
+
+        <!-- BYOK mode -->
+        <div class="bookmarklet-mode" id="bmByokPanel" hidden>
+          <label class="bm-label" for="bmProvider">Provider</label>
+          <select id="bmProvider">
+            <option value="openai">OpenAI</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="mistral">Mistral</option>
+            <option value="gemini">Gemini</option>
+            <option value="ollama">Ollama (Local)</option>
+          </select>
+          <p class="bm-hint" id="bmProviderHint"></p>
+
+          <label class="bm-label" for="bmApiKey">API Key</label>
+          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off" />
+          <p class="bm-hint">🔒 Stored only in your browser's local storage. The generated bookmarklet embeds it, so don't share it.</p>
+        </div>
+
+        <div id="bmConfig">
+          <label class="bm-label" for="bmInsertion">Insert summary</label>
+          <select id="bmInsertion">
+            <option value="floating">Floating box</option>
+            <option value="inline">Inline — click to choose the spot</option>
+          </select>
+          <p class="bm-hint" id="bmInsertionHint">Floating box shows the summary in a corner overlay. Inline lets you click the exact spot on the page where the summary should be inserted.</p>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmSpeedRead" />
+            <span>Speed-read the summary (RSVP)</span>
+          </label>
+
+          <label class="bm-check">
+            <input type="checkbox" id="bmGhostHighlights" />
+            <span>Ghost-highlight key passages on the page</span>
+          </label>
+          <p class="bm-hint">Lightly highlights the most important verbatim passages in the article. Highlights are also included when sending to Kindle, LocalSend, downloading as .MD, or sharing.</p>
+
+          <label class="bm-label" for="bmPrompt">Prompt</label>
+          <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.
+More extensive summary with a bit more detail (4-5 sentences).
+Fun reference to the topic related to my competence as a UX designer.
+Humorous take on the topic like a standup comedian.
+Related book and media recommendations.
+Answer additional questions in a serious and engaging way.
+Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</textarea>
+
+          <fieldset class="bm-share-options">
+            <legend class="bm-label">Share options</legend>
+            <p class="bm-hint">The summary is always inserted on the page. Optionally also share it after generating.</p>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareNative" />
+              <span>System share sheet</span>
+            </label>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareKindle" />
+              <span>Send to Kindle</span>
+            </label>
+            <div id="bmKindleConfig" hidden>
+              <label class="bm-label" for="bmKindleEmail">Kindle email</label>
+              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email" />
+              <p class="bm-hint">Requires a byPhil Cloud connection. Add <strong>kindle@byphil.eu</strong> to your Kindle's approved senders first — see <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon's guide</a>. Free tier includes 3 Kindle sends; unlimited sends need the Support Pass.</p>
+            </div>
+
+            <label class="bm-check">
+              <input type="checkbox" id="bmShareLocalSend" />
+              <span>Send to LocalSend</span>
+            </label>
+            <div id="bmLocalSendConfig" hidden>
+              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
+              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off" />
+              <p class="bm-hint">The IP of the device running LocalSend (or KOReader with the LocalSend plugin) on your network.</p>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn-primary" id="bmGenerate">Generate bookmarklet</button>
+          <div id="bmOutput" hidden>
+            <p class="bm-hint">Drag the link below to your bookmarks bar 🔖 <br>(on iOS, hold to drag for 2 seconds):</p>
+            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI Summary</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--include:footer-home-->
+
+</body></html>

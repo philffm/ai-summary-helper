@@ -1,36 +1,60 @@
-<link href="style.css" rel="stylesheet">
-<!-- # ![Icon](src/icons/icon48.png) AI Summary Helper  -->
-<h1 style="display: flex; align-content: center; align-items: center; gap: 12px;"><img src="icon.svg" style="width:48px; height:48px">AI Summary Helper</h1>
+<p align="center">
+  <img src="assets/banner.svg" alt="AI Summary Helper — Summarize the web. Keep what matters." width="100%">
+</p>
 
->You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome_Web_Store-Add_to_Chrome-4C8DFF?logo=googlechrome&logoColor=white&style=for-the-badge"></a>
+  <a href="https://ai-summary-helper.byphil.eu/bookmarklet.html"><img alt="Bookmarklet" src="https://img.shields.io/badge/Bookmarklet-no_install-E4A83E?logo=bookmarkdotorg&logoColor=white&style=for-the-badge"></a>
+  <a href="https://ai-summary-helper.byphil.eu/"><img alt="Website" src="https://img.shields.io/badge/Website-ai--summary--helper.byphil.eu-1D1E24?style=for-the-badge"></a>
+</p>
 
-Summary Helper also includes a small built-in RSS reader, so you can follow your favorite sites and summarize new posts in one click. It allows you to summarize articles with a custom prompt - so it can be as tailored to your language, profession or point of view as you define it. The summary gets inserted in the content area itself. This way you can easily forward the article including the generated summary to your Kindle device e.g. using [Reabbles Send-to-Kindle tool](https://send.reabble.com/). 
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.1-4C8DFF">
+  <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-555">
+  <img alt="Vanilla JS, no framework" src="https://img.shields.io/badge/vanilla-ES_modules-F0C36B">
+  <img alt="Privacy: your key, your data" src="https://img.shields.io/badge/privacy-your_key%2C_your_data-2EA043">
+</p>
 
-> **Kindle sending limit:** The free tier includes 3 Kindle sends; unlimited Kindle & LocalSend sends require the [Support Pass](https://byphil.eu/#pass). 
+> You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
-<a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI&#0032;Summary&#0032;Helper - Instantly&#0032;summarize&#0032;all&#0032;the&#0032;web&#0032;content&#0032;your&#0032;browse | Product Hunt" style="width: 250px; height: 54px;text-align: center;" width="250" height="54" /></a> 
-<a href="https://chrome.google.com/webstore/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank"><img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Chrome Web Store" style="width: 206px; height: 58px;text-align: center;" width="206" height="58" /></a><a href="https://ai-summary-helper.byphil.eu/#bookmarklet" target="_blank"><img src="assets/createBookmarklet.svg" alt="Create Bookmarklet" /></a>
+**AI Summary Helper** turns that pile into a reading habit. Summarize any page with the AI of your choice, follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive that lives on your device. Then send a curated digest to your Kindle or another device, so you read what you picked on purpose.
 
+<p align="center">
+  <img src="assets/aish.png" alt="AI Summary Helper screenshot" width="720">
+</p>
 
->On the go I am way more likely to engage with the content I intentionally selected earlier. The tailored briefing then helps me to recall why I chose the article, suggests me books and other media related to it. 
+## Pick how you want to use it
 
-![AI Summary Helper](assets/aish.png)
+|  | 🧩 **Browser extension** | 🔖 **Bookmarklet** |
+| --- | --- | --- |
+| Install | [Chrome Web Store](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb), Firefox & Safari builds below | Nothing: drag one link to your bookmarks bar |
+| Works on | Chrome, Edge, Firefox, Safari, Android | **Any browser and OS, even iOS** |
+| Best for | Daily reading: history, search, RSS, highlights | Quick use on devices where extensions can't run |
+| Get it | [**Add to Chrome**](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb) | [**Create your bookmarklet**](https://ai-summary-helper.byphil.eu/bookmarklet.html) |
 
-**Variant A:** [Create your Bookmarklet](https://ai-summary-helper.byphil.eu/#bookmarklet) 
-- Browser & OS-agnostic, even works on iOS 
-- byPhil Cloud (no API key) or bring-your-own-key (OpenAI, DeepSeek, Mistral, Gemini, Ollama)
-- Always inserts the summary on the page; optionally shares via system share, Kindle, or LocalSend
+## What you get
+
+- **Summaries with your model.** byPhil Cloud (no API key), or bring your own key for OpenAI, Gemini, Mistral, DeepSeek, or run Ollama locally.
+- **Conversational summaries.** Ask follow-up questions; answers cite the page and jump to the exact passage. Pin the good ones into the summary.
+- **Built-in RSS reader.** Follow sites, filter by source, tag, date or mood, import OPML, get an optional AI recap of the day.
+- **Highlights and ghost highlights.** Mark text yourself or let the AI mark the key passages. Start a summary straight from the on-page highlights panel.
+- **A searchable archive.** On-device full-text search, a knowledge graph of your saves, and an analytics report of your reading.
+- **Read it later, on purpose.** "Summarize & Close" saves a tab with a reminder; the digest sends a varied selection to Kindle or LocalSend.
+- **Your language.** 40+ summary languages (including Traditional and Simplified Chinese) and a localized interface.
+
+> **Kindle sending limit:** The free tier includes 3 Kindle sends; unlimited Kindle & LocalSend sends require the [Support Pass](https://byphil.eu/#pass).
+
+<a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI Summary Helper on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+<details>
+<summary><b>Bookmarklet in action</b></summary>
 
 ![Demo](assets/demo.gif)
 
-**Variant B:** [Download Chrome Browser Plugin](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb)
+</details>
 
-
-## Overview
-
-This project includes two components:
-- **Chrome Extension**: A browser plugin for generating AI summaries of web content.
-- **Bookmarklet Generator**: A tool for creating bookmarklets that provide AI summaries — now embedded in the marketing site at [ai-summary-helper.byphil.eu/#bookmarklet](https://ai-summary-helper.byphil.eu/#bookmarklet).
+## Extension vs bookmarklet
 
 |  | Bookmarklet  | Browser Extension |
 | --- | --- | --- |
@@ -48,8 +72,56 @@ This project includes two components:
 | Context Menu Actions | ❌ | ✅ |
 | Backup & Restore | ❌ | ✅ |
 
+## Quick start for contributors
 
-## Project Structure
+```bash
+git clone https://github.com/philffm/ai-summary-helper.git
+cd ai-summary-helper
+npm ci
+npm run build          # syncs plugin/src → plugin/dev/aish-extension-<platform>
+npm test               # jsdom test suite (run `npm test -- 12 37` for single tests)
+```
+
+Load `plugin/dev/aish-extension-chrome/` via `chrome://extensions` → **Developer mode** → **Load unpacked**. The extension is vanilla ES modules, no framework and no bundler. The marketing site is plain HTML assembled by `npm run site:build` from `site-src/`.
+
+## Install and build
+
+### Chrome / Edge / Opera / Brave
+
+Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb), or build it yourself: run `npm run build`, open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick `plugin/dev/aish-extension-chrome/`.
+
+### Firefox Extension
+
+1. Run `npm run build:firefox` (or `node plugin/scripts/build.js firefox`) to sync `plugin/src/` into `plugin/dev/aish-extension-firefox/` with the Firefox manifest.
+2. Open `about:debugging#/runtime/this-firefox` in Firefox and click **Load Temporary Add-on**, then select `plugin/dev/aish-extension-firefox/manifest.json`.
+
+### Safari (iOS / macOS)
+
+1. Run `npm run build:ios` (or `node plugin/scripts/build.js ios`) to sync `plugin/src/` into `plugin/dev/aish-extension-ios/`.
+2. Convert the WebExtension into a native container app:
+   ```bash
+   xcrun safari-web-extension-converter ./plugin/dev/aish-extension-ios \
+   --project-location plugin/dist/ios \
+   --app-name "AI Summary Helper" \
+   --bundle-identifier "eu.byphil.aisummaryhelper" \
+   --copy-resources \
+   --force
+      
+
+   ```
+3. In Xcode, ensure the extension target bundle ID starts with the parent app's bundle ID (e.g. `eu.byphil.aisummaryhelper.extension`), select the same signing team for both targets, and run on a concrete device/simulator (not "Any iOS Device").
+
+### Bookmarklet Generator
+
+The bookmarklet generator lives on its own page: [ai-summary-helper.byphil.eu/bookmarklet.html](https://ai-summary-helper.byphil.eu/bookmarklet.html) (the landing page only teases it). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
+
+The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). GitHub Pages serves from `docs/`.
+
+## Under the hood
+
+<details>
+<summary><b>Project structure and module responsibilities</b></summary>
+
 
 ```
 ai-summary-helper/
@@ -95,7 +167,8 @@ ai-summary-helper/
 │       └── aish-extension-firefox-<ver>.zip
 │
 ├── docs/                         # Marketing website (GitHub Pages publish folder)
-│   ├── index.html                # Landing page (includes the embedded bookmarklet generator)
+│   ├── index.html                # Landing page (hero switch teases the bookmarklet)
+│   ├── bookmarklet.html          # Bookmarklet generator page
 │   ├── sitemap.xml               # SEO sitemap
 │   ├── CNAME                     # Custom domain (ai-summary-helper.byphil.eu)
 │   ├── assets/                   # Site JS/CSS + icons (main.js, styles.css, icon.svg, createBookmarklet.svg)
@@ -118,7 +191,7 @@ ai-summary-helper/
     └── translate.yml             # Auto-translates docs/ content → docs/lang/
 ```
 
-### `plugin/src/modules/` — ES module responsibilities
+#### `plugin/src/modules/` — ES module responsibilities
 
 | Module | Responsibility |
 | --- | --- |
@@ -145,52 +218,25 @@ ai-summary-helper/
 | `accordion.js` | Accordion UI behavior |
 | `i18n.js` | Translation loader (applies `data-i18n` attributes) |
 
-### Build pipeline
+#### Build pipeline
 
 - **Dev sync** — `node plugin/scripts/build.js` (or `npm run build`) copies `plugin/src/` into `plugin/dev/aish-extension-<platform>/` and overlays the matching `plugin/platforms/<platform>/manifest.json`.
 - **Release** — `./plugin/build.sh` bumps the version in `current_version.json` + all `plugin/platforms/*/manifest.json` + `plugin/src/popup.html`, then zips each platform build into `plugin/prod/`.
 - **CI** — `.github/workflows/release.yml` runs `plugin/build.sh` on tag push, commits the version bump, and creates a GitHub release with the three zips.
 
-### Cross-browser notes
+#### Cross-browser notes
 
 - `plugin/src/` is written against the `chrome.*` namespace. A tiny shim at the top of `content.js`, `background.js`, and `popup.js` aliases `chrome → browser` when only `browser.*` exists (Safari/iOS), so the same code runs on every platform.
 - Firefox uses `background.scripts` (event page) + a `gecko.id`; Chrome uses `service_worker` + `sidePanel`; Android/iOS omit `sidePanel`.
 
-## Installation and Usage
 
-### Chrome Extension
+</details>
 
-1. Navigate to the `plugin/src` directory and follow the instructions in the `readme.md`.
+## Roadmap
 
-### Firefox Extension
+<details>
+<summary><b>Shipped features and checklist</b></summary>
 
-1. Run `npm run build:firefox` (or `node plugin/scripts/build.js firefox`) to sync `plugin/src/` into `plugin/dev/aish-extension-firefox/` with the Firefox manifest.
-2. Open `about:debugging#/runtime/this-firefox` in Firefox and click **Load Temporary Add-on**, then select `plugin/dev/aish-extension-firefox/manifest.json`.
-
-### Safari (iOS / macOS)
-
-1. Run `npm run build:ios` (or `node plugin/scripts/build.js ios`) to sync `plugin/src/` into `plugin/dev/aish-extension-ios/`.
-2. Convert the WebExtension into a native container app:
-   ```bash
-   xcrun safari-web-extension-converter ./plugin/dev/aish-extension-ios \
-   --project-location plugin/dist/ios \
-   --app-name "AI Summary Helper" \
-   --bundle-identifier "eu.byphil.aisummaryhelper" \
-   --copy-resources \
-   --force
-      
-
-   ```
-3. In Xcode, ensure the extension target bundle ID starts with the parent app's bundle ID (e.g. `eu.byphil.aisummaryhelper.extension`), select the same signing team for both targets, and run on a concrete device/simulator (not "Any iOS Device").
-
-### Bookmarklet Generator
-
-The bookmarklet generator is embedded in the marketing site at [ai-summary-helper.byphil.eu/#bookmarklet](https://ai-summary-helper.byphil.eu/#bookmarklet). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
-
-The generator's source lives in `site-src/pages/index.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). GitHub Pages serves from `docs/`.
-
-
-## Feature Agenda 🚀
 
 Bookmarklet generator generally ships faster since it is faster to iterate on.
 
@@ -227,34 +273,13 @@ Bookmarklet generator generally ships faster since it is faster to iterate on.
 - [x] Include update mechanism (bookmarklet checks `bookmarklet-version.json` and warns when outdated) 
 
 
-## Privacy Policy
 
-The privacy policy for this project is available in the [Privacy section](/src/privacy.md).
-
-## License
-
-2024 Phil Wornath - [MIT License](LICENSE)
-
-## Third-Party Libraries
-
-This extension vendors the following open-source libraries under
-`plugin/src/lib/`. Full license texts:
-[THIRD_PARTY_LICENSES.md](plugin/src/lib/THIRD_PARTY_LICENSES.md)
-
-| Library | Version | License | Source |
-| --- | --- | --- | --- |
-| pdf.js | 4.0.379 | Apache-2.0 | https://github.com/mozilla/pdf.js |
-| D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
-| AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
-
-> These libraries are vendored by hand (not via npm), so there's no
-> automatic drift detection. When you replace any `lib/*` file, bump the
-> version numbers above **and** in `THIRD_PARTY_LICENSES.md` — the table is
-> the only record of what's actually shipped.
+</details>
 
 ## Troubleshooting
 
-### Configuring CORS for Ollama (The "Failed to Fetch" Error)
+<details>
+<summary><b>Ollama: “Failed to fetch” (CORS)</b></summary>
 
 It looks like you've hit the classic CORS (Cross-Origin Resource Sharing) wall. Even though the configuration is correct, the browser blocks requests from websites (like arxiv.org) to your local Ollama instance for security reasons because Ollama isn't explicitly saying "I allow requests from this website."
 
@@ -312,7 +337,32 @@ If you are running Ollama on a remote server behind an HTTPS proxy (like Nginx, 
 
 For more detailed guidance, refer to the comprehensive guide on handling CORS settings in Ollama [here](https://medium.com/dcoderai/how-to-handle-cors-settings-in-ollama-a-comprehensive-guide-ee2a5a1beef0).
 
+</details>
 
+## Privacy
+
+Summaries go only to the AI provider you configure (or fully local with Ollama). Your archive, search index and settings stay on your device. Read the full [privacy policy](plugin/src/privacy.md).
+
+## License
+
+2024 Phil Wornath - [MIT License](LICENSE)
+
+## Third-Party Libraries
+
+This extension vendors the following open-source libraries under
+`plugin/src/lib/`. Full license texts:
+[THIRD_PARTY_LICENSES.md](plugin/src/lib/THIRD_PARTY_LICENSES.md)
+
+| Library | Version | License | Source |
+| --- | --- | --- | --- |
+| pdf.js | 4.0.379 | Apache-2.0 | https://github.com/mozilla/pdf.js |
+| D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
+| AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
+
+> These libraries are vendored by hand (not via npm), so there's no
+> automatic drift detection. When you replace any `lib/*` file, bump the
+> version numbers above **and** in `THIRD_PARTY_LICENSES.md` — the table is
+> the only record of what's actually shipped.
 
 # Compatible Tools
 <!-- table with tools, name, description, url -->

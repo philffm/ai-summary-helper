@@ -754,3 +754,40 @@ function setBilling(period) {
     window.aishTrack && window.aishTrack('Outbound', 'click', label);
   });
 })();
+
+
+/* ── Hero switch (Browser | Bookmarklet) + old #bookmarklet deep links ── */
+(function () {
+  // The generator moved to its own page; keep old index.html#bookmarklet links working.
+  if (location.hash === '#bookmarklet' && document.getElementById('heroPaneBookmarklet')) {
+    location.replace(location.pathname.replace(/[^/]*$/, '') + 'bookmarklet.html');
+    return;
+  }
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.hero-switch-btn'));
+  if (!tabs.length) return;
+  function select(name, focus) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.hero === name;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var pane = document.getElementById(t.getAttribute('aria-controls'));
+      if (pane) pane.hidden = !on;
+      if (on && focus) t.focus();
+    });
+    if (window.aishTrack) window.aishTrack('hero', 'switch', name);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t.dataset.hero); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key, n = null;
+      if (k === 'ArrowRight' || k === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+      else if (k === 'ArrowLeft' || k === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (k === 'Home') n = tabs[0]; else if (k === 'End') n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); select(n.dataset.hero, true); }
+    });
+  });
+  // iOS can't run the extension: start on the bookmarklet there.
+  var ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) select('bookmarklet');
+})();

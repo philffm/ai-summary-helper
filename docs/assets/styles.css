@@ -283,7 +283,7 @@ section{ padding:76px 0; }
 .section-head.center{ text-align:center; }
 .section-head.center p{ margin-left:auto; margin-right:auto; }
 .section-head .eyebrow{ margin-bottom:12px; }
-.section-head h2{ font-family:var(--font-display); font-size:clamp(26px, 3.4vw, 36px); font-weight:600; letter-spacing:-0.015em; margin:0 0 10px; }
+.section-head h1, .section-head h2{ font-family:var(--font-display); font-size:clamp(26px, 3.4vw, 36px); font-weight:600; letter-spacing:-0.015em; margin:0 0 10px; }
 .section-head p{ color:var(--paper-dim); font-size:16.5px; line-height:1.6; max-width:520px; margin:0; }
 
 /* ── Feature grid ────────────────────────────────────────────────── */
@@ -578,3 +578,27 @@ footer .copyright{ font-size:13px; color:var(--steel-400); margin-top:18px; line
 }
 .bookmarklet-browser-note a{ color:var(--signal); }
 .bookmarklet-browser-note a:hover{ color:var(--signal-light); }
+
+/* ── Hero switch: Browser extension | Bookmarklet (teaser) ──────────── */
+.hero-switch{
+  display:inline-flex; gap:4px; padding:4px; margin:0 auto 22px;
+  background:var(--surface-1); border:1px solid var(--border-medium); border-radius:999px;
+}
+.hero-switch-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border:0; border-radius:999px;
+  background:transparent; color:var(--paper-dim); font:500 14px var(--font-body); cursor:pointer;
+  transition:background .2s ease, color .2s ease;
+}
+.hero-switch-btn svg{ width:18px; height:18px; flex-shrink:0; }
+.hero-switch-btn:hover{ color:var(--paper); }
+.hero-switch-btn.active{ background:var(--cta-sky-2); color:#08101F; }
+.hero-pane[hidden]{ display:none; }
+.hero-pane-blurb{ max-width:520px; margin:0 auto 20px; color:var(--paper-dim); font-size:16px; line-height:1.55; }
+.hero-pane{ animation:heroPaneIn .25s ease; }
+@keyframes heroPaneIn{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:none;} }
+@media (prefers-reduced-motion: reduce){ .hero-pane{ animation:none; } .hero-switch-btn{ transition:none; } }
+.bm-back{ padding-top:28px; }
+.bm-back .btn-link{ color:var(--paper-dim); font-size:14px; text-decoration:none; }
+.bm-back .btn-link:hover{ color:var(--paper); }
+#bookmarklet.bookmarklet-page{ padding-top:24px; }
+@media (max-width:420px){ .hero-switch-btn{ padding:9px 13px; font-size:13px; white-space:nowrap; } .hero-switch-btn svg{ display:none; } }
