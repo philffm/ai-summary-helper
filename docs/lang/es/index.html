@@ -27,8 +27,8 @@
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
 <meta property="og:type" content="website">
 
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"><script src="../../assets/analytics.js"></script>
-</head>
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
 <body>
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -46,9 +46,9 @@
     </div>
     <div class="nav-desktop-group nav-desktop-links">
       <nav class="links" aria-label="Primary">
-        <a href="#features">Funciones</a>
-        <a href="#digest">Digest</a>
-        <a href="#pricing">Precios</a>
+        <a href="index.html#features">Funciones</a>
+        <a href="index.html#digest">Digest</a>
+        <a href="index.html#pricing">Precios</a>
         <a href="blog/">Blog</a>
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       </nav>
@@ -64,9 +64,9 @@
   </div>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mobile-menu-inner">
-      <a href="#features">Funciones</a>
-      <a href="#digest">Digest</a>
-      <a href="#pricing">Precios</a>
+      <a href="index.html#features">Funciones</a>
+      <a href="index.html#digest">Digest</a>
+      <a href="index.html#pricing">Precios</a>
       <a href="blog/">Blog</a>
       <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       <a href="https://byphil.eu/#account">Mi cuenta</a>
@@ -88,11 +88,29 @@
       <div class="eyebrow"><span class="dash"></span> Extensión de Chrome · Parte de byphil. <span class="dash"></span></div>
       <h1>Resume la web.<br><em>Conserva lo importante.</em></h1>
       <p class="sub">AI Summary Helper sigue tus sitios favoritos con un lector RSS integrado, guarda cualquier página como un artículo resumido con búsqueda y te ayuda a retomarlo fácilmente con un boletín generado en tu dispositivo que envía lecturas sin conexión directo a tu Kindle u otro equipo.</p>
-      <div class="hero-cta">
-        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Añadir a Chrome — es gratis</a>
-        <a href="#bookmarklet" class="btn-secondary">¿Sin instalación? Usa el bookmarklet</a>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          Extensión de navegador
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Bookmarklet
+        </button>
       </div>
-      <p class="hero-meta">No requiere crear cuenta · Usa tu propia clave de IA o ejecútalo completamente sin conexión con Ollama</p>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Añadir a Chrome — es gratis</a>
+        </div>
+        <p class="hero-meta">No requiere cuenta para empezar · La mayoría de los modelos LLM a través de la byPhil API, tu propia clave de IA o totalmente offline con Ollama</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">Un enlace en tu barra de marcadores, cualquier navegador, cualquier sistema operativo, incluido iOS. Sin instalación: el resumen aparece directamente en la página.</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">Crea tu bookmarklet →</a>
+        </div>
+        <p class="hero-meta">Abre el generador · la mayoría de los modelos LLM a través de la byPhil API (sin clave) o tu propio OpenAI, Gemini, Mistral, DeepSeek u Ollama</p>
+      </div>
     </div>
   </section>
 
@@ -165,7 +183,7 @@
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>Más de 20 idiomas, multiplataforma</h3>
-          <p>Lee y resume en el idioma que prefieras. Extensión, panel lateral nativo o bookmarklet para cualquier lugar al que no llegue la extensión del navegador.</p>
+          <p>Lee y resume en el idioma que elijas. Extensión, panel lateral nativo o <a href="bookmarklet.html">bookmarklet</a> — para llegar a donde la extensión del navegador no alcanza.</p>
         </div>
       </div>
     </div>
@@ -237,133 +255,6 @@
         <div class="eyebrow">Creado al estilo byphil</div>
         <h2>Tu archivo sigue siendo tuyo</h2>
         <p>La búsqueda, la detección de duplicados, la limpieza de etiquetas, el análisis de nivel y tono de lectura y los "artículos similares" se ejecutan por completo en tu navegador: sin servidores ni cuentas obligatorias para aprovecharlo. Lo único que sale de tu equipo es la solicitud de resumen, y solo al proveedor de IA que elijas. Conéctalo a un modelo local de Ollama y ni siquiera eso saldrá de tu equipo.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
-  <section id="bookmarklet">
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Sin necesidad de instalación</div>
-        <h2>Obtener el bookmarklet</h2>
-        <p>Funciona en cualquier navegador y sistema operativo, incluido iOS, donde la extensión no se puede ejecutar. Elige un proveedor, genera un enlace y arrástralo a tu barra de marcadores. Con un solo clic en cualquier página, inserta un resumen con IA directamente en ella.</p>
-      </div>
-
-      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
-
-      <div class="bookmarklet-card reveal" id="bookmarkletCard">
-        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
-          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
-          <button type="button" id="bmModeByok" data-bm-mode="byok">Usa tu propia API key</button>
-        </div>
-
-        <!-- byPhil Cloud mode -->
-        <div class="bookmarklet-mode" id="bmCloudPanel">
-          <p class="bm-hint">Usa tu cuenta de byPhil: no necesitas gestionar ninguna API key. El bookmarklet se conecta a la API de byPhil Cloud mediante tu sesión.</p>
-          <div id="bmCloudAuth">
-            <label class="bm-label" for="bmCloudEmail">Correo electrónico</label>
-            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
-            <button type="button" class="btn-secondary" id="bmCloudSendCode">Enviar código de acceso</button>
-            <div id="bmCloudOtp" hidden="">
-              <label class="bm-label" for="bmCloudCode">Código de verificación</label>
-              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
-              <button type="button" class="btn-secondary" id="bmCloudVerify">Verificar y conectar</button>
-            </div>
-            <p class="bm-hint" id="bmCloudStatus"></p>
-          </div>
-          <div id="bmCloudConnected" hidden="">
-            <p class="bm-hint">✅ Conectado como <strong id="bmCloudEmailLabel"></strong></p>
-            <label class="bm-label" for="bmCloudModel">Modelo</label>
-            <select id="bmCloudModel">
-              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
-            </select>
-            <p class="bm-hint">El modelo utilizado por la API de byPhil Cloud para generar tus resúmenes.</p>
-            <button type="button" class="btn-link" id="bmCloudLogout">Desconectar</button>
-          </div>
-        </div>
-
-        <!-- BYOK mode -->
-        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
-          <label class="bm-label" for="bmProvider">Proveedor</label>
-          <select id="bmProvider">
-            <option value="openai">OpenAI</option>
-            <option value="deepseek">DeepSeek</option>
-            <option value="mistral">Mistral</option>
-            <option value="gemini">Gemini</option>
-            <option value="ollama">Ollama (Local)</option>
-          </select>
-          <p class="bm-hint" id="bmProviderHint"></p>
-
-          <label class="bm-label" for="bmApiKey">API Key</label>
-          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
-          <p class="bm-hint">🔒 Se almacena únicamente en el almacenamiento local de tu navegador. El bookmarklet generado la incluye, por lo que no debes compartirlo.</p>
-        </div>
-
-        <div id="bmConfig">
-          <label class="bm-label" for="bmInsertion">Insertar resumen</label>
-          <select id="bmInsertion">
-            <option value="floating">Ventana flotante</option>
-            <option value="inline">Integrado: haz clic para elegir la ubicación</option>
-          </select>
-          <p class="bm-hint" id="bmInsertionHint">La ventana flotante muestra el resumen superpuesto en una esquina. El modo integrado te permite hacer clic en el punto exacto de la página donde deseas insertar el resumen.</p>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmSpeedRead">
-            <span>Lectura rápida del resumen (RSVP)</span>
-          </label>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmGhostHighlights">
-            <span>Resalta pasajes clave en la página</span>
-          </label>
-          <p class="bm-hint">Resalta de forma sutil los pasajes textuales más importantes del artículo. Los fragmentos destacados también se incluyen al enviar a Kindle, LocalSend, descargar como .MD o compartir.</p>
-
-          <label class="bm-label" for="bmPrompt">Prompt</label>
-          <textarea id="bmPrompt" rows="6">Sección de resumen del artículo con un título creativo que explique el tema en términos sencillos.
-Resumen más detallado (4-5 frases).
-Referencia divertida al tema relacionada con mi experiencia en diseño UX.
-Un toque de humor sobre el tema al estilo de un monólogo de comedia.
-Recomendaciones de libros y contenidos multimedia relacionados.
-Responde a preguntas adicionales de forma seria y atractiva.
-Añade emojis, hashtags, usa HTML, resalta las partes más interesantes, máximo 1000 palabras.</textarea>
-
-          <fieldset class="bm-share-options">
-            <legend class="bm-label">Opciones para compartir</legend>
-            <p class="bm-hint">El resumen siempre se inserta en la página. Opcionalmente, también puedes compartirlo tras generarlo.</p>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareNative">
-              <span>Menú para compartir del sistema</span>
-            </label>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareKindle">
-              <span>Enviar a Kindle</span>
-            </label>
-            <div id="bmKindleConfig" hidden="">
-              <label class="bm-label" for="bmKindleEmail">Email de Kindle</label>
-              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
-              <p class="bm-hint">Requiere conexión con byPhil Cloud. Primero añade <strong>kindle@byphil.eu</strong> a tu lista de remitentes autorizados en Kindle; consulta <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">la guía de Amazon</a>. El plan gratuito incluye 3 envíos a Kindle; para envíos ilimitados se requiere el Support Pass.</p>
-            </div>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareLocalSend">
-              <span>Enviar a LocalSend</span>
-            </label>
-            <div id="bmLocalSendConfig" hidden="">
-              <label class="bm-label" for="bmLocalSendIp">IP de LocalSend</label>
-              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
-              <p class="bm-hint">La dirección IP del dispositivo que ejecuta LocalSend (o KOReader con el plugin de LocalSend) en tu red local.</p>
-            </div>
-          </fieldset>
-
-          <button type="button" class="btn-primary" id="bmGenerate">Generar bookmarklet</button>
-          <div id="bmOutput" hidden="">
-            <p class="bm-hint">Arrastra el siguiente enlace a tu barra de marcadores 🔖 <br>(en iOS, mantén pulsado durante 2 segundos para arrastrar):</p>
-            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 Resumen con IA</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -534,8 +425,9 @@ Añade emojis, hashtags, usa HTML, resalta las partes más interesantes, máximo
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código fuente en GitHub</a>
-        <a href="index.html#bookmarklet">Bookmarklet (sin instalación)</a>
+        <a href="bookmarklet.html">Bookmarklet (sin instalación)</a>
         <a href="privacy.html">Privacidad</a>
+        <a href="#" data-analytics-settings="">Configuración de analítica</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Términos del servicio</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Reembolsos y devoluciones</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Aviso legal</a>

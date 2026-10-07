@@ -27,8 +27,8 @@
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
 <meta property="og:type" content="website">
 
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"><script src="../../assets/analytics.js"></script>
-</head>
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
 <body>
 
 <a href="#main" class="skip-link">सीधे content पर जाएं</a>
@@ -46,9 +46,9 @@
     </div>
     <div class="nav-desktop-group nav-desktop-links">
       <nav class="links" aria-label="Primary">
-        <a href="#features">Features</a>
-        <a href="#digest">Digest</a>
-        <a href="#pricing">Pricing</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#digest">Digest</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="blog/">Blog</a>
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       </nav>
@@ -64,9 +64,9 @@
   </div>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mobile-menu-inner">
-      <a href="#features">Features</a>
-      <a href="#digest">Digest</a>
-      <a href="#pricing">Pricing</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#digest">Digest</a>
+      <a href="index.html#pricing">Pricing</a>
       <a href="blog/">Blog</a>
       <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       <a href="https://byphil.eu/#account">My account</a>
@@ -88,11 +88,29 @@
       <div class="eyebrow"><span class="dash"></span> Chrome Extension · byphil का हिस्सा <span class="dash"></span></div>
       <h1>वेब को Summarize करें।<br><em>जो काम का है, सिर्फ वही रखें।</em></h1>
       <p class="sub">AI Summary Helper built-in RSS reader के ज़रिए आपकी पसंदीदा साइट्स को follow करता है, किसी भी पेज को summarized और searchable article के रूप में save करता है — और on-device digest के साथ offline reading सीधे आपके Kindle या अन्य device पर भेजता है ताकि आप इसे आसानी से पढ़ सकें।</p>
-      <div class="hero-cta">
-        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें — बिल्कुल Free</a>
-        <a href="#bookmarklet" class="btn-secondary">Install नहीं करना? Bookmarklet यूज़ करें</a>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          Browser extension
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Bookmarklet
+        </button>
       </div>
-      <p class="hero-meta">शुरू करने के लिए किसी account की ज़रूरत नहीं · अपनी खुद की AI key इस्तेमाल करें, या Ollama के साथ 100% offline चलाएं</p>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें — बिल्कुल Free</a>
+        </div>
+        <p class="hero-meta">शुरू करने के लिए किसी account की ज़रूरत नहीं · byPhil API के ज़रिए ज़्यादातर LLM models, आपकी अपनी AI key, या Ollama के साथ पूरी तरह offline</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">Bookmarks bar में बस एक link, कोई भी browser, कोई भी OS — iOS सहित। कोई install नहीं; summary सीधे page पर दिखेगी।</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">अपना bookmarklet बनाएं →</a>
+        </div>
+        <p class="hero-meta">Generator ओपन करता है · byPhil API के ज़रिए ज़्यादातर LLM models (no key required), या आपका अपना OpenAI, Gemini, Mistral, DeepSeek या Ollama</p>
+      </div>
     </div>
   </section>
 
@@ -165,7 +183,7 @@
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म</h3>
-          <p>अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या bookmarklet — जहां भी ब्राउज़र एक्सटेंशन काम न करे।</p>
+          <p>अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या <a href="bookmarklet.html">bookmarklet</a> — हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।</p>
         </div>
       </div>
     </div>
@@ -237,133 +255,6 @@
         <div class="eyebrow">byphil के सिद्धांतों पर निर्मित</div>
         <h2>आपका Archive हमेशा आपका ही रहता है</h2>
         <p>Search, duplicate detection, tag cleanup, reading-level और tone scoring, और "similar articles" सब कुछ पूरी तरह आपके ब्राउज़र में चलता है — बिना किसी सर्वर या अकाउंट की ज़रूरत के। आपके डिवाइस से केवल summarization call बाहर जाती है, वह भी केवल आपके चुने हुए AI प्रोवाइडर के पास। इसे local Ollama model से जोड़ें और वह भी पूरी तरह आपके कंप्यूटर पर ही रहेगा।</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
-  <section id="bookmarklet">
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">कोई install की ज़रूरत नहीं</div>
-        <h2>Bookmarklet पाएं</h2>
-        <p>किसी भी browser और OS पर काम करता है — iOS पर भी, जहाँ extension नहीं चल सकता। एक provider चुनें, link generate करें, और इसे अपने bookmarks bar में drag करें। किसी भी page पर बस एक click से सीधे AI summary insert हो जाती है।</p>
-      </div>
-
-      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
-
-      <div class="bookmarklet-card reveal" id="bookmarkletCard">
-        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
-          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
-          <button type="button" id="bmModeByok" data-bm-mode="byok">Bring your own key</button>
-        </div>
-
-        <!-- byPhil Cloud mode -->
-        <div class="bookmarklet-mode" id="bmCloudPanel">
-          <p class="bm-hint">अपने byPhil account का उपयोग करें — कोई API key manage करने की ज़रूरत नहीं। Bookmarklet आपके session के साथ byPhil Cloud API को call करता है।</p>
-          <div id="bmCloudAuth">
-            <label class="bm-label" for="bmCloudEmail">Email</label>
-            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
-            <button type="button" class="btn-secondary" id="bmCloudSendCode">Magic code भेजें</button>
-            <div id="bmCloudOtp" hidden="">
-              <label class="bm-label" for="bmCloudCode">Verification code</label>
-              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
-              <button type="button" class="btn-secondary" id="bmCloudVerify">Verify &amp; connect करें</button>
-            </div>
-            <p class="bm-hint" id="bmCloudStatus"></p>
-          </div>
-          <div id="bmCloudConnected" hidden="">
-            <p class="bm-hint">✅ Connected as <strong id="bmCloudEmailLabel"></strong></p>
-            <label class="bm-label" for="bmCloudModel">Model</label>
-            <select id="bmCloudModel">
-              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
-            </select>
-            <p class="bm-hint">आपकी summaries के लिए byPhil Cloud API द्वारा इस्तेमाल किया जाने वाला model।</p>
-            <button type="button" class="btn-link" id="bmCloudLogout">Disconnect करें</button>
-          </div>
-        </div>
-
-        <!-- BYOK mode -->
-        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
-          <label class="bm-label" for="bmProvider">Provider</label>
-          <select id="bmProvider">
-            <option value="openai">OpenAI</option>
-            <option value="deepseek">DeepSeek</option>
-            <option value="mistral">Mistral</option>
-            <option value="gemini">Gemini</option>
-            <option value="ollama">Ollama (Local)</option>
-          </select>
-          <p class="bm-hint" id="bmProviderHint"></p>
-
-          <label class="bm-label" for="bmApiKey">API Key</label>
-          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
-          <p class="bm-hint">🔒 सिर्फ आपके browser के local storage में सुरक्षित। Generated bookmarklet में यह embed होता है, इसलिए इसे किसी के साथ share न करें।</p>
-        </div>
-
-        <div id="bmConfig">
-          <label class="bm-label" for="bmInsertion">Summary insert करें</label>
-          <select id="bmInsertion">
-            <option value="floating">Floating box</option>
-            <option value="inline">Inline — spot चुनने के लिए click करें</option>
-          </select>
-          <p class="bm-hint" id="bmInsertionHint">Floating box summary को corner overlay में दिखाता है। Inline mode में आप page पर ठीक उस जगह click कर सकते हैं जहाँ summary insert करनी हो।</p>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmSpeedRead">
-            <span>Summary को speed-read करें (RSVP)</span>
-          </label>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmGhostHighlights">
-            <span>पेज पर key passages को ghost-highlight करें</span>
-          </label>
-          <p class="bm-hint">आर्टिकल के सबसे ज़रूरी verbatim passages को हल्के से highlight करता है। Kindle, LocalSend पर भेजते समय, .MD के रूप में download करते समय या share करते समय भी ये highlights शामिल रहते हैं।</p>
-
-          <label class="bm-label" for="bmPrompt">Prompt</label>
-          <textarea id="bmPrompt" rows="6">Article summary section with creative title explaining the article in simple terms.
-More extensive summary with a bit more detail (4-5 sentences).
-Fun reference to the topic related to my competence as a UX designer.
-Humorous take on the topic like a standup comedian.
-Related book and media recommendations.
-Answer additional questions in a serious and engaging way.
-Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</textarea>
-
-          <fieldset class="bm-share-options">
-            <legend class="bm-label">Share options</legend>
-            <p class="bm-hint">Summary हमेशा page पर insert होती है। Generate करने के बाद आप चाहें तो इसे share भी कर सकते हैं।</p>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareNative">
-              <span>System share sheet</span>
-            </label>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareKindle">
-              <span>Kindle पर भेजें</span>
-            </label>
-            <div id="bmKindleConfig" hidden="">
-              <label class="bm-label" for="bmKindleEmail">Kindle email</label>
-              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
-              <p class="bm-hint">इसके लिए byPhil Cloud connection ज़रूरी है। पहले <strong>kindle@byphil.eu</strong> को अपने Kindle के approved senders में जोड़ें — देखें <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon की guide</a>। Free tier में 3 Kindle sends शामिल हैं; unlimited sends के लिए Support Pass आवश्यक है।</p>
-            </div>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareLocalSend">
-              <span>LocalSend पर भेजें</span>
-            </label>
-            <div id="bmLocalSendConfig" hidden="">
-              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
-              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
-              <p class="bm-hint">आपके network पर LocalSend (या LocalSend plugin वाला KOReader) चला रहे device का IP address।</p>
-            </div>
-          </fieldset>
-
-          <button type="button" class="btn-primary" id="bmGenerate">Bookmarklet generate करें</button>
-          <div id="bmOutput" hidden="">
-            <p class="bm-hint">नीचे दिए गए link को अपने bookmarks bar में drag करें 🔖 <br>(iOS पर, drag करने के लिए 2 सेकंड तक दबाकर रखें):</p>
-            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI Summary</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -534,8 +425,9 @@ Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words.</te
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
-        <a href="index.html#bookmarklet">Bookmarklet (बिना install के)</a>
+        <a href="bookmarklet.html">Bookmarklet (बिना install के)</a>
         <a href="privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics settings</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Refunds और Returns</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

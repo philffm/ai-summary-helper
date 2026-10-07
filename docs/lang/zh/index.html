@@ -27,8 +27,8 @@
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
 <meta property="og:type" content="website">
 
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"><script src="../../assets/analytics.js"></script>
-</head>
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
 <body>
 
 <a href="#main" class="skip-link">跳转至主要内容</a>
@@ -46,9 +46,9 @@
     </div>
     <div class="nav-desktop-group nav-desktop-links">
       <nav class="links" aria-label="Primary">
-        <a href="#features">功能特性</a>
-        <a href="#digest">文摘</a>
-        <a href="#pricing">价格方案</a>
+        <a href="index.html#features">功能特性</a>
+        <a href="index.html#digest">文摘</a>
+        <a href="index.html#pricing">价格方案</a>
         <a href="blog/">博客</a>
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       </nav>
@@ -64,9 +64,9 @@
   </div>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mobile-menu-inner">
-      <a href="#features">功能特性</a>
-      <a href="#digest">文摘</a>
-      <a href="#pricing">价格方案</a>
+      <a href="index.html#features">功能特性</a>
+      <a href="index.html#digest">文摘</a>
+      <a href="index.html#pricing">价格方案</a>
       <a href="blog/">博客</a>
       <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       <a href="https://byphil.eu/#account">我的账户</a>
@@ -88,11 +88,29 @@
       <div class="eyebrow"><span class="dash"></span> Chrome 扩展 · byphil. 旗下产品 <span class="dash"></span></div>
       <h1>智能提炼网页。<br><em>留存核心价值。</em></h1>
       <p class="sub">AI Summary Helper 通过内置 RSS 阅读器追踪你关注的站点，将任意网页保存为带有 AI 总结且可检索的文章——更提供本地生成的阅读文摘，直接发送离线内容至 Kindle 或其他设备，助你轻松重温与深度阅读。</p>
-      <div class="hero-cta">
-        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免费添加到 Chrome</a>
-        <a href="#bookmarklet" class="btn-secondary">无需安装？使用 Bookmarklet</a>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          浏览器扩展
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Bookmarklet
+        </button>
       </div>
-      <p class="hero-meta">无需注册即可使用 · 支持自定义 AI API 密钥，或通过 Ollama 实现完全离线运行</p>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免费添加到 Chrome</a>
+        </div>
+        <p class="hero-meta">无需注册账号即可开始 · 支持通过 byPhil API 调用多数主流 LLM 模型，使用您自有的 API key，或搭配 Ollama 完全离线运行</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">只需在书签栏添加一个链接，适用于任何浏览器与操作系统（包含 iOS）。无需安装，摘要直接在页面呈现。</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">创建您的 Bookmarklet →</a>
+        </div>
+        <p class="hero-meta">打开生成器 · 支持通过 byPhil API 调用多数主流 LLM 模型（无需 API key），或使用您自有的 OpenAI、Gemini、Mistral、DeepSeek 及 Ollama</p>
+      </div>
     </div>
   </section>
 
@@ -165,7 +183,7 @@
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>支持 20 多种语言与跨平台</h3>
-          <p>用您偏好的语言阅读与生成摘要。提供扩展程序、原生侧边栏或书签工具（Bookmarklet），覆盖无法直接安装扩展的场景。</p>
+          <p>使用您自选的语言阅读与生成摘要。支持扩展、原生侧边栏或 <a href="bookmarklet.html">Bookmarklet</a> —— 适用于浏览器扩展无法覆盖的各种场景。</p>
         </div>
       </div>
     </div>
@@ -237,133 +255,6 @@
         <div class="eyebrow">秉承 byphil 的设计哲学</div>
         <h2>您的数据完全由您掌控</h2>
         <p>搜索、内容去重、标签整理、阅读难度与语气评分，以及“相似文章”推荐，全部在您的浏览器本地运行——无需云端服务器，无需注册账户即可使用全部核心能力。唯一需要外发的数据仅为发送至您指定 AI 服务商的摘要请求；若使用本地 Ollama 模型，则所有数据均完全保留在本地。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
-  <section id="bookmarklet">
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">无需安装</div>
-        <h2>获取 Bookmarklet</h2>
-        <p>适用于任何浏览器和操作系统——包括无法运行扩展程序的 iOS。选择服务商，生成链接并拖到书签栏即可。在任意网页上一键点击，即可直接插入 AI 摘要。</p>
-      </div>
-
-      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
-
-      <div class="bookmarklet-card reveal" id="bookmarkletCard">
-        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
-          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
-          <button type="button" id="bmModeByok" data-bm-mode="byok">自带 API key</button>
-        </div>
-
-        <!-- byPhil Cloud mode -->
-        <div class="bookmarklet-mode" id="bmCloudPanel">
-          <p class="bm-hint">使用你的 byPhil 账号——无需管理 API key。Bookmarklet 会通过你的会话直接调用 byPhil Cloud API。</p>
-          <div id="bmCloudAuth">
-            <label class="bm-label" for="bmCloudEmail">邮箱</label>
-            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
-            <button type="button" class="btn-secondary" id="bmCloudSendCode">发送验证码</button>
-            <div id="bmCloudOtp" hidden="">
-              <label class="bm-label" for="bmCloudCode">验证码</label>
-              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
-              <button type="button" class="btn-secondary" id="bmCloudVerify">验证并连接</button>
-            </div>
-            <p class="bm-hint" id="bmCloudStatus"></p>
-          </div>
-          <div id="bmCloudConnected" hidden="">
-            <p class="bm-hint">✅ 已连接为 <strong id="bmCloudEmailLabel"></strong></p>
-            <label class="bm-label" for="bmCloudModel">模型</label>
-            <select id="bmCloudModel">
-              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
-            </select>
-            <p class="bm-hint">byPhil Cloud API 用于生成摘要的模型。</p>
-            <button type="button" class="btn-link" id="bmCloudLogout">断开连接</button>
-          </div>
-        </div>
-
-        <!-- BYOK mode -->
-        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
-          <label class="bm-label" for="bmProvider">服务商</label>
-          <select id="bmProvider">
-            <option value="openai">OpenAI</option>
-            <option value="deepseek">DeepSeek</option>
-            <option value="mistral">Mistral</option>
-            <option value="gemini">Gemini</option>
-            <option value="ollama">Ollama (本地)</option>
-          </select>
-          <p class="bm-hint" id="bmProviderHint"></p>
-
-          <label class="bm-label" for="bmApiKey">API Key</label>
-          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
-          <p class="bm-hint">🔒 仅保存在浏览器的本地存储中。生成的 Bookmarklet 会包含此密钥，请勿分享给他人。</p>
-        </div>
-
-        <div id="bmConfig">
-          <label class="bm-label" for="bmInsertion">摘要呈现方式</label>
-          <select id="bmInsertion">
-            <option value="floating">浮动窗口</option>
-            <option value="inline">页面内嵌——点击选择插入位置</option>
-          </select>
-          <p class="bm-hint" id="bmInsertionHint">浮动窗口会在页面角落浮层展示摘要；页面内嵌则允许你点击网页上的具体位置直接插入摘要。</p>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmSpeedRead">
-            <span>快速阅读摘要 (RSVP)</span>
-          </label>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmGhostHighlights">
-            <span>在页面上以幽灵高亮标出重点段落</span>
-          </label>
-          <p class="bm-hint">以浅色高亮标出文章中最重要的原文段落。发送至 Kindle、LocalSend、下载为 .MD 或分享时，高亮内容也会一并包含。</p>
-
-          <label class="bm-label" for="bmPrompt">Prompt</label>
-          <textarea id="bmPrompt" rows="6">文章摘要部分包含富有创意的标题，用通俗易懂的语言解释文章核心。
-更详尽的摘要，提供稍多细节（4-5 句话）。
-结合我作为 UX 设计师的专业能力，对该主题进行趣味关联。
-以脱口秀演员的风格幽默解读该话题。
-推荐相关的书籍和媒体资源。
-以严谨且引人入胜的方式回答衍生问题。
-添加 Emoji 表情、标签，使用 HTML 格式高亮重点部分，字数上限 1000 字。</textarea>
-
-          <fieldset class="bm-share-options">
-            <legend class="bm-label">分享选项</legend>
-            <p class="bm-hint">摘要始终会插入到页面中。生成后也可以选择将其分享出去。</p>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareNative">
-              <span>系统分享面板</span>
-            </label>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareKindle">
-              <span>发送到 Kindle</span>
-            </label>
-            <div id="bmKindleConfig" hidden="">
-              <label class="bm-label" for="bmKindleEmail">Kindle 邮箱</label>
-              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
-              <p class="bm-hint">需要连接 byPhil Cloud。请先将 <strong>kindle@byphil.eu</strong> 添加到 Kindle 已认可的发件人列表中——参见 <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">亚马逊官方指南</a>。免费方案包含 3 次 Kindle 发送；购买 Support Pass 可享无限次发送。</p>
-            </div>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareLocalSend">
-              <span>发送到 LocalSend</span>
-            </label>
-            <div id="bmLocalSendConfig" hidden="">
-              <label class="bm-label" for="bmLocalSendIp">LocalSend IP</label>
-              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
-              <p class="bm-hint">局域网中运行 LocalSend（或搭载 LocalSend 插件的 KOReader）设备的 IP 地址。</p>
-            </div>
-          </fieldset>
-
-          <button type="button" class="btn-primary" id="bmGenerate">生成 Bookmarklet</button>
-          <div id="bmOutput" hidden="">
-            <p class="bm-hint">将下方链接拖动到你的书签栏 🔖 <br>（在 iOS 上，按住 2 秒后再拖动）：</p>
-            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI 摘要</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -534,8 +425,9 @@
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
-        <a href="index.html#bookmarklet">Bookmarklet（免安装）</a>
+        <a href="bookmarklet.html">Bookmarklet（免安装）</a>
         <a href="privacy.html">隐私</a>
+        <a href="#" data-analytics-settings="">数据分析设置</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">服务条款</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">退款与退换政策</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
