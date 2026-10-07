@@ -1,3 +1,4 @@
+import { pageKeyForUrl as pageKeyFromUrl } from './pageKey.js';
 import { SK } from './storageKeys.js';
 // annotationExporter.js
 // Builds an HTML "Highlights & Notes" section for a saved article from the
@@ -12,14 +13,7 @@ import { SK } from './storageKeys.js';
  * article URL even if the article has query params/fragments appended.
  */
 function pageKeyForUrl(url) {
-    if (!url) return '';
-    try {
-        const u = new URL(url);
-        return `${u.origin}${u.pathname}`;
-    } catch (_) {
-        // Fall back to stripping query/fragment heuristically.
-        return url.split('#')[0].split('?')[0];
-    }
+    return url ? pageKeyFromUrl(url) : '';
 }
 
 /**

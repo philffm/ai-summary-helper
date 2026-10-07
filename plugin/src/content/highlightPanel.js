@@ -38,6 +38,7 @@ const HLP_CSS = `
   .acts { display: flex; gap: 10px; margin-top: 6px; font-size: 12px; }
   .acts button { all: unset; cursor: pointer; font-weight: 600; color: #2563eb; } .acts .rm { color: #dc2626; }
   .hint { font-size: 12px; background: #fef3c7; border-radius: 8px; padding: 6px 8px; margin-bottom: 8px; }
+  .hide { all: unset; cursor: pointer; font-size: 11px; color: #6b7280; text-decoration: underline; }
   .x { all: unset; cursor: pointer; color: #6b7280; font-size: 16px; }
   @media (prefers-color-scheme: dark) {
     .panel { background: #1f2937; color: #f3f4f6; border-color: #374151; } .item { border-color: #374151; } .chip { background: #1f2937; color: #f3f4f6; border-color: #4b5563; }
@@ -91,6 +92,7 @@ export function hlpRender(items, actions) {
           ${i.type === 'ghost' && i.status !== 'lost' ? '<button data-act="keep">Keep</button>' : ''}
           <button class="rm" data-act="remove">${i.type === 'ghost' ? 'Dismiss' : 'Remove'}</button>
         </div></div>`).join('') || '<div class="meta">Nothing here.</div>'}
+      ${actions.hideSite ? `<div class="foot"><button class="hide" data-act="hidesite">Don’t show highlights on ${hlpEsc(location.hostname.replace(/^www\./, ''))}</button></div>` : ''}
       <div class="foot"><span class="meta">${items.filter(i => i.type === 'user').length ? `${items.filter(i => i.type === 'user').length} of your highlights become the focus` : 'Summarizes this page'}</span>
         <button class="go" data-act="summarize" ${hlpBusy ? 'disabled' : ''}>${hlpBusy ? '⏳ Summarizing…' : '✨ Summarize page'}</button></div>
     </div>` : ''}`;
@@ -102,6 +104,7 @@ export function hlpRender(items, actions) {
     if (t.dataset.filter) { hlpFilter = t.dataset.filter; hlpRender(hlpLast.items, hlpLast.actions); return; }
     const act = t.dataset.act;
     if (act === 'toggle') { hlpOpen = !hlpOpen; hlpRender(hlpLast.items, hlpLast.actions); return; }
+    if (act === 'hidesite') { if (actions.hideSite) actions.hideSite(); return; }
     if (act === 'summarize') {
       if (hlpBusy || !actions.summarize) return;
       hlpBusy = true; hlpRender(hlpLast.items, hlpLast.actions);

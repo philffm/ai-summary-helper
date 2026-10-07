@@ -517,6 +517,19 @@ function initGeneralSettings(storageData) {
             autoSave('ghostHighlightAmount', ghostHighlightAmount.value);
         });
     }
+
+    // ── Sites where the on-page highlights panel stays hidden ─────
+    const excludedSites = document.getElementById('highlightExcludedSites');
+    if (excludedSites) {
+        const list = Array.isArray(storageData.highlightExcludedSites) ? storageData.highlightExcludedSites : [];
+        excludedSites.value = list.join('\n');
+        excludedSites.addEventListener('change', () => {
+            const hosts = excludedSites.value.split(/[\s,]+/)
+                .map(h => h.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, ''))
+                .filter(Boolean);
+            autoSave('highlightExcludedSites', [...new Set(hosts)]);
+        });
+    }
 }
 
 // ── Section: Bookmarklet Generator ───────────────────────────────────

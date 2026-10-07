@@ -8,6 +8,7 @@ import { SK } from '../modules/storageKeys.js';
 
 import { ancScopeRoot, ancBuildIndex, ancMakeSelector, ancResolve, ancToRange, ancQuoteUsable, ancNormalize } from './anchor.js';
 import { hlpRender } from './highlightPanel.js';
+import { pageKeyForUrl, isNoisePage } from '../modules/pageKey.js';
 
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
 let annotationObserver = null;
@@ -27,13 +28,26 @@ export function setHighlightingEnabled(user, ai) {
 }
 
 export function isAnyHighlightingEnabled() {
-  return userHighlightingEnabled || aiHighlightingEnabled;
+  return (userHighlightingEnabled || aiHighlightingEnabled) && !isHighlightingSuppressed();
 }
 
-// Stable per-page key: origin + pathname only.
+// Stable per-page key: origin + pathname (+ content-identifying params such as LinkedIn's currentJobId).
 function getPageKey() {
-  return `${window.location.origin}${window.location.pathname}`;
+  return pageKeyForUrl(window.location.href);
 }
+
+// Sites the user switched the highlights UI off for (sync storage), plus built-in feed-like pages.
+let hlExcludedHosts = [];
+try {
+  chrome.storage.sync.get(['highlightExcludedSites'], (r) => { hlExcludedHosts = Array.isArray(r && r.highlightExcludedSites) ? r.highlightExcludedSites : []; });
+  chrome.storage.onChanged.addListener((ch, area) => {
+    if (area === 'sync' && ch.highlightExcludedSites) {
+      hlExcludedHosts = Array.isArray(ch.highlightExcludedSites.newValue) ? ch.highlightExcludedSites.newValue : [];
+      scheduleRestoreAnnotations(60);
+    }
+  });
+} catch (e) { /* context gone */ }
+export function isHighlightingSuppressed() { return isNoisePage(window.location.href, hlExcludedHosts); }
 let lastObservedUrl = getPageKey();
 
 // Live registry: annotation id → { ann, range, status: 'ok'|'ambiguous'|'lost', marks: [] }
@@ -346,6 +360,7 @@ export function startAnnotationWatchers() {
 // ── Restore ──────────────────────────────────────────────────────────────────
 
 export function restoreAnnotations() {
+  if (isHighlightingSuppressed()) { clearHighlightElements(); hlpRender([], {}); return; }
   if (!isAnyHighlightingEnabled()) return;
   getNormalizedAnnotations((annotations) => {
     const currentUrl = getPageKey();
@@ -436,7 +451,7 @@ export function scheduleRestoreAnnotations(delay = 160) {
 // ── 1. Selecting text ────────────────────────────────────────────────────────
 
 export function handleTextSelection(event) {
-  if (!userHighlightingEnabled) return;
+  if (!userHighlightingEnabled || isHighlightingSuppressed()) return;
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return;
 
@@ -740,14 +755,31 @@ function hlRefreshPanel() {
   clearTimeout(hlPanelTimer);
   hlPanelTimer = setTimeout(() => {
     const docH = Math.max(document.documentElement.scrollHeight, 1);
-    const items = [...hlLive.values()].map(e => {
+    if (isHighlightingSuppressed()) { hlpRender([], {}); return; }
+    const seen = new Map();
+    for (const e of hlLive.values()) {           // same quote saved several times: show one row (prefer one that is attached)
+      const k = e.ann.type + '|' + e.ann.text;
+      const cur = seen.get(k);
+      if (!cur || (cur.status === 'lost' && e.status !== 'lost')) seen.set(k, e);
+    }
+    const items = [...seen.values()].map(e => {
       let frac = null;
       if (e.range && e.status !== 'lost') {
         try { const r = e.range.getBoundingClientRect(); frac = Math.min(1, Math.max(0, (r.top + window.scrollY) / docH)); } catch (err) { /* detached */ }
       }
       return { id: e.ann.id, type: e.ann.type, text: e.ann.text, status: e.status, frac };
     });
+    // Nothing could be attached on this page (feed that changed, other content under the same URL): stay quiet.
+    if (items.length && items.every(i => i.status === 'lost')) { hlpRender([], {}); return; }
     hlpRender(items, {
+      hideSite: () => {
+        const host = window.location.hostname.replace(/^www\./, '').toLowerCase();
+        chrome.storage.sync.get(['highlightExcludedSites'], (r) => {
+          const list = Array.isArray(r.highlightExcludedSites) ? r.highlightExcludedSites : [];
+          if (!list.includes(host)) list.push(host);
+          chrome.storage.sync.set({ highlightExcludedSites: list });
+        });
+      },
       summarize: () => (hlSummarizeHandler ? hlSummarizeHandler() : undefined),
       jump: hlJump, remove: (id) => hlRemove(id, { dismiss: hlLive.get(id)?.ann.type === 'ghost' }),
       keep: hlKeep, reattach: (id) => { hlReattachId = id; }, pending: () => hlReattachId
