@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const shortCode = option.value.split('-')[0].toUpperCase();
                 if (filter && !text.toLowerCase().includes(lower) && !shortCode.toLowerCase().includes(lower)) return;
                 const btn = document.createElement('button');
-                btn.className = 'tag-btn';
+                btn.className = 'pill pill--sm pill--soft';
                 const flagEmoji = text.split(/\s/)[0] || '🌐';
                 const name = text.split(/\s/).slice(1).join(' ') || shortCode;
                 btn.innerHTML = `<span class="tag-flag">${flagEmoji}</span> ${name}`;
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // If user typed a search term that doesn't match any language, show a "Use custom" chip
             if (filter && languageTagGrid.children.length === 0) {
                 const customBtn = document.createElement('button');
-                customBtn.className = 'tag-btn';
+                customBtn.className = 'pill pill--sm pill--soft';
                 customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${filter}"`;
                 customBtn.title = `Use "${filter}" as custom language code`;
                 customBtn.addEventListener('click', (e) => {
@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     modes.forEach(m => {
                         const btn = document.createElement('button');
-                        btn.className = 'tag-btn';
+                        btn.className = 'pill pill--sm pill--soft';
                         btn.textContent = m.name;
                         if (m.id === connectionMode) btn.classList.add('active');
                         btn.addEventListener('click', async (e) => {
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         modelIdGrid.innerHTML = '';
                         recentCloudModels.forEach(modelId => {
                             const btn = document.createElement('button');
-                            btn.className = 'tag-btn';
+                            btn.className = 'pill pill--sm pill--soft';
                             const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
                             btn.innerHTML = `${shortName} <span class="remove-recent" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>`;
                             if (modelId === activeCloudModel) btn.classList.add('active');
@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                             searchResults.forEach(model => {
                                 const btn = document.createElement('button');
-                                btn.className = 'tag-btn';
+                                btn.className = 'pill pill--sm pill--soft';
                                 btn.textContent = model.name;
                                 if (model.id === activeCloudModel) btn.classList.add('active');
                                 btn.addEventListener('click', async (e) => {
@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 // Add Cloud mode shortcut
                 const cloudBtn = document.createElement('button');
-                cloudBtn.className = 'tag-btn';
+                cloudBtn.className = 'pill pill--sm pill--soft';
                 cloudBtn.textContent = '☁️ Cloud Mode';
                 cloudBtn.style.borderStyle = 'dashed';
                 cloudBtn.addEventListener('click', async (e) => {
@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 Array.from(modelSelect.options).forEach(option => {
                     const btn = document.createElement('button');
-                    btn.className = 'tag-btn';
+                    btn.className = 'pill pill--sm pill--soft';
                     btn.textContent = option.textContent;
                     if (option.selected) btn.classList.add('active');
                     btn.addEventListener('click', (e) => {
@@ -485,7 +485,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 deduped.forEach((modelObj) => {
                     const modelId = modelObj.id;
                     const btn = document.createElement('button');
-                    btn.className = 'tag-btn';
+                    btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
                     btn.innerHTML = `${modelId}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');

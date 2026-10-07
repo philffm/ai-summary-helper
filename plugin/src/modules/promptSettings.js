@@ -86,7 +86,7 @@ function seg(name, items, active) {
 }
 function chips(name, defs, on, labels) {
     return `<div class="ps-chips">${defs.map(f =>
-        `<button type="button" class="ps-chip${on.includes(f.id) ? ' on' : ''}" data-act="${name}" data-v="${f.id}" aria-pressed="${on.includes(f.id)}">${esc(labels[f.id])}</button>`).join('')}</div>`;
+        `<button type="button" class="pill${on.includes(f.id) ? ' on' : ''}" data-act="${name}" data-v="${f.id}" aria-pressed="${on.includes(f.id)}">${esc(labels[f.id])}</button>`).join('')}</div>`;
 }
 
 const TONE_LABELS = () => [['neutral', T('Neutral')], ['casual', T('Casual')], ['formal', T('Formal')]];
@@ -100,8 +100,8 @@ const FEED_LABELS = () => ({ facts: T('Hard facts'), numbers: T('Numbers'), impa
 function testBox(kind) {
     const out = S.test[kind];
     return `<div class="ps-actions">
-        <button type="button" class="ps-btn" data-act="reset">${esc(T('Reset'))}</button>
-        <button type="button" class="ps-btn primary" data-act="test"${S.test.busy ? ' disabled' : ''}>${esc(S.test.busy ? T('Testing…') : T('Test on sample'))}</button>
+        <button type="button" class="button-secondary btn-md" data-act="reset">${esc(T('Reset'))}</button>
+        <button type="button" class="button-primary btn-md" data-act="test"${S.test.busy ? ' disabled' : ''}>${esc(S.test.busy ? T('Testing…') : T('Test on sample'))}</button>
       </div>${out ? `<div class="ps-test" id="psTestOut">${esc(out)}</div>` : ''}`;
 }
 

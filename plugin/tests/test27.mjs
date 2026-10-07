@@ -15,7 +15,7 @@ assert.ok(/Artikel/.test(txt) && /Wortwolke/.test(txt) && /Stimmung im Zeitverla
 assert.ok(box.querySelector('.feed-mt'), 'mood section in History');
 // scoring the 6 unscored (AI mock)
 globalThis.__ai = (m) => ({ ok: true, text: JSON.stringify({ scores: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5], labels: ['a', 'a', 'a', 'a', 'a', 'a'] }) });
-const unscoredBtn = [...box.querySelectorAll('.feed-mt .feed-btn')].find(b => /bewerten/.test(b.textContent));
+const unscoredBtn = [...box.querySelectorAll('.feed-mt .btn-sm')].find(b => /bewerten/.test(b.textContent));
 console.log('btn:', unscoredBtn && unscoredBtn.textContent);
 // the current period has rated items; open day scope where today is rated? just call scoring through the API
 const hm = await import(SRC + 'modules/historyMood.js');
@@ -28,7 +28,7 @@ store.articlesIndex = arts2.slice(); const box2 = w.document.createElement('div'
 mod.initAnalyticsReport(box2, arts2); await tick(50);
 assert.ok(/noch kein Artikel hat eine Stimmung/i.test(box2.querySelector('.feed-mt').textContent));
 globalThis.__ai = () => ({ ok: true, text: JSON.stringify({ scores: Array(12).fill(0.6), labels: Array(12).fill('x') }) });
-const b2 = [...box2.querySelectorAll('.feed-mt .feed-btn')].find(b => /bewerten/.test(b.textContent)); assert.ok(b2, 'score button');
+const b2 = [...box2.querySelectorAll('.feed-mt .btn-sm')].find(b => /bewerten/.test(b.textContent)); assert.ok(b2, 'score button');
 b2.dispatchEvent(new w.MouseEvent('click', { bubbles: true })); await tick(300);
 assert.ok(store.articlesIndex.every(a => typeof a.moodScore === 'number'), 'all scored');
 assert.ok(box2.querySelector('.feed-mt-big'), 're-rendered with an index');

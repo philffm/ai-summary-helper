@@ -37,6 +37,6 @@ click($$('.feed-mt-col.na')[0]); await tick(10);
 assert.ok($('.feed-mt-prog') || /\bn\/a\b/.test($('.feed-mt-big').textContent), 'n/a state');
 // open week hands over to scope pages
 click($$('.feed-mt-sec .ar-view-btn').find(b => b.dataset.view === 'week')); await tick(20);
-click($$('.feed-mt-acts .feed-btn')[0]); await tick(50);
+click($$('.feed-mt-acts .btn-sm')[0]); await tick(50);
 assert.ok($('#feedInsights').hidden, 'insights closed'); assert.ok(!$('#feedRecapCard').hidden, 'recap card shown for week scope');
 console.log('TEST 21 OK');

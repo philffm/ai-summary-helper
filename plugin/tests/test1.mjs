@@ -31,7 +31,7 @@ for (const u of ['https://alpha.example/feed.xml', 'https://beta.example/atom.xm
 }
 assert.equal(store.feedSubs.length, 2);
 assert.equal($('#feedControls').hidden, false);
-console.log('chips:', $$('#feedChipRow .feed-chip').map(b => b.textContent).join(' | '));
+console.log('chips:', $$('#feedChipRow .pill').map(b => b.textContent).join(' | '));
 assert.ok($('#feedChipRow [data-status=unread]').textContent.startsWith('Unread · 5'), 'unread 5');
 // 3 day groups
 const heads = $$('.feed-day-label').map(x => x.textContent);

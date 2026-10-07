@@ -43,8 +43,8 @@ export async function initReviewPrompt(el = document.getElementById('reviewPromp
     el.innerHTML = `<div class="review-card-text"><strong>${T('Enjoying AI Summary Helper?')}</strong>
         <span>${T('A quick review on the Chrome Web Store helps other people find it.')}</span></div>
       <div class="review-card-actions">
-        <button type="button" class="review-btn primary" data-r="rate">${T('⭐ Leave a review')}</button>
-        <button type="button" class="review-btn" data-r="later">${T('Later')}</button>
+        <button type="button" class="button-primary btn-sm" data-r="rate">${T('⭐ Leave a review')}</button>
+        <button type="button" class="button-secondary btn-sm" data-r="later">${T('Later')}</button>
         <button type="button" class="review-link" data-r="never">${T('No thanks')}</button>
       </div>`;
     el.hidden = false;

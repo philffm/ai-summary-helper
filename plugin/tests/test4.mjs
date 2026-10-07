@@ -52,6 +52,6 @@ assert.equal(calls.length, before);
 globalThis.__ai = () => ({ ok: false, error: 'Monthly limit reached' });
 click($('#feedSheetBody .feed-sheet-done'));
 click($('.feed-day-ai')); await tick(50);
-click($('#feedSheetBody .feed-btn')); await tick(50);
+click($('#feedSheetBody .btn-sm')); await tick(50);
 assert.ok($('.feed-error').textContent.includes('Monthly'));
 console.log('TEST 4 OK');

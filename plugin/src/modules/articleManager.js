@@ -1025,7 +1025,7 @@ function buildArticleCard(article) {
     if (article.feedStub && article.url) {
         const sumBtn = document.createElement('button');
         sumBtn.type = 'button';
-        sumBtn.className = 'button-primary feed-btn';
+        sumBtn.className = 'button-primary btn-sm';
         sumBtn.style.marginTop = '8px';
         sumBtn.textContent = '✨ Summarize';
         sumBtn.addEventListener('click', (event) => {

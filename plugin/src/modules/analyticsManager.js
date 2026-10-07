@@ -372,7 +372,7 @@ export function initAnalyticsReport(container, articles) {
             moodStore: moodStoreFor(articles),
             unscored: (from, to) => unscoredIn(articles, from, to),
             onScore: async (list) => {
-                const btns = [...container.querySelectorAll('.feed-mt .feed-btn')];
+                const btns = [...container.querySelectorAll('.feed-mt .btn-sm')];
                 btns.forEach(b => { b.disabled = true; b.textContent = T('Scoring with AI… {a}/{b}', { a: 0, b: list.length }); });
                 try { await scoreArticles(list, (a, b) => btns.forEach(x => { x.textContent = T('Scoring with AI… {a}/{b}', { a, b }); })); }
                 catch (e) { btns.forEach(b => { b.disabled = false; b.textContent = (e && e.message) || T('AI scoring failed'); }); return; }

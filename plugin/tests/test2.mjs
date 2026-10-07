@@ -69,7 +69,7 @@ assert.equal(store.feedItems.filter(i => !i.read).length, before, 'open does not
 // OPML export/import round-trip with folders
 let exported = '';
 globalThis.URL.createObjectURL = (b) => { b.text().then(t => exported = t); return 'blob:y'; };
-click($$('#feedSettingsRoot .feed-btn').find(b => b.textContent.includes('Export'))); await tick(60);
+click($$('#feedSettingsRoot .btn-sm').find(b => b.textContent.includes('Export'))); await tick(60);
 assert.ok(exported.includes('<outline text="Dev"') && exported.includes('xmlUrl="https://a/feed"') && exported.includes('category="Dev"'), 'export has folder + category');
 const opml = `<opml><body><outline text="News"><outline type="rss" text="Gamma" xmlUrl="https://g/feed" category="Tech,/Indie"/><outline text="Delta" xmlUrl="https://d/feed"/></outline><outline text="Loose" xmlUrl="https://l/feed"/></body></opml>`;
 const file = new w.File([opml], 'x.opml', { type: 'text/xml' });

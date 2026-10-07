@@ -803,7 +803,7 @@ function renderFirstRun() {
     const row = el('div', 'feed-add-row');
     const input = el('input');
     input.type = 'text'; input.placeholder = T('Site or feed address…'); input.autocomplete = 'off'; input.spellcheck = false;
-    const add = btn('button-primary feed-btn', T('Add'), () => addFeed(uiRef, input.value, input));
+    const add = btn('button-primary btn-sm', T('Add'), () => addFeed(uiRef, input.value, input));
     add.setAttribute('data-feed-add', '');
     input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
     row.append(input, add);
@@ -822,7 +822,7 @@ function renderEmptyFiltered(hasAny) {
     if (refreshing && !hasAny) { box.textContent = T('Loading…'); return; }
     const unreadMode = ui.status === 'unread' && ui.source === 'all' && ui.date === 'any' && ui.mood === 'any';
     box.append(el('p', null, unreadMode ? T('You’re all caught up. 🎉') : T('Nothing matches these filters.')));
-    box.append(btn('button-secondary feed-btn', unreadMode ? T('Show all items') : T('Clear filters'), () => {
+    box.append(btn('button-secondary btn-sm', unreadMode ? T('Show all items') : T('Clear filters'), () => {
         ui = { source: 'all', status: unreadMode ? 'all' : DEFAULT_STATUS, date: 'any', mood: 'any', sort: 'new' };
         persistUi(); render();
     }));
@@ -987,14 +987,14 @@ function renderCard(item, sm) {
     if (item.snippet) li.appendChild(el('p', 'feed-snippet', item.snippet));
 
     const actions = el('div', 'feed-actions');
-    const sum = btn('button-primary feed-btn feed-sum-btn', hist.summarized ? T('📄 View summary') : T('✨ Summarize'), (e) => { e.stopPropagation(); onSummarizeClick(item); });
+    const sum = btn('button-primary btn-sm feed-sum-btn', hist.summarized ? T('📄 View summary') : T('✨ Summarize'), (e) => { e.stopPropagation(); onSummarizeClick(item); });
     sum.dataset.id = item.id;
     if (sumBusy.has(item.id)) queueMicrotask(() => paintSum(item.id));
-    const open = btn('button-secondary feed-btn', T('Open ↗'), (e) => { e.stopPropagation(); openItem(item, false); });
-    const read = btn('button-secondary feed-btn', item.read ? T('Mark unread') : T('Mark read'), (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true, keep: true }); });
+    const open = btn('button-secondary btn-sm', T('Open ↗'), (e) => { e.stopPropagation(); openItem(item, false); });
+    const read = btn('button-secondary btn-sm', item.read ? T('Mark unread') : T('Mark read'), (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true, keep: true }); });
     if (item.audio) {
         const playing = isPlaying(item.id);
-        const pb = btn('button-primary feed-btn feed-play-btn' + (playing ? ' is-playing' : ''), playing ? T('⏸ Pause') : T('▶ Play'), (e) => { e.stopPropagation(); onPlayClick(item); }, T('Play episode in AISH'));
+        const pb = btn('button-primary btn-sm feed-play-btn' + (playing ? ' is-playing' : ''), playing ? T('⏸ Pause') : T('▶ Play'), (e) => { e.stopPropagation(); onPlayClick(item); }, T('Play episode in AISH'));
         pb.dataset.id = item.id;
         actions.append(pb, open, read, sum);
     } else actions.append(open, read, sum);
@@ -1172,7 +1172,7 @@ function openSourcePicker() {
             const chips = el('div', 'feed-tag-chips');
             tags.forEach(t => {
                 const on = ui.source === 'tag:' + t, n = cnt(i => hasTag(sm.get(i.feedId), t) && !sm.get(i.feedId).muted);
-                const c = el('button', 'feed-tag-chip' + (on ? ' selected' : ''));
+                const c = el('button', 'pill pill--soft feed-tag-chip' + (on ? ' selected' : ''));
                 c.type = 'button'; c.setAttribute('aria-pressed', String(on));
                 c.append(el('span', null, '# ' + t)); if (n) c.append(el('span', 'feed-tag-n', n));
                 c.addEventListener('click', () => choose('tag:' + t));
@@ -1354,7 +1354,7 @@ function openAddSheet() {
     const row = el('div', 'feed-add-row');
     const input = el('input');
     input.type = 'text'; input.placeholder = T('Site or feed address…'); input.autocomplete = 'off'; input.spellcheck = false;
-    const add = btn('button-primary feed-btn', T('Add'), () => addFeed(uiRef, input.value, input));
+    const add = btn('button-primary btn-sm', T('Add'), () => addFeed(uiRef, input.value, input));
     add.setAttribute('data-feed-add', '');
     input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
     row.append(input, add);
@@ -1519,7 +1519,7 @@ function renderRecapCard() {
         if (cv.of) box.append(el('p', 'feed-muted feed-rc-cov', T('{a} of {b} days have a recap', { a: cv.have, b: cv.of })));
     }
     if (stale) box.append(el('p', 'feed-recap-stale', sc === 'day' ? T('New items arrived since this recap — Refresh to include them.') : T('A source recap changed since this one was written — Refresh to include it.')));
-    const act = btn('button-primary feed-btn feed-rc-act', !rec ? T('✨ Recap') : stale ? T('↻ Refresh') : T('✨ Recap') + ' ✓', () => {
+    const act = btn('button-primary btn-sm feed-rc-act', !rec ? T('✨ Recap') : stale ? T('↻ Refresh') : T('✨ Recap') + ' ✓', () => {
         if (sc === 'day') openRecap(ps, dayLabel(ps)); else openRollup(sc, a, rollCtx());
     }, sc === 'day' ? T('AI recap of this day') : sc === 'week' ? T('AI recap of this week, built from its day recaps') : T('AI recap of this month, built from its week and day recaps'));
     box.append(act);
@@ -1566,8 +1566,8 @@ async function openRecap(dayStart, label, source = ui.source) {
         }
         if (stale) body.append(el('p', 'feed-recap-stale', T('New items arrived since this recap — Refresh to include them.')));
         const row = el('div', 'feed-recap-actions');
-        row.append(btn('feed-btn', T('↻ Refresh'), () => run(true)),
-            btn('feed-btn', T('Copy'), async () => {
+        row.append(btn('btn-sm', T('↻ Refresh'), () => run(true)),
+            btn('btn-sm', T('Copy'), async () => {
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); toast(uiRef, T('Recap copied')); }
                 catch (e) { toast(uiRef, T('Copy failed')); }
             }));
@@ -1599,7 +1599,7 @@ async function openRecap(dayStart, label, source = ui.source) {
                 draw(recaps[key], changedSince(recaps[key]).length > 0);
             } catch (e) {
                 body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
-                    btn('feed-btn', T('Try again'), () => run(true)));
+                    btn('btn-sm', T('Try again'), () => run(true)));
             }
             return;
         }
@@ -1615,7 +1615,7 @@ async function openRecap(dayStart, label, source = ui.source) {
             draw(recaps[key], false);
         } catch (e) {
             body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
-                btn('feed-btn', T('Try again'), () => run(true)));
+                btn('btn-sm', T('Try again'), () => run(true)));
         }
     };
     run(false);
@@ -1763,14 +1763,14 @@ function renderFeedSettings() {
     subs.forEach(s => card.append(subRow(s)));
     const addRow = el('div', 'feed-add-row');
     const input = el('input'); input.type = 'text'; input.placeholder = T('Add a site or feed address…'); input.autocomplete = 'off'; input.spellcheck = false;
-    const add = btn('button-secondary feed-btn', T('＋ Add'), () => addFeed(uiRef, input.value, input));
+    const add = btn('button-secondary btn-sm', T('＋ Add'), () => addFeed(uiRef, input.value, input));
     add.setAttribute('data-feed-add', '');
     input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
     addRow.append(input, add);
     const io = el('div', 'feed-actions-row');
     io.id = 'feedOpmlActions';
-    io.append(btn('button-secondary feed-btn', T('📥 Import OPML'), () => els.opmlInput.click()),
-        btn('button-secondary feed-btn', T('📤 Export OPML'), () => { if (!subs.length) return toast(uiRef, T('Nothing to export yet')); exportOpml(); }));
+    io.append(btn('button-secondary btn-sm', T('📥 Import OPML'), () => els.opmlInput.click()),
+        btn('button-secondary btn-sm', T('📤 Export OPML'), () => { if (!subs.length) return toast(uiRef, T('Nothing to export yet')); exportOpml(); }));
     card.append(addRow, io);
     root.append(card);
 

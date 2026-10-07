@@ -120,7 +120,7 @@ export function openRollup(scope, anchor, ctx) {
     const parts = () => buildParts(scope, start, ctx, today);
     const sigsOf = (arr) => Object.fromEntries(arr.map(p => [p.key, recapSig(p.recap)]));
     const changedOf = (cached, P) => P.parts.filter(p => cached.covered[p.key] !== recapSig(p.recap));
-    const fail = (e, retry) => body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')), btn('feed-btn', T('Try again'), retry));
+    const fail = (e, retry) => body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')), btn('btn-sm', T('Try again'), retry));
 
     const rowText = (r) => {
         if (r.kind === 'day') return r.status === 'reused' ? '✨ ' + TN(r.n, '{n} item', '{n} items') : r.status === 'missing' ? TN(r.n, '{n} item', '{n} items') + ' · ' + T('no recap yet') : T('No items');
@@ -176,8 +176,8 @@ export function openRollup(scope, anchor, ctx) {
         }
         if (stale) body.append(el('p', 'feed-recap-stale', T('A source recap changed since this one was written — Refresh to include it.')));
         const row = el('div', 'feed-recap-actions');
-        row.append(btn('feed-btn', T('↻ Refresh'), () => refresh(r)),
-            btn('feed-btn', T('Copy'), async () => {
+        row.append(btn('btn-sm', T('↻ Refresh'), () => refresh(r)),
+            btn('btn-sm', T('Copy'), async () => {
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); ctx.toast(T('Recap copied')); }
                 catch (e) { ctx.toast(T('Copy failed')); }
             }));

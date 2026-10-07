@@ -35,19 +35,19 @@
           <div class="onboarding-auth-box">
             <div id="onboardingEmailStage">
               <input type="email" id="onboardingEmail" placeholder="name@example.com" />
-              <button type="button" id="onboardingSendCodeBtn" class="primary-btn">Sign in / Sign up via Email</button>
+              <button type="button" id="onboardingSendCodeBtn" class="button-primary">Sign in / Sign up via Email</button>
             </div>
 
             <div id="onboardingOtpStep" style="display: none;">
               <p class="input-caption">Enter the code sent to your email.</p>
               <input type="text" id="onboardingOtpCode" placeholder="Enter 6-digit code" inputmode="text" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" />
-              <button type="button" id="onboardingVerifyBtn" class="primary-btn">Verify &amp; Login</button>
+              <button type="button" id="onboardingVerifyBtn" class="button-primary">Verify &amp; Login</button>
               <button type="button" class="btn-link" id="onboardingBackBtn" style="margin-top: 10px; width: 100%; text-align: center;">Wrong email? Go back</button>
             </div>
             <div id="onboardingAuthMessage" class="auth-message"></div>
           </div>
 
-          <button id="onboardingCustomApiBtn" class="tertiary-btn">
+          <button id="onboardingCustomApiBtn" class="button-tertiary">
             I want to use my own Custom API / Local Model
           </button>
         </div>
@@ -558,14 +558,14 @@
           </div>
           <div id="feedChipRow" class="feed-chiprow">
           <div class="feed-chipscroll">
-            <button type="button" class="feed-chip active" data-status="all" data-i18n="f_all_e364">All</button>
-            <button type="button" class="feed-chip" data-status="unread" data-i18n="f_unread_c982">Unread</button>
-            <button type="button" class="feed-chip" data-status="fav" title="Favorites" aria-label="Favorites" data-i18n-title="f_favorites_53ba">★</button>
-            <button type="button" class="feed-chip" data-status="sum" title="Summarized" aria-label="Summarized" data-i18n-title="f_summarized_415a">✓</button>
-            <button type="button" class="feed-chip" data-status="audio" title="Podcasts" aria-label="Podcasts" data-i18n-title="f_podcasts_7c90">🎧</button>
-            <button type="button" class="feed-chip" id="feedMoodChip" aria-pressed="false">😊</button>
+            <button type="button" class="pill active" data-status="all" data-i18n="f_all_e364">All</button>
+            <button type="button" class="pill" data-status="unread" data-i18n="f_unread_c982">Unread</button>
+            <button type="button" class="pill" data-status="fav" title="Favorites" aria-label="Favorites" data-i18n-title="f_favorites_53ba">★</button>
+            <button type="button" class="pill" data-status="sum" title="Summarized" aria-label="Summarized" data-i18n-title="f_summarized_415a">✓</button>
+            <button type="button" class="pill" data-status="audio" title="Podcasts" aria-label="Podcasts" data-i18n-title="f_podcasts_7c90">🎧</button>
+            <button type="button" class="pill" id="feedMoodChip" aria-pressed="false">😊</button>
           </div>
-            <button type="button" id="feedFilterChip" class="feed-chip" aria-haspopup="dialog">Any time ▾</button>
+            <button type="button" id="feedFilterChip" class="pill" aria-haspopup="dialog">Any time ▾</button>
           </div>
           <div id="feedScopeRow" class="feed-scope tabbar" data-tabbar="feed-scope" role="group" aria-label="Recap scope" data-i18n-aria="f_recap_scope_40ec"></div>
         </div>

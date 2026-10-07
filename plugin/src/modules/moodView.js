@@ -33,7 +33,7 @@ export function moodSection(ctx) {
         if (!bs.some(b => b.rated)) {
             body.append(h('p', 'ar-empty', ctx.emptyHint || T('Nothing rated yet — write a ✨ Recap to rate items.')));
             const todo = (ctx.unscored ? ctx.unscored(0, Date.now() + 864e5) : []).slice(0, ctx.scoreMax || 120);
-            if (todo.length && ctx.onScore) { const bt = h('button', 'feed-btn', T('🤖 Score {n} unscored items', { n: todo.length })); bt.type = 'button'; bt.addEventListener('click', () => ctx.onScore(todo)); body.append(bt); }
+            if (todo.length && ctx.onScore) { const bt = h('button', 'btn-sm', T('🤖 Score {n} unscored items', { n: todo.length })); bt.type = 'button'; bt.addEventListener('click', () => ctx.onScore(todo)); body.append(bt); }
             return;
         }
         const sel = mSel != null && bs[mSel] ? mSel : bs.length - 1;
@@ -76,13 +76,13 @@ export function moodSection(ctx) {
             card.append(h('div', 'feed-muted', need > 0 ? T('Only {r} of {n} items are rated', { r: cur.rated, n: cur.t }) : T('Only {r} rated items — at least 5 are needed', { r: cur.rated })));
             const prog = h('div', 'feed-mt-prog'); const fill = h('i'); fill.style.width = (cur.t ? Math.round(cur.rated * 100 / cur.t) : 0) + '%'; prog.append(fill); card.append(prog);
             const todo = ctx.unscored ? ctx.unscored(cur.start, cur.end) : [];
-            if (todo.length) { const bt = h('button', 'feed-btn', T('🤖 Score {n} unscored items', { n: todo.length })); bt.type = 'button'; bt.addEventListener('click', () => ctx.onScore(todo)); card.append(bt); }
+            if (todo.length) { const bt = h('button', 'btn-sm', T('🤖 Score {n} unscored items', { n: todo.length })); bt.type = 'button'; bt.addEventListener('click', () => ctx.onScore(todo)); card.append(bt); }
             else if (need > 0) card.append(h('p', 'feed-muted', T('These items are no longer stored, so they cannot be scored.')));
         }
         const acts = h('div', 'feed-mt-acts');
-        const open = h('button', 'feed-btn', mScope === 'day' ? T('Open day ›') : mScope === 'week' ? T('Open week ›') : T('Open month ›')); open.type = 'button';
+        const open = h('button', 'btn-sm', mScope === 'day' ? T('Open day ›') : mScope === 'week' ? T('Open week ›') : T('Open month ›')); open.type = 'button';
         open.addEventListener('click', () => ctx.onOpen(mScope, cur.start));
-        const rc = h('button', 'feed-btn', T('✨ Recap') + (ctx.hasRecap && ctx.hasRecap(mScope, cur.start) ? ' ✓' : '')); rc.type = 'button';
+        const rc = h('button', 'btn-sm', T('✨ Recap') + (ctx.hasRecap && ctx.hasRecap(mScope, cur.start) ? ' ✓' : '')); rc.type = 'button';
         rc.addEventListener('click', () => ctx.onRecap(mScope, cur.start));
         if (ctx.onOpen) acts.append(open, rc);
         if (acts.children.length) card.append(acts);
