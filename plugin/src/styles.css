@@ -3250,3 +3250,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-suggest-chip { border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); border-radius: var(--radius-full); padding: 4px 12px; font-size: var(--fs-xs); cursor: pointer; }
 .composer-note--page { background: #fef3c7; color: #78350f; border: 1px solid #fde68a; border-radius: var(--radius-lg); padding: 10px 12px; margin: 0; font-size: var(--fs-sm, 13px); }
 .composer-continue { display: block; margin: 8px auto 0; font-size: var(--fs-2xs); text-align: center; }
+
+.sc-stats { margin-left: auto; font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.sc-stats + .sc-timer { margin-left: 8px; }
+.sc-timer { font-variant-numeric: tabular-nums; }

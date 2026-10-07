@@ -4,7 +4,7 @@ import { debug } from './log.js';
 // Handles main screen UI — chat-style summary feed
 
 import StorageManager from './storageManager.js';
-import { T } from './feedI18n.js';
+import { T, TN } from './feedI18n.js';
 import { aiComplete } from './feedAi.js';
 import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
 import { newTurn, buildPrompt, parseAnswer } from './conversation.js';
@@ -70,12 +70,15 @@ export function initMainScreen(ui) {
     // (e.g. a delayed "connecting" message arriving after streaming has
     // already moved the bar further along), so the bar only ever advances.
     let lastShownStreamProgress = 0;
+    let streamPhase = 0;          // 0 starting · 1 waiting for the model · 2 writing (never goes back)
+    let lastPhaseTitle = '';
 
     const addStreamBubble = (modelName = '', mode = 'local') => {
         // Remove any existing stream bubble
         const old = feed.querySelector('.stream-bubble');
         if (old) old.remove();
         lastShownStreamProgress = 0;
+        streamPhase = 0; lastPhaseTitle = '';
 
         const emoji = mode === 'cloud' ? '☁️' : '💻';
         const bubble = document.createElement('div');
@@ -85,6 +88,7 @@ export function initMainScreen(ui) {
           <div class="sc-head">
             <span class="pulse-dot"></span>
             <span id="streamText" class="sc-title">${T('Starting…')}</span>
+            <span id="streamStats" class="sc-stats"></span>
             <span id="streamTimer" class="sc-timer"></span>
           </div>
           <ul id="streamSteps" class="sc-steps" aria-live="polite"></ul>
@@ -410,7 +414,21 @@ export function initMainScreen(ui) {
     // the runtime broadcasts.
     const handleStreamMessage = (msg) => {
         if (msg.action === 'summaryProgress') {
-            updateStream(msg.chunk || 'Working on it…');
+            // Two quiet channels instead of one flickering line: a monotonic phase title and a word counter.
+            const raw = String(msg.chunk || '');
+            const wc = raw.match(/^(\d+) words/);
+            if (wc) {
+                streamPhase = 2;
+                const st = document.getElementById('streamStats');
+                if (st) st.textContent = TN(Number(wc[1]), '{n} word', '{n} words');
+            } else if (/^Receiving data/i.test(raw)) {
+                streamPhase = 2;
+            } else if (/^(Connected|Waiting)/i.test(raw)) {
+                streamPhase = Math.max(streamPhase, 1);
+            }
+            const phaseTitle = ['', T('Waiting for the model…'), T('Writing the summary…')][streamPhase];
+            if (phaseTitle) { if (phaseTitle !== lastPhaseTitle) { lastPhaseTitle = phaseTitle; updateStream(phaseTitle); } }
+            else updateStream(raw || T('Working on it…'));
             if (msg.preview) updateStreamPreview(msg.preview);
             if (typeof msg.progress === 'number') updateStreamProgress(msg.progress);
         }
