@@ -2981,7 +2981,47 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #settingsScreen.st-wide #settingsForm {
   display: grid; grid-template-columns: 300px minmax(0, 720px); column-gap: 24px; align-items: start;
 }
-#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; position: sticky; top: 0; max-height: 100%; overflow-y: auto; padding-bottom: 16px; }
-#settingsScreen.st-wide .settings-panel { grid-column: 2; grid-row: 1; }
+/* two independent scroll areas: the list and the panel scroll on their own */
+#settingsScreen.st-wide { overflow: hidden; }
+#settingsScreen.st-wide #settingsForm { height: 100%; grid-template-rows: minmax(0, 1fr); padding-bottom: 0; }   /* the scroll areas below carry their own bottom room */
+#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: 16px; }
+#settingsScreen.st-wide .settings-panel { grid-column: 2; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: 64px; }   /* room for the floating Save button */
 #settingsScreen.st-wide .settings-back { display: none; }
 #settingsScreen.st-wide .settings-row.active { background: var(--accent-a15, var(--glass-input)); border-color: var(--accent); }
+
+/* ── Analytics: topics over time (stacked columns) ───────────────────────── */
+.ar-topics {
+  --tp-0: #2a78d6; --tp-1: #eb6834; --tp-2: #1baf7a; --tp-3: #eda100; --tp-4: #e87ba4; --tp-5: #008300; --tp-6: #4a3aa7; --tp-7: #e34948; --tp-o: #9ca3af;
+  --tp-gap: var(--glass-base, #fff);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .ar-topics { --tp-0: #3987e5; --tp-1: #d95926; --tp-2: #199e70; --tp-3: #c98500; --tp-4: #d55181; --tp-5: #008300; --tp-6: #9085e9; --tp-7: #e66767; --tp-o: #6b7280; }
+}
+:root[data-theme='dark'] .ar-topics { --tp-0: #3987e5; --tp-1: #d95926; --tp-2: #199e70; --tp-3: #c98500; --tp-4: #d55181; --tp-5: #008300; --tp-6: #9085e9; --tp-7: #e66767; --tp-o: #6b7280; }
+.tp-chart { position: relative; }
+.tp-svg { width: 100%; height: 200px; display: block; overflow: visible; }
+.tp-grid { stroke: var(--outline); stroke-width: 1; opacity: .6; }
+.tp-axis { fill: var(--text-muted); font-size: 10px; }
+.tp-seg { stroke: var(--tp-gap); stroke-width: 2; }
+.tp-s0 { fill: var(--tp-0); } .tp-s1 { fill: var(--tp-1); } .tp-s2 { fill: var(--tp-2); }
+.tp-s3 { fill: var(--tp-3); } .tp-s4 { fill: var(--tp-4); } .tp-s5 { fill: var(--tp-5); } .tp-s6 { fill: var(--tp-6); } .tp-s7 { fill: var(--tp-7); } .tp-so { fill: var(--tp-o); }
+i.tp-s0 { background: var(--tp-0); } i.tp-s1 { background: var(--tp-1); } i.tp-s2 { background: var(--tp-2); }
+i.tp-s3 { background: var(--tp-3); } i.tp-s4 { background: var(--tp-4); } i.tp-s5 { background: var(--tp-5); } i.tp-s6 { background: var(--tp-6); } i.tp-s7 { background: var(--tp-7); } i.tp-so { background: var(--tp-o); }
+.tp-tip { position: absolute; z-index: 2; pointer-events: none; padding: 4px 8px; border-radius: 8px; font-size: var(--fs-sm); white-space: nowrap; color: var(--text-primary); background: var(--glass-base-solid, var(--bg-page)); border: 1px solid var(--glass-border-strong, var(--outline)); box-shadow: var(--shadow-raised); }
+.tp-tip[hidden] { display: none; }
+.tp-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; }
+.tp-leg { display: inline-flex; align-items: center; gap: 6px; padding: 2px 4px; border: 0; background: transparent; color: var(--text-secondary); font-size: var(--fs-sm); cursor: pointer; width: auto; margin: 0; }
+.tp-leg:disabled { cursor: default; }
+.tp-sw { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.tp-details { margin-top: 8px; font-size: var(--fs-sm); color: var(--text-secondary); }
+.tp-details summary { cursor: pointer; }
+.tp-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.tp-table th, .tp-table td { text-align: right; padding: 3px 6px; border-bottom: 1px solid var(--outline); }
+.tp-table th:first-child, .tp-table td:first-child { text-align: left; }
+.tp-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 8px; }
+.tp-topn { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-sm); color: var(--text-secondary); }
+.tp-topn select { width: auto; margin: 0; padding: 4px 8px; font-size: var(--fs-sm); }
+.tp-line { stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.tp-l0 { stroke: var(--tp-0); } .tp-l1 { stroke: var(--tp-1); } .tp-l2 { stroke: var(--tp-2); } .tp-l3 { stroke: var(--tp-3); }
+.tp-l4 { stroke: var(--tp-4); } .tp-l5 { stroke: var(--tp-5); } .tp-l6 { stroke: var(--tp-6); } .tp-l7 { stroke: var(--tp-7); }
+.tp-dot { stroke: var(--tp-gap); stroke-width: 2; }

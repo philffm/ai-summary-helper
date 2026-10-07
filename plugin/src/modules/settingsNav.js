@@ -127,6 +127,7 @@ export function openSettingsPanel(name, targetId) {
     $('settingsHome').hidden = !settingsIsWide() ? true : false;
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = p !== panel; });
     if (screenEl) screenEl.scrollTop = 0;
+    panel.scrollTop = 0;
     if (targetId) {
         // Wait a frame so the panel is laid out before scrolling.
         requestAnimationFrame(() => {

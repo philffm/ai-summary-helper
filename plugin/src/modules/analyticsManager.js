@@ -161,6 +161,7 @@ function defaultActivityView(articles) {
 }
 
 import { T, TN, locale } from './feedI18n.js';
+import { renderTopicsSection } from './topicsChart.js';
 import { moodSection } from './moodView.js';
 import { moodStoreFor, unscoredIn, scoreArticles } from './historyMood.js';
 import StorageManager from './storageManager.js';
@@ -363,6 +364,10 @@ export function initAnalyticsReport(container, articles) {
 
       </div>
     `;
+
+    // Topics over time (stacked tag columns), placed right before the top-categories list
+    const catSection = container.querySelector('.ar-cat-list')?.closest('.ar-section');
+    if (catSection) catSection.before(renderTopicsSection(articles, container));
 
     // Mood over time (needs AI scores on the articles; same card as Feeds insights)
     const mount = container.querySelector('#arMoodMount');
