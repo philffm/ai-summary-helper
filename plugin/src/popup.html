@@ -169,14 +169,14 @@
               <button id="graphScopeInlineToggle" type="button" title="Filtering graph to matches only" aria-label="Switch graph search to highlight mode" style="display:none;padding:4px 9px;border:1px solid var(--outline);border-radius:999px;background:var(--glass-card);color:var(--text-secondary);cursor:pointer;font-size:10px;font-weight:600;white-space:nowrap;">View: Filtered</button>
             </div>
           </div>
-          <button id="selectModeBtn" class="button-secondary history-action-btn" type="button" aria-pressed="false" title="Select summaries to send"><span class="btn-icon" aria-hidden="true">☑️</span><span class="btn-label">Select</span></button>
-          <button id="graphToggleBtn" class="button-secondary history-action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
-          <button id="reportToggleBtn" class="button-secondary history-action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
+          <button id="selectModeBtn" class="button-secondary action-btn" type="button" aria-pressed="false" title="Select summaries to send"><span class="btn-icon" aria-hidden="true">☑️</span><span class="btn-label">Select</span></button>
+          <button id="graphToggleBtn" class="button-secondary action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
+          <button id="reportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
         </div>
         <div id="detailTopBar" style="display:none;gap:8px;margin-bottom:12px;align-items:center;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
-          <button id="detailGraphToggleBtn" class="button-secondary history-action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
-          <button id="detailReportToggleBtn" class="button-secondary history-action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
+          <button id="detailGraphToggleBtn" class="button-secondary action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
+          <button id="detailReportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
           <button id="detailDeleteBtn" class="button-secondary delete-top-button" title="Delete Article" aria-label="Delete Article" style="height:44px;width:44px;flex-shrink:0;">🗑️</button>
         </div>
         <ul id="articleList"></ul>
@@ -544,8 +544,8 @@
         <div id="feedControls">
           <div class="feed-toolbar" id="feedToolbar">
             <input type="text" id="feedSearch" class="feed-search" placeholder="Search feeds…" data-i18n-placeholder="f_search_feeds_2a1e" autocomplete="off" spellcheck="false" />
-            <button type="button" id="feedGraphBtn" class="button-secondary history-action-btn" title="View graph" aria-label="View graph" aria-pressed="false" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
-            <button type="button" id="feedInsightsBtn" class="button-secondary history-action-btn" title="View analytics report" aria-label="View analytics report" aria-pressed="false" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
+            <button type="button" id="feedGraphBtn" class="button-secondary action-btn" title="View graph" aria-label="View graph" aria-pressed="false" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
+            <button type="button" id="feedInsightsBtn" class="button-secondary action-btn" title="View analytics report" aria-label="View analytics report" aria-pressed="false" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
           </div>
           <div class="feed-controlbar">
             <button type="button" id="feedSourcePill" class="feed-source-pill" aria-haspopup="dialog" title="Choose a source" data-i18n-title="f_choose_a_source_99d4">
@@ -553,8 +553,8 @@
               <span id="feedSourceCount" class="feed-source-count"></span>
               <span class="feed-source-caret">▾</span>
             </button>
-            <button type="button" id="feedRefreshBtn" class="feed-square-btn" title="Refresh" aria-label="Refresh" data-i18n-title="f_refresh_aad4">⟳</button>
-            <button type="button" id="feedAddBtn" class="feed-square-btn" title="Add feed" aria-label="Add feed" data-i18n-title="f_add_feed_1688">＋</button>
+            <button type="button" id="feedRefreshBtn" class="button-secondary action-btn" title="Refresh" aria-label="Refresh" data-i18n-title="f_refresh_aad4"><span class="btn-icon" aria-hidden="true">⟳</span></button>
+            <button type="button" id="feedAddBtn" class="button-secondary action-btn" title="Add feed" aria-label="Add feed" data-i18n-title="f_add_feed_1688"><span class="btn-icon" aria-hidden="true">＋</span></button>
           </div>
           <div id="feedChipRow" class="feed-chiprow">
           <div class="feed-chipscroll">

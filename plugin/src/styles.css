@@ -498,7 +498,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  padding: var(--spacing-s-4);
+  padding: 0 var(--spacing-s-4);
   padding-bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4));
   background: var(--glass-base);
   backdrop-filter: blur(32px);
@@ -1312,7 +1312,6 @@ ul#articleList {
 #historyTopBar,
 #detailTopBar {
   position: sticky;
-  top: 0;
   z-index: 25;
   padding: 8px;
   border-radius: var(--radius-md);
@@ -2642,10 +2641,12 @@ text.graph-search-dim {
 .settings-flash { animation: settings-flash 1.8s ease-out; border-radius: var(--radius-sm); }
 @keyframes settings-flash { 0%, 40% { box-shadow: 0 0 0 3px var(--accent-glow); background: var(--accent-glow); } 100% { box-shadow: 0 0 0 3px transparent; background: transparent; } }
 
-/* History toolbar: icon-only by default, icon + text label on wider viewports */
-.history-action-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 44px; min-width: 44px; padding: 0 12px; flex-shrink: 0; white-space: nowrap; }
-.history-action-btn .btn-label { display: none; font-size: 13px; font-weight: 600; }
-@media (min-width: 481px) { .history-action-btn .btn-label { display: inline; } }
+/* Global action button (use with .button-secondary): icon-only by default, icon + label from 481px. Sizes: default 44px, .action-btn--sm 36px. Used in History, Feeds, article detail. */
+.action-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 44px; min-width: 44px; padding: 0 12px; flex-shrink: 0; white-space: nowrap; }
+.action-btn--sm { height: 36px; min-width: 36px; padding: 0 8px; }
+.action-btn .btn-icon { font-size: 16px; line-height: 1; }
+.action-btn .btn-label { display: none; font-size: 13px; font-weight: 600; }
+@media (min-width: 481px) { .action-btn .btn-label { display: inline; } }
 .feed-item { cursor: pointer; }
 .feed-badge { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; line-height: 1.5; background: rgba(16,185,129,0.15); color: #10b981; }
 .feed-btn { width: auto; flex: 0 0 auto; padding: 5px 10px; min-height: 30px; font-size: 12px; font-weight: 600; box-shadow: none; }
@@ -2655,19 +2656,14 @@ text.graph-search-dim {
 /* ── Feeds v2: control bar, chips, day groups, sheets, settings panel ─────── */
 .feed-controlbar { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
 .feed-source-pill {
-  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px;
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px;
   background: var(--glass-input); border: 1px solid var(--outline); border-radius: 10px;
   color: var(--text-primary); font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; box-shadow: none;
 }
 .feed-source-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .feed-source-count { font-size: 12px; font-weight: 700; color: var(--text-muted); }
 .feed-source-caret { color: var(--text-secondary); font-size: 12px; }
-.feed-square-btn {
-  width: 44px; height: 44px; flex-shrink: 0; padding: 0; display: inline-flex; align-items: center; justify-content: center;
-  background: var(--glass-input); border: 1px solid var(--outline); border-radius: 10px; color: var(--text-primary);
-  font-size: 16px; cursor: pointer; box-shadow: none;
-}
-.feed-square-btn:hover, .feed-source-pill:hover { border-color: var(--accent); }
+.feed-source-pill:hover { border-color: var(--accent); }
 #feedRefreshBtn.spinning { opacity: 0.6; animation: feed-spin 1s linear infinite; }
 .feed-chiprow { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
 .feed-chipscroll { flex: 1 1 auto; min-width: 0; display: flex; gap: 6px; align-items: center; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
@@ -2895,7 +2891,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #feedControls.scroll-hidden { transform: translateY(calc(-100% - 8px)); opacity: 0; pointer-events: none; }
 .feed-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
 .feed-search { flex: 1; min-width: 0; margin: 0; } /* otherwise identical to History's #searchInput (global input style) */
-.feed-square-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .feed-graph { width: 100%; height: 56vh; min-height: 320px; border-radius: var(--radius-lg); background: var(--glass-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); overflow: hidden; position: relative; }
 .feed-graph[hidden], .feed-insights[hidden] { display: none; }
 .feed-ins-empty { padding: 20px; text-align: center; }
@@ -3039,7 +3034,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #historyScreen.selecting .article-card.sel-on .sel-box { background: var(--accent); border-color: var(--accent); }
 #historyScreen.selecting .article-card.sel-on .sel-box::after { content: '✓'; }
 #historyScreen.selecting .article-card.not-selectable { opacity: 0.45; cursor: not-allowed; }
-#feedGraphBtn.active, #feedInsightsBtn.active, #selectModeBtn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
+.action-btn.active, .action-btn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
 .sel-bar {
   position: sticky; bottom: 8px; z-index: 20; display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 10px 12px;
   border-radius: 16px; background: var(--glass-base); border: 1px solid var(--glass-border-strong); box-shadow: var(--shadow-raised);
