@@ -20,6 +20,7 @@ import { normalizeUrl } from './textUtils.js';
 import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
 import { T, TN, TU, N_, locale } from './feedI18n.js';
+import { syncSeg } from './segmented.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
@@ -917,10 +918,11 @@ function renderControls() {
     els.sourceCount.textContent = unread ? String(unread) : '';
     els.chipRow.querySelectorAll('[data-status]').forEach(b => {
         const on = b.dataset.status === ui.status;
-        b.classList.toggle('active', on);
+        b.classList.toggle('on', on);
         b.setAttribute('aria-pressed', String(on));
         if (b.dataset.status === 'unread') b.textContent = unread ? T('Unread · {n}', { n: unread }) : T('Unread');
     });
+    syncSeg(els.chipRow.querySelector('.seg'));
     if (els.moodChip) {
         const on = ui.mood === 'pos';
         els.moodChip.classList.toggle('active', on);

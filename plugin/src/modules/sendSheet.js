@@ -7,6 +7,7 @@
 import StorageManager from './storageManager.js';
 import { buildMagazineArticle } from './digestBuilder.js';
 import { T, TN } from './feedI18n.js';
+import { syncSeg, syncSegLater, activateSeg } from './segmented.js';
 import { generateDigestIntro } from './feedAi.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
 
@@ -117,15 +118,17 @@ function shell(title, subtitle) {
 }
 
 function segmented(body, key, options, onChange) {
-    const seg = el('div', 'sendsheet-seg');
+    const seg = el('div', 'sendsheet-seg seg');
+    seg.dataset.seg = 'ss-' + key;
     seg.setAttribute('role', 'radiogroup');
     options.forEach(([v, label]) => {
-        const b = el('button', 'sendsheet-seg-btn' + (state[key] === v ? ' on' : ''), label);
+        const b = el('button', 'sendsheet-seg-btn seg-btn' + (state[key] === v ? ' on' : ''), label);
         b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state[key] === v));
-        b.addEventListener('click', () => { state[key] = v; seg.querySelectorAll('.sendsheet-seg-btn').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', String(on)); }); if (onChange) onChange(); });
+        b.addEventListener('click', () => { state[key] = v; activateSeg(seg, b); if (onChange) onChange(); });
         seg.append(b);
     });
     body.append(seg);
+    syncSegLater(seg);
 }
 
 function row(icon, title, sub, onClick, trail = '›') {
@@ -242,15 +245,16 @@ function introBlock() {
         tg.addEventListener('click', () => { state.intro = on ? 'off' : 'on'; paint(); });
         wrap.append(tg);
         if (on) {
-            const chips = el('div', 'sendsheet-seg'); chips.setAttribute('role', 'radiogroup');
+            const chips = el('div', 'sendsheet-seg seg'); chips.dataset.seg = 'ss-introStyle'; chips.setAttribute('role', 'radiogroup');
             [['short', T('Short')], ['briefing', T('Briefing')], ['personal', T('Personal')]].forEach(([v, label]) => {
-                const b = el('button', 'sendsheet-seg-btn' + (state.introStyle === v ? ' on' : ''), label);
+                const b = el('button', 'sendsheet-seg-btn seg-btn' + (state.introStyle === v ? ' on' : ''), label);
                 b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state.introStyle === v));
                 b.addEventListener('click', () => { state.introStyle = v; paint(); });
                 chips.append(b);
             });
             const hint = { short: T('One sentence'), briefing: T('2–3 sentences'), personal: T('A friendly note to yourself') }[state.introStyle];
             wrap.append(chips, el('div', 'sendsheet-row-s sendsheet-hint', hint));
+            syncSegLater(chips);
         }
     };
     wrap.paint = paint;

@@ -558,11 +558,13 @@
           </div>
           <div id="feedChipRow" class="feed-chiprow">
           <div class="feed-chipscroll">
-            <button type="button" class="feed-chip active" data-status="all" data-i18n="f_all_e364">All</button>
-            <button type="button" class="feed-chip" data-status="unread" data-i18n="f_unread_c982">Unread</button>
-            <button type="button" class="feed-chip" data-status="fav" title="Favorites" aria-label="Favorites" data-i18n-title="f_favorites_53ba">★</button>
-            <button type="button" class="feed-chip" data-status="sum" title="Summarized" aria-label="Summarized" data-i18n-title="f_summarized_415a">✓</button>
-            <button type="button" class="feed-chip" data-status="audio" title="Podcasts" aria-label="Podcasts" data-i18n-title="f_podcasts_7c90">🎧</button>
+            <div class="seg hug" data-seg="feed-status" role="tablist">
+              <button type="button" class="seg-btn on" data-status="all" data-i18n="f_all_e364">All</button>
+              <button type="button" class="seg-btn" data-status="unread" data-i18n="f_unread_c982">Unread</button>
+              <button type="button" class="seg-btn" data-status="fav" title="Favorites" aria-label="Favorites" data-i18n-title="f_favorites_53ba">★</button>
+              <button type="button" class="seg-btn" data-status="sum" title="Summarized" aria-label="Summarized" data-i18n-title="f_summarized_415a">✓</button>
+              <button type="button" class="seg-btn" data-status="audio" title="Podcasts" aria-label="Podcasts" data-i18n-title="f_podcasts_7c90">🎧</button>
+            </div>
             <button type="button" class="feed-chip" id="feedMoodChip" aria-pressed="false">😊</button>
           </div>
             <button type="button" id="feedFilterChip" class="feed-chip" aria-haspopup="dialog">Any time ▾</button>

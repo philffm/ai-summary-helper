@@ -6,6 +6,7 @@ import StorageManager from './storageManager.js';
 import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
+import { syncSeg, syncSegLater } from './segmented.js';
 import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
 import { T, locale } from './feedI18n.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
@@ -34,20 +35,22 @@ export function renderTab() { renderArticles(tabList(historyTab)); }
 
 function buildTabs() {
     const nav = document.createElement('li');
-    nav.className = 'history-tabs';
+    nav.className = 'history-tabs seg';
+    nav.dataset.seg = 'history-tabs';
     nav.setAttribute('role', 'tablist');
     TAB_DEFS.forEach(([id, label]) => {
         const b = document.createElement('button');
         b.type = 'button';
-        b.className = 'history-tab' + (historyTab === id ? ' on' : '');
+        b.className = 'history-tab seg-btn' + (historyTab === id ? ' on' : '');
         b.setAttribute('role', 'tab');
         b.setAttribute('aria-selected', String(historyTab === id));
         b.dataset.tab = id;
         const n = tabList(id).length;
-        b.append(Object.assign(document.createElement('span'), { textContent: label() }), Object.assign(document.createElement('span'), { className: 'history-tab-n', textContent: String(n) }));
+        b.append(Object.assign(document.createElement('span'), { textContent: label() }), Object.assign(document.createElement('span'), { className: 'history-tab-n seg-n', textContent: String(n) }));
         b.addEventListener('click', () => { if (historyTab === id) return; historyTab = id; renderTab(); const f = document.getElementById('searchInput'); if (f && f.value.trim()) filterArticles(); });
         nav.appendChild(b);
     });
+    syncSegLater(nav);
     return nav;
 }
 

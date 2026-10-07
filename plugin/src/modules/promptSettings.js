@@ -5,6 +5,7 @@
 // the builder adds promptBuilder. Feed style lives in sync storage `feedPromptCfg`.
 
 import { T } from './feedI18n.js';
+import { syncAllSegs } from './segmented.js';
 import { aiComplete, generateRecap } from './feedAi.js';
 import {
     ARTICLE_FOCUS, ARTICLE_DEFAULTS, FEED_FOCUS, FEED_DEFAULTS, PHIL_MIX,
@@ -81,8 +82,8 @@ const feedTextOf = st => st.mode === 'custom' ? st.text : buildFeedStyle(st.buil
 
 /* ── rendering ── */
 function seg(name, items, active) {
-    return `<div class="ps-seg" role="group">${items.map(([v, label]) =>
-        `<button type="button" class="ps-seg-btn${v === active ? ' on' : ''}" data-act="${name}" data-v="${esc(v)}" aria-pressed="${v === active}">${esc(label)}</button>`).join('')}</div>`;
+    return `<div class="ps-seg seg" data-seg="ps-${name}" role="group">${items.map(([v, label]) =>
+        `<button type="button" class="ps-seg-btn seg-btn${v === active ? ' on' : ''}" data-act="${name}" data-v="${esc(v)}" aria-pressed="${v === active}">${esc(label)}</button>`).join('')}</div>`;
 }
 function chips(name, defs, on, labels) {
     return `<div class="ps-chips">${defs.map(f =>
@@ -168,6 +169,7 @@ function render() {
     root.innerHTML = `<p class="ps-intro">${esc(T('Customize how the AI writes.'))}</p>
       ${seg('tab', [['articles', T('📄 Full articles')], ['feeds', T('📰 Feeds & briefings')]], S.tab)}
       <div class="ps-body">${S.tab === 'articles' ? articlesHtml() : feedsHtml()}</div>`;
+    syncAllSegs(root);
 }
 
 /* ── actions ── */
