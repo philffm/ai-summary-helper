@@ -20,6 +20,7 @@ import { normalizeUrl } from './textUtils.js';
 import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
 import { T, TN, TU, N_, locale } from './feedI18n.js';
+import { syncTabbar } from './tabbar.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
@@ -1609,9 +1610,10 @@ function renderScopeRow() {
     const cur = effScope();
     // Labels are re-read on every render: the dictionary may finish loading after the row was first built.
     const labels = { feed: T('Feed'), day: T('Day'), week: T('Week'), month: T('Month') };
-    if (!row.children.length) SCOPES.forEach(k => { const b = btn('feed-scope-btn', labels[k], () => setScope(k)); b.dataset.scope = k; row.append(b); });
-    [...row.children].forEach(b => { const on = b.dataset.scope === cur; b.textContent = labels[b.dataset.scope]; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    if (!row.querySelector('.feed-scope-btn')) SCOPES.forEach(k => { const b = btn('feed-scope-btn tabbar-btn', labels[k], () => setScope(k)); b.dataset.scope = k; row.append(b); });
+    row.querySelectorAll('.feed-scope-btn').forEach(b => { const on = b.dataset.scope === cur; b.textContent = labels[b.dataset.scope]; b.classList.toggle('active', on); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
     row.setAttribute('aria-label', T('Recap scope'));
+    syncTabbar(row);
 }
 
 function scopeLabel(sc, ps) {

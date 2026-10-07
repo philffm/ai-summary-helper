@@ -2916,10 +2916,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-ins-pod { grid-template-columns: repeat(3, 1fr); }
 
 /* ── Week / month recaps ─────────────────────────────────────────────── */
-.feed-scope { display: flex; gap: 2px; padding: 3px; margin-top: 8px; border-radius: 10px; background: color-mix(in srgb, var(--text-secondary) 14%, transparent); }
 .feed-scope[hidden] { display: none; }
-.feed-scope-btn { flex: 1; width: auto; border: none; background: transparent; box-shadow: none; padding: 4px 6px; border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
-.feed-scope-btn.active { background: var(--accent); color: var(--on-accent); }
 .feed-recapcard { margin: 0 0 8px; padding: 10px 12px; border: 1px solid var(--glass-border); border-radius: var(--radius-md); background: var(--glass-card); display: flex; flex-direction: column; gap: 6px; }
 .feed-recapcard[hidden] { display: none; }
 .feed-rc-row { display: flex; align-items: center; gap: 8px; }
@@ -3088,10 +3085,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .sendsheet-done-ic { font-size: 36px; }
 
 /* ── History status: tabs, badges, toggle, undo toast ── */
-#articleList > .history-tabs { display: flex; gap: 2px; padding: 3px; margin-bottom: 12px; border-radius: 12px; background: var(--glass-input); list-style: none; }
-.history-tab { flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 7px 4px; border: 0; border-radius: 10px; background: transparent; color: var(--text-muted); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; }
-.history-tab.on { background: var(--seg-on-bg); color: var(--text-primary); font-weight: 600; box-shadow: var(--shadow-card); }
-.history-tab-n { font-size: 11px; font-weight: 400; color: var(--text-muted); }
 .status-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .status-badge { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--tone-read-bg); color: var(--tone-read-fg); }
 .status-badge.sent { background: var(--tone-sent-bg); color: var(--tone-sent-fg); }
@@ -3163,3 +3156,25 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .review-btn { width: auto; padding: 7px 14px; border-radius: 10px; border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: none; }
 .review-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .review-link { width: auto; border: 0; background: transparent; box-shadow: none; padding: 7px 4px; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-left: auto; }
+
+/* ── Tab bar (shared: History tabs, Feed Feed/Day/Week/Month) — underline with sliding brand indicator ── */
+.tabbar { position: relative; display: flex; gap: 0; border-bottom: 1px solid var(--outline); isolation: isolate; box-sizing: border-box; max-width: 100%; }
+.tabbar-btn {
+  position: relative; flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 4px; width: auto;
+  padding: 9px 6px; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--text-muted);
+  font-size: 13px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: color 0.2s ease;
+}
+.tabbar-btn:hover { color: var(--text-secondary); }
+.tabbar-btn.on, .tabbar-btn.active { color: var(--text-primary); font-weight: 600; }
+.tabbar-n { font-size: 11px; font-weight: 400; color: var(--text-muted); }
+.tabbar-ind {
+  position: absolute; left: 0; bottom: -1px; height: 3px; width: var(--tb-w, 0); transform: translateX(var(--tb-x, 0));
+  border-radius: 2px; background: var(--nav-blob-bg); opacity: 0; z-index: 1; pointer-events: none; will-change: transform, width;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s ease;
+}
+.tabbar.tb-ready > .tabbar-ind { opacity: 1; }
+.tabbar.tb-nomove > .tabbar-ind { transition: none; }
+@media (prefers-reduced-motion: reduce) { .tabbar-ind { transition: none; } }
+#articleList > .history-tabs { margin-bottom: 12px; list-style: none; }
+.feed-scope { margin-top: 8px; }
+.feed-scope[hidden] { display: none; }
