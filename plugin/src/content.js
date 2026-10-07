@@ -116,6 +116,7 @@ import {
   // Cache the setting so sync reads don't block event handlers
   let userHighlightingEnabled = true;
   let aiHighlightingEnabled = true;
+  let pendingFeedUrl = '';
 
   chrome.storage.sync.get(['highlightingEnabled', 'userHighlightingEnabled', 'aiHighlightingEnabled'], (data) => {
     const legacy = data.highlightingEnabled !== false;
@@ -309,6 +310,8 @@ import {
 
     if (request.action === 'fetchSummary') {
       const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode, summaryLength: msgSummaryLength } = request;
+      // Original feed link when started from the Feed (page URL may differ after redirects).
+      pendingFeedUrl = request.feedUrl || '';
       sendResponse({ success: true, message: summaryMode === 'extension' ? 'Fetching summary...' : 'Selection started' });
 
       (async () => {
@@ -692,7 +695,7 @@ import {
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore)
+              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : undefined)
                 .then(savedArticle => resolve({ success: true, article: savedArticle }))
                 .catch(err => {
                   console.error('Failed to save article:', err);

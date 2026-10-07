@@ -461,7 +461,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                         if (track) untrackFeedTab(tabId, true);
                         return;
                     }
-                    chrome.tabs.sendMessage(tabId, { action: 'fetchSummary', summaryMode: mode, summaryLength }).catch(() => {});
+                    chrome.tabs.sendMessage(tabId, { action: 'fetchSummary', summaryMode: mode, summaryLength, feedUrl: msg.url }).catch(() => {});
                 };
                 return start;
             };

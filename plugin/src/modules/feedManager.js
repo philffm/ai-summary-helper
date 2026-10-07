@@ -155,16 +155,23 @@ async function carryMoodToHistory() {
     } catch (e) { /* mood carry-over is best effort */ }
 }
 
+// An article matches a feed link by its page URL or the original feed link it was started from.
+function hasUrl(a, key) {
+    return [a.url, a.feedUrl].some(u => u && normalizeUrl(u) === key);
+}
+
 async function loadHistoryMap() {
     const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
     const map = new Map();
     for (const a of articlesIndex) {
-        if (!a.url) continue;
-        const key = normalizeUrl(a.url);
-        const cur = map.get(key) || { fav: false, summarized: false };
-        if (a.favorite) cur.fav = true;
-        if (!a.feedStub) cur.summarized = true;
-        map.set(key, cur);
+        for (const u of [a.url, a.feedUrl]) {
+            if (!u) continue;
+            const key = normalizeUrl(u);
+            const cur = map.get(key) || { fav: false, summarized: false };
+            if (a.favorite) cur.fav = true;
+            if (!a.feedStub) cur.summarized = true;
+            map.set(key, cur);
+        }
     }
     historyByUrl = map;
 }
@@ -180,7 +187,7 @@ export async function reconcileStubs() {
     const drop = new Set();
     for (const stub of stubs) {
         const key = normalizeUrl(stub.url);
-        const real = articlesIndex.filter(a => !a.feedStub && a.url && normalizeUrl(a.url) === key);
+        const real = articlesIndex.filter(a => !a.feedStub && hasUrl(a, key));
         if (!real.length) continue;
         if (stub.favorite) real.forEach(r => { r.favorite = true; });
         drop.add(stub.id);
@@ -195,7 +202,7 @@ export async function reconcileStubs() {
 async function findSummarizedArticle(url) {
     const key = normalizeUrl(url);
     const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
-    const real = articlesIndex.filter(a => !a.feedStub && a.url && normalizeUrl(a.url) === key);
+    const real = articlesIndex.filter(a => !a.feedStub && hasUrl(a, key));
     real.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
     return real[0] || null;
 }
@@ -217,7 +224,7 @@ async function onCardClick(item) {
 async function toggleFavorite(item) {
     const key = normalizeUrl(item.link);
     const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
-    const matches = articlesIndex.filter(a => a.url && normalizeUrl(a.url) === key);
+    const matches = articlesIndex.filter(a => hasUrl(a, key));
     const isFav = matches.some(a => a.favorite);
     let createdStub = false;
 

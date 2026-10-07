@@ -46,7 +46,7 @@ function countWords(html) {
  * doesn't resolve modules/storageManager.js's default export), so the same
  * shape is written by hand here via raw chrome.storage.local calls.
  */
-export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200, moodScore) {
+export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200, moodScore, extra) {
   return new Promise((resolve, reject) => {
     const timestamp = new Date().toISOString();
     const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -62,6 +62,7 @@ export function saveToLocalStorage(content, summary, url, title, description, ta
       lastOpened: timestamp
     };
     if (typeof moodScore === 'number' && isFinite(moodScore)) indexEntry.moodScore = moodScore;
+    if (extra && typeof extra === 'object') Object.assign(indexEntry, extra);
     const record = { content, summary, description };
 
     chrome.storage.local.get({ articlesIndex: [] }, (data) => {
