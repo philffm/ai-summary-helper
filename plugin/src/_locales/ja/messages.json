@@ -1708,5 +1708,119 @@
   },
   "f_leave_a_review_042d": {
     "message": "⭐ レビューを書く"
+  },
+  "f_ai_analysis_986b": {
+    "message": "AI分析"
+  },
+  "f_dismiss_15f3": {
+    "message": "閉じる"
+  },
+  "f_errors_60a6": {
+    "message": "エラー"
+  },
+  "f_feed_preferences_cbd3": {
+    "message": "フィード設定"
+  },
+  "f_lines_00dc": {
+    "message": "折れ線"
+  },
+  "f_mood_over_time_per_category_b78e": {
+    "message": "カテゴリ別ムードの推移"
+  },
+  "f_mute_9f74": {
+    "message": "ミュート"
+  },
+  "f_muted_6630": {
+    "message": "ミュート中"
+  },
+  "f_name_7306": {
+    "message": "名前"
+  },
+  "f_no_items_yet_b28c": {
+    "message": "アイテムはまだありません"
+  },
+  "f_noisy_e255": {
+    "message": "騒がしい"
+  },
+  "f_not_enough_rated_items_yet_bc02": {
+    "message": "評価済みアイテムがまだ足りません"
+  },
+  "f_nothing_here_6e9a": {
+    "message": "該当なし"
+  },
+  "f_other_ff95": {
+    "message": "その他"
+  },
+  "f_rates_the_tone_of_summaries__01bb": {
+    "message": "要約とフィード記事のトーンを評価します。ムードフィルター、グラフ、ソース傾向に使われます。オフにするとムード関連の機能がすべて非表示になります。"
+  },
+  "f_reading_339b": {
+    "message": "読む"
+  },
+  "f_reading_ai_updates_2053": {
+    "message": "閲覧 · AI · 更新"
+  },
+  "f_review_5601": {
+    "message": "確認"
+  },
+  "f_sort_mood_fbdc": {
+    "message": "並び替え: ムード"
+  },
+  "f_sort_name_18c8": {
+    "message": "並び替え: 名前"
+  },
+  "f_sort_read_share_6e08": {
+    "message": "並び替え: 既読率"
+  },
+  "f_sort_unread_7db8": {
+    "message": "並び替え: 未読"
+  },
+  "f_stacked_785e": {
+    "message": "積み上げ"
+  },
+  "f_subscriptions_tags_opml_8892": {
+    "message": "購読 · タグ · OPML"
+  },
+  "f_table_view_c850": {
+    "message": "表で見る"
+  },
+  "f_top_73dc": {
+    "message": "上位"
+  },
+  "f_topics_over_time_f15e": {
+    "message": "トピックの推移"
+  },
+  "f_unmute_72bb": {
+    "message": "ミュート解除"
+  },
+  "f_updates_storage_9d6a": {
+    "message": "更新と保存"
+  },
+  "f_volume_76af": {
+    "message": "件数"
+  },
+  "f_not_scored_ddb8": {
+    "message": "未評価"
+  },
+  "f_source_causes_of_your_negati_a48c": {
+    "message": "{n} 件のソースがネガティブ記事の {p}% を占めています"
+  },
+  "f_source_is_mostly_negative_a413": {
+    "message": "{n} 件のソースはネガティブ寄りです"
+  },
+  "f_sources_are_mostly_negative_3b24": {
+    "message": "{n} 件のソースはネガティブ寄りです"
+  },
+  "f_sources_cause_of_your_negati_1f62": {
+    "message": "{n} 件のソースがネガティブ記事の {p}% を占めています"
+  },
+  "f_mo_read_2188": {
+    "message": "月 {n} 件 · 既読 {r}%"
+  },
+  "f_topics_over_time_ee3b": {
+    "message": "📈 トピックの推移"
+  },
+  "f_mood_483d": {
+    "message": "😊 ムード"
   }
 }
