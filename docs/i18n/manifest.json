@@ -25134,6 +25134,2096 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "7c9350969f2ed563a957edb181bd0bdd024f0c013957251b2053ba66bd0e1db4": {
+      "en": "Browser extension",
+      "translations": {
+        "de": {
+          "text": "Browser-Erweiterung",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Extension de navigateur",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Extensión de navegador",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "浏览器扩展",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "瀏覽器擴充功能",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザ拡張機能",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저 확장 프로그램",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Extensão para navegador",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Browser extension",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tiện ích mở rộng trình duyệt",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7e5a4b817d57848d19000903dbb12822c8585f85cf9a6bf5f05ea74f1ac5053c": {
+      "en": "Bookmarklet",
+      "translations": {
+        "de": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "書籤小工具",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレット",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6c58a9676cf15fd391d68bd204e4839f53bb2bce31fe2e27661e2f72edeb8878": {
+      "en": "No account required to start · Most LLM models through the byPhil API, your own AI key, or fully offline with Ollama",
+      "translations": {
+        "de": {
+          "text": "Kein Konto erforderlich · Die meisten LLM-Modelle über die byPhil-API, mit eigenem KI-Schlüssel oder vollständig offline mit Ollama",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Aucun compte requis pour commencer · La plupart des modèles LLM via l'API byPhil, votre propre clé IA, ou entièrement hors ligne avec Ollama",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "No requiere cuenta para empezar · La mayoría de los modelos LLM a través de la byPhil API, tu propia clave de IA o totalmente offline con Ollama",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无需注册账号即可开始 · 支持通过 byPhil API 调用多数主流 LLM 模型，使用您自有的 API key，或搭配 Ollama 完全离线运行",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無需註冊即可開始 · 透過 byPhil API 支援多數 LLM 模型、使用您自己的 API Key，或搭配 Ollama 完全離線運作",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アカウント登録不要ですぐに使えます · byPhil API経由の各種LLMモデル、ご自身のAPIキー、またはOllamaによる完全オフライン利用に対応",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "계정 없이 바로 시작 · byPhil API를 통한 대부분의 LLM 모델, 보유한 AI 키 사용 또는 Ollama를 통한 완전한 오프라인 실행",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sem necessidade de conta para começar · A maioria dos modelos LLM via API byPhil, sua própria chave de IA ou totalmente offline e gratuito com Ollama",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "शुरू करने के लिए किसी account की ज़रूरत नहीं · byPhil API के ज़रिए ज़्यादातर LLM models, आपकी अपनी AI key, या Ollama के साथ पूरी तरह offline",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không cần tài khoản để bắt đầu · Hỗ trợ hầu hết các mô hình LLM qua byPhil API, khóa AI riêng của bạn, hoặc xử lý hoàn toàn ngoại tuyến với Ollama",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1151d9aecd06ea25bf3e97f3edd646b5186a6d2a9995b7d5e69d964abeb661f2": {
+      "en": "One link in your bookmarks bar, any browser, any OS — including iOS. No install; the summary appears right on the page.",
+      "translations": {
+        "de": {
+          "text": "Ein Link in Ihrer Lesezeichenleiste, für jeden Browser und jedes Betriebssystem – inklusive iOS. Keine Installation erforderlich; die Zusammenfassung erscheint direkt auf der Seite.",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un simple lien dans votre barre de favoris, compatible avec tout navigateur et OS — y compris iOS. Aucune installation requise ; le résumé s'affiche directement sur la page.",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un enlace en tu barra de marcadores, cualquier navegador, cualquier sistema operativo, incluido iOS. Sin instalación: el resumen aparece directamente en la página.",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "只需在书签栏添加一个链接，适用于任何浏览器与操作系统（包含 iOS）。无需安装，摘要直接在页面呈现。",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "只需在書籤列加入一個連結，適用於任何瀏覽器與作業系統（包含 iOS）。免安裝，摘要直接在網頁上即時呈現。",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークバーにリンクを1つ追加するだけ。iOSを含むあらゆるブラウザ・OSに対応。インストール不要で、ページ上に直接要約を表示します。",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마크바에 링크 하나만 추가하면 iOS를 포함한 모든 브라우저와 OS에서 사용할 수 있습니다. 별도 설치 없이 페이지에서 바로 요약을 확인해 보세요.",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um único link na sua barra de favoritos, em qualquer navegador ou sistema operacional — incluindo iOS. Sem instalar nada; o resumo aparece direto na página.",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bookmarks bar में बस एक link, कोई भी browser, कोई भी OS — iOS सहित। कोई install नहीं; summary सीधे page पर दिखेगी।",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ một liên kết trên thanh dấu trang, tương thích mọi trình duyệt và hệ điều hành — bao gồm cả iOS. Không cần cài đặt; bản tóm tắt hiển thị trực tiếp ngay trên trang.",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5c804708ddfb6cb0621f3f2fae8ca7f028bab673c0bf28f5bb2102847a4440b4": {
+      "en": "Create your bookmarklet →",
+      "translations": {
+        "de": {
+          "text": "Bookmarklet erstellen →",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Créer votre bookmarklet →",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Crea tu bookmarklet →",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "创建您的 Bookmarklet →",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "建立您的書籤小工具 →",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレットを作成する →",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿 만들기 →",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Criar seu bookmarklet →",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपना bookmarklet बनाएं →",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tạo bookmarklet của bạn →",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "09063e04befafb6475f066531b351e7fa6640a427a4f07f362adf1da9d789254": {
+      "en": "Opens the generator · most LLM models through the byPhil API (no key), or your own OpenAI, Gemini, Mistral, DeepSeek or Ollama",
+      "translations": {
+        "de": {
+          "text": "Öffnet den Generator · Die meisten LLM-Modelle über die byPhil-API (ohne Schlüssel) oder über Ihren eigenen OpenAI-, Gemini-, Mistral-, DeepSeek- oder Ollama-Zugang",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvre le générateur · La plupart des modèles LLM via l'API byPhil (sans clé requise), ou vos propres clés OpenAI, Gemini, Mistral, DeepSeek ou Ollama",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abre el generador · la mayoría de los modelos LLM a través de la byPhil API (sin clave) o tu propio OpenAI, Gemini, Mistral, DeepSeek u Ollama",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "打开生成器 · 支持通过 byPhil API 调用多数主流 LLM 模型（无需 API key），或使用您自有的 OpenAI、Gemini、Mistral、DeepSeek 及 Ollama",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "開啟產生器 · 透過 byPhil API 支援多數 LLM 模型（免 API Key），或串接您自己的 OpenAI、Gemini、Mistral、DeepSeek 或 Ollama",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ジェネレーターを開く · byPhil API経由（キー不要）の各種LLMモデル、またはご自身のOpenAI、Gemini、Mistral、DeepSeek、Ollamaに対応",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "생성기 열기 · byPhil API(키 불필요)를 통한 대부분의 LLM 모델 지원, 또는 자체 OpenAI, Gemini, Mistral, DeepSeek, Ollama 연동",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abre o gerador · a maioria dos modelos LLM via API byPhil (sem chave), ou sua própria chave da OpenAI, Gemini, Mistral, DeepSeek ou Ollama",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Generator ओपन करता है · byPhil API के ज़रिए ज़्यादातर LLM models (no key required), या आपका अपना OpenAI, Gemini, Mistral, DeepSeek या Ollama",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở trình tạo · Hỗ trợ hầu hết các mô hình LLM qua byPhil API (không cần khóa), hoặc sử dụng OpenAI, Gemini, Mistral, DeepSeek hay Ollama của riêng bạn",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "842e745e748f35bfa0d824de3812dcdaadeeed2c1e27f50aa8f3950fe09c89e0": {
+      "en": "Read and summarize in your language of choice. Extension, native side panel, or",
+      "translations": {
+        "de": {
+          "text": "Lesen und zusammenfassen in der Sprache Ihrer Wahl. Als Erweiterung, natives Seitenpanel oder",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lisez et résumez dans la langue de votre choix. Extension, panneau latéral natif ou",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Lee y resume en el idioma que elijas. Extensión, panel lateral nativo o",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "使用您自选的语言阅读与生成摘要。支持扩展、原生侧边栏或",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "以您偏好的語言閱讀並生成摘要。無論是擴充功能、原生側邊欄，還是",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "お好みの言語で閲覧・要約。拡張機能、ネイティブサイドパネル、または",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "원하는 언어로 읽고 요약해 보세요. 확장 프로그램, 네이티브 사이드 패널, 또는",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Leia e resuma no idioma que preferir. Extensão, painel lateral nativo ou",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đọc và tóm tắt bằng bất kỳ ngôn ngữ nào bạn chọn. Tiện ích mở rộng, thanh bên (side panel) tích hợp, hoặc",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0935a01e19364ed4025e34447e2aa66d0a4e0154deb7e22f8521d0284f508b07": {
+      "en": "— for wherever the browser extension can't reach.",
+      "translations": {
+        "de": {
+          "text": "– für alle Bereiche, die die Browser-Erweiterung nicht erreicht.",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "— pour tous les cas où l'extension de navigateur ne peut pas intervenir.",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "— para llegar a donde la extensión del navegador no alcanza.",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "—— 适用于浏览器扩展无法覆盖的各种场景。",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "—— 專為瀏覽器擴充功能無法涵蓋的場景而生。",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "— 拡張機能が使えない環境でもご利用いただけます。",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "— 브라우저 확장 프로그램을 사용할 수 없는 환경에서도 자유롭게 활용해 보세요.",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "— para onde a extensão do navegador não alcançar.",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "— हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "— giải pháp cho mọi nơi mà tiện ích mở rộng trình duyệt không thể tiếp cận.",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "dc2ec90175ece5f4ec49df4b82d577c71ac733416a6e301a045e486c8073637f": {
+      "en": "bookmarklet",
+      "translations": {
+        "de": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "bookmarklet",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "bookmarklet",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Bookmarklet",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "書籤小工具",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレット",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "bookmarklet",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "bookmarklet",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "bookmarklet",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "606b6f735ae13ff3edade4242410802ef23a3721365c805ec4f7c4fcca75e94b": {
+      "en": "Analytics settings",
+      "translations": {
+        "de": {
+          "text": "Analyse-Einstellungen",
+          "translatedAt": "2026-10-07T22:15:46.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Paramètres d'analyse",
+          "translatedAt": "2026-10-07T22:15:51.060Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Configuración de analítica",
+          "translatedAt": "2026-10-07T22:15:57.156Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "数据分析设置",
+          "translatedAt": "2026-10-07T22:16:05.753Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "數據分析設定",
+          "translatedAt": "2026-10-07T22:16:15.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アナリティクス設定",
+          "translatedAt": "2026-10-07T22:16:19.991Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "분석 설정",
+          "translatedAt": "2026-10-07T22:16:29.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Configurações de analytics",
+          "translatedAt": "2026-10-07T22:16:38.102Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Analytics settings",
+          "translatedAt": "2026-10-07T22:16:44.961Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cài đặt phân tích",
+          "translatedAt": "2026-10-07T22:16:51.039Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "16f09abfece27c1d3005d8f47438c3037bb7472aa785bc050079d6474aadd7ee": {
+      "en": "Last updated: October 2026",
+      "translations": {
+        "de": {
+          "text": "Zuletzt aktualisiert: Oktober 2026",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Dernière mise à jour : octobre 2026",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Última actualización: octubre de 2026",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "最后更新：2026 年 10 月",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "最後更新：2026 年 10 月",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "最終更新日: 2026年10月",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "최종 업데이트: 2026년 10월",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Última atualização: outubro de 2026",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अंतिम अपडेट: अक्टूबर 2026",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cập nhật lần cuối: Tháng 10 năm 2026",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a7cc09fd7ecdef4dd86cfedb5cd33fc54ea24ae844fa85b5735704ddcadd33fe": {
+      "en": "Uninstall feedback",
+      "translations": {
+        "de": {
+          "text": "Feedback zur Deinstallation",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Avis lors de la désinstallation",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Comentarios tras desinstalar",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "卸载反馈",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "解除安裝意見回饋",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アンインストール時のフィードバック",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "삭제 피드백",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Feedback de desinstalação",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अनइंस्टॉल फीडबैक",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phản hồi khi gỡ cài đặt",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f174f92dd71f93709072f8b61a29d0ca3914defc7cb16834aded4fcc7b888f26": {
+      "en": "When you uninstall the extension, Chrome opens a short feedback page on this website. The address contains only the extension version and the number of days it was installed — no identifiers, no page content, no history. Anything you type into the form (a reason, a comment, an optional email if you want a reply) is sent to our survey tool, Formbricks, and is only used to improve the extension. You can close the page without answering.",
+      "translations": {
+        "de": {
+          "text": "Wenn Sie die Erweiterung deinstallieren, öffnet Chrome eine kurze Feedback-Seite auf dieser Website. Die Webadresse enthält lediglich die Version der Erweiterung und die Anzahl der Tage, die sie installiert war – keine Identifikatoren, keine Seiteninhalte, keinen Browserverlauf. Alle Angaben, die Sie in das Formular eingeben (ein Grund, ein Kommentar, eine optionale E-Mail-Adresse für Rückfragen), werden an unser Umfrage-Tool Formbricks übertragen und ausschließlich zur Verbesserung der Erweiterung verwendet. Sie können die Seite jederzeit ohne Eingabe schließen.",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lorsque vous désinstallez l'extension, Chrome ouvre une courte page d'évaluation sur ce site. L'adresse contient uniquement la version de l'extension et le nombre de jours pendant lesquels elle a été installée — aucun identifiant, aucun contenu de page, aucun historique. Tout ce que vous saisissez dans le formulaire (un motif, un commentaire, une adresse e-mail facultative si vous souhaitez une réponse) est transmis à notre outil de sondage, Formbricks, et sert exclusivement à améliorer l'extension. Vous pouvez fermer la page sans y répondre.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cuando desinstalas la extensión, Chrome abre una breve página de comentarios en este sitio web. La dirección contiene únicamente la versión de la extensión y la cantidad de días que estuvo instalada: sin identificadores, sin contenido de páginas y sin historial. Todo lo que escribas en el formulario (un motivo, un comentario o un correo opcional si deseas una respuesta) se envía a nuestra herramienta de encuestas, Formbricks, y solo se utiliza para mejorar la extensión. Puedes cerrar la página sin responder.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "当您卸载该扩展程序时，Chrome 会在官方网站打开一个简短的反馈页面。该 URL 地址仅包含扩展版本和已安装天数——不包含任何身份标识符、页面内容或历史记录。您在表单中填写的任何内容（原因、建议以及希望收到回复时填写的可选邮箱）都会发送至我们的调研工具 Formbricks，且仅用于改进扩展程序。您可以直接关闭该页面而不做任何回答。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "當您解除安裝此擴充功能時，Chrome 會在本網站開啟一個簡短的意見回饋頁面。該網址僅包含擴充功能版本以及安裝的天數——不含任何識別碼、網頁內容或瀏覽紀錄。您在表單中填寫的任何內容（原因、意見，以及若需要回覆可選擇填寫的電子郵件）都會傳送至我們的問卷調查工具 Formbricks，且僅用於改善擴充功能。您可以直接關閉頁面而不做任何回覆。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "拡張機能をアンインストールすると、Chromeによって本サイト上の簡単なフィードバックページが開きます。URLアドレスには拡張機能のバージョンとインストールされていた日数のみが含まれており、識別子、ページコンテンツ、閲覧履歴などは一切含まれません。フォームに入力された内容（理由、コメント、返信を希望する場合の任意のメールアドレス）は、アンケートツールであるFormbricksに送信され、拡張機能の改善のためだけに使用されます。回答せずにページを閉じることも可能です。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "확장 프로그램을 삭제하면 Chrome에서 이 웹사이트의 간단한 피드백 페이지를 엽니다. 해당 주소에는 확장 프로그램 버전과 설치 일수만 포함되며 식별자, 페이지 콘텐츠, 방문 기록 등은 일절 포함되지 않습니다. 양식에 입력하신 내용(이유, 의견, 답변 수신을 위한 선택적 이메일)은 설문 도구인 Formbricks로 전송되며 오직 확장 프로그램 개선 목적으로만 사용됩니다. 응답하지 않고 페이지를 닫으셔도 됩니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quando você desinstala a extensão, o Chrome abre uma página rápida de feedback neste site. O endereço contém apenas a versão da extensão e o número de dias em que ela esteve instalada — sem identificadores, sem conteúdo de páginas e sem histórico. Qualquer coisa que você digitar no formulário (um motivo, um comentário, um e-mail opcional caso queira uma resposta) é enviada para a nossa ferramenta de pesquisas, Formbricks, e é usada exclusivamente para melhorar a extensão. Você pode fechar a página sem responder.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "जब आप extension को uninstall करते हैं, तो Chrome इस वेबसाइट पर एक छोटा फीडबैक पेज खोलता है। URL एड्रेस में केवल extension version और यह कितने दिनों तक install रहा, बस यही शामिल होता है — कोई identifiers नहीं, कोई page content नहीं, और कोई history नहीं। आप फॉर्म में जो कुछ भी टाइप करते हैं (कोई कारण, कमेंट, या रिप्लाई पाने के लिए ऑप्शनल ईमेल) वह हमारे सर्वे टूल, Formbricks को भेजा जाता है, और इसका उपयोग केवल extension को बेहतर बनाने के लिए किया जाता है। आप बिना जवाब दिए भी पेज बंद कर सकते हैं।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Khi bạn gỡ cài đặt tiện ích mở rộng, Chrome sẽ mở một trang phản hồi ngắn trên trang web này. Địa chỉ trang chỉ chứa phiên bản tiện ích và số ngày đã cài đặt — hoàn toàn không có thông tin nhận dạng cá nhân, nội dung trang web hay lịch sử duyệt web. Mọi nội dung bạn nhập vào biểu mẫu (lý do, ý kiến đóng góp, email tùy chọn nếu bạn muốn nhận phản hồi) sẽ được gửi đến công cụ khảo sát của chúng tôi là Formbricks, và chỉ dùng để cải thiện tiện ích mở rộng. Bạn có thể đóng trang này mà không cần trả lời.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "313f8beec5ba9aabf222a0fbbc79bfa1a2da041b77077d481bf6c36caeb39985": {
+      "en": "Analytics & cookies",
+      "translations": {
+        "de": {
+          "text": "Analytics & Cookies",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Statistiques et cookies",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Analítica y cookies",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "数据分析与 Cookie",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "分析與 Cookie",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アナリティクスとCookie",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "분석 및 쿠키",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Métricas e cookies",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Analytics और cookies",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phân tích & cookie",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4975d819c005d260cd561a8f891c4668fad7d98e42b68cb5f8caf240c07bb52a": {
+      "en": "this website sets",
+      "translations": {
+        "de": {
+          "text": "setzt diese Website",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "ce site web ne dépose",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "este sitio web establece",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "本网站",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "本網站設定",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "本ウェブサイトは",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "이 웹사이트는",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "este site não armazena",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "यह वेबसाइट सेट करती है",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "trang web này",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6504023b3cfa66a5c01103cdbef7909013a819a56a1aa4da40e3e5ec1ceacf26": {
+      "en": "and uses no advertising or cross-site trackers. We count anonymous visits with a self-hosted Matomo instance, and you can switch that off at any time.",
+      "translations": {
+        "de": {
+          "text": "und nutzt keinerlei Werbe- oder Cross-Site-Tracker. Wir erfassen anonyme Seitenaufrufe mit einer selbst gehosteten Matomo-Instanz, die Sie jederzeit deaktivieren können.",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "et n'utilise aucun traceur publicitaire ou intersite. Nous comptabilisons les visites de manière anonyme à l'aide d'une instance Matomo auto-hébergée, et vous pouvez désactiver ce suivi à tout moment.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "y no utiliza publicidad ni rastreadores entre sitios. Contabilizamos visitas anónimas con una instancia autohospedada de Matomo, y puedes desactivarlo en cualquier momento.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "，也不使用任何广告或跨站跟踪器。我们通过自托管的 Matomo 实例统计匿名访问数据，您可以随时关闭该统计。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "，且不使用廣告或跨網站追蹤器。我們使用自行託管的 Matomo 統計匿名造訪次數，您可以隨時關閉此功能。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "広告やクロスサイトトラッカーも一切使用していません。セルフホストされたMatomoインスタンスで匿名のアクセス数を集計していますが、いつでも無効にできます。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "광고나 크로스 사이트 트래커를 일절 사용하지 않습니다. 자체 호스팅 Matomo 인스턴스로 익명 방문 데이터만 집계하며, 언제든지 비활성화할 수 있습니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "e não usa rastreadores de anúncios ou entre sites. Contabilizamos visitas anônimas com uma instância própria do Matomo, e você pode desativar isso a qualquer momento.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "और किसी भी विज्ञापन या cross-site trackers का उपयोग नहीं करती है। हम एक self-hosted Matomo instance के साथ anonymous विज़िट्स ट्रैक करते हैं, और आप इसे किसी भी समय बंद कर सकते हैं।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "và không sử dụng bất kỳ trình theo dõi liên trang web hay quảng cáo nào. Chúng tôi đo lường lượt truy cập ẩn danh bằng phiên bản Matomo tự lưu trữ (self-hosted), và bạn có thể tắt tính năng này bất cứ lúc nào.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "083fb20647f5cf5e29d1a51d64db25e4f2cf96a4dcc5629128f4a9d4c547c587": {
+      "en": "Short version:",
+      "translations": {
+        "de": {
+          "text": "Kurzfassung:",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "En résumé :",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "En resumen:",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "简而言之：",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "簡短摘要：",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約:",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "요약:",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Resumo:",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "संक्षेप में:",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt ngắn gọn:",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a46c18cffab80559767cf87a1e9d05763a9a976b5e34c1b8cd4f38dc69567eb8": {
+      "en": "no cookies",
+      "translations": {
+        "de": {
+          "text": "keine Cookies",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "aucun cookie",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "cero cookies",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "不使用任何 Cookie",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "零 Cookie",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Cookieを一切使用せず、",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "쿠키를 전혀 생성하지 않으며",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "nenhum cookie",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई cookies नहीं",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "không dùng cookie",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cf7d2feacb0eae74a274b23c6e75b77b9906840d730347b7229894dc619e3e47": {
+      "en": "What we measure",
+      "translations": {
+        "de": {
+          "text": "Was wir erfassen",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ce que nous mesurons",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Qué medimos",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "我们统计的数据",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "我們衡量的項目",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "収集するデータ",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "수집하는 데이터",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O que medimos",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हम क्या मापते हैं",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Những gì chúng tôi đo lường",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e896e5bc0ee8ffabef717256e9a5931e6c8628e219195d7abcc7a128d8c8f229": {
+      "en": "Page views, the page language, referrer, approximate country/browser/device class, and which parts of the site you interact with (for example clicks on \"Add to Chrome\", the pricing toggle, FAQ items, sections you scroll to, and steps of the bookmarklet generator). Events never contain e-mail addresses, API keys, one-time codes, page content or article data.",
+      "translations": {
+        "de": {
+          "text": "Seitenaufrufe, die Seitensprache, den Referrer, das ungefähre Land bzw. die Browser- und Geräteklasse sowie die Bereiche der Website, mit denen Sie interagieren (beispielsweise Klicks auf „Zu Chrome hinzufügen“, die Preisumschaltung, FAQ-Einträge, gescrollte Abschnitte und Schritte des Bookmarklet-Generators). Ereignisse enthalten zu keinem Zeitpunkt E-Mail-Adressen, API-Schlüssel, Einmalcodes, Seiteninhalte oder Artikeldaten.",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les pages vues, la langue de la page, le site référent, le pays approximatif/le navigateur/le type d'appareil, ainsi que les éléments du site avec lesquels vous interagissez (par exemple les clics sur « Ajouter à Chrome », le sélecteur de tarifs, les éléments de la FAQ, les sections que vous faites défiler et les étapes du générateur de bookmarklet). Les événements ne contiennent jamais d'adresse e-mail, de clé d'API, de code à usage unique, de contenu de page ou de données d'articles.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Páginas vistas, el idioma de la página, referente, país/navegador/tipo de dispositivo aproximado y con qué partes del sitio interactúas (por ejemplo, clics en \"Añadir a Chrome\", el selector de precios, preguntas frecuentes, secciones por las que haces scroll y pasos del generador de marcadores). Los eventos nunca contienen direcciones de correo electrónico, claves de API, códigos de un solo uso, contenido de páginas ni datos de artículos.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "页面浏览量、页面语言、来源网站（referrer）、大致的国家/浏览器/设备类型，以及您与网站各部分的互动（例如点击“Add to Chrome”、价格切换、FAQ 折叠项、页面滚动位置以及小书签生成器的操作步骤）。事件数据绝不包含电子邮件地址、API key、一次性验证码、页面内容或文章数据。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "頁面瀏覽量、頁面語言、推薦來源（Referrer）、概略的國家/瀏覽器/裝置類型，以及您與網站哪些部分進行互動（例如點擊「加到 Chrome」、價格切換開關、常見問題項目、滾動瀏覽的區塊，以及 Bookmarklet 產生器的操作步驟）。事件中絕不包含電子郵件地址、API Key、一次性驗證碼、網頁內容或文章資料。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ページビュー、ページ言語、リファラー、おおよその国・ブラウザ・デバイスの種類、およびサイト内で操作した箇所（例: 「Add to Chrome」のクリック、料金プランの切り替え、FAQ項目、スクロールしたセクション、ブックマークレットジェネレーターの手順など）です。イベントデータにメールアドレス、APIキー、ワンタイムコード、ページコンテンツ、記事データが含まれることは一切ありません。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "페이지 조회수, 페이지 언어, 유입 경로(referrer), 대략적인 국가/브라우저/기기 유형, 사이트 내 상호작용 요소(예: 'Chrome에 추가' 클릭, 요금제 토글, FAQ 항목, 스크롤한 섹션, 북마클릿 생성기 단계 등)를 측정합니다. 이벤트 데이터에는 이메일 주소, API 키, 일회용 코드, 페이지 콘텐츠나 기사 본문 데이터가 절대 포함되지 않습니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Visualizações de página, idioma da página, origem do tráfego (referrer), país aproximado/navegador/tipo de dispositivo e com quais partes do site você interage (por exemplo, cliques em \"Adicionar ao Chrome\", alternador de preços, itens do FAQ, seções pelas quais você navega e etapas do gerador de bookmarklet). Os eventos nunca contêm endereços de e-mail, chaves de API, códigos de uso único, conteúdo de páginas ou dados de artigos.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Page views, पेज की भाषा, referrer, अनुमानित देश/browser/device class, और आप साइट के किन हिस्सों के साथ interact करते हैं (उदाहरण के लिए \"Add to Chrome\" पर क्लिक, pricing toggle, FAQ आइटम्स, वे सेक्शन्स जहाँ आप scroll करते हैं, और bookmarklet generator के स्टेप्स)। इन Events में कभी भी ईमेल एड्रेस, API keys, one-time codes, page content या आर्टिकल डेटा शामिल नहीं होता है।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Lượt xem trang, ngôn ngữ trang, trang giới thiệu (referrer), quốc gia/trình duyệt/loại thiết bị ước tính, và các phần trên trang web mà bạn tương tác (ví dụ: các lượt nhấp vào \"Add to Chrome\", nút chuyển đổi bảng giá, các mục FAQ, các phần bạn cuộn tới và các bước tạo bookmarklet). Các sự kiện thu thập tuyệt đối không chứa địa chỉ email, khóa API, mã dùng một lần, nội dung trang hoặc dữ liệu bài viết.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f8d375320f9c0ec8d3d42a4b31311bb93c3adc5e214591b29f0b7b576879e56c": {
+      "en": "How it is configured",
+      "translations": {
+        "de": {
+          "text": "Wie es konfiguriert ist",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Comment cela est configuré",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cómo está configurado",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "配置说明",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "配置方式",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "設定と仕組み",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "설정 및 운영 방식",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Como é configurado",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसे कैसे कॉन्फ़िगर किया गया है",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cách cấu hình hệ thống",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "53bba3c5720dcae60df29fc9411aea44827eb9661fb2b96a515389b0e1d8d103": {
+      "en": "Matomo runs on our own server (analytics.philwornath.de, Germany), not at a third party. It is loaded with cookies disabled and without browser-feature fingerprinting; IP addresses are anonymised before storage; no user ID or cross-site identifier is assigned, so visits cannot be linked across days or devices. Data is not sold or shared with third parties.",
+      "translations": {
+        "de": {
+          "text": "Matomo läuft auf unserem eigenen Server (analytics.philwornath.de, Deutschland) und nicht bei Dritten. Es wird ohne Cookies und ohne Fingerprinting von Browser-Merkmalen geladen; IP-Adressen werden vor der Speicherung anonymisiert; es werden weder User-IDs noch geräteübergreifende Kennungen vergeben, sodass Besuche nicht über Tage oder Geräte hinweg verknüpft werden können. Daten werden weder verkauft noch an Dritte weitergegeben.",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Matomo fonctionne sur notre propre serveur (analytics.philwornath.de, Allemagne) et non chez un tiers. Il est configuré avec les cookies désactivés et sans empreinte numérique (fingerprinting) du navigateur ; les adresses IP sont anonymisées avant leur enregistrement ; aucun identifiant utilisateur ou intersite n'est attribué, ce qui empêche de relier vos visites d'un jour ou d'un appareil à l'autre. Les données ne sont ni vendues ni partagées avec des tiers.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Matomo se ejecuta en nuestro propio servidor (analytics.philwornath.de, Alemania), no en el de un tercero. Se carga con las cookies desactivadas y sin huella digital de funciones del navegador; las direcciones IP se anonimizan antes de almacenarse; no se asigna ningún ID de usuario ni identificador entre sitios, por lo que las visitas no se pueden vincular a lo largo de los días ni entre dispositivos. Los datos no se venden ni se comparten con terceros.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Matomo 运行在我们自己的独立服务器上（analytics.philwornath.de，位于德国），而非第三方平台。加载时已禁用 Cookie 且不进行浏览器特征指纹采集；IP 地址在存储前已完成匿名化处理；系统不会分配用户 ID 或跨站标识符，因此无法跨天或跨设备关联访问记录。数据绝不出售或与第三方共享。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Matomo 運行在我們自己的伺服器上（位於德國的 analytics.philwornath.de），而非第三方託管。它在停用 Cookie 且不進行瀏覽器特徵指紋識別的情況下載入；IP 位址在儲存前均已匿名化；不會指派任何使用者 ID 或跨網站識別碼，因此無法跨天或跨裝置串聯造訪紀錄。我們絕不販售或與第三方分享這些資料。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Matomoはサードパーティではなく、自社サーバー（analytics.philwornath.de、ドイツ）上で動作しています。Cookieを無効化し、ブラウザ特徴によるフィンガープリンティングも行わずに読み込まれます。IPアドレスは保存前に匿名化され、ユーザーIDやクロスサイト識別子も割り当てられないため、日をまたいだりデバイス間をまたいでアクセスが紐付けられることはありません。データが第三者に販売または共有されることはありません。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Matomo는 제3자 서비스가 아닌 자체 서버(독일 소재 analytics.philwornath.de)에서 직접 실행됩니다. 쿠키 비활성화 및 브라우저 핑거프린팅 없이 로드되며, IP 주소는 저장 전 익명화 처리됩니다. 사용자 ID나 크로스 사이트 식별자를 부여하지 않으므로 일자별 혹은 기기 간 방문을 연결하여 추적할 수 없습니다. 데이터는 제3자에게 판매되거나 공유되지 않습니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O Matomo roda em nosso próprio servidor (analytics.philwornath.de, Alemanha), sem intermediários ou terceiros. Ele é carregado com cookies desativados e sem fingerprinting de recursos do navegador; endereços IP são anonimizados antes do armazenamento; nenhum ID de usuário ou identificador entre sites é atribuído, garantindo que as visitas não possam ser vinculadas entre dias ou dispositivos diferentes. Os dados não são vendidos nem compartilhados com terceiros.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Matomo हमारे अपने सर्वर (analytics.philwornath.de, Germany) पर चलता है, किसी थर्ड पार्टी पर नहीं। इसे बिना cookies और बिना browser-feature fingerprinting के लोड किया जाता है; स्टोर करने से पहले IP addresses को anonymise कर दिया जाता है; कोई user ID या cross-site identifier असाइन नहीं किया जाता, इसलिए विज़िट्स को अलग-अलग दिनों या डिवाइसेस से लिंक नहीं किया जा सकता। डेटा को कभी भी बेचा या थर्ड पार्टी के साथ शेयर नहीं किया जाता है।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Matomo hoạt động trên máy chủ riêng của chúng tôi (analytics.philwornath.de, Đức), không qua bên thứ ba. Hệ thống được tải với cookie đã tắt và không thu thập dấu vân tay trình duyệt (fingerprinting); địa chỉ IP được ẩn danh trước khi lưu trữ; không có mã định danh người dùng hay mã liên trang nào được gán, vì vậy các lượt truy cập không thể liên kết qua các ngày hay thiết bị khác nhau. Dữ liệu không bao giờ được bán hoặc chia sẻ với bên thứ ba.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0021fe4a2b62d7fa96714b3c6f239e4dbc4fa87572b585181c1a28c89f7027d4": {
+      "en": "Because nothing is stored on or read from your device for tracking purposes, this measurement is based on our legitimate interest in understanding how the site is used (Art. 6(1)(f) GDPR) and does not require a cookie consent banner under § 25 TDDDG / the ePrivacy Directive. You have the right to object (Art. 21 GDPR) at any time.",
+      "translations": {
+        "de": {
+          "text": "Da auf Ihrem Endgerät zu Tracking-Zwecken weder Daten gespeichert noch ausgelesen werden, stützt sich diese Messung auf unser berechtigtes Interesse, die Nutzung der Website zu verstehen (Art. 6 Abs. 1 lit. f DSGVO), und erfordert kein Cookie-Einwilligungsbanner gemäß § 25 TDDDG / der ePrivacy-Richtlinie. Sie haben jederzeit das Recht auf Widerspruch (Art. 21 DSGVO).",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Puisque rien n'est stocké sur votre appareil ni lu à des fins de suivi, cette mesure repose sur notre intérêt légitime à comprendre l'utilisation du site (art. 6, par. 1, point f du RGPD) et ne requiert aucun bandeau de consentement aux cookies au titre du § 25 de la TDDDG / de la directive ePrivacy. Vous disposez d'un droit d'opposition (art. 21 du RGPD) à tout moment.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Dado que no se almacena ni se lee nada de tu dispositivo con fines de rastreo, esta medición se basa en nuestro interés legítimo en comprender cómo se utiliza el sitio (Art. 6(1)(f) RGPD) y no requiere un banner de consentimiento de cookies según el § 25 de la TDDDG / la Directiva sobre privacidad electrónica. Tienes derecho a oponerte (Art. 21 RGPD) en cualquier momento.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "由于我们不会出于跟踪目的在您的设备上存储或读取任何信息，此项统计完全基于我们了解网站使用情况的正当合法利益（GDPR 第 6(1)(f) 条），根据德国 TDDDG 第 25 条 / 欧盟电子隐私指令（ePrivacy Directive），无需展示 Cookie 授权横幅。您有权随时提出异议（GDPR 第 21 条）。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "由於我們不會為了追蹤目的在您的裝置上儲存或讀取任何資訊，此項統計是基於我們了解網站使用情況的正當利益（GDPR 第 6 條第 1 款 (f) 項），且依據德國 TDDDG 第 25 條 / 歐盟 ePrivacy 指令，無需跳出 Cookie 同意橫幅。您有權隨時提出異議（GDPR 第 21 條）。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "トラッキング目的でお使いのデバイスにデータを保存したり読み取ったりすることは一切ないため、この測定はサイトの利用状況を把握するという正当な利益（GDPR第6条第1項(f)）に基づいて行われており、TDDDG第25条やePrivacy指令に基づくCookie同意バナーは必要ありません。なお、いつでも異議を申し立てる権利（GDPR第21条）があります。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "추적 목적으로 기기에 어떠한 정보도 저장하거나 읽지 않으므로, 본 측정은 웹사이트 이용 방식 파악을 위한 정당한 이익(GDPR 제6조 제1항 (f)호)에 기반하며 독일 TDDDG 제25조 및 ePrivacy 지침에 따른 쿠키 동의 배너가 필요하지 않습니다. 귀하는 언제든지 이에 대해 이의를 제기할 권리(GDPR 제21조)가 있습니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Como nada é armazenado ou lido no seu dispositivo para fins de rastreamento, essa medição se baseia em nosso legítimo interesse de entender como o site é utilizado (Art. 6(1)(f) do RGPD/GDPR) e não exige um banner de consentimento de cookies nos termos do § 25 da TDDDG / Diretiva de Privacidade Eletrônica. Você tem o direito de se opor (Art. 21 do RGPD/GDPR) a qualquer momento.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "चूंकि ट्रैकिंग के उद्देश्य से आपके डिवाइस पर कुछ भी स्टोर या रीड नहीं किया जाता है, यह डेटा कलेक्शन साइट के उपयोग को समझने के हमारे legitimate interest (Art. 6(1)(f) GDPR) पर आधारित है और इसके लिए § 25 TDDDG / ePrivacy Directive के तहत cookie consent banner की आवश्यकता नहीं है। आपके पास किसी भी समय आपत्ति दर्ज करने (Art. 21 GDPR) का अधिकार है।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Do không có dữ liệu nào được lưu trữ hoặc đọc từ thiết bị của bạn nhằm mục đích theo dõi, việc đo lường này dựa trên lợi ích hợp pháp của chúng tôi trong việc tìm hiểu cách trang web được sử dụng (Điều 6(1)(f) GDPR) và không yêu cầu biểu ngữ chấp thuận cookie theo § 25 TDDDG / Chỉ thị ePrivacy. Bạn có quyền từ chối (Điều 21 GDPR) bất kỳ lúc nào.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0ecda0421ac7d20053940a6f3a7b0535a1dc6068cbd9ca4986f4bfa6d067c618": {
+      "en": "Your choices",
+      "translations": {
+        "de": {
+          "text": "Ihre Optionen",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vos choix",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tus opciones",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "您的选择与控制权",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "您的選擇",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ユーザーの選択肢",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "사용자 선택권",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Suas opções",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके विकल्प",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Lựa chọn của bạn",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9f015503816977560af5c2c917fda902452e52d21ba26cdda019a15847d7bd03": {
+      "en": "Analytics is switched off automatically if your browser sends",
+      "translations": {
+        "de": {
+          "text": "Die Analyse wird automatisch deaktiviert, wenn Ihr Browser",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "La mesure d'audience est automatiquement désactivée si votre navigateur transmet le signal",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La analítica se desactiva automáticamente si tu navegador envía",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "如果您的浏览器发送了",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "如果您的瀏覽器傳送了",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザが以下を送信している場合、アナリティクスは自動的にオフになります:",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에서 다음 신호를 전송하면 분석 기능이 자동으로 비활성화됩니다:",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A coleta de métricas é desativada automaticamente se o seu navegador enviar",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Analytics अपने आप बंद हो जाता है यदि आपका ब्राउज़र भेजता है",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tính năng phân tích sẽ tự động tắt nếu trình duyệt của bạn gửi tín hiệu",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7175517a370b5cd2e664e3fd29c4ea9db5ce17058eb9772fe090a5485e49dad6": {
+      "en": "or",
+      "translations": {
+        "de": {
+          "text": "oder",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "ou",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "o",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "或",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "或",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "または",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "또는",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "ou",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "या",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "hoặc",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "dbaa945c9a1558fe9f544a076758d8a4affe060d9acd8e85209fb1dbd70ae4e1": {
+      "en": ". You can also opt out manually via",
+      "translations": {
+        "de": {
+          "text": "sendet. Sie können die Erfassung auch manuell deaktivieren über",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ". Vous pouvez également vous y opposer manuellement via",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ". También puedes desactivarla manualmente mediante",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "，统计分析将自动关闭。您也可以通过",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "，分析功能將會自動關閉。您也可以透過",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "。また、以下から手動でオプトアウトすることも可能です:",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ". 다음 링크를 통해 수동으로 분석을 거부(옵트아웃)할 수도 있습니다:",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ". Você também pode desativar manualmente via",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "। आप इसके माध्यम से मैन्युअल रूप से भी opt out कर सकते हैं",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ". Bạn cũng có thể chủ động từ chối thủ công qua",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a89559233d36d663a970d8162b99cf3178f786fb340d774598069f3776cc62f0": {
+      "en": "(also in the footer of every page).",
+      "translations": {
+        "de": {
+          "text": "(auch in der Fußzeile jeder Seite verfügbar).",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(également disponible dans le pied de page de chaque page).",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(también disponible en el pie de página de cada página).",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "手动停用（各页面底部亦提供入口）。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "手動退出（在每個頁面的頁尾也能找到此選項）。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（全ページのフッターにも記載されています）。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(모든 페이지 하단 푸터에서도 설정 가능).",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(também disponível no rodapé de todas as páginas).",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(हर पेज के फूटर में भी उपलब्ध)।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(cũng có ở chân trang của mỗi trang).",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "251e5aadf99b63f1c0ead97a897c7a2e44ba06a6430788d1640e7f21c020de78": {
+      "en": "Do Not Track",
+      "translations": {
+        "de": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Do Not Track",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c8593a225809e114cfbc8942411dd20ecc95fea43ffbcdd41cd2a283f6e754ba": {
+      "en": "Global Privacy Control",
+      "translations": {
+        "de": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Global Privacy Control",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fdd6d78d1870775745a5dd2e787ba22cc62d751d4fe9aca4010275a77caa5077": {
+      "en": "What is stored in your browser",
+      "translations": {
+        "de": {
+          "text": "Was in Ihrem Browser gespeichert wird",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ce qui est stocké dans votre navigateur",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Qué se almacena en tu navegador",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "浏览器本地存储的内容",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "儲存在您瀏覽器中的內容",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザに保存されるデータ",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에 저장되는 정보",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O que fica armazenado no seu navegador",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके ब्राउज़र में क्या स्टोर होता है",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Những gì được lưu trong trình duyệt của bạn",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fbcf48ee91a566c8735f01ae975d54428e088a813c27603f9a98d9dcdfdb562a": {
+      "en": "Only functional preferences, never for tracking:",
+      "translations": {
+        "de": {
+          "text": "Ausschließlich funktionale Einstellungen, niemals zu Tracking-Zwecken:",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Uniquement des préférences fonctionnelles, jamais pour le traçage :",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Solo preferencias funcionales, nunca para rastreo:",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "仅存储功能性偏好设置，绝不用于跟踪：",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "僅儲存功能性偏好設定，絕不用於追蹤：",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "トラッキング目的ではなく、機能上の設定情報のみが保存されます:",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "추적 목적이 아닌 순수 기능 설정만 기기에 저장됩니다:",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apenas preferências funcionais, nunca para rastreamento:",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "केवल फंक्शनल प्रेफरेंस, ट्रैकिंग के लिए कभी नहीं:",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ các tùy chọn chức năng, tuyệt đối không dùng để theo dõi:",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e94c9e2d445c0f95fd4d2ee724190b8bb04fb62209ef7d02cfe9ea9ed97f80c2": {
+      "en": "(your opt-out choice),",
+      "translations": {
+        "de": {
+          "text": "(Ihre Opt-out-Entscheidung),",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(votre choix d'opposition),",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(tu elección de exclusión),",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "（您的退出统计偏好）、",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "（您的退出偏好設定）、",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（オプトアウトの選択）、",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(분석 거부/옵트아웃 설정),",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(sua escolha de desativação),",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(आपकी opt-out चॉइस),",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(lựa chọn từ chối của bạn),",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "54e9f7ee8405f72b6e70931c5b008333c42931616cec4648feaf3a00af3a3739": {
+      "en": "(that you dismissed the info notice), and, if used, the theme choice, the language-suggestion dismissal and the bookmarklet generator settings. These stay on your device and are not sent to us.",
+      "translations": {
+        "de": {
+          "text": "(dass Sie den Hinweistext ausgeblendet haben) sowie, falls genutzt, die Theme-Auswahl, das Ausblenden des Sprachvorschlags und die Einstellungen des Bookmarklet-Generators. Diese verbleiben lokal auf Ihrem Gerät und werden nicht an uns übermittelt.",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(indiquant que vous avez fermé la bannière d'information), ainsi que, le cas échéant, le choix du thème, le rejet de la suggestion de langue et les paramètres du générateur de bookmarklet. Ces données restent sur votre appareil et ne nous sont jamais transmises.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(que descartaste el aviso informativo) y, si se utilizan, la elección de tema, el descarte de sugerencia de idioma y los ajustes del generador de marcadores. Estos datos permanecen en tu dispositivo y no se nos envían.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "（您已关闭信息提示通知的状态），以及在您使用时保存的主题选择、关闭语言建议的状态与小书签生成器配置。这些数据仅保存在您的本地设备上，不会发送给我们。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "（記錄您已關閉通知訊息），以及若有使用時的外觀主題選擇、語言建議關閉狀態和 Bookmarklet 產生器設定。這些資料只會保留在您的裝置上，絕不會傳送給我們。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（お知らせ通知を閉じた記録）、および利用されている場合はテーマの選択、言語提案を閉じた記録、ブックマークレットジェネレーターの設定です。これらはお使いのデバイス内にのみ保持され、当方に送信されることはありません。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(안내 공지 닫기 여부), 그리고 사용 시 테마 설정, 언어 제안 닫기, 북마클릿 생성기 설정 등입니다. 이 데이터는 사용자의 기기에만 유지되며 외부로 전송되지 않습니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(que você fechou o aviso informativo) e, se utilizados, a escolha do tema, a dispensa de sugestão de idioma e as configurações do gerador de bookmarklet. Esses dados permanecem no seu dispositivo e não são enviados para nós.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(कि आपने इन्फो नोटिस हटा दिया है), और यदि उपयोग किया गया है, तो थीम का चयन, भाषा-सुझाव डिसमिसल और bookmarklet generator सेटिंग्स। ये आपके डिवाइस पर ही रहते हैं और हमें नहीं भेजे जाते।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(bạn đã đóng thông báo thông tin), và nếu được sử dụng, tùy chọn giao diện, trạng thái bỏ qua gợi ý ngôn ngữ cùng cài đặt tạo bookmarklet. Những dữ liệu này chỉ lưu trên thiết bị của bạn và không được gửi về máy chủ của chúng tôi.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "422d4d503772f28e1983a6478c8281aba3b10f58ef852ade10aa1b519bf36558": {
+      "en": "aish_analytics",
+      "translations": {
+        "de": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "aish_analytics",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "928fe0061d3311ceeb468db6f0f1570c514c3025b1dcf73a563f7e9ff742a7fc": {
+      "en": "aish_analytics_notice",
+      "translations": {
+        "de": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "aish_analytics_notice",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e2d400b3df83706d4b01c446ac3e1bf6372bfea94ac7e19dcbf7950f1484d45c": {
+      "en": "Fonts & external resources",
+      "translations": {
+        "de": {
+          "text": "Schriften & externe Ressourcen",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Polices de caractères et ressources externes",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Fuentes y recursos externos",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "字体与外部资源",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "字型與外部資源",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "フォントと外部リソース",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "폰트 및 외부 리소스",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Fontes e recursos externos",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Fonts और बाहरी रिसोर्सेज",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phông chữ & tài nguyên bên ngoài",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "37a8e1e1d43986c9011eeaf1255464e76786762ed5590a321b191869aa65ac06": {
+      "en": "Fonts (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) are served from this site itself, so your IP address is not passed to Google or any font provider just by visiting. The only external requests are links you click, and the optional byPhil account / Stripe checkout pages you choose to open.",
+      "translations": {
+        "de": {
+          "text": "Schriftarten (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) werden direkt von dieser Website selbst bereitgestellt, sodass Ihre IP-Adresse beim reinen Besuch nicht an Google oder andere Schriftanbieter übertragen wird. Die einzigen externen Anfragen entstehen durch Links, die Sie anklicken, sowie die optionalen byPhil-Konto- bzw. Stripe-Checkout-Seiten, wenn Sie diese aufrufen.",
+          "translatedAt": "2026-10-07T22:17:04.439Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les polices (Inter, Space Grotesk, JetBrains Mono ; licence SIL Open Font) sont hébergées et servies directement depuis ce site web : votre adresse IP n'est donc pas transmise à Google ni à un autre fournisseur de polices lors de votre visite. Les seules requêtes externes proviennent des liens sur lesquels vous cliquez, ainsi que des pages facultatives de compte byPhil ou de paiement Stripe que vous choisissez d'ouvrir.",
+          "translatedAt": "2026-10-07T22:17:17.594Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Las fuentes (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) se sirven desde este mismo sitio, por lo que tu dirección IP no se transfiere a Google ni a ningún proveedor de fuentes con solo visitarnos. Las únicas solicitudes externas son los enlaces en los que haces clic y las páginas opcionales de cuenta byPhil / pago de Stripe que elijas abrir.",
+          "translatedAt": "2026-10-07T22:17:24.293Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "字体（Inter、Space Grotesk、JetBrains Mono；基于 SIL Open Font License 开源协议）均由本站自行分发托管，因此仅访问本站不会将您的 IP 地址泄露给 Google 或任何字体服务商。仅在您主动点击外部链接，或选择打开可选的 byPhil 账户 / Stripe 结账页面时，才会产生外部网络请求。",
+          "translatedAt": "2026-10-07T22:17:42.330Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "字型（Inter、Space Grotesk、JetBrains Mono；採用 SIL 開源字型授權）皆由本網站自行提供，因此光是造訪本站絕不會將您的 IP 位址傳送給 Google 或任何字型供應商。唯一的外部請求來自於您點擊的連結，以及您主動選擇開啟的 byPhil 帳號 / Stripe 結帳頁面。",
+          "translatedAt": "2026-10-07T22:17:58.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "フォント（Inter、Space Grotesk、JetBrains Mono / SIL Open Font License）は本サイト自体から配信されているため、アクセスしただけでGoogleやフォントプロバイダーにIPアドレスが送信されることはありません。発生する外部リクエストは、クリックしたリンク、および任意で開くbyPhilアカウントやStripe決済ページのみです。",
+          "translatedAt": "2026-10-07T22:18:12.765Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "폰트(Inter, Space Grotesk, JetBrains Mono; SIL Open Font License)는 본 사이트 자체에서 직접 제공되므로, 단순히 사이트를 방문하는 것만으로는 Google이나 폰트 제공업체에 IP 주소가 전송되지 않습니다. 발생하는 외부 요청은 사용자가 직접 클릭한 링크와 직접 열기로 선택한 선택적 byPhil 계정 / Stripe 결제 페이지뿐입니다.",
+          "translatedAt": "2026-10-07T22:18:26.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "As fontes (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) são hospedadas no próprio site, portanto o seu endereço IP não é repassado ao Google nem a nenhum provedor de fontes ao acessá-lo. As únicas requisições externas são links nos quais você clica e as páginas opcionais de conta byPhil / checkout da Stripe que você optar por abrir.",
+          "translatedAt": "2026-10-07T22:18:46.192Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Fonts (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) सीधे इसी साइट से सर्व किए जाते हैं, इसलिए केवल विज़िट करने से आपका IP address Google या किसी अन्य font provider को नहीं भेजा जाता है। केवल वही एक्सटर्नल रिक्वेस्ट्स भेजी जाती हैं जब आप किसी लिंक पर क्लिक करते हैं, या ऑप्शनल byPhil account / Stripe checkout पेज खोलते हैं।",
+          "translatedAt": "2026-10-07T22:18:54.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các phông chữ (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) được lưu trữ và phân phối trực tiếp từ chính trang web này, do đó địa chỉ IP của bạn sẽ không bị chuyển tiếp tới Google hay bất kỳ nhà cung cấp phông chữ nào khi truy cập. Các yêu cầu bên ngoài duy nhất chỉ phát sinh khi bạn nhấp vào liên kết ngoài, hoặc chủ động mở trang tài khoản byPhil / trang thanh toán Stripe tùy chọn.",
+          "translatedAt": "2026-10-07T22:19:11.005Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

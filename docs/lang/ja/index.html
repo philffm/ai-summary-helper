@@ -27,8 +27,8 @@
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
 <meta property="og:type" content="website">
 
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"><script src="../../assets/analytics.js"></script>
-</head>
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
 <body>
 
 <a href="#main" class="skip-link">コンテンツへスキップ</a>
@@ -46,9 +46,9 @@
     </div>
     <div class="nav-desktop-group nav-desktop-links">
       <nav class="links" aria-label="Primary">
-        <a href="#features">機能</a>
-        <a href="#digest">ダイジェスト</a>
-        <a href="#pricing">料金プラン</a>
+        <a href="index.html#features">機能</a>
+        <a href="index.html#digest">ダイジェスト</a>
+        <a href="index.html#pricing">料金プラン</a>
         <a href="blog/">ブログ</a>
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       </nav>
@@ -64,9 +64,9 @@
   </div>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mobile-menu-inner">
-      <a href="#features">機能</a>
-      <a href="#digest">ダイジェスト</a>
-      <a href="#pricing">料金プラン</a>
+      <a href="index.html#features">機能</a>
+      <a href="index.html#digest">ダイジェスト</a>
+      <a href="index.html#pricing">料金プラン</a>
       <a href="blog/">ブログ</a>
       <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
       <a href="https://byphil.eu/#account">マイアカウント</a>
@@ -88,11 +88,29 @@
       <div class="eyebrow"><span class="dash"></span> Chrome拡張機能 · byphil. プロジェクト <span class="dash"></span></div>
       <h1>Webを要約する。<br><em>重要な情報を、確実に手元に。</em></h1>
       <p class="sub">AI Summary Helperは、内蔵RSSリーダーでお気に入りのサイトをフォローし、あらゆるWebページを要約付きで検索可能な記事として保存します。さらに、オンデバイスで作成されるダイジェストを通じてKindleや他のデバイスへ直接送信し、オフラインでもスムーズに読み返せるようサポートします。</p>
-      <div class="hero-cta">
-        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加（無料）</a>
-        <a href="#bookmarklet" class="btn-secondary">インストール不要？ブックマークレットをご利用ください</a>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          ブラウザ拡張機能
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          ブックマークレット
+        </button>
       </div>
-      <p class="hero-meta">アカウント登録不要で利用開始可能 · お手持ちのAI APIキーを使用、またはOllamaによる完全オフライン動作に対応</p>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加（無料）</a>
+        </div>
+        <p class="hero-meta">アカウント登録不要ですぐに使えます · byPhil API経由の各種LLMモデル、ご自身のAPIキー、またはOllamaによる完全オフライン利用に対応</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">ブックマークバーにリンクを1つ追加するだけ。iOSを含むあらゆるブラウザ・OSに対応。インストール不要で、ページ上に直接要約を表示します。</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">ブックマークレットを作成する →</a>
+        </div>
+        <p class="hero-meta">ジェネレーターを開く · byPhil API経由（キー不要）の各種LLMモデル、またはご自身のOpenAI、Gemini、Mistral、DeepSeek、Ollamaに対応</p>
+      </div>
     </div>
   </section>
 
@@ -165,7 +183,7 @@
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20以上の言語に対応、クロスプラットフォーム</h3>
-          <p>お好みの言語で閲覧・要約が可能。ブラウザ拡張機能、ネイティブサイドパネル、または拡張機能が利用できない環境向けのブックマークレットをご用意しています。</p>
+          <p>お好みの言語で閲覧・要約。拡張機能、ネイティブサイドパネル、または <a href="bookmarklet.html">ブックマークレット</a> — 拡張機能が使えない環境でもご利用いただけます。</p>
         </div>
       </div>
     </div>
@@ -237,133 +255,6 @@
         <div class="eyebrow">byphilの開発哲学</div>
         <h2>アーカイブは常にあなた自身のもの</h2>
         <p>検索、重複検出、タグ整理、読解難易度やトーンのスコアリング、「類似記事」の算出はすべてブラウザ内で完結します。サーバーへの依存はなく、アカウントを作成しなくてもすべての価値を享受できます。端末外へ送信されるのはAI要約リクエストのみであり、それもご自身が選択したAIプロバイダー宛てに限定されます。ローカルのOllamaモデルを指定すれば、その通信すらローカルで完結します。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Bookmarklet generator ──────────────────────────────────── -->
-  <section id="bookmarklet">
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">インストール不要</div>
-        <h2>ブックマークレットを取得</h2>
-        <p>拡張機能が利用できないiOSを含め、あらゆるブラウザやOSで動作します。プロバイダーを選んでリンクを生成し、ブックマークバーにドラッグするだけ。ページ上で1クリックするだけで、AI要約が直接挿入されます。</p>
-      </div>
-
-      <div class="bookmarklet-browser-note reveal" id="bmBrowserNote" hidden=""></div>
-
-      <div class="bookmarklet-card reveal" id="bookmarkletCard">
-        <div class="bookmarklet-mode-toggle" role="tablist" aria-label="Bookmarklet provider">
-          <button type="button" class="active" id="bmModeCloud" data-bm-mode="cloud">byPhil Cloud</button>
-          <button type="button" id="bmModeByok" data-bm-mode="byok">独自のAPIキーを使用</button>
-        </div>
-
-        <!-- byPhil Cloud mode -->
-        <div class="bookmarklet-mode" id="bmCloudPanel">
-          <p class="bm-hint">byPhilアカウントを使用すれば、APIキーの管理は不要です。ブックマークレットはお客様のセッションを使ってbyPhil Cloud APIを呼び出します。</p>
-          <div id="bmCloudAuth">
-            <label class="bm-label" for="bmCloudEmail">メールアドレス</label>
-            <input type="email" id="bmCloudEmail" placeholder="you@example.com" autocomplete="email">
-            <button type="button" class="btn-secondary" id="bmCloudSendCode">認証コードを送信</button>
-            <div id="bmCloudOtp" hidden="">
-              <label class="bm-label" for="bmCloudCode">認証コード</label>
-              <input type="text" id="bmCloudCode" placeholder="6-digit code" autocomplete="one-time-code" inputmode="numeric">
-              <button type="button" class="btn-secondary" id="bmCloudVerify">認証して接続</button>
-            </div>
-            <p class="bm-hint" id="bmCloudStatus"></p>
-          </div>
-          <div id="bmCloudConnected" hidden="">
-            <p class="bm-hint">✅ 接続中： <strong id="bmCloudEmailLabel"></strong></p>
-            <label class="bm-label" for="bmCloudModel">モデル</label>
-            <select id="bmCloudModel">
-              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
-            </select>
-            <p class="bm-hint">要約の生成にbyPhil Cloud APIで使用されるモデルです。</p>
-            <button type="button" class="btn-link" id="bmCloudLogout">接続を解除</button>
-          </div>
-        </div>
-
-        <!-- BYOK mode -->
-        <div class="bookmarklet-mode" id="bmByokPanel" hidden="">
-          <label class="bm-label" for="bmProvider">プロバイダー</label>
-          <select id="bmProvider">
-            <option value="openai">OpenAI</option>
-            <option value="deepseek">DeepSeek</option>
-            <option value="mistral">Mistral</option>
-            <option value="gemini">Gemini</option>
-            <option value="ollama">Ollama（ローカル）</option>
-          </select>
-          <p class="bm-hint" id="bmProviderHint"></p>
-
-          <label class="bm-label" for="bmApiKey">APIキー</label>
-          <input type="text" id="bmApiKey" placeholder="Enter your API key" autocomplete="off">
-          <p class="bm-hint">🔒 ブラウザのローカルストレージにのみ保存されます。生成されたブックマークレットにキーが埋め込まれるため、他人と共有しないでください。</p>
-        </div>
-
-        <div id="bmConfig">
-          <label class="bm-label" for="bmInsertion">要約の挿入方法</label>
-          <select id="bmInsertion">
-            <option value="floating">フローティングボックス</option>
-            <option value="inline">インライン — クリックして挿入場所を選択</option>
-          </select>
-          <p class="bm-hint" id="bmInsertionHint">「フローティングボックス」は画面の隅にオーバーレイで要約を表示します。「インライン」はページ上の指定した位置をクリックして直接挿入できます。</p>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmSpeedRead">
-            <span>要約を速読（RSVP）</span>
-          </label>
-
-          <label class="bm-check">
-            <input type="checkbox" id="bmGhostHighlights">
-            <span>ページ上の重要箇所をさりげなくハイライト</span>
-          </label>
-          <p class="bm-hint">記事内の最も重要な原文をさりげなくハイライトします。KindleやLocalSendへの送信、.MD形式でのダウンロード、共有時にもハイライトが保持されます。</p>
-
-          <label class="bm-label" for="bmPrompt">プロンプト</label>
-          <textarea id="bmPrompt" rows="6">記事の内容をわかりやすく説明するクリエイティブなタイトル付きの記事要約セクション。
-もう少し詳しい内容を含む詳細な要約（4〜5文）。
-UXデザイナーとしてのスキルに関連した、トピックに関する面白い言及。
-スタンダップコメディアンのようなユーモアを交えたトピックへの見解。
-関連する書籍やメディアのおすすめ。
-追加の質問に対する真摯かつ魅力的な回答。
-絵文字やハッシュタグを追加し、HTMLを使用、興味深い部分をハイライト、最大1000語。</textarea>
-
-          <fieldset class="bm-share-options">
-            <legend class="bm-label">共有オプション</legend>
-            <p class="bm-hint">要約は常にページ上に挿入されます。必要に応じて生成後に共有することも可能です。</p>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareNative">
-              <span>システムの共有シート</span>
-            </label>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareKindle">
-              <span>Kindleに送信</span>
-            </label>
-            <div id="bmKindleConfig" hidden="">
-              <label class="bm-label" for="bmKindleEmail">Kindleのメールアドレス</label>
-              <input type="email" id="bmKindleEmail" placeholder="yourname@kindle.com" autocomplete="email">
-              <p class="bm-hint">byPhil Cloudへの接続が必要です。まず <strong>kindle@byphil.eu</strong> をKindleの承認済み送信者リストに追加してください。詳しくは <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazonのガイド</a>をご覧ください。無料プランではKindle送信が3回まで含まれます。無制限に送信するにはSupport Passが必要です。</p>
-            </div>
-
-            <label class="bm-check">
-              <input type="checkbox" id="bmShareLocalSend">
-              <span>LocalSendに送信</span>
-            </label>
-            <div id="bmLocalSendConfig" hidden="">
-              <label class="bm-label" for="bmLocalSendIp">LocalSendのIPアドレス</label>
-              <input type="text" id="bmLocalSendIp" placeholder="e.g. 192.168.1.142" autocomplete="off">
-              <p class="bm-hint">お使いのネットワーク上でLocalSend（またはLocalSendプラグインを有効にしたKOReader）を実行しているデバイスのIPアドレスです。</p>
-            </div>
-          </fieldset>
-
-          <button type="button" class="btn-primary" id="bmGenerate">ブックマークレットを生成</button>
-          <div id="bmOutput" hidden="">
-            <p class="bm-hint">以下のリンクをブックマークバーにドラッグしてください 🔖 <br>（iOSの場合は2秒間長押ししてドラッグ）:</p>
-            <a id="bmBookmarkletLink" href="#" draggable="true">🪄 AI要約</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -534,8 +425,9 @@ UXデザイナーとしてのスキルに関連した、トピックに関する
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
-        <a href="index.html#bookmarklet">ブックマークレット（インストール不要）</a>
+        <a href="bookmarklet.html">ブックマークレット（インストール不要）</a>
         <a href="privacy.html">プライバシー</a>
+        <a href="#" data-analytics-settings="">アナリティクス設定</a>
         <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">利用規約</a>
         <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">返金および返品ポリシー</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>
