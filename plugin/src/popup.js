@@ -1,6 +1,7 @@
 import UIManager from './modules/uiManager.js';
 import StorageManager from './modules/storageManager.js';
 import { initArticleManager } from './modules/articleManager.js';
+import { initWorkspace } from './modules/workspaceManager.js';
 import { initSettingsManager } from './modules/settingsManager.js';
 // import { initModelManager } from './modules/modelManager.js';
 import { initLanguageManager } from './modules/languageManager.js';
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initMainScreen(ui);
     initReviewPrompt();
     initArticleManager(ui);
+    initWorkspace();
     initAccordion(ui);
 
     ui.showScreen("main");

@@ -2918,3 +2918,38 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 }
 .topbar--row { display: flex; gap: 8px; align-items: center; }
 .topbar.scroll-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+
+/* ── Split-screen workspace (History, wide windows) ────────────────────── */
+.ws-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--radius-md, 10px); background: var(--glass-card); border: 1px solid var(--glass-border); flex-shrink: 0; }
+.ws-seg[hidden] { display: none; }
+.ws-seg button { display: inline-flex; gap: 2px; align-items: center; justify-content: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
+.ws-seg button i { display: block; width: 6px; height: 14px; border-radius: 2px; background: var(--text-muted); }
+.ws-seg button[aria-pressed='true'] { background: var(--glass-base); box-shadow: var(--shadow-raised); }
+.ws-seg button[aria-pressed='true'] i { background: var(--brand, var(--accent)); }
+.ws-seg button:disabled { opacity: .35; cursor: default; }
+.ws-head { display: none; }
+
+#historyScreen.ws-active:not([style*='display: none']) {
+  display: grid;
+  grid-template-columns: repeat(var(--ws-n, 1), minmax(0, 1fr));
+  grid-template-rows: auto auto minmax(0, 1fr);
+  column-gap: 12px;
+  overflow: hidden;
+}
+#historyScreen.ws-active > .topbar { grid-column: 1 / -1; grid-row: 1; }
+#historyScreen.ws-active > .ws-head { grid-row: 2; display: flex; align-items: center; gap: 8px; padding: 8px 0; }
+#historyScreen.ws-active > .ws-p1 { grid-column: 1; }
+#historyScreen.ws-active > .ws-p2 { grid-column: 2; }
+#historyScreen.ws-active > .ws-p3 { grid-column: 3; }
+#historyScreen.ws-active > :is(#articleList, #articleDetail, #graphContainer, #reportContainer):not(.ws-head) {
+  grid-row: 3; min-height: 0; overflow-y: auto;
+}
+#historyScreen.ws-active > #graphContainer { min-height: 0; height: 100%; }
+#historyScreen.ws-active > #graphContainer.ws-p1, #historyScreen.ws-active > #graphContainer.ws-p2, #historyScreen.ws-active > #graphContainer.ws-p3,
+#historyScreen.ws-active > #reportContainer.ws-p1, #historyScreen.ws-active > #reportContainer.ws-p2, #historyScreen.ws-active > #reportContainer.ws-p3 { display: block !important; }
+#historyScreen.ws-active > .ws-off { display: none !important; }
+#historyScreen.ws-active #graphToggleBtn, #historyScreen.ws-active #reportToggleBtn,
+#historyScreen.ws-active #detailGraphToggleBtn, #historyScreen.ws-active #detailReportToggleBtn { display: none; }
+.ws-select { flex: 1; min-width: 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--glass-border); background: var(--glass-card); color: var(--text-primary); font: inherit; font-weight: 600; }
+.ws-close { width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--text-muted); cursor: pointer; }
+.ws-close:hover { background: var(--glass-card); }

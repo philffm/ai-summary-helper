@@ -558,6 +558,8 @@ export async function deliverLocalSend(article, device) {
     }
 }
 
+const wsActive = () => !!document.getElementById('historyScreen')?.classList.contains('ws-active');
+
 export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
     initSelection({
@@ -658,8 +660,8 @@ export function initArticleManager(uiManager) {
             const graphContainer = document.getElementById('graphContainer');
             const reportContainer = document.getElementById('reportContainer');
             if (articleDetail) articleDetail.style.display = 'none';
-            if (graphContainer) graphContainer.style.display = 'none';
-            if (reportContainer) reportContainer.style.display = 'none';
+            if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
+            if (reportContainer && !wsActive()) reportContainer.style.display = 'none';
             if (articleList) articleList.style.display = 'block';
             if (historyTopBar) historyTopBar.style.display = 'flex';
             if (detailTopBar) detailTopBar.style.display = 'none';
@@ -674,8 +676,8 @@ export function initArticleManager(uiManager) {
             const graphContainer = document.getElementById('graphContainer');
             const reportContainer = document.getElementById('reportContainer');
             if (articleDetail) articleDetail.style.display = 'none';
-            if (graphContainer) graphContainer.style.display = 'none';
-            if (reportContainer) reportContainer.style.display = 'none';
+            if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
+            if (reportContainer && !wsActive()) reportContainer.style.display = 'none';
             if (articleList) articleList.style.display = 'block';
             if (historyTopBar) historyTopBar.style.display = 'flex';
             if (detailTopBar) detailTopBar.style.display = 'none';
@@ -736,6 +738,57 @@ export function initArticleManager(uiManager) {
         }
     });
 
+    // ── Split-screen workspace hooks ────────────────────────────────────
+    // In the multi-pane layout (workspaceManager.js) graph/analytics are shown
+    // next to the list instead of replacing it, so they need open/close paths
+    // that leave the list and detail alone.
+    const initGraphView = () => {
+        const graphContainer = document.getElementById('graphContainer');
+        graphScopeMode = 'filtered';
+        graphContainer.__archiveGraphStatsDismissed = false;
+        syncGraphScopeToggleBtn();
+        updateGraphScopeToggleVisibility();
+        const source = graphScopeVisibleArticles();
+        if (source.length > 0) {
+            import('./archiveGraph.js').then(mod => {
+                mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp, ensureSearchIndex());
+            });
+        } else {
+            StorageManager.getArticlesIndex().then(articles => {
+                if (articles.length > 0) {
+                    import('./archiveGraph.js').then(mod => {
+                        mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp, buildIndex(articles));
+                    });
+                } else {
+                    graphContainer.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">No articles to graph yet.</div>';
+                }
+            });
+        }
+    };
+    const initReportView = () => {
+        const reportContainer = document.getElementById('reportContainer');
+        StorageManager.getArticlesIndex({ includeArchived: true }).then(articles => {
+            import('./analyticsManager.js').then(mod => {
+                mod.initAnalyticsReport(reportContainer, articles);
+            });
+        });
+    };
+    document.addEventListener('aish:ws-view', (e) => {
+        const { view, open } = e.detail || {};
+        const graphContainer = document.getElementById('graphContainer');
+        const reportContainer = document.getElementById('reportContainer');
+        if (view === 'graph' && graphContainer) {
+            const isOpen = graphContainer.style.display === 'block';
+            if (open && !isOpen) { graphContainer.style.display = 'block'; graphContainer.style.opacity = '1'; initGraphView(); }
+            if (!open && isOpen) graphContainer.style.display = 'none'; // observer destroys the simulation
+        }
+        if (view === 'report' && reportContainer) {
+            const isOpen = reportContainer.style.display === 'block';
+            if (open && !isOpen) { reportContainer.style.display = 'block'; initReportView(); }
+            if (!open && isOpen) reportContainer.style.display = 'none';
+        }
+    });
+
     // ── Shared graph toggle ─────────────────────────────────────────────
     const toggleGraph = () => {
         const articleList = document.getElementById('articleList');
@@ -762,32 +815,7 @@ export function initArticleManager(uiManager) {
             if (articleDetail) articleDetail.style.display = 'none';
             graphContainer.style.display = 'block';
             graphContainer.style.opacity = '1';
-            // Fresh open: default back to 'filtered' rather than remembering
-            // the scope from a previous graph session, and bring back the
-            // stats banner if it was dismissed in a previous session (it
-            // persists through same-session re-renders — e.g. toggling
-            // well-connected/all-tags — but not across a full close/reopen).
-            graphScopeMode = 'filtered';
-            graphContainer.__archiveGraphStatsDismissed = false;
-            syncGraphScopeToggleBtn();
-            updateGraphScopeToggleVisibility();
-            const source = graphScopeVisibleArticles();
-            if (source.length > 0) {
-                    import('./archiveGraph.js').then(mod => {
-                        mod.initArchiveGraph(graphContainer, source, currentDetailArticle?.timestamp, ensureSearchIndex());
-                    });
-                } else {
-                    // Fall back to storage if cache is empty (e.g. first load)
-                    StorageManager.getArticlesIndex().then(articles => {
-                        if (articles.length > 0) {
-                            import('./archiveGraph.js').then(mod => {
-                                mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp, buildIndex(articles));
-                            });
-                        } else {
-                    graphContainer.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">No articles to graph yet.</div>';
-                        }
-                    });
-                }
+            initGraphView();
         }
     };
 
@@ -816,11 +844,7 @@ export function initArticleManager(uiManager) {
             if (articleDetail) articleDetail.style.display = 'none';
             if (graphContainer) graphContainer.style.display = 'none';
             reportContainer.style.display = 'block';
-            StorageManager.getArticlesIndex({ includeArchived: true }).then(articles => {
-                import('./analyticsManager.js').then(mod => {
-                    mod.initAnalyticsReport(reportContainer, articles);
-                });
-            });
+            initReportView();
         }
     };
 
@@ -880,7 +904,7 @@ export function initArticleManager(uiManager) {
             const tag = e.detail?.tag;
             if (!tag) return;
             // Hide report, show article list
-            reportContainerEl.style.display = 'none';
+            if (!wsActive()) reportContainerEl.style.display = 'none';
             const articleList = document.getElementById('articleList');
             const historyTopBar = document.getElementById('historyTopBar');
             if (articleList) articleList.style.display = 'block';
@@ -903,14 +927,15 @@ export function loadHistory() {
     const articleDetail = document.getElementById('articleDetail');
     const historyTopBar = document.getElementById('historyTopBar');
     const detailTopBar = document.getElementById('detailTopBar');
-    if (graphContainer) graphContainer.style.display = 'none';
-    if (reportContainer) reportContainer.style.display = 'none';
+    if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
+    if (reportContainer && !wsActive()) reportContainer.style.display = 'none';
     if (articleDetail) articleDetail.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'none';
     if (historyTopBar) historyTopBar.classList.remove('scroll-hidden');
     if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
     if (historyTopBar) historyTopBar.style.display = 'flex';
     if (articleList) articleList.style.display = 'block';
+    document.dispatchEvent(new Event('aish:ws-refresh'));
     import('./feedManager.js')
         .then(m => m.reconcileStubs())
         .catch(() => {})
@@ -1372,7 +1397,7 @@ export async function showArticleDetail(article) {
     }
     // Show detail, hide list and graph
     if (articleList) articleList.style.display = 'none';
-    if (graphContainer) graphContainer.style.display = 'none';
+    if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
     if (historyTopBar) historyTopBar.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'flex';
     articleDetail.style.display = 'block';
