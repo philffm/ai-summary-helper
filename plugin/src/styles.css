@@ -3039,7 +3039,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #historyScreen.selecting .article-card.sel-on .sel-box { background: var(--accent); border-color: var(--accent); }
 #historyScreen.selecting .article-card.sel-on .sel-box::after { content: '✓'; }
 #historyScreen.selecting .article-card.not-selectable { opacity: 0.45; cursor: not-allowed; }
-#selectModeBtn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
+#feedGraphBtn.active, #feedInsightsBtn.active, #selectModeBtn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
 .sel-bar {
   position: sticky; bottom: 8px; z-index: 20; display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 10px 12px;
   border-radius: 16px; background: var(--glass-base); border: 1px solid var(--glass-border-strong); box-shadow: var(--shadow-raised);
