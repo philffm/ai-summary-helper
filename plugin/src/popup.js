@@ -270,10 +270,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']),
             chrome.storage.local.get([SK.servicesConfig])
         ]);
-        const { servicesConfig, activeService, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
+        const { activeService, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
+        const servicesConfig = localData[SK.servicesConfig];
         
         if (connectionMode === 'cloud') {
-            const active = preferredCloudModel || 'google/gemini-2.5-flash';
+            const active = preferredCloudModel || 'google/gemini-3.8-flash';
             // Just take the model name part (after /) for the chip if it's long
             const label = active.includes('/') ? active.split('/').pop() : active;
             if (chipModelLabel) chipModelLabel.textContent = label;
@@ -324,6 +325,33 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
             .catch(e => console.error('Error loading services:', e));
 
+        // Always-visible source switch: byPhil Cloud | Your own model.
+        // Keeps the same two buttons in place in both modes (only the
+        // active state changes), so nothing "disappears" when switching.
+        const renderModeSeg = (mode) => {
+            const grid = document.getElementById('modelModeGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 Own model / API key' }].forEach(m => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'pill pill--sm pill--soft' + (m.id === mode ? ' active' : '');
+                btn.textContent = m.label;
+                btn.setAttribute('aria-pressed', m.id === mode ? 'true' : 'false');
+                btn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    if (m.id === mode) return;
+                    customModelInput.value = '';
+                    await chrome.storage.sync.set({ connectionMode: m.id });
+                    renderUI();
+                });
+                grid.appendChild(btn);
+            });
+            customModelInput.placeholder = mode === 'cloud' ? 'Search cloud models…' : 'Add model ID, e.g. gemma3:4b';
+            customModelInput.setAttribute('aria-label', customModelInput.placeholder);
+            if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'cloud' ? 'none' : '';
+        };
+
         const renderUI = () => {
             renderModelUI = renderUI; // expose for the model panel chip handler
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
@@ -331,35 +359,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                 chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']),
                 chrome.storage.local.get([SK.servicesConfig])
             ]).then(async ([syncData, localData]) => {
-                const { servicesConfig, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
+                const { connectionMode, preferredCloudModel } = { ...syncData, ...localData };
+                const servicesConfig = localData[SK.servicesConfig];
+                renderModeSeg(connectionMode === 'cloud' ? 'cloud' : 'local');
                 if (connectionMode === 'cloud') {
                     // Update chip label
-                    const activeCloudModel = preferredCloudModel || 'google/gemini-2.5-flash';
+                    const activeCloudModel = preferredCloudModel || 'google/gemini-3.8-flash';
                     const chipLabel = activeCloudModel.includes('/') ? activeCloudModel.split('/').pop() : activeCloudModel;
                     chipModelLabel.textContent = chipLabel;
 
-                    // Provider tags: Show "byphil Cloud" and "Developer Mode" shortcuts
                     modelProviderGrid.innerHTML = '';
-                    const modes = [
-                        { id: 'cloud', name: '☁️ Cloud' },
-                        { id: 'local', name: '💻 Advanced' }
-                    ];
-
-                    modes.forEach(m => {
-                        const btn = document.createElement('button');
-                        btn.className = 'pill pill--sm pill--soft';
-                        btn.textContent = m.name;
-                        if (m.id === connectionMode) btn.classList.add('active');
-                        btn.addEventListener('click', async (e) => {
-                            e.preventDefault();
-                            await chrome.storage.sync.set({ connectionMode: m.id });
-                            renderUI();
-                        });
-                        modelProviderGrid.appendChild(btn);
-                    });
 
                     // Model ID tags: Fetch from local proxy for quick select
-                    const { recentCloudModels = ['google/gemini-2.5-flash'] } = await chrome.storage.sync.get('recentCloudModels');
+                    const { recentCloudModels = ['google/gemini-3.8-flash'] } = await chrome.storage.sync.get('recentCloudModels');
                     const filter = customModelInput.value.toLowerCase().trim();
 
                     if (!filter) {
@@ -457,18 +469,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Provider tags
                 modelProviderGrid.innerHTML = '';
                 
-                // Add Cloud mode shortcut
-                const cloudBtn = document.createElement('button');
-                cloudBtn.className = 'pill pill--sm pill--soft';
-                cloudBtn.textContent = '☁️ Cloud Mode';
-                cloudBtn.style.borderStyle = 'dashed';
-                cloudBtn.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    await chrome.storage.sync.set({ connectionMode: 'cloud' });
-                    renderUI();
-                });
-                modelProviderGrid.appendChild(cloudBtn);
-
                 Array.from(modelSelect.options).forEach(option => {
                     const btn = document.createElement('button');
                     btn.className = 'pill pill--sm pill--soft';
@@ -541,32 +541,47 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         }
 
+        // Save (and activate) whatever model ID is typed. Runs from the "+" button,
+        // Enter and on blur, so a typed ID is never silently dropped.
+        let committing = false;
+        const commitCustomModel = async () => {
+            if (!customModelInput || committing) return;
+            const val = customModelInput.value.trim();
+            if (!val) return;
+            const { connectionMode, activeService } = await chrome.storage.sync.get(['connectionMode', 'activeService']);
+            if (connectionMode === 'cloud') return; // cloud input is a search filter
+            committing = true;
+            // The stored active provider is the source of truth (the hidden select can lag behind it).
+            const svcId = activeService || modelSelect.value || 'openai';
+            try {
+                const current = await StorageManager.getAll();
+                const entry = (current[SK.servicesConfig] || {})[svcId] || {};
+                let list = Array.isArray(entry.customModel) ? [...entry.customModel] : (entry.customModel ? [entry.customModel] : []);
+                list = list.map(m => StorageManager.normalizeCustomModel(m, svcId)).filter(m => m.id);
+                if (!list.some(m => m.id === val)) list.push({ id: val, provider: svcId });
+                await StorageManager.updateService(svcId, {
+                    customModel: list,
+                    activeModelId: { id: val, provider: svcId }
+                });
+                customModelInput.value = '';
+                renderUI();
+                refreshModelChip();
+            } catch (err) {
+                console.error('[Model] Failed to add custom model:', err);
+            } finally {
+                committing = false;
+            }
+        };
         if (setCustomModelBtn && customModelInput) {
-            setCustomModelBtn.addEventListener('click', async () => {
-                const val = customModelInput.value.trim();
-                if (!val) return;
-                const svcId = modelSelect.value || 'openai';
-                try {
-                    // Use StorageManager.updateService for a proper read-modify-write
-                    // that merges the latest stored state (avoids clobbering races).
-                    const current = await StorageManager.getAll();
-                    const entry = (current[SK.servicesConfig] || {})[svcId] || {};
-                    let list = Array.isArray(entry.customModel) ? [...entry.customModel] : [];
-                    list = list.map(m => StorageManager.normalizeCustomModel(m, svcId));
-                    if (!list.some(m => m.id === val)) {
-                        list.push({ id: val, provider: svcId });
-                    }
-                    await StorageManager.updateService(svcId, {
-                        customModel: list,
-                        // Set the newly added model as the active one so it's
-                        // immediately selected and retrievable.
-                        activeModelId: { id: val, provider: svcId }
-                    });
-                    customModelInput.value = '';
-                    renderUI();
-                } catch (err) {
-                    console.error('[Model] Failed to add custom model:', err);
-                }
+            setCustomModelBtn.addEventListener('click', commitCustomModel);
+            customModelInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); commitCustomModel(); }
+            });
+            customModelInput.addEventListener('blur', (e) => {
+                // Moving to another control inside the panel (pill, "+") is handled by that control.
+                const to = e.relatedTarget;
+                if (to && to.closest && to.closest('#panelModel')) return;
+                commitCustomModel();
             });
         }
     }

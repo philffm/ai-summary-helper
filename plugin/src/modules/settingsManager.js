@@ -261,7 +261,7 @@ async function initModelSettings(storageData) {
                     data.models.forEach(model => {
                         const option = document.createElement('option');
                         option.value = model.id;
-                        // Example output: "Gemini 2.5 Flash (Context: 1M)"
+                        // Example output: "Gemini 3.8 Flash (Context: 1M)"
                         option.textContent = `${model.name} (Context: ${Math.round(model.context / 1000)}k)`;
                         cloudModelSelect.appendChild(option);
                     });
@@ -274,7 +274,7 @@ async function initModelSettings(storageData) {
             })
             .catch(err => {
                 console.error("Failed to populate dynamic openrouter roster:", err);
-                cloudModelSelect.innerHTML = '<option value="google/gemini-2.5-flash">Gemini 2.5 Flash (Fallback)</option>';
+                cloudModelSelect.innerHTML = '<option value="google/gemini-3.8-flash">Gemini 3.8 Flash (Fallback)</option>';
             });
 
         // Retain auto-save trigger on user selection change
@@ -372,6 +372,10 @@ async function initModelSettings(storageData) {
                 ? `(<a href="${service.apiKeyDocumentationUrl}" target="_blank">Get Key</a>)`
                 : '';
         }
+
+        // Keyless providers (Ollama): no API key field at all.
+        const apiKeyContainer = document.getElementById('apiKeyContainer');
+        if (apiKeyContainer) apiKeyContainer.style.display = service?.apiKeyOptional ? 'none' : '';
 
         const customEndpointContainer = document.getElementById('customEndpointContainer');
         if (customEndpointContainer) {
@@ -554,7 +558,7 @@ function initBookmarkletGenerator() {
                         method:'POST',
                         headers:{'Content-Type':'application/json','Authorization':'Bearer '+t},
                         body:JSON.stringify({
-                            model:'google/gemini-2.5-flash',
+                            model:'google/gemini-3.8-flash',
                             messages:[
                                 {role:'system',content:'You are a summarizer returning concise, useful summaries.'},
                                 {role:'user',content:'- brief summary\\n- key takeaways\\n\\nContent: '+text}

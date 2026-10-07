@@ -398,7 +398,7 @@ async function aiComplete({ system, user }) {
     if (connectionMode === 'cloud') {
         service = 'cloud';
         url = `${AISH_API_BASE}/v1/projects/ai_summary_helper/chat`;
-        model = sync.preferredCloudModel || 'google/gemini-2.5-flash';
+        model = sync.preferredCloudModel || 'google/gemini-3.8-flash';
         apiKey = local[SK.token] || local[SK.licenseKey] || '';
         keyOptional = true;
     } else {

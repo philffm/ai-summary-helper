@@ -548,7 +548,7 @@ function setBilling(period) {
       if (!token) { alert('Connect your byPhil account first.'); return null; }
       isCloud = true;
       apiUrl = API_BASE + '/v1/projects/ai_summary_helper/chat';
-      modelIdentifier = els.cloudModel.value || 'google/gemini-2.5-flash';
+      modelIdentifier = els.cloudModel.value || 'google/gemini-3.8-flash';
       apiKey = token;
     } else {
       var p = PROVIDERS[els.provider.value];

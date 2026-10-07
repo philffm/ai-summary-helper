@@ -166,9 +166,23 @@ class StorageManager {
             }
         }
 
+        // Since the key registry rename, updateService briefly wrote the legacy name
+        // 'servicesConfig' (→ sync) while everything reads 'config:services'. Those
+        // edits are the newest: fold them per-service into the registry key.
+        if (toLocal.servicesConfig && typeof toLocal.servicesConfig === 'object') {
+            const cur = await new Promise(resolve => chrome.storage.local.get([SK.servicesConfig], resolve));
+            const merged = { ...(cur[SK.servicesConfig] || {}) };
+            for (const [svc, cfg] of Object.entries(toLocal.servicesConfig)) {
+                merged[svc] = { ...(merged[svc] || {}), ...(cfg || {}) };
+            }
+            toLocal[SK.servicesConfig] = merged;
+            delete toLocal.servicesConfig;
+            await new Promise(resolve => chrome.storage.sync.remove(['servicesConfig'], resolve));
+        }
+
         if (found) {
             await new Promise(resolve => chrome.storage.local.set(toLocal, resolve));
-            await new Promise(resolve => chrome.storage.sync.remove(Object.keys(toLocal), resolve));
+            await new Promise(resolve => chrome.storage.sync.remove(Object.keys(toLocal).concat(['servicesConfig']), resolve));
             debug('✅ Migrated sensitive keys from sync → local:', Object.keys(toLocal).join(', '));
         }
     }
@@ -709,7 +723,7 @@ class StorageManager {
         }
 
         if (changed) {
-            await this.set({ servicesConfig: cfg });
+            await this.set({ [SK.servicesConfig]: cfg });
         }
     }
 
@@ -744,7 +758,7 @@ class StorageManager {
                 id: 'cloud',
                 connectionMode: 'cloud',
                 apiKey: data[SK.licenseKey] || '',
-                model: data.preferredCloudModel || 'google/gemini-2.5-flash',
+                model: data.preferredCloudModel || 'google/gemini-3.8-flash',
                 endpoint: `${this.getApiBase()}/v1/projects/ai_summary_helper/chat`,
                 responseStructure: 'result.choices?.[0]?.message?.content'
             };
@@ -775,7 +789,7 @@ class StorageManager {
             ...(cfg[serviceId] || {}),
             ...updates
         };
-        await this.set({ servicesConfig: cfg });
+        await this.set({ [SK.servicesConfig]: cfg });
     }
 
     /**
@@ -806,7 +820,7 @@ class StorageManager {
      * @returns {{id: string, provider: string}}
      */
     static async getActiveModel(serviceId, cfg) {
-        const data = cfg ? { servicesConfig: { [serviceId]: cfg } } : await this.getAll();
+        const data = cfg ? { [SK.servicesConfig]: { [serviceId]: cfg } } : await this.getAll();
         const services = await this.getServices();
         const serviceMeta = services.find(s => s.id === serviceId);
         const entry = (data[SK.servicesConfig] || {})[serviceId] || {};

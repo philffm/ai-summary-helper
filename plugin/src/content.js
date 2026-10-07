@@ -523,7 +523,7 @@ import {
         if (connectionMode === 'cloud') {
           activeService = 'cloud';
           apiUrl = `${API_BASE}/v1/projects/ai_summary_helper/chat`;
-          modelIdentifier = data.preferredCloudModel || 'google/gemini-2.5-flash';
+          modelIdentifier = data.preferredCloudModel || 'google/gemini-3.8-flash';
           apiKey = sessionToken || data[SK.licenseKey] || '';
         } else if (cfg) {
           apiUrl = cfg.endpointUrl || apiUrl;

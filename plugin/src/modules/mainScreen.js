@@ -474,8 +474,11 @@ export function initMainScreen(ui) {
         const data = await StorageManager.getAll();
         const hasArticles = Array.isArray(data[SK.articlesIndex]) && data[SK.articlesIndex].length > 0;
         const isCloudAuthed = !!data[SK.token];
+        // Keyless providers (e.g. Ollama) count as configured without an API key.
+        let keyOptional = false;
+        try { keyOptional = !!(await StorageManager.getServices()).find(s => s.id === data.activeService)?.apiKeyOptional; } catch (e) {}
         const hasCustomApi = data.connectionMode === 'local'
-            && !!data[SK.servicesConfig]?.[data.activeService]?.apiKey;
+            && (keyOptional || !!data[SK.servicesConfig]?.[data.activeService]?.apiKey);
 
         const showOnboarding = !hasArticles && !isCloudAuthed && !hasCustomApi;
 
@@ -753,7 +756,7 @@ export function initMainScreen(ui) {
 
                 const {
                     connectionMode = 'cloud',
-                    preferredCloudModel = 'google/gemini-2.5-flash'
+                    preferredCloudModel = 'google/gemini-3.8-flash'
                 } = await chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']);
 
                 const message = {

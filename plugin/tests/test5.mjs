@@ -16,7 +16,7 @@ store.sync = {}; store.local = { 'account:token': 'tok', 'account:installId': 'i
 reply = () => ok(JSON.stringify({ choices: [{ message: { content: 'hello' } }] }));
 let r = await aiComplete({ system: 's', user: 'u' });
 assert.equal(r.text, 'hello'); assert.ok(calls[0].url.includes('api.byphil.eu')); assert.equal(calls[0].o.headers.Authorization, 'Bearer tok'); assert.equal(calls[0].o.headers['X-Install-ID'], 'iid');
-assert.equal(JSON.parse(calls[0].o.body).model, 'google/gemini-2.5-flash');
+assert.equal(JSON.parse(calls[0].o.body).model, 'google/gemini-3.8-flash');
 // SSE fallback
 reply = () => ok('data: {"choices":[{"delta":{"content":"He"}}]}\n\ndata: {"choices":[{"delta":{"content":"llo"}}]}\n\ndata: [DONE]\n');
 assert.equal((await aiComplete({ system: 's', user: 'u' })).text, 'Hello');
