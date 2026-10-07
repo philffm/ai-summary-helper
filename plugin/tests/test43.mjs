@@ -14,7 +14,7 @@ assert.equal(bar.dataset.state, 'working'); assert(btn.textContent.includes('Sto
 c.set('followup');
 assert(btn.textContent.includes('Send')); assert(/follow-up/i.test(ta.placeholder));
 c.set('fetch');
-assert(btn.textContent.includes('Fetch Summary')); assert.equal(ta.placeholder, 'Focus on something… (optional)');
+assert(btn.textContent.includes('Summarize') && !btn.textContent.includes('Fetch')); assert.equal(ta.placeholder, 'Focus on something… (optional)');
 c.set('bogus'); c.set('fetch');
 assert.deepEqual(seen, ['fetch>working', 'working>followup', 'followup>fetch']);
 // different-page rule ignores hash + trailing slash, not path/query

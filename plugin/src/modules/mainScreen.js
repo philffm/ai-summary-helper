@@ -216,7 +216,7 @@ export function initMainScreen(ui) {
     });
     const resetToFetch = () => {
         if (composer) { composer.set('fetch'); composer.refresh(); }
-        else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Fetch Summary'; }
+        else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Summarize'; }
     };
 
     // Fetch state extras: the page in the active tab as a chip INSIDE the input card (it flies into the thread on Fetch),

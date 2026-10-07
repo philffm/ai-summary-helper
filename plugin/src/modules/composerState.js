@@ -5,6 +5,7 @@
 //   followup – summary done: placeholder "Ask a follow-up…", button "Send"
 // DOM-pure (no chrome.*, no storage) so it is unit-testable in jsdom.
 import { T } from './feedI18n.js';
+import { t } from './i18n.js';
 
 export const COMPOSER_STATES = ['fetch', 'working', 'followup'];
 
@@ -48,7 +49,8 @@ export function createComposer(bar, { onChange } = {}) {
     const label = bar.querySelector('.input-card-label');
     let state = 'fetch';
     const copy = {
-        fetch: () => T('✨ Fetch Summary'),
+        // One short word, already translated for the bottom tab ("Summarize", "Zusammenfassen", "要約" …).
+        fetch: () => { const w = t('navSummarize'); return '✨ ' + (w === 'navSummarize' ? 'Summarize' : w); },
         working: () => T('■ Stop'),
         followup: () => T('Send')
     };
@@ -65,6 +67,7 @@ export function createComposer(bar, { onChange } = {}) {
         }
     };
     apply();
+    try { document.addEventListener('aish:translationsApplied', apply); } catch (_) { /* no document */ }
     return {
         get state() { return state; },
         set(next) {
