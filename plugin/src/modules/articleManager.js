@@ -188,8 +188,10 @@ async function buildArticleDocumentHtml(article) {
     // included even if never marked "keep").
     const annotations = await fetchAnnotationsForArticle(article);
     const annotationsHtml = await buildAnnotationsSection(article, annotations);
-    const summaryHtml = markHighlights(article.summary, annotations);
-    const contentHtml = markHighlights(article.content, annotations);
+    // One pass over the document: a highlight is marked once (full text wins over the summary).
+    const placed = new Set();
+    const contentHtml = markHighlights(article.content, annotations, placed);
+    const summaryHtml = markHighlights(article.summary, annotations, placed);
     return `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>${article.title || 'AI Summary'}</title>
 <style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}img{max-width:100%;height:auto;}</style>
@@ -356,6 +358,10 @@ async function copyArticleToClipboard(article) {
     const annotationsHtml = await buildAnnotationsSection(article, annotations);
     const annotationsPlain = await buildAnnotationsPlainText(article, annotations);
 
+    const placedSet = new Set();
+    const contentMarked = markHighlights(content, annotations, placedSet);   // full text first, summary only for the rest
+    const summaryMarked = markHighlights(summary, annotations, placedSet);
+
     // Create a clean HTML version for the clipboard
     const cleanHtml = `
         <div style="font-family: sans-serif;">
@@ -363,11 +369,11 @@ async function copyArticleToClipboard(article) {
             <p><a href="${article.url}">${article.url}</a></p>
             <hr>
             <h2>🧙 AI Summary</h2>
-            <div>${markHighlights(summary, annotations)}</div>
+            <div>${summaryMarked}</div>
             ${annotationsHtml ? `<hr><div>${annotationsHtml}</div>` : ''}
             <hr>
             <h2>📄 Original Content</h2>
-            <div>${markHighlights(content, annotations)}</div>
+            <div>${contentMarked}</div>
         </div>
     `.replace(/style="[^"]*"/gi, (match) => {
         // Keep ONLY the top-level font family for the container, strip all other styles
@@ -449,13 +455,13 @@ async function sendToKindle(article) {
         const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
             method: 'POST',
             headers,
-            body: JSON.stringify({
+            body: (() => { const kPlaced = new Set(); return JSON.stringify({
                 kindle_email: kindleEmail,
                 title: article.title || 'AI Summary Document',
-                content: [markHighlights(article.content || article.summary || '', annotations), annotationsHtml].filter(Boolean).join('\n'),
-                summary: markHighlights(article.summary || '', annotations),
+                content: [markHighlights(article.content || article.summary || '', annotations, kPlaced), annotationsHtml].filter(Boolean).join('\n'),
+                summary: markHighlights(article.summary || '', annotations, kPlaced),
                 url: article.url || ''
-            })
+            }); })()
         });
 
         const resData = await response.json();
@@ -530,13 +536,13 @@ export async function deliverKindle(article, device) {
         const annotationsHtml = article.id ? await buildAnnotationsSection(article, annotations) : '';
         const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {
             method: 'POST', headers,
-            body: JSON.stringify({
+            body: (() => { const kPlaced = new Set(); return JSON.stringify({
                 kindle_email: kindleEmail,
                 title: article.title || 'AI Summary Document',
-                content: [markHighlights(article.content || article.summary || '', annotations), annotationsHtml].filter(Boolean).join('\n'),
-                summary: markHighlights(article.summary || '', annotations),
+                content: [markHighlights(article.content || article.summary || '', annotations, kPlaced), annotationsHtml].filter(Boolean).join('\n'),
+                summary: markHighlights(article.summary || '', annotations, kPlaced),
                 url: article.url || ''
-            })
+            }); })()
         });
         const resData = await response.json().catch(() => ({}));
         if (response.ok && resData.success) return { ok: true };

@@ -27,13 +27,12 @@ import {
 import {
   setHighlightingEnabled,
   isAnyHighlightingEnabled,
-  saveAnnotationToStorage,
   scheduleRestoreAnnotations,
   clearHighlightElements,
   clearHighlightElementsByType,
   startAnnotationWatchers,
   handleTextSelection,
-  highlightTextOnPage,
+  highlightFromSelectionOrText,
   handleHighlightClick,
   applyGhostHighlights,
   handleGhostHighlightClick
@@ -214,8 +213,7 @@ import {
     if (request.action === 'contextMenuHighlight') {
       const text = request.text?.trim();
       if (text && userHighlightingEnabled) {
-        highlightTextOnPage(document.body, text, false);
-        saveAnnotationToStorage(text, 'user');
+        highlightFromSelectionOrText(text);
       }
       sendResponse({ status: 'ok' });
       return true;
@@ -507,14 +505,14 @@ import {
           let finalApiUrl = apiUrl;
 
           // 🔥 IMPORTANT: This tells the AI to return EXACT verbatim quotes so `indexOf()` never fails
-          const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'three' : 'two'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''}.`;
+          const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'three' : 'two'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''}.`;
 
           // ── Route based on API format ──
           if (activeService === 'gemini') {
             finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:streamGenerateContent?alt=sse`;
             headers['x-goog-api-key'] = apiKey;
             const parts = [
-              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include ${moodOn ? 'three' : 'two'} HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} short, EXACT verbatim string snippets representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''}. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
+              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include ${moodOn ? 'three' : 'two'} HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''}. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
               { text: `Additional Questions/Instructions: ${additionalQuestions}` },
               { text: truncatedContent }
             ];
@@ -679,6 +677,7 @@ import {
 
               if (summaryMode === 'inline') {
                 const summaryContainer = document.createElement('blockquote');
+                summaryContainer.setAttribute('data-aish-ui', '1');
                 summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
                 summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${cleanHtml}</div>`;
                 insertSummary(targetElement, summaryContainer);

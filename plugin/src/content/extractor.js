@@ -1,4 +1,5 @@
 import { debug } from '../modules/log.js';
+import { getUserHighlightTexts } from './highlighter.js';
 // content/extractor.js
 // Pure page-content extraction & parsing helpers. No DOM event wiring here —
 // these are called by the content.js orchestrator.
@@ -11,8 +12,7 @@ export function getAllTextContent() {
   debug('Getting all text content');
 
   // 🔥 Prepend any yellow user highlights as high-priority context for the AI
-  const activeHighlights = Array.from(document.querySelectorAll('.ai-user-highlight'))
-    .map(el => el.textContent.trim()).filter(Boolean);
+  const activeHighlights = getUserHighlightTexts();
   let highlightPrefix = '';
   if (activeHighlights.length > 0) {
     highlightPrefix = `=== USER HIGHLIGHTS & ANNOTATIONS ===\nThe user explicitly marked these sections as high priority:\n- ${activeHighlights.join('\n- ')}\n\n=== MAIN CONTENT ===\n`;

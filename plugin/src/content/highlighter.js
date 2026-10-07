@@ -1,5 +1,12 @@
 // content/highlighter.js
 // Text highlighting & annotation persistence for the content script.
+//
+// A highlight is anchored by exact text + surrounding text (see anchor.js) and
+// searched only inside the article. Where supported it is painted with the CSS
+// Custom Highlight API (no DOM changes); otherwise it falls back to <mark>.
+
+import { ancScopeRoot, ancBuildIndex, ancMakeSelector, ancResolve, ancToRange, ancQuoteUsable, ancNormalize } from './anchor.js';
+import { hlpRender } from './highlightPanel.js';
 
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
 let annotationObserver = null;
@@ -28,87 +35,78 @@ function getPageKey() {
 }
 let lastObservedUrl = getPageKey();
 
-// ── Unified Annotations Storage ─────────────────────────────────────────────
+// Live registry: annotation id → { ann, range, status: 'ok'|'ambiguous'|'lost', marks: [] }
+const hlLive = new Map();
+const HL_NATIVE = typeof CSS !== 'undefined' && CSS.highlights && typeof Highlight !== 'undefined';
+const hlSets = { user: null, ghost: null };
+let hlReattachId = null;
 
-export function saveAnnotationToStorage(text, type = 'user') {
-  getNormalizedAnnotations((annotations) => {
-    const currentUrl = getPageKey();
-    const compactText = (text || '').replace(/\s+/g, ' ').trim();
-    if (!compactText) return;
+function hlNewId() { return 'hl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8); }
 
-    // Prevent exact duplicates
-    const exists = annotations.some(a => a.url === currentUrl && a.text === compactText && a.type === type);
-    if (!exists) {
-      annotations.push({
-        url: currentUrl,
-        text: compactText,
-        type: type,
-        timestamp: new Date().toISOString()
-      });
-      chrome.storage.local.set({ annotations });
-    }
-  });
+function hlEnsureStyles() {
+  if (document.getElementById('aish-hl-styles')) return;
+  const st = document.createElement('style');
+  st.id = 'aish-hl-styles';
+  st.textContent = `
+    ::highlight(aish-user) { background-color: #fef08a; color: #1f2937; }
+    ::highlight(aish-ghost) { background-color: rgba(186,230,253,0.65); color: #0369a1; text-decoration: underline dashed #0284c7; }
+    ::highlight(aish-flash) { background-color: #fde047; color: #1f2937; }
+    .aish-hl-flash { outline: 3px solid #fde047 !important; }
+  `;
+  document.documentElement.appendChild(st);
 }
 
-export function removeAnnotationFromStorage(text, type = 'user') {
-  getNormalizedAnnotations((annotations) => {
-    const currentUrl = getPageKey();
-    const compactText = (text || '').replace(/\s+/g, ' ').trim();
-    if (!compactText) return;
-    annotations = annotations.filter(a => !(a.url === currentUrl && a.text === compactText && a.type === type));
-    chrome.storage.local.set({ annotations });
-  });
+function hlSetFor(type) {
+  if (!hlSets[type]) {
+    hlSets[type] = new Highlight();
+    CSS.highlights.set(type === 'ghost' ? 'aish-ghost' : 'aish-user', hlSets[type]);
+  }
+  return hlSets[type];
 }
 
-export function restoreAnnotations() {
-  if (!isAnyHighlightingEnabled()) return;
-  getNormalizedAnnotations((annotations) => {
-    const currentUrl = getPageKey();
-    const pageAnnotations = annotations.filter(a => {
-      if (a.url !== currentUrl) return false;
-      if (a.type === 'ghost') return aiHighlightingEnabled;
-      return userHighlightingEnabled;
-    });
+// ── Painting ─────────────────────────────────────────────────────────────────
 
-    if (pageAnnotations.length === 0) return;
-
-    // highlightTextOnPage() walks the whole document with a TreeWalker to
-    // locate each annotation's text. On large, dynamic pages that scan can
-    // block the main render thread. Defer it to an idle callback so it runs
-    // in the browser's spare time instead of during a paint/scroll frame.
-    // requestIdleCallback is available in all modern Chrome/Firefox/Safari
-    // content-script contexts; fall back to a macrotask if it isn't.
-    const run = () => {
-      pageAnnotations.forEach(ann => {
-        highlightTextOnPage(document.body, ann.text, ann.type === 'ghost');
-      });
-    };
-
-    if (typeof requestIdleCallback === 'function') {
-      requestIdleCallback(run, { timeout: 2000 });
+function hlPaint(entry) {
+  if (!entry.range) return;
+  hlEnsureStyles();
+  if (HL_NATIVE) { hlSetFor(entry.ann.type).add(entry.range); return; }
+  const isGhost = entry.ann.type === 'ghost';
+  const { marks } = wrapRangeAcrossNodes(entry.range, () => {
+    const mark = document.createElement('mark');
+    if (isGhost) {
+      mark.className = 'ai-ghost-highlight';
+      mark.title = 'AI highlight — click to keep or dismiss';
+      mark.style.cssText = 'background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;cursor:pointer;';
     } else {
-      setTimeout(run, 0);
+      mark.className = 'ai-user-highlight';
+      mark.title = 'Click to remove highlight';
+      mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
     }
+    return mark;
   });
+  marks.forEach(m => { m.dataset.hlId = entry.ann.id; m.dataset.annotationText = entry.ann.text; });
+  entry.marks = marks;
 }
 
-export function scheduleRestoreAnnotations(delay = 160) {
-  if (!isAnyHighlightingEnabled()) return;
+function hlUnpaint(entry) {
+  if (HL_NATIVE) {
+    if (entry.range && hlSets[entry.ann.type]) hlSets[entry.ann.type].delete(entry.range);
+    return;
+  }
+  (entry.marks || []).forEach(el => {
+    const parent = el.parentNode;
+    if (!parent) return;
+    while (el.firstChild) parent.insertBefore(el.firstChild, el);
+    parent.removeChild(el);
+    parent.normalize();
+  });
+  entry.marks = [];
+}
 
-  const now = Date.now();
-  if (!restoreTimer) restoreScheduledAt = now;
-
-  // If we've already been waiting for RESTORE_MAX_WAIT_MS, stop pushing the
-  // timer back — run on the next tick regardless of new mutations.
-  const elapsed = now - restoreScheduledAt;
-  const effectiveDelay = elapsed >= RESTORE_MAX_WAIT_MS ? 0 : delay;
-
-  if (restoreTimer) clearTimeout(restoreTimer);
-  restoreTimer = setTimeout(() => {
-    restoreTimer = null;
-    restoreScheduledAt = 0;
-    restoreAnnotations();
-  }, effectiveDelay);
+function hlRangeAlive(entry) {
+  if (!entry.range) return false;
+  if (HL_NATIVE) return !entry.range.collapsed && entry.range.startContainer.isConnected;
+  return (entry.marks || []).length > 0 && entry.marks.every(m => m.isConnected);
 }
 
 export function clearHighlightElements() {
@@ -117,12 +115,73 @@ export function clearHighlightElements() {
 }
 
 export function clearHighlightElementsByType(type) {
+  for (const [id, entry] of [...hlLive]) {
+    if (entry.ann.type !== type) continue;
+    hlUnpaint(entry);
+    hlLive.delete(id);
+  }
+  if (HL_NATIVE && hlSets[type]) hlSets[type].clear();
+  // Anything left over from an older content script instance
   const selector = type === 'ghost' ? '.ai-ghost-highlight' : '.ai-user-highlight';
   document.querySelectorAll(selector).forEach(el => {
     const parent = el.parentNode;
     if (!parent) return;
     while (el.firstChild) parent.insertBefore(el.firstChild, el);
     parent.removeChild(el);
+  });
+  hlRefreshPanel();
+}
+
+// ── Annotation storage (one array for all pages, see storage-schema notes) ──
+
+/** Save (or find) an annotation; returns the stored record. */
+export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
+  const currentUrl = getPageKey();
+  const compactText = (text || '').replace(/\s+/g, ' ').trim();
+  if (!compactText) return null;
+  const ann = {
+    id: meta.id || hlNewId(), url: currentUrl, text: compactText, type,
+    timestamp: new Date().toISOString(), v: meta.quote ? 2 : 1,
+    ...(meta.quote ? { quote: meta.quote } : {}), ...(typeof meta.pos === 'number' ? { pos: meta.pos } : {})
+  };
+  getNormalizedAnnotations((annotations) => {
+    // Same text in a different place is a different highlight: compare the context too.
+    const exists = annotations.some(a => a.url === currentUrl && a.text === compactText && a.type === type &&
+      (a.quote ? a.quote.prefix === (meta.quote && meta.quote.prefix) && a.quote.suffix === (meta.quote && meta.quote.suffix) : !meta.quote));
+    if (exists) return;
+    annotations.push(ann);
+    chrome.storage.local.set({ annotations });
+  });
+  return ann;
+}
+
+function hlPatchAnnotation(id, patch) {
+  getNormalizedAnnotations((annotations) => {
+    const a = annotations.find(x => x.id === id);
+    if (!a) return;
+    Object.assign(a, patch);
+    chrome.storage.local.set({ annotations });
+  });
+}
+
+/** Remove by id (a dismissed AI highlight is kept as `dismissed` so it never comes back). */
+function hlRemoveFromStorage(id, { dismiss = false } = {}) {
+  getNormalizedAnnotations((annotations) => {
+    const next = dismiss
+      ? annotations.map(a => (a.id === id ? { ...a, dismissed: true } : a))
+      : annotations.filter(a => a.id !== id);
+    chrome.storage.local.set({ annotations: next });
+  });
+}
+
+/** Legacy text-based removal (kept for callers that only know the text). */
+export function removeAnnotationFromStorage(text, type = 'user') {
+  getNormalizedAnnotations((annotations) => {
+    const currentUrl = getPageKey();
+    const compactText = (text || '').replace(/\s+/g, ' ').trim();
+    if (!compactText) return;
+    annotations = annotations.filter(a => !(a.url === currentUrl && a.text === compactText && a.type === type));
+    chrome.storage.local.set({ annotations });
   });
 }
 
@@ -135,7 +194,13 @@ function normalizeAnnotationEntries(rawAnnotations) {
         const text = typeof a.text === 'string' ? a.text.replace(/\s+/g, ' ').trim() : '';
         const type = a.type === 'ghost' ? 'ghost' : 'user';
         const timestamp = typeof a.timestamp === 'string' ? a.timestamp : new Date().toISOString();
-        return { url, text, type, timestamp };
+        const extra = {};
+        if (typeof a.id === 'string') extra.id = a.id;
+        if (a.quote && typeof a.quote.exact === 'string') extra.quote = { exact: a.quote.exact, prefix: a.quote.prefix || '', suffix: a.quote.suffix || '' };
+        if (typeof a.pos === 'number') extra.pos = a.pos;
+        if (a.v) extra.v = a.v;
+        if (a.dismissed) extra.dismissed = true;
+        return { url, text, type, timestamp, ...extra };
       })
       .filter(a => a.url && a.text);
   }
@@ -225,10 +290,11 @@ function isOwnHighlightMutation(mutations) {
   return mutations.every(m => {
     const nodes = [...m.addedNodes, ...m.removedNodes];
     if (m.type === 'characterData') return false; // text edits are never ours
+    if (m.target && m.target.closest && m.target.closest('#aish-hl-host')) return true;
     return nodes.every(n =>
       n.nodeType === Node.ELEMENT_NODE &&
       (n.classList?.contains('ai-user-highlight') || n.classList?.contains('ai-ghost-highlight') ||
-       n.id === 'ai-highlight-tooltip' || n.id === 'ai-ghost-menu')
+       n.id === 'ai-highlight-tooltip' || n.id === 'ai-ghost-menu' || n.id === 'aish-hl-host' || n.id === 'aish-hl-styles')
     );
   });
 }
@@ -275,7 +341,98 @@ export function startAnnotationWatchers() {
   }
 }
 
-// ── 1. Yellow User Annotations ───────────────────────────────────────────────
+
+// ── Restore ──────────────────────────────────────────────────────────────────
+
+export function restoreAnnotations() {
+  if (!isAnyHighlightingEnabled()) return;
+  getNormalizedAnnotations((annotations) => {
+    const currentUrl = getPageKey();
+    const pageAnnotations = annotations.filter(a => {
+      if (a.url !== currentUrl || a.dismissed) return false;
+      if (a.type === 'ghost') return aiHighlightingEnabled;
+      return userHighlightingEnabled;
+    });
+
+    // Highlights deleted elsewhere (popup, other tab) disappear here too.
+    const ids = new Set(pageAnnotations.map(a => a.id).filter(Boolean));
+    for (const [id, entry] of [...hlLive]) {
+      if (!ids.has(id) && !String(id).startsWith('legacy_')) { hlUnpaint(entry); hlLive.delete(id); }
+    }
+    if (!pageAnnotations.length) { hlRefreshPanel(); return; }
+
+    // Resolving walks the article text; defer to idle time so it never competes
+    // with painting or scrolling on large pages.
+    const run = () => hlResolveAll(pageAnnotations, annotations);
+    if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 2000 });
+    else setTimeout(run, 0);
+  });
+}
+
+function hlResolveAll(pageAnnotations, allAnnotations) {
+  let idx = null, bodyIdx = null, upgraded = false;
+  const getIdx = (wide) => {
+    if (wide) return bodyIdx || (bodyIdx = ancBuildIndex(document.body));
+    return idx || (idx = ancBuildIndex(ancScopeRoot()));
+  };
+  pageAnnotations.forEach(ann => {
+    if (!ann.id) { ann.id = 'legacy_' + hlNewId(); ann._legacy = true; }
+    let entry = hlLive.get(ann.id);
+    if (entry && hlRangeAlive(entry) && entry.status !== 'lost') return;   // still painted
+    if (entry) hlUnpaint(entry);
+    const sel = ann.quote ? { ...ann.quote, pos: ann.pos, text: ann.text } : { text: ann.text };
+    let res = ancResolve(getIdx(false), sel), usedIdx = getIdx(false);
+    if (!res && ancScopeRoot() !== document.body) { usedIdx = getIdx(true); res = ancResolve(usedIdx, sel); }
+    entry = { ann, range: null, status: 'lost', marks: [] };
+    if (res) {
+      entry.range = ancToRange(usedIdx, res.start, res.end);
+      entry.status = entry.range ? (res.ambiguous ? 'ambiguous' : 'ok') : 'lost';
+    }
+    hlLive.set(ann.id, entry);
+    if (entry.range) {
+      // Upgrade a text-only highlight with its surrounding text, once, so it
+      // keeps pointing at THIS occurrence from now on.
+      if (!ann.quote) {
+        const q = ancMakeSelector(usedIdx, entry.range);
+        if (q) { ann.quote = { exact: q.exact, prefix: q.prefix, suffix: q.suffix }; ann.pos = q.pos; ann.v = 2; upgraded = true; }
+      }
+      hlPaint(entry);
+    }
+  });
+  if (upgraded) {
+    const byKey = new Map(pageAnnotations.map(a => [a.text + '|' + a.type, a]));
+    const next = allAnnotations.map(a => {
+      const u = a.url === getPageKey() ? byKey.get(a.text + '|' + a.type) : null;
+      if (!u || !u.quote) return a;
+      const { _legacy, ...clean } = u;
+      if (_legacy) clean.id = clean.id.replace(/^legacy_/, '');
+      return { ...a, ...clean };
+    });
+    chrome.storage.local.set({ annotations: next });
+  }
+  hlRefreshPanel();
+}
+
+export function scheduleRestoreAnnotations(delay = 160) {
+  if (!isAnyHighlightingEnabled()) return;
+
+  const now = Date.now();
+  if (!restoreTimer) restoreScheduledAt = now;
+
+  // If we've already been waiting for RESTORE_MAX_WAIT_MS, stop pushing the
+  // timer back — run on the next tick regardless of new mutations.
+  const elapsed = now - restoreScheduledAt;
+  const effectiveDelay = elapsed >= RESTORE_MAX_WAIT_MS ? 0 : delay;
+
+  if (restoreTimer) clearTimeout(restoreTimer);
+  restoreTimer = setTimeout(() => {
+    restoreTimer = null;
+    restoreScheduledAt = 0;
+    restoreAnnotations();
+  }, effectiveDelay);
+}
+
+// ── 1. Selecting text ────────────────────────────────────────────────────────
 
 export function handleTextSelection(event) {
   if (!userHighlightingEnabled) return;
@@ -288,16 +445,71 @@ export function handleTextSelection(event) {
 
   const anchorNode = selection.anchorNode;
   if (anchorNode && anchorNode.parentElement &&
-     (anchorNode.parentElement.closest('#ai-summary-hybrid-sidebar') ||
+     (anchorNode.parentElement.closest('#ai-summary-hybrid-sidebar, #aish-hl-host') ||
       ['INPUT', 'TEXTAREA'].includes(anchorNode.parentElement.tagName))) return;
 
+  const reattach = hlReattachId;
   showHighlightTooltip(event.pageX, event.pageY, () => {
-    applyHighlightFromRange(selectedRange, selectedText);
+    if (reattach && hlLive.has(reattach)) hlReattach(reattach, selectedRange);
+    else applyHighlightFromRange(selectedRange, selectedText);
+    hlReattachId = null;
     selection.removeAllRanges();
-  });
+  }, reattach ? '🔗 Attach here' : '✏️ Highlight');
 }
 
-function showHighlightTooltip(x, y, onClick) {
+function hlIndexFor(range) {
+  const root = ancScopeRoot();
+  const base = root.contains(range.commonAncestorContainer) ? root : document.body;
+  return ancBuildIndex(base);
+}
+
+export function applyHighlightFromRange(range, text) {
+  if (!range || range.collapsed) return null;
+  const idx = hlIndexFor(range);
+  const sel = ancMakeSelector(idx, range);
+  if (!sel) return null;
+  const ann = saveAnnotationToStorage(sel.exact || text, 'user', { quote: { exact: sel.exact, prefix: sel.prefix, suffix: sel.suffix }, pos: sel.pos });
+  if (!ann) return null;
+  const entry = { ann, range: range.cloneRange(), status: 'ok', marks: [] };
+  hlLive.set(ann.id, entry);
+  hlPaint(entry);
+  hlRefreshPanel();
+  return ann;
+}
+
+/** Context-menu highlight: use the live selection when it matches, else the first match in the article. */
+export function highlightFromSelectionOrText(text) {
+  const clean = ancNormalize(text);
+  if (!clean) return null;
+  const sel = window.getSelection();
+  if (sel && sel.rangeCount && ancNormalize(sel.toString()) === clean) return applyHighlightFromRange(sel.getRangeAt(0).cloneRange(), clean);
+  const idx = ancBuildIndex(ancScopeRoot());
+  const res = ancResolve(idx, { text: clean });
+  const range = res && ancToRange(idx, res.start, res.end);
+  return range ? applyHighlightFromRange(range, clean) : null;
+}
+
+// Compatibility shim: callers that only have text (first match in the article).
+export function highlightTextOnPage(element, text, isGhost) {
+  if (isGhost) return applyGhostHighlights([text]);
+  return highlightFromSelectionOrText(text);
+}
+
+function hlReattach(id, range) {
+  const entry = hlLive.get(id);
+  if (!entry) return;
+  const idx = hlIndexFor(range);
+  const sel = ancMakeSelector(idx, range);
+  if (!sel) return;
+  hlUnpaint(entry);
+  entry.ann = { ...entry.ann, text: sel.exact, quote: { exact: sel.exact, prefix: sel.prefix, suffix: sel.suffix }, pos: sel.pos, v: 2 };
+  entry.range = range.cloneRange(); entry.status = 'ok';
+  hlPatchAnnotation(id, { text: sel.exact, quote: entry.ann.quote, pos: sel.pos, v: 2 });
+  hlPaint(entry);
+  hlRefreshPanel();
+}
+
+function showHighlightTooltip(x, y, onClick, label = '✏️ Highlight') {
   let tooltip = document.getElementById('ai-highlight-tooltip');
   if (!tooltip) {
     tooltip = document.createElement('button');
@@ -313,6 +525,7 @@ function showHighlightTooltip(x, y, onClick) {
     `;
     document.body.appendChild(tooltip);
   }
+  tooltip.innerHTML = label;
   tooltip.style.left = `${x + 5}px`;
   tooltip.style.top  = `${y - 35}px`;
   tooltip.style.display = 'block';
@@ -385,192 +598,65 @@ function wrapRangeAcrossNodes(range, createMark) {
   return { groupId, marks };
 }
 
-export function applyHighlightFromRange(range, text) {
-  if (!range || range.collapsed) return;
-  const highlightText = text || range.toString().trim();
-  if (!highlightText) return;
+// ── Clicking a highlight ─────────────────────────────────────────────────────
 
-  const { marks } = wrapRangeAcrossNodes(range, () => {
-    const mark = document.createElement('mark');
-    mark.className = 'ai-user-highlight';
-    mark.title = 'Click to remove highlight';
-    mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
-    return mark;
-  });
-
-  // Every fragment carries the FULL original text (not its own partial
-  // slice) — needed so duplicate-detection and click-removal act on the
-  // whole logical highlight, not just whichever fragment was touched.
-  marks.forEach(m => m.dataset.annotationText = highlightText);
-  if (marks.length) saveAnnotationToStorage(highlightText, 'user');
-}
-
-export function highlightTextOnPage(element, text, isGhost) {
-  if (!element || !text) return;
-  const compactText = text.replace(/\s+/g, ' ').trim();
-  if (!compactText) return;
-
-  const existingSelector = isGhost ? '.ai-ghost-highlight' : '.ai-user-highlight';
-  const alreadyExists = Array.from(document.querySelectorAll(existingSelector)).some(el =>
-    (el.dataset.annotationText || '').replace(/\s+/g, ' ').trim() === compactText
-  );
-  if (alreadyExists) return;
-
-  let range = findTextRangeAcrossNodes(element, text);
-  if (!range) range = findTextRangeAcrossNodes(element, compactText);
-  if (!range) return;
-
-  const { marks } = wrapRangeAcrossNodes(range, () => {
-    const mark = document.createElement('mark');
-    if (isGhost) {
-      mark.className = 'ai-ghost-highlight';
-      mark.dataset.ghostText = compactText;
-      mark.title = 'AI Ghost Highlight — click to keep or dismiss';
-      mark.style.cssText = 'background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;cursor:pointer;';
-    } else {
-      mark.className = 'ai-user-highlight';
-      mark.title = 'Click to remove highlight';
-      mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
-    }
-    return mark;
-  });
-
-  marks.forEach(m => m.dataset.annotationText = compactText);
-}
-
-function findTextRangeAcrossNodes(root, text) {
-  if (!root || !text) return null;
-
-  const query = text.replace(/\s+/g, ' ').trim();
-  if (!query) return null;
-
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode(node) {
-      if (!node || !node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-      const parent = node.parentElement;
-      if (!parent) return NodeFilter.FILTER_REJECT;
-      if (parent.closest('script, style, noscript')) return NodeFilter.FILTER_REJECT;
-      if (parent.closest('.ai-user-highlight, .ai-ghost-highlight')) return NodeFilter.FILTER_REJECT;
-      return NodeFilter.FILTER_ACCEPT;
-    }
-  });
-
-  const textNodes = [];
-  const spans = [];
-  let fullText = '';
-  let cursor = 0;
-  let current;
-
-  while ((current = walker.nextNode())) {
-    const value = current.nodeValue || '';
-    textNodes.push(current);
-    spans.push({
-      node: current,
-      start: cursor,
-      end: cursor + value.length
-    });
-    fullText += value;
-    cursor += value.length;
+function hlEntryAt(event) {
+  const mark = event.target && event.target.closest && event.target.closest('[data-hl-id]');
+  if (mark) return hlLive.get(mark.dataset.hlId) || null;
+  if (!HL_NATIVE) return null;
+  const sel = window.getSelection();
+  if (sel && !sel.isCollapsed) return null;               // a drag-select, not a click
+  let node = null, offset = 0;
+  if (document.caretPositionFromPoint) {
+    const p = document.caretPositionFromPoint(event.clientX, event.clientY);
+    if (p) { node = p.offsetNode; offset = p.offset; }
+  } else if (document.caretRangeFromPoint) {
+    const r = document.caretRangeFromPoint(event.clientX, event.clientY);
+    if (r) { node = r.startContainer; offset = r.startOffset; }
   }
-
-  if (!fullText) return null;
-
-  let idx = fullText.indexOf(text);
-  if (idx === -1) {
-    idx = fullText.indexOf(query);
-    if (idx === -1) return null;
+  if (!node) return null;
+  for (const entry of hlLive.values()) {
+    if (!entry.range) continue;
+    try {
+      if (entry.range.isPointInRange(node, offset)) {
+        // the caret can land next to the text: confirm the pointer is inside a rect
+        const inside = Array.from(entry.range.getClientRects()).some(r => event.clientX >= r.left - 1 && event.clientX <= r.right + 1 && event.clientY >= r.top - 1 && event.clientY <= r.bottom + 1);
+        if (inside) return entry;
+      }
+    } catch (e) { /* range in another tree */ }
   }
-
-  const match = idx === fullText.indexOf(text) && fullText.indexOf(text) !== -1 ? text : query;
-  const startIndex = idx;
-  const endIndexExclusive = idx + match.length;
-
-  const startPos = resolveGlobalOffset(spans, startIndex);
-  const endPos = resolveGlobalOffset(spans, endIndexExclusive);
-  if (!startPos || !endPos) return null;
-
-  const range = document.createRange();
-  range.setStart(startPos.node, startPos.offset);
-  range.setEnd(endPos.node, endPos.offset);
-
-  const container = range.commonAncestorContainer.nodeType === Node.ELEMENT_NODE
-    ? range.commonAncestorContainer
-    : range.commonAncestorContainer.parentElement;
-  if (container && container.closest && container.closest('.ai-user-highlight, .ai-ghost-highlight')) {
-    return null;
-  }
-
-  return range;
-}
-
-function resolveGlobalOffset(spans, globalOffset) {
-  if (!spans.length) return null;
-
-  for (let i = 0; i < spans.length; i++) {
-    const span = spans[i];
-    if (globalOffset < span.end) {
-      return {
-        node: span.node,
-        offset: Math.max(0, globalOffset - span.start)
-      };
-    }
-
-    if (globalOffset === span.end) {
-      return {
-        node: span.node,
-        offset: span.node.nodeValue.length
-      };
-    }
-  }
-
-  const last = spans[spans.length - 1];
-  return {
-    node: last.node,
-    offset: last.node.nodeValue.length
-  };
+  return null;
 }
 
 export function handleHighlightClick(event) {
-  const target = event.target;
-  if (target && target.classList.contains('ai-user-highlight')) {
-    const textToRemove = (target.dataset.annotationText || target.textContent || '').replace(/\s+/g, ' ').trim();
-    const groupId = target.dataset.highlightGroup;
-    const fragments = groupId
-      ? document.querySelectorAll(`.ai-user-highlight[data-highlight-group="${groupId}"]`)
-      : [target];
-
-    fragments.forEach(el => {
-      const parent = el.parentNode;
-      if (!parent) return;
-      while (el.firstChild) parent.insertBefore(el.firstChild, el);
-      parent.removeChild(el);
-    });
-
-    removeAnnotationFromStorage(textToRemove, 'user');
-  }
+  if (event.target && event.target.closest && event.target.closest('#aish-hl-host, #ai-ghost-menu')) return;
+  const entry = hlEntryAt(event);
+  if (!entry) return;
+  event.preventDefault(); event.stopPropagation();
+  hlShowMenu(event.pageX, event.pageY, entry);
 }
 
-// ── 2. Light Blue AI Ghost Annotations ───────────────────────────────────────
+// Kept for the content.js listener list; clicks are handled in one place now.
+export function handleGhostHighlightClick() {}
 
-export function applyGhostHighlights(quotes = []) {
-  if (!aiHighlightingEnabled || !quotes || !quotes.length) return;
-  quotes.forEach(quote => {
-    const clean = quote.replace(/\s+/g, ' ').trim();
-    if (clean.length < 5) return;
-    saveAnnotationToStorage(clean, 'ghost');
-    highlightTextOnPage(document.body, clean, true);
-  });
+function hlRemove(id, opts) {
+  const entry = hlLive.get(id);
+  if (entry) { hlUnpaint(entry); hlLive.delete(id); }
+  hlRemoveFromStorage(id, opts);
+  hlRefreshPanel();
 }
 
-export function handleGhostHighlightClick(event) {
-  const target = event.target;
-  if (target && target.classList.contains('ai-ghost-highlight')) {
-    event.preventDefault(); event.stopPropagation();
-    showGhostActionMenu(event.pageX, event.pageY, target);
-  }
+function hlKeep(id) {
+  const entry = hlLive.get(id);
+  if (!entry) return;
+  hlUnpaint(entry);
+  entry.ann = { ...entry.ann, type: 'user' };
+  hlPatchAnnotation(id, { type: 'user' });
+  hlPaint(entry);
+  hlRefreshPanel();
 }
 
-function showGhostActionMenu(x, y, markElement) {
+function hlShowMenu(x, y, entry) {
   let menu = document.getElementById('ai-ghost-menu');
   if (!menu) {
     menu = document.createElement('div');
@@ -584,43 +670,18 @@ function showGhostActionMenu(x, y, markElement) {
     `;
     document.body.appendChild(menu);
   }
-  menu.innerHTML = `
-    <button id="btn-convert-yellow" style="background:#fef08a;border:1px solid #fde047;color:#854d0e;padding:4px 8px;border-radius:4px;cursor:pointer;font-weight:bold;">⭐ Keep</button>
-    <button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">✕ Dismiss</button>
-  `;
+  const ghost = entry.ann.type === 'ghost';
+  menu.innerHTML = ghost
+    ? `<button id="btn-convert-yellow" style="background:#fef08a;border:1px solid #fde047;color:#854d0e;padding:4px 8px;border-radius:4px;cursor:pointer;font-weight:bold;">⭐ Keep</button>
+       <button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">✕ Dismiss</button>`
+    : `<button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">🗑 Remove highlight</button>`;
   menu.style.left = `${x}px`;
-  menu.style.top  = `${y - 44}px`;
+  menu.style.top = `${y - 44}px`;
   menu.style.display = 'flex';
-
-  const text = (markElement.dataset.ghostText || markElement.dataset.annotationText || markElement.textContent || '').replace(/\s+/g, ' ').trim();
-  const groupId = markElement.dataset.highlightGroup;
-  const fragments = groupId
-    ? Array.from(document.querySelectorAll(`.ai-ghost-highlight[data-highlight-group="${groupId}"]`))
-    : [markElement];
-
-  document.getElementById('btn-convert-yellow').onclick = () => {
-    removeAnnotationFromStorage(text, 'ghost');
-    fragments.forEach(el => {
-      el.className = 'ai-user-highlight';
-      el.title = 'Click to remove highlight';
-      el.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
-      delete el.dataset.ghostText;
-    });
-    saveAnnotationToStorage(text, 'user');
-    menu.style.display = 'none';
-  };
-
-  document.getElementById('btn-dismiss-ghost').onclick = () => {
-    removeAnnotationFromStorage(text, 'ghost');
-    fragments.forEach(el => {
-      const parent = el.parentNode;
-      if (!parent) return;
-      while (el.firstChild) parent.insertBefore(el.firstChild, el);
-      parent.removeChild(el);
-    });
-    menu.style.display = 'none';
-  };
-
+  const id = entry.ann.id;
+  const keepBtn = document.getElementById('btn-convert-yellow');
+  if (keepBtn) keepBtn.onclick = () => { hlKeep(id); menu.style.display = 'none'; };
+  document.getElementById('btn-dismiss-ghost').onclick = () => { hlRemove(id, { dismiss: ghost }); menu.style.display = 'none'; };
   setTimeout(() => {
     document.addEventListener('click', function hideMenu() {
       if (menu) menu.style.display = 'none';
@@ -628,3 +689,75 @@ function showGhostActionMenu(x, y, markElement) {
     }, { once: true });
   }, 100);
 }
+
+// ── 2. AI highlights ─────────────────────────────────────────────────────────
+
+export function applyGhostHighlights(quotes = []) {
+  if (!aiHighlightingEnabled || !quotes || !quotes.length) return;
+  const idx = ancBuildIndex(ancScopeRoot());
+  getNormalizedAnnotations((annotations) => {
+    const url = getPageKey();
+    let added = false;
+    quotes.forEach(quote => {
+      const exact = ancQuoteUsable(idx, quote, 8);            // unique in the article, or long enough to be specific
+      if (!exact) return;
+      // already known (also when dismissed earlier): never re-create
+      if (annotations.some(a => a.url === url && a.type === 'ghost' && a.text === exact)) return;
+      const res = ancResolve(idx, { text: exact });
+      const range = res && ancToRange(idx, res.start, res.end);
+      if (!range) return;
+      const q = ancMakeSelector(idx, range);
+      const ann = { id: hlNewId(), url, text: exact, type: 'ghost', timestamp: new Date().toISOString(), v: 2,
+        quote: { exact: q.exact, prefix: q.prefix, suffix: q.suffix }, pos: q.pos };
+      annotations.push(ann); added = true;
+      const entry = { ann, range, status: 'ok', marks: [] };
+      hlLive.set(ann.id, entry);
+      hlPaint(entry);
+    });
+    if (added) chrome.storage.local.set({ annotations });
+    hlRefreshPanel();
+  });
+}
+
+/** Texts of the user's current highlights (used as high-priority context for the AI). */
+export function getUserHighlightTexts() {
+  const out = [];
+  for (const e of hlLive.values()) {
+    if (e.ann.type === 'user' && e.range) out.push(ancNormalize(e.range.toString()));
+  }
+  document.querySelectorAll('.ai-user-highlight').forEach(el => { const t = ancNormalize(el.textContent); if (t && !out.includes(t)) out.push(t); });
+  return out.filter(Boolean);
+}
+
+// ── 3. Panel + scrollbar ticks ───────────────────────────────────────────────
+
+let hlPanelTimer = null;
+function hlRefreshPanel() {
+  clearTimeout(hlPanelTimer);
+  hlPanelTimer = setTimeout(() => {
+    const docH = Math.max(document.documentElement.scrollHeight, 1);
+    const items = [...hlLive.values()].map(e => {
+      let frac = null;
+      if (e.range && e.status !== 'lost') {
+        try { const r = e.range.getBoundingClientRect(); frac = Math.min(1, Math.max(0, (r.top + window.scrollY) / docH)); } catch (err) { /* detached */ }
+      }
+      return { id: e.ann.id, type: e.ann.type, text: e.ann.text, status: e.status, frac };
+    });
+    hlpRender(items, {
+      jump: hlJump, remove: (id) => hlRemove(id, { dismiss: hlLive.get(id)?.ann.type === 'ghost' }),
+      keep: hlKeep, reattach: (id) => { hlReattachId = id; }, pending: () => hlReattachId
+    });
+  }, 120);
+}
+
+function hlJump(id) {
+  const entry = hlLive.get(id);
+  if (!entry || !entry.range) return;
+  const el = entry.range.startContainer.parentElement;
+  if (el && el.scrollIntoView) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  if (HL_NATIVE) {
+    CSS.highlights.set('aish-flash', new Highlight(entry.range));
+    setTimeout(() => CSS.highlights.delete('aish-flash'), 1400);
+  } else if (el) { el.classList.add('aish-hl-flash'); setTimeout(() => el.classList.remove('aish-hl-flash'), 1400); }
+}
+

@@ -41,7 +41,7 @@ const MARK_STYLE = {
  * differences and works across inline tags; quotes that cannot be found are simply left unmarked
  * (they still appear in the Highlights list).
  */
-export function markHighlights(html, annotations) {
+export function markHighlights(html, annotations, placed = new Set()) {
     if (!html || !Array.isArray(annotations) || annotations.length === 0) return html || '';
     const doc = new DOMParser().parseFromString(`<div id="aish-root">${html}</div>`, 'text/html');
     const root = doc.getElementById('aish-root');
@@ -58,14 +58,32 @@ export function markHighlights(html, annotations) {
         return out;
     };
     for (const a of annotations) {
+        if (a && placed.has(a)) continue;                 // already marked in another section of this document
         const t = String((a && a.text) || '').replace(/\s+/g, ' ').trim();
         if (t.length < 5) continue;
-        const re = new RegExp(t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+'));
+        const re = new RegExp(t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+'), 'g');
         const nodes = textNodes();
         let full = '';
         const starts = nodes.map(n => { const st = full.length; full += n.nodeValue; return st; });
-        const m = re.exec(full);
-        if (!m) continue;
+        // All matches; with saved context pick the one the user actually marked.
+        const matches = [...full.matchAll(re)];
+        if (!matches.length) continue;
+        const squash = (x) => x.replace(/\s+/g, ' ');
+        const q = a.quote;
+        let m = matches[0];
+        if (q && matches.length > 1) {
+            let bestScore = -1;
+            for (const c of matches) {
+                const before = squash(full.slice(Math.max(0, c.index - 80), c.index));
+                const after = squash(full.slice(c.index + c[0].length, c.index + c[0].length + 80));
+                let sc = 0;
+                const pre = q.prefix || '', suf = q.suffix || '';
+                if (pre) { let i = 0; while (i < pre.length && i < before.length && pre[pre.length - 1 - i] === before[before.length - 1 - i]) i++; sc += i / pre.length; }
+                if (suf) { let i = 0; while (i < suf.length && i < after.length && suf[i] === after[i]) i++; sc += i / suf.length; }
+                if (sc > bestScore) { bestScore = sc; m = c; }
+            }
+        }
+        placed.add(a);
         const s0 = m.index, e0 = m.index + m[0].length;
         const style = MARK_STYLE[a.type === 'ghost' ? 'ghost' : 'user'];
         nodes.forEach((n, i) => {
@@ -100,7 +118,7 @@ export async function fetchAnnotationsForArticle(article) {
             if (chrome.runtime.lastError) { resolve([]); return; }
             const all = Array.isArray(res.annotations) ? res.annotations : [];
             const key = pageKeyForUrl(url);
-            resolve(all.filter(a => a && a.url === key));
+            resolve(all.filter(a => a && a.url === key && !a.dismissed));
         });
     });
 }

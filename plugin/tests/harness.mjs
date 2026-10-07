@@ -6,7 +6,7 @@ export const SRC = process.env.AISH_SRC + '';
 export function setup(fixtures) {
   const dom = new JSDOM(fs.readFileSync(SRC + '/popup.html', 'utf8'), { url: 'chrome-extension://abc/popup.html', pretendToBeVisual: true });
   const w = dom.window;
-  for (const k of ['window','document','DOMParser','Blob','CustomEvent','Event','KeyboardEvent','HTMLElement','Node']) { try { globalThis[k] = k==='window'? w : w[k]; } catch(e){} }
+  for (const k of ['window','document','DOMParser','Blob','CustomEvent','Event','KeyboardEvent','HTMLElement','Node','NodeFilter','Range','Text','Element']) { try { globalThis[k] = k==='window'? w : w[k]; } catch(e){} }
   Object.defineProperty(globalThis,'navigator',{value:w.navigator,configurable:true});
   w.URL.createObjectURL = () => 'blob:x'; w.URL.revokeObjectURL = () => {};
   const store = {};
