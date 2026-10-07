@@ -6,6 +6,7 @@
  * the background worker's `aiComplete` action.
  */
 
+import { languageEnglishName } from './languages.js';
 import { T } from './feedI18n.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
@@ -32,7 +33,7 @@ export function aiComplete(system, user) {
 async function languageName() {
     try {
         const { selectedLanguage } = await chrome.storage.sync.get('selectedLanguage');
-        return selectedLanguage || 'en-US';
+        return languageEnglishName(selectedLanguage || 'en-US');
     } catch (e) { return 'en-US'; }
 }
 
@@ -122,7 +123,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText }
     const lang = await languageName();
     const suffix = styleText !== undefined ? styleSuffix(styleText) : await feedStyle('briefing');
     const system = 'You write brief news-digest recaps from headlines and snippets. '
-        + `Reply in the language with code ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
+        + `Reply in the language ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
         + 'First, 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
         + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
@@ -147,7 +148,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
     const lang = await languageName();
     const suffix = await feedStyle('briefing');
     const system = 'You maintain a brief news-digest recap. You get the CURRENT recap and a numbered list of NEW or EDITED items (edited ones are marked). '
-        + `Update the recap so it covers the earlier points and the new items. Reply in the language with code ${lang}. Use ONLY the given text; do not invent facts. `
+        + `Update the recap so it covers the earlier points and the new items. Reply in the language ${lang}. Use ONLY the given text; do not invent facts. `
         + 'Keep still-relevant points, add new standout stories naming the source, and drop or correct anything an edited item contradicts. Format exactly:\n'
         + 'First, 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
@@ -254,7 +255,7 @@ export async function generateRollup(parts, { label = '', prev = null, edited = 
     const suffix = await feedStyle('recap');
     const system = 'You merge brief news-digest recaps of several days or weeks into ONE recap for the whole period. '
         + (prev ? 'You get the CURRENT period recap plus only the NEW or CHANGED recaps (changed ones are marked); keep still-relevant points and correct anything a changed recap contradicts. ' : '')
-        + `Reply in the language with code ${lang}. Use ONLY the given recaps; do not invent facts. Format exactly:\n`
+        + `Reply in the language ${lang}. Use ONLY the given recaps; do not invent facts. Format exactly:\n`
         + 'First, 2-3 sentences of overview of the whole period.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the day or week and the source.\n'
         + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the whole period).\n'
