@@ -52,7 +52,7 @@ export function createComposer(bar, { onChange } = {}) {
         working: () => T('■ Stop'),
         followup: () => T('Send')
     };
-    if (textarea && !textarea.dataset.fetchPlaceholder) textarea.dataset.fetchPlaceholder = textarea.placeholder;
+    if (textarea && !textarea.dataset.fetchPlaceholder) textarea.dataset.fetchPlaceholder = T('Focus on something… (optional)');   // short: it must fit one line in a narrow popup
     const apply = () => {
         bar.dataset.state = state;
         if (button) { button.dataset.state = state; button.textContent = copy[state](); button.disabled = false; }

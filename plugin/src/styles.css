@@ -3249,8 +3249,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 /* ── Composer (B · docked pill): page pill, one quiet settings line, pill input with the button inside ── */
 .controls-bar .input-card {
   position: relative; display: flex; flex-direction: column; gap: 8px;
-  padding: 8px; border-radius: 26px;
-  background: var(--bg-page); border: 1px solid var(--glass-border); box-shadow: var(--shadow-card);   /* opaque: the feed must never show through the controls */
+  padding: 8px 0 0; border-radius: 0; background: transparent; border: 0; box-shadow: none;
 }
 .controls-bar .input-card-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0; }
 .controls-bar .chip-row { position: static; order: 2; padding: 0 6px; border-top: 0; gap: 0; flex-wrap: wrap; }
@@ -3290,3 +3289,22 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
   .composer-pill, .page-chip, .resume-card, .chip { border: 1px solid CanvasText; }
   .composer-pill #fetchSummary { border: 1px solid ButtonText; }
 }
+
+/* The bottom of the Summarize screen fades the feed out behind the controls (no card edges, no text collisions). */
+.controls-bar::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  left: 50%; width: 100vw; transform: translateX(-50%);
+  top: -72px; bottom: calc(-1 * (var(--bottom-nav-height) + var(--controls-bottom-gap)));
+  background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--bg-page) 78%, transparent) 40px, var(--bg-page) 72px);
+}
+/* Larger, easier targets */
+.composer-pill { padding: 5px 5px 5px 18px; border-radius: 28px; }
+.composer-pill .input-card-textarea { min-height: 44px; height: 44px; padding: 12px 0; font-size: 15px; }
+.composer-pill .input-card-textarea::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.composer-pill #fetchSummary { min-height: 44px; height: 44px; border-radius: 22px; padding: 0 22px; font-size: 15px; }
+.page-chip { padding: 8px 12px; border-radius: 14px; }
+.page-chip-title { font-size: 13px; }
+.page-chip-meta { font-size: 12px; }
+.page-chip-ic { width: 20px; height: 20px; }
+.controls-bar .chip { font-size: 12px; min-height: 32px; }
+.controls-bar .chip-icon { font-size: 12px; }
