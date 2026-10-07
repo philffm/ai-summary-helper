@@ -50,7 +50,7 @@
   --sheen-soft: rgba(255,255,255,0.14);
 
   --cta-sky-1: var(--sky-light);
-  --cta-sky-2: var(--sky);
+  --cta-sky-2: #6FA3FF; /* 7.6:1 with #08101F (AAA) */
   --cta-amber-1: var(--amber-light);
   --cta-amber-2: var(--amber);
 
@@ -76,13 +76,13 @@
   --ink-800:#FFFFFF;
   --ink-700:#EDECE6;
   --steel-600:#C7C6C0;
-  --steel-400:#83838C;
+  --steel-400:#6A6A73;
   --paper:#15161B;
   --paper-dim:#54545D;
   --signal:#1D4ED8;
   --signal-light:#2563EB;
-  --brass:#9A6B14;
-  --brass-light:#B27D19;
+  --brass:#7C5209;
+  --brass-light:#85580C;
 
   --surface-1: rgba(20,21,26,0.035);
   --surface-1-strong: rgba(20,21,26,0.06);
@@ -244,7 +244,7 @@ a.ecosystem-card:hover{ border-color:var(--border-strong); transform:translateY(
 .ecosystem-card.self{ border-color:var(--border-strong); background:linear-gradient(180deg, var(--surface-1-strong), var(--surface-2)); }
 .ecosystem-card .f-badge{
   display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase;
-  color:var(--signal-light); background:var(--surface-1-strong); border:1px solid var(--border-subtle);
+  color:var(--signal); background:var(--surface-1-strong); border:1px solid var(--border-subtle);
   padding:3px 8px; border-radius:6px; margin-bottom:14px;
 }
 
@@ -317,7 +317,7 @@ section{ padding:76px 0; }
 /* Ghost-highlight style — mirrors the bookmarklet/extension highlight so the
    landing-page card can demo the feature itself. */
 .ai-ghost-highlight{
-  background-color:rgba(186,230,253,0.65); color:#0369a1;
+  background-color:rgba(186,230,253,0.92); color:#075985;
   border-bottom:2px dashed #0284c7; border-radius:2px; padding:0 2px;
 }
 
