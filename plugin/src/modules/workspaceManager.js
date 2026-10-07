@@ -15,9 +15,9 @@ export const maxPanes = () => (window.innerWidth >= 1100 ? 3 : window.innerWidth
 const effective = () => Math.min(layout, maxPanes());
 
 const SCREENS = [
-    { scope: 'history', id: 'historyScreen', bar: 'historyTopRow',
+    { scope: 'history', id: 'historyScreen', bar: 'historyTopRow', top: 'historyTopBar',
       ids: { list: ['articleList', 'articleDetail'], graph: ['graphContainer'], report: ['reportContainer'] } },
-    { scope: 'feeds', id: 'feedsScreen', bar: 'feedToolbar',
+    { scope: 'feeds', id: 'feedsScreen', bar: 'feedToolbar', top: 'feedControls',
       ids: { list: ['feedListPane'], graph: ['feedGraph'], report: ['feedInsights'] } },
 ];
 const elsOf = (cfg) => Object.fromEntries(VIEWS.map(v => [v, cfg.ids[v].map(i => document.getElementById(i)).filter(Boolean)]));
@@ -56,6 +56,9 @@ function applyScreen(cfg) {
     screen.querySelectorAll(':scope > .ws-head').forEach(h => h.remove());
     const e = elsOf(cfg);
     for (const v of VIEWS) for (const el of e[v]) el.classList.remove('ws-off', 'ws-p1', 'ws-p2', 'ws-p3');
+    // The top bar (search, filters) belongs to the LIST pane: it sits in the list's column, so the other panes get the full height.
+    const top = cfg.top && document.getElementById(cfg.top);
+    if (top) top.classList.remove('ws-off', 'ws-p1', 'ws-p2', 'ws-p3');
     if (!on) {
         emit(cfg.scope, 'graph', false);
         emit(cfg.scope, 'report', false);
@@ -66,6 +69,7 @@ function applyScreen(cfg) {
         return;
     }
     const shown = views.slice(0, n);
+    if (top) { const ls = shown.indexOf('list'); top.classList.add(ls === -1 ? 'ws-off' : `ws-p${ls + 1}`); }
     for (const v of VIEWS) {
         const slot = shown.indexOf(v);
         for (const el of e[v]) el.classList.add(slot === -1 ? 'ws-off' : `ws-p${slot + 1}`);

@@ -2988,14 +2988,18 @@ body[data-screen="history"] .header .ws-seg:not([hidden]) { display: inline-flex
   overflow: hidden;
   padding-bottom: 0;          /* panes use the full height; each keeps its own clearance below */
 }
-.screen.ws-active > .topbar { grid-column: 1 / -1; grid-row: 1; }
-.screen.ws-active > .ws-head { grid-row: 2; display: flex; align-items: center; gap: 8px; padding: 8px 0; }
+/* rows: 1 pane selectors · 2 top bar (list column only) · 3 panes. Graph/analytics panes span rows 2-3,
+   so only the list pane shares its column with the top bar. */
+.screen.ws-active > .topbar { grid-row: 2; margin: 0 0 8px; padding: 8px 0; }
+.screen.ws-active > .ws-head { grid-row: 1; display: flex; align-items: center; gap: 8px; padding: 8px 0; }
 .screen.ws-active > .ws-p1 { grid-column: 1; }
 .screen.ws-active > .ws-p2 { grid-column: 2; }
 .screen.ws-active > .ws-p3 { grid-column: 3; }
 .screen.ws-active > :is(#articleList, #articleDetail, #graphContainer, #reportContainer, #feedListPane, #feedGraph, #feedInsights) {
   grid-row: 3; min-height: 0; overflow-y: auto; margin: 0; padding-bottom: var(--nav-clearance);
 }
+/* non-list panes start right under their pane selector (the top bar is not above them) */
+.screen.ws-active > :is(#graphContainer, #reportContainer, #feedGraph, #feedInsights) { grid-row: 2 / -1; }
 /* panes fill the available height (the graph sets 90% inline) */
 .screen.ws-active > :is(#graphContainer, #feedGraph) { height: calc(100% - var(--nav-clearance)) !important; min-height: 0; padding-bottom: 0; }   /* card pane: ends above the nav so its own controls stay reachable */
 .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p1, .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p2, .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p3 { display: block !important; }
