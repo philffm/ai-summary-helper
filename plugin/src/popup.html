@@ -156,8 +156,8 @@
       </div> <!-- closes #mainScreen -->
 
       <!-- HISTORY SCREEN -->
-      <div id="historyScreen" class="screen">
-        <div id="historyTopBar" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
+      <div id="historyScreen" class="screen has-topbar">
+        <div id="historyTopBar" class="topbar topbar--row" style="display:flex;">
           <div id="searchInputWrap" style="position:relative;flex:1;">
             <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;width:100%;" />
             <div id="searchInputActions" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px;">
@@ -173,7 +173,7 @@
           <button id="graphToggleBtn" class="button-secondary action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
           <button id="reportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
         </div>
-        <div id="detailTopBar" style="display:none;gap:8px;margin-bottom:12px;align-items:center;">
+        <div id="detailTopBar" class="topbar topbar--row" style="display:none;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;">⬅ Back to History</button>
           <button id="detailGraphToggleBtn" class="button-secondary action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
           <button id="detailReportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
@@ -540,8 +540,8 @@
       </div>
 
       <!-- FEEDS SCREEN -->
-      <div id="feedsScreen" class="screen">
-        <div id="feedControls">
+      <div id="feedsScreen" class="screen has-topbar">
+        <div id="feedControls" class="topbar">
           <div class="feed-toolbar" id="feedToolbar">
             <input type="text" id="feedSearch" class="feed-search" placeholder="Search feeds…" data-i18n-placeholder="f_search_feeds_2a1e" autocomplete="off" spellcheck="false" />
             <button type="button" id="feedGraphBtn" class="button-secondary action-btn" title="View graph" aria-label="View graph" aria-pressed="false" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>

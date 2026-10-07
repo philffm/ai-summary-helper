@@ -1314,26 +1314,6 @@ ul#articleList {
   margin-bottom: 0;
 }
 
-#historyTopBar,
-#detailTopBar {
-  position: sticky;
-  z-index: var(--z-bar);
-  padding: 8px;
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--glass-base) 88%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  transition: transform 0.22s ease, opacity 0.22s ease;
-  will-change: transform, opacity;
-}
-
-#historyTopBar.scroll-hidden,
-#detailTopBar.scroll-hidden {
-  transform: translateY(calc(-100% - 8px));
-  opacity: 0;
-  pointer-events: none;
-}
 
 #graphToggleBtn {
   flex-shrink: 0;
@@ -2880,15 +2860,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-actions .feed-play-btn.button-primary.feed-btn { margin-left: 0; }
 
 /* ── Feeds: sticky top bar (hides on scroll down, returns on scroll up — like History) ── */
-#feedControls {
-  position: sticky; top: 0; z-index: var(--z-bar); padding: 8px; margin-bottom: 8px;
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--glass-base) 88%, transparent);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  transition: transform 0.22s ease, opacity 0.22s ease; will-change: transform, opacity;
-}
-#feedControls.scroll-hidden { transform: translateY(calc(-100% - 8px)); opacity: 0; pointer-events: none; }
 .feed-toolbar { display: flex; gap: 8px; align-items: center; margin: 0 0 8px; flex-wrap: wrap; }
 .feed-search { flex: 1; min-width: 0; margin: 0; } /* otherwise identical to History's #searchInput (global input style) */
 .feed-graph { width: 100%; height: 56vh; min-height: 320px; border-radius: var(--radius-lg); background: var(--glass-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); overflow: hidden; position: relative; }
@@ -3173,15 +3144,19 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #articleList > .history-tabs { margin-bottom: 12px; list-style: none; }
 .feed-scope { margin-top: 8px; }
 
-/* ── Full-bleed sticky bars (History search row, Feeds controls, Article detail) ──
-   Edge to edge and flush under the app header, so they read as an extension of the header
-   instead of a floating glass card competing with it. */
-#historyTopBar, #detailTopBar, #feedControls {
-  margin: calc(-1 * var(--spacing-s-4)) calc(-1 * var(--spacing-s-4)) 12px;
+/* ── Top bar (shared by History, Article detail, Feeds) ──────────────────────────
+   One structure everywhere: the screen has no top padding (.has-topbar) and the bar is its first child,
+   edge to edge and sticky at top:0 — so it sits flush under the app header and can never be clipped.
+   Hides on scroll down, returns on scroll up (`.scroll-hidden`, toggled from JS). */
+.screen.has-topbar { padding-top: 0; }
+.topbar {
+  position: sticky; top: 0; z-index: var(--z-bar);
+  margin: 0 calc(-1 * var(--spacing-s-4)) 12px;
   padding: 10px var(--spacing-s-4);
-  border-radius: 0;
-  border-width: 0 0 1px 0;
   background: var(--glass-base);
   backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+  border-bottom: 1px solid var(--glass-border);
+  transition: transform 0.22s ease, opacity 0.22s ease; will-change: transform, opacity;
 }
-#historyTopBar.scroll-hidden, #detailTopBar.scroll-hidden, #feedControls.scroll-hidden { transform: translateY(-100%); }
+.topbar--row { display: flex; gap: 8px; align-items: center; }
+.topbar.scroll-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
