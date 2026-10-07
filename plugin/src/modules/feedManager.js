@@ -27,6 +27,7 @@ import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 import { el } from './dom.js';
+import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
@@ -655,8 +656,10 @@ function passes(i, sm, skipDate = false) {
     if (ui.status === 'audio' && !i.audio) return false;
     if (!skipDate && !inDateFilter(i)) return false;
     const mood = itemMood(i) || 'neu';
-    if (ui.mood === 'pos' && mood !== 'pos') return false;
-    if (ui.mood === 'nonneg' && mood === 'neg') return false;
+    if (moodEnabled()) {
+        if (ui.mood === 'pos' && mood !== 'pos') return false;
+        if (ui.mood === 'nonneg' && mood === 'neg') return false;
+    }
     return true;
 }
 
@@ -692,7 +695,7 @@ function applySearch(list) {
 function visibleItems() {
     const sm = subMap();
     const list = items.filter(i => passes(i, sm));
-    if (ui.sort === 'mood') list.sort((a, b) => (itemMood(b) ? b.sent : -2) - (itemMood(a) ? a.sent : -2) || b.published - a.published);
+    if (ui.sort === 'mood' && moodEnabled()) list.sort((a, b) => (itemMood(b) ? b.sent : -2) - (itemMood(a) ? a.sent : -2) || b.published - a.published);
     else list.sort((a, b) => b.published - a.published);
     return searchQuery.trim() ? applySearch(list) : list;
 }
@@ -1249,8 +1252,8 @@ function openFilterSheet(opts = {}) {
         pick.append(el('span', 'feed-pick-name', T('📅  Pick a day or range…')), el('span', 'feed-pick-count', custom ? dateText() : ''), el('span', 'feed-pick-chevron', '›'));
         pick.addEventListener('click', () => { view = 'cal'; calSel = null; draw(); });
         body.append(pick);
-        section(TU('Mood'), 'mood', [['any', T('Any mood')], ['pos', T('😊  Positive only')], ['nonneg', T('Hide negative')]]);
-        section(TU('Sort'), 'sort', [['new', T('Newest first')], ['mood', T('Most positive first')]]);
+        if (moodEnabled()) section(TU('Mood'), 'mood', [['any', T('Any mood')], ['pos', T('😊  Positive only')], ['nonneg', T('Hide negative')]]);
+        if (moodEnabled()) section(TU('Sort'), 'sort', [['new', T('Newest first')], ['mood', T('Most positive first')]]);
         body.append(el('div', 'feed-pick-label', TU('More')));
         body.append(btn('feed-manage-link', T('✓  Mark everything in this view read'), () => {
             const list = visibleItems().filter(i => !i.read);
@@ -1698,24 +1701,68 @@ async function setSetting(key, value) {
     if (key === 'keepDays') { pruneItems(); await persist(); render(); }
 }
 
+// Source diet: last-30-day usage and mood per subscription (mood only from rated items).
+const DIET_DAYS = 30, DIET_MIN_SCORED = 5, NOISY_MOOD = -30;
+let openSubId = null, subFilter = 'all', subSort = moodEnabled() ? 'mood' : 'unread', behaviorOpen = false, dietDismissed = false;
+function dietStats(s) {
+    const since = Date.now() - DIET_DAYS * 864e5;
+    const mine = items.filter(i => i.feedId === s.id && i.published >= since);
+    const scored = mine.filter(i => i.ai && typeof i.sent === 'number');
+    const mood = scored.length >= DIET_MIN_SCORED ? Math.round(scored.reduce((a, i) => a + i.sent, 0) / scored.length * 100) : null;
+    const read = mine.length ? Math.round(mine.filter(i => i.read).length / mine.length * 100) : null;
+    if (!moodEnabled()) return { n: mine.length, read, mood: null, noisy: false, unread: items.filter(i => i.feedId === s.id && !i.read).length };
+    return { n: mine.length, read, mood, noisy: mood !== null && mood <= NOISY_MOOD, unread: items.filter(i => i.feedId === s.id && !i.read).length };
+}
+function dietMoodBar(m) {
+    const w = el('span', 'sd-mood');
+    w.append(el('span', 'sd-mood-track'), el('span', 'sd-mood-mid'));
+    if (m === null) { w.classList.add('is-empty'); w.title = T('Not enough rated items yet'); return w; }
+    const f = el('span', 'sd-mood-fill ' + (m < 0 ? 'neg' : 'pos'));
+    f.style.width = Math.abs(m) / 2 + '%'; f.style[m < 0 ? 'right' : 'left'] = '50%';
+    w.append(f);
+    return w;
+}
+
 function subRow(s) {
-    const row = el('div', 'feed-sub-card' + (s.muted ? ' is-muted' : ''));
-    const l1 = el('div', 'feed-sub-line');
+    const st = dietStats(s);
+    const open = openSubId === s.id;
+    const row = el('div', 'feed-sub-card' + (s.muted ? ' is-muted' : '') + (open ? ' is-open' : ''));
+    row.dataset.subId = s.id;
+
+    // Summary line (always visible): avatar · name · tags · mood bar · usage
+    const head = el('div', 'sd-head'); head.tabIndex = 0; head.setAttribute('role', 'button'); head.setAttribute('aria-expanded', String(open));
+    const av = el('span', 'sd-avatar', (subTitle(s).trim()[0] || '•').toUpperCase());
+    const main = el('div', 'sd-main');
+    main.append(el('div', 'sd-name', subTitle(s)));
+    const meta = el('div', 'sd-tags');
+    (s.tags || []).forEach(t => meta.append(el('span', 'sd-tag', t)));
+    if (st.noisy) meta.append(el('span', 'sd-flag sd-flag-noisy', '⚠ ' + T('Noisy')));
+    if (s.muted) meta.append(el('span', 'sd-flag', '🔕 ' + T('Muted')));
+    if (s.error) meta.append(el('span', 'sd-flag sd-flag-err', '⚠ ' + s.error));
+    main.append(meta);
+    const diet = el('div', 'sd-diet');
+    const mrow = el('div', 'sd-mood-row');
+    mrow.append(dietMoodBar(st.mood), el('span', 'sd-mood-val ' + (st.mood === null ? '' : st.mood < 0 ? 'neg' : 'pos'), st.mood === null ? '–' : (st.mood > 0 ? '+' : st.mood < 0 ? '−' : '') + Math.abs(st.mood)));
+    diet.append(mrow, el('div', 'sd-use', st.n ? TU('{n}/mo · {r}% read', { n: st.n, r: st.read }) : T('No items yet')));
+    head.append(av, main, diet);
+    const toggle = () => { openSubId = open ? null : s.id; renderFeedSettings(); };
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    row.append(head);
+
+    // Editor (rendered always so search/tests find the fields; shown when open)
+    const ed = el('div', 'sd-edit');
+    ed.append(el('div', 'sd-label', T('Name')));
     const name = el('input', 'feed-sub-input');
     name.type = 'text'; name.value = subTitle(s); name.setAttribute('aria-label', T('Feed name'));
     name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); name.blur(); } });
     name.addEventListener('change', async () => {
         const v = name.value.trim();
         if (v) s.customTitle = v; else { delete s.customTitle; name.value = subTitle(s); }
-        await persist(); render();
-    });
-    const mute = btn('feed-icon-btn', s.muted ? '🔕' : '🔔', async () => {
-        s.muted = !s.muted;
         await persist(); render(); renderFeedSettings();
-    }, s.muted ? T('Unmute (include in All sources)') : T('Mute (leave out of All sources)'));
-    const rm = btn('feed-icon-btn', '✕', () => { removeFeed(s.id); }, T('Unsubscribe'));
-    l1.append(name, mute, rm);
-    const l2 = el('div', 'feed-sub-line');
+    });
+    ed.append(name);
+    ed.append(el('div', 'sd-label', T('Tags')));
     const tagBox = el('div', 'feed-tags');
     const saveTags = async (next) => {
         s.tags = cleanTags(next);
@@ -1738,12 +1785,15 @@ function subRow(s) {
     });
     tagIn.addEventListener('change', commit);
     tagBox.append(tagIn);
-    const n = items.filter(i => i.feedId === s.id && !i.read).length;
-    l2.className = 'feed-sub-line feed-sub-tags';
-    l2.append(tagBox);
-    const status = el('div', 'feed-sub-line');
-    status.append(el('span', s.error ? 'feed-sub-error' : 'feed-muted', s.error ? '⚠ ' + s.error : T('{n} unread', { n })));
-    row.append(l1, l2, status);
+    ed.append(tagBox);
+    ed.append(el('div', 'sd-label', TU('{n} unread', { n: st.unread })));
+    const acts = el('div', 'sd-actions');
+    acts.append(
+        btn('button-secondary btn-sm', s.muted ? T('Unmute') : T('Mute'), async () => { s.muted = !s.muted; delete s.mutedUntil; await persist(); render(); renderFeedSettings(); },
+            s.muted ? T('Unmute (include in All sources)') : T('Mute (leave out of All sources)')),
+        btn('button-danger-outline btn-sm', T('Unsubscribe'), () => { removeFeed(s.id); }, T('Unsubscribe')));
+    ed.append(acts);
+    row.append(ed);
     return row;
 }
 
@@ -1756,6 +1806,25 @@ function toggleRow(id, title, hint, key) {
     const sw = el('label', 'switch'); sw.style.cssText = 'flex-shrink:0;margin-left:12px;';
     const cb = el('input'); cb.type = 'checkbox'; cb.id = id; cb.checked = !!settings[key];
     cb.addEventListener('change', () => setSetting(key, cb.checked));
+    sw.append(cb, el('span', 'slider-toggle'));
+    row.append(left, sw);
+    return row;
+}
+
+function moodToggleRow() {
+    const row = el('div', 'setting-group flex justify-between align-center mb-3');
+    const left = el('div'); left.style.cssText = 'flex:1;min-width:0;';
+    const lab = el('label', null, T('😊 Mood')); lab.htmlFor = 'feedSetMood'; lab.style.cssText = 'display:block;margin:0;font-weight:normal;cursor:pointer;';
+    const p = el('p', null, T('Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features.')); p.style.cssText = 'font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;';
+    left.append(lab, p);
+    const sw = el('label', 'switch'); sw.style.cssText = 'flex-shrink:0;margin-left:12px;';
+    const cb = el('input'); cb.type = 'checkbox'; cb.id = 'feedSetMood'; cb.checked = moodEnabled();
+    cb.addEventListener('change', async () => {
+        await setMoodEnabled(cb.checked);
+        if (!cb.checked && (ui.mood !== 'any' || ui.sort === 'mood')) { ui.mood = 'any'; if (ui.sort === 'mood') ui.sort = 'new'; persistUi(); }
+        if (!cb.checked && subSort === 'mood') subSort = 'unread';
+        render(); renderFeedSettings();
+    });
     sw.append(cb, el('span', 'slider-toggle'));
     row.append(left, sw);
     return row;
@@ -1782,28 +1851,77 @@ function renderFeedSettings() {
     allTags().forEach(f => { const o = el('option'); o.value = f; dl.append(o); });
     root.append(dl);
 
-    const card = el('div', 'feed-set-card');
-    card.id = 'feedSubsCard';
-    if (!subs.length) card.append(el('p', 'feed-muted', T('No feeds yet. Add one below or import an OPML file.')));
-    subs.forEach(s => card.append(subRow(s)));
+    // Add + OPML menu
     const addRow = el('div', 'feed-add-row');
     const input = el('input'); input.type = 'text'; input.placeholder = T('Add a site or feed address…'); input.autocomplete = 'off'; input.spellcheck = false;
     const add = btn('button-secondary btn-sm', T('＋ Add'), () => addFeed(uiRef, input.value, input));
     add.setAttribute('data-feed-add', '');
     input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addFeed(uiRef, input.value, input); } });
-    addRow.append(input, add);
-    const io = el('div', 'feed-actions-row');
+    const more = el('details', 'sd-more');
+    more.append(el('summary', 'feed-icon-btn', '⋯'));
+    const io = el('div', 'sd-more-menu');
     io.id = 'feedOpmlActions';
-    io.append(btn('button-secondary btn-sm', T('📥 Import OPML'), () => els.opmlInput.click()),
-        btn('button-secondary btn-sm', T('📤 Export OPML'), () => { if (!subs.length) return toast(uiRef, T('Nothing to export yet')); exportOpml(); }));
-    card.append(addRow, io);
+    io.append(btn('button-secondary btn-sm', T('📥 Import OPML'), () => { more.open = false; els.opmlInput.click(); }),
+        btn('button-secondary btn-sm', T('📤 Export OPML'), () => { more.open = false; if (!subs.length) return toast(uiRef, T('Nothing to export yet')); exportOpml(); }));
+    more.append(io);
+    addRow.append(input, add, more);
+    root.append(addRow);
+
+    const stats = new Map(subs.map(s => [s.id, dietStats(s)]));
+
+    // Insight banner: only when something is actually noisy
+    const noisy = subs.filter(s => !s.muted && stats.get(s.id).noisy);
+    if (noisy.length && !dietDismissed) {
+        const negTotal = subs.reduce((a, s) => a + items.filter(i => i.feedId === s.id && i.ai && typeof i.sent === 'number' && i.sent < -0.2 && i.published >= Date.now() - DIET_DAYS * 864e5).length, 0);
+        const negNoisy = noisy.reduce((a, s) => a + items.filter(i => i.feedId === s.id && i.ai && typeof i.sent === 'number' && i.sent < -0.2 && i.published >= Date.now() - DIET_DAYS * 864e5).length, 0);
+        const pct = negTotal ? Math.round(negNoisy / negTotal * 100) : 0;
+        const ban = el('div', 'sd-banner');
+        ban.append(el('strong', null, pct ? TN(noisy.length, '{n} source causes {p}% of your negative items', '{n} sources cause {p}% of your negative items').replace('{p}', pct) : TN(noisy.length, '{n} source is mostly negative', '{n} sources are mostly negative')),
+            el('span', 'feed-muted', noisy.map(subTitle).slice(0, 3).join(', ')));
+        const act = el('div', 'sd-actions');
+        act.append(btn('button-secondary btn-sm', T('Review'), () => { subSort = 'mood'; subFilter = 'all'; openSubId = noisy[0].id; renderFeedSettings(); }),
+            btn('button-tertiary btn-sm', T('Dismiss'), () => { dietDismissed = true; renderFeedSettings(); }));
+        ban.append(act);
+        root.append(ban);
+    }
+
+    // Filter chips + sort
+    const bar = el('div', 'sd-toolbar');
+    const chips = el('div', 'sd-chips');
+    const counts = { all: subs.length, muted: subs.filter(s => s.muted).length, errors: subs.filter(s => s.error).length };
+    [['all', T('All')], ['muted', T('Muted')], ['errors', T('Errors')]].forEach(([k, label]) => {
+        chips.append(btn('pill' + (subFilter === k ? ' active' : ''), label + ' ' + counts[k], () => { subFilter = k; renderFeedSettings(); }));
+    });
+    const sort = el('select', 'sd-sort'); sort.setAttribute('aria-label', T('Sort'));
+    [...(moodEnabled() ? [['mood', T('Sort: Mood')]] : []), ['unread', T('Sort: Unread')], ['read', T('Sort: Read share')], ['name', T('Sort: Name')]].forEach(([k, t]) => { const o = el('option', null, t); o.value = k; if (k === subSort) o.selected = true; sort.append(o); });
+    sort.addEventListener('change', () => { subSort = sort.value; renderFeedSettings(); });
+    bar.append(chips, sort);
+    root.append(bar);
+
+    const card = el('div', 'feed-set-card sd-list');
+    card.id = 'feedSubsCard';
+    if (!subs.length) card.append(el('p', 'feed-muted', T('No feeds yet. Add one below or import an OPML file.')));
+    const num = (v, dflt) => (v === null || v === undefined ? dflt : v);
+    const sorters = {
+        mood: (a, b) => num(stats.get(a.id).mood, 101) - num(stats.get(b.id).mood, 101),
+        unread: (a, b) => stats.get(b.id).unread - stats.get(a.id).unread,
+        read: (a, b) => num(stats.get(a.id).read, 101) - num(stats.get(b.id).read, 101),
+        name: (a, b) => subTitle(a).localeCompare(subTitle(b))
+    };
+    subs.filter(s => subFilter === 'muted' ? s.muted : subFilter === 'errors' ? s.error : true)
+        .sort(sorters[subSort]).forEach(s => card.append(subRow(s)));
+    if (subs.length && !card.querySelector('.feed-sub-card')) card.append(el('p', 'feed-muted', T('Nothing here.')));
     root.append(card);
 
-    root.append(el('p', 'settings-caption', TU('Behavior')));
-    const beh = el('div', 'feed-set-card');
-    beh.id = 'feedBehaviorCard';
-    beh.append(
+    // Behavior (collapsible; opened by search deep links too)
+    const beh = el('details', 'sd-behavior');
+    beh.id = 'feedBehaviorCard'; beh.open = behaviorOpen;
+    beh.addEventListener('toggle', () => { behaviorOpen = beh.open; });
+    beh.append(el('summary', null, TU('Behavior')));
+    const inner = el('div', 'feed-set-card');
+    inner.append(
         toggleRow('feedSetMarkRead', T('✓ Mark read when opened'), T('Items you open or summarize leave your unread list'), 'markReadOnOpen'),
+        moodToggleRow(),
         toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'),
         toggleRow('feedSetAutoSum', T('✨ Auto-summarize favorites'), T('Starring an item summarizes it in a background tab'), 'autoSummarizeFavs'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
@@ -1811,6 +1929,7 @@ function renderFeedSettings() {
         selectRow('feedSetKeep', T('🗂️ Keep items for'), 'keepDays', [[7, T('7 days')], [30, T('30 days')], [90, T('90 days')], [180, T('6 months')], [365, T('1 year')]]),
         el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.'))
     );
+    beh.append(inner);
     root.append(beh);
 }
 
@@ -1898,6 +2017,7 @@ export function initFeedManager(uiObj) {
     document.querySelectorAll('.nav-item, #settingsButton').forEach(b => b.addEventListener('click', () => { closeSheet(); hideUndo(); }));
     document.addEventListener('aish:settings-panel', async (e) => {
         if (!e.detail || e.detail.name !== 'feeds') return;
+        if (e.detail.targetId && /^feedSet/.test(e.detail.targetId)) behaviorOpen = true;
         renderFeedSettings();                       // immediately, so search deep-links find their target
         await load(); await loadHistoryMap();
         const root = document.getElementById('feedSettingsRoot');

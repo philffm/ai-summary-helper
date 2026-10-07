@@ -27,7 +27,7 @@ console.log('mark read + undo OK');
 // mute Beta -> All excludes it, picker marks it
 document.dispatchEvent(new w.CustomEvent('aish:settings-panel', { detail: { name: 'feeds' } })); await tick(50);
 const betaCard = $$('#feedSettingsRoot .feed-sub-card').find(c => c.querySelector('.feed-sub-input').value === 'Beta');
-click(betaCard.querySelectorAll('.feed-icon-btn')[0]); await tick(30);
+click(betaCard.querySelector('.sd-actions button')); await tick(30);
 assert.equal(store.feedSubs.find(s => s.id === 's2').muted, true);
 assert.ok($$('.feed-item h4').every(h => !h.textContent.includes('Beta')), 'muted excluded from All');
 console.log('mute OK');

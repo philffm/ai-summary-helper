@@ -3095,3 +3095,62 @@ i.tp-s3 { background: var(--tp-3); } i.tp-s4 { background: var(--tp-4); } i.tp-s
 .confirm-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .confirm-spacer { flex: 1; }
 .confirm-actions button { width: auto; }
+
+/* ── Settings › Feeds: source list with diet (usage + mood) ───────────── */
+.sd-list { padding: 0; overflow: hidden; }
+.sd-list .feed-sub-card { padding: 0; border-bottom: 1px solid var(--outline); margin: 0; }
+.sd-list .feed-sub-card:last-child { border-bottom: 0; }
+.sd-list .feed-sub-card.is-open { box-shadow: inset 0 0 0 2px var(--accent); border-radius: var(--radius-md); }
+.sd-head { display: flex; align-items: center; gap: 10px; padding: 12px; cursor: pointer; }
+.sd-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.feed-sub-card.is-muted .sd-head { opacity: .6; }
+.sd-avatar { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: var(--fs-md); background: var(--accent-a10); color: var(--accent); }
+.sd-main { flex: 1; min-width: 0; }
+.sd-name { font-weight: 600; font-size: var(--fs-md); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sd-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+.sd-tag, .sd-flag { font-size: var(--fs-xs); padding: 1px 8px; border-radius: var(--radius-full); background: var(--surface-2, var(--accent-a10)); color: var(--text-secondary); }
+.sd-flag-noisy { background: color-mix(in srgb, var(--warning, #eda100) 22%, transparent); color: var(--text-primary); font-weight: 600; }
+.sd-flag-err { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+.sd-diet { flex: none; width: 112px; text-align: right; }
+.sd-mood-row { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+.sd-mood { position: relative; width: 64px; height: 8px; border-radius: 4px; background: var(--outline); flex: none; }
+.sd-mood-track { position: absolute; inset: 0; }
+.sd-mood-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: var(--text-muted); transform: translateX(-1px); }
+.sd-mood-fill { position: absolute; top: 0; bottom: 0; border-radius: 4px; }
+.sd-mood-fill.neg { background: var(--danger); }
+.sd-mood-fill.pos { background: var(--success, #0a7a0a); }
+.sd-mood.is-empty { opacity: .5; }
+.sd-mood-val { font-size: var(--fs-sm); font-weight: 600; min-width: 24px; color: var(--text-muted); }
+.sd-mood-val.neg { color: var(--danger); }
+.sd-mood-val.pos { color: var(--success, #0a7a0a); }
+.sd-use { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 4px; }
+.sd-edit { display: none; padding: 4px 12px 14px; border-top: 1px solid var(--outline); }
+.feed-sub-card.is-open .sd-edit { display: block; }
+.sd-label { font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); margin: 12px 0 6px; }
+.sd-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.sd-banner { display: flex; flex-direction: column; gap: 4px; padding: 12px; margin: 10px 0; border-radius: var(--radius-md); background: color-mix(in srgb, var(--warning, #eda100) 18%, transparent); }
+.sd-banner .sd-actions { margin-top: 6px; }
+.sd-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.sd-chips { display: flex; gap: 6px; }
+.sd-sort { width: auto; margin: 0; min-width: 0; font-size: var(--fs-sm); }
+.sd-more { position: relative; }
+.sd-more summary { list-style: none; cursor: pointer; font-size: 20px; padding: 4px 10px; }
+.sd-more summary::-webkit-details-marker { display: none; }
+.sd-more-menu { position: absolute; right: 0; top: 100%; z-index: 5; display: flex; flex-direction: column; gap: 6px; padding: 8px; background: var(--glass-card, var(--surface-1)); border: 1px solid var(--outline); border-radius: var(--radius-md); box-shadow: 0 8px 24px rgba(0,0,0,.18); white-space: nowrap; }
+.sd-behavior { margin-top: 12px; }
+.sd-behavior > summary { cursor: pointer; font-weight: 600; padding: 10px 2px; list-style: none; }
+.sd-behavior > summary::before { content: '›'; display: inline-block; margin-right: 8px; transition: transform .15s; }
+.sd-behavior[open] > summary::before { transform: rotate(90deg); }
+.sd-behavior > summary::-webkit-details-marker { display: none; }
+
+/* Mood feature switched off (Settings › Feeds › Behavior): hide every mood surface */
+html[data-mood="off"] #feedMoodChip,
+html[data-mood="off"] .feed-mt-sec,
+html[data-mood="off"] .feed-recap-mood,
+html[data-mood="off"] .feed-roll-mood,
+html[data-mood="off"] .feed-mood,
+html[data-mood="off"] .feed-mood-bar,
+html[data-mood="off"] .feed-mood-legend,
+html[data-mood="off"] .sd-mood-row,
+html[data-mood="off"] .sd-banner { display: none !important; }
+html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: none; }

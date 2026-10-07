@@ -1,6 +1,7 @@
 // topicsChart.js — "Topics over time": stacked columns of the top tags per week / month.
 // Rendered inside the analytics report (History) — pure SVG, no dependencies.
 
+import { moodEnabled } from './moodSetting.js';
 import { T } from './feedI18n.js';
 
 const NS = 'http://www.w3.org/2000/svg';
@@ -245,6 +246,7 @@ export function renderTopicsSection(articles, container) {
     const [mMood, mVol] = sec.querySelectorAll('.tp-metric .ar-view-btn');
     const [tBars, tLines] = sec.querySelectorAll('.tp-type .ar-view-btn');
     const typeToggle = sec.querySelector('.tp-type');
+    if (!moodEnabled()) sec.querySelector('.tp-metric').hidden = true;
     const nSel = sec.querySelector('.tp-topn-select');
     wk.textContent = T('Week'); mo.textContent = T('Month');
     mMood.textContent = T('Mood'); mVol.textContent = T('Volume');
@@ -252,7 +254,7 @@ export function renderTopicsSection(articles, container) {
     sec.querySelector('.tp-topn span').textContent = T('Top');
     TOP_OPTIONS.forEach(n => { const o = document.createElement('option'); o.value = String(n); o.textContent = String(n); nSel.append(o); });
     nSel.value = '5';
-    let curView = 'week', curType = 'bars', curMetric = 'mood';
+    let curView = 'week', curType = 'bars', curMetric = moodEnabled() ? 'mood' : 'volume';
     sec.querySelector('summary').textContent = T('Table view');
 
     const chart = sec.querySelector('.tp-chart'), legend = sec.querySelector('.tp-legend'), details = sec.querySelector('.tp-details');

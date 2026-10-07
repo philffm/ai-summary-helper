@@ -121,7 +121,7 @@ function showHome() {
 export function openSettingsPanel(name, targetId) {
     const panel = $('settingsPanel-' + name);
     if (!panel) return;
-    document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: { name } }));
+    document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: { name, targetId } }));
     currentPanel = name;
     markActiveRow(name);
     $('settingsHome').hidden = !settingsIsWide() ? true : false;

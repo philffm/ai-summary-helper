@@ -1,3 +1,4 @@
+import { initMoodSetting } from './modules/moodSetting.js';
 import UIManager from './modules/uiManager.js';
 import StorageManager from './modules/storageManager.js';
 import { initArticleManager } from './modules/articleManager.js';
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initShortcuts(ui);
     initMainScreen(ui);
     initReviewPrompt();
+    initMoodSetting();
     initArticleManager(ui);
     initWorkspace();
     initAccordion(ui);
