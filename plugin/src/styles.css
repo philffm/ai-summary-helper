@@ -3277,3 +3277,21 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .resume-card-txt { display: flex; flex-direction: column; min-width: 0; }
 .resume-card-title { font-weight: 700; font-size: var(--fs-sm, 13px); line-height: 1.3; }
 .resume-card-meta { font-size: var(--fs-2xs); color: var(--text-muted); }
+
+/* ── Fetch state: compact button right next to the settings chips ── */
+.controls-bar .input-card { position: relative; }
+.controls-bar .chip-row { position: static; }
+.controls-bar[data-state="fetch"] .input-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "label label" "page page" "ta ta" "chips btn";
+  align-items: center;
+  column-gap: 8px;
+}
+.controls-bar[data-state="fetch"] .input-card-label { grid-area: label; }
+.controls-bar[data-state="fetch"] .page-chip { grid-area: page; }
+.controls-bar[data-state="fetch"] .input-card-textarea { grid-area: ta; border-bottom: 1px solid var(--outline); padding-bottom: var(--spacing-s-3); }
+.controls-bar[data-state="fetch"] .chip-row { grid-area: chips; border-top: 0; padding-top: var(--spacing-s-3); flex-wrap: wrap; }
+.controls-bar[data-state="fetch"] #fetchSummary {
+  grid-area: btn; width: auto !important; margin: var(--spacing-s-3) 0 0 !important; padding: 8px 18px; min-height: 36px; border-radius: 18px; white-space: nowrap;
+}
