@@ -198,6 +198,7 @@ export function initMainScreen(ui) {
             additionalQuestionsInput.style.height = '';
             if (newBtn) newBtn.hidden = !conversation;
             if (next === 'fetch') refreshFetchExtras(); else clearNote();
+            if (next === 'followup') showConversationChip();
             if (next === 'followup' && additionalQuestionsInput.value.trim()) sendFollowUp(additionalQuestionsInput.value.trim());
         }
     });
@@ -226,6 +227,7 @@ export function initMainScreen(ui) {
     const clearNote = () => {
         extrasToken++;
         document.getElementById('pageCard')?.remove();
+        document.getElementById('convChip')?.remove();
         document.getElementById('resumeCard')?.remove();
     };
     const latestArticle = async () => {
@@ -278,6 +280,21 @@ export function initMainScreen(ui) {
             feed.appendChild(card);
             scrollFeed();
         }
+    };
+
+    /** Follow-up state: the page the conversation is about, inside the input card (also for a resumed old summary). */
+    const showConversationChip = () => {
+        const inputCard = bar && bar.querySelector('.input-card');
+        if (!conversation || !inputCard || document.getElementById('convChip')) return;
+        const chip = document.createElement('div');
+        chip.id = 'convChip';
+        chip.className = 'page-chip page-chip--conv';
+        const txt = document.createElement('div'); txt.className = 'page-chip-txt';
+        const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(conversation.title || hostOf(conversation.url), 80);
+        const meta = document.createElement('div'); meta.className = 'page-chip-meta';
+        meta.textContent = [conversation.detached ? T('Continuing') : T('This page'), hostOf(conversation.url)].filter(Boolean).join(' · ');
+        txt.append(title, meta); chip.appendChild(txt);
+        inputCard.insertBefore(chip, additionalQuestionsInput);
     };
 
     /** The page chip leaves the input card and lands as the first bubble of the thread (FLIP). */

@@ -23,9 +23,11 @@ link.click(); await tick(60);
 assert.equal(d.querySelector('.controls-bar').dataset.state, 'followup', 'composer morphed to follow-up');
 assert(d.querySelector('#summaryFeed .chat-turn-group')?.textContent.includes('Because.'), 'stored turn restored');
 assert(!d.getElementById('pageCard') && !d.getElementById('resumeCard'), 'extras gone in follow-up');
+assert(d.getElementById('convChip')?.closest('.input-card') && d.getElementById('convChip').textContent.includes('First article') && d.getElementById('convChip').textContent.includes('Continuing'), 'conversation chip in the input card');
 assert(!d.getElementById('newSummaryButton').hidden, '＋ New visible');
 // ＋ New returns to fetch with the page card and a link back
 d.getElementById('newSummaryButton').click(); await tick(60);
 assert.equal(d.querySelector('.controls-bar').dataset.state, 'fetch');
+assert(!d.getElementById('convChip'), 'conversation chip gone after ＋ New');
 assert(d.getElementById('pageCard') && d.getElementById('resumeCard'), 'extras back after ＋ New');
 console.log('TEST 46 OK');

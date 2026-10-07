@@ -312,7 +312,7 @@ class StorageManager {
 
     static async getArticleFull(id) {
         const key = articleRecKey(id);
-        const [recordData, { articlesIndex = [] }] = await Promise.all([
+        const [recordData, { [SK.articlesIndex]: articlesIndex = [] }] = await Promise.all([
             this.getLocal([key]),
             this.getLocal({ [SK.articlesIndex]: [] })
         ]);

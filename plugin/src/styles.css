@@ -3215,7 +3215,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar[data-state="followup"] .input-card {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-areas: "chips chips" "ta btn";
+  grid-template-areas: "page page" "chips chips" "ta btn";
   align-items: center;
   gap: 6px 8px;
   padding: 8px 10px;
@@ -3295,3 +3295,5 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar[data-state="fetch"] #fetchSummary {
   grid-area: btn; width: auto !important; margin: var(--spacing-s-3) 0 0 !important; padding: 8px 18px; min-height: 36px; border-radius: 18px; white-space: nowrap;
 }
+
+.controls-bar[data-state="followup"] .page-chip, .controls-bar[data-state="working"] .page-chip { grid-area: page; margin-bottom: 0; padding: 4px 10px; }
