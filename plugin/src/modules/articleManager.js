@@ -33,22 +33,35 @@ export const currentHistoryTab = () => historyTab;
 /** Re-render the list for the active tab (Inbox = everything not archived). */
 export function renderTab() { renderArticles(tabList(historyTab)); }
 
+// One persistent bar (like Feeds' scope row): re-attached on every render, updated in place,
+// so the brand indicator slides between tabs instead of being rebuilt.
+let historyNav = null;
 function buildTabs() {
-    const nav = document.createElement('li');
-    nav.className = 'history-tabs tabbar';
-    nav.dataset.tabbar = 'history';
-    nav.setAttribute('role', 'tablist');
+    if (!historyNav) {
+        const nav = document.createElement('li');
+        nav.className = 'history-tabs tabbar';
+        nav.dataset.tabbar = 'history';
+        nav.setAttribute('role', 'tablist');
+        TAB_DEFS.forEach(([id]) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'history-tab tabbar-btn';
+            b.setAttribute('role', 'tab');
+            b.dataset.tab = id;
+            b.append(document.createElement('span'), Object.assign(document.createElement('span'), { className: 'history-tab-n tabbar-n' }));
+            b.addEventListener('click', () => { if (historyTab === id) return; historyTab = id; renderTab(); const f = document.getElementById('searchInput'); if (f && f.value.trim()) filterArticles(); });
+            nav.appendChild(b);
+        });
+        historyNav = nav;
+    }
+    const nav = historyNav;
     TAB_DEFS.forEach(([id, label]) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'history-tab tabbar-btn' + (historyTab === id ? ' on' : '');
-        b.setAttribute('role', 'tab');
+        const b = nav.querySelector(`.tabbar-btn[data-tab="${id}"]`);
+        if (!b) return;
+        b.classList.toggle('on', historyTab === id);
         b.setAttribute('aria-selected', String(historyTab === id));
-        b.dataset.tab = id;
-        const n = tabList(id).length;
-        b.append(Object.assign(document.createElement('span'), { textContent: label() }), Object.assign(document.createElement('span'), { className: 'history-tab-n tabbar-n', textContent: String(n) }));
-        b.addEventListener('click', () => { if (historyTab === id) return; historyTab = id; renderTab(); const f = document.getElementById('searchInput'); if (f && f.value.trim()) filterArticles(); });
-        nav.appendChild(b);
+        b.firstChild.textContent = label();
+        b.lastChild.textContent = String(tabList(id).length);
     });
     syncTabbarLater(nav);
     return nav;

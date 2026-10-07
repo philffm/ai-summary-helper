@@ -109,6 +109,8 @@ class UIManager {
             const el = this.screens[name];
             if (!el) return;
             el.style.transition = 'none';
+            // Re-entering Feeds always starts at the top, so the sticky filter bar is in view (no stale scroll / gap).
+            if (i === targetIdx && name === 'feeds') el.scrollTop = 0;
             if (i === this._currentScreenIdx) {
                 el.style.transform = 'translateX(0)';
             } else if (i === targetIdx) {

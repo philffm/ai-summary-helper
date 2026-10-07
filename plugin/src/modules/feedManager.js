@@ -1088,11 +1088,14 @@ function initSearchAndViews() {
 }
 
 // Same behaviour as the History screen: scrolling down hides the top bar, scrolling up (from anywhere) brings it back.
+// Re-rendering right after the screen is shown can clamp/jump scrollTop; that must not hide the bar.
+let hideSuppressUntil = 0;
 function initScrollHide() {
     const sc = els.screen, bar = els.controlsBar;
     if (!sc || !bar) return;
     let last = 0;
     sc.addEventListener('scroll', () => {
+        if (Date.now() < hideSuppressUntil) { last = Math.max(0, sc.scrollTop); bar.classList.remove('scroll-hidden'); return; }
         const top = Math.max(0, sc.scrollTop), d = top - last;
         if (top <= 8 || d < -4) bar.classList.remove('scroll-hidden');
         else if (d > 6) bar.classList.add('scroll-hidden');
@@ -1983,6 +1986,8 @@ export async function onFeedsScreenShown(uiObj) {
     uiRef = uiObj;
     closeSheet(); hideUndo(); stickyRead.clear(); shown = PAGE_SIZE;
     searchQuery = ''; view = 'list'; if (els.search) els.search.value = '';
+    hideSuppressUntil = Date.now() + 1200;
+    if (els.screen) els.screen.scrollTop = 0;
     if (els.controlsBar) els.controlsBar.classList.remove('scroll-hidden');
     await load();
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
@@ -1990,6 +1995,7 @@ export async function onFeedsScreenShown(uiObj) {
     carryMoodToHistory();
     render();
     renderFeedSettings();
+    if (els.controlsBar) els.controlsBar.classList.remove('scroll-hidden');
     chrome.runtime.sendMessage({ action: 'feedBadgeClear' }, () => void chrome.runtime.lastError);
     refreshAll(uiObj);
 }
