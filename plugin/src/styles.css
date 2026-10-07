@@ -3182,17 +3182,9 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-a { align-self: flex-start; background: var(--glass-card); border: 1px solid var(--glass-border); }
 .chat-a--pending { opacity: 0.6; }
 
-.controls-bar .input-card, .controls-bar .input-card-textarea, .controls-bar .chip-row { transition: padding 0.2s ease, min-height 0.2s ease; }
-.controls-bar[data-state="working"] .input-card-textarea,
-.controls-bar[data-state="followup"] .input-card-textarea { min-height: 24px; }
-.controls-bar[data-state="working"] .chip-row { padding-top: var(--spacing-s-2); }
-.controls-bar[data-state="working"] .chip { padding: 3px 8px; }
 #fetchSummary[data-state="working"] { background: var(--glass-input); color: var(--text-primary); border: 1px solid var(--outline); }
 .composer-note { font-size: var(--fs-2xs); color: var(--text-muted); margin-bottom: var(--spacing-s-2); }
 .new-summary-btn[hidden] { display: none; }
-@media (prefers-reduced-motion: reduce) {
-  .controls-bar .input-card, .controls-bar .input-card-textarea, .controls-bar .chip-row { transition: none; }
-}
 
 /* Follow-up turns (Summarize feed + History detail) */
 .chat-turn-group { display: flex; flex-direction: column; gap: 6px; }
@@ -3211,38 +3203,6 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .aish-qa h3 { font-size: 1em; }
 
 /* ── Docked composer (working / follow-up): one slim row, settings as a quiet line ── */
-.controls-bar[data-state="working"] .input-card,
-.controls-bar[data-state="followup"] .input-card {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "page page" "chips chips" "ta btn";
-  align-items: center;
-  gap: 6px 8px;
-  padding: 8px 10px;
-  border-radius: var(--radius-xl);
-}
-.controls-bar[data-state="working"] .chip-row,
-.controls-bar[data-state="followup"] .chip-row { grid-area: chips; padding: 0 4px; border-top: 0; gap: 0; flex-wrap: wrap; }
-.controls-bar[data-state="working"] .input-card-textarea,
-.controls-bar[data-state="followup"] .input-card-textarea {
-  grid-area: ta;
-  min-height: 36px; height: 36px; max-height: 96px;
-  padding: 8px 14px; resize: none; overflow: auto;
-  margin: 0;
-  border: 1px solid var(--outline); border-radius: 18px; background: var(--glass-input);
-  font-size: var(--fs-md, 14px); line-height: 1.3;
-}
-.controls-bar[data-state="working"] #fetchSummary,
-.controls-bar[data-state="followup"] #fetchSummary {
-  grid-area: btn; width: auto !important; margin: 0 !important; padding: 8px 18px; min-height: 36px; border-radius: 18px;
-}
-.controls-bar[data-state="working"] #fetchSummary { background: #111827; color: #fff; border: 0; }
-.controls-bar[data-state="working"] .chip,
-.controls-bar[data-state="followup"] .chip { border: 0; background: transparent; padding: 0 6px 0 0; font-size: 10px; color: var(--text-muted); }
-.controls-bar[data-state="working"] .chip + .chip::before,
-.controls-bar[data-state="followup"] .chip + .chip::before { content: '·'; margin-right: 6px; }
-.controls-bar[data-state="working"] .chip-icon,
-.controls-bar[data-state="followup"] .chip-icon { font-size: 10px; }
 .new-summary-btn { padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); font-size: var(--fs-xs); font-weight: 600; cursor: pointer; white-space: nowrap; }
 .new-summary-btn[hidden] { display: none; }
 .chat-q--first { align-self: flex-end; background: var(--accent); color: #fff; border-color: transparent; }
@@ -3280,25 +3240,36 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .resume-card-meta { font-size: var(--fs-2xs); color: var(--text-muted); }
 
 /* ── Fetch state: compact button right next to the settings chips ── */
-.controls-bar .input-card { position: relative; }
-.controls-bar .chip-row { position: static; }
-.controls-bar[data-state="fetch"] .input-card {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "label label" "page page" "ta ta" "chips btn";
-  align-items: center;
-  column-gap: 8px;
-}
-.controls-bar[data-state="fetch"] .input-card-label { grid-area: label; }
-.controls-bar[data-state="fetch"] .page-chip { grid-area: page; }
-.controls-bar[data-state="fetch"] .input-card-textarea { grid-area: ta; border-bottom: 1px solid var(--outline); padding-bottom: var(--spacing-s-3); }
-.controls-bar[data-state="fetch"] .chip-row { grid-area: chips; border-top: 0; padding-top: var(--spacing-s-3); flex-wrap: wrap; }
-.controls-bar[data-state="fetch"] #fetchSummary {
-  grid-area: btn; width: auto !important; margin: var(--spacing-s-3) 0 0 !important; padding: 8px 18px; min-height: 36px; border-radius: 18px; white-space: nowrap;
-}
 
-.controls-bar[data-state="followup"] .page-chip, .controls-bar[data-state="working"] .page-chip { grid-area: page; margin-bottom: 0; padding: 4px 10px; }
 
 .detail-fav { width: 16px; height: 16px; border-radius: 3px; margin-right: 8px; vertical-align: -2px; }
 .detail-fav[hidden], .detail-desc[hidden] { display: none; }
 .detail-desc { font-size: var(--fs-xs); color: var(--text-muted); margin: 0 0 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ── Composer (B · docked pill): page pill, one quiet settings line, pill input with the button inside ── */
+.controls-bar .input-card {
+  position: relative; display: flex; flex-direction: column; gap: 8px;
+  padding: 0; background: transparent; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.controls-bar .input-card-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0; }
+.controls-bar .chip-row { position: static; order: 2; padding: 0 6px; border-top: 0; gap: 0; flex-wrap: wrap; }
+.controls-bar .chip { border: 0; background: transparent; padding: 0 6px 0 0; font-size: 10px; color: var(--text-muted); }
+.controls-bar .chip + .chip::before { content: '·'; margin-right: 6px; }
+.controls-bar .chip-icon { font-size: 10px; }
+.composer-pill {
+  order: 3; display: flex; align-items: flex-end; gap: 8px; padding: 4px 4px 4px 16px;
+  background: var(--glass-card); border: 1px solid var(--glass-border); border-radius: 24px;
+  box-shadow: var(--glass-inner-glow), var(--shadow-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.composer-pill .input-card-textarea {
+  flex: 1; min-width: 0; min-height: 36px; height: 36px; max-height: 96px; padding: 8px 0; margin: 0;
+  border: 0; background: transparent; resize: none; overflow: auto; font-size: var(--fs-md, 14px); line-height: 1.3;
+}
+.composer-pill #fetchSummary { flex: none; width: auto !important; margin: 0 !important; padding: 0 18px; min-height: 36px; height: 36px; border-radius: 18px; white-space: nowrap; }
+.controls-bar[data-state="working"] #fetchSummary { background: #111827; color: #fff; border: 0; }
+.page-chip { order: 1; margin: 0; padding: 6px 10px; border-radius: 12px; }
+.page-chip-txt { display: flex; align-items: baseline; gap: 8px; flex: 1; min-width: 0; }
+.page-chip-title { flex: 1; min-width: 0; }
+.page-chip-meta { flex: none; white-space: nowrap; }
+.controls-bar, .controls-bar .composer-pill { transition: padding 0.2s ease; }
+@media (prefers-reduced-motion: reduce) { .controls-bar, .controls-bar .composer-pill { transition: none; } }

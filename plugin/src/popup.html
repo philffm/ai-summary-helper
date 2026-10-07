@@ -75,13 +75,6 @@
         <div class="controls-bar">
           <div class="input-card">
             <label class="input-card-label" data-i18n="whatShouldAiFocus">What should the AI focus on?</label>
-            <textarea
-              id="additionalQuestions"
-              class="input-card-textarea"
-              data-i18n-placeholder="askSpecificQuestions"
-              placeholder="Ask specific questions about this page…"
-            ></textarea>
-
             <!-- Quick-action chips row (parent for popup panels) -->
             <div class="chip-row" id="chipRow">
 
@@ -147,10 +140,19 @@
               </button>
             </div>
 
-            <button id="fetchSummary" class="button-primary fillAvailable" style="margin-top: var(--spacing-s-3);" data-i18n="fetchSummary">
+            <div class="composer-pill">
+              <textarea
+                id="additionalQuestions"
+                class="input-card-textarea"
+                data-i18n-placeholder="askSpecificQuestions"
+                placeholder="Ask specific questions about this page…"
+              ></textarea>
+
+              <button id="fetchSummary" class="button-primary fillAvailable" data-i18n="fetchSummary">
               ✨ Fetch Summary
               <span id="spinner" class="spinner" style="display: none"></span>
             </button>
+            </div>
           </div>
         </div>
       </div> <!-- closes main-screen-layout -->

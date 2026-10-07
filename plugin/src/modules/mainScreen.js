@@ -259,10 +259,10 @@ export function initMainScreen(ui) {
             const txt = document.createElement('div'); txt.className = 'page-chip-txt';
             const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(tab.title || chip.dataset.host, 80);
             const meta = document.createElement('div'); meta.className = 'page-chip-meta';
-            meta.textContent = (different ? T("You're on a different page") + ' · ' : T('This page') + ' · ') + chip.dataset.host;
+            meta.textContent = (different ? T('different page') + ' · ' : '') + chip.dataset.host;
             txt.append(title, meta);
             chip.appendChild(txt);
-            inputCard.insertBefore(chip, additionalQuestionsInput);
+            inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
         }
         const target = conversation
             ? { title: conversation.title, n: conversation.turns.length }
@@ -299,9 +299,9 @@ export function initMainScreen(ui) {
         const txt = document.createElement('div'); txt.className = 'page-chip-txt';
         const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(conversation.title || hostOf(conversation.url), 80);
         const meta = document.createElement('div'); meta.className = 'page-chip-meta';
-        meta.textContent = [conversation.detached ? T('Continuing') : T('This page'), (conversation.meta && conversation.meta.siteName) || hostOf(conversation.url)].filter(Boolean).join(' · ');
+        meta.textContent = [conversation.detached ? T('Continuing') : '', (conversation.meta && conversation.meta.siteName) || hostOf(conversation.url)].filter(Boolean).join(' · ');
         txt.append(title, meta); chip.appendChild(txt);
-        inputCard.insertBefore(chip, additionalQuestionsInput);
+        inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
     };
 
     /** The page chip leaves the input card and lands as the first bubble of the thread (FLIP). */
