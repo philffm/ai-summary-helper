@@ -2458,11 +2458,18 @@ text.graph-search-dim {
 .feed-sheet-layer[hidden] { display: none; }
 .feed-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
 .feed-sheet {
-  position: relative; max-height: 82%; overflow-y: auto; padding: 10px 16px 20px;
+  position: relative; max-height: 82%; overflow-y: auto; padding: 0 16px 20px;
   background: var(--glass-base-solid, var(--bg-page, var(--on-solid))); color: var(--text-primary);
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; box-shadow: 0 -8px 30px rgba(0,0,0,0.25);
 }
-.feed-sheet-handle { width: 40px; height: 4px; border-radius: 2px; background: var(--outline); margin: 0 auto 8px; }
+/* Sticky strip: stays on top while the sheet content scrolls and fades the content out beneath the grabber. */
+.feed-sheet-handle {
+  position: sticky; top: 0; z-index: 2; height: 28px; margin: 0 -16px 4px;
+  display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; box-sizing: border-box;
+  background: linear-gradient(to bottom, var(--glass-base-solid, var(--bg-page, var(--on-solid))) 55%, transparent);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; pointer-events: none;
+}
+.feed-sheet-handle::before { content: ''; width: 40px; height: 4px; border-radius: 2px; background: var(--outline-strong, var(--text-muted)); }
 .feed-sheet-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .feed-sheet-head h3 { flex: 1; margin: 0; font-size: var(--fs-lg); }
 .feed-sheet-done { background: transparent; border: none; width: auto; padding: 4px; font-size: var(--fs-base); font-weight: 700; color: var(--accent); cursor: pointer; box-shadow: none; }
