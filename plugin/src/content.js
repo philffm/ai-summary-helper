@@ -36,7 +36,8 @@ import {
   highlightFromSelectionOrText,
   handleHighlightClick,
   applyGhostHighlights,
-  handleGhostHighlightClick
+  handleGhostHighlightClick,
+  getUserHighlightTexts
 } from './content/highlighter.js';
 
 import {
@@ -307,6 +308,12 @@ import {
       return false;
     }
 
+    if (request.action === 'stopSummary') {
+      if (activeSummaryRequestId) chrome.runtime.sendMessage({ action: 'stopFetch', requestId: activeSummaryRequestId }).catch(() => {});
+      sendResponse({ success: true });
+      return false;
+    }
+
     if (request.action === 'fetchSummary') {
       const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode, summaryLength: msgSummaryLength } = request;
       // Original feed link when started from the Feed (page URL may differ after redirects).
@@ -360,6 +367,9 @@ import {
   });
 
   // ── Summary fetch + streaming ───────────────────────────────────────────────
+
+  // requestId of the summary currently streaming (Stop button → stopSummary).
+  let activeSummaryRequestId = null;
 
   async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension') {
     const tokenLimit = 20000;
@@ -416,6 +426,22 @@ import {
       contentText = scraped.text;
     }
     const truncatedContent = truncateToTokenLimit(contentText, tokenLimit);
+
+    // Tell the popup what this summary is built from (shown as "What I used"). Only things that are
+    // really sent to the model: page text, the user's highlights, the focus question, the feed source.
+    {
+      const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
+      relay('summaryContext', {
+        words: (truncatedContent.match(/\S+/g) || []).length,
+        shortened: truncatedContent.length < contentText.length,
+        host: hostOf(window.location.href),
+        highlights: isPdfPage() ? 0 : getUserHighlightTexts().length,
+        focus: !!(additionalQuestions || '').trim(),
+        source: pendingFeedUrl ? hostOf(pendingFeedUrl) : '',
+        language: selectedLanguage || '',
+        length: Number(summaryLength) || 200
+      });
+    }
 
     // Start image compression immediately and let it run while AI is streaming.
     const imageCompressionPromise = inlineAndCompressImages(contentHtml);
@@ -550,6 +576,7 @@ import {
 
           const streamStart = Date.now();
           const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+          activeSummaryRequestId = requestId;
           let buffer = '';
           let firstTokenReceived = false;
           let lastProgressRelayTime = 0;
@@ -589,6 +616,16 @@ import {
           // this got stuck forever on "Connected to API, waiting for
           // response…" — nothing was left to resolve it.
           streamHandlers.set(requestId, async (msg) => {
+            if (msg.stopped) {
+              // The user pressed Stop in the popup: nothing is saved.
+              if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
+              streamHandlers.delete(requestId);
+              activeSummaryRequestId = null;
+              try { targetElement.remove(); } catch (_) {}
+              relay('summaryCancelled');
+              resolve({ success: false, cancelled: true });
+              return;
+            }
             if (msg.error) {
               if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
               console.error('❌ Error:', msg.error);

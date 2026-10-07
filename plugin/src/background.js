@@ -853,6 +853,13 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     // ping + retries. runtime.sendMessage / tabs.sendMessage do not have
     // this problem, so we push each chunk back to the tab individually
     // instead of relying on a long-lived port.
+    if (msg.action === 'stopFetch' && msg.requestId) {
+        const c = activeStreams.get(msg.requestId);
+        if (c) { stoppedStreams.add(msg.requestId); c.abort(); }
+        sendResponse({ stopped: !!c });
+        return false;
+    }
+
     if (msg.action === 'startFetch' && msg.requestId) {
         // Fallback: Safari sometimes omits sender.tab.id in
         // chrome.runtime.onMessage for content scripts. If it's missing,
@@ -895,12 +902,17 @@ chrome.commands.onCommand.addListener((command) => {
 // Performs the streaming fetch on behalf of the content script and pushes
 // each chunk back via chrome.tabs.sendMessage (see comment above for why
 // this replaces the old runtime.connect()-based approach).
+// Running streams by requestId so the popup's Stop button can abort one (stopFetch).
+const activeStreams = new Map();
+const stoppedStreams = new Set();
+
 async function handleStreamFetch(msg, tabId) {
     const { requestId, apiUrl, headers, body } = msg;
     const push = (payload) => chrome.tabs.sendMessage(tabId, { action: 'streamChunk', requestId, payload }).catch(() => {});
 
     const startedAt = Date.now();
     const controller = new AbortController();
+    activeStreams.set(requestId, controller);
 
     // Activity-based timeout: resets on every received chunk. This prevents
     // long-running streams (e.g. Ollama thinking models like qwen3:8b) from
@@ -976,9 +988,12 @@ async function handleStreamFetch(msg, tabId) {
     } catch (err) {
         if (heartbeatId) clearInterval(heartbeatId);
         clearTimeoutHandle();
+        if (stoppedStreams.delete(requestId)) { push({ stopped: true }); return; }
         const errorMessage = err?.name === 'AbortError'
             ? `Request timed out after ${IDLE_TIMEOUT_MS / 1000}s of inactivity`
             : err.message;
         push({ error: errorMessage });
+    } finally {
+        activeStreams.delete(requestId);
     }
 }

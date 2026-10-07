@@ -4,6 +4,9 @@ import { debug } from './log.js';
 // Handles main screen UI — chat-style summary feed
 
 import StorageManager from './storageManager.js';
+import { T } from './feedI18n.js';
+import { aiComplete } from './feedAi.js';
+import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -77,18 +80,17 @@ export function initMainScreen(ui) {
         bubble.className = 'stream-bubble';
         bubble.id = 'streamBubble';
         bubble.innerHTML = `
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <div class="sc-head">
             <span class="pulse-dot"></span>
-            <span id="streamText" style="font-weight:600;">Starting…</span>
-            <span id="streamTimer" style="font-size:11px;opacity:0.6;margin-left:auto;"></span>
+            <span id="streamText" class="sc-title">${T('Starting…')}</span>
+            <span id="streamTimer" class="sc-timer"></span>
           </div>
-          <div id="streamModel" style="font-size:11px;opacity:0.5;margin-bottom:4px;">${emoji} ${modelName}</div>
-          <div id="streamProgressWrap" style="display:none;margin-bottom:6px;">
-            <div style="height:4px;background:var(--outline, rgba(100,116,139,0.25));border-radius:999px;overflow:hidden;">
-              <div id="streamProgressBar" style="height:100%;width:0%;background:var(--accent, #2563eb);border-radius:999px;transition:width 0.4s ease;"></div>
-            </div>
+          <ul id="streamSteps" class="sc-steps" aria-live="polite"></ul>
+          <div id="streamModel" class="sc-model">${emoji} ${modelName}</div>
+          <div id="streamProgressWrap" class="sc-progress" style="display:none;">
+            <div class="sc-progress-track"><div id="streamProgressBar" class="sc-progress-bar" style="width:0%;"></div></div>
           </div>
-          <div id="streamPreview" style="font-size:12px;opacity:0.7;line-height:1.5;max-height:80px;overflow:hidden;"></div>
+          <div id="streamPreview" class="sc-preview"></div>
         `;
         feed.appendChild(bubble);
         // Scroll to show the stream bubble
@@ -149,6 +151,143 @@ export function initMainScreen(ui) {
             window._streamTimer = null;
         }
     };
+
+    // ── Conversation state (in memory; persisted conversations come later) ──
+    let lastContext = null;          // summaryContext of the running/last summary
+    let conversation = null;         // { url, title, content, summary, turns:[{q,a}] }
+    let activeTabId = null;
+    let differentPageNote = false;
+    const bar = document.querySelector('.controls-bar');
+    const newBtn = document.getElementById('newSummaryButton');
+
+    const esc = (x) => String(x || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const usedOpen = () => { try { return localStorage.getItem('aish:usedOpen') === '1'; } catch (_) { return false; } };
+    const setUsedOpen = (v) => { try { localStorage.setItem('aish:usedOpen', v ? '1' : '0'); } catch (_) { /* storage unavailable */ } };
+    const scrollFeed = () => requestAnimationFrame(() => {
+        const el = document.getElementById('feedScroll');
+        if (el) el.scrollTop = el.scrollHeight;
+    });
+
+    const renderSteps = (ctx) => {
+        const ul = document.getElementById('streamSteps');
+        if (!ul) return;
+        ul.innerHTML = statusLines(ctx).map((l, i, all) =>
+            `<li class="${i === all.length - 1 ? 'sc-step sc-step--now' : 'sc-step'}">${esc(l)}</li>`).join('');
+    };
+
+    /** Collapsible "What I used" row under a finished summary. */
+    const usedRow = (ctx) => {
+        if (!ctx) return null;
+        const det = document.createElement('details');
+        det.className = 'sc-used';
+        det.open = usedOpen();
+        det.innerHTML = `<summary>${esc(T('What I used'))}</summary>`
+            + `<ul>${contextRows(ctx).map(r => `<li data-k="${r.key}">${esc(r.text)}</li>`).join('')}</ul>`;
+        det.addEventListener('toggle', () => setUsedOpen(det.open));
+        return det;
+    };
+
+    const composer = createComposer(bar, {
+        onChange: (next) => {
+            if (newBtn) newBtn.hidden = !conversation;
+            if (next === 'followup' && additionalQuestionsInput.value.trim()) sendFollowUp(additionalQuestionsInput.value.trim());
+        }
+    });
+    const resetToFetch = () => {
+        if (composer) { composer.set('fetch'); composer.refresh(); }
+        else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Fetch Summary'; }
+    };
+
+    const clearNote = () => {
+        const n = document.getElementById('composerNote');
+        if (n) n.remove();
+        differentPageNote = false;
+    };
+    const showNote = () => {
+        if (document.getElementById('composerNote') || !bar) return;
+        const n = document.createElement('div');
+        n.id = 'composerNote';
+        n.className = 'composer-note';
+        n.innerHTML = `<span>${esc(T('This is a different page.'))}</span> <button type="button" class="btn-link" id="composerContinue">${esc(T('Continue conversation'))}</button>`;
+        bar.querySelector('.input-card').prepend(n);
+        n.querySelector('#composerContinue').addEventListener('click', () => {
+            clearNote();
+            if (conversation && composer) composer.set('followup');
+        });
+        differentPageNote = true;
+    };
+
+    /** ＋ New: back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
+    const startNew = () => {
+        if (composer && composer.state === 'working') return;
+        feed.querySelectorAll('.chat-turn, .sc-used-wrap').forEach(n => n.remove());
+        conversation = null; lastContext = null;
+        clearNote();
+        additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
+        resetToFetch();
+        if (newBtn) newBtn.hidden = true;
+        additionalQuestionsInput.focus();
+    };
+    if (newBtn) {
+        newBtn.title = T('New summary') + ' (⌘N)';
+        newBtn.setAttribute('aria-label', T('New summary'));
+        newBtn.addEventListener('click', startNew);
+    }
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'n' && conversation) {
+            e.preventDefault();
+            startNew();
+        }
+    });
+
+    // Different-page rule: when the active tab is another page than the conversation, offer a fresh summary.
+    const checkPage = async () => {
+        if (!conversation || !composer || composer.state === 'working') return;
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        if (!tab || !tab.url) return;
+        const same = samePage(conversation.url, tab.url);
+        if (!same && composer.state === 'followup') { composer.set('fetch'); showNote(); }
+        else if (same && differentPageNote) { clearNote(); composer.set('followup'); }
+    };
+    try {
+        chrome.tabs?.onActivated?.addListener(checkPage);
+        chrome.tabs?.onUpdated?.addListener((id, info) => { if (info && info.url) checkPage(); });
+    } catch (_) { /* tabs API unavailable (hybrid sidebar iframe) */ }
+    window.addEventListener('focus', checkPage);
+
+    function addTurn(cls, text) {
+        const el = document.createElement('div');
+        el.className = `chat-turn ${cls}`;
+        el.textContent = text;
+        feed.appendChild(el);
+        scrollFeed();
+        return el;
+    }
+
+    async function sendFollowUp(q) {
+        if (!conversation || !q) return;
+        additionalQuestionsInput.value = '';
+        fetchSummaryButton.disabled = true;
+        addTurn('chat-q', q);
+        const ans = addTurn('chat-a chat-a--pending', T('Thinking…'));
+        try {
+            const system = 'You answer follow-up questions about one web page. Use only the page text and the summary below. '
+                + 'Be concise and answer in the language of the question.';
+            const history = conversation.turns.slice(-4).map(t => `Q: ${t.q}\nA: ${t.a}`).join('\n\n');
+            const user = `PAGE TITLE: ${conversation.title}\n\nPAGE TEXT:\n${String(conversation.content || '').slice(0, 20000)}\n\n`
+                + `SUMMARY:\n${String(conversation.summary || '').replace(/<[^>]+>/g, ' ')}\n\n`
+                + (history ? `EARLIER QUESTIONS:\n${history}\n\n` : '') + `QUESTION: ${q}`;
+            const text = (await aiComplete(system, user)).trim();
+            ans.textContent = text || T('No answer.');
+            conversation.turns.push({ q, a: text });
+        } catch (err) {
+            ans.textContent = '❌ ' + ((err && err.message) || T('AI request failed'));
+        }
+        ans.classList.remove('chat-a--pending');
+        fetchSummaryButton.disabled = false;
+        scrollFeed();
+    }
 
     const loadFeed = async () => {
         const articles = await StorageManager.getArticlesIndex();
@@ -239,6 +378,15 @@ export function initMainScreen(ui) {
             if (msg.preview) updateStreamPreview(msg.preview);
             if (typeof msg.progress === 'number') updateStreamProgress(msg.progress);
         }
+        if (msg.action === 'summaryContext') {
+            lastContext = { ...msg, model: document.getElementById('chipModelLabel')?.textContent || '' };
+            renderSteps(lastContext);
+        }
+        if (msg.action === 'summaryCancelled') {
+            removeStreamBubble();
+            lastContext = null;
+            resetToFetch();
+        }
         if (msg.action === 'summaryComplete') {
             removeStreamBubble();
             // Render the new summary immediately from relayed data
@@ -253,18 +401,30 @@ export function initMainScreen(ui) {
                     connectionMode: msg.connectionMode || 'local',
                     content: msg.content || ''
                 });
-            }
-            if (fetchSummaryButton) {
-                fetchSummaryButton.disabled = false;
-                fetchSummaryButton.textContent = '✨ Fetch Summary';
+                const used = usedRow(lastContext);
+                if (used) {
+                    const wrap = document.createElement('div');
+                    wrap.className = 'sc-used-wrap';
+                    wrap.appendChild(used);
+                    feed.appendChild(wrap);
+                }
+                conversation = {
+                    url: msg.url || '', title: msg.title || '', content: msg.content || '',
+                    summary: msg.summary, turns: []
+                };
+                clearNote();
+                if (composer) composer.set('followup');
+                if (newBtn) newBtn.hidden = false;
+                scrollFeed();
+            } else {
+                resetToFetch();
             }
         }
         if (msg.action === 'summaryError') {
             updateStream('❌ ' + (msg.error || 'Something went wrong'));
             if (fetchSummaryButton) {
                 setTimeout(() => {
-                    fetchSummaryButton.disabled = false;
-                    fetchSummaryButton.textContent = '✨ Fetch Summary';
+                    resetToFetch();
                     removeStreamBubble();
                 }, 3000);
             }
@@ -289,6 +449,15 @@ export function initMainScreen(ui) {
 
     // ── Fetch button ────────────────────────────────────────────────────
     fetchSummaryButton.addEventListener('click', async () => {
+        if (composer && composer.state === 'working') {      // Stop
+            if (activeTabId != null) sendMessageToTab(activeTabId, { action: 'stopSummary' }).catch(() => {});
+            return;
+        }
+        if (composer && composer.state === 'followup') {     // Send follow-up
+            const q = additionalQuestionsInput.value.trim();
+            if (q) sendFollowUp(q);
+            return;
+        }
         const additionalQuestions = additionalQuestionsInput.value;
         const selectedLanguage = languageSelect.value;
 
@@ -298,8 +467,15 @@ export function initMainScreen(ui) {
             const { [SK.summaryMode]: summaryMode } = await chrome.storage.local.get(SK.summaryMode);
             const mode = summaryMode || 'extension';
 
-            fetchSummaryButton.disabled = true;
-            fetchSummaryButton.textContent = '⏳ Summarizing…';
+            if (mode === 'extension' && composer) {
+                composer.set('working');
+                additionalQuestionsInput.value = '';   // the focus question is on its way; the box is free for the next question
+                clearNote();
+                feed.querySelectorAll('.chat-turn, .sc-used-wrap').forEach(n => n.remove());
+            } else {
+                fetchSummaryButton.disabled = true;
+                fetchSummaryButton.textContent = '⏳ Summarizing…';
+            }
 
             if (mode === 'extension') {
                 // Show the streaming bubble and hide the welcome entry
@@ -322,8 +498,7 @@ export function initMainScreen(ui) {
                 const activeTab = await getActiveTab();
                 if (!activeTab) {
                     updateStream('❌ No active tab found');
-                    fetchSummaryButton.disabled = false;
-                    fetchSummaryButton.textContent = '✨ Fetch Summary';
+                    resetToFetch();
                     return;
                 }
 
@@ -336,12 +511,12 @@ export function initMainScreen(ui) {
                     const granted = await requestSiteAccess(activeTab.url);
                     if (!granted) {
                         updateStream('❌ AI Summary Helper needs permission to run on this site. Please tap "Allow" in the prompt (or enable it in Safari Settings → Extensions → AI Summary Helper).');
-                        fetchSummaryButton.disabled = false;
-                        fetchSummaryButton.textContent = '✨ Fetch Summary';
+                        resetToFetch();
                         return;
                     }
                 }
 
+                activeTabId = activeTab.id;
                 await ensureContentScript(activeTab.id, activeTab.url);
 
                 const {
@@ -365,8 +540,7 @@ export function initMainScreen(ui) {
                 } catch (err) {
                     console.warn("Popup communication error:", err);
                     updateStream('❌ Could not reach page — try refreshing the tab.');
-                    fetchSummaryButton.disabled = false;
-                    fetchSummaryButton.textContent = '✨ Fetch Summary';
+                    resetToFetch();
                 }
 
                 // Inline mode: close popup
@@ -385,8 +559,7 @@ export function initMainScreen(ui) {
                     ? ' — allow this extension on this site (Safari: tap the icon → Always Allow).'
                     : '';
                 updateStream('❌ ' + msg + permissionHint);
-                fetchSummaryButton.disabled = false;
-                fetchSummaryButton.textContent = '✨ Fetch Summary';
+                resetToFetch();
             }
         });
     });
