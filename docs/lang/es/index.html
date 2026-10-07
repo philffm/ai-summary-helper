@@ -24,11 +24,11 @@
 
 <meta property="og:title" content="AI Summary Helper">
 <meta property="og:description" content="Resume, guarda y busca en la web desde tu dispositivo. Una extensión de Chrome diseñada para que no vuelvas a perder tu lista de lectura.">
-<meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/lang/es/">
 <meta property="og:type" content="website">
 
 <script src="../../assets/analytics.js"></script>
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/index.html"></head>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/lang/es/"></head>
 <body>
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -128,21 +128,21 @@
            dim) and swaps one line of framing copy. Nothing here changes
            what's actually rendered for a crawler beyond that, so it
            costs nothing on the GEO/SEO side. -->
-      <div class="persona-switch reveal" role="tablist" aria-label="Who are you?">
-        <button type="button" class="persona-btn active" data-persona="privacy" role="tab" aria-selected="true">
+      <div class="persona-switch reveal" role="group" aria-label="Who are you?">
+        <button type="button" class="persona-btn active" data-persona="privacy" aria-pressed="true">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
           Privacidad ante todo
         </button>
-        <button type="button" class="persona-btn" data-persona="hoarder" role="tab" aria-selected="false">
+        <button type="button" class="persona-btn" data-persona="hoarder" aria-pressed="false">
           <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
           Acumulador de pestañas
         </button>
-        <button type="button" class="persona-btn" data-persona="researcher" role="tab" aria-selected="false">
+        <button type="button" class="persona-btn" data-persona="researcher" aria-pressed="false">
           <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
           Investigador
         </button>
       </div>
-      <p class="persona-blurb reveal" id="personaBlurb">Tú eliges el modelo, el servidor y si algo llega a salir de tu equipo.</p>
+      <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Tú eliges el modelo, el servidor y si algo llega a salir de tu equipo.</p>
 
       <div class="feature-grid reveal" id="featureGrid">
         <div class="feature-card" data-personas="privacy researcher">
@@ -204,7 +204,7 @@
         buttons.forEach(function(b){
           var active = b.getAttribute('data-persona') === name;
           b.classList.toggle('active', active);
-          b.setAttribute('aria-selected', active ? 'true' : 'false');
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
         cards.forEach(function(c){
           var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
@@ -269,9 +269,9 @@
       </div>
 
       <div style="text-align:center;">
-        <div class="tier-toggle reveal" role="tablist" aria-label="Billing period">
-          <button type="button" class="active" id="btnMonthly" onclick="setBilling('monthly')">Mensual</button>
-          <button type="button" id="btnYearly" onclick="setBilling('yearly')">Anual · ahorra un 50 %</button>
+        <div class="tier-toggle reveal" role="group" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" aria-pressed="true" onclick="setBilling('monthly')">Mensual</button>
+          <button type="button" id="btnYearly" aria-pressed="false" onclick="setBilling('yearly')">Anual · ahorra un 50 %</button>
         </div>
       </div>
 
