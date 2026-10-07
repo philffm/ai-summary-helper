@@ -3329,3 +3329,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 /* Language panel: the search box sits at the bottom so it stays put while the list shrinks as you type */
 #panelLanguage .tag-grid { min-height: 0; margin-bottom: var(--spacing-s-2); }
 #panelLanguage .chip-panel-search { margin: 0; }
+
+/* History graph (one pane): fill exactly the space between the top bar and the bottom nav, instead of 90% of the whole screen */
+#historyScreen:not(.ws-active):has(> #graphContainer[style*="block"]) { display: flex; flex-direction: column; overflow: hidden; }
+#historyScreen:not(.ws-active) > #graphContainer { flex: 1 1 0; min-height: 240px; height: auto; margin-top: var(--spacing-s-2); }

@@ -269,7 +269,8 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     container.innerHTML = '';
     container.style.position = 'relative';
     container.style.width = '100%';
-    container.style.height = '90%';
+    // Height comes from CSS (fills what is left below the top bar, above the bottom nav).
+    container.style.removeProperty('height');
     container.style.overflow = 'hidden';
 
     return loadD3()
