@@ -88,6 +88,7 @@
   /* floating shell layout */
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
+  --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
   --controls-overlay-height: 240px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
 
@@ -506,7 +507,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   height: 100%;
   overflow-y: auto;
   padding: 0 var(--spacing-s-4);
-  padding-bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4));
+  padding-bottom: var(--nav-clearance);
   background: var(--glass-base);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
@@ -2946,6 +2947,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
   grid-template-rows: auto auto minmax(0, 1fr);
   column-gap: 12px;
   overflow: hidden;
+  padding-bottom: 0;          /* panes use the full height; each keeps its own clearance below */
 }
 .screen.ws-active > .topbar { grid-column: 1 / -1; grid-row: 1; }
 .screen.ws-active > .ws-head { grid-row: 2; display: flex; align-items: center; gap: 8px; padding: 8px 0; }
@@ -2953,10 +2955,10 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .screen.ws-active > .ws-p2 { grid-column: 2; }
 .screen.ws-active > .ws-p3 { grid-column: 3; }
 .screen.ws-active > :is(#articleList, #articleDetail, #graphContainer, #reportContainer, #feedListPane, #feedGraph, #feedInsights) {
-  grid-row: 3; min-height: 0; overflow-y: auto; margin: 0;
+  grid-row: 3; min-height: 0; overflow-y: auto; margin: 0; padding-bottom: var(--nav-clearance);
 }
 /* panes fill the available height (the graph sets 90% inline) */
-.screen.ws-active > :is(#graphContainer, #feedGraph) { height: 100% !important; min-height: 0; }
+.screen.ws-active > :is(#graphContainer, #feedGraph) { height: calc(100% - var(--nav-clearance)) !important; min-height: 0; padding-bottom: 0; }   /* card pane: ends above the nav so its own controls stay reachable */
 .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p1, .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p2, .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p3 { display: block !important; }
 .screen.ws-active > .ws-off { display: none !important; }
 .screen.ws-active :is(#graphToggleBtn, #reportToggleBtn, #detailGraphToggleBtn, #detailReportToggleBtn, #feedGraphBtn, #feedInsightsBtn) { display: none; }
@@ -2982,10 +2984,10 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
   display: grid; grid-template-columns: 300px minmax(0, 720px); column-gap: 24px; align-items: start;
 }
 /* two independent scroll areas: the list and the panel scroll on their own */
-#settingsScreen.st-wide { overflow: hidden; }
+#settingsScreen.st-wide { overflow: hidden; padding-bottom: 0; }
 #settingsScreen.st-wide #settingsForm { height: 100%; grid-template-rows: minmax(0, 1fr); padding-bottom: 0; }   /* the scroll areas below carry their own bottom room */
-#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: 16px; }
-#settingsScreen.st-wide .settings-panel { grid-column: 2; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: 64px; }   /* room for the floating Save button */
+#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: var(--nav-clearance); }
+#settingsScreen.st-wide .settings-panel { grid-column: 2; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: calc(var(--nav-clearance) + 48px); }   /* + room for the floating Save button */
 #settingsScreen.st-wide .settings-back { display: none; }
 #settingsScreen.st-wide .settings-row.active { background: var(--accent-a15, var(--glass-input)); border-color: var(--accent); }
 
