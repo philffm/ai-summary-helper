@@ -1,7 +1,7 @@
 import { SK } from './storageKeys.js';
 // workspaceManager.js — split-screen workspace for wide windows.
 // Shows up to three of List / Graph / Analytics side by side inside the History
-// screen. Narrow windows keep the single-pane behaviour (nothing changes).
+// and Feeds screens (layout switcher lives in the app header). Narrow windows keep the single-pane behaviour (nothing changes).
 // Breakpoints: <720px one pane · 720–1099px up to two · ≥1100px up to three.
 
 const VIEWS = ['list', 'graph', 'report'];
@@ -33,7 +33,18 @@ function setView(slot, view) {
     views[slot] = view;
 }
 
-function apply() { SCREENS.forEach(applyScreen); }
+function syncSwitcher() {
+    const seg = document.querySelector('.header .ws-seg');
+    if (!seg) return;
+    seg.hidden = maxPanes() < 2;
+    seg.querySelectorAll('button').forEach(b => {
+        const k = Number(b.dataset.n);
+        b.disabled = k > maxPanes();
+        b.setAttribute('aria-pressed', String(k === effective()));
+    });
+}
+
+function apply() { syncSwitcher(); SCREENS.forEach(applyScreen); }
 
 function applyScreen(cfg) {
     const screen = document.getElementById(cfg.id);
@@ -45,14 +56,6 @@ function applyScreen(cfg) {
     screen.querySelectorAll(':scope > .ws-head').forEach(h => h.remove());
     const e = elsOf(cfg);
     for (const v of VIEWS) for (const el of e[v]) el.classList.remove('ws-off', 'ws-p1', 'ws-p2', 'ws-p3');
-    screen.querySelectorAll('.ws-seg').forEach(seg => {
-        seg.hidden = maxPanes() < 2;
-        seg.querySelectorAll('button').forEach(b => {
-            const k = Number(b.dataset.n);
-            b.disabled = k > maxPanes();
-            b.setAttribute('aria-pressed', String(k === n));
-        });
-    });
     if (!on) {
         emit(cfg.scope, 'graph', false);
         emit(cfg.scope, 'report', false);
@@ -96,25 +99,26 @@ function buildHead(slot, view, n) {
     return head;
 }
 
+// One layout switcher in the app header (shared by Feeds and History — they use the same layout),
+// so the toolbars below keep their full width. CSS shows it only on those two screens
+// (body[data-screen], set by uiManager.showScreen) and it is hidden when the window fits one pane.
 function buildSwitchers() {
-    for (const cfg of SCREENS) {
-        const bar = document.getElementById(cfg.bar);
-        if (!bar || bar.querySelector('.ws-seg')) continue;
-        const seg = document.createElement('div');
-        seg.className = 'ws-seg';
-        seg.setAttribute('role', 'group');
-        seg.setAttribute('aria-label', 'Layout');
-        [1, 2, 3].forEach(k => {
-            const b = document.createElement('button');
-            b.type = 'button'; b.dataset.n = String(k);
-            b.title = k === 1 ? 'One pane' : `${k} panes`;
-            b.setAttribute('aria-label', b.title);
-            for (let i = 0; i < k; i++) b.appendChild(document.createElement('i'));
-            b.addEventListener('click', () => { layout = k; save(); apply(); });
-            seg.appendChild(b);
-        });
-        bar.appendChild(seg);
-    }
+    const host = document.querySelector('.header .header-buttons');
+    if (!host || host.querySelector('.ws-seg')) return;
+    const seg = document.createElement('div');
+    seg.className = 'ws-seg';
+    seg.setAttribute('role', 'group');
+    seg.setAttribute('aria-label', 'Layout');
+    [1, 2, 3].forEach(k => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.dataset.n = String(k);
+        b.title = k === 1 ? 'One pane' : `${k} panes`;
+        b.setAttribute('aria-label', b.title);
+        for (let i = 0; i < k; i++) b.appendChild(document.createElement('i'));
+        b.addEventListener('click', () => { layout = k; save(); apply(); });
+        seg.appendChild(b);
+    });
+    host.insertBefore(seg, host.firstChild);
 }
 
 export async function initWorkspace() {

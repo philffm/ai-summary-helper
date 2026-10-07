@@ -34,6 +34,7 @@ class UIManager {
 
     async showScreen(screenName) {
         const targetIdx = this.screenOrder.indexOf(screenName);
+        document.body.dataset.screen = screenName;   // CSS: header layout switcher only on feeds/history
 
         // Handle screens not in the nav order (e.g. 'podcast')
         if (targetIdx === -1) {

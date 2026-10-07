@@ -2968,6 +2968,11 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 /* ── Split-screen workspace (History, wide windows) ────────────────────── */
 .ws-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--radius-md, 10px); background: var(--glass-card); border: 1px solid var(--glass-border); flex-shrink: 0; }
 .ws-seg[hidden] { display: none; }
+/* Layout switcher lives in the app header and only applies to Feeds + History */
+.header .ws-seg { display: none; padding: 2px; }
+body[data-screen="feeds"] .header .ws-seg:not([hidden]),
+body[data-screen="history"] .header .ws-seg:not([hidden]) { display: inline-flex; }
+.header .ws-seg button { padding: 4px 7px; }
 .ws-seg button { display: inline-flex; gap: 2px; align-items: center; justify-content: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
 .ws-seg button i { display: block; width: 6px; height: 14px; border-radius: 2px; background: var(--text-muted); }
 .ws-seg button[aria-pressed='true'] { background: var(--glass-base); box-shadow: var(--shadow-raised); }
