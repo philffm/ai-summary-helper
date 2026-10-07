@@ -14,6 +14,7 @@ await AM.showArticleDetail({ id, title: 'A', url: 'https://a.com/x', content: '<
 await tick(30);
 const box = d.querySelector('#articleDetailContent .summary-box');
 assert(box, 'summary box');
+assert(box.innerHTML.split('From your question').length === 1, 'no duplicate appended block inside the detail view');
 assert(box.querySelector('.qa-section .chat-turn-group'), 'pinned question inside the summary box');
 assert(/1 more question/.test(box.querySelector('details.qa-more summary').textContent), 'unpinned collapsed');
 console.log('TEST 45 OK');

@@ -1,6 +1,7 @@
 import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, migrateStorageKeys } from './storageKeys.js';
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
+import { withQuestions } from './conversation.js';
 // storageManager.js
 
 // Precomputed once per save/migration so analyticsManager.js's reading-time
@@ -338,8 +339,18 @@ class StorageManager {
         const list = Array.isArray(turns) ? turns : [];
         const index = idxData[SK.articlesIndex] || [];
         const entry = index.find(a => a.id === id);
-        if (entry) { if (list.length) entry.qaCount = list.length; else delete entry.qaCount; }
-        await this.setLocal({ [key]: { ...rec, conversation: list }, [SK.articlesIndex]: index });
+        // The pinned questions become part of the stored summary ("From your question" block); the original text is
+        // kept as summaryBase so pinning/unpinning is lossless and the block never doubles up.
+        const base = rec.summaryBase !== undefined ? rec.summaryBase : (rec.summary || '');
+        const summary = withQuestions(base, list, { all: false });
+        if (entry) {
+            if (list.length) entry.qaCount = list.length; else delete entry.qaCount;
+            entry.summary = summary;
+            entry.summaryWordCount = countWords(summary);
+        }
+        const nextRec = { ...rec, conversation: list, summary };
+        if (list.length || rec.summaryBase !== undefined) nextRec.summaryBase = base;
+        await this.setLocal({ [key]: nextRec, [SK.articlesIndex]: index });
         return true;
     }
 

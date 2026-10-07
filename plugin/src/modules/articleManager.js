@@ -196,7 +196,11 @@ async function conversationOf(article) {
 async function exportView(article) {
     const turns = await conversationOf(article);
     if (!turns.length) return article;
-    return { ...article, summary: withQuestions(article.summary, turns, { all: await includeAllQuestions() }) };
+    let base = article.summaryBase;
+    if (base === undefined && article.id) {   // lean index entries already carry the pinned block: start from the original text
+        try { const full = await StorageManager.getArticleFull(article.id); base = full.summaryBase !== undefined ? full.summaryBase : full.summary; } catch (_) { /* fall back below */ }
+    }
+    return { ...article, summary: withQuestions(base !== undefined ? base : article.summary, turns, { all: await includeAllQuestions() }) };
 }
 
 async function buildArticleDocumentHtml(article) {
@@ -297,7 +301,8 @@ why:
 ---`;
 
     // 5. Construct the Markdown Body — convert vanilla <img> and <a> to Markdown
-    const summaryPlain = article.summary ? article.summary.replace(/<[^>]+>/g, '').trim() : 'No summary available.';
+    const baseSummary = article.summaryBase !== undefined ? article.summaryBase : article.summary;
+    const summaryPlain = baseSummary ? baseSummary.replace(/<[^>]+>/g, '').trim() : 'No summary available.';
 
     // Parse stored clean HTML and convert tags to Markdown syntax
     const parser = new DOMParser();
@@ -1353,7 +1358,14 @@ export async function showArticleDetail(article) {
     }
 
     if (article && article.id && article.conversation === undefined) {
-        try { article = { ...article, conversation: await StorageManager.getConversation(article.id) }; } catch (_) { article = { ...article, conversation: [] }; }
+        try {
+            const conversation = await StorageManager.getConversation(article.id);
+            article = { ...article, conversation };
+            // follow-ups saved before they were appended to the summary: do it now (once)
+            if (conversation.length && article.summaryBase === undefined && await StorageManager.saveConversation(article.id, conversation)) {
+                article.summaryBase = article.summary;
+            }
+        } catch (_) { article = { ...article, conversation: [] }; }
     }
     currentDetailArticle = article;
     recordArticleOpened(article);
@@ -1371,7 +1383,7 @@ export async function showArticleDetail(article) {
     const rawContentSource = article.content || article.html || article.text || '';
 
     const safeTitle = article.title || (rawContentSource && rawContentSource.split('\n')[0]) || 'Article';
-    const safeSummary = (article.summary || 'No summary available').replace(/<img[^>]*>/gi, '');
+    const safeSummary = (article.summaryBase !== undefined ? article.summaryBase : (article.summary || 'No summary available')).replace(/<img[^>]*>/gi, '');
 
     // Safely extract pristine plain text via an isolated DOM Parser
     const detailParser = new DOMParser();

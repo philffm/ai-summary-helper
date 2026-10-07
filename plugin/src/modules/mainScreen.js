@@ -7,7 +7,7 @@ import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { aiComplete } from './feedAi.js';
 import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
-import { newTurn, buildPrompt, parseAnswer } from './conversation.js';
+import { newTurn, buildPrompt, parseAnswer, buildSuggestPrompt, parseSuggestions } from './conversation.js';
 import { turnEl } from './qaView.js';
 
 export function initMainScreen(ui) {
@@ -583,13 +583,27 @@ export function initMainScreen(ui) {
                 clearNote();
                 const sug = document.createElement('div');
                 sug.className = 'chat-suggest';
-                (Array.isArray(msg.questions) ? msg.questions : []).slice(0, 3).forEach((q) => {
-                    const c = document.createElement('button');
-                    c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = q;
-                    c.addEventListener('click', () => sendFollowUp(q));
-                    sug.appendChild(c);
-                });
-                if (sug.childElementCount) feed.appendChild(sug);
+                const fillSuggestions = (qs) => {
+                    qs.slice(0, 3).forEach((q) => {
+                        const c = document.createElement('button');
+                        c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = q;
+                        c.addEventListener('click', () => sendFollowUp(q));
+                        sug.appendChild(c);
+                    });
+                };
+                const given = (Array.isArray(msg.questions) ? msg.questions : []).filter(Boolean);
+                fillSuggestions(given);
+                feed.appendChild(sug);
+                if (!given.length) {
+                    // The model did not include the QUESTIONS comment: ask for them separately (one short call).
+                    const forConv = conversation;
+                    const { system, user } = buildSuggestPrompt(forConv);
+                    aiComplete(system, user).then((raw) => {
+                        if (conversation !== forConv || forConv.turns.length || !sug.isConnected) return;
+                        fillSuggestions(parseSuggestions(raw));
+                        scrollFeed();
+                    }).catch(() => { /* suggestions are optional */ });
+                }
                 if (composer) composer.set('followup');
                 if (newBtn) newBtn.hidden = false;
                 scrollFeed();

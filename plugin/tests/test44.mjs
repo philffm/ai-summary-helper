@@ -18,6 +18,9 @@ const raw = 'It was approved.\nSOURCES: "voted on Tuesday to approve the new bud
 const p = C.parseAnswer(raw, page);
 assert.equal(p.a, 'It was approved.'); assert.deepEqual(p.sources, ['voted on Tuesday to approve the new budget']);
 assert.deepEqual(C.parseAnswer('Just text', page), { a: 'Just text', sources: [] });
+assert.deepEqual(C.parseSuggestions('Sure!\n["Who disagrees?", "What are the costs?", "ab", "Next steps for users?", "extra one here"]'), ['Who disagrees?', 'What are the costs?', 'Next steps for users?']);
+assert.deepEqual(C.parseSuggestions('no json'), []);
+assert(C.buildSuggestPrompt({ title: 'T', summary: '<p>S</p>', content: '<p>c</p>' }).user.includes('SUMMARY'));
 
 // prompt: page text capped, only the last 6 turns go back
 const many = Array.from({ length: 9 }, (_, i) => ({ q: 'q' + i, a: 'a' + i }));
@@ -43,6 +46,17 @@ assert.equal((await SM.getArticleFull(id)).conversation.length, 2);
 assert(!(await SM.saveConversation('nope', [t1])));
 await SM.saveConversation(id, []); assert(!('qaCount' in store[SK.articlesIndex].find(a => a.id === id)));
 await SM.saveConversation(id, [t1, t2]);
+// the pinned question is part of the stored summary (and the index), the original is kept as summaryBase
+let rec = store['articles:rec:' + id]; let ix = store[SK.articlesIndex].find(a => a.id === id);
+assert.equal(rec.summaryBase, '<p>s</p>');
+assert(rec.summary.startsWith('<p>s</p>') && rec.summary.includes('Why?') && !rec.summary.includes('And?'), 'only pinned appended');
+assert.equal(ix.summary, rec.summary, 'index summary follows');
+// pin the second, then unpin everything: never doubles up, fully restores
+t2.pinned = true; await SM.saveConversation(id, [t1, t2]);
+rec = store['articles:rec:' + id]; assert(rec.summary.includes('And?') && rec.summary.split('aish-qa').length === 2, 'one block, both questions');
+await SM.saveConversation(id, []); rec = store['articles:rec:' + id];
+assert.equal(rec.summary, '<p>s</p>'); assert.equal(store[SK.articlesIndex].find(a => a.id === id).summary, '<p>s</p>');
+t2.pinned = false; await SM.saveConversation(id, [t1, t2]);
 
 // view: pinned inline, rest collapsed, pin toggle + export switch call back
 let pins = 0, all = null, reveals = [];

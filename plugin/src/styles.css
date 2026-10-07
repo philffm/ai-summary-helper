@@ -3228,6 +3228,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
   grid-area: ta;
   min-height: 36px; height: 36px; max-height: 96px;
   padding: 8px 14px; resize: none; overflow: auto;
+  margin: 0;
   border: 1px solid var(--outline); border-radius: 18px; background: var(--glass-input);
   font-size: var(--fs-md, 14px); line-height: 1.3;
 }
