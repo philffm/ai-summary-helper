@@ -1152,6 +1152,25 @@ function cancelIdleCallback(handle) {
     }
 }
 
+// Split workspace: the analytics pane follows the search box too.
+let reportSearchTimer = null;
+function scheduleReportSearch(filterText, cheapMatch) {
+    const reportContainer = document.getElementById('reportContainer');
+    if (!wsActive() || !reportContainer || reportContainer.style.display !== 'block') return;
+    clearTimeout(reportSearchTimer);
+    reportSearchTimer = setTimeout(async () => {
+        const all = await StorageManager.getArticlesIndex({ includeArchived: true });
+        let list = all;
+        if (filterText) {
+            let ids = null;
+            if (filterText.length >= 3) ids = new Set(tfidfSearch(ensureSearchIndex(), cachedArticles, filterText).map(a => String(a.timestamp)));
+            list = all.filter(a => cheapMatch(a) || (ids && ids.has(String(a.timestamp))));
+        }
+        const mod = await import('./analyticsManager.js');
+        mod.initAnalyticsReport(reportContainer, list);
+    }, 250);
+}
+
 export function filterArticles() {
     const searchInput = document.getElementById('searchInput');
     const filterText = searchInput.value.trim();
@@ -1174,15 +1193,17 @@ export function filterArticles() {
     if (graphContainer && graphContainer.style.display === 'block') {
         if (graphScopeMode === 'all') {
             scheduleGraphSearchDim(graphContainer, filterText);
-            return;
-        }
+            if (!wsActive()) return;
+        } else {
         const filtered = cachedArticles.filter(cheapMatch);
         import('./archiveGraph.js').then(mod => {
             mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : cachedArticles, currentDetailArticle?.timestamp, ensureSearchIndex());
         });
         graphContainer.style.opacity = filterText && filtered.length < cachedArticles.length ? '0.9' : '1';
-        return;
+        if (!wsActive()) return;
+        }
     }
+    scheduleReportSearch(filterText, cheapMatch);
 
     // Tier 2: once the query is long enough to be meaningful (2-char
     // queries match almost everything and aren't worth indexing), widen

@@ -881,7 +881,7 @@ function renderInsightsView() {
     const box = els.insights; if (!box) return;
     const sm = subMap();
     renderInsights(box, {
-        items: items.filter(i => inSource(i, sm)),
+        items: (() => { const base = items.filter(i => inSource(i, sm)); return splitExtra.has('insights') && searchQuery.trim() ? applySearch(base) : base; })(),
         scopeLabel: sourceLabel(),
         subTitle: (id) => subTitle(sm.get(id)),
         moodStore: moodDaily,
