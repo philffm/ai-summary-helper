@@ -538,14 +538,14 @@ import {
           let finalApiUrl = apiUrl;
 
           // 🔥 IMPORTANT: This tells the AI to return EXACT verbatim quotes so `indexOf()` never fails
-          const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'three' : 'two'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''}.`;
+          const systemPrompt = `You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'four' : 'three'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] -->.`;
 
           // ── Route based on API format ──
           if (activeService === 'gemini') {
             finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:streamGenerateContent?alt=sse`;
             headers['x-goog-api-key'] = apiKey;
             const parts = [
-              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include ${moodOn ? 'three' : 'two'} HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and a third one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''}. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
+              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include ${moodOn ? 'four' : 'three'} HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] -->. Output Language: ${selectedLanguage}. Limit: ${summaryLength} words.` },
               { text: `Additional Questions/Instructions: ${additionalQuestions}` },
               { text: truncatedContent }
             ];
@@ -688,11 +688,22 @@ import {
                 if (isFinite(v) && v >= -1 && v <= 1) moodScore = Math.round(v * 100) / 100;
               }
 
+              // Suggested follow-up questions (shown as chips under the summary); invalid output is ignored.
+              let suggestedQuestions = [];
+              const qMatch = summary.match(/<!--\s*QUESTIONS:\s*([\s\S]*?)\s*-->/i);
+              if (qMatch) {
+                try {
+                  const arr = JSON.parse(qMatch[1].trim().replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim());
+                  if (Array.isArray(arr)) suggestedQuestions = arr.map(x => String(x || '').trim()).filter(x => x.length >= 4 && x.length <= 120).slice(0, 3);
+                } catch (e) { /* ignore */ }
+              }
+
               // Strip tags and ghost comments from the raw summary string
               let cleanRawText = summary
                 .replace(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/gi, '')
                 .replace(/<!--\s*TAGS:\s*[^>]+\s*-->/gi, '')
                 .replace(/<!--\s*MOOD:[^>]*-->/gi, '')
+                .replace(/<!--\s*QUESTIONS:[\s\S]*?-->/gi, '')
                 .trim();
 
               // Finally, convert the cleaned text to HTML
@@ -735,6 +746,7 @@ import {
                   tags: tags,
                   modelId: modelIdentifier,
                   moodScore,
+                  questions: suggestedQuestions,
                   content: finalContentHtml
                 });
               }

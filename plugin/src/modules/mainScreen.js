@@ -457,13 +457,13 @@ export function initMainScreen(ui) {
                 clearNote();
                 const sug = document.createElement('div');
                 sug.className = 'chat-suggest';
-                [[T('Who disagrees?'), 'Who disagrees with this, and why?'], [T('Key numbers'), 'List the key numbers and facts from the page.'], [T('Explain simply'), 'Explain this simply, as if to a beginner.']].forEach(([label, q]) => {
+                (Array.isArray(msg.questions) ? msg.questions : []).slice(0, 3).forEach((q) => {
                     const c = document.createElement('button');
-                    c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = label;
+                    c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = q;
                     c.addEventListener('click', () => sendFollowUp(q));
                     sug.appendChild(c);
                 });
-                feed.appendChild(sug);
+                if (sug.childElementCount) feed.appendChild(sug);
                 if (composer) composer.set('followup');
                 if (newBtn) newBtn.hidden = false;
                 scrollFeed();

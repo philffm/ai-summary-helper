@@ -3005,7 +3005,7 @@ body[data-screen="history"] .header .ws-seg:not([hidden]) { display: inline-flex
 .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p1, .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p2, .screen.ws-active > :is(#graphContainer, #reportContainer).ws-p3 { display: block !important; }
 .screen.ws-active > .ws-off { display: none !important; }
 .screen.ws-active :is(#graphToggleBtn, #reportToggleBtn, #detailGraphToggleBtn, #detailReportToggleBtn, #feedGraphBtn, #feedInsightsBtn) { display: none; }
-.ws-select { flex: 1; min-width: 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--glass-border); background: var(--glass-card); color: var(--text-primary); font: inherit; font-weight: 600; }
+.ws-select { flex: 1; min-width: 0; margin: 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--glass-border); background: var(--glass-card); color: var(--text-primary); font: inherit; font-weight: 600; }
 .ws-close { width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--text-muted); cursor: pointer; }
 .ws-close:hover { background: var(--glass-card); }
 
