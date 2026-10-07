@@ -28,8 +28,6 @@ import {
   setHighlightingEnabled,
   isAnyHighlightingEnabled,
   saveAnnotationToStorage,
-  removeAnnotationFromStorage,
-  restoreAnnotations,
   scheduleRestoreAnnotations,
   clearHighlightElements,
   clearHighlightElementsByType,
@@ -114,9 +112,6 @@ import {
     if (!isLimit) return `Error: ${e}`;
     return 'You\u2019ve reached your free daily summary limit. Come back tomorrow for 3 more \u2014 or upgrade to Pro for unlimited summaries.';
   }
-
-  let servicesData = [];
-  let modelConfig = {};
 
   // Cache the setting so sync reads don't block event handlers
   let userHighlightingEnabled = true;
@@ -359,10 +354,6 @@ import {
         }
       })();
       return false;
-    } else if (request.action === 'setServices') {
-      servicesData = request.services;
-    } else if (request.action === 'setModelConfig') {
-      modelConfig = request.modelConfig;
     }
   });
 

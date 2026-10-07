@@ -20,7 +20,7 @@ let pdfJsModulePromise = null;
  *
  * @returns {boolean}
  */
-function isPdfPage() {
+export function isPdfPage() {
   return document.contentType === 'application/pdf' || !!findEmbeddedPdfUrl();
 }
 
@@ -70,7 +70,7 @@ function loadPdfJs() {
  * @param {string} [url] - The PDF URL to fetch.
  * @returns {Promise<{ html: string, text: string }>}
  */
-async function extractPdfText(url) {
+export async function extractPdfText(url) {
   const targetUrl = url
     || (document.contentType === 'application/pdf' ? window.location.href : findEmbeddedPdfUrl());
   if (!targetUrl) throw new Error('Could not locate a PDF on this page.');

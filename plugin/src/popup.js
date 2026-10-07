@@ -614,32 +614,4 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (chipModeLabel) chipModeLabel.textContent = data.summaryMode === 'extension' ? 'Ext' : 'Inl';
         }
     });
-
-    // Utility to handle summarize button error state
-    function showSummarizeError() {
-        const summarizeBtn = document.getElementById('summarizeButton');
-        if (summarizeBtn) {
-            summarizeBtn.style.backgroundColor = 'red';
-            summarizeBtn.textContent = 'Try again later';
-        }
-    }
-
-    // Example: Wrap your message sending logic with error handling
-    function sendMessageToContentScript(message, callback) {
-        try {
-            chrome.runtime.sendMessage(message, (response) => {
-                if (chrome.runtime.lastError) {
-                    showSummarizeError();
-                    return;
-                }
-                if (callback) callback(response);
-            });
-        } catch (e) {
-            showSummarizeError();
-        }
-    }
-
-    // Wherever you send a message to the background/content script, use sendMessageToContentScript
-    // Example usage:
-    // sendMessageToContentScript({ action: 'summarize' }, (response) => { /* handle response */ });
 });

@@ -1652,46 +1652,6 @@ async function scoreWithAi(list) {
     if (done) { render(); toast(uiRef, TN(list.length, 'Scored {n} item with AI', 'Scored {n} items with AI') + (all.length > list.length ? ' ' + T('({n} already done)', { n: all.length - list.length }) : '')); }
 }
 
-// ── Today's briefing ───────────────────────────────────────────────────────
-function openBriefing() {
-    const sm = subMap();
-    const start = startOfDay(Date.now());
-    const today = items.filter(i => sm.has(i.feedId) && !sm.get(i.feedId).muted && i.published >= start)
-        .sort((a, b) => b.published - a.published);
-    const body = el('div', 'feed-picker');
-    if (!today.length) {
-        body.append(el('p', 'feed-muted', T('Nothing new today yet. Try Refresh.')));
-        return openSheet(T('Today’s briefing'), body);
-    }
-    const bySub = new Map();
-    today.forEach(i => { if (!bySub.has(i.feedId)) bySub.set(i.feedId, []); bySub.get(i.feedId).push(i); });
-    const tally = { pos: 0, neu: 0, neg: 0 };
-    today.forEach(i => { const m = itemMood(i); if (m) tally[m]++; });
-    const rated = tally.pos + tally.neu + tally.neg;
-    const unread = today.filter(i => !i.read);
-    body.append(el('p', 'feed-brief-summary', TN(bySub.size, '{n} new today across {s} source · {u} unread', '{n} new today across {s} sources · {u} unread', { n: today.length, s: bySub.size, u: unread.length })),
-        el('p', 'feed-muted', rated ? T('Mood (AI-rated {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}', { r: rated, n: today.length, p: tally.pos, m: tally.neu, g: tally.neg }) : 'Mood: not rated yet — use “Score with AI”.'));
-    bySub.forEach((list, id) => {
-        body.append(el('div', 'feed-pick-label', `${subTitle(sm.get(id)).toUpperCase()} · ${list.length}`));
-        list.slice(0, 2).forEach(i => {
-            const emoji = MOOD_EMOJI[itemMood(i) || 'neu'];
-            body.append(btn('feed-brief-item' + (i.read ? ' is-read' : ''), (emoji ? emoji + '  ' : '') + i.title, () => { closeSheet(); onCardClick(i); }));
-        });
-        if (list.length > 2) body.append(el('p', 'feed-muted', T('+ {n} more', { n: list.length - 2 })));
-    });
-    body.append(btn('feed-manage-link', T('✨  AI recap of today'), () => openRecap(start, T('Today'), 'all')));
-    body.append(btn('button-primary feed-wide-btn', T('✨ Summarize top 5 unread'), async () => {
-        const { summaryMode } = await chrome.storage.local.get('summaryMode');
-        if (summaryMode === 'inline') { toast(uiRef, T('Batch summarizing runs in extension mode. Switch on the Summarize screen.')); return; }
-        const picks = unread.filter(i => !histOf(i).summarized).slice(0, 5);
-        if (!picks.length) { toast(uiRef, T('Everything unread is already summarized')); return; }
-        picks.forEach((i, k) => setTimeout(() => chrome.runtime.sendMessage({ action: 'openFeedItem', url: i.link, summarize: true, forceExtension: true }, () => void chrome.runtime.lastError), k * 1500));
-        toast(uiRef, T('Summarizing {n} in the background — see History', { n: picks.length }));
-        closeSheet();
-    }));
-    openSheet(T('Today’s briefing'), body);
-}
-
 // ── Settings > Feeds panel ─────────────────────────────────────────────────
 function updateSettingsSub() {
     const sub = document.querySelector('.settings-row-sub[data-sub="feeds"]');

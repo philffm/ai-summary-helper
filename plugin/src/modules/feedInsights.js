@@ -1,7 +1,7 @@
 // feedInsights.js — analytics for the Feeds view (scope = the source you are looking at).
 // Reuses the chart renderers + .ar-* styles of the History report so both look alike.
 import { articlesByDay, articlesByWeek, renderBarChart, renderWeekChart, chartTips } from './analyticsManager.js';
-import { T, TN, locale } from './feedI18n.js';
+import { T, TN } from './feedI18n.js';
 import { moodSection } from './moodView.js';
 import { el as h, arSection as section } from './dom.js';
 

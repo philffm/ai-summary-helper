@@ -8,7 +8,7 @@ import { T } from './feedI18n.js';
 import { aiComplete, generateRecap } from './feedAi.js';
 import {
     ARTICLE_FOCUS, ARTICLE_DEFAULTS, FEED_FOCUS, FEED_DEFAULTS, PHIL_MIX,
-    normalizeBuilder, buildArticlePrompt, buildFeedStyle, feedStyleText
+    normalizeBuilder, buildArticlePrompt, buildFeedStyle
 } from './promptBuilder.js';
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

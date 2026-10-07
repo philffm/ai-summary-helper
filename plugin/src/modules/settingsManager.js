@@ -9,10 +9,7 @@ import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { escapeHtml } from './textUtils.js';
 
-let uiRef = null;
-
 export async function initSettingsManager(ui) {
-    uiRef = ui;
     const storageData = await StorageManager.getAll();
 
     // Initialize distinct sections independently (DOM is already in popup.html)
@@ -1088,7 +1085,7 @@ function initBackupRestore() {
                                 // write the flat array back verbatim or every
                                 // migrated screen will simply never see it again.
                                 const { index, records } = StorageManager.splitArticlesArray(local.articles);
-                                const { articles, ...rest } = local; // drop the old key from the pass-through write
+                                const { articles: _old, ...rest } = local; // drop the old key from the pass-through write
                                 await StorageManager.set({ ...rest, articlesIndex: index });
 
                                 // Write per-article records in chunks rather than

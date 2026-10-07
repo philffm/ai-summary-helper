@@ -180,7 +180,6 @@ export function renderBarChart(days, tip) {
     const max = Math.max(...days.map(d => d.count), 1);
     const bars = days.map(d => {
         const pct = Math.round((d.count / max) * 100);
-        const label = d.day.slice(5); // MM-DD
         return `<div class="ar-bar-wrap" title="${tip ? tip(d) : `${d.day}: ${d.count} article${d.count !== 1 ? 's' : ''}`}">
           <div class="ar-bar" style="height:${pct}%"></div>
           ${d.count > 0 ? `<span class="ar-bar-count">${d.count}</span>` : ''}
