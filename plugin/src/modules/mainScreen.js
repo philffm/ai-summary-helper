@@ -162,6 +162,7 @@ export function initMainScreen(ui) {
     let lastContext = null;          // summaryContext of the running/last summary
     let conversation = null;         // { url, title, content, summary, turns:[{q,a}] }
     let activeTabId = null;
+    let liveBubbleArticle = null;     // the article object behind the newest bubble
     let differentPageNote = false;
     const bar = document.querySelector('.controls-bar');
     const newBtn = document.getElementById('newSummaryButton');
@@ -439,6 +440,7 @@ export function initMainScreen(ui) {
         if (msg.action === 'summarySaved') {
             if (conversation && msg.id && samePage(conversation.url, msg.url)) {
                 conversation.id = msg.id;
+                if (liveBubbleArticle) liveBubbleArticle.id = msg.id;   // so opening it shows the saved conversation
                 persistConversation();    // turns asked before the save finished
             }
         }
@@ -451,7 +453,7 @@ export function initMainScreen(ui) {
             removeStreamBubble();
             // Render the new summary immediately from relayed data
             if (msg.summary) {
-                addBubble({
+                const bubbleArticle = {
                     title: msg.title || 'Summary',
                     url: msg.url || '',
                     summary: msg.summary,
@@ -460,7 +462,9 @@ export function initMainScreen(ui) {
                     modelId: msg.modelId || '',
                     connectionMode: msg.connectionMode || 'local',
                     content: msg.content || ''
-                });
+                };
+                addBubble(bubbleArticle);
+                liveBubbleArticle = bubbleArticle;
                 const used = usedRow(lastContext);
                 if (used) {
                     const wrap = document.createElement('div');

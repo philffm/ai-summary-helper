@@ -1427,8 +1427,8 @@ export async function showArticleDetail(article) {
         <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:12px;">
           <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
           <div>${safeSummary}</div>
+          <div id="qaMount" style="margin-top:12px;"></div>
         </div>
-        <div id="qaMount" style="margin-bottom:12px;"></div>
         <div id="localInsights" style="margin-bottom:16px;"></div>
         <details style="margin-top:8px;">
           <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">📄 Original Content</summary>

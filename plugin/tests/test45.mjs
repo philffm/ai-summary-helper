@@ -1,0 +1,19 @@
+// History detail: saved follow-ups render inside the summary box (also for an article object that has an id but no conversation yet).
+import assert from 'assert';
+import { setup, imp, tick } from './harness.mjs';
+const { w } = setup({}); const d = w.document;
+chrome.runtime.getURL = (p) => 'chrome-extension://abc/' + p;
+const { default: SM } = await imp('modules/storageManager.js');
+const AM = await imp('modules/articleManager.js');
+const C = await imp('modules/conversation.js');
+const { id } = await SM.saveArticle({ content: '<p>c</p>', summary: '<p>sum</p>', url: 'https://a.com/x', title: 'A' });
+const t1 = C.newTurn([], { q: 'Why?', a: 'Because.' });
+const t2 = C.newTurn([t1], { q: 'And then?', a: 'Later.' });
+await SM.saveConversation(id, [t1, t2]);
+await AM.showArticleDetail({ id, title: 'A', url: 'https://a.com/x', content: '<p>c</p>', summary: '<p>sum</p>', timestamp: new Date().toISOString() });
+await tick(30);
+const box = d.querySelector('#articleDetailContent .summary-box');
+assert(box, 'summary box');
+assert(box.querySelector('.qa-section .chat-turn-group'), 'pinned question inside the summary box');
+assert(/1 more question/.test(box.querySelector('details.qa-more summary').textContent), 'unpinned collapsed');
+console.log('TEST 45 OK');
