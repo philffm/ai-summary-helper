@@ -37,12 +37,22 @@ assert(d.getElementById('modelProviderGrid').querySelectorAll('button').length >
 assert(/Ollama · local, no API key/.test(d.getElementById('modelStatusText').textContent), 'own-model footer status: ' + d.getElementById('modelStatusText').textContent);
 assert.equal(d.getElementById('modelNote').style.display, 'none', 'note hidden in own mode');
 const inp = d.getElementById('customModelInput');
+const panelEl = d.getElementById('panelModel'); panelEl.style.display = 'block';
+assert(d.getElementById('modelPanelClose'), 'close button exists');
+d.getElementById('modelPanelClose').click(); assert.equal(panelEl.style.display, 'none', 'close button closes');
+panelEl.style.display = 'block';
 inp.value = 'gemma4:e2b';
 inp.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
 await tick(120);
 const cfg = lstore['config:services'].ollama;
 assert(cfg.customModel.some(m => m.id === 'gemma4:e2b'), 'saved on Enter');
 assert.equal(cfg.activeModelId.id, 'gemma4:e2b');
+panelEl.style.display = 'block';
+// picking an existing model pill applies it and closes
+const pillBtn = [...d.querySelectorAll('#modelIdGrid button')].find(b => b.textContent.includes('gemma4:e2b'));
+pillBtn.click(); await tick(120);
+assert.equal(panelEl.style.display, 'none', 'panel closes after choosing a model');
+assert.equal(d.getElementById('chipModelLabel').textContent, 'gemma4:e2b', 'chip applies the chosen model');
 inp.value = 'qwen3:8b'; inp.dispatchEvent(new w.FocusEvent('blur')); await tick(120);
 assert.equal(lstore['config:services'].ollama.activeModelId.id, 'qwen3:8b', 'saved on blur');
 assert.equal(lstore['config:services'].ollama.customModel.length, 2);

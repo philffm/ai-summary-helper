@@ -3351,3 +3351,8 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .model-dot[data-state="warn"]{ background:var(--warn, #e4a83e); }
 .model-dot[data-state="off"]{ display:none; }
 .model-settings-btn{ font-size:12px; flex-shrink:0; }
+
+.model-panel-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.model-panel-close{ background:transparent; border:0; color:var(--text-muted); font-size:14px; line-height:1; padding:6px 8px; border-radius:8px; cursor:pointer; }
+.model-panel-close:hover{ background:var(--accent-a15); color:var(--text); }
+.model-panel-close:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }

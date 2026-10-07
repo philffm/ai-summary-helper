@@ -357,6 +357,19 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'cloud' ? 'none' : '';
         };
 
+        // Close the model panel (used by the ✕ button, Esc and after a model was picked).
+        const closeModelPanel = () => {
+            const panel = document.getElementById('panelModel');
+            if (panel) panel.style.display = 'none';
+            const chip = document.querySelector('.chip[data-panel="model"]');
+            if (chip) { chip.classList.remove('active'); chip.focus && chip.focus(); }
+            if (customModelInput) customModelInput.value = '';
+        };
+        // A model was chosen/added: it is already stored; refresh the chip label and close.
+        const applyAndClose = async () => { await refreshModelChip(); closeModelPanel(); };
+        document.getElementById('modelPanelClose')?.addEventListener('click', closeModelPanel);
+        document.getElementById('panelModel')?.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeModelPanel(); } });
+
         const setModelStatus = (text, state) => {
             const t = document.getElementById('modelStatusText'); if (t) t.textContent = text;
             const d = document.querySelector('#modelStatus .model-dot'); if (d) d.dataset.state = state || '';
@@ -365,7 +378,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const renderUI = () => {
             renderModelUI = renderUI; // expose for the model panel chip handler
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
-            Promise.all([
+            return Promise.all([
                 chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']),
                 chrome.storage.local.get([SK.servicesConfig])
             ]).then(async ([syncData, localData]) => {
@@ -406,7 +419,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     return;
                                 }
                                 await chrome.storage.sync.set({ preferredCloudModel: modelId });
-                                renderUI();
+                                await renderUI();
+                                applyAndClose();
                             });
                             modelIdGrid.appendChild(btn);
                         });
@@ -443,7 +457,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     await chrome.storage.sync.set({ recentCloudModels: newRecent });
                                     
                                     customModelInput.value = '';
-                                    renderUI();
+                                    await renderUI();
+                                    applyAndClose();
                                 });
                                 modelIdGrid.appendChild(btn);
                             });
@@ -533,7 +548,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         // that preserves the latest stored custom models.
                         StorageManager.updateService(curSvcId, {
                             activeModelId: { id: modelId, provider: curSvcId }
-                        }).then(() => renderUI());
+                        }).then(() => { renderUI(); applyAndClose(); });
                     });
                     modelIdGrid.appendChild(btn);
                 });
@@ -560,7 +575,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Save (and activate) whatever model ID is typed. Runs from the "+" button,
         // Enter and on blur, so a typed ID is never silently dropped.
         let committing = false;
-        const commitCustomModel = async () => {
+        const commitCustomModel = async (ev) => {
+            const explicit = !!ev && (ev.type === 'click' || ev.type === 'keydown');
             if (!customModelInput || committing) return;
             const val = customModelInput.value.trim();
             if (!val) return;
@@ -582,6 +598,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 customModelInput.value = '';
                 renderUI();
                 refreshModelChip();
+                if (explicit) closeModelPanel();
             } catch (err) {
                 console.error('[Model] Failed to add custom model:', err);
             } finally {
@@ -591,7 +608,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (setCustomModelBtn && customModelInput) {
             setCustomModelBtn.addEventListener('click', commitCustomModel);
             customModelInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') { e.preventDefault(); commitCustomModel(); }
+                if (e.key === 'Enter') { e.preventDefault(); commitCustomModel(e); }
             });
             customModelInput.addEventListener('blur', (e) => {
                 // Moving to another control inside the panel (pill, "+") is handled by that control.
