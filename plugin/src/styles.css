@@ -147,7 +147,7 @@
     --bg-page: #0b0e14;
     --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%),
                         radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%);
-    --glass-base: rgba(11,14,20,0.82);
+    --glass-base: rgba(11,14,20,0.92);
     --glass-card: rgba(255,255,255,0.06);
     --glass-input: rgba(255,255,255,0.05);
     --glass-border: rgba(255,255,255,0.10);
@@ -539,6 +539,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   height: 100%;
   overflow-y: auto;
   padding: 0 var(--spacing-s-4);
+  /* padding: var(--spacing-s-4) var(--spacing-s-4) 0 0; */
   padding-bottom: var(--nav-clearance);
   background: var(--glass-base);
   backdrop-filter: blur(32px);
