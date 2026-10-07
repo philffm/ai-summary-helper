@@ -644,12 +644,44 @@ export function initMainScreen(ui) {
         }
         if (msg.action === 'summaryError') {
             updateStream('❌ ' + (msg.error || 'Something went wrong'));
-            if (fetchSummaryButton) {
-                setTimeout(() => {
-                    resetToFetch();
-                    removeStreamBubble();
-                }, 3000);
-            }
+            // Ollama can't be reached / rejects the extension origin (HTTP 403 = OLLAMA_ORIGINS):
+            // keep the bubble and point to the setup guide in Settings instead of vanishing.
+            const errText = String(msg.error || '');
+            const looksLikeOllama = /HTTP (403|404|0)\b|Failed to fetch|NetworkError|Load failed|ECONNREFUSED|ERR_CONNECTION/i.test(errText);
+            const ollamaHint = looksLikeOllama ? Promise.all([
+                chrome.storage.sync.get(['connectionMode', 'activeService'])
+            ]).then(([s]) => s.connectionMode === 'local' && s.activeService === 'ollama').catch(() => false) : Promise.resolve(false);
+            ollamaHint.then((isOllama) => {
+                if (isOllama) {
+                    const bubble = document.getElementById('streamBubble');
+                    if (bubble && !bubble.querySelector('.ollama-hint')) {
+                        const hint = document.createElement('div');
+                        hint.className = 'ollama-hint';
+                        hint.setAttribute('role', 'alert');
+                        hint.innerHTML = '<div class="ollama-hint-text"></div><button type="button" class="button-secondary ollama-hint-btn"></button>';
+                        hint.querySelector('.ollama-hint-text').textContent = /403/.test(errText)
+                            ? T('Ollama refused the request. A 403 usually means it must be told to accept requests from this extension (OLLAMA_ORIGINS).')
+                            : T('Could not reach Ollama. Make sure it is running and the endpoint is correct.');
+                        const btn = hint.querySelector('.ollama-hint-btn');
+                        btn.textContent = T('Set up Ollama') + ' →';
+                        btn.addEventListener('click', () => {
+                            if (ui && typeof ui.showScreen === 'function') {
+                                ui.showScreen('settings');
+                                import('./settingsNav.js').then(m => m.openSettingsPanel('models')).catch(() => {});
+                            }
+                        });
+                        bubble.appendChild(hint);
+                    }
+                    if (fetchSummaryButton) resetToFetch();
+                    return;
+                }
+                if (fetchSummaryButton) {
+                    setTimeout(() => {
+                        resetToFetch();
+                        removeStreamBubble();
+                    }, 3000);
+                }
+            });
         }
     };
 
