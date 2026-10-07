@@ -26,6 +26,8 @@ import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
+import { el } from './dom.js';
+import { startOfDay } from './dateUtils.js';
 
 const SUBS_KEY = 'feedSubs';
 const ITEMS_KEY = 'feedItems';
@@ -765,7 +767,6 @@ function openItem(item, summarize) {
 }
 
 // ── Filtering ──────────────────────────────────────────────────────────────
-function startOfDay(ts) { const d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime(); }
 function subMap() { return new Map(subs.map(s => [s.id, s])); }
 
 function inSource(i, sm, source = ui.source) {
@@ -876,13 +877,6 @@ function setBusy(busy) {
 
 function setRefreshState(on) {
     if (els.refreshBtn) { els.refreshBtn.disabled = on; els.refreshBtn.classList.toggle('spinning', on); }
-}
-
-function el(tag, className, text) {
-    const n = document.createElement(tag);
-    if (className) n.className = className;
-    if (text != null) n.textContent = text;
-    return n;
 }
 
 function btn(className, text, onClick, title) {

@@ -3,18 +3,8 @@
 import { T, TN, locale } from './feedI18n.js';
 import { isoWeek, moodBar } from './feedRollup.js';
 import { buildBuckets, movers, pct } from './feedMood.js';
+import { el as h, arSection as section } from './dom.js';
 
-function h(tag, cls, text) {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-}
-function section(title) {
-    const s = h('div', 'ar-section');
-    s.append(h('h3', 'ar-section-title', title));
-    return s;
-}
 
 // ── Mood over time ─────────────────────────────────────────────────────────
 let mScope = 'week', mSel = null;

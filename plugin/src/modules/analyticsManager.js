@@ -164,6 +164,7 @@ import { T, TN, locale } from './feedI18n.js';
 import { moodSection } from './moodView.js';
 import { moodStoreFor, unscoredIn, scoreArticles } from './historyMood.js';
 import StorageManager from './storageManager.js';
+import { countWords } from './textUtils.js';
 
 /** Localized bar tooltips; `cnt(n)` formats the count with the right noun (articles / items). */
 export function chartTips(cnt) {
@@ -209,10 +210,6 @@ function renderWordCloud(words) {
         return `<span class="ar-word" style="font-size:${size}px;opacity:${opacity};">${w}</span>`;
     }).join('');
     return `<div class="ar-wordcloud">${items}</div>`;
-}
-
-function countWords(html) {
-    return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
 }
 
 // Average adult reading speed (words per minute)

@@ -3,6 +3,7 @@
 import { articlesByDay, articlesByWeek, renderBarChart, renderWeekChart, chartTips } from './analyticsManager.js';
 import { T, TN, locale } from './feedI18n.js';
 import { moodSection } from './moodView.js';
+import { el as h, arSection as section } from './dom.js';
 
 const DAY = 86400000;
 // Short stop-word list for the mixed-language (en/de) term cloud.
@@ -24,17 +25,6 @@ function terms(items, n = 40) {
 
 const fmtDur = (sec) => { const m = Math.round(sec / 60); return m < 60 ? `${m}m` : `${Math.floor(m / 60)}h ${m % 60 ? (m % 60) + 'm' : ''}`.trim(); };
 
-function h(tag, cls, text) {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-}
-function section(title) {
-    const s = h('div', 'ar-section');
-    s.append(h('h3', 'ar-section-title', title));
-    return s;
-}
 function statCard(value, label) {
     const c = h('div', 'ar-stat-card');
     c.append(h('span', 'ar-stat-value', String(value)), h('span', 'ar-stat-label', label));

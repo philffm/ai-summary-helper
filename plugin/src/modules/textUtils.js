@@ -137,3 +137,13 @@ export function levenshtein(a, b) {
     }
     return prev[bl];
 }
+
+/** Escape text for safe interpolation into HTML (element content and quoted attributes). */
+export function escapeHtml(str) {
+    return String(str ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/** Word count of an HTML string (tags ignored). */
+export function countWords(html) {
+    return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+}

@@ -9,6 +9,7 @@ import { buildMagazineArticle } from './digestBuilder.js';
 import { T, TN } from './feedI18n.js';
 import { generateDigestIntro } from './feedAi.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
+import { el } from './dom.js';
 
 let deps = null;
 const sel = new Set();                 // selected article ids
@@ -17,7 +18,6 @@ let active = false;
 let bar = null;
 let sheet = null;
 
-const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
 const screenEl = () => document.getElementById('historyScreen');
 
 /** Only articles that really have a summary can be sent (feed stubs are placeholders). */

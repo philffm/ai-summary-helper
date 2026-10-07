@@ -15,10 +15,7 @@ import { cosineSim } from './localSearch.js';
 import { sentiment as scoreSentiment } from './textMetrics.js';
 import { T } from './feedI18n.js';
 import { markHighlights, renderAnnotationsHtml } from './annotationExporter.js';
-
-function escapeHtml(str) {
-    return (str || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
+import { escapeHtml } from './textUtils.js';
 
 /**
  * Combine articles into one synthetic "magazine" article. Bundles

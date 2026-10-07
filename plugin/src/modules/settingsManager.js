@@ -7,6 +7,7 @@ import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
+import { escapeHtml } from './textUtils.js';
 
 let uiRef = null;
 
@@ -134,7 +135,7 @@ const OLLAMA_TUTORIALS = {
     }
 };
 
-function detectPlatform() {
+function detectOS() {
     const ua = navigator.userAgent.toLowerCase();
     if (/mac os|macintosh|iphone|ipad|ipod/.test(ua)) return 'macos';
     if (/windows|win64|win32/.test(ua)) return 'windows';
@@ -150,7 +151,7 @@ function renderOllamaTutorial(serviceId) {
 
     if (!isOllama) return;
 
-    const platform = detectPlatform();
+    const platform = detectOS();
     const t = OLLAMA_TUTORIALS[platform] || OLLAMA_TUTORIALS.macos;
 
     const stepsHtml = t.steps.map((step, i) => `
@@ -183,13 +184,6 @@ function renderOllamaTutorial(serviceId) {
             }).catch(() => {});
         });
     });
-}
-
-function escapeHtml(str) {
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
 }
 
 // ── Section: Model Configuration (Refactored for Hybrid Subscription Model) ──

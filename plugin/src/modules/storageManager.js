@@ -1,12 +1,10 @@
 import { debug } from './log.js';
+import { countWords } from './textUtils.js';
 // storageManager.js
 
 // Precomputed once per save/migration so analyticsManager.js's reading-time
 // and word-cloud stats can run off the lean articlesIndex, without loading
 // every article's full content record just to open the report screen.
-function countWordsForIndex(html) {
-    return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
-}
 
 class StorageManager {
     static API_BASE = 'https://api.byphil.eu';
@@ -230,8 +228,8 @@ class StorageManager {
                 // analyticsManager.js's word cloud and by list/feed previews,
                 // without loading the heavier article:<id> content record.
                 summary: article.summary || '',
-                contentWordCount: countWordsForIndex(article.content || ''),
-                summaryWordCount: countWordsForIndex(article.summary || ''),
+                contentWordCount: countWords(article.content || ''),
+                summaryWordCount: countWords(article.summary || ''),
                 archived: false,
                 // Read by archiveGraph.js to fade/shrink saves that haven't
                 // been reopened — index-only field, no content needed.
@@ -335,8 +333,8 @@ class StorageManager {
         articlesIndex.push({
             id, title: title || 'Untitled', url, timestamp, tags, modelId, connectionMode, summaryLength,
             summary: summary || '',
-            contentWordCount: countWordsForIndex(content || ''),
-            summaryWordCount: countWordsForIndex(summary || ''),
+            contentWordCount: countWords(content || ''),
+            summaryWordCount: countWords(summary || ''),
             archived: false,
             ...extra
         });

@@ -5,8 +5,8 @@ import { scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
 import { itemMood } from './feedSentiment.js';
 import { snapshotMood } from './feedMood.js';
 import StorageManager from './storageManager.js';
+import { startOfDay } from './dateUtils.js';
 
-const startOfDay = (ts) => { const d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime(); };
 const plain = (s) => String(s || '').replace(/<[^>]+>/g, ' ').replace(/[#*_`>]+/g, ' ').replace(/\s+/g, ' ').trim();
 const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
 

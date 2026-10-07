@@ -27,9 +27,8 @@ function pageKeyForUrl(url) {
  * around the same annotation text — e.g. archiveGraph.js's preview card —
  * don't need to duplicate it.
  */
-export function escapeHtml(str) {
-    return (str || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
+export { escapeHtml } from './textUtils.js';
+import { escapeHtml } from './textUtils.js';
 
 const MARK_STYLE = {
     user: 'background-color:#fff3a3;color:inherit;padding:0 1px;',
