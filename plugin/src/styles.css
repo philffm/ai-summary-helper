@@ -2967,7 +2967,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 /* ── Readable measure on wide windows ─────────────────────────────────────
    Text-heavy screens centre their content instead of stretching edge to edge.
    (History/Feeds keep full width — they host the split workspace.) */
-#settingsScreen, #mainScreen {
+#mainScreen {
   padding-inline: max(var(--spacing-s-4), calc((100% - 720px) / 2));
 }
 .screen:not(.ws-active) #articleDetail { max-width: 760px; margin-inline: auto; }
@@ -2975,3 +2975,13 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 /* Feeds list pane groups recap card + list + empty state; transparent outside the split layout. */
 .ws-listpane { display: contents; }
 .screen.ws-active > .ws-listpane { display: flex; flex-direction: column; gap: 8px; }
+
+/* ── Settings: master–detail on large windows (≥900px, class set by settingsNav.js) ── */
+#settingsScreen.st-wide { padding-inline: max(var(--spacing-s-4), calc((100% - 1044px) / 2)); }
+#settingsScreen.st-wide #settingsForm {
+  display: grid; grid-template-columns: 300px minmax(0, 720px); column-gap: 24px; align-items: start;
+}
+#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; position: sticky; top: 0; max-height: 100%; overflow-y: auto; padding-bottom: 16px; }
+#settingsScreen.st-wide .settings-panel { grid-column: 2; grid-row: 1; }
+#settingsScreen.st-wide .settings-back { display: none; }
+#settingsScreen.st-wide .settings-row.active { background: var(--accent-a15, var(--glass-input)); border-color: var(--accent); }

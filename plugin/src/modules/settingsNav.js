@@ -51,6 +51,25 @@ const PANEL_TITLES = {
 };
 
 let screenEl = null;
+let currentPanel = 'account';
+
+// Large windows: master–detail (list stays visible, one panel open beside it).
+export const settingsIsWide = () => window.innerWidth >= 900;
+function syncWide() {
+    if (!screenEl) return;
+    const wide = settingsIsWide();
+    const was = screenEl.classList.contains('st-wide');
+    screenEl.classList.toggle('st-wide', wide);
+    if (wide === was) return;
+    if (wide) openSettingsPanel(currentPanel); else showHome();
+}
+function markActiveRow(name) {
+    document.querySelectorAll('.settings-row[data-panel]').forEach(r => {
+        const on = r.dataset.panel === name;
+        r.classList.toggle('active', on);
+        if (on) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
+    });
+}
 
 function $(id) { return document.getElementById(id); }
 
@@ -92,6 +111,7 @@ async function refreshSubtitles() {
 }
 
 function showHome() {
+    if (settingsIsWide()) { openSettingsPanel(currentPanel); return; }
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = true; });
     $('settingsHome').hidden = false;
     if (screenEl) screenEl.scrollTop = 0;
@@ -102,7 +122,9 @@ export function openSettingsPanel(name, targetId) {
     const panel = $('settingsPanel-' + name);
     if (!panel) return;
     document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: { name } }));
-    $('settingsHome').hidden = true;
+    currentPanel = name;
+    markActiveRow(name);
+    $('settingsHome').hidden = !settingsIsWide() ? true : false;
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = p !== panel; });
     if (screenEl) screenEl.scrollTop = 0;
     if (targetId) {
@@ -161,6 +183,9 @@ export function initSettingsNav(ui) {
         row.addEventListener('click', () => openSettingsPanel(row.dataset.panel));
     });
     document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', showHome));
+    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(syncWide, 120); });
+    syncWide();
+    if (settingsIsWide()) openSettingsPanel('account');
 
     const search = $('settingsSearch');
     search.addEventListener('input', () => renderResults(search.value));
