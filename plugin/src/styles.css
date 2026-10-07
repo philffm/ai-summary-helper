@@ -2986,7 +2986,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 /* two independent scroll areas: the list and the panel scroll on their own */
 #settingsScreen.st-wide { overflow: hidden; padding-bottom: 0; }
 #settingsScreen.st-wide #settingsForm { height: 100%; grid-template-rows: minmax(0, 1fr); padding-bottom: 0; }   /* the scroll areas below carry their own bottom room */
-#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: var(--nav-clearance); }
+#settingsScreen.st-wide #settingsHome { grid-column: 1; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-right: 12px; padding-bottom: var(--nav-clearance); }   /* keeps the scrollbar off the rows */
 #settingsScreen.st-wide .settings-panel { grid-column: 2; grid-row: 1; min-height: 0; height: 100%; overflow-y: auto; padding-bottom: calc(var(--nav-clearance) + 48px); }   /* + room for the floating Save button */
 #settingsScreen.st-wide .settings-back { display: none; }
 #settingsScreen.st-wide .settings-row.active { background: var(--accent-a15, var(--glass-input)); border-color: var(--accent); }
