@@ -4,6 +4,7 @@ import { articlesByDay, articlesByWeek, renderBarChart, renderWeekChart, chartTi
 import { T, TN } from './feedI18n.js';
 import { moodSection } from './moodView.js';
 import { el as h, arSection as section } from './dom.js';
+import { renderTopicsSection } from './topicsChart.js';
 
 const DAY = 86400000;
 // Short stop-word list for the mixed-language (en/de) term cloud.
@@ -85,6 +86,14 @@ export function renderInsights(container, ctx) {
 
     // Mood over time (daily store, outlives item retention)
     root.append(moodSection(ctx));
+
+    // Topics over time — mood (default) or volume per AI category
+    root.addEventListener('tag-search', (e) => { if (e.detail && e.detail.tag) onSearch(e.detail.tag); });
+    root.append(renderTopicsSection(items.map(i => ({
+        timestamp: i.published,
+        tags: i.cat ? [i.cat] : (Array.isArray(i.tags) ? i.tags : []),
+        moodScore: i.ai && typeof i.sent === 'number' ? i.sent : undefined
+    })), root));
 
     // Categories (AI-labelled items)
     const cats = new Map();

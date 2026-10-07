@@ -2,6 +2,7 @@
 // Settings screen initialization — UI is in popup.html (static accordion),
 // this file handles logic, auto-save, and wiring event listeners.
 
+import { confirmDestructive } from './confirmDialog.js';
 import StorageManager from './storageManager.js';
 import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI } from './modelManager.js';
@@ -943,23 +944,34 @@ function initDangerZone() {
 
     if (btnSettings) {
         btnSettings.addEventListener('click', async () => {
-            if (confirm('Are you sure you want to reset all settings to default?')) {
-                await chrome.storage.sync.clear();
-                alert('Settings deleted. The extension will now reload.');
-                chrome.runtime.reload();
-            }
+            const yes = await confirmDestructive({
+                title: 'Delete all settings?',
+                body: 'This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload.',
+                confirmLabel: 'Delete settings'
+            });
+            if (!yes) return;
+            await chrome.storage.sync.clear();
+            chrome.runtime.reload();
         });
     }
 
     if (btnHistory) {
         btnHistory.addEventListener('click', async () => {
-            if (confirm('Are you sure you want to delete all saved summaries?')) {
-                // Deletes every article:<id> record too, not just the index —
-                // a plain articlesIndex reset would leave every record
-                // orphaned in storage.
-                await StorageManager.clearAllArticles();
-                alert('History deleted.');
-            }
+            const count = (await StorageManager.getArticlesIndex({ includeArchived: true }).catch(() => [])).length;
+            const yes = await confirmDestructive({
+                title: 'Delete all history?',
+                body: `This permanently removes ${count ? count + ' summaries' : 'all summaries'} and the archive from this device. This cannot be undone.`,
+                confirmLabel: 'Delete history',
+                extraLabel: 'Export backup first',
+                onExtra: () => { document.getElementById('exportSettingsButton')?.click(); }
+            });
+            if (!yes) return;
+            // Deletes every article:<id> record too, not just the index —
+            // a plain articlesIndex reset would leave every record
+            // orphaned in storage.
+            await StorageManager.clearAllArticles();
+            btnHistory.textContent = 'History deleted ✓';
+            setTimeout(() => { btnHistory.textContent = 'Delete history…'; }, 2500);
         });
     }
 }

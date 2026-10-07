@@ -488,29 +488,34 @@
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsLibrary">Library &amp; Data</span></h2>
   </div>
-                <div class="backup-restore" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--outline);">
-                  <p style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">💾 Backup & Restore</p>
-                  <div style="display: flex; gap: 8px;">
-                    <button type="button" id="exportSettingsButton" class="button-secondary flex-1">📤 Export</button>
-                    <button type="button" id="importSettingsButton" class="button-secondary flex-1">📥 Import</button>
-                    <input type="file" id="importSettingsFile" accept=".json" style="display: none;" />
-                  </div>
-                </div>
-                <div class="local-intelligence" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--outline);">
-                  <p style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">🧠 On-Device Intelligence</p>
-                  <p style="font-size: 11px; color: var(--text-muted); margin: 0 0 8px; line-height: 1.4;">
-                    Merges near-duplicate tags across your whole archive (e.g. "ML" and "Machine Learning") into one consistent tag. Runs entirely on-device, no data leaves your browser.
-                  </p>
-                  <button type="button" id="cleanupTagsButton" class="button-secondary" style="width:100%;">🧹 Clean Up &amp; Merge Tags</button>
-                  <p id="cleanupTagsResult" style="font-size: 11px; color: var(--text-muted); margin: 6px 0 0; display:none;"></p>
-                </div>
-                <div class="danger-zone" style="margin-top: 16px; border-top: 2px solid var(--danger); padding-top: 12px;">
-                  <p style="font-size: 12px; font-weight: 700; color: var(--danger); text-transform: uppercase;">⚠️ Danger Zone</p>
-                  <div style="display: flex; gap: 8px;">
-                    <button type="button" id="deleteSettingsButton" class="button danger flex-1">Delete Settings</button>
-                    <button type="button" id="deleteHistoryButton" class="button danger flex-1">Delete History</button>
-                  </div>
-                </div>
+                <div class="settings-card backup-restore" id="libBackup">
+    <div class="settings-card-head"><h3>💾 Backup &amp; restore</h3><p>Export or restore all settings as a JSON file.</p></div>
+    <div class="settings-btn-row">
+      <button type="button" id="exportSettingsButton" class="button-secondary btn-sm">📤 Export</button>
+      <button type="button" id="importSettingsButton" class="button-secondary btn-sm">📥 Import</button>
+      <input type="file" id="importSettingsFile" accept=".json" style="display: none;" />
+    </div>
+  </div>
+  <div class="settings-card local-intelligence">
+    <div class="settings-card-head"><h3>🧠 On-device tools</h3><p>Runs entirely in your browser — no data leaves it.</p></div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><strong>Clean up &amp; merge tags</strong><span>Merges near-duplicate tags such as “ML” and “Machine Learning” across your archive.</span></div>
+      <button type="button" id="cleanupTagsButton" class="button-secondary btn-sm">🧹 Clean up</button>
+    </div>
+    <p id="cleanupTagsResult" class="settings-card-note" style="display:none;"></p>
+  </div>
+  <div class="settings-card settings-card--danger danger-zone">
+    <div class="settings-card-head"><h3>⚠️ Danger zone</h3></div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><strong>Delete settings</strong><span>Resets all preferences, prompts and keys on this device. Your history stays.</span></div>
+      <button type="button" id="deleteSettingsButton" class="button-danger-outline btn-sm">Delete settings…</button>
+    </div>
+    <div class="settings-divider"></div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><strong>Delete history</strong><span>Permanently removes all summaries and the archive. Export a backup first.</span></div>
+      <button type="button" id="deleteHistoryButton" class="button-danger-outline btn-sm">Delete history…</button>
+    </div>
+  </div>
 </section>
 <section class="settings-panel" id="settingsPanel-about" data-panel="about" hidden>
   <div class="settings-panel-head">
