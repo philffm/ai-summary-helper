@@ -774,7 +774,8 @@ export function initArticleManager(uiManager) {
         });
     };
     document.addEventListener('aish:ws-view', (e) => {
-        const { view, open } = e.detail || {};
+        const { view, open, scope } = e.detail || {};
+        if (scope && scope !== 'history') return;
         const graphContainer = document.getElementById('graphContainer');
         const reportContainer = document.getElementById('reportContainer');
         if (view === 'graph' && graphContainer) {

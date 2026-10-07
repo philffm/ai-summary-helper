@@ -73,6 +73,7 @@ let shown = PAGE_SIZE;
 const stickyRead = new Set();
 let searchQuery = '';          // free-text search over the items (TF-IDF, same engine as History)
 let view = 'list';             // 'list' | 'graph' | 'insights'
+const splitExtra = new Set();  // extra panes shown beside the list in the split workspace ('graph' | 'insights')
 let searchCache = null;        // { ref, len, rated, idx, byStamp, stampOf }
 // normalized URL -> { fav: boolean, summarized: boolean } built from the History index
 let historyByUrl = new Map();
@@ -866,7 +867,7 @@ async function renderGraphView() {
     box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Loading…')));
     try {
         const mod = await import('./archiveGraph.js');
-        if (token !== graphToken || view !== 'graph') { graphSig = ''; return; }
+        if (token !== graphToken || (view !== 'graph' && !splitExtra.has('graph'))) { graphSig = ''; return; }
         mod.initArchiveGraph(box, arts, undefined, c.idx);
     } catch (e) { graphSig = ''; box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Failed'))); }
 }
@@ -1030,7 +1031,24 @@ function dayStops() {
     return [...set].sort((a, b) => a - b);
 }
 
-function render() { renderList(); renderScopeRow(); renderRecapCard(); }
+function render() { renderList(); renderSplitExtras(); renderScopeRow(); renderRecapCard(); }
+function renderSplitExtras() {
+    if (!els.list || !subs || !subs.length) return;
+    if (els.graph && splitExtra.has('graph')) { els.graph.hidden = false; renderGraphView(); }
+    if (els.insights && splitExtra.has('insights')) { els.insights.hidden = false; renderInsightsView(); }
+}
+document.addEventListener('aish:ws-view', (e) => {
+    const d = e.detail || {};
+    if (d.scope !== 'feeds') return;
+    const v = d.view === 'report' ? 'insights' : d.view;
+    if (v !== 'graph' && v !== 'insights') return;
+    const had = splitExtra.has(v);
+    if (d.open) splitExtra.add(v); else splitExtra.delete(v);
+    if (had === !!d.open || !els || !els.list) return;
+    if (d.open && view !== 'list') view = 'list';
+    if (!d.open) { if (v === 'graph' && els.graph) els.graph.hidden = true; if (v === 'insights' && els.insights) els.insights.hidden = true; }
+    else render();
+});
 function renderList() {
     if (!els.list) return;
     renderControls();
