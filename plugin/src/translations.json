@@ -145,6 +145,66 @@
             "code": "kr",
             "name": "한국어",
             "emoji": "🇰🇷"
+        },
+        {
+            "code": "el",
+            "name": "Ελληνικά",
+            "emoji": "🇬🇷"
+        },
+        {
+            "code": "cs",
+            "name": "Čeština",
+            "emoji": "🇨🇿"
+        },
+        {
+            "code": "hu",
+            "name": "Magyar",
+            "emoji": "🇭🇺"
+        },
+        {
+            "code": "fi",
+            "name": "Suomi",
+            "emoji": "🇫🇮"
+        },
+        {
+            "code": "no",
+            "name": "Norsk",
+            "emoji": "🇳🇴"
+        },
+        {
+            "code": "he",
+            "name": "עברית",
+            "emoji": "🇮🇱"
+        },
+        {
+            "code": "ms",
+            "name": "Bahasa Melayu",
+            "emoji": "🇲🇾"
+        },
+        {
+            "code": "ta",
+            "name": "தமிழ்",
+            "emoji": "🇮🇳"
+        },
+        {
+            "code": "te",
+            "name": "తెలుగు",
+            "emoji": "🇮🇳"
+        },
+        {
+            "code": "mr",
+            "name": "मराठी",
+            "emoji": "🇮🇳"
+        },
+        {
+            "code": "ca",
+            "name": "Català",
+            "emoji": "🇪🇸"
+        },
+        {
+            "code": "hr",
+            "name": "Hrvatski",
+            "emoji": "🇭🇷"
         }
     ],
     "content": {

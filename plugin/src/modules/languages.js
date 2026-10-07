@@ -28,11 +28,84 @@ export const LANGUAGES = [
   { code: "bn", name: "বাংলা", emoji: "🇧🇩", english: "Bengali" },
   { code: "th", name: "ไทย", emoji: "🇹🇭", english: "Thai" },
   { code: "jp", name: "日本語", emoji: "🇯🇵", english: "Japanese" },
-  { code: "kr", name: "한국어", emoji: "🇰🇷", english: "Korean" }
+  { code: "kr", name: "한국어", emoji: "🇰🇷", english: "Korean" },
+  { code: "el", name: "Ελληνικά", emoji: "🇬🇷", english: "Greek" },
+  { code: "cs", name: "Čeština", emoji: "🇨🇿", english: "Czech" },
+  { code: "hu", name: "Magyar", emoji: "🇭🇺", english: "Hungarian" },
+  { code: "fi", name: "Suomi", emoji: "🇫🇮", english: "Finnish" },
+  { code: "no", name: "Norsk", emoji: "🇳🇴", english: "Norwegian" },
+  { code: "he", name: "עברית", emoji: "🇮🇱", english: "Hebrew" },
+  { code: "ms", name: "Bahasa Melayu", emoji: "🇲🇾", english: "Malay" },
+  { code: "ta", name: "தமிழ்", emoji: "🇮🇳", english: "Tamil" },
+  { code: "te", name: "తెలుగు", emoji: "🇮🇳", english: "Telugu" },
+  { code: "mr", name: "मराठी", emoji: "🇮🇳", english: "Marathi" },
+  { code: "ca", name: "Català", emoji: "🇪🇸", english: "Catalan" },
+  { code: "hr", name: "Hrvatski", emoji: "🇭🇷", english: "Croatian" }
 ];
 
 /** English language name for a stored code (falls back to the code itself, e.g. 'en-US'). */
 export function languageEnglishName(code) {
     const l = LANGUAGES.find(x => x.code === code);
     return l ? l.english : (code || 'English');
+}
+
+const ALIASES = {
+  "en": "english anglais inglese ingles englisch",
+  "cn": "chinese mandarin china zhongwen putonghua simplified zh",
+  "tw": "chinese traditional taiwan hanzi zhongwen zh-tw hong kong cantonese zh-hk",
+  "es": "spanish castellano espanol",
+  "hi": "hindi india",
+  "ar": "arabic arab",
+  "ind-bahasa": "indonesian indonesia bahasa",
+  "da": "danish denmark",
+  "de": "german deutsch germany allemand alemán aleman",
+  "tl": "filipino tagalog philippines pilipino",
+  "fr": "french francais france",
+  "it": "italian italiano italy",
+  "sw": "swahili kiswahili kenya tanzania",
+  "nl": "dutch nederlands netherlands holland flemish",
+  "pl": "polish polski poland",
+  "pt": "portuguese portugues brazil brazilian portugal brasil",
+  "ro": "romanian romania",
+  "sv": "swedish svenska sweden",
+  "vi": "vietnamese vietnam",
+  "tr": "turkish turkce turkey",
+  "bg": "bulgarian bulgaria",
+  "ru": "russian russia russkiy",
+  "ua": "ukrainian ukraine uk",
+  "ur": "urdu pakistan",
+  "fa": "persian farsi iran",
+  "bn": "bengali bangla bangladesh",
+  "th": "thai thailand",
+  "jp": "japanese japan nihongo ja",
+  "kr": "korean korea hangul hangeul hanguk ko",
+  "el": "greece hellenic",
+  "cs": "czechia bohemian cesky",
+  "hu": "hungary",
+  "fi": "finland",
+  "no": "norway bokmal nynorsk",
+  "he": "israel ivrit",
+  "ms": "malaysia melayu",
+  "ta": "india sri lanka",
+  "te": "india",
+  "mr": "india",
+  "ca": "catalunya catalonia",
+  "hr": "croatia"
+};
+
+const fold = (x) => String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+/** One lower-cased, accent-folded string to search in: native name, English name, code and synonyms. */
+export function languageSearchText(code) {
+    const l = LANGUAGES.find(x => x.code === code);
+    if (!l) return fold(code);
+    return fold([l.name, l.english, l.code, ALIASES[l.code] || ''].join(' '));
+}
+
+/** Does the typed text match this language? Every typed word must appear (prefix or substring) in the search text. */
+export function languageMatches(code, query) {
+    const words = fold(query).split(/\s+/).filter(Boolean);
+    if (!words.length) return true;
+    const hay = languageSearchText(code);
+    return words.every(w => hay.includes(w));
 }

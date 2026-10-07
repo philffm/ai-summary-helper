@@ -7,6 +7,7 @@ import { initWorkspace } from './modules/workspaceManager.js';
 import { initSettingsManager } from './modules/settingsManager.js';
 // import { initModelManager } from './modules/modelManager.js';
 import { initLanguageManager } from './modules/languageManager.js';
+import { languageMatches } from './modules/languages.js';
 // import { initPodcastManager } from './modules/podcastManager.js';
 // Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
@@ -188,7 +189,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             Array.from(languageSelect.options).forEach(option => {
                 const text = option.textContent.trim();
                 const shortCode = option.value.split('-')[0].toUpperCase();
-                if (filter && !text.toLowerCase().includes(lower) && !shortCode.toLowerCase().includes(lower)) return;
+                if (filter && !languageMatches(option.value, filter) && !text.toLowerCase().includes(lower) && !shortCode.toLowerCase().includes(lower)) return;
                 const btn = document.createElement('button');
                 btn.className = 'pill pill--sm pill--soft';
                 const flagEmoji = text.split(/\s/)[0] || '🌐';
