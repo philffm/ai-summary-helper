@@ -1,3 +1,4 @@
+import { SK, renameKeys } from './storageKeys.js';
 // settingsManager.js
 // Settings screen initialization — UI is in popup.html (static accordion),
 // this file handles logic, auto-save, and wiring event listeners.
@@ -43,7 +44,7 @@ export async function initSettingsManager(ui) {
 
             const activeService = modelSelect ? modelSelect.value : 'openai';
             const storageData = await StorageManager.getAll();
-            const servicesConfig = storageData.servicesConfig || {};
+            const servicesConfig = storageData[SK.servicesConfig] || {};
             const prevCfg = servicesConfig[activeService] || {};
 
             // Persist the current field values for the active service.
@@ -56,7 +57,7 @@ export async function initSettingsManager(ui) {
             };
 
             await StorageManager.set({ activeService });
-            await StorageManager.set({ servicesConfig });
+            await StorageManager.set({ [SK.servicesConfig]: servicesConfig });
 
             flashSaveIndicator();
         });
@@ -283,7 +284,7 @@ async function initModelSettings(storageData) {
     }
 
     if (licenseKeyInput) {
-        licenseKeyInput.value = storageData.licenseKey || '';
+        licenseKeyInput.value = storageData[SK.licenseKey] || '';
     }
 
     const refreshLicenseUIStatus = (status, isValid = false) => {
@@ -299,7 +300,7 @@ async function initModelSettings(storageData) {
     };
 
     // Initialize display state of active token if it exists
-    if (storageData.licenseKey) {
+    if (storageData[SK.licenseKey]) {
         refreshLicenseUIStatus('Pro Active ✓', true);
     } else {
         refreshLicenseUIStatus('Free Trial Mode');
@@ -327,7 +328,7 @@ async function initModelSettings(storageData) {
                 const resData = await response.json();
 
                 if (response.ok && resData.valid && resData.status === 'active') {
-                    await StorageManager.set({ licenseKey: inputKey });
+                    await StorageManager.set({ [SK.licenseKey]: inputKey });
                     refreshLicenseUIStatus('Pro Active ✓', true);
                     flashSaveIndicator();
                 } else {
@@ -363,7 +364,7 @@ async function initModelSettings(storageData) {
     const updateFields = async (serviceId) => {
         const service = services.find(s => s.id === serviceId);
         const latest = await StorageManager.getAll();
-        const cfg = latest.servicesConfig?.[serviceId] || {};
+        const cfg = latest[SK.servicesConfig]?.[serviceId] || {};
 
         const apiKeyLink = document.getElementById('apiKeyLink');
         if (apiKeyLink) {
@@ -528,7 +529,7 @@ function initBookmarkletGenerator() {
 
     generateBtn.addEventListener('click', async () => {
         const data = await StorageManager.getAll();
-        const token = data.pb_token;
+        const token = data[SK.token];
 
         if (!token) {
             alert('⚠️ You must be logged into byphil Cloud first to generate a bookmarklet.');
@@ -586,8 +587,8 @@ function initSummaryLengthSlider() {
     const chipLabel = document.getElementById('chipLengthLabel');
     if (!slider || !valueDisplay) return;
 
-    chrome.storage.local.get(['summaryLength'], (data) => {
-        const length = data.summaryLength || 200;
+    chrome.storage.local.get([SK.summaryLength], (data) => {
+        const length = data[SK.summaryLength] || 200;
         slider.value = length;
         valueDisplay.textContent = length;
         slider.dispatchEvent(new Event('input'));
@@ -597,7 +598,7 @@ function initSummaryLengthSlider() {
         const newLength = slider.value;
         valueDisplay.textContent = newLength;
         if (chipLabel) chipLabel.textContent = newLength + 'w';
-        chrome.storage.local.set({ summaryLength: Number(newLength) });
+        chrome.storage.local.set({ [SK.summaryLength]: Number(newLength) });
     });
 }
 
@@ -627,11 +628,11 @@ function initLocalSendSettings(storageData) {
     // devices is mutated in place and persisted after every add/remove/
     // activate, then re-rendered from that same in-memory copy — avoids a
     // re-fetch from storage after each change.
-    let devices = Array.isArray(storageData.devices) ? [...storageData.devices] : [];
-    let activeDeviceIds = { ...(storageData.activeDeviceIds || {}) };
+    let devices = Array.isArray(storageData[SK.devices]) ? [...storageData[SK.devices]] : [];
+    let activeDeviceIds = { ...(storageData[SK.activeDevices] || {}) };
 
-    const persistDevices = () => autoSave('devices', devices);
-    const persistActiveIds = () => autoSave('activeDeviceIds', activeDeviceIds);
+    const persistDevices = () => autoSave(SK.devices, devices);
+    const persistActiveIds = () => autoSave(SK.activeDevices, activeDeviceIds);
 
     const addressLabel = (device) => {
         const addr = device.addresses?.[0] || '';
@@ -919,7 +920,7 @@ function initLocalIntelligence() {
                 return { ...article, tags: after };
             });
 
-            await StorageManager.setLocal({ articlesIndex: updated });
+            await StorageManager.setLocal({ [SK.articlesIndex]: updated });
 
             if (resultEl) {
                 resultEl.textContent = changedArticles > 0
@@ -1022,9 +1023,9 @@ function initBackupRestore() {
                     // articlesIndex is the post-migration shape; the articles
                     // fallback only matters if exporting mid-transition,
                     // before migration has run in this session.
-                    const count = (localData.articlesIndex || localData.articles || []).length;
+                    const count = (localData[SK.articlesIndex] || localData.articles || []).length;
                     backup = {
-                        _backup_version: 2,
+                        _backup_version: 3,   // 3 = registry key names (articles:index, feeds:*, account:* …); v2 (old names) still imports
                         _exported_at: new Date().toISOString(),
                         _article_count: count,
                         settings: syncData,
@@ -1085,10 +1086,12 @@ function initBackupRestore() {
                         throw new Error('Invalid format');
                     }
 
-                    if (importedData._backup_version === 2) {
+                    if (importedData._backup_version === 2 || importedData._backup_version === 3) {
                         // FIX: Leverage the new StorageManager routing
-                        const { settings, local } = importedData;
-                        if (settings) await StorageManager.set(settings);
+                        const settings = importedData.settings;
+                        // v2 backups use the pre-registry key names → translate (no-op for v3)
+                        const local = importedData.local ? renameKeys(importedData.local) : importedData.local;
+                        if (settings) await StorageManager.set(renameKeys(settings));
 
                         if (local) {
                             if (Array.isArray(local.articles)) {
@@ -1098,7 +1101,7 @@ function initBackupRestore() {
                                 // migrated screen will simply never see it again.
                                 const { index, records } = StorageManager.splitArticlesArray(local.articles);
                                 const { articles: _old, ...rest } = local; // drop the old key from the pass-through write
-                                await StorageManager.set({ ...rest, articlesIndex: index });
+                                await StorageManager.set({ ...rest, [SK.articlesIndex]: index });
 
                                 // Write per-article records in chunks rather than
                                 // one call with hundreds of keys and all their
@@ -1116,12 +1119,12 @@ function initBackupRestore() {
                             }
                         }
 
-                        const count = (local?.articlesIndex || local?.articles || []).length;
+                        const count = (local?.[SK.articlesIndex] || local?.articles || []).length;
                         alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);
                     } else {
                         // Legacy v1 backup — settings only
                         // Safe to use StorageManager.set() since it routes automatically
-                        await StorageManager.set(importedData);
+                        await StorageManager.set(renameKeys(importedData));
                         alert('Settings imported successfully! The extension will now reload.');
                     }
 

@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // analyticsManager.js
 // Renders a reading analytics / report view for the history screen.
 // Shows: reading streak, articles per day chart, top categories, and a word cloud.
@@ -416,9 +417,9 @@ export function initAnalyticsReport(container, articles) {
         };
 
         // Restore persisted preference, else use the usage-based default.
-        chrome.storage.local.get(['activityView'], (res) => {
-            const saved = res.activityView === 'day' || res.activityView === 'week'
-                ? res.activityView
+        chrome.storage.local.get([SK.activityView], (res) => {
+            const saved = res[SK.activityView] === 'day' || res[SK.activityView] === 'week'
+                ? res[SK.activityView]
                 : defaultActivityView(articles);
             applyView(saved);
         });
@@ -427,7 +428,7 @@ export function initAnalyticsReport(container, articles) {
             btn.addEventListener('click', () => {
                 const view = btn.dataset.view;
                 applyView(view);
-                chrome.storage.local.set({ activityView: view });
+                chrome.storage.local.set({ [SK.activityView]: view });
             });
         });
     }

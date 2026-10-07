@@ -8,5 +8,5 @@ fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await t
 const rows = $$('.feed-suggest-row'); console.log(rows.map(r => r.querySelector('.feed-suggest-name').textContent));
 assert.equal(rows.length, 7); assert.equal(rows[0].querySelector('.feed-suggest-name').textContent, 'Street Phil-osophy');
 rows[0].click(); await tick(200);
-assert.equal(store.feedSubs.length, 1); assert.equal(store.feedSubs[0].url, u); assert.ok(store.feedItems.length > 0);
+assert.equal(store['feeds:subs'].length, 1); assert.equal(store['feeds:subs'][0].url, u); assert.ok(store['feeds:items'].length > 0);
 console.log('TEST 7 OK');

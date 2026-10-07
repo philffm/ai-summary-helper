@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // reviewPrompt.js — a polite, dismissible nudge to review the extension on the Chrome Web Store.
 // Shown at most 3 times, only after a few days of use and a few real summaries, only in Chrome
 // (other stores/builds have their own review URLs). One tap on "No thanks" or "Rate" ends it for good.
@@ -10,7 +11,7 @@ export const MIN_SUMMARIES = 3;
 export const SNOOZE_DAYS = 14;
 export const MAX_ASKS = 3;
 const DAY = 86400e3;
-const KEY = 'reviewPrompt';
+const KEY = SK.reviewPrompt;
 
 /** Chrome (not Edge/Opera/Firefox/Android) → the Chrome Web Store link applies. */
 export function isChromeStore(ua = (typeof navigator !== 'undefined' ? navigator.userAgent : '')) {
@@ -27,10 +28,10 @@ export function shouldShow({ now, installedAt, summaries, state = {}, chrome: is
 }
 
 async function readState() {
-    const d = await chrome.storage.local.get([KEY, 'installedAt', 'articlesIndex']).catch(() => ({}));
-    let installedAt = d.installedAt;
-    if (!installedAt) { installedAt = Date.now(); chrome.storage.local.set({ installedAt }).catch(() => {}); }
-    const summaries = (d.articlesIndex || []).filter(a => a && a.summary && !a.feedStub).length;
+    const d = await chrome.storage.local.get([KEY, SK.installedAt, SK.articlesIndex]).catch(() => ({}));
+    let installedAt = d[SK.installedAt];
+    if (!installedAt) { installedAt = Date.now(); chrome.storage.local.set({ [SK.installedAt]: installedAt }).catch(() => {}); }
+    const summaries = (d[SK.articlesIndex] || []).filter(a => a && a.summary && !a.feedStub).length;
     return { state: d[KEY] || {}, installedAt, summaries };
 }
 

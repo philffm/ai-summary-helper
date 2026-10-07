@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // settingsNav.js
 // Settings home (grouped list) → panel navigation, live row subtitles, and
 // search. All controls keep their original ids (settingsManager.js / authManager.js
@@ -88,8 +89,8 @@ async function refreshSubtitles() {
         if (el && text) el.textContent = text;
     };
     try {
-        const local = await chrome.storage.local.get(['pb_token']);
-        set('account', local.pb_token ? 'Signed in · byPhil Cloud' : 'Not signed in');
+        const local = await chrome.storage.local.get([SK.token]);
+        set('account', local[SK.token] ? 'Signed in · byPhil Cloud' : 'Not signed in');
         const sync = await chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']);
         const mode = sync.connectionMode || 'cloud';
         if (mode === 'cloud') {

@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // authManager.js - Handles Authentication flow via api.byphil.eu proxy
 //
 // This is the SINGLE reusable login module for the extension. Historically
@@ -91,10 +92,10 @@ const clearPendingOtpState = async () => {
     clearOtpExpiryTimeout();
     activeOtpId = null;
     const patch = {
-        pending_otp_id: null,
-        pending_email: null,
-        pending_otp_expires_at: null,
-        pending_otp_requested_at: null
+        [SK.otpId]: null,
+        [SK.otpEmail]: null,
+        [SK.otpExpiresAt]: null,
+        [SK.otpRequestedAt]: null
     };
     await StorageManager.set(patch);
     return patch;
@@ -124,7 +125,7 @@ const scheduleOtpExpiry = (expiresAt) => {
 
     otpExpiryTimeoutId = setTimeout(async () => {
         const currentState = await StorageManager.getAll();
-        if (currentState.pending_otp_id) {
+        if (currentState[SK.otpId]) {
             const patch = await clearPendingOtpState();
             await refreshAuthState({ ...currentState, ...patch });
         }
@@ -199,10 +200,10 @@ function setLoggedInOnlySectionsVisible(isLoggedIn) {
 // ── Core: render current auth/OTP state into every registered view ─────
 async function refreshAuthState(forceData = null) {
     const data = forceData || await StorageManager.getAll();
-    const user = data.pb_user;
-    const token = data.pb_token;
-    const pendingOtpId = data.pending_otp_id;
-    const pendingOtpExpiresAt = resolveOtpExpiry(data.pending_otp_expires_at, parseOtpExpiry(data.pending_otp_requested_at) || Date.now());
+    const user = data[SK.user];
+    const token = data[SK.token];
+    const pendingOtpId = data[SK.otpId];
+    const pendingOtpExpiresAt = resolveOtpExpiry(data[SK.otpExpiresAt], parseOtpExpiry(data[SK.otpRequestedAt]) || Date.now());
     const pendingOtpExpiryTime = parseOtpExpiry(pendingOtpExpiresAt);
     const isPendingOtpExpired = pendingOtpId && (!pendingOtpExpiryTime || pendingOtpExpiryTime <= Date.now());
 
@@ -239,7 +240,7 @@ async function refreshAuthState(forceData = null) {
     if (stateName === 'otpExpired') await clearPendingOtpState();
     // Stale/invalid token or user with no active session — clear it.
     if (stateName === 'signedOut' && (token || user)) {
-        await StorageManager.set({ pb_token: null, pb_user: null });
+        await StorageManager.set({ [SK.token]: null, [SK.user]: null });
     }
 
     if (stateName === 'loggedIn') {
@@ -285,7 +286,7 @@ function applyStateToView(view, stateName, data, user) {
         show(view.emailStage, false);
         show(view.codeStage, true);
         show(view.loggedInStage, false);
-        setCodeCaption(view, data.pending_email);
+        setCodeCaption(view, data[SK.otpEmail]);
     } else {
         // 'otpExpired' and 'signedOut' render the same way: back to the
         // email entry stage.
@@ -334,10 +335,10 @@ async function requestOtp(view) {
         scheduleOtpExpiry(otpExpiresAt);
 
         await StorageManager.set({
-            pending_otp_id: activeOtpId,
-            pending_email: email,
-            pending_otp_expires_at: otpExpiresAt,
-            pending_otp_requested_at: new Date(requestedAt).toISOString()
+            [SK.otpId]: activeOtpId,
+            [SK.otpEmail]: email,
+            [SK.otpExpiresAt]: otpExpiresAt,
+            [SK.otpRequestedAt]: new Date(requestedAt).toISOString()
         });
 
         await refreshAuthState();
@@ -361,8 +362,8 @@ async function verifyOtp(view) {
     }
 
     const stored = await StorageManager.getAll();
-    const effectiveOtpId = activeOtpId || stored.pending_otp_id;
-    const pendingOtpExpiryTime = parseOtpExpiry(stored.pending_otp_expires_at);
+    const effectiveOtpId = activeOtpId || stored[SK.otpId];
+    const pendingOtpExpiryTime = parseOtpExpiry(stored[SK.otpExpiresAt]);
 
     if (!effectiveOtpId) {
         notify(view, 'Session lost. Please request a new code.');
@@ -432,12 +433,12 @@ async function verifyOtp(view) {
         // ──────────────────────────────────────────────
 
         const authData = {
-            pb_token: token,
-            pb_user: userRecord,
-            pending_otp_id: null,
-            pending_email: null,
-            pending_otp_expires_at: null,
-            pending_otp_requested_at: null
+            [SK.token]: token,
+            [SK.user]: userRecord,
+            [SK.otpId]: null,
+            [SK.otpEmail]: null,
+            [SK.otpExpiresAt]: null,
+            [SK.otpRequestedAt]: null
         };
 
         await StorageManager.set(authData);
@@ -446,7 +447,7 @@ async function verifyOtp(view) {
         // storage so the "Pro License Key" field reflects the account's
         // actual license, not just whatever was manually entered before.
         if (userRecord?.license_key) {
-            await StorageManager.set({ licenseKey: userRecord.license_key });
+            await StorageManager.set({ [SK.licenseKey]: userRecord.license_key });
         }
 
         clearOtpExpiryTimeout();
@@ -468,12 +469,12 @@ async function verifyOtp(view) {
 async function logout() {
     clearOtpExpiryTimeout();
     const logoutData = {
-        pb_token: null,
-        pb_user: null,
-        pending_otp_id: null,
-        pending_email: null,
-        pending_otp_expires_at: null,
-        pending_otp_requested_at: null
+        [SK.token]: null,
+        [SK.user]: null,
+        [SK.otpId]: null,
+        [SK.otpEmail]: null,
+        [SK.otpExpiresAt]: null,
+        [SK.otpRequestedAt]: null
     };
     await StorageManager.set(logoutData);
     activeOtpId = null;
@@ -561,7 +562,7 @@ export async function initAuthManager(uiManager) {
 
 export async function refreshAuthStateFromSettings() {
     await refreshAuthState();
-    const { pb_token } = await StorageManager.getAll();
+    const { [SK.token]: pb_token } = await StorageManager.getAll();
     if (!pb_token) return;
     try {
         const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/usage`, {
@@ -579,12 +580,12 @@ export async function refreshAuthStateFromSettings() {
 
             // Sync the server-side license key into local storage so the
             // "Pro License Key" field reflects the account's actual license.
-            const { pb_user } = await StorageManager.getAll();
+            const { [SK.user]: pb_user } = await StorageManager.getAll();
             const serverLicenseKey = pb_user?.license_key;
             if (serverLicenseKey) {
-                const { licenseKey } = await StorageManager.getAll();
+                const { [SK.licenseKey]: licenseKey } = await StorageManager.getAll();
                 if (licenseKey !== serverLicenseKey) {
-                    await StorageManager.set({ licenseKey: serverLicenseKey });
+                    await StorageManager.set({ [SK.licenseKey]: serverLicenseKey });
                     const licenseKeyInput = document.getElementById('licenseKey');
                     if (licenseKeyInput) licenseKeyInput.value = serverLicenseKey;
                     const licenseStatusLabel = document.getElementById('licenseStatusLabel');

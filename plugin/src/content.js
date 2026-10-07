@@ -1,3 +1,4 @@
+import { SK } from './modules/storageKeys.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -223,12 +224,12 @@ import {
       clearHighlightElements();
 
       // Clear only for the current URL using the new array structure
-      chrome.storage.local.get(['annotations'], (res) => {
-        let annotations = res.annotations;
+      chrome.storage.local.get([SK.annotations], (res) => {
+        let annotations = res[SK.annotations];
         if (Array.isArray(annotations)) {
           const currentUrl = window.location.href.split('#')[0];
           annotations = annotations.filter(a => a.url !== currentUrl);
-          chrome.storage.local.set({ annotations }, () => {
+          chrome.storage.local.set({ [SK.annotations]: annotations }, () => {
             sendResponse({ status: 'ok' });
           });
         } else {
@@ -276,8 +277,8 @@ import {
               // article.id identifies its entry in 'articlesIndex' (see
               // saveToLocalStorage in content/core.js) — patch the decision
               // fields onto that index entry rather than the old flat array.
-              chrome.storage.local.get({ articlesIndex: [] }, (data) => {
-                const articlesIndex = data.articlesIndex || [];
+              chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
+                const articlesIndex = data[SK.articlesIndex] || [];
                 const idx = articlesIndex.findIndex(a => a.id === article.id);
                 if (idx >= 0) {
                   articlesIndex[idx] = {
@@ -287,7 +288,7 @@ import {
                     decisionSavedAt: article.decisionSavedAt,
                     isDecision: true
                   };
-                  chrome.storage.local.set({ articlesIndex }, () => {
+                  chrome.storage.local.set({ [SK.articlesIndex]: articlesIndex }, () => {
                     chrome.runtime.sendMessage({ action: 'scheduleDecisionAlarm', article });
                     waitForSpeedReadingComplete(streamOverlay, () => {
                       chrome.runtime.sendMessage({ action: 'closeTabSelf' });
@@ -427,15 +428,15 @@ import {
       // harmless prefs stay in sync.
       Promise.all([
         chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel', 'ghostHighlightAmount', 'moodEnabled']),
-        chrome.storage.local.get(['servicesConfig', 'licenseKey'])
+        chrome.storage.local.get([SK.servicesConfig, SK.licenseKey])
       ]).then(async ([syncData, localData]) => {
         const data = { ...syncData, ...localData };
         const moodOn = data.moodEnabled !== false;
-        const localAuth = await chrome.storage.local.get(['pb_token']).catch(() => ({}));
-        const sessionToken = localAuth?.pb_token || '';
+        const localAuth = await chrome.storage.local.get([SK.token]).catch(() => ({}));
+        const sessionToken = localAuth?.[SK.token] || '';
         const connectionMode = data.connectionMode || 'cloud';
         let activeService = data.activeService || 'openai';
-        let cfg = (data.servicesConfig || {})[activeService] || {};
+        let cfg = (data[SK.servicesConfig] || {})[activeService] || {};
         let apiKey = cfg.apiKey || '';
 
         let apiUrl = cfg.endpoint;
@@ -454,7 +455,7 @@ import {
           activeService = 'cloud';
           apiUrl = `${API_BASE}/v1/projects/ai_summary_helper/chat`;
           modelIdentifier = data.preferredCloudModel || 'google/gemini-2.5-flash';
-          apiKey = sessionToken || data.licenseKey || '';
+          apiKey = sessionToken || data[SK.licenseKey] || '';
         } else if (cfg) {
           apiUrl = cfg.endpointUrl || apiUrl;
           modelIdentifier = cfg.modelIdentifier || modelIdentifier;
@@ -520,7 +521,7 @@ import {
           } else {
             // Default OpenAI / Cloud / Custom format
             if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
-            const { installId } = await chrome.storage.local.get('installId');
+            const { [SK.installId]: installId } = await chrome.storage.local.get(SK.installId);
             if (installId) headers['X-Install-ID'] = installId;
 
             requestBody = JSON.stringify({

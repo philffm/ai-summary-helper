@@ -22,7 +22,7 @@ const toasts = []; const ui = { showToast: m => toasts.push(m), showScreen() {} 
 fm.initFeedManager(ui); await tick(50);
 $('#feedAddBtn').click(); await tick(20);
 const input = $('.feed-add-row input'); input.value = url; click($('[data-feed-add]')); await tick(150);
-const its = store.feedItems; console.log('items', its.length, its[0].audio, its[0].dur);
+const its = store['feeds:items']; console.log('items', its.length, its[0].audio, its[0].dur);
 assert.equal(its.length, 14); assert.ok(its.every(i => i.audio.endsWith('.mp3')));
 await fm.onFeedsScreenShown(ui); await tick(50);
 const pb = $$('.feed-play-btn'); assert.ok(pb.length > 0, 'play buttons');

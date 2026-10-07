@@ -1,3 +1,4 @@
+import { SK, articleRecKey } from './storageKeys.js';
 // feedManager.js
 // Small RSS/Atom reader built for fast triage. Feeds + items live in their own
 // chrome.storage.local keys (feedSubs / feedItems) and are deliberately NOT mixed
@@ -32,12 +33,12 @@ import { startOfDay } from './dateUtils.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
 
-const SUBS_KEY = 'feedSubs';
-const ITEMS_KEY = 'feedItems';
-const UI_KEY = 'feedUi';
-const SETTINGS_KEY = 'feedSettings';
-const RECAPS_KEY = 'feedRecaps';
-const MOOD_KEY = 'feedMoodDaily';   // per-day mood counts; outlives item retention (see feedMood.js)
+const SUBS_KEY = SK.feedSubs;
+const ITEMS_KEY = SK.feedItems;
+const UI_KEY = SK.feedUi;
+const SETTINGS_KEY = SK.feedSettings;
+const RECAPS_KEY = SK.feedRecaps;
+const MOOD_KEY = SK.feedMood;   // per-day mood counts; outlives item retention (see feedMood.js)
 // Items are kept until the retention window (Settings > Feeds) runs out; favorites are kept longer.
 // These are only safety nets so storage can't grow without bound.
 const MAX_ITEMS_PER_FEED = 1500;
@@ -149,7 +150,7 @@ async function carryMoodToHistory() {
     try {
         const scored = new Map(items.filter(i => i.ai && typeof i.sent === 'number' && i.link).map(i => [normalizeUrl(i.link), i.sent]));
         if (!scored.size) return;
-        const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
         const map = {};
         articlesIndex.forEach(a => { if (a.url && typeof a.moodScore !== 'number' && scored.has(normalizeUrl(a.url))) map[a.id] = scored.get(normalizeUrl(a.url)); });
         if (Object.keys(map).length) await StorageManager.setArticleMoods(map);
@@ -162,7 +163,7 @@ function hasUrl(a, key) {
 }
 
 async function loadHistoryMap() {
-    const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
+    const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
     const map = new Map();
     for (const a of articlesIndex) {
         for (const u of [a.url, a.feedUrl]) {
@@ -182,7 +183,7 @@ function histOf(item) { return historyByUrl.get(normalizeUrl(item.link)) || { fa
 // page has been summarized for real, the stub's star moves to the real entry
 // and the stub is removed so History doesn't show the page twice.
 export async function reconcileStubs() {
-    const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
+    const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
     const stubs = articlesIndex.filter(a => a.feedStub && a.url);
     if (!stubs.length) return;
     const drop = new Set();
@@ -195,14 +196,14 @@ export async function reconcileStubs() {
     }
     if (!drop.size) return;
     const next = articlesIndex.filter(a => !drop.has(a.id));
-    await StorageManager.setLocal({ articlesIndex: next });
-    await new Promise(res => chrome.storage.local.remove([...drop].map(id => `article:${id}`), res));
+    await StorageManager.setLocal({ [SK.articlesIndex]: next });
+    await new Promise(res => chrome.storage.local.remove([...drop].map(articleRecKey), res));
 }
 
 // Find the real (non-stub) History entry for a feed item's URL.
 async function findSummarizedArticle(url) {
     const key = normalizeUrl(url);
-    const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
+    const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
     const real = articlesIndex.filter(a => !a.feedStub && hasUrl(a, key));
     real.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
     return real[0] || null;
@@ -224,7 +225,7 @@ async function onCardClick(item) {
 
 async function toggleFavorite(item) {
     const key = normalizeUrl(item.link);
-    const { articlesIndex = [] } = await StorageManager.getLocal({ articlesIndex: [] });
+    const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
     const matches = articlesIndex.filter(a => hasUrl(a, key));
     const isFav = matches.some(a => a.favorite);
     let createdStub = false;
@@ -232,7 +233,7 @@ async function toggleFavorite(item) {
     if (!isFav) {
         if (matches.length) {
             matches.forEach(a => { a.favorite = true; });
-            await StorageManager.setLocal({ articlesIndex });
+            await StorageManager.setLocal({ [SK.articlesIndex]: articlesIndex });
         } else {
             const feedName = subTitle(subs.find(x => x.id === item.feedId) || {});
             await StorageManager.saveArticle({
@@ -250,8 +251,8 @@ async function toggleFavorite(item) {
         const removeIds = [];
         matches.forEach(a => { a.favorite = false; if (a.feedStub) removeIds.push(a.id); });
         const next = articlesIndex.filter(a => !removeIds.includes(a.id));
-        await StorageManager.setLocal({ articlesIndex: next });
-        if (removeIds.length) await new Promise(res => chrome.storage.local.remove(removeIds.map(id => `article:${id}`), res));
+        await StorageManager.setLocal({ [SK.articlesIndex]: next });
+        if (removeIds.length) await new Promise(res => chrome.storage.local.remove(removeIds.map(articleRecKey), res));
     }
     await loadHistoryMap();
     render();
@@ -2002,7 +2003,7 @@ export function initFeedManager(uiObj) {
     if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
         let histTimer = null;
         chrome.storage.onChanged.addListener((ch) => {
-            if (!ch || !ch.articlesIndex) return;
+            if (!ch || !ch[SK.articlesIndex]) return;
             clearTimeout(histTimer);
             histTimer = setTimeout(async () => { await loadHistoryMap(); await carryMoodToHistory(); if (els && els.list) render(); }, 250);
         });

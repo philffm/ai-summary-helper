@@ -1,11 +1,11 @@
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const now = new Date().toISOString();
-store.articlesIndex = [
+store['articles:index'] = [
  { id: 'a1', url: 'https://x.com/1', title: 'First', timestamp: now, summary: '<p>one about agents</p>', tags: [] },
  { id: 'a2', url: 'https://y.com/2', title: 'Second', timestamp: new Date(Date.now()-1000).toISOString(), summary: '<p>two about memory</p>', tags: [] },
 ];
-store.devices = [{ id: 'k1', label: 'My Kindle', type: 'kindle', addresses: ['me@kindle.com'] }];
+store['send:devices'] = [{ id: 'k1', label: 'My Kindle', type: 'kindle', addresses: ['me@kindle.com'] }];
 const calls = []; let aiPrompt = null;
 w.fetch = globalThis.fetch = async (url, o) => { calls.push(JSON.parse(o.body)); return { ok: true, json: async () => ({ success: true }) }; };
 globalThis.__ai = (msg) => { aiPrompt = msg; return { ok: true, text: '"Two pieces on agents and memory."' }; };

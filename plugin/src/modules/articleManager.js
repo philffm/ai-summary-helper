@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // Article Manager
 // Handles article rendering, expand/collapse, search, etc.
 
@@ -429,7 +430,7 @@ async function sendToKindle(article) {
         return;
     }
 
-    const isPro = config.pb_user?.subscription_status === 'active';
+    const isPro = config[SK.user]?.subscription_status === 'active';
     if (!isPro) {
         const confirmation = confirm('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?');
         if (!confirmation) return;
@@ -443,10 +444,10 @@ async function sendToKindle(article) {
     try {
         const apiBase = StorageManager.getApiBase();
         const headers = { 'Content-Type': 'application/json' };
-        if (config.pb_token) {
-            headers['Authorization'] = `Bearer ${config.pb_token}`;
-        } else if (config.licenseKey) {
-            headers['Authorization'] = `Bearer ${config.licenseKey}`;
+        if (config[SK.token]) {
+            headers['Authorization'] = `Bearer ${config[SK.token]}`;
+        } else if (config[SK.licenseKey]) {
+            headers['Authorization'] = `Bearer ${config[SK.licenseKey]}`;
         }
 
         const annotations = await fetchAnnotationsForArticle(article);
@@ -530,8 +531,8 @@ export async function deliverKindle(article, device) {
     try {
         const apiBase = StorageManager.getApiBase();
         const headers = { 'Content-Type': 'application/json' };
-        if (config.pb_token) headers['Authorization'] = `Bearer ${config.pb_token}`;
-        else if (config.licenseKey) headers['Authorization'] = `Bearer ${config.licenseKey}`;
+        if (config[SK.token]) headers['Authorization'] = `Bearer ${config[SK.token]}`;
+        else if (config[SK.licenseKey]) headers['Authorization'] = `Bearer ${config[SK.licenseKey]}`;
         const annotations = article.id ? await fetchAnnotationsForArticle(article) : [];
         const annotationsHtml = article.id ? await buildAnnotationsSection(article, annotations) : '';
         const response = await fetch(`${apiBase}/v1/projects/ai_summary_helper/kindle`, {

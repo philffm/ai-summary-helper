@@ -4,7 +4,7 @@ const { store, w } = setup({});
 const fm = await imp('modules/feedManager.js');
 const nav = fs.readFileSync(process.env.AISH_SRC + '/modules/settingsNav.js', 'utf8');
 const ids = [...nav.matchAll(/^\s*\['(\w+)', '[^']*', '([\w-]+)'/gm)].map(m => [m[1], m[2]]);
-store.feedSubs = [{ id: 's', url: 'u', title: 'T', lastFetched: Date.now() }]; store.feedItems = [];
+store['feeds:subs'] = [{ id: 's', url: 'u', title: 'T', lastFetched: Date.now() }]; store['feeds:items'] = [];
 const ui = { showToast() {}, showScreen() {} };
 fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(30);
 document.dispatchEvent(new w.CustomEvent('aish:settings-panel', { detail: { name: 'feeds' } })); await tick(30);

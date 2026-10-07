@@ -5,8 +5,9 @@
  * Chrome, background page in Firefox/Safari) so it keeps going when the popup
  * closes. Otherwise it falls back to an engine inside the popup.
  */
+import { SK } from './storageKeys.js';
 import { T } from './feedI18n.js';
-const POS_KEY = 'feedAudioPos';
+const POS_KEY = SK.feedAudioPos;
 const RATES = [1, 1.25, 1.5, 2, 0.75];
 
 let backend = null;            // 'bg' | 'local'

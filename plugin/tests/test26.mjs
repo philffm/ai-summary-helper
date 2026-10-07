@@ -1,9 +1,9 @@
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const now = Date.now();
-store.feedSubs = [{ id: 's1', url: 'https://a/f', title: 'A', lastFetched: now }];
-store.feedItems = [{ id: 'a', feedId: 's1', title: 'H', link: 'https://x/1', published: now - 1000, snippet: 's', read: false }];
-store.feedUi = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'feed' };
+store['feeds:subs'] = [{ id: 's1', url: 'https://a/f', title: 'A', lastFetched: now }];
+store['feeds:items'] = [{ id: 'a', feedId: 's1', title: 'H', link: 'https://x/1', published: now - 1000, snippet: 's', read: false }];
+store['feeds:ui'] = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'feed' };
 const fm = await imp('modules/feedManager.js'); const ui = { showToast() {}, showScreen() {} };
 fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(50);
 const labels = () => [...w.document.querySelectorAll('#feedScopeRow .feed-scope-btn')].map(b => b.textContent);

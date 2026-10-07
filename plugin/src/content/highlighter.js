@@ -1,3 +1,4 @@
+import { SK } from '../modules/storageKeys.js';
 // content/highlighter.js
 // Text highlighting & annotation persistence for the content script.
 //
@@ -150,7 +151,7 @@ export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
       (a.quote ? a.quote.prefix === (meta.quote && meta.quote.prefix) && a.quote.suffix === (meta.quote && meta.quote.suffix) : !meta.quote));
     if (exists) return;
     annotations.push(ann);
-    chrome.storage.local.set({ annotations });
+    chrome.storage.local.set({ [SK.annotations]: annotations });
   });
   return ann;
 }
@@ -160,7 +161,7 @@ function hlPatchAnnotation(id, patch) {
     const a = annotations.find(x => x.id === id);
     if (!a) return;
     Object.assign(a, patch);
-    chrome.storage.local.set({ annotations });
+    chrome.storage.local.set({ [SK.annotations]: annotations });
   });
 }
 
@@ -170,7 +171,7 @@ function hlRemoveFromStorage(id, { dismiss = false } = {}) {
     const next = dismiss
       ? annotations.map(a => (a.id === id ? { ...a, dismissed: true } : a))
       : annotations.filter(a => a.id !== id);
-    chrome.storage.local.set({ annotations: next });
+    chrome.storage.local.set({ [SK.annotations]: next });
   });
 }
 
@@ -181,7 +182,7 @@ export function removeAnnotationFromStorage(text, type = 'user') {
     const compactText = (text || '').replace(/\s+/g, ' ').trim();
     if (!compactText) return;
     annotations = annotations.filter(a => !(a.url === currentUrl && a.text === compactText && a.type === type));
-    chrome.storage.local.set({ annotations });
+    chrome.storage.local.set({ [SK.annotations]: annotations });
   });
 }
 
@@ -268,14 +269,14 @@ function isExtensionContextValid() {
 function getNormalizedAnnotations(callback) {
   if (!isExtensionContextValid()) return; // silently no-op, don't throw
   try {
-    chrome.storage.local.get(['annotations'], (res) => {
-      const normalized = normalizeAnnotationEntries(res.annotations);
-      const existing = Array.isArray(res.annotations) ? res.annotations : [];
-      const shouldWriteBack = !Array.isArray(res.annotations)
+    chrome.storage.local.get([SK.annotations], (res) => {
+      const normalized = normalizeAnnotationEntries(res[SK.annotations]);
+      const existing = Array.isArray(res[SK.annotations]) ? res[SK.annotations] : [];
+      const shouldWriteBack = !Array.isArray(res[SK.annotations])
         || JSON.stringify(existing) !== JSON.stringify(normalized);
 
       if (shouldWriteBack) {
-        chrome.storage.local.set({ annotations: normalized }, () => callback(normalized));
+        chrome.storage.local.set({ [SK.annotations]: normalized }, () => callback(normalized));
         return;
       }
 
@@ -334,7 +335,7 @@ export function startAnnotationWatchers() {
   if (!storageChangeListenerAttached) {
     storageChangeListenerAttached = true;
     chrome.storage.onChanged.addListener((changes, area) => {
-      if (area === 'local' && 'annotations' in changes && isAnyHighlightingEnabled()) {
+      if (area === 'local' && SK.annotations in changes && isAnyHighlightingEnabled()) {
         scheduleRestoreAnnotations(80);
       }
     });
@@ -408,7 +409,7 @@ function hlResolveAll(pageAnnotations, allAnnotations) {
       if (_legacy) clean.id = clean.id.replace(/^legacy_/, '');
       return { ...a, ...clean };
     });
-    chrome.storage.local.set({ annotations: next });
+    chrome.storage.local.set({ [SK.annotations]: next });
   }
   hlRefreshPanel();
 }
@@ -714,7 +715,7 @@ export function applyGhostHighlights(quotes = []) {
       hlLive.set(ann.id, entry);
       hlPaint(entry);
     });
-    if (added) chrome.storage.local.set({ annotations });
+    if (added) chrome.storage.local.set({ [SK.annotations]: annotations });
     hlRefreshPanel();
   });
 }

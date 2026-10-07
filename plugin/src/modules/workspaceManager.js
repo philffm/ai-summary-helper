@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // workspaceManager.js — split-screen workspace for wide windows.
 // Shows up to three of List / Graph / Analytics side by side inside the History
 // screen. Narrow windows keep the single-pane behaviour (nothing changes).
@@ -5,7 +6,7 @@
 
 const VIEWS = ['list', 'graph', 'report'];
 const LABEL = { list: 'List', graph: 'Graph', report: 'Analytics' };
-const STORE_KEY = 'ws_layout';
+const STORE_KEY = SK.workspace;
 
 let layout = 1;                       // user's wish (1..3)
 let views = ['list', 'graph', 'report']; // view per pane slot

@@ -7,13 +7,13 @@ assert(out.includes('#cfe3ff') && out.includes('#fff3a3'), 'both colours: ' + ou
 assert(/<mark[^>]*>agents<\/mark>/.test(out) || out.includes('<mark'), 'marked across <b>');
 assert.equal(ex.markHighlights('<p>nothing</p>', ann), '<p>nothing</p>');
 const now = new Date().toISOString();
-store.articlesIndex = [
+store['articles:index'] = [
  { id: 'a1', url: 'https://x.com/1?utm=1', title: 'First', timestamp: now, summary: '<p>one</p>', tags: [] },
  { id: 'a2', url: 'https://y.com/2', title: 'Second', timestamp: new Date(Date.now()-1000).toISOString(), summary: '<p>two</p>', tags: [] },
 ];
-store['article:a1'] = { content: '<p>Long-running agents lose context between sessions. Rest.</p>' };
-store.annotations = ann;
-store.devices = [{ id: 'k1', label: 'K', type: 'kindle', addresses: ['me@kindle.com'] }];
+store['articles:rec:a1'] = { content: '<p>Long-running agents lose context between sessions. Rest.</p>' };
+store['hl:all'] = ann;
+store['send:devices'] = [{ id: 'k1', label: 'K', type: 'kindle', addresses: ['me@kindle.com'] }];
 const calls = [];
 w.fetch = globalThis.fetch = async (u, o) => { calls.push(JSON.parse(o.body)); return { ok: true, json: async () => ({ success: true }) }; };
 globalThis.MutationObserver = w.MutationObserver;

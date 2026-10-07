@@ -4,8 +4,8 @@ globalThis.fetch = async (u) => { const p = SRC + '/' + u; if (!fs.existsSync(p)
 const now = Date.now();
 const { store, w } = setup({});
 const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelectorAll(s)];
-store.feedSubs = [{ id: 'a', url: 'https://a.test/f', title: 'A', tags: [], lastFetched: now }];
-store.feedItems = [1, 2].map(i => ({ id: 'i' + i, feedId: 'a', title: 'T' + i, link: 'https://a.test/' + i, published: now - i * 3600e3, read: false }));
+store['feeds:subs'] = [{ id: 'a', url: 'https://a.test/f', title: 'A', tags: [], lastFetched: now }];
+store['feeds:items'] = [1, 2].map(i => ({ id: 'i' + i, feedId: 'a', title: 'T' + i, link: 'https://a.test/' + i, published: now - i * 3600e3, read: false }));
 const i18n = await import(path.join(SRC, 'modules/i18n.js'));
 const fm = await imp('modules/feedManager.js'); const toasts = []; const ui = { showToast: m => toasts.push(m), showScreen() {} };
 await i18n.applyTranslations('de');

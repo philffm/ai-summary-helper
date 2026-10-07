@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // audioManager.js
 // Handles podcast audio generation and saving
 
@@ -74,10 +75,10 @@ function savePodcast(title, audioBlob) {
     const reader = new FileReader();
     reader.onload = function () {
         const audioUrl = reader.result;
-        chrome.storage.local.get({ podcasts: [] }, data => {
-            const podcasts = data.podcasts || [];
+        chrome.storage.local.get({ [SK.podcasts]: [] }, data => {
+            const podcasts = data[SK.podcasts] || [];
             podcasts.push({ title, audio: audioUrl });
-            chrome.storage.local.set({ podcasts });
+            chrome.storage.local.set({ [SK.podcasts]: podcasts });
         });
     };
     reader.readAsDataURL(audioBlob);

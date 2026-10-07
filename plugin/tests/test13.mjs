@@ -3,9 +3,9 @@ const now = Date.now(); const H = 3600e3;
 const { store, w } = setup({});
 const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelectorAll(s)];
 const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
-store.feedSubs = [{ id: 'a', url: 'https://a.test/f', title: 'Alpha', tags: [], lastFetched: now }, { id: 'b', url: 'https://b.test/f', title: 'Beta', tags: [], lastFetched: now }];
+store['feeds:subs'] = [{ id: 'a', url: 'https://a.test/f', title: 'Alpha', tags: [], lastFetched: now }, { id: 'b', url: 'https://b.test/f', title: 'Beta', tags: [], lastFetched: now }];
 const mk = (id, f, t, sn, extra = {}) => ({ id, feedId: f, title: t, link: 'https://x.test/' + id, published: now - Number(id.slice(1)) * H, snippet: sn, read: false, ...extra });
-store.feedItems = [
+store['feeds:items'] = [
   mk('i1', 'a', 'Climate summit ends with deal', 'Leaders agreed on emissions cuts climate'),
   mk('i2', 'a', 'Board game teaches climate impacts', 'A game about floods and fires', { audio: 'https://x/a.mp3', dur: 1800 }),
   mk('i3', 'b', 'Börse steigt kräftig', 'Der DAX legt zu, Börse jubelt', { ai: true, sent: 0.7, cat: 'Wirtschaft' }),

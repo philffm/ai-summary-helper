@@ -3,9 +3,9 @@ const { store, sent, w } = setup({});
 const $ = s => w.document.querySelector(s);
 const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
 const now = Date.now();
-store.feedSubs = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: now }];
-store.feedItems = [{ id: 'a', feedId: 's1', title: 'Hello', link: 'https://x.com/post?utm_source=q', published: now - 1000, snippet: 's', read: false }];
-store.feedUi = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'feed' };
+store['feeds:subs'] = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: now }];
+store['feeds:items'] = [{ id: 'a', feedId: 's1', title: 'Hello', link: 'https://x.com/post?utm_source=q', published: now - 1000, snippet: 's', read: false }];
+store['feeds:ui'] = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'feed' };
 const fm = await imp('modules/feedManager.js'); const ui = { showToast() {}, showScreen() {} };
 fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(50);
 const btn = () => $('.feed-sum-btn');
@@ -18,19 +18,19 @@ emit({ action: 'summaryProgress', progress: 40 }); assert.ok(/40%/.test(btn().te
 emit({ action: 'summaryProgress', progress: 30 }); assert.ok(/40%/.test(btn().textContent), 'never backwards');
 emit({ action: 'summaryProgress', progress: 70 }, 'https://other.com/'); assert.ok(/70%/.test(btn().textContent), 'single pending follows redirected tab');
 await fm.onFeedsScreenShown(ui); await tick(30); assert.ok(btn().classList.contains('busy'), 'survives re-render');
-store.articlesIndex = [{ url: 'https://x.com/post', title: 'Hello', timestamp: new Date().toISOString() }];
+store['articles:index'] = [{ url: 'https://x.com/post', title: 'Hello', timestamp: new Date().toISOString() }];
 emit({ action: 'summaryComplete', url: 'https://x.com/post' }); await tick(600);
 assert.ok(!btn().classList.contains('busy') && /View summary/.test(btn().textContent), btn().textContent);
 // error path
-store.articlesIndex = [];
+store['articles:index'] = [];
 await fm.onFeedsScreenShown(ui); await tick(30);
 click(btn()); await tick(20); emit({ action: 'summaryError', error: 'boom' }); await tick(10);
 assert.ok(!btn().classList.contains('busy') && !btn().disabled, 'error resets');
 // summary finished elsewhere (storage change) -> card flips without any relay message
-store.articlesIndex = [];
+store['articles:index'] = [];
 await fm.onFeedsScreenShown(ui); await tick(30);
 assert.ok(/Summarize/.test(btn().textContent) && !/View/.test(btn().textContent));
-store.articlesIndex = [{ url: 'https://x.com/post', title: 'Hello', timestamp: new Date().toISOString() }];
-globalThis.__chL.forEach(f => f({ articlesIndex: {} }, 'local')); await tick(500);
+store['articles:index'] = [{ url: 'https://x.com/post', title: 'Hello', timestamp: new Date().toISOString() }];
+globalThis.__chL.forEach(f => f({ 'articles:index': {} }, 'local')); await tick(500);
 assert.ok(/View summary/.test(btn().textContent), btn().textContent);
 console.log('TEST 23 OK');

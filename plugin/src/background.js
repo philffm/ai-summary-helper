@@ -8,6 +8,174 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 
 // Currently, we don't have background tasks
 
+// storage-keys:begin (generated from modules/storageKeys.js by scripts/sync-storage-keys.mjs — do not edit)
+/* eslint-disable no-unused-vars */
+/** logical name → storage key (chrome.storage.local) */
+const SK = {
+    // articles (schema v2: lean index + one heavy record per article)
+    articlesIndex: 'articles:index',
+    articlesSchema: 'articles:schema',
+    // highlights / annotations (one array for all pages; per-page keys are a later step)
+    annotations: 'hl:all',
+    // feeds
+    feedSubs: 'feeds:subs',
+    feedItems: 'feeds:items',
+    feedRecaps: 'feeds:recaps',
+    feedSettings: 'feeds:settings',
+    feedUi: 'feeds:ui',
+    feedMood: 'feeds:mood',
+    feedAudioPos: 'feeds:audioPos',
+    feedBgSeen: 'feeds:bgSeen',
+    feedPending: 'feeds:pending',
+    // account / identity
+    token: 'account:token',
+    user: 'account:user',
+    otpId: 'account:otpId',
+    otpEmail: 'account:otpEmail',
+    otpExpiresAt: 'account:otpExpiresAt',
+    otpRequestedAt: 'account:otpRequestedAt',
+    installId: 'account:installId',
+    installedAt: 'account:installedAt',
+    licenseKey: 'account:licenseKey',
+    // send targets
+    devices: 'send:devices',
+    activeDevices: 'send:active',
+    localSendIp: 'send:localIp',
+    // podcasts
+    podcasts: 'podcasts:list',
+    podcastName: 'podcasts:lastName',
+    podcastLength: 'podcasts:length',
+    podcastStyle: 'podcasts:style',
+    podcastCustomStyle: 'podcasts:customStyle',
+    // ui state
+    summaryMode: 'ui:summaryMode',
+    summaryLength: 'ui:summaryLength',
+    activityView: 'ui:activityView',
+    workspace: 'ui:workspace',
+    reviewPrompt: 'ui:reviewPrompt',
+    // configuration with secrets (API keys, endpoints) — never synced
+    servicesConfig: 'config:services',
+    // migration flags
+    devicesMigrated: 'meta:devicesMigrated',
+    migrationVersion: 'meta:version',
+    keysSchema: 'meta:keys'        // 1 = keys renamed to the registry names (migrateStorageKeys ran)
+};
+
+const KEYS_SCHEMA = 1;
+
+/** Prefix of the per-article record keys: articles:rec:<id> */
+const ARTICLE_REC = 'articles:rec:';
+const articleRecKey = (id) => ARTICLE_REC + id;
+const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTICLE_REC);
+
+/** old (pre-registry) key → new key. Used by the migration and by backup import. */
+const SK_LEGACY = {
+    articlesIndex: SK.articlesIndex,
+    articlesSchemaVersion: SK.articlesSchema,
+    annotations: SK.annotations,
+    feedSubs: SK.feedSubs,
+    feedItems: SK.feedItems,
+    feedRecaps: SK.feedRecaps,
+    feedSettings: SK.feedSettings,
+    feedUi: SK.feedUi,
+    feedMoodDaily: SK.feedMood,
+    feedAudioPos: SK.feedAudioPos,
+    feedBgSeen: SK.feedBgSeen,
+    feedPending: SK.feedPending,
+    pb_token: SK.token,
+    pb_user: SK.user,
+    pending_otp_id: SK.otpId,
+    pending_email: SK.otpEmail,
+    pending_otp_expires_at: SK.otpExpiresAt,
+    pending_otp_requested_at: SK.otpRequestedAt,
+    installId: SK.installId,
+    installedAt: SK.installedAt,
+    licenseKey: SK.licenseKey,
+    devices: SK.devices,
+    activeDeviceIds: SK.activeDevices,
+    localSendIp: SK.localSendIp,
+    podcasts: SK.podcasts,
+    lastPodcastName: SK.podcastName,
+    podcastLength: SK.podcastLength,
+    podcastStyle: SK.podcastStyle,
+    podcastCustomStyle: SK.podcastCustomStyle,
+    summaryMode: SK.summaryMode,
+    summaryLength: SK.summaryLength,
+    activityView: SK.activityView,
+    ws_layout: SK.workspace,
+    reviewPrompt: SK.reviewPrompt,
+    servicesConfig: SK.servicesConfig,
+    devicesMigrated: SK.devicesMigrated,
+    migrationVersion: SK.migrationVersion
+};
+/** old per-article prefix */
+const ARTICLE_REC_LEGACY = 'article:';
+/** keys that no longer exist anywhere; removed by the migration */
+const SK_DEAD = ['ghostHighlights', 'articleHistory'];
+
+/** Every local key the app may hold (static ones; article records are a prefix). */
+const LOCAL_KEY_LIST = Object.values(SK);
+
+/** Translate one key from the old naming to the new one (identity if already new). */
+function renameKey(k) {
+    if (Object.prototype.hasOwnProperty.call(SK_LEGACY, k)) return SK_LEGACY[k];
+    if (typeof k === 'string' && k.startsWith(ARTICLE_REC_LEGACY)) return ARTICLE_REC + k.slice(ARTICLE_REC_LEGACY.length);
+    return k;
+}
+/** Translate a whole object (backup import). New names win over old ones. */
+function renameKeys(obj) {
+    const out = {};
+    for (const k of Object.keys(obj || {})) { const n = renameKey(k); if (n === k || !(n in obj)) out[n] = obj[k]; }
+    return out;
+}
+
+/**
+ * One-time (idempotent) move of user data to the new key names in one storage area.
+ * Order: write new → verify → remove old, so an interrupted run loses nothing and
+ * can simply run again. `articles` (legacy v1 blob) is NOT touched here — the
+ * articles migration in StorageManager merges it. Resolves to the number of keys moved.
+ */
+function migrateStorageKeys(area) {
+    return new Promise((resolve) => {
+        try {
+            // Fast path: after the first run this costs one tiny read, not a get(null) of all data.
+            area.get([SK.keysSchema], (flag) => {
+                if (flag && flag[SK.keysSchema] >= KEYS_SCHEMA) return resolve(0);
+                area.get(null, (all) => {
+                    all = all || {};
+                    const writes = {}; const olds = [];
+                    for (const k of Object.keys(all)) {
+                        const n = renameKey(k);
+                        if (n === k) continue;
+                        olds.push(k);
+                        if (!(n in all)) writes[n] = all[k];
+                    }
+                    const dead = SK_DEAD.filter(k => k in all);
+                    const done = () => area.set({ [SK.keysSchema]: KEYS_SCHEMA }, () => resolve(olds.length));
+                    const finish = () => (olds.length || dead.length) ? area.remove([...olds, ...dead], done) : done();
+                    const names = Object.keys(writes);
+                    if (!names.length) return finish();
+                    // chunk: one set() of many MB is slow and can hit per-call limits
+                    let i = 0;
+                    const next = () => {
+                        if (i >= names.length) return finish();
+                        const chunk = {}; for (const n of names.slice(i, i + 25)) chunk[n] = writes[n]; i += 25;
+                        area.set(chunk, next);
+                    };
+                    next();
+                });
+            });
+        } catch (_) { resolve(0); }
+    });
+}
+/* eslint-enable no-unused-vars */
+// storage-keys:end
+
+// Move local keys to the registry names before any handler reads storage. The popup runs the
+// same migration; it is idempotent, so whichever runs first wins and the other is a no-op.
+const keysReady = migrateStorageKeys(chrome.storage.local);
+const localGet = async (...a) => { await keysReady; return chrome.storage.local.get(...a); };
+
 // Convert an ArrayBuffer to a base64 string in chunks — avoids blowing the
 // call stack on large images (String.fromCharCode.apply on a huge array
 // throws "Maximum call stack size exceeded").
@@ -28,7 +196,7 @@ function arrayBufferToBase64(buffer) {
 const GOODBYE_URL = 'https://ai-summary-helper.byphil.eu/goodbye.html';
 async function refreshUninstallUrl() {
     try {
-        const { installedAt } = await chrome.storage.local.get('installedAt');
+        const { [SK.installedAt]: installedAt } = await localGet(SK.installedAt);
         const days = installedAt ? Math.max(0, Math.floor((Date.now() - installedAt) / 86400e3)) : '';
         chrome.runtime.setUninstallURL(`${GOODBYE_URL}?v=${encodeURIComponent(chrome.runtime.getManifest().version)}&d=${days}`);
     } catch (e) { /* not supported on this platform */ }
@@ -37,7 +205,7 @@ refreshUninstallUrl();
 chrome.runtime.onInstalled.addListener(async () => {
     try {
         const { installedAt } = await chrome.storage.local.get('installedAt');
-        if (!installedAt) await chrome.storage.local.set({ installedAt: Date.now() });
+        if (!installedAt) await chrome.storage.local.set({ [SK.installedAt]: Date.now() });
     } catch (e) { /* ignore */ }
     refreshUninstallUrl();
 });
@@ -79,17 +247,17 @@ function decisionAlarmDelayMinutes(timeframe) {
     }
 }
 
-// The articlesIndex/article:<id> migration only runs from popup.js's
+// The articles:index / articles:rec:<id> migration only runs from popup.js's
 // StorageManager.initialize() on popup open — this service worker can't run
 // it itself (classic, non-module worker; storageManager.js's ES `import`
 // syntax isn't usable via importScripts). An alarm can fire before the user
 // ever reopens the popup after an update, while storage is still in the old
 // shape, so fall back to the legacy 'articles' array in that narrow window.
 async function findDecisionArticle(timestamp) {
-    const { articlesIndex = [] } = await chrome.storage.local.get({ articlesIndex: [] });
+    const { [SK.articlesIndex]: articlesIndex = [] } = await localGet({ [SK.articlesIndex]: [] });
     let article = articlesIndex.find(a => a.timestamp === timestamp && a.isDecision);
     if (article) return article;
-    const { articles = [] } = await chrome.storage.local.get({ articles: [] });
+    const { articles = [] } = await localGet({ articles: [] });
     return articles.find(a => a.timestamp === timestamp && a.isDecision) || null;
 }
 
@@ -102,7 +270,7 @@ const FEED_ALARM = 'feedPoll';
 
 async function applyFeedPollConfig() {
     if (!chrome.alarms) return;
-    const { feedSettings } = await chrome.storage.local.get('feedSettings');
+    const { [SK.feedSettings]: feedSettings } = await localGet(SK.feedSettings);
     await chrome.alarms.clear(FEED_ALARM);
     if (feedSettings && feedSettings.backgroundPoll) {
         chrome.alarms.create(FEED_ALARM, { delayInMinutes: 1, periodInMinutes: Math.max(15, feedSettings.refreshMinutes || 30) });
@@ -112,7 +280,7 @@ async function applyFeedPollConfig() {
 }
 
 async function clearFeedBadge() {
-    await chrome.storage.local.set({ feedPending: 0 });
+    await chrome.storage.local.set({ [SK.feedPending]: 0 });
     try { await chrome.action.setBadgeText({ text: '' }); } catch (_) {}
 }
 
@@ -141,7 +309,8 @@ function extractFeedLinks(xml) {
 
 async function pollFeeds() {
     try {
-        const d = await chrome.storage.local.get({ feedSubs: [], feedItems: [], feedBgSeen: {}, feedPending: 0, feedSettings: {} });
+        const raw = await localGet({ [SK.feedSubs]: [], [SK.feedItems]: [], [SK.feedBgSeen]: {}, [SK.feedPending]: 0, [SK.feedSettings]: {} });
+        const d = { feedSubs: raw[SK.feedSubs], feedItems: raw[SK.feedItems], feedBgSeen: raw[SK.feedBgSeen], feedPending: raw[SK.feedPending], feedSettings: raw[SK.feedSettings] };
         if (!d.feedSettings.backgroundPoll) return;
         const known = new Set(d.feedItems.map(i => i.link));
         const seen = d.feedBgSeen || {};
@@ -164,7 +333,7 @@ async function pollFeeds() {
             } catch (_) { /* skip this feed this round */ }
         }
         const pending = (d.feedPending || 0) + fresh;
-        await chrome.storage.local.set({ feedBgSeen: seen, feedPending: pending });
+        await chrome.storage.local.set({ [SK.feedBgSeen]: seen, [SK.feedPending]: pending });
         if (pending > 0) {
             await chrome.action.setBadgeBackgroundColor({ color: '#2563eb' });
             await chrome.action.setBadgeText({ text: pending > 99 ? '99+' : String(pending) });
@@ -214,10 +383,10 @@ function parseAiResponseText(raw) {
 
 async function aiComplete({ system, user }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
-    const local = await chrome.storage.local.get(['servicesConfig', 'licenseKey', 'pb_token', 'installId']).catch(() => ({}));
+    const local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
     const connectionMode = sync.connectionMode || 'cloud';
     let service = sync.activeService || 'openai';
-    const cfg = (local.servicesConfig || {})[service] || {};
+    const cfg = (local[SK.servicesConfig] || {})[service] || {};
     const modelId = (m) => (!m ? '' : typeof m === 'string' ? m : (m.id || ''));
 
     let url = cfg.endpointUrl || cfg.endpoint;
@@ -229,7 +398,7 @@ async function aiComplete({ system, user }) {
         service = 'cloud';
         url = `${AISH_API_BASE}/v1/projects/ai_summary_helper/chat`;
         model = sync.preferredCloudModel || 'google/gemini-2.5-flash';
-        apiKey = local.pb_token || local.licenseKey || '';
+        apiKey = local[SK.token] || local[SK.licenseKey] || '';
         keyOptional = true;
     } else {
         url = cfg.endpointUrl || url;
@@ -257,7 +426,7 @@ async function aiComplete({ system, user }) {
         body = JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${system}\n\n${user}` }] }] });
     } else {
         if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
-        if (local.installId) headers['X-Install-ID'] = local.installId;
+        if (local[SK.installId]) headers['X-Install-ID'] = local[SK.installId];
         body = JSON.stringify({ model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }], stream: false });
     }
 
@@ -428,9 +597,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             let mode = 'extension';
             let summaryLength = 200;
             if (msg.summarize) {
-                const d = await chrome.storage.local.get(['summaryMode', 'summaryLength']).catch(() => ({}));
-                mode = (d.summaryMode === 'inline' && !msg.forceExtension) ? 'inline' : 'extension';
-                summaryLength = d.summaryLength || 200;
+                const d = await localGet([SK.summaryMode, SK.summaryLength]).catch(() => ({}));
+                mode = (d[SK.summaryMode] === 'inline' && !msg.forceExtension) ? 'inline' : 'extension';
+                summaryLength = d[SK.summaryLength] || 200;
             }
             const background = !!msg.summarize && mode === 'extension';
             const normKey = (u) => {

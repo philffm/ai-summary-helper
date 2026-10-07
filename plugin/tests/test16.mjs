@@ -8,11 +8,11 @@ const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelect
 const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
 const mk = (id, dayTs) => ({ id, feedId: 's1', title: 'Title' + id, link: 'https://x/' + id, published: at(dayTs), snippet: 'snip', read: false });
 const tue = addD(mon, 1), wed = addD(mon, 2);
-store.feedSubs = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: Date.now() }];
-store.feedItems = [mk('m1', mon), mk('t1', tue), mk('w1', wed), mk('w2', wed)];
-store.feedUi = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'week', anchor: tue };
+store['feeds:subs'] = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: Date.now() }];
+store['feeds:items'] = [mk('m1', mon), mk('t1', tue), mk('w1', wed), mk('w2', wed)];
+store['feeds:ui'] = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'week', anchor: tue };
 const rc = (o) => ({ overview: o, themes: ['theme ' + o], mood: 'pos', at: Date.now(), n: 1, covered: {} });
-store.feedRecaps = { [`${mon}|all`]: rc('MondayRecap'), [`${tue}|all`]: rc('TuesdayRecap') };
+store['feeds:recaps'] = { [`${mon}|all`]: rc('MondayRecap'), [`${tue}|all`]: rc('TuesdayRecap') };
 const calls = [];
 globalThis.__ai = (m) => { calls.push(m); return { ok: true, text: /merge brief/.test(m.system) ? 'Week overview.\n- big theme\nMOOD: mixed' : 'Day overview WedRecap.\n- t\nMOOD: positive\nLABELS: 1:Tech | 2:Tech\nSCORES: 1:0.5 | 2:0.1' }; };
 const fm = await imp('modules/feedManager.js'); const ui = { showToast() {}, showScreen() {} };
@@ -34,7 +34,7 @@ const roll = calls[1];
 assert.ok(/merge brief/.test(roll.system));
 assert.ok(/MondayRecap/.test(roll.user) && /TuesdayRecap/.test(roll.user) && /WedRecap/.test(roll.user), 'roll-up reads the three day recaps');
 assert.ok(!/Title/.test(roll.user) && !/snip/.test(roll.user), 'no raw headline in the roll-up request');
-const wk = store.feedRecaps[`w:${mon}|all`]; assert.ok(wk, 'week recap stored'); assert.equal(Object.keys(wk.covered).length, 3);
+const wk = store['feeds:recaps'][`w:${mon}|all`]; assert.ok(wk, 'week recap stored'); assert.equal(Object.keys(wk.covered).length, 3);
 assert.ok(/Week overview/.test($('.feed-rollup').textContent));
 assert.ok($('.feed-rollup .feed-mood-bar') || true, 'mood bar when items are rated');
 // refresh without change: no AI
@@ -42,7 +42,7 @@ const before = calls.length;
 click($$('.feed-rollup .feed-recap-actions button')[0]); await tick(60);
 assert.equal(calls.length, before, 'nothing changed -> no request');
 // a day recap changes -> stale, refresh sends only that day + previous roll-up
-store.feedRecaps[`${mon}|all`] = rc('MondayEDITED');
+store['feeds:recaps'][`${mon}|all`] = rc('MondayEDITED');
 const fm2 = await imp('modules/feedManager.js'); // fresh instance reads storage
 // simpler: new window state is shared; reuse first instance by reloading its data
 await fm2.onFeedsScreenShown(ui); await tick(50);

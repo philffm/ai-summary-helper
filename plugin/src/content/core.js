@@ -1,3 +1,4 @@
+import { SK, articleRecKey } from '../modules/storageKeys.js';
 import { debug } from '../modules/log.js';
 // content/core.js
 // Core helpers for the content script: tag generation, ghost-quote parsing,
@@ -8,9 +9,9 @@ import { debug } from '../modules/log.js';
  */
 export function getTopUserTags(limit = 10) {
   return new Promise((resolve) => {
-    chrome.storage.local.get({ articlesIndex: [] }, (data) => {
+    chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
       const tagCounts = {};
-      const articles = data.articlesIndex || [];
+      const articles = data[SK.articlesIndex] || [];
       articles.forEach(art => {
         if (Array.isArray(art.tags)) {
           art.tags.forEach(t => {
@@ -65,10 +66,10 @@ export function saveToLocalStorage(content, summary, url, title, description, ta
     if (extra && typeof extra === 'object') Object.assign(indexEntry, extra);
     const record = { content, summary, description };
 
-    chrome.storage.local.get({ articlesIndex: [] }, (data) => {
-      const articlesIndex = data.articlesIndex || [];
+    chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
+      const articlesIndex = data[SK.articlesIndex] || [];
       articlesIndex.push(indexEntry);
-      chrome.storage.local.set({ articlesIndex, [`article:${id}`]: record }, () => {
+      chrome.storage.local.set({ [SK.articlesIndex]: articlesIndex, [articleRecKey(id)]: record }, () => {
         const articleData = { ...indexEntry, ...record };
         debug('Article saved to local storage');
         resolve(articleData);

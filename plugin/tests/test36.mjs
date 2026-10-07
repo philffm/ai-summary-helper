@@ -20,14 +20,14 @@ async function ui(store0, ua) {
 }
 const CH = 'Mozilla/5.0 Chrome/120.0 Safari/537.36';
 const idx = n => Array.from({ length: n }, (_, i) => ({ id: 'a' + i, summary: '<p>x</p>' }));
-let r = await ui({ installedAt: Date.now() - 6 * DAY, articlesIndex: idx(4) }, CH); assert(!r.el.hidden, 'shown'); assert.equal(r.store.reviewPrompt.asks, 1);
+let r = await ui({ 'account:installedAt': Date.now() - 6 * DAY, 'articles:index': idx(4) }, CH); assert(!r.el.hidden, 'shown'); assert.equal(r.store['ui:reviewPrompt'].asks, 1);
 r.el.querySelector('[data-r=rate]').click(); await tick(30);
-assert(r.tabs[0].url.includes('hldbejcjaedipeegjcinmhejdndchkmb') && r.store.reviewPrompt.done && r.el.hidden);
-r = await ui({ installedAt: Date.now() - 6 * DAY, articlesIndex: idx(4) }, CH); r.el.querySelector('[data-r=later]').click(); await tick(30); assert(r.store.reviewPrompt.snoozeUntil > Date.now());
-r = await ui({ installedAt: Date.now() - 6 * DAY, articlesIndex: idx(4) }, CH); r.el.querySelector('[data-r=never]').click(); await tick(30); assert(r.store.reviewPrompt.dismissed);
-r = await ui({ installedAt: Date.now() - 1 * DAY, articlesIndex: idx(9) }, CH); assert(r.el.hidden, 'too new hidden');
-r = await ui({ installedAt: Date.now() - 9 * DAY, articlesIndex: idx(9) }, 'Mozilla/5.0 Firefox/130.0'); assert(r.el.hidden, 'firefox hidden');
-r = await ui({ articlesIndex: idx(9) }, CH); assert(r.el.hidden && r.store.installedAt, 'first run sets installedAt, not shown');
+assert(r.tabs[0].url.includes('hldbejcjaedipeegjcinmhejdndchkmb') && r.store['ui:reviewPrompt'].done && r.el.hidden);
+r = await ui({ 'account:installedAt': Date.now() - 6 * DAY, 'articles:index': idx(4) }, CH); r.el.querySelector('[data-r=later]').click(); await tick(30); assert(r.store['ui:reviewPrompt'].snoozeUntil > Date.now());
+r = await ui({ 'account:installedAt': Date.now() - 6 * DAY, 'articles:index': idx(4) }, CH); r.el.querySelector('[data-r=never]').click(); await tick(30); assert(r.store['ui:reviewPrompt'].dismissed);
+r = await ui({ 'account:installedAt': Date.now() - 1 * DAY, 'articles:index': idx(9) }, CH); assert(r.el.hidden, 'too new hidden');
+r = await ui({ 'account:installedAt': Date.now() - 9 * DAY, 'articles:index': idx(9) }, 'Mozilla/5.0 Firefox/130.0'); assert(r.el.hidden, 'firefox hidden');
+r = await ui({ 'articles:index': idx(9) }, CH); assert(r.el.hidden && r.store['account:installedAt'], 'first run sets installedAt, not shown');
 // background: installedAt + uninstall URL
 import fs from 'fs';
 const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');

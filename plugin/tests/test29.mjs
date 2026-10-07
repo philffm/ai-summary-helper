@@ -1,19 +1,19 @@
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w, sent } = setup({});
 const now = new Date().toISOString();
-store.articlesIndex = [
+store['articles:index'] = [
  { id: 'a1', url: 'https://x.com/1', title: 'First', timestamp: now, summary: '<p>one</p>', tags: [] },
  { id: 'a2', url: 'https://y.com/2', title: 'Second', timestamp: new Date(Date.now()-1000).toISOString(), summary: '<p>two</p>', tags: [] },
  { id: 'a3', url: 'https://z.com/3', title: 'Stub', timestamp: new Date(Date.now()-2000).toISOString(), summary: '', feedStub: true, tags: [] },
 ];
-store['article:a1']={content:'<p>FULLTEXT-A1</p>'};
-store.devices = [{ id: 'k1', label: 'My Kindle', type: 'kindle', addresses: ['me@kindle.com'] }, { id: 'l1', label: 'Pixel', type: 'localsend', addresses: ['192.168.1.5'] }];
+store['articles:rec:a1']={content:'<p>FULLTEXT-A1</p>'};
+store['send:devices'] = [{ id: 'k1', label: 'My Kindle', type: 'kindle', addresses: ['me@kindle.com'] }, { id: 'l1', label: 'Pixel', type: 'localsend', addresses: ['192.168.1.5'] }];
 const calls = [];
 w.fetch = globalThis.fetch = async (url, o) => { calls.push({ url, body: JSON.parse(o.body) }); return { ok: true, json: async () => ({ success: true }) }; };
 globalThis.MutationObserver = w.MutationObserver; globalThis.IntersectionObserver = globalThis.IntersectionObserver || class { observe(){} disconnect(){} }; globalThis.ResizeObserver = globalThis.ResizeObserver || class { observe(){} disconnect(){} };
 const am = await imp('modules/articleManager.js'); const ui = { showToast() {}, showScreen() {} };
 am.initArticleManager(ui);
-am.renderArticles(store.articlesIndex); await tick(80);
+am.renderArticles(store['articles:index']); await tick(80);
 const d = w.document; const hs = d.getElementById('historyScreen');
 assert(d.getElementById('selectModeBtn'), 'select btn');
 d.getElementById('selectModeBtn').click(); assert(hs.classList.contains('selecting'));

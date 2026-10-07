@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 import { debug } from './log.js';
 // mainScreen.js
 // Handles main screen UI — chat-style summary feed
@@ -193,10 +194,10 @@ export function initMainScreen(ui) {
 
     const evaluateOnboarding = async () => {
         const data = await StorageManager.getAll();
-        const hasArticles = Array.isArray(data.articlesIndex) && data.articlesIndex.length > 0;
-        const isCloudAuthed = !!data.pb_token;
+        const hasArticles = Array.isArray(data[SK.articlesIndex]) && data[SK.articlesIndex].length > 0;
+        const isCloudAuthed = !!data[SK.token];
         const hasCustomApi = data.connectionMode === 'local'
-            && !!data.servicesConfig?.[data.activeService]?.apiKey;
+            && !!data[SK.servicesConfig]?.[data.activeService]?.apiKey;
 
         const showOnboarding = !hasArticles && !isCloudAuthed && !hasCustomApi;
 
@@ -294,7 +295,7 @@ export function initMainScreen(ui) {
         chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt'], async (data) => {
             let promptToUse = data.prompt || '';
 
-            const { summaryMode } = await chrome.storage.local.get('summaryMode');
+            const { [SK.summaryMode]: summaryMode } = await chrome.storage.local.get(SK.summaryMode);
             const mode = summaryMode || 'extension';
 
             fetchSummaryButton.disabled = true;
@@ -354,7 +355,7 @@ export function initMainScreen(ui) {
                     selectedLanguage,
                     prompt: promptToUse,
                     summaryMode: mode,
-                    summaryLength: await chrome.storage.local.get('summaryLength').then(d => d.summaryLength || 200),
+                    summaryLength: await chrome.storage.local.get(SK.summaryLength).then(d => d[SK.summaryLength] || 200),
                     connectionMode,
                     preferredCloudModel,
                 };

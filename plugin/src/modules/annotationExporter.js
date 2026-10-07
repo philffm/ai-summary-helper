@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // annotationExporter.js
 // Builds an HTML "Highlights & Notes" section for a saved article from the
 // on-page annotations the extension captured (user highlights + AI ghost
@@ -114,9 +115,9 @@ export async function fetchAnnotationsForArticle(article) {
     if (!url) return [];
 
     return new Promise((resolve) => {
-        chrome.storage.local.get(['annotations'], (res) => {
+        chrome.storage.local.get([SK.annotations], (res) => {
             if (chrome.runtime.lastError) { resolve([]); return; }
-            const all = Array.isArray(res.annotations) ? res.annotations : [];
+            const all = Array.isArray(res[SK.annotations]) ? res[SK.annotations] : [];
             const key = pageKeyForUrl(url);
             resolve(all.filter(a => a && a.url === key && !a.dismissed));
         });

@@ -6,7 +6,7 @@ const art = `<?xml version="1.0"?><rss version="2.0"><channel><title>Blog</title
 const { store, w } = setup({ 'https://pod.test/feed': pod, 'https://blog.test/feed': art });
 const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelectorAll(s)];
 const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
-store.feedSubs = [{ id: 'p', url: 'https://pod.test/feed', title: 'Pod', tags: [], lastFetched: 0 }, { id: 'b', url: 'https://blog.test/feed', title: 'Blog', tags: [], lastFetched: 0 }];
+store['feeds:subs'] = [{ id: 'p', url: 'https://pod.test/feed', title: 'Pod', tags: [], lastFetched: 0 }, { id: 'b', url: 'https://blog.test/feed', title: 'Blog', tags: [], lastFetched: 0 }];
 const fm = await imp('modules/feedManager.js'); const ui = { showToast() {}, showScreen() {} };
 fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(300);
 const all = $$('.feed-item').length;

@@ -1,3 +1,4 @@
+import { SK } from './modules/storageKeys.js';
 import { initMoodSetting } from './modules/moodSetting.js';
 import UIManager from './modules/uiManager.js';
 import StorageManager from './modules/storageManager.js';
@@ -266,7 +267,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // servicesConfig now lives in LOCAL storage; prefs stay in sync.
         const [syncData, localData] = await Promise.all([
             chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']),
-            chrome.storage.local.get(['servicesConfig'])
+            chrome.storage.local.get([SK.servicesConfig])
         ]);
         const { servicesConfig, activeService, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
         
@@ -327,7 +328,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
             Promise.all([
                 chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']),
-                chrome.storage.local.get(['servicesConfig'])
+                chrome.storage.local.get([SK.servicesConfig])
             ]).then(async ([syncData, localData]) => {
                 const { servicesConfig, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
                 if (connectionMode === 'cloud') {
@@ -548,7 +549,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // Use StorageManager.updateService for a proper read-modify-write
                     // that merges the latest stored state (avoids clobbering races).
                     const current = await StorageManager.getAll();
-                    const entry = (current.servicesConfig || {})[svcId] || {};
+                    const entry = (current[SK.servicesConfig] || {})[svcId] || {};
                     let list = Array.isArray(entry.customModel) ? [...entry.customModel] : [];
                     list = list.map(m => StorageManager.normalizeCustomModel(m, svcId));
                     if (!list.some(m => m.id === val)) {
@@ -604,18 +605,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             modeTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             const mode = tab.dataset.mode;
-            chrome.storage.local.set({ summaryMode: mode });
+            chrome.storage.local.set({ [SK.summaryMode]: mode });
             if (chipModeLabel) chipModeLabel.textContent = mode === 'extension' ? 'Ext' : 'Inl';
         });
     });
 
     // Restore saved mode
-    chrome.storage.local.get(['summaryMode'], data => {
-        if (data.summaryMode) {
+    chrome.storage.local.get([SK.summaryMode], data => {
+        if (data[SK.summaryMode]) {
             modeTabs.forEach(t => {
-                t.classList.toggle('active', t.dataset.mode === data.summaryMode);
+                t.classList.toggle('active', t.dataset.mode === data[SK.summaryMode]);
             });
-            if (chipModeLabel) chipModeLabel.textContent = data.summaryMode === 'extension' ? 'Ext' : 'Inl';
+            if (chipModeLabel) chipModeLabel.textContent = data[SK.summaryMode] === 'extension' ? 'Ext' : 'Inl';
         }
     });
 });

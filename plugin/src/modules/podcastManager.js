@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 /******************************************************************
  * PODCAST MANAGER — CLEAN, REFACTORED, BUG-FREE VERSION
  * Your Podcast Wizard with perfect selection handling
@@ -116,13 +117,13 @@ function renderStep1(container) {
     input.id = "podcastNameInput";
     input.placeholder = "Podcast Name";
 
-    chrome.storage.local.get(["lastPodcastName"], data => {
-        if (data.lastPodcastName) input.value = data.lastPodcastName;
+    chrome.storage.local.get([SK.podcastName], data => {
+        if (data[SK.podcastName]) input.value = data[SK.podcastName];
         podcastWizardState.name = input.value;
     });
 
     input.addEventListener("input", () => {
-        chrome.storage.local.set({ lastPodcastName: input.value });
+        chrome.storage.local.set({ [SK.podcastName]: input.value });
         podcastWizardState.name = input.value;
     });
 
@@ -269,7 +270,7 @@ function renderStep3(container) {
         updateValuePosition();
         // Save length in local storage
         import('./storageManager.js').then(({ default: StorageManager }) => {
-            StorageManager.setLocal({ podcastLength: slider.value });
+            StorageManager.setLocal({ [SK.podcastLength]: slider.value });
         });
     };
 
@@ -279,9 +280,9 @@ function renderStep3(container) {
 
     // Load saved length from local storage
     import('./storageManager.js').then(({ default: StorageManager }) => {
-        StorageManager.getLocal({ podcastLength: "2" }).then(data => {
-            if (data.podcastLength) {
-                slider.value = data.podcastLength;
+        StorageManager.getLocal({ [SK.podcastLength]: "2" }).then(data => {
+            if (data[SK.podcastLength]) {
+                slider.value = data[SK.podcastLength];
                 podcastWizardState.length = slider.value;
                 updateValuePosition();
             } else {
@@ -317,9 +318,9 @@ function renderStep3(container) {
 
     // Load saved style from local storage
     import('./storageManager.js').then(({ default: StorageManager }) => {
-        StorageManager.getLocal({ podcastStyle: "" }).then(data => {
-            if (data.podcastStyle) {
-                podcastWizardState.style = data.podcastStyle;
+        StorageManager.getLocal({ [SK.podcastStyle]: "" }).then(data => {
+            if (data[SK.podcastStyle]) {
+                podcastWizardState.style = data[SK.podcastStyle];
             }
             Array.from(chipsContainer.children).forEach(c => {
                 if (c.textContent === podcastWizardState.style) {
@@ -345,7 +346,7 @@ function renderStep3(container) {
             chip.style.background = "#cce6ff";
             // Save style in local storage
             import('./storageManager.js').then(({ default: StorageManager }) => {
-                StorageManager.setLocal({ podcastStyle: style });
+                StorageManager.setLocal({ [SK.podcastStyle]: style });
             });
         };
         chipsContainer.appendChild(chip);
@@ -364,10 +365,10 @@ function renderStep3(container) {
     customStyleInput.style.marginBottom = "0.5em";
     // Load saved custom style from local storage
     import('./storageManager.js').then(({ default: StorageManager }) => {
-        StorageManager.getLocal({ podcastCustomStyle: "" }).then(data => {
-            if (data.podcastCustomStyle) {
-                customStyleInput.value = data.podcastCustomStyle;
-                podcastWizardState.customStyle = data.podcastCustomStyle;
+        StorageManager.getLocal({ [SK.podcastCustomStyle]: "" }).then(data => {
+            if (data[SK.podcastCustomStyle]) {
+                customStyleInput.value = data[SK.podcastCustomStyle];
+                podcastWizardState.customStyle = data[SK.podcastCustomStyle];
             }
         });
     });
@@ -377,7 +378,7 @@ function renderStep3(container) {
         podcastWizardState.customStyle = customStyleInput.value;
         // Save custom style in local storage
         import('./storageManager.js').then(({ default: StorageManager }) => {
-            StorageManager.setLocal({ podcastCustomStyle: customStyleInput.value });
+            StorageManager.setLocal({ [SK.podcastCustomStyle]: customStyleInput.value });
         });
     };
     container.appendChild(customStyleInput);
@@ -415,8 +416,8 @@ function renderStep4(container) {
 
 function loadArticles() {
     return new Promise(resolve => {
-        chrome.storage.local.get(["articlesIndex"], data => {
-            let articles = Object.values(data.articlesIndex || {});
+        chrome.storage.local.get([SK.articlesIndex], data => {
+            let articles = Object.values(data[SK.articlesIndex] || {});
 
             articles = articles.map(a => ({
                 ...a,
@@ -462,11 +463,11 @@ async function generatePodcast() {
 
     Promise.all([
         chrome.storage.sync.get(["activeService", "selectedLanguage"]),
-        chrome.storage.local.get(["servicesConfig"])
+        chrome.storage.local.get([SK.servicesConfig])
     ]).then(async ([syncData, localData]) => {
         const sdata = { ...syncData, ...localData };
         const activeService = sdata.activeService || "openai";
-        const serviceCfg = sdata.servicesConfig?.[activeService] || {};
+        const serviceCfg = sdata[SK.servicesConfig]?.[activeService] || {};
         const apiKey = serviceCfg.apiKey;
         // Normalize custom model (legacy string or { id, provider } object)
         const rawModel = serviceCfg.customModel || serviceCfg.model || "";
@@ -519,9 +520,9 @@ async function generatePodcast() {
 
 
 function savePodcast(podcast) {
-    chrome.storage.local.get({ podcasts: [] }, data => {
-        data.podcasts.unshift(podcast);
-        chrome.storage.local.set({ podcasts: data.podcasts });
+    chrome.storage.local.get({ [SK.podcasts]: [] }, data => {
+        data[SK.podcasts].unshift(podcast);
+        chrome.storage.local.set({ [SK.podcasts]: data[SK.podcasts] });
     });
 }
 
@@ -533,8 +534,8 @@ function savePodcast(podcast) {
 function renderCreatedPodcasts(container) {
     container.innerHTML = "";
 
-    chrome.storage.local.get({ podcasts: [] }, data => {
-        data.podcasts.forEach((p, index) => {
+    chrome.storage.local.get({ [SK.podcasts]: [] }, data => {
+        data[SK.podcasts].forEach((p, index) => {
             const card = document.createElement("div");
             card.className = "podcast-card";
 
@@ -545,8 +546,8 @@ function renderCreatedPodcasts(container) {
             `;
 
             card.querySelector(".delete-podcast-button").onclick = () => {
-                data.podcasts.splice(index, 1);
-                chrome.storage.local.set({ podcasts: data.podcasts }, () => {
+                data[SK.podcasts].splice(index, 1);
+                chrome.storage.local.set({ [SK.podcasts]: data[SK.podcasts] }, () => {
                     renderCreatedPodcasts(container);
                 });
             };

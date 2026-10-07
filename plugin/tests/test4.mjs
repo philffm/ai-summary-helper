@@ -5,8 +5,8 @@ const { store, w } = setup({});
 const $ = (s) => w.document.querySelector(s), $$ = (s) => [...w.document.querySelectorAll(s)];
 const click = (el) => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
 const mk = (id, t, ageH) => ({ id, feedId: 's1', title: t, link: 'https://x.test/' + id, published: now - ageH * 3600e3, snippet: 'snip ' + id, sent: 0, read: false });
-store.feedSubs = [{ id: 's1', url: 'https://a/feed', title: 'Alpha', lastFetched: now }];
-store.feedItems = [mk('a', 'Good news', 0.01), mk('b', 'Bad news', 0.02), mk('c', 'Meh', 0.03)];
+store['feeds:subs'] = [{ id: 's1', url: 'https://a/feed', title: 'Alpha', lastFetched: now }];
+store['feeds:items'] = [mk('a', 'Good news', 0.01), mk('b', 'Bad news', 0.02), mk('c', 'Meh', 0.03)];
 const calls = [];
 globalThis.__ai = (m) => { calls.push(m); return m.system.includes('"scores"') || m.system.includes('{"scores"')
   ? { ok: true, text: '```json\n{"scores":[0.8,-0.6,0]}\n```' }
@@ -21,24 +21,24 @@ assert.equal(calls.length, 1);
 assert.ok(calls[0].user.includes('[1] Alpha') && calls[0].user.includes('snip'));
 assert.ok($('.feed-recap-overview').textContent.startsWith('Overview'));
 assert.equal($$('.feed-recap-themes li').length, 2);
-assert.ok(Object.keys(store.feedRecaps).length === 1, 'cached');
-assert.deepEqual(store.feedItems.map(i => i.cat), ['Tech', 'Politics', 'World News'], 'labels applied');
-assert.ok(!('labels' in Object.values(store.feedRecaps)[0]), 'labels not duplicated in cache');
+assert.ok(Object.keys(store['feeds:recaps']).length === 1, 'cached');
+assert.deepEqual(store['feeds:items'].map(i => i.cat), ['Tech', 'Politics', 'World News'], 'labels applied');
+assert.ok(!('labels' in Object.values(store['feeds:recaps'])[0]), 'labels not duplicated in cache');
 assert.ok($$('.feed-cat').length === 3, 'chips');
 // reopen uses cache
 click($('#feedSheetBody .feed-sheet-done')); click($('.feed-day-ai')); await tick(50);
 assert.equal(calls.length, 1, 'cache hit');
 // new item -> stale hint
-store.feedItems.push(mk('d', 'New', 0.001));
+store['feeds:items'].push(mk('d', 'New', 0.001));
 await fm.onFeedsScreenShown(uiStub); await tick(50);
 click($('#feedSheetBody .feed-sheet-done')); click($('.feed-day-ai')); await tick(50);
 assert.ok($('.feed-recap-stale'), 'stale hint');
 // score with AI from recap sheet
 click($$('#feedSheetBody .feed-manage-link').find(b => b.textContent.includes('Score'))); await tick(80);
-const scored = store.feedItems.filter(i => i.ai);
+const scored = store['feeds:items'].filter(i => i.ai);
 console.log('scored', scored.map(i => [i.id, i.sent]), toasts.slice(-2));
 assert.ok(scored.length >= 3);
-assert.equal(store.feedItems.find(i => i.id === 'd').sent, 0.8);
+assert.equal(store['feeds:items'].find(i => i.id === 'd').sent, 0.8);
 await tick(30);
 const tinted = $$('.feed-item.has-mood'); assert.equal(tinted.length, 2, 'tint on non-neutral');
 console.log('tint', tinted.map(t => t.style.getPropertyValue('--mood-tint')));

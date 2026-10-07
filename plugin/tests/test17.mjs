@@ -8,12 +8,12 @@ const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelect
 const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
 const mk = (id, d) => ({ id, feedId: 's1', title: 'Title' + id, link: 'https://x/' + id, published: d + 10 * 3600e3, snippet: 'snip', read: false });
 const { recapSig } = await import(process.env.AISH_SRC + '/modules/feedAi.js');
-store.feedSubs = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: Date.now() }];
-store.feedItems = [mk('m1', mon), mk('t1', tue), mk('w1', wed)];
-store.feedUi = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'week', anchor: tue };
+store['feeds:subs'] = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: Date.now() }];
+store['feeds:items'] = [mk('m1', mon), mk('t1', tue), mk('w1', wed)];
+store['feeds:ui'] = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', scope: 'week', anchor: tue };
 const rc = (o) => ({ overview: o, themes: ['t'], mood: 'pos', at: Date.now(), n: 1, covered: {} });
 const orig = { m: rc('MondayRecap'), t: rc('TuesdayRecap'), w: rc('WedRecap') };
-store.feedRecaps = {
+store['feeds:recaps'] = {
   [`${mon}|all`]: rc('MondayEDITED'), [`${tue}|all`]: orig.t, [`${wed}|all`]: orig.w,
   [`w:${mon}|all`]: { overview: 'Old week text', themes: ['old'], mood: 'neu', at: Date.now(), n: 3, covered: { ['d:' + mon]: recapSig(orig.m), ['d:' + tue]: recapSig(orig.t), ['d:' + wed]: recapSig(orig.w) } }
 };
@@ -34,5 +34,5 @@ assert.ok(!/TuesdayRecap|WedRecap/.test(u), 'unchanged day recaps NOT sent again
 assert.ok(!/Title|snip/.test(u));
 assert.ok(/New week text/.test($('.feed-rollup').textContent));
 assert.ok(!$('.feed-recap-stale'), 'no longer stale');
-assert.equal(store.feedRecaps[`w:${mon}|all`].covered['d:' + mon], recapSig(store.feedRecaps[`${mon}|all`]));
+assert.equal(store['feeds:recaps'][`w:${mon}|all`].covered['d:' + mon], recapSig(store['feeds:recaps'][`${mon}|all`]));
 console.log('TEST 17 OK');

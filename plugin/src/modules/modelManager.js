@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // Model Manager modelManager.js
 // Handles service/model config and label logic
 
@@ -7,7 +8,7 @@ import StorageManager from './storageManager.js';
     async function updateModelIdentifierUI(serviceId, services, storageData) {
         const modelIdentifierContainer = document.getElementById('modelIdentifierContainer');
         const service = services.find(s => s.id === serviceId);
-        const cfg = storageData.servicesConfig?.[serviceId] || {};
+        const cfg = storageData[SK.servicesConfig]?.[serviceId] || {};
         const defaultModel = service?.defaultModel || '';
         // Normalize custom models to provider-bound objects ({ id, provider })
         const rawModels = Array.isArray(cfg.customModel) ? cfg.customModel : (cfg.customModel ? [cfg.customModel] : []);
@@ -44,7 +45,7 @@ import StorageManager from './storageManager.js';
                     const tag = el.closest('.model-id-tag');
                     const model = tag.dataset.model;
                     StorageManager.get(null).then(storageData => {
-                        const servicesConfig = storageData.servicesConfig || {};
+                        const servicesConfig = storageData[SK.servicesConfig] || {};
                         let list = Array.isArray(servicesConfig[serviceId]?.customModel)
                           ? [...servicesConfig[serviceId].customModel]
                           : [];
@@ -54,7 +55,7 @@ import StorageManager from './storageManager.js';
                             return id !== model;
                         });
                         StorageManager.updateService(serviceId, { customModel: list }).then(() => {
-                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...servicesConfig[serviceId], customModel: list } } });
+                            updateModelIdentifierUI(serviceId, services, { ...storageData, [SK.servicesConfig]: { ...servicesConfig, [serviceId]: { ...servicesConfig[serviceId], customModel: list } } });
                         });
                     });
                 });
@@ -68,7 +69,7 @@ import StorageManager from './storageManager.js';
                     const val = addInput.value.trim();
                     if (!val) return;
                     StorageManager.get(null).then(storageData => {
-                        const servicesConfig = storageData.servicesConfig || {};
+                        const servicesConfig = storageData[SK.servicesConfig] || {};
                         const entry = servicesConfig[serviceId] || {};
                         let list = Array.isArray(entry.customModel) ? [...entry.customModel] : (entry.customModel ? [entry.customModel] : []);
                         // Normalize existing entries and check for duplicates by id
@@ -80,7 +81,7 @@ import StorageManager from './storageManager.js';
                         // immediately selected and retrievable.
                         StorageManager.updateService(serviceId, { customModel: normalized, activeModelId: { id: val, provider: serviceId } }).then(() => {
                             addInput.value = '';
-                            updateModelIdentifierUI(serviceId, services, { ...storageData, servicesConfig: { ...servicesConfig, [serviceId]: { ...entry, customModel: normalized, activeModelId: { id: val, provider: serviceId } } } });
+                            updateModelIdentifierUI(serviceId, services, { ...storageData, [SK.servicesConfig]: { ...servicesConfig, [serviceId]: { ...entry, customModel: normalized, activeModelId: { id: val, provider: serviceId } } } });
                         });
                     });
                 };

@@ -1,3 +1,4 @@
+import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, migrateStorageKeys } from './storageKeys.js';
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
 // storageManager.js
@@ -31,39 +32,14 @@ class StorageManager {
     // 🔥 Keys that MUST live in local storage (heavy data, device-specific
     // session state, or sensitive credentials that should never sync to cloud).
     static LOCAL_KEYS = [
-        'articles',
-        'articlesIndex',
-        'articlesSchemaVersion',
-        'annotations',
-        'ghostHighlights',
-        'articleHistory',
-        'summaryMode',
-        'summaryLength',
-        'installId',
-        'pb_token',
-        'pb_user',
-        'pending_otp_id',
-        'pending_email',
-        'pending_otp_expires_at',
-        'pending_otp_requested_at',
-        // Sensitive / network-local data — never send to Google's sync cloud.
-        'servicesConfig',   // contains API keys, model endpoints
-        'licenseKey',
-        'localSendIp',
-        // Unified send-target list (LocalSend receivers, Kindle emails, …).
-        // Kept local rather than sync: LocalSend addresses are LAN-specific
-        // and meaningless on another network, and since both device types
-        // now share one list it's simpler to keep the whole list local than
-        // to split it.
-        'devices',
-        'activeDeviceIds',
-        'devicesMigrated'
+        ...LOCAL_KEY_LIST,          // registry (modules/storageKeys.js) — the source of truth
+        ...Object.keys(SK_LEGACY),  // pre-registry names: still purged from sync if an old build left copies there
+        'articles', ...SK_DEAD
     ];
 
     static isLocalKey(key) {
-        // Per-article records (see migrateArticlesToIndexedRecords) are dynamic
-        // keys, not in the static list.
-        return this.LOCAL_KEYS.includes(key) || key.startsWith('article:');
+        // Per-article records are dynamic keys (articles:rec:<id>, formerly article:<id>).
+        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
     }
 
     // ─────────────────────────────────────────────
@@ -243,7 +219,7 @@ class StorageManager {
                 } : {})
             });
 
-            records[`article:${id}`] = {
+            records[articleRecKey(id)] = {
                 content: article.content || '',
                 summary: article.summary || '',
                 description: article.description || ''
@@ -264,7 +240,7 @@ class StorageManager {
     static async migrateArticlesToIndexedRecords() {
         // Cheap checks first: a tiny flag and the byte size of the old key — never
         // read the (potentially 40MB+) blob just to find out there is none.
-        const { articlesSchemaVersion } = await this.getLocal(['articlesSchemaVersion']);
+        const { [SK.articlesSchema]: articlesSchemaVersion } = await this.getLocal([SK.articlesSchema]);
         const migrated = articlesSchemaVersion === this.ARTICLES_SCHEMA_VERSION;
         // The flag alone is not enough: an older build (branch switch, old unpacked
         // copy, stale restore) can write the legacy 'articles' array again while the
@@ -274,7 +250,7 @@ class StorageManager {
         const { articles } = await this.getLocal({ articles: [] });
         if (!articles || !articles.length) {
             // New install, or already empty — nothing to migrate, just mark done.
-            await this.setLocal({ articlesSchemaVersion: this.ARTICLES_SCHEMA_VERSION });
+            await this.setLocal({ [SK.articlesSchema]: this.ARTICLES_SCHEMA_VERSION });
             if (migrated) await new Promise(resolve => chrome.storage.local.remove('articles', resolve));
             return;
         }
@@ -282,7 +258,7 @@ class StorageManager {
         debug(`⏳ Migrating ${articles.length} legacy articles to indexed storage...`);
 
         // Merge, don't overwrite: skip legacy entries that already exist in the index.
-        const { articlesIndex: existing = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: existing = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         const keyOf = (a) => `${a.timestamp || ''}|${a.url || ''}`;
         const have = new Set(existing.map(keyOf));
         const fresh = articles.filter(a => !have.has(keyOf(a)));
@@ -300,8 +276,8 @@ class StorageManager {
         }
 
         await this.setLocal({
-            articlesIndex: [...existing, ...index],
-            articlesSchemaVersion: this.ARTICLES_SCHEMA_VERSION
+            [SK.articlesIndex]: [...existing, ...index],
+            [SK.articlesSchema]: this.ARTICLES_SCHEMA_VERSION
         });
 
         // Only remove the old blob once the new shape is confirmed written —
@@ -325,20 +301,20 @@ class StorageManager {
     // ─────────────────────────────────────────────
 
     static async getArticlesIndex({ includeArchived = false } = {}) {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         return includeArchived ? articlesIndex : articlesIndex.filter(a => !a.archived);
     }
 
     static async getArchivedArticles() {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         return articlesIndex.filter(a => a.archived);
     }
 
     static async getArticleFull(id) {
-        const key = `article:${id}`;
+        const key = articleRecKey(id);
         const [recordData, { articlesIndex = [] }] = await Promise.all([
             this.getLocal([key]),
-            this.getLocal({ articlesIndex: [] })
+            this.getLocal({ [SK.articlesIndex]: [] })
         ]);
         const meta = articlesIndex.find(a => a.id === id) || {};
         return { ...meta, ...(recordData[key] || {}) };
@@ -348,7 +324,7 @@ class StorageManager {
         const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
         const timestamp = new Date().toISOString();
 
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         articlesIndex.push({
             id, title: title || 'Untitled', url, timestamp, tags, modelId, connectionMode, summaryLength,
             summary: summary || '',
@@ -359,8 +335,8 @@ class StorageManager {
         });
 
         await this.setLocal({
-            articlesIndex,
-            [`article:${id}`]: { content, summary, description }
+            [SK.articlesIndex]: articlesIndex,
+            [articleRecKey(id)]: { content, summary, description }
         });
 
         return { id, timestamp };
@@ -368,36 +344,36 @@ class StorageManager {
 
     // Mood scores (-1..1) for History articles; an existing score is never overwritten.
     static async setArticleMoods(map) {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         let changed = false;
         articlesIndex.forEach(e => { if (map[e.id] != null && typeof e.moodScore !== 'number') { e.moodScore = map[e.id]; changed = true; } });
-        if (changed) await this.setLocal({ articlesIndex });
+        if (changed) await this.setLocal({ [SK.articlesIndex]: articlesIndex });
         return changed;
     }
 
     static async deleteArticle(id) {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
-        await this.setLocal({ articlesIndex: articlesIndex.filter(a => a.id !== id) });
-        await new Promise(resolve => chrome.storage.local.remove(`article:${id}`, resolve));
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => a.id !== id) });
+        await new Promise(resolve => chrome.storage.local.remove(articleRecKey(id), resolve));
     }
 
     // Deletes every article record, not just the index — a plain
-    // setLocal({ articlesIndex: [] }) would leave every article:<id> record
+    // setLocal({ [SK.articlesIndex]: [] }) would leave every articles:rec:<id> record
     // orphaned in storage forever.
     static async clearAllArticles() {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
-        const recordKeys = articlesIndex.map(a => `article:${a.id}`);
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        const recordKeys = articlesIndex.map(a => articleRecKey(a.id));
         if (recordKeys.length) await new Promise(resolve => chrome.storage.local.remove(recordKeys, resolve));
-        await this.setLocal({ articlesIndex: [] });
+        await this.setLocal({ [SK.articlesIndex]: [] });
     }
 
     // Archiving is essentially free with this shape: flip a flag on the small
     // index, touch nothing else.
     static async setArticleArchived(id, archived = true) {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         const entry = articlesIndex.find(a => a.id === id);
         if (entry) entry.archived = archived;
-        await this.setLocal({ articlesIndex });
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex });
     }
 
     // Reading status on the index entries (no content touched):
@@ -408,7 +384,7 @@ class StorageManager {
     static async patchArticleStatus(ids, patch) {
         const set = new Set(ids || []);
         if (!set.size) return false;
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         const now = new Date().toISOString();
         let changed = false;
         articlesIndex.forEach(e => {
@@ -427,18 +403,18 @@ class StorageManager {
                 changed = true;
             }
         });
-        if (changed) await this.setLocal({ articlesIndex });
+        if (changed) await this.setLocal({ [SK.articlesIndex]: articlesIndex });
         return changed;
     }
 
     // Records that an article was opened, for archiveGraph.js's
     // reopen-neglect fade. Index-only — no content read/write needed.
     static async touchArticleOpened(id) {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         const entry = articlesIndex.find(a => a.id === id);
         if (!entry) return null;
         entry.lastOpened = new Date().toISOString();
-        await this.setLocal({ articlesIndex });
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex });
         return entry.lastOpened;
     }
 
@@ -447,11 +423,11 @@ class StorageManager {
      * content record is touched. Returns the new state, or null if not found.
      */
     static async toggleFavorite(id) {
-        const { articlesIndex = [] } = await this.getLocal({ articlesIndex: [] });
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         const entry = articlesIndex.find(a => a.id === id);
         if (!entry) return null;
         entry.favorite = !entry.favorite;
-        await this.setLocal({ articlesIndex });
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex });
         return entry.favorite;
     }
 
@@ -459,12 +435,12 @@ class StorageManager {
      * Get or generate a stable installId for anonymous cloud tracking
      */
     static async getInstallId() {
-        const data = await this.getLocal(['installId']);
-        if (data.installId) return data.installId;
+        const data = await this.getLocal([SK.installId]);
+        if (data[SK.installId]) return data[SK.installId];
         
         const newId = Array.from(crypto.getRandomValues(new Uint8Array(16)))
             .map(b => b.toString(16).padStart(2, '0')).join('');
-        await this.setLocal({ installId: newId });
+        await this.setLocal({ [SK.installId]: newId });
         return newId;
     }
 
@@ -480,27 +456,27 @@ class StorageManager {
      * this an O(1) no-op on every subsequent startup.
      */
     static async migrateDeviceSettings() {
-        const { devicesMigrated } = await this.getLocal(['devicesMigrated']);
+        const { [SK.devicesMigrated]: devicesMigrated } = await this.getLocal([SK.devicesMigrated]);
         if (devicesMigrated) return;
 
         const data = await this.getAll();
-        const devices = Array.isArray(data.devices) ? [...data.devices] : [];
-        const activeDeviceIds = { ...(data.activeDeviceIds || {}) };
+        const devices = Array.isArray(data[SK.devices]) ? [...data[SK.devices]] : [];
+        const activeDeviceIds = { ...(data[SK.activeDevices] || {}) };
 
         if (data.kindleEmail && !devices.some(d => d.type === 'kindle')) {
             const id = `device_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
             devices.push({ id, label: 'Kindle', type: 'kindle', addresses: [`mailto:${data.kindleEmail}`] });
             activeDeviceIds.kindle = id;
         }
-        if (data.localSendIp && !devices.some(d => d.type === 'localsend')) {
-            const raw = String(data.localSendIp).trim();
+        if (data[SK.localSendIp] && !devices.some(d => d.type === 'localsend')) {
+            const raw = String(data[SK.localSendIp]).trim();
             const address = /^https?:\/\//i.test(raw) ? raw : `http://${raw}`;
             const id = `device_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
             devices.push({ id, label: 'LocalSend Device', type: 'localsend', addresses: [address] });
             activeDeviceIds.localsend = id;
         }
 
-        await this.setLocal({ devices, activeDeviceIds, devicesMigrated: true });
+        await this.setLocal({ [SK.devices]: devices, [SK.activeDevices]: activeDeviceIds, [SK.devicesMigrated]: true });
     }
 
     /**
@@ -509,15 +485,15 @@ class StorageManager {
      * the first configured device of that type as a fallback.
      */
     static getActiveDevice(config, type) {
-        const devices = Array.isArray(config.devices) ? config.devices.filter(d => d.type === type) : [];
+        const devices = Array.isArray(config[SK.devices]) ? config[SK.devices].filter(d => d.type === type) : [];
         if (devices.length === 0) return null;
-        const activeId = config.activeDeviceIds?.[type];
+        const activeId = config[SK.activeDevices]?.[type];
         return devices.find(d => d.id === activeId) || devices[0];
     }
 
     static async setActiveDevice(type, deviceId) {
-        const { activeDeviceIds } = await this.getLocal(['activeDeviceIds']);
-        await this.setLocal({ activeDeviceIds: { ...(activeDeviceIds || {}), [type]: deviceId } });
+        const { [SK.activeDevices]: activeDeviceIds } = await this.getLocal([SK.activeDevices]);
+        await this.setLocal({ [SK.activeDevices]: { ...(activeDeviceIds || {}), [type]: deviceId } });
     }
 
     // ─────────────────────────────────────────────
@@ -553,6 +529,11 @@ class StorageManager {
         // split-brain where servicesConfig existed in both storages.
         await this.migrateSensitiveToLocal();
 
+        // Move every local key to its registry name (articlesIndex → articles:index,
+        // article:<id> → articles:rec:<id>, pb_token → account:token, …). Must run
+        // before any other migration reads or writes keys. Idempotent, fast after run 1.
+        await migrateStorageKeys(chrome.storage.local);
+
         // Split the old single 'articles' blob into a small index + per-article
         // records. Cheap no-op after the first run (checked via a dedicated flag,
         // not the blob itself). Every read/write call site (background.js,
@@ -569,7 +550,7 @@ class StorageManager {
         const data = await this.getAll();
 
         // Already migrated?
-        if (data.migrationVersion === this.MIGRATION_VERSION) {
+        if (data[SK.migrationVersion] === this.MIGRATION_VERSION) {
             await this.ensureServicesIntegrity();
             await this.ensurePromptDefaults();
             return;
@@ -621,9 +602,9 @@ class StorageManager {
 
         // Write new structure
         await this.set({
-            servicesConfig,
+            [SK.servicesConfig]: servicesConfig,
             activeService,
-            migrationVersion: this.MIGRATION_VERSION
+            [SK.migrationVersion]: this.MIGRATION_VERSION
         });
 
         // Optional: clean old keys
@@ -641,7 +622,7 @@ class StorageManager {
             this.getServices()
         ]);
 
-        let cfg = data.servicesConfig || {};
+        let cfg = data[SK.servicesConfig] || {};
         let changed = false;
 
         for (const service of services) {
@@ -728,7 +709,7 @@ class StorageManager {
             return {
                 id: 'cloud',
                 connectionMode: 'cloud',
-                apiKey: data.licenseKey || '',
+                apiKey: data[SK.licenseKey] || '',
                 model: data.preferredCloudModel || 'google/gemini-2.5-flash',
                 endpoint: `${this.getApiBase()}/v1/projects/ai_summary_helper/chat`,
                 responseStructure: 'result.choices?.[0]?.message?.content'
@@ -738,7 +719,7 @@ class StorageManager {
         const services = await this.getServices();
 
         const active = data.activeService || 'openai';
-        const cfg = data.servicesConfig?.[active] || {};
+        const cfg = data[SK.servicesConfig]?.[active] || {};
         const serviceMeta = services.find(s => s.id === active);
         const activeModel = await this.getActiveModel(active, cfg);
 
@@ -755,7 +736,7 @@ class StorageManager {
 
     static async updateService(serviceId, updates) {
         const data = await this.getAll();
-        const cfg = data.servicesConfig || {};
+        const cfg = data[SK.servicesConfig] || {};
         cfg[serviceId] = {
             ...(cfg[serviceId] || {}),
             ...updates
@@ -794,7 +775,7 @@ class StorageManager {
         const data = cfg ? { servicesConfig: { [serviceId]: cfg } } : await this.getAll();
         const services = await this.getServices();
         const serviceMeta = services.find(s => s.id === serviceId);
-        const entry = (data.servicesConfig || {})[serviceId] || {};
+        const entry = (data[SK.servicesConfig] || {})[serviceId] || {};
         const defaultModel = serviceMeta?.defaultModel || '';
 
         // activeModelId may be a string (legacy) or { id, provider }

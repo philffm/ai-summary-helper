@@ -1,3 +1,4 @@
+import { SK } from './storageKeys.js';
 // sendSheet.js
 // History multi-select + "Send" sheet: pick several summarized articles and send them to a Kindle or a
 // LocalSend receiver, either as ONE digest (summaries bundled via buildMagazineArticle) or as separate files.
@@ -170,7 +171,7 @@ async function viewChoose() {
     body.append(intro);
     const cfg = await StorageManager.getAll();
     if (!sheet) return;
-    const l = (Array.isArray(cfg.devices) ? cfg.devices : []).filter(d => d.type === 'localsend');
+    const l = (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices] : []).filter(d => d.type === 'localsend');
     const kd = StorageManager.getActiveDevice(cfg, 'kindle');
     body.append(
         row('📚', T('Send to Kindle'), kd ? (kd.label || kd.addresses?.[0] || '') : T('Not set up yet — add your Kindle in Settings'), () => viewKindle()),
@@ -181,8 +182,8 @@ async function viewChoose() {
 async function viewKindle() {
     const cfg = await StorageManager.getAll();
     if (!sheet) return;
-    const devices = (Array.isArray(cfg.devices) ? cfg.devices : []).filter(d => d.type === 'kindle');
-    const isPro = cfg.pb_user?.subscription_status === 'active';
+    const devices = (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices] : []).filter(d => d.type === 'kindle');
+    const isPro = cfg[SK.user]?.subscription_status === 'active';
     const list = selected();
     const body = shell(T('📚 Send to Kindle'), TN(list.length, '{n} summary', '{n} summaries'));
     if (!devices.length) {
@@ -210,7 +211,7 @@ async function viewKindle() {
 async function viewLocalSend() {
     const cfg = await StorageManager.getAll();
     if (!sheet) return;
-    const devices = (Array.isArray(cfg.devices) ? cfg.devices : []).filter(d => d.type === 'localsend');
+    const devices = (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices] : []).filter(d => d.type === 'localsend');
     const body = shell(T('📡 LocalSend'), T('Pick the receiver. Its app has to be open and on the same Wi‑Fi.'));
     if (!devices.length) {
         body.append(el('div', 'sendsheet-note', T('Please set your LocalSend IP in Settings first.')),
