@@ -784,7 +784,7 @@ function renderControls() {
 const SUGGESTED_FEEDS = [
     { name: 'Street Phil-osophy', tags: ['Podcast', 'Design', 'Independent'], note: N_('Podcast by the author · design, life & tech'), url: 'https://philwornath.com/api/podcast.xml', icon: '🎧' },
     { name: 'BBC News', tags: ['News'], note: N_('World news'), url: 'https://feeds.bbci.co.uk/news/rss.xml', icon: '🌍' },
-    { name: 'DW', tags: ['News'], note: N_('Deutsche Welle · international news'), url: 'https://rss.dw.com/rdf/rss-en-all', icon: '📡' },
+    { name: 'DW', tags: ['News'], note: N_('Deutsche Welle · top stories'), url: 'https://rss.dw.com/rdf/rss-en-top', icon: '📡' },
     { name: 'Al Jazeera', tags: ['News'], note: N_('World news'), url: 'https://www.aljazeera.com/xml/rss/all.xml', icon: '🗞️' },
     { name: 'ProPublica', tags: ['Independent', 'News'], note: N_('Independent investigative journalism'), url: 'https://www.propublica.org/feeds/propublica/main', icon: '🔎' },
     { name: '404 Media', tags: ['Independent', 'Tech'], note: N_('Independent tech journalism'), url: 'https://www.404media.co/rss/', icon: '💾' },
