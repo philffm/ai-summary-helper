@@ -1,20 +1,6 @@
 /* AI Summary Helper — shared site JS. Vanilla, no build step. */
 
-/* ── Matomo event tracking (no cookies) ──────────────────────────── */
-(function () {
-  // Safe no-op wrapper: only pushes if Matomo actually loaded. Never
-  // throws, never touches cookies — just fires an event when present.
-  window.aishTrack = function (category, action, name, value) {
-    try {
-      if (window._paq && typeof window._paq.push === 'function') {
-        var args = ['trackEvent', category, action];
-        if (name !== undefined && name !== null) args.push(String(name));
-        if (value !== undefined && value !== null) args.push(Number(value));
-        window._paq.push(args);
-      }
-    } catch (e) { /* analytics must never break the page */ }
-  };
-})();
+/* Analytics loader + window.aishTrack live in analytics.js */
 
 /* ── Theme toggle (light / dark) ─────────────────────────────────── */
 (function () {
@@ -741,19 +727,6 @@ function setBilling(period) {
   });
 })();
 
-/* ── Outbound CTA tracking (Add to Chrome, GitHub, etc.) ─────────── */
-(function () {
-  // Track clicks on the primary install CTA and other key outbound links.
-  // Matomo's enableLinkTracking already covers generic outlinks; this
-  // adds a named event for the most important conversion actions.
-  var SELECTOR = 'a[href*="chromewebstore.google.com"], a[href*="github.com/philffm/ai-summary-helper"]';
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest ? e.target.closest(SELECTOR) : null;
-    if (!a) return;
-    var label = a.href.indexOf('chromewebstore') !== -1 ? 'add_to_chrome' : 'github';
-    window.aishTrack && window.aishTrack('Outbound', 'click', label);
-  });
-})();
 
 
 /* ── Hero switch (Browser | Bookmarklet) + old #bookmarklet deep links ── */
@@ -790,4 +763,87 @@ function setBilling(period) {
   // iOS can't run the extension: start on the bookmarklet there.
   var ua = navigator.userAgent || '';
   if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) select('bookmarklet');
+})();
+
+/* ── Event tracking (Matomo via window.aishTrack; no-op when opted out) ── */
+(function () {
+  var T = function () { if (window.aishTrack) window.aishTrack.apply(null, arguments); };
+  var page = (location.pathname.replace(/\/index\.html$/, '/').split('/').filter(Boolean).pop() || 'home').replace(/\.html$/, '');
+  var htmlLang = document.documentElement.getAttribute('lang') || 'en';
+
+  function sectionOf(node) {
+    var s = node.closest && node.closest('section[id], header, footer, nav, .mobile-menu');
+    if (!s) return page;
+    if (s.id) return s.id;
+    return s.tagName.toLowerCase() === 'header' ? 'hero' : s.tagName.toLowerCase();
+  }
+
+  /* Clicks: CTAs, nav, footer, blog cards (delegated) */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var where = sectionOf(a);
+    if (/chromewebstore\.google\.com/.test(href)) return T('CTA', 'add_to_chrome', where);
+    if (/github\.com\/philffm/.test(href)) return T('Outbound', 'github', where);
+    if (/bookmarklet\.html/.test(href)) return T('CTA', 'open_bookmarklet_page', where);
+    if (/byphil\.eu\/(account|login|pricing|support)|\/account/.test(href)) return T('CTA', 'byphil_account', where);
+    if (/byphil\.eu\/terms/.test(href)) return T('Outbound', 'legal', href.split('#')[1] || 'terms');
+    if (/byphil\.eu|philwornath\.com/.test(href)) return T('Outbound', 'byphil_site', where);
+    if (/ec\.europa\.eu/.test(href)) return T('Outbound', 'eu_odr');
+    if (a.classList.contains('blog-card')) return T('Blog', 'open_post', href.replace(/\.html$/, ''));
+    if (/privacy\.html/.test(href)) return T('Nav', 'privacy', where);
+    if (/^#/.test(href)) return T('Nav', 'anchor', href.slice(1));
+    if (a.closest('nav, .mobile-menu')) return T('Nav', 'click', href.replace(/^.*\//, '') || 'home');
+    if (a.closest('.tier-card')) return T('Pricing', 'tier_cta', (a.closest('.tier-card').querySelector('.tier-name') || {}).textContent);
+    if (a.closest('footer')) return T('Footer', 'click', href.replace(/^.*\//, '') || 'home');
+  }, true);
+
+  /* Mobile menu, pricing toggle, personas, FAQ, language banner */
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target : null; if (!t) return;
+    var b;
+    if ((b = t.closest('#navToggle'))) return T('Nav', 'mobile_menu', b.getAttribute('aria-expanded') === 'true' ? 'close' : 'open');
+    if ((b = t.closest('#btnMonthly'))) return T('Pricing', 'billing_toggle', 'monthly');
+    if ((b = t.closest('#btnYearly'))) return T('Pricing', 'billing_toggle', 'yearly');
+    if ((b = t.closest('.lang-banner-link'))) return T('Language', 'banner_switch', b.textContent);
+    if ((b = t.closest('.lang-banner-close'))) return T('Language', 'banner_dismiss');
+    if ((b = t.closest('[data-analytics-settings]'))) return T('Privacy', 'open_settings');
+  }, true);
+
+  document.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (d && d.tagName === 'DETAILS' && d.open && d.closest('.faq')) {
+      var q = d.querySelector('summary');
+      T('FAQ', 'open', q ? q.textContent.trim().slice(0, 80) : '');
+    }
+  }, true);
+
+  /* Section views (once each) */
+  if ('IntersectionObserver' in window) {
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var id = en.target.id;
+        if (seen[id]) return; seen[id] = 1; io.unobserve(en.target);
+        T('Section', 'view', id);
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
+  }
+
+  /* Scroll depth 25/50/75/100 */
+  var marks = { 25: 0, 50: 0, 75: 0, 100: 0 }, ticking = false;
+  function depth() {
+    ticking = false;
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    if (max < 200) return;
+    var p = Math.round((window.pageYOffset || h.scrollTop) / max * 100);
+    Object.keys(marks).forEach(function (m) { if (!marks[m] && p >= +m - (m == 100 ? 2 : 0)) { marks[m] = 1; T('Scroll', 'depth', page, +m); } });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(depth); } }, { passive: true });
+
+  /* Page meta once: viewing language + page type */
+  T('Page', 'lang', htmlLang);
 })();

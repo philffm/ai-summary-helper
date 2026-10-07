@@ -22,15 +22,13 @@
 </script>
 
 <link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{base}}assets/styles.css">
 
 <meta property="og:title" content="Privacy Policy — AI Summary Helper">
 <meta property="og:description" content="How AI Summary Helper handles your data: your API keys and article history stay on your device.">
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
 <meta property="og:type" content="website">
+<script src="{{base}}assets/analytics.js"></script>
 </head>
 <body>
 
@@ -101,10 +99,20 @@
         <h3>Kindle, AirDrop, and LocalSend</h3>
         <p>When you send an article to Kindle, AirDrop, or a LocalSend-compatible device, the formatted file is sent directly from your browser to the destination you chose. We do not act as an intermediary and do not see or store this content.</p>
 
-        <h2>Analytics</h2>
-        <p>We use Matomo, a privacy-respecting, GDPR-compliant analytics platform, to understand aggregate, anonymous usage patterns so we can improve the extension. Matomo does not track you individually across sites and does not sell data. No page content, API keys, or article data is ever included in analytics events.</p>
-        <p><strong>No cookies.</strong> Our Matomo tracking is configured to run <em>without cookies</em>: the tracker is loaded with cookie support disabled, so it does not set, read, or store any cookie and does not attempt to identify you across visits or devices. Because no cookies are used, this analytics does not require a separate consent banner under the EU ePrivacy Directive and GDPR — it is a legitimate-interest, privacy-friendly measurement of aggregate page views and feature usage on this website only.</p>
-        <p>Analytics events are limited to non-personal, aggregate signals such as page views, the language you're viewing, and which features you interact with (for example, generating a bookmarklet or choosing a provider). You are not personally identifiable from this data, and it is never combined with any of the locally stored article data described above.</p>
+        <h2 id="analytics">Analytics &amp; cookies</h2>
+        <p><strong>Short version:</strong> this website sets <strong>no cookies</strong> and uses no advertising or cross-site trackers. We count anonymous visits with a self-hosted Matomo instance, and you can switch that off at any time.</p>
+        <h3>What we measure</h3>
+        <p>Page views, the page language, referrer, approximate country/browser/device class, and which parts of the site you interact with (for example clicks on "Add to Chrome", the pricing toggle, FAQ items, sections you scroll to, and steps of the bookmarklet generator). Events never contain e-mail addresses, API keys, one-time codes, page content or article data.</p>
+        <h3>How it is configured</h3>
+        <p>Matomo runs on our own server (analytics.philwornath.de, Germany), not at a third party. It is loaded with cookies disabled and without browser-feature fingerprinting; IP addresses are anonymised before storage; no user ID or cross-site identifier is assigned, so visits cannot be linked across days or devices. Data is not sold or shared with third parties.</p>
+        <p>Because nothing is stored on or read from your device for tracking purposes, this measurement is based on our legitimate interest in understanding how the site is used (Art. 6(1)(f) GDPR) and does not require a cookie consent banner under § 25 TDDDG / the ePrivacy Directive. You have the right to object (Art. 21 GDPR) at any time.</p>
+        <h3>Your choices</h3>
+        <p>Analytics is switched off automatically if your browser sends <em>Do Not Track</em> or <em>Global Privacy Control</em>. You can also opt out manually via <a href="#" data-analytics-settings>Analytics settings</a> (also in the footer of every page). <span id="analyticsStatusInline"></span></p>
+        <h3>What is stored in your browser</h3>
+        <p>Only functional preferences, never for tracking: <code>aish_analytics</code> (your opt-out choice), <code>aish_analytics_notice</code> (that you dismissed the info notice), and, if used, the theme choice, the language-suggestion dismissal and the bookmarklet generator settings. These stay on your device and are not sent to us.</p>
+        <h3>Fonts &amp; external resources</h3>
+        <p>Fonts (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) are served from this site itself, so your IP address is not passed to Google or any font provider just by visiting. The only external requests are links you click, and the optional byPhil account / Stripe checkout pages you choose to open.</p>
+
 
         <h2>Permissions We Request, and Why</h2>
         <table>
