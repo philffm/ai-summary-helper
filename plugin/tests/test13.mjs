@@ -41,6 +41,7 @@ assert.ok($('#feedGraph').hidden && !$('#feedItemList').hidden);
 // scroll hide
 const sc = $('#feedsScreen'); const bar = $('#feedControls');
 const scrollTo = async (y) => { Object.defineProperty(sc, 'scrollTop', { value: y, configurable: true }); sc.dispatchEvent(new w.Event('scroll')); };
+await tick(1300);   // feedManager ignores scroll for 1.2 s after the screen is shown (hideSuppressUntil); wait it out so fast runners don't race it
 await scrollTo(200); assert.ok(bar.classList.contains('scroll-hidden'), 'hidden when scrolling down');
 await scrollTo(150); assert.ok(!bar.classList.contains('scroll-hidden'), 'back when scrolling up');
 await scrollTo(400); assert.ok(bar.classList.contains('scroll-hidden')); await scrollTo(0); assert.ok(!bar.classList.contains('scroll-hidden'));

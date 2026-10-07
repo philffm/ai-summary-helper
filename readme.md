@@ -35,7 +35,7 @@
 
 ## What you get
 
-- **Summaries with your model.** byPhil Cloud (no API key), or bring your own key for OpenAI, Gemini, Mistral, DeepSeek, or run Ollama locally.
+- **Summaries with your model.** The byPhil API gives you access to most LLM models with no API key of your own. Or bring your own key for OpenAI, Gemini, Mistral, DeepSeek, or run Ollama locally.
 - **Conversational summaries.** Ask follow-up questions; answers cite the page and jump to the exact passage. Pin the good ones into the summary.
 - **Built-in RSS reader.** Follow sites, filter by source, tag, date or mood, import OPML, get an optional AI recap of the day.
 - **Highlights and ghost highlights.** Mark text yourself or let the AI mark the key passages. Start a summary straight from the on-page highlights panel.
