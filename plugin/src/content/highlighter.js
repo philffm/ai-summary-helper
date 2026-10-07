@@ -733,6 +733,9 @@ export function getUserHighlightTexts() {
 // ── 3. Panel + scrollbar ticks ───────────────────────────────────────────────
 
 let hlPanelTimer = null;
+let hlSummarizeHandler = null;
+/** content.js registers what the panel's “Summarize” does (the highlighter must not import the summary flow). */
+export function setPageSummarizeHandler(fn) { hlSummarizeHandler = fn; }
 function hlRefreshPanel() {
   clearTimeout(hlPanelTimer);
   hlPanelTimer = setTimeout(() => {
@@ -745,6 +748,7 @@ function hlRefreshPanel() {
       return { id: e.ann.id, type: e.ann.type, text: e.ann.text, status: e.status, frac };
     });
     hlpRender(items, {
+      summarize: () => (hlSummarizeHandler ? hlSummarizeHandler() : undefined),
       jump: hlJump, remove: (id) => hlRemove(id, { dismiss: hlLive.get(id)?.ann.type === 'ghost' }),
       keep: hlKeep, reattach: (id) => { hlReattachId = id; }, pending: () => hlReattachId
     });

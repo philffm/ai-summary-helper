@@ -255,6 +255,12 @@ export function waitForSpeedReadingComplete(overlay, callback) {
 
 // ── Hybrid Sidebar (fallback when native sidePanel API is unavailable) ──
 
+/** Open the in-page sidebar if it is not open yet (never closes it). Returns the iframe. */
+export function ensureHybridSidebar() {
+    if (!document.getElementById('ai-summary-hybrid-sidebar')) toggleHybridSidebar();
+    return document.getElementById('ai-summary-hybrid-sidebar');
+}
+
 export function toggleHybridSidebar() {
     const sidebarId = 'ai-summary-hybrid-sidebar';
     let sidebar = document.getElementById(sidebarId);

@@ -19,6 +19,7 @@ import {
   updateStreamingOverlay,
   waitForSpeedReadingComplete,
   toggleHybridSidebar,
+  ensureHybridSidebar,
   showPlaceholder,
   insertSummary,
   selectTargetElement,
@@ -38,7 +39,8 @@ import {
   applyGhostHighlights,
   handleGhostHighlightClick,
   getUserHighlightTexts,
-  revealQuote
+  revealQuote,
+  setPageSummarizeHandler
 } from './content/highlighter.js';
 
 import {
@@ -372,6 +374,27 @@ import {
       return false;
     }
   });
+
+  // Summarize started from the on-page highlights panel: open the side panel,
+  // then run the same flow as the popup's Summarize button (highlights = focus).
+  async function startSummaryFromPage() {
+    if (activeSummaryRequestId || !document.body) return;
+    let opened = false;
+    try { const r = await chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }); opened = !!(r && r.success); } catch (_) {}
+    if (!opened) { try { ensureHybridSidebar(); } catch (_) {} }
+    await new Promise((r) => setTimeout(r, 500));
+    const [sync, local] = await Promise.all([
+      chrome.storage.sync.get(['selectedLanguage', 'prompt', 'debugEnabled']),
+      chrome.storage.local.get(SK.summaryLength)
+    ]);
+    pendingFeedUrl = '';
+    const hiddenTarget = document.createElement('div');
+    hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
+    document.body.appendChild(hiddenTarget);
+    await fetchSummary('', sync.selectedLanguage || 'English', sync.prompt || 'Summarize the following content:',
+      local[SK.summaryLength] || 200, hiddenTarget, sync.debugEnabled || false, 'extension');
+  }
+  setPageSummarizeHandler(startSummaryFromPage);
 
   // ── Summary fetch + streaming ───────────────────────────────────────────────
 
