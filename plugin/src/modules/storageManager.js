@@ -262,21 +262,31 @@ class StorageManager {
      * identity used by older call sites.
      */
     static async migrateArticlesToIndexedRecords() {
-        // Cheap check: a tiny dedicated flag, not the big blob. After the first
-        // run, every subsequent initialize() call resolves this in O(1).
+        // Cheap checks first: a tiny flag and the byte size of the old key — never
+        // read the (potentially 40MB+) blob just to find out there is none.
         const { articlesSchemaVersion } = await this.getLocal(['articlesSchemaVersion']);
-        if (articlesSchemaVersion === this.ARTICLES_SCHEMA_VERSION) return;
+        const migrated = articlesSchemaVersion === this.ARTICLES_SCHEMA_VERSION;
+        // The flag alone is not enough: an older build (branch switch, old unpacked
+        // copy, stale restore) can write the legacy 'articles' array again while the
+        // flag stays at 2, and it would then sit there forever, unmigrated.
+        if (migrated && !(await this.hasLegacyArticles())) return;
 
         const { articles } = await this.getLocal({ articles: [] });
         if (!articles || !articles.length) {
             // New install, or already empty — nothing to migrate, just mark done.
             await this.setLocal({ articlesSchemaVersion: this.ARTICLES_SCHEMA_VERSION });
+            if (migrated) await new Promise(resolve => chrome.storage.local.remove('articles', resolve));
             return;
         }
 
-        debug(`⏳ Migrating ${articles.length} articles to indexed storage...`);
+        debug(`⏳ Migrating ${articles.length} legacy articles to indexed storage...`);
 
-        const { index, records: recordWrites } = this.splitArticlesArray(articles);
+        // Merge, don't overwrite: skip legacy entries that already exist in the index.
+        const { articlesIndex: existing = [] } = await this.getLocal({ articlesIndex: [] });
+        const keyOf = (a) => `${a.timestamp || ''}|${a.url || ''}`;
+        const have = new Set(existing.map(keyOf));
+        const fresh = articles.filter(a => !have.has(keyOf(a)));
+        const { index, records: recordWrites } = this.splitArticlesArray(fresh);
 
         // Write in chunks rather than one giant set() call with hundreds of new
         // keys and all their content at once — spreads the cost, avoids a single
@@ -290,7 +300,7 @@ class StorageManager {
         }
 
         await this.setLocal({
-            articlesIndex: index,
+            articlesIndex: [...existing, ...index],
             articlesSchemaVersion: this.ARTICLES_SCHEMA_VERSION
         });
 
@@ -298,8 +308,17 @@ class StorageManager {
         // never delete data before its replacement is safely persisted.
         await new Promise(resolve => chrome.storage.local.remove('articles', resolve));
 
-        debug(`✅ Migrated ${index.length} articles to indexed storage (old 'articles' blob removed).`);
+        debug(`✅ Migrated ${index.length} articles (${articles.length - fresh.length} already present) to indexed storage; old 'articles' blob removed.`);
     }
+
+    /** True when a legacy 'articles' array exists (size check only, no blob read). */
+    static async hasLegacyArticles() {
+        const local = chrome.storage && chrome.storage.local;
+        if (!local || typeof local.getBytesInUse !== 'function') return false;
+        const bytes = await new Promise(resolve => { try { local.getBytesInUse(['articles'], resolve); } catch (e) { resolve(0); } });
+        return (bytes || 0) > 'articles'.length + 2;   // key + "[]"
+    }
+
 
     // ─────────────────────────────────────────────
     // Articles read/write API (post-migration shape)
