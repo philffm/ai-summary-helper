@@ -1,0 +1,31 @@
+// Fetch state: current-page card + "Continue … conversation" link; resuming restores the stored follow-ups.
+import assert from 'assert';
+import { setup, imp, tick } from './harness.mjs';
+const { w } = setup({}); const d = w.document;
+globalThis.requestAnimationFrame = (f) => setTimeout(f, 0);
+chrome.runtime.getURL = (p) => 'chrome-extension://abc/' + p;
+let tabUrl = 'https://news.example.com/other-story';
+chrome.tabs = { query: async () => [{ id: 7, url: tabUrl, title: 'Other story', favIconUrl: '' }], sendMessage: (id, m, cb) => cb && cb({ success: true }), onActivated: { addListener() {} }, onUpdated: { addListener() {} } };
+const { default: SM } = await imp('modules/storageManager.js');
+const C = await imp('modules/conversation.js');
+const { id } = await SM.saveArticle({ content: '<p>c</p>', summary: '<p>sum</p>', url: 'https://a.com/x', title: 'First article' });
+await SM.saveConversation(id, [C.newTurn([], { q: 'Why?', a: 'Because.' })]);
+const MS = await imp('modules/mainScreen.js');
+MS.initMainScreen({ showScreen() {} });
+await tick(60);
+const card = d.getElementById('pageCard');
+assert(card, 'page card in the fetch state');
+assert(card.textContent.includes('Other story') && card.textContent.includes('news.example.com'), 'page metadata');
+assert(!card.classList.contains('page-card--different'), 'neutral when no conversation is active');
+const link = d.getElementById('composerContinue');
+assert(link && link.textContent.includes('First article') && /1 follow-up/.test(link.textContent), 'continue link: ' + (link && link.textContent));
+link.click(); await tick(60);
+assert.equal(d.querySelector('.controls-bar').dataset.state, 'followup', 'composer morphed to follow-up');
+assert(d.querySelector('#summaryFeed .chat-turn-group')?.textContent.includes('Because.'), 'stored turn restored');
+assert(!d.getElementById('pageCard') && !d.getElementById('composerContinue'), 'extras gone in follow-up');
+assert(!d.getElementById('newSummaryButton').hidden, '＋ New visible');
+// ＋ New returns to fetch with the page card and a link back
+d.getElementById('newSummaryButton').click(); await tick(60);
+assert.equal(d.querySelector('.controls-bar').dataset.state, 'fetch');
+assert(d.getElementById('pageCard') && d.getElementById('composerContinue'), 'extras back after ＋ New');
+console.log('TEST 46 OK');

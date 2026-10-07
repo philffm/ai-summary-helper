@@ -163,7 +163,6 @@ export function initMainScreen(ui) {
     let conversation = null;         // { url, title, content, summary, turns:[{q,a}] }
     let activeTabId = null;
     let liveBubbleArticle = null;     // the article object behind the newest bubble
-    let differentPageNote = false;
     const bar = document.querySelector('.controls-bar');
     const newBtn = document.getElementById('newSummaryButton');
 
@@ -198,6 +197,7 @@ export function initMainScreen(ui) {
         onChange: (next) => {
             additionalQuestionsInput.style.height = '';
             if (newBtn) newBtn.hidden = !conversation;
+            if (next === 'fetch') refreshFetchExtras(); else clearNote();
             if (next === 'followup' && additionalQuestionsInput.value.trim()) sendFollowUp(additionalQuestionsInput.value.trim());
         }
     });
@@ -218,32 +218,82 @@ export function initMainScreen(ui) {
         else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Fetch Summary'; }
     };
 
+    // Fetch state extras under the feed: a card for the page in the active tab, and a way back into a conversation.
+    let extrasToken = 0;
+    const clip = (x, n) => { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; };
+    const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
     const clearNote = () => {
-        document.getElementById('composerNote')?.remove();
+        extrasToken++;
+        document.getElementById('pageCard')?.remove();
         document.getElementById('composerContinue')?.remove();
-        differentPageNote = false;
     };
-    const showNote = (tab) => {
-        if (document.getElementById('composerNote') || !bar) return;
-        const clip = (x, n) => { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; };
-        const n = document.createElement('div');
-        n.id = 'composerNote';
-        n.className = 'composer-note composer-note--page';
-        let host = ''; try { host = new URL(tab && tab.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }
-        const strong = document.createElement('strong'); strong.textContent = '📄 ' + T("You're on a different page");
-        const sub = document.createElement('div'); sub.textContent = clip([host, tab && tab.title].filter(Boolean).join(' · '), 70);
-        n.append(strong, sub);
-        feed.appendChild(n);
-        const link = document.createElement('button');
-        link.type = 'button'; link.id = 'composerContinue'; link.className = 'btn-link composer-continue';
-        link.textContent = '‹ ' + T('Continue "{title}" conversation', { title: clip(conversation && conversation.title, 28) });
-        link.addEventListener('click', () => {
-            clearNote();
-            if (conversation && composer) composer.set('followup');
-        });
-        bar.querySelector('.input-card').appendChild(link);
+    const latestArticle = async () => {
+        try {
+            const idx = await StorageManager.getArticlesIndex();
+            return idx.slice().sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp))[0] || null;
+        } catch (_) { return null; }
+    };
+    const refreshFetchExtras = async () => {
+        clearNote();
+        const token = extrasToken;
+        if (!composer || composer.state !== 'fetch' || !bar) return;
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        const latest = conversation ? null : await latestArticle();
+        if (token !== extrasToken || composer.state !== 'fetch') return;
+        if (tab && tab.url && isInjectableUrl(tab.url)) {
+            const different = !!conversation && !samePage(conversation.url, tab.url);
+            const card = document.createElement('div');
+            card.id = 'pageCard';
+            card.className = 'page-card' + (different ? ' page-card--different' : '');
+            if (tab.favIconUrl && /^https?:|^data:/.test(tab.favIconUrl)) {
+                const ic = document.createElement('img'); ic.className = 'page-card-ic'; ic.alt = ''; ic.src = tab.favIconUrl;
+                ic.addEventListener('error', () => ic.remove());
+                card.appendChild(ic);
+            }
+            const txt = document.createElement('div'); txt.className = 'page-card-txt';
+            const head = document.createElement('div'); head.className = 'page-card-kicker';
+            head.textContent = different ? '📄 ' + T("You're on a different page") : T('This page');
+            const title = document.createElement('div'); title.className = 'page-card-title'; title.textContent = clip(tab.title || hostOf(tab.url), 90);
+            const meta = document.createElement('div'); meta.className = 'page-card-meta'; meta.textContent = hostOf(tab.url);
+            txt.append(head, title, meta);
+            card.appendChild(txt);
+            feed.appendChild(card);
+            scrollFeed();
+        }
+        const target = conversation
+            ? { title: conversation.title, n: conversation.turns.length }
+            : (latest ? { title: latest.title, n: latest.qaCount || 0, latest } : null);
+        if (target) {
+            const link = document.createElement('button');
+            link.type = 'button'; link.id = 'composerContinue'; link.className = 'btn-link composer-continue';
+            link.textContent = '‹ ' + T('Continue "{title}" conversation', { title: clip(target.title || T('Summary'), 28) })
+                + (target.n ? ' · ' + TN(target.n, '{n} follow-up', '{n} follow-ups') : '');
+            link.addEventListener('click', () => resumeConversation(target.latest));
+            bar.querySelector('.input-card').appendChild(link);
+        }
+    };
+
+    /** Back into a conversation: the in-memory one, or the stored one of a past summary. */
+    const resumeConversation = async (articleEntry) => {
+        if (!composer || composer.state === 'working') return;
+        if (!conversation) {
+            if (!articleEntry || !articleEntry.id) return;
+            const full = await StorageManager.getArticleFull(articleEntry.id);
+            conversation = {
+                id: full.id, url: full.url || '', title: full.title || '', content: full.content || '', summary: full.summary || '',
+                turns: Array.isArray(full.conversation) ? full.conversation : []
+            };
+            feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
+            conversation.turns.forEach(t => feed.appendChild(turnEl(t, { onPin: persistConversation, onSource: revealOnPage })));
+        }
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        conversation.detached = !(tab && samePage(conversation.url, tab.url));   // resumed from another page: keep it open
+        clearNote();
+        composer.set('followup');
+        if (newBtn) newBtn.hidden = false;
         scrollFeed();
-        differentPageNote = true;
     };
 
     /** ＋ New: back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
@@ -254,6 +304,7 @@ export function initMainScreen(ui) {
         clearNote();
         additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
         resetToFetch();
+        refreshFetchExtras();
         if (newBtn) newBtn.hidden = true;
         additionalQuestionsInput.focus();
     };
@@ -270,15 +321,17 @@ export function initMainScreen(ui) {
         }
     });
 
+    refreshFetchExtras();
+
     // Different-page rule: when the active tab is another page than the conversation, offer a fresh summary.
     const checkPage = async () => {
-        if (!conversation || !composer || composer.state === 'working') return;
+        if (!composer || composer.state === 'working') return;
+        if (composer.state === 'fetch') { refreshFetchExtras(); return; }
+        if (!conversation || conversation.detached) return;
         let tab = null;
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
         if (!tab || !tab.url) return;
-        const same = samePage(conversation.url, tab.url);
-        if (!same && composer.state === 'followup') { composer.set('fetch'); showNote(tab); }
-        else if (same && differentPageNote) { clearNote(); composer.set('followup'); }
+        if (!samePage(conversation.url, tab.url)) composer.set('fetch');   // onChange draws the page card + link
     };
     try {
         chrome.tabs?.onActivated?.addListener(checkPage);
@@ -346,6 +399,7 @@ export function initMainScreen(ui) {
                 const scrollEl = document.getElementById('feedScroll');
                 if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
             });
+            try { refreshFetchExtras(); } catch (_) { /* composer not ready yet */ }
         } else {
             if (recentEntry) recentEntry.style.display = 'flex';
             if (recentTitle) recentTitle.textContent = 'No recent summaries';
