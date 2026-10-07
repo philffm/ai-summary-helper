@@ -2663,7 +2663,7 @@ text.graph-search-dim {
 .feed-source-count { font-size: 12px; font-weight: 700; color: var(--text-muted); }
 .feed-source-caret { color: var(--text-secondary); font-size: 12px; }
 .feed-square-btn {
-  width: 36px; height: 36px; flex-shrink: 0; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; flex-shrink: 0; padding: 0; display: inline-flex; align-items: center; justify-content: center;
   background: var(--glass-input); border: 1px solid var(--outline); border-radius: 10px; color: var(--text-primary);
   font-size: 16px; cursor: pointer; box-shadow: none;
 }
@@ -2894,7 +2894,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 }
 #feedControls.scroll-hidden { transform: translateY(calc(-100% - 8px)); opacity: 0; pointer-events: none; }
 .feed-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
-.feed-search { flex: 1; min-width: 0; height: 36px; margin: 0; padding: 0 12px; font-size: 13px; }
+.feed-search { flex: 1; min-width: 0; margin: 0; } /* otherwise identical to History's #searchInput (global input style) */
 .feed-square-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .feed-graph { width: 100%; height: 56vh; min-height: 320px; border-radius: var(--radius-lg); background: var(--glass-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); overflow: hidden; position: relative; }
 .feed-graph[hidden], .feed-insights[hidden] { display: none; }

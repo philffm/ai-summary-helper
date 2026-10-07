@@ -1088,6 +1088,23 @@ function initSearchAndViews() {
 }
 
 // Same behaviour as the History screen: scrolling down hides the top bar, scrolling up (from anywhere) brings it back.
+// Same hint + ⌘F shortcut as the History search box.
+const SHORTCUT_HINT = ' (⌘ + F)';
+function showSearchHint() {
+    const i = els.search; if (!i) return;
+    const ph = (i.getAttribute('placeholder') || '').replace(SHORTCUT_HINT, '');
+    i.setAttribute('placeholder', ph + SHORTCUT_HINT);
+}
+function initSearchShortcut() {
+    showSearchHint();
+    setTimeout(showSearchHint, 400);   // after the popup's i18n pass has localized the placeholder
+    document.addEventListener('keydown', (e) => {
+        if (!(e.metaKey && e.key === 'f')) return;
+        const nav = document.querySelector('.nav-item[data-screen="feeds"]');
+        if (nav && nav.classList.contains('active') && els.search) { e.preventDefault(); els.controlsBar && els.controlsBar.classList.remove('scroll-hidden'); els.search.focus(); }
+    });
+}
+
 // Re-rendering right after the screen is shown can clamp/jump scrollTop; that must not hide the bar.
 let hideSuppressUntil = 0;
 function initScrollHide() {
@@ -1987,6 +2004,7 @@ export async function onFeedsScreenShown(uiObj) {
     closeSheet(); hideUndo(); stickyRead.clear(); shown = PAGE_SIZE;
     searchQuery = ''; view = 'list'; if (els.search) els.search.value = '';
     hideSuppressUntil = Date.now() + 1200;
+    showSearchHint();
     if (els.screen) els.screen.scrollTop = 0;
     if (els.controlsBar) els.controlsBar.classList.remove('scroll-hidden');
     await load();
@@ -2031,6 +2049,7 @@ export function initFeedManager(uiObj) {
     els.sourcePill.addEventListener('click', openSourcePicker);
     initSearchAndViews();
     initScrollHide();
+    initSearchShortcut();
     els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));
     els.addBtn.addEventListener('click', openAddSheet);
     els.filterChip.addEventListener('click', openFilterSheet);
