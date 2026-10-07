@@ -3309,8 +3309,15 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar .chip { font-size: 12px; min-height: 32px; }
 .controls-bar .chip-icon { font-size: 12px; }
 
-/* Back-to-current-page button inside the conversation chip */
+/* Back-to-current-page button: left of the conversation chip's title */
 .page-chip--conv { position: relative; }
-.conv-back { margin-left: auto; flex: none; width: 28px; height: 28px; min-width: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); font-size: 15px; line-height: 1; cursor: pointer; }
+.conv-back { flex: none; display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 0 10px 0 8px; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); font-size: var(--fs-xs); font-weight: 600; line-height: 1; cursor: pointer; white-space: nowrap; }
+.conv-back span { font-size: 16px; line-height: 1; }
 .conv-back:hover { background: var(--accent-a30); }
 .conv-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.feed-recap-missing { margin: 8px 0; padding: 8px 10px; border-radius: var(--radius-md); background: var(--glass-input); border: 1px solid var(--outline); }
+.feed-recap-missing .feed-recap-stale { margin: 0 0 6px; }
+.feed-recap-missing-list { margin-top: 6px; font-size: var(--fs-xs); }
+.feed-recap-missing-list summary { cursor: pointer; color: var(--accent); }
+.feed-recap-missing-list a { display: block; padding: 3px 0; color: inherit; text-decoration: underline; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

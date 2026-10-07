@@ -8,7 +8,10 @@
 
 import { T } from './feedI18n.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
-export const MAX_RECAP_ITEMS = 40;
+export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
+let recapLimit = MAX_RECAP_ITEMS;     // items per recap request (user setting)
+export const getRecapLimit = () => recapLimit;
+export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n >= 10 ? Math.min(n, 400) : MAX_RECAP_ITEMS; }
 const SNIPPET_MAX = 160;
 
 export function aiComplete(system, user) {
@@ -55,7 +58,7 @@ export function itemSig(i) {
 }
 
 export function itemsForPrompt(list, subTitleFn, mark) {
-    return list.slice(0, MAX_RECAP_ITEMS).map((i, k) => {
+    return list.map((i, k) => {
         const parts = [`[${k + 1}] ${clip(subTitleFn(i), 40)} — ${clip(i.title, 140)}${mark ? mark(i) : ''}`];
         const sn = clip(i.snippet, SNIPPET_MAX);
         if (sn) parts.push(sn);
@@ -129,8 +132,8 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText }
               + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered item a sentiment number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content.\n'
             : '')
         + 'No headings, no markdown other than the "- " lines.' + suffix;
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(list, subTitleFn)}`);
-    const chunk = list.slice(0, MAX_RECAP_ITEMS);
+    const chunk = list.slice(0, recapLimit);
+    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`);
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
@@ -154,7 +157,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
               + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered NEW/EDITED item a sentiment number from -1 (very negative news) through 0 to 1 (very positive news).\n'
             : '')
         + 'No headings, no markdown other than the "- " lines.' + suffix;
-    const chunk = fresh.slice(0, MAX_RECAP_ITEMS);
+    const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
     const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`);
     const r = parseRecap(text, chunk.length);

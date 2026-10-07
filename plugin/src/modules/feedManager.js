@@ -26,7 +26,7 @@ import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
-import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS } from './feedAi.js';
+import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
@@ -54,7 +54,8 @@ export const FEED_DEFAULTS = {
     autoSummarizeFavs: false,
     backgroundPoll: false,
     refreshMinutes: 30,
-    keepDays: 30
+    keepDays: 30,
+    recapLimit: 40
 };
 
 let subs = [];
@@ -90,6 +91,7 @@ async function load() {
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
+    setRecapLimit(settings.recapLimit);
     if (data[UI_KEY]) ui = { ...ui, ...data[UI_KEY] };
     // Folders became tags: each feed's folder turns into its first tag.
     subs.forEach(s => {
@@ -1401,8 +1403,10 @@ function openAddSheet() {
 function recapScope(dayStart, source) {
     const sm = subMap();
     return items.filter(i => inSource(i, sm, source) && startOfDay(i.published) === dayStart)
-        .sort((a, b) => b.published - a.published).slice(0, MAX_RECAP_ITEMS);
+        .sort((a, b) => b.published - a.published);
 }
+/** What one recap request covers (newest first); the rest is reported as "not in this recap". */
+const recapCovered = (all) => all.slice(0, getRecapLimit());
 function idsHash(list) { return hash(list.map(i => i.id).sort().join(',')); }
 function aiTitleOf(sm) { return i => subTitle(sm.get(i.feedId)); }
 
@@ -1418,14 +1422,15 @@ function applyRatings(arr, r, rate) {
 
 /** Write (and store) a day recap without opening its sheet — used by week/month recaps for days that have none yet. */
 async function buildDayRecap(dayStart, source) {
-    const list = recapScope(dayStart, source);
+    const all = recapScope(dayStart, source);
+    const list = recapCovered(all);
     if (!list.length) return null;
     const rate = settings.rateWithRecap !== false;
     const r = await generateRecap(list, aiTitleOf(subMap()), { rate });
     applyRatings(list, r, rate);
     const { labels: _l, scores: _s, ...rc } = r;
     const key = `${dayStart}|${source}`;
-    recaps[key] = { ...rc, hash: idsHash(list), at: Date.now(), n: list.length, covered: Object.fromEntries(list.map(x => [x.id, itemSig(x)])) };
+    recaps[key] = { ...rc, hash: idsHash(list), at: Date.now(), n: list.length, total: all.length, covered: Object.fromEntries(list.map(x => [x.id, itemSig(x)])) };
     chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
     return recaps[key];
 }
@@ -1537,9 +1542,10 @@ function renderRecapCard() {
     const key = sc === 'day' ? `${ps}|${ui.source}` : rollKey(sc, ps, ui.source);
     const rec = recaps[key];
     let stale = false;
-    if (rec && sc === 'day') stale = !!(rec.covered && recapScope(ps, ui.source).some(x => rec.covered[x.id] !== itemSig(x)));
+    if (rec && sc === 'day') stale = !!(rec.covered && recapCovered(recapScope(ps, ui.source)).some(x => rec.covered[x.id] !== itemSig(x)));
     else if (rec) stale = isStale(sc, a, ctx);
     if (rec && rec.overview) box.append(el('p', 'feed-rc-sum', rec.overview));
+    if (rec && sc === 'day' && rec.total > rec.n) box.append(el('p', 'feed-muted', TN(rec.total - rec.n, '{n} older item is not in this recap.', '{n} older items are not in this recap.')));
     if (rec) {
         const tl = tally(items, ctx, ps, Math.min(addDaysTs(pe, -1), startOfDay(Date.now())), itemMood);
         if (tl.rated) box.append(moodBar(el, tl));
@@ -1577,7 +1583,9 @@ function renderMonthWeeks() {
 }
 
 async function openRecap(dayStart, label, source = ui.source) {
-    const list = recapScope(dayStart, source);
+    const all = recapScope(dayStart, source);
+    const list = recapCovered(all);
+    const missing = all.slice(list.length);
     const key = `${dayStart}|${source}`;
     const body = el('div', 'feed-picker feed-recap');
     openSheet(T('{label} recap', { label }), body);
@@ -1593,6 +1601,17 @@ async function openRecap(dayStart, label, source = ui.source) {
             const ul = el('ul', 'feed-recap-themes');
             r.themes.forEach(t => ul.append(el('li', null, t)));
             body.append(ul);
+        }
+        if (missing.length) {
+            const box = el('div', 'feed-recap-missing');
+            box.append(el('p', 'feed-recap-stale', TN(missing.length, '{n} older item is not in this recap (limit: {max} per recap).', '{n} older items are not in this recap (limit: {max} per recap).', { max: list.length })));
+            const nxt = Math.min(Math.max(all.length, 10), 400);
+            box.append(btn('btn-sm', T('Raise limit to {n} and refresh', { n: nxt }), async () => { await setSetting('recapLimit', nxt); closeSheet(); openRecap(dayStart, label, source); }));
+            const det = el('details', 'feed-recap-missing-list');
+            det.append(el('summary', null, T('Show them — open one by one')));
+            missing.forEach(x => { const a = el('a', null, x.title || x.link); a.href = x.link; a.target = '_blank'; a.rel = 'noopener'; det.append(a); });
+            box.append(det);
+            body.append(box);
         }
         if (stale) body.append(el('p', 'feed-recap-stale', T('New items arrived since this recap — Refresh to include them.')));
         const row = el('div', 'feed-recap-actions');
@@ -1618,12 +1637,12 @@ async function openRecap(dayStart, label, source = ui.source) {
         if (cached && fresh) {
             if (!fresh.length) { toast(uiRef, T('Nothing new since this recap')); return draw(cached, false); }
             body.replaceChildren(el('p', 'feed-recap-loading', T('✨ Updating recap…')),
-                el('p', 'feed-muted', T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, MAX_RECAP_ITEMS) })));
+                el('p', 'feed-muted', T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) })));
             try {
                 const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered });
                 applyRatings(r.sent, r, rate);
                 const { labels: _l, scores: _s, sent: sentItems, ...rc } = r;
-                recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, covered: { ...cached.covered, ...sigsOf(sentItems) } };
+                recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, total: all.length, covered: { ...cached.covered, ...sigsOf(sentItems) } };
                 chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
                 renderRecapCard();
                 draw(recaps[key], changedSince(recaps[key]).length > 0);
@@ -1639,7 +1658,7 @@ async function openRecap(dayStart, label, source = ui.source) {
             const r = await generateRecap(list, aiTitleOf(sm), { rate });
             applyRatings(list, r, rate);
             const { labels: _l, scores: _s, ...rc } = r;
-            recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, covered: sigsOf(list) };
+            recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, total: all.length, covered: sigsOf(list) };
             chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
             renderRecapCard();
             draw(recaps[key], false);
@@ -1702,6 +1721,7 @@ async function setSetting(key, value) {
     settings[key] = value;
     await persistSettings();
     if (key === 'backgroundPoll' || key === 'refreshMinutes') sendPollConfig();
+    if (key === 'recapLimit') setRecapLimit(value);
     if (key === 'keepDays') { pruneItems(); await persist(); render(); }
 }
 
@@ -1935,6 +1955,7 @@ function renderFeedPrefs() {
         el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.')));
     card('feedPrefsAi', TU('AI analysis'),
         moodToggleRow(),
+        selectRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[20, '20'], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
         toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
     card('feedPrefsUpdates', TU('Updates & storage'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),

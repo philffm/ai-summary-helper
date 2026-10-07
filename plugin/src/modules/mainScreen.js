@@ -300,10 +300,10 @@ export function initMainScreen(ui) {
         meta.textContent = [conversation.detached ? T('Continuing') : '', (conversation.meta && conversation.meta.siteName) || hostOf(conversation.url)].filter(Boolean).join(' · ');
         txt.append(title, meta); chip.appendChild(txt);
         const back = document.createElement('button');
-        back.type = 'button'; back.className = 'conv-back'; back.textContent = '↩';
+        back.type = 'button'; back.className = 'conv-back'; back.innerHTML = '<span aria-hidden="true">‹</span> ' + esc(T('Back'));
         back.title = T('Back to this page') + ' (⌘N)'; back.setAttribute('aria-label', T('Back to this page'));
         back.addEventListener('click', () => startNew());
-        chip.appendChild(back);
+        chip.insertBefore(back, chip.firstChild);
         inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
     };
 
