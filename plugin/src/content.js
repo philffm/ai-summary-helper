@@ -202,12 +202,21 @@ import {
   // the note in background.js.
   const streamHandlers = new Map();
 
+  // The summary that is running right now (context + latest progress), so a panel that opens
+  // after it started — e.g. when it was started from the on-page tool — can show it.
+  let liveRun = null;
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // Normalize casing so both 'PING' and 'ping' work.
     const action = (request.action || '').toLowerCase();
     if (action === 'ping') {
       sendResponse({ status: 'pong' });
       return true;
+    }
+
+    if (request.action === 'getSummaryState') {
+      sendResponse({ running: !!liveRun, context: liveRun && liveRun.context, progress: liveRun && liveRun.progress });
+      return false;
     }
 
     if (request.action === 'streamChunk' && request.requestId) {
@@ -409,6 +418,9 @@ import {
     const relay = (action, payload = {}) => {
       if (summaryMode !== 'extension') return;
       const msg = { action, ...payload };
+      if (action === 'summaryContext') liveRun = { context: msg, progress: null };
+      else if (action === 'summaryProgress' && liveRun) liveRun.progress = msg;
+      else if (action === 'summaryComplete' || action === 'summaryCancelled' || action === 'summaryError') liveRun = null;
 
       // Broadcast to all extension pages (native popup, native side
       // panel). On Firefox this does NOT reach a popup embedded in a

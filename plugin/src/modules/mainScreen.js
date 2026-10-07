@@ -505,6 +505,39 @@ export function initMainScreen(ui) {
     // can swap over to the summary feed without reloading the popup.
     document.addEventListener('aish:authStateChanged', evaluateOnboarding);
 
+    /** The "Summarize this page" bubble that opens a thread (page info + optional focus), animated from the page chip. */
+    const addFirstBubble = (pageInfo, focus, chipRect) => {
+        const first = document.createElement('div');
+        first.className = 'chat-turn chat-q chat-q--first';
+        const l1 = document.createElement('div'); l1.textContent = T('Summarize this page');
+        first.appendChild(l1);
+        const pageLine = [pageInfo && pageInfo.title, pageInfo && pageInfo.host].filter(Boolean).join(' · ');
+        if (pageLine) { const lp = document.createElement('div'); lp.className = 'chat-q-sub'; lp.textContent = clip(pageLine, 80); first.appendChild(lp); }
+        if ((focus || '').trim()) { const l2 = document.createElement('div'); l2.className = 'chat-q-sub'; l2.textContent = T('Focus: {text}', { text: focus.trim() }); first.appendChild(l2); }
+        feed.appendChild(first);
+        flyIn(first, chipRect);
+        return first;
+    };
+
+    /** A summary that was NOT started by this panel's button (e.g. from the on-page highlights tool): show the same progress UI. */
+    const adoptRun = (ctx) => {
+        if (!composer || composer.state === 'working') return;
+        composer.set('working');
+        clearNote();
+        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
+        if (recentEntry) recentEntry.style.display = 'none';
+        const chipEl = document.getElementById('pageCard');
+        const chipRect = chipEl ? chipEl.getBoundingClientRect() : null;
+        const pageInfo = { title: chipEl ? chipEl.dataset.title : '', host: (chipEl && chipEl.dataset.host) || (ctx && ctx.host) || '' };
+        const focus = ctx && ctx.focus ? T('Your focus question') : (ctx && ctx.highlights > 0 ? T('Your highlights · {n}', { n: ctx.highlights }) : '');
+        const first = addFirstBubble(pageInfo, '', chipRect);
+        if (focus) { const sub = document.createElement('div'); sub.className = 'chat-q-sub'; sub.textContent = focus; first.appendChild(sub); }
+        addStreamBubble(document.getElementById('chipModelLabel')?.textContent || '', 'cloud');
+        updateStream(T('Working on it…'));
+        updateStreamProgress(10);
+        getActiveTab().then(tab => { if (tab) activeTabId = tab.id; }).catch(() => {});
+    };
+
     // ── Listen for streaming relay from content script ─────────────────
     // On Firefox a hybrid-sidebar iframe is downgraded to content-script
     // privileges, so it never receives runtime.sendMessage broadcasts. The
@@ -512,6 +545,7 @@ export function initMainScreen(ui) {
     // which needs no extension privileges — handle those here exactly like
     // the runtime broadcasts.
     const handleStreamMessage = (msg) => {
+        if (msg.action === 'summaryContext' && composer && composer.state !== 'working') adoptRun(msg);
         if (msg.action === 'summaryProgress') {
             // Two quiet channels instead of one flickering line: a monotonic phase title and a word counter.
             const raw = String(msg.chunk || '');
@@ -618,6 +652,15 @@ export function initMainScreen(ui) {
 
     chrome.runtime.onMessage.addListener(handleStreamMessage);
 
+    // Panel opened while a summary is already running (started from the page): catch up.
+    getActiveTab().then(tab => (tab && tab.id != null && isInjectableUrl(tab.url)) ? sendMessageToTab(tab.id, { action: 'getSummaryState' }) : null)
+        .then(st => {
+            if (st && st.running && st.context) {
+                handleStreamMessage(st.context);
+                if (st.progress) handleStreamMessage(st.progress);
+            }
+        }).catch(() => {});
+
     // Hybrid-sidebar iframe return path (Firefox): the content script
     // postMessages the same streaming events directly into our document
     // because runtime.sendMessage broadcasts can't reach a downgraded
@@ -672,15 +715,7 @@ export function initMainScreen(ui) {
                 const chipIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
                 const isCloud = chipIcon?.textContent === '☁️' || (await chrome.storage.sync.get('connectionMode')).connectionMode === 'cloud';
                 
-                const first = document.createElement('div');
-                first.className = 'chat-turn chat-q chat-q--first';
-                const l1 = document.createElement('div'); l1.textContent = T('Summarize this page');
-                first.appendChild(l1);
-                const pageLine = [pageInfo && pageInfo.title, pageInfo && pageInfo.host].filter(Boolean).join(' · ');
-                if (pageLine) { const lp = document.createElement('div'); lp.className = 'chat-q-sub'; lp.textContent = clip(pageLine, 80); first.appendChild(lp); }
-                if ((additionalQuestions || '').trim()) { const l2 = document.createElement('div'); l2.className = 'chat-q-sub'; l2.textContent = T('Focus: {text}', { text: additionalQuestions.trim() }); first.appendChild(l2); }
-                feed.appendChild(first);
-                flyIn(first, chipRect);
+                addFirstBubble(pageInfo, additionalQuestions, chipRect);
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');
                 updateStream('Contacting content script…');
                 // Show the bar immediately on click rather than waiting for
