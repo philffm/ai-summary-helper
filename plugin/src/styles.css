@@ -3178,3 +3178,16 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #articleList > .history-tabs { margin-bottom: 12px; list-style: none; }
 .feed-scope { margin-top: 8px; }
 .feed-scope[hidden] { display: none; }
+
+/* ── Full-bleed sticky bars (History search row, Feeds controls, Article detail) ──
+   Edge to edge and flush under the app header, so they read as an extension of the header
+   instead of a floating glass card competing with it. */
+#historyTopBar, #detailTopBar, #feedControls {
+  margin: calc(-1 * var(--spacing-s-4)) calc(-1 * var(--spacing-s-4)) 12px;
+  padding: 10px var(--spacing-s-4);
+  border-radius: 0;
+  border-width: 0 0 1px 0;
+  background: var(--glass-base);
+  backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+}
+#historyTopBar.scroll-hidden, #detailTopBar.scroll-hidden, #feedControls.scroll-hidden { transform: translateY(-100%); }
