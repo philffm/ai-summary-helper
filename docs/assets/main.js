@@ -101,12 +101,12 @@ function setBilling(period) {
   if (!grid) return;
   if (period === 'yearly') {
     grid.classList.add('yearly');
-    if (by) by.classList.add('active');
-    if (bm) bm.classList.remove('active');
+    if (by) { by.classList.add('active'); by.setAttribute('aria-pressed', 'true'); }
+    if (bm) { bm.classList.remove('active'); bm.setAttribute('aria-pressed', 'false'); }
   } else {
     grid.classList.remove('yearly');
-    if (bm) bm.classList.add('active');
-    if (by) by.classList.remove('active');
+    if (bm) { bm.classList.add('active'); bm.setAttribute('aria-pressed', 'true'); }
+    if (by) { by.classList.remove('active'); by.setAttribute('aria-pressed', 'false'); }
   }
 }
 

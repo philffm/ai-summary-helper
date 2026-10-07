@@ -5,8 +5,8 @@
   "description": "Repo tooling: site build + i18n translation (CI) and the jsdom test-suite for the extension (npm test). The site itself remains plain HTML/CSS/JS with no build step.",
   "type": "module",
   "scripts": {
-    "site:build": "node scripts/build-site.mjs",
-    "translate": "npm run site:build && node scripts/translate.mjs",
+    "site:build": "node scripts/build-site.mjs && node scripts/seo.mjs",
+    "translate": "npm run site:build && node scripts/translate.mjs && node scripts/seo.mjs",
     "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
     "test": "node plugin/tests/run.mjs",
     "lint": "eslint plugin/src"

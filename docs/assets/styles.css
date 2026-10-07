@@ -465,7 +465,7 @@ footer{ border-top:1px solid var(--border-subtle); padding:36px 0; }
 footer .foot-links{ display:flex; gap:20px; flex-wrap:wrap; }
 footer .foot-links a{ font-size:13.5px; color:var(--paper-dim); }
 footer .foot-links a:hover{ color:var(--paper); }
-footer .copyright{ font-size:13px; color:var(--steel-400); margin-top:18px; line-height:1.65; }
+footer .copyright{ font-size:13px; color:var(--paper-dim); margin-top:18px; line-height:1.65; }
 .credit-link{ color:var(--signal); font-weight:500; transition:color 0.2s ease; }
 .credit-link:hover{ color:var(--signal-light); }
 
@@ -481,7 +481,7 @@ footer .copyright{ font-size:13px; color:var(--steel-400); margin-top:18px; line
 .persona-blurb{ text-align:center; color:var(--paper-dim); font-size:15px; max-width:540px; margin:0 auto 32px; min-height:24px; }
 .feature-card{ transition:opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease; }
 .feature-card.persona-match{ border-color:var(--brass-light); }
-.feature-card.persona-dim{ opacity:0.35; }
+.feature-card.persona-dim{ opacity:0.6; }
 @media (prefers-reduced-motion: reduce){ .persona-btn, .feature-card{ transition:none; } }
 
 /* ── Language suggestion banner ─────────────────────────────────────
@@ -633,3 +633,14 @@ footer .copyright{ font-size:13px; color:var(--steel-400); margin-top:18px; line
 .an-dialog p{ margin:0; }
 .an-small{ font-size:12.5px; opacity:.8; }
 @media (max-width:520px){ .an-notice{ left:8px; right:8px; bottom:8px; max-width:none; } }
+
+/* ── Accessibility: focus on filled controls, target size, link affordance ── */
+.hero-switch-btn.active:focus-visible, .persona-btn.active:focus-visible, .tier-toggle button.active:focus-visible,
+.tier-cta:focus-visible, .btn:focus-visible{ outline:3px solid var(--paper); outline-offset:2px; box-shadow:0 0 0 5px var(--signal); }
+.hero-switch-btn, .tier-toggle button, .persona-btn{ min-height:40px; }
+.footer-inner a, .foot-links a, footer .copyright a{ text-underline-offset:3px; }
+footer .copyright a, .foot-links a{ text-decoration:underline; text-decoration-color:var(--border-strong); }
+footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentColor; }
+@media (forced-colors: active){
+  .hero-switch-btn.active, .persona-btn.active, .tier-toggle button.active{ outline:2px solid Highlight; }
+}
