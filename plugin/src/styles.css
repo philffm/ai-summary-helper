@@ -3029,3 +3029,6 @@ i.tp-s3 { background: var(--tp-3); } i.tp-s4 { background: var(--tp-4); } i.tp-s
 .tp-l0 { stroke: var(--tp-0); } .tp-l1 { stroke: var(--tp-1); } .tp-l2 { stroke: var(--tp-2); } .tp-l3 { stroke: var(--tp-3); }
 .tp-l4 { stroke: var(--tp-4); } .tp-l5 { stroke: var(--tp-5); } .tp-l6 { stroke: var(--tp-6); } .tp-l7 { stroke: var(--tp-7); }
 .tp-dot { stroke: var(--tp-gap); stroke-width: 2; }
+.tp-zero { stroke: var(--text-muted); opacity: .9; }
+.tp-controls { flex-wrap: wrap; }
+.tp-type[hidden] { display: none; }

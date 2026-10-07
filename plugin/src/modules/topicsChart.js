@@ -53,7 +53,22 @@ export function topicsData(articles, view, topN = 5) {
             else if (hasOther) rows[i].counts[top.length]++;
         });
     });
-    return { rows, series: [...top.map(titleCase), ...(hasOther ? [T('Other')] : [])], keys: top };
+    // Mood per tag and period: average AI score (−100…+100) of the articles that have one; null = nothing scored.
+    const sum = rows.map(() => top.map(() => 0)), cnt = rows.map(() => top.map(() => 0));
+    let scored = 0;
+    inWin.forEach(a => {
+        if (typeof a.moodScore !== 'number') return;
+        const t = new Date(a.timestamp).getTime();
+        const i = bs.findIndex(b => t >= b.start && t < b.end);
+        if (i < 0) return;
+        scored++;
+        new Set((a.tags || []).map(normTag).filter(Boolean)).forEach(k => {
+            const s = top.indexOf(k);
+            if (s >= 0) { sum[i][s] += a.moodScore; cnt[i][s]++; }
+        });
+    });
+    rows.forEach((r, i) => { r.mood = top.map((_, s) => cnt[i][s] ? Math.round(sum[i][s] / cnt[i][s] * 100) : null); r.moodN = cnt[i]; });
+    return { rows, series: [...top.map(titleCase), ...(hasOther ? [T('Other')] : [])], keys: top, scored };
 }
 
 const el = (tag, attrs = {}, text) => {
@@ -63,7 +78,51 @@ const el = (tag, attrs = {}, text) => {
     return n;
 };
 
+function showTip(wrap, ev, text) {
+    const tip = wrap.querySelector('.tp-tip');
+    tip.hidden = false; tip.textContent = text;
+    const b = wrap.getBoundingClientRect();
+    tip.style.left = Math.min(Math.max(ev.clientX - b.left + 10, 0), Math.max(0, b.width - tip.offsetWidth)) + 'px';
+    tip.style.top = (ev.clientY - b.top - 34) + 'px';
+}
+const hideTip = (wrap) => { wrap.querySelector('.tp-tip').hidden = true; };
+const fmtMood = (v) => (v > 0 ? '+' : '') + v;
+
+/** Mood over time per category: one line per tag, −100…+100, gaps where nothing is scored. */
+function drawMood(wrap, data) {
+    const { rows, keys, series } = data;
+    const W = Math.max(320, Math.round(wrap.clientWidth || 600)), H = 220, L = 34, B = 22, Tp = 8, R = 6;
+    const bw = (W - L - R) / rows.length;
+    const y = (v) => Tp + (H - Tp - B) * (1 - (v + 100) / 200);
+    const cx = (i) => L + i * bw + bw / 2;
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, class: 'tp-svg', role: 'img', 'aria-label': T('Mood over time per category') });
+    [100, 50, 0, -50, -100].forEach(v => {
+        svg.append(el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: v === 0 ? 'tp-grid tp-zero' : 'tp-grid' }));
+        svg.append(el('text', { x: L - 6, y: y(v) + 3, 'text-anchor': 'end', class: 'tp-axis' }, fmtMood(v)));
+    });
+    keys.forEach((_, s) => {
+        let seg = [];
+        const flush = () => { if (seg.length > 1) svg.append(el('polyline', { points: seg.join(' '), class: `tp-line tp-l${s}`, fill: 'none' })); seg = []; };
+        rows.forEach((r, i) => { if (r.mood[s] === null) flush(); else seg.push(`${cx(i)},${y(r.mood[s])}`); });
+        flush();
+    });
+    rows.forEach((r, i) => {
+        keys.forEach((_, s) => { if (r.mood[s] !== null) svg.append(el('circle', { cx: cx(i), cy: y(r.mood[s]), r: 3.5, class: `tp-dot tp-s${s}` })); });
+        const hit = el('rect', { x: L + i * bw, y: Tp, width: bw, height: H - Tp - B, fill: 'transparent' });
+        hit.addEventListener('mousemove', (ev) => {
+            const parts = keys.map((_, s) => r.mood[s] === null ? null : `${series[s]}: ${fmtMood(r.mood[s])} (${r.moodN[s]})`).filter(Boolean);
+            showTip(wrap, ev, `${r.full} · ` + (parts.length ? parts.join(' · ') : T('not scored')));
+        });
+        hit.addEventListener('mouseleave', () => hideTip(wrap));
+        svg.append(hit);
+        if (i % 2 === (rows.length - 1) % 2) svg.append(el('text', { x: cx(i), y: H - 6, 'text-anchor': 'middle', class: 'tp-axis' }, r.label));
+    });
+    wrap.querySelector('.tp-svg')?.remove();
+    wrap.prepend(svg);
+}
+
 function drawChart(wrap, data, type = 'bars') {
+    if (type === 'mood') return drawMood(wrap, data);
     const { rows, series } = data;
     const W = Math.max(320, Math.round(wrap.clientWidth || 600)), H = 200, L = 28, B = 22, Tp = 8, R = 4;   // 1 unit = 1 px, so text stays crisp at any width
     const lines = type === 'lines';
@@ -123,11 +182,12 @@ function drawChart(wrap, data, type = 'bars') {
     wrap.prepend(svg);
 }
 
-function drawLegend(legend, data, container) {
+function drawLegend(legend, data, container, mood = false) {
     legend.replaceChildren();
     data.series.forEach((name, s) => {
         const isOther = s === data.keys.length;
-        const total = data.rows.reduce((a, r) => a + r.counts[s], 0);
+        if (mood && isOther) return;                       // mood has no "Other" line
+        const total = data.rows.reduce((a, r) => a + (mood ? r.moodN[s] : r.counts[s]), 0);   // mood: scored articles
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'tp-leg';
         b.disabled = isOther;
@@ -139,15 +199,15 @@ function drawLegend(legend, data, container) {
     });
 }
 
-function drawTable(details, data, view) {
+function drawTable(details, data, view, mood = false) {
     const tbl = document.createElement('table');
     tbl.className = 'tp-table';
     const head = document.createElement('tr');
-    [view === 'month' ? T('Month') : T('Week'), ...data.series].forEach(h => { const th = document.createElement('th'); th.textContent = h; head.append(th); });
+    [view === 'month' ? T('Month') : T('Week'), ...(mood ? data.series.slice(0, data.keys.length) : data.series)].forEach(h => { const th = document.createElement('th'); th.textContent = h; head.append(th); });
     tbl.append(head);
     data.rows.forEach(r => {
         const tr = document.createElement('tr');
-        [r.full, ...r.counts].forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.append(td); });
+        [r.full, ...(mood ? r.mood.map(v => v === null ? '–' : fmtMood(v)) : r.counts)].forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.append(td); });
         tbl.append(tr);
     });
     details.querySelector('table')?.remove();
@@ -167,6 +227,10 @@ export function renderTopicsSection(articles, container) {
         </div>
       </div>
       <div class="tp-controls">
+        <div class="ar-view-toggle tp-metric" role="tablist">
+          <button type="button" class="ar-view-btn active" data-metric="mood"></button>
+          <button type="button" class="ar-view-btn" data-metric="volume"></button>
+        </div>
         <div class="ar-view-toggle tp-type" role="tablist">
           <button type="button" class="ar-view-btn active" data-type="bars"></button>
           <button type="button" class="ar-view-btn" data-type="lines"></button>
@@ -178,14 +242,17 @@ export function renderTopicsSection(articles, container) {
       <details class="tp-details"><summary></summary></details>`;
     sec.querySelector('.ar-section-title').textContent = T('📈 Topics over time');
     const [wk, mo] = sec.querySelectorAll('.ar-view-toggle:not(.tp-type) .ar-view-btn');
+    const [mMood, mVol] = sec.querySelectorAll('.tp-metric .ar-view-btn');
     const [tBars, tLines] = sec.querySelectorAll('.tp-type .ar-view-btn');
+    const typeToggle = sec.querySelector('.tp-type');
     const nSel = sec.querySelector('.tp-topn-select');
     wk.textContent = T('Week'); mo.textContent = T('Month');
+    mMood.textContent = T('Mood'); mVol.textContent = T('Volume');
     tBars.textContent = T('Stacked'); tLines.textContent = T('Lines');
     sec.querySelector('.tp-topn span').textContent = T('Top');
     TOP_OPTIONS.forEach(n => { const o = document.createElement('option'); o.value = String(n); o.textContent = String(n); nSel.append(o); });
     nSel.value = '5';
-    let curView = 'week', curType = 'bars';
+    let curView = 'week', curType = 'bars', curMetric = 'mood';
     sec.querySelector('summary').textContent = T('Table view');
 
     const chart = sec.querySelector('.tp-chart'), legend = sec.querySelector('.tp-legend'), details = sec.querySelector('.tp-details');
@@ -193,6 +260,8 @@ export function renderTopicsSection(articles, container) {
         curView = view;
         [wk, mo].forEach(b => b.classList.toggle('active', b.dataset.view === view));
         [tBars, tLines].forEach(b => b.classList.toggle('active', b.dataset.type === curType));
+        [mMood, mVol].forEach(b => b.classList.toggle('active', b.dataset.metric === curMetric));
+        typeToggle.hidden = curMetric === 'mood';
         const data = topicsData(articles, view, Number(nSel.value));
         if (!data.keys.length) {
             chart.replaceChildren(Object.assign(document.createElement('p'), { className: 'ar-empty', textContent: T('No tags found. Add tags to your summaries!') }));
@@ -200,8 +269,14 @@ export function renderTopicsSection(articles, container) {
         }
         details.hidden = false;
         if (!chart.querySelector('.tp-tip')) { const t = document.createElement('div'); t.className = 'tp-tip'; t.hidden = true; chart.append(t); }
-        drawChart(chart, data, curType); drawLegend(legend, data, container); drawTable(details, data, view);
+        if (curMetric === 'mood' && !data.scored) {
+            chart.replaceChildren(Object.assign(document.createElement('p'), { className: 'ar-empty', textContent: T('No article has a mood yet — let the AI score them.') }));
+            legend.replaceChildren(); details.hidden = true; return;
+        }
+        drawChart(chart, data, curMetric === 'mood' ? 'mood' : curType); drawLegend(legend, data, container, curMetric === 'mood'); drawTable(details, data, view, curMetric === 'mood');
     };
+    mMood.addEventListener('click', () => { curMetric = 'mood'; apply(); });
+    mVol.addEventListener('click', () => { curMetric = 'volume'; apply(); });
     wk.addEventListener('click', () => apply('week'));
     mo.addEventListener('click', () => apply('month'));
     tBars.addEventListener('click', () => { curType = 'bars'; apply(); });
