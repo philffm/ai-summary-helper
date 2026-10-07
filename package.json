@@ -8,13 +8,16 @@
     "site:build": "node scripts/build-site.mjs",
     "translate": "npm run site:build && node scripts/translate.mjs",
     "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
-    "test": "node plugin/tests/run.mjs"
+    "test": "node plugin/tests/run.mjs",
+    "lint": "eslint plugin/src"
   },
   "dependencies": {
     "cheerio": "^1.2.0"
   },
   "devDependencies": {
-    "jsdom": "^30.1.2",
-    "acorn": "^8.18.0"
+    "acorn": "^8.18.0",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "jsdom": "^30.1.2"
   }
 }

@@ -371,6 +371,30 @@ import {
   async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension') {
     const tokenLimit = 20000;
 
+    // ── relay: defined first so every path (incl. PDF extraction errors) can report back ──
+    const relay = (action, payload = {}) => {
+      if (summaryMode !== 'extension') return;
+      const msg = { action, ...payload };
+
+      // Broadcast to all extension pages (native popup, native side
+      // panel). On Firefox this does NOT reach a popup embedded in a
+      // hybrid-sidebar <iframe>, but it's the reliable path for every
+      // other context.
+      chrome.runtime.sendMessage(msg).catch(() => {});
+
+      // ALSO push directly into the hybrid-sidebar iframe we created.
+      // Firefox downgrades an extension page embedded in a regular web
+      // page to content-script privileges, so runtime.sendMessage
+      // broadcasts never arrive there. A plain postMessage between the
+      // content script and the iframe's own document needs no extension
+      // privileges, so this is the reliable return path in pop-out mode.
+      const sidebar = document.getElementById('ai-summary-hybrid-sidebar');
+      if (sidebar && sidebar.contentWindow) {
+        try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) {}
+      }
+    };
+
+
     // PDF pages have no DOM article to scrape — extract the document's own
     // text via pdf.js. The return shape ({ html, text }) matches
     // getAllTextContent(), so everything downstream keeps working unchanged.
@@ -414,29 +438,6 @@ import {
         chrome.storage.local.get(['servicesConfig', 'licenseKey'])
       ]).then(async ([syncData, localData]) => {
         const data = { ...syncData, ...localData };
-        // ── Define relay FIRST so it's available to every code path ──
-        const relay = (action, payload = {}) => {
-          if (summaryMode !== 'extension') return;
-          const msg = { action, ...payload };
-
-          // Broadcast to all extension pages (native popup, native side
-          // panel). On Firefox this does NOT reach a popup embedded in a
-          // hybrid-sidebar <iframe>, but it's the reliable path for every
-          // other context.
-          chrome.runtime.sendMessage(msg).catch(() => {});
-
-          // ALSO push directly into the hybrid-sidebar iframe we created.
-          // Firefox downgrades an extension page embedded in a regular web
-          // page to content-script privileges, so runtime.sendMessage
-          // broadcasts never arrive there. A plain postMessage between the
-          // content script and the iframe's own document needs no extension
-          // privileges, so this is the reliable return path in pop-out mode.
-          const sidebar = document.getElementById('ai-summary-hybrid-sidebar');
-          if (sidebar && sidebar.contentWindow) {
-            try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) {}
-          }
-        };
-
         const localAuth = await chrome.storage.local.get(['pb_token']).catch(() => ({}));
         const sessionToken = localAuth?.pb_token || '';
         const connectionMode = data.connectionMode || 'cloud';

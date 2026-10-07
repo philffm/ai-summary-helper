@@ -27,6 +27,7 @@ jobs:
       - name: Run tests
         run: |
           npm ci --no-audit --no-fund
+          npm run lint -- --quiet   # errors only (undefined identifiers etc.)
           npm test
 
       - name: Always use the latest version file from main
