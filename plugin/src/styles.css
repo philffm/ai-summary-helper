@@ -2959,3 +2959,11 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .ws-select { flex: 1; min-width: 0; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--glass-border); background: var(--glass-card); color: var(--text-primary); font: inherit; font-weight: 600; }
 .ws-close { width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--text-muted); cursor: pointer; }
 .ws-close:hover { background: var(--glass-card); }
+
+/* ── Readable measure on wide windows ─────────────────────────────────────
+   Text-heavy screens centre their content instead of stretching edge to edge.
+   (History/Feeds keep full width — they host the split workspace.) */
+#settingsScreen, #mainScreen {
+  padding-inline: max(var(--spacing-s-4), calc((100% - 720px) / 2));
+}
+.screen:not(.ws-active) #articleDetail { max-width: 760px; margin-inline: auto; }
