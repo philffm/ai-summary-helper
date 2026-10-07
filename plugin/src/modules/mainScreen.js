@@ -164,7 +164,6 @@ export function initMainScreen(ui) {
     let activeTabId = null;
     let liveBubbleArticle = null;     // the article object behind the newest bubble
     const bar = document.querySelector('.controls-bar');
-    const newBtn = document.getElementById('newSummaryButton');
 
     const esc = (x) => String(x || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const usedOpen = () => { try { return localStorage.getItem('aish:usedOpen') === '1'; } catch (_) { return false; } };
@@ -196,7 +195,6 @@ export function initMainScreen(ui) {
     const composer = createComposer(bar, {
         onChange: (next) => {
             additionalQuestionsInput.style.height = '';
-            if (newBtn) newBtn.hidden = !conversation;
             if (next === 'fetch') refreshFetchExtras(); else clearNote();
             if (next === 'followup') showConversationChip();
             if (next === 'followup' && additionalQuestionsInput.value.trim()) sendFollowUp(additionalQuestionsInput.value.trim());
@@ -301,6 +299,11 @@ export function initMainScreen(ui) {
         const meta = document.createElement('div'); meta.className = 'page-chip-meta';
         meta.textContent = [conversation.detached ? T('Continuing') : '', (conversation.meta && conversation.meta.siteName) || hostOf(conversation.url)].filter(Boolean).join(' · ');
         txt.append(title, meta); chip.appendChild(txt);
+        const back = document.createElement('button');
+        back.type = 'button'; back.className = 'conv-back'; back.textContent = '↩';
+        back.title = T('Back to this page') + ' (⌘N)'; back.setAttribute('aria-label', T('Back to this page'));
+        back.addEventListener('click', () => startNew());
+        chip.appendChild(back);
         inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
     };
 
@@ -341,11 +344,10 @@ export function initMainScreen(ui) {
         conversation.detached = !(tab && samePage(conversation.url, tab.url));   // resumed from another page: keep it open
         clearNote();
         composer.set('followup');
-        if (newBtn) newBtn.hidden = false;
         scrollFeed();
     };
 
-    /** ＋ New: back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
+    /** Back to this page (chip button / ⌘N): back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
     const startNew = () => {
         if (composer && composer.state === 'working') return;
         feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
@@ -354,15 +356,8 @@ export function initMainScreen(ui) {
         additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
         resetToFetch();
         refreshFetchExtras();
-        if (newBtn) newBtn.hidden = true;
         additionalQuestionsInput.focus();
     };
-    if (newBtn) {
-        newBtn.textContent = T('＋ New');
-        newBtn.title = T('New summary') + ' (⌘N)';
-        newBtn.setAttribute('aria-label', T('New summary'));
-        newBtn.addEventListener('click', startNew);
-    }
     document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'n' && conversation) {
             e.preventDefault();
@@ -605,7 +600,6 @@ export function initMainScreen(ui) {
                     }).catch(() => { /* suggestions are optional */ });
                 }
                 if (composer) composer.set('followup');
-                if (newBtn) newBtn.hidden = false;
                 scrollFeed();
             } else {
                 resetToFetch();
