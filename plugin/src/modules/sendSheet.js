@@ -1,4 +1,5 @@
 import { SK } from './storageKeys.js';
+import { trapFocus } from './sheet.js';
 // sendSheet.js
 // History multi-select + "Send" sheet: pick several summarized articles and send them to a Kindle or a
 // LocalSend receiver, either as ONE digest (summaries bundled via buildMagazineArticle) or as separate files.
@@ -98,7 +99,8 @@ function paintBar() {
 
 const state = { format: 'digest', include: 'summary', intro: 'off', introStyle: 'briefing' };
 
-function closeSheet() { if (sheet) { sheet.remove(); sheet = null; } }
+let sheetTrap = null;
+function closeSheet() { if (sheetTrap) { sheetTrap.release(); sheetTrap = null; } if (sheet) { sheet.remove(); sheet = null; } }
 
 function selected() {
     return [...sel].map(id => reg.get(id)?.article).filter(Boolean)
@@ -157,6 +159,7 @@ function openSheet(view) {
     panel.append(el('div', 'sendsheet-grab'), el('div', 'sendsheet-body'));
     sheet.append(scrim, panel);
     document.body.append(sheet);
+    sheetTrap = trapFocus(panel, { label: T('Send summaries') });
     (view || viewChoose)();
 }
 

@@ -24,8 +24,46 @@ function indicator(bar) {
 const setPos = (bar, x, w) => { bar.style.setProperty('--tb-x', x + 'px'); bar.style.setProperty('--tb-w', w + 'px'); };
 const commit = (ind) => { void ind.offsetWidth; };
 
+/** Tab semantics + roving tabindex + arrow-key navigation (Left/Right/Home/End; the tab is activated by clicking it). */
+function a11y(bar) {
+    bar.setAttribute('role', 'tablist');
+    const tabs = [...bar.querySelectorAll('.tabbar-btn')];
+    const active = tabs.find(b => b.classList.contains('on') || b.classList.contains('active')) || tabs[0];
+    tabs.forEach(b => {
+        const on = b === active;
+        b.setAttribute('role', 'tab');
+        b.removeAttribute('aria-pressed');
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+    });
+    if (!bar.dataset.kb) {
+        bar.dataset.kb = '1';
+        bar.addEventListener('keydown', (e) => {
+            const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+            if (!keys.includes(e.key)) return;
+            const list = [...bar.querySelectorAll('.tabbar-btn')].filter(b => !b.disabled);
+            const i = list.indexOf(document.activeElement);
+            if (i === -1) return;
+            const rtl = bar.ownerDocument.defaultView.getComputedStyle(bar).direction === 'rtl';
+            const step = e.key === 'ArrowRight' ? (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? (rtl ? 1 : -1) : 0;
+            const next = e.key === 'Home' ? list[0] : e.key === 'End' ? list[list.length - 1] : list[(i + step + list.length) % list.length];
+            e.preventDefault();
+            const idx = list.indexOf(next), key = bar.dataset.tabbar;
+            next.focus();
+            next.click();
+            // The bar may be rebuilt by the click: put focus back on the same tab of the live bar.
+            queueMicrotask(() => {
+                const live = bar.isConnected ? bar : (key ? document.querySelector(`[data-tabbar="${key}"]`) : null);
+                const t = live && [...live.querySelectorAll('.tabbar-btn')].filter(b => !b.disabled)[idx];
+                if (t && document.activeElement !== t) t.focus();
+            });
+        });
+    }
+}
+
 export function syncTabbar(bar, { animate = true } = {}) {
     if (!bar) return;
+    a11y(bar);
     const key = bar.dataset.tabbar || '';
     const ind = indicator(bar);
     const active = bar.querySelector('.tabbar-btn.on, .tabbar-btn.active');

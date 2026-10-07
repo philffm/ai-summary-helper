@@ -22,6 +22,7 @@ import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
 import { T, TN, TU, N_, locale } from './feedI18n.js';
 import { syncTabbar } from './tabbar.js';
+import { trapFocus } from './sheet.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
@@ -1150,6 +1151,7 @@ function openSheet(title, bodyNode) {
     head.append(el('h3', null, title), btn('feed-sheet-done', T('Done'), closeSheet));
     body.append(head, bodyNode);
     layer.hidden = false;
+    trapSheet(layer, title);
 }
 // Replace the whole sheet content (custom header) — used by the two-level Date & mood sheet.
 function showSheet(...nodes) {
@@ -1158,10 +1160,18 @@ function showSheet(...nodes) {
     if (!layer || !body) return;
     body.replaceChildren(...nodes);
     layer.hidden = false;
+    trapSheet(layer, (body.querySelector('h3') || {}).textContent);
+}
+let sheetTrap = null;
+function trapSheet(layer, label) {
+    const dlg = layer.querySelector('.feed-sheet');
+    if (dlg && label) dlg.setAttribute('aria-label', label);
+    if (!sheetTrap) sheetTrap = trapFocus(dlg, { label });
 }
 function closeSheet() {
     const layer = document.getElementById('feedSheetLayer');
     if (layer) layer.hidden = true;
+    if (sheetTrap) { sheetTrap.release(); sheetTrap = null; }
 }
 
 function radioRow(label, count, selected, onClick, { muted = false, indent = false } = {}) {

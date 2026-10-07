@@ -80,8 +80,8 @@
               <!-- Expandable panels (pop up above the chips) -->
               <div id="panelLanguage" class="chip-panel popup-panel" style="display:none">
                 <label class="chip-panel-label">Summary Language</label>
-                <input type="text" id="languageSearch" class="chip-panel-search" placeholder="Search languages…" />
                 <div id="languageTagGrid" class="tag-grid"></div>
+                <input type="search" id="languageSearch" class="chip-panel-search" placeholder="Search languages…" aria-label="Search languages" autocomplete="off" />
                 <select id="languageSelect" style="display:none"></select>
               </div>
               <div id="panelLength" class="chip-panel popup-panel" style="display:none">
@@ -430,7 +430,7 @@
                         style="width:80px;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
                       <input type="email" id="newKindleEmail" placeholder="yourname@kindle.com"
                         style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
-                      <button type="button" id="addKindleDeviceButton" class="button-secondary" style="white-space:nowrap;">Add</button>
+                      <button type="button" id="addKindleDeviceButton" class="button-secondary" style="white-space:nowrap;" aria-label="Add Kindle device">Add</button>
                     </div>
                     <div style="font-size:11px;margin-top:6px;color:var(--text-muted);">Used for Send to Kindle delivery. Add <strong>kindle@byphil.eu</strong> to your Kindle's approved senders first — <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener">Amazon's guide</a>.</div>
                   </div>
@@ -443,7 +443,7 @@
                       <input type="text" id="newLocalSendIp" placeholder="e.g. 192.168.1.142"
                         style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
                       <button type="button" id="scanLocalSendButton" class="button-secondary" style="white-space:nowrap;">Auto-Detect</button>
-                      <button type="button" id="addLocalSendDeviceButton" class="button-secondary" style="white-space:nowrap;">Add</button>
+                      <button type="button" id="addLocalSendDeviceButton" class="button-secondary" style="white-space:nowrap;" aria-label="Add LocalSend device">Add</button>
                     </div>
                     <div id="localSendStatus" style="font-size:11px;margin-top:6px;min-height:14px;color:var(--text-muted);"></div>
                   </div>
@@ -585,7 +585,7 @@
             <button type="button" class="pill" data-status="fav" title="Favorites" aria-label="Favorites" data-i18n-title="f_favorites_53ba">★</button>
             <button type="button" class="pill" data-status="sum" title="Summarized" aria-label="Summarized" data-i18n-title="f_summarized_415a">✓</button>
             <button type="button" class="pill" data-status="audio" title="Podcasts" aria-label="Podcasts" data-i18n-title="f_podcasts_7c90">🎧</button>
-            <button type="button" class="pill" id="feedMoodChip" aria-pressed="false">😊</button>
+            <button type="button" class="pill" id="feedMoodChip" aria-pressed="false" title="Good mood only" aria-label="Good mood only">😊</button>
           </div>
             <button type="button" id="feedFilterChip" class="pill" aria-haspopup="dialog">Any time ▾</button>
           </div>
