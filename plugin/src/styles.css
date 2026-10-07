@@ -3209,3 +3209,44 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .qa-more summary { cursor: pointer; font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 6px; }
 .qa-all { font-size: var(--fs-2xs); color: var(--text-muted); text-align: left; }
 .aish-qa h3 { font-size: 1em; }
+
+/* ── Docked composer (working / follow-up): one slim row, settings as a quiet line ── */
+.controls-bar[data-state="working"] .input-card,
+.controls-bar[data-state="followup"] .input-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "chips chips" "ta btn";
+  align-items: center;
+  gap: 6px 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-xl);
+}
+.controls-bar[data-state="working"] .chip-row,
+.controls-bar[data-state="followup"] .chip-row { grid-area: chips; padding: 0 4px; border-top: 0; gap: 0; flex-wrap: wrap; }
+.controls-bar[data-state="working"] .input-card-textarea,
+.controls-bar[data-state="followup"] .input-card-textarea {
+  grid-area: ta;
+  min-height: 36px; height: 36px; max-height: 96px;
+  padding: 8px 14px; resize: none; overflow: auto;
+  border: 1px solid var(--outline); border-radius: 18px; background: var(--glass-input);
+  font-size: var(--fs-md, 14px); line-height: 1.3;
+}
+.controls-bar[data-state="working"] #fetchSummary,
+.controls-bar[data-state="followup"] #fetchSummary {
+  grid-area: btn; width: auto !important; margin: 0 !important; padding: 8px 18px; min-height: 36px; border-radius: 18px;
+}
+.controls-bar[data-state="working"] #fetchSummary { background: #111827; color: #fff; border: 0; }
+.controls-bar[data-state="working"] .chip,
+.controls-bar[data-state="followup"] .chip { border: 0; background: transparent; padding: 0 6px 0 0; font-size: 10px; color: var(--text-muted); }
+.controls-bar[data-state="working"] .chip + .chip::before,
+.controls-bar[data-state="followup"] .chip + .chip::before { content: '·'; margin-right: 6px; }
+.controls-bar[data-state="working"] .chip-icon,
+.controls-bar[data-state="followup"] .chip-icon { font-size: 10px; }
+.new-summary-btn { padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); font-size: var(--fs-xs); font-weight: 600; cursor: pointer; white-space: nowrap; }
+.new-summary-btn[hidden] { display: none; }
+.chat-q--first { align-self: flex-end; background: var(--accent); color: #fff; border-color: transparent; }
+.chat-q-sub { font-size: var(--fs-2xs); opacity: 0.8; }
+.chat-suggest { display: flex; flex-wrap: wrap; gap: 6px; }
+.chat-suggest-chip { border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); border-radius: var(--radius-full); padding: 4px 12px; font-size: var(--fs-xs); cursor: pointer; }
+.composer-note--page { background: #fef3c7; color: #78350f; border: 1px solid #fde68a; border-radius: var(--radius-lg); padding: 10px 12px; margin: 0; font-size: var(--fs-sm, 13px); }
+.composer-continue { display: block; margin: 8px auto 0; font-size: var(--fs-2xs); text-align: center; }

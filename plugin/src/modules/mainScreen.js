@@ -191,9 +191,22 @@ export function initMainScreen(ui) {
 
     const composer = createComposer(bar, {
         onChange: (next) => {
+            additionalQuestionsInput.style.height = '';
             if (newBtn) newBtn.hidden = !conversation;
             if (next === 'followup' && additionalQuestionsInput.value.trim()) sendFollowUp(additionalQuestionsInput.value.trim());
         }
+    });
+    additionalQuestionsInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && composer && composer.state === 'followup') {
+            e.preventDefault();
+            const q = additionalQuestionsInput.value.trim();
+            if (q && !fetchSummaryButton.disabled) sendFollowUp(q);
+        }
+    });
+    additionalQuestionsInput.addEventListener('input', () => {
+        if (!composer || composer.state === 'fetch') { additionalQuestionsInput.style.height = ''; return; }
+        additionalQuestionsInput.style.height = 'auto';
+        additionalQuestionsInput.style.height = Math.min(additionalQuestionsInput.scrollHeight, 96) + 'px';
     });
     const resetToFetch = () => {
         if (composer) { composer.set('fetch'); composer.refresh(); }
@@ -201,28 +214,37 @@ export function initMainScreen(ui) {
     };
 
     const clearNote = () => {
-        const n = document.getElementById('composerNote');
-        if (n) n.remove();
+        document.getElementById('composerNote')?.remove();
+        document.getElementById('composerContinue')?.remove();
         differentPageNote = false;
     };
-    const showNote = () => {
+    const showNote = (tab) => {
         if (document.getElementById('composerNote') || !bar) return;
+        const clip = (x, n) => { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; };
         const n = document.createElement('div');
         n.id = 'composerNote';
-        n.className = 'composer-note';
-        n.innerHTML = `<span>${esc(T('This is a different page.'))}</span> <button type="button" class="btn-link" id="composerContinue">${esc(T('Continue conversation'))}</button>`;
-        bar.querySelector('.input-card').prepend(n);
-        n.querySelector('#composerContinue').addEventListener('click', () => {
+        n.className = 'composer-note composer-note--page';
+        let host = ''; try { host = new URL(tab && tab.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }
+        const strong = document.createElement('strong'); strong.textContent = '📄 ' + T("You're on a different page");
+        const sub = document.createElement('div'); sub.textContent = clip([host, tab && tab.title].filter(Boolean).join(' · '), 70);
+        n.append(strong, sub);
+        feed.appendChild(n);
+        const link = document.createElement('button');
+        link.type = 'button'; link.id = 'composerContinue'; link.className = 'btn-link composer-continue';
+        link.textContent = '‹ ' + T('Continue "{title}" conversation', { title: clip(conversation && conversation.title, 28) });
+        link.addEventListener('click', () => {
             clearNote();
             if (conversation && composer) composer.set('followup');
         });
+        bar.querySelector('.input-card').appendChild(link);
+        scrollFeed();
         differentPageNote = true;
     };
 
     /** ＋ New: back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
     const startNew = () => {
         if (composer && composer.state === 'working') return;
-        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap').forEach(n => n.remove());
+        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest, .composer-note').forEach(n => n.remove());
         conversation = null; lastContext = null;
         clearNote();
         additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
@@ -231,6 +253,7 @@ export function initMainScreen(ui) {
         additionalQuestionsInput.focus();
     };
     if (newBtn) {
+        newBtn.textContent = T('＋ New');
         newBtn.title = T('New summary') + ' (⌘N)';
         newBtn.setAttribute('aria-label', T('New summary'));
         newBtn.addEventListener('click', startNew);
@@ -249,7 +272,7 @@ export function initMainScreen(ui) {
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
         if (!tab || !tab.url) return;
         const same = samePage(conversation.url, tab.url);
-        if (!same && composer.state === 'followup') { composer.set('fetch'); showNote(); }
+        if (!same && composer.state === 'followup') { composer.set('fetch'); showNote(tab); }
         else if (same && differentPageNote) { clearNote(); composer.set('followup'); }
     };
     try {
@@ -281,6 +304,7 @@ export function initMainScreen(ui) {
 
     async function sendFollowUp(q) {
         if (!conversation || !q) return;
+        feed.querySelector('.chat-suggest')?.remove();
         additionalQuestionsInput.value = '';
         fetchSummaryButton.disabled = true;
         const qEl = addTurn('chat-q', q);
@@ -431,6 +455,15 @@ export function initMainScreen(ui) {
                     summary: msg.summary, turns: []
                 };
                 clearNote();
+                const sug = document.createElement('div');
+                sug.className = 'chat-suggest';
+                [[T('Who disagrees?'), 'Who disagrees with this, and why?'], [T('Key numbers'), 'List the key numbers and facts from the page.'], [T('Explain simply'), 'Explain this simply, as if to a beginner.']].forEach(([label, q]) => {
+                    const c = document.createElement('button');
+                    c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = label;
+                    c.addEventListener('click', () => sendFollowUp(q));
+                    sug.appendChild(c);
+                });
+                feed.appendChild(sug);
                 if (composer) composer.set('followup');
                 if (newBtn) newBtn.hidden = false;
                 scrollFeed();
@@ -489,7 +522,7 @@ export function initMainScreen(ui) {
                 composer.set('working');
                 additionalQuestionsInput.value = '';   // the focus question is on its way; the box is free for the next question
                 clearNote();
-                feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap').forEach(n => n.remove());
+                feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest, .composer-note').forEach(n => n.remove());
             } else {
                 fetchSummaryButton.disabled = true;
                 fetchSummaryButton.textContent = '⏳ Summarizing…';
@@ -502,6 +535,12 @@ export function initMainScreen(ui) {
                 const chipIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
                 const isCloud = chipIcon?.textContent === '☁️' || (await chrome.storage.sync.get('connectionMode')).connectionMode === 'cloud';
                 
+                const first = document.createElement('div');
+                first.className = 'chat-turn chat-q chat-q--first';
+                const l1 = document.createElement('div'); l1.textContent = T('Summarize this page');
+                first.appendChild(l1);
+                if ((additionalQuestions || '').trim()) { const l2 = document.createElement('div'); l2.className = 'chat-q-sub'; l2.textContent = T('Focus: {text}', { text: additionalQuestions.trim() }); first.appendChild(l2); }
+                feed.appendChild(first);
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');
                 updateStream('Contacting content script…');
                 // Show the bar immediately on click rather than waiting for

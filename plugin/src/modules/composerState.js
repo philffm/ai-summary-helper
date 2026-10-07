@@ -60,7 +60,7 @@ export function createComposer(bar, { onChange } = {}) {
         if (textarea) {
             textarea.placeholder = state === 'fetch' ? textarea.dataset.fetchPlaceholder
                 : state === 'followup' ? T('Ask a follow-up…')
-                : T('Type a question — it is sent when the summary is ready');
+                : T('Queue a question…');
         }
     };
     apply();
