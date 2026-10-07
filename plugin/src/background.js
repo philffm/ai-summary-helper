@@ -53,6 +53,7 @@ const SK = {
     activityView: 'ui:activityView',
     workspace: 'ui:workspace',
     reviewPrompt: 'ui:reviewPrompt',
+    exportAllQuestions: 'ui:exportAllQuestions',
     // configuration with secrets (API keys, endpoints) — never synced
     servicesConfig: 'config:services',
     // migration flags

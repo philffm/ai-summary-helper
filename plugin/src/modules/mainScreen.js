@@ -7,6 +7,8 @@ import StorageManager from './storageManager.js';
 import { T } from './feedI18n.js';
 import { aiComplete } from './feedAi.js';
 import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
+import { newTurn, buildPrompt, parseAnswer } from './conversation.js';
+import { turnEl } from './qaView.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -220,7 +222,7 @@ export function initMainScreen(ui) {
     /** ＋ New: back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
     const startNew = () => {
         if (composer && composer.state === 'working') return;
-        feed.querySelectorAll('.chat-turn, .sc-used-wrap').forEach(n => n.remove());
+        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap').forEach(n => n.remove());
         conversation = null; lastContext = null;
         clearNote();
         additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
@@ -265,26 +267,36 @@ export function initMainScreen(ui) {
         return el;
     }
 
+    const persistConversation = () => {
+        if (conversation && conversation.id) StorageManager.saveConversation(conversation.id, conversation.turns).catch(() => {});
+    };
+
+    const revealOnPage = (quote, chip) => {
+        if (!conversation || activeTabId == null) return;
+        getActiveTab().then(tab => {
+            if (!tab || !samePage(conversation.url, tab.url)) { chip.title = T('Open the page to jump to this passage') + ' — ' + quote; return; }
+            sendMessageToTab(tab.id, { action: 'revealQuote', quote }).catch(() => {});
+        }).catch(() => {});
+    };
+
     async function sendFollowUp(q) {
         if (!conversation || !q) return;
         additionalQuestionsInput.value = '';
         fetchSummaryButton.disabled = true;
-        addTurn('chat-q', q);
+        const qEl = addTurn('chat-q', q);
         const ans = addTurn('chat-a chat-a--pending', T('Thinking…'));
         try {
-            const system = 'You answer follow-up questions about one web page. Use only the page text and the summary below. '
-                + 'Be concise and answer in the language of the question.';
-            const history = conversation.turns.slice(-4).map(t => `Q: ${t.q}\nA: ${t.a}`).join('\n\n');
-            const user = `PAGE TITLE: ${conversation.title}\n\nPAGE TEXT:\n${String(conversation.content || '').slice(0, 20000)}\n\n`
-                + `SUMMARY:\n${String(conversation.summary || '').replace(/<[^>]+>/g, ' ')}\n\n`
-                + (history ? `EARLIER QUESTIONS:\n${history}\n\n` : '') + `QUESTION: ${q}`;
-            const text = (await aiComplete(system, user)).trim();
-            ans.textContent = text || T('No answer.');
-            conversation.turns.push({ q, a: text });
+            const { system, user } = buildPrompt({ ...conversation, question: q });
+            const { a, sources } = parseAnswer(await aiComplete(system, user), conversation.content);
+            const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
+            conversation.turns.push(turn);
+            const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });
+            qEl.remove(); ans.replaceWith(el);
+            persistConversation();
         } catch (err) {
             ans.textContent = '❌ ' + ((err && err.message) || T('AI request failed'));
+            ans.classList.remove('chat-a--pending');
         }
-        ans.classList.remove('chat-a--pending');
         fetchSummaryButton.disabled = false;
         scrollFeed();
     }
@@ -382,6 +394,12 @@ export function initMainScreen(ui) {
             lastContext = { ...msg, model: document.getElementById('chipModelLabel')?.textContent || '' };
             renderSteps(lastContext);
         }
+        if (msg.action === 'summarySaved') {
+            if (conversation && msg.id && samePage(conversation.url, msg.url)) {
+                conversation.id = msg.id;
+                persistConversation();    // turns asked before the save finished
+            }
+        }
         if (msg.action === 'summaryCancelled') {
             removeStreamBubble();
             lastContext = null;
@@ -471,7 +489,7 @@ export function initMainScreen(ui) {
                 composer.set('working');
                 additionalQuestionsInput.value = '';   // the focus question is on its way; the box is free for the next question
                 clearNote();
-                feed.querySelectorAll('.chat-turn, .sc-used-wrap').forEach(n => n.remove());
+                feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap').forEach(n => n.remove());
             } else {
                 fetchSummaryButton.disabled = true;
                 fetchSummaryButton.textContent = '⏳ Summarizing…';

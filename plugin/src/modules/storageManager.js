@@ -320,6 +320,29 @@ class StorageManager {
         return { ...meta, ...(recordData[key] || {}) };
     }
 
+    /** Follow-up conversation of an article: [{id,q,a,sources[],pinned,ts}] (stored on the article record). */
+    static async getConversation(id) {
+        if (!id) return [];
+        const key = articleRecKey(id);
+        const rec = (await this.getLocal([key]))[key];
+        return Array.isArray(rec?.conversation) ? rec.conversation : [];
+    }
+
+    /** Replace the conversation; keeps the lean index in step (qaCount) so lists never load records. */
+    static async saveConversation(id, turns) {
+        if (!id) return false;
+        const key = articleRecKey(id);
+        const [recData, idxData] = await Promise.all([this.getLocal([key]), this.getLocal({ [SK.articlesIndex]: [] })]);
+        const rec = recData[key];
+        if (!rec) return false;
+        const list = Array.isArray(turns) ? turns : [];
+        const index = idxData[SK.articlesIndex] || [];
+        const entry = index.find(a => a.id === id);
+        if (entry) { if (list.length) entry.qaCount = list.length; else delete entry.qaCount; }
+        await this.setLocal({ [key]: { ...rec, conversation: list }, [SK.articlesIndex]: index });
+        return true;
+    }
+
     static async saveArticle({ content, summary, url, title, description, tags = [], modelId = '', connectionMode = '', summaryLength = 200, extra = {} }) {
         const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
         const timestamp = new Date().toISOString();

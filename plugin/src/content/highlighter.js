@@ -762,3 +762,20 @@ function hlJump(id) {
   } else if (el) { el.classList.add('aish-hl-flash'); setTimeout(() => el.classList.remove('aish-hl-flash'), 1400); }
 }
 
+
+/** Scroll to a passage of the page (an AI answer's source quote) and select it briefly. Returns true when found. */
+export function revealQuote(quote) {
+  try {
+    const idx = ancBuildIndex(ancScopeRoot());
+    const hit = ancResolve(idx, { exact: quote });
+    if (!hit) return false;
+    const range = ancToRange(idx, hit.start, hit.end);
+    if (!range) return false;
+    const el = range.startContainer.parentElement;
+    if (el && el.scrollIntoView) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    const sel = window.getSelection();
+    sel.removeAllRanges(); sel.addRange(range);
+    setTimeout(() => { try { if (sel.rangeCount && sel.getRangeAt(0) === range) sel.removeAllRanges(); } catch (_) { /* gone */ } }, 4000);
+    return true;
+  } catch (_) { return false; }
+}

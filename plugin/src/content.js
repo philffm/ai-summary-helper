@@ -37,7 +37,8 @@ import {
   handleHighlightClick,
   applyGhostHighlights,
   handleGhostHighlightClick,
-  getUserHighlightTexts
+  getUserHighlightTexts,
+  revealQuote
 } from './content/highlighter.js';
 
 import {
@@ -305,6 +306,11 @@ import {
           }
         });
       });
+      return false;
+    }
+
+    if (request.action === 'revealQuote') {
+      sendResponse({ success: revealQuote(String(request.quote || '')) });
       return false;
     }
 
@@ -734,7 +740,10 @@ import {
               }
 
               saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : undefined)
-                .then(savedArticle => resolve({ success: true, article: savedArticle }))
+                .then(savedArticle => {
+                  if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: window.location.href });
+                  resolve({ success: true, article: savedArticle });
+                })
                 .catch(err => {
                   console.error('Failed to save article:', err);
                   resolve({ success: true, article: null });

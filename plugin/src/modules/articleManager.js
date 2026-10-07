@@ -10,6 +10,8 @@ import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
 import { T, locale } from './feedI18n.js';
+import { withQuestions, qaMarkdown } from './conversation.js';
+import { qaSection } from './qaView.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 let uiManagerRef = null;
@@ -184,7 +186,21 @@ function buildSafeArticleTitle(title) {
     return (title || 'AI Summary').replace(/[^a-z0-9_-]/gi, '_');
 }
 
+async function includeAllQuestions() {
+    try { return !!(await StorageManager.getLocal({ [SK.exportAllQuestions]: false }))[SK.exportAllQuestions]; } catch (_) { return false; }
+}
+async function conversationOf(article) {
+    return Array.isArray(article.conversation) ? article.conversation : (article.id ? StorageManager.getConversation(article.id) : []);
+}
+/** Article copy whose summary also carries the pinned questions (all of them when "Include all questions" is on). */
+async function exportView(article) {
+    const turns = await conversationOf(article);
+    if (!turns.length) return article;
+    return { ...article, summary: withQuestions(article.summary, turns, { all: await includeAllQuestions() }) };
+}
+
 async function buildArticleDocumentHtml(article) {
+    article = await exportView(article);
     // Include the article's highlights & AI suggested highlights (ghosts
     // included even if never marked "keep").
     const annotations = await fetchAnnotationsForArticle(article);
@@ -202,6 +218,8 @@ ${summaryHtml ? `<div class="summary"><h2>🧙 AI Summary</h2>${summaryHtml}</di
 ${annotationsHtml}
 ${contentHtml ? `<h2>📄 Content</h2><div>${contentHtml}</div>` : ''}</body></html>`;
 }
+
+export const __test_buildDoc = (a) => buildArticleDocumentHtml(a);
 
 async function buildArticleHtmlFile(article) {
     const safeTitle = buildSafeArticleTitle(article.title);
@@ -315,11 +333,12 @@ why:
     // included even if never marked "keep").
     const annotationsPlain = await buildAnnotationsPlainText(article);
 
+    const qaMd = qaMarkdown(await conversationOf(article), { all: await includeAllQuestions() });
     const mdContent = `${frontmatter}
 
 # Summary
 ${summaryPlain}
-
+${qaMd ? '\n' + qaMd : ''}
 ${annotationsPlain}
 
 ---
@@ -350,6 +369,7 @@ ${contentPlain.trim().replace(/\n{3,}/g, '\n\n')}
  * Copies summary and content to clipboard as formatted text (HTML) and plain text (Markdown-ish)
  */
 async function copyArticleToClipboard(article) {
+    article = await exportView(article);
     const title = article.title || 'AI Summary';
     const summary = article.summary || '';
     const content = article.content || '';
@@ -414,6 +434,7 @@ async function copyArticleToClipboard(article) {
  * Sends article summary and content to a Kindle email via the proxy API
  */
 async function sendToKindle(article) {
+    article = await exportView(article);
     const config = await StorageManager.getAll();
     // Multiple Kindle devices can be configured; always send to the active
     // one (last used, or the first configured if none has been used yet).
@@ -525,6 +546,7 @@ async function dispatchToLocalSend(article) {
  * They return {ok, error?} instead of toasting, so the sheet can show progress per item.
  */
 export async function deliverKindle(article, device) {
+    article = await exportView(article);
     const config = await StorageManager.getAll();
     const kindleEmail = (device?.addresses?.[0] || '').replace(/^mailto:/i, '');
     if (!kindleEmail) return { ok: false, error: 'No Kindle email set.' };
@@ -1029,7 +1051,7 @@ function buildArticleCard(article) {
         articleDomain = new URL(article.url).hostname;
     }
     const tags = article.tags || [];
-    const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
+    const tagsHtml = tags.length ? `<div class="card-tags">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
     const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
     const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji} ${article.modelId}</span>` : '';
 
@@ -1112,10 +1134,17 @@ function buildArticleCard(article) {
         const host = listItem.querySelector('.article-header > div');
         const badges = statusBadges(article);
         if (host && badges.length) {
-            const row = document.createElement('div');
-            row.className = 'status-badges';
-            badges.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'status-badge ' + tone; b.textContent = text; row.appendChild(b); });
-            host.appendChild(row);
+            // Status (New / Read / Sent / Archived) is the first chip in the same row as the tags.
+            let row = host.querySelector('.card-tags');
+            if (!row) {
+                row = document.createElement('div');
+                row.className = 'card-tags';
+                const anchor = host.querySelector('.article-date');
+                if (anchor) anchor.after(row); else host.appendChild(row);
+            }
+            const frag = document.createDocumentFragment();
+            badges.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip status-badge ' + tone; b.textContent = text; frag.appendChild(b); });
+            row.prepend(frag);
         }
         if (host && article.archived) {
             const r = document.createElement('button');
@@ -1291,6 +1320,24 @@ async function renderLocalInsights(article, container) {
 /**
  * Shows the full article detail view with back button
  */
+/** Pinned follow-ups inline, the rest collapsed; pin changes and the export switch are saved right away. */
+async function renderDetailQa(article, mount) {
+    if (!mount) return;
+    const turns = Array.isArray(article.conversation) ? article.conversation : [];
+    const draw = async () => {
+        mount.replaceChildren(qaSection(turns, {
+            includeAll: await includeAllQuestions(),
+            onPin: async () => {
+                await StorageManager.saveConversation(article.id, turns);
+                draw();
+            },
+            onIncludeAll: (v) => StorageManager.setLocal({ [SK.exportAllQuestions]: !!v }),
+            onSource: (quote, chip) => { chip.classList.toggle('chat-src--open'); chip.textContent = chip.classList.contains('chat-src--open') ? '¶ ' + quote : '¶ ' + (quote.length > 38 ? quote.slice(0, 37) + '…' : quote); }
+        }));
+    };
+    draw();
+}
+
 export async function showArticleDetail(article) {
     // List/graph/search cards only carry the lean articlesIndex shape (no
     // content) — load the full article:<id> record before rendering detail.
@@ -1305,6 +1352,9 @@ export async function showArticleDetail(article) {
         }
     }
 
+    if (article && article.id && article.conversation === undefined) {
+        try { article = { ...article, conversation: await StorageManager.getConversation(article.id) }; } catch (_) { article = { ...article, conversation: [] }; }
+    }
     currentDetailArticle = article;
     recordArticleOpened(article);
     if (article && article.id && !article.readAt && !article.feedStub) { article.readAt = new Date().toISOString(); applyStatus([article.id], { read: true }).catch(() => {}); }
@@ -1378,6 +1428,7 @@ export async function showArticleDetail(article) {
           <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
           <div>${safeSummary}</div>
         </div>
+        <div id="qaMount" style="margin-bottom:12px;"></div>
         <div id="localInsights" style="margin-bottom:16px;"></div>
         <details style="margin-top:8px;">
           <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">📄 Original Content</summary>
@@ -1390,6 +1441,7 @@ export async function showArticleDetail(article) {
     // asynchronously and progressively fill in — they never block the rest
     // of the detail view from rendering.
     renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
+    renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
 
     // Wire up buttons
     const shareBtn = articleDetailContent.querySelector('.share-button');
@@ -1415,14 +1467,15 @@ export async function showArticleDetail(article) {
     if (localSendBtn) localSendBtn.addEventListener('click', (e) => { e.stopPropagation(); dispatchToLocalSend(article); });
     if (mdBtn) mdBtn.addEventListener('click', (e) => { e.stopPropagation(); exportToMarkdown(article); });
     if (openBtn) {
-        openBtn.addEventListener('click', (e) => {
+        openBtn.addEventListener('click', async (e) => {
             e.stopPropagation();
+            const readerArticle = await exportView(article);
             const newTab = window.open();
             newTab.document.write(`
                 <html><head><title>${safeTitle}</title>
                 <style>body{font-family:Georgia,serif;padding:20px;max-width:800px;margin:auto;background:#f4f4f4;color:#333;line-height:1.6;}
                 h2{color:#444;}img{max-width:100%;height:auto;}</style></head>
-                <body><h2>Summary</h2><div>${article.summary}</div><h2>Content</h2><div>${article.content}</div></body></html>
+                <body><h2>Summary</h2><div>${readerArticle.summary}</div><h2>Content</h2><div>${article.content}</div></body></html>
             `);
             newTab.document.close();
         });
