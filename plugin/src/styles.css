@@ -3137,11 +3137,6 @@ i.tp-s3 { background: var(--tp-3); } i.tp-s4 { background: var(--tp-4); } i.tp-s
 .sd-more summary { list-style: none; cursor: pointer; font-size: 20px; padding: 4px 10px; }
 .sd-more summary::-webkit-details-marker { display: none; }
 .sd-more-menu { position: absolute; right: 0; top: 100%; z-index: 5; display: flex; flex-direction: column; gap: 6px; padding: 8px; background: var(--glass-card, var(--surface-1)); border: 1px solid var(--outline); border-radius: var(--radius-md); box-shadow: 0 8px 24px rgba(0,0,0,.18); white-space: nowrap; }
-.sd-behavior { margin-top: 12px; }
-.sd-behavior > summary { cursor: pointer; font-weight: 600; padding: 10px 2px; list-style: none; }
-.sd-behavior > summary::before { content: '›'; display: inline-block; margin-right: 8px; transition: transform .15s; }
-.sd-behavior[open] > summary::before { transform: rotate(90deg); }
-.sd-behavior > summary::-webkit-details-marker { display: none; }
 
 /* Mood feature switched off (Settings › Feeds › Behavior): hide every mood surface */
 html[data-mood="off"] #feedMoodChip,

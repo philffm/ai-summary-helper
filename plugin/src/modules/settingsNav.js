@@ -17,14 +17,15 @@ const INDEX = [
     ['prompts', 'Preset prompt', 'promptSettingsRoot', 'prompt preset template'],
     ['prompts', 'Custom prompt text', 'promptSettingsRoot', 'prompt instructions system custom guided builder tone length focus'],
     ['prompts', 'Feed briefing & recap style', 'promptSettingsRoot', 'feeds briefing recap style tone length'],
-    ['feeds', 'Feed subscriptions · rename · tags', 'feedSubsCard', 'rss feeds subscriptions tags folder group rename mute unsubscribe sources'],
+    ['feeds', 'Sources · rename · tags · mute', 'feedSubsCard', 'rss feeds subscriptions tags folder group rename mute unsubscribe sources'],
     ['feeds', 'Import / export OPML', 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
-    ['feeds', 'Mark read when opened', 'feedSetMarkRead', 'feed read unread open'],
-    ['feeds', 'Rate items with the recap', 'feedSetRate', 'feed ai recap rate score sentiment mood category label automatic'],
-    ['feeds', 'Auto-summarize favorites', 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
-    ['feeds', 'Check feeds in the background', 'feedSetPoll', 'feed badge notification new items poll background'],
-    ['feeds', 'Feed refresh interval', 'feedSetRefresh', 'feed refresh update minutes hour interval'],
-    ['feeds', 'Keep feed items for', 'feedSetKeep', 'feed retention days delete old cleanup'],
+    ['feedprefs', 'Mark read when opened', 'feedSetMarkRead', 'feed read unread open'],
+    ['feedprefs', 'Mood on/off (tone analysis)', 'feedSetMood', 'mood sentiment tone positive negative disable hide analysis diet'],
+    ['feedprefs', 'Rate items with the recap', 'feedSetRate', 'feed ai recap rate score sentiment mood category label automatic'],
+    ['feedprefs', 'Auto-summarize favorites', 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
+    ['feedprefs', 'Check feeds in the background', 'feedSetPoll', 'feed badge notification new items poll background'],
+    ['feedprefs', 'Feed refresh interval', 'feedSetRefresh', 'feed refresh update minutes hour interval'],
+    ['feedprefs', 'Keep feed items for', 'feedSetKeep', 'feed retention days delete old cleanup'],
     ['reading', 'Page highlighting', 'highlightingToggle', 'highlight yellow marker annotate'],
     ['reading', 'AI ghost highlighting', 'aiHighlightingToggle', 'ghost highlight ai quotes blue'],
     ['reading', 'Ghost highlight amount', 'ghostHighlightAmount', 'ghost highlight few regular a lot'],
@@ -46,7 +47,7 @@ const INDEX = [
 ];
 
 const PANEL_TITLES = {
-    account: 'Account & Plan', models: 'Models & API', prompts: 'Prompts', feeds: 'Feeds', reading: 'Reading & Highlighting',
+    account: 'Account & Plan', models: 'Models & API', prompts: 'Prompts', feeds: 'Sources', feedprefs: 'Feed preferences', reading: 'Reading & Highlighting',
     send: 'Send & Share', appearance: 'Appearance & Language', library: 'Library & Data', about: 'About & Tools'
 };
 

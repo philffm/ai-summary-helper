@@ -1685,10 +1685,12 @@ async function scoreWithAi(list) {
 function updateSettingsSub() {
     const sub = document.querySelector('.settings-row-sub[data-sub="feeds"]');
     if (!sub) return;
+    const prefSub = document.querySelector('.settings-row-sub[data-sub="feedprefs"]');
+    if (prefSub) prefSub.textContent = T('Reading · AI · updates');
     const folders = allTags().length;
     sub.textContent = subs.length
         ? TN(subs.length, '{n} feed', '{n} feeds') + (folders ? ' · ' + TN(folders, '{n} tag', '{n} tags') : '')
-        : T('Subscriptions · OPML · behavior');
+        : T('Subscriptions · tags · OPML');
 }
 
 function sendPollConfig() {
@@ -1704,7 +1706,7 @@ async function setSetting(key, value) {
 
 // Source diet: last-30-day usage and mood per subscription (mood only from rated items).
 const DIET_DAYS = 30, DIET_MIN_SCORED = 5, NOISY_MOOD = -30;
-let openSubId = null, subFilter = 'all', subSort = moodEnabled() ? 'mood' : 'unread', behaviorOpen = false, dietDismissed = false;
+let openSubId = null, subFilter = 'all', subSort = moodEnabled() ? 'mood' : 'unread', dietDismissed = false;
 function dietStats(s) {
     const since = Date.now() - DIET_DAYS * 864e5;
     const mine = items.filter(i => i.feedId === s.id && i.published >= since);
@@ -1914,24 +1916,29 @@ function renderFeedSettings() {
     if (subs.length && !card.querySelector('.feed-sub-card')) card.append(el('p', 'feed-muted', T('Nothing here.')));
     root.append(card);
 
-    // Behavior (collapsible; opened by search deep links too)
-    const beh = el('details', 'sd-behavior');
-    beh.id = 'feedBehaviorCard'; beh.open = behaviorOpen;
-    beh.addEventListener('toggle', () => { behaviorOpen = beh.open; });
-    beh.append(el('summary', null, TU('Behavior')));
-    const inner = el('div', 'feed-set-card');
-    inner.append(
+    renderFeedPrefs();
+}
+
+// Feed preferences: how feeds behave (its own Settings page), grouped by intent.
+function renderFeedPrefs() {
+    const root = document.getElementById('feedPrefsRoot');
+    if (!root) return;
+    root.replaceChildren();
+    const card = (id, caption, ...rows) => {
+        root.append(el('p', 'settings-caption', caption));
+        const c = el('div', 'feed-set-card'); c.id = id; c.append(...rows); root.append(c);
+    };
+    card('feedPrefsReading', TU('Reading'),
         toggleRow('feedSetMarkRead', T('✓ Mark read when opened'), T('Items you open or summarize leave your unread list'), 'markReadOnOpen'),
-        moodToggleRow(),
-        toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'),
         toggleRow('feedSetAutoSum', T('✨ Auto-summarize favorites'), T('Starring an item summarizes it in a background tab'), 'autoSummarizeFavs'),
+        el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.')));
+    card('feedPrefsAi', TU('AI analysis'),
+        moodToggleRow(),
+        toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
+    card('feedPrefsUpdates', TU('Updates & storage'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
         selectRow('feedSetRefresh', T('🔄 Refresh feeds every'), 'refreshMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')]]),
-        selectRow('feedSetKeep', T('🗂️ Keep items for'), 'keepDays', [[7, T('7 days')], [30, T('30 days')], [90, T('90 days')], [180, T('6 months')], [365, T('1 year')]]),
-        el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.'))
-    );
-    beh.append(inner);
-    root.append(beh);
+        selectRow('feedSetKeep', T('🗂️ Keep items for'), 'keepDays', [[7, T('7 days')], [30, T('30 days')], [90, T('90 days')], [180, T('6 months')], [365, T('1 year')]]));
 }
 
 // ── Public API ─────────────────────────────────────────────────────────────
@@ -2019,8 +2026,7 @@ export function initFeedManager(uiObj) {
     // Leaving the screen dismisses transient UI.
     document.querySelectorAll('.nav-item, #settingsButton').forEach(b => b.addEventListener('click', () => { closeSheet(); hideUndo(); }));
     document.addEventListener('aish:settings-panel', async (e) => {
-        if (!e.detail || e.detail.name !== 'feeds') return;
-        if (e.detail.targetId && /^feedSet/.test(e.detail.targetId)) behaviorOpen = true;
+        if (!e.detail || (e.detail.name !== 'feeds' && e.detail.name !== 'feedprefs')) return;
         renderFeedSettings();                       // immediately, so search deep-links find their target
         await load(); await loadHistoryMap();
         const root = document.getElementById('feedSettingsRoot');

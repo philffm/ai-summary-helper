@@ -220,7 +220,12 @@
 <p class="settings-caption" data-i18n="settingsCapFeeds">FEEDS</p>
 <button type="button" class="settings-row" data-panel="feeds">
   <span class="settings-row-icon">📰</span>
-  <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsFeeds">Feeds</span><span class="settings-row-sub" data-sub="feeds">Subscriptions · OPML · behavior</span></span>
+  <span class="settings-row-text"><span class="settings-row-title">Sources</span><span class="settings-row-sub" data-sub="feeds">Subscriptions · tags · OPML</span></span>
+  <span class="settings-row-chev">›</span>
+</button>
+<button type="button" class="settings-row" data-panel="feedprefs">
+  <span class="settings-row-icon">🎚️</span>
+  <span class="settings-row-text"><span class="settings-row-title">Feed preferences</span><span class="settings-row-sub" data-sub="feedprefs">Reading · AI · updates</span></span>
   <span class="settings-row-chev">›</span>
 </button>
 <p class="settings-caption" data-i18n="settingsCapReading">READING</p>
@@ -345,9 +350,16 @@
 <section class="settings-panel" id="settingsPanel-feeds" data-panel="feeds" hidden>
   <div class="settings-panel-head">
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
-    <h2><span data-i18n="settingsFeeds">Feeds</span></h2>
+    <h2><span>Sources</span></h2>
   </div>
   <div id="feedSettingsRoot"></div>
+</section>
+<section class="settings-panel" id="settingsPanel-feedprefs" data-panel="feedprefs" hidden>
+  <div class="settings-panel-head">
+    <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
+    <h2><span>Feed preferences</span></h2>
+  </div>
+  <div id="feedPrefsRoot"></div>
 </section>
 <section class="settings-panel" id="settingsPanel-reading" data-panel="reading" hidden>
   <div class="settings-panel-head">
