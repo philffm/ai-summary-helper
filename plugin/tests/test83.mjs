@@ -17,4 +17,9 @@ w.document.body.innerHTML = `<div id="onetap"><article class="onetap-popup"><p>$
 <article class="analysen"><h2>Roche Analysen</h2><table><tr><td>Hold</td></tr></table><script>${'var x = 1; '.repeat(800)}</script></article></main>`;
 assert(a.ancScopeRoot(w.document).classList.contains('news-container'), 'script source and h2-only articles do not win');
 assert(!x.getAllTextContent().text.includes('Roche Analysen'), 'extractor ignores the analysis box');
+// Ordinary pages keep the old first-match result: several articles, first one has the h1 -> first; no h1 anywhere -> first
+w.document.body.innerHTML = '<article id="a"><h1>T</h1><p>' + body + '</p></article><article id="b"><h1>Other</h1><p>' + body + body + '</p></article>';
+assert.equal(a.ancScopeRoot(w.document).id, 'a', 'first article with h1 stays');
+w.document.body.innerHTML = '<article id="a"><p>short</p></article><article id="b"><p>' + body + body + '</p></article>';
+assert.equal(a.ancScopeRoot(w.document).id, 'a', 'no h1 anywhere: unchanged first match');
 console.log('TEST 83 OK'); process.exit(0);

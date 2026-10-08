@@ -13,34 +13,18 @@ const ANC_SKIP = [
 ].join(',');
 const ANC_BLOCK = 'p,div,li,ul,ol,h1,h2,h3,h4,h5,h6,blockquote,td,th,tr,section,article,pre,figcaption,dd,dt,br';
 
-/** Length of the readable text under `el`: script/style/template source is not content (textContent counts it). */
-function ancTextLen(el) {
-  const doc = el.ownerDocument;
-  const w = doc.createTreeWalker(el, 4 /* SHOW_TEXT */);
-  let n = 0;
-  for (let t = w.nextNode(); t; t = w.nextNode()) {
-    if (t.parentElement && t.parentElement.closest('script,style,noscript,template')) continue;
-    n += t.nodeValue.trim().length;
-  }
-  return n;
-}
-
 /**
- * Of all elements matching `selector`, the one holding the story. `querySelector` alone returns the first in DOM
- * order, which on many sites is a sign-in popup, cookie banner or teaser card rather than the article. Dialogs/modals
- * are skipped; candidates containing the page's <h1> are preferred; then the most readable text wins.
- * Returns null when nothing matches.
+ * The element matching `selector` that holds the story. Same as `querySelector` (first in DOM order) in every
+ * ordinary case; it only deviates when that first match is not the story: a sign-in popup, cookie banner or teaser
+ * that precedes the real article. Then the first match containing the page's <h1> wins. Matches inside dialogs/modals
+ * are ignored. Returns null when nothing matches.
  */
 export function ancLargestMatch(doc, selector) {
   const all = [...doc.querySelectorAll(selector)]
     .filter(el => !el.closest('[role="dialog"],[role="alertdialog"],[aria-modal="true"],dialog'));
-  const withH1 = all.filter(el => el.querySelector('h1'));
-  let best = null, bestLen = 0;
-  for (const el of (withH1.length ? withH1 : all)) {
-    const len = ancTextLen(el);
-    if (len > bestLen) { best = el; bestLen = len; }
-  }
-  return best;
+  const first = all[0] || null;
+  if (!first || first.querySelector('h1')) return first;
+  return all.find(el => el.querySelector('h1')) || first;
 }
 
 /** Article, else [role=main], else main: first non-empty tier wins (a <main> wrapping the <article> must not beat it). */
