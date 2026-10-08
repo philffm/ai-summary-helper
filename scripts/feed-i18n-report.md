@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1064. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1064 | 0 | 0 | 35 |
-| de | 1064 | 0 | 0 | 153 |
-| es | 1064 | 0 | 0 | 124 |
-| fr | 1064 | 0 | 0 | 146 |
-| hi | 1064 | 0 | 0 | 53 |
-| it | 1064 | 0 | 0 | 126 |
-| ja | 1064 | 0 | 0 | 67 |
-| ko | 1064 | 0 | 0 | 14 |
-| pt_PT | 1064 | 0 | 0 | 125 |
-| ru | 1064 | 0 | 0 | 70 |
-| zh_CN | 1064 | 0 | 0 | 1 |
-| zh_HK | 1064 | 0 | 0 | 1 |
-| zh_TW | 1064 | 0 | 0 | 1 |
+| ar | 1065 | 0 | 0 | 35 |
+| de | 1065 | 0 | 0 | 154 |
+| es | 1065 | 0 | 0 | 124 |
+| fr | 1065 | 0 | 0 | 146 |
+| hi | 1065 | 0 | 0 | 53 |
+| it | 1065 | 0 | 0 | 126 |
+| ja | 1065 | 0 | 0 | 67 |
+| ko | 1065 | 0 | 0 | 14 |
+| pt_PT | 1065 | 0 | 0 | 125 |
+| ru | 1065 | 0 | 0 | 70 |
+| zh_CN | 1065 | 0 | 0 | 1 |
+| zh_HK | 1065 | 0 | 0 | 1 |
+| zh_TW | 1065 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -176,6 +176,7 @@ Strings: 1064. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Auto-summarize favorites | Favoriten automatisch zusammenfassen | 36 vs 24 | 1.5× |
 | Import / export OPML | OPML importieren / exportieren | 30 vs 20 | 1.5× |
 | No key facts found | Keine Kernaussagen gefunden | 27 vs 18 | 1.5× |
+| Open contents (long texts) | Inhaltsverzeichnis öffnen (lange Texte) | 39 vs 26 | 1.5× |
 | Writing the summary… | Schreibe die Zusammenfassung … | 30 vs 20 | 1.5× |
 | ↩ Restore to Inbox | ↩ In den Posteingang zurück | 27 vs 18 | 1.5× |
 | The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Zusammenfassungen nutzen diese Größe und diesen Abstand. | 121 vs 81 | 1.49× |

@@ -3652,5 +3652,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "模型读取了 {b} 个令牌中的 {a} 个。"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "打开目录（长文）"
   }
 }

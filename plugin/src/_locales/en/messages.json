@@ -3815,5 +3815,8 @@
   "f_the_model_read_of_tokens_d199": {
     "message": "The model read {a} of {b} tokens.",
     "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "Open contents (long texts)"
   }
 }

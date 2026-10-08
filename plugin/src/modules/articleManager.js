@@ -1,3 +1,4 @@
+import { mountReadingTools, destroyReadingTools } from './readingTools.js';
 import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
 // Article Manager
@@ -723,6 +724,7 @@ export function initArticleManager(uiManager) {
     // ── Handle Detail Back Button ───────────────────────────────────────
     if (detailBackBtn) {
         detailBackBtn.addEventListener('click', () => {
+            destroyReadingTools();
             const openedId = currentDetailArticle && currentDetailArticle.id;
             const articleDetail = document.getElementById('articleDetail');
             const articleList = document.getElementById('articleList');
@@ -1746,6 +1748,7 @@ export async function showArticleDetail(article) {
     if (historyTopBar) historyTopBar.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'flex';
     articleDetail.style.display = 'block';
+    mountReadingTools({ scroller: document.getElementById('historyScreen'), content: articleDetailContent });   // Scroll to top + contents on long texts
     // Keyboard: focus moves to "Back" (so Esc / Enter returns); the card that opened this stays remembered.
     const back = document.getElementById('detailBackButton');
     if (back) back.focus({ preventScroll: true });

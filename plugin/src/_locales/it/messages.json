@@ -3652,5 +3652,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "Il modello ha letto {a} di {b} token."
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "Apri l'indice (testi lunghi)"
   }
 }

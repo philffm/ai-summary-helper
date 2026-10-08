@@ -3652,5 +3652,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "قرأ النموذج {a} من أصل {b} رمزًا."
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "فتح المحتويات (النصوص الطويلة)"
   }
 }

@@ -3652,5 +3652,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "Das Modell hat {a} von {b} Tokens gelesen."
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "Inhaltsverzeichnis öffnen (lange Texte)"
   }
 }

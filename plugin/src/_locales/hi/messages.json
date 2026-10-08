@@ -3652,5 +3652,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "मॉडल ने {b} में से {a} टोकन पढ़े।"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "विषय-सूची खोलें (लंबे लेख)"
   }
 }

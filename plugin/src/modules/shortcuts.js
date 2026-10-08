@@ -72,7 +72,7 @@ export function shortcutGroups() {
     const mod = isMac() ? '⌘' : 'Ctrl';
     return [
         [T('Search'), [[T('Focus search'), [mod, 'F']], [T('Focus search'), ['/']]]],
-        [T('Lists'), [[T('Next / previous card'), ['j', 'k']], [T('Next / previous card'), ['↓', '↑']], [T('Open'), ['Enter']], [T('Back'), ['Esc']]]],
+        [T('Lists'), [[T('Next / previous card'), ['j', 'k']], [T('Next / previous card'), ['↓', '↑']], [T('Open'), ['Enter']], [T('Back'), ['Esc']], [T('Open contents (long texts)'), ['T']]]],
         [T('Summarize'), [[T('Summarize / send'), [mod, '↵']], [T('New summary'), [mod, 'N']], [T('Switch tab'), ['←', '→']], [T('Keyboard shortcuts'), ['?']]]]
     ];
 }

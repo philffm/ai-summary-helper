@@ -3652,5 +3652,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "模型讀取了 {b} 個 token 中的 {a} 個。"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "開啟目錄（長文）"
   }
 }

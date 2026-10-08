@@ -3634,5 +3634,8 @@
   },
   "f_the_model_read_of_tokens_d199": {
     "message": "모델이 {b}개 토큰 중 {a}개를 읽었습니다."
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "목차 열기(긴 글)"
   }
 }
