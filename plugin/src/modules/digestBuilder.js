@@ -43,10 +43,10 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
         `;
     }).join('\n');
 
+    // The delivery templates (LocalSend/Share HTML, Kindle) already print the title and the summary above the
+    // content, so the body carries neither: only the intro, the table of contents and the sections.
     const content = `
       <div>
-        <h1>${escapeHtml(magazineTitle)}</h1>
-        <p>${escapeHtml(T('{count}, curated from your AI Summary Helper archive.', { count: TN(ordered.length, '{n} article', '{n} articles') }))}</p>
         ${intro ? `<blockquote class="aish-intro" style="border-left:4px solid #c9a227;margin:14px 0;padding:2px 0 2px 12px;font-style:italic;">${escapeHtml(intro)}</blockquote>` : ''}
         <ol>${toc}</ol>
         <hr />
@@ -57,7 +57,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
     return {
         title: magazineTitle,
         content,
-        summary: `${intro ? intro + ' ' : ''}${T('A bundle of {count}: {titles}', { count: TN(ordered.length, '{n} article', '{n} articles'), titles: ordered.map(a => a.title).filter(Boolean).slice(0, 5).join(', ') + (ordered.length > 5 ? '…' : '') })}`,
+        summary: `${T('A bundle of {count}: {titles}', { count: TN(ordered.length, '{n} article', '{n} articles'), titles: ordered.map(a => a.title).filter(Boolean).slice(0, 5).join(', ') + (ordered.length > 5 ? '…' : '') })}`,
         url: '',
         timestamp: new Date().toISOString(),
         tags: Array.from(new Set(ordered.flatMap(a => a.tags || []))).slice(0, 10),
