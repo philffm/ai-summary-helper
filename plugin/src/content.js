@@ -394,6 +394,54 @@ import {
 
   // Summarize started from the on-page highlights panel: open the side panel,
   // then run the same flow as the popup's Summarize button (highlights = focus).
+  /** One non-streaming request through the background worker; resolves with the raw response body. */
+  function callOnce(apiUrl, headers, body) {
+    return new Promise((resolve, reject) => {
+      const rid = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      let buf = '';
+      streamHandlers.set(rid, (msg) => {
+        if (msg.stopped) { streamHandlers.delete(rid); reject(Object.assign(new Error('cancelled'), { cancelled: true })); return; }
+        if (msg.error) { streamHandlers.delete(rid); reject(new Error(msg.error)); return; }
+        if (msg.chunk) buf += msg.chunk;
+        if (msg.done) { streamHandlers.delete(rid); resolve(buf); }
+      });
+      activeSummaryRequestId = rid;   // so the popup's Stop button reaches this request
+      chrome.runtime.sendMessage({ action: 'startFetch', requestId: rid, apiUrl, headers, body: JSON.stringify(body) }, (ack) => {
+        if (chrome.runtime.lastError || (ack && ack.started === false)) { streamHandlers.delete(rid); reject(new Error((chrome.runtime.lastError && chrome.runtime.lastError.message) || (ack && ack.error) || 'Failed to start')); }
+      });
+    });
+  }
+
+  /**
+   * The page does not fit the model's context window: read it in parts, ask for compact notes on each part
+   * (names, numbers, claims, two verbatim sentences) and hand the notes to the final summary instead of the full text.
+   */
+  async function condenseForOllama({ apiUrl, headers, model, text, windowTokens, overheadTokens, outputWords, tick }) {
+    const partTokens = Math.max(1200, windowTokens - 1500 - 700);
+    const parts = splitForContext(text, partTokens);
+    if (parts.length < 2) return { text, parts: 1 };
+    const budgetTokens = Math.max(600, windowTokens - overheadTokens - Math.ceil(outputWords * 2.2) - 600);
+    const perPartWords = Math.max(60, Math.min(400, Math.floor(budgetTokens / parts.length / 1.6)));
+    const notes = [];
+    for (let i = 0; i < parts.length; i++) {
+      tick(i, parts.length);
+      const body = {
+        model, stream: false,
+        options: { num_ctx: ollamaNumCtx(estimateTokens(parts[i]), perPartWords) },
+        messages: [
+          { role: 'system', content: `You condense ONE PART (${i + 1} of ${parts.length}) of a longer text into notes for a later summary. Keep names, numbers, claims and conclusions. Write in the language of the text. Include 2 sentences copied word for word that carry the main points. At most ${perPartWords} words. Output only the notes: no preamble, no reasoning.` },
+          { role: 'user', content: parts[i] }
+        ]
+      };
+      const raw = await callOnce(apiUrl, headers, body);
+      let note = '';
+      try { note = JSON.parse(raw).message?.content || ''; } catch (_) { note = raw; }
+      note = stripReasoning(note).trim();
+      if (note) notes.push(`[Part ${i + 1} of ${parts.length}]\n${note}`);
+    }
+    return { text: notes.join('\n\n') || text, parts: parts.length };
+  }
+
   async function startSummaryFromPage() {
     if (activeSummaryRequestId || !document.body) return;
     let opened = false;
@@ -627,7 +675,36 @@ import {
             const { [SK.installId]: installId } = await chrome.storage.local.get(SK.installId);
             if (installId) headers['X-Install-ID'] = installId;
 
-            const userMessage = `Language: ${languageEnglishName(selectedLanguage)}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${truncatedContent}\n\n${finalReminder}`;
+            // Local model whose context window cannot hold the page: read it in parts instead of letting Ollama cut it.
+            let pageText = truncatedContent;
+            if (activeService === 'ollama' && /\/api\/chat\b/.test(finalApiUrl)) {
+              try {
+                const overhead = estimateTokens(systemPrompt + finalReminder + (prompt || '') + (additionalQuestions || ''));
+                const total = overhead + estimateTokens(truncatedContent);
+                if (total > 3500) {
+                  let win = 0;
+                  try {
+                    const showRaw = await callOnce(finalApiUrl.replace(/\/api\/chat\b.*$/, '/api/show'), headers, { model: modelIdentifier });
+                    win = modelContextFromShow(JSON.parse(showRaw));
+                  } catch (e) { if (e && e.cancelled) throw e; }
+                  const ctxWindow = Math.min(win || 32768, 32768);
+                  if (needsChunking(total, ctxWindow, summaryLength)) {
+                    const r = await condenseForOllama({
+                      apiUrl: finalApiUrl, headers, model: modelIdentifier, text: truncatedContent, windowTokens: ctxWindow, overheadTokens: overhead, outputWords: Number(summaryLength) || 200,
+                      tick: (i, n) => relay('summaryProgress', { chunk: `Reading part ${i + 1} of ${n}…`, progress: 20 + Math.round((i / n) * 8) })
+                    });
+                    if (r.parts > 1) {
+                      pageText = r.text;
+                      if (ctxMsg) relay('summaryContext', ctxMsg = { ...ctxMsg, parts: r.parts, window: ctxWindow });
+                    }
+                  }
+                }
+              } catch (e) {
+                if (e && e.cancelled) { relay('summaryCancelled'); try { targetElement.remove(); } catch (_) {} resolve({ success: false, cancelled: true }); return; }
+                console.warn('[AISH] chunked reading failed, sending the page in one piece:', e);
+              }
+            }
+            const userMessage = `Language: ${languageEnglishName(selectedLanguage)}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${pageText}\n\n${finalReminder}`;
             const body = {
               model: modelIdentifier,
               messages: [

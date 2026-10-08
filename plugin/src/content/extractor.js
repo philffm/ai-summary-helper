@@ -189,6 +189,37 @@ export function wasCutOff(seen, est) {
   return Number(est) > 3000 && Number(seen) > 300 && Number(seen) < Number(est) * 0.7;
 }
 
+/** True when prompt + reply do not fit the model's context window, so the page has to be read in parts. */
+export function needsChunking(promptTokens, windowTokens, outputWords = 200) {
+  return Number(windowTokens) > 0 && promptTokens + Math.ceil((Number(outputWords) || 200) * 2.2) + 600 > windowTokens;
+}
+
+/** Split text at paragraph/sentence boundaries into parts of at most `maxTokens` (estimated) tokens each. */
+export function splitForContext(text, maxTokens) {
+  const maxChars = Math.max(300, Math.floor(maxTokens * 3));
+  const out = []; let cur = '';
+  const push = () => { if (cur.trim()) out.push(cur.trim()); cur = ''; };
+  const pieces = String(text || '').split(/\n{2,}|\n/).flatMap(p => {
+    if (p.length <= maxChars) return [p];
+    const parts = p.match(/[^.!?。]+[.!?。]*\s*/g) || [p];
+    return parts.flatMap(x => x.length <= maxChars ? [x] : (x.match(new RegExp('[\\s\\S]{1,' + maxChars + '}', 'g')) || []));
+  });
+  for (const piece of pieces) {
+    if (cur && cur.length + piece.length + 2 > maxChars) push();
+    cur += (cur ? '\n\n' : '') + piece;
+  }
+  push();
+  return out;
+}
+
+/** Context length a model supports, from Ollama's /api/show reply (model_info["<arch>.context_length"]). */
+export function modelContextFromShow(info) {
+  const mi = info && info.model_info;
+  if (!mi) return 0;
+  for (const k of Object.keys(mi)) if (/\.context_length$/.test(k) && Number(mi[k]) > 0) return Number(mi[k]);
+  return 0;
+}
+
 /**
  * Split text into chunks of a given size.
  */

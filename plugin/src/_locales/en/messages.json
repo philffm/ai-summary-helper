@@ -3796,5 +3796,9 @@
   "f_the_model_only_read_about_of_17a6": {
     "message": "The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.",
     "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "Read in {n} parts, because the model's context window ({w} tokens) is too small for the whole page.",
+    "description": "Placeholders: {n} {w} (keep as is)"
   }
 }

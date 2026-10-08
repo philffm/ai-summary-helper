@@ -3619,5 +3619,8 @@
   },
   "f_the_model_only_read_about_of_17a6": {
     "message": "모델이 {b}개 토큰 중 약 {a}개만 읽었습니다. 컨텍스트 창이 너무 작아 Ollama가 나머지를 잘라냈습니다."
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "모델의 컨텍스트 창({w} 토큰)이 페이지 전체에 비해 너무 작아 {n}개 부분으로 나눠 읽었습니다."
   }
 }

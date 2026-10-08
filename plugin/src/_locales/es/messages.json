@@ -3637,5 +3637,8 @@
   },
   "f_the_model_only_read_about_of_17a6": {
     "message": "El modelo solo leyó unos {a} de {b} tokens. Ollama cortó el resto porque su ventana de contexto es demasiado pequeña."
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "Leído en {n} partes, porque la ventana de contexto del modelo ({w} tokens) es demasiado pequeña para toda la página."
   }
 }
