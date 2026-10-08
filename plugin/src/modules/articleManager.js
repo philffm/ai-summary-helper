@@ -15,7 +15,7 @@ import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
-import { CITE_STYLES, formatCitation, ensureCsl, copyText } from './citation.js';
+import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
@@ -1481,7 +1481,6 @@ function renderDetailTags(article, host) {
     host.appendChild(add);
 }
 
-let citeStyle = 'apa';
 function renderCiteBlock(article, host) {
     host.replaceChildren();
     const doi = paperDoi(article);
@@ -1504,13 +1503,13 @@ function renderCiteBlock(article, host) {
         host.appendChild(b);
         return;
     }
-    const text = formatCitation(csl, citeStyle);
+    const text = formatCitation(csl, getCiteStyle());
     // Header row (like the Figma "Cite" panel): style dropdown left, Copy + DOI right; the citation text sits below.
     const bar = document.createElement('div'); bar.className = 'cite-actions';
     const sel = document.createElement('select'); sel.className = 'cite-style'; sel.setAttribute('aria-label', T('❝ Cite'));
-    CITE_STYLES.forEach(([id, label]) => { const o = document.createElement('option'); o.value = id; o.textContent = label; if (id === citeStyle) o.selected = true; sel.appendChild(o); });
+    CITE_STYLES.forEach(([id, label]) => { const o = document.createElement('option'); o.value = id; o.textContent = label; if (id === getCiteStyle()) o.selected = true; sel.appendChild(o); });
     sel.addEventListener('click', (e) => e.stopPropagation());
-    sel.addEventListener('change', (e) => { e.stopPropagation(); citeStyle = sel.value; renderCiteBlock(article, host); });
+    sel.addEventListener('change', (e) => { e.stopPropagation(); setCiteStyle(sel.value); renderCiteBlock(article, host); });
     const sp = document.createElement('span'); sp.className = 'cite-spacer';
     const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'cite-btn cite-copy'; copy.textContent = '⧉ ' + T('Copy');
     copy.addEventListener('click', async (e) => { e.stopPropagation(); if (await copyText(text) && uiManagerRef) uiManagerRef.showToast(T('Copied to clipboard! 📋')); });
@@ -1563,6 +1562,7 @@ function renderPaperRow(article, row) {
 }
 
 export async function showArticleDetail(article) {
+    await loadCiteStyle();
     // List/graph/search cards only carry the lean articlesIndex shape (no
     // content) — load the full article:<id> record before rendering detail.
     // Callers that already pass a full in-memory article (e.g. mainScreen.js

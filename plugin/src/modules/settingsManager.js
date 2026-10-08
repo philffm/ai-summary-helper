@@ -419,11 +419,14 @@ function initGeneralSettings(storageData) {
     // ── Theme + display & reading preferences (profiles + customize) ──
     const A11Y_KEYS = ['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion'];
     const a11yState = { theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing === 'compact' || storageData.lineSpacing === 'relaxed' ? storageData.lineSpacing : 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
+    // Every profile states all the values it controls, so switching profiles never keeps a leftover
+    // (e.g. High contrast theme or Reduce motion from the previous profile).
+    const leaveContrast = () => (a11yState.theme === 'contrast' ? 'system' : a11yState.theme);
     const PROFILES = {
-        default: { textScale: 100, lineSpacing: 'normal', readableFont: false, reduceMotion: false },
-        large: { textScale: 125, lineSpacing: 'relaxed' },
-        contrast: { theme: 'contrast', textScale: 100, lineSpacing: 'normal' },
-        calm: { reduceMotion: true }
+        default: () => ({ theme: leaveContrast(), textScale: 100, lineSpacing: 'normal', readableFont: false, reduceMotion: false }),
+        large: () => ({ theme: leaveContrast(), textScale: 125, lineSpacing: 'relaxed', reduceMotion: false }),
+        contrast: () => ({ theme: 'contrast', textScale: 100, lineSpacing: 'normal', reduceMotion: false }),
+        calm: () => ({ theme: leaveContrast(), textScale: 100, lineSpacing: 'normal', reduceMotion: true })
     };
     const activeProfile = () => {
         const s = a11yState;
@@ -442,6 +445,7 @@ function initGeneralSettings(storageData) {
         const th = $id('themeHint'); if (th) th.textContent = a11yState.theme === 'system' ? T('Currently following your system: {theme}').replace('{theme}', themeName()) : '';
         const sr = $id('textScaleRange'); if (sr) sr.value = String(a11yState.textScale);
         const sv = $id('textScaleValue'); if (sv) sv.textContent = a11yState.textScale + '%';
+        if (sr) sr.style.setProperty('--range-progress', ((a11yState.textScale - 85) / (150 - 85) * 100) + '%');
         const ft = $id('readableFontToggle'); if (ft) ft.checked = a11yState.readableFont;
         const mt = $id('reduceMotionToggle'); if (mt) mt.checked = a11yState.reduceMotion || sysMotion;
         const mh = $id('motionHint'); if (mh) mh.textContent = sysMotion ? T('Your system already asks for reduced motion — it is always respected.') : T('Currently following your system: off');
@@ -475,7 +479,7 @@ function initGeneralSettings(storageData) {
     };
     seg('themeSeg', (v) => setA11y({ theme: v }));
     seg('lineSeg', (v) => setA11y({ lineSpacing: v }));
-    document.querySelectorAll('#profileList [role=radio]').forEach(b => b.addEventListener('click', () => setA11y(PROFILES[b.dataset.profile] || {})));
+    document.querySelectorAll('#profileList [role=radio]').forEach(b => b.addEventListener('click', () => setA11y((PROFILES[b.dataset.profile] || (() => ({})))())));
     const scaleRange = $id('textScaleRange');
     if (scaleRange) {
         scaleRange.addEventListener('input', () => setA11y({ textScale: clampScale(scaleRange.value) }, false));

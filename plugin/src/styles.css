@@ -3455,7 +3455,8 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .a11y-block h3 { margin: 6px 0 0; font-size: var(--fs-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
 .a11y-hint { font-size: var(--fs-xs); color: var(--text-muted); margin: 0; }
 .a11y-slider { display: flex; align-items: center; gap: 10px; }
-.a11y-slider input[type=range] { flex: 1; accent-color: var(--accent); }
+.a11y-slider input[type=range] { flex: 1; width: auto; margin: 0; cursor: pointer; }
+.a11y-slider input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .a11y-preview { padding: 10px 12px; border: 1px solid var(--outline); border-radius: 12px; font-size: var(--fs-base); }
 
 .a11y-label { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }

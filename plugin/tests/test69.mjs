@@ -32,3 +32,7 @@ const pd = d.querySelector('details.paper-details');
 assert(pd && !pd.open, 'paper details collapsed by default');
 assert(pd.querySelector('.cite-block') && pd.querySelector('summary'));
 console.log('TEST 69 OK');
+// profile switching: no leftovers (high contrast theme / reduce motion) — logic mirrored from settingsManager
+const src = fs.readFileSync(new URL('../src/modules/settingsManager.js', import.meta.url), 'utf8');
+assert(/default: \(\) => \(\{ theme: leaveContrast\(\)/.test(src) && /large: \(\) => \(\{ theme: leaveContrast\(\), textScale: 125, lineSpacing: 'relaxed', reduceMotion: false/.test(src), 'profiles reset theme + motion');
+assert(/--range-progress/.test(src), 'slider fill follows value');

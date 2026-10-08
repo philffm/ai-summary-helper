@@ -9,6 +9,24 @@ export const CITE_STYLES = [['apa', 'APA 7'], ['mla', 'MLA'], ['chicago', 'Chica
 const str = (v, n = 400) => (typeof v === 'string' ? v : typeof v === 'number' ? String(v) : '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, n);
 
 /** Keep only the CSL fields we format, as plain text (the registry response is untrusted). */
+// The citation style (APA, MLA, …) the user picked last is remembered across sessions and shared by the Cite panel and the reference list.
+const CITE_STYLE_KEY = 'ui:citeStyle';
+let currentCiteStyle = 'apa';
+export const getCiteStyle = () => currentCiteStyle;
+export async function loadCiteStyle() {
+    try {
+        const r = await new Promise((res) => chrome.storage.local.get(CITE_STYLE_KEY, res));
+        const v = r && r[CITE_STYLE_KEY];
+        if (CITE_STYLES.some(([id]) => id === v)) currentCiteStyle = v;
+    } catch (_) { /* storage unavailable: keep the in-memory value */ }
+    return currentCiteStyle;
+}
+export function setCiteStyle(id) {
+    if (!CITE_STYLES.some(([v]) => v === id)) return;
+    currentCiteStyle = id;
+    try { chrome.storage.local.set({ [CITE_STYLE_KEY]: id }); } catch (_) { /* ignore */ }
+}
+
 export function cleanCsl(j) {
     if (!j || typeof j !== 'object') return null;
     const first = (v) => Array.isArray(v) ? v[0] : v;

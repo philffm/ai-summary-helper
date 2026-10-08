@@ -14,7 +14,7 @@ import { createRecapStatus } from './recapStatus.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
 import { el } from './dom.js';
 import { paperState, paperDoi } from './paperInfo.js';
-import { CITE_STYLES, ensureCsl, formatList, citeFileName, copyText, downloadText } from './citation.js';
+import { CITE_STYLES, getCiteStyle, loadCiteStyle, setCiteStyle, ensureCsl, formatList, citeFileName, copyText, downloadText } from './citation.js';
 
 let deps = null;
 const sel = new Set();                 // selected article ids
@@ -188,6 +188,7 @@ async function viewChoose() {
 
 /** Reference list of the selected papers (citations from doi.org, formatted locally); copy or download. */
 async function viewReferences() {
+    state.refStyle = await loadCiteStyle();
     const papers = selected().filter(paperState);
     const body = shell(T('Reference list') + ' · ' + TN(papers.length, '{n} paper', '{n} papers'));
     const status = el('div', 'sendsheet-note', T('Looking up citations at doi.org — only the DOIs are sent…'));
@@ -204,7 +205,7 @@ async function viewReferences() {
     const h = el('div', 'sendsheet-head'); h.append(el('div', 'sendsheet-title', T('Reference list') + ' · ' + TN(items.length, '{n} paper', '{n} papers'))); body.append(h);
     if (!items.length) { body.append(el('div', 'sendsheet-note', T('No citations available — the selected papers have no DOI or the lookup failed.')), btn(T('Back'), false, viewChoose)); return; }
     const preview = el('pre', 'ref-preview');
-    const paint = () => { preview.textContent = formatList(items, state.refStyle, { summaries: state.refSummaries }); };
+    const paint = () => { setCiteStyle(state.refStyle); preview.textContent = formatList(items, state.refStyle, { summaries: state.refSummaries }); };
     segmented(body, 'refStyle', CITE_STYLES.map(([v, l]) => [v, l]), paint);
     body.append(preview);
     const tg = el('button', 'sendsheet-row sendsheet-toggle' + (state.refSummaries ? ' on' : ''));

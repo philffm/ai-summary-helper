@@ -1,0 +1,31 @@
+// Accessibility profiles: switching never keeps leftovers (High contrast theme, Reduce motion), slider fill follows value.
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
+const { store, w } = setup({});
+const html = fs.readFileSync(new URL('../src/popup.html', import.meta.url), 'utf8');
+const a = html.indexOf('id="settingsPanel-appearance"'); const sec = html.slice(html.lastIndexOf('<section', a), html.indexOf('</section>', a) + 10);
+w.document.body.innerHTML = sec;
+globalThis.document = w.document; globalThis.window = w;
+w.matchMedia = w.matchMedia || (() => ({ matches: false }));
+w.chrome = globalThis.chrome; globalThis.chrome.runtime = globalThis.chrome.runtime || {}; globalThis.chrome.runtime.getURL = globalThis.chrome.runtime.getURL || ((p) => p);
+globalThis.fetch = w.fetch = async (u) => ({ ok: true, json: async () => (/services/.test(String(u)) ? [] : {}) });
+const sm = await imp('modules/settingsManager.js');
+try { await sm.initSettingsManager({ showToast() {} }); } catch (e) { /* other panels are absent in this fixture */ }
+const d = w.document, root = d.documentElement;
+const click = (sel) => { d.querySelector(sel).click(); };
+const attr = (n) => root.getAttribute(n);
+click('#profileList [data-profile="contrast"]'); await tick(20);
+assert.equal(attr('data-theme'), 'contrast');
+click('#profileList [data-profile="large"]'); await tick(20);
+assert.notEqual(attr('data-theme'), 'contrast', 'leaving High contrast resets the theme');
+assert.equal(root.style.getPropertyValue('--text-scale'), '1.25');
+click('#profileList [data-profile="calm"]'); await tick(20);
+assert.equal(attr('data-motion'), 'reduce'); assert.equal(root.style.getPropertyValue('--text-scale'), '', 'calm resets text size');
+click('#profileList [data-profile="default"]'); await tick(20);
+assert(!root.hasAttribute('data-motion'), 'Reduce motion cleared when leaving Calm');
+click('#profileList [data-profile="calm"]'); await tick(20);
+click('#profileList [data-profile="large"]'); await tick(20);
+assert(!root.hasAttribute('data-motion'), 'large text profile clears Reduce motion');
+assert.equal(d.querySelector('#profileList .on').dataset.profile, 'large');
+const r = d.querySelector('#textScaleRange'); r.value = '150'; r.dispatchEvent(new w.Event('input', { bubbles: true })); await tick(10);
+assert.equal(r.style.getPropertyValue('--range-progress'), '100%');
+console.log('TEST 70 OK');

@@ -27,6 +27,9 @@ const cs = cb.querySelector('select.cite-style'); cs.value = [...cs.options].fin
 assert(/^@article\{smith2026sleep,/.test(d.querySelector('.cite-text').textContent));
 d.querySelector('.cite-actions .cite-copy').click(); await tick(20);
 assert(copied.length === 1 && /^@article/.test(copied[0]));
+assert.equal(store['ui:citeStyle'], 'bibtex', 'chosen citation style is remembered');
+await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(100);
+assert.equal(d.querySelector('select.cite-style').value, 'bibtex', 'and used the next time a paper opens');
 // tag row: 🎓 chip first, then tags; tags removable and addable; paper chip removable
 let tr = d.querySelector('.detail-tags');
 assert(tr && tr.firstChild.classList.contains('paper'), 'paper chip leads the tag row');
@@ -65,7 +68,11 @@ assert(bar, 'selection bar');
 bar.querySelector('.sel-send').click(); await tick(150);
 const refRow = [...d.querySelectorAll('.sendsheet-row')].find(r => /Reference list/.test(r.textContent));
 assert(refRow, 'reference row for selections with papers');
+store['ui:citeStyle'] = 'bibtex';
 refRow.click(); await tick(200);
+assert(/^@article/.test(d.querySelector('.ref-preview').textContent), 'reference list opens in the remembered style');
+[...d.querySelectorAll('.sendsheet-seg button, .sendsheet-segmented button')].find(b => b.textContent === 'APA 7')?.click(); await tick(30);
+assert.equal(store['ui:citeStyle'], 'apa', 'choice in the reference list is remembered too');
 const pv = d.querySelector('.ref-preview');
 assert(pv && /Smith, J\. \(2026\)/.test(pv.textContent), pv && pv.textContent);
 assert(/1 paper skipped/.test(d.querySelector('.sendsheet-body').textContent));
