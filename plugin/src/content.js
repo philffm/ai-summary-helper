@@ -1,6 +1,6 @@
 import { SK } from './modules/storageKeys.js';
 import { languageEnglishName, languageRule } from './modules/languages.js';
-import { paperIndexFields, detectPaperInText, applyScholarly } from './content/paper.js';
+import { paperIndexFields, detectPaperInText, applyScholarly, matchPagePaper } from './content/paper.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -420,7 +420,9 @@ import {
     // A PDF the user attached in the popup: its text was already extracted there, so the page itself is not read at all.
     const attached = attachment && typeof attachment.text === 'string' && attachment.text ? attachment : null;
     const pdfMode = !!attached || isPdfPage();
-    const sourceUrl = attached ? 'pdf://attached/' + encodeURIComponent(String(attached.name || 'document.pdf').slice(0, 120)) : window.location.href;
+    // Typical case: the (paywalled) DOI page is open, the PDF is attached → metadata from the page, text from the PDF.
+    const pageMatch = attached ? (() => { try { return matchPagePaper(attached.text); } catch (_) { return null; } })() : null;
+    const sourceUrl = attached && !pageMatch ? 'pdf://attached/' + encodeURIComponent(String(attached.name || 'document.pdf').slice(0, 120)) : window.location.href;
 
     // ── relay: defined first so every path (incl. PDF extraction errors) can report back ──
     const relay = (action, payload = {}) => {
@@ -457,6 +459,11 @@ import {
     if (attached) {
       contentHtml = String(attached.html || '');
       contentText = attached.text;
+      if (pageMatch) {
+        const pp = pageMatch.paper;
+        const head = ['Metadata from the publisher page (the full text follows):', pageMatch.title && 'Title: ' + pageMatch.title, pp.authors && 'Authors: ' + pp.authors, pp.journal && 'Journal: ' + pp.journal, pp.year && 'Year: ' + pp.year, pp.doi && 'DOI: ' + pp.doi].filter(Boolean).join('\n');
+        contentText = head + '\n\n' + contentText;
+      }
     } else if (isPdfPage()) {
       try {
         const extracted = await extractPdfText();
@@ -484,7 +491,7 @@ import {
       relay('summaryContext', {
         words: (truncatedContent.match(/\S+/g) || []).length,
         shortened: truncatedContent.length < contentText.length,
-        host: attached ? 'PDF' : hostOf(window.location.href),
+        host: attached && !pageMatch ? 'PDF' : hostOf(window.location.href),
         highlights: pdfMode ? 0 : getUserHighlightTexts().length,
         focus: !!(additionalQuestions || '').trim(),
         source: pendingFeedUrl ? hostOf(pendingFeedUrl) : '',
@@ -737,7 +744,7 @@ import {
                     return true;
                   });
               }
-              tags = await ensureGeneralTag(tags, contentText, attached ? String(attached.name || '') : document.title);
+              tags = await ensureGeneralTag(tags, contentText, attached && !pageMatch ? String(attached.name || '') : document.title);
               let ghostQuotes = [];
               const ghostMatch = summary.match(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/i);
               if (ghostMatch) {
@@ -759,7 +766,7 @@ import {
               }
 
               let pageMeta = {};
-              if (!attached) { try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ } }   // an attached PDF has nothing to do with the open tab
+              if (!attached || pageMatch) { try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ } }   // an attached PDF has nothing to do with the open tab
               try { if (pageMeta && !pageMeta.paper && pdfMode) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
 
               // The model's verdict on "is this a paper?" (works for PDFs and pages without metadata); merged with the page signals.
@@ -814,7 +821,7 @@ import {
               // never have one) — fall back to the AI summary's own <h2>, which
               // the system prompt always requests, before resorting to a generic
               // placeholder. Regular HTML pages still use document.title.
-              const articleTitle = attached ? (extractSummaryTitle(cleanHtml) || String(attached.name || '').replace(/\.pdf$/i, '') || 'Untitled') : (document.title || extractSummaryTitle(cleanHtml) || 'Untitled');
+              const articleTitle = attached && !pageMatch ? (extractSummaryTitle(cleanHtml) || String(attached.name || '').replace(/\.pdf$/i, '') || 'Untitled') : ((pageMatch && pageMatch.title) || document.title || extractSummaryTitle(cleanHtml) || 'Untitled');
 
               if (summaryMode === 'inline') {
                 const summaryContainer = document.createElement('blockquote');
