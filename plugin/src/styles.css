@@ -569,7 +569,8 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .feed-scroll {
   flex: 1;
   overflow-y: auto;
-  padding: var(--spacing-s-5) var(--spacing-s-5) calc(var(--floating-stack-height) + var(--spacing-s-4));
+  /* no horizontal padding: the parent .screen already insets the content */
+  padding: var(--spacing-s-5) 0 calc(var(--floating-stack-height) + var(--spacing-s-4));
   display: flex;
   flex-direction: column;
   scrollbar-gutter: stable;
@@ -584,11 +585,11 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   left: 0;
   right: 0;
   bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap));
-  padding: 0 var(--spacing-s-5);
+  padding: 0 var(--spacing-s-4);   /* same inset as the feed (.screen padding) */
   z-index: var(--z-header);
   box-sizing: border-box;
   /* align with the 720px reading column of the summary feed */
-  max-width: calc(720px + 2 * var(--spacing-s-5));
+  max-width: calc(720px + 2 * var(--spacing-s-4));
   margin-inline: auto;
 }
 
