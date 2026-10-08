@@ -88,7 +88,7 @@
   --nav-active-text: #ffffff;
 
   /* floating shell layout */
-  --header-h: 56px;   /* 12 + 36 (icon buttons) + 8 — keep in sync with .header padding */
+  --header-h: 62px;   /* 12 + 36 (icon buttons) + 8 — keep in sync with .header padding */
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
@@ -384,7 +384,7 @@ h3 {
 .header::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
   left: 50%; width: 100vw; transform: translateX(-50%);
-  top: 0; bottom: -32px;
+  top: 0; bottom: -24px;
   background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 94%, transparent) 0, color-mix(in srgb, var(--bg-page) 88%, transparent) calc(100% - 36px), color-mix(in srgb, var(--bg-page) 50%, transparent) calc(100% - 16px), transparent 100%);
 }
 
@@ -3534,3 +3534,16 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .md-table td:first-child { font-weight: 600; }
 .chat-a-body .md-h { margin: 12px 0 4px; font-size: var(--fs-base); font-weight: 600; color: var(--text-primary); }
 .chat-a-body code { padding: 1px 5px; border-radius: 4px; background: var(--field-bg); font-size: .92em; }
+
+/* While a topbar is showing under the header (top of the list, or scrolled up), the header is a normal frosted bar so nothing shows through
+   and the fade does not wash over the topbar. With the topbar hidden (scrolling down) the header turns into the clean gradient fade. */
+body[data-screen="feeds"]:has(#feedControls:not(.scroll-hidden)) .header,
+body[data-screen="history"]:has(#historyTopBar:not(.scroll-hidden):not([style*="display: none"])) .header,
+body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="display: none"])) .header {
+  background: var(--glass-base);
+  backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+}
+body[data-screen="feeds"]:has(#feedControls:not(.scroll-hidden)) .header::before,
+body[data-screen="history"]:has(#historyTopBar:not(.scroll-hidden):not([style*="display: none"])) .header::before,
+body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="display: none"])) .header::before { display: none; }
+.header, .header::before { transition: background-color .2s ease, opacity .2s ease; }
