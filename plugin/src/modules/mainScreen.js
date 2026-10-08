@@ -157,7 +157,7 @@ export function initMainScreen(ui) {
         // Scroll to show the stream bubble
         requestAnimationFrame(() => {
             const scrollEl = document.getElementById('feedScroll');
-            if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
+            if (scrollEl) scrollEl.scrollTop = feedBottom(scrollEl);
         });
         // Start elapsed timer
         if (window._streamTimer) clearInterval(window._streamTimer);
@@ -224,9 +224,21 @@ export function initMainScreen(ui) {
     const esc = (x) => String(x || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const usedOpen = () => { try { return localStorage.getItem('aish:usedOpen') === '1'; } catch (_) { return false; } };
     const setUsedOpen = (v) => { try { localStorage.setItem('aish:usedOpen', v ? '1' : '0'); } catch (_) { /* storage unavailable */ } };
+    // Scroll to the newest content — but a lone card must not slide up under the (fixed, translucent) header.
+    const feedBottom = (el) => {
+        let top = el.scrollHeight;
+        try {
+            const cards = feed.querySelectorAll('.summary-bubble');
+            if (cards.length === 1) {
+                const hh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 62;
+                top = Math.max(0, Math.min(top, el.scrollTop + cards[0].getBoundingClientRect().top - (hh + 8)));
+            }
+        } catch (_) { /* layout unavailable */ }
+        return top;
+    };
     const scrollFeed = () => requestAnimationFrame(() => {
         const el = document.getElementById('feedScroll');
-        if (el) el.scrollTop = el.scrollHeight;
+        if (el) el.scrollTop = feedBottom(el);
     });
 
     // Steps: ✓ done · … active (the "Sent to <model>" line also shows how long we have been waiting) · dimmed = still to come.
@@ -442,7 +454,7 @@ export function initMainScreen(ui) {
         if (!from || typeof el.animate !== 'function') return;
         try {
             const scroller = document.getElementById('feedScroll');
-            if (scroller) scroller.scrollTop = scroller.scrollHeight;
+            if (scroller) scroller.scrollTop = feedBottom(scroller);
             const reduce = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduce) { el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 100 }); return; }
             const to = el.getBoundingClientRect();
@@ -658,7 +670,7 @@ export function initMainScreen(ui) {
             // Scroll to newest (bottom of feed)
             requestAnimationFrame(() => {
                 const scrollEl = document.getElementById('feedScroll');
-                if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
+                if (scrollEl) scrollEl.scrollTop = feedBottom(scrollEl);
             });
             try { refreshFetchExtras(); resumeForPage(); } catch (_) { /* composer not ready yet */ }
         } else {
