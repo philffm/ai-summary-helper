@@ -3550,3 +3550,14 @@ body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="d
 
 .sc-cut { margin: 0 0 8px; padding: 10px 12px; border: 1px solid var(--warn, #e4a83e); border-radius: var(--radius-md); background: color-mix(in srgb, var(--warn, #e4a83e) 12%, transparent); color: var(--text-primary); font-size: var(--fs-sm); line-height: 1.45; }
 .sc-cut strong { font-weight: 600; }
+
+/* Interface chrome is not text: dragging across buttons, tabs, badges, counters, list cards or the header should
+   not paint a selection over them. Summaries, chat answers, article text, inputs and code stay selectable. */
+:where(button, [role="button"], [role="tab"], [role="menuitem"], summary, label, nav, .header, .tabbar, .topbar, .controls-bar,
+  .history-tabs, .mode-tabs, .chip, .chip-row, .tag-chip, .pill, .status-badge, .type-badge, .composer-pill, .page-chip,
+  .sel-count, .feed-pick-count, .feed-cal-count, .ask-count, .chat-suggest-chip, .kbd-hintbar, .toast-message,
+  .article-card, .feed-item, .feed-chiprow, .feed-source-pill, .sendsheet-title, .graph-view-toggle, .sc-used > summary,
+  .settings-action-text strong, svg, img) {
+  -webkit-user-select: none; user-select: none;
+}
+:where(input, textarea, [contenteditable="true"], .cite-text, .ref-preview, pre, code) { -webkit-user-select: text; user-select: text; }
