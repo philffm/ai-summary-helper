@@ -2709,9 +2709,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .feed-insights .ar-report { padding-top: 4px; }
 .feed-mood-bar { display: flex; height: 22px; border-radius: var(--radius-sm); overflow: hidden; margin: 6px 0; }
 .feed-mood-seg { display: flex; align-items: center; justify-content: center; font-size: var(--fs-xs); font-weight: 700; color: var(--on-solid); min-width: 22px; }
-.feed-mood-seg.neg { background: hsl(8, 70%, 48%); }
-.feed-mood-seg.neu { background: var(--outline); color: var(--text-secondary); }
-.feed-mood-seg.pos { background: hsl(135, 55%, 40%); }
 
 .feed-ins-pod { grid-template-columns: repeat(3, 1fr); }
 
@@ -2844,11 +2841,11 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 }
 .screen.ws-active .sel-bar { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px); }   /* split view: lift above the floating nav */
 .sel-bar .sel-x { width: 36px; height: 36px; padding: 0; flex: none; }
-.sel-bar .sel-info { flex: 1; min-width: 0; }
+.sel-bar .sel-info { min-width: 0; }
 .sel-bar .sel-count { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }
 .sel-bar .sel-sub { font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sel-bar .sel-all { height: 36px; padding: 0 12px; font-size: var(--fs-sm); flex: none; }
-.sel-bar .sel-send { height: 36px; padding: 0 14px; font-size: var(--fs-base); flex: none; }
+.sel-bar .sel-all { height: 36px; padding: 0 12px; font-size: var(--fs-sm); }
+.sel-bar .sel-send { height: 36px; padding: 0 14px; font-size: var(--fs-base); }
 .sel-bar .sel-send:disabled { opacity: 0.4; cursor: default; }
 
 .sendsheet { position: fixed; inset: 0; z-index: var(--z-modal); display: flex; align-items: flex-end; }
@@ -3002,10 +2999,9 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .ws-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--radius-md, 10px); background: var(--glass-card); border: 1px solid var(--outline); flex-shrink: 0; }
 .ws-seg[hidden] { display: none; }
 /* Layout switcher lives in the app header and only applies to Feeds + History */
-.header .ws-seg { display: none; padding: 2px; }
+.header .ws-seg { display: none; }
 body[data-screen="feeds"] .header .ws-seg:not([hidden]),
 body[data-screen="history"] .header .ws-seg:not([hidden]) { display: inline-flex; }
-.header .ws-seg button { padding: 4px 7px; }
 .ws-seg button { display: inline-flex; gap: 2px; align-items: center; justify-content: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
 .ws-seg button i { display: block; width: 6px; height: 14px; border-radius: 2px; background: var(--text-muted); }
 .ws-seg button[aria-pressed='true'] { background: var(--glass-base); box-shadow: inset 0 0 0 1px var(--accent-a30); }
@@ -3223,7 +3219,6 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 
 #fetchSummary[data-state="working"] { background: var(--glass-input); color: var(--text-primary); border: 1px solid var(--outline); }
 .composer-note { font-size: var(--fs-2xs); color: var(--text-muted); margin-bottom: var(--spacing-s-2); }
-.new-summary-btn[hidden] { display: none; }
 
 /* Follow-up turns (Summarize feed + History detail) */
 .chat-turn-group { display: flex; flex-direction: column; gap: 6px; }
@@ -3275,11 +3270,9 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .page-card--different .page-card-kicker, .page-card--different .page-card-meta { color: #92400e; }
 
 /* "This page" chip inside the input card */
-.page-chip { display: flex; align-items: center; gap: 8px; padding: 6px 10px; margin-bottom: var(--spacing-s-3); border-radius: var(--radius-md); background: var(--glass-input); border: 1px solid var(--outline); }
-.page-chip-ic { width: 16px; height: 16px; border-radius: 3px; flex: none; }
-.page-chip-txt { min-width: 0; }
-.page-chip-title { font-size: var(--fs-xs); font-weight: 600; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.page-chip-meta { font-size: var(--fs-2xs); color: var(--text-muted); }
+.page-chip { display: flex; align-items: center; gap: 8px; margin-bottom: var(--spacing-s-3); border: 1px solid var(--outline); }
+.page-chip-ic { border-radius: 3px; flex: none; }
+.page-chip-title { font-weight: 600; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .page-chip--different { background: #fef3c7; border-color: #fde68a; color: #78350f; }
 .page-chip--different .page-chip-meta { color: #92400e; }
 
@@ -3288,7 +3281,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 
 .detail-fav { width: 16px; height: 16px; border-radius: 3px; margin-right: 8px; vertical-align: -2px; }
 .detail-fav[hidden], .detail-desc[hidden] { display: none; }
-.detail-desc { font-size: var(--fs-xs); color: var(--text-muted); margin: 0 0 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.detail-desc { font-size: var(--fs-xs); color: var(--text-muted); margin: 0 0 8px; }
 
 /* ── Composer (B · docked pill): page pill, one quiet settings line, pill input with the button inside ── */
 .controls-bar .input-card {
@@ -3297,22 +3290,21 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 }
 .controls-bar .input-card-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0; }
 .controls-bar .chip-row { position: static; order: 2; padding: 0 6px; border-top: 0; gap: 0; flex-wrap: wrap; }
-.controls-bar .chip { border: 0; background: transparent; padding: 0 6px 0 0; font-size: 10px; color: var(--text-muted); }
+.controls-bar .chip { border: 0; background: transparent; }
 .controls-bar .chip + .chip::before { content: '·'; margin-right: 6px; }
-.controls-bar .chip-icon { font-size: 10px; }
 .composer-pill {
-  order: 3; display: flex; align-items: flex-end; gap: 8px; padding: 4px 4px 4px 16px;
-  background: var(--glass-card); border: 1px solid var(--outline); border-radius: 24px;
+  order: 3; display: flex; align-items: flex-end; gap: 8px;
+  background: var(--glass-card); border: 1px solid var(--outline);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 .composer-pill .input-card-textarea {
-  flex: 1; min-width: 0; min-height: 36px; height: 36px; max-height: 96px; padding: 8px 0; margin: 0;
-  border: 0; background: transparent; resize: none; overflow-x: hidden; overflow-y: auto; font-size: var(--fs-md, 14px); line-height: 1.3;
+  flex: 1; min-width: 0; max-height: 96px; margin: 0;
+  border: 0; background: transparent; resize: none; overflow-x: hidden; overflow-y: auto;
   scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) transparent;
 }
-.composer-pill #fetchSummary { flex: none; width: auto !important; margin: 0 !important; padding: 0 18px; min-height: 36px; height: 36px; border-radius: 18px; white-space: nowrap; }
+.composer-pill #fetchSummary { flex: none; width: auto !important; margin: 0 !important; white-space: nowrap; }
 .controls-bar[data-state="working"] #fetchSummary { background: #111827; color: #fff; border: 0; }
-.page-chip { order: 1; margin: 0; padding: 6px 10px; border-radius: 12px; }
+.page-chip { order: 1; margin: 0; }
 .page-chip-txt { display: flex; align-items: baseline; gap: 8px; flex: 1; min-width: 0; }
 .page-chip-title { flex: 1; min-width: 0; }
 .page-chip-meta { flex: none; white-space: nowrap; }
@@ -3320,13 +3312,12 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 @media (prefers-reduced-motion: reduce) { .controls-bar, .controls-bar .composer-pill { transition: none; } }
 
 /* Accessibility pass for the docked composer */
-.controls-bar .chip { font-size: 11px; color: var(--text-secondary); padding: 6px 8px 6px 2px; min-height: 28px; }
-.controls-bar .chip-icon { font-size: 11px; }
+.controls-bar .chip { color: var(--text-secondary); padding: 6px 8px 6px 2px; }
 .controls-bar .chip:focus-visible, .composer-pill #fetchSummary:focus-visible, .chat-suggest-chip:focus-visible, .new-summary-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .composer-pill:focus-within { border-color: var(--accent); box-shadow: none; }
 .page-chip { background: var(--glass-input); }
-.page-chip-title { font-size: 12px; color: var(--text-primary); }
-.page-chip-meta { font-size: 11px; color: var(--text-secondary); }
+.page-chip-title { color: var(--text-primary); }
+.page-chip-meta { color: var(--text-secondary); }
 .page-chip--different .page-chip-title { color: #78350f; }
 .composer-pill #fetchSummary { min-width: 44px; }
 .composer-pill .input-card-textarea::placeholder { color: var(--text-secondary); opacity: 0.8; }
