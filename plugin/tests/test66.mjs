@@ -40,9 +40,15 @@ d.querySelector('.detail-tags .tag-add').click();
 const ti = d.querySelector('.tag-input'); ti.value = 'Gamma';
 ti.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await tick(60);
 assert.deepEqual(store['articles:index'][1].tags, ['Beta', 'Gamma'], 'tag added and stored');
+// suggestions: built-in categories and Research paper show up; picking one adds it
+d.querySelector('.detail-tags .tag-add').click();
+const sg = [...d.querySelectorAll('.detail-tags .tag-suggest')].map(b => b.textContent);
+assert(sg.includes('News') && sg.includes('🎓 Research paper') && !sg.includes('Gamma'), sg.join('|'));
+[...d.querySelectorAll('.detail-tags .tag-suggest')].find(b => b.textContent === 'News').click(); await tick(60);
+assert.deepEqual(store['articles:index'][1].tags, ['Beta', 'Gamma', 'News'], 'suggested tag added');
 // mark as research paper from the + Tag row, then remove again with the chip's ✕
 d.querySelector('.detail-tags .tag-add').click();
-[...d.querySelectorAll('.detail-tags .tag-add')].find(b => /paper/i.test(b.textContent)).click(); await tick(60);
+[...d.querySelectorAll('.detail-tags .tag-add')].find(b => /research paper/i.test(b.textContent)).click(); await tick(60);
 assert.equal(store['articles:index'][1].paperOverride, 'yes');
 assert(d.querySelector('.detail-tags').firstChild.classList.contains('paper'));
 d.querySelector('.detail-tags .paper .tag-x').click(); await tick(60);

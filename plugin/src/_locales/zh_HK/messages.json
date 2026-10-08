@@ -3298,5 +3298,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "觀點"
+  },
+  "f_reference_c33a": {
+    "message": "參考資料"
+  },
+  "f_tutorial_694f": {
+    "message": "教學"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 研究論文"
   }
 }

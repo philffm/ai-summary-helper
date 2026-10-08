@@ -3382,5 +3382,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Opinião"
+  },
+  "f_reference_c33a": {
+    "message": "Referência"
+  },
+  "f_tutorial_694f": {
+    "message": "Tutorial"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Artigo científico"
   }
 }

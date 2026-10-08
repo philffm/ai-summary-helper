@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 991. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 991 | 0 | 0 | 34 |
-| de | 991 | 0 | 0 | 149 |
-| es | 991 | 0 | 0 | 119 |
-| fr | 991 | 0 | 0 | 140 |
-| hi | 991 | 0 | 0 | 52 |
-| it | 991 | 0 | 0 | 122 |
-| ja | 991 | 0 | 0 | 62 |
-| ko | 991 | 0 | 0 | 13 |
-| pt_PT | 991 | 0 | 0 | 119 |
-| ru | 991 | 0 | 0 | 67 |
-| zh_CN | 991 | 0 | 0 | 1 |
-| zh_HK | 991 | 0 | 0 | 1 |
-| zh_TW | 991 | 0 | 0 | 1 |
+| ar | 995 | 0 | 0 | 34 |
+| de | 995 | 0 | 0 | 150 |
+| es | 995 | 0 | 0 | 119 |
+| fr | 995 | 0 | 0 | 140 |
+| hi | 995 | 0 | 0 | 52 |
+| it | 995 | 0 | 0 | 122 |
+| ja | 995 | 0 | 0 | 63 |
+| ko | 995 | 0 | 0 | 13 |
+| pt_PT | 995 | 0 | 0 | 119 |
+| ru | 995 | 0 | 0 | 67 |
+| zh_CN | 995 | 0 | 0 | 1 |
+| zh_HK | 995 | 0 | 0 | 1 |
+| zh_TW | 995 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -124,6 +124,7 @@ Strings: 991. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Export settings | Einstellungen exportieren | 25 vs 15 | 1.67× |
 | Import settings | Einstellungen importieren | 25 vs 15 | 1.67× |
 | Mark {n} summaries as… | {n} Zusammenfassungen markieren als… | 35 vs 21 | 1.67× |
+| Reference | Nachschlagewerk | 15 vs 9 | 1.67× |
 | Send {n} summary | {n} Zusammenfassung senden | 25 vs 15 | 1.67× |
 | Sort: Unread | Sortieren: Ungelesen | 20 vs 12 | 1.67× |
 | {n} summaries | {n} Zusammenfassungen | 20 vs 12 | 1.67× |
@@ -687,6 +688,7 @@ Strings: 991. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Invalid code or expired session. | コードが無効、またはセッションの有効期限が切れています。 | 56 vs 32 | 1.75× |
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
 | Saved! ✓ | 保存しました ✓ | 14 vs 8 | 1.75× |
+| Tutorial | チュートリアル | 14 vs 8 | 1.75× |
 | Code expired. Please request a new one. | コードの有効期限が切れました。新しいコードをリクエストしてください。 | 68 vs 39 | 1.74× |
 | Creative title | クリエイティブなタイトル | 24 vs 14 | 1.71× |
 | Scan failed. Enter IP manually. | スキャンに失敗しました。IPを手動で入力してください。 | 52 vs 31 | 1.68× |

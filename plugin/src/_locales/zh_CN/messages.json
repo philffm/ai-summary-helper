@@ -3382,5 +3382,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "观点"
+  },
+  "f_reference_c33a": {
+    "message": "参考资料"
+  },
+  "f_tutorial_694f": {
+    "message": "教程"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 研究论文"
   }
 }

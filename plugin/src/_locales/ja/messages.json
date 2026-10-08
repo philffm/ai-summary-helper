@@ -3388,5 +3388,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "意見"
+  },
+  "f_reference_c33a": {
+    "message": "リファレンス"
+  },
+  "f_tutorial_694f": {
+    "message": "チュートリアル"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 研究論文"
   }
 }

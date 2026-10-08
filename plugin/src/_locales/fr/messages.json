@@ -2448,7 +2448,7 @@
     "message": "Insérer dans la page"
   },
   "f_interview_0334": {
-    "message": "Interview"
+    "message": "Entretien"
   },
   "f_invalid_key_620f": {
     "message": "Clé invalide"
@@ -3382,5 +3382,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Opinion"
+  },
+  "f_reference_c33a": {
+    "message": "Référence"
+  },
+  "f_tutorial_694f": {
+    "message": "Tutoriel"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Article scientifique"
   }
 }

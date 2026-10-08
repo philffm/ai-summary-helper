@@ -1443,13 +1443,28 @@ function renderDetailTags(article, host) {
         input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && !ev.isComposing) { ev.preventDefault(); commit(); } else if (ev.key === 'Escape') { ev.stopPropagation(); refresh(); } });
         input.addEventListener('blur', () => setTimeout(() => { if (input.isConnected) commit(); }, 120));
         add.replaceWith(input);
-        if (!paperState(article)) {
-            const mp = document.createElement('button');
-            mp.type = 'button'; mp.className = 'tag-chip tag-add'; mp.textContent = T('🎓 Mark as paper');
-            mp.addEventListener('mousedown', (ev) => ev.preventDefault());   // keep the input's blur from swallowing the click
-            mp.addEventListener('click', async () => { await applyStatus([article.id], { paperOverride: 'yes' }); article.paperOverride = 'yes'; refresh(); });
-            input.after(mp);
-        }
+        // Suggestions: 🎓 Research paper (unless already one), built-in categories, then the user's most used tags.
+        const have = new Set((article.tags || []).map(t => t.toLowerCase()));
+        const freq = new Map();
+        (cachedArticles || []).forEach(a => (a.tags || []).forEach(t => freq.set(t, (freq.get(t) || 0) + 1)));
+        const used = [...freq.entries()].sort((x, y) => y[1] - x[1]).map(e => e[0]);
+        const cats = [T('News'), T('Tutorial'), T('Opinion'), T('Reference'), T('Interview')];
+        const names = [...new Set([...cats, ...used].filter(t => !have.has(t.toLowerCase())))].slice(0, 10);
+        const sugg = [];
+        const mkSugg = (label, onPick, isPaper) => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'tag-chip tag-add tag-suggest' + (isPaper ? ' tag-suggest-paper' : ''); b.textContent = label;
+            b.addEventListener('mousedown', (ev) => ev.preventDefault());   // keep the input's blur from swallowing the click
+            b.addEventListener('click', onPick);
+            sugg.push(b); return b;
+        };
+        if (!paperState(article)) mkSugg(T('🎓 Research paper'), async () => { await applyStatus([article.id], { paperOverride: 'yes' }); article.paperOverride = 'yes'; refresh(); }, true);
+        names.forEach(n => mkSugg(n, () => saveTags([...(article.tags || []), n])));
+        input.after(...sugg);
+        input.addEventListener('input', () => {
+            const q = input.value.trim().toLowerCase();
+            sugg.forEach(b => { b.hidden = !!q && !b.textContent.toLowerCase().includes(q) && !b.classList.contains('tag-suggest-paper'); });
+        });
         input.focus();
     });
     host.appendChild(add);

@@ -2448,7 +2448,7 @@
     "message": "पृष्ठ में डालें"
   },
   "f_interview_0334": {
-    "message": "इंटरव्यू"
+    "message": "साक्षात्कार"
   },
   "f_invalid_key_620f": {
     "message": "अमान्य कुंजी"
@@ -3382,5 +3382,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "राय"
+  },
+  "f_reference_c33a": {
+    "message": "संदर्भ"
+  },
+  "f_tutorial_694f": {
+    "message": "ट्यूटोरियल"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 शोध पत्र"
   }
 }

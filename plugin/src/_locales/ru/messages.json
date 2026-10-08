@@ -3298,5 +3298,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Мнение"
+  },
+  "f_reference_c33a": {
+    "message": "Справочник"
+  },
+  "f_tutorial_694f": {
+    "message": "Руководство"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Научная статья"
   }
 }

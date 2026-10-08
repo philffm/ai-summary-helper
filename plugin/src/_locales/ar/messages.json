@@ -3298,5 +3298,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "رأي"
+  },
+  "f_reference_c33a": {
+    "message": "مرجع"
+  },
+  "f_tutorial_694f": {
+    "message": "دليل تعليمي"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 ورقة بحثية"
   }
 }

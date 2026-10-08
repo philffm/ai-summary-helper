@@ -3370,5 +3370,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "의견"
+  },
+  "f_reference_c33a": {
+    "message": "참고 자료"
+  },
+  "f_tutorial_694f": {
+    "message": "튜토리얼"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 연구 논문"
   }
 }

@@ -3413,5 +3413,6 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .tag-x { border: 0; background: transparent; color: inherit; opacity: .55; cursor: pointer; font-size: var(--fs-xs); line-height: 1; padding: 0 0 0 2px; }
 .tag-x:hover { opacity: 1; }
 .tag-add { border-style: dashed; background: transparent; color: var(--text-muted); cursor: pointer; }
+.tag-suggest-paper { color: var(--accent); border-color: var(--accent); }
 .tag-add:hover { color: var(--text-primary); border-color: var(--accent); }
 .tag-input { font: inherit; font-size: var(--fs-sm); padding: 3px 10px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--text-primary); min-width: 110px; outline: none; }

@@ -3388,5 +3388,17 @@
   },
   "f_doi_bad6": {
     "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Meinung"
+  },
+  "f_reference_c33a": {
+    "message": "Nachschlagewerk"
+  },
+  "f_tutorial_694f": {
+    "message": "Anleitung"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Forschungsarbeit"
   }
 }
