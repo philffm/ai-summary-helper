@@ -1447,11 +1447,11 @@ function renderDetailTags(article, host) {
     });
     if (!article.id) return;
     const add = document.createElement('button');
-    add.type = 'button'; add.className = 'tag-chip tag-add'; add.textContent = T('+ Tag');
+    add.type = 'button'; add.className = 'tag-chip tag-add'; add.textContent = T('+ Tag / DOI');
     add.addEventListener('click', (e) => {
         e.stopPropagation();
         const input = document.createElement('input');
-        input.type = 'text'; input.className = 'tag-input'; input.maxLength = 40; input.placeholder = T('Add tag…'); input.setAttribute('aria-label', T('Add tag…'));
+        input.type = 'text'; input.className = 'tag-input'; input.maxLength = 200; input.placeholder = T('Add tag or DOI…'); input.setAttribute('aria-label', T('Add tag or DOI…'));
         const assignDoi = async (doi) => {
             await StorageManager.savePaperInfo(article.id, { state: 'yes', doi });
             await applyStatus([article.id], { paperOverride: 'yes' });
