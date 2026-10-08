@@ -656,8 +656,8 @@ export function initMainScreen(ui) {
             ans.classList.add('chat-a--quick');
             ans.after(more);
             scrollFeed();
-            typer = typeText(quickText, (t) => { typed = t; paint(); }, { fast: () => fullDone, instant: reduce });
-            typer.done.then(() => { typing = false; paint(); });
+            typer = typeText(quickText, (t) => { typed = t; paint(); try { instant && instant.chatText(t); } catch (_) { /* optional */ } }, { fast: () => fullDone, instant: reduce });   // read aloud as it is typed
+            typer.done.then(() => { typing = false; paint(); try { instant && instant.chatText(joinContinuation(quickText, cont)); } catch (_) { /* optional */ } });
         }
         try {
             const { system, user } = buildPrompt({ ...conversation, question: q, draft: quickText });
@@ -667,7 +667,7 @@ export function initMainScreen(ui) {
                 if (!t) return;
                 cont = t;
                 if (!typing) paint();      // while the short answer is still being typed, it keeps going first
-                try { instant && instant.chatText(joinContinuation(quickText, t)); } catch (_) { /* optional */ }
+                if (!typing) { try { instant && instant.chatText(joinContinuation(quickText, t)); } catch (_) { /* optional */ } }   // never speak ahead of the typed short answer
             }, { partial: true });
             fullDone = true;
             if (typer) await typer.done;
