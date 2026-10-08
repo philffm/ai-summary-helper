@@ -44,6 +44,11 @@ assert.equal(store['articles:rec:' + id].content, '<p>c</p>', 'record content un
 assert.equal((await SM.getArticleFull(id)).conversation.length, 2);
 assert(!(await SM.saveConversation('nope', [t1])));
 await SM.saveConversation(id, []); assert(!('qaCount' in store[SK.articlesIndex].find(a => a.id === id)));
+// suggested follow-up questions are kept with the article for later (and survive a turn being saved without them)
+assert(await SM.saveConversation(id, [t1], ['Who paid?', '', 'How long?']));
+assert.deepEqual(await SM.getSuggested(id), ['Who paid?', 'How long?']);
+await SM.saveConversation(id, [t1]); assert.deepEqual(await SM.getSuggested(id), ['Who paid?', 'How long?'], 'pool untouched when not passed');
+assert.deepEqual(await SM.getSuggested('nope'), []);
 await SM.saveConversation(id, [t1, t2]);
 // the pinned question is part of the stored summary (and the index), the original is kept as summaryBase
 let rec = store['articles:rec:' + id]; let ix = store[SK.articlesIndex].find(a => a.id === id);

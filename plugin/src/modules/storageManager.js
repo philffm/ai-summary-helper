@@ -343,8 +343,16 @@ class StorageManager {
         return Array.isArray(rec?.conversation) ? rec.conversation : [];
     }
 
+    /** Follow-up questions the model suggested for this article (not asked yet). */
+    static async getSuggested(id) {
+        if (!id) return [];
+        const key = articleRecKey(id);
+        const rec = (await this.getLocal([key]))[key];
+        return Array.isArray(rec?.suggested) ? rec.suggested : [];
+    }
+
     /** Replace the conversation; keeps the lean index in step (qaCount) so lists never load records. */
-    static async saveConversation(id, turns) {
+    static async saveConversation(id, turns, pool) {
         if (!id) return false;
         const key = articleRecKey(id);
         const [recData, idxData] = await Promise.all([this.getLocal([key]), this.getLocal({ [SK.articlesIndex]: [] })]);
@@ -363,6 +371,7 @@ class StorageManager {
             entry.summaryWordCount = countWords(summary);
         }
         const nextRec = { ...rec, conversation: list, summary };
+        if (Array.isArray(pool)) nextRec.suggested = pool.filter(q => typeof q === 'string' && q.trim()).slice(0, 8);   // suggested follow-ups, kept for later
         if (list.length || rec.summaryBase !== undefined) nextRec.summaryBase = base;
         await this.setLocal({ [key]: nextRec, [SK.articlesIndex]: index });
         return true;

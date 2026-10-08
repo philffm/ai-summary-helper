@@ -43,6 +43,7 @@ export function initMainScreen(ui) {
         const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji(article)} ${article.modelId}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
+        if (article.id) bubble.dataset.id = article.id;
         bubble.innerHTML = `
             <div class="summary-bubble-header">
                 <span class="summary-bubble-title">${title.length > 50 ? title.slice(0, 50) + '…' : title}</span>
@@ -430,9 +431,33 @@ export function initMainScreen(ui) {
         } catch (_) { /* animation is cosmetic */ }
     };
 
+    let optOutUrl = null;
+    const RESUME_WINDOW_MS = 12 * 3600 * 1000;
+    /** Back on a page that was just summarized: pick its follow-up conversation up again (same session, or from storage). */
+    const resumeForPage = async () => {
+        if (!composer || composer.state !== 'fetch' || attached || attaching) return;
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        if (!tab || !tab.url || !isInjectableUrl(tab.url) || composer.state !== 'fetch') return;
+        if (optOutUrl && !samePage(optOutUrl, tab.url)) optOutUrl = null;
+        if (optOutUrl) return;
+        if (conversation && samePage(conversation.url, tab.url)) {
+            composer.set('followup'); showConversationChip(); renderSuggestions(); return;
+        }
+        if (conversation && !conversation.detached) return;
+        let list = [];
+        try { list = await StorageManager.getArticlesIndex(); } catch (_) { return; }
+        const hit = (list || []).filter(a => a && a.id && !a.feedStub && a.url && samePage(a.url, tab.url) && Date.now() - new Date(a.timestamp).getTime() < RESUME_WINDOW_MS)
+            .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))[0];
+        if (!hit || composer.state !== 'fetch') return;
+        const bubble = [...feed.querySelectorAll('.summary-bubble')].find(b => b.dataset.id === hit.id);
+        if (bubble) await askAbout(hit, bubble);
+    };
+
     /** Back to this page (chip button / ⌘N): back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
     const startNew = () => {
         if (composer && composer.state === 'working') return;
+        getActiveTab().then(t => { optOutUrl = (t && t.url) || null; }).catch(() => {});   // the user chose a fresh summary of this page: do not jump back into its conversation
         clearThread();
         conversation = null; lastContext = null;
         clearNote();
@@ -454,7 +479,7 @@ export function initMainScreen(ui) {
     // Different-page rule: when the active tab is another page than the conversation, offer a fresh summary.
     const checkPage = async () => {
         if (!composer || composer.state === 'working') return;
-        if (composer.state === 'fetch') { refreshFetchExtras(); return; }
+        if (composer.state === 'fetch') { refreshFetchExtras(); resumeForPage(); return; }
         if (!conversation || conversation.detached) return;
         let tab = null;
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
@@ -493,14 +518,15 @@ export function initMainScreen(ui) {
         if (conversation && conversation.bubble === bubble) { bubble.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); additionalQuestionsInput.focus(); return; }
         let full = null;
         try { full = await StorageManager.getArticleFull(article.id); } catch (_) { /* fall back to the card */ }
-        let turns = [];
+        let turns = [], pool = [];
         try { turns = await StorageManager.getConversation(article.id); } catch (_) { turns = []; }
+        try { pool = await StorageManager.getSuggested(article.id); } catch (_) { pool = []; }
         if (!bubble.isConnected) return;
         clearThread();
         const f = full || article;
         conversation = {
             id: article.id, url: f.url || article.url || '', title: f.title || article.title || '', content: f.content || '', summary: f.summary || article.summary || '',
-            meta: f.meta || (f.favicon ? { favicon: f.favicon } : {}), turns: Array.isArray(turns) ? turns : [], pool: [], bubble, detached: true
+            meta: f.meta || (f.favicon ? { favicon: f.favicon } : {}), turns: Array.isArray(turns) ? turns : [], pool: Array.isArray(pool) ? pool.slice() : [], bubble, detached: true
         };
         const host = document.createElement('div');
         host.className = 'ask-thread';
@@ -527,7 +553,7 @@ export function initMainScreen(ui) {
     }
 
     const persistConversation = () => {
-        if (conversation && conversation.id) StorageManager.saveConversation(conversation.id, conversation.turns).catch(() => {});
+        if (conversation && conversation.id) StorageManager.saveConversation(conversation.id, conversation.turns, conversation.pool).catch(() => {});
     };
 
     const revealOnPage = (quote, chip) => {
@@ -605,7 +631,7 @@ export function initMainScreen(ui) {
                 const scrollEl = document.getElementById('feedScroll');
                 if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
             });
-            try { refreshFetchExtras(); } catch (_) { /* composer not ready yet */ }
+            try { refreshFetchExtras(); resumeForPage(); } catch (_) { /* composer not ready yet */ }
         } else {
             if (recentEntry) recentEntry.style.display = 'flex';
             if (recentTitle) recentTitle.textContent = T('No recent summaries');
