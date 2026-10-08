@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>How to Check an AI Summary Against Its Source in 10 Seconds — AI Summary Helper</title>
+<meta name="description" content="An AI summary is only useful if you can trust it. Here is a quick way to check any answer against the page it came from, and what a quote can and cannot prove.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/verify-ai-summary.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Part of byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Back to app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Part of byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Switch to light mode</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guide · October 2026</span>
+      <h1>How to Check an AI Summary Against Its Source in 10 Seconds</h1>
+      <p class="post-sub">A summary you can't verify is a guess with good grammar. Here is the habit that fixes it, and what AI Summary Helper does to make it quick.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>In 2011, Sparrow, Liu, and Wegner reported in <em>Science</em> that when people expect to be able to look something up later, they remember the fact less and remember where to find it more. Search engines turned out to be a kind of external memory, and we adjust to it.</p>
+        <p>AI summaries push that adjustment further. You get a clean paragraph, you remember the paragraph, and the page it came from drops out of the picture. That is fine when the summary is right. It is a problem when it isn't, because nothing in a paragraph tells you which sentence is shaky.</p>
+
+        <h2>The 10-second check</h2>
+        <p>You don't need to re-read the article. You need to look at one passage. The habit is simple:</p>
+        <ol>
+          <li><strong>Pick the claim you would repeat to someone else.</strong> A number, a date, a name, a cause.</li>
+          <li><strong>Find the sentence in the source that says it.</strong> Not a similar sentence. The one that says it.</li>
+          <li><strong>Read the sentence on each side of it.</strong> Context is where summaries most often slip: a "may" that became a "will", a forecast that became a fact.</li>
+        </ol>
+        <p>Step two is the slow one when you do it by hand. That is the step worth automating.</p>
+
+        <h2>What AI Summary Helper does about it</h2>
+        <p>When you ask a follow-up question, the answer comes back with the exact passages from the page that support it. The extension compares each quote against the page text and drops any quote it can't find word for word, so a made-up quotation never shows up as evidence. Click a quote and the page scrolls to that passage and highlights it, if the page is open.</p>
+        <p>The suggested follow-up questions work the same way. Each one arrives with a short first answer, typed out while the model writes the longer one, so you can read, check, and stop the moment you are satisfied.</p>
+
+        <h2>What a quote proves, and what it doesn't</h2>
+        <p>Be careful with this one. A matching quote proves that the passage exists on the page. It does not prove the model read it correctly. The answer around the quote is still the model's own wording, so the check in step three still applies: read the neighbouring sentences.</p>
+        <p>Used that way, the quote is a shortcut to the right paragraph rather than a stamp of approval. That is the point. You spend ten seconds on the part of the article that decides whether the answer holds, not ten minutes on the whole thing.</p>
+
+        <h2>A habit worth keeping</h2>
+        <p>Pick one answer per article and check it. Over a few weeks you learn how your model behaves: which topics it handles well, where it rounds numbers, whether it softens hedges. That calibration is worth more than any single check.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is a free Chrome extension.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source on GitHub</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics settings</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — independent software built in Germany.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+
+
+</body></html>
