@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1026. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1014 | 0 | 0 | 34 |
-| de | 1014 | 0 | 0 | 151 |
-| es | 1014 | 0 | 0 | 119 |
-| fr | 1014 | 0 | 0 | 142 |
-| hi | 1014 | 0 | 0 | 52 |
-| it | 1014 | 0 | 0 | 123 |
-| ja | 1014 | 0 | 0 | 63 |
-| ko | 1014 | 0 | 0 | 13 |
-| pt_PT | 1014 | 0 | 0 | 122 |
-| ru | 1014 | 0 | 0 | 69 |
-| zh_CN | 1014 | 0 | 0 | 1 |
-| zh_HK | 1014 | 0 | 0 | 1 |
-| zh_TW | 1014 | 0 | 0 | 1 |
+| ar | 1026 | 0 | 0 | 34 |
+| de | 1026 | 0 | 0 | 151 |
+| es | 1026 | 0 | 0 | 122 |
+| fr | 1026 | 0 | 0 | 144 |
+| hi | 1026 | 0 | 0 | 53 |
+| it | 1026 | 0 | 0 | 125 |
+| ja | 1026 | 0 | 0 | 63 |
+| ko | 1026 | 0 | 0 | 13 |
+| pt_PT | 1026 | 0 | 0 | 124 |
+| ru | 1026 | 0 | 0 | 70 |
+| zh_CN | 1026 | 0 | 0 | 1 |
+| zh_HK | 1026 | 0 | 0 | 1 |
+| zh_TW | 1026 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -226,8 +226,10 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | vs {label} | frente a {label} | 11 vs 5 | 2.2× |
 | Custom | Personalizado | 13 vs 6 | 2.17× |
 | Add tag | Añadir etiqueta | 15 vs 7 | 2.14× |
+| Motion on | Movimiento activado | 19 vs 9 | 2.11× |
 | Account Sync | Sincronización de cuenta | 24 vs 12 | 2× |
 | Add tag… | Añadir etiqueta… | 16 vs 8 | 2× |
+| Default | Predeterminado | 14 vs 7 | 2× |
 | ▶ Play | ▶ Reproducir | 12 vs 6 | 2× |
 | 💬 Ask | 💬 Preguntar | 12 vs 6 | 2× |
 | UI Language | Idioma de la interfaz | 21 vs 11 | 1.91× |
@@ -319,6 +321,7 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 🎓 Mark as paper | 🎓 Marcar como artículo | 23 vs 16 | 1.44× |
 | 🏷️ Top Categories | 🏷️ Categorías principales | 26 vs 18 | 1.44× |
 | Allow all origins (app) | Permitir todos los orígenes (app) | 33 vs 23 | 1.43× |
+| Customize text size, spacing, font, motion | Personalizar tamaño de texto, espaciado, fuente y movimiento | 60 vs 42 | 1.43× |
 | Sources · rename · tags · mute | Fuentes · renombrar · etiquetas · silenciar | 43 vs 30 | 1.43× |
 | Failed to send code | No se pudo enviar el código | 27 vs 19 | 1.42× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
@@ -349,6 +352,7 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No items yet | Aucun élément pour l’instant | 28 vs 12 | 2.33× |
 | Today | Aujourd’hui | 11 vs 5 | 2.2× |
 | Get Key | Obtenir une clé | 15 vs 7 | 2.14× |
+| Motion on | Animations activées | 19 vs 9 | 2.11× |
 | Add tag | Ajouter un tag | 14 vs 7 | 2× |
 | Custom | Personnalisé | 12 vs 6 | 2× |
 | Keep feed items for | Conserver les éléments de flux pendant | 38 vs 19 | 2× |
@@ -444,6 +448,7 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} older items are not in this recap. | {n} anciens éléments ne sont pas dans ce récapitulatif. | 54 vs 37 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
 | Add LocalSend device | Ajouter un appareil LocalSend | 29 vs 20 | 1.45× |
+| Customize text size, spacing, font, motion | Personnaliser taille du texte, interligne, police, animations | 61 vs 42 | 1.45× |
 | Delete all settings? | Supprimer tous les réglages ? | 29 vs 20 | 1.45× |
 | Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
 | Add custom model | Ajouter un modèle perso | 23 vs 16 | 1.44× |
@@ -515,6 +520,7 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | View: Filtered | दृश्य: फ़िल्टर किया हुआ | 23 vs 14 | 1.64× |
 | Loading... | लोड हो रहा है... | 16 vs 10 | 1.6× |
 | Reading PDF… | PDF पढ़ी जा रही है… | 19 vs 12 | 1.58× |
+| Follows system | सिस्टम का पालन करता है | 22 vs 14 | 1.57× |
 | No devices added yet. | अभी कोई डिवाइस नहीं जोड़ा गया है। | 33 vs 21 | 1.57× |
 | Why it matters | यह क्यों मायने रखता है | 22 vs 14 | 1.57× |
 | Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
@@ -571,6 +577,7 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Not enough rated items yet | Non ci sono ancora abbastanza elementi valutati | 47 vs 26 | 1.81× |
 | Share failed: {message} | Condivisione non riuscita: {message} | 29 vs 16 | 1.81× |
 | Keep feed items for | Conserva gli elementi dei feed per | 34 vs 19 | 1.79× |
+| Motion on | Movimento attivo | 16 vs 9 | 1.78× |
 | No receiver address set. | Nessun indirizzo del ricevitore impostato. | 42 vs 24 | 1.75× |
 | No settings match “{query}”. | Nessuna impostazione corrisponde a «{query}». | 40 vs 23 | 1.74× |
 | Free Trial Mode | Modalità di prova gratuita | 26 vs 15 | 1.73× |
@@ -625,6 +632,7 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Queue a question… | Metti in coda una domanda… | 26 vs 17 | 1.53× |
 | Reading page... | Lettura della pagina... | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
+| Customize text size, spacing, font, motion | Personalizza dimensione testo, spaziatura, carattere e movimento | 64 vs 42 | 1.52× |
 | Not set up yet — add a receiver in Settings | Non ancora configurato: aggiungi un ricevitore nelle Impostazioni | 65 vs 43 | 1.51× |
 | Add LocalSend device | Aggiungi dispositivo LocalSend | 30 vs 20 | 1.5× |
 | Auto-summarize favorites | Riassumi automaticamente i preferiti | 36 vs 24 | 1.5× |
@@ -794,12 +802,14 @@ Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
 | 💾 Backup & restore | 💾 Cópia de segurança e restauro | 32 vs 19 | 1.68× |
 | Browser Default | Predefinição do navegador | 25 vs 15 | 1.67× |
+| Motion on | Movimento ativo | 15 vs 9 | 1.67× |
 | ☁️ Top terms | ☁️ Termos principais | 20 vs 12 | 1.67× |
 | AI-rated: heavy news | Avaliado por IA: notícias pesadas | 33 vs 20 | 1.65× |
 | Add Kindle device | Adicionar dispositivo Kindle | 28 vs 17 | 1.65× |
 | No Kindle email set. | Nenhum e-mail do Kindle definido. | 33 vs 20 | 1.65× |
 | Updates & storage | Atualizações e armazenamento | 28 vs 17 | 1.65× |
 | Auto-Detect | Deteção automática | 18 vs 11 | 1.64× |
+| Customize text size, spacing, font, motion | Personalizar tamanho do texto, espaçamento, tipo de letra e movimento | 69 vs 42 | 1.64× |
 | Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
 | Failed to export backup. | Falha ao exportar a cópia de segurança. | 39 vs 24 | 1.63× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
@@ -905,6 +915,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | About & Tools | О программе и инструменты | 25 vs 13 | 1.92× |
 | Send & Share | Отправка и общий доступ | 23 vs 12 | 1.92× |
 | Copy list | Копировать список | 17 vs 9 | 1.89× |
+| Motion on | Анимация включена | 17 vs 9 | 1.89× |
 | Copy 📋 | Копировать 📋 | 13 vs 7 | 1.86× |
 | Get Key | Получить ключ | 13 vs 7 | 1.86× |
 | Stacked | С накоплением | 13 vs 7 | 1.86× |

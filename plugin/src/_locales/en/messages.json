@@ -3612,5 +3612,46 @@
   },
   "f_system_84bc": {
     "message": "System"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "125% text, relaxed spacing"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Accessibility profile"
+  },
+  "f_calm_cf36": {
+    "message": "Calm"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Customize text size, spacing, font, motion"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Dark text on white, thick outlines"
+  },
+  "f_default_307e": {
+    "message": "Default"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Following your system: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_follows_system_62e2": {
+    "message": "Follows system"
+  },
+  "f_large_text_b73b": {
+    "message": "Large text"
+  },
+  "f_motion_on_b930": {
+    "message": "Motion on"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Motion reduced"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "No animation, everything stays still"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Your settings: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
   }
 }

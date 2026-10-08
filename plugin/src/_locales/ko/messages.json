@@ -3445,5 +3445,44 @@
   },
   "f_system_84bc": {
     "message": "시스템"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "글자 125%, 넓은 줄 간격"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "접근성 프로필"
+  },
+  "f_calm_cf36": {
+    "message": "차분함"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "글자 크기, 줄 간격, 글꼴, 모션 맞춤 설정"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "흰 배경에 짙은 글자, 굵은 윤곽선"
+  },
+  "f_default_307e": {
+    "message": "기본"
+  },
+  "f_following_your_system_49c8": {
+    "message": "시스템 설정을 따름: {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "시스템을 따름"
+  },
+  "f_large_text_b73b": {
+    "message": "큰 글자"
+  },
+  "f_motion_on_b930": {
+    "message": "모션 켬"
+  },
+  "f_motion_reduced_d819": {
+    "message": "모션 줄임"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "애니메이션 없음, 모든 것이 정지"
+  },
+  "f_your_settings_8f2d": {
+    "message": "내 설정: {summary}"
   }
 }

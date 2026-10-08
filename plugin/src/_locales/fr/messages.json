@@ -3457,5 +3457,44 @@
   },
   "f_system_84bc": {
     "message": "Système"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "Texte à 125 %, interligne aéré"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Profil d'accessibilité"
+  },
+  "f_calm_cf36": {
+    "message": "Calme"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Personnaliser taille du texte, interligne, police, animations"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Texte sombre sur blanc, contours épais"
+  },
+  "f_default_307e": {
+    "message": "Par défaut"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Suit votre système : {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "Suit le système"
+  },
+  "f_large_text_b73b": {
+    "message": "Grand texte"
+  },
+  "f_motion_on_b930": {
+    "message": "Animations activées"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Animations réduites"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Aucune animation, tout reste immobile"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Vos réglages : {summary}"
   }
 }

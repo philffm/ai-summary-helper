@@ -3463,5 +3463,44 @@
   },
   "f_system_84bc": {
     "message": "System"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "125 % Text, großzügiger Abstand"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Barrierefreiheits-Profil"
+  },
+  "f_calm_cf36": {
+    "message": "Ruhig"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Textgröße, Abstand, Schrift, Bewegung anpassen"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Dunkler Text auf Weiß, kräftige Umrisse"
+  },
+  "f_default_307e": {
+    "message": "Standard"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Folgt deinem System: {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "Folgt dem System"
+  },
+  "f_large_text_b73b": {
+    "message": "Großer Text"
+  },
+  "f_motion_on_b930": {
+    "message": "Bewegung an"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Bewegung reduziert"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Keine Animation, alles bleibt ruhig"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Deine Einstellungen: {summary}"
   }
 }

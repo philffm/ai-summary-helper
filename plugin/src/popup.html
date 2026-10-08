@@ -481,16 +481,8 @@
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsAppearance">Appearance &amp; Language</span></h2>
   </div>
+                <div class="a11y-status" id="a11yStatus" role="status"></div>
                 <div class="a11y-block">
-                  <h3 data-i18n="f_display_d9b5">Display</h3>
-                  <span class="a11y-label" id="themeLabel" data-i18n="f_theme_7c92">Theme</span>
-                  <div class="a11y-seg" id="themeSeg" role="radiogroup" aria-labelledby="themeLabel">
-                    <button type="button" role="radio" data-value="system" data-i18n="f_system_84bc">System</button>
-                    <button type="button" role="radio" data-value="light" data-i18n="f_light_f8cf">Light</button>
-                    <button type="button" role="radio" data-value="dark" data-i18n="f_dark_0065">Dark</button>
-                    <button type="button" role="radio" data-value="contrast" data-i18n="f_high_contrast_9fd1">High contrast</button>
-                  </div>
-                  <p class="a11y-hint" id="themeHint"></p>
                   <div class="setting-group flex justify-between align-center">
                     <label for="uiLangSelect" data-i18n="f_ui_language_08b7">UI Language</label>
                     <select id="uiLangSelect">
@@ -510,31 +502,53 @@
                         <option value="zh_TW">🇹🇼 繁體中文</option>
                     </select>
                   </div>
+                  <span class="a11y-label" id="themeLabel" data-i18n="f_theme_7c92">Theme</span>
+                  <div class="a11y-seg" id="themeSeg" role="radiogroup" aria-labelledby="themeLabel">
+                    <button type="button" role="radio" data-value="system" data-i18n="f_system_84bc">System</button>
+                    <button type="button" role="radio" data-value="light" data-i18n="f_light_f8cf">Light</button>
+                    <button type="button" role="radio" data-value="dark" data-i18n="f_dark_0065">Dark</button>
+                    <button type="button" role="radio" data-value="contrast" data-i18n="f_high_contrast_9fd1">High contrast</button>
+                  </div>
+                  <p class="a11y-hint" id="themeHint"></p>
                 </div>
                 <div class="a11y-block">
-                  <h3 data-i18n="f_text_2d5e">Text</h3>
-                  <label for="textScaleRange" style="margin:0;"><span data-i18n="f_text_size_1143">Text size</span> · <span id="textScaleValue">100%</span></label>
-                  <div class="a11y-slider"><span aria-hidden="true" style="font-size:11px;">A</span><input type="range" id="textScaleRange" min="85" max="150" step="5" value="100" /><span aria-hidden="true" style="font-size:18px;">A</span></div>
-                  <span class="a11y-label" id="lineLabel" data-i18n="f_line_spacing_d3de">Line spacing</span>
-                  <div class="a11y-seg" id="lineSeg" role="radiogroup" aria-labelledby="lineLabel">
-                    <button type="button" role="radio" data-value="compact" data-i18n="f_compact_ad86">Compact</button>
-                    <button type="button" role="radio" data-value="normal" data-i18n="f_normal_2772">Normal</button>
-                    <button type="button" role="radio" data-value="relaxed" data-i18n="f_relaxed_38bc">Relaxed</button>
+                  <span class="a11y-label" id="profileLabel" data-i18n="f_accessibility_profile_c8b6">Accessibility profile</span>
+                  <div class="a11y-profiles" id="profileList" role="radiogroup" aria-labelledby="profileLabel">
+                    <button type="button" role="radio" data-profile="default"><span class="pf-text"><strong data-i18n="f_default_307e">Default</strong><small data-i18n="f_follows_system_62e2">Follows system</small></span><span class="pf-dot" aria-hidden="true"></span></button>
+                    <button type="button" role="radio" data-profile="large"><span class="pf-text"><strong data-i18n="f_large_text_b73b">Large text</strong><small data-i18n="f_125_text_relaxed_spacing_683b">125% text, relaxed spacing</small></span><span class="pf-dot" aria-hidden="true"></span></button>
+                    <button type="button" role="radio" data-profile="contrast"><span class="pf-text"><strong data-i18n="f_high_contrast_9fd1">High contrast</strong><small data-i18n="f_dark_text_on_white_thick_out_25a0">Dark text on white, thick outlines</small></span><span class="pf-dot" aria-hidden="true"></span></button>
+                    <button type="button" role="radio" data-profile="calm"><span class="pf-text"><strong data-i18n="f_calm_cf36">Calm</strong><small data-i18n="f_no_animation_everything_stay_6e0d">No animation, everything stays still</small></span><span class="pf-dot" aria-hidden="true"></span></button>
                   </div>
-                  <div class="setting-group flex justify-between align-center">
-                    <label for="readableFontToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_easy_read_font_b69f">Easy-read font</label>
-                    <label class="switch"><input type="checkbox" id="readableFontToggle" /><span class="slider-toggle"></span></label>
-                  </div>
-                  <p class="a11y-hint" data-i18n="f_atkinson_hyperlegible_design_954e">Atkinson Hyperlegible, designed for low vision. Latin scripts only.</p>
-                  <div class="a11y-preview" id="a11yPreview" data-i18n="f_the_quick_brown_fox_jumps_ov_fd42">The quick brown fox jumps over the lazy dog. Summaries use this size and spacing.</div>
                 </div>
-                <div class="a11y-block">
-                  <h3 data-i18n="f_motion_layout_e4f1">Motion & layout</h3>
-                  <div class="setting-group flex justify-between align-center">
-                    <label for="reduceMotionToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_reduce_motion_ecc7">Reduce motion</label>
-                    <label class="switch"><input type="checkbox" id="reduceMotionToggle" /><span class="slider-toggle"></span></label>
+                <details class="a11y-custom" id="a11yCustom">
+                  <summary data-i18n="f_customize_text_size_spacing__1b1e">Customize text size, spacing, font, motion</summary>
+                  <div class="a11y-block">
+                    <h3 data-i18n="f_text_2d5e">Text</h3>
+                    <label for="textScaleRange" style="margin:0;"><span data-i18n="f_text_size_1143">Text size</span> · <span id="textScaleValue">100%</span></label>
+                    <div class="a11y-slider"><span aria-hidden="true" style="font-size:11px;">A</span><input type="range" id="textScaleRange" min="85" max="150" step="5" value="100" /><span aria-hidden="true" style="font-size:18px;">A</span></div>
+                    <span class="a11y-label" id="lineLabel" data-i18n="f_line_spacing_d3de">Line spacing</span>
+                    <div class="a11y-seg" id="lineSeg" role="radiogroup" aria-labelledby="lineLabel">
+                      <button type="button" role="radio" data-value="compact" data-i18n="f_compact_ad86">Compact</button>
+                      <button type="button" role="radio" data-value="normal" data-i18n="f_normal_2772">Normal</button>
+                      <button type="button" role="radio" data-value="relaxed" data-i18n="f_relaxed_38bc">Relaxed</button>
+                    </div>
+                    <div class="setting-group flex justify-between align-center">
+                      <label for="readableFontToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_easy_read_font_b69f">Easy-read font</label>
+                      <label class="switch"><input type="checkbox" id="readableFontToggle" /><span class="slider-toggle"></span></label>
+                    </div>
+                    <p class="a11y-hint" data-i18n="f_atkinson_hyperlegible_design_954e">Atkinson Hyperlegible, designed for low vision. Latin scripts only.</p>
+                    <div class="a11y-preview" id="a11yPreview" data-i18n="f_the_quick_brown_fox_jumps_ov_fd42">The quick brown fox jumps over the lazy dog. Summaries use this size and spacing.</div>
                   </div>
-                  <p class="a11y-hint" id="motionHint"></p>
+                  <div class="a11y-block">
+                    <h3 data-i18n="f_motion_layout_e4f1">Motion & layout</h3>
+                    <div class="setting-group flex justify-between align-center">
+                      <label for="reduceMotionToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_reduce_motion_ecc7">Reduce motion</label>
+                      <label class="switch"><input type="checkbox" id="reduceMotionToggle" /><span class="slider-toggle"></span></label>
+                    </div>
+                    <p class="a11y-hint" id="motionHint"></p>
+                  </div>
+                </details>
+                <div class="a11y-block">
                   <div class="setting-group flex justify-between align-center">
                     <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
                     <label class="switch">

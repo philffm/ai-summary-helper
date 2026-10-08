@@ -3463,3 +3463,19 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .a11y-seg button { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 600; padding: 7px 6px; border-radius: 999px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .a11y-seg button.on { background: var(--accent); color: var(--on-accent); }
 .a11y-seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.a11y-status { padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--outline); border-radius: 10px; font-size: var(--fs-sm); font-weight: 500; color: var(--text-secondary); }
+.a11y-profiles { display: flex; flex-direction: column; gap: 8px; }
+.a11y-profiles button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; font: inherit; color: var(--text-primary); background: var(--glass-card); border: 1px solid var(--outline); border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+.a11y-profiles .pf-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.a11y-profiles strong { font-size: var(--fs-md); }
+.a11y-profiles small { font-size: var(--fs-xs); color: var(--text-muted); }
+.a11y-profiles .pf-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--outline); box-sizing: border-box; }
+.a11y-profiles button.on { border: 2px solid var(--accent); padding: 9px 11px; }
+.a11y-profiles button.on .pf-dot { border: 5px solid var(--accent); }
+.a11y-profiles button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.a11y-custom { margin-bottom: 14px; border: 1px solid var(--outline); border-radius: 12px; padding: 0 12px; }
+.a11y-custom > summary { cursor: pointer; padding: 10px 0; font-size: var(--fs-md); font-weight: 600; color: var(--accent); list-style: none; }
+.a11y-custom > summary::-webkit-details-marker { display: none; }
+.a11y-custom > summary::after { content: ' ›'; }
+.a11y-custom[open] > summary::after { content: ' ‹'; }

@@ -416,53 +416,79 @@ async function initModelSettings(storageData) {
 
 // ── Section: General Settings ────────────────────────────────────────
 function initGeneralSettings(storageData) {
-    // ── Theme + display & reading preferences ───────────────────────
-    const a11yState = { theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing || 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
-    const reapply = () => applyA11y({ ...a11yState, theme: a11yState.theme === 'system' ? '' : a11yState.theme });
-    // Segmented controls (radiogroups): one round-trip for Theme and Line spacing.
-    const seg = (id, value, onPick) => {
-        const el = document.getElementById(id);
-        if (!el) return null;
+    // ── Theme + display & reading preferences (profiles + customize) ──
+    const A11Y_KEYS = ['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion'];
+    const a11yState = { theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing === 'compact' || storageData.lineSpacing === 'relaxed' ? storageData.lineSpacing : 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
+    const PROFILES = {
+        default: { textScale: 100, lineSpacing: 'normal', readableFont: false, reduceMotion: false },
+        large: { textScale: 125, lineSpacing: 'relaxed' },
+        contrast: { theme: 'contrast', textScale: 100, lineSpacing: 'normal' },
+        calm: { reduceMotion: true }
+    };
+    const activeProfile = () => {
+        const s = a11yState;
+        if (s.theme === 'contrast') return 'contrast';
+        if (s.textScale >= 125 && s.lineSpacing === 'relaxed') return 'large';
+        if (s.reduceMotion && s.textScale === 100 && s.lineSpacing === 'normal' && !s.readableFont) return 'calm';
+        if (s.textScale === 100 && s.lineSpacing === 'normal' && !s.readableFont && !s.reduceMotion) return 'default';
+        return '';
+    };
+    const $id = (id) => document.getElementById(id);
+    const sysMotion = systemReducesMotion();
+    const themeName = () => ({ light: T('Light Mode'), dark: T('Dark Mode'), contrast: T('High contrast') }[a11yState.theme] || (systemTheme() === 'dark' ? T('Dark Mode') : T('Light Mode')));
+    const paintSeg = (id, v) => { const el = $id(id); if (!el) return; el.querySelectorAll('[role=radio]').forEach(b => { const on = b.dataset.value === v; b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; }); };
+    const syncUi = () => {
+        paintSeg('themeSeg', a11yState.theme); paintSeg('lineSeg', a11yState.lineSpacing);
+        const th = $id('themeHint'); if (th) th.textContent = a11yState.theme === 'system' ? T('Currently following your system: {theme}').replace('{theme}', themeName()) : '';
+        const sr = $id('textScaleRange'); if (sr) sr.value = String(a11yState.textScale);
+        const sv = $id('textScaleValue'); if (sv) sv.textContent = a11yState.textScale + '%';
+        const ft = $id('readableFontToggle'); if (ft) ft.checked = a11yState.readableFont;
+        const mt = $id('reduceMotionToggle'); if (mt) mt.checked = a11yState.reduceMotion || sysMotion;
+        const mh = $id('motionHint'); if (mh) mh.textContent = sysMotion ? T('Your system already asks for reduced motion — it is always respected.') : T('Currently following your system: off');
+        const cur = activeProfile();
+        document.querySelectorAll('#profileList [role=radio]').forEach(b => { const on = b.dataset.profile === cur; b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); });
+        const st = $id('a11yStatus');
+        if (st) {
+            const sum = [themeName(), (a11yState.reduceMotion || sysMotion) ? T('Motion reduced') : T('Motion on'), a11yState.textScale + '%'].join(' · ');
+            st.textContent = '✓ ' + (cur === 'default' && a11yState.theme === 'system' ? T('Following your system: {summary}') : T('Your settings: {summary}')).replace('{summary}', sum);
+        }
+        applyA11y({ ...a11yState, theme: a11yState.theme === 'system' ? '' : a11yState.theme });
+    };
+    const setA11y = (patch, persist = true) => {
+        const changed = A11Y_KEYS.filter(k => k in patch && patch[k] !== a11yState[k]);
+        Object.assign(a11yState, patch);
+        syncUi();
+        if (persist) changed.forEach(k => autoSave(k, a11yState[k]));
+    };
+    // Segmented controls (radiogroups) with arrow-key support
+    const seg = (id, onPick) => {
+        const el = $id(id); if (!el) return;
         const btns = [...el.querySelectorAll('[role=radio]')];
-        const paint = (v) => btns.forEach(b => { const on = b.dataset.value === v; b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
-        paint(value);
         btns.forEach((b, i) => {
-            b.addEventListener('click', () => { paint(b.dataset.value); onPick(b.dataset.value); });
+            b.addEventListener('click', () => onPick(b.dataset.value));
             b.addEventListener('keydown', (e) => {
                 const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
                 if (!d) return;
-                e.preventDefault();
-                const n = btns[(i + d + btns.length) % btns.length]; n.focus(); n.click();
+                e.preventDefault(); const n = btns[(i + d + btns.length) % btns.length]; n.focus(); n.click();
             });
         });
-        return el;
     };
-    const themeHint = document.getElementById('themeHint');
-    const showThemeHint = () => { if (themeHint) themeHint.textContent = a11yState.theme === 'system' ? T('Currently following your system: {theme}').replace('{theme}', systemTheme() === 'dark' ? T('Dark Mode') : T('Light Mode')) : ''; };
-    seg('themeSeg', a11yState.theme, (v) => { a11yState.theme = v; autoSave('theme', v); reapply(); showThemeHint(); });
-    showThemeHint();
-    const scaleRange = document.getElementById('textScaleRange');
-    const scaleValue = document.getElementById('textScaleValue');
+    seg('themeSeg', (v) => setA11y({ theme: v }));
+    seg('lineSeg', (v) => setA11y({ lineSpacing: v }));
+    document.querySelectorAll('#profileList [role=radio]').forEach(b => b.addEventListener('click', () => setA11y(PROFILES[b.dataset.profile] || {})));
+    const scaleRange = $id('textScaleRange');
     if (scaleRange) {
-        scaleRange.value = String(a11yState.textScale);
-        if (scaleValue) scaleValue.textContent = a11yState.textScale + '%';
-        scaleRange.addEventListener('input', () => { a11yState.textScale = clampScale(scaleRange.value); if (scaleValue) scaleValue.textContent = a11yState.textScale + '%'; reapply(); });
+        scaleRange.addEventListener('input', () => setA11y({ textScale: clampScale(scaleRange.value) }, false));
         scaleRange.addEventListener('change', () => autoSave('textScale', a11yState.textScale));
     }
-    seg('lineSeg', a11yState.lineSpacing === 'compact' || a11yState.lineSpacing === 'relaxed' ? a11yState.lineSpacing : 'normal', (v) => { a11yState.lineSpacing = v; autoSave('lineSpacing', v); reapply(); });
-    const fontToggle = document.getElementById('readableFontToggle');
-    if (fontToggle) {
-        fontToggle.checked = a11yState.readableFont;
-        fontToggle.addEventListener('change', () => { a11yState.readableFont = fontToggle.checked; autoSave('readableFont', fontToggle.checked); reapply(); });
-    }
-    const motionToggle = document.getElementById('reduceMotionToggle');
-    const motionHint = document.getElementById('motionHint');
-    if (motionToggle) {
-        const sysMotion = systemReducesMotion();
-        motionToggle.checked = a11yState.reduceMotion || sysMotion;
-        if (motionHint) motionHint.textContent = sysMotion ? T('Your system already asks for reduced motion — it is always respected.') : T('Currently following your system: off');
-        motionToggle.addEventListener('change', () => { a11yState.reduceMotion = motionToggle.checked; autoSave('reduceMotion', motionToggle.checked); reapply(); });
-    }
+    const fontToggle = $id('readableFontToggle');
+    if (fontToggle) fontToggle.addEventListener('change', () => setA11y({ readableFont: fontToggle.checked }));
+    const motionToggle = $id('reduceMotionToggle');
+    if (motionToggle) motionToggle.addEventListener('change', () => setA11y({ reduceMotion: motionToggle.checked }));
+    syncUi();
+    // Customize opens by itself when the current values are not one of the profiles
+    const customEl = $id('a11yCustom');
+    if (customEl && !activeProfile()) customEl.open = true;
 
     // ── UI Language ────────────────────────────────────────────────
     const uiLangSelect = document.getElementById('uiLangSelect');

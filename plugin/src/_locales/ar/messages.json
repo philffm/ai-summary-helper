@@ -3373,5 +3373,44 @@
   },
   "f_system_84bc": {
     "message": "النظام"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "نص 125٪ وتباعد واسع"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "ملف إمكانية الوصول"
+  },
+  "f_calm_cf36": {
+    "message": "هادئ"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "تخصيص حجم النص والتباعد والخط والحركة"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "نص داكن على خلفية بيضاء وحدود سميكة"
+  },
+  "f_default_307e": {
+    "message": "افتراضي"
+  },
+  "f_following_your_system_49c8": {
+    "message": "يتبع نظامك: {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "يتبع النظام"
+  },
+  "f_large_text_b73b": {
+    "message": "نص كبير"
+  },
+  "f_motion_on_b930": {
+    "message": "الحركة مفعّلة"
+  },
+  "f_motion_reduced_d819": {
+    "message": "الحركة مخفّضة"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "بلا حركة، كل شيء ثابت"
+  },
+  "f_your_settings_8f2d": {
+    "message": "إعداداتك: {summary}"
   }
 }

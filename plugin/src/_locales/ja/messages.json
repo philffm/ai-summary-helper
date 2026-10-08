@@ -3463,5 +3463,44 @@
   },
   "f_system_84bc": {
     "message": "システム"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "文字125%、ゆったり行間"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "アクセシビリティプロファイル"
+  },
+  "f_calm_cf36": {
+    "message": "落ち着き"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "文字サイズ・行間・フォント・動きをカスタマイズ"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "白地に濃い文字、太い枠線"
+  },
+  "f_default_307e": {
+    "message": "標準"
+  },
+  "f_following_your_system_49c8": {
+    "message": "システム設定に従っています：{summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "システムに従う"
+  },
+  "f_large_text_b73b": {
+    "message": "大きな文字"
+  },
+  "f_motion_on_b930": {
+    "message": "動きあり"
+  },
+  "f_motion_reduced_d819": {
+    "message": "動きを軽減"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "アニメーションなし、静かな表示"
+  },
+  "f_your_settings_8f2d": {
+    "message": "現在の設定：{summary}"
   }
 }

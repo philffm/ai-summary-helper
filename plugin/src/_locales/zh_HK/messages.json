@@ -3373,5 +3373,44 @@
   },
   "f_system_84bc": {
     "message": "系統"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "125% 文字，寬鬆行距"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "無障礙設定檔"
+  },
+  "f_calm_cf36": {
+    "message": "平靜"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "自訂文字大小、行距、字體與動態"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "白底深色文字，粗輪廓"
+  },
+  "f_default_307e": {
+    "message": "預設"
+  },
+  "f_following_your_system_49c8": {
+    "message": "跟隨系統：{summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "跟隨系統"
+  },
+  "f_large_text_b73b": {
+    "message": "大字體"
+  },
+  "f_motion_on_b930": {
+    "message": "動態開啟"
+  },
+  "f_motion_reduced_d819": {
+    "message": "動態已減少"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "無動畫，一切保持靜止"
+  },
+  "f_your_settings_8f2d": {
+    "message": "你的設定：{summary}"
   }
 }

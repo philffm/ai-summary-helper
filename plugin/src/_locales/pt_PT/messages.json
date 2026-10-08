@@ -3457,5 +3457,44 @@
   },
   "f_system_84bc": {
     "message": "Sistema"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "Texto a 125%, espaçamento amplo"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Perfil de acessibilidade"
+  },
+  "f_calm_cf36": {
+    "message": "Calmo"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Personalizar tamanho do texto, espaçamento, tipo de letra e movimento"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Texto escuro sobre branco, contornos grossos"
+  },
+  "f_default_307e": {
+    "message": "Predefinido"
+  },
+  "f_following_your_system_49c8": {
+    "message": "A seguir o sistema: {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "Segue o sistema"
+  },
+  "f_large_text_b73b": {
+    "message": "Texto grande"
+  },
+  "f_motion_on_b930": {
+    "message": "Movimento ativo"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Movimento reduzido"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Sem animações, tudo fica quieto"
+  },
+  "f_your_settings_8f2d": {
+    "message": "As suas definições: {summary}"
   }
 }

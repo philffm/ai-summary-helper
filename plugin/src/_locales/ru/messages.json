@@ -3373,5 +3373,44 @@
   },
   "f_system_84bc": {
     "message": "Система"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "Текст 125%, свободный интервал"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Профиль доступности"
+  },
+  "f_calm_cf36": {
+    "message": "Спокойный"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Настроить размер текста, интервал, шрифт, анимацию"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Тёмный текст на белом, толстые контуры"
+  },
+  "f_default_307e": {
+    "message": "По умолчанию"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Следует системе: {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "Следует системе"
+  },
+  "f_large_text_b73b": {
+    "message": "Крупный текст"
+  },
+  "f_motion_on_b930": {
+    "message": "Анимация включена"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Анимация уменьшена"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Без анимации, всё неподвижно"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Ваши настройки: {summary}"
   }
 }

@@ -3457,5 +3457,44 @@
   },
   "f_system_84bc": {
     "message": "सिस्टम"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "125% टेक्स्ट, खुला अंतर"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "एक्सेसिबिलिटी प्रोफ़ाइल"
+  },
+  "f_calm_cf36": {
+    "message": "शांत"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "टेक्स्ट आकार, अंतर, फ़ॉन्ट और गति अनुकूलित करें"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "सफ़ेद पर गहरा टेक्स्ट, मोटी रूपरेखा"
+  },
+  "f_default_307e": {
+    "message": "डिफ़ॉल्ट"
+  },
+  "f_following_your_system_49c8": {
+    "message": "आपके सिस्टम का पालन: {summary}"
+  },
+  "f_follows_system_62e2": {
+    "message": "सिस्टम का पालन करता है"
+  },
+  "f_large_text_b73b": {
+    "message": "बड़ा टेक्स्ट"
+  },
+  "f_motion_on_b930": {
+    "message": "गति चालू"
+  },
+  "f_motion_reduced_d819": {
+    "message": "गति कम"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "कोई एनिमेशन नहीं, सब कुछ स्थिर"
+  },
+  "f_your_settings_8f2d": {
+    "message": "आपकी सेटिंग: {summary}"
   }
 }
