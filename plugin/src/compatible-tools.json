@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Reabble Send to Kindle",
+    "Description": "Send your summarized articles to Kindle.",
+    "URL": "https://send.reabble.com/"
+  },
+
+  {
+    "Name": "Web Clipper",
+    "Description": "Clip your summarized web pages to different places (e.g. OneNote, Notion, GitHub etc.)",
+    "URL": "https://clipper.website/"
+  },
+
+  {
+    "Name": "Inoreader",
+    "Description": "RSS Feed Reader",
+    "URL": "https://www.inoreader.com/"
+  }
+
+]
