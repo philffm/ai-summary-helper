@@ -9,6 +9,7 @@ import { T, TN } from './feedI18n.js';
 import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { modalOpen } from './shortcuts.js';
+import { initInstantRead } from './instantRead.js';
 import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
 import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
@@ -736,7 +737,13 @@ export function initMainScreen(ui) {
     // content script also postMessages directly into the iframe's document,
     // which needs no extension privileges — handle those here exactly like
     // the runtime broadcasts.
+    let instant = null;
+    try {
+        const pill = document.querySelector('.composer-pill');
+        instant = initInstantRead({ chip: document.getElementById('chipSound'), panel: document.getElementById('panelSound'), barHost: pill && pill.parentElement });
+    } catch (_) { /* reading aloud is optional */ }
     const handleStreamMessage = (msg) => {
+        if (instant) { try { instant.onMessage(msg); } catch (_) { /* never block the stream */ } }
         if (msg.action === 'summaryContext' && composer && composer.state !== 'working') adoptRun(msg);
         if (msg.action === 'summaryProgress') {
             // Two quiet channels instead of one flickering line: a monotonic phase title and a word counter.

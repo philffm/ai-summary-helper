@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "विषय-सूची खोलें (लंबे लेख)"
+  },
+  "f_contents_67c3": {
+    "message": "विषय-सूची"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "पढ़ना पूरा हुआ"
+  },
+  "f_from_6140": {
+    "message": "{site} से।"
+  },
+  "f_instant_read_374e": {
+    "message": "तुरंत पढ़ें"
+  },
+  "f_listen_cec6": {
+    "message": "सुनें"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "पढ़ना म्यूट / अनम्यूट करें"
+  },
+  "f_next_sentence_2545": {
+    "message": "अगला वाक्य"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "इस डिवाइस पर {lang} के लिए कोई आवाज़ इंस्टॉल नहीं है।"
+  },
+  "f_off_b4aa": {
+    "message": "बंद"
+  },
+  "f_on_7df0": {
+    "message": "चालू"
+  },
+  "f_original_7692": {
+    "message": "मूल"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "पिछला वाक्य"
+  },
+  "f_read_again_cc5d": {
+    "message": "फिर से पढ़ें"
+  },
+  "f_read_aloud_a106": {
+    "message": "ज़ोर से पढ़ें"
+  },
+  "f_reading_speed_33dc": {
+    "message": "पढ़ने की गति"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "पढ़ना · वाक्य {n}"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "ऊपर जाएँ"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "पहले शीर्षक और साइट बोलता है, फिर मॉडल के लिखते समय सारांश वाक्य-दर-वाक्य पढ़ता है।"
+  },
+  "f_start_097f": {
+    "message": "शुरू करें"
+  },
+  "f_stop_reading_9af5": {
+    "message": "पढ़ना रोकें"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "आवाज़ पाठ की भाषा का अनुसरण करती है: जर्मन लेख का अंग्रेज़ी सारांश अंग्रेज़ी में और मूल जर्मन में पढ़ा जाता है।"
+  },
+  "f_voice_auto_8e1b": {
+    "message": "आवाज़ · स्वचालित"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "आवाज़: {voice} · {lang}। यह सारांश की भाषा का अनुसरण करती है; शीर्षक और साइट ऐप की भाषा में बोले जाते हैं।"
   }
 }

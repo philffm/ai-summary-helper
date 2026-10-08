@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1065 | 0 | 0 | 35 |
-| de | 1065 | 0 | 0 | 154 |
-| es | 1065 | 0 | 0 | 124 |
-| fr | 1065 | 0 | 0 | 146 |
-| hi | 1065 | 0 | 0 | 53 |
-| it | 1065 | 0 | 0 | 126 |
-| ja | 1065 | 0 | 0 | 67 |
-| ko | 1065 | 0 | 0 | 14 |
-| pt_PT | 1065 | 0 | 0 | 125 |
-| ru | 1065 | 0 | 0 | 70 |
-| zh_CN | 1065 | 0 | 0 | 1 |
-| zh_HK | 1065 | 0 | 0 | 1 |
-| zh_TW | 1065 | 0 | 0 | 1 |
+| ar | 1089 | 0 | 0 | 35 |
+| de | 1089 | 0 | 0 | 158 |
+| es | 1089 | 0 | 0 | 129 |
+| fr | 1089 | 0 | 0 | 150 |
+| hi | 1089 | 0 | 0 | 53 |
+| it | 1089 | 0 | 0 | 128 |
+| ja | 1089 | 0 | 0 | 67 |
+| ko | 1089 | 0 | 0 | 14 |
+| pt_PT | 1089 | 0 | 0 | 128 |
+| ru | 1089 | 0 | 0 | 72 |
+| zh_CN | 1089 | 0 | 0 | 1 |
+| zh_HK | 1089 | 0 | 0 | 1 |
+| zh_TW | 1089 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -78,6 +78,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | What moved | Was sich verändert hat | 22 vs 10 | 2.2× |
 | ＋ Add | ＋ Hinzufügen | 13 vs 6 | 2.17× |
 | Get Key | Schlüssel holen | 15 vs 7 | 2.14× |
+| Summary | Zusammenfassung | 15 vs 7 | 2.14× |
 | Copy failed | Kopieren fehlgeschlagen | 23 vs 11 | 2.09× |
 | Add tag | Tag hinzufügen | 14 vs 7 | 2× |
 | Hide ⌃ | Ausblenden ⌃ | 12 vs 6 | 2× |
@@ -113,6 +114,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 📄 View summary | 📄 Zusammenfassung ansehen | 26 vs 15 | 1.73× |
 | Export or restore all settings as a JSON file. | Exportiere alle Einstellungen als JSON-Datei oder stelle sie daraus wieder her. | 79 vs 46 | 1.72× |
 | Failed to load models | Modelle konnten nicht geladen werden | 36 vs 21 | 1.71× |
+| Mute / unmute reading | Vorlesen stumm schalten / aktivieren | 36 vs 21 | 1.71× |
 | Send summaries | Zusammenfassungen senden | 24 vs 14 | 1.71× |
 | ⏳ Summarizing… | ⏳ Wird zusammengefasst … | 24 vs 14 | 1.71× |
 | ✨ Build my own | ✨ Selbst zusammenstellen | 24 vs 14 | 1.71× |
@@ -128,6 +130,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Reference | Nachschlagewerk | 15 vs 9 | 1.67× |
 | Send {n} summary | {n} Zusammenfassung senden | 25 vs 15 | 1.67× |
 | Sort: Unread | Sortieren: Ungelesen | 20 vs 12 | 1.67× |
+| Voice · auto | Stimme · automatisch | 20 vs 12 | 1.67× |
 | {n} summaries | {n} Zusammenfassungen | 20 vs 12 | 1.67× |
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
@@ -140,6 +143,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 🧙 AI Summary | 🧙 KI-Zusammenfassung | 21 vs 13 | 1.62× |
 | Add tag or DOI… | Tag hinzufügen oder DOI… | 24 vs 15 | 1.6× |
 | Analyzing tags… | Tags werden analysiert … | 24 vs 15 | 1.6× |
+| Read again | Nochmal vorlesen | 16 vs 10 | 1.6× |
 | recap done | Rückblick fertig | 16 vs 10 | 1.6× |
 | 😟 Mostly heavy | 😟 Überwiegend belastend | 24 vs 15 | 1.6× |
 | AI scoring failed | KI-Bewertung fehlgeschlagen | 27 vs 17 | 1.59× |
@@ -220,7 +224,9 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 ### es
 | English | Translation | width | ratio |
 |---|---|---|---|
+| On | Activado | 8 vs 2 | 4× |
 | on | activado | 8 vs 2 | 4× |
+| Off | Desactivado | 11 vs 3 | 3.67× |
 | off | desactivado | 11 vs 3 | 3.67× |
 | Inbox | Bandeja de entrada | 18 vs 5 | 3.6× |
 | Unmute | Dejar de silenciar | 18 vs 6 | 3× |
@@ -284,9 +290,11 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No key facts found | No se encontraron datos clave | 29 vs 18 | 1.61× |
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Page text · {n} words | Texto de la página · {n} palabras | 32 vs 20 | 1.6× |
+| Read aloud | Leer en voz alta | 16 vs 10 | 1.6× |
 | Select all | Seleccionar todo | 16 vs 10 | 1.6× |
 | Dismiss graph stats | Ocultar estadísticas del grafo | 30 vs 19 | 1.58× |
 | Focus search | Enfocar la búsqueda | 19 vs 12 | 1.58× |
+| Instant read | Lectura instantánea | 19 vs 12 | 1.58× |
 | Recap failed | Error en el resumen | 19 vs 12 | 1.58× |
 | 📈 Topics over time | 📈 Temas a lo largo del tiempo | 30 vs 19 | 1.58× |
 | Best match · {n} items | Mejor coincidencia · {n} elementos | 33 vs 21 | 1.57× |
@@ -296,6 +304,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Set as active send target | Establecer como destino de envío activo | 39 vs 25 | 1.56× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
 | Not a paper | No es un artículo | 17 vs 11 | 1.55× |
+| Reading speed | Velocidad de lectura | 20 vs 13 | 1.54× |
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
 | Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
@@ -349,6 +358,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Inbox | Boîte de réception | 18 vs 5 | 3.6× |
+| Off | Désactivé | 9 vs 3 | 3× |
 | off | désactivé | 9 vs 3 | 3× |
 | Reset | Réinitialiser | 13 vs 5 | 2.6× |
 | News | Actualités | 10 vs 4 | 2.5× |
@@ -372,6 +382,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI language | Langue de l’interface | 21 vs 11 | 1.91× |
 | No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
 | No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
+| Mute / unmute reading | Couper / rétablir le son de la lecture | 38 vs 21 | 1.81× |
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
 | No devices added yet. | Aucun appareil ajouté pour l’instant. | 37 vs 21 | 1.76× |
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
@@ -382,6 +393,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | What I used | Ce que j'ai utilisé | 19 vs 11 | 1.73× |
 | Verify & Login | Vérifier et se connecter | 24 vs 14 | 1.71× |
 | Why it matters | Pourquoi c’est important | 24 vs 14 | 1.71× |
+| Read aloud | Lire à voix haute | 17 vs 10 | 1.7× |
 | Select all | Tout sélectionner | 17 vs 10 | 1.7× |
 | Reduce motion | Réduire les animations | 22 vs 13 | 1.69× |
 | {n} unopened 30d+ | {n} non ouverts depuis 30 j+ | 27 vs 16 | 1.69× |
@@ -411,6 +423,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Verify & Log In | Vérifier et se connecter | 24 vs 15 | 1.6× |
 | Allow browser extensions | Autoriser les extensions du navigateur | 38 vs 24 | 1.58× |
 | Get citation | Obtenir la citation | 19 vs 12 | 1.58× |
+| Instant read | Lecture instantanée | 19 vs 12 | 1.58× |
 | no recap yet | pas encore de récap | 19 vs 12 | 1.58× |
 | ☁️ Top terms | ☁️ Termes fréquents | 19 vs 12 | 1.58× |
 | Delete history | Supprimer l’historique | 22 vs 14 | 1.57× |
@@ -584,6 +597,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Recap scope | Ambito del riepilogo | 20 vs 11 | 1.82× |
 | Not enough rated items yet | Non ci sono ancora abbastanza elementi valutati | 47 vs 26 | 1.81× |
 | Share failed: {message} | Condivisione non riuscita: {message} | 29 vs 16 | 1.81× |
+| Read aloud | Leggi ad alta voce | 18 vs 10 | 1.8× |
 | Keep feed items for | Conserva gli elementi dei feed per | 34 vs 19 | 1.79× |
 | Motion on | Movimento attivo | 16 vs 9 | 1.78× |
 | No receiver address set. | Nessun indirizzo del ricevitore impostato. | 42 vs 24 | 1.75× |
@@ -643,6 +657,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Reading page... | Lettura della pagina... | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
 | Customize text size, spacing, font, motion | Personalizza dimensione testo, spaziatura, carattere e movimento | 64 vs 42 | 1.52× |
+| Mute / unmute reading | Disattiva / attiva audio lettura | 32 vs 21 | 1.52× |
 | Not set up yet — add a receiver in Settings | Non ancora configurato: aggiungi un ricevitore nelle Impostazioni | 65 vs 43 | 1.51× |
 | Add LocalSend device | Aggiungi dispositivo LocalSend | 30 vs 20 | 1.5× |
 | Auto-summarize favorites | Riassumi automaticamente i preferiti | 36 vs 24 | 1.5× |
@@ -776,6 +791,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 |---|---|---|---|
 | Inbox | Caixa de entrada | 16 vs 5 | 3.2× |
 | Add | Adicionar | 9 vs 3 | 3× |
+| Off | Desligado | 9 vs 3 | 3× |
 | off | desligado | 9 vs 3 | 3× |
 | Newer | Mais recentes | 13 vs 5 | 2.6× |
 | Add tag | Adicionar etiqueta | 18 vs 7 | 2.57× |
@@ -832,6 +848,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key set | {name} · chave da API definida | 26 vs 16 | 1.63× |
 | Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
 | Feed refresh interval | Intervalo de atualização dos feeds | 34 vs 21 | 1.62× |
+| Reading speed | Velocidade de leitura | 21 vs 13 | 1.62× |
 | {n} files sent | {n} ficheiros enviados | 21 vs 13 | 1.62× |
 | Custom prompt text | Texto do prompt personalizado | 29 vs 18 | 1.61× |
 | Magic code sent! ✨ Check your inbox. | Código mágico enviado! ✨ Verifique a sua caixa de entrada. | 58 vs 36 | 1.61× |
@@ -842,6 +859,7 @@ Strings: 1065. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Hard facts | Factos concretos | 16 vs 10 | 1.6× |
 | Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
 | Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
+| Instant read | Leitura instantânea | 19 vs 12 | 1.58× |
 | Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
 | Own model / API key | Modelo / chave de API próprios | 30 vs 19 | 1.58× |
 | {n} file sent | {n} ficheiro enviado | 19 vs 12 | 1.58× |
@@ -944,6 +962,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Line spacing | Межстрочный интервал | 20 vs 12 | 1.67× |
 | Found device at {ip} — click Add to save it ✓ | Устройство найдено по адресу {ip} — нажмите «Добавить», чтобы сохранить ✓ | 71 vs 43 | 1.65× |
 | High contrast | Высокая контрастность | 21 vs 13 | 1.62× |
+| Next sentence | Следующее предложение | 21 vs 13 | 1.62× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |
 | Use Native Chrome Side Panel | Использовать встроенную боковую панель Chrome | 45 vs 28 | 1.61× |
 | Free Trial Mode | Бесплатный пробный режим | 24 vs 15 | 1.6× |
@@ -964,6 +983,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Add Kindle device | Добавить устройство Kindle | 26 vs 17 | 1.53× |
 | Send Magic Code | Отправить волшебный код | 23 vs 15 | 1.53× |
 | Sources · rename · tags · mute | Источники · переименование · теги · отключение | 46 vs 30 | 1.53× |
+| Mute / unmute reading | Выключить / включить звук чтения | 32 vs 21 | 1.52× |
 | Auto-summarize favorites | Автоматически резюмировать избранное | 36 vs 24 | 1.5× |
 | Backup · tags · delete | Резервная копия · теги · удаление | 33 vs 22 | 1.5× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |

@@ -33,6 +33,7 @@
   "background": {
     "scripts": [
       "audioEngine.js",
+      "ttsEngine.js",
       "background.js"
     ]
   },

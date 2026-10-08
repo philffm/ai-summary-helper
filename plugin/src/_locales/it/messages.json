@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "Apri l'indice (testi lunghi)"
+  },
+  "f_contents_67c3": {
+    "message": "Indice"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Lettura terminata"
+  },
+  "f_from_6140": {
+    "message": "Da {site}."
+  },
+  "f_instant_read_374e": {
+    "message": "Lettura istantanea"
+  },
+  "f_listen_cec6": {
+    "message": "Ascolta"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Disattiva / attiva audio lettura"
+  },
+  "f_next_sentence_2545": {
+    "message": "Frase successiva"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "Nessuna voce per {lang} è installata su questo dispositivo."
+  },
+  "f_off_b4aa": {
+    "message": "No"
+  },
+  "f_on_7df0": {
+    "message": "Sì"
+  },
+  "f_original_7692": {
+    "message": "Originale"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Frase precedente"
+  },
+  "f_read_again_cc5d": {
+    "message": "Leggi di nuovo"
+  },
+  "f_read_aloud_a106": {
+    "message": "Leggi ad alta voce"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Velocità di lettura"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Lettura · frase {n}"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Torna su"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Legge prima titolo e sito, poi il riassunto frase per frase mentre il modello scrive."
+  },
+  "f_start_097f": {
+    "message": "Avvia"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Interrompi lettura"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "La voce segue la lingua del testo: un riassunto inglese di un articolo tedesco viene letto in inglese, l'originale in tedesco."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Voce · automatica"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Voce: {voice} · {lang}. Segue la lingua del riassunto; titolo e sito sono annunciati nella lingua dell'app."
   }
 }

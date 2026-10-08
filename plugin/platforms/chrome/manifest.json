@@ -14,6 +14,7 @@
     "notifications",
     "alarms",
     "offscreen",
+    "tts",
     "unlimitedStorage"
   ],
   "host_permissions": [

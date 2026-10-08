@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "打开目录（长文）"
+  },
+  "f_contents_67c3": {
+    "message": "目录"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "朗读完毕"
+  },
+  "f_from_6140": {
+    "message": "来自 {site}。"
+  },
+  "f_instant_read_374e": {
+    "message": "即时朗读"
+  },
+  "f_listen_cec6": {
+    "message": "收听"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "静音 / 取消静音朗读"
+  },
+  "f_next_sentence_2545": {
+    "message": "下一句"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "此设备上未安装 {lang} 语音。"
+  },
+  "f_off_b4aa": {
+    "message": "关"
+  },
+  "f_on_7df0": {
+    "message": "开"
+  },
+  "f_original_7692": {
+    "message": "原文"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "上一句"
+  },
+  "f_read_again_cc5d": {
+    "message": "重新朗读"
+  },
+  "f_read_aloud_a106": {
+    "message": "朗读"
+  },
+  "f_reading_speed_33dc": {
+    "message": "朗读速度"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "朗读 · 第 {n} 句"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "回到顶部"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "先朗读标题和网站，然后在模型撰写时逐句朗读摘要。"
+  },
+  "f_start_097f": {
+    "message": "开始"
+  },
+  "f_stop_reading_9af5": {
+    "message": "停止朗读"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "语音跟随文本语言：德语文章的英文摘要用英语朗读，原文用德语朗读。"
+  },
+  "f_voice_auto_8e1b": {
+    "message": "语音 · 自动"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "语音：{voice} · {lang}。跟随摘要语言；标题和网站使用应用语言播报。"
   }
 }

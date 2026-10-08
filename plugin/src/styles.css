@@ -3583,3 +3583,45 @@ body:not([data-screen="history"]) .reading-tools { display: none; }
 
 /* Firefox sidebar (sidebar_action): the same page, any width the user drags the sidebar to. */
 body[data-surface="sidebar"] { min-width: 0; }
+
+/* Read aloud: Listen pill, mini player and options popover (part of the reading tools cluster) */
+.reading-tools.is-reading .rt-pill:not(.rt-listen) { display: none; }
+.rt-player { display: inline-flex; align-items: center; gap: 2px; padding: 4px 6px; border-radius: 999px; border: 1px solid var(--outline); background: var(--glass-base); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.rt-player[hidden], .rt-listen[hidden] { display: none; }
+.rt-pb { border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 700; padding: 8px 9px; border-radius: 999px; cursor: pointer; }
+.rt-pb:hover { background: var(--accent-a10); }
+.rt-pb.rt-pp { background: var(--accent); color: #fff; padding: 8px 12px; }
+.rt-lang { font-size: var(--fs-xs); font-weight: 700; color: var(--accent); background: var(--accent-a10); border-radius: 999px; padding: 4px 8px; }
+.rt-opts { position: absolute; right: 0; bottom: calc(100% + 10px); width: min(300px, calc(100vw - 32px)); display: grid; gap: 10px; padding: 14px; border-radius: 16px; border: 1px solid var(--outline); background: var(--bg-page); color: var(--text-primary); }
+.rt-opts[hidden] { display: none; }
+.rt-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; border-radius: 10px; background: var(--accent-a10); }
+.rt-seg-b { display: grid; gap: 1px; justify-items: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; color: var(--text-muted); font: inherit; cursor: pointer; }
+.rt-seg-b.is-on { background: var(--bg-page); color: var(--text-primary); }
+.rt-seg-t { font-size: var(--fs-sm); font-weight: 600; } .rt-seg-s { font-size: var(--fs-xs); opacity: .8; }
+.rt-voice { padding: 8px 10px; border-radius: 10px; border: 1px solid var(--outline); }
+.rt-voice-k { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); } .rt-voice-v { font-size: var(--fs-sm); font-weight: 600; }
+.rt-rates { display: flex; gap: 6px; flex-wrap: wrap; }
+.rt-rate-b { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--outline); background: transparent; color: var(--text-primary); font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.rt-rate-b.is-on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.rt-note { margin: 0; font-size: var(--fs-xs); color: var(--text-muted); }
+.rt-start { display: flex; justify-content: center; gap: 6px; padding: 10px; border: 0; border-radius: 10px; background: var(--accent); color: #fff; font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.rt-start:disabled { opacity: .45; cursor: not-allowed; }
+.tts-now { background: var(--accent-a10); border-radius: 6px; box-shadow: 0 0 0 4px var(--accent-a10); }
+
+/* ── Instant read ─────────────────────────────────────────────── */
+.chip-sound.is-on .chip-icon { opacity: 1; }
+.chip-sound:not(.is-on) .chip-icon { opacity: .6; }
+.chip-sound.is-speaking .chip-icon { animation: sr-pulse 1.1s ease-in-out infinite; }
+@keyframes sr-pulse { 50% { transform: scale(1.18); } }
+@media (prefers-reduced-motion: reduce) { .chip-sound.is-speaking .chip-icon { animation: none; } }
+#panelSound .sr-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+#panelSound .sr-note { margin: 6px 0; font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+#panelSound .sr-vol { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+#panelSound .sr-vol input { flex: 1; }
+.sr-bar { display: flex; align-items: center; gap: 8px; padding: 6px 10px; margin: 0 0 8px; border: 1px solid var(--border, rgba(128,128,128,.3)); border-radius: 999px; background: var(--surface, transparent); font-size: 12px; user-select: none; }
+.sr-bar[hidden] { display: none; }
+.sr-bar .sr-t { flex: 1; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sr-bar .sr-ok { color: #2e9d57; font-weight: 700; }
+.sr-b { border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 12px; min-width: 28px; min-height: 28px; padding: 0 6px; border-radius: 999px; }
+.sr-b:hover, .sr-b:focus-visible { background: rgba(128,128,128,.18); }
+.sr-b.is-on { opacity: .6; }

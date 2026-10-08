@@ -1748,7 +1748,7 @@ export async function showArticleDetail(article) {
     if (historyTopBar) historyTopBar.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'flex';
     articleDetail.style.display = 'block';
-    mountReadingTools({ scroller: document.getElementById('historyScreen'), content: articleDetailContent });   // Scroll to top + contents on long texts
+    mountReadingTools({ scroller: document.getElementById('historyScreen'), content: articleDetailContent, article });   // Scroll to top + contents on long texts
     // Keyboard: focus moves to "Back" (so Esc / Enter returns); the card that opened this stays remembered.
     const back = document.getElementById('detailBackButton');
     if (back) back.focus({ preventScroll: true });

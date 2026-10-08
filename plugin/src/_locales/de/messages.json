@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "Inhaltsverzeichnis öffnen (lange Texte)"
+  },
+  "f_contents_67c3": {
+    "message": "Inhalt"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Vorlesen beendet"
+  },
+  "f_from_6140": {
+    "message": "Von {site}."
+  },
+  "f_instant_read_374e": {
+    "message": "Sofort vorlesen"
+  },
+  "f_listen_cec6": {
+    "message": "Anhören"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Vorlesen stumm schalten / aktivieren"
+  },
+  "f_next_sentence_2545": {
+    "message": "Nächster Satz"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "Auf diesem Gerät ist keine Stimme für {lang} installiert."
+  },
+  "f_off_b4aa": {
+    "message": "Aus"
+  },
+  "f_on_7df0": {
+    "message": "An"
+  },
+  "f_original_7692": {
+    "message": "Original"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Vorheriger Satz"
+  },
+  "f_read_again_cc5d": {
+    "message": "Nochmal vorlesen"
+  },
+  "f_read_aloud_a106": {
+    "message": "Vorlesen"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Lesegeschwindigkeit"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Vorlesen · Satz {n}"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Nach oben"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Liest zuerst Titel und Website vor, dann die Zusammenfassung Satz für Satz, während das Modell schreibt."
+  },
+  "f_start_097f": {
+    "message": "Start"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Vorlesen beenden"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "Die Stimme folgt der Sprache des Textes: Eine englische Zusammenfassung eines deutschen Artikels wird auf Englisch gelesen, das Original auf Deutsch."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Stimme · automatisch"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Stimme: {voice} · {lang}. Sie folgt der Sprache der Zusammenfassung; Titel und Website werden in der App-Sprache angesagt."
   }
 }

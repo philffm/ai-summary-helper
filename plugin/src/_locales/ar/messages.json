@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "فتح المحتويات (النصوص الطويلة)"
+  },
+  "f_contents_67c3": {
+    "message": "المحتويات"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "انتهت القراءة"
+  },
+  "f_from_6140": {
+    "message": "من {site}."
+  },
+  "f_instant_read_374e": {
+    "message": "القراءة الفورية"
+  },
+  "f_listen_cec6": {
+    "message": "استماع"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "كتم / إلغاء كتم القراءة"
+  },
+  "f_next_sentence_2545": {
+    "message": "الجملة التالية"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "لا يوجد صوت مثبّت للغة {lang} على هذا الجهاز."
+  },
+  "f_off_b4aa": {
+    "message": "إيقاف"
+  },
+  "f_on_7df0": {
+    "message": "تشغيل"
+  },
+  "f_original_7692": {
+    "message": "الأصل"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "الجملة السابقة"
+  },
+  "f_read_again_cc5d": {
+    "message": "اقرأ مجددًا"
+  },
+  "f_read_aloud_a106": {
+    "message": "قراءة بصوت عالٍ"
+  },
+  "f_reading_speed_33dc": {
+    "message": "سرعة القراءة"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "القراءة · الجملة {n}"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "إلى الأعلى"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "يقرأ العنوان والموقع أولًا، ثم الملخص جملةً جملةً أثناء كتابة النموذج."
+  },
+  "f_start_097f": {
+    "message": "ابدأ"
+  },
+  "f_stop_reading_9af5": {
+    "message": "إيقاف القراءة"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "يتبع الصوت لغة النص: يُقرأ الملخص الإنجليزي لمقال ألماني بالإنجليزية والأصل بالألمانية."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "الصوت · تلقائي"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "الصوت: {voice} · {lang}. يتبع لغة الملخص؛ ويُعلن العنوان والموقع بلغة التطبيق."
   }
 }

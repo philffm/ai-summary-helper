@@ -1,5 +1,5 @@
 import { SK } from './modules/storageKeys.js';
-import { languageEnglishName, languageRule } from './modules/languages.js';
+import { languageEnglishName, languageRule, ttsLang, langBase } from './modules/languages.js';
 import { paperIndexFields, detectPaperInText, applyScholarly, matchPagePaper } from './content/paper.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
@@ -394,6 +394,21 @@ import {
 
   // Summarize started from the on-page highlights panel: open the side panel,
   // then run the same flow as the popup's Summarize button (highlights = focus).
+  /** Language of the source text: detected on the device (no network), else the page's <html lang>; '' when unknown. */
+  function detectContentLang(text, htmlLang) {
+    const fallback = langBase(htmlLang || '');
+    return new Promise((resolve) => {
+      let settled = false;
+      const done = (v) => { if (!settled) { settled = true; resolve(v || fallback); } };
+      try {
+        const api = (typeof browser !== 'undefined' && browser.i18n && browser.i18n.detectLanguage) ? browser : chrome;
+        const handle = (r) => { const l = r && r.languages && r.languages[0]; done(l && (r.isReliable !== false || l.percentage >= 60) ? langBase(l.language) : ''); };
+        const p = api.i18n.detectLanguage(String(text || '').slice(0, 1500), handle);
+        if (p && p.then) p.then(handle).catch(() => done(''));
+      } catch (_) { done(''); }
+    });
+  }
+
   /** One non-streaming request through the background worker; resolves with the raw response body. */
   function callOnce(apiUrl, headers, body) {
     return new Promise((resolve, reject) => {
@@ -836,6 +851,13 @@ import {
                   });
               }
               tags = await ensureGeneralTag(tags, contentText, attached && !pageMatch ? String(attached.name || '') : document.title);
+              // Language tags: "🌐 de" for the text the page is written in, plus "🌐 en" when the summary is in another language.
+              const sumLang = langBase(ttsLang(selectedLanguage));
+              const srcLang = await detectContentLang(contentText, (!attached || pageMatch) ? document.documentElement.lang : '');
+              {
+                const have = new Set(tags.map(t => t.toLowerCase()));
+                [srcLang, sumLang !== srcLang ? sumLang : ''].filter(Boolean).forEach((l) => { const t = '🌐 ' + l; if (!have.has(t.toLowerCase())) tags.push(t); });
+              }
               let ghostQuotes = [];
               const ghostMatch = summary.match(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/i);
               if (ghostMatch) {
@@ -859,6 +881,8 @@ import {
               let pageMeta = {};
               if (!attached || pageMatch) { try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ } }   // an attached PDF has nothing to do with the open tab
               try { if (pageMeta && !pageMeta.paper && pdfMode) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
+
+              pageMeta = { ...(pageMeta || {}), ...(srcLang ? { contentLang: srcLang } : {}), summaryLang: sumLang };   // read aloud picks voices from these
 
               // The model's verdict on "is this a paper?" (works for PDFs and pages without metadata); merged with the page signals.
               try {

@@ -6,7 +6,10 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
     globalThis.chrome = browser;
 }
 
-// Currently, we don't have background tasks
+// Read-aloud engine (Chrome: service worker + chrome.tts; Firefox/Safari: background page + speechSynthesis).
+try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } catch (_) { /* listed in the manifest instead */ }
+const ttsEngine = (typeof AISH_TTS !== 'undefined') ? AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
+
 
 // storage-keys:begin (generated from modules/storageKeys.js by scripts/sync-storage-keys.mjs — do not edit)
 /* eslint-disable no-unused-vars */
@@ -579,6 +582,11 @@ async function untrackFeedTab(tabId, closeNow = false, delay = 0) {
 
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg && msg.action === 'ttsCmd') {
+        if (!ttsEngine) { sendResponse({ ok: false, available: false }); return false; }
+        ttsEngine.handle(msg).then(sendResponse).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        return true;
+    }
     // Dummy endpoint to force Safari to wake the background script before a
     // long-lived connection is attempted. Safari reliably wakes workers for
     // runtime.sendMessage, but may fail a runtime.connect() while asleep.

@@ -43,6 +43,18 @@ export const LANGUAGES = [
   { code: "hr", name: "Hrvatski", emoji: "🇭🇷", english: "Croatian" }
 ];
 
+/** BCP-47 tag for speech / language tags from a stored summary-language code (cn → zh-CN, jp → ja …). */
+const BCP = { cn: 'zh-CN', tw: 'zh-TW', jp: 'ja', kr: 'ko', ua: 'uk', 'ind-bahasa': 'id', tl: 'fil' };
+export function ttsLang(code) {
+  const c = String(code || '').trim();
+  if (!c) return 'en';
+  if (BCP[c]) return BCP[c];
+  if (LANGUAGES.some(x => x.code === c)) return c;
+  return c.replace('_', '-');   // already a BCP-47-ish code (en-US, de_DE, ...)
+}
+/** Two-letter-ish base used for tags: zh-CN → zh, en-US → en. */
+export const langBase = (code) => String(code || '').split(/[-_]/)[0].toLowerCase();
+
 /** English language name for a stored code (falls back to the code itself, e.g. 'en-US'). */
 export function languageEnglishName(code) {
     const l = LANGUAGES.find(x => x.code === code);

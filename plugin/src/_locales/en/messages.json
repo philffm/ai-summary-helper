@@ -3818,5 +3818,78 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "Open contents (long texts)"
+  },
+  "f_contents_67c3": {
+    "message": "Contents"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Finished reading"
+  },
+  "f_from_6140": {
+    "message": "From {site}.",
+    "description": "Placeholders: {site} (keep as is)"
+  },
+  "f_instant_read_374e": {
+    "message": "Instant read"
+  },
+  "f_listen_cec6": {
+    "message": "Listen"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Mute / unmute reading"
+  },
+  "f_next_sentence_2545": {
+    "message": "Next sentence"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "No voice for {lang} is installed on this device.",
+    "description": "Placeholders: {lang} (keep as is)"
+  },
+  "f_off_b4aa": {
+    "message": "Off"
+  },
+  "f_on_7df0": {
+    "message": "On"
+  },
+  "f_original_7692": {
+    "message": "Original"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Previous sentence"
+  },
+  "f_read_again_cc5d": {
+    "message": "Read again"
+  },
+  "f_read_aloud_a106": {
+    "message": "Read aloud"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Reading speed"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Reading · sentence {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Scroll to top"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Speaks the title and site first, then the summary sentence by sentence while the model writes."
+  },
+  "f_start_097f": {
+    "message": "Start"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Stop reading"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "The voice follows the language of the text: an English summary of a German article is read in English, the original in German."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Voice · auto"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Voice: {voice} · {lang}. It follows the summary language; title and site are announced in the app language.",
+    "description": "Placeholders: {voice} {lang} (keep as is)"
   }
 }

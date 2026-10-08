@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "目次を開く（長い文章）"
+  },
+  "f_contents_67c3": {
+    "message": "目次"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "読み上げ完了"
+  },
+  "f_from_6140": {
+    "message": "{site} より。"
+  },
+  "f_instant_read_374e": {
+    "message": "即時読み上げ"
+  },
+  "f_listen_cec6": {
+    "message": "聞く"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "読み上げのミュート / 解除"
+  },
+  "f_next_sentence_2545": {
+    "message": "次の文"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "このデバイスに {lang} の音声がインストールされていません。"
+  },
+  "f_off_b4aa": {
+    "message": "オフ"
+  },
+  "f_on_7df0": {
+    "message": "オン"
+  },
+  "f_original_7692": {
+    "message": "原文"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "前の文"
+  },
+  "f_read_again_cc5d": {
+    "message": "もう一度読む"
+  },
+  "f_read_aloud_a106": {
+    "message": "読み上げ"
+  },
+  "f_reading_speed_33dc": {
+    "message": "読み上げ速度"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "読み上げ · {n} 文目"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "先頭へ"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "まずタイトルとサイトを読み上げ、モデルの生成中に要約を1文ずつ読み上げます。"
+  },
+  "f_start_097f": {
+    "message": "開始"
+  },
+  "f_stop_reading_9af5": {
+    "message": "読み上げを停止"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "音声はテキストの言語に従います。ドイツ語記事の英語要約は英語で、原文はドイツ語で読み上げられます。"
+  },
+  "f_voice_auto_8e1b": {
+    "message": "音声 · 自動"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "音声: {voice} · {lang}。要約の言語に従い、タイトルとサイトはアプリの言語で読み上げます。"
   }
 }

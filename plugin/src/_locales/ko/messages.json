@@ -3637,5 +3637,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "목차 열기(긴 글)"
+  },
+  "f_contents_67c3": {
+    "message": "목차"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "읽기 완료"
+  },
+  "f_from_6140": {
+    "message": "{site}에서."
+  },
+  "f_instant_read_374e": {
+    "message": "즉시 읽기"
+  },
+  "f_listen_cec6": {
+    "message": "듣기"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "읽기 음소거 / 해제"
+  },
+  "f_next_sentence_2545": {
+    "message": "다음 문장"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "이 기기에 {lang} 음성이 설치되어 있지 않습니다."
+  },
+  "f_off_b4aa": {
+    "message": "끔"
+  },
+  "f_on_7df0": {
+    "message": "켬"
+  },
+  "f_original_7692": {
+    "message": "원문"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "이전 문장"
+  },
+  "f_read_again_cc5d": {
+    "message": "다시 읽기"
+  },
+  "f_read_aloud_a106": {
+    "message": "소리 내어 읽기"
+  },
+  "f_reading_speed_33dc": {
+    "message": "읽기 속도"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "읽는 중 · {n}번째 문장"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "맨 위로"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "먼저 제목과 사이트를 읽은 뒤, 모델이 작성하는 동안 요약을 문장 단위로 읽습니다."
+  },
+  "f_start_097f": {
+    "message": "시작"
+  },
+  "f_stop_reading_9af5": {
+    "message": "읽기 중지"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "음성은 텍스트 언어를 따릅니다. 독일어 기사의 영어 요약은 영어로, 원문은 독일어로 읽습니다."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "음성 · 자동"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "음성: {voice} · {lang}. 요약 언어를 따르며 제목과 사이트는 앱 언어로 안내합니다."
   }
 }

@@ -3655,5 +3655,74 @@
   },
   "f_open_contents_long_texts_181e": {
     "message": "Открыть содержание (длинные тексты)"
+  },
+  "f_contents_67c3": {
+    "message": "Содержание"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Чтение завершено"
+  },
+  "f_from_6140": {
+    "message": "Источник: {site}."
+  },
+  "f_instant_read_374e": {
+    "message": "Мгновенное чтение"
+  },
+  "f_listen_cec6": {
+    "message": "Слушать"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Выключить / включить звук чтения"
+  },
+  "f_next_sentence_2545": {
+    "message": "Следующее предложение"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "На этом устройстве не установлен голос для языка {lang}."
+  },
+  "f_off_b4aa": {
+    "message": "Выкл."
+  },
+  "f_on_7df0": {
+    "message": "Вкл."
+  },
+  "f_original_7692": {
+    "message": "Оригинал"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Предыдущее предложение"
+  },
+  "f_read_again_cc5d": {
+    "message": "Прочитать снова"
+  },
+  "f_read_aloud_a106": {
+    "message": "Читать вслух"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Скорость чтения"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Чтение · предложение {n}"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Наверх"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Сначала озвучивает заголовок и сайт, затем читает резюме по предложениям, пока модель пишет."
+  },
+  "f_start_097f": {
+    "message": "Старт"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Остановить чтение"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "Голос соответствует языку текста: английское резюме немецкой статьи читается по-английски, оригинал — по-немецки."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Голос · авто"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Голос: {voice} · {lang}. Соответствует языку резюме; заголовок и сайт озвучиваются на языке приложения."
   }
 }

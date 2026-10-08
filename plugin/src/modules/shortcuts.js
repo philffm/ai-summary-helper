@@ -73,6 +73,7 @@ export function shortcutGroups() {
     return [
         [T('Search'), [[T('Focus search'), [mod, 'F']], [T('Focus search'), ['/']]]],
         [T('Lists'), [[T('Next / previous card'), ['j', 'k']], [T('Next / previous card'), ['↓', '↑']], [T('Open'), ['Enter']], [T('Back'), ['Esc']], [T('Open contents (long texts)'), ['T']]]],
+        [T('Read aloud'), [[T('Mute / unmute reading'), ['M']]]],
         [T('Summarize'), [[T('Summarize / send'), [mod, '↵']], [T('New summary'), [mod, 'N']], [T('Switch tab'), ['←', '→']], [T('Keyboard shortcuts'), ['?']]]]
     ];
 }
