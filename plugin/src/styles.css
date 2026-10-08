@@ -3666,3 +3666,7 @@ body[data-surface="sidebar"] { min-width: 0; }
 .card-menu-ic { width: 20px; text-align: center; flex: none; }
 .card-menu-sep { height: 1px; margin: 4px 6px; background: var(--outline); }
 @media (prefers-reduced-motion: reduce) { .card-menu { animation: none; } }
+
+/* ★ in the article view top bar */
+.detail-star .btn-icon { font-size: var(--fs-xl); color: var(--text-muted); }
+.detail-star.is-on .btn-icon { color: #facc15; }

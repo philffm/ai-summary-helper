@@ -615,6 +615,22 @@ export async function deliverLocalSend(article, device) {
 
 const wsActive = () => !!document.getElementById('historyScreen')?.classList.contains('ws-active');
 
+/** Keeps every star in sync (list card, detail bar, caches) after a favorite change. */
+function paintFavorite(id, on) {
+    const c = cachedArticles.find(a => a.id === id); if (c) c.favorite = on;
+    const ar = archivedCache.find(a => a.id === id); if (ar) ar.favorite = on;
+    if (currentDetailArticle && currentDetailArticle.id === id) currentDetailArticle.favorite = on;
+    const li = document.querySelector(`#articleList li[data-id="${CSS.escape(String(id))}"]`);
+    if (li) { li.classList.toggle('is-favorite', on); const b = li.querySelector('.star-button'); if (b) { b.textContent = on ? '★' : '☆'; b.setAttribute('aria-pressed', String(on)); } }
+    const d = document.getElementById('detailStarBtn');
+    if (d && currentDetailArticle && currentDetailArticle.id === id) paintDetailStar(on);
+}
+function paintDetailStar(on) {
+    const d = document.getElementById('detailStarBtn'); if (!d) return;
+    d.setAttribute('aria-pressed', String(!!on)); d.classList.toggle('is-on', !!on);
+    const ic = d.querySelector('.btn-icon'); if (ic) ic.textContent = on ? '★' : '☆';
+}
+
 /** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
 export async function removeArticle(article) {
     if (!article || !article.id) return false;
@@ -757,6 +773,17 @@ export function initArticleManager(uiManager) {
 
     if (detailDeleteBtn) {
         detailDeleteBtn.addEventListener('click', deleteCurrentDetailArticle);
+    }
+    {   // ★ favorite from the article view
+        const ds = document.getElementById('detailStarBtn');
+        if (ds) { ds.title = T('Favorite'); ds.setAttribute('aria-label', T('Favorite')); }
+        if (ds) ds.addEventListener('click', async () => {
+            const a = currentDetailArticle; if (!a || !a.id) return;
+            const next = await StorageManager.toggleFavorite(a.id);
+            if (next === null) return;
+            a.favorite = next; paintFavorite(a.id, next);
+            if (uiManagerRef) uiManagerRef.showToast(next ? T('Added to favorites') : T('Removed from favorites'));
+        });
     }
     {   // ⋯ menu in the detail top bar: Graph / Analytics / Delete
         const moreBtn = document.getElementById('detailMoreBtn');
@@ -1204,15 +1231,10 @@ function buildArticleCard(article) {
 
     listItem.querySelector('.star-button').addEventListener('click', async (event) => {
         event.stopPropagation();
-        const btn = event.currentTarget;
         const next = await StorageManager.toggleFavorite(article.id);
         if (next === null) return;
         article.favorite = next;
-        const cached = cachedArticles.find(a => a.id === article.id);
-        if (cached) cached.favorite = next;
-        listItem.classList.toggle('is-favorite', next);
-        btn.textContent = next ? '★' : '☆';
-        btn.setAttribute('aria-pressed', String(next));
+        paintFavorite(article.id, next);
     });
 
     // Click on the card itself opens detail
@@ -1631,6 +1653,7 @@ export async function showArticleDetail(article) {
         } catch (_) { article = { ...article, conversation: [] }; }
     }
     currentDetailArticle = article;
+    {   const ds = document.getElementById('detailStarBtn'); if (ds) { ds.hidden = !article.id || !!article.feedStub; paintDetailStar(!!article.favorite); } }
     recordArticleOpened(article);
     if (article && article.id && !article.readAt && !article.feedStub) { article.readAt = new Date().toISOString(); applyStatus([article.id], { read: true }).catch(() => {}); }
     const articleList = document.getElementById('articleList');
