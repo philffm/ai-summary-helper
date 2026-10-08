@@ -3356,7 +3356,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .composer-pill { padding: 5px 5px 5px 18px; border-radius: 28px; }
 .composer-pill .input-card-textarea { min-height: 44px; height: 44px; padding: 12px 0; font-size: 15px; line-height: 20px; }
 .composer-pill .input-card-textarea::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.composer-pill #fetchSummary { min-height: 44px; height: 44px; border-radius: 22px; padding: 0 22px; font-size: 15px; }
+.composer-pill #fetchSummary { min-height: var(--composer-btn-h, 44px); height: var(--composer-btn-h, 44px); border-radius: 22px; padding: 0 22px; font-size: 15px; }
 .page-chip { padding: 8px 12px; border-radius: 14px; }
 .page-chip-title { font-size: 13px; }
 .page-chip-meta { font-size: 12px; }
@@ -3675,7 +3675,7 @@ body[data-surface="sidebar"] { min-width: 0; }
 .tag-chip.status-badge.saved, .status-badge.saved { background: var(--tone-arch-bg); color: var(--tone-arch-fg); }
 .composer-pill .split-btn { display: flex; flex: none; align-items: stretch; gap: 1px; }
 .composer-pill .split-btn #fetchSummary { flex: none; }
-.composer-pill .save-split { display: none; flex: none; align-items: center; justify-content: center; width: 38px !important; min-width: 38px; height: auto !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; border-radius: 0 var(--radius-full, 999px) var(--radius-full, 999px) 0 !important; cursor: pointer; box-shadow: none; }
+.composer-pill .save-split { display: none; flex: none; align-items: center; justify-content: center; width: 38px !important; min-width: 38px; align-self: stretch; height: var(--composer-btn-h, 44px) !important; min-height: var(--composer-btn-h, 44px) !important; margin: 0 !important; padding: 0 !important; border-radius: 0 var(--radius-full, 999px) var(--radius-full, 999px) 0 !important; cursor: pointer; box-shadow: none; }
 .controls-bar[data-state="fetch"] .composer-pill .save-split { display: inline-flex; }
 .controls-bar[data-state="fetch"] .composer-pill #fetchSummary { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
 .composer-pill .save-split:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
