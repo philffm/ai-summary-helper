@@ -88,6 +88,7 @@
   --nav-active-text: #ffffff;
 
   /* floating shell layout */
+  --header-h: 64px;
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
@@ -367,8 +368,9 @@ h3 {
 /* ── Header ────────────────────────────────────────────────────────────── */
 
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
   z-index: var(--z-header);
   display: flex;
   align-items: center;
@@ -545,7 +547,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .screen-container {
   position: relative;
   width: 100%;
-  height: calc(100dvh - 64px); /* full height under sticky header */
+  height: 100dvh; /* the header overlays the top; screens pad their content below it and scroll underneath its fade */
   overflow: hidden;
 }
 
@@ -558,7 +560,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  padding: 0 var(--spacing-s-4);
+  padding: var(--header-h) var(--spacing-s-4) 0;
   /* padding: var(--spacing-s-4) var(--spacing-s-4) 0 0; */
   padding-bottom: var(--nav-clearance);
   background: var(--glass-base);
@@ -2988,9 +2990,9 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
    One structure everywhere: the screen has no top padding (.has-topbar) and the bar is its first child,
    edge to edge and sticky at top:0 — so it sits flush under the app header and can never be clipped.
    Hides on scroll down, returns on scroll up (`.scroll-hidden`, toggled from JS). */
-.screen.has-topbar { padding-top: 0; }
+.screen.has-topbar { padding-top: var(--header-h); }
 .topbar {
-  position: sticky; top: 0; z-index: var(--z-bar);
+  position: sticky; top: var(--header-h); z-index: var(--z-bar);
   margin: 0 calc(-1 * var(--spacing-s-4)) 12px;
   padding: 10px var(--spacing-s-4);
   background: var(--glass-base);
