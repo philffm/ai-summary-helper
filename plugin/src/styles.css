@@ -1936,7 +1936,6 @@ text.graph-search-dim {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-inner-glow), var(--shadow-card);
   animation: flyIn 0.3s ease-out;
 }
 
@@ -2027,7 +2026,6 @@ text.graph-search-dim {
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--accent-a05), var(--accent-a05));
   border: 1px solid var(--accent-a15);
-  box-shadow: var(--glass-inner-glow);
 }
 
 .stream-bubble .pulse-dot {
@@ -3302,7 +3300,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .composer-pill {
   order: 3; display: flex; align-items: flex-end; gap: 8px; padding: 4px 4px 4px 16px;
   background: var(--glass-card); border: 1px solid var(--glass-border); border-radius: 24px;
-  box-shadow: var(--glass-inner-glow), var(--shadow-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 .composer-pill .input-card-textarea {
   flex: 1; min-width: 0; min-height: 36px; height: 36px; max-height: 96px; padding: 8px 0; margin: 0;
