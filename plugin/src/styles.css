@@ -3580,3 +3580,6 @@ body:not([data-screen="history"]) .reading-tools { display: none; }
 .rt-row.is-cur { background: var(--accent-a10, var(--accent-a05)); color: var(--accent); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .reading-tools { transition: none; transform: none; } }
 #articleDetail h1, #articleDetail h2, #articleDetail h3, #articleDetail h4 { scroll-margin-top: calc(var(--header-h) + 64px); }
+
+/* Firefox sidebar (sidebar_action): the same page, any width the user drags the sidebar to. */
+body[data-surface="sidebar"] { min-width: 0; }

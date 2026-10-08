@@ -1,5 +1,6 @@
 import { applyA11y, clampScale, systemTheme, systemReducesMotion } from './a11y.js';
 import { SK, renameKeys } from './storageKeys.js';
+import { supportsNativeSidePanel } from './extensionApi.js';
 // settingsManager.js
 // Settings screen initialization — UI is in popup.html (static accordion),
 // this file handles logic, auto-save, and wiring event listeners.
@@ -524,6 +525,7 @@ function initGeneralSettings(storageData) {
     const nativeToggle = document.getElementById('nativeSidePanelToggle');
     if (nativeToggle) {
         nativeToggle.checked = !!storageData.useNativeSidePanel;
+        if (!supportsNativeSidePanel()) { const blk = nativeToggle.closest('.a11y-block'); if (blk) blk.hidden = true; }   // Chrome-only option; Firefox has its own sidebar (View > Sidebar)
         nativeToggle.addEventListener('change', () => {
             autoSave('useNativeSidePanel', nativeToggle.checked);
         });

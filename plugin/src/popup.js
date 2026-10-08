@@ -83,7 +83,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ── Pop-out to Sidebar ─────────────────────────────────────────────
     const popoutBtn = document.getElementById('popoutButton');
     if (popoutBtn) {
+        // Firefox: a real sidebar (sidebar_action) hosts this same page. It must be opened straight from the click.
+        const ffSidebar = (typeof browser !== 'undefined' && browser.sidebarAction) || chrome.sidebarAction;
+        let inSidebar = false;
+        try { inSidebar = !!(ffSidebar && (typeof browser !== 'undefined' ? browser : chrome).extension?.getViews?.({ type: 'sidebar' })?.includes(window)); } catch (_) { /* not Firefox */ }
+        if (inSidebar) { popoutBtn.hidden = true; document.body.dataset.surface = 'sidebar'; }
         popoutBtn.addEventListener('click', async () => {
+            if (ffSidebar && typeof ffSidebar.open === 'function') {
+                try { await ffSidebar.open(); window.close(); return; } catch (err) { console.warn('[sidebar] open failed, using the in-page sidebar:', err && err.message); }
+            }
             try {
                 const mod = await import('./modules/mainScreen.js').catch(() => null);
                 const activeTab = mod?.getActiveTab ? await mod.getActiveTab() : null;

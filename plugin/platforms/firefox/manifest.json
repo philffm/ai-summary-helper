@@ -44,6 +44,15 @@
       "128": "icons/icon128.png"
     }
   },
+  "sidebar_action": {
+    "default_title": "__MSG_extensionName__",
+    "default_panel": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    },
+    "open_at_install": false
+  },
   "content_scripts": [
     {
       "matches": [
