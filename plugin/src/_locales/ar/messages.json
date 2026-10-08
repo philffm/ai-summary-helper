@@ -3724,5 +3724,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "الصوت: {voice} · {lang}. يتبع لغة الملخص؛ ويُعلن العنوان والموقع بلغة التطبيق."
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "أضف معرّف النموذج، مثل gemma4:e2b"
   }
 }

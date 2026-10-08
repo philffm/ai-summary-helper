@@ -3724,5 +3724,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "आवाज़: {voice} · {lang}। यह सारांश की भाषा का अनुसरण करती है; शीर्षक और साइट ऐप की भाषा में बोले जाते हैं।"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "मॉडल ID जोड़ें, जैसे gemma4:e2b"
   }
 }

@@ -3891,5 +3891,8 @@
   "f_voice_it_follows_the_summary_2f51": {
     "message": "Voice: {voice} · {lang}. It follows the summary language; title and site are announced in the app language.",
     "description": "Placeholders: {voice} {lang} (keep as is)"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "Add model ID, e.g. gemma4:e2b"
   }
 }

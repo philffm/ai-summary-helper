@@ -3724,5 +3724,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "Voix : {voice} · {lang}. Elle suit la langue du résumé ; le titre et le site sont annoncés dans la langue de l'app."
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "Ajouter un ID de modèle, p. ex. gemma4:e2b"
   }
 }

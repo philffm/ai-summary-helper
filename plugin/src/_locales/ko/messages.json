@@ -3706,5 +3706,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "음성: {voice} · {lang}. 요약 언어를 따르며 제목과 사이트는 앱 언어로 안내합니다."
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "모델 ID 추가 (예: gemma4:e2b)"
   }
 }

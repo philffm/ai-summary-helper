@@ -24,7 +24,7 @@ class StorageManager {
         promptType: 'custom',
         selectedLanguage: 'en-US',
         connectionMode: 'cloud',
-        preferredCloudModel: 'google/gemini-3.6-flash'
+        preferredCloudModel: 'google/gemini-3.8-flash'
     };
 
     // bump if you later change the structure again

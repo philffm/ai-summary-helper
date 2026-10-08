@@ -276,7 +276,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']),
             chrome.storage.local.get([SK.servicesConfig])
         ]);
-        const { activeService, connectionMode, preferredCloudModel } = { ...syncData, ...localData };
+        const { activeService, preferredCloudModel } = { ...syncData, ...localData };
+        const connectionMode = syncData.connectionMode || 'cloud';   // cloud is the default everywhere else too
         const servicesConfig = localData[SK.servicesConfig];
         
         if (connectionMode === 'cloud') {
@@ -358,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const note = document.getElementById('modelNote');
             if (note) note.textContent = T('Included with your byPhil account — no API key needed.');
             const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? T('Recent models') : T('Model');
-            customModelInput.placeholder = mode === 'cloud' ? T('Search cloud models…') : T('Add model ID, e.g. gemma3:4b');
+            customModelInput.placeholder = mode === 'cloud' ? T('Search cloud models…') : T('Add model ID, e.g. gemma4:e2b');
             customModelInput.setAttribute('aria-label', customModelInput.placeholder);
             if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'cloud' ? 'none' : '';
         };
@@ -388,7 +389,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']),
                 chrome.storage.local.get([SK.servicesConfig])
             ]).then(async ([syncData, localData]) => {
-                const { connectionMode, preferredCloudModel } = { ...syncData, ...localData };
+                const { preferredCloudModel } = { ...syncData, ...localData };
+                const connectionMode = syncData.connectionMode || 'cloud';
                 const servicesConfig = localData[SK.servicesConfig];
                 renderModeSeg(connectionMode === 'cloud' ? 'cloud' : 'local');
                 if (connectionMode === 'cloud') {
@@ -586,8 +588,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (!customModelInput || committing) return;
             const val = customModelInput.value.trim();
             if (!val) return;
-            const { connectionMode, activeService } = await chrome.storage.sync.get(['connectionMode', 'activeService']);
-            if (connectionMode === 'cloud') return; // cloud input is a search filter
+            const { connectionMode: cm, activeService } = await chrome.storage.sync.get(['connectionMode', 'activeService']);
+            if ((cm || 'cloud') === 'cloud') return; // cloud input is a search filter
             committing = true;
             // The stored active provider is the source of truth (the hidden select can lag behind it).
             const svcId = activeService || modelSelect.value || 'openai';

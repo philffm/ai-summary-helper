@@ -967,7 +967,7 @@ export function initMainScreen(ui) {
                 if (recentEntry) recentEntry.style.display = 'none';
                 const modelLabel = document.getElementById('chipModelLabel');
                 const chipIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
-                const isCloud = chipIcon?.textContent === '☁️' || (await chrome.storage.sync.get('connectionMode')).connectionMode === 'cloud';
+                const isCloud = chipIcon?.textContent === '☁️' || ((await chrome.storage.sync.get('connectionMode')).connectionMode || 'cloud') === 'cloud';
                 
                 addFirstBubble(pageInfo, additionalQuestions, chipRect);
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');

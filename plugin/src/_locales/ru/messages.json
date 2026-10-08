@@ -3724,5 +3724,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "Голос: {voice} · {lang}. Соответствует языку резюме; заголовок и сайт озвучиваются на языке приложения."
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "Добавьте ID модели, напр. gemma4:e2b"
   }
 }

@@ -444,6 +444,18 @@ async function verifyOtp(view) {
 
         await StorageManager.set(authData);
 
+        // Signed in: the byPhil cloud model is the default. Only a working own API (key set, or a keyless local model) keeps the app in "local".
+        try {
+            const sync = await chrome.storage.sync.get(['connectionMode', 'activeService', 'preferredCloudModel']);
+            const loc = await chrome.storage.local.get([SK.servicesConfig]);
+            const cfg = ((loc[SK.servicesConfig] || {})[sync.activeService]) || {};
+            const ownApi = sync.connectionMode === 'local' && !!(cfg.apiKey || sync.activeService === 'ollama');
+            const upd = {};
+            if (!ownApi && sync.connectionMode !== 'cloud') upd.connectionMode = 'cloud';
+            if (!sync.preferredCloudModel) upd.preferredCloudModel = 'google/gemini-3.8-flash';
+            if (Object.keys(upd).length) await chrome.storage.sync.set(upd);
+        } catch (_) { /* defaults apply anyway */ }
+
         // Sync the server-side license key (users.license_key) into local
         // storage so the "Pro License Key" field reflects the account's
         // actual license, not just whatever was manually entered before.

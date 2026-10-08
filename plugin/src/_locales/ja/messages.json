@@ -3724,5 +3724,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "音声: {voice} · {lang}。要約の言語に従い、タイトルとサイトはアプリの言語で読み上げます。"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "モデルIDを追加（例: gemma4:e2b）"
   }
 }

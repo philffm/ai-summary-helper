@@ -3724,5 +3724,8 @@
   },
   "f_voice_it_follows_the_summary_2f51": {
     "message": "语音：{voice} · {lang}。跟随摘要语言；标题和网站使用应用语言播报。"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "添加模型 ID，例如 gemma4:e2b"
   }
 }
