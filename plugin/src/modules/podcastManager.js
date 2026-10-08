@@ -548,7 +548,7 @@ function renderCreatedPodcasts(container) {
             card.className = "podcast-card";
 
             card.innerHTML = `
-                <h3>${p.name}</h3>
+                <h3>${esc(p.name)}</h3>
                 ${p.audio ? `<audio controls src="${p.audio}"></audio>` : `<em>${esc(T('No audio'))}</em>`}
                 <button class="delete-podcast-button">${esc(T('Delete'))}</button>
             `;

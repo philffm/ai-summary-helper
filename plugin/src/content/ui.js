@@ -4,6 +4,7 @@ import { debug } from '../modules/log.js';
 // in-page UI (tooltips, menus, overlays, sidebar, placeholder, debug panel).
 
 import { stripHtmlTags, isBackgroundDark } from './extractor.js';
+import { escapeHtml } from './markdown.js';
 
 export function ensureHighlightUiStyles() {
   if (document.getElementById('aish-highlight-ui-styles')) return;
@@ -199,7 +200,7 @@ export function updateStreamingOverlay(overlay, content, isError = false) {
   const closeBtn = overlay.querySelector('#close-tab-btn');
 
   if (isError) {
-    wordDisplay.innerHTML = `<span style="color:#ef4444;font-size:48px;">${content}</span>`;
+    wordDisplay.innerHTML = `<span style="color:#ef4444;font-size:48px;">${escapeHtml(content)}</span>`;
     overlay.playing = false;
     if (closeBtn) closeBtn.style.opacity = '1';
     return;
@@ -424,5 +425,5 @@ export function updateDebugPanel(text, apiUrl) {
     panel.style.cssText = `position:fixed;right:10px;bottom:10px;width:350px;max-height:40vh;overflow:auto;background:#222;color:#0f0;padding:10px;z-index:10000;font-family:monospace;font-size:11px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);`;
     document.body.appendChild(panel);
   }
-  panel.innerHTML = `<strong>Debug (${apiUrl})</strong><hr><pre style="white-space:pre-wrap">${text}</pre>`;
+  panel.innerHTML = `<strong>Debug (${escapeHtml(apiUrl)})</strong><hr><pre style="white-space:pre-wrap">${escapeHtml(text)}</pre>`;
 }

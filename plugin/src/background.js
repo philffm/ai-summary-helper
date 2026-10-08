@@ -288,7 +288,7 @@ async function applyFeedPollConfig() {
 
 async function clearFeedBadge() {
     await chrome.storage.local.set({ [SK.feedPending]: 0 });
-    try { await chrome.action.setBadgeText({ text: '' }); } catch (_) {}
+    try { await chrome.action.setBadgeText({ text: '' }); } catch (_) { /* badge reset is cosmetic */ }
 }
 
 function extractFeedLinks(xml) {
@@ -566,12 +566,12 @@ async function readFeedTabs() {
             const d = await chrome.storage.session.get({ feedBgTabs: [] });
             return new Set(d.feedBgTabs);
         }
-    } catch (_) {}
+    } catch (_) { /* session storage unavailable → in-memory copy below */ }
     return feedTabsMem;
 }
 async function writeFeedTabs(set) {
     feedTabsMem.clear(); set.forEach(v => feedTabsMem.add(v));
-    try { if (chrome.storage.session) await chrome.storage.session.set({ feedBgTabs: [...set] }); } catch (_) {}
+    try { if (chrome.storage.session) await chrome.storage.session.set({ feedBgTabs: [...set] }); } catch (_) { /* session storage unavailable (older Firefox): the in-memory copy is kept */ }
 }
 async function trackFeedTab(tabId) {
     const set = await readFeedTabs(); set.add(tabId); await writeFeedTabs(set);
@@ -680,7 +680,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                 const want = normKey(msg.url);
                 const all = await chrome.tabs.query({});
                 existing = all.find(tb => tb.url && normKey(tb.url) === want) || null;
-            } catch (_) {}
+            } catch (_) { /* tab list unavailable → fall back to opening a new tab */ }
 
             const startSummary = (tabId, track) => {
                 const start = async (attempt = 0) => {
@@ -688,7 +688,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                         await chrome.tabs.sendMessage(tabId, { action: 'ping' });
                     } catch (e) {
                         if (attempt === 2) {
-                            try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); } catch (_) {}
+                            try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); } catch (_) { /* restricted page cannot be scripted; the retry loop handles it */ }
                         }
                         if (attempt < 6) return setTimeout(() => start(attempt + 1), 800);
                         if (track) untrackFeedTab(tabId, true);
@@ -702,7 +702,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             if (existing) {
                 // Already open: never open it again; never close it afterwards (it's the user's tab).
                 if (!msg.summarize || mode === 'inline') {
-                    try { await chrome.tabs.update(existing.id, { active: true }); await chrome.windows.update(existing.windowId, { focused: true }); } catch (_) {}
+                    try { await chrome.tabs.update(existing.id, { active: true }); await chrome.windows.update(existing.windowId, { focused: true }); } catch (_) { /* focusing the existing tab is best-effort */ }
                 }
                 if (msg.summarize) startSummary(existing.id, false)();
                 sendResponse({ success: true, mode: msg.summarize ? mode : null, reused: true });

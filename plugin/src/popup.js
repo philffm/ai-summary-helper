@@ -18,6 +18,7 @@ import { initFeedManager } from './modules/feedManager.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
 import { T } from './modules/feedI18n.js';
+import { escapeHtml } from './modules/textUtils.js';
 
 // ── Cross-browser shim ─────────────────────────────────────────────────────
 // Safari/iOS Web Extensions expose ONLY the `browser.*` namespace; `chrome.*`
@@ -201,7 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 btn.className = 'pill pill--sm pill--soft';
                 const flagEmoji = text.split(/\s/)[0] || '🌐';
                 const name = text.split(/\s/).slice(1).join(' ') || shortCode;
-                btn.innerHTML = `<span class="tag-flag">${flagEmoji}</span> ${name}`;
+                btn.innerHTML = `<span class="tag-flag">${flagEmoji}</span> ${escapeHtml(name)}`;
                 btn.title = name;
                 if (option.selected) btn.classList.add('active');
                 btn.addEventListener('click', (e) => {
@@ -218,7 +219,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (filter && languageTagGrid.children.length === 0) {
                 const customBtn = document.createElement('button');
                 customBtn.className = 'pill pill--sm pill--soft';
-                customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${filter}"`;
+                customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${escapeHtml(filter)}"`;
                 customBtn.title = T('Use "{name}" as custom language code', { name: filter });
                 customBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -533,7 +534,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const btn = document.createElement('button');
                     btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
-                    btn.innerHTML = `${modelId}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
+                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
                     btn.addEventListener('click', (e) => {

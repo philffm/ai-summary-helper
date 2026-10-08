@@ -166,7 +166,7 @@ import { renderTopicsSection } from './topicsChart.js';
 import { moodSection } from './moodView.js';
 import { moodStoreFor, unscoredIn, scoreArticles } from './historyMood.js';
 import StorageManager from './storageManager.js';
-import { countWords } from './textUtils.js';
+import { countWords, escapeHtml } from './textUtils.js';
 
 /** Localized bar tooltips; `cnt(n)` formats the count with the right noun (articles / items). */
 export function chartTips(cnt) {
@@ -275,8 +275,8 @@ export function initAnalyticsReport(container, articles) {
     const catsHtml = cats.length
         ? cats.map(([tag, count]) => {
             const pct = Math.round((count / cats[0][1]) * 100);
-            return `<div class="ar-cat-row" data-tag="${tag}" title="${T('Search “{term}”', { term: tag })}" style="cursor:pointer;">
-              <span class="ar-cat-label">${tag}</span>
+            return `<div class="ar-cat-row" data-tag="${escapeHtml(tag)}" title="${escapeHtml(T('Search “{term}”', { term: tag }))}" style="cursor:pointer;">
+              <span class="ar-cat-label">${escapeHtml(tag)}</span>
               <div class="ar-cat-bar-track"><div class="ar-cat-bar" style="width:${pct}%"></div></div>
               <span class="ar-cat-count">${count}</span>
             </div>`;

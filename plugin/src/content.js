@@ -20,7 +20,7 @@ import {
   inlineAndCompressImages
 } from './content/extractor.js';
 
-import { markdownToHtml, stripReasoning } from './content/markdown.js';
+import { markdownToHtml, stripReasoning, escapeHtml } from './content/markdown.js';
 
 import {
   ensureHighlightUiStyles,
@@ -456,8 +456,8 @@ import {
   async function startSummaryFromPage() {
     if (activeSummaryRequestId || !document.body) return;
     let opened = false;
-    try { const r = await chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }); opened = !!(r && r.success); } catch (_) {}
-    if (!opened) { try { ensureHybridSidebar(); } catch (_) {} }
+    try { const r = await chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }); opened = !!(r && r.success); } catch (_) { /* no native side panel here → hybrid sidebar fallback below */ }
+    if (!opened) { try { ensureHybridSidebar(); } catch (_) { /* page without a body cannot host the sidebar; nothing to show */ } }
     await new Promise((r) => setTimeout(r, 500));
     const [sync, local] = await Promise.all([
       chrome.storage.sync.get(['selectedLanguage', 'prompt', 'debugEnabled']),
@@ -508,7 +508,7 @@ import {
       // privileges, so this is the reliable return path in pop-out mode.
       const sidebar = document.getElementById('ai-summary-hybrid-sidebar');
       if (sidebar && sidebar.contentWindow) {
-        try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) {}
+        try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) { /* sidebar frame may already be gone */ }
       }
     };
 
@@ -617,7 +617,7 @@ import {
               const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
               apiKeyOptional = svcMeta?.apiKeyOptional || false;
             }
-          } catch (e) {}
+          } catch (e) { /* services metadata is optional; defaults apply */ }
         } else {
           apiKeyOptional = true;
         }
@@ -641,7 +641,7 @@ import {
                 const svcMeta = servicesList.find(s => (s.id || '').toLowerCase() === (activeService || '').toLowerCase());
                 modelIdentifier = svcMeta?.defaultModel || '';
               }
-            } catch (e) {}
+            } catch (e) { /* services metadata is optional; defaults apply */ }
           }
 
           if (!apiUrl) throw new Error('Model endpoint is not configured.');
@@ -710,7 +710,7 @@ import {
                   }
                 }
               } catch (e) {
-                if (e && e.cancelled) { relay('summaryCancelled'); try { targetElement.remove(); } catch (_) {} resolve({ success: false, cancelled: true }); return; }
+                if (e && e.cancelled) { relay('summaryCancelled'); try { targetElement.remove(); } catch (_) { /* card may already be removed */ } resolve({ success: false, cancelled: true }); return; }
                 console.warn('[AISH] chunked reading failed, sending the page in one piece:', e);
               }
             }
@@ -795,7 +795,7 @@ import {
               if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
               streamHandlers.delete(requestId);
               activeSummaryRequestId = null;
-              try { targetElement.remove(); } catch (_) {}
+              try { targetElement.remove(); } catch (_) { /* card may already be removed */ }
               relay('summaryCancelled');
               resolve({ success: false, cancelled: true });
               return;
@@ -809,7 +809,7 @@ import {
               // — the whole point of the limit is to nudge toward Pro.
               const friendly = friendlyLimitError(msg.error);
               relay('summaryError', { error: friendly });
-              targetElement.querySelector('.placeholder').innerHTML = `<b>${friendly}</b>`;
+              targetElement.querySelector('.placeholder').innerHTML = `<b>${escapeHtml(friendly)}</b>`;
               reject(new Error(msg.error));
               streamHandlers.delete(requestId);
               return;
@@ -985,7 +985,7 @@ import {
                 res();
               });
             });
-          } catch (_) {}
+          } catch (_) { /* best-effort notification to the background */ }
 
           try {
             await new Promise((res, rej) => {
@@ -1037,7 +1037,7 @@ import {
         } catch (error) {
           console.error('❌ Error:', error);
           relay('summaryError', { error: error.message });
-          targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${error.message}`;
+          targetElement.querySelector('.placeholder').innerHTML = `<b>Error:</b> ${escapeHtml(error.message)}`;
           reject(error);
         }
       });

@@ -2049,7 +2049,7 @@ export function initFeedManager(uiObj) {
     els.refreshBtn.addEventListener('click', () => refreshAll(uiObj, { force: true }));
     els.addBtn.addEventListener('click', openAddSheet);
     els.filterChip.addEventListener('click', openFilterSheet);
-    document.addEventListener('aish:translationsApplied', () => { if (els && els.list && subs) { try { render(); } catch (e) {} } });
+    document.addEventListener('aish:translationsApplied', () => { if (els && els.list && subs) { try { render(); } catch (e) { /* a failed re-render must not break the translation event */ } } });
     if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage);
     // Any new summary (also from the Summarize screen or a background tab) flips the matching card to "View summary".
     if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {

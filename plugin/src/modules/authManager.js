@@ -1,4 +1,5 @@
 import { SK } from './storageKeys.js';
+import { escapeHtml } from './textUtils.js';
 // authManager.js - Handles Authentication flow via api.byphil.eu proxy
 //
 // This is the SINGLE reusable login module for the extension. Historically
@@ -77,7 +78,7 @@ function clearLoading(btn) {
 
 function setCodeCaption(view, email) {
     if (view.codeCaption && email) {
-        view.codeCaption.innerHTML = `${T('Enter the code sent to:')}<br/><strong>${email}</strong>`;
+        view.codeCaption.innerHTML = `${T('Enter the code sent to:')}<br/><strong>${escapeHtml(email)}</strong>`;
     }
 }
 

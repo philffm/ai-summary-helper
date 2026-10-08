@@ -1038,7 +1038,7 @@ function showPreviewCard(container, article) {
         .replace(/<[^>]+>/g, '').trim()
         .slice(0, 200);
     const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
-    const tags = (article.tags || []).map(t => `<span class="tag-chip" style="font-size:10px;">${t}</span>`).join('');
+    const tags = (article.tags || []).map(t => `<span class="tag-chip" style="font-size:10px;">${escapeHtml(t)}</span>`).join('');
 
     const card = document.createElement('div');
     card.className = 'graph-preview-card';

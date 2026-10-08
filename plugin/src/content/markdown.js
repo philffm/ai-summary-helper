@@ -1,5 +1,10 @@
 // content/markdown.js — turning model output into safe HTML. Pure text/DOMParser work, so the background worker can use it too.
 
+/** Escape text for safe interpolation into HTML (element content and quoted attributes). */
+export function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 /**
  * Sanitize AI-generated HTML against an explicit allowlist of tags.
  *

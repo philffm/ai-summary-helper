@@ -651,7 +651,7 @@ function initBookmarkletGenerator() {
                     if(!r.ok) throw new Error(r.status===401?${js(T('Session expired. Generate a new bookmarklet.'))}:${js(T('API Error:'))}+' '+r.status);
                     const j=await r.json();
                     const s=j.result?.choices?.[0]?.message?.content||j.choices?.[0]?.message?.content||j.summary||${js(T('No summary returned.'))};
-                    const html=s.replace(/\\*\\*(.*?)\\*\\*/g,'<b>$1</b>').replace(/\\n/g,'<br>');
+                    const html=String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\\*\\*(.*?)\\*\\*/g,'<b>$1</b>').replace(/\\n/g,'<br>');
                     d.getElementById('as-st').innerHTML='<div style="margin-top:8px;padding-top:8px;border-top:1px solid #eee;">'+html+'</div>';
                 }catch(e){
                     d.getElementById('as-st').innerText='❌ '+${js(T('Error:'))}+' '+e.message;
@@ -935,7 +935,7 @@ function getLocalSubnetIp() {
             pc.createDataChannel('');
 
             const timeout = setTimeout(() => {
-                try { pc.close(); } catch (_) {}
+                try { pc.close(); } catch (_) { /* peer connection already closed */ }
                 resolve('192.168.1.1');
             }, 1200);
 
@@ -946,7 +946,7 @@ function getLocalSubnetIp() {
                 const myIp = match?.[1];
                 if (myIp && (myIp.startsWith('192.168.') || myIp.startsWith('10.') || myIp.startsWith('172.'))) {
                     clearTimeout(timeout);
-                    try { pc.close(); } catch (_) {}
+                    try { pc.close(); } catch (_) { /* peer connection already closed */ }
                     resolve(myIp);
                 }
             };
@@ -955,7 +955,7 @@ function getLocalSubnetIp() {
                 .then(offer => pc.setLocalDescription(offer))
                 .catch(() => {
                     clearTimeout(timeout);
-                    try { pc.close(); } catch (_) {}
+                    try { pc.close(); } catch (_) { /* peer connection already closed */ }
                     resolve('192.168.1.1');
                 });
         } catch (_) {

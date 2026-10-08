@@ -1,6 +1,7 @@
 import { mountReadingTools, destroyReadingTools } from './readingTools.js';
 import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
+import { escapeHtml } from './textUtils.js';
 // Article Manager
 // Handles article rendering, expand/collapse, search, etc.
 
@@ -227,10 +228,10 @@ async function buildArticleDocumentHtml(article) {
     const contentHtml = markHighlights(article.content, annotations, placed);
     const summaryHtml = markHighlights(article.summary, annotations, placed);
     return `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>${article.title || 'AI Summary'}</title>
+<html><head><meta charset="utf-8"><title>${escapeHtml(article.title || 'AI Summary')}</title>
 <style>body{font-family:sans-serif;line-height:1.6;padding:20px;max-width:800px;margin:auto;}h1{border-bottom:2px solid #333;padding-bottom:5px;}.meta{color:#555;font-style:italic;}.summary{background:#f8f9fa;padding:15px;border-left:4px solid #0284c7;margin:20px 0;}img{max-width:100%;height:auto;}</style>
-</head><body><h1>${article.title || 'AI Summary'}</h1>
-<div class="meta">Captured via AI Summary Helper &middot; <a href="${article.url || '#'}">Source</a></div>
+</head><body><h1>${escapeHtml(article.title || 'AI Summary')}</h1>
+<div class="meta">Captured via AI Summary Helper &middot; <a href="${escAttr(article.url || '#')}">Source</a></div>
 ${summaryHtml ? `<div class="summary"><h2>🧙 AI Summary</h2>${summaryHtml}</div>` : ''}
 ${annotationsHtml}
 ${contentHtml ? `<h2>📄 Content</h2><div>${contentHtml}</div>` : ''}</body></html>`;
@@ -410,8 +411,8 @@ async function copyArticleToClipboard(article) {
     // Create a clean HTML version for the clipboard
     const cleanHtml = `
         <div style="font-family: sans-serif;">
-            <h1>${title}</h1>
-            <p><a href="${article.url}">${article.url}</a></p>
+            <h1>${escapeHtml(title)}</h1>
+            <p><a href="${escAttr(article.url)}">${escapeHtml(article.url)}</a></p>
             <hr>
             <h2>🧙 AI Summary</h2>
             <div>${summaryMarked}</div>
@@ -1117,7 +1118,7 @@ function buildArticleCard(article) {
         articleDomain = new URL(article.url).hostname;
     }
     const tags = article.tags || [];
-    const tagsHtml = tags.length ? `<div class="card-tags">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
+    const tagsHtml = tags.length ? `<div class="card-tags">${tags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}</div>` : '';
     const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji(article)} ${article.modelId}</span>` : '';
 
     // Decision metadata (timeframe + reason)
@@ -1134,7 +1135,7 @@ function buildArticleCard(article) {
         <div class="article-header">
           <div>
             <h4>${articleHeader}</h4>
-            <p class="article-date">💾 ${formattedDate} ${article.url ? `${T('from')} <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
+            <p class="article-date">💾 ${formattedDate} ${article.url ? `${T('from')} <a href="${escAttr(article.url)}" target="_blank" rel="noopener">${escapeHtml(articleDomain)}</a> ↗` : ''}</p>
             ${tagsHtml}
             ${modelBadge}
             ${decisionHtml}
@@ -1377,7 +1378,7 @@ async function renderLocalInsights(article, container) {
         const relatedHtml = related.length ? `
           <div style="margin-top:10px;">
             <strong style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">${T('🔗 Similar in your archive')}</strong>
-            ${related.map(r => `<div class="related-article-link" data-ts="${r.article.timestamp}" style="font-size:12px;padding:6px 0;border-top:1px solid rgba(148,163,184,0.15);cursor:pointer;">${(r.article.title || T('Untitled'))} <span style="color:var(--text-muted);">(${T('{n}% similar', { n: Math.round(r.score * 100) })})</span></div>`).join('')}
+            ${related.map(r => `<div class="related-article-link" data-ts="${r.article.timestamp}" style="font-size:12px;padding:6px 0;border-top:1px solid rgba(148,163,184,0.15);cursor:pointer;">${escapeHtml(r.article.title || T('Untitled'))} <span style="color:var(--text-muted);">(${T('{n}% similar', { n: Math.round(r.score * 100) })})</span></div>`).join('')}
           </div>` : '';
 
         container.innerHTML = `${badges.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;">${badges.join('')}</div>` : ''}${relatedHtml}`;
@@ -1652,7 +1653,7 @@ export async function showArticleDetail(article) {
           <span style="font-size:13px;font-weight:600;color:#3b82f6;">${T('Saved for Later')}</span>
           ${article.decisionTimeframe ? `<span style="font-size:11px;background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;">${article.decisionTimeframe}</span>` : ''}
         </div>
-        ${article.decisionReason ? `<p style="margin:0;font-size:12px;color:var(--text-secondary);">${article.decisionReason}</p>` : ''}
+        ${article.decisionReason ? `<p style="margin:0;font-size:12px;color:var(--text-secondary);">${escapeHtml(article.decisionReason)}</p>` : ''}
       </div>
     ` : '';
 
@@ -1661,7 +1662,7 @@ export async function showArticleDetail(article) {
         <h3 style="margin-bottom:8px;"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>
         <p class="detail-desc" hidden></p>
         <p class="detail-meta" style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
-          ${article.url ? `<a href="${article.url}" target="_blank">${domain} ↗</a> · ` : ''}
+          ${article.url ? `<a href="${escAttr(article.url)}" target="_blank" rel="noopener">${escapeHtml(domain)} ↗</a> · ` : ''}
           ${new Date(article.timestamp).toLocaleDateString()}${(modelInfo || lengthInfo) ? ' · ' : ''}${modelInfo}${lengthInfo}
         </p>
         <div class="detail-tags"></div>

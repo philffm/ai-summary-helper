@@ -35,7 +35,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
         const domain = a.url ? (() => { try { return new URL(a.url).hostname; } catch { return ''; } })() : '';
         return `
           <h2 id="aish-mag-${i}">${escapeHtml(a.title || T('Untitled'))}</h2>
-          <p style="color:#666;font-style:italic;">${a.url ? `<a href="${a.url}">${domain}</a> &middot; ` : ''}${new Date(a.timestamp).toLocaleDateString()}</p>
+          <p style="color:#666;font-style:italic;">${a.url ? `<a href="${escapeHtml(a.url)}">${escapeHtml(domain)}</a> &middot; ` : ''}${new Date(a.timestamp).toLocaleDateString()}</p>
           <div>${markHighlights(a.summary || '', a.annotations)}</div>
           ${includeContent && a.content ? `<h3>${escapeHtml(T('Full article'))}</h3><div>${markHighlights(a.content, a.annotations)}</div>` : ''}
           ${renderAnnotationsHtml(a.annotations, { level: 3 })}

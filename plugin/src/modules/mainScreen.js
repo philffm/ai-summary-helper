@@ -1,5 +1,6 @@
 import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
+import { escapeHtml } from './textUtils.js';
 import { debug } from './log.js';
 // mainScreen.js
 // Handles main screen UI — chat-style summary feed
@@ -42,15 +43,15 @@ export function initMainScreen(ui) {
         const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
 
         const tags = article.tags || [];
-        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${t}</span>`).join('')}</div>` : '';
-        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji(article)} ${article.modelId}</span>` : '';
+        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${escapeHtml(t)}</span>`).join('')}</div>` : '';
+        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         if (article.id) bubble.dataset.id = article.id;
         bubble.innerHTML = `
             <div class="summary-bubble-header">
-                <span class="summary-bubble-title">${title.length > 50 ? title.slice(0, 50) + '…' : title}</span>
-                <span class="summary-bubble-domain">${domain} · ${date}</span>
+                <span class="summary-bubble-title">${escapeHtml(title.length > 50 ? title.slice(0, 50) + '…' : title)}</span>
+                <span class="summary-bubble-domain">${escapeHtml(domain)} · ${date}</span>
             </div>
             <div class="summary-bubble-body">${preview}</div>
             ${tagsHtml}
@@ -704,7 +705,7 @@ export function initMainScreen(ui) {
         const isCloudAuthed = !!data[SK.token];
         // Keyless providers (e.g. Ollama) count as configured without an API key.
         let keyOptional = false;
-        try { keyOptional = !!(await StorageManager.getServices()).find(s => s.id === data.activeService)?.apiKeyOptional; } catch (e) {}
+        try { keyOptional = !!(await StorageManager.getServices()).find(s => s.id === data.activeService)?.apiKeyOptional; } catch (e) { /* services.json unreachable → treat the key as required */ }
         const hasCustomApi = data.connectionMode === 'local'
             && (keyOptional || !!data[SK.servicesConfig]?.[data.activeService]?.apiKey);
 

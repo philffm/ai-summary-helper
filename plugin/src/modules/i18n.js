@@ -9,7 +9,7 @@ let fallbackDictionary = {};
     try {
         const resp = await fetch('_locales/en/messages.json');
         if (resp.ok) fallbackDictionary = await resp.json();
-    } catch (e) {}
+    } catch (e) { /* English fallback dictionary is optional */ }
 })();
 
 // Locale folders shipped in _locales (all fully translated; tests/test60.mjs enforces coverage).
@@ -76,7 +76,7 @@ export async function applyTranslations(langCode) {
     document.documentElement.lang = code.replace('_', '-');
     document.documentElement.dir = RTL.has(code.split('_')[0]) ? 'rtl' : 'ltr';
     // Screens that build text in JS (Feeds) re-render with the new dictionary.
-    try { document.dispatchEvent(new CustomEvent('aish:translationsApplied', { detail: { code } })); } catch (e) {}
+    try { document.dispatchEvent(new CustomEvent('aish:translationsApplied', { detail: { code } })); } catch (e) { /* event dispatch is cosmetic */ }
 }
 
 export function t(key) {
