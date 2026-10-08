@@ -1,7 +1,7 @@
 // Long texts (saved article → summary + original content): a "Scroll to top" pill and a progress ring that opens the
 // contents (headings found in the text). Shown only after ~2 screens and only while scrolling back up.
 import { T } from './feedI18n.js';
-import { getReader, speechUnits, pickVoice, detectLang } from './reader.js';
+import { getReader, speechUnits, qaUnits, pickVoice, detectLang } from './reader.js';
 import { ttsLang, langBase, LANGUAGES } from './languages.js';
 
 let current = null;
@@ -78,6 +78,10 @@ export function mountReadingTools({ scroller, content, article = null, doc = doc
     if (!el) return;
     for (let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
     units = speechUnits(el);
+    if (which === 'summary') {   // the "Your questions" section is part of the summary view
+      const qa = content.querySelector('#qaMount');
+      if (qa) { qa.querySelectorAll('details').forEach(d => { d.open = true; }); units = units.concat(qaUnits(qa)); }
+    }
     if (!units.length) return;
     src = which; optsOpen = false; if (opts) opts.hidden = true;
     await reader.start(units, ttsLang(lang), { meta: { tool: 'detail', id: article && article.id, lang: ttsLang(lang), source: which } });

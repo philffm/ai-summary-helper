@@ -28,6 +28,17 @@ export function speechUnits(container) {
   return units;
 }
 
+/** The "Your questions" section: its title, each question and its answer (no pin / source buttons). */
+export function qaUnits(mount) {
+  if (!mount) return [];
+  const units = [];
+  mount.querySelectorAll('.qa-title, .chat-q, .chat-a-body').forEach((el) => {
+    const text = (el.textContent || '').replace(/\p{Extended_Pictographic}\uFE0F?/gu, '');
+    sentences(text).forEach((t) => units.push({ text: t, el }));
+  });
+  return units;
+}
+
 /** Best installed voice for a language (BCP-47 or base code): the saved one, then an exact region match, then any. */
 export function pickVoice(voices, lang, saved) {
   const want = String(lang || '').replace('_', '-').toLowerCase(), base = langBase(want);

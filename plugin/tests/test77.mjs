@@ -13,6 +13,9 @@ assert.deepEqual(a, ['Der neue Ansatz, der auf vielen Daten beruht,'], 'clause s
 const b = r.speakable('Der neue Ansatz, der auf vielen Daten beruht, ist schneller und billiger.');
 assert.equal(b[0], a[0], 'prefix-stable'); assert.equal(b.length, 2);
 assert.deepEqual(r.speakable('Short, bit. Next one here'), ['Short, bit.'], 'tiny clauses are not cut off, tail held');
+const qa = w.document.createElement('div');
+qa.innerHTML = '<strong class="qa-title">💬 Your questions</strong><div class="chat-turn-group"><div class="chat-q">What is it?</div><div class="chat-a"><div class="chat-a-body">A thing. Really.</div><div class="chat-a-foot"><button class="chat-pin">📌 In article</button></div></div></div>';
+assert.deepEqual(r.qaUnits(qa).map(u => u.text), ['Your questions', 'What is it?', 'A thing.', 'Really.'], 'Q&A read, buttons skipped');
 const voices = [{ name: 'A', lang: 'en-US' }, { name: 'B', lang: 'de-DE' }];
 assert.equal(r.pickVoice(voices, 'de-DE').name, 'B'); assert.equal(r.pickVoice(voices, 'fr-FR'), null);
 const root = new URL('../platforms/', import.meta.url).pathname;
