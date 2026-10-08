@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "version": "2.1.18",
-=======
   "version": "2.1.19",
->>>>>>> ea34064 (Version bump)
   "languages": [
     {
       "code": "en",
