@@ -1,5 +1,5 @@
 import { modelEmoji } from './modelBadge.js';
-import { SK } from './storageKeys.js';
+import { SK, articleRecKey } from './storageKeys.js';
 import { escapeHtml } from './textUtils.js';
 import { debug } from './log.js';
 // mainScreen.js
@@ -994,6 +994,66 @@ export function initMainScreen(ui) {
             handleStreamMessage(data);
         }
     });
+
+    // ── Save only (no AI) ───────────────────────────────────────────────
+    const saveMenuBtn = document.getElementById('saveMenuBtn');
+    const savePageOnly = async () => {
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        if (!tab || !tab.url || !isInjectableUrl(tab.url)) { if (ui && ui.showToast) ui.showToast(T('This page can\'t be saved.')); return; }
+        let res = null;
+        try { res = await sendMessageToTab(tab.id, { action: 'savePage' }); } catch (_) { /* handled below */ }
+        if (!res || !res.success) { if (ui && ui.showToast) ui.showToast(T('Could not save this page — try refreshing the tab.')); return; }
+        const { undoToast } = await import('./sendSheet.js');
+        const id = res.id;
+        undoToast(T('📥 Saved without AI'), async () => {
+            const { [SK.articlesIndex]: idx = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
+            await StorageManager.setLocal({ [SK.articlesIndex]: idx.filter(a => a.id !== id) });
+            try { await new Promise(r => chrome.storage.local.remove([articleRecKey(id)], r)); } catch (_) { /* ignore */ }
+        });
+    };
+    if (saveMenuBtn) {
+        let menu = null;
+        const closeMenu = () => { if (menu) { menu.remove(); menu = null; } saveMenuBtn.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', onOutside, true); document.removeEventListener('keydown', onKey, true); };
+        const onOutside = (e) => { if (menu && !menu.contains(e.target) && !saveMenuBtn.contains(e.target)) closeMenu(); };
+        const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeMenu(); saveMenuBtn.focus(); } };
+        const openMenu = () => {
+            menu = document.createElement('div');
+            menu.className = 'card-menu save-menu'; menu.setAttribute('role', 'menu'); menu.setAttribute('aria-label', T('Save options'));
+            const mk = (icon, label, hint, fn) => {
+                const b = document.createElement('button'); b.type = 'button'; b.className = 'card-menu-item'; b.setAttribute('role', 'menuitem');
+                const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = icon;
+                const tx = document.createElement('span'); tx.className = 'save-menu-txt'; tx.textContent = label;
+                const sm = document.createElement('small'); sm.textContent = hint; tx.append(sm);
+                b.append(ic, tx);
+                b.addEventListener('click', () => { closeMenu(); fn(); });
+                return b;
+            };
+            menu.append(
+                mk('✨', T('Summarize'), T('Read it with AI'), () => fetchSummaryButton.click()),
+                mk('📥', T('Save only'), T('Keep it in History, no AI, nothing sent'), savePageOnly)
+            );
+            document.body.append(menu);
+            const r = saveMenuBtn.getBoundingClientRect();
+            const mh = menu.offsetHeight, mw = menu.offsetWidth;
+            menu.style.left = Math.max(8, Math.min(window.innerWidth - mw - 8, r.right - mw)) + 'px';
+            menu.style.top = Math.max(8, r.top - mh - 8) + 'px';
+            saveMenuBtn.setAttribute('aria-expanded', 'true');
+            document.addEventListener('pointerdown', onOutside, true);
+            document.addEventListener('keydown', onKey, true);
+            const first = menu.querySelector('button'); if (first) first.focus();
+            menu.addEventListener('keydown', (e) => {
+                const items = [...menu.querySelectorAll('button')]; const i = items.indexOf(document.activeElement);
+                if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+                if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+            });
+        };
+        saveMenuBtn.addEventListener('click', () => { if (menu) closeMenu(); else openMenu(); });
+        // Alt/Option + Enter in the box = save only
+        additionalQuestionsInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.altKey && !e.isComposing && composer && composer.state === 'fetch') { e.preventDefault(); savePageOnly(); }
+        });
+    }
 
     // ── Fetch button ────────────────────────────────────────────────────
     fetchSummaryButton.addEventListener('click', async () => {

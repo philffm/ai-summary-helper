@@ -91,6 +91,7 @@ function fmtDay(iso) { try { return new Date(iso).toLocaleDateString(locale(), {
 export function statusBadges(a) {
     if (!a || a.feedStub) return [];
     const out = [];
+    if (a.savedOnly && !(a.summary && String(a.summary).trim())) out.push(['saved', T('📥 Saved · no AI')]);
     if (a.archived) out.push(['arch', T('🗄️ Archived · {date}', { date: fmtDay(a.archivedAt || a.timestamp) })]);
     const latest = new Map();
     (isSent(a) ? a.sentTo : []).forEach(x => latest.set(x.kind + '|' + (x.label || ''), x));
@@ -1193,7 +1194,7 @@ function buildArticleCard(article) {
     }
 
     // Favorited from a feed but never summarized: one-click summarize.
-    if (article.feedStub && article.url) {
+    if ((article.feedStub || article.savedOnly) && article.url) {
         const sumBtn = document.createElement('button');
         sumBtn.type = 'button';
         sumBtn.className = 'button-primary btn-sm';
@@ -1215,7 +1216,7 @@ function buildArticleCard(article) {
                     tries++;
                     try {
                         const idx = await StorageManager.getArticlesIndex();
-                        const done = idx.some(a => !a.feedStub && a.url === article.url);
+                        const done = idx.some(a => !a.feedStub && !a.savedOnly && a.url === article.url);
                         if (done || tries > 40) {
                             clearInterval(poll);
                             if (done && document.getElementById('articleList')?.style.display !== 'none') loadHistory();
@@ -1669,7 +1670,7 @@ export async function showArticleDetail(article) {
     const rawContentSource = article.content || article.html || article.text || '';
 
     const safeTitle = article.title || (rawContentSource && rawContentSource.split('\n')[0]) || T('Article');
-    const safeSummary = (article.summaryBase !== undefined ? article.summaryBase : (article.summary || T('No summary available'))).replace(/<img[^>]*>/gi, '');
+    const safeSummary = (article.summaryBase !== undefined ? article.summaryBase : (article.summary || (article.savedOnly ? '<p><em>' + T('Saved without an AI summary. Open the page and tap ✨ Summarize to add one.') + '</em></p>' : T('No summary available')))).replace(/<img[^>]*>/gi, '');
 
     // Safely extract pristine plain text via an isolated DOM Parser
     const detailParser = new DOMParser();
