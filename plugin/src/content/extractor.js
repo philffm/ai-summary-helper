@@ -354,8 +354,23 @@ export function sanitizeHtml(html) {
  * Convert simple markdown to HTML, then sanitize the result against an
  * allowlist so it is safe to insert into the page via innerHTML.
  */
+/**
+ * Drop model reasoning that leaked into the answer: <think>…</think> blocks and a leading
+ * "Thinking Process: …" preamble (everything before the first <div>/<h2>/<p>). While streaming, a preamble whose
+ * HTML has not started yet yields '' so it never flashes on the page.
+ */
+export function stripReasoning(text) {
+  let t = String(text == null ? '' : text);
+  t = t.replace(/<think(?:ing)?>[\s\S]*?<\/think(?:ing)?>/gi, '').replace(/<think(?:ing)?>[\s\S]*$/i, '');
+  if (/^\s*(?:```[a-z]*\s*)?(?:\*\*)?(?:thinking(?: process)?|reasoning|analysis)(?:\*\*)?\s*:/i.test(t)) {
+    const m = t.search(/<(?:div|h2|p)\b/i);
+    t = m === -1 ? '' : t.slice(m);
+  }
+  return t;
+}
+
 export function markdownToHtml(text) {
-  const html = text
+  const html = stripReasoning(text)
     .replace(/^```(?:html)?\n?/gi, '').replace(/\n?```$/g, '') // Strip code blocks
     .replace(/^# (.*$)/gim, '<h1>$1</h1>')
     .replace(/^## (.*$)/gim, '<h2>$1</h2>')

@@ -408,7 +408,7 @@ function aiDelta(line) {
 }
 
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
-async function aiComplete({ system, user, id }) {
+async function aiComplete({ system, user, id, partial }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     const local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
     const connectionMode = sync.connectionMode || 'cloud';
@@ -473,7 +473,7 @@ async function aiComplete({ system, user, id }) {
         if (res.body && res.body.getReader) {
             const reader = res.body.getReader();
             const dec = new TextDecoder('utf-8');
-            let buf = '', chars = 0, think = 0, last = 0;
+            let buf = '', chars = 0, think = 0, last = 0, acc = '';
             for (;;) {
                 const { value, done } = await reader.read();
                 if (done) break;
@@ -481,12 +481,12 @@ async function aiComplete({ system, user, id }) {
                 raw += chunk; buf += chunk;
                 const lines = buf.split('\n'); buf = lines.pop();
                 let tail = '';
-                for (const l of lines) { const d = aiDelta(l); if (d) { chars += d.text.length; think += d.think.length; tail += d.text; } }
+                for (const l of lines) { const d = aiDelta(l); if (d) { chars += d.text.length; think += d.think.length; tail += d.text; if (partial) acc += d.text; } }
                 const now = Date.now();
-                if (now - last > 250) { last = now; progress({ phase: 'stream', chars, think, tail: tail.slice(-80) }); }
+                if (now - last > 250) { last = now; progress({ phase: 'stream', chars, think, tail: tail.slice(-80), ...(partial ? { text: acc } : {}) }); }
             }
             raw += dec.decode();
-            progress({ phase: 'stream', chars, think, tail: '' });
+            progress({ phase: 'stream', chars, think, tail: '', ...(partial ? { text: acc } : {}) });
         } else raw = await res.text();
         const text = parseAiResponseText(raw);
         if (!text) throw new Error('The model returned an empty response.');
@@ -589,7 +589,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
     if (msg.action === 'aiComplete' && msg.user) {
-        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id })
+        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial })
             .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;

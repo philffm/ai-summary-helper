@@ -3189,6 +3189,9 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .sc-used ul { margin: 2px 0 0; padding-left: 16px; }
 .chat-turn { padding: 8px 12px; border-radius: var(--radius-lg); font-size: var(--fs-sm, 13px); line-height: 1.5; white-space: pre-wrap; max-width: 92%; }
 .chat-q { align-self: flex-end; background: var(--accent-a12); border: 1px solid var(--accent-a30); }
+.chat-a p { margin: 0 0 .6em; }
+.chat-a p:last-child { margin-bottom: 0; }
+.chat-a ul { margin: .2em 0 .6em; padding-left: 18px; }
 .chat-a { align-self: flex-start; background: var(--glass-card); border: 1px solid var(--glass-border); }
 .chat-a--pending { opacity: 0.6; }
 

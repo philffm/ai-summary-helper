@@ -36,4 +36,22 @@ import fs from 'fs';
 const here = new URL('../src/modules/', import.meta.url);
 assert(/confirmBtn\(T\('Reset'\)/.test(fs.readFileSync(new URL('feedManager.js', here), 'utf8')));
 assert(/refreshFromScratch/.test(fs.readFileSync(new URL('feedRollup.js', here), 'utf8')));
+// Follow-up answers: HTML / fences / comments become clean text; SOURCES still parsed; streaming preview hides SOURCES.
+const { cleanAnswer, answerPreview, parseAnswer } = await imp('modules/conversation.js');
+const html = '```html\n<p>Yes, it was <strong>complex</strong>.</p>\n\n<p>Second &amp; last.</p>\n\n<ul><li>one</li><li>two</li></ul>\n<!-- Sources -->\nSOURCES: "The challenge was never the design; it was the code" | "x"\n```';
+const c = cleanAnswer(html);
+assert(!/[<>`]/.test(c.replace(/SOURCES.*/s, '')), c);
+assert(/\*\*complex\*\*/.test(c) && /\n- one\n- two/.test(c) && /Second & last/.test(c), c);
+const pa = parseAnswer(html, 'The challenge was never the design; it was the code and more.');
+assert.equal(pa.sources.length, 1);
+assert(!/SOURCES|<|```/.test(pa.a), pa.a);
+assert.equal(answerPreview('<p>Hi <str'), 'Hi');
+assert.equal(answerPreview('Plain text\nSOURCES: "abc'), 'Plain text');
+// Reasoning that leaks into a summary is dropped (page script helper).
+const { stripReasoning } = await imp('content/extractor.js');
+assert.equal(stripReasoning('Thinking Process:\n\n1. Analyze...\n* Format: <div> in text'.replace('<div> in text', '')), '');
+assert.equal(stripReasoning('Thinking Process:\n1. x\n\n<div><h2>T</h2><p>Body</p></div>'), '<div><h2>T</h2><p>Body</p></div>');
+assert.equal(stripReasoning('<think>hmm</think><div>ok</div>'), '<div>ok</div>');
+assert.equal(stripReasoning('<think>still going'), '');
+assert.equal(stripReasoning('<div>Thinking: about UX</div>'), '<div>Thinking: about UX</div>');
 console.log('TEST 59 OK'); process.exit(0);

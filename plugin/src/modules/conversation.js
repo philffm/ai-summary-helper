@@ -9,6 +9,32 @@ const esc = (x) => String(x == null ? '' : x).replace(/[&<>"]/g, (c) => ({ '&': 
 const plain = (html) => String(html || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 const norm = (s) => plain(s).replace(/[‘’]/g, "'").replace(/[“”]/g, '"').toLowerCase();
 
+/**
+ * Models sometimes answer in HTML or wrap the reply in ```html fences (and add <!-- comments -->).
+ * Turn that into light markdown-style plain text: paragraphs, "- " bullets, **bold**. Never returns markup.
+ */
+export function cleanAnswer(raw) {
+    let t = String(raw == null ? '' : raw).replace(/\r\n?/g, '\n');
+    t = t.replace(/```[a-zA-Z]*\n?/g, '').replace(/```/g, '');           // code fences (also unclosed ones while streaming)
+    t = t.replace(/<!--[\s\S]*?(-->|$)/g, '');                          // HTML comments, incl. a half-streamed one
+    t = t.replace(/<\s*(strong|b)\s*>([\s\S]*?)<\s*\/\s*\1\s*>/gi, '**$2**')
+        .replace(/<\s*br\s*\/?>/gi, '\n')
+        .replace(/<\s*li[^>]*>/gi, '\n- ')
+        .replace(/<\s*\/\s*li\s*>/gi, '')
+        .replace(/<\s*\/\s*(p|div|h[1-6]|ul|ol|blockquote|tr)\s*>/gi, '\n\n')
+        .replace(/<\s*(p|div|h[1-6]|ul|ol|blockquote|tr)[^>]*>/gi, '\n')
+        .replace(/<\/?[a-zA-Z][^>]*>?/g, '')                              // anything else (also an unfinished tag at the end)
+        .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
+    return t.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+/** The answer part of a (possibly still streaming) reply: cleaned, without the trailing SOURCES line. */
+export function answerPreview(raw) {
+    const t = cleanAnswer(raw);
+    const m = t.match(/\n?\s*SOURCES?\s*:/i);
+    return (m ? t.slice(0, m.index) : t).trim();
+}
+
 export function newTurn(turns, { q, a, sources = [] }) {
     return {
         id: `q_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`,
@@ -20,7 +46,7 @@ export function newTurn(turns, { q, a, sources = [] }) {
 
 export function buildPrompt({ title, content, summary, turns = [], question }) {
     const system = 'You answer follow-up questions about one web page. Use only the page text and the summary below. '
-        + 'Be concise and answer in the language of the question. '
+        + 'Be concise and answer in the language of the question. Reply in plain text (short paragraphs, "- " bullets, **bold**) — never HTML or code blocks. '
         + 'After the answer add one last line: SOURCES: "quote 1" | "quote 2" — up to 3 short passages copied word for word from the page text '
         + '(each at least 8 words) that support the answer. Omit the line if no passage fits.';
     const history = turns.slice(-MAX_PROMPT_TURNS).map(t => `Q: ${t.q}\nA: ${t.a}`).join('\n\n');
@@ -32,7 +58,7 @@ export function buildPrompt({ title, content, summary, turns = [], question }) {
 
 /** Split the model reply into the answer and its source quotes; quotes not found in the page text are dropped. */
 export function parseAnswer(raw, pageContent) {
-    let text = String(raw || '').trim();
+    let text = cleanAnswer(raw);
     let quotes = [];
     const m = text.match(/\n?\s*SOURCES?\s*:\s*(.*)$/is);
     if (m) {

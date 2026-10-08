@@ -7,8 +7,8 @@ import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { aiComplete } from './feedAi.js';
 import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
-import { newTurn, buildPrompt, parseAnswer, buildSuggestPrompt, parseSuggestions } from './conversation.js';
-import { turnEl } from './qaView.js';
+import { answerPreview, newTurn, buildPrompt, parseAnswer, buildSuggestPrompt, parseSuggestions } from './conversation.js';
+import { turnEl, renderAnswer } from './qaView.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -413,7 +413,12 @@ export function initMainScreen(ui) {
         const ans = addTurn('chat-a chat-a--pending', T('Thinking…'));
         try {
             const { system, user } = buildPrompt({ ...conversation, question: q });
-            const { a, sources } = parseAnswer(await aiComplete(system, user), conversation.content);
+            const raw = await aiComplete(system, user, null, null, (m) => {
+                // Stream the answer in as it is written (cleaned of HTML / code fences / the SOURCES line).
+                const t = m && m.text ? answerPreview(m.text) : '';
+                if (t) { renderAnswer(ans, t); scrollFeed(); }
+            }, { partial: true });
+            const { a, sources } = parseAnswer(raw, conversation.content);
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
             const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });

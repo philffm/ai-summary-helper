@@ -17,7 +17,7 @@ const SNIPPET_MAX = 160;
 
 let aiSeq = 0;
 /** `signal` (AbortSignal) cancels the request in the background worker too — there is no timeout, slow local models may take minutes. */
-export function aiComplete(system, user, onStage, signal, onProgress) {
+export function aiComplete(system, user, onStage, signal, onProgress, { partial = false } = {}) {
     return new Promise((resolve, reject) => {
         const id = `ai${Date.now()}_${++aiSeq}`;
         let settled = false;
@@ -33,7 +33,7 @@ export function aiComplete(system, user, onStage, signal, onProgress) {
         const done = () => { try { chrome.runtime.onMessage.removeListener(onMsg); } catch (e) { /* no listener API */ } };
         try { chrome.runtime.onMessage.addListener(onMsg); } catch (e) { /* tests */ }
         if (onStage) { onStage('send'); setTimeout(() => onStage('wait'), 350); }
-        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id }, (res) => {
+        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial }, (res) => {
             if (settled) { void chrome.runtime.lastError; return; }
             settled = true; done();
             if (onStage) onStage('parse');

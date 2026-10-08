@@ -1,15 +1,39 @@
 // qaView.js — DOM for follow-up turns, shared by the Summarize feed and the History detail.
 import { T, TN } from './feedI18n.js';
-import { pinnedCount } from './conversation.js';
+import { pinnedCount, cleanAnswer } from './conversation.js';
 
 /** One Q&A turn: question bubble, answer bubble with 📌 pin toggle and ¶ source chips. */
+/** Safe renderer for cleaned answer text: paragraphs, "- " lists, **bold** (DOM nodes only, no innerHTML). */
+export function renderAnswer(target, text) {
+    target.replaceChildren();
+    const inline = (parent, line) => {
+        line.split(/(\*\*[^*]+\*\*)/).forEach((part) => {
+            if (/^\*\*[^*]+\*\*$/.test(part)) { const b = document.createElement('strong'); b.textContent = part.slice(2, -2); parent.appendChild(b); }
+            else if (part) parent.appendChild(document.createTextNode(part));
+        });
+    };
+    String(text || '').split(/\n{2,}/).forEach((block) => {
+        const lines = block.split('\n').filter(l => l.trim());
+        if (!lines.length) return;
+        if (lines.every(l => /^\s*([-*•]|\d+[.)])\s+/.test(l))) {
+            const ul = document.createElement('ul');
+            lines.forEach(l => { const li = document.createElement('li'); inline(li, l.replace(/^\s*([-*•]|\d+[.)])\s+/, '')); ul.appendChild(li); });
+            target.appendChild(ul);
+        } else {
+            const p = document.createElement('p');
+            lines.forEach((l, i) => { if (i) p.appendChild(document.createElement('br')); inline(p, l); });
+            target.appendChild(p);
+        }
+    });
+}
+
 export function turnEl(turn, { onPin, onSource } = {}) {
     const wrap = document.createElement('div');
     wrap.className = 'chat-turn-group';
     wrap.dataset.turn = turn.id;
     const q = document.createElement('div'); q.className = 'chat-q'; q.textContent = turn.q;
     const a = document.createElement('div'); a.className = 'chat-a';
-    const body = document.createElement('div'); body.className = 'chat-a-body'; body.textContent = turn.a;
+    const body = document.createElement('div'); body.className = 'chat-a-body'; renderAnswer(body, cleanAnswer(turn.a));
     a.appendChild(body);
     const foot = document.createElement('div'); foot.className = 'chat-a-foot';
     (turn.sources || []).forEach((src) => {
