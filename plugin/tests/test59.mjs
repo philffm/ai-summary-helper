@@ -66,4 +66,17 @@ assert.equal(modelEmoji({ connectionMode: 'local', modelId: 'gemma4:e2b' }), '�
 assert.equal(modelEmoji({ connectionMode: 'local', modelId: 'gpt-4o' }), '💻');
 assert.equal(modelEmoji({ connectionMode: 'local', modelId: 'ft:gpt-4o:org' }), '💻');
 assert.equal(modelEmoji({ connectionMode: 'local', service: 'openai', modelId: 'a:b' }), '💻');
+// Follow-up answers carry the next suggestions (no extra request) and the streaming preview hides them.
+const full = 'Because of the code.\nSOURCES: "The challenge was never the design; it was the code"\nQUESTIONS: ["Who paid for it?", "How long did it take?", "x"]';
+const pq = parseAnswer(full, 'The challenge was never the design; it was the code and more.');
+assert.equal(pq.a, 'Because of the code.');
+assert.equal(pq.sources.length, 1);
+assert.deepEqual(pq.questions, ['Who paid for it?', 'How long did it take?']);
+assert.deepEqual(parseAnswer('Plain answer. Questions: none really.', '').questions, []);
+assert.equal(answerPreview('Answer text\nQUESTIONS: ["a'), 'Answer text');
+assert.equal(answerPreview('Questions about this: many'), 'Questions about this: many');
+// Language rule for small models: hard rule + native-language sentence; nothing for English.
+const { languageRule } = await imp('modules/languages.js');
+assert.equal(languageRule('en'), '');
+assert(/German/.test(languageRule('de')) && /Antworte ausschließlich auf Deutsch/.test(languageRule('de')) && /Do NOT write it in English/.test(languageRule('de')));
 console.log('TEST 59 OK'); process.exit(0);

@@ -17,7 +17,7 @@ const page = '<p>The committee voted on Tuesday to approve the new budget after 
 const raw = 'It was approved.\nSOURCES: "voted on Tuesday to approve the new budget" | "this sentence is invented by the model" | "Voted on Tuesday to approve the new budget"';
 const p = C.parseAnswer(raw, page);
 assert.equal(p.a, 'It was approved.'); assert.deepEqual(p.sources, ['voted on Tuesday to approve the new budget']);
-assert.deepEqual(C.parseAnswer('Just text', page), { a: 'Just text', sources: [] });
+assert.deepEqual(C.parseAnswer('Just text', page), { a: 'Just text', sources: [], questions: [] });
 assert.deepEqual(C.parseSuggestions('Sure!\n["Who disagrees?", "What are the costs?", "ab", "Next steps for users?", "extra one here"]'), ['Who disagrees?', 'What are the costs?', 'Next steps for users?']);
 assert.deepEqual(C.parseSuggestions('no json'), []);
 assert(C.buildSuggestPrompt({ title: 'T', summary: '<p>S</p>', content: '<p>c</p>' }).user.includes('SUMMARY'));

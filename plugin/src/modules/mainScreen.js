@@ -404,6 +404,24 @@ export function initMainScreen(ui) {
         }).catch(() => {});
     };
 
+    /** Suggestion chips under the thread: the unused part of the pool (initial QUESTIONS + the ones that came with each answer). */
+    function renderSuggestions() {
+        feed.querySelector('.chat-suggest')?.remove();
+        if (!conversation) return null;
+        const asked = new Set(conversation.turns.map(t => t.q.trim().toLowerCase()));
+        conversation.pool = (conversation.pool || []).filter((q, i, a) => !asked.has(q.trim().toLowerCase()) && a.findIndex(x => x.trim().toLowerCase() === q.trim().toLowerCase()) === i);
+        const sug = document.createElement('div');
+        sug.className = 'chat-suggest';
+        conversation.pool.slice(0, 3).forEach((q) => {
+            const c = document.createElement('button');
+            c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = q;
+            c.addEventListener('click', () => sendFollowUp(q));
+            sug.appendChild(c);
+        });
+        if (sug.children.length) feed.appendChild(sug);
+        return sug;
+    }
+
     async function sendFollowUp(q) {
         if (!conversation || !q) return;
         feed.querySelector('.chat-suggest')?.remove();
@@ -418,15 +436,19 @@ export function initMainScreen(ui) {
                 const t = m && m.text ? answerPreview(m.text) : '';
                 if (t) { renderAnswer(ans, t); scrollFeed(); }
             }, { partial: true });
-            const { a, sources } = parseAnswer(raw, conversation.content);
+            const { a, sources, questions } = parseAnswer(raw, conversation.content);
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
             const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });
             qEl.remove(); ans.replaceWith(el);
+            // Fresh suggestions arrive with the answer (no extra request); unused older ones stay in the pool.
+            conversation.pool = [...(questions || []), ...(conversation.pool || [])];
+            renderSuggestions();
             persistConversation();
         } catch (err) {
             ans.textContent = '❌ ' + ((err && err.message) || T('AI request failed'));
             ans.classList.remove('chat-a--pending');
+            renderSuggestions();
         }
         fetchSummaryButton.disabled = false;
         scrollFeed();
@@ -618,26 +640,17 @@ export function initMainScreen(ui) {
                     summary: msg.summary, meta: msg.meta || {}, turns: []
                 };
                 clearNote();
-                const sug = document.createElement('div');
-                sug.className = 'chat-suggest';
-                const fillSuggestions = (qs) => {
-                    qs.slice(0, 3).forEach((q) => {
-                        const c = document.createElement('button');
-                        c.type = 'button'; c.className = 'chat-suggest-chip'; c.textContent = q;
-                        c.addEventListener('click', () => sendFollowUp(q));
-                        sug.appendChild(c);
-                    });
-                };
                 const given = (Array.isArray(msg.questions) ? msg.questions : []).filter(Boolean);
-                fillSuggestions(given);
-                feed.appendChild(sug);
+                conversation.pool = given.slice();
+                renderSuggestions();
                 if (!given.length) {
                     // The model did not include the QUESTIONS comment: ask for them separately (one short call).
                     const forConv = conversation;
                     const { system, user } = buildSuggestPrompt(forConv);
                     aiComplete(system, user).then((raw) => {
-                        if (conversation !== forConv || forConv.turns.length || !sug.isConnected) return;
-                        fillSuggestions(parseSuggestions(raw));
+                        if (conversation !== forConv || forConv.turns.length) return;
+                        forConv.pool = parseSuggestions(raw);
+                        renderSuggestions();
                         scrollFeed();
                     }).catch(() => { /* suggestions are optional */ });
                 }

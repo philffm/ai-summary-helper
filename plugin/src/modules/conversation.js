@@ -31,7 +31,7 @@ export function cleanAnswer(raw) {
 /** The answer part of a (possibly still streaming) reply: cleaned, without the trailing SOURCES line. */
 export function answerPreview(raw) {
     const t = cleanAnswer(raw);
-    const m = t.match(/\n?\s*SOURCES?\s*:/i);
+    const m = t.match(/\n?\s*(?:SOURCES?\s*:|QUESTIONS?\s*:\s*(?:\[|$))/i);
     return (m ? t.slice(0, m.index) : t).trim();
 }
 
@@ -48,7 +48,9 @@ export function buildPrompt({ title, content, summary, turns = [], question }) {
     const system = 'You answer follow-up questions about one web page. Use only the page text and the summary below. '
         + 'Be concise and answer in the language of the question. Reply in plain text (short paragraphs, "- " bullets, **bold**) — never HTML or code blocks. '
         + 'After the answer add one last line: SOURCES: "quote 1" | "quote 2" — up to 3 short passages copied word for word from the page text '
-        + '(each at least 8 words) that support the answer. Omit the line if no passage fits.';
+        + '(each at least 8 words) that support the answer. Omit the line if no passage fits. '
+        + 'Then one final line: QUESTIONS: ["question 1", "question 2", "question 3"] — up to 3 short follow-up questions (3-6 words each, in the language of your answer) '
+        + 'the reader may want to ask next, answerable from the page and different from the earlier questions.';
     const history = turns.slice(-MAX_PROMPT_TURNS).map(t => `Q: ${t.q}\nA: ${t.a}`).join('\n\n');
     const user = `PAGE TITLE: ${title || ''}\n\nPAGE TEXT:\n${plain(content).slice(0, MAX_PAGE_CHARS)}\n\n`
         + `SUMMARY:\n${plain(summary)}\n\n`
@@ -60,6 +62,13 @@ export function buildPrompt({ title, content, summary, turns = [], question }) {
 export function parseAnswer(raw, pageContent) {
     let text = cleanAnswer(raw);
     let quotes = [];
+    let questions = [];
+    // QUESTIONS: [...] — suggestions for the next turn (cut first so its quoted strings never look like source quotes)
+    const qm = text.match(/\n?\s*QUESTIONS?\s*:\s*(\[[\s\S]*)$/i);
+    if (qm) {
+        text = text.slice(0, qm.index).trim();
+        questions = parseSuggestions(qm[1]);
+    }
     const m = text.match(/\n?\s*SOURCES?\s*:\s*(.*)$/is);
     if (m) {
         text = text.slice(0, m.index).trim();
@@ -68,7 +77,7 @@ export function parseAnswer(raw, pageContent) {
     const hay = norm(pageContent);
     const seen = new Set();
     const sources = quotes.filter(q => { const n = norm(q); if (!n || seen.has(n) || !hay.includes(n)) return false; seen.add(n); return true; }).slice(0, 3);
-    return { a: text, sources };
+    return { a: text, sources, questions };
 }
 
 /** "From your question(s)" HTML block. all=false → pinned turns only. '' when nothing to show. */

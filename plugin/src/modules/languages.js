@@ -49,6 +49,33 @@ export function languageEnglishName(code) {
     return l ? l.english : (code || 'English');
 }
 
+// The same instruction written IN the target language: small local models (gemma, llama…) obey a sentence in the
+// language they should answer in far more reliably than an English "answer in German" buried in English text.
+const NATIVE_RULE = {
+  de: 'Antworte ausschließlich auf Deutsch.', fr: 'Réponds uniquement en français.', es: 'Responde únicamente en español.',
+  it: 'Rispondi esclusivamente in italiano.', pt: 'Responde exclusivamente em português.', nl: 'Antwoord uitsluitend in het Nederlands.',
+  pl: 'Odpowiadaj wyłącznie po polsku.', ru: 'Отвечай только на русском языке.', ua: 'Відповідай лише українською мовою.',
+  jp: '必ず日本語だけで答えてください。', kr: '반드시 한국어로만 답변하세요.', cn: '请只用简体中文回答。', tw: '請只用繁體中文回答。',
+  ar: 'أجب باللغة العربية فقط.', hi: 'केवल हिंदी में उत्तर दें।', tr: 'Yalnızca Türkçe yanıt ver.', sv: 'Svara endast på svenska.',
+  da: 'Svar kun på dansk.', no: 'Svar kun på norsk.', fi: 'Vastaa vain suomeksi.', cs: 'Odpovídej pouze česky.',
+  el: 'Απάντησε μόνο στα ελληνικά.', hu: 'Kizárólag magyarul válaszolj.', ro: 'Răspunde exclusiv în limba română.',
+  vi: 'Chỉ trả lời bằng tiếng Việt.', th: 'ตอบเป็นภาษาไทยเท่านั้น', he: 'ענה בעברית בלבד.', 'ind-bahasa': 'Jawab hanya dalam bahasa Indonesia.',
+  ms: 'Jawab dalam bahasa Melayu sahaja.', bg: 'Отговаряй само на български.', hr: 'Odgovaraj samo na hrvatskom.', ca: 'Respon només en català.'
+};
+
+/**
+ * Hard language instruction for summary prompts ('' for English). Says it three ways: the language name, an explicit
+ * "not English" rule (page text, instructions and the model's own reasoning are English), and a native-language sentence.
+ */
+export function languageRule(code) {
+  if (!code || code === 'en' || /^en(-|_|$)/i.test(code) || code === 'English') return '';
+  const name = languageEnglishName(code);
+  if (name === code && !NATIVE_RULE[code]) return '';
+  return `LANGUAGE RULE (mandatory): write the entire output — every heading, paragraph and sentence — in ${name}. `
+    + `Do NOT write it in English, even though the page text and these instructions are in English; only direct quotes keep their original language. `
+    + (NATIVE_RULE[code] || '');
+}
+
 const ALIASES = {
   "en": "english anglais inglese ingles englisch",
   "cn": "chinese mandarin china zhongwen putonghua simplified zh",
