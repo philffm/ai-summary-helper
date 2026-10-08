@@ -1,3 +1,4 @@
+// Feeds retention: per-feed item cap, old items, everything survives a reload.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const now = Date.now();
 let n = 0;

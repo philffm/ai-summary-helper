@@ -1,3 +1,4 @@
+// Storage migration: legacy articles array, already-migrated flag, nothing-to-do case.
 import { setup, imp } from './harness.mjs'; import assert from 'assert';
 const { store } = setup({});
 chrome.storage.local.getBytesInUse = (keys, cb) => cb(keys.reduce((n, k) => n + (k in store ? k.length + JSON.stringify(store[k]).length : 0), 0));

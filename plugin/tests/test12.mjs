@@ -1,3 +1,4 @@
+// Feeds: only items with media get a play button.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 import fs from 'fs';
 const pod = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8');

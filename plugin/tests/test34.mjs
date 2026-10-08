@@ -1,3 +1,4 @@
+// Prompt settings migration: legacy and very old stored prompt shapes.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const presets = JSON.parse(fs.readFileSync(process.env.AISH_SRC + '/prompts.json', 'utf8'));
 async function run(initial, fn) {

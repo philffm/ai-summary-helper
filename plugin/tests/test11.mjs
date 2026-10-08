@@ -1,3 +1,4 @@
+// Feeds: switching the UI language back and forth (plurals, Japanese).
 import fs from 'fs'; import path from 'path'; import assert from 'assert';
 import { setup, imp, tick, SRC } from './harness.mjs';
 globalThis.fetch = async (u) => { const p = SRC + '/' + u; if (!fs.existsSync(p)) return { ok: false, status: 404 }; return { ok: true, json: async () => JSON.parse(fs.readFileSync(p, 'utf8')) }; };

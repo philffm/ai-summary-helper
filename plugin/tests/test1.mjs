@@ -1,3 +1,4 @@
+// Feeds: first-run empty state, adding feeds through the sheet, grouping items by day.
 import { setup, imp, tick } from './harness.mjs';
 import assert from 'assert';
 const now = Date.now();

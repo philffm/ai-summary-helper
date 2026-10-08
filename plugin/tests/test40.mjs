@@ -1,3 +1,4 @@
+// Highlighter: restore after reload, legacy annotations, ghost quote filtering.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { w, store } = setup({}); const d = w.document;
 chrome.runtime.id = 'x';

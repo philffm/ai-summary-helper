@@ -1,3 +1,4 @@
+// Highlight anchoring: Nth occurrence of a quote, index rebuild after reload, legacy text-only highlights.
 import { setup, imp } from './harness.mjs'; import assert from 'assert';
 const { w } = setup({}); const d = w.document;
 const A = await imp('content/anchor.js');

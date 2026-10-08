@@ -1,3 +1,4 @@
+// Annotation export: highlights are marked inline across tags, also in the full digest.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const ex = await imp('modules/annotationExporter.js');

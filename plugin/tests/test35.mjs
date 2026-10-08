@@ -1,3 +1,4 @@
+// Goodbye page (uninstall survey): form validation, survey id, thank-you state.
 import { JSDOM } from 'jsdom'; import fs from 'fs'; import assert from 'assert';
 const root = process.env.AISH_ROOT;
 const html = fs.readFileSync(root + '/docs/goodbye.html', 'utf8');

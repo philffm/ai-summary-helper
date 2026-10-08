@@ -1,3 +1,4 @@
+// Prompt settings: builder choices, hand edit turns into custom text, presets.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});
 const presets = JSON.parse(fs.readFileSync(process.env.AISH_SRC + '/prompts.json', 'utf8'));

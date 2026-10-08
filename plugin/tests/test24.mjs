@@ -1,3 +1,4 @@
+// Feeds: source picker sheet and the jump to Settings from it.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const $$ = s => [...w.document.querySelectorAll(s)];

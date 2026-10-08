@@ -1,3 +1,4 @@
+// History selection and send: separate files via LocalSend, a digest is one send.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w, sent } = setup({});
 const now = new Date().toISOString();

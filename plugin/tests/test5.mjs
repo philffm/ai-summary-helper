@@ -1,3 +1,4 @@
+// AI requests (feedAi): cloud endpoint and model, SSE fallback, own-key provider.
 import fs from 'fs'; import assert from 'assert';
 const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
 const a = src.indexOf('const AISH_API_BASE'), b = src.indexOf("chrome.runtime.onStartup");

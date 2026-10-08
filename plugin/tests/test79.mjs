@@ -1,4 +1,4 @@
-// Instant read bar: reading bar while it speaks, "Finished reading" + "Read again" afterwards (whatever order the states arrive in).
+// Instant read: reading bar while it speaks, Read again / pause button, reading a loaded conversation (any order of speech states).
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { w } = setup({}); const d = w.document; globalThis.document = d; globalThis.window = w;
 await chrome.storage.local.set({ 'tts:prefs': { instant: true } });

@@ -1,3 +1,4 @@
+// Feeds: i18n keys and the Feeds panel in Settings.
 import { setup, imp, tick } from './harness.mjs';
 import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});

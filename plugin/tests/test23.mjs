@@ -1,3 +1,4 @@
+// Feeds recap: error path; a summary finished elsewhere flips the card without a reload.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, sent, w } = setup({});
 const $ = s => w.document.querySelector(s);

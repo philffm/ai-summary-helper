@@ -1,3 +1,4 @@
+// Feeds podcasts: fake audio engine, background routing, mini player shows and hides.
 import { setup, imp, tick } from './harness.mjs';
 import assert from 'assert'; import fs from 'fs';
 const xml = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8');

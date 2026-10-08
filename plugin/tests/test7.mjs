@@ -1,3 +1,4 @@
+// Feeds suggestions: the suggested podcast is listed first; subscribing fetches its items.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const xml = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8');
 const u = 'https://philwornath.com/api/podcast.xml';

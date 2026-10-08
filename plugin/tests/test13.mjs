@@ -1,3 +1,4 @@
+// Feeds: search, insights, clicking a category jumps to search.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const now = Date.now(); const H = 3600e3;
 const { store, w } = setup({});

@@ -1,3 +1,4 @@
+// Feeds date filter: default label, calendar sheet, picking a day.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const now = Date.now(); const D = 86400e3;
 const dayStart = (t) => { const d = new Date(t); d.setHours(0,0,0,0); return d.getTime(); };

@@ -1,3 +1,4 @@
+// Feeds: scoring unscored items with a mocked AI, the n/a card with its score button.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const day = (n) => { const d = new Date(); d.setDate(d.getDate() - n); d.setHours(12, 0, 0, 0); return d.getTime(); };
 const { store, w } = setup({});

@@ -1,3 +1,4 @@
+// Feeds layout: Feed is the default, week page, month page lists weeks.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const sod = (n) => { const d = new Date(); d.setDate(d.getDate() - n); d.setHours(0, 0, 0, 0); return d.getTime(); };
 const { store, w } = setup({});

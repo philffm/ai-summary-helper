@@ -1,3 +1,4 @@
+// Feeds: a mood score carries over to the saved article with the same URL, others stay untouched.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const now = Date.now();

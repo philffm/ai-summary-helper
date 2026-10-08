@@ -1,3 +1,4 @@
+// Feeds: day-group "Mark read" still clears the group.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const now = Date.now();
 const { store, w } = setup({}); const $$ = s => [...w.document.querySelectorAll(s)]; const $ = s => w.document.querySelector(s);

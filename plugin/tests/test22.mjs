@@ -1,3 +1,4 @@
+// Feeds: single-day filter view.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const day = (n) => { const d = new Date(); d.setDate(d.getDate() - n); d.setHours(0, 0, 0, 0); return d.getTime(); };
 const { store, w } = setup({});

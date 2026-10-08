@@ -1,3 +1,4 @@
+// Send sheet: AI intro failure still sends, intro toggle keeps its state, quotes are stripped.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const now = new Date().toISOString();

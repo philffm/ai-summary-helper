@@ -1,3 +1,4 @@
+// Review prompt: UI, plus installedAt and the uninstall URL in the background.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const DAY = 864e5;
 const rp = await (async () => { setup({}); return imp('modules/reviewPrompt.js'); })();

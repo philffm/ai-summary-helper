@@ -1,3 +1,4 @@
+// History: open detail, archive tab, bulk send to Kindle marks sent.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const iso = (d) => new Date(Date.now() - d).toISOString();

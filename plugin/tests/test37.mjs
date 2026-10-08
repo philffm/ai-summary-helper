@@ -1,3 +1,4 @@
+// Tab bar: the active indicator slides from its previous spot; both screens use it.
 import { setup, imp } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { w } = setup({}); const d = w.document;
 Object.defineProperty(w.HTMLElement.prototype, 'offsetLeft', { get() { return Number(this.dataset.x || 0); } });

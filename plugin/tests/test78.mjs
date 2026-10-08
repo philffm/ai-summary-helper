@@ -1,6 +1,10 @@
 // A summary whose page went away is finished by the background: stream parsing, tags, language tags, questions, saving.
-import assert from 'assert'; import fs from 'fs'; import vm from 'vm';
-const src = fs.readFileSync(new URL('../dev/aish-extension-chrome/finalize.js', import.meta.url), 'utf8');
+import assert from 'assert'; import fs from 'fs'; import vm from 'vm'; import os from 'os'; import path from 'path'; import { spawnSync } from 'child_process';
+// The background bundle (finalize.js) is a build product: build it here instead of relying on plugin/dev existing.
+const out = fs.mkdtempSync(path.join(os.tmpdir(), 'aish-finalize-'));
+const b = spawnSync(process.execPath, [new URL('../scripts/build.js', import.meta.url).pathname, '--bundle', out], { encoding: 'utf8' });
+assert.equal(b.status, 0, 'bundling failed: ' + b.stderr);
+const src = fs.readFileSync(path.join(out, 'finalize.js'), 'utf8');
 const store = {};
 const chrome = {
   storage: { local: {

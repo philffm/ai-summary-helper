@@ -1,3 +1,4 @@
+// Feeds recap: nothing new sends nothing; new or edited articles trigger a refresh.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const now = Date.now();
 const { store, w } = setup({});

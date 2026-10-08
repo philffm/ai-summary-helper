@@ -1,3 +1,4 @@
+// Feeds AI scoring: prompt asks for labels and scores, an existing rating is never overwritten.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const now = Date.now();
 const run = async (rateSetting) => {
