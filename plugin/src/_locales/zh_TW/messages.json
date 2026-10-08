@@ -3370,5 +3370,14 @@
   },
   "f_this_tab_still_runs_an_older_4693": {
     "message": "此分頁仍在執行舊版擴充功能。請重新整理分頁（F5）後再試。"
+  },
+  "f_tag_97fe": {
+    "message": "+ 標籤"
+  },
+  "f_add_tag_1116": {
+    "message": "新增標籤…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "移除標籤"
   }
 }

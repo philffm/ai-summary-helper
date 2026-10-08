@@ -3524,5 +3524,14 @@
   },
   "f_this_tab_still_runs_an_older_4693": {
     "message": "This tab still runs an older version of the extension. Reload the tab (F5) and try again."
+  },
+  "f_tag_97fe": {
+    "message": "+ Tag"
+  },
+  "f_add_tag_1116": {
+    "message": "Add tag…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Remove tag"
   }
 }

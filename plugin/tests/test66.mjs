@@ -27,6 +27,26 @@ assert(cb && /Smith, J\. \(2026\)\. Sleep and memory\. Nature, 1\(2\), 3–4\./.
 assert(/^@article\{smith2026sleep,/.test(d.querySelector('.cite-text').textContent));
 d.querySelector('.cite-actions .button-primary').click(); await tick(20);
 assert(copied.length === 1 && /^@article/.test(copied[0]));
+// tag row: 🎓 chip first, then tags; tags removable and addable; paper chip removable
+let tr = d.querySelector('.detail-tags');
+assert(tr && tr.firstChild.classList.contains('paper'), 'paper chip leads the tag row');
+store['articles:index'][1].tags = ['Alpha', 'Beta'];
+await am.showArticleDetail({ ...store['articles:index'][1] }); await tick(100);
+tr = d.querySelector('.detail-tags');
+assert.deepEqual([...tr.querySelectorAll('.tag-chip:not(.tag-add)')].map(c => c.textContent.replace('✕', '')), ['Alpha', 'Beta']);
+[...tr.querySelectorAll('.tag-chip')].find(c => c.textContent.startsWith('Alpha')).querySelector('.tag-x').click(); await tick(60);
+assert.deepEqual(store['articles:index'][1].tags, ['Beta'], 'tag removed and stored');
+d.querySelector('.detail-tags .tag-add').click();
+const ti = d.querySelector('.tag-input'); ti.value = 'Gamma';
+ti.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await tick(60);
+assert.deepEqual(store['articles:index'][1].tags, ['Beta', 'Gamma'], 'tag added and stored');
+// mark as research paper from the + Tag row, then remove again with the chip's ✕
+d.querySelector('.detail-tags .tag-add').click();
+[...d.querySelectorAll('.detail-tags .tag-add')].find(b => /paper/i.test(b.textContent)).click(); await tick(60);
+assert.equal(store['articles:index'][1].paperOverride, 'yes');
+assert(d.querySelector('.detail-tags').firstChild.classList.contains('paper'));
+d.querySelector('.detail-tags .paper .tag-x').click(); await tick(60);
+assert.equal(store['articles:index'][1].paperOverride, 'no');
 // a paper without DOI: no citation, says so
 await am.showArticleDetail({ ...store['articles:index'][2] }); await tick(100);
 assert(/no DOI found/.test(d.querySelector('.cite-block').textContent) && !d.querySelector('.cite-text'));

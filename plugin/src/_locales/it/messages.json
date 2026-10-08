@@ -3286,5 +3286,14 @@
   },
   "f_this_tab_still_runs_an_older_4693": {
     "message": "Questa scheda usa ancora una versione precedente dell'estensione. Ricarica la scheda (F5) e riprova."
+  },
+  "f_tag_97fe": {
+    "message": "+ Tag"
+  },
+  "f_add_tag_1116": {
+    "message": "Aggiungi tag…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Rimuovi tag"
   }
 }

@@ -1403,6 +1403,58 @@ async function renderDetailQa(article, mount) {
 }
 
 /** 🎓 row in the detail view: badges, authors · journal · year, DOI link and the "Mark as paper / Not a paper" override. */
+/** Tag row of the detail view: 🎓 paper chips first (✕ = not a paper), then the tags (✕ removes), then "+ Tag" (also: mark as research paper). */
+function renderDetailTags(article, host) {
+    if (!host) return;
+    host.replaceChildren();
+    const mk = (cls, text) => { const c = document.createElement('span'); c.className = cls; c.textContent = text; return c; };
+    const xBtn = (label, onClick) => {
+        const x = document.createElement('button'); x.type = 'button'; x.className = 'tag-x'; x.textContent = '✕'; x.title = label; x.setAttribute('aria-label', label);
+        x.addEventListener('click', (e) => { e.stopPropagation(); onClick(); });
+        return x;
+    };
+    const refresh = () => { renderDetailTags(article, host); renderPaperRow(article, host.parentNode && host.parentNode.querySelector('.paper-row')); };
+    paperChips(article).forEach(([tone, text], i) => {
+        const c = mk('tag-chip paper paper-' + tone, text);
+        if (i === 0) c.appendChild(xBtn(T('Not a paper'), async () => { await applyStatus([article.id], { paperOverride: 'no' }); article.paperOverride = 'no'; refresh(); }));
+        host.appendChild(c);
+    });
+    const saveTags = async (next) => {
+        const stored = await StorageManager.setTags(article.id, next);
+        if (!stored) return;
+        article.tags = stored;
+        const hit = cachedArticles.find(a => a.id === article.id) || archivedCache.find(a => a.id === article.id);
+        if (hit) hit.tags = stored;
+        refresh();
+    };
+    (article.tags || []).forEach((t) => {
+        const c = mk('tag-chip', t);
+        if (article.id) c.appendChild(xBtn(T('Remove tag'), () => saveTags((article.tags || []).filter(x => x !== t))));
+        host.appendChild(c);
+    });
+    if (!article.id) return;
+    const add = document.createElement('button');
+    add.type = 'button'; add.className = 'tag-chip tag-add'; add.textContent = T('+ Tag');
+    add.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const input = document.createElement('input');
+        input.type = 'text'; input.className = 'tag-input'; input.maxLength = 40; input.placeholder = T('Add tag…'); input.setAttribute('aria-label', T('Add tag…'));
+        const commit = () => { const v = input.value.trim(); if (v) saveTags([...(article.tags || []), v]); else refresh(); };
+        input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && !ev.isComposing) { ev.preventDefault(); commit(); } else if (ev.key === 'Escape') { ev.stopPropagation(); refresh(); } });
+        input.addEventListener('blur', () => setTimeout(() => { if (input.isConnected) commit(); }, 120));
+        add.replaceWith(input);
+        if (!paperState(article)) {
+            const mp = document.createElement('button');
+            mp.type = 'button'; mp.className = 'tag-chip tag-add'; mp.textContent = T('🎓 Mark as paper');
+            mp.addEventListener('mousedown', (ev) => ev.preventDefault());   // keep the input's blur from swallowing the click
+            mp.addEventListener('click', async () => { await applyStatus([article.id], { paperOverride: 'yes' }); article.paperOverride = 'yes'; refresh(); });
+            input.after(mp);
+        }
+        input.focus();
+    });
+    host.appendChild(add);
+}
+
 let citeStyle = 'apa';
 function renderCiteBlock(article, host) {
     host.replaceChildren();
@@ -1445,12 +1497,9 @@ function renderCiteBlock(article, host) {
 function renderPaperRow(article, row) {
     if (!row) return;
     row.replaceChildren();
-    const chips = paperChips(article);
-    const tg = paperToggle(article);
-    if (!chips.length && !article.id) { row.hidden = true; return; }
+    if (!paperState(article)) { row.hidden = true; return; }   // the 🎓 chip itself lives in the tag row (renderDetailTags)
     row.hidden = false;
     row.className = 'paper-row';
-    chips.forEach(([tone, text]) => { const c = document.createElement('span'); c.className = 'tag-chip paper paper-' + tone; c.textContent = text; row.appendChild(c); });
     const line = paperLine(article);
     if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; row.appendChild(l); }
     const url = paperState(article) ? doiUrl(paperDoi(article)) : '';
@@ -1479,17 +1528,6 @@ function renderPaperRow(article, row) {
             } catch (err) { f.disabled = false; f.textContent = '❌ ' + ((err && err.message) || T('AI request failed')); }
         });
         row.appendChild(f);
-    }
-    if (article.id) {
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'button-secondary paper-toggle'; b.textContent = tg.label;
-        b.addEventListener('click', async (e) => {
-            e.stopPropagation();
-            await applyStatus([article.id], { paperOverride: tg.value });
-            article.paperOverride = tg.value;
-            renderPaperRow(article, row);
-        });
-        row.appendChild(b);
     }
 }
 
@@ -1549,7 +1587,6 @@ export async function showArticleDetail(article) {
     const safeContent = detailDoc.body.innerHTML || T('No content available.');
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
     const tags = article.tags || [];
-    const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">${tags.map(t => `<span class="tag-chip" style="font-size:12px;">${t}</span>`).join('')}</div>` : '';
     const modelInfo = article.modelId ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;margin-right:12px;">${modelEmoji(article)} ${article.modelId}</span>` : '';
     const lengthInfo = article.summaryLength ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;">📏 ${article.summaryLength}w</span>` : '';
     
@@ -1576,7 +1613,7 @@ export async function showArticleDetail(article) {
         <p style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">
           ${modelInfo}${lengthInfo}
         </p>
-        ${tagsHtml}
+        <div class="detail-tags"></div>
         ${decisionBadge}
         <div class="paper-row" hidden></div>
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
@@ -1604,6 +1641,7 @@ export async function showArticleDetail(article) {
     // asynchronously and progressively fill in — they never block the rest
     // of the detail view from rendering.
     renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
+    renderDetailTags(article, articleDetailContent.querySelector('.detail-tags'));
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
     {   // saved page metadata: favicon + description (set as text, never as HTML)

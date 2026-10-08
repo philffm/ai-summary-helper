@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 977 | 9 | 0 | 34 |
-| de | 977 | 9 | 0 | 147 |
-| es | 977 | 9 | 0 | 118 |
-| fr | 977 | 9 | 0 | 138 |
-| hi | 977 | 9 | 0 | 51 |
-| it | 977 | 9 | 0 | 121 |
-| ja | 977 | 9 | 0 | 62 |
-| ko | 977 | 9 | 0 | 13 |
-| pt_PT | 977 | 9 | 0 | 116 |
-| ru | 977 | 9 | 0 | 67 |
-| zh_CN | 977 | 9 | 0 | 1 |
-| zh_HK | 977 | 9 | 0 | 1 |
-| zh_TW | 977 | 9 | 0 | 1 |
+| ar | 987 | 3 | 0 | 34 |
+| de | 987 | 3 | 0 | 148 |
+| es | 987 | 3 | 0 | 118 |
+| fr | 987 | 3 | 0 | 139 |
+| hi | 987 | 3 | 0 | 52 |
+| it | 987 | 3 | 0 | 122 |
+| ja | 987 | 3 | 0 | 62 |
+| ko | 987 | 3 | 0 | 13 |
+| pt_PT | 987 | 3 | 0 | 117 |
+| ru | 987 | 3 | 0 | 67 |
+| zh_CN | 987 | 3 | 0 | 1 |
+| zh_HK | 987 | 3 | 0 | 1 |
+| zh_TW | 987 | 3 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -129,6 +129,7 @@ Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
 | View & Copy | Ansehen & kopieren | 18 vs 11 | 1.64× |
+| Could not read this PDF. | Dieses PDF konnte nicht gelesen werden. | 39 vs 24 | 1.63× |
 | ✨ Writing recap… | ✨ Rückblick wird erstellt… | 26 vs 16 | 1.63× |
 | D3 library failed to load. | D3-Bibliothek konnte nicht geladen werden. | 42 vs 26 | 1.62× |
 | Import failed | Import fehlgeschlagen | 21 vs 13 | 1.62× |
@@ -465,6 +466,7 @@ Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Prefer the terminal? Run Ollama directly in a foreground window: | Vous préférez le terminal ? Lancez Ollama directement dans une fenêtre au premier plan : | 88 vs 64 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Évalue le ton des résumés et des éléments du flux. Alimente les filtres d’humeur, les graphiques et le bilan des sources. Désactivez pour masquer toutes les fonctions d’humeur. | 176 vs 128 | 1.38× |
 | Sharing is not supported in this browser/environment. | Le partage n’est pas pris en charge dans ce navigateur/cet environnement. | 73 vs 53 | 1.38× |
+| This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Ce PDF n'a pas de texte sélectionnable (probablement un scan). La reconnaissance de texte n'est pas encore prise en charge. | 123 vs 89 | 1.38× |
 | Automatic light-blue quote highlights from summaries | Citations surlignées en bleu clair automatiquement à partir des résumés | 71 vs 52 | 1.37× |
 | Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
 | Inline mode is great for "Send to Kindle". | Le mode en ligne convient bien à « Envoyer vers Kindle ». | 57 vs 42 | 1.36× |
@@ -505,6 +507,7 @@ Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | View & Copy | देखें और कॉपी करें | 18 vs 11 | 1.64× |
 | View: Filtered | दृश्य: फ़िल्टर किया हुआ | 23 vs 14 | 1.64× |
 | Loading... | लोड हो रहा है... | 16 vs 10 | 1.6× |
+| Reading PDF… | PDF पढ़ी जा रही है… | 19 vs 12 | 1.58× |
 | No devices added yet. | अभी कोई डिवाइस नहीं जोड़ा गया है। | 33 vs 21 | 1.57× |
 | Why it matters | यह क्यों मायने रखता है | 22 vs 14 | 1.57× |
 | Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
@@ -646,6 +649,7 @@ Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | Start Ollama with the global wildcard so any origin can connect: | Avvia Ollama con il carattere jolly globale così che qualsiasi origine possa connettersi: | 89 vs 64 | 1.39× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
+| This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Questo PDF non ha testo selezionabile (probabilmente una scansione). Il riconoscimento del testo non è ancora supportato. | 121 vs 89 | 1.36× |
 | {n} older item is not in this recap (limit: {max} per recap). | {n} elemento più vecchio non è in questo riepilogo (limite: {max} per riepilogo). | 77 vs 57 | 1.35× |
 | {name} · API key missing — add it in Settings | {name} · chiave API mancante: aggiungila nelle Impostazioni | 55 vs 41 | 1.34× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} elementi più vecchi non sono in questo riepilogo (limite: {max} per riepilogo). | 79 vs 59 | 1.34× |
@@ -849,6 +853,7 @@ Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | to your Kindle's approved senders first — | à lista de remetentes aprovados do seu Kindle primeiro — | 56 vs 41 | 1.37× |
 | Not set up yet — add your Kindle in Settings | Ainda não configurado — adiciona o teu Kindle nas Definições | 60 vs 44 | 1.36× |
 | Not set up yet — add a receiver in Settings | Ainda não configurado — adiciona um recetor nas Definições | 58 vs 43 | 1.35× |
+| This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Este PDF não tem texto selecionável (provavelmente uma digitalização). O reconhecimento de texto ainda não é suportado. | 119 vs 89 | 1.34× |
 | 📚 Send to Kindle
 
 Free tier: 3 Kindle sends included.
@@ -958,147 +963,69 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 
 ## Problems
 
-en is missing 9 strings (run merge)
+en is missing 3 strings (run merge)
 
-### ar: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### ar: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### de: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### de: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### es: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### es: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### fr: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### fr: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### hi: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### hi: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### it: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### it: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### ja: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### ja: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### ko: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### ko: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### pt_PT: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### pt_PT: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### ru: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### ru: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### zh_CN: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### zh_CN: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### zh_HK: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### zh_HK: 3 missing
+- + Tag
+- Add tag…
+- Remove tag
 
-### zh_TW: 9 missing
-- Attach a PDF to summarize
-- Could not read this PDF.
-- PDF · {n} words
-- Reading PDF…
-- Remove attachment
-- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
-- This PDF is password protected.
-- This PDF is too large (limit 80 MB).
-- This file is not a readable PDF.
+### zh_TW: 3 missing
+- + Tag
+- Add tag…
+- Remove tag

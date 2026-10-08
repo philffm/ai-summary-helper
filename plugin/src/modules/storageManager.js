@@ -382,6 +382,19 @@ class StorageManager {
         return true;
     }
 
+    /** Replace an article's tags (index entry): trimmed, de-duplicated, max 12 of 40 characters. Returns the stored list. */
+    static async setTags(id, tags) {
+        if (!id) return null;
+        const seen = new Set();
+        const clean = (Array.isArray(tags) ? tags : []).map(t => String(t || '').replace(/\s+/g, ' ').trim().slice(0, 40)).filter(t => t && !seen.has(t.toLowerCase()) && seen.add(t.toLowerCase())).slice(0, 12);
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        const e = articlesIndex.find(a => a.id === id);
+        if (!e) return null;
+        e.tags = clean;
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex });
+        return clean;
+    }
+
     static async saveArticle({ content, summary, url, title, description, tags = [], modelId = '', connectionMode = '', summaryLength = 200, extra = {} }) {
         const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
         const timestamp = new Date().toISOString();

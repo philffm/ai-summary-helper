@@ -3370,5 +3370,14 @@
   },
   "f_this_tab_still_runs_an_older_4693": {
     "message": "Esta pestaña aún usa una versión anterior de la extensión. Recarga la pestaña (F5) e inténtalo de nuevo."
+  },
+  "f_tag_97fe": {
+    "message": "+ Etiqueta"
+  },
+  "f_add_tag_1116": {
+    "message": "Añadir etiqueta…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Quitar etiqueta"
   }
 }

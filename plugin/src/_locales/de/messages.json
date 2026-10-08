@@ -3376,5 +3376,14 @@
   },
   "f_this_tab_still_runs_an_older_4693": {
     "message": "Dieser Tab läuft noch mit einer älteren Version der Erweiterung. Lade den Tab neu (F5) und versuche es erneut."
+  },
+  "f_tag_97fe": {
+    "message": "+ Tag"
+  },
+  "f_add_tag_1116": {
+    "message": "Tag hinzufügen…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Tag entfernen"
   }
 }

@@ -3408,3 +3408,10 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .page-chip-x { margin-left: auto; flex: none; border: 0; background: transparent; color: var(--text-muted); cursor: pointer; font-size: var(--fs-md); padding: 2px 6px; border-radius: 8px; }
 .page-chip-x:hover { color: var(--text-primary); background: var(--accent-a08); }
 #mainScreen.drop-pdf { outline: 2px dashed var(--accent); outline-offset: -6px; }
+.detail-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 12px; }
+.detail-tags .tag-chip { font-size: var(--fs-sm); display: inline-flex; align-items: center; gap: 4px; }
+.tag-x { border: 0; background: transparent; color: inherit; opacity: .55; cursor: pointer; font-size: var(--fs-xs); line-height: 1; padding: 0 0 0 2px; }
+.tag-x:hover { opacity: 1; }
+.tag-add { border-style: dashed; background: transparent; color: var(--text-muted); cursor: pointer; }
+.tag-add:hover { color: var(--text-primary); border-color: var(--accent); }
+.tag-input { font: inherit; font-size: var(--fs-sm); padding: 3px 10px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--text-primary); min-width: 110px; outline: none; }
