@@ -220,7 +220,7 @@ export function parseLabelsJson(text, n) {
     return out;
 }
 
-export async function scoreItems(list, subTitleFn) {
+export async function scoreItems(list, subTitleFn, { onStage, signal, onProgress } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const system = 'You rate the sentiment of news headlines. For each numbered item return a number from -1 '
         + '(very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content, not tone of voice. '
