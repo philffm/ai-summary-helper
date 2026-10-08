@@ -3160,5 +3160,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 Preprint"
+  },
+  "f_design_02ef": {
+    "message": "Disegno"
+  },
+  "f_limitations_7ff6": {
+    "message": "Limiti"
+  },
+  "f_preprints_9516": {
+    "message": "Preprint"
+  },
+  "f_research_b9ec": {
+    "message": "Ricerca"
+  },
+  "f_reviews_1576": {
+    "message": "Revisioni"
+  },
+  "f_sample_8fc7": {
+    "message": "Campione"
+  },
+  "f_trial_6b73": {
+    "message": "Trial"
+  },
+  "f_trials_7100": {
+    "message": "Trial"
   }
 }

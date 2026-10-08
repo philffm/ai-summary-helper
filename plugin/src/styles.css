@@ -3386,3 +3386,11 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .model-panel-close{ background:transparent; border:0; color:var(--text-muted); font-size:14px; line-height:1; padding:6px 8px; border-radius:8px; cursor:pointer; }
 .model-panel-close:hover{ background:var(--accent-a15); color:var(--text); }
 .model-panel-close:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+
+.research-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 0; }
+.research-filter { border: 1px solid var(--outline); background: transparent; color: var(--text-secondary); border-radius: 999px; padding: 3px 10px; font-size: var(--fs-xs); cursor: pointer; }
+.research-filter.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.paper-facts { margin: 8px 0 0; padding: 8px 10px; border: 1px solid var(--outline); border-radius: 10px; background: var(--accent-a05); font-size: var(--fs-sm); width: 100%; box-sizing: border-box; }
+.paper-facts dt { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-top: 6px; }
+.paper-facts dt:first-child { margin-top: 0; }
+.paper-facts dd { margin: 2px 0 0; color: var(--text-primary); }

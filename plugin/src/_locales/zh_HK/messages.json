@@ -3160,5 +3160,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 預印本"
+  },
+  "f_design_02ef": {
+    "message": "研究設計"
+  },
+  "f_limitations_7ff6": {
+    "message": "限制"
+  },
+  "f_preprints_9516": {
+    "message": "預印本"
+  },
+  "f_research_b9ec": {
+    "message": "研究"
+  },
+  "f_reviews_1576": {
+    "message": "綜述"
+  },
+  "f_sample_8fc7": {
+    "message": "樣本"
+  },
+  "f_trial_6b73": {
+    "message": "試驗"
+  },
+  "f_trials_7100": {
+    "message": "試驗"
   }
 }

@@ -3244,5 +3244,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 Preprint"
+  },
+  "f_design_02ef": {
+    "message": "Conception"
+  },
+  "f_limitations_7ff6": {
+    "message": "Limites"
+  },
+  "f_preprints_9516": {
+    "message": "Préprints"
+  },
+  "f_research_b9ec": {
+    "message": "Recherche"
+  },
+  "f_reviews_1576": {
+    "message": "Revues"
+  },
+  "f_sample_8fc7": {
+    "message": "Échantillon"
+  },
+  "f_trial_6b73": {
+    "message": "Essai"
+  },
+  "f_trials_7100": {
+    "message": "Essais"
   }
 }

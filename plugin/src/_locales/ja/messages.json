@@ -3250,5 +3250,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 プレプリント"
+  },
+  "f_design_02ef": {
+    "message": "研究デザイン"
+  },
+  "f_limitations_7ff6": {
+    "message": "限界"
+  },
+  "f_preprints_9516": {
+    "message": "プレプリント"
+  },
+  "f_research_b9ec": {
+    "message": "研究"
+  },
+  "f_reviews_1576": {
+    "message": "レビュー"
+  },
+  "f_sample_8fc7": {
+    "message": "サンプル"
+  },
+  "f_trial_6b73": {
+    "message": "試験"
+  },
+  "f_trials_7100": {
+    "message": "試験"
   }
 }

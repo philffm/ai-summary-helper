@@ -3160,5 +3160,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 Препринт"
+  },
+  "f_design_02ef": {
+    "message": "Дизайн"
+  },
+  "f_limitations_7ff6": {
+    "message": "Ограничения"
+  },
+  "f_preprints_9516": {
+    "message": "Препринты"
+  },
+  "f_research_b9ec": {
+    "message": "Исследования"
+  },
+  "f_reviews_1576": {
+    "message": "Обзоры"
+  },
+  "f_sample_8fc7": {
+    "message": "Выборка"
+  },
+  "f_trial_6b73": {
+    "message": "Испытание"
+  },
+  "f_trials_7100": {
+    "message": "Испытания"
   }
 }

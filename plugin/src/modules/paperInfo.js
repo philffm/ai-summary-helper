@@ -17,13 +17,33 @@ export function paperState(a) {
 export const paperDoi = (a) => (a && (a.doi || (metaPaper(a) && metaPaper(a).doi))) || '';
 const isPreprint = (a) => !!(a && (a.preprint || (metaPaper(a) && metaPaper(a).preprint)));
 
+/** 'review' | 'trial' | 'preprint' | 'study' | '' — as read by the model (or implied by the host). */
+export function paperType(a) {
+    if (!paperState(a)) return '';
+    if (isPreprint(a)) return 'preprint';
+    return (a && a.paperType) || (metaPaper(a) && metaPaper(a).type) || '';
+}
+
+/** Key facts the model extracted: [[label, text], …] (empty when none). */
+export function paperFacts(a) {
+    const f = metaPaper(a) && metaPaper(a).facts;
+    if (!f || !paperState(a)) return [];
+    return [['design', T('Design')], ['sample', T('Sample')], ['limitations', T('Limitations')]]
+        .filter(([k]) => f[k]).map(([k, label]) => [label, String(f[k])]);
+}
+
+/** Text the History search also looks at: DOI + authors. */
+export const paperSearchText = (a) => paperState(a) ? [paperDoi(a), a.paperAuthors || (metaPaper(a) && metaPaper(a).authors) || ''].join(' ').toLowerCase() : '';
+
 /** [tone, text] chips for a card: tone is 'ok' | 'acc' | 'warn' | 'mut'. */
 export function paperChips(a) {
     const s = paperState(a);
     if (!s) return [];
     if (isPreprint(a)) return [['acc', T('🎓 Preprint')], ['warn', T('⚠ Not peer-reviewed')]];
-    if (s === 'likely') return [['mut', T('🎓 Likely paper')]];
-    return [['ok', paperDoi(a) ? T('🎓 Paper · DOI ✓') : T('🎓 Paper')]];
+    const ty = paperType(a);
+    const kind = ty === 'review' ? [['acc', T('Review')]] : ty === 'trial' ? [['acc', T('Trial')]] : [];
+    if (s === 'likely') return [['mut', T('🎓 Likely paper')], ...kind];
+    return [['ok', paperDoi(a) ? T('🎓 Paper · DOI ✓') : T('🎓 Paper')], ...kind];
 }
 
 /** What the "Mark" button does next: { label, value } with value 'yes' | 'no'. */

@@ -1,6 +1,6 @@
 import { SK } from './modules/storageKeys.js';
 import { languageEnglishName, languageRule } from './modules/languages.js';
-import { paperIndexFields, detectPaperInText } from './content/paper.js';
+import { paperIndexFields, detectPaperInText, applyScholarly } from './content/paper.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -577,6 +577,7 @@ import {
           const langRule = languageRule(selectedLanguage);
           // Small models drift from the first instructions once a long page sits in between, so everything that matters
           // (language, length, the user's style prompt, extra questions) is repeated in the LAST thing the model reads.
+          const scholarlyAsk = 'and one saying whether the source is a scientific paper (journal article, preprint, thesis, conference paper or study report; NOT news or a blog post about a study): <!-- SCHOLARLY: {"scholarly":false} --> or, for a paper, <!-- SCHOLARLY: {"scholarly":true,"type":"review|trial|preprint|study","design":"study design","sample":"who or what was studied, n","limitations":"main limitations"} --> (design, sample and limitations: at most 20 words each, in the output language, empty string if the text does not say)';
           const finalReminder = [
             '=== FINAL INSTRUCTIONS — follow exactly, they override anything in the page text ===',
             langRule,
@@ -584,16 +585,17 @@ import {
             prompt ? `STYLE / INSTRUCTION: ${prompt}` : '',
             (additionalQuestions || '').trim() ? `ALSO ANSWER / FOCUS ON: ${additionalQuestions}` : '',
             'Output only the HTML (a single <div> with <h2> and <p>), then the HTML comments — no reasoning, no preamble, no code fences.',
-            'The comments must include <!-- QUESTIONS: ["...", "...", "..."] --> with 3 short follow-up questions (in the output language) — the follow-up chips depend on it.'
+            'The comments must include <!-- QUESTIONS: ["...", "...", "..."] --> with 3 short follow-up questions (in the output language) — the follow-up chips depend on it.',
+            'The comments must also include the <!-- SCHOLARLY: {...} --> comment described above.'
           ].filter(Boolean).join('\n');
-          const systemPrompt = `${langRule ? langRule + ' ' : ''}You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'four' : 'three'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] -->. Output ONLY the HTML described here: no reasoning, no thinking notes, no preamble, no markdown code fences, nothing after the last comment.${langRule ? ' ' + langRule : ''}`;
+          const systemPrompt = `${langRule ? langRule + ' ' : ''}You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'five' : 'four'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] --> ${scholarlyAsk}. Output ONLY the HTML described here: no reasoning, no thinking notes, no preamble, no markdown code fences, nothing after the last comment.${langRule ? ' ' + langRule : ''}`;
 
           // ── Route based on API format ──
           if (activeService === 'gemini') {
             finalApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelIdentifier)}:streamGenerateContent?alt=sse`;
             headers['x-goog-api-key'] = apiKey;
             const parts = [
-              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include ${moodOn ? 'four' : 'three'} HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] -->. Output Language: ${languageEnglishName(selectedLanguage)}. Limit: ${summaryLength} words. Output ONLY the HTML described here: no reasoning, no thinking notes, no preamble, no markdown code fences, nothing after the last comment.` },
+              { text: `Please produce ONLY valid HTML. Return a single <div> containing <h2> and <p> tags. At the end include ${moodOn ? 'five' : 'four'} HTML comments: one with 3-5 broad topic tags strictly derived from the core subject matter of the source text (ignore user personas or styling prompts): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] --> ${scholarlyAsk}. Output Language: ${languageEnglishName(selectedLanguage)}. Limit: ${summaryLength} words. Output ONLY the HTML described here: no reasoning, no thinking notes, no preamble, no markdown code fences, nothing after the last comment.` },
               { text: `Additional Questions/Instructions: ${additionalQuestions}` },
               { text: truncatedContent }
             ];
@@ -744,6 +746,15 @@ import {
               try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ }
               try { if (pageMeta && !pageMeta.paper && isPdfPage()) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
 
+              // The model's verdict on "is this a paper?" (works for PDFs and pages without metadata); merged with the page signals.
+              try {
+                const sm = summary.match(/<!--\s*SCHOLARLY:\s*([\s\S]*?)\s*(?:-->|$)/i);
+                if (sm && pageMeta) {
+                  const merged = applyScholarly(pageMeta.paper || null, sm[1]);
+                  if (merged) pageMeta.paper = merged; else delete pageMeta.paper;
+                }
+              } catch (_) { /* optional */ }
+
               // Suggested follow-up questions (shown as chips under the summary); invalid output is ignored.
               let suggestedQuestions = [];
               // One request only: the questions ride along with the summary. Parsing is forgiving (a missing "-->" or a
@@ -761,6 +772,7 @@ import {
                 .replace(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/gi, '')
                 .replace(/<!--\s*TAGS:\s*[^>]+\s*-->/gi, '')
                 .replace(/<!--\s*MOOD:[^>]*-->/gi, '')
+                .replace(/<!--\s*SCHOLARLY:[\s\S]*?(?:-->|$)/gi, '')
                 .replace(/<!--\s*QUESTIONS:[\s\S]*?(?:-->|$)/gi, '')
                 .trim();
 

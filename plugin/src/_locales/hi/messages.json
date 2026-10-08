@@ -3244,5 +3244,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 प्रीप्रिंट"
+  },
+  "f_design_02ef": {
+    "message": "डिज़ाइन"
+  },
+  "f_limitations_7ff6": {
+    "message": "सीमाएँ"
+  },
+  "f_preprints_9516": {
+    "message": "प्रीप्रिंट"
+  },
+  "f_research_b9ec": {
+    "message": "शोध"
+  },
+  "f_reviews_1576": {
+    "message": "समीक्षाएँ"
+  },
+  "f_sample_8fc7": {
+    "message": "नमूना"
+  },
+  "f_trial_6b73": {
+    "message": "परीक्षण"
+  },
+  "f_trials_7100": {
+    "message": "परीक्षण"
   }
 }

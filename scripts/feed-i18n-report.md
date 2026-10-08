@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 953. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 940 | 0 | 0 | 32 |
-| de | 940 | 0 | 0 | 145 |
-| es | 940 | 0 | 0 | 114 |
-| fr | 940 | 0 | 0 | 135 |
-| hi | 940 | 0 | 0 | 51 |
-| it | 940 | 0 | 0 | 117 |
-| ja | 940 | 0 | 0 | 60 |
-| ko | 940 | 0 | 0 | 12 |
-| pt_PT | 940 | 0 | 0 | 114 |
-| ru | 940 | 0 | 0 | 66 |
-| zh_CN | 940 | 0 | 0 | 1 |
-| zh_HK | 940 | 0 | 0 | 1 |
-| zh_TW | 940 | 0 | 0 | 1 |
+| ar | 953 | 0 | 0 | 33 |
+| de | 953 | 0 | 0 | 143 |
+| es | 953 | 0 | 0 | 117 |
+| fr | 953 | 0 | 0 | 136 |
+| hi | 953 | 0 | 0 | 51 |
+| it | 953 | 0 | 0 | 119 |
+| ja | 953 | 0 | 0 | 61 |
+| ko | 953 | 0 | 0 | 12 |
+| pt_PT | 953 | 0 | 0 | 115 |
+| ru | 953 | 0 | 0 | 66 |
+| zh_CN | 953 | 0 | 0 | 1 |
+| zh_HK | 953 | 0 | 0 | 1 |
+| zh_TW | 953 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -49,6 +49,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Keep feed items for | الاحتفاظ بعناصر الخلاصات لمدة | 29 vs 19 | 1.53× |
 | AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
 | Logged in as: {email} | تم تسجيل الدخول باسم: {email} | 24 vs 16 | 1.5× |
+| 🎓 Mark as paper | 🎓 وضع علامة كورقة بحثية | 24 vs 16 | 1.5× |
 | ✨ AI Ghost Highlighting | ✨ التمييز الشبحي بالذكاء الاصطناعي | 34 vs 23 | 1.48× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
 | 🗂️ Keep items for | 🗂️ الاحتفاظ بالعناصر لمدة | 26 vs 18 | 1.44× |
@@ -75,7 +76,6 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | What moved | Was sich verändert hat | 22 vs 10 | 2.2× |
 | ＋ Add | ＋ Hinzufügen | 13 vs 6 | 2.17× |
 | Get Key | Schlüssel holen | 15 vs 7 | 2.14× |
-| Summary | Zusammenfassung | 15 vs 7 | 2.14× |
 | Copy failed | Kopieren fehlgeschlagen | 23 vs 11 | 2.09× |
 | Add tag | Tag hinzufügen | 14 vs 7 | 2× |
 | Hide ⌃ | Ausblenden ⌃ | 12 vs 6 | 2× |
@@ -89,7 +89,6 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | API key | API-Schlüssel | 13 vs 7 | 1.86× |
 | Refresh | Aktualisieren | 13 vs 7 | 1.86× |
 | Recent models | Zuletzt genutzte Modelle | 24 vs 13 | 1.85× |
-| Last summary | Letzte Zusammenfassung | 22 vs 12 | 1.83× |
 | Invalid Key | Ungültiger Schlüssel | 20 vs 11 | 1.82× |
 | {name} · API key set | {name} · API-Schlüssel hinterlegt | 29 vs 16 | 1.81× |
 | {n} summary | {n} Zusammenfassung | 18 vs 10 | 1.8× |
@@ -220,6 +219,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Add tag | Añadir etiqueta | 15 vs 7 | 2.14× |
 | Account Sync | Sincronización de cuenta | 24 vs 12 | 2× |
 | ▶ Play | ▶ Reproducir | 12 vs 6 | 2× |
+| 💬 Ask | 💬 Preguntar | 12 vs 6 | 2× |
 | UI Language | Idioma de la interfaz | 21 vs 11 | 1.91× |
 | UI language | Idioma de la interfaz | 21 vs 11 | 1.91× |
 | Enter code | Introduce el código | 19 vs 10 | 1.9× |
@@ -278,6 +278,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Podcast player | Reproductor de podcast | 22 vs 14 | 1.57× |
 | Set as active send target | Establecer como destino de envío activo | 39 vs 25 | 1.56× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
+| Not a paper | No es un artículo | 17 vs 11 | 1.55× |
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
 | Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
@@ -304,6 +305,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Sort: Read share | Orden: Porcentaje leído | 23 vs 16 | 1.44× |
 | {n} unopened 30d+ | {n} sin abrir hace 30 d+ | 23 vs 16 | 1.44× |
 | ✨ Writing intro… | ✨ Escribiendo la intro… | 23 vs 16 | 1.44× |
+| 🎓 Mark as paper | 🎓 Marcar como artículo | 23 vs 16 | 1.44× |
 | 🏷️ Top Categories | 🏷️ Categorías principales | 26 vs 18 | 1.44× |
 | Allow all origins (app) | Permitir todos los orígenes (app) | 33 vs 23 | 1.43× |
 | Sources · rename · tags · mute | Fuentes · renombrar · etiquetas · silenciar | 43 vs 30 | 1.43× |
@@ -407,6 +409,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Pick a name for your show: | Choisissez un nom pour votre émission : | 39 vs 26 | 1.5× |
 | Select summaries | Sélectionner des résumés | 24 vs 16 | 1.5× |
 | Type {word} to confirm | Saisissez {word} pour confirmer | 27 vs 18 | 1.5× |
+| 🎓 Mark as paper | 🎓 Marquer comme article | 24 vs 16 | 1.5× |
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |
 | Best match · {n} items | Meilleur résultat · {n} éléments | 31 vs 21 | 1.48× |
 | Edit feeds & tags in Settings | Modifier les flux et tags dans les réglages | 43 vs 29 | 1.48× |
@@ -471,8 +474,8 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | vs {label} | {label} की तुलना में | 15 vs 5 | 3× |
 | Mute | म्यूट करें | 10 vs 4 | 2.5× |
 | Noisy | शोरगुल वाला | 11 vs 5 | 2.2× |
+| 🎓 Mark as paper | 🎓 शोध-पत्र के रूप में चिह्नित करें | 35 vs 16 | 2.19× |
 | What I used | मैंने क्या इस्तेमाल किया | 24 vs 11 | 2.18× |
-| Resume | फिर शुरू करें | 13 vs 6 | 2.17× |
 | Archived | आर्काइव किया गया | 16 vs 8 | 2× |
 | Verify & Login | सत्यापित करें और लॉग इन करें | 28 vs 14 | 2× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
@@ -581,6 +584,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Next day with items | Giorno successivo con articoli | 30 vs 19 | 1.58× |
 | Transfer failed: {message} | Trasferimento non riuscito: {message} | 30 vs 19 | 1.58× |
 | {day}, no items | {day}, nessun articolo | 19 vs 12 | 1.58× |
+| ⚠ Not peer-reviewed | ⚠ Non sottoposto a peer review | 30 vs 19 | 1.58× |
 | Request failed | Richiesta non riuscita | 22 vs 14 | 1.57× |
 | System Default | Predefinito di sistema | 22 vs 14 | 1.57× |
 | Active send target | Destinazione di invio attiva | 28 vs 18 | 1.56× |
@@ -589,6 +593,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | 🧠 On-device tools | 🧠 Strumenti sul dispositivo | 28 vs 18 | 1.56× |
 | Invalid Key | Chiave non valida | 17 vs 11 | 1.55× |
 | No Kindle email set. | Nessuna email Kindle impostata. | 31 vs 20 | 1.55× |
+| Not a paper | Non è un articolo | 17 vs 11 | 1.55× |
 | Wrong email? Go back | Email sbagliata? Torna indietro | 31 vs 20 | 1.55× |
 | Failed to export backup. | Esportazione del backup non riuscita. | 37 vs 24 | 1.54× |
 | Standup humor | Umorismo da stand-up | 20 vs 13 | 1.54× |
@@ -645,6 +650,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | or consider | または次をご検討ください: | 25 vs 11 | 2.27× |
 | {n} files sent | {n}件のファイルを送信しました | 28 vs 13 | 2.15× |
 | Cancelled | キャンセルしました | 18 vs 9 | 2× |
+| Design | 研究デザイン | 12 vs 6 | 2× |
 | Export | エクスポート | 12 vs 6 | 2× |
 | No items yet | アイテムはまだありません | 24 vs 12 | 2× |
 | Unmute | ミュート解除 | 12 vs 6 | 2× |
@@ -737,6 +743,7 @@ Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Casual | Descontraído | 12 vs 6 | 2× |
 | Preset | Predefinição | 12 vs 6 | 2× |
 | ▶ Play | ▶ Reproduzir | 12 vs 6 | 2× |
+| 💬 Ask | 💬 Perguntar | 12 vs 6 | 2× |
 | ＋ Add | ＋ Adicionar | 12 vs 6 | 2× |
 | shared tag | etiqueta partilhada | 19 vs 10 | 1.9× |
 | Add custom model | Adicionar modelo personalizado | 30 vs 16 | 1.88× |

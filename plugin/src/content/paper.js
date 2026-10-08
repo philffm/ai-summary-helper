@@ -87,6 +87,8 @@ export function paperIndexFields(p) {
   const f = { paper: p.state };
   if (p.doi) f.doi = p.doi;
   if (p.preprint) f.preprint = true;
+  if (p.type) f.paperType = p.type;
+  if (p.authors) f.paperAuthors = p.authors;
   return f;
 }
 
@@ -102,5 +104,26 @@ export function detectPaperInText(text, loc = window.location) {
   const out = { state: 'likely' };
   if (m) out.doi = ppCap(normalizeDoi(m[0]), 200);
   if (preprint) out.preprint = true;
+  return out;
+}
+
+/** What the model said in <!-- SCHOLARLY: {...} -->, merged with the page signals. Returns the new paper object or null. */
+export function applyScholarly(paper, raw) {
+  let j = null;
+  if (raw && typeof raw === 'object') j = raw;
+  else {
+    const m = String(raw || '').match(/\{[\s\S]*\}/);
+    if (m) { try { j = JSON.parse(m[0]); } catch (_) { j = null; } }
+  }
+  if (!j || typeof j !== 'object') return paper || null;      // unparsable: keep what the page said
+  if (j.scholarly !== true) return paper && paper.state === 'yes' ? paper : null;   // strong page signals win; weak ones are dropped
+  const out = Object.assign({}, paper || {});
+  out.state = paper ? 'yes' : 'likely';
+  const t = String(j.type || '').toLowerCase();
+  out.type = /review|meta-?analy/.test(t) ? 'review' : /trial|rct/.test(t) ? 'trial' : /preprint/.test(t) || out.preprint ? 'preprint' : 'study';
+  if (out.type === 'preprint') out.preprint = true;
+  const facts = {};
+  ['design', 'sample', 'limitations'].forEach((k) => { const v = ppCap(j[k], 220); if (v) facts[k] = v; });
+  if (Object.keys(facts).length) out.facts = facts;
   return out;
 }

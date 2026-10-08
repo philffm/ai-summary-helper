@@ -3232,5 +3232,29 @@
   },
   "f_preprint_aa9c": {
     "message": "🎓 프리프린트"
+  },
+  "f_design_02ef": {
+    "message": "설계"
+  },
+  "f_limitations_7ff6": {
+    "message": "한계"
+  },
+  "f_preprints_9516": {
+    "message": "프리프린트"
+  },
+  "f_research_b9ec": {
+    "message": "연구"
+  },
+  "f_reviews_1576": {
+    "message": "리뷰"
+  },
+  "f_sample_8fc7": {
+    "message": "표본"
+  },
+  "f_trial_6b73": {
+    "message": "시험"
+  },
+  "f_trials_7100": {
+    "message": "시험"
   }
 }

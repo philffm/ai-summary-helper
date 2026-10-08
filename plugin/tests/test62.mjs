@@ -13,7 +13,7 @@ assert.equal(normalizeDoi('doi:10.1000/xyz123)'), '10.1000/xyz123'); assert.equa
 page('<meta name="citation_title" content="Sleep and memory"><meta name="citation_journal_title" content="Nature Human Behaviour"><meta name="citation_doi" content="10.1038/s41562-026-0000-0"><meta name="citation_author" content="Smith, J."><meta name="citation_author" content="Lee, K."><meta name="citation_author" content="Rao, P."><meta name="citation_author" content="Zed, Q."><meta name="citation_publication_date" content="2026/03/02">');
 let p = detectPaper(d, loc('https://www.nature.com/articles/s41562-026-0000-0'));
 assert.deepEqual(p, { state: 'yes', doi: '10.1038/s41562-026-0000-0', journal: 'Nature Human Behaviour', year: '2026', authors: 'Smith, J.; Lee, K.; Rao, P. et al.' });
-assert.deepEqual(paperIndexFields(p), { paper: 'yes', doi: '10.1038/s41562-026-0000-0' });
+assert.deepEqual(paperIndexFields(p), { paper: 'yes', doi: '10.1038/s41562-026-0000-0', paperAuthors: 'Smith, J.; Lee, K.; Rao, P. et al.' });
 // arXiv: preprint
 page('<meta name="citation_title" content="Scaling laws"><meta name="citation_arxiv_id" content="2610.00000"><meta name="citation_author" content="Chen, W.">');
 p = detectPaper(d, loc('https://arxiv.org/abs/2610.00000'));

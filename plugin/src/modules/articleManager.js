@@ -13,7 +13,7 @@ import { initSelection, registerCard, toggleCard, selectionActive } from './send
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
-import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine } from './paperInfo.js';
+import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText } from './paperInfo.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
@@ -27,12 +27,15 @@ let historyTab = 'inbox';         // 'inbox' | 'read' | 'sent' | 'archive'
 let pendingRender = false;
 
 const isSent = (a) => Array.isArray(a.sentTo) && a.sentTo.length > 0;
-const TAB_DEFS = [['inbox', () => T('Inbox')], ['read', () => T('Read')], ['sent', () => T('Sent')], ['archive', () => T('Archive')]];
+const TAB_DEFS = [['inbox', () => T('Inbox')], ['read', () => T('Read')], ['sent', () => T('Sent')], ['research', () => T('Research')], ['archive', () => T('Archive')]];
+const RESEARCH_FILTERS = [['all', () => T('All')], ['review', () => T('Reviews')], ['trial', () => T('Trials')], ['preprint', () => T('Preprints')]];
+let researchFilter = 'all';
 
 function tabList(tab) {
     if (tab === 'read') return cachedArticles.filter(a => a.readAt);
     if (tab === 'sent') return cachedArticles.filter(isSent);
     if (tab === 'archive') return archivedCache;
+    if (tab === 'research') return cachedArticles.filter(a => paperState(a) && (researchFilter === 'all' || paperType(a) === researchFilter));
     return cachedArticles;
 }
 
@@ -69,7 +72,8 @@ function buildTabs() {
         b.classList.toggle('on', historyTab === id);
         b.setAttribute('aria-selected', String(historyTab === id));
         b.firstChild.textContent = label();
-        b.lastChild.textContent = String(tabList(id).length);
+        if (id === 'research') b.hidden = historyTab !== 'research' && !cachedArticles.some(a => paperState(a));   // only for people who save papers
+        b.lastChild.textContent = String(id === 'research' ? cachedArticles.filter(a => paperState(a)).length : tabList(id).length);
     });
     syncTabbarLater(nav);
     return nav;
@@ -1014,6 +1018,21 @@ export function loadHistory() {
         }).catch(() => {});
 }
 
+function renderResearchFilters(bar) {
+    if (!bar) return;
+    let row = bar.querySelector('.research-filters');
+    if (historyTab !== 'research') { if (row) row.remove(); return; }
+    if (!row) { row = document.createElement('div'); row.className = 'research-filters'; bar.appendChild(row); }
+    row.replaceChildren();
+    RESEARCH_FILTERS.forEach(([id, label]) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'research-filter' + (researchFilter === id ? ' on' : ''); b.dataset.filter = id;
+        b.textContent = label(); b.setAttribute('aria-pressed', String(researchFilter === id));
+        b.addEventListener('click', () => { researchFilter = id; renderTab(); });
+        row.appendChild(b);
+    });
+}
+
 export function renderArticles(articles) {
     const articleList = document.getElementById('articleList');
     articleList.innerHTML = '';
@@ -1021,6 +1040,7 @@ export function renderArticles(articles) {
     const tabsBar = document.getElementById('historyTopBar');
     const tabsNav = buildTabs();
     if (tabsBar && tabsNav.parentNode !== tabsBar) tabsBar.appendChild(tabsNav);
+    renderResearchFilters(tabsBar);
     if (!articles || articles.length === 0) {
         const emptyMessage = document.createElement('div');
         emptyMessage.id = 'emptyMessage';
@@ -1262,7 +1282,7 @@ export function filterArticles() {
     const cheapMatch = (a) => {
         const titleMatch = (a.title || '').toLowerCase().includes(lowerFilter);
         const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(lowerFilter));
-        return titleMatch || tagMatch;
+        return titleMatch || tagMatch || paperSearchText(a).includes(lowerFilter);
     };
 
     // If graph is visible, react to the search box per graphScopeMode:
@@ -1302,7 +1322,8 @@ export function filterArticles() {
         const headerText = card.querySelector('.article-header h4').textContent.toLowerCase();
         const tagText = Array.from(card.querySelectorAll('.tag-chip'))
             .map(chip => chip.textContent.toLowerCase()).join(' ');
-        const cheapHit = headerText.includes(lowerFilter) || tagText.includes(lowerFilter);
+        const art = cachedArticles.find(x => String(x.timestamp) === card.dataset.ts) || archivedCache.find(x => String(x.timestamp) === card.dataset.ts);
+        const cheapHit = headerText.includes(lowerFilter) || tagText.includes(lowerFilter) || (art ? paperSearchText(art).includes(lowerFilter) : false);
         const indexedHit = indexedMatchIds ? indexedMatchIds.has(card.dataset.ts) : false;
         card.style.display = (cheapHit || indexedHit) ? 'block' : 'none';
     });
@@ -1393,6 +1414,12 @@ function renderPaperRow(article, row) {
     if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; row.appendChild(l); }
     const url = paperState(article) ? doiUrl(paperDoi(article)) : '';
     if (url) { const a = document.createElement('a'); a.className = 'paper-doi'; a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'doi:' + paperDoi(article) + ' ↗'; row.appendChild(a); }
+    const facts = paperFacts(article);
+    if (facts.length) {
+        const box = document.createElement('dl'); box.className = 'paper-facts';
+        facts.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; box.append(dt, dd); });
+        row.appendChild(box);
+    }
     if (article.id) {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'button-secondary paper-toggle'; b.textContent = tg.label;
