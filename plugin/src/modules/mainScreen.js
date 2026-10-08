@@ -68,11 +68,6 @@ export function initMainScreen(ui) {
                 chips.slice().reverse().forEach(([tone, text]) => { const s = document.createElement('span'); s.className = 'bubble-tag paper paper-' + tone; s.textContent = text; row.prepend(s); });
             }
         }
-        // ⋯ actions (copy, share, LocalSend, Kindle, read aloud, delete …)
-        if (article.id && !article.feedStub) {
-            const hdr = bubble.querySelector('.summary-bubble-header');
-            if (hdr) attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() });
-        }
         // Click to open in history
         bubble.style.cursor = 'pointer';
         bubble.addEventListener('click', async () => {
@@ -84,8 +79,18 @@ export function initMainScreen(ui) {
                 }, 400);
             }
         });
+        // Menu + Ask / replies / Read again need the saved id. A card shown the moment a summary completes has none yet:
+        // decorate() runs again when the save is confirmed (see 'summarySaved').
+        bubble._decorate = () => {
+            if (bubble.dataset.decorated || !article.id || article.feedStub) return;
+            bubble.dataset.decorated = '1'; bubble.dataset.id = article.id;
+        // ⋯ actions (copy, share, LocalSend, Kindle, read aloud, delete …)
+        {
+            const hdr = bubble.querySelector('.summary-bubble-header');
+            if (hdr) attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() });
+        }
         // 💬 Ask: chat about this (older) summary — the thread opens right under the card.
-        if (article.id && !article.feedStub) {
+        {
             const row = document.createElement('div');
             row.className = 'ask-actions';
             const btn = document.createElement('button');
@@ -123,7 +128,10 @@ export function initMainScreen(ui) {
             }
             bubble.appendChild(row);
         }
+        };
+        bubble._decorate();
         feed.appendChild(bubble);
+        return bubble;
     };
 
     // Tracks the highest % shown so far in the current streaming session —
@@ -225,6 +233,8 @@ export function initMainScreen(ui) {
     let lastContext = null;          // summaryContext of the running/last summary
     let conversation = null;         // { url, title, content, summary, turns:[{q,a}] }
     let activeTabId = null;
+    let liveBubbleEl = null;          // its card element
+    const savedIds = {};              // url → id, when 'summarySaved' arrives before 'summaryComplete'
     let liveBubbleArticle = null;     // the article object behind the newest bubble
     const bar = document.querySelector('.controls-bar');
 
@@ -909,6 +919,11 @@ export function initMainScreen(ui) {
             renderSteps(lastContext);
         }
         if (msg.action === 'summarySaved') {
+            if (msg.url && msg.id) savedIds[msg.url] = msg.id;
+            if (liveBubbleArticle && msg.id && samePage(liveBubbleArticle.url, msg.url) && !liveBubbleArticle.id) {
+                liveBubbleArticle.id = msg.id;
+                try { liveBubbleEl && liveBubbleEl._decorate && liveBubbleEl._decorate(); } catch (_) { /* card gone */ }
+            }
             if (conversation && msg.id && samePage(conversation.url, msg.url)) {
                 conversation.id = msg.id;
                 if (liveBubbleArticle) liveBubbleArticle.id = msg.id;   // so opening it shows the saved conversation
@@ -936,8 +951,9 @@ export function initMainScreen(ui) {
                     meta: msg.meta || {},
                     content: msg.content || ''
                 };
-                addBubble(bubbleArticle);
-                liveBubbleArticle = bubbleArticle;
+                const liveBubble = addBubble(bubbleArticle);
+                liveBubbleArticle = bubbleArticle; liveBubbleEl = liveBubble;
+                if (savedIds[msg.url]) { bubbleArticle.id = savedIds[msg.url]; liveBubble._decorate(); }   // the save was confirmed before the card existed
                 const used = usedRow(lastContext);
                 if (used) {
                     const wrap = document.createElement('div');
