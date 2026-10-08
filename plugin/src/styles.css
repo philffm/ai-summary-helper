@@ -36,6 +36,7 @@
 
   /* surfaces */
   --bg-page: #faf8ff;
+  --nav-bg: #ffffff;            /* bottom nav: the lightest surface */
   --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%),
                       radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%);
   --glass-base: rgba(241, 241, 241, 0.92);
@@ -146,6 +147,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg-page: #0b0e14;
+    --nav-bg: #0b0e14;            /* bottom nav: the darkest surface */
     --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%),
                         radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%);
     --glass-base: rgba(11,14,20,0.92);
@@ -220,6 +222,7 @@
 
 :root[data-theme='dark'] {
   --bg-page: #0b0e14;
+  --nav-bg: #0b0e14;
   --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%),
                       radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%);
   --glass-base: rgba(11,14,20,0.82);
@@ -738,7 +741,7 @@ ul#articleList {
   background: var(--glass-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--outline);
   transition: border-color 0.2s ease;
 }
 
@@ -1316,11 +1319,8 @@ text.graph-search-dim {
   align-items: center;
   height: var(--bottom-nav-height);
   padding: 8px 16px;
-  background: color-mix(in srgb, var(--glass-base) 82%, transparent);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
+  background: var(--nav-bg);
   border: 1px solid var(--outline);
-
 }
 
 .nav-item {
@@ -1934,7 +1934,7 @@ text.graph-search-dim {
   background: var(--glass-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--outline);
   animation: flyIn 0.3s ease-out;
 }
 
@@ -2052,7 +2052,7 @@ text.graph-search-dim {
   justify-content: center;
   border-radius: var(--radius-md);
   background: var(--glass-card);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--outline);
   box-shadow: var(--glass-inner-glow);
   color: var(--text-primary);
   font-size: var(--fs-xl);
@@ -2998,7 +2998,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .topbar.scroll-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
 /* ── Split-screen workspace (History, wide windows) ────────────────────── */
-.ws-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--radius-md, 10px); background: var(--glass-card); border: 1px solid var(--glass-border); flex-shrink: 0; }
+.ws-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--radius-md, 10px); background: var(--glass-card); border: 1px solid var(--outline); flex-shrink: 0; }
 .ws-seg[hidden] { display: none; }
 /* Layout switcher lives in the app header and only applies to Feeds + History */
 .header .ws-seg { display: none; padding: 2px; }
@@ -3214,7 +3214,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-a p { margin: 0 0 .6em; }
 .chat-a p:last-child { margin-bottom: 0; }
 .chat-a ul { margin: .2em 0 .6em; padding-left: 18px; }
-.chat-a { align-self: flex-start; background: var(--glass-card); border: 1px solid var(--glass-border); }
+.chat-a { align-self: flex-start; background: var(--glass-card); border: 1px solid var(--outline); }
 .chat-a--pending { opacity: 0.6; }
 
 #fetchSummary[data-state="working"] { background: var(--glass-input); color: var(--text-primary); border: 1px solid var(--outline); }
@@ -3225,7 +3225,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-turn-group { display: flex; flex-direction: column; gap: 6px; }
 .chat-turn-group .chat-q, .chat-turn-group .chat-a { padding: 8px 12px; border-radius: var(--radius-lg); font-size: var(--fs-sm, 13px); line-height: 1.5; white-space: pre-wrap; max-width: 92%; }
 .chat-turn-group .chat-q { align-self: flex-end; background: var(--accent-a12); border: 1px solid var(--accent-a30); }
-.chat-turn-group .chat-a { align-self: flex-start; background: var(--glass-card); border: 1px solid var(--glass-border); }
+.chat-turn-group .chat-a { align-self: flex-start; background: var(--glass-card); border: 1px solid var(--outline); }
 .chat-a-foot { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; white-space: normal; }
 .chat-src, .chat-pin { border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-secondary); border-radius: var(--radius-full); padding: 2px 8px; font-size: var(--fs-2xs); cursor: pointer; text-align: left; }
 .chat-src--open { white-space: normal; }
@@ -3298,7 +3298,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar .chip-icon { font-size: 10px; }
 .composer-pill {
   order: 3; display: flex; align-items: flex-end; gap: 8px; padding: 4px 4px 4px 16px;
-  background: var(--glass-card); border: 1px solid var(--glass-border); border-radius: 24px;
+  background: var(--glass-card); border: 1px solid var(--outline); border-radius: 24px;
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 .composer-pill .input-card-textarea {
@@ -3451,7 +3451,7 @@ html[data-line='compact'] body { line-height: 1.3; }
 html[data-line='relaxed'] body, html[data-line='relaxed'] .summary-box, html[data-line='relaxed'] .summary-box * { line-height: 1.75; }
 html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-motion='reduce'] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 :root[data-theme='contrast'] {
-  --bg-page: #ffffff; --bg-page-gradient: #ffffff; --glass-base: #ffffff; --glass-card: #ffffff; --glass-input: #ffffff;
+  --nav-bg: #ffffff; --bg-page: #ffffff; --bg-page-gradient: #ffffff; --glass-base: #ffffff; --glass-card: #ffffff; --glass-input: #ffffff;
   --glass-border: #000000; --glass-border-strong: #000000; --outline: #000000; --glass-inner-glow: transparent;
   --text-primary: #000000; --text-secondary: #000000; --text-muted: #1f2933; --text-link: #0033cc;
   --accent: #0033cc; --accent-light: #0033cc; --accent-glow: #0033cc; --on-accent: #ffffff;
