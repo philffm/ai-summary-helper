@@ -3223,5 +3223,26 @@
   },
   "f_reply_2ae0": {
     "message": "💬 {n} resposta"
+  },
+  "f_not_a_paper_5823": {
+    "message": "Não é um artigo"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ Sem revisão por pares"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 Provável artigo"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 Marcar como artigo"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 Artigo"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 Artigo · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 Preprint"
   }
 }

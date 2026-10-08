@@ -3211,5 +3211,26 @@
   },
   "f_reply_2ae0": {
     "message": "💬 답변 {n}개"
+  },
+  "f_not_a_paper_5823": {
+    "message": "논문 아님"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ 동료 심사 전"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 논문일 수 있음"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 논문으로 표시"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 논문"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 논문 · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 프리프린트"
   }
 }

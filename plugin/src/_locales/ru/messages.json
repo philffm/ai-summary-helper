@@ -3139,5 +3139,26 @@
   },
   "f_reply_2ae0": {
     "message": "💬 {n} ответ"
+  },
+  "f_not_a_paper_5823": {
+    "message": "Не статья"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ Без рецензирования"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 Вероятно статья"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 Отметить как статью"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 Статья"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 Статья · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 Препринт"
   }
 }

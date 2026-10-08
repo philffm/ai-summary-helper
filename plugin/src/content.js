@@ -1,5 +1,6 @@
 import { SK } from './modules/storageKeys.js';
 import { languageEnglishName, languageRule } from './modules/languages.js';
+import { paperIndexFields } from './content/paper.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -808,7 +809,7 @@ import {
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : undefined, pageMeta)
+              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, { ...(pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, pageMeta)
                 .then(savedArticle => {
                   if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: window.location.href });
                   resolve({ success: true, article: savedArticle });

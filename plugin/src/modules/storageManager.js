@@ -445,6 +445,11 @@ class StorageManager {
                 e.sentTo.push({ kind: patch.sent.kind, label, at: now });
                 changed = true;
             }
+            if (patch.paperOverride !== undefined) {   // 'yes' | 'no' | null (back to auto-detect)
+                const v = patch.paperOverride === 'yes' || patch.paperOverride === 'no' ? patch.paperOverride : null;
+                if (v && e.paperOverride !== v) { e.paperOverride = v; changed = true; }
+                else if (!v && e.paperOverride) { delete e.paperOverride; changed = true; }
+            }
             if (typeof patch.archived === 'boolean' && !!e.archived !== patch.archived) {
                 e.archived = patch.archived;
                 if (patch.archived) e.archivedAt = now; else delete e.archivedAt;

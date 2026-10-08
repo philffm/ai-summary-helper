@@ -13,6 +13,7 @@ import { initSelection, registerCard, toggleCard, selectionActive } from './send
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
+import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine } from './paperInfo.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
@@ -291,13 +292,19 @@ async function exportToMarkdown(article) {
         tagsFrontmatter += '\n' + article.tags.map(tag => `  - "${tag.replace(/"/g, '\\"')}"`).join('\n');
     }
 
+    // Paper fields (only for pages detected / marked as papers)
+    const pm = (paperState(article) && article.meta && article.meta.paper) || {};
+    const yamlStr = (v) => v ? `"${String(v).replace(/"/g, '\\"')}"` : '';
+    const doi = paperState(article) ? paperDoi(article) : '';
+    const paperFm = (doi ? `\ndoi: "${doi}"` : '') + (pm.journal ? `\njournal: ${yamlStr(pm.journal)}` : '') + (paperState(article) ? '\ntype: paper' : '');
+
     // 4. Construct the YAML Frontmatter
     const frontmatter = `---
 title: "${safeTitle}"
 source: "${article.url || ''}"
-author: 
-published: 
-created: ${createdDate}
+author: ${yamlStr(pm.authors || (article.meta && article.meta.author) || '')}
+published: ${yamlStr(pm.year || '')}
+created: ${createdDate}${paperFm}
 description: 
 ${tagsFrontmatter}
 bookrecs: 
@@ -1174,6 +1181,12 @@ function buildArticleCard(article) {
             badges.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip status-badge ' + tone; b.textContent = text; frag.appendChild(b); });
             row.prepend(frag);
         }
+        const pChips = paperChips(article);
+        if (host && pChips.length) {   // 🎓 paper badges share the status/tag row
+            let row = host.querySelector('.card-tags');
+            if (!row) { row = document.createElement('div'); row.className = 'card-tags'; const anchor = host.querySelector('.article-date'); if (anchor) anchor.after(row); else host.appendChild(row); }
+            pChips.slice().reverse().forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip paper paper-' + tone; b.textContent = text; row.prepend(b); });
+        }
         if (host && article.archived) {
             const r = document.createElement('button');
             r.type = 'button'; r.className = 'button-secondary status-restore'; r.textContent = T('↩ Restore to Inbox');
@@ -1366,6 +1379,33 @@ async function renderDetailQa(article, mount) {
     draw();
 }
 
+/** 🎓 row in the detail view: badges, authors · journal · year, DOI link and the "Mark as paper / Not a paper" override. */
+function renderPaperRow(article, row) {
+    if (!row) return;
+    row.replaceChildren();
+    const chips = paperChips(article);
+    const tg = paperToggle(article);
+    if (!chips.length && !article.id) { row.hidden = true; return; }
+    row.hidden = false;
+    row.className = 'paper-row';
+    chips.forEach(([tone, text]) => { const c = document.createElement('span'); c.className = 'tag-chip paper paper-' + tone; c.textContent = text; row.appendChild(c); });
+    const line = paperLine(article);
+    if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; row.appendChild(l); }
+    const url = paperState(article) ? doiUrl(paperDoi(article)) : '';
+    if (url) { const a = document.createElement('a'); a.className = 'paper-doi'; a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'doi:' + paperDoi(article) + ' ↗'; row.appendChild(a); }
+    if (article.id) {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'button-secondary paper-toggle'; b.textContent = tg.label;
+        b.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            await applyStatus([article.id], { paperOverride: tg.value });
+            article.paperOverride = tg.value;
+            renderPaperRow(article, row);
+        });
+        row.appendChild(b);
+    }
+}
+
 export async function showArticleDetail(article) {
     // List/graph/search cards only carry the lean articlesIndex shape (no
     // content) — load the full article:<id> record before rendering detail.
@@ -1451,6 +1491,7 @@ export async function showArticleDetail(article) {
         </p>
         ${tagsHtml}
         ${decisionBadge}
+        <div class="paper-row" hidden></div>
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
           <button class="button-secondary share-button">${T('Share 🔗')}</button>
           <button class="button-secondary copy-button">${T('Copy 📋')}</button>
@@ -1476,6 +1517,7 @@ export async function showArticleDetail(article) {
     // asynchronously and progressively fill in — they never block the rest
     // of the detail view from rendering.
     renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
+    renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
     {   // saved page metadata: favicon + description (set as text, never as HTML)
         const m = article.meta || {};

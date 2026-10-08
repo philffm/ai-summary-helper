@@ -2876,6 +2876,18 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .tag-chip.status-badge.sent, .status-badge.sent { background: var(--tone-sent-bg); color: var(--tone-sent-fg); }
 .tag-chip.status-badge.new, .status-badge.new { background: var(--tone-new-bg); color: var(--tone-new-fg); }
 .tag-chip.status-badge.arch, .status-badge.arch { background: var(--tone-arch-bg); color: var(--tone-arch-fg); }
+/* 🎓 Research mode: paper badges on cards, bubbles and in the detail view */
+.tag-chip.paper, .bubble-tag.paper { font-weight: 600; }
+.paper-ok { color: var(--ok); }
+.paper-acc { color: var(--accent); }
+.paper-warn { color: var(--warn); }
+.paper-mut { color: var(--text-muted); }
+.paper-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 12px; }
+.paper-row[hidden] { display: none; }
+.paper-line { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
+.paper-doi { font-size: var(--fs-xs); color: var(--accent); text-decoration: none; }
+.paper-doi:hover { text-decoration: underline; }
+.paper-toggle { margin-left: auto; font-size: var(--fs-xs); padding: 4px 10px; }
 .status-restore { margin-top: 8px; font-size: var(--fs-sm); padding: 6px 12px; }
 .sel-bar .sel-more { width: 36px; height: 36px; padding: 0; flex: none; font-size: var(--fs-xl); line-height: 1; }
 .sel-bar .sel-more:disabled { opacity: 0.4; }

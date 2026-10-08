@@ -3139,5 +3139,26 @@
   },
   "f_reply_2ae0": {
     "message": "💬 {n} إجابة"
+  },
+  "f_not_a_paper_5823": {
+    "message": "ليست ورقة بحثية"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ غير محكّمة"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 ربما ورقة بحثية"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 وضع علامة كورقة بحثية"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 ورقة بحثية"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 ورقة بحثية · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 نسخة أولية"
   }
 }

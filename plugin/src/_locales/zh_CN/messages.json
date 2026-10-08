@@ -3223,5 +3223,26 @@
   },
   "f_reply_2ae0": {
     "message": "💬 {n} 条回答"
+  },
+  "f_not_a_paper_5823": {
+    "message": "不是论文"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ 未经同行评审"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 可能是论文"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 标记为论文"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 论文"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 论文 · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 预印本"
   }
 }

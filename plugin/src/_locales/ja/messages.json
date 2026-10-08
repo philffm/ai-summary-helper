@@ -3229,5 +3229,26 @@
   },
   "f_reply_2ae0": {
     "message": "💬 {n}件の回答"
+  },
+  "f_not_a_paper_5823": {
+    "message": "論文ではない"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ 査読前"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 論文の可能性"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 論文として記録"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 論文"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 論文 · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 プレプリント"
   }
 }

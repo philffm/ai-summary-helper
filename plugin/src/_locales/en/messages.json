@@ -3372,5 +3372,26 @@
   "f_reply_2ae0": {
     "message": "💬 {n} reply",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_a_paper_5823": {
+    "message": "Not a paper"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ Not peer-reviewed"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 Likely paper"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 Mark as paper"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 Paper"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 Paper · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 Preprint"
   }
 }

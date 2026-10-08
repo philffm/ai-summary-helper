@@ -6,6 +6,7 @@ import { debug } from './log.js';
 
 import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
+import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
 import { answerPreview, newTurn, buildPrompt, parseAnswer, buildSuggestPrompt, parseSuggestions } from './conversation.js';
@@ -51,6 +52,15 @@ export function initMainScreen(ui) {
             ${tagsHtml}
             ${modelHtml}
         `;
+        // 🎓 paper badges (detected from DOI / citation meta; the user's override lives on the index entry)
+        {
+            const chips = paperChips(article);
+            if (chips.length) {
+                let row = bubble.querySelector('.bubble-tags');
+                if (!row) { row = document.createElement('div'); row.className = 'bubble-tags'; bubble.querySelector('.summary-bubble-body').after(row); }
+                chips.slice().reverse().forEach(([tone, text]) => { const s = document.createElement('span'); s.className = 'bubble-tag paper paper-' + tone; s.textContent = text; row.prepend(s); });
+            }
+        }
         // Click to open in history
         bubble.style.cursor = 'pointer';
         bubble.addEventListener('click', async () => {

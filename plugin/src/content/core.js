@@ -1,5 +1,6 @@
 import { SK, articleRecKey } from '../modules/storageKeys.js';
 import { debug } from '../modules/log.js';
+import { detectPaper } from './paper.js';
 // content/core.js
 // Core helpers for the content script: tag generation, ghost-quote parsing,
 // storage saving, and the Safari-safe streaming port connection.
@@ -63,6 +64,7 @@ export function collectPageMeta(doc = document, loc = window.location) {
     lang: cap(doc.documentElement ? doc.documentElement.getAttribute('lang') : '', 20)
   };
   Object.keys(meta).forEach(k => { if (!meta[k]) delete meta[k]; });
+  try { const paper = detectPaper(doc, loc); if (paper) meta.paper = paper; } catch (_) { /* detection is optional */ }
   return meta;
 }
 
