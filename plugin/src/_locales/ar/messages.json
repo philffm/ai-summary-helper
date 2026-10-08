@@ -3130,20 +3130,5 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "تم تخطي المقدمة — سيُرسل الملخص بدونها"
-  },
-  "f_about_88ec": {
-    "message": "حول:"
-  },
-  "f_close_conversation_0e32": {
-    "message": "إغلاق المحادثة"
-  },
-  "f_ask_dafd": {
-    "message": "💬 اسأل"
-  },
-  "f_replies_1cd4": {
-    "message": "💬 {n} إجابات"
-  },
-  "f_reply_2ae0": {
-    "message": "💬 {n} إجابة"
   }
 }

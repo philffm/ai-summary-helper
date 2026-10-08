@@ -3214,20 +3214,5 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "Intro omitida: el resumen se envía sin ella"
-  },
-  "f_about_88ec": {
-    "message": "Sobre:"
-  },
-  "f_close_conversation_0e32": {
-    "message": "Cerrar conversación"
-  },
-  "f_ask_dafd": {
-    "message": "💬 Preguntar"
-  },
-  "f_replies_1cd4": {
-    "message": "💬 {n} respuestas"
-  },
-  "f_reply_2ae0": {
-    "message": "💬 {n} respuesta"
   }
 }

@@ -3361,22 +3361,5 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "Intro skipped — the digest goes out without it"
-  },
-  "f_about_88ec": {
-    "message": "About:"
-  },
-  "f_close_conversation_0e32": {
-    "message": "Close conversation"
-  },
-  "f_ask_dafd": {
-    "message": "💬 Ask"
-  },
-  "f_replies_1cd4": {
-    "message": "💬 {n} replies",
-    "description": "Placeholders: {n} (keep as is)"
-  },
-  "f_reply_2ae0": {
-    "message": "💬 {n} reply",
-    "description": "Placeholders: {n} (keep as is)"
   }
 }

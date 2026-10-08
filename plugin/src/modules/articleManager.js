@@ -13,7 +13,6 @@ import { initSelection, registerCard, toggleCard, selectionActive } from './send
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
-import { buildAskRow, closeAsk } from './askThread.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
@@ -1009,7 +1008,6 @@ export function loadHistory() {
 }
 
 export function renderArticles(articles) {
-    closeAsk();   // an open Ask thread belongs to a card that is about to be rebuilt
     const articleList = document.getElementById('articleList');
     articleList.innerHTML = '';
     // The tabs live in the top bar (like Feeds' scope row), mounted once.
@@ -1182,10 +1180,6 @@ function buildArticleCard(article) {
             r.addEventListener('click', (e) => { e.stopPropagation(); applyStatus([article.id], { archived: false }); });
             host.appendChild(r);
         }
-    }
-    {   // 💬 Ask: chat about this summary right here (thread under the card, composer docked above the nav)
-        const askRow = buildAskRow(article, listItem);
-        if (askRow) listItem.appendChild(askRow);
     }
     registerCard(article, listItem);
     listItem.addEventListener('click', (event) => {
@@ -1373,7 +1367,6 @@ async function renderDetailQa(article, mount) {
 }
 
 export async function showArticleDetail(article) {
-    closeAsk();
     // List/graph/search cards only carry the lean articlesIndex shape (no
     // content) — load the full article:<id> record before rendering detail.
     // Callers that already pass a full in-memory article (e.g. mainScreen.js
