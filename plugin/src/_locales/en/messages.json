@@ -3664,5 +3664,130 @@
   "f_waiting_s_f51e": {
     "message": "waiting {s}s",
     "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Tag / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> is forgotten after a restart of your Mac. This login item sets it again every time:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Add tag or DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Allow browser extensions"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Allow browser extensions (permanent)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Apply it:"
+  },
+  "f_check_it_9a90": {
+    "message": "Check it"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Filter on: {tag}. {n} articles shown.",
+    "description": "Placeholders: {tag} {n} (keep as is)"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Filter shortcuts…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Focus search"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Graph of your archive. {tags} tags, {articles} articles. Press L for the list view.",
+    "description": "Placeholders: {tags} {articles} (keep as is)"
+  },
+  "f_graph_view_6d78": {
+    "message": "Graph view"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Keyboard shortcuts"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "List view: {tags} tags. Press Tab to browse, Enter to filter.",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_lists_df96": {
+    "message": "Lists"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Make it permanent"
+  },
+  "f_new_summary_da1d": {
+    "message": "New summary"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Next / previous card"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "No shortcuts match"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Only if the Ollama app is quit (otherwise you get “address already in use”; check with <code>lsof -i :11434</code> and stop it with <code>pkill -x ollama</code>). Runs Ollama in a foreground window:"
+  },
+  "f_open_10e9": {
+    "message": "Open"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Open the service override with <code>sudo systemctl edit ollama.service</code> and add:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Press ? anywhere outside a text field"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Restart the service"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Run this command. It lets extensions, and only extensions, talk to Ollama:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Run this so Ollama accepts requests from browser extensions (permanent for your user account):"
+  },
+  "f_search_a2c9": {
+    "message": "Search"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Start Ollama again from the Start menu, or run it as a foreground server from a new Command Prompt window:"
+  },
+  "f_summarize_791a": {
+    "message": "Summarize"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Summarize / send"
+  },
+  "f_switch_tab_793a": {
+    "message": "Switch tab"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Tags in your archive"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Without systemd, run Ollama in a foreground window:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "You should see <code>200</code>. A <code>403</code> means Ollama has not picked up the setting yet: quit it and start it again."
+  },
+  "f_help_a3fa": {
+    "message": "help"
+  },
+  "f_linked_to_886c": {
+    "message": "linked to {tags}",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_move_0014": {
+    "message": "move"
+  },
+  "f_open_c4c9": {
+    "message": "open"
+  },
+  "f_search_28a9": {
+    "message": "search"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 Assign DOI {doi}",
+    "description": "Placeholders: {doi} (keep as is)"
   }
 }

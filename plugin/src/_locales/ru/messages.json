@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "ожидание {s} с"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Тег / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> сбрасывается после перезагрузки Mac. Этот элемент входа задаёт его заново при каждом входе:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Добавить тег или DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Разрешить расширения браузера"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Разрешить расширения браузера (постоянно)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Примените:"
+  },
+  "f_check_it_9a90": {
+    "message": "Проверить"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Фильтр: {tag}. Показано статей: {n}."
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Фильтр сочетаний…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Перейти к поиску"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Граф вашего архива. Тегов: {tags}, статей: {articles}. Нажмите L для списка."
+  },
+  "f_graph_view_6d78": {
+    "message": "Вид графа"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Сочетания клавиш"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Вид списка: тегов {tags}. Tab — перебор, Enter — фильтр."
+  },
+  "f_lists_df96": {
+    "message": "Списки"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Сделать постоянным"
+  },
+  "f_new_summary_da1d": {
+    "message": "Новая сводка"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Следующая / предыдущая карточка"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Сочетаний не найдено"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Только если приложение Ollama закрыто (иначе появится «address already in use»; проверьте через <code>lsof -i :11434</code> и остановите через <code>pkill -x ollama</code>). Запускает Ollama в окне на переднем плане:"
+  },
+  "f_open_10e9": {
+    "message": "Открыть"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Откройте переопределение службы через <code>sudo systemctl edit ollama.service</code> и добавьте:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Нажмите ? в любом месте вне текстового поля"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Перезапустить службу"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Выполните эту команду. Она разрешает расширениям, и только им, обращаться к Ollama:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Выполните это, чтобы Ollama принимал запросы от расширений браузера (постоянно для вашей учётной записи):"
+  },
+  "f_search_a2c9": {
+    "message": "Поиск"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Снова запустите Ollama из меню «Пуск» или как сервер на переднем плане в новом окне командной строки:"
+  },
+  "f_summarize_791a": {
+    "message": "Суммировать"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Суммировать / отправить"
+  },
+  "f_switch_tab_793a": {
+    "message": "Сменить вкладку"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Теги вашего архива"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Без systemd запустите Ollama в окне на переднем плане:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "Вы должны увидеть <code>200</code>. <code>403</code> значит, что Ollama ещё не применил настройку: закройте и запустите его снова."
+  },
+  "f_help_a3fa": {
+    "message": "справка"
+  },
+  "f_linked_to_886c": {
+    "message": "связан с {tags}"
+  },
+  "f_move_0014": {
+    "message": "перемещение"
+  },
+  "f_open_c4c9": {
+    "message": "открыть"
+  },
+  "f_search_28a9": {
+    "message": "поиск"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 Назначить DOI {doi}"
   }
 }

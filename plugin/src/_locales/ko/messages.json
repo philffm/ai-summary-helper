@@ -3493,5 +3493,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "대기 중 {s}초"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ 태그 / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code>는 Mac을 재시작하면 사라집니다. 이 로그인 항목이 로그인할 때마다 다시 설정합니다:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "태그 또는 DOI 추가…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "브라우저 확장 프로그램 허용"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "브라우저 확장 프로그램 허용(영구)"
+  },
+  "f_apply_it_e25a": {
+    "message": "적용하세요:"
+  },
+  "f_check_it_9a90": {
+    "message": "확인"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "필터: {tag}. 글 {n}개 표시 중."
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "단축키 필터…"
+  },
+  "f_focus_search_53f5": {
+    "message": "검색으로 이동"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "보관함 그래프. 태그 {tags}개, 글 {articles}개. L 키로 목록 보기."
+  },
+  "f_graph_view_6d78": {
+    "message": "그래프 보기"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "키보드 단축키"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "목록 보기: 태그 {tags}개. Tab으로 이동, Enter로 필터."
+  },
+  "f_lists_df96": {
+    "message": "목록"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "영구 적용하기"
+  },
+  "f_new_summary_da1d": {
+    "message": "새 요약"
+  },
+  "f_next_previous_card_c144": {
+    "message": "다음 / 이전 카드"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "일치하는 단축키가 없습니다"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Ollama 앱을 종료한 경우에만(아니면 «address already in use»가 나옵니다. <code>lsof -i :11434</code>로 확인하고 <code>pkill -x ollama</code>로 중지). Ollama를 포그라운드 창에서 실행합니다:"
+  },
+  "f_open_10e9": {
+    "message": "열기"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "<code>sudo systemctl edit ollama.service</code>로 서비스 오버라이드를 열고 다음을 추가하세요:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "텍스트 필드 밖 어디서든 ? 누르기"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "서비스 다시 시작"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "이 명령을 실행하세요. 확장 프로그램만 Ollama와 통신하도록 허용합니다:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Ollama가 브라우저 확장 프로그램의 요청을 받도록 이 명령을 실행하세요(사용자 계정에 영구 적용):"
+  },
+  "f_search_a2c9": {
+    "message": "검색"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "시작 메뉴에서 Ollama를 다시 시작하거나, 새 명령 프롬프트 창에서 포그라운드 서버로 실행하세요:"
+  },
+  "f_summarize_791a": {
+    "message": "요약"
+  },
+  "f_summarize_send_e76b": {
+    "message": "요약 / 보내기"
+  },
+  "f_switch_tab_793a": {
+    "message": "탭 전환"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "보관함의 태그"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "systemd가 없다면 Ollama를 포그라운드 창에서 실행하세요:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "<code>200</code>이 보여야 합니다. <code>403</code>은 Ollama가 설정을 아직 적용하지 않았다는 뜻입니다. 종료한 뒤 다시 시작하세요."
+  },
+  "f_help_a3fa": {
+    "message": "도움말"
+  },
+  "f_linked_to_886c": {
+    "message": "{tags}와 연결됨"
+  },
+  "f_move_0014": {
+    "message": "이동"
+  },
+  "f_open_c4c9": {
+    "message": "열기"
+  },
+  "f_search_28a9": {
+    "message": "검색"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 DOI {doi} 지정"
   }
 }

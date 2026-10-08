@@ -300,7 +300,7 @@ To fix this, you need to set the `OLLAMA_ORIGINS` environment variable. Here is 
 3. Click **Environment Variables**.
 4. Under User variables, click **New**:
    - Variable name: `OLLAMA_ORIGINS`
-   - Variable value: `*`
+   - Variable value: `chrome-extension://*,moz-extension://*,safari-web-extension://*`
 5. Click **OK** on all windows.
 6. **Crucial:** Open a new Terminal or Command Prompt and type `ollama serve` (or simply relaunch the Ollama app from the Start menu).
 
@@ -309,11 +309,33 @@ To fix this, you need to set the `OLLAMA_ORIGINS` environment variable. Here is 
 1. Quit Ollama from the Menu Bar icon.
 2. Open Terminal and run:
    ```bash
-   launchctl setenv OLLAMA_ORIGINS "*"
+   launchctl setenv OLLAMA_ORIGINS "chrome-extension://*,moz-extension://*,safari-web-extension://*"
    ```
 3. Restart the Ollama application.
+4. Check it (you should see `200`; `403` means Ollama has not picked up the setting yet, so quit and start it again):
+   ```bash
+   curl -s -o /dev/null -w "%{http_code}\n" http://localhost:11434/api/tags -H "Origin: chrome-extension://test"
+   ```
 
-*Note: To make this permanent, you usually need to add that line to your `~/.zshrc` or `~/.bash_profile`.*
+**Make it permanent.** `launchctl setenv` is forgotten when you restart your Mac. This login item sets it again at every login:
+
+```bash
+cat > ~/Library/LaunchAgents/com.ollama.origins.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>com.ollama.origins</string>
+<key>ProgramArguments</key><array><string>/bin/sh</string><string>-c</string>
+<string>launchctl setenv OLLAMA_ORIGINS "chrome-extension://*,moz-extension://*,safari-web-extension://*"</string></array>
+<key>RunAtLoad</key><true/>
+</dict></plist>
+EOF
+launchctl load ~/Library/LaunchAgents/com.ollama.origins.plist
+```
+
+Then quit and restart Ollama once.
+
+*Running `ollama serve` yourself while the Ollama app is still open fails with "address already in use". Quit the app first (or `pkill -x ollama`; `lsof -i :11434` shows what holds the port).*
 
 #### 3. Linux (Systemd)
 
@@ -323,7 +345,7 @@ If you are running Ollama as a service:
 2. Add these lines under the `[Service]` section:
    ```ini
    [Service]
-   Environment="OLLAMA_ORIGINS=*"
+   Environment="OLLAMA_ORIGINS=chrome-extension://*,moz-extension://*,safari-web-extension://*"
    ```
 3. Save and exit, then run:
    ```bash
@@ -332,7 +354,7 @@ If you are running Ollama as a service:
    ```
 
 🧐 **Why is this happening?**
-Browsers follow a "Same-Origin Policy." When the extension tries to fetch `localhost:11434`, the browser sends a "Preflight" request (an `OPTIONS` check) to see if the server allows it. If `OLLAMA_ORIGINS` isn't set, Ollama doesn't include the `Access-Control-Allow-Origin` header in its response, and the browser kills the request. Setting it to `*` tells Ollama to accept requests from any origin.
+Browsers follow a "Same-Origin Policy." When the extension tries to fetch `localhost:11434`, the browser sends a "Preflight" request (an `OPTIONS` check) to see if the server allows it. If `OLLAMA_ORIGINS` isn't set, Ollama doesn't include the `Access-Control-Allow-Origin` header in its response, and the browser kills the request. Setting it to the extension origins above tells Ollama to accept requests from browser extensions only, not from arbitrary websites. `*` also works but lets every website call your local Ollama.
 
 #### Use Ollama via HTTPS (Advanced)
 

@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "في الانتظار {s} ث"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ وسم / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "يُنسى <code>launchctl setenv</code> بعد إعادة تشغيل جهاز Mac. عنصر تسجيل الدخول هذا يضبطه من جديد في كل مرة:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "أضف وسمًا أو DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "السماح لإضافات المتصفح"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "السماح لإضافات المتصفح (دائم)"
+  },
+  "f_apply_it_e25a": {
+    "message": "طبّقه:"
+  },
+  "f_check_it_9a90": {
+    "message": "تحقق"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "التصفية: {tag}. عدد المقالات المعروضة: {n}."
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "تصفية الاختصارات…"
+  },
+  "f_focus_search_53f5": {
+    "message": "التركيز على البحث"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "رسم أرشيفك البياني. {tags} وسمًا و{articles} مقالة. اضغط L لعرض القائمة."
+  },
+  "f_graph_view_6d78": {
+    "message": "عرض الرسم البياني"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "اختصارات لوحة المفاتيح"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "عرض القائمة: {tags} وسمًا. تنقّل بمفتاح Tab وصفِّ بمفتاح Enter."
+  },
+  "f_lists_df96": {
+    "message": "القوائم"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "اجعله دائمًا"
+  },
+  "f_new_summary_da1d": {
+    "message": "ملخص جديد"
+  },
+  "f_next_previous_card_c144": {
+    "message": "البطاقة التالية / السابقة"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "لا توجد اختصارات مطابقة"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "فقط إذا كان تطبيق Ollama مغلقًا (وإلا ستظهر «address already in use»؛ تحقق عبر <code>lsof -i :11434</code> وأوقفه عبر <code>pkill -x ollama</code>). يشغّل Ollama في نافذة أمامية:"
+  },
+  "f_open_10e9": {
+    "message": "فتح"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "افتح تجاوز الخدمة عبر <code>sudo systemctl edit ollama.service</code> وأضف:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "اضغط ? في أي مكان خارج حقل النص"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "أعد تشغيل الخدمة"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "نفّذ هذا الأمر. فهو يسمح للإضافات، وللإضافات فقط، بالتحدث مع Ollama:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "نفّذ هذا ليقبل Ollama الطلبات من إضافات المتصفح (دائم لحساب المستخدم الخاص بك):"
+  },
+  "f_search_a2c9": {
+    "message": "بحث"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "شغّل Ollama مجددًا من قائمة ابدأ، أو شغّله كخادم أمامي في نافذة موجه أوامر جديدة:"
+  },
+  "f_summarize_791a": {
+    "message": "لخّص"
+  },
+  "f_summarize_send_e76b": {
+    "message": "لخّص / أرسل"
+  },
+  "f_switch_tab_793a": {
+    "message": "تبديل التبويب"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "وسوم أرشيفك"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "من دون systemd، شغّل Ollama في نافذة أمامية:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "يجب أن ترى <code>200</code>. تعني <code>403</code> أن Ollama لم يلتقط الإعداد بعد: أغلقه وشغّله مجددًا."
+  },
+  "f_help_a3fa": {
+    "message": "مساعدة"
+  },
+  "f_linked_to_886c": {
+    "message": "مرتبط بـ {tags}"
+  },
+  "f_move_0014": {
+    "message": "تحريك"
+  },
+  "f_open_c4c9": {
+    "message": "فتح"
+  },
+  "f_search_28a9": {
+    "message": "بحث"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 تعيين DOI {doi}"
   }
 }

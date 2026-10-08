@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "待機中 {s} 秒"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ タグ / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> は Mac を再起動すると失われます。このログイン項目がログインのたびに再設定します:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "タグまたは DOI を追加…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "ブラウザ拡張機能を許可"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "ブラウザ拡張機能を許可（恒久）"
+  },
+  "f_apply_it_e25a": {
+    "message": "適用します:"
+  },
+  "f_check_it_9a90": {
+    "message": "確認"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "フィルタ: {tag}。{n} 件の記事を表示中。"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "ショートカットを絞り込む…"
+  },
+  "f_focus_search_53f5": {
+    "message": "検索にフォーカス"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "アーカイブのグラフ。タグ {tags} 件、記事 {articles} 件。L キーでリスト表示。"
+  },
+  "f_graph_view_6d78": {
+    "message": "グラフ表示"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "キーボードショートカット"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "リスト表示: タグ {tags} 件。Tab で移動、Enter で絞り込み。"
+  },
+  "f_lists_df96": {
+    "message": "リスト"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "恒久化する"
+  },
+  "f_new_summary_da1d": {
+    "message": "新しい要約"
+  },
+  "f_next_previous_card_c144": {
+    "message": "次 / 前のカード"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "一致するショートカットはありません"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Ollama アプリを終了している場合のみ（そうでないと「address already in use」になります。<code>lsof -i :11434</code> で確認し、<code>pkill -x ollama</code> で停止）。Ollama をフォアグラウンドのウィンドウで実行します:"
+  },
+  "f_open_10e9": {
+    "message": "開く"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "<code>sudo systemctl edit ollama.service</code> でサービスのオーバーライドを開き、次を追加します:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "テキスト欄の外で ? を押す"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "サービスを再起動"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "このコマンドを実行します。拡張機能にだけ Ollama との通信を許可します:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Ollama がブラウザ拡張機能からのリクエストを受け付けるよう、これを実行します（ユーザーアカウントで恒久）:"
+  },
+  "f_search_a2c9": {
+    "message": "検索"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "スタートメニューから Ollama を再起動するか、新しいコマンドプロンプトでフォアグラウンドサーバーとして実行します:"
+  },
+  "f_summarize_791a": {
+    "message": "要約"
+  },
+  "f_summarize_send_e76b": {
+    "message": "要約 / 送信"
+  },
+  "f_switch_tab_793a": {
+    "message": "タブを切り替え"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "アーカイブのタグ"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "systemd を使わない場合は、Ollama をフォアグラウンドのウィンドウで実行します:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "<code>200</code> が表示されるはずです。<code>403</code> は Ollama が設定をまだ読み込んでいません。終了して再起動してください。"
+  },
+  "f_help_a3fa": {
+    "message": "ヘルプ"
+  },
+  "f_linked_to_886c": {
+    "message": "{tags} とつながり"
+  },
+  "f_move_0014": {
+    "message": "移動"
+  },
+  "f_open_c4c9": {
+    "message": "開く"
+  },
+  "f_search_28a9": {
+    "message": "検索"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 DOI {doi} を割り当て"
   }
 }

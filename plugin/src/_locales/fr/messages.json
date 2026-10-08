@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "attente : {s} s"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Tag / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> est oublié après un redémarrage du Mac. Cet élément de connexion le redéfinit à chaque ouverture de session :"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Ajouter un tag ou un DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Autoriser les extensions du navigateur"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Autoriser les extensions du navigateur (permanent)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Appliquez-le :"
+  },
+  "f_check_it_9a90": {
+    "message": "Vérifier"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Filtre : {tag}. {n} articles affichés."
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Filtrer les raccourcis…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Activer la recherche"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Graphe de vos archives. {tags} tags, {articles} articles. Appuyez sur L pour la vue en liste."
+  },
+  "f_graph_view_6d78": {
+    "message": "Vue graphe"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Raccourcis clavier"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Vue en liste : {tags} tags. Parcourez avec Tab, filtrez avec Entrée."
+  },
+  "f_lists_df96": {
+    "message": "Listes"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Le rendre permanent"
+  },
+  "f_new_summary_da1d": {
+    "message": "Nouveau résumé"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Carte suivante / précédente"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Aucun raccourci ne correspond"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Seulement si l’app Ollama est fermée (sinon « address already in use » ; vérifiez avec <code>lsof -i :11434</code> et arrêtez-la avec <code>pkill -x ollama</code>). Lance Ollama dans une fenêtre au premier plan :"
+  },
+  "f_open_10e9": {
+    "message": "Ouvrir"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Ouvrez la surcharge du service avec <code>sudo systemctl edit ollama.service</code> et ajoutez :"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Appuyez sur ? partout hors d’un champ de texte"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Redémarrer le service"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Exécutez cette commande. Elle permet aux extensions, et seulement aux extensions, de parler à Ollama :"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Exécutez ceci pour qu’Ollama accepte les requêtes des extensions du navigateur (permanent pour votre compte utilisateur) :"
+  },
+  "f_search_a2c9": {
+    "message": "Rechercher"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Relancez Ollama depuis le menu Démarrer, ou lancez-le comme serveur au premier plan dans une nouvelle fenêtre d’invite de commandes :"
+  },
+  "f_summarize_791a": {
+    "message": "Résumer"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Résumer / envoyer"
+  },
+  "f_switch_tab_793a": {
+    "message": "Changer d’onglet"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Tags de vos archives"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Sans systemd, lancez Ollama dans une fenêtre au premier plan :"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "Vous devriez voir <code>200</code>. Un <code>403</code> signifie qu’Ollama n’a pas encore pris le réglage en compte : quittez-le et relancez-le."
+  },
+  "f_help_a3fa": {
+    "message": "aide"
+  },
+  "f_linked_to_886c": {
+    "message": "lié à {tags}"
+  },
+  "f_move_0014": {
+    "message": "déplacer"
+  },
+  "f_open_c4c9": {
+    "message": "ouvrir"
+  },
+  "f_search_28a9": {
+    "message": "rechercher"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 Attribuer le DOI {doi}"
   }
 }

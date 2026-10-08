@@ -98,11 +98,15 @@ const ollamaTutorials = () => ({
         steps: [
             { title: T('Quit Ollama'), body: T('Click the Ollama icon in the menu bar (top-right) and choose <b>Quit Ollama</b>.') },
             { title: T('Open Terminal'), body: T('Open the <b>Terminal</b> app on your Mac.') },
-            { title: T('Allow all origins (app)'), body: T('Run this command so Ollama stays configured after restarting the Mac app:'),
-              code: 'launchctl setenv OLLAMA_ORIGINS "*"' },
+            { title: T('Allow browser extensions'), body: T('Run this command. It lets extensions, and only extensions, talk to Ollama:'),
+              code: 'launchctl setenv OLLAMA_ORIGINS "chrome-extension://*,moz-extension://*,safari-web-extension://*"' },
             { title: T('Restart Ollama'), body: T('Launch Ollama again from your Applications folder or Spotlight.') },
-            { title: T('Quick test (terminal)'), body: T('Prefer the terminal? Run Ollama directly in a foreground window:'),
-              code: 'OLLAMA_ORIGINS="*" ollama serve' }
+            { title: T('Make it permanent'), body: T('<code>launchctl setenv</code> is forgotten after a restart of your Mac. This login item sets it again every time:'),
+              code: 'cat > ~/Library/LaunchAgents/com.ollama.origins.plist <<\'EOF\'\n<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0"><dict>\n<key>Label</key><string>com.ollama.origins</string>\n<key>ProgramArguments</key><array><string>/bin/sh</string><string>-c</string>\n<string>launchctl setenv OLLAMA_ORIGINS "chrome-extension://*,moz-extension://*,safari-web-extension://*"</string></array>\n<key>RunAtLoad</key><true/>\n</dict></plist>\nEOF\nlaunchctl load ~/Library/LaunchAgents/com.ollama.origins.plist' },
+            { title: T('Check it'), body: T('You should see <code>200</code>. A <code>403</code> means Ollama has not picked up the setting yet: quit it and start it again.'),
+              code: 'curl -s -o /dev/null -w "%{http_code}\\n" http://localhost:11434/api/tags -H "Origin: chrome-extension://test"' },
+            { title: T('Quick test (terminal)'), body: T('Only if the Ollama app is quit (otherwise you get “address already in use”; check with <code>lsof -i :11434</code> and stop it with <code>pkill -x ollama</code>). Runs Ollama in a foreground window:'),
+              code: 'OLLAMA_ORIGINS="chrome-extension://*,moz-extension://*,safari-web-extension://*" ollama serve' }
         ],
         note: T('Once Ollama restarts, the 403 Forbidden error from this extension is resolved.')
     },
@@ -111,11 +115,10 @@ const ollamaTutorials = () => ({
         steps: [
             { title: T('Quit Ollama'), body: T('Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>.') },
             { title: T('Open Command Prompt'), body: T('Press <b>Win + R</b>, type <code>cmd</code> and press Enter.') },
-            { title: T('Allow all origins'), body: T('Run this so the running server accepts requests from any origin:'),
-              code: 'set OLLAMA_ORIGINS=*' },
-            { title: T('Start Ollama'), body: T('Run Ollama as a foreground server from the same window:'),
-              code: 'ollama serve' },
-            { title: T('Persist (optional)'), body: T('For a permanent fix, set <code>OLLAMA_ORIGINS=*</code> as a system environment variable under <i>System Properties → Environment Variables</i> and restart Ollama.') }
+            { title: T('Allow browser extensions'), body: T('Run this so Ollama accepts requests from browser extensions (permanent for your user account):'),
+              code: 'setx OLLAMA_ORIGINS "chrome-extension://*,moz-extension://*,safari-web-extension://*"' },
+            { title: T('Start Ollama'), body: T('Start Ollama again from the Start menu, or run it as a foreground server from a new Command Prompt window:'),
+              code: 'ollama serve' }
         ],
         note: T('Once Ollama restarts, the 403 Forbidden error from your extension is fixed.')
     },
@@ -123,9 +126,12 @@ const ollamaTutorials = () => ({
         title: T('Set up Ollama on Linux'),
         steps: [
             { title: T('Stop Ollama'), body: T('If running as a systemd service, stop it with <code>sudo systemctl stop ollama</code>.') },
-            { title: T('Allow all origins'), body: T('Start Ollama with the global wildcard so any origin can connect:'),
-              code: 'OLLAMA_ORIGINS="*" ollama serve' },
-            { title: T('Persist (optional)'), body: T('For a permanent config via systemd, add <code>Environment="OLLAMA_ORIGINS=*"</code> under the service unit (e.g. <code>/etc/systemd/system/ollama.service</code>), then <code>systemctl daemon-reload</code> and restart.') }
+            { title: T('Allow browser extensions (permanent)'), body: T('Open the service override with <code>sudo systemctl edit ollama.service</code> and add:'),
+              code: '[Service]\nEnvironment="OLLAMA_ORIGINS=chrome-extension://*,moz-extension://*,safari-web-extension://*"' },
+            { title: T('Restart the service'), body: T('Apply it:'),
+              code: 'sudo systemctl daemon-reload && sudo systemctl restart ollama' },
+            { title: T('Quick test (terminal)'), body: T('Without systemd, run Ollama in a foreground window:'),
+              code: 'OLLAMA_ORIGINS="chrome-extension://*,moz-extension://*,safari-web-extension://*" ollama serve' }
         ],
         note: T('Once Ollama restarts, the 403 Forbidden error from your extension is fixed.')
     }

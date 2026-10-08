@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "a aguardar há {s} s"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Etiqueta / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> é esquecido após reiniciar o Mac. Este item de arranque define-o novamente em cada início de sessão:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Adicionar etiqueta ou DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Permitir extensões do navegador"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Permitir extensões do navegador (permanente)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Aplique:"
+  },
+  "f_check_it_9a90": {
+    "message": "Verificar"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Filtro: {tag}. {n} artigos mostrados."
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Filtrar atalhos…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Focar na pesquisa"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Grafo do seu arquivo. {tags} etiquetas, {articles} artigos. Prima L para a vista de lista."
+  },
+  "f_graph_view_6d78": {
+    "message": "Vista de grafo"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Atalhos de teclado"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Vista de lista: {tags} etiquetas. Use Tab para percorrer e Enter para filtrar."
+  },
+  "f_lists_df96": {
+    "message": "Listas"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Tornar permanente"
+  },
+  "f_new_summary_da1d": {
+    "message": "Novo resumo"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Cartão seguinte / anterior"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Nenhum atalho corresponde"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Apenas se a app Ollama estiver fechada (caso contrário aparece «address already in use»; verifique com <code>lsof -i :11434</code> e pare com <code>pkill -x ollama</code>). Executa o Ollama numa janela em primeiro plano:"
+  },
+  "f_open_10e9": {
+    "message": "Abrir"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Abra a substituição do serviço com <code>sudo systemctl edit ollama.service</code> e adicione:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Prima ? em qualquer lugar fora de um campo de texto"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Reiniciar o serviço"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Execute este comando. Permite que as extensões, e só as extensões, falem com o Ollama:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Execute isto para que o Ollama aceite pedidos de extensões do navegador (permanente para a sua conta de utilizador):"
+  },
+  "f_search_a2c9": {
+    "message": "Pesquisar"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Inicie o Ollama novamente a partir do menu Iniciar ou execute-o como servidor em primeiro plano numa nova janela da linha de comandos:"
+  },
+  "f_summarize_791a": {
+    "message": "Resumir"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Resumir / enviar"
+  },
+  "f_switch_tab_793a": {
+    "message": "Mudar de separador"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Etiquetas do seu arquivo"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Sem systemd, execute o Ollama numa janela em primeiro plano:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "Deverá ver <code>200</code>. Um <code>403</code> significa que o Ollama ainda não aplicou a definição: feche-o e inicie-o novamente."
+  },
+  "f_help_a3fa": {
+    "message": "ajuda"
+  },
+  "f_linked_to_886c": {
+    "message": "ligado a {tags}"
+  },
+  "f_move_0014": {
+    "message": "mover"
+  },
+  "f_open_c4c9": {
+    "message": "abrir"
+  },
+  "f_search_28a9": {
+    "message": "pesquisar"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 Atribuir o DOI {doi}"
   }
 }

@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "已等待 {s} 秒"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ 標籤 / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "Mac 重新啟動後 <code>launchctl setenv</code> 會失效。這個登入項目會在每次登入時重新設定："
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "新增標籤或 DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "允許瀏覽器擴充功能"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "允許瀏覽器擴充功能（永久）"
+  },
+  "f_apply_it_e25a": {
+    "message": "套用："
+  },
+  "f_check_it_9a90": {
+    "message": "檢查"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "篩選：{tag}。顯示 {n} 篇文章。"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "篩選快速鍵…"
+  },
+  "f_focus_search_53f5": {
+    "message": "聚焦搜尋"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "你的封存圖譜。{tags} 個標籤，{articles} 篇文章。按 L 切換到清單檢視。"
+  },
+  "f_graph_view_6d78": {
+    "message": "圖譜檢視"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "鍵盤快速鍵"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "清單檢視：{tags} 個標籤。按 Tab 瀏覽，按 Enter 篩選。"
+  },
+  "f_lists_df96": {
+    "message": "清單"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "設為永久"
+  },
+  "f_new_summary_da1d": {
+    "message": "新增摘要"
+  },
+  "f_next_previous_card_c144": {
+    "message": "下一張 / 上一張卡片"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "沒有符合的快速鍵"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "僅在 Ollama 應用程式已結束時（否則會出現「address already in use」；用 <code>lsof -i :11434</code> 檢查，用 <code>pkill -x ollama</code> 停止）。在前景視窗中執行 Ollama："
+  },
+  "f_open_10e9": {
+    "message": "開啟"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "用 <code>sudo systemctl edit ollama.service</code> 開啟服務覆寫設定並加入："
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "在文字欄位以外的任何地方按 ?"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "重新啟動服務"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "執行此指令。它只允許擴充功能與 Ollama 通訊："
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "執行此指令，讓 Ollama 接受來自瀏覽器擴充功能的請求（對你的使用者帳號永久有效）："
+  },
+  "f_search_a2c9": {
+    "message": "搜尋"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "從「開始」功能表重新啟動 Ollama，或在新的命令提示字元視窗中以前景伺服器方式執行："
+  },
+  "f_summarize_791a": {
+    "message": "摘要"
+  },
+  "f_summarize_send_e76b": {
+    "message": "摘要 / 傳送"
+  },
+  "f_switch_tab_793a": {
+    "message": "切換分頁"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "你封存中的標籤"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "沒有 systemd 時，在前景視窗中執行 Ollama："
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "你應該會看到 <code>200</code>。<code>403</code> 表示 Ollama 尚未套用該設定：結束後重新啟動。"
+  },
+  "f_help_a3fa": {
+    "message": "說明"
+  },
+  "f_linked_to_886c": {
+    "message": "連結到 {tags}"
+  },
+  "f_move_0014": {
+    "message": "移動"
+  },
+  "f_open_c4c9": {
+    "message": "開啟"
+  },
+  "f_search_28a9": {
+    "message": "搜尋"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 指定 DOI {doi}"
   }
 }

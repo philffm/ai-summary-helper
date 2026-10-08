@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "प्रतीक्षा {s} सेकंड"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ टैग / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "Mac रीस्टार्ट के बाद <code>launchctl setenv</code> भूल जाता है। यह लॉगिन आइटम इसे हर बार फिर से सेट करता है:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "टैग या DOI जोड़ें…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "ब्राउज़र एक्सटेंशन की अनुमति दें"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "ब्राउज़र एक्सटेंशन की अनुमति दें (स्थायी)"
+  },
+  "f_apply_it_e25a": {
+    "message": "इसे लागू करें:"
+  },
+  "f_check_it_9a90": {
+    "message": "जाँचें"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "फ़िल्टर: {tag}। {n} लेख दिखाए गए।"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "शॉर्टकट फ़िल्टर करें…"
+  },
+  "f_focus_search_53f5": {
+    "message": "खोज पर फ़ोकस करें"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "आपके संग्रह का ग्राफ़। {tags} टैग, {articles} लेख। सूची दृश्य के लिए L दबाएँ।"
+  },
+  "f_graph_view_6d78": {
+    "message": "ग्राफ़ दृश्य"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "कीबोर्ड शॉर्टकट"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "सूची दृश्य: {tags} टैग। Tab से ब्राउज़ करें, Enter से फ़िल्टर करें।"
+  },
+  "f_lists_df96": {
+    "message": "सूचियाँ"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "इसे स्थायी बनाएँ"
+  },
+  "f_new_summary_da1d": {
+    "message": "नया सारांश"
+  },
+  "f_next_previous_card_c144": {
+    "message": "अगला / पिछला कार्ड"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "कोई शॉर्टकट मेल नहीं खाता"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "केवल तब जब Ollama ऐप बंद हो (वरना «address already in use» आएगा; <code>lsof -i :11434</code> से जाँचें और <code>pkill -x ollama</code> से रोकें)। Ollama को अग्रभूमि विंडो में चलाता है:"
+  },
+  "f_open_10e9": {
+    "message": "खोलें"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "<code>sudo systemctl edit ollama.service</code> से सर्विस ओवरराइड खोलें और जोड़ें:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "टेक्स्ट फ़ील्ड के बाहर कहीं भी ? दबाएँ"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "सर्विस रीस्टार्ट करें"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "यह कमांड चलाएँ। यह एक्सटेंशन को, और केवल एक्सटेंशन को, Ollama से बात करने देता है:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "इसे चलाएँ ताकि Ollama ब्राउज़र एक्सटेंशन के अनुरोध स्वीकार करे (आपके यूज़र खाते के लिए स्थायी):"
+  },
+  "f_search_a2c9": {
+    "message": "खोजें"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Ollama को स्टार्ट मेनू से फिर शुरू करें, या नई कमांड प्रॉम्प्ट विंडो में अग्रभूमि सर्वर के रूप में चलाएँ:"
+  },
+  "f_summarize_791a": {
+    "message": "सारांश बनाएँ"
+  },
+  "f_summarize_send_e76b": {
+    "message": "सारांश बनाएँ / भेजें"
+  },
+  "f_switch_tab_793a": {
+    "message": "टैब बदलें"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "आपके संग्रह के टैग"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "systemd के बिना, Ollama को अग्रभूमि विंडो में चलाएँ:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "आपको <code>200</code> दिखना चाहिए। <code>403</code> का मतलब है कि Ollama ने अभी सेटिंग नहीं ली: उसे बंद करके फिर शुरू करें।"
+  },
+  "f_help_a3fa": {
+    "message": "मदद"
+  },
+  "f_linked_to_886c": {
+    "message": "{tags} से जुड़ा"
+  },
+  "f_move_0014": {
+    "message": "आगे बढ़ें"
+  },
+  "f_open_c4c9": {
+    "message": "खोलें"
+  },
+  "f_search_28a9": {
+    "message": "खोजें"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 DOI {doi} असाइन करें"
   }
 }

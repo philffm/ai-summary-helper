@@ -3511,5 +3511,125 @@
   },
   "f_waiting_s_f51e": {
     "message": "wartet seit {s} s"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Tag / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> wird nach einem Neustart deines Macs vergessen. Dieses Anmeldeobjekt setzt es bei jedem Login erneut:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Tag hinzufügen oder DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Browser-Erweiterungen erlauben"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Browser-Erweiterungen erlauben (dauerhaft)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Anwenden:"
+  },
+  "f_check_it_9a90": {
+    "message": "Prüfen"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Filter: {tag}. {n} Artikel angezeigt."
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Kürzel filtern…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Suche fokussieren"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Graph deines Archivs. {tags} Tags, {articles} Artikel. Drücke L für die Listenansicht."
+  },
+  "f_graph_view_6d78": {
+    "message": "Graphansicht"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Tastenkürzel"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Listenansicht: {tags} Tags. Mit Tab durchgehen, mit Enter filtern."
+  },
+  "f_lists_df96": {
+    "message": "Listen"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Dauerhaft machen"
+  },
+  "f_new_summary_da1d": {
+    "message": "Neue Zusammenfassung"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Nächste / vorherige Karte"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Keine passenden Kürzel"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Nur wenn die Ollama-App beendet ist (sonst erscheint „address already in use“; prüfe mit <code>lsof -i :11434</code> und beende sie mit <code>pkill -x ollama</code>). Startet Ollama in einem Vordergrundfenster:"
+  },
+  "f_open_10e9": {
+    "message": "Öffnen"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Öffne die Service-Überschreibung mit <code>sudo systemctl edit ollama.service</code> und füge hinzu:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Drücke ? überall außerhalb eines Textfelds"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Dienst neu starten"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Führe diesen Befehl aus. Er erlaubt Erweiterungen, und nur Erweiterungen, mit Ollama zu sprechen:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Führe das aus, damit Ollama Anfragen von Browser-Erweiterungen annimmt (dauerhaft für dein Benutzerkonto):"
+  },
+  "f_search_a2c9": {
+    "message": "Suche"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Starte Ollama erneut über das Startmenü oder als Vordergrund-Server in einem neuen Eingabeaufforderungsfenster:"
+  },
+  "f_summarize_791a": {
+    "message": "Zusammenfassen"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Zusammenfassen / senden"
+  },
+  "f_switch_tab_793a": {
+    "message": "Tab wechseln"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Tags in deinem Archiv"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Ohne systemd: Ollama in einem Vordergrundfenster starten:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "Du solltest <code>200</code> sehen. <code>403</code> heißt, Ollama hat die Einstellung noch nicht übernommen: beende es und starte es neu."
+  },
+  "f_help_a3fa": {
+    "message": "Hilfe"
+  },
+  "f_linked_to_886c": {
+    "message": "verknüpft mit {tags}"
+  },
+  "f_move_0014": {
+    "message": "bewegen"
+  },
+  "f_open_c4c9": {
+    "message": "öffnen"
+  },
+  "f_search_28a9": {
+    "message": "suchen"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 DOI {doi} zuweisen"
   }
 }
