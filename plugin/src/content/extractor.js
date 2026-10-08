@@ -323,23 +323,26 @@ export function sanitizeHtml(html) {
       });
   }
 
-  const container = document.createElement('div');
-  container.innerHTML = String(html);
+  // Parse into an INERT document: nothing in it loads, runs or fires handlers (an <img onerror> set through
+  // innerHTML on an element of the live page can execute while the sanitizer is still working).
+  const container = new DOMParser().parseFromString(`<body>${String(html)}</body>`, 'text/html').body;
 
+  // Post-order: sanitize a node's subtree BEFORE keeping or unwrapping it. Unwrapping promotes the children into
+  // the parent at an index the (descending) loop never revisits, so an unsanitized walk would let
+  // <div><p onclick=…> / <div><img onerror=…> escape the allowlist (the model is asked to wrap its reply in a <div>).
   const walk = (node) => {
     for (let i = node.children.length - 1; i >= 0; i--) {
       const child = node.children[i];
       const tag = child.tagName ? child.tagName.toLowerCase() : '';
+      walk(child);
       if (tag && ALLOWED_TAGS.has(tag)) {
-        // Keep the element but strip every attribute.
         for (let a = child.attributes.length - 1; a >= 0; a--) {
           const attr = child.attributes[a].name;
           if (!ALLOWED_ATTRS.has(attr.toLowerCase())) child.removeAttribute(attr);
         }
-        walk(child);
       } else {
-        // Disallowed element: unwrap, keeping its text/children.
         const parent = child.parentNode;
+        if (tag === 'script' || tag === 'style' || tag === 'template' || tag === 'noscript') { parent.removeChild(child); continue; }
         while (child.firstChild) parent.insertBefore(child.firstChild, child);
         parent.removeChild(child);
       }

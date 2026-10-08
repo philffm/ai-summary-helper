@@ -54,4 +54,9 @@ assert.equal(stripReasoning('Thinking Process:\n1. x\n\n<div><h2>T</h2><p>Body</
 assert.equal(stripReasoning('<think>hmm</think><div>ok</div>'), '<div>ok</div>');
 assert.equal(stripReasoning('<think>still going'), '');
 assert.equal(stripReasoning('<div>Thinking: about UX</div>'), '<div>Thinking: about UX</div>');
+// XSS (PR #20): nested markup inside an unwrapped <div> must not escape the allowlist.
+const { sanitizeHtml } = await imp('content/extractor.js');
+const bad = sanitizeHtml('<div><p onclick="x()">a</p><img src=x onerror="alert(1)"><a href="javascript:1">l</a><script>alert(1)</script><style>p{}</style><b onmouseover=1>b</b><h2 style="x">t</h2></div>');
+assert(!/onclick|onerror|onmouseover|<img|<a |<script|<style|javascript:|style=|alert/i.test(bad), bad);
+assert(/<p>a<\/p>/.test(bad) && /<h2>t<\/h2>/.test(bad), bad);
 console.log('TEST 59 OK'); process.exit(0);
