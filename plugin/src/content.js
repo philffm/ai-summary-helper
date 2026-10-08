@@ -1,6 +1,7 @@
 import { SK } from './modules/storageKeys.js';
 import { languageEnglishName, languageRule, ttsLang, langBase } from './modules/languages.js';
 import { paperIndexFields, detectPaperInText, applyScholarly, matchPagePaper } from './content/paper.js';
+import { finalizeSummary } from './content/finalize.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -13,10 +14,10 @@ import {
   estimateTokens,
   ollamaNumCtx,
   wasCutOff,
-  inlineAndCompressImages,
-  markdownToHtml,
-  stripReasoning
+  inlineAndCompressImages
 } from './content/extractor.js';
+
+import { markdownToHtml, stripReasoning } from './content/markdown.js';
 
 import {
   ensureHighlightUiStyles,
@@ -207,6 +208,13 @@ import {
   // runtime.connect()-based approach that was unreliable on Safari — see
   // the note in background.js.
   const streamHandlers = new Map();
+  // Request whose summary this page still has to finish; if the page goes away first, the background takes over.
+  let runIdForUnload = '';
+  window.addEventListener('pagehide', (e) => {
+    if (runIdForUnload && streamHandlers.has(runIdForUnload)) {
+      try { chrome.runtime.sendMessage({ action: 'runDetached', requestId: runIdForUnload }).catch(() => {}); } catch (_) { /* gone */ }
+    }
+  });
 
   // The summary that is running right now (context + latest progress), so a panel that opens
   // after it started — e.g. when it was started from the on-page tool — can show it.
@@ -394,21 +402,6 @@ import {
 
   // Summarize started from the on-page highlights panel: open the side panel,
   // then run the same flow as the popup's Summarize button (highlights = focus).
-  /** Language of the source text: detected on the device (no network), else the page's <html lang>; '' when unknown. */
-  function detectContentLang(text, htmlLang) {
-    const fallback = langBase(htmlLang || '');
-    return new Promise((resolve) => {
-      let settled = false;
-      const done = (v) => { if (!settled) { settled = true; resolve(v || fallback); } };
-      try {
-        const api = (typeof browser !== 'undefined' && browser.i18n && browser.i18n.detectLanguage) ? browser : chrome;
-        const handle = (r) => { const l = r && r.languages && r.languages[0]; done(l && (r.isReliable !== false || l.percentage >= 60) ? langBase(l.language) : ''); };
-        const p = api.i18n.detectLanguage(String(text || '').slice(0, 1500), handle);
-        if (p && p.then) p.then(handle).catch(() => done(''));
-      } catch (_) { done(''); }
-    });
-  }
-
   /** One non-streaming request through the background worker; resolves with the raw response body. */
   function callOnce(apiUrl, headers, body) {
     return new Promise((resolve, reject) => {
@@ -822,100 +815,24 @@ import {
             if (msg.done) {
               if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
               streamContainer.remove();
-              summary = stripReasoning(summary);
-              if (!summary.trim() && thinkingText.trim()) summary = stripReasoning(thinkingText);
-              if (!summary.trim()) {
-                const e = 'The model wrote its own notes instead of a summary. Try again or pick another model.';
-                relay('summaryError', { error: e });
-                const ph = targetElement.querySelector('.placeholder'); if (ph) ph.textContent = e;
-                reject(new Error(e));
-                streamHandlers.delete(requestId);
-                return;
-              }
-
-              // 🔥 EXTRACT METADATA FROM RAW TEXT BEFORE HTML CONVERSION TO PREVENT BREAKING JSON
-              let tags = [];
-              const tagMatch = summary.match(/<!--\s*TAGS?\s*:\s*([\s\S]*?)\s*-->/i);
-              if (tagMatch) {
-                const seen = new Set();
-                tags = tagMatch[1]
-                  .replace(/^\s*\[|\]\s*$/g, '')
-                  .split(/[,;\n]+/)
-                  .map(t => t.trim().replace(/^["'#]+|["']+$/g, ''))
-                  .filter(Boolean)
-                  .filter(t => {
-                    const key = t.toLowerCase();
-                    if (seen.has(key)) return false;
-                    seen.add(key);
-                    return true;
-                  });
-              }
-              tags = await ensureGeneralTag(tags, contentText, attached && !pageMatch ? String(attached.name || '') : document.title);
-              // Language tags: "🌐 de" for the text the page is written in, plus "🌐 en" when the summary is in another language.
-              const sumLang = langBase(ttsLang(selectedLanguage));
-              const srcLang = await detectContentLang(contentText, (!attached || pageMatch) ? document.documentElement.lang : '');
-              {
-                const have = new Set(tags.map(t => t.toLowerCase()));
-                [srcLang, sumLang !== srcLang ? sumLang : ''].filter(Boolean).forEach((l) => { const t = '🌐 ' + l; if (!have.has(t.toLowerCase())) tags.push(t); });
-              }
-              let ghostQuotes = [];
-              const ghostMatch = summary.match(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/i);
-              if (ghostMatch) {
-                try {
-                  let rawJson = ghostMatch[1].trim();
-                  rawJson = rawJson.replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
-                  ghostQuotes = JSON.parse(rawJson);
-                } catch (e) {
-                  console.warn('[AI Summary Helper] Failed to parse ghost quotes:', e);
-                }
-              }
-              ghostQuotes = normalizeGhostQuotes(ghostQuotes, ghostCfg.max);
-              // Mood (-1..1) the model rated for the whole article; anything unparsable or out of range is ignored.
-              let moodScore;
-              const moodMatch = summary.match(/<!--\s*MOOD:\s*(-?\d*\.?\d+)\s*-->/i);
-              if (moodMatch) {
-                const v = parseFloat(moodMatch[1]);
-                if (isFinite(v) && v >= -1 && v <= 1) moodScore = Math.round(v * 100) / 100;
-              }
-
               let pageMeta = {};
               if (!attached || pageMatch) { try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ } }   // an attached PDF has nothing to do with the open tab
               try { if (pageMeta && !pageMeta.paper && pdfMode) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
-
-              pageMeta = { ...(pageMeta || {}), ...(srcLang ? { contentLang: srcLang } : {}), summaryLang: sumLang };   // read aloud picks voices from these
-
-              // The model's verdict on "is this a paper?" (works for PDFs and pages without metadata); merged with the page signals.
-              try {
-                const sm = summary.match(/<!--\s*SCHOLARLY:\s*([\s\S]*?)\s*(?:-->|$)/i);
-                if (sm && pageMeta) {
-                  const merged = applyScholarly(pageMeta.paper || null, sm[1]);
-                  if (merged) pageMeta.paper = merged; else delete pageMeta.paper;
-                }
-              } catch (_) { /* optional */ }
-
-              // Suggested follow-up questions (shown as chips under the summary); invalid output is ignored.
-              let suggestedQuestions = [];
-              // One request only: the questions ride along with the summary. Parsing is forgiving (a missing "-->" or a
-              // list that is not valid JSON still yields the quoted questions) because there is no second request to fall back on.
-              const qMatch = summary.match(/<!--\s*QUESTIONS:\s*([\s\S]*?)\s*(?:-->|$)/i);
-              if (qMatch) {
-                const body = qMatch[1].trim().replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
-                let arr = null;
-                try { arr = JSON.parse(body); } catch (e) { arr = [...body.matchAll(/["“]([^"”\n]{4,120})["”]/g)].map(x => x[1]); }
-                if (Array.isArray(arr)) suggestedQuestions = arr.map(x => String(x || '').trim()).filter(x => x.length >= 4 && x.length <= 120).slice(0, 3);
+              const fin = await finalizeSummary({
+                raw: summary, thinking: thinkingText, contentText, pageTitle: attached && !pageMatch ? String(attached.name || '') : document.title,
+                selectedLanguage, htmlLang: (!attached || pageMatch) ? document.documentElement.lang : '', pageMeta, ghostMax: ghostCfg.max,
+                fixedTitle: (pageMatch && pageMatch.title) || document.title || '',
+                attachedTitle: attached && !pageMatch ? String(attached.name || '').replace(/\.pdf$/i, '') : null
+              });
+              if (fin.error) {
+                relay('summaryError', { error: fin.error });
+                const ph = targetElement.querySelector('.placeholder'); if (ph) ph.textContent = fin.error;
+                reject(new Error(fin.error));
+                streamHandlers.delete(requestId);
+                return;
               }
-
-              // Strip tags and ghost comments from the raw summary string
-              let cleanRawText = summary
-                .replace(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/gi, '')
-                .replace(/<!--\s*TAGS:\s*[^>]+\s*-->/gi, '')
-                .replace(/<!--\s*MOOD:[^>]*-->/gi, '')
-                .replace(/<!--\s*SCHOLARLY:[\s\S]*?(?:-->|$)/gi, '')
-                .replace(/<!--\s*QUESTIONS:[\s\S]*?(?:-->|$)/gi, '')
-                .trim();
-
-              // Finally, convert the cleaned text to HTML
-              const cleanHtml = markdownToHtml(cleanRawText);
+              const { cleanHtml, tags, ghostQuotes, moodScore, questions: suggestedQuestions, title: articleTitle } = fin;
+              pageMeta = fin.pageMeta;
 
               // Apply ghost highlights to the page now that it's safe to do so.
               // Skip on PDF pages: Chrome's built-in PDF viewer is a locked-down
@@ -931,12 +848,6 @@ import {
               } catch (compressionError) {
                 console.warn('[AI Summary Helper] Background image compression failed. Falling back to original HTML.', compressionError);
               }
-
-              // document.title is often empty or unhelpful (PDFs especially
-              // never have one) — fall back to the AI summary's own <h2>, which
-              // the system prompt always requests, before resorting to a generic
-              // placeholder. Regular HTML pages still use document.title.
-              const articleTitle = attached && !pageMatch ? (extractSummaryTitle(cleanHtml) || String(attached.name || '').replace(/\.pdf$/i, '') || 'Untitled') : ((pageMatch && pageMatch.title) || document.title || extractSummaryTitle(cleanHtml) || 'Untitled');
 
               if (summaryMode === 'inline') {
                 const summaryContainer = document.createElement('blockquote');
@@ -962,6 +873,7 @@ import {
 
               saveToLocalStorage(finalContentHtml, cleanHtml, sourceUrl, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, { ...(pendingFeedUrl && pendingFeedUrl !== sourceUrl ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, pageMeta)
                 .then(savedArticle => {
+                  try { chrome.runtime.sendMessage({ action: 'runSaved', requestId }).catch(() => {}); } catch (_) { /* optional */ }
                   if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: sourceUrl });
                   resolve({ success: true, article: savedArticle });
                 })
@@ -1074,12 +986,32 @@ import {
 
           try {
             await new Promise((res, rej) => {
+              // If this page is closed or navigated away while the model is still writing, the background finishes the run
+              // from this snapshot (it does the same parsing and saving as the done-handler below).
+              let detach = null;
+              try {
+                let baseMeta = {};
+                if (!attached || pageMatch) { try { baseMeta = collectPageMeta(); } catch (_) { /* optional */ } }
+                try { if (baseMeta && !baseMeta.paper && pdfMode) { const pp = detectPaperInText(contentText); if (pp) baseMeta.paper = pp; } } catch (_) { /* optional */ }
+                detach = {
+                  sourceUrl, summaryMode, service: activeService, modelIdentifier, summaryLength, selectedLanguage,
+                  contentText: String(contentText || '').slice(0, 30000), contentHtml: contentHtml || '',
+                  pageTitle: attached && !pageMatch ? String(attached.name || '') : document.title,
+                  htmlLang: (!attached || pageMatch) ? document.documentElement.lang : '',
+                  pageMeta: baseMeta, ghostMax: ghostCfg.max,
+                  fixedTitle: (pageMatch && pageMatch.title) || document.title || '',
+                  attachedTitle: attached && !pageMatch ? String(attached.name || '').replace(/\.pdf$/i, '') : null,
+                  feedUrl: pendingFeedUrl || ''
+                };
+              } catch (_) { detach = null; }
+              runIdForUnload = requestId;
               chrome.runtime.sendMessage({
                 action: 'startFetch',
                 requestId,
                 apiUrl: finalApiUrl,
                 headers: headers,
-                body: requestBody
+                body: requestBody,
+                detach
               }, (ack) => {
                 if (chrome.runtime.lastError) {
                   rej(new Error(chrome.runtime.lastError.message));

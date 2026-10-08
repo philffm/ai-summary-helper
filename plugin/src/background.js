@@ -8,6 +8,9 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 
 // Read-aloud engine (Chrome: service worker + chrome.tts; Firefox/Safari: background page + speechSynthesis).
 try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } catch (_) { /* listed in the manifest instead */ }
+// Finishes a summary whose page went away while the model was still writing (same parsing + saving as the page does).
+try { if (typeof importScripts === 'function') importScripts('finalize.js'); } catch (_) { /* listed in the manifest instead */ }
+const FIN = (typeof AISH_FINALIZE !== 'undefined') ? AISH_FINALIZE : null;
 const ttsEngine = (typeof AISH_TTS !== 'undefined') ? AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
 
@@ -917,6 +920,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     // ping + retries. runtime.sendMessage / tabs.sendMessage do not have
     // this problem, so we push each chunk back to the tab individually
     // instead of relying on a long-lived port.
+    if (msg.action === 'runDetached' && msg.requestId) { markDetached(msg.requestId); sendResponse({ ok: true }); return false; }
+    if (msg.action === 'runSaved' && msg.requestId) { const r = runs.get(msg.requestId); if (r) { r.saved = true; runs.delete(msg.requestId); } sendResponse({ ok: true }); return false; }
+
     if (msg.action === 'stopFetch' && msg.requestId) {
         const c = activeStreams.get(msg.requestId);
         if (c) { stoppedStreams.add(msg.requestId); c.abort(); }
@@ -968,6 +974,38 @@ chrome.commands.onCommand.addListener((command) => {
 // this replaces the old runtime.connect()-based approach).
 // Running streams by requestId so the popup's Stop button can abort one (stopFetch).
 const activeStreams = new Map();
+
+// Summaries in flight: requestId → { ctx, parser, tabId, detached, done, saved }. The page normally finishes them;
+// when its tab navigates away or closes first, the background does (see finishRun).
+const runs = new Map();
+const broadcast = (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* nobody listening */ } };
+function markDetached(requestId) {
+    const r = runs.get(requestId);
+    if (!r || r.saved) return;
+    r.detached = true;
+    if (r.done) finishRun(r);
+}
+async function finishRun(r) {
+    if (r.finishing || r.saved || !FIN) return;
+    r.finishing = true;
+    try {
+        r.parser.end();
+        const out = await FIN.finishDetached(r.ctx, r.parser.summary, r.parser.thinking);
+        if (out.error) { if (r.ctx.summaryMode === 'extension') broadcast({ action: 'summaryError', error: out.error }); return; }
+        if (r.ctx.summaryMode === 'extension') {
+            broadcast({ action: 'summaryComplete', summary: out.cleanHtml, title: out.title, url: r.ctx.sourceUrl, timestamp: new Date().toISOString(), tags: out.tags, modelId: r.ctx.modelIdentifier, moodScore: out.moodScore, questions: out.questions, meta: out.pageMeta, content: r.ctx.contentHtml });
+        }
+        if (out.article && out.article.id) broadcast({ action: 'summarySaved', id: out.article.id, url: r.ctx.sourceUrl });
+    } catch (e) {
+        console.error('[AISH Background] Could not finish the summary of a closed page:', e);
+    } finally { r.saved = true; runs.delete(r.id); }
+}
+try {
+    chrome.tabs.onUpdated.addListener((tabId, info) => {
+        if (info && info.status === 'loading') for (const r of runs.values()) if (r.tabId === tabId) markDetached(r.id);
+    });
+    chrome.tabs.onRemoved.addListener((tabId) => { for (const r of runs.values()) if (r.tabId === tabId) markDetached(r.id); });
+} catch (_) { /* tabs API unavailable */ }
 const stoppedStreams = new Set();
 
 async function handleStreamFetch(msg, tabId) {
@@ -977,6 +1015,11 @@ async function handleStreamFetch(msg, tabId) {
     const startedAt = Date.now();
     const controller = new AbortController();
     activeStreams.set(requestId, controller);
+    let run = null;
+    if (msg.detach && FIN) {
+        run = { id: requestId, ctx: msg.detach, parser: FIN.createStreamParser(msg.detach.service), tabId, detached: false, done: false, saved: false, lastRelay: 0, startedAt };
+        runs.set(requestId, run);
+    }
 
     // Activity-based timeout: resets on every received chunk. This prevents
     // long-running streams (e.g. Ollama thinking models like qwen3:8b) from
@@ -1035,6 +1078,7 @@ async function handleStreamFetch(msg, tabId) {
                 clearTimeoutHandle();
                 push({ meta: 'stream-complete', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
                 push({ done: true });
+                if (run) { run.done = true; run.parser.end(); if (run.detached) finishRun(run); else setTimeout(() => { if (!run.detached) runs.delete(requestId); }, 180000); }
                 break;
             }
 
@@ -1047,16 +1091,27 @@ async function handleStreamFetch(msg, tabId) {
             }
 
             push({ chunk: decoded });
+            if (run) {
+                run.parser.push(decoded);
+                const now = Date.now();
+                if (run.detached && run.ctx.summaryMode === 'extension' && now - run.lastRelay > 250) {
+                    run.lastRelay = now;
+                    const words = run.parser.summary.split(/\s+/).filter(Boolean).length;
+                    const pct = Math.min(99, Math.max(30, Math.round((words / (Number(run.ctx.summaryLength) || 200)) * 100)));
+                    broadcast({ action: 'summaryProgress', chunk: `${words} words · ${Math.floor((now - startedAt) / 1000)}s · ${pct}%`, preview: run.parser.summary, progress: pct });
+                }
+            }
             armTimeout();
         }
     } catch (err) {
         if (heartbeatId) clearInterval(heartbeatId);
         clearTimeoutHandle();
-        if (stoppedStreams.delete(requestId)) { push({ stopped: true }); return; }
+        if (stoppedStreams.delete(requestId)) { runs.delete(requestId); push({ stopped: true }); return; }
         const errorMessage = err?.name === 'AbortError'
             ? `Request timed out after ${IDLE_TIMEOUT_MS / 1000}s of inactivity`
             : err.message;
         push({ error: errorMessage });
+        if (run) { if (run.detached && run.ctx.summaryMode === 'extension') broadcast({ action: 'summaryError', error: errorMessage }); runs.delete(requestId); }
     } finally {
         activeStreams.delete(requestId);
     }

@@ -71,7 +71,7 @@ function copyDir(from, to) {
  * @param {string} entryPath absolute path to src/content.js
  * @returns {string} bundled JS source
  */
-function bundleContentScript(entryPath) {
+function bundleContentScript(entryPath, opts = {}) {
     const seen = new Set(); // absolute paths already inlined
     const parts = [];
 
@@ -129,6 +129,16 @@ function bundleContentScript(entryPath) {
     // `annotationUrlWatcher`) and throw a SyntaxError. The `window` object
     // persists between these phantom re-injections, so the flag guarantees
     // the bundle body (and all its top-level declarations) runs only once.
+    if (opts.expose) {
+        // Classic-script bundle for the background worker: private scope, one global.
+        return `// AI Summary Helper — bundled ${opts.expose.global} (background)
+(function () {
+${body}
+
+self.${opts.expose.global} = { ${opts.expose.names.join(', ')} };
+})();
+`;
+    }
     return `// AI Summary Helper — bundled content script (injection-guarded)
 if (!window.__AISH_CONTENT_LOADED) {
     window.__AISH_CONTENT_LOADED = true;
@@ -137,6 +147,15 @@ ${body}
 
 }
 `;
+}
+
+/** finalize.js: the "after the model finished" logic as a classic script, so the background worker can finish a run whose page went away. */
+function writeFinalize(outDir, name) {
+    const entry = path.join(SRC, 'content', 'finalize.js');
+    if (!fs.existsSync(entry)) return;
+    const code = bundleContentScript(entry, { expose: { global: 'AISH_FINALIZE', names: ['createStreamParser', 'finishDetached'] } });
+    fs.writeFileSync(path.join(outDir, 'finalize.js'), code);
+    console.log(`  ✓ ${name || 'bundle'}: bundled finalize.js (${code.length} bytes)`);
 }
 
 /**
@@ -155,6 +174,8 @@ function buildPlatform(name, manifestPath) {
         fs.writeFileSync(path.join(outDir, 'content.js'), bundled);
         console.log(`  ✓ ${name}: bundled content.js (${bundled.length} bytes)`);
     }
+
+    writeFinalize(outDir, name);
 
     if (manifestPath && fs.existsSync(manifestPath)) {
         fs.copyFileSync(manifestPath, path.join(outDir, 'manifest.json'));
@@ -191,6 +212,7 @@ function main() {
             const bundled = bundleContentScript(entry);
             fs.writeFileSync(path.join(targetDir, 'content.js'), bundled);
             console.log(`  ✓ bundled content.js (${bundled.length} bytes)`);
+            writeFinalize(targetDir);
         } catch (err) {
             console.error(`✗ ${err.message}`);
             process.exit(1);

@@ -48,14 +48,14 @@ assert(!/SOURCES|<|```/.test(pa.a), pa.a);
 assert.equal(answerPreview('<p>Hi <str'), 'Hi');
 assert.equal(answerPreview('Plain text\nSOURCES: "abc'), 'Plain text');
 // Reasoning that leaks into a summary is dropped (page script helper).
-const { stripReasoning } = await imp('content/extractor.js');
+const { stripReasoning } = await imp('content/markdown.js');
 assert.equal(stripReasoning('Thinking Process:\n\n1. Analyze...\n* Format: <div> in text'.replace('<div> in text', '')), '');
 assert.equal(stripReasoning('Thinking Process:\n1. x\n\n<div><h2>T</h2><p>Body</p></div>'), '<div><h2>T</h2><p>Body</p></div>');
 assert.equal(stripReasoning('<think>hmm</think><div>ok</div>'), '<div>ok</div>');
 assert.equal(stripReasoning('<think>still going'), '');
 assert.equal(stripReasoning('<div>Thinking: about UX</div>'), '<div>Thinking: about UX</div>');
 // XSS (PR #20): nested markup inside an unwrapped <div> must not escape the allowlist.
-const { sanitizeHtml } = await imp('content/extractor.js');
+const { sanitizeHtml } = await imp('content/markdown.js');
 const bad = sanitizeHtml('<div><p onclick="x()">a</p><img src=x onerror="alert(1)"><a href="javascript:1">l</a><script>alert(1)</script><style>p{}</style><b onmouseover=1>b</b><h2 style="x">t</h2></div>');
 assert(!/onclick|onerror|onmouseover|<img|<a |<script|<style|javascript:|style=|alert/i.test(bad), bad);
 assert(/<p>a<\/p>/.test(bad) && /<h2>t<\/h2>/.test(bad), bad);
@@ -103,7 +103,7 @@ assert(/createRecapStatus\(\{[\s\S]*preview: true/.test(ss) && /generateDigestIn
   const c = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
   const m = fs.readFileSync(new URL('mainScreen.js', here), 'utf8');
   assert(/FINAL INSTRUCTIONS[\s\S]*QUESTIONS: \["\.\.\."/.test(c), 'QUESTIONS in the final reminder');
-  assert(/QUESTIONS:\\s\*\(\[\\s\\S\]\*\?\)\\s\*\(\?:-->\|\$\)/.test(c) && /matchAll\(\/\["“\]/.test(c), 'forgiving parsing');
+  assert(/QUESTIONS:\\s\*\(\[\\s\\S\]\*\?\)\\s\*\(\?:-->\|\$\)/.test(fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8')) && /matchAll\(\/\["“\]/.test(fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8')), 'forgiving parsing');
   assert(!/buildSuggestPrompt|parseSuggestions/.test(m), 'no second request for suggestions');
 }
 console.log('TEST 59 OK'); process.exit(0);

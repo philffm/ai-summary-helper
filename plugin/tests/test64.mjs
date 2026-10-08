@@ -25,7 +25,8 @@ assert(paperSearchText(art).includes('10.1234/abc') && paperSearchText(art).incl
 assert.equal(paperSearchText({ title: 'x' }), '');
 // wiring
 const ct = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
-assert(/SCHOLARLY/.test(ct) && /applyScholarly\(/.test(ct) && /replace\(\/<!--\\s\*SCHOLARLY/.test(ct));
+const cf = fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8');
+assert(/SCHOLARLY/.test(ct) && /applyScholarly\(/.test(cf) && /replace\(\/<!--\\s\*SCHOLARLY/.test(cf));
 assert.equal((ct.match(/\$\{scholarlyAsk\}/g) || []).length, 2);
 const am = fs.readFileSync(new URL('../src/modules/articleManager.js', import.meta.url), 'utf8');
 assert(/\['research'/.test(am) && /RESEARCH_FILTERS/.test(am) && /paperSearchText\(a\)/.test(am));

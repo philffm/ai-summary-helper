@@ -2,7 +2,7 @@
 import assert from 'assert';
 import { setup, imp } from './harness.mjs';
 setup({});
-const { stripReasoning } = await imp('content/extractor.js');
+const { stripReasoning } = await imp('content/markdown.js');
 const plan = '* Task: Summarize the provided PDF text.\n* Output: a single `<div>` containing `<h2>` and `<p>` tags.\n* Style Requirements:\n  * 4-5 sentences\n';
 assert.equal(stripReasoning(plan), '', 'plan only → nothing');
 assert.equal(stripReasoning(plan + '<div><h2>Title</h2><p>Real.</p></div>'), '<div><h2>Title</h2><p>Real.</p></div>');

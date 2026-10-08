@@ -21,6 +21,7 @@
     "scripts": [
       "audioEngine.js",
       "ttsEngine.js",
+      "finalize.js",
       "background.js"
     ]
   },
