@@ -653,8 +653,7 @@ import {
             prompt ? `STYLE / INSTRUCTION: ${prompt}` : '',
             (additionalQuestions || '').trim() ? `ALSO ANSWER / FOCUS ON: ${additionalQuestions}` : '',
             'Output only the HTML (a single <div> with <h2> and <p>), then the HTML comments — no reasoning, no preamble, no code fences.',
-            'The comments must include <!-- QUESTIONS: ["...", "...", "..."] --> with 3 short follow-up questions (in the output language) — the follow-up chips depend on it.',
-            'The comments must also include the <!-- SCHOLARLY: {...} --> comment described above.'
+            `After the HTML write ALL of these comments, each on its own line: <!-- TAGS: tag1, tag2, tag3 --> (3-5 broad topic tags, comma-separated), <!-- GHOST_HIGHLIGHTS: ["exact quote", ...] -->${moodOn ? ', <!-- MOOD: 0.0 -->' : ''}, <!-- QUESTIONS: ["...", "...", "..."] --> (3 short follow-up questions in the output language — the follow-up chips depend on it) and the <!-- SCHOLARLY: {...} --> comment described above. A missing comment loses that feature.`
           ].filter(Boolean).join('\n');
           const systemPrompt = `${langRule ? langRule + ' ' : ''}You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'five' : 'four'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] --> ${scholarlyAsk}. Output ONLY the HTML described here: no reasoning, no thinking notes, no preamble, no markdown code fences, nothing after the last comment.${langRule ? ' ' + langRule : ''}`;
 
@@ -821,12 +820,13 @@ import {
 
               // 🔥 EXTRACT METADATA FROM RAW TEXT BEFORE HTML CONVERSION TO PREVENT BREAKING JSON
               let tags = [];
-              const tagMatch = summary.match(/<!--\s*TAGS:\s*([^>]+)\s*-->/i);
+              const tagMatch = summary.match(/<!--\s*TAGS?\s*:\s*([\s\S]*?)\s*-->/i);
               if (tagMatch) {
                 const seen = new Set();
                 tags = tagMatch[1]
-                  .split(',')
-                  .map(t => t.trim().replace(/^#/, ''))
+                  .replace(/^\s*\[|\]\s*$/g, '')
+                  .split(/[,;\n]+/)
+                  .map(t => t.trim().replace(/^["'#]+|["']+$/g, ''))
                   .filter(Boolean)
                   .filter(t => {
                     const key = t.toLowerCase();
