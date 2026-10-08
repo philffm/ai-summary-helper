@@ -369,6 +369,15 @@ export function stripReasoning(text) {
     const m = t.search(/<(?:div|h2|p)\b/i);
     t = m === -1 ? '' : t.slice(m);
   }
+  // Some models (Gemini Flash especially) write out their plan instead of / before the answer:
+  // "* Content: …  * Style Requirements: …  Output ONLY `<div>` …". Drop that; HTML in backticks is not the answer.
+  const lead = t.trimStart();
+  if (lead && lead[0] !== '<' && !/^```/.test(lead)) {
+    const PLAN = /(?:^|\n)\s*(?:[*•-]|\d+\.)\s+\**(?:content|task|style|output|requirements?|constraints?|language|limit|goal|instructions?|analy[sz]e|input|persona|role)\b/i;
+    const at = t.search(/(?<!`)<(?:div|h2)\b/i);
+    if (at > 0 && PLAN.test(t.slice(0, at))) t = t.slice(at);
+    else if (at === -1 && PLAN.test(t) && /`<(?:div|h2|p)>`/.test(t)) t = '';
+  }
   return t;
 }
 

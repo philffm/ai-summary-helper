@@ -712,6 +712,14 @@ import {
               streamContainer.remove();
               summary = stripReasoning(summary);
               if (!summary.trim() && thinkingText.trim()) summary = stripReasoning(thinkingText);
+              if (!summary.trim()) {
+                const e = 'The model wrote its own notes instead of a summary. Try again or pick another model.';
+                relay('summaryError', { error: e });
+                const ph = targetElement.querySelector('.placeholder'); if (ph) ph.textContent = e;
+                reject(new Error(e));
+                streamHandlers.delete(requestId);
+                return;
+              }
 
               // 🔥 EXTRACT METADATA FROM RAW TEXT BEFORE HTML CONVERSION TO PREVENT BREAKING JSON
               let tags = [];
