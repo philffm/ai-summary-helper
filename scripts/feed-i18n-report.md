@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1086. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1085 | 0 | 0 | 33 |
-| de | 1085 | 0 | 0 | 158 |
-| es | 1085 | 0 | 0 | 123 |
-| fr | 1085 | 0 | 0 | 147 |
-| hi | 1085 | 0 | 0 | 52 |
-| it | 1085 | 0 | 0 | 128 |
-| ja | 1085 | 0 | 0 | 69 |
-| ko | 1085 | 0 | 0 | 15 |
-| pt_PT | 1085 | 0 | 0 | 124 |
-| ru | 1085 | 0 | 0 | 71 |
-| zh_CN | 1085 | 0 | 0 | 1 |
-| zh_HK | 1085 | 0 | 0 | 1 |
-| zh_TW | 1085 | 0 | 0 | 1 |
+| ar | 1086 | 0 | 0 | 33 |
+| de | 1086 | 0 | 0 | 158 |
+| es | 1086 | 0 | 0 | 123 |
+| fr | 1086 | 0 | 0 | 148 |
+| hi | 1086 | 0 | 0 | 52 |
+| it | 1086 | 0 | 0 | 129 |
+| ja | 1086 | 0 | 0 | 69 |
+| ko | 1086 | 0 | 0 | 15 |
+| pt_PT | 1086 | 0 | 0 | 124 |
+| ru | 1086 | 0 | 0 | 71 |
+| zh_CN | 1086 | 0 | 0 | 1 |
+| zh_HK | 1086 | 0 | 0 | 1 |
+| zh_TW | 1086 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -403,6 +403,7 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
 | Good mood only | Bonne humeur uniquement | 23 vs 14 | 1.64× |
 | Library & Data | Bibliothèque et données | 23 vs 14 | 1.64× |
+| Thinking more… | Je réfléchis davantage… | 23 vs 14 | 1.64× |
 | Export backup first | Exporter d’abord une sauvegarde | 31 vs 19 | 1.63× |
 | D3 library failed to load. | Échec du chargement de la bibliothèque D3. | 42 vs 26 | 1.62× |
 | No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
@@ -605,6 +606,7 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Copy failed | Copia non riuscita | 18 vs 11 | 1.64× |
 | Set as active send target | Imposta come destinazione di invio attiva | 41 vs 25 | 1.64× |
 | Summary Length | Lunghezza del riassunto | 23 vs 14 | 1.64× |
+| Thinking more… | Ci sto pensando ancora… | 23 vs 14 | 1.64× |
 | Unsubscribe | Annulla iscrizione | 18 vs 11 | 1.64× |
 | Model identifier | Identificatore del modello | 26 vs 16 | 1.63× |
 | Custom style: | Stile personalizzato: | 21 vs 13 | 1.62× |
