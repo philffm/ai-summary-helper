@@ -3130,5 +3130,14 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "已略過開場白——摘要合集將不含開場白傳送"
+  },
+  "f_ask_dafd": {
+    "message": "💬 提問"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} 則回答"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} 則回答"
   }
 }

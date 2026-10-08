@@ -3214,5 +3214,14 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "已跳过开场白——摘要合集将不含开场白发送"
+  },
+  "f_ask_dafd": {
+    "message": "💬 提问"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} 条回答"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} 条回答"
   }
 }

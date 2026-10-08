@@ -62,6 +62,24 @@ export function initMainScreen(ui) {
                 }, 400);
             }
         });
+        // 💬 Ask: chat about this (older) summary — the thread opens right under the card.
+        if (article.id && !article.feedStub) {
+            const row = document.createElement('div');
+            row.className = 'ask-actions';
+            const btn = document.createElement('button');
+            btn.type = 'button'; btn.className = 'ask-btn'; btn.textContent = T('💬 Ask');
+            btn.setAttribute('aria-expanded', 'false');
+            const go = (e) => { e.stopPropagation(); askAbout(article, bubble); };
+            btn.addEventListener('click', go);
+            row.appendChild(btn);
+            if (article.qaCount) {
+                const c = document.createElement('button');
+                c.type = 'button'; c.className = 'ask-count'; c.textContent = TN(article.qaCount, '💬 {n} reply', '💬 {n} replies');
+                c.addEventListener('click', go);
+                row.appendChild(c);
+            }
+            bubble.appendChild(row);
+        }
         feed.appendChild(bubble);
     };
 
@@ -336,7 +354,7 @@ export function initMainScreen(ui) {
                 meta: full.meta || (full.favicon ? { favicon: full.favicon } : {}),
                 turns: Array.isArray(full.conversation) ? full.conversation : []
             };
-            feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
+            clearThread();
             conversation.turns.forEach(t => feed.appendChild(turnEl(t, { onPin: persistConversation, onSource: revealOnPage })));
         }
         let tab = null;
@@ -350,7 +368,7 @@ export function initMainScreen(ui) {
     /** Back to this page (chip button / ⌘N): back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
     const startNew = () => {
         if (composer && composer.state === 'working') return;
-        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest').forEach(n => n.remove());
+        clearThread();
         conversation = null; lastContext = null;
         clearNote();
         additionalQuestionsInput.value = '';   // language / length / mode / model stay as they were
@@ -383,11 +401,60 @@ export function initMainScreen(ui) {
     } catch (_) { /* tabs API unavailable (hybrid sidebar iframe) */ }
     window.addEventListener('focus', checkPage);
 
+    /** Where thread elements go: under the card the user asked about, else at the end of the feed (the live summary). */
+    function placeThread(el) {
+        const host = conversation && conversation.host;
+        (host && host.isConnected ? host : feed).appendChild(el);
+    }
+
+    /** Remove the visible thread (turns, suggestions, "what I used", the Ask host under an older card). */
+    function clearThread() {
+        feed.querySelectorAll('.chat-turn, .chat-turn-group, .sc-used-wrap, .chat-suggest, .ask-thread').forEach(n => n.remove());
+        feed.querySelectorAll('.summary-bubble.ask-open').forEach(b => { b.classList.remove('ask-open'); const x = b.querySelector('.ask-btn'); if (x) x.setAttribute('aria-expanded', 'false'); });
+    }
+
+    const paintAskCount = () => {
+        const b = conversation && conversation.bubble; if (!b) return;
+        const row = b.querySelector('.ask-actions'); if (!row) return;
+        let c = row.querySelector('.ask-count');
+        if (!c) { c = document.createElement('button'); c.type = 'button'; c.className = 'ask-count'; row.appendChild(c); }
+        c.textContent = TN(conversation.turns.length, '💬 {n} reply', '💬 {n} replies');
+    };
+
+    /** Ask on an older summary card: load its stored turns, put the thread under that card, composer in follow-up mode. */
+    async function askAbout(article, bubble) {
+        if (!composer || composer.state === 'working' || !article || !article.id) return;
+        if (conversation && conversation.bubble === bubble) { bubble.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); additionalQuestionsInput.focus(); return; }
+        let full = null;
+        try { full = await StorageManager.getArticleFull(article.id); } catch (_) { /* fall back to the card */ }
+        let turns = [];
+        try { turns = await StorageManager.getConversation(article.id); } catch (_) { turns = []; }
+        if (!bubble.isConnected) return;
+        clearThread();
+        const f = full || article;
+        conversation = {
+            id: article.id, url: f.url || article.url || '', title: f.title || article.title || '', content: f.content || '', summary: f.summary || article.summary || '',
+            meta: f.meta || (f.favicon ? { favicon: f.favicon } : {}), turns: Array.isArray(turns) ? turns : [], pool: [], bubble, detached: true
+        };
+        const host = document.createElement('div');
+        host.className = 'ask-thread';
+        bubble.after(host);
+        conversation.host = host;
+        bubble.classList.add('ask-open');
+        const btn = bubble.querySelector('.ask-btn'); if (btn) btn.setAttribute('aria-expanded', 'true');
+        conversation.turns.forEach(t => host.appendChild(turnEl(t, { onPin: persistConversation, onSource: revealOnPage })));
+        renderSuggestions();
+        clearNote();
+        composer.set('followup');
+        try { bubble.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch (_) { /* cosmetic */ }
+        additionalQuestionsInput.focus({ preventScroll: true });
+    }
+
     function addTurn(cls, text) {
         const el = document.createElement('div');
         el.className = `chat-turn ${cls}`;
         el.textContent = text;
-        feed.appendChild(el);
+        placeThread(el);
         scrollFeed();
         return el;
     }
@@ -418,7 +485,7 @@ export function initMainScreen(ui) {
             c.addEventListener('click', () => sendFollowUp(q));
             sug.appendChild(c);
         });
-        if (sug.children.length) feed.appendChild(sug);
+        if (sug.children.length) placeThread(sug);
         return sug;
     }
 
@@ -439,6 +506,7 @@ export function initMainScreen(ui) {
             const { a, sources, questions } = parseAnswer(raw, conversation.content);
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
+            paintAskCount();
             const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });
             qEl.remove(); ans.replaceWith(el);
             // Fresh suggestions arrive with the answer (no extra request); unused older ones stay in the pool.
@@ -615,6 +683,7 @@ export function initMainScreen(ui) {
             removeStreamBubble();
             // Render the new summary immediately from relayed data
             if (msg.summary) {
+                clearThread();
                 const bubbleArticle = {
                     title: msg.title || 'Summary',
                     url: msg.url || '',

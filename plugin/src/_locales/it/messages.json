@@ -3130,5 +3130,14 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "Intro saltata: il digest parte senza"
+  },
+  "f_ask_dafd": {
+    "message": "💬 Chiedi"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} risposte"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} risposta"
   }
 }

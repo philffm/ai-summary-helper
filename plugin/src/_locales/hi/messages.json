@@ -3214,5 +3214,14 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "इंट्रो छोड़ा गया — डाइजेस्ट उसके बिना भेजा जाएगा"
+  },
+  "f_ask_dafd": {
+    "message": "💬 पूछें"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} उत्तर"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} उत्तर"
   }
 }

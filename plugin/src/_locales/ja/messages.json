@@ -3220,5 +3220,14 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "イントロをスキップ — ダイジェストはそのまま送信されます"
+  },
+  "f_ask_dafd": {
+    "message": "💬 質問"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n}件の回答"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n}件の回答"
   }
 }

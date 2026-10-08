@@ -3223,6 +3223,16 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-q-sub { font-size: var(--fs-2xs); opacity: 0.8; }
 .chat-suggest { display: flex; flex-wrap: wrap; gap: 6px; }
 .chat-suggest-chip { border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); border-radius: var(--radius-full); padding: 4px 12px; font-size: var(--fs-xs); cursor: pointer; }
+
+/* ── Summarize feed: "💬 Ask" on older summary cards — the thread opens right under the card ── */
+.ask-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.ask-btn { border: 1px solid transparent; background: var(--accent); color: var(--nav-active-text, #fff); border-radius: var(--radius-full); padding: 5px 12px; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
+.ask-btn[aria-expanded="true"] { background: var(--accent-a12); color: var(--accent); border-color: var(--accent-a30); }
+.ask-count { border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-muted); border-radius: var(--radius-full); padding: 4px 10px; font-size: var(--fs-2xs); cursor: pointer; }
+.ask-btn:focus-visible, .ask-count:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.summary-bubble.ask-open { border-color: var(--accent); }
+.ask-thread { display: flex; flex-direction: column; gap: 8px; padding: 0 4px; }
+
 .composer-note--page { background: #fef3c7; color: #78350f; border: 1px solid #fde68a; border-radius: var(--radius-lg); padding: 10px 12px; margin: 0; font-size: var(--fs-sm, 13px); }
 .composer-continue { display: block; margin: 8px auto 0; font-size: var(--fs-2xs); text-align: center; }
 
