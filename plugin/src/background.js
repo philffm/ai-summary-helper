@@ -382,7 +382,8 @@ function parseAiResponseText(raw) {
     return String(j.choices?.[0]?.message?.content ?? j.message?.content ?? j.choices?.[0]?.text ?? gem ?? '').trim();
 }
 
-async function aiComplete({ system, user }) {
+const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
+async function aiComplete({ system, user, id }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     const local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
     const connectionMode = sync.connectionMode || 'cloud';
@@ -431,8 +432,9 @@ async function aiComplete({ system, user }) {
         body = JSON.stringify({ model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }], stream: false });
     }
 
+    // No timeout: local models can take minutes. The user cancels from the recap status card instead.
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 90000);
+    if (id) aiJobs.set(id, ctrl);
     try {
         const res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
         const raw = await res.text();
@@ -441,10 +443,10 @@ async function aiComplete({ system, user }) {
         if (!text) throw new Error('The model returned an empty response.');
         return { text, model };
     } catch (e) {
-        if (e.name === 'AbortError') throw new Error('The AI request timed out.');
+        if (e.name === 'AbortError') throw new Error('The AI request was cancelled.');
         throw e;
     } finally {
-        clearTimeout(timer);
+        if (id) aiJobs.delete(id);
     }
 }
 
@@ -538,11 +540,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
     if (msg.action === 'aiComplete' && msg.user) {
-        aiComplete({ system: msg.system || '', user: msg.user })
+        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id })
             .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;
     }
+    if (msg.action === 'aiCancel') { const c = aiJobs.get(msg.id); if (c) c.abort(); sendResponse({ ok: true }); return true; }
     if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
     if (msg.action === 'audioEnsure') {
         // Chrome: audio must live in an offscreen document. Others: the background page hosts it.

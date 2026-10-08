@@ -9,6 +9,7 @@
 // covered lets us see cheaply whether a child recap changed after the roll-up was written (→ stale → Refresh).
 
 import { generateRollup, recapSig } from './feedAi.js';
+import { createRecapStatus } from './recapStatus.js';
 import { T, TN, locale } from './feedI18n.js';
 
 const DAY_MS = 86400000;
@@ -199,15 +200,17 @@ export function openRollup(scope, anchor, ctx) {
             const cached = ctx.getRecaps()[key];
             const fresh = cached && cached.covered ? changedOf(cached, P) : null;
             if (cached && fresh && !fresh.length) { ctx.toast(T('Nothing new since this recap')); return drawResult(cached, P); }
-            body.replaceChildren(el('p', 'feed-recap-loading', cached ? T('✨ Updating recap…') : T('✨ Writing recap…')),
-                el('p', 'feed-muted', T('Sends {n} short recaps, not {m} headlines', { n: (fresh || P.parts).length, m: P.total })));
+            const st = createRecapStatus({ title: cached ? T('✨ Updating recap…') : T('✨ Writing recap…'), detail: T('Sends {n} short recaps, not {m} headlines', { n: (fresh || P.parts).length, m: P.total }), onCancel: () => { if (cached) drawResult(cached, P); else drawPlan(P, null); } });
+            body.replaceChildren(st.node);
             const send = fresh || P.parts;
-            const r = await generateRollup(send, { label, prev: fresh ? cached : null, edited: (p) => !!(cached && p.key in cached.covered) });
+            let r;
+            try { r = await generateRollup(send, { label, prev: fresh ? cached : null, edited: (p) => !!(cached && p.key in cached.covered), onStage: st.onStage, signal: st.signal }); }
+            finally { st.stop(); }
             const rc = { ...r, at: Date.now(), n: P.total, scope, covered: fresh ? { ...cached.covered, ...sigsOf(send) } : sigsOf(P.parts) };
             ctx.getRecaps()[key] = rc;
             ctx.saveRecaps();
             drawResult(rc, P);
-        } catch (e) { fail(e, () => run(createMissing)); }
+        } catch (e) { if (e.cancelled) return; fail(e, () => run(createMissing)); }
     };
 
     const refresh = (cached) => {

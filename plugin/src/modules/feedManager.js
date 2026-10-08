@@ -29,6 +29,7 @@ import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
+import { createRecapStatus } from './recapStatus.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
@@ -1646,10 +1647,11 @@ async function openRecap(dayStart, label, source = ui.source) {
         // Refresh = previous recap + only the new/edited items; nothing new means no AI request at all.
         if (cached && fresh) {
             if (!fresh.length) { toast(uiRef, T('Nothing new since this recap')); return draw(cached, false); }
-            body.replaceChildren(el('p', 'feed-recap-loading', T('✨ Updating recap…')),
-                el('p', 'feed-muted', T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) })));
+            const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true) });
+            body.replaceChildren(st.node);
             try {
-                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered });
+                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal });
+                st.stop();
                 applyRatings(r.sent, r, rate);
                 const { labels: _l, scores: _s, sent: sentItems, ...rc } = r;
                 recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, total: all.length, covered: { ...cached.covered, ...sigsOf(sentItems) } };
@@ -1657,15 +1659,18 @@ async function openRecap(dayStart, label, source = ui.source) {
                 renderRecapCard();
                 draw(recaps[key], changedSince(recaps[key]).length > 0);
             } catch (e) {
+                st.stop();
+                if (e.cancelled) return;
                 body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
                     btn('btn-sm', T('Try again'), () => run(true)));
             }
             return;
         }
-        body.replaceChildren(el('p', 'feed-recap-loading', T('✨ Writing recap…')),
-            el('p', 'feed-muted', T('Sending {n} titles and short snippets to your AI connection.', { n: list.length })));
+        const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); } });
+        body.replaceChildren(st.node);
         try {
-            const r = await generateRecap(list, aiTitleOf(sm), { rate });
+            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal });
+            st.stop();
             applyRatings(list, r, rate);
             const { labels: _l, scores: _s, ...rc } = r;
             recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, total: all.length, covered: sigsOf(list) };
@@ -1673,6 +1678,8 @@ async function openRecap(dayStart, label, source = ui.source) {
             renderRecapCard();
             draw(recaps[key], false);
         } catch (e) {
+            st.stop();
+            if (e.cancelled) return;
             body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
                 btn('btn-sm', T('Try again'), () => run(true)));
         }

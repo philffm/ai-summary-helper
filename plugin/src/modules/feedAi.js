@@ -15,9 +15,25 @@ export const getRecapLimit = () => recapLimit;
 export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n >= 10 ? Math.min(n, 400) : MAX_RECAP_ITEMS; }
 const SNIPPET_MAX = 160;
 
-export function aiComplete(system, user) {
+let aiSeq = 0;
+/** `signal` (AbortSignal) cancels the request in the background worker too — there is no timeout, slow local models may take minutes. */
+export function aiComplete(system, user, onStage, signal) {
     return new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage({ action: 'aiComplete', system, user }, (res) => {
+        const id = `ai${Date.now()}_${++aiSeq}`;
+        let settled = false;
+        const cancelled = () => Object.assign(new Error(T('Cancelled')), { name: 'AbortError', cancelled: true });
+        if (signal && signal.aborted) return reject(cancelled());
+        if (signal) signal.addEventListener('abort', () => {
+            if (settled) return;
+            settled = true;
+            try { chrome.runtime.sendMessage({ action: 'aiCancel', id }, () => void chrome.runtime.lastError); } catch (e) { /* worker gone */ }
+            reject(cancelled());
+        }, { once: true });
+        if (onStage) { onStage('send'); setTimeout(() => onStage('wait'), 350); }
+        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id }, (res) => {
+            if (settled) { void chrome.runtime.lastError; return; }
+            settled = true;
+            if (onStage) onStage('parse');
             if (chrome.runtime.lastError) {
                 const m = chrome.runtime.lastError.message || '';
                 return reject(new Error(/port closed|Receiving end/i.test(m)
@@ -119,7 +135,7 @@ export function parseRecap(text, n = 0) {
 }
 
 /** rate = also return a category label and a sentiment score for every item (one extra line, no extra request). */
-export async function generateRecap(list, subTitleFn, { rate = true, styleText } = {}) {
+export async function generateRecap(list, subTitleFn, { rate = true, styleText, onStage, signal } = {}) {
     const lang = await languageName();
     const suffix = styleText !== undefined ? styleSuffix(styleText) : await feedStyle('briefing');
     const system = 'You write brief news-digest recaps from headlines and snippets. '
@@ -134,7 +150,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText }
             : '')
         + 'No headings, no markdown other than the "- " lines.' + suffix;
     const chunk = list.slice(0, recapLimit);
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`);
+    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal);
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
@@ -144,7 +160,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText }
  * Refresh an existing recap with ONLY the items that are new or were edited since it was written
  * (the previous recap text stands in for everything already covered, so no old headline is sent again).
  */
-export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false } = {}) {
+export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false, onStage, signal } = {}) {
     const lang = await languageName();
     const suffix = await feedStyle('briefing');
     const system = 'You maintain a brief news-digest recap. You get the CURRENT recap and a numbered list of NEW or EDITED items (edited ones are marked). '
@@ -160,7 +176,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
         + 'No headings, no markdown other than the "- " lines.' + suffix;
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
-    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`);
+    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`, onStage, signal);
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return { ...r, sent: chunk };
@@ -201,7 +217,7 @@ export async function scoreItems(list, subTitleFn) {
         + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
         + 'reuse the same label for similar items, at most 8 different labels. '
         + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`;
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`);
+    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal);
     const scores = parseScores(text, chunk.length);
     if (!scores) throw new Error(T('The AI reply could not be read'));
     return { scores, labels: parseLabelsJson(text, chunk.length) };
@@ -250,7 +266,7 @@ function partText(p) {
  * With `prev`, only the new or changed parts are sent and the previous roll-up stands in for everything else.
  * parts = [{ label, recap }]
  */
-export async function generateRollup(parts, { label = '', prev = null, edited = () => false } = {}) {
+export async function generateRollup(parts, { label = '', prev = null, edited = () => false, onStage, signal } = {}) {
     const lang = await languageName();
     const suffix = await feedStyle('recap');
     const system = 'You merge brief news-digest recaps of several days or weeks into ONE recap for the whole period. '
@@ -262,7 +278,7 @@ export async function generateRollup(parts, { label = '', prev = null, edited = 
         + 'No headings, no markdown other than the "- " lines.' + suffix;
     const body = parts.map(p => partText(p) + (edited(p) ? ' (changed)' : '')).join('\n\n');
     const cur = prev ? [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n') : '';
-    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`);
+    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`, onStage, signal);
     const r = parseRecap(text, 0);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
