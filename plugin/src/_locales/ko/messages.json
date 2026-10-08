@@ -3202,5 +3202,20 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "인트로 건너뜀 — 다이제스트는 인트로 없이 전송됩니다"
+  },
+  "f_about_88ec": {
+    "message": "대상:"
+  },
+  "f_close_conversation_0e32": {
+    "message": "대화 닫기"
+  },
+  "f_ask_dafd": {
+    "message": "💬 질문"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 답변 {n}개"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 답변 {n}개"
   }
 }

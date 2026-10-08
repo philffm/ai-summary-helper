@@ -3130,5 +3130,20 @@
   },
   "f_intro_skipped_the_digest_goe_15e9": {
     "message": "Вступление пропущено — дайджест уйдёт без него"
+  },
+  "f_about_88ec": {
+    "message": "О статье:"
+  },
+  "f_close_conversation_0e32": {
+    "message": "Закрыть беседу"
+  },
+  "f_ask_dafd": {
+    "message": "💬 Спросить"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} ответов"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} ответ"
   }
 }
