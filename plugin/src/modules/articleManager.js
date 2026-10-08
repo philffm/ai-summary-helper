@@ -1648,7 +1648,7 @@ export async function showArticleDetail(article) {
         ${decisionBadge}
         <div class="paper-row" hidden></div>
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="button-primary open-button">${T('Read 👓')}</button>
+          <button class="button-secondary open-button">${T('Read 👓')}</button>
           <button class="button-secondary copy-button">${T('Copy 📋')}</button>
           <button class="button-secondary md-button">${T('.MD 💾')}</button>
           <button class="button-secondary share-button">${T('Share 🔗')}</button>

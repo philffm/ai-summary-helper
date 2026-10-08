@@ -3426,7 +3426,6 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .more-menu .btn-label { display: inline; font-size: var(--fs-md); font-weight: 600; }
 .detail-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0 4px; }
 .detail-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.action-bar .button-primary { width: auto; padding-left: 14px; padding-right: 14px; }
 .paper-details { width: 100%; border: 1px solid var(--outline); border-radius: 12px; padding: 0; }
 .paper-details > summary { cursor: pointer; padding: 10px 12px; font-size: var(--fs-md); font-weight: 600; color: var(--text-secondary); list-style: none; }
 .paper-details > summary::-webkit-details-marker { display: none; }

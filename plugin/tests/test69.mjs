@@ -24,7 +24,7 @@ await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(100);
 const d = w.document;
 const labels = [...d.querySelectorAll('.action-bar button')].map(b => b.className.split(' ')[1] || b.className);
 assert.deepEqual(labels.filter(c => !/kindle/.test(c)), ['open-button', 'copy-button', 'md-button', 'share-button', 'localsend-button']);
-assert(d.querySelector('.action-bar .open-button').classList.contains('button-primary'));
+assert(d.querySelector('.action-bar .open-button').classList.contains('button-secondary'));
 const pd = d.querySelector('details.paper-details');
 assert(pd && !pd.open, 'paper details collapsed by default');
 assert(pd.querySelector('.cite-block') && pd.querySelector('summary'));
