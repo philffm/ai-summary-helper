@@ -91,7 +91,7 @@
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
-  --controls-overlay-height: 240px;
+  --controls-overlay-height: 180px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
 
   /* scrollbar */

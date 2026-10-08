@@ -790,15 +790,7 @@ export function initArticleManager(uiManager) {
         }
     }
 
-    document.addEventListener('keydown', (event) => {
-        if (event.metaKey && event.key === 'f') {
-            event.preventDefault();
-            const historyNav = document.querySelector('.nav-item[data-screen="history"]');
-            if (historyNav && historyNav.classList.contains('active') && historyTopBar?.style.display !== 'none') {
-                searchInput.focus();
-            }
-        }
-    });
+    // ⌘F / Ctrl+F and / are handled centrally in shortcuts.js
 
     // ── Split-screen workspace hooks ────────────────────────────────────
     // In the multi-pane layout (workspaceManager.js) graph/analytics are shown
@@ -1228,6 +1220,13 @@ function buildArticleCard(article) {
         }
     }
     registerCard(article, listItem);
+    listItem.tabIndex = 0; listItem.setAttribute('role', 'button');   // reachable with Tab; Enter / Space opens it
+    listItem.addEventListener('keydown', (event) => {
+        if (event.target !== listItem || (event.key !== 'Enter' && event.key !== ' ')) return;
+        event.preventDefault();
+        if (selectionActive()) { toggleCard(article); return; }
+        showArticleDetail(article);
+    });
     listItem.addEventListener('click', (event) => {
         if (event.target.closest('button') || event.target.closest('a')) return;
         if (selectionActive()) { toggleCard(article); return; }

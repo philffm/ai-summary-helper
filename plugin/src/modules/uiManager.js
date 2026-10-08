@@ -188,6 +188,7 @@ class UIManager {
         if (!stack) {
             stack = document.createElement('div');
             stack.id = 'toastStack';
+            stack.setAttribute('role', 'status'); stack.setAttribute('aria-live', 'polite');   // screen readers announce toasts
             document.body.appendChild(stack);
         }
         const toast = document.createElement('div');
