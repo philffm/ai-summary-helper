@@ -15,6 +15,7 @@ import { getReader } from './reader.js';
 import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
 import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
+import { typeText } from './typewriter.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -555,15 +556,16 @@ export function initMainScreen(ui) {
         if (conversation && conversation.bubble === bubble) { bubble.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); additionalQuestionsInput.focus(); return; }
         let full = null;
         try { full = await StorageManager.getArticleFull(article.id); } catch (_) { /* fall back to the card */ }
-        let turns = [], pool = [];
+        let turns = [], pool = [], quick = {};
         try { turns = await StorageManager.getConversation(article.id); } catch (_) { turns = []; }
         try { pool = await StorageManager.getSuggested(article.id); } catch (_) { pool = []; }
+        try { quick = await StorageManager.getSuggestedAnswers(article.id); } catch (_) { quick = {}; }
         if (!bubble.isConnected) return;
         clearThread();
         const f = full || article;
         conversation = {
             id: article.id, url: f.url || article.url || '', title: f.title || article.title || '', content: f.content || '', summary: f.summary || article.summary || '',
-            meta: f.meta || (f.favicon ? { favicon: f.favicon } : {}), turns: Array.isArray(turns) ? turns : [], pool: Array.isArray(pool) ? pool.slice() : [], bubble, detached: true
+            meta: f.meta || (f.favicon ? { favicon: f.favicon } : {}), turns: Array.isArray(turns) ? turns : [], pool: Array.isArray(pool) ? pool.slice() : [], quick: quick || {}, bubble, detached: true
         };
         try { instant && instant.refresh(); } catch (_) { /* optional */ }
         const host = document.createElement('div');
@@ -591,7 +593,7 @@ export function initMainScreen(ui) {
     }
 
     const persistConversation = () => {
-        if (conversation && conversation.id) StorageManager.saveConversation(conversation.id, conversation.turns, conversation.pool).catch(() => {});
+        if (conversation && conversation.id) StorageManager.saveConversation(conversation.id, conversation.turns, conversation.pool, conversation.quick).catch(() => {});
     };
 
     const revealOnPage = (quote, chip) => {
@@ -627,15 +629,30 @@ export function initMainScreen(ui) {
         fetchSummaryButton.disabled = true;
         try { instant && instant.startChat(q); } catch (_) { /* optional */ }
         const qEl = addTurn('chat-q', q);
-        const ans = addTurn('chat-a chat-a--pending', T('Thinking…'));
+        // A suggested question comes with a short answer: type it out like a person while the full answer is requested.
+        const quickText = (conversation.quick && conversation.quick[q]) || '';
+        const ans = addTurn('chat-a chat-a--pending', quickText ? '' : T('Thinking…'));
+        let typer = null, fullDone = false, streamed = '';
+        if (quickText) {
+            const reduce = document.documentElement.getAttribute('data-motion') === 'reduce';
+            typer = typeText(quickText, (t) => { renderAnswer(ans, t); scrollFeed(); }, { fast: () => fullDone, instant: reduce });
+            ans.classList.add('chat-a--quick');
+        }
         try {
-            const { system, user } = buildPrompt({ ...conversation, question: q });
+            const { system, user } = buildPrompt({ ...conversation, question: q, draft: quickText });
+            let typing = !!typer;
+            if (typer) typer.done.then((ok) => { typing = false; if (ok && streamed) { renderAnswer(ans, streamed); scrollFeed(); } });
             const raw = await aiComplete(system, user, null, null, (m) => {
                 // Stream the answer in as it is written (cleaned of HTML / code fences / the SOURCES line).
                 const t = m && m.text ? answerPreview(m.text) : '';
-                if (t) { renderAnswer(ans, t); scrollFeed(); try { instant && instant.chatText(t); } catch (_) { /* optional */ } }
+                if (!t) return;
+                streamed = t;
+                if (!typing) { renderAnswer(ans, t); scrollFeed(); }   // while the short answer is still being typed, it keeps going
+                try { instant && instant.chatText(t); } catch (_) { /* optional */ }
             }, { partial: true });
-            const { a, sources, questions } = parseAnswer(raw, conversation.content);
+            fullDone = true;
+            if (typer) await typer.done;       // let the typed answer finish (it speeds up now) before the full one replaces it
+            const { a, sources, questions, quick } = parseAnswer(raw, conversation.content);
             try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
@@ -645,9 +662,11 @@ export function initMainScreen(ui) {
             qEl.remove(); ans.replaceWith(el);
             // Fresh suggestions arrive with the answer (no extra request); unused older ones stay in the pool.
             conversation.pool = [...(questions || []), ...(conversation.pool || [])];
+            conversation.quick = { ...(conversation.quick || {}), ...(quick || {}) };
             renderSuggestions();
             persistConversation();
         } catch (err) {
+            if (typer) typer.stop();
             try { instant && instant.abort(); } catch (_) { /* optional */ }
             ans.textContent = '❌ ' + ((err && err.message) || T('AI request failed'));
             ans.classList.remove('chat-a--pending');
@@ -852,6 +871,7 @@ export function initMainScreen(ui) {
                 clearNote();
                 const given = (Array.isArray(msg.questions) ? msg.questions : []).filter(Boolean);
                 conversation.pool = given.slice();
+                conversation.quick = (msg.quick && typeof msg.quick === 'object') ? { ...msg.quick } : {};
                 renderSuggestions();
                 if (composer) { composer.set('followup'); showConversationChip(); }
                 scrollFeed();

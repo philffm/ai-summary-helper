@@ -102,8 +102,8 @@ assert(/createRecapStatus\(\{[\s\S]*preview: true/.test(ss) && /generateDigestIn
 {
   const c = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
   const m = fs.readFileSync(new URL('mainScreen.js', here), 'utf8');
-  assert(/FINAL INSTRUCTIONS[\s\S]*QUESTIONS: \["\.\.\."/.test(c), 'QUESTIONS in the final reminder');
-  assert(/QUESTIONS:\\s\*\(\[\\s\\S\]\*\?\)\\s\*\(\?:-->\|\$\)/.test(fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8')) && /matchAll\(\/\["“\]/.test(fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8')), 'forgiving parsing');
+  assert(/FINAL INSTRUCTIONS[\s\S]*QUESTIONS: \[\{"q":"\.\.\."/.test(c), 'QUESTIONS in the final reminder');
+  assert(/QUESTIONS:\\s\*\(\[\\s\\S\]\*\?\)\\s\*\(\?:-->\|\$\)/.test(fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8')) && /matchAll\(\/\["“\]/.test(fs.readFileSync(new URL('../src/modules/suggestions.js', import.meta.url), 'utf8')), 'forgiving parsing');
   assert(!/buildSuggestPrompt|parseSuggestions/.test(m), 'no second request for suggestions');
 }
 console.log('TEST 59 OK'); process.exit(0);

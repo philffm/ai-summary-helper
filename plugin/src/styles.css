@@ -3637,3 +3637,6 @@ body[data-surface="sidebar"] { min-width: 0; }
 .read-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .read-btn.is-speaking { border-color: var(--accent); color: var(--accent); }
 .read-btn[hidden] { display: none; }
+
+/* Short answer of a suggested follow-up is typed out while the full answer is still being written */
+.chat-a--quick.chat-a--pending::after { content: ' …'; color: var(--text-muted); }

@@ -1009,7 +1009,7 @@ async function finishRun(r) {
         const out = await FIN.finishDetached(r.ctx, r.parser.summary, r.parser.thinking);
         if (out.error) { if (r.ctx.summaryMode === 'extension') broadcast({ action: 'summaryError', error: out.error }); return; }
         if (r.ctx.summaryMode === 'extension') {
-            broadcast({ action: 'summaryComplete', summary: out.cleanHtml, title: out.title, url: r.ctx.sourceUrl, timestamp: new Date().toISOString(), tags: out.tags, modelId: r.ctx.modelIdentifier, moodScore: out.moodScore, questions: out.questions, meta: out.pageMeta, content: r.ctx.contentHtml });
+            broadcast({ action: 'summaryComplete', summary: out.cleanHtml, title: out.title, url: r.ctx.sourceUrl, timestamp: new Date().toISOString(), tags: out.tags, modelId: r.ctx.modelIdentifier, moodScore: out.moodScore, questions: out.questions, quick: out.quick, meta: out.pageMeta, content: r.ctx.contentHtml });
         }
         if (out.article && out.article.id) broadcast({ action: 'summarySaved', id: out.article.id, url: r.ctx.sourceUrl });
     } catch (e) {

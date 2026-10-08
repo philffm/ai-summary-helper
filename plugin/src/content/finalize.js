@@ -2,6 +2,7 @@ import { ttsLang, langBase } from '../modules/languages.js';
 import { applyScholarly, paperIndexFields } from './paper.js';
 import { ensureGeneralTag, normalizeGhostQuotes, extractSummaryTitle, saveToLocalStorage } from './core.js';
 import { markdownToHtml, stripReasoning } from './markdown.js';
+import { parseSuggestionList } from '../modules/suggestions.js';
 // content/finalize.js
 // Everything that happens AFTER the model has finished writing: pull the metadata comments out of the raw text,
 // build the HTML, tags, language tags, title. It needs no page DOM, so it runs in the content script (normal case)
@@ -48,7 +49,7 @@ export function detectContentLang(text, htmlLang) {
 /**
  * @param {object} o  raw, thinking, contentText, pageTitle (title for tag matching), selectedLanguage, htmlLang,
  *   pageMeta (base metadata, may be {}), ghostMax, fixedTitle ('' = derive), attachedTitle (string when a PDF was attached, else null)
- * @returns {Promise<{error:string}|{cleanHtml,tags,ghostQuotes,moodScore,questions,pageMeta,title}>}
+ * @returns {Promise<{error:string}|{cleanHtml,tags,ghostQuotes,moodScore,questions,quick,pageMeta,title}>}
  */
 export async function finalizeSummary(o) {
   let summary = stripReasoning(o.raw || '');
@@ -91,14 +92,9 @@ export async function finalizeSummary(o) {
   } catch (_) { /* optional */ }
 
   // Suggested follow-up questions: parsing is forgiving (a missing "-->" or non-JSON list still yields the quoted questions).
-  let questions = [];
+  let questions = [], quick = {};
   const qMatch = summary.match(/<!--\s*QUESTIONS:\s*([\s\S]*?)\s*(?:-->|$)/i);
-  if (qMatch) {
-    const body = qMatch[1].trim().replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
-    let arr = null;
-    try { arr = JSON.parse(body); } catch (e) { arr = [...body.matchAll(/["“]([^"”\n]{4,120})["”]/g)].map(x => x[1]); }
-    if (Array.isArray(arr)) questions = arr.map(x => String(x || '').trim()).filter(x => x.length >= 4 && x.length <= 120).slice(0, 3);
-  }
+  if (qMatch) ({ questions, quick } = parseSuggestionList(qMatch[1]));
 
   const cleanRawText = summary
     .replace(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/gi, '')
@@ -112,7 +108,7 @@ export async function finalizeSummary(o) {
   const title = o.attachedTitle !== null && o.attachedTitle !== undefined
     ? (extractSummaryTitle(cleanHtml) || o.attachedTitle || 'Untitled')
     : (o.fixedTitle || extractSummaryTitle(cleanHtml) || 'Untitled');
-  return { cleanHtml, tags, ghostQuotes, moodScore, questions, pageMeta, title };
+  return { cleanHtml, tags, ghostQuotes, moodScore, questions, quick, pageMeta, title };
 }
 
 /** Same as the in-page path: store the finished summary. `ctx` is what the page handed to the background when the run started. */
