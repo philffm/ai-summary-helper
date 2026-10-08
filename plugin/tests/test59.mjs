@@ -83,4 +83,10 @@ const contentSrc = fs.readFileSync(new URL('../src/content.js', import.meta.url)
 assert(/FINAL INSTRUCTIONS/.test(contentSrc) && /LENGTH RULE/.test(contentSrc), 'final reminder block');
 assert(/content: `[^`]*Content: \$\{truncatedContent\}\\n\\n\$\{finalReminder\}`/.test(contentSrc), 'reminder is the last thing in the user message');
 assert(/parts\.push\(\{ text: finalReminder \}\)/.test(contentSrc), 'gemini: reminder is the last part');
+const { resolveLocale } = await imp('modules/i18n.js');
+assert.equal(resolveLocale('de'), 'de'); assert.equal(resolveLocale('de-DE'), 'de');
+assert.equal(resolveLocale('', 'de-AT'), 'de'); assert.equal(resolveLocale('', 'en-GB'), 'en');
+assert.equal(resolveLocale('pt'), 'pt_PT'); assert.equal(resolveLocale('', 'pt-BR'), 'pt_PT');
+assert.equal(resolveLocale('zh-TW'), 'zh_TW'); assert.equal(resolveLocale('', 'zh-Hant'), 'zh_TW'); assert.equal(resolveLocale('zh'), 'zh_CN'); assert.equal(resolveLocale('', 'zh-HK'), 'zh_HK');
+assert.equal(resolveLocale('', 'sv-SE'), 'en'); assert.equal(resolveLocale('ar'), 'ar');
 console.log('TEST 59 OK'); process.exit(0);

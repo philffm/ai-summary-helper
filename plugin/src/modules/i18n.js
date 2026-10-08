@@ -12,11 +12,32 @@ let fallbackDictionary = {};
     } catch (e) {}
 })();
 
-// Saved codes that no longer match a locale folder name exactly.
-const LOCALE_ALIASES = { pt: 'pt_PT', zh: 'zh_CN', zh_HK: 'zh_TW', zh_Hant: 'zh_TW' };
+// Locale folders shipped in _locales (all fully translated; tests/test60.mjs enforces coverage).
+export const SUPPORTED_LOCALES = ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar'];
+const RTL = new Set(['ar', 'he', 'fa', 'ur']);
+
+/**
+ * Stored/browser language code → locale folder. '' (Browser Default) follows the browser's UI language;
+ * 'de-DE' → de, 'pt'/'pt-BR' → pt_PT, 'zh-TW'/'zh-Hant' → zh_TW, 'zh-HK' → zh_HK, other zh → zh_CN; unknown → en.
+ */
+export function resolveLocale(code, browserLang) {
+    let c = String(code || '').trim();
+    if (!c) {
+        let ui = '';
+        try { ui = browserLang || (typeof chrome !== 'undefined' && chrome.i18n && chrome.i18n.getUILanguage && chrome.i18n.getUILanguage()) || (typeof navigator !== 'undefined' && navigator.language) || ''; } catch (e) { /* no API */ }
+        c = String(ui || 'en');
+    }
+    c = c.replace('-', '_');
+    const exact = SUPPORTED_LOCALES.find(l => l.toLowerCase() === c.toLowerCase());
+    if (exact) return exact;
+    const base = c.split('_')[0].toLowerCase();
+    if (base === 'zh') return /^zh_(tw|mo|hant)/i.test(c) ? 'zh_TW' : /^zh_hk/i.test(c) ? 'zh_HK' : 'zh_CN';
+    if (base === 'pt') return 'pt_PT';
+    return SUPPORTED_LOCALES.find(l => l.toLowerCase() === base) || 'en';
+}
 
 export async function applyTranslations(langCode) {
-    const code = LOCALE_ALIASES[langCode] || langCode || 'en';
+    const code = resolveLocale(langCode);
     try {
         const response = await fetch(`_locales/${code}/messages.json`);
         if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -53,6 +74,7 @@ export async function applyTranslations(langCode) {
     });
 
     document.documentElement.lang = code.replace('_', '-');
+    document.documentElement.dir = RTL.has(code.split('_')[0]) ? 'rtl' : 'ltr';
     // Screens that build text in JS (Feeds) re-render with the new dictionary.
     try { document.dispatchEvent(new CustomEvent('aish:translationsApplied', { detail: { code } })); } catch (e) {}
 }
