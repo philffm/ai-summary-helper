@@ -22,7 +22,7 @@
 <link rel="icon" type="image/svg+xml" href="../../../assets/icon.svg">
 <link rel="stylesheet" href="../../../assets/styles.css">
 <script src="../../../assets/analytics.js"></script>
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/from-bookmarklet-to-2.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/from-bookmarklet-to-2.html"></head>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/from-bookmarklet-to-2.html"></head>
 <body>
 
 <a href="#main" class="skip-link">コンテンツへスキップ</a>
@@ -74,7 +74,7 @@
 <main id="main">
   <div class="wrap">
     <div class="post-hero">
-      <span class="blog-date">プロダクト · 2026年8月</span>
+      <span class="blog-date">プロダクト · 2026年6月</span>
       <h1>ブックマークレットから2.0へ：現在のAI Summary Helperとは</h1>
       <p class="post-sub">始まりは、Kindleで記事を読むためのワンクリック・ブックマークレットでした。2年の歳月と完全なリビルドを経て、最初の100人が使い始めた頃には存在すらしていなかった機能が、現在の主力となっています。</p>
     </div>
@@ -90,6 +90,7 @@
         <p>2024年7月当時、これは拡張機能ですらなく、ただのブックマークレットでした。面白そうな記事を見つけて何十個もタブを開くものの、大半は結局読まれずに終わる――多くの人が抱えるこの課題に対し、開発の動機は極めて個人的でシンプルなものでした。カスタムプロンプトによる要約結果をページ内に直接挿入し、 <a href="https://send.reabble.com/" target="_blank" rel="noopener">ReabbleのSend-to-Kindleツール</a>を使ってKindleへ記事を転送する際に、要約も一緒に読めるようにすること。それがプロダクトのすべてでした。選べるAIプロバイダーは1つ、プロンプト入力欄も1つ。iOSのSafariでもどこでも動くブックマークレット版と、プロンプトをその場で調整したい人向けのChrome拡張機能版を用意しただけのものでした。</p>
         <p>数週間後にはアクティブユーザーが100人を超えました。製品としてではなく、個人の読書習慣を解決するために作ったツールだったため、この反響には純粋に驚きました。</p>
 
+        <figure class="post-figure"><img src="../../../assets/blog/summary-end-to-end.webp" alt="図：Ask、Stream、Finalize and SaveからFollow upに至る、要約のエンドツーエンドの処理フロー" width="1760" height="620" loading="lazy"><figcaption>「Summarize」を押したときに実行される処理の全容を、5つのステップでご紹介します。</figcaption></figure>
         <h2>2.0に至るまでの進化</h2>
         <p>「自分の思い通りの方法で要約し、ブラウザのタブよりも快適な場所で読む」という核となる思想は一貫しています。しかし、それを取り巻くほぼすべての要素が進化しました：</p>
 

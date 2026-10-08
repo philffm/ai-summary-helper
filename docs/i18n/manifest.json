@@ -27224,6 +27224,1491 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "8fdeeb3273bccb7f45615a12cc4dd27fa3e3d8fe226f6a761bf4c3b239c40fc5": {
+      "en": "Product · Oct 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · Okt. 2026",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Produit · oct. 2026",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Producto · Oct 2026",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "产品 · 2026 年 10 月",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產品 · 2026 年 10 月",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロダクト · 2026年10月",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "제품 · 2026년 10월",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Produto · Out 2026",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product · Oct 2026",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sản phẩm · Tháng 10, 2026",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "513c9c5776c32dd0b6eef4dd046e3f81d5ef1e0765011c4113dc4e28865961f6": {
+      "en": "Your key. Your model. Your data.",
+      "translations": {
+        "de": {
+          "text": "Ihr Key. Ihr Modell. Ihre Daten.",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Votre clé. Votre modèle. Vos données.",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tu clave. Tu modelo. Tus datos.",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "你的 API key，你的模型，你的数据。",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "你的金鑰。你的模型。你的資料。",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "あなたのAPIキー。あなたのモデル。あなたのデータ。",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내 키. 내 모델. 내 데이터.",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sua chave. Seu modelo. Seus dados.",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी key. आपका model. आपका data.",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Khóa của bạn. Mô hình của bạn. Dữ liệu của bạn.",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1b07095910f1210b6f0267edb7f76d39c36e7c3bc762c09ca17180c32da2a069": {
+      "en": "What bringing your own API key means: where the key lives, where page text goes, and what a local model changes.",
+      "translations": {
+        "de": {
+          "text": "Was die Nutzung Ihres eigenen API-Keys bedeutet: Wo der Key gespeichert wird, wohin Seitentexte übertragen werden und was ein lokales Modell ändert.",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ce qu'implique l'utilisation de votre propre clé API : où la clé est stockée, où transitent vos données et ce qu'un modèle local on-device change pour votre confidentialité.",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Qué significa usar tu propia clave de API: dónde se almacena la clave, a dónde va el texto de la página y qué cambia con un modelo local.",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "自带 API key（BYOK）意味着什么：Key 存储在哪里、网页内容如何传输，以及使用本地模型会带来哪些改变。",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "自備 API Key 意味著什麼：金鑰儲存在哪裡、網頁文字傳送到何處，以及本地模型帶來哪些改變。",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "APIキーを持ち込むということ：キーの保存場所、ページテキストの送信先、そしてローカルモデルによって何が変わるのか。",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "API 키를 직접 연동한다는 것의 의미: 키가 저장되는 위치부터 웹페이지 텍스트의 전송 경로, 로컬 모델이 가져오는 프라이버시 변화까지 살펴봅니다.",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O que significa usar sua própria chave de API: onde ela fica salva, para onde vai o texto da página e o que muda com um modelo local.",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी खुद की API key इस्तेमाल करने का क्या मतलब है: key कहाँ स्टोर होती है, page text कहाँ जाता है, और एक local model से क्या बदलता है।",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ý nghĩa của việc tự dùng API key: nơi lưu trữ khóa, nơi gửi dữ liệu trang web và những thay đổi khi sử dụng mô hình AI cục bộ.",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0e2a103d11ee74d03d24a12bc8dc82440a1f80e6e19ef8eb4afffedacb70504e": {
+      "en": "Guide · Oct 2026",
+      "translations": {
+        "de": {
+          "text": "Guide · Okt. 2026",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Guide · oct. 2026",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Guía · Oct 2026",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "指南 · 2026 年 10 月",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "指南 · 2026 年 10 月",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ガイド · 2026年10月",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가이드 · 2026년 10월",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Guia · Out 2026",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Guide · Oct 2026",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hướng dẫn · Tháng 10, 2026",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0fe18909d304bd34db3aa32e4ab3f362fe2f494b709cb42c1e63250afd2b6cbc": {
+      "en": "One recap instead of 40 feeds",
+      "translations": {
+        "de": {
+          "text": "Ein Recap statt 40 Feeds",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un seul récapitulatif au lieu de 40 flux",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un solo resumen en lugar de 40 feeds",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一份精选简报，取代 40 个信息源",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一份精華彙整，取代 40 個資訊來源",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "40本のフィードを追う代わりに、1つのダイジェストを",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "40개의 피드 대신 단 하나의 요약으로",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um resumo em vez de 40 feeds",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "40 feeds के चक्कर के बजाय सिर्फ एक recap",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Một bản tóm tắt thay vì 40 nguồn tin",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0679652e8a4c6f4b811e0bddf0eaef633f80e73c9ad1fde8d592970af99ffee9": {
+      "en": "Many feeds mean many small task switches. How a daily or weekly recap replaces most of them.",
+      "translations": {
+        "de": {
+          "text": "Viele Feeds bedeuten ständige Kontextwechsel. Wie eine tägliche oder wöchentliche Zusammenfassung die meisten davon ersetzt.",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Multiplier les flux entraîne d'incessants changements de contexte. Découvrez comment un récapitulatif quotidien ou hebdomadaire peut avantageusement les remplacer.",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Muchos feeds implican constantes cambios de contexto. Descubre cómo un resumen diario o semanal reemplaza a la mayoría de ellos.",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "订阅源过多意味着频繁的任务上下文切换。了解如何用一份每日或每周简报替代大部分碎片阅读。",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "訂閱過多來源意味著頻繁的任務切換。了解每日或每週精華如何取代大部分繁雜動態。",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "大量のフィードは細かなタスク切り替えを生み出します。日次や週次のダイジェストでその大半を置き換える方法をご紹介します。",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "피드가 많을수록 잦은 작업 전환으로 집중력이 흐려집니다. 일간 또는 주간 리캡으로 피드 확인 시간을 줄이는 방법을 확인해 보세요.",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Vários feeds geram constantes trocas de contexto. Veja como um resumo diário ou semanal substitui a maioria deles.",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "ढेर सारे feeds यानी बार-बार task switch करना। जानिए कैसे एक daily या weekly recap इनमें से ज़्यादातर की ज़रूरत खत्म कर देता है।",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Theo dõi quá nhiều nguồn tin khiến bạn liên tục bị phân tán tập trung. Khám phá cách bản tổng hợp hàng ngày hoặc hàng tuần thay thế tất cả.",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "969f110dd2f1dcc362682b65f20b7520491f5fdd2d72c4e9a595560c4ce577ad": {
+      "en": "How to check an AI summary against its source in 10 seconds",
+      "translations": {
+        "de": {
+          "text": "Wie Sie eine KI-Zusammenfassung in 10 Sekunden mit der Quelle abgleichen",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Comment vérifier un résumé IA par rapport à sa source en 10 secondes",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cómo verificar un resumen de IA con su fuente en 10 segundos",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "如何在 10 秒内核对 AI 摘要与原文",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "如何在 10 秒內對照原文驗證 AI 摘要",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIの要約を10秒で原文と照合・確認する方法",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI 요약을 10초 만에 원문과 대조하는 방법",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Como verificar um resumo gerado por IA na fonte em 10 segundos",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "10 सेकंड में AI summary को उसके source के साथ कैसे verify करें",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cách đối chiếu bản tóm tắt AI với nguồn gốc trong 10 giây",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "69dbdc0c047995196e0d6ed8a3c63384cdffc6681281f4740080af2436f7c3b5": {
+      "en": "A quote proves the passage exists, not that the model read it right. A short habit for trusting summaries without re-reading the article.",
+      "translations": {
+        "de": {
+          "text": "Ein Zitat belegt nur, dass die Textstelle existiert – nicht, dass das Modell sie korrekt erfasst hat. Eine einfache Routine, um Zusammenfassungen zu prüfen, ohne den ganzen Artikel lesen zu müssen.",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une citation prouve que l'extrait existe, pas que le modèle l'a correctement interprété. Un réflexe simple pour vérifier la fiabilité des résumés sans relire tout l'article.",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Una cita demuestra que el fragmento existe, no que el modelo lo haya interpretado bien. Un hábito rápido para confiar en los resúmenes sin releer el artículo.",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "引述只能证明原文存在，并不代表模型理解准确。养成一个小习惯，无需重读全文也能快速校验摘要质量。",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "引述只能證明段落確實存在，不代表模型理解正確。培養一個小習慣，無需重讀全文也能安心信任摘要。",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "引用があるからといって、モデルが文脈を正しく読み取ったとは限りません。記事を最初から読み直すことなく、要約の正確性を確認する簡単な習慣をご紹介します。",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "인용문이 포함되어 있다고 해서 모델이 문맥을 제대로 이해했다고 보장할 수는 없습니다. 글 전체를 다시 읽지 않고도 요약본을 신뢰할 수 있는 간단한 습관을 소개합니다.",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Uma citação prova que o trecho existe, não que o modelo o interpretou corretamente. Um hábito rápido para confiar em resumos sem reler o artigo inteiro.",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एक quote सिर्फ यह साबित करता है कि passage मौजूद है, यह नहीं कि model ने उसे सही समझा। पूरा article दोबारा पढ़े बिना summaries को cross-check करने की एक आसान आदत।",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Trích dẫn chỉ chứng minh đoạn văn tồn tại, không đảm bảo AI đã hiểu đúng. Thói quen đơn giản giúp bạn an tâm kiểm chứng bản tóm tắt mà không cần đọc lại toàn bộ bài.",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f49c4d67a593085c96231df8b396b34bce911a54d32a16cfa5d5085a129d436d": {
+      "en": "Guide · Sep 2026",
+      "translations": {
+        "de": {
+          "text": "Guide · Sep. 2026",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Guide · sept. 2026",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Guía · Sep 2026",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "指南 · 2026 年 9 月",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "指南 · 2026 年 9 月",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ガイド · 2026年9月",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가이드 · 2026년 9월",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Guia · Set 2026",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Guide · Sep 2026",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hướng dẫn · Tháng 9, 2026",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a6655487359f5cc5dcde97bccfa9d0a814643be659c3ba5ea8cbb4c6f80e8370": {
+      "en": "Highlighting alone barely works. Ask about it instead.",
+      "translations": {
+        "de": {
+          "text": "Reines Markieren bringt kaum etwas. Stellen Sie stattdessen gezielte Fragen.",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Surligner seul ne suffit pas. Interrogez plutôt vos lectures.",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Subrayar por sí solo apenas funciona. Mejor haz preguntas sobre el texto.",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "单纯划线收效甚微，不如直接向内容提问。",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "光畫重點幾乎沒用，不如直接向它提問。",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ハイライトを引くだけでは定着しません。その内容について質問してみましょう。",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "단순 하이라이트만으로는 부족합니다. 직접 질문해 보세요.",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apenas grifar quase não funciona. Faça perguntas sobre o texto.",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सिर्फ highlight करने से काम नहीं बनता। इसके बजाय उस पर सवाल पूछिए।",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ highlight thôi là chưa đủ. Hãy đặt câu hỏi với AI.",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5103220d6111d82d0153a22c011913e103491cde507714e47e5b7ad4d179c9c2": {
+      "en": "A big review of study techniques ranked highlighting low. Why, and a small change that makes a highlight stick.",
+      "translations": {
+        "de": {
+          "text": "Eine umfassende Analyse von Lerntechniken stuft Markieren weit unten ein. Warum das so ist – und wie eine kleine Änderung dafür sorgt, dass Gelesenes wirklich hängenbleibt.",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une méta-analyse sur les techniques d'apprentissage a classé le surlignage parmi les moins efficaces. Voici pourquoi, et le simple réflexe pour ancrer durablement vos notes.",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un amplio estudio sobre técnicas de aprendizaje calificó negativamente el subrayado. Conoce los motivos y el pequeño cambio que te ayudará a retenerlo.",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一项关于学习方法的大型综述将划线高亮排在后列。了解背后原因，以及一个能让划线真正转化为记忆的小改变。",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一項大型學習方法研究指出畫重點效果有限。深入了解背後原因，以及一個讓劃記內容真正內化的小改變。",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "学習法に関する大規模な調査で、ハイライトの効果は低く評価されました。その理由と、記憶にしっかり定着させるための簡単な工夫を解説します。",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "주요 학습법 비교 연구에서 하이라이트 기능은 낮은 평가를 받았습니다. 그 이유와 함께, 하이라이트한 내용을 온전히 기억에 남기는 작은 팁을 공유합니다.",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um amplo estudo sobre técnicas de aprendizagem avaliou o ato de grifar como pouco eficaz. Entenda o porquê e veja uma simples mudança para fixar o conteúdo.",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Study techniques पर हुई एक बड़ी research में highlighting को काफी नीचे रखा गया। जानिए ऐसा क्यों है, और एक छोटा बदलाव जिससे पढ़ी हुई चीज़ें हमेशा याद रहें।",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các nghiên cứu lớn về phương pháp học tập đánh giá rất thấp việc chỉ highlight. Tìm hiểu lý do và thay đổi nhỏ giúp bạn ghi nhớ sâu kiến thức.",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a4937d38ee775fef321d05badefe85a52c4015356a4bc071cb5a3b4fd06c01c3": {
+      "en": "Product · Sep 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · Sep. 2026",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Produit · sept. 2026",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Producto · Sep 2026",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "产品 · 2026 年 9 月",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產品 · 2026 年 9 月",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロダクト · 2026年9月",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "제품 · 2026년 9월",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Produto · Set 2026",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product · Sep 2026",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sản phẩm · Tháng 9, 2026",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "48f8c821c22023e4fddf9eacc38a83840ecce45ebae02c070b361a148cdf1e16": {
+      "en": "Guide · Jul 2026",
+      "translations": {
+        "de": {
+          "text": "Guide · Juli 2026",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Guide · juil. 2026",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Guía · Jul 2026",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "指南 · 2026 年 7 月",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "指南 · 2026 年 7 月",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ガイド · 2026年7月",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가이드 · 2026년 7월",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Guia · Jul 2026",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Guide · Jul 2026",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hướng dẫn · Tháng 7, 2026",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "45c3e8f567033ad8204d2dbbc78fd93c40ee22b8a57d039d4f0a5950ed3735a6": {
+      "en": "Product · Jun 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · Juni 2026",
+          "translatedAt": "2026-10-08T18:01:41.589Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Produit · juin 2026",
+          "translatedAt": "2026-10-08T18:01:51.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Producto · Jun 2026",
+          "translatedAt": "2026-10-08T18:02:00.373Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "产品 · 2026 年 6 月",
+          "translatedAt": "2026-10-08T18:02:09.065Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產品 · 2026 年 6 月",
+          "translatedAt": "2026-10-08T18:02:16.770Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロダクト · 2026年6月",
+          "translatedAt": "2026-10-08T18:02:30.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "제품 · 2026년 6월",
+          "translatedAt": "2026-10-08T18:02:39.724Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Produto · Jun 2026",
+          "translatedAt": "2026-10-08T18:02:47.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product · Jun 2026",
+          "translatedAt": "2026-10-08T18:02:56.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sản phẩm · Tháng 6, 2026",
+          "translatedAt": "2026-10-08T18:03:09.230Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7ee397fe8e1ab2af971d695362685dd9f2de2fcf7f6895e0ae858885c4aec48f": {
+      "en": "Guide · July 2026",
+      "translations": {
+        "de": {
+          "text": "Leitfaden · Juli 2026",
+          "translatedAt": "2026-10-08T18:03:15.643Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Guide · Juillet 2026",
+          "translatedAt": "2026-10-08T18:03:21.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Guía · Julio de 2026",
+          "translatedAt": "2026-10-08T18:03:27.426Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "指南 · 2026 年 7 月",
+          "translatedAt": "2026-10-08T18:03:33.702Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "指南 · 2026 年 7 月",
+          "translatedAt": "2026-10-08T18:03:44.460Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ガイド · 2026年7月",
+          "translatedAt": "2026-10-08T18:03:49.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가이드 · 2026년 7월",
+          "translatedAt": "2026-10-08T18:03:57.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Guia · Julho de 2026",
+          "translatedAt": "2026-10-08T18:04:04.866Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Guide · July 2026",
+          "translatedAt": "2026-10-08T18:04:13.084Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hướng dẫn · Tháng 7, 2026",
+          "translatedAt": "2026-10-08T18:04:17.824Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8cbe993f10916f88353d2f3f8773df0a7555145fa88910268ac84fd063605222": {
+      "en": "Whatever tool you pick next, check where your data lives. Here is where this one keeps it: on your device.",
+      "translations": {
+        "de": {
+          "text": "Für welches Tool Sie sich auch als Nächstes entscheiden: Prüfen Sie, wo Ihre Daten liegen. Bei diesem Tool bleiben sie genau dort: auf Ihrem Gerät.",
+          "translatedAt": "2026-10-08T18:03:15.643Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Quel que soit le prochain outil que vous choisirez, vérifiez où résident vos données. Voici où celui-ci les conserve : directement sur votre appareil.",
+          "translatedAt": "2026-10-08T18:03:21.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sea cual sea la herramienta que elijas a continuación, comprueba dónde residen tus datos. Aquí es donde esta los guarda: en tu dispositivo.",
+          "translatedAt": "2026-10-08T18:03:27.426Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无论接下来选择哪款工具，都建议先确认数据的存储去向。而本工具的做法很简单：全部保存在你的本地设备上。",
+          "translatedAt": "2026-10-08T18:03:33.702Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無論你接下來選擇哪款工具，都請先確認資料儲存在何處。而這款工具則是儲存在：你的本機裝置上。",
+          "translatedAt": "2026-10-08T18:03:44.460Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "どのようなツールを選ぶとしても、データの保存場所を必ずご確認ください。本ツールでは、すべてのデータがお使いのデバイス上に保存されます。",
+          "translatedAt": "2026-10-08T18:03:49.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 툴을 선택하든 내 데이터가 어디에 저장되는지 꼭 확인해 보세요. 이 도구는 데이터를 외부로 보내지 않고 사용자 기기에 안전하게 보관해요.",
+          "translatedAt": "2026-10-08T18:03:57.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Qualquer que seja a próxima ferramenta que você escolher, verifique onde seus dados ficam salvos. É aqui que esta os mantém: no seu dispositivo.",
+          "translatedAt": "2026-10-08T18:04:04.866Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप आगे चाहे जो भी tool चुनें, यह ज़रूर check करें कि आपका data कहाँ रहता है। यह tool इसे यहाँ रखता है: सीधे आपके on-device।",
+          "translatedAt": "2026-10-08T18:04:13.084Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Dù bạn chọn công cụ nào tiếp theo, hãy luôn kiểm tra nơi dữ liệu của mình được lưu trữ. Với công cụ này, toàn bộ dữ liệu nằm trọn vẹn ngay trên thiết bị của bạn.",
+          "translatedAt": "2026-10-08T18:04:17.824Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "21cf0ea7ebc29b80b7de748991fee386a9224ac09bb8d858224ee740d5f0709e": {
+      "en": "Table: where AI Summary Helper stores settings, library index, article records, highlights, provider keys and feeds",
+      "translations": {
+        "de": {
+          "text": "Tabelle: Wo AI Summary Helper Einstellungen, Bibliotheksindex, Artikeldatensätze, Highlights, Provider-Schlüssel und Feeds speichert",
+          "translatedAt": "2026-10-08T18:03:15.643Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Tableau : emplacements où AI Summary Helper stocke les paramètres, l'index de la bibliothèque, les fiches d'articles, les surlignages, les clés de fournisseur et les flux",
+          "translatedAt": "2026-10-08T18:03:21.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tabla: dónde almacena AI Summary Helper la configuración, el índice de la biblioteca, los registros de artículos, los destacados, las claves de proveedores y los feeds",
+          "translatedAt": "2026-10-08T18:03:27.426Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "表格：AI Summary Helper 存储设置、文库索引、文章记录、高亮标注、服务商 API key 及订阅源的位置",
+          "translatedAt": "2026-10-08T18:03:33.702Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "表格：說明 AI Summary Helper 儲存設定、資料庫索引、文章記錄、畫線重點、服務商金鑰與訂閱源的位置",
+          "translatedAt": "2026-10-08T18:03:44.460Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "表：AI Summary Helperの設定、ライブラリインデックス、記事レコード、ハイライト、プロバイダーキー、フィードの保存場所",
+          "translatedAt": "2026-10-08T18:03:49.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "표: AI Summary Helper의 설정, 라이브러리 인덱스, 아티클 기록, 하이라이트, 프로바이더 키 및 피드 저장 위치",
+          "translatedAt": "2026-10-08T18:03:57.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Tabela: onde o AI Summary Helper armazena configurações, índice da biblioteca, registros de artigos, destaques, chaves de provedores e feeds",
+          "translatedAt": "2026-10-08T18:04:04.866Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Table: AI Summary Helper settings, library index, article records, highlights, provider keys और feeds को कहाँ store करता है",
+          "translatedAt": "2026-10-08T18:04:13.084Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bảng: nơi AI Summary Helper lưu trữ cài đặt, chỉ mục thư viện, bản ghi bài viết, nội dung đánh dấu, provider key và nguồn cấp dữ liệu",
+          "translatedAt": "2026-10-08T18:04:17.824Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a44ceb36d7b926ddbbb954dad28135c604510fe032a60b17f6e165cfc7a92e06": {
+      "en": "Product · September 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · September 2026",
+          "translatedAt": "2026-10-08T18:04:21.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Produit · septembre 2026",
+          "translatedAt": "2026-10-08T18:04:26.292Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Producto · Septiembre de 2026",
+          "translatedAt": "2026-10-08T18:04:29.969Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "产品 · 2026 年 9 月",
+          "translatedAt": "2026-10-08T18:04:35.581Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產品 · 2026 年 9 月",
+          "translatedAt": "2026-10-08T18:04:40.685Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロダクト · 2026年9月",
+          "translatedAt": "2026-10-08T18:04:46.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "프로덕트 · 2026년 9월",
+          "translatedAt": "2026-10-08T18:04:54.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Produto · Setembro de 2026",
+          "translatedAt": "2026-10-08T18:04:58.248Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product · सितंबर 2026",
+          "translatedAt": "2026-10-08T18:05:06.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sản phẩm · Tháng 9, 2026",
+          "translatedAt": "2026-10-08T18:05:12.386Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6e5d4dd67c0111ef31ad9de39a5e6118fff1a7dd03dae78665d8137fd5689587": {
+      "en": "The pile starts here: every open tab is a promise to read it later.",
+      "translations": {
+        "de": {
+          "text": "Hier beginnt der Stapel: Jeder geöffnete Tab ist ein Versprechen, ihn später zu lesen.",
+          "translatedAt": "2026-10-08T18:04:21.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'accumulation commence ici : chaque onglet ouvert est une promesse de le lire plus tard.",
+          "translatedAt": "2026-10-08T18:04:26.292Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La acumulación empieza aquí: cada pestaña abierta es una promesa de leerla después.",
+          "translatedAt": "2026-10-08T18:04:29.969Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "信息堆积就从这里开始：每一个打开的标签页，都是一句“稍后再读”的承诺。",
+          "translatedAt": "2026-10-08T18:04:35.581Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "堆積如山的起點：每一個開著的分頁，都是一聲「稍後再讀」的承諾。",
+          "translatedAt": "2026-10-08T18:04:40.685Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "タブの山積みはここから始まります。開いたままのタブはどれも、「あとで読む」という約束なのです。",
+          "translatedAt": "2026-10-08T18:04:46.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "쌓이기 시작하는 순간: 열려 있는 모든 탭은 나중에 읽겠다는 약속이죠.",
+          "translatedAt": "2026-10-08T18:04:54.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O acúmulo começa aqui: cada aba aberta é uma promessa de ler mais tarde.",
+          "translatedAt": "2026-10-08T18:04:58.248Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Tabs का ढेर यहीं से शुरू होता है: हर खुला tab बाद में पढ़ने का एक वादा है।",
+          "translatedAt": "2026-10-08T18:05:06.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mọi sự dồn ứ bắt đầu từ đây: mỗi tab đang mở là một lời hứa sẽ đọc sau.",
+          "translatedAt": "2026-10-08T18:05:12.386Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cbe24a8ed436912c60ddd8527ebf7035f3141b01285d31bb39b3ffb1cd78cf21": {
+      "en": "Slide: 82% of people say tab clutter stresses them out, with a browser tab bar full of open tabs",
+      "translations": {
+        "de": {
+          "text": "Folie: 82 % der Personen geben an, dass Tab-Chaos sie stresst; abgebildet ist eine Browser-Leiste voller geöffneter Tabs",
+          "translatedAt": "2026-10-08T18:04:21.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive : 82 % des personnes déclarent que l'accumulation d'onglets les stresse, avec une barre d'onglets de navigateur saturée d'onglets ouverts",
+          "translatedAt": "2026-10-08T18:04:26.292Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva: El 82 % de las personas afirma que el desorden de pestañas les genera estrés, con una barra de pestañas del navegador repleta de pestañas abiertas",
+          "translatedAt": "2026-10-08T18:04:29.969Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片：82% 的人表示标签页杂乱会带来压力，画面展示了挤满已打开标签页的浏览器标签栏",
+          "translatedAt": "2026-10-08T18:04:35.581Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片：82% 的人表示分頁雜亂令人備感壓力，畫面呈現塞滿開啟分頁的瀏覽器分頁列",
+          "translatedAt": "2026-10-08T18:04:40.685Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド：開いたタブで埋め尽くされたブラウザのタブバーと、「82%の人がタブの散らかりにストレスを感じている」という記載",
+          "translatedAt": "2026-10-08T18:04:46.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드: 82%의 사람들이 어지러운 탭 때문에 스트레스를 받는다고 답한 통계와 열려 있는 탭으로 가득 찬 브라우저 탭 표시줄",
+          "translatedAt": "2026-10-08T18:04:54.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide: 82% das pessoas dizem que o excesso de abas causa estresse, mostrando uma barra do navegador lotada de abas abertas",
+          "translatedAt": "2026-10-08T18:04:58.248Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide: 82% लोग कहते हैं कि tab clutter उन्हें stress देता है, खुले tabs से भरा हुआ एक browser tab bar",
+          "translatedAt": "2026-10-08T18:05:06.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide: 82% người dùng cho biết tình trạng tab lộn xộn khiến họ căng thẳng, kèm hình ảnh thanh tab trình duyệt dày đặc các tab đang mở",
+          "translatedAt": "2026-10-08T18:05:12.386Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "48ef78e5f7286d5e75153e5967fef0bc8b4ed713794f0dc24e4c0098f2d411ad": {
+      "en": "Search, tagging and similar articles all work on the same on-device index, so connections between saves cost nothing.",
+      "translations": {
+        "de": {
+          "text": "Suche, Tagging und ähnliche Artikel basieren alle auf demselben lokalen Index auf Ihrem Gerät – Verknüpfungen zwischen gespeicherten Inhalten kosten Sie also nichts.",
+          "translatedAt": "2026-10-08T18:05:17.047Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "La recherche, l'étiquetage et les articles similaires s'appuient tous sur le même index on-device : établir des connexions entre vos sauvegardes ne coûte rien.",
+          "translatedAt": "2026-10-08T18:05:22.317Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La búsqueda, el etiquetado y los artículos similares funcionan sobre el mismo índice en el dispositivo, por lo que conectar elementos guardados no tiene costo adicional.",
+          "translatedAt": "2026-10-08T18:05:27.670Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "搜索、标签以及相似文章推荐均基于同一个设备端索引运行，因此在保存内容之间建立关联完全零成本。",
+          "translatedAt": "2026-10-08T18:05:34.188Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "搜尋、標籤與相似文章皆在同一個本機索引上運作，因此在已儲存內容之間建立關聯完全零成本。",
+          "translatedAt": "2026-10-08T18:05:41.279Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "検索、タグ付け、類似記事の検出はすべて同一のオンデバイスインデックス上で処理されるため、保存したデータ同士の関連付けに余計な負荷やコストはかかりません。",
+          "translatedAt": "2026-10-08T18:05:46.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "검색, 태깅, 유사한 글 찾기 모두 동일한 온디바이스 인덱스에서 처리되어 저장된 콘텐츠를 서로 연결하는 데 추가 비용이 전혀 들지 않아요.",
+          "translatedAt": "2026-10-08T18:05:51.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Busca, tags e artigos similares funcionam no mesmo índice no próprio dispositivo, então as conexões entre os itens salvos não custam nada.",
+          "translatedAt": "2026-10-08T18:05:55.883Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Search, tagging और similar articles सब एक ही on-device index पर काम करते हैं, इसलिए saves के बीच connections की कोई cost नहीं लगती।",
+          "translatedAt": "2026-10-08T18:06:03.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tìm kiếm, gắn thẻ và gợi ý bài viết tương tự đều hoạt động trên cùng một chỉ mục ngay trên thiết bị, giúp liên kết giữa các nội dung đã lưu hoàn toàn không tốn tài nguyên.",
+          "translatedAt": "2026-10-08T18:06:11.659Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6907927920908988c527bf8fd95ef0638f168f2b500e01bfd92d950a95a8ea47": {
+      "en": "Only one arrow leaves the browser: the call to the model provider you chose.",
+      "translations": {
+        "de": {
+          "text": "Nur ein einziger Pfeil verlässt den Browser: der Aufruf an den von Ihnen gewählten Modellanbieter.",
+          "translatedAt": "2026-10-08T18:05:17.047Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une seule flèche quitte votre navigateur : l'appel vers le fournisseur de modèle que vous avez choisi.",
+          "translatedAt": "2026-10-08T18:05:22.317Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Solo una flecha sale del navegador: la llamada al proveedor de modelos que hayas elegido.",
+          "translatedAt": "2026-10-08T18:05:27.670Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "只有一条数据流箭头离开浏览器：那就是发往你所选模型提供商的调用请求。",
+          "translatedAt": "2026-10-08T18:05:34.188Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "只有一個箭頭會離開瀏覽器：向你所選的模型提供商發出呼叫。",
+          "translatedAt": "2026-10-08T18:05:41.279Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザの外へ向かう矢印は1つだけです。選択したモデルプロバイダーへの呼び出しのみが行われます。",
+          "translatedAt": "2026-10-08T18:05:46.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저 밖으로 나가는 데이터는 사용자가 직접 선택한 모델 제공자로의 호출 단 하나뿐이에요.",
+          "translatedAt": "2026-10-08T18:05:51.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apenas uma seta sai do navegador: a chamada para o provedor de modelo que você escolheu.",
+          "translatedAt": "2026-10-08T18:05:55.883Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Browser से सिर्फ एक ही arrow बाहर जाता है: आपके चुने हुए model provider को जाने वाली call।",
+          "translatedAt": "2026-10-08T18:06:03.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ có duy nhất một mũi tên rời khỏi trình duyệt: lệnh gọi đến nhà cung cấp mô hình AI bạn đã chọn.",
+          "translatedAt": "2026-10-08T18:06:11.659Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ab6c192575e9c518e5ba6e8efb665a0403a788817177897c8b42f5b71d041555": {
+      "en": "Slide: a map of connected topics with the line “Information tied to meaning and connection outlasts information you just glanced at”",
+      "translations": {
+        "de": {
+          "text": "Folie: Eine Übersicht verknüpfter Themen mit der Aussage „Informationen, die mit Bedeutung und Zusammenhängen verknüpft sind, überdauern flüchtig überflogene Inhalte“",
+          "translatedAt": "2026-10-08T18:05:17.047Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive : une carte de sujets connectés avec la phrase « L'information ancrée dans le sens et les connexions dure bien plus longtemps que celle simplement survolée »",
+          "translatedAt": "2026-10-08T18:05:22.317Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva: un mapa de temas conectados con la frase “La información vinculada al significado y a las conexiones perdura más que la información a la que solo le diste un vistazo”",
+          "translatedAt": "2026-10-08T18:05:27.670Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片：一张相互关联的主题图谱，配文“与意义和关联紧密相连的信息，比仅仅匆匆瞥过的内容更历久弥新”",
+          "translatedAt": "2026-10-08T18:05:34.188Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片：相連主題的心智圖，標有「具備意義與關聯的資訊，比匆匆瀏覽過的內容更能長久留存」",
+          "translatedAt": "2026-10-08T18:05:41.279Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド：関連するトピックのマップと、「意味やつながりと結びついた情報は、ただ目を通しただけの情報よりも長く定着する」というテキスト",
+          "translatedAt": "2026-10-08T18:05:46.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드: “의미와 맥락으로 연결된 정보는 스쳐 지나간 정보보다 더 오래 남습니다”라는 문구가 포함된 주제 연결 맵",
+          "translatedAt": "2026-10-08T18:05:51.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide: um mapa de tópicos conectados com a frase “Informações associadas a significado e conexões duram mais do que informações que você só deu uma olhada”",
+          "translatedAt": "2026-10-08T18:05:55.883Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide: connected topics का एक map जिस पर लिखा है “अर्थ और गहरे जुड़ाव वाली जानकारी उस जानकारी से कहीं ज़्यादा समय तक टिकती है जिसे आपने सिर्फ एक नज़र देखा हो”",
+          "translatedAt": "2026-10-08T18:06:03.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide: sơ đồ các chủ đề được kết nối với dòng chữ “Thông tin gắn liền với ý nghĩa và sự liên kết sẽ tồn tại lâu hơn thông tin bạn chỉ vừa lướt qua”",
+          "translatedAt": "2026-10-08T18:06:11.659Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "62640eaaaf578c9de65d888f7525abb25843f1271acd3071cb98135bcf6fbde1": {
+      "en": "Diagram: the web page, the extension’s background worker and popup, local storage, and the model provider",
+      "translations": {
+        "de": {
+          "text": "Diagramm: Die Webseite, der Background-Worker und das Popup der Erweiterung, lokaler Speicher sowie der Modellanbieter",
+          "translatedAt": "2026-10-08T18:05:17.047Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Schéma : la page web, le worker d'arrière-plan et le popup de l'extension, le stockage local et le fournisseur de modèle",
+          "translatedAt": "2026-10-08T18:05:22.317Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diagrama: la página web, el background worker y el popup de la extensión, el almacenamiento local y el proveedor de modelos",
+          "translatedAt": "2026-10-08T18:05:27.670Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "架构示意图：展示网页、扩展程序的 background worker 与 popup 弹窗、本地存储，以及模型提供商",
+          "translatedAt": "2026-10-08T18:05:34.188Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "架構圖：網頁、擴充功能的 background worker 與彈出視窗（popup）、本機儲存空間，以及模型提供商",
+          "translatedAt": "2026-10-08T18:05:41.279Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "図：Webページ、拡張機能のバックグラウンドワーカーとポップアップ、ローカルストレージ、モデルプロバイダー",
+          "translatedAt": "2026-10-08T18:05:46.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "다이어그램: 웹페이지, 확장 프로그램의 백그라운드 워커 및 팝업, 로컬 스토리지, 모델 제공자",
+          "translatedAt": "2026-10-08T18:05:51.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Diagrama: a página da web, o background worker e o popup da extensão, o armazenamento local e o provedor do modelo",
+          "translatedAt": "2026-10-08T18:05:55.883Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Diagram: web page, extension का background worker और popup, local storage, और model provider",
+          "translatedAt": "2026-10-08T18:06:03.890Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sơ đồ: trang web, background worker và popup của tiện ích mở rộng, bộ nhớ cục bộ, cùng nhà cung cấp mô hình",
+          "translatedAt": "2026-10-08T18:06:11.659Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1e0ccbd03bbfd30a430c8952f18128585b4c31d8460dd65b82b7cd8e93beb72a": {
+      "en": "Product · June 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · Juni 2026",
+          "translatedAt": "2026-10-08T18:06:16.128Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Produit · Juin 2026",
+          "translatedAt": "2026-10-08T18:06:24.154Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Producto · Junio de 2026",
+          "translatedAt": "2026-10-08T18:06:27.769Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "产品 · 2026 年 6 月",
+          "translatedAt": "2026-10-08T18:06:34.278Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產品 · 2026 年 6 月",
+          "translatedAt": "2026-10-08T18:06:40.619Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロダクト · 2026年6月",
+          "translatedAt": "2026-10-08T18:06:46.861Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "제품 · 2026년 6월",
+          "translatedAt": "2026-10-08T18:06:54.937Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Produto · Junho de 2026",
+          "translatedAt": "2026-10-08T18:07:00.237Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product · जून 2026",
+          "translatedAt": "2026-10-08T18:07:05.511Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sản phẩm · Tháng 6, 2026",
+          "translatedAt": "2026-10-08T18:07:15.487Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2160331523272ea944056f776bec7447f41e9bbbab1fae0495c2680aeebae2bb": {
+      "en": "What happens when you press Summarize today, in five steps.",
+      "translations": {
+        "de": {
+          "text": "Was passiert, wenn Sie heute auf „Zusammenfassen“ klicken – in fünf Schritten.",
+          "translatedAt": "2026-10-08T18:06:16.128Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ce qui se passe lorsque vous appuyez sur Résumer aujourd'hui, en cinq étapes.",
+          "translatedAt": "2026-10-08T18:06:24.154Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Qué sucede cuando presionas Resumir hoy, en cinco pasos.",
+          "translatedAt": "2026-10-08T18:06:27.769Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "当你点击 Summarize 时会发生什么：5 个步骤全解析。",
+          "translatedAt": "2026-10-08T18:06:34.278Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "點擊「摘要」後會發生什麼？五步驟完整解析。",
+          "translatedAt": "2026-10-08T18:06:40.619Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "「Summarize」を押したときに実行される処理の全容を、5つのステップでご紹介します。",
+          "translatedAt": "2026-10-08T18:06:46.861Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "지금 '요약'을 누르면 어떤 과정이 진행되는지 5단계로 살펴봅니다.",
+          "translatedAt": "2026-10-08T18:06:54.937Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O que acontece quando você clica em Resumir hoje, em cinco etapas.",
+          "translatedAt": "2026-10-08T18:07:00.237Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "जब आप आज Summarize दबाते हैं तो क्या होता है, पाँच स्टेप्स में।",
+          "translatedAt": "2026-10-08T18:07:05.511Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Điều gì diễn ra khi bạn nhấn Tóm tắt hôm nay, qua 5 bước.",
+          "translatedAt": "2026-10-08T18:07:15.487Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0c10db6ef0ae6c285ece412474caee5e6eefdb7ed316b0ab88723736880fab46": {
+      "en": "Diagram: a summary end to end, from Ask, Stream, Finalize and Save to Follow up",
+      "translations": {
+        "de": {
+          "text": "Diagramm: Der vollständige Ablauf einer Zusammenfassung – von Ask, Stream, Finalize und Save bis hin zu Follow-up",
+          "translatedAt": "2026-10-08T18:06:16.128Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Schéma : un résumé de bout en bout, des étapes Demander, Diffuser, Finaliser et Enregistrer jusqu'au Suivi",
+          "translatedAt": "2026-10-08T18:06:24.154Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diagrama: un resumen de principio a fin, desde Preguntar, Transmitir, Finalizar y Guardar hasta Seguimiento",
+          "translatedAt": "2026-10-08T18:06:27.769Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "流程图：端到端总结全流程，涵盖 Ask、Stream、Finalize、Save 和 Follow up 环节",
+          "translatedAt": "2026-10-08T18:06:34.278Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "流程圖：端到端摘要流程，從 Ask、Stream、Finalize and Save 到 Follow up",
+          "translatedAt": "2026-10-08T18:06:40.619Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "図：Ask、Stream、Finalize and SaveからFollow upに至る、要約のエンドツーエンドの処理フロー",
+          "translatedAt": "2026-10-08T18:06:46.861Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "다이어그램: 요청(Ask), 스트리밍(Stream), 완료 및 저장(Finalize and Save), 후속 질문(Follow up)에 이르는 전체 요약 과정",
+          "translatedAt": "2026-10-08T18:06:54.937Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Diagrama: um resumo de ponta a ponta, de Perguntar, Transmitir, Finalizar e Salvar até o Acompanhamento",
+          "translatedAt": "2026-10-08T18:07:00.237Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Diagram: एंड-टू-एंड समरी, Ask, Stream, Finalize और Save से लेकर Follow up तक",
+          "translatedAt": "2026-10-08T18:07:05.511Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sơ đồ: toàn bộ quy trình tóm tắt từ đầu đến cuối, từ Hỏi (Ask), Truyền phát (Stream), Hoàn tất (Finalize) và Lưu (Save) đến Hỏi tiếp (Follow up)",
+          "translatedAt": "2026-10-08T18:07:15.487Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
