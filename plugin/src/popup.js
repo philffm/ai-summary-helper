@@ -3,9 +3,7 @@ import { SK } from './modules/storageKeys.js';
 import { initMoodSetting } from './modules/moodSetting.js';
 import UIManager from './modules/uiManager.js';
 import StorageManager from './modules/storageManager.js';
-import { initArticleManager } from './modules/articleManager.js';
 import { initWorkspace } from './modules/workspaceManager.js';
-import { initSettingsManager } from './modules/settingsManager.js';
 // import { initModelManager } from './modules/modelManager.js';
 import { initLanguageManager } from './modules/languageManager.js';
 import { languageMatches } from './modules/languages.js';
@@ -14,7 +12,6 @@ import { languageMatches } from './modules/languages.js';
 import { initShortcuts } from './modules/shortcuts.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
-import { initFeedManager } from './modules/feedManager.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
 import { T } from './modules/feedI18n.js';
@@ -54,9 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // initModelManager(ui); // Not exported from modelManager.js
-    initSettingsManager(ui);
     initLanguageManager(ui);
-    initFeedManager(ui);
     initSettingsNav(ui);
     if (window.initPodcastManager) {
         window.initPodcastManager(ui);
@@ -65,11 +60,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     initMainScreen(ui);
     initReviewPrompt();
     initMoodSetting();
-    initArticleManager(ui);
     initWorkspace();
     initAccordion(ui);
 
     ui.showScreen("main");
+
+    // Heavy tab modules (Feeds ~110 KB, History ~90 KB, Settings ~60 KB) are loaded after the main screen is up,
+    // so the first paint no longer waits for their parse.
+    Promise.all([
+        import('./modules/settingsManager.js'),
+        import('./modules/feedManager.js'),
+        import('./modules/articleManager.js'),
+    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }]) => {
+        initSettingsManager(ui);
+        initFeedManager(ui);
+        initArticleManager(ui);
+    }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────
     chrome.storage.sync.get('useNativeSidePanel', (data) => {
