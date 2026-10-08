@@ -3355,5 +3355,8 @@
   },
   "f_this_file_is_not_a_readable__9ad5": {
     "message": "읽을 수 있는 PDF 파일이 아닙니다."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "이 탭은 확장 프로그램의 이전 버전으로 실행 중입니다. 탭을 새로고침(F5)한 후 다시 시도하세요."
   }
 }

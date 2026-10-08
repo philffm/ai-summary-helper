@@ -373,7 +373,7 @@ export function stripReasoning(text) {
   // "* Content: …  * Style Requirements: …  Output ONLY `<div>` …". Drop that; HTML in backticks is not the answer.
   const lead = t.trimStart();
   if (lead && lead[0] !== '<' && !/^```/.test(lead)) {
-    const PLAN = /(?:^|\n)\s*(?:[*•-]|\d+\.)\s+\**(?:content|task|style|output|requirements?|constraints?|language|limit|goal|instructions?|analy[sz]e|input|persona|role)\b/i;
+    const PLAN = /(?:^|\n)\s*(?:[*•-]|\d+\.)\s+\**[A-Za-z][\w \/-]{1,30}\**\s*:/;   // "* Format: …", "* Style Requirements: …"
     const at = t.search(/(?<!`)<(?:div|h2)\b/i);
     if (at > 0 && PLAN.test(t.slice(0, at))) t = t.slice(at);
     else if (at === -1 && PLAN.test(t) && /`<(?:div|h2|p)>`/.test(t)) t = '';

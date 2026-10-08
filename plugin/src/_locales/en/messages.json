@@ -3521,5 +3521,8 @@
   },
   "f_this_file_is_not_a_readable__9ad5": {
     "message": "This file is not a readable PDF."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "This tab still runs an older version of the extension. Reload the tab (F5) and try again."
   }
 }

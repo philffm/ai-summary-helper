@@ -3283,5 +3283,8 @@
   },
   "f_this_file_is_not_a_readable__9ad5": {
     "message": "Questo file non è un PDF leggibile."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "Questa scheda usa ancora una versione precedente dell'estensione. Ricarica la scheda (F5) e riprova."
   }
 }

@@ -213,7 +213,7 @@ import {
     // Normalize casing so both 'PING' and 'ping' work.
     const action = (request.action || '').toLowerCase();
     if (action === 'ping') {
-      sendResponse({ status: 'pong' });
+      sendResponse({ status: 'pong', caps: ['attachment'] });
       return true;
     }
 

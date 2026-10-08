@@ -3367,5 +3367,8 @@
   },
   "f_this_file_is_not_a_readable__9ad5": {
     "message": "Este ficheiro não é um PDF legível."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "Este separador ainda usa uma versão antiga da extensão. Recarregue o separador (F5) e tente novamente."
   }
 }

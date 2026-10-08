@@ -897,6 +897,15 @@ export function initMainScreen(ui) {
 
                 activeTabId = activeTab.id;
                 await ensureContentScript(activeTab.id, activeTab.url);
+                if (attachment) {   // a tab opened before the extension was updated still runs the old script, which would summarize the page instead
+                    let caps = [];
+                    try { const r = await sendMessageToTab(activeTab.id, { action: 'ping' }); caps = (r && r.caps) || []; } catch (_) { /* treated as old */ }
+                    if (!caps.includes('attachment')) {
+                        updateStream('❌ ' + T('This tab still runs an older version of the extension. Reload the tab (F5) and try again.'));
+                        resetToFetch();
+                        return;
+                    }
+                }
 
                 const {
                     connectionMode = 'cloud',

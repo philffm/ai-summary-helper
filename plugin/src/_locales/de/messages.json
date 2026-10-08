@@ -3373,5 +3373,8 @@
   },
   "f_this_file_is_not_a_readable__9ad5": {
     "message": "Diese Datei ist kein lesbares PDF."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "Dieser Tab läuft noch mit einer älteren Version der Erweiterung. Lade den Tab neu (F5) und versuche es erneut."
   }
 }

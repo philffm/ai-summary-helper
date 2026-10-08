@@ -3283,5 +3283,8 @@
   },
   "f_this_file_is_not_a_readable__9ad5": {
     "message": "此檔案不是可讀取的 PDF。"
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "此分頁仍在執行舊版擴充功能。請重新整理分頁（F5）後再試。"
   }
 }

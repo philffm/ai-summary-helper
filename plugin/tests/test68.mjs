@@ -9,5 +9,6 @@ assert.equal(stripReasoning(plan + '<div><h2>Title</h2><p>Real.</p></div>'), '<d
 const ok = '<div><h2>T</h2><p>Mentions the `<div>` tag.</p></div>';
 assert.equal(stripReasoning(ok), ok);
 assert.equal(stripReasoning('## Title\n\nA markdown summary with * a bullet'), '## Title\n\nA markdown summary with * a bullet');
+assert.equal(stripReasoning('* Format: A single `<div>` containing `<h2>` and `<p>` tags, followed by four HTML comments.\n* Length Limit: About 200 words.'), '');
 assert.equal(stripReasoning('Thinking Process: x\n<div>a</div>'), '<div>a</div>');
 console.log('test68 ok');
