@@ -3397,12 +3397,12 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .cite-block { display: flex; flex-direction: column; gap: 10px; }
 .cite-head { font-weight: 600; font-size: var(--fs-md); color: var(--text-primary); }
 .cite-note { font-size: var(--fs-sm); color: var(--text-muted); }
-.cite-styles { display: flex; gap: 6px; flex-wrap: wrap; }
-.cite-box { padding: 6px 10px 8px; border-radius: 10px; background: var(--accent-a05); display: flex; flex-direction: column; gap: 4px; }
-.cite-actions { display: flex; gap: 6px; justify-content: flex-end; }
+.cite-actions { display: flex; gap: 6px; align-items: center; }
+.cite-spacer { flex: 1; }
+.cite-style { font: inherit; font-size: var(--fs-xs); font-weight: 600; color: var(--text-secondary); background: transparent; border: 1px solid var(--outline); border-radius: 8px; padding: 3px 8px; cursor: pointer; width: auto; margin: 0; }
 .cite-btn { font: inherit; font-size: var(--fs-xs); font-weight: 600; color: var(--accent); background: transparent; border: 1px solid var(--outline); border-radius: 8px; padding: 3px 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
 .cite-btn:hover { background: var(--accent-a08); }
-.cite-text { margin: 0; padding: 0; background: none; font: inherit; font-size: var(--fs-sm); white-space: pre-wrap; word-break: break-word; user-select: text; color: var(--text-primary); max-height: 220px; overflow: auto; }
+.cite-text { margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--accent-a05); font: inherit; font-size: var(--fs-sm); white-space: pre-wrap; word-break: break-word; user-select: text; color: var(--text-primary); max-height: 220px; overflow: auto; }
 .cite-src { font-size: var(--fs-xs); color: var(--text-muted); }
 .ref-preview { margin: 8px 0; padding: 8px 10px; border-radius: 10px; background: var(--accent-a05); font-size: var(--fs-xs); white-space: pre-wrap; word-break: break-word; max-height: 200px; overflow: auto; user-select: text; color: var(--text-primary); }
 .page-chip--attach { position: relative; }

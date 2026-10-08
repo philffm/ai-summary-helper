@@ -1504,23 +1504,20 @@ function renderCiteBlock(article, host) {
         host.appendChild(b);
         return;
     }
-    const seg = document.createElement('div'); seg.className = 'cite-styles'; seg.setAttribute('role', 'radiogroup');
-    CITE_STYLES.forEach(([id, label]) => {
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'research-filter' + (citeStyle === id ? ' on' : ''); b.textContent = label; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(citeStyle === id));
-        b.addEventListener('click', (e) => { e.stopPropagation(); citeStyle = id; renderCiteBlock(article, host); });
-        seg.appendChild(b);
-    });
     const text = formatCitation(csl, citeStyle);
-    const wrap = document.createElement('div'); wrap.className = 'cite-box';
-    const acts = document.createElement('div'); acts.className = 'cite-actions';
-    const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'cite-btn cite-copy'; copy.textContent = '⧉'; copy.title = T('Copy'); copy.setAttribute('aria-label', T('Copy'));
+    // Header row (like the Figma "Cite" panel): style dropdown left, Copy + DOI right; the citation text sits below.
+    const bar = document.createElement('div'); bar.className = 'cite-actions';
+    const sel = document.createElement('select'); sel.className = 'cite-style'; sel.setAttribute('aria-label', T('❝ Cite'));
+    CITE_STYLES.forEach(([id, label]) => { const o = document.createElement('option'); o.value = id; o.textContent = label; if (id === citeStyle) o.selected = true; sel.appendChild(o); });
+    sel.addEventListener('click', (e) => e.stopPropagation());
+    sel.addEventListener('change', (e) => { e.stopPropagation(); citeStyle = sel.value; renderCiteBlock(article, host); });
+    const sp = document.createElement('span'); sp.className = 'cite-spacer';
+    const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'cite-btn cite-copy'; copy.textContent = '⧉ ' + T('Copy');
     copy.addEventListener('click', async (e) => { e.stopPropagation(); if (await copyText(text) && uiManagerRef) uiManagerRef.showToast(T('Copied to clipboard! 📋')); });
     const open = document.createElement('a'); open.className = 'cite-btn cite-open'; open.href = doiUrl(doi); open.target = '_blank'; open.rel = 'noopener noreferrer'; open.textContent = T('DOI ↗'); open.title = T('Open DOI ↗');
-    acts.append(copy, open);
+    bar.append(sel, sp, copy, open);
     const box = document.createElement('pre'); box.className = 'cite-text'; box.textContent = text;
-    wrap.append(acts, box);
-    host.append(seg, wrap, Object.assign(document.createElement('div'), { className: 'cite-src', textContent: T('Source: doi.org') }));
+    host.append(bar, box, Object.assign(document.createElement('div'), { className: 'cite-src', textContent: T('Source: doi.org') }));
 }
 
 let paperDetailsOpen = false;
