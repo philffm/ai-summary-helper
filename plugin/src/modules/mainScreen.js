@@ -495,6 +495,7 @@ export function initMainScreen(ui) {
         renderSuggestions();
         clearNote();
         composer.set('followup');
+        showConversationChip();   // composer.set() is a no-op when it already is in follow-up: the chip (with its Back button) must still follow the new conversation
         try { bubble.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch (_) { /* cosmetic */ }
         additionalQuestionsInput.focus({ preventScroll: true });
     }
@@ -762,7 +763,7 @@ export function initMainScreen(ui) {
                 const given = (Array.isArray(msg.questions) ? msg.questions : []).filter(Boolean);
                 conversation.pool = given.slice();
                 renderSuggestions();
-                if (composer) composer.set('followup');
+                if (composer) { composer.set('followup'); showConversationChip(); }
                 scrollFeed();
             } else {
                 resetToFetch();

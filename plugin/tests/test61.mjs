@@ -40,4 +40,7 @@ assert(/2 replies/.test(b1.querySelector('.ask-count').textContent), 'count upda
 // Another card: first thread goes away
 b2.querySelector('.ask-btn').click(); await tick(120);
 assert(!b1.nextElementSibling.classList.contains('ask-thread') && b2.nextElementSibling.classList.contains('ask-thread'), 'one thread at a time');
+assert(d.querySelector('#convChip .conv-back'), 'Back button stays available after switching Ask from one card to another (composer was already in follow-up)');
+d.querySelector('#convChip .conv-back').click(); await tick(60);
+assert(!d.getElementById('convChip'), 'Back returns to summarizing the current page');
 console.log('TEST 61 OK'); process.exit(0);
