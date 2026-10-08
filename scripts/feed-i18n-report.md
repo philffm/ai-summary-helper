@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1089 | 0 | 0 | 35 |
-| de | 1089 | 0 | 0 | 158 |
-| es | 1089 | 0 | 0 | 129 |
-| fr | 1089 | 0 | 0 | 150 |
-| hi | 1089 | 0 | 0 | 53 |
-| it | 1089 | 0 | 0 | 128 |
-| ja | 1089 | 0 | 0 | 67 |
-| ko | 1089 | 0 | 0 | 14 |
-| pt_PT | 1089 | 0 | 0 | 128 |
-| ru | 1089 | 0 | 0 | 72 |
-| zh_CN | 1089 | 0 | 0 | 1 |
-| zh_HK | 1089 | 0 | 0 | 1 |
-| zh_TW | 1089 | 0 | 0 | 1 |
+| ar | 1085 | 0 | 0 | 34 |
+| de | 1085 | 0 | 0 | 158 |
+| es | 1085 | 0 | 0 | 126 |
+| fr | 1085 | 0 | 0 | 149 |
+| hi | 1085 | 0 | 0 | 52 |
+| it | 1085 | 0 | 0 | 128 |
+| ja | 1085 | 0 | 0 | 69 |
+| ko | 1085 | 0 | 0 | 16 |
+| pt_PT | 1085 | 0 | 0 | 126 |
+| ru | 1085 | 0 | 0 | 71 |
+| zh_CN | 1085 | 0 | 0 | 1 |
+| zh_HK | 1085 | 0 | 0 | 1 |
+| zh_TW | 1085 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -41,12 +41,11 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Graph view | عرض الرسم البياني | 17 vs 10 | 1.7× |
 | Sent to {name} | تم الإرسال إلى {name} | 17 vs 10 | 1.7× |
 | Sort: Unread | الترتيب: غير المقروء | 20 vs 12 | 1.67× |
-| Sign in / Sign up via Email | تسجيل الدخول / إنشاء حساب بالبريد الإلكتروني | 44 vs 27 | 1.63× |
-| Enter 6-digit code | أدخل الرمز المكوّن من 6 أرقام | 29 vs 18 | 1.61× |
 | No key facts found | لم يتم العثور على نقاط رئيسية | 29 vs 18 | 1.61× |
 | No Kindle email set. | لم يُضبط بريد Kindle الإلكتروني. | 32 vs 20 | 1.6× |
 | Words Read | الكلمات المقروءة | 16 vs 10 | 1.6× |
 | {n} unopened 30d+ | {n} لم تُفتح منذ 30+ يومًا | 25 vs 16 | 1.56× |
+| Resend code | إعادة إرسال الرمز | 17 vs 11 | 1.55× |
 | ✅ Sent · {date} | ✅ تم الإرسال · {date} | 17 vs 11 | 1.55× |
 | Keep feed items for | الاحتفاظ بعناصر الخلاصات لمدة | 29 vs 19 | 1.53× |
 | AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
@@ -107,7 +106,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Saved! ✓ | Gespeichert! ✓ | 14 vs 8 | 1.75× |
 | Summary Mode | Zusammenfassungsmodus | 21 vs 12 | 1.75× |
 | {n} unopened 30d+ | {n} seit 30+ Tagen ungeöffnet | 28 vs 16 | 1.75× |
-| Enter the code sent to: | Gib den Code ein, der gesendet wurde an: | 40 vs 23 | 1.74× |
 | Failed to send code | Code konnte nicht gesendet werden | 33 vs 19 | 1.74× |
 | Mark {n} summary as… | {n} Zusammenfassung markieren als… | 33 vs 19 | 1.74× |
 | No recent summaries | Keine aktuellen Zusammenfassungen | 33 vs 19 | 1.74× |
@@ -123,7 +121,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary Language | Sprache der Zusammenfassung | 27 vs 16 | 1.69× |
 | View & edit › | Ansehen & bearbeiten › | 22 vs 13 | 1.69× |
 | all summaries | alle Zusammenfassungen | 22 vs 13 | 1.69× |
-| Enter the code sent to your email. | Gib den Code ein, den wir dir per E-Mail geschickt haben. | 57 vs 34 | 1.68× |
 | Export settings | Einstellungen exportieren | 25 vs 15 | 1.67× |
 | Import settings | Einstellungen importieren | 25 vs 15 | 1.67× |
 | Mark {n} summaries as… | {n} Zusammenfassungen markieren als… | 35 vs 21 | 1.67× |
@@ -134,6 +131,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} summaries | {n} Zusammenfassungen | 20 vs 12 | 1.67× |
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
+| Resend code | Code erneut senden | 18 vs 11 | 1.64× |
 | View & Copy | Ansehen & kopieren | 18 vs 11 | 1.64× |
 | Could not read this PDF. | Dieses PDF konnte nicht gelesen werden. | 39 vs 24 | 1.63× |
 | ✨ Writing recap… | ✨ Rückblick wird erstellt… | 26 vs 16 | 1.63× |
@@ -218,6 +216,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | e.g. Prefer European news and keep it upbeat. | z. B. Bevorzuge europäische Nachrichten und halte es positiv. | 61 vs 45 | 1.36× |
 | Resets all preferences, prompts and keys on this device. Your history stays. | Setzt alle Einstellungen, Prompts und Schlüssel auf diesem Gerät zurück. Dein Verlauf bleibt erhalten. | 102 vs 76 | 1.34× |
 | Inline mode is great for "Send to Kindle". | Der Inline-Modus eignet sich gut für „An Kindle senden“. | 56 vs 42 | 1.33× |
+| Paste works. It signs you in after the last digit. | Einfügen funktioniert. Nach der letzten Ziffer bist du angemeldet. | 66 vs 50 | 1.32× |
 | Run this command. It lets extensions, and only extensions, talk to Ollama: | Führe diesen Befehl aus. Er erlaubt Erweiterungen, und nur Erweiterungen, mit Ollama zu sprechen: | 97 vs 74 | 1.31× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Bewertet den Ton von Zusammenfassungen und Feed-Beiträgen. Steuert Stimmungsfilter, Diagramme und die Quellen-Bilanz. Ausschalten blendet alle Stimmungsfunktionen aus. | 167 vs 128 | 1.3× |
 
@@ -253,14 +252,12 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Browser Default | Predeterminado del navegador | 28 vs 15 | 1.87× |
 | Get Key | Obtener clave | 13 vs 7 | 1.86× |
 | Log Out | Cerrar sesión | 13 vs 7 | 1.86× |
-| Verify & Login | Verificar e iniciar sesión | 26 vs 14 | 1.86× |
 | About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
 | 🧠 On-device tools | 🧠 Herramientas en el dispositivo | 33 vs 18 | 1.83× |
 | Auto-Detect | Detección automática | 20 vs 11 | 1.82× |
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
 | No Kindle email set. | No hay correo de Kindle configurado. | 36 vs 20 | 1.8× |
 | Switch tab | Cambiar de pestaña | 18 vs 10 | 1.8× |
-| Enter 6-digit code | Introduce el código de 6 dígitos | 32 vs 18 | 1.78× |
 | Text size | Tamaño del texto | 16 vs 9 | 1.78× |
 | 📈 Mood over time | 📈 Ánimo a lo largo del tiempo | 30 vs 17 | 1.76× |
 | Failed to export backup. | No se pudo exportar la copia de seguridad. | 42 vs 24 | 1.75× |
@@ -312,7 +309,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mood over time per category | Ánimo a lo largo del tiempo por categoría | 41 vs 27 | 1.52× |
 | No active receiver found. | No se encontró ningún receptor activo. | 38 vs 25 | 1.52× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓ | 65 vs 43 | 1.51× |
-| Compatible tools | Herramientas compatibles | 24 vs 16 | 1.5× |
 | Include all questions in exports | Incluir todas las preguntas en las exportaciones | 48 vs 32 | 1.5× |
 | Logged in as: {email} | Sesión iniciada como: {email} | 24 vs 16 | 1.5× |
 | Model identifier | Identificador del modelo | 24 vs 16 | 1.5× |
@@ -328,7 +324,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Queue a question… | Pon una pregunta en cola… | 25 vs 17 | 1.47× |
 | Writing a {n}-word summary… | Escribiendo un resumen de {n} palabras… | 38 vs 26 | 1.46× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
-| Sign in / Sign up via Email | Iniciar sesión / registrarse por correo | 39 vs 27 | 1.44× |
 | Sort: Read share | Orden: Porcentaje leído | 23 vs 16 | 1.44× |
 | {n} unopened 30d+ | {n} sin abrir hace 30 d+ | 23 vs 16 | 1.44× |
 | ✨ Writing intro… | ✨ Escribiendo la intro… | 23 vs 16 | 1.44× |
@@ -343,6 +338,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
 | AI request failed | Error de la solicitud IA | 24 vs 17 | 1.41× |
 | No articles saved yet. | Aún no hay artículos guardados. | 31 vs 22 | 1.41× |
+| No password. We email you a short code. | Sin contraseña. Te enviamos un código corto por correo. | 55 vs 39 | 1.41× |
 | Use "{name}" as custom language code | Usar «{name}» como código de idioma personalizado | 45 vs 32 | 1.41× |
 | Automatic light-blue quote highlights from summaries | Citas resaltadas en azul claro automáticamente a partir de los resúmenes | 72 vs 52 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Valora el tono de los resúmenes y de los elementos del feed. Activa filtros de ánimo, gráficos y el balance de fuentes. Desactívalo para ocultar todas las funciones de ánimo. | 174 vs 128 | 1.36× |
@@ -391,7 +387,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Motion & layout | Animations et mise en page | 26 vs 15 | 1.73× |
 | Open week › | Ouvrir la semaine › | 19 vs 11 | 1.73× |
 | What I used | Ce que j'ai utilisé | 19 vs 11 | 1.73× |
-| Verify & Login | Vérifier et se connecter | 24 vs 14 | 1.71× |
 | Why it matters | Pourquoi c’est important | 24 vs 14 | 1.71× |
 | Read aloud | Lire à voix haute | 17 vs 10 | 1.7× |
 | Select all | Tout sélectionner | 17 vs 10 | 1.7× |
@@ -404,6 +399,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Feed refresh interval | Intervalle d’actualisation des flux | 35 vs 21 | 1.67× |
 | Focus search | Activer la recherche | 20 vs 12 | 1.67× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
+| No password. We email you a short code. | Pas de mot de passe. Nous vous envoyons un court code par e-mail. | 65 vs 39 | 1.67× |
 | Saved for Later | Enregistré pour plus tard | 25 vs 15 | 1.67× |
 | Text size | Taille du texte | 15 vs 9 | 1.67× |
 | Queue a question… | Mettre une question en file… | 28 vs 17 | 1.65× |
@@ -440,10 +436,8 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
 | Delete all history? | Supprimer tout l’historique ? | 29 vs 19 | 1.53× |
 | Delete history… | Supprimer l’historique… | 23 vs 15 | 1.53× |
-| Send Magic Code | Envoyer le code magique | 23 vs 15 | 1.53× |
 | 💾 Backup & restore | 💾 Sauvegarde et restauration | 29 vs 19 | 1.53× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
-| Enter 6-digit code | Saisir le code à 6 chiffres | 27 vs 18 | 1.5× |
 | Error generating podcast: {msg} | Erreur lors de la création du podcast : {msg} | 42 vs 28 | 1.5× |
 | No receiver address set. | Aucune adresse de récepteur définie. | 36 vs 24 | 1.5× |
 | Only in the conversation log | Uniquement dans le journal de conversation | 42 vs 28 | 1.5× |
@@ -460,7 +454,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Full style text | Texte de style complet | 22 vs 15 | 1.47× |
 | Open Command Prompt | Ouvrir l’invite de commandes | 28 vs 19 | 1.47× |
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
-| Add model ID, e.g. gemma3:4b | Ajouter un ID de modèle, p. ex. gemma3:4b | 41 vs 28 | 1.46× |
 | Export or restore all settings as a JSON file. | Exportez ou restaurez tous les réglages sous forme de fichier JSON. | 67 vs 46 | 1.46× |
 | Failed to export backup. | Échec de l’export de la sauvegarde. | 35 vs 24 | 1.46× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles. | 73 vs 50 | 1.46× |
@@ -469,6 +462,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} older items are not in this recap. | {n} anciens éléments ne sont pas dans ce récapitulatif. | 54 vs 37 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
 | Add LocalSend device | Ajouter un appareil LocalSend | 29 vs 20 | 1.45× |
+| Add model ID, e.g. gemma4:e2b | Ajouter un ID de modèle, p. ex. gemma4:e2b | 42 vs 29 | 1.45× |
 | Customize text size, spacing, font, motion | Personnaliser taille du texte, interligne, police, animations | 61 vs 42 | 1.45× |
 | Delete all settings? | Supprimer tous les réglages ? | 29 vs 20 | 1.45× |
 | Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
@@ -504,6 +498,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
 | Inline mode is great for "Send to Kindle". | Le mode en ligne convient bien à « Envoyer vers Kindle ». | 57 vs 42 | 1.36× |
 | Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Connectez-vous pour débloquer les modèles cloud gratuits et synchroniser vos résumés, ou utilisez vos propres clés API. | 119 vs 88 | 1.35× |
+| Paste works. It signs you in after the last digit. | Le collage fonctionne. Vous êtes connecté après le dernier chiffre. | 67 vs 50 | 1.34× |
 | Style for AI briefings and week & month recaps. | Style des briefings IA et des récapitulatifs hebdo et mensuels. | 63 vs 47 | 1.34× |
 | Press <b>Win + R</b>, type <code>cmd</code> and press Enter. | Appuyez sur <b>Win + R</b>, saisissez <code>cmd</code> puis appuyez sur Entrée. | 79 vs 60 | 1.32× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} anciens éléments ne sont pas dans ce récapitulatif (limite : {max} par récap). | 78 vs 59 | 1.32× |
@@ -520,7 +515,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 🎓 Mark as paper | 🎓 शोध-पत्र के रूप में चिह्नित करें | 35 vs 16 | 2.19× |
 | What I used | मैंने क्या इस्तेमाल किया | 24 vs 11 | 2.18× |
 | Archived | आर्काइव किया गया | 16 vs 8 | 2× |
-| Verify & Login | सत्यापित करें और लॉग इन करें | 28 vs 14 | 2× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Testing… | जाँच हो रही है… | 15 vs 8 | 1.88× |
 | Verify & Log In | सत्यापित करें और लॉग इन करें | 28 vs 15 | 1.87× |
@@ -551,12 +545,12 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | What to export? | क्या एक्सपोर्ट करना है? | 23 vs 15 | 1.53× |
 | Export or restore all settings as a JSON file. | सारी सेटिंग्स को JSON फ़ाइल के रूप में एक्सपोर्ट या पुनर्स्थापित करें। | 70 vs 46 | 1.52× |
 | Searching Cloud... | क्लाउड में खोज हो रही है... | 27 vs 18 | 1.5× |
+| No password. We email you a short code. | पासवर्ड नहीं चाहिए। हम आपको ईमेल से एक छोटा कोड भेजते हैं। | 58 vs 39 | 1.49× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
 | Scan failed. Enter IP manually. | स्कैन विफल रहा। IP मैन्युअल रूप से दर्ज करें। | 45 vs 31 | 1.45× |
 | Sent to Kindle! 📚 | Kindle पर भेज दिया गया! 📚 | 26 vs 18 | 1.44× |
 | Type {word} to confirm | पुष्टि के लिए {word} टाइप करें | 26 vs 18 | 1.44× |
 | ✨ Writing intro… | ✨ परिचय लिखा जा रहा है… | 23 vs 16 | 1.44× |
-| Enter the code sent to: | इस पते पर भेजा गया कोड दर्ज करें: | 33 vs 23 | 1.43× |
 | Mark read when opened | खोलने पर पढ़ा हुआ चिह्नित करें | 30 vs 21 | 1.43× |
 | No settings match “{query}”. | “{query}” से मेल खाती कोई सेटिंग नहीं। | 33 vs 23 | 1.43× |
 | Not enough rated items yet | अभी पर्याप्त रेट किए गए आइटम नहीं हैं | 37 vs 26 | 1.42× |
@@ -620,7 +614,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Unsubscribe | Annulla iscrizione | 18 vs 11 | 1.64× |
 | Model identifier | Identificatore del modello | 26 vs 16 | 1.63× |
 | Custom style: | Stile personalizzato: | 21 vs 13 | 1.62× |
-| Enter 6-digit code | Inserisci il codice a 6 cifre | 29 vs 18 | 1.61× |
 | Delete all settings? | Eliminare tutte le impostazioni? | 32 vs 20 | 1.6× |
 | Key quotes | Citazioni chiave | 16 vs 10 | 1.6× |
 | Pick a day | Scegli un giorno | 16 vs 10 | 1.6× |
@@ -673,6 +666,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | (on iOS, hold to drag for 2 seconds) | (su iOS, tieni premuto per trascinare per 2 secondi) | 52 vs 36 | 1.44× |
 | No articles to graph yet. | Ancora nessun articolo per il grafo. | 36 vs 25 | 1.44× |
 | No key facts found | Nessun dato chiave trovato | 26 vs 18 | 1.44× |
+| No password. We email you a short code. | Nessuna password. Ti inviamo un breve codice via e-mail. | 56 vs 39 | 1.44× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Ancora nulla di valutato: crea un ✨ Riepilogo per valutare gli articoli. | 72 vs 50 | 1.44× |
 | ✨ Writing intro… | ✨ Scrittura dell’intro… | 23 vs 16 | 1.44× |
 | ⭐ Leave a review | ⭐ Lascia una recensione | 23 vs 16 | 1.44× |
@@ -744,6 +738,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Failed to export backup. | バックアップの書き出しに失敗しました。 | 38 vs 24 | 1.58× |
 | Magic code sent! ✨ Check your inbox. | マジックコードを送信しました ✨ 受信箱を確認してください。 | 57 vs 36 | 1.58× |
 | Daily briefing | デイリーブリーフィング | 22 vs 14 | 1.57× |
+| 4 digits, sent to {email} | 4桁のコードを {email} に送信しました | 31 vs 20 | 1.55× |
 | Import / export OPML | OPMLのインポート / エクスポート | 31 vs 20 | 1.55× |
 | Session lost. Please request a new code. | セッションが切れました。新しいコードをリクエストしてください。 | 62 vs 40 | 1.55× |
 | 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
@@ -760,6 +755,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Filter shortcuts… | ショートカットを絞り込む… | 25 vs 17 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
 | No articles to graph yet. | グラフ化できる記事がまだありません。 | 36 vs 25 | 1.44× |
+| No password. We email you a short code. | パスワードは不要です。短いコードをメールでお送りします。 | 56 vs 39 | 1.44× |
 | Copied to clipboard! 📋 | クリップボードにコピーしました 📋 | 33 vs 23 | 1.43× |
 | Please keep this window open | このウィンドウを開いたままにしてください | 40 vs 28 | 1.43× |
 | ✓ Updated {a}, merged {b}. | ✓ {a}件を更新、{b}件を統合しました。 | 34 vs 24 | 1.42× |
@@ -776,8 +772,10 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Sent to {name} | {name}(으)로 전송했습니다 | 21 vs 10 | 2.1× |
 | No Kindle email set. | Kindle 이메일이 설정되지 않았어요. | 34 vs 20 | 1.7× |
 | No items yet | 아직 항목이 없습니다 | 20 vs 12 | 1.67× |
+| 4 digits, sent to {email} | 4자리 코드를 {email}(으)로 보냈습니다 | 32 vs 20 | 1.6× |
 | No answer. | 답변이 없습니다. | 16 vs 10 | 1.6× |
 | TTS returned no audio. | TTS에서 오디오가 반환되지 않았어요. | 35 vs 22 | 1.59× |
+| No password. We email you a short code. | 비밀번호가 필요 없습니다. 짧은 코드를 이메일로 보내 드립니다. | 61 vs 39 | 1.56× |
 | {n} unopened 30d+ | 30일 넘게 안 연 항목 {n}개 | 25 vs 16 | 1.56× |
 | No key facts found | 핵심 사실을 찾지 못했습니다 | 27 vs 18 | 1.5× |
 | For KOReader, prefer | KOReader에는 다음을 권장해요: | 29 vs 20 | 1.45× |
@@ -814,7 +812,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Backup · tags · delete | Cópia de segurança · etiquetas · eliminar | 41 vs 22 | 1.86× |
 | Easy-read font | Tipo de letra fácil de ler | 26 vs 14 | 1.86× |
 | Own key | Chave própria | 13 vs 7 | 1.86× |
-| Verify & Login | Verificar e iniciar sessão | 26 vs 14 | 1.86× |
 | Account Sync | Sincronização da conta | 22 vs 12 | 1.83× |
 | Newest first | Mais recentes primeiro | 22 vs 12 | 1.83× |
 | No devices added yet. | Ainda não há dispositivos adicionados. | 38 vs 21 | 1.81× |
@@ -829,7 +826,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI Language | Idioma da interface | 19 vs 11 | 1.73× |
 | UI language | Idioma da interface | 19 vs 11 | 1.73× |
 | Verify & Log In | Verificar e iniciar sessão | 26 vs 15 | 1.73× |
-| Enter 6-digit code | Introduza o código de 6 dígitos | 31 vs 18 | 1.72× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
 | 💾 Backup & restore | 💾 Cópia de segurança e restauro | 32 vs 19 | 1.68× |
 | Browser Default | Predefinição do navegador | 25 vs 15 | 1.67× |
@@ -877,6 +873,7 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
+| No password. We email you a short code. | Sem palavra-passe. Enviamos-lhe um código curto por e-mail. | 59 vs 39 | 1.51× |
 | Logged in as: {email} | Sessão iniciada como: {email} | 24 vs 16 | 1.5× |
 | Model is writing | O modelo está a escrever | 24 vs 16 | 1.5× |
 | No receiver address set. | Nenhum endereço de recetor definido. | 36 vs 24 | 1.5× |
@@ -891,7 +888,6 @@ Strings: 1089. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Ghost highlight amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
 | Page text · {n} words | Texto da página · {n} palavras | 29 vs 20 | 1.45× |
 | Scan failed. Enter IP manually. | Falha na procura. Introduza o IP manualmente. | 45 vs 31 | 1.45× |
-| Compatible tools | Ferramentas compatíveis | 23 vs 16 | 1.44× |
 | Could not add feed | Não foi possível adicionar | 26 vs 18 | 1.44× |
 | Flesch reading ease: {ease}/100 | Facilidade de leitura de Flesch: {ease}/100 | 39 vs 27 | 1.44× |
 | Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
@@ -948,6 +944,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | reused | использована | 12 vs 6 | 2× |
 | About & Tools | О программе и инструменты | 25 vs 13 | 1.92× |
 | Send & Share | Отправка и общий доступ | 23 vs 12 | 1.92× |
+| Resend code | Отправить код ещё раз | 21 vs 11 | 1.91× |
 | Copy list | Копировать список | 17 vs 9 | 1.89× |
 | Motion on | Анимация включена | 17 vs 9 | 1.89× |
 | Copy 📋 | Копировать 📋 | 13 vs 7 | 1.86× |
@@ -981,7 +978,6 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | ✅ Sent · {date} | ✅ Отправлено · {date} | 17 vs 11 | 1.55× |
 | View & edit › | Смотреть и править › | 20 vs 13 | 1.54× |
 | Add Kindle device | Добавить устройство Kindle | 26 vs 17 | 1.53× |
-| Send Magic Code | Отправить волшебный код | 23 vs 15 | 1.53× |
 | Sources · rename · tags · mute | Источники · переименование · теги · отключение | 46 vs 30 | 1.53× |
 | Mute / unmute reading | Выключить / включить звук чтения | 32 vs 21 | 1.52× |
 | Auto-summarize favorites | Автоматически резюмировать избранное | 36 vs 24 | 1.5× |
@@ -989,7 +985,6 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |
 | Summarize this page | Кратко изложить эту страницу | 28 vs 19 | 1.47× |
 | Add LocalSend device | Добавить устройство LocalSend | 29 vs 20 | 1.45× |
-| Compatible tools | Совместимые инструменты | 23 vs 16 | 1.44× |
 | Summarize / send | Суммировать / отправить | 23 vs 16 | 1.44× |
 | {n} duplicate tag | Повторяющихся тегов: {n} | 23 vs 16 | 1.44× |
 | Copied as plain text. | Скопировано как обычный текст. | 30 vs 21 | 1.43× |

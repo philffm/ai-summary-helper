@@ -115,7 +115,16 @@ async function refreshSubtitles() {
     set('about', T('Feedback · contact · donate') + (v ? ' · v' + v.textContent.trim() : ''));
 }
 
+// Panels without a settings form (sign-in and account) have nothing to save: hide the floating Save button there.
+const NO_SAVE_PANELS = new Set(['account']);
+function syncSaveFab(name) {
+    const fab = $('settingsSaveFab');
+    if (fab) fab.classList.toggle('no-save', NO_SAVE_PANELS.has(name));
+}
+
 function showHome() {
+    const fabOnHome = $('settingsSaveFab');
+    if (fabOnHome) fabOnHome.classList.remove('no-save');
     if (settingsIsWide()) { openSettingsPanel(currentPanel); return; }
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = true; });
     $('settingsHome').hidden = false;
@@ -128,6 +137,7 @@ export function openSettingsPanel(name, targetId) {
     if (!panel) return;
     document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: { name, targetId } }));
     currentPanel = name;
+    syncSaveFab(name);
     markActiveRow(name);
     $('settingsHome').hidden = !settingsIsWide() ? true : false;
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = p !== panel; });

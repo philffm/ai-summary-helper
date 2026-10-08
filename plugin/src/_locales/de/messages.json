@@ -3733,5 +3733,20 @@
   },
   "f_add_model_id_e_g_gemma4_e2b_127a": {
     "message": "Modell-ID hinzufügen, z. B. gemma4:e2b"
+  },
+  "f_4_digits_sent_to_e76c": {
+    "message": "4 Ziffern, gesendet an {email}"
+  },
+  "f_no_password_we_email_you_a_s_c006": {
+    "message": "Kein Passwort. Wir mailen dir einen kurzen Code."
+  },
+  "f_paste_works_it_signs_you_in__1f47": {
+    "message": "Einfügen funktioniert. Nach der letzten Ziffer bist du angemeldet."
+  },
+  "f_resend_code_4dd7": {
+    "message": "Code erneut senden"
+  },
+  "f_send_me_a_code_a679": {
+    "message": "Code senden"
   }
 }

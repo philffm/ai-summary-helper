@@ -32,17 +32,17 @@
           <h2 data-i18n="f_welcome_to_ai_summary_helper_892e">Welcome to AI Summary Helper</h2>
           <p data-i18n="f_sign_in_to_unlock_free_cloud_f976">Sign in to unlock free cloud models and sync your summaries, or bring your own API keys.</p>
 
-          <div class="onboarding-auth-box">
+          <div class="onboarding-auth-box auth-form">
             <div id="onboardingEmailStage">
-              <input type="email" id="onboardingEmail" placeholder="name@example.com" />
-              <button type="button" id="onboardingSendCodeBtn" class="button-primary" data-i18n="f_sign_in_sign_up_via_email_0cc4">Sign in / Sign up via Email</button>
+              <input type="email" id="onboardingEmail" placeholder="name@example.com" autocomplete="email" />
+              <button type="button" id="onboardingSendCodeBtn" class="button-primary">Send me a code</button>
             </div>
 
             <div id="onboardingOtpStep" style="display: none;">
-              <p class="input-caption" data-i18n="f_enter_the_code_sent_to_your__e9ff">Enter the code sent to your email.</p>
-              <input type="text" id="onboardingOtpCode" placeholder="Enter 6-digit code" inputmode="text" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" / data-i18n-placeholder="f_enter_6_digit_code_9824">
-              <button type="button" id="onboardingVerifyBtn" class="button-primary" data-i18n="f_verify_login_274f">Verify & Login</button>
-              <button type="button" class="btn-link" id="onboardingBackBtn" style="margin-top: 10px; width: 100%; text-align: center;" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
+              <p class="input-caption">4 digits, sent to your email.</p>
+              <div class="otp-boxes"><input type="text" id="onboardingOtpCode" class="otp-input" placeholder="Enter code" maxlength="4" inputmode="numeric" aria-label="Enter code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" data-i18n-placeholder="f_enter_code_6556"><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span></div>
+              <button type="button" id="onboardingVerifyBtn" class="button-primary" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
+              <button type="button" class="btn-link auth-back" id="onboardingBackBtn" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
             </div>
             <div id="onboardingAuthMessage" class="auth-message"></div>
           </div>
@@ -281,27 +281,27 @@
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsAccount">Account &amp; Plan</span></h2>
   </div>
-                    <div class="setting-group" id="authSection" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--glass-border);">
+                    <div class="setting-group auth-form auth-section" id="authSection">
                         <div class="flex-label-row">
                             <label class="type-badge" data-i18n="f_account_sync_cdb7">Account Sync</label>
-                            <span id="authStatusLabel" class="status-badge" style="color: var(--text-muted, #889999); background: rgba(0, 0, 0, 0.2);">Not logged in</span>
+                            <span id="authStatusLabel" class="status-badge" hidden></span>
                         </div>
                         
                         <div id="otpEmailStage">
-                            <input type="email" id="otpEmail" placeholder="Enter your email..." data-i18n-placeholder="f_enter_your_email_b13a">
-                            <button type="button" id="otpRequestBtn" class="button-primary" style="margin-top: 8px;" data-i18n="f_send_magic_code_de19">Send Magic Code</button>
+                            <input type="email" id="otpEmail" placeholder="name@example.com" autocomplete="email">
+                            <button type="button" id="otpRequestBtn" class="button-primary">Send me a code</button>
                         </div>
 
                         <div id="otpCodeStage" style="display: none;">
-                          <p class="input-caption" data-i18n="f_enter_the_code_sent_to_your__e9ff">Enter the code sent to your email.</p>
-                          <input type="text" id="otpCode" placeholder="Enter code" inputmode="text" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" style="text-align: center; font-size: 1.2rem; letter-spacing: 0.2rem;" data-i18n-placeholder="f_enter_code_6556">
-                            <button type="button" id="otpVerifyBtn" class="button-primary" style="margin-top: 8px;" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
-                            <button type="button" class="btn-link" id="otpBackBtn" style="margin-top: 10px; width: 100%; text-align: center;" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
+                          <p class="input-caption">4 digits, sent to your email.</p>
+                          <div class="otp-boxes"><input type="text" id="otpCode" class="otp-input" placeholder="Enter code" maxlength="4" inputmode="numeric" aria-label="Enter code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" data-i18n-placeholder="f_enter_code_6556"><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span></div>
+                            <button type="button" id="otpVerifyBtn" class="button-primary" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
+                            <button type="button" class="btn-link auth-back" id="otpBackBtn" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
                         </div>
 
                         <div id="loggedInStage" style="display: none;">
-                            <p class="input-caption" id="userEmailLabel" style="margin-bottom: 8px;">Logged in as: ...</p>
-                            <button type="button" id="logoutBtn" class="button-secondary" style="width: 100%;" data-i18n="f_log_out_0355">Log Out</button>
+                            <p class="input-caption" id="userEmailLabel">Logged in as: ...</p>
+                            <button type="button" id="logoutBtn" class="button-secondary auth-logout" data-i18n="f_log_out_0355">Log Out</button>
                         </div>
                     </div>
                     <div class="setting-group" id="legacyLicenseGroup">

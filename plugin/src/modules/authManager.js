@@ -78,7 +78,7 @@ function clearLoading(btn) {
 
 function setCodeCaption(view, email) {
     if (view.codeCaption && email) {
-        view.codeCaption.innerHTML = `${T('Enter the code sent to:')}<br/><strong>${escapeHtml(email)}</strong>`;
+        view.codeCaption.innerHTML = escapeHtml(T('4 digits, sent to {email}', { email }));
     }
 }
 
@@ -185,11 +185,30 @@ const refreshUsageAnalytics = async (view, token) => {
     }
 };
 
+// Four digit boxes drawn over the real (transparent) input: keeps paste, autofill (one-time-code) and keyboards working.
+function renderOtpBoxes(input) {
+    const boxes = input && input.parentElement ? input.parentElement.querySelectorAll('.otp-box') : [];
+    const v = input ? input.value : '';
+    boxes.forEach((b, i) => {
+        b.textContent = v[i] || '';
+        b.classList.toggle('active', i === Math.min(v.length, boxes.length - 1));
+    });
+}
+function bindOtpBoxes(input) {
+    if (!input || input._otpBound) return;
+    input._otpBound = true;
+    input.addEventListener('input', () => { input.value = input.value.replace(/\s+/g, ''); renderOtpBoxes(input); });
+    input.addEventListener('focus', () => renderOtpBoxes(input));
+    renderOtpBoxes(input);
+}
+
 function setStatusBadge(label, isPro) {
     if (!label) return;
+    label.hidden = false;
     label.textContent = isPro ? T('Pro Active ✓') : T('Free Tier');
-    label.style.background = isPro ? 'var(--success, #2ecc40)' : 'rgba(0,0,0,0.2)';
-    label.style.color = isPro ? '#fff' : 'var(--text-muted, #889999)';
+    label.classList.toggle('signed-in', !!isPro);
+    label.style.background = '';
+    label.style.color = '';
 }
 
 function setLoggedInOnlySectionsVisible(isLoggedIn) {
@@ -280,9 +299,10 @@ function applyStateToView(view, stateName, data, user) {
         show(view.loggedInStage, true);
         if (view.userEmailLabel) view.userEmailLabel.textContent = T('Logged in as: {email}', { email: user.email });
         if (view.authStatusLabel) {
+            view.authStatusLabel.hidden = false;
             view.authStatusLabel.textContent = T('Checking...');
-            view.authStatusLabel.style.background = 'rgba(0,0,0,0.2)';
-            view.authStatusLabel.style.color = 'var(--text-muted, #889999)';
+            view.authStatusLabel.style.background = '';
+            view.authStatusLabel.style.color = '';
         }
     } else if (stateName === 'otpPending') {
         show(view.emailStage, false);
@@ -296,9 +316,7 @@ function applyStateToView(view, stateName, data, user) {
         show(view.codeStage, false);
         show(view.loggedInStage, false);
         if (view.authStatusLabel) {
-            view.authStatusLabel.textContent = T('Not logged in');
-            view.authStatusLabel.style.background = 'rgba(0,0,0,0.2)';
-            view.authStatusLabel.style.color = 'var(--text-muted, #889999)';
+            view.authStatusLabel.hidden = true;   // signed out: the form says it all
         }
     }
 }
@@ -344,7 +362,7 @@ async function requestOtp(view) {
         });
 
         await refreshAuthState();
-        if (view.codeInput) view.codeInput.focus();
+        if (view.codeInput) { view.codeInput.focus(); renderOtpBoxes(view.codeInput); }
         notify(view, T('Magic code sent! ✨ Check your inbox.'));
     } catch (err) {
         console.error('OTP request error:', err);
@@ -468,7 +486,7 @@ async function verifyOtp(view) {
         activeOtpId = null;
 
         notify(view, T('Successfully connected! 🧙'));
-        if (view.codeInput) view.codeInput.value = '';
+        if (view.codeInput) { view.codeInput.value = ''; renderOtpBoxes(view.codeInput); }
 
         const currentState = await StorageManager.getAll();
         await refreshAuthState({ ...currentState, ...authData });
@@ -534,6 +552,32 @@ export function registerAuthView(ids) {
     view.verifyBtn.addEventListener('click', () => verifyOtp(view));
     if (view.backBtn) view.backBtn.addEventListener('click', () => goBackToEmail(view));
     if (view.logoutBtn) view.logoutBtn.addEventListener('click', () => logout());
+
+    // Shared look & wording for every sign-in form (Variant B): hint under the button, 4 digit boxes, auto-verify, resend.
+    view.requestBtn.textContent = T('Send me a code');
+    if (!view.requestBtn.nextElementSibling || !view.requestBtn.nextElementSibling.classList.contains('auth-hint')) {
+        const hint = document.createElement('p');
+        hint.className = 'input-caption auth-hint';
+        hint.textContent = T('No password. We email you a short code.');
+        view.requestBtn.insertAdjacentElement('afterend', hint);
+    }
+    bindOtpBoxes(view.codeInput);
+    const codeHint = document.createElement('p');
+    codeHint.className = 'input-caption auth-hint';
+    codeHint.textContent = T('Paste works. It signs you in after the last digit.');
+    view.codeInput.parentElement.insertAdjacentElement('afterend', codeHint);
+    view.codeInput.addEventListener('input', () => { if (view.codeInput.value.length === 4) verifyOtp(view); });
+    if (view.backBtn) {
+        const resend = document.createElement('button');
+        resend.type = 'button';
+        resend.className = 'btn-link auth-resend';
+        resend.textContent = T('Resend code');
+        resend.addEventListener('click', () => requestOtp(view));
+        const row = document.createElement('div');
+        row.className = 'auth-link-row';
+        view.backBtn.insertAdjacentElement('beforebegin', row);
+        row.append(view.backBtn, resend);
+    }
 
     return view;
 }

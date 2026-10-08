@@ -3715,5 +3715,20 @@
   },
   "f_add_model_id_e_g_gemma4_e2b_127a": {
     "message": "모델 ID 추가 (예: gemma4:e2b)"
+  },
+  "f_4_digits_sent_to_e76c": {
+    "message": "4자리 코드를 {email}(으)로 보냈습니다"
+  },
+  "f_no_password_we_email_you_a_s_c006": {
+    "message": "비밀번호가 필요 없습니다. 짧은 코드를 이메일로 보내 드립니다."
+  },
+  "f_paste_works_it_signs_you_in__1f47": {
+    "message": "붙여넣기도 됩니다. 마지막 숫자를 입력하면 로그인됩니다."
+  },
+  "f_resend_code_4dd7": {
+    "message": "코드 다시 보내기"
+  },
+  "f_send_me_a_code_a679": {
+    "message": "코드 보내기"
   }
 }

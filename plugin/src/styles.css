@@ -513,6 +513,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   box-shadow: 0 8px 24px var(--accent-glow), 0 2px 8px rgba(0,0,0,0.2);
 }
 
+.settings-save-fab.no-save { display: none !important; }
 .settings-save-fab:hover {
   filter: brightness(1.06);
   box-shadow: 0 10px 28px var(--accent-glow);
@@ -1846,13 +1847,13 @@ text.graph-search-dim {
   gap: 10px;
 }
 
-.onboarding-auth-box > div {
+.auth-form > div {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.onboarding-auth-box input {
+.auth-form input {
   width: 100%;
   padding: 10px 12px;
   border-radius: var(--radius-sm);
@@ -1863,7 +1864,7 @@ text.graph-search-dim {
   box-sizing: border-box;
 }
 
-.onboarding-auth-box input:focus {
+.auth-form input:focus {
   outline: none;
   border-color: var(--accent);
 }
@@ -1873,6 +1874,19 @@ text.graph-search-dim {
 
 
 
+.otp-boxes { position: relative; display: flex; justify-content: center; gap: 10px; }
+.otp-boxes .otp-input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: text; padding: 0; border: 0; }
+.otp-box { width: 48px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); background: var(--glass-input); border: 1px solid var(--outline); border-radius: var(--radius-sm); box-sizing: border-box; }
+.otp-boxes:focus-within .otp-box.active { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); }
+.auth-form .auth-hint { margin: 0; text-align: center; font-size: var(--fs-2xs); color: var(--text-muted); }
+.auth-form .auth-link-row { display: flex; justify-content: center; gap: 16px; }
+.auth-form .auth-link-row .btn-link { width: auto; }
+.auth-form .auth-logout { width: 100%; }
+.auth-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+.auth-section > div { display: flex; flex-direction: column; gap: 10px; }
+.auth-section > .flex-label-row { flex-direction: row; }
+.status-badge[hidden] { display: none; }
+.status-badge.signed-in { background: var(--success, #2ecc40); color: #fff; }
 .auth-message {
   font-size: var(--fs-md);
   margin-top: 5px;
