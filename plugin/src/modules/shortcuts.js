@@ -91,6 +91,7 @@ export function openHelp(doc = document) {
     const filter = mk('input', 'kbd-filter'); filter.type = 'search'; filter.placeholder = T('Filter shortcuts…'); filter.setAttribute('aria-label', T('Filter shortcuts…'));
     const body = mk('div', 'kbd-groups');
     const rows = [];
+    const empty = mk('div', 'kbd-tip', T('No shortcuts match')); empty.hidden = true;
     shortcutGroups().forEach(([g, items]) => {
         const sec = mk('div', 'kbd-group');
         sec.append(mk('div', 'kbd-group-t', g));
@@ -105,12 +106,14 @@ export function openHelp(doc = document) {
         const q = filter.value.trim().toLowerCase();
         rows.forEach(r => { r.row.hidden = !!q && !r.text.includes(q); });
         rows.forEach(r => { r.sec.hidden = !r.sec.querySelector('.kbd-row:not([hidden])'); });
+        empty.hidden = rows.some(r => !r.row.hidden);
     });
-    panel.append(mk('div', 'sendsheet-grab'), title, filter, body, mk('div', 'kbd-tip', T('Press ? anywhere outside a text field')));
+    panel.append(mk('div', 'sendsheet-grab'), title, filter, body, empty, mk('div', 'kbd-tip', T('Press ? anywhere outside a text field')));
     root.append(scrim, panel);
     root.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeHelp(); } });
     scrim.addEventListener('click', closeHelp);
     doc.body.append(root);
+    panel.style.minHeight = panel.offsetHeight + 'px';   // keep the full-list height while filtering so nothing jumps
     const trap = trapFocus(root, { label: T('Keyboard shortcuts') });
     helpSheet = { root, release: trap.release };
 }
