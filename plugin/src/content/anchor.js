@@ -13,10 +13,29 @@ const ANC_SKIP = [
 ].join(',');
 const ANC_BLOCK = 'p,div,li,ul,ol,h1,h2,h3,h4,h5,h6,blockquote,td,th,tr,section,article,pre,figcaption,dd,dt,br';
 
+/**
+ * Of all elements matching `selector`, the one with the most text. `querySelector` alone returns the first in DOM
+ * order, which on many sites is a sign-in popup, cookie banner or teaser card rather than the article.
+ * Dialogs/modals are skipped. Returns null when nothing matches.
+ */
+export function ancLargestMatch(doc, selector) {
+  let best = null, bestLen = 0;
+  for (const el of doc.querySelectorAll(selector)) {
+    if (el.closest('[role="dialog"],[role="alertdialog"],[aria-modal="true"],dialog')) continue;
+    const len = (el.textContent || '').trim().length;
+    if (len > bestLen) { best = el; bestLen = len; }
+  }
+  return best;
+}
+
+/** Article, else [role=main], else main: first non-empty tier wins (a <main> wrapping the <article> must not beat it). */
+export function ancArticleRoot(doc) {
+  return ancLargestMatch(doc, 'article') || ancLargestMatch(doc, '[role="main"]') || ancLargestMatch(doc, 'main');
+}
+
 /** The article body: same candidates the extractor uses, falling back to <body>. */
 export function ancScopeRoot(doc = document) {
-  return doc.querySelector('#storytext') || doc.querySelector('article') || doc.querySelector('[role="main"]')
-    || doc.querySelector('main') || doc.body;
+  return doc.querySelector('#storytext') || ancArticleRoot(doc) || doc.body;
 }
 
 // One normalised character per source character (or none): curly quotes → straight,
