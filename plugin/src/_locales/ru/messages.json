@@ -3127,5 +3127,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 Создать букмарклет"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Вступление пропущено — дайджест уйдёт без него"
   }
 }

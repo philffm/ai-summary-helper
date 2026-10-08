@@ -3217,5 +3217,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 Bookmarklet erstellen"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Intro übersprungen — der Digest geht ohne sie raus"
   }
 }

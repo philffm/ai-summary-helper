@@ -89,4 +89,12 @@ assert.equal(resolveLocale('', 'de-AT'), 'de'); assert.equal(resolveLocale('', '
 assert.equal(resolveLocale('pt'), 'pt_PT'); assert.equal(resolveLocale('', 'pt-BR'), 'pt_PT');
 assert.equal(resolveLocale('zh-TW'), 'zh_TW'); assert.equal(resolveLocale('', 'zh-Hant'), 'zh_TW'); assert.equal(resolveLocale('zh'), 'zh_CN'); assert.equal(resolveLocale('', 'zh-HK'), 'zh_HK');
 assert.equal(resolveLocale('', 'sv-SE'), 'en'); assert.equal(resolveLocale('ar'), 'ar');
+// Send sheet: the digest intro uses the shared status card with streamed preview; cancel = skip intro.
+const stI = createRecapStatus({ title: 'Intro', preview: true });
+stI.onProgress({ phase: 'stream', chars: 5, think: 0, tail: 'He', text: '**Hello** world' });
+assert.equal(stI.node.querySelector('.recap-preview').textContent, 'Hello world');
+assert.equal(stI.node.querySelector('.recap-preview').hidden, false);
+stI.stop();
+const ss = fs.readFileSync(new URL('../src/modules/sendSheet.js', import.meta.url), 'utf8');
+assert(/createRecapStatus\(\{[\s\S]*preview: true/.test(ss) && /generateDigestIntro\(list0, state\.introStyle, \{ onStage/.test(ss));
 console.log('TEST 59 OK'); process.exit(0);

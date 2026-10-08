@@ -22,7 +22,7 @@ const STAGES = ['prepare', 'send', 'wait', 'write', 'parse'];
  * @param {{title:string, detail?:string, items?:number}} o  title = headline ("✨ Updating recap…"), detail = what is sent
  * @returns {{node, onStage, stop, signal}}  signal aborts when the user presses Cancel; onCancel runs afterwards
  */
-export function createRecapStatus({ title, detail = '', onCancel }) {
+export function createRecapStatus({ title, detail = '', onCancel, preview = false }) {
     const node = el('div', 'recap-status');
     node.setAttribute('role', 'status');
     node.setAttribute('aria-live', 'polite');
@@ -42,7 +42,9 @@ export function createRecapStatus({ title, detail = '', onCancel }) {
     const cancel = el('button', 'btn-sm recap-cancel', T('Cancel'));
     cancel.type = 'button';
     cancel.addEventListener('click', () => { cancel.disabled = true; ac.abort(); clearInterval(timer); if (onCancel) onCancel(); });
-    node.append(head, list, meta, cancel);
+    const previewEl = el('p', 'recap-preview');
+    previewEl.hidden = true;
+    node.append(head, list, ...(preview ? [previewEl] : []), meta, cancel);
 
     const t0 = Date.now();
     let prog = null, lastMove = Date.now();
@@ -68,7 +70,13 @@ export function createRecapStatus({ title, detail = '', onCancel }) {
     };
     const timer = setInterval(paint, 1000);
     activeModelLabel().then(m => { model = m; paint(); });
-    const onProgress = (m) => { if (m.chars !== prog?.chars || m.think !== prog?.think || m.phase !== prog?.phase) lastMove = Date.now(); prog = m; paint(); };
+    const showPreview = (m) => {
+        if (!preview || !m || !m.text) return;
+        const t = String(m.text).replace(/[*#_`>]/g, '').replace(/\s+/g, ' ').trim();
+        previewEl.textContent = t.length > 420 ? '…' + t.slice(-420) : t;
+        previewEl.hidden = !t;
+    };
+    const onProgress = (m) => { showPreview(m); if (m.chars !== prog?.chars || m.think !== prog?.think || m.phase !== prog?.phase) lastMove = Date.now(); prog = m; paint(); };
     const onStage = (s) => { if (STAGES.includes(s) && STAGES.indexOf(s) >= STAGES.indexOf(cur)) { cur = s; paint(); } };
     onStage('prepare');
     return { node, onStage, onProgress, stop: () => clearInterval(timer), signal: ac.signal };

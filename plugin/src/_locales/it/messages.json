@@ -3127,5 +3127,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 Genera bookmarklet"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Intro saltata: il digest parte senza"
   }
 }

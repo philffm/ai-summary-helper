@@ -3127,5 +3127,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 إنشاء Bookmarklet"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "تم تخطي المقدمة — سيُرسل الملخص بدونها"
   }
 }

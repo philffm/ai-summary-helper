@@ -3211,5 +3211,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 Generar bookmarklet"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Intro omitida: el resumen se envía sin ella"
   }
 }

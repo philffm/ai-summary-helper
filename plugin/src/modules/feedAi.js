@@ -243,14 +243,14 @@ const INTRO_STYLES = {
  * Short introduction for a reading digest, written ONLY from the already-written summaries
  * (title + start of each) — no article text is sent. style: 'short' | 'briefing' | 'personal'.
  */
-export async function generateDigestIntro(list, style = 'briefing') {
+export async function generateDigestIntro(list, style = 'briefing', { onStage, signal, onProgress } = {}) {
     const lang = await languageName();
     const plain = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ');
     const system = `You write the short introduction at the top of a reading digest made of several article summaries. Write it in ${lang}. `
         + `Length and tone: ${INTRO_STYLES[style] || INTRO_STYLES.briefing}. `
         + 'Mention what the pieces have in common or how they differ. Use ONLY information from the summaries: no new facts, no quotes, no markdown, no lists, no title, no greeting. Reply with the intro text only.';
     const user = list.slice(0, 12).map((a, i) => `[${i + 1}] ${clip(a.title, 140)} — ${clip(plain(a.summary), 400)}`).join('\n');
-    const raw = await aiComplete(system, user);
+    const raw = await aiComplete(system, user, onStage, signal, onProgress, { partial: true });
     const text = String(raw || '').replace(/[*#_`>]/g, '').replace(/^["“”'\s]+|["“”'\s]+$/g, '').replace(/\s+/g, ' ').trim().slice(0, 700);
     if (!text) throw new Error(T('The AI reply could not be read'));
     return text;

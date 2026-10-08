@@ -2566,6 +2566,7 @@ text.graph-search-dim {
 .feed-recap-stale { font-size: var(--fs-sm); color: var(--mood-warn-text); margin: 0 0 8px; }
 .feed-recap-actions { display: flex; gap: 8px; margin: 6px 0 10px; }
 .feed-recap-loading { font-size: var(--fs-base); margin: 6px 0; }
+.recap-preview { margin: 6px 0; padding: 8px 10px; border-left: 3px solid var(--glass-border, rgba(127,127,127,.4)); font-size: var(--fs-sm, 13px); line-height: 1.45; opacity: .85; max-height: 7.5em; overflow: hidden; }
 .recap-cancel { margin-top: 4px; }
 .recap-steps { list-style: none; margin: 6px 0 8px; padding: 0; font-size: var(--fs-md); }
 .recap-step { padding: 2px 0 2px 22px; position: relative; color: var(--text-muted, #6b7280); }

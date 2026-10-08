@@ -10,6 +10,7 @@ import StorageManager from './storageManager.js';
 import { buildMagazineArticle } from './digestBuilder.js';
 import { T, TN } from './feedI18n.js';
 import { generateDigestIntro } from './feedAi.js';
+import { createRecapStatus } from './recapStatus.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
 import { el } from './dom.js';
 
@@ -330,13 +331,23 @@ async function run(kind, device) {
     body.append(track, steps);
     let intro = '';
     let introFailed = false;
+    let introSkipped = false;
     const wantIntro = state.intro === 'on' && state.format === 'digest' && selected().length > 1;
     if (wantIntro) {
-        const il = el('div', 'sendsheet-step', T('✨ Writing intro…'));
-        steps.append(il);
-        try { intro = await generateDigestIntro(selected(), state.introStyle); il.textContent = T('✨ Intro written'); }
-        catch (e) { introFailed = true; il.textContent = T('⚠️ Intro skipped — the digest goes out without it'); }
+        // Same live status card as the feed recaps: stages, model, elapsed timer, streamed preview, Cancel (= skip the intro).
+        const list0 = selected();
+        const st = createRecapStatus({
+            title: T('✨ Writing intro…'), preview: true,
+            detail: TN(Math.min(list0.length, 12), 'Sending {n} title and short summary to your AI connection.', 'Sending {n} titles and short summaries to your AI connection.'),
+            onCancel: () => { introSkipped = true; }
+        });
+        steps.append(st.node);
+        try { intro = await generateDigestIntro(list0, state.introStyle, { onStage: st.onStage, signal: st.signal, onProgress: st.onProgress }); }
+        catch (e) { introFailed = true; }
+        st.stop();
         if (!sheet) return;
+        const il = el('div', 'sendsheet-step', introFailed ? (introSkipped ? T('Intro skipped — the digest goes out without it') : T('⚠️ Intro skipped — the digest goes out without it')) : T('✨ Intro written'));
+        st.node.replaceWith(il);
     }
     const jobs = await buildJobs(intro);
     const lines = jobs.map(j => { const d = el('div', 'sendsheet-step', '○ ' + j.label); steps.append(d); return d; });
@@ -349,9 +360,12 @@ async function run(kind, device) {
     for (let i = 0; i < jobs.length; i++) {
         if (cancelled) break;
         lines[i].textContent = '⏳ ' + jobs[i].label; paint(done, true);
+        const t0 = Date.now();
+        const tick = setInterval(() => { if (lines[i]) lines[i].textContent = `⏳ ${jobs[i].label} · ${Math.floor((Date.now() - t0) / 1000)}s`; }, 1000);
         let res;
         try { res = kind === 'kindle' ? await deps.deliverKindle(jobs[i].article, device) : await deps.deliverLocalSend(jobs[i].article, device); }
         catch (e) { res = { ok: false, error: e?.message || String(e) }; }
+        clearInterval(tick);
         if (!sheet) return;
         if (!res || !res.ok) {
             lines[i].textContent = '⚠️ ' + jobs[i].label;

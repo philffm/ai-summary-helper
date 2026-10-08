@@ -3358,5 +3358,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 Generate Bookmarklet"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Intro skipped — the digest goes out without it"
   }
 }

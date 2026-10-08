@@ -3199,5 +3199,8 @@
   },
   "f_generate_bookmarklet_280f": {
     "message": "🪄 북마클릿 생성"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "인트로 건너뜀 — 다이제스트는 인트로 없이 전송됩니다"
   }
 }
