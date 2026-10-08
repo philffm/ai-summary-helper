@@ -245,8 +245,8 @@ export function initMainScreen(ui) {
         else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Summarize'; }
     };
 
-    // Fetch state extras: the page in the active tab as a chip INSIDE the input card (it flies into the thread on Fetch),
-    // and the last summary as a resume card at the end of the feed.
+    // Fetch state extras: the page in the active tab as a chip INSIDE the input card (it flies into the thread on Fetch).
+    // (The last summary is reachable through the Ask button on its card in the feed.)
     let extrasToken = 0;
     const clip = (x, n) => { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; };
     const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
@@ -254,13 +254,6 @@ export function initMainScreen(ui) {
         extrasToken++;
         document.getElementById('pageCard')?.remove();
         document.getElementById('convChip')?.remove();
-        document.getElementById('resumeCard')?.remove();
-    };
-    const latestArticle = async () => {
-        try {
-            const idx = await StorageManager.getArticlesIndex();
-            return idx.slice().sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp))[0] || null;
-        } catch (_) { return null; }
     };
     const refreshFetchExtras = async () => {
         clearNote();
@@ -268,7 +261,6 @@ export function initMainScreen(ui) {
         if (!composer || composer.state !== 'fetch' || !bar) return;
         let tab = null;
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
-        const latest = conversation ? null : await latestArticle();
         if (token !== extrasToken || composer.state !== 'fetch') return;
         const inputCard = bar.querySelector('.input-card');
         if (tab && tab.url && isInjectableUrl(tab.url) && inputCard) {
@@ -289,22 +281,6 @@ export function initMainScreen(ui) {
             txt.append(title, meta);
             chip.appendChild(txt);
             inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
-        }
-        const target = conversation
-            ? { title: conversation.title, n: conversation.turns.length }
-            : (latest ? { title: latest.title, n: latest.qaCount || 0, latest } : null);
-        if (target) {
-            const card = document.createElement('button');
-            card.type = 'button'; card.id = 'resumeCard'; card.className = 'resume-card';
-            const ic = document.createElement('span'); ic.className = 'resume-card-ic'; ic.textContent = '✨';
-            const txt = document.createElement('span'); txt.className = 'resume-card-txt';
-            const t = document.createElement('span'); t.className = 'resume-card-title'; t.textContent = clip(target.title || T('Summary'), 90);
-            const m = document.createElement('span'); m.className = 'resume-card-meta';
-            m.textContent = [T('Last summary'), target.n ? TN(target.n, '{n} follow-up', '{n} follow-ups') : '', T('Resume') + ' ›'].filter(Boolean).join(' · ');
-            txt.append(t, m); card.append(ic, txt);
-            card.addEventListener('click', () => resumeConversation(target.latest));
-            feed.appendChild(card);
-            scrollFeed();
         }
     };
 
@@ -351,28 +327,6 @@ export function initMainScreen(ui) {
                 { transform: 'none', opacity: 1 }
             ], { duration: 280, easing: 'cubic-bezier(.2,.8,.2,1)' });
         } catch (_) { /* animation is cosmetic */ }
-    };
-
-    /** Back into a conversation: the in-memory one, or the stored one of a past summary. */
-    const resumeConversation = async (articleEntry) => {
-        if (!composer || composer.state === 'working') return;
-        if (!conversation) {
-            if (!articleEntry || !articleEntry.id) return;
-            const full = await StorageManager.getArticleFull(articleEntry.id);
-            conversation = {
-                id: full.id, url: full.url || '', title: full.title || '', content: full.content || '', summary: full.summary || '',
-                meta: full.meta || (full.favicon ? { favicon: full.favicon } : {}),
-                turns: Array.isArray(full.conversation) ? full.conversation : []
-            };
-            clearThread();
-            conversation.turns.forEach(t => feed.appendChild(turnEl(t, { onPin: persistConversation, onSource: revealOnPage })));
-        }
-        let tab = null;
-        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
-        conversation.detached = !(tab && samePage(conversation.url, tab.url));   // resumed from another page: keep it open
-        clearNote();
-        composer.set('followup');
-        scrollFeed();
     };
 
     /** Back to this page (chip button / ⌘N): back to the initial Fetch Summary state. Nothing is deleted — the summary is in History. */
