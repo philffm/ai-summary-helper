@@ -13,6 +13,7 @@ import { initSelection, registerCard, toggleCard, selectionActive } from './send
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
+import { normalizeDoi } from '../content/paper.js';
 import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
@@ -1449,7 +1450,21 @@ function renderDetailTags(article, host) {
         e.stopPropagation();
         const input = document.createElement('input');
         input.type = 'text'; input.className = 'tag-input'; input.maxLength = 40; input.placeholder = T('Add tag…'); input.setAttribute('aria-label', T('Add tag…'));
-        const commit = () => { const v = input.value.trim(); if (v) saveTags([...(article.tags || []), v]); else refresh(); };
+        const assignDoi = async (doi) => {
+            await StorageManager.savePaperInfo(article.id, { state: 'yes', doi });
+            await applyStatus([article.id], { paperOverride: 'yes' });
+            article.paperOverride = 'yes'; article.doi = doi; article.paper = 'yes';
+            article.meta = Object.assign({}, article.meta, { paper: Object.assign({}, article.meta && article.meta.paper, { state: 'yes', doi }) });
+            const hit = cachedArticles.find(a => a.id === article.id) || archivedCache.find(a => a.id === article.id);
+            if (hit) { hit.doi = doi; hit.paper = 'yes'; }
+            refresh();
+        };
+        const commit = () => {
+            const v = input.value.trim();
+            const doi = v ? normalizeDoi(v) : '';
+            if (doi && /^(?:https?:\/\/\S*doi\.org\/|doi:\s*)?10\./i.test(v)) assignDoi(doi);   // a pasted DOI / doi.org link is assigned to the paper, not saved as a tag
+            else if (v) saveTags([...(article.tags || []), v]); else refresh();
+        };
         input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && !ev.isComposing) { ev.preventDefault(); commit(); } else if (ev.key === 'Escape') { ev.stopPropagation(); refresh(); } });
         input.addEventListener('blur', () => setTimeout(() => { if (input.isConnected) commit(); }, 120));
         add.replaceWith(input);
@@ -1471,9 +1486,14 @@ function renderDetailTags(article, host) {
         if (!paperState(article)) mkSugg(T('🎓 Research paper'), async () => { await applyStatus([article.id], { paperOverride: 'yes' }); article.paperOverride = 'yes'; refresh(); }, true);
         names.forEach(n => mkSugg(n, () => saveTags([...(article.tags || []), n])));
         input.after(...sugg);
+        const doiSugg = mkSugg('', () => { const d = normalizeDoi(input.value); if (d) assignDoi(d); }, true);
+        doiSugg.hidden = true;
+        input.after(doiSugg);
         input.addEventListener('input', () => {
+            const dv = /^(?:https?:\/\/\S*doi\.org\/|doi:\s*)?10\./i.test(input.value.trim()) ? normalizeDoi(input.value) : '';
+            doiSugg.hidden = !dv; if (dv) doiSugg.textContent = T('🎓 Assign DOI {doi}', { doi: dv });
             const q = input.value.trim().toLowerCase();
-            sugg.forEach(b => { b.hidden = !!q && !b.textContent.toLowerCase().includes(q) && !b.classList.contains('tag-suggest-paper'); });
+            sugg.forEach(b => { if (b === doiSugg) return; b.hidden = !!q && !b.textContent.toLowerCase().includes(q) && !b.classList.contains('tag-suggest-paper'); });
         });
         input.focus();
     });

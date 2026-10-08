@@ -377,7 +377,7 @@ class StorageManager {
         if (!rec) return false;
         const index = idxData[SK.articlesIndex] || [];
         const entry = index.find(a => a.id === id);
-        if (entry) { if (paper.state) entry.paper = paper.state; if (paper.type) entry.paperType = paper.type; if (paper.preprint) entry.preprint = true; }
+        if (entry) { if (paper.state) entry.paper = paper.state; if (paper.type) entry.paperType = paper.type; if (paper.preprint) entry.preprint = true; if (paper.doi) entry.doi = paper.doi; }
         await this.setLocal({ [key]: { ...rec, meta: { ...(rec.meta || {}), paper: { ...((rec.meta || {}).paper || {}), ...paper } } }, [SK.articlesIndex]: index });
         return true;
     }

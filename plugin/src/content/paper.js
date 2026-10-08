@@ -57,6 +57,12 @@ export function detectPaper(doc = document, loc = window.location) {
     const a = doc.querySelector('a[href*="doi.org/10."]');
     if (a) doi = normalizeDoi(a.getAttribute('href'));
   }
+  if (!doi) {
+    // News / press pages (phys.org, EurekAlert …) print "DOI: 10.…" as plain text or a link whose href is not a doi.org URL.
+    const lab = ppCap(doc.body ? doc.body.textContent : '', 60000).match(/DOI\s*:?\s*(10\.\d{4,9}\/[^\s"'<>]+)/i);
+    if (lab) doi = normalizeDoi(lab[1]);
+  }
+  if (!state && doi) state = 'likely';   // a labelled DOI on the page is a strong enough hint (the user can override)
   if (!state) {
     // Weakest signal: a DOI inside an abstract-like opening of the text (a blog quoting a DOI has no "Abstract").
     const head = ppCap(doc.body ? doc.body.textContent : '', 6000);

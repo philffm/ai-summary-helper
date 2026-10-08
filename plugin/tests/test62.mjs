@@ -26,6 +26,9 @@ assert(p.state === 'yes' && p.doi === '10.1234/abc.5' && p.journal === 'J. Testi
 page('<script type="application/ld+json">{oops</script>');
 assert.equal(detectPaper(d, loc('https://pubmed.ncbi.nlm.nih.gov/123/')).state, 'likely');
 assert.equal(detectPaper(d, loc('https://myblog.example/post')), null);
+// phys.org style: "DOI: 10.…" label on a news page (plain text or a non-doi.org link) → likely + DOI
+page('', '<p>Journal information: Nature</p><p>DOI: <a href="/redirect?x=1">10.1038/s41586-026-12345-6</a></p>');
+{ const q = detectPaper(d, loc('https://phys.org/news/2026-10-x.html')); assert.equal(q.state, 'likely'); assert.equal(q.doi, '10.1038/s41586-026-12345-6'); }
 // DOI in text: only with an abstract-like opening → likely; a blog quoting a DOI → null
 page('', '<p>Abstract. We study X. doi:10.5555/foo.bar</p>');
 assert.deepEqual(detectPaper(d, loc('https://uni.example/x')), { state: 'likely', doi: '10.5555/foo.bar' });

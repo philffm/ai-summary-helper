@@ -56,6 +56,15 @@ assert.equal(store['articles:index'][1].paperOverride, 'yes');
 assert(d.querySelector('.detail-tags').firstChild.classList.contains('paper'));
 d.querySelector('.detail-tags .paper .tag-x').click(); await tick(60);
 assert.equal(store['articles:index'][1].paperOverride, 'no');
+// pasting a DOI into + Tag assigns it to the paper instead of creating a tag
+d.querySelector('.detail-tags .tag-add').click();
+const di = d.querySelector('.tag-input'); di.value = 'https://doi.org/10.1038/s41562-026-9999-1';
+di.dispatchEvent(new w.Event('input', { bubbles: true }));
+assert(/Assign DOI 10\.1038\/s41562-026-9999-1/.test(d.querySelector('.detail-tags .tag-suggest-paper:not([hidden])').textContent));
+di.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await tick(80);
+assert.equal(store['articles:index'][1].doi, '10.1038/s41562-026-9999-1');
+assert.equal(store['articles:index'][1].paperOverride, 'yes');
+assert(!store['articles:index'][1].tags.some(t => /10\.1038/.test(t)), 'DOI is not a tag');
 // a paper without DOI: no citation, says so
 await am.showArticleDetail({ ...store['articles:index'][2] }); await tick(100);
 assert(/no DOI found/.test(d.querySelector('.cite-block').textContent) && !d.querySelector('.cite-text'));
