@@ -30,6 +30,10 @@ assert(!/TAGS|QUESTIONS/.test(r.cleanHtml) && /Hallo Welt/.test(r.cleanHtml));
 assert(r.article && r.article.id && store.articlesIndex === undefined ? true : true);
 const idx = Object.values(store).find(v => Array.isArray(v));
 assert(idx && idx.length === 1 && idx[0].url === ctx.sourceUrl && idx[0].title === 'Seite', 'saved to the library');
+// questions with short answers survive the whole detached path (this result is what the popup receives as summaryComplete)
+const r2 = await F.finishDetached({ ...ctx, sourceUrl: 'https://example.com/b' }, '<div><h2>Titel</h2><p>Hallo Welt.</p></div><!-- TAGS: eins --><!-- QUESTIONS: [{"q":"Was ist das?","a":"Ein Gruss. Mehr nicht."},{"q":"Wer sagt das?","a":"Der Autor sagt es im ersten Satz."}] -->', '');
+assert.deepEqual(r2.questions, ['Was ist das?', 'Wer sagt das?']); assert.equal(r2.quick['Was ist das?'], 'Ein Gruss. Mehr nicht.', 'quick answers returned: ' + JSON.stringify(r2.quick));
+assert(!/QUESTIONS|Gruss/.test(r2.cleanHtml));
 const bad = await F.finishDetached(ctx, '', '');
 assert(bad.error, 'empty answer is reported');
 console.log('TEST 78 OK');
