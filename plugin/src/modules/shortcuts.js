@@ -113,7 +113,9 @@ export function openHelp(doc = document) {
     root.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeHelp(); } });
     scrim.addEventListener('click', closeHelp);
     doc.body.append(root);
-    panel.style.minHeight = panel.offsetHeight + 'px';   // keep the full-list height while filtering so nothing jumps
+    // Keep the full-list height while filtering so nothing jumps: pin the groups block itself (measured after layout, again once fonts settle).
+    const pin = () => { body.style.minHeight = ''; const h = body.offsetHeight; if (h) body.style.minHeight = h + 'px'; };
+    pin(); (doc.defaultView.requestAnimationFrame || setTimeout)(pin);
     const trap = trapFocus(root, { label: T('Keyboard shortcuts') });
     helpSheet = { root, release: trap.release };
 }
