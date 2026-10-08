@@ -58,7 +58,7 @@ export function createRecapStatus({ title, detail = '', onCancel }) {
             const bits = [];
             if (prog.chars) bits.push(T('{n} characters', { n: prog.chars }));
             if (prog.think) bits.push(T('thinking: {n} characters', { n: prog.think }));
-            rows.write.textContent = labels.write + (bits.length ? ' · ' + bits.join(' · ') : '') + (cur === 'write' && prog.tail ? ` — “…${prog.tail.replace(/\s+/g, ' ')}”` : '');
+            rows.write.textContent = (prog.think && !prog.chars ? T('Model is thinking') : labels.write) + (bits.length ? ' · ' + bits.join(' · ') : '') + (cur === 'write' && prog.tail ? ` — “…${prog.tail.replace(/\s+/g, ' ')}”` : '');
         }
         const idle = Math.floor((Date.now() - lastMove) / 1000);
         rows.send.textContent = labels.send + (model ? ` · ${model}` : '');
