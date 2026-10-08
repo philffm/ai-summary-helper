@@ -10,8 +10,8 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } catch (_) { /* listed in the manifest instead */ }
 // Finishes a summary whose page went away while the model was still writing (same parsing + saving as the page does).
 try { if (typeof importScripts === 'function') importScripts('finalize.js'); } catch (_) { /* listed in the manifest instead */ }
-const FIN = (typeof AISH_FINALIZE !== 'undefined') ? AISH_FINALIZE : null;
-const ttsEngine = (typeof AISH_TTS !== 'undefined') ? AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
+const FIN = globalThis.AISH_FINALIZE || null;
+const ttsEngine = globalThis.AISH_TTS ? globalThis.AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
 
 // storage-keys:begin (generated from modules/storageKeys.js by scripts/sync-storage-keys.mjs — do not edit)

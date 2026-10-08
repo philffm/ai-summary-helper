@@ -14,6 +14,9 @@ import {
   estimateTokens,
   ollamaNumCtx,
   wasCutOff,
+  needsChunking,
+  splitForContext,
+  modelContextFromShow,
   inlineAndCompressImages
 } from './content/extractor.js';
 
