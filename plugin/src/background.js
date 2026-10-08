@@ -363,10 +363,15 @@ function parseAiResponseText(raw) {
     const t = (raw || '').trim();
     // SSE (some providers stream even when asked not to): accumulate deltas.
     // NDJSON (Ollama's native /api/chat streams one JSON object per line, possibly "thinking" first, then "content").
-    if (t.startsWith('{') && /\}\s*[\r\n]+\s*\{/.test(t)) {
-        let out = '';
-        for (const line of t.split(/\r?\n/)) { const d = aiDelta(line); if (d) out += d.text; }
-        if (out.trim()) return out.trim();
+    if (t.startsWith('{')) {
+        let single = true;
+        try { JSON.parse(t); } catch (_) { single = false; }
+        if (!single) {
+            let out = '';
+            // One object per line, or objects glued together with just whitespace between them.
+            for (const line of t.split(/\r?\n|(?<=\})\s+(?=\{)/)) { const d = aiDelta(line); if (d) out += d.text; }
+            if (out.trim()) return out.trim();
+        }
     }
     if (/^data:/m.test(t) && !t.startsWith('{')) {
         let out = '';
