@@ -636,14 +636,15 @@ class StorageManager {
         // unified multi-device 'devices' list. Cheap no-op after first run.
         await this.migrateDeviceSettings();
 
-        const data = await this.getAll();
-
-        // Already migrated?
-        if (data[SK.migrationVersion] === this.MIGRATION_VERSION) {
+        // Already migrated? Probe one key — the full read below only happens on the very first run after an upgrade.
+        const probe = await this.get([SK.migrationVersion]);
+        if (probe[SK.migrationVersion] === this.MIGRATION_VERSION) {
             await this.ensureServicesIntegrity();
             await this.ensurePromptDefaults();
             return;
         }
+
+        const data = await this.getAll();
 
         const services = await this.getServices();
 
@@ -707,7 +708,7 @@ class StorageManager {
 
     static async ensureServicesIntegrity() {
         const [data, services] = await Promise.all([
-            this.getAll(),
+            this.get([SK.servicesConfig, 'activeService']),
             this.getServices()
         ]);
 

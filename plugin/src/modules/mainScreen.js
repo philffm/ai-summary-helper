@@ -699,7 +699,7 @@ export function initMainScreen(ui) {
     const controlsBar = document.querySelector('.controls-bar');
 
     const evaluateOnboarding = async () => {
-        const data = await StorageManager.getAll();
+        const data = await StorageManager.get([SK.articlesIndex, SK.token, SK.servicesConfig, 'activeService', 'connectionMode']);
         const hasArticles = Array.isArray(data[SK.articlesIndex]) && data[SK.articlesIndex].length > 0;
         const isCloudAuthed = !!data[SK.token];
         // Keyless providers (e.g. Ollama) count as configured without an API key.

@@ -175,7 +175,7 @@ async function viewChoose() {
     if (n > 1) segmented(body, 'format', [['digest', T('One digest')], ['files', T('Separate files')]], () => intro.paint()); else state.format = 'files';
     segmented(body, 'include', [['summary', T('Summary only')], ['full', T('Summary + full article')]]);
     body.append(intro);
-    const cfg = await StorageManager.getAll();
+    const cfg = await StorageManager.get([SK.devices, SK.activeDevices]);
     if (!sheet) return;
     const l = (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices] : []).filter(d => d.type === 'localsend');
     const kd = StorageManager.getActiveDevice(cfg, 'kindle');
@@ -223,7 +223,7 @@ async function viewReferences() {
 }
 
 async function viewKindle() {
-    const cfg = await StorageManager.getAll();
+    const cfg = await StorageManager.get([SK.devices, SK.user]);
     if (!sheet) return;
     const devices = (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices] : []).filter(d => d.type === 'kindle');
     const isPro = cfg[SK.user]?.subscription_status === 'active';
@@ -252,7 +252,7 @@ async function viewKindle() {
 }
 
 async function viewLocalSend() {
-    const cfg = await StorageManager.getAll();
+    const cfg = await StorageManager.get([SK.devices]);
     if (!sheet) return;
     const devices = (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices] : []).filter(d => d.type === 'localsend');
     const body = shell(T('📡 LocalSend'), T('Pick the receiver. Its app has to be open and on the same Wi‑Fi.'));

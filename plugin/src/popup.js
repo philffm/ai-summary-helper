@@ -30,7 +30,8 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 
 document.addEventListener("DOMContentLoaded", async () => {
     // Load theme and beta toggle preferences
-    const storageData = await StorageManager.getAll();
+    // Only the appearance keys: getAll() would read the whole library (every article record) just to paint the theme.
+    const storageData = await StorageManager.get(['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion']);
     applyA11y({ ...storageData, theme: storageData.theme === 'system' ? '' : storageData.theme });
     
     const ui = new UIManager();
@@ -594,7 +595,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // The stored active provider is the source of truth (the hidden select can lag behind it).
             const svcId = activeService || modelSelect.value || 'openai';
             try {
-                const current = await StorageManager.getAll();
+                const current = await StorageManager.get([SK.servicesConfig]);
                 const entry = (current[SK.servicesConfig] || {})[svcId] || {};
                 let list = Array.isArray(entry.customModel) ? [...entry.customModel] : (entry.customModel ? [entry.customModel] : []);
                 list = list.map(m => StorageManager.normalizeCustomModel(m, svcId)).filter(m => m.id);
