@@ -1822,5 +1822,218 @@
   },
   "f_mood_483d": {
     "message": "😊 ムード"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH クラウド"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "続けて質問…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "このページに戻る"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "項目を収集しました"
+  },
+  "f_continuing_ffb7": {
+    "message": "続行中"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Ollama に接続できません。起動していることとエンドポイントを確認してください。"
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · トップニュース"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "破棄して書き直す?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "{host} のフィード項目"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "注目点… (任意)"
+  },
+  "f_focus_c600": {
+    "message": "注目: {text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "ハイライト {n} 件を検出 · 注目点として使用"
+  },
+  "f_from_your_question_4088": {
+    "message": "あなたの質問から"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "あなたの質問から"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "エクスポートにすべての質問を含める"
+  },
+  "f_last_summary_3355": {
+    "message": "前回の要約"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "モデルが思考中"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "モデルが執筆中"
+  },
+  "f_no_answer_cd22": {
+    "message": "回答がありません。"
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "最近の要約はありません"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "この要約以降に新着はありません。リセットで最初から書き直せます。"
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "{s} 秒間応答がありません。時間制限はありません。止まって見えたらキャンセルしてください。"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama がリクエストを拒否しました。403 は通常、この拡張機能からのリクエストを許可する設定 (OLLAMA_ORIGINS) が必要という意味です。"
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "会話ログのみ"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "ページを開くとこの箇所へ移動できます"
+  },
+  "f_page_text_words_5755": {
+    "message": "ページ本文 · {n} 語"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "質問をキューに追加…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "上限を {n} に上げて更新"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "ページを読み取り · {n} 語"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "回答を読み取り中"
+  },
+  "f_resume_1d8a": {
+    "message": "再開"
+  },
+  "f_send_14cf": {
+    "message": "送信"
+  },
+  "f_send_summaries_96ab": {
+    "message": "要約を送信"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "AI 接続に送信しました"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Ollama を設定"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "表示 — 1 件ずつ開く"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "記事に表示され、エクスポートに含まれます"
+  },
+  "f_starting_788d": {
+    "message": "開始中…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "ページを要約するとここに表示されます"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "このページを要約"
+  },
+  "f_summary_b5b3": {
+    "message": "要約"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "1 回の要約の上限です。全体像は週間・月間の要約を使うか、フィードで絞り込んでください。"
+  },
+  "f_thinking_d121": {
+    "message": "考え中…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "モデルの応答待ち"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "モデルの応答待ち…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "使用した情報"
+  },
+  "f_working_on_it_d098": {
+    "message": "処理中…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "{n} 語の要約を作成中…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "要約を作成中…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "注目する質問"
+  },
+  "f_your_highlights_da3a": {
+    "message": "あなたのハイライト · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "あなたの質問"
+  },
+  "f_different_page_9b4d": {
+    "message": "別のページ"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "短縮済み"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "思考: {n} 文字"
+  },
+  "f_words_aa8a": {
+    "message": "語"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} 文字"
+  },
+  "f_follow_up_d34e": {
+    "message": "追加質問 {n} 件"
+  },
+  "f_follow_ups_8907": {
+    "message": "追加質問 {n} 件"
+  },
+  "f_more_question_4688": {
+    "message": "他 {n} 件の質問"
+  },
+  "f_more_questions_bd21": {
+    "message": "他 {n} 件の質問"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "古い項目 {n} 件はこの要約に含まれていません (上限: 1 回 {max} 件)。"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "古い項目 {n} 件はこの要約に含まれていません。"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "古い項目 {n} 件はこの要約に含まれていません (上限: 1 回 {max} 件)。"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "古い項目 {n} 件はこの要約に含まれていません。"
+  },
+  "f_word_c9d9": {
+    "message": "{n} 語"
+  },
+  "f_words_769e": {
+    "message": "{n} 語"
+  },
+  "f_stop_f89d": {
+    "message": "■ 停止"
+  },
+  "f_in_article_c185": {
+    "message": "📌 記事内"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 記事に追加"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 要約あたりの項目数"
   }
 }

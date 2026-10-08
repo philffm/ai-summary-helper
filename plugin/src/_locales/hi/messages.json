@@ -1816,5 +1816,218 @@
   },
   "f_mood_483d": {
     "message": "😊 मूड"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH क्लाउड"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "फ़ॉलो-अप पूछें…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "इस पेज पर वापस जाएँ"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "आइटम इकट्ठे किए"
+  },
+  "f_continuing_ffb7": {
+    "message": "जारी है"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Ollama तक नहीं पहुँच सके। जाँचें कि वह चल रहा है और एंडपॉइंट सही है।"
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · मुख्य खबरें"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "हटाकर दोबारा लिखें?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "{host} से फ़ीड आइटम"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "किस पर ध्यान दें… (वैकल्पिक)"
+  },
+  "f_focus_c600": {
+    "message": "फ़ोकस: {text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "{n} हाइलाइट मिले · फ़ोकस के रूप में उपयोग"
+  },
+  "f_from_your_question_4088": {
+    "message": "आपके प्रश्न से"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "आपके प्रश्नों से"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "एक्सपोर्ट में सभी प्रश्न शामिल करें"
+  },
+  "f_last_summary_3355": {
+    "message": "पिछला सारांश"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "मॉडल सोच रहा है"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "मॉडल लिख रहा है"
+  },
+  "f_no_answer_cd22": {
+    "message": "कोई उत्तर नहीं।"
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "कोई हाल का सारांश नहीं"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "इस रीकैप के बाद कुछ नया नहीं — रीसेट इसे नए सिरे से लिखता है।"
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "{s} सेकंड से कुछ नहीं मिला। कोई समय-सीमा नहीं — अटका लगे तो रद्द करें।"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama ने अनुरोध अस्वीकार किया। 403 का आम मतलब है कि उसे इस एक्सटेंशन के अनुरोध स्वीकारने होंगे (OLLAMA_ORIGINS)।"
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "सिर्फ़ बातचीत के लॉग में"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "इस अंश तक जाने के लिए पेज खोलें"
+  },
+  "f_page_text_words_5755": {
+    "message": "पेज टेक्स्ट · {n} शब्द"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "प्रश्न कतार में जोड़ें…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "सीमा {n} करें और रीफ़्रेश करें"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "पेज पढ़ा · {n} शब्द"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "उत्तर पढ़ा जा रहा है"
+  },
+  "f_resume_1d8a": {
+    "message": "फिर शुरू करें"
+  },
+  "f_send_14cf": {
+    "message": "भेजें"
+  },
+  "f_send_summaries_96ab": {
+    "message": "सारांश भेजें"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "आपके AI कनेक्शन को भेजा गया"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Ollama सेट करें"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "दिखाएँ — एक-एक करके खोलें"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "लेख में दिखता है और एक्सपोर्ट में शामिल होता है"
+  },
+  "f_starting_788d": {
+    "message": "शुरू हो रहा है…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "सारांश बनाने पर यहाँ दिखेगा"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "इस पेज का सारांश बनाएँ"
+  },
+  "f_summary_b5b3": {
+    "message": "सारांश"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "यह हर रीकैप की अधिकतम सीमा है। बड़ी तस्वीर के लिए साप्ताहिक या मासिक रीकैप देखें, या फ़ीड से फ़िल्टर करें।"
+  },
+  "f_thinking_d121": {
+    "message": "सोच रहा है…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "मॉडल की प्रतीक्षा"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "मॉडल की प्रतीक्षा…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "मैंने क्या इस्तेमाल किया"
+  },
+  "f_working_on_it_d098": {
+    "message": "काम जारी है…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "{n} शब्दों का सारांश लिख रहा है…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "सारांश लिख रहा है…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "आपका फ़ोकस प्रश्न"
+  },
+  "f_your_highlights_da3a": {
+    "message": "आपके हाइलाइट · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "आपके प्रश्न"
+  },
+  "f_different_page_9b4d": {
+    "message": "दूसरा पेज"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "छोटा किया गया"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "सोच: {n} अक्षर"
+  },
+  "f_words_aa8a": {
+    "message": "शब्द"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} अक्षर"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} फ़ॉलो-अप"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} फ़ॉलो-अप"
+  },
+  "f_more_question_4688": {
+    "message": "{n} और प्रश्न"
+  },
+  "f_more_questions_bd21": {
+    "message": "{n} और प्रश्न"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} पुराना आइटम इस रीकैप में नहीं है (सीमा: प्रति रीकैप {max})।"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} पुराना आइटम इस रीकैप में नहीं है।"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} पुराने आइटम इस रीकैप में नहीं हैं (सीमा: प्रति रीकैप {max})।"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} पुराने आइटम इस रीकैप में नहीं हैं।"
+  },
+  "f_word_c9d9": {
+    "message": "{n} शब्द"
+  },
+  "f_words_769e": {
+    "message": "{n} शब्द"
+  },
+  "f_stop_f89d": {
+    "message": "■ रोकें"
+  },
+  "f_in_article_c185": {
+    "message": "📌 लेख में"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 लेख में जोड़ें"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 प्रति रीकैप आइटम"
   }
 }

@@ -1804,5 +1804,218 @@
   },
   "f_mood_483d": {
     "message": "😊 분위기"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH 클라우드"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "추가 질문…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "이 페이지로 돌아가기"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "항목 수집 완료"
+  },
+  "f_continuing_ffb7": {
+    "message": "계속 중"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Ollama에 연결할 수 없습니다. 실행 중인지, 엔드포인트가 맞는지 확인하세요."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · 주요 뉴스"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "삭제 후 다시 쓸까요?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "{host}의 피드 항목"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "집중할 내용… (선택)"
+  },
+  "f_focus_c600": {
+    "message": "초점: {text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "하이라이트 {n}개 발견 · 초점으로 사용"
+  },
+  "f_from_your_question_4088": {
+    "message": "내 질문에서"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "내 질문에서"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "내보내기에 모든 질문 포함"
+  },
+  "f_last_summary_3355": {
+    "message": "최근 요약"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "모델이 생각 중"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "모델이 작성 중"
+  },
+  "f_no_answer_cd22": {
+    "message": "답변이 없습니다."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "최근 요약 없음"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "이 요약 이후 새 항목이 없습니다. 초기화하면 처음부터 다시 작성합니다."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "{s}초 동안 수신 없음. 시간 제한은 없으니 멈춘 것 같으면 취소하세요."
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama가 요청을 거부했습니다. 403은 보통 이 확장 프로그램의 요청을 허용하도록 설정(OLLAMA_ORIGINS)해야 한다는 뜻입니다."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "대화 기록에만"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "페이지를 열면 이 구절로 이동합니다"
+  },
+  "f_page_text_words_5755": {
+    "message": "페이지 텍스트 · {n}단어"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "질문 대기열에 추가…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "한도를 {n}(으)로 올리고 새로고침"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "페이지 읽음 · {n}단어"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "답변 읽는 중"
+  },
+  "f_resume_1d8a": {
+    "message": "다시 시작"
+  },
+  "f_send_14cf": {
+    "message": "보내기"
+  },
+  "f_send_summaries_96ab": {
+    "message": "요약 보내기"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "AI 연결로 전송됨"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Ollama 설정"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "보기 — 하나씩 열기"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "기사에 표시되고 내보내기에 포함됨"
+  },
+  "f_starting_788d": {
+    "message": "시작 중…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "페이지를 요약하면 여기에 표시됩니다"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "이 페이지 요약"
+  },
+  "f_summary_b5b3": {
+    "message": "요약"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "요약 1회 최대치입니다. 큰 그림은 주간·월간 요약을 쓰거나 피드로 필터링하세요."
+  },
+  "f_thinking_d121": {
+    "message": "생각 중…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "모델 응답 대기"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "모델 응답 대기 중…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "사용한 정보"
+  },
+  "f_working_on_it_d098": {
+    "message": "작업 중…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "{n}단어 요약 작성 중…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "요약 작성 중…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "내 초점 질문"
+  },
+  "f_your_highlights_da3a": {
+    "message": "내 하이라이트 · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "내 질문"
+  },
+  "f_different_page_9b4d": {
+    "message": "다른 페이지"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "줄임"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "생각: {n}자"
+  },
+  "f_words_aa8a": {
+    "message": "단어"
+  },
+  "f_characters_d8fd": {
+    "message": "{n}자"
+  },
+  "f_follow_up_d34e": {
+    "message": "추가 질문 {n}개"
+  },
+  "f_follow_ups_8907": {
+    "message": "추가 질문 {n}개"
+  },
+  "f_more_question_4688": {
+    "message": "질문 {n}개 더"
+  },
+  "f_more_questions_bd21": {
+    "message": "질문 {n}개 더"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "이전 항목 {n}개가 이 요약에 없습니다 (한도: 요약당 {max}개)."
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "이전 항목 {n}개가 이 요약에 없습니다."
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "이전 항목 {n}개가 이 요약에 없습니다 (한도: 요약당 {max}개)."
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "이전 항목 {n}개가 이 요약에 없습니다."
+  },
+  "f_word_c9d9": {
+    "message": "{n}단어"
+  },
+  "f_words_769e": {
+    "message": "{n}단어"
+  },
+  "f_stop_f89d": {
+    "message": "■ 중지"
+  },
+  "f_in_article_c185": {
+    "message": "📌 기사에 포함"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 기사에 추가"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 요약당 항목 수"
   }
 }

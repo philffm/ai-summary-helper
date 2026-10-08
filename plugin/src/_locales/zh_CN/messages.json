@@ -1816,5 +1816,218 @@
   },
   "f_mood_483d": {
     "message": "😊 情绪"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH 云"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "继续提问…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "返回此页面"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "已收集条目"
+  },
+  "f_continuing_ffb7": {
+    "message": "继续中"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "无法连接 Ollama。请确认它正在运行且端点正确。"
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · 头条新闻"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "丢弃并重写？"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "来自 {host} 的订阅条目"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "关注重点…（可选）"
+  },
+  "f_focus_c600": {
+    "message": "重点：{text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "找到 {n} 条高亮 · 用作重点"
+  },
+  "f_from_your_question_4088": {
+    "message": "来自你的提问"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "来自你的提问"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "导出时包含所有提问"
+  },
+  "f_last_summary_3355": {
+    "message": "上次摘要"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "模型思考中"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "模型撰写中"
+  },
+  "f_no_answer_cd22": {
+    "message": "没有回答。"
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "暂无最近摘要"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "自上次回顾后没有新内容——重置会从头重写。"
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "已 {s} 秒未收到内容。没有时间限制——看起来卡住时可取消。"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama 拒绝了请求。403 通常表示需要允许此扩展发起请求（OLLAMA_ORIGINS）。"
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "仅在对话记录中"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "打开页面即可跳转到此段落"
+  },
+  "f_page_text_words_5755": {
+    "message": "页面文本 · {n} 词"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "加入提问队列…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "将上限提高到 {n} 并刷新"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "已读取页面 · {n} 词"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "正在读取回答"
+  },
+  "f_resume_1d8a": {
+    "message": "继续"
+  },
+  "f_send_14cf": {
+    "message": "发送"
+  },
+  "f_send_summaries_96ab": {
+    "message": "发送摘要"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "已发送到你的 AI 连接"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "设置 Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "显示——逐条打开"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "显示在文章中并包含在导出内容中"
+  },
+  "f_starting_788d": {
+    "message": "启动中…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "总结一个页面后会显示在这里"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "总结此页面"
+  },
+  "f_summary_b5b3": {
+    "message": "摘要"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "这是每次回顾的上限。想看全貌可用周或月回顾，或按订阅源筛选。"
+  },
+  "f_thinking_d121": {
+    "message": "思考中…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "等待模型"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "等待模型…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "使用的内容"
+  },
+  "f_working_on_it_d098": {
+    "message": "处理中…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "正在撰写 {n} 词的摘要…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "正在撰写摘要…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "你的重点问题"
+  },
+  "f_your_highlights_da3a": {
+    "message": "你的高亮 · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "你的提问"
+  },
+  "f_different_page_9b4d": {
+    "message": "其他页面"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "已截短"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "思考：{n} 字符"
+  },
+  "f_words_aa8a": {
+    "message": "词"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} 字符"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} 个追问"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} 个追问"
+  },
+  "f_more_question_4688": {
+    "message": "另有 {n} 个提问"
+  },
+  "f_more_questions_bd21": {
+    "message": "另有 {n} 个提问"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "有 {n} 条较早条目未包含在此回顾中（上限：每次 {max} 条）。"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "有 {n} 条较早条目未包含在此回顾中。"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "有 {n} 条较早条目未包含在此回顾中（上限：每次 {max} 条）。"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "有 {n} 条较早条目未包含在此回顾中。"
+  },
+  "f_word_c9d9": {
+    "message": "{n} 词"
+  },
+  "f_words_769e": {
+    "message": "{n} 词"
+  },
+  "f_stop_f89d": {
+    "message": "■ 停止"
+  },
+  "f_in_article_c185": {
+    "message": "📌 已在文章中"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 添加到文章"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 每次回顾条目数"
   }
 }

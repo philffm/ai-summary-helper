@@ -451,8 +451,8 @@ export function initMainScreen(ui) {
             try { refreshFetchExtras(); } catch (_) { /* composer not ready yet */ }
         } else {
             if (recentEntry) recentEntry.style.display = 'flex';
-            if (recentTitle) recentTitle.textContent = 'No recent summaries';
-            if (recentMeta) recentMeta.textContent = 'Summarize a page to see it here';
+            if (recentTitle) recentTitle.textContent = T('No recent summaries');
+            if (recentMeta) recentMeta.textContent = T('Summarize a page to see it here');
         }
     };
 

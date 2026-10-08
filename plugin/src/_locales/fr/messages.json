@@ -1816,5 +1816,218 @@
   },
   "f_mood_483d": {
     "message": "😊 Humeur"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH Cloud"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Poser une question…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Retour à cette page"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Éléments rassemblés"
+  },
+  "f_continuing_ffb7": {
+    "message": "Suite"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Ollama est injoignable. Vérifiez qu'il tourne et que l'endpoint est correct."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · à la une"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Effacer et réécrire ?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "Élément de flux de {host}"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "Se concentrer sur… (facultatif)"
+  },
+  "f_focus_c600": {
+    "message": "Focus : {text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "{n} surlignages trouvés · utilisés comme focus"
+  },
+  "f_from_your_question_4088": {
+    "message": "De votre question"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "De vos questions"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Inclure toutes les questions dans les exports"
+  },
+  "f_last_summary_3355": {
+    "message": "Dernier résumé"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "Le modèle réfléchit"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "Le modèle écrit"
+  },
+  "f_no_answer_cd22": {
+    "message": "Aucune réponse."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "Aucun résumé récent"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "Rien de nouveau depuis ce récapitulatif — Réinitialiser le réécrit à zéro."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "Rien reçu depuis {s} s. Pas de limite de temps — annulez si ça semble bloqué."
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama a refusé la requête. Un 403 signifie en général qu'il faut l'autoriser à accepter les requêtes de cette extension (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Uniquement dans le journal de conversation"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Ouvrez la page pour aller à ce passage"
+  },
+  "f_page_text_words_5755": {
+    "message": "Texte de la page · {n} mots"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Mettre une question en file…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Passer la limite à {n} et actualiser"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Page lue · {n} mots"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "Lecture de la réponse"
+  },
+  "f_resume_1d8a": {
+    "message": "Reprendre"
+  },
+  "f_send_14cf": {
+    "message": "Envoyer"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Envoyer les résumés"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "Envoyé à votre connexion IA"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Configurer Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Les afficher — ouvrir un par un"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Affiché dans l'article et inclus dans les exports"
+  },
+  "f_starting_788d": {
+    "message": "Démarrage…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Résumez une page pour la voir ici"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Résumer cette page"
+  },
+  "f_summary_b5b3": {
+    "message": "Résumé"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "C'est le maximum par récapitulatif. Utilisez le récap hebdo ou mensuel pour une vue d'ensemble, ou filtrez par flux."
+  },
+  "f_thinking_d121": {
+    "message": "Réflexion…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "En attente du modèle"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "En attente du modèle…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "Ce que j'ai utilisé"
+  },
+  "f_working_on_it_d098": {
+    "message": "En cours…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "Rédaction d'un résumé de {n} mots…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "Rédaction du résumé…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "Votre question de focus"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Vos surlignages · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "Vos questions"
+  },
+  "f_different_page_9b4d": {
+    "message": "autre page"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "raccourci"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "réflexion : {n} caractères"
+  },
+  "f_words_aa8a": {
+    "message": "mots"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} caractères"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} question"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} questions"
+  },
+  "f_more_question_4688": {
+    "message": "{n} question de plus"
+  },
+  "f_more_questions_bd21": {
+    "message": "{n} questions de plus"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} ancien élément n'est pas dans ce récapitulatif (limite : {max} par récap)."
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} ancien élément n'est pas dans ce récapitulatif."
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} anciens éléments ne sont pas dans ce récapitulatif (limite : {max} par récap)."
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} anciens éléments ne sont pas dans ce récapitulatif."
+  },
+  "f_word_c9d9": {
+    "message": "{n} mot"
+  },
+  "f_words_769e": {
+    "message": "{n} mots"
+  },
+  "f_stop_f89d": {
+    "message": "■ Arrêter"
+  },
+  "f_in_article_c185": {
+    "message": "📌 Dans l'article"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 Ajouter à l'article"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Éléments par récap"
   }
 }

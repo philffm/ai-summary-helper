@@ -1816,5 +1816,218 @@
   },
   "f_mood_483d": {
     "message": "😊 Humor"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH Cloud"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Faça uma pergunta…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Voltar a esta página"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Itens reunidos"
+  },
+  "f_continuing_ffb7": {
+    "message": "A continuar"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Não foi possível contactar o Ollama. Verifique se está em execução e se o endpoint está correto."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · principais notícias"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Descartar e reescrever?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "Item de feed de {host}"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "Foque em algo… (opcional)"
+  },
+  "f_focus_c600": {
+    "message": "Foco: {text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "Encontrados {n} destaques · usados como foco"
+  },
+  "f_from_your_question_4088": {
+    "message": "Da sua pergunta"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "Das suas perguntas"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Incluir todas as perguntas nas exportações"
+  },
+  "f_last_summary_3355": {
+    "message": "Último resumo"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "O modelo está a pensar"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "O modelo está a escrever"
+  },
+  "f_no_answer_cd22": {
+    "message": "Sem resposta."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "Sem resumos recentes"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "Nada de novo desde este resumo — Repor reescreve-o de raiz."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "Nada recebido há {s} s. Sem limite de tempo — cancele se parecer bloqueado."
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "O Ollama recusou o pedido. Um 403 costuma significar que tem de aceitar pedidos desta extensão (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Apenas no registo da conversa"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Abra a página para ir a esta passagem"
+  },
+  "f_page_text_words_5755": {
+    "message": "Texto da página · {n} palavras"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Colocar pergunta em fila…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Subir o limite para {n} e atualizar"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Página lida · {n} palavras"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "A ler a resposta"
+  },
+  "f_resume_1d8a": {
+    "message": "Retomar"
+  },
+  "f_send_14cf": {
+    "message": "Enviar"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Enviar resumos"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "Enviado para a sua ligação de IA"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Configurar o Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Mostrar — abrir um a um"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Mostrado no artigo e incluído nas exportações"
+  },
+  "f_starting_788d": {
+    "message": "A iniciar…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Resuma uma página para a ver aqui"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Resumir esta página"
+  },
+  "f_summary_b5b3": {
+    "message": "Resumo"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "É o máximo por resumo. Use o resumo semanal ou mensal para uma visão geral, ou filtre por feed."
+  },
+  "f_thinking_d121": {
+    "message": "A pensar…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "A aguardar o modelo"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "A aguardar o modelo…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "O que usei"
+  },
+  "f_working_on_it_d098": {
+    "message": "A trabalhar nisso…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "A escrever um resumo de {n} palavras…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "A escrever o resumo…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "A sua pergunta de foco"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Os seus destaques · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "As suas perguntas"
+  },
+  "f_different_page_9b4d": {
+    "message": "outra página"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "encurtado"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "a pensar: {n} caracteres"
+  },
+  "f_words_aa8a": {
+    "message": "palavras"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} caracteres"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} pergunta"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} perguntas"
+  },
+  "f_more_question_4688": {
+    "message": "mais {n} pergunta"
+  },
+  "f_more_questions_bd21": {
+    "message": "mais {n} perguntas"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} item mais antigo não está neste resumo (limite: {max} por resumo)."
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} item mais antigo não está neste resumo."
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} itens mais antigos não estão neste resumo (limite: {max} por resumo)."
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} itens mais antigos não estão neste resumo."
+  },
+  "f_word_c9d9": {
+    "message": "{n} palavra"
+  },
+  "f_words_769e": {
+    "message": "{n} palavras"
+  },
+  "f_stop_f89d": {
+    "message": "■ Parar"
+  },
+  "f_in_article_c185": {
+    "message": "📌 No artigo"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 Adicionar ao artigo"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Itens por resumo"
   }
 }

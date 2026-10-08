@@ -1902,5 +1902,239 @@
   },
   "f_mood_483d": {
     "message": "😊 Mood"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH cloud"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Ask a follow-up…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Back to this page"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Collected the items"
+  },
+  "f_continuing_ffb7": {
+    "message": "Continuing"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Could not reach Ollama. Make sure it is running and the endpoint is correct."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · top stories"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Discard & rewrite?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "Feed item from {host}",
+    "description": "Placeholders: {host} (keep as is)"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "Focus on something… (optional)"
+  },
+  "f_focus_c600": {
+    "message": "Focus: {text}",
+    "description": "Placeholders: {text} (keep as is)"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "Found your {n} highlights · using as focus",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_from_your_question_4088": {
+    "message": "From your question"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "From your questions"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Include all questions in exports"
+  },
+  "f_last_summary_3355": {
+    "message": "Last summary"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "Model is thinking"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "Model is writing"
+  },
+  "f_no_answer_cd22": {
+    "message": "No answer."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "No recent summaries"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "Nothing new since this recap — Reset rewrites it from scratch."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "Nothing received for {s}s. There is no time limit — Cancel if it looks stuck.",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama refused the request. A 403 usually means it must be told to accept requests from this extension (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Only in the conversation log"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Open the page to jump to this passage"
+  },
+  "f_page_text_words_5755": {
+    "message": "Page text · {n} words",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Queue a question…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Raise limit to {n} and refresh",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Read the page · {n} words",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "Reading the answer"
+  },
+  "f_resume_1d8a": {
+    "message": "Resume"
+  },
+  "f_send_14cf": {
+    "message": "Send"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Send summaries"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "Sent to your AI connection"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Set up Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Show them — open one by one"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Shown in the article and included in exports"
+  },
+  "f_starting_788d": {
+    "message": "Starting…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Summarize a page to see it here"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Summarize this page"
+  },
+  "f_summary_b5b3": {
+    "message": "Summary"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "That is the maximum per recap. Use the Week or Month recap for a bigger picture, or filter by feed."
+  },
+  "f_thinking_d121": {
+    "message": "Thinking…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "Waiting for the model"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "Waiting for the model…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "What I used"
+  },
+  "f_working_on_it_d098": {
+    "message": "Working on it…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "Writing a {n}-word summary…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "Writing the summary…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "Your focus question"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Your highlights · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_your_questions_6d97": {
+    "message": "Your questions"
+  },
+  "f_different_page_9b4d": {
+    "message": "different page"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "shortened to fit"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "thinking: {n} characters",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_aa8a": {
+    "message": "words"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} characters",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} follow-up",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} follow-ups",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_question_4688": {
+    "message": "{n} more question",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_questions_bd21": {
+    "message": "{n} more questions",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} older item is not in this recap (limit: {max} per recap).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} older item is not in this recap.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} older items are not in this recap (limit: {max} per recap).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} older items are not in this recap.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_word_c9d9": {
+    "message": "{n} word",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_769e": {
+    "message": "{n} words",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stop_f89d": {
+    "message": "■ Stop"
+  },
+  "f_in_article_c185": {
+    "message": "📌 In article"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 Add to article"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Items per recap"
   }
 }

@@ -1732,5 +1732,218 @@
   },
   "f_mood_483d": {
     "message": "😊 Тон"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH Cloud"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Задайте вопрос…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Назад к странице"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Элементы собраны"
+  },
+  "f_continuing_ffb7": {
+    "message": "Продолжаем"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Не удаётся связаться с Ollama. Убедитесь, что он запущен и адрес указан верно."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · главные новости"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Удалить и переписать?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "Запись ленты с {host}"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "На чём сосредоточиться… (необязательно)"
+  },
+  "f_focus_c600": {
+    "message": "Фокус: {text}"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "Найдено выделений: {n} · используются как фокус"
+  },
+  "f_from_your_question_4088": {
+    "message": "Из вашего вопроса"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "Из ваших вопросов"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Включать все вопросы в экспорт"
+  },
+  "f_last_summary_3355": {
+    "message": "Последняя сводка"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "Модель думает"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "Модель пишет"
+  },
+  "f_no_answer_cd22": {
+    "message": "Нет ответа."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "Нет недавних сводок"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "С момента этой сводки нового нет — «Сбросить» перепишет её с нуля."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "Ничего не получено {s} с. Лимита времени нет — отмените, если всё зависло."
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama отклонил запрос. Ошибка 403 обычно значит, что ему нужно разрешить запросы от этого расширения (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Только в журнале беседы"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Откройте страницу, чтобы перейти к фрагменту"
+  },
+  "f_page_text_words_5755": {
+    "message": "Текст страницы · слов: {n}"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Поставить вопрос в очередь…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Поднять лимит до {n} и обновить"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Страница прочитана · слов: {n}"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "Чтение ответа"
+  },
+  "f_resume_1d8a": {
+    "message": "Продолжить"
+  },
+  "f_send_14cf": {
+    "message": "Отправить"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Отправить сводки"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "Отправлено в ваше ИИ-подключение"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Настроить Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Показать — открывать по одному"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Показывается в статье и входит в экспорт"
+  },
+  "f_starting_788d": {
+    "message": "Запуск…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Сократите страницу, и она появится здесь"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Кратко изложить эту страницу"
+  },
+  "f_summary_b5b3": {
+    "message": "Сводка"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "Это максимум для одной сводки. Для общей картины используйте недельную или месячную сводку либо отфильтруйте по ленте."
+  },
+  "f_thinking_d121": {
+    "message": "Думаю…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "Ожидание модели"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "Ожидание модели…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "Что использовано"
+  },
+  "f_working_on_it_d098": {
+    "message": "Работаю…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "Пишу сводку на {n} слов…"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "Пишу сводку…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "Ваш вопрос-фокус"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Ваши выделения · {n}"
+  },
+  "f_your_questions_6d97": {
+    "message": "Ваши вопросы"
+  },
+  "f_different_page_9b4d": {
+    "message": "другая страница"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "сокращено"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "размышления: {n} симв."
+  },
+  "f_words_aa8a": {
+    "message": "слов"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} симв."
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} вопрос"
+  },
+  "f_follow_ups_8907": {
+    "message": "Вопросов: {n}"
+  },
+  "f_more_question_4688": {
+    "message": "Ещё {n} вопрос"
+  },
+  "f_more_questions_bd21": {
+    "message": "Ещё вопросов: {n}"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "Более старых записей вне сводки: {n} (лимит: {max} на сводку)."
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "Более старых записей вне сводки: {n}."
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "Более старых записей вне сводки: {n} (лимит: {max} на сводку)."
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "Более старых записей вне сводки: {n}."
+  },
+  "f_word_c9d9": {
+    "message": "{n} слово"
+  },
+  "f_words_769e": {
+    "message": "Слов: {n}"
+  },
+  "f_stop_f89d": {
+    "message": "■ Стоп"
+  },
+  "f_in_article_c185": {
+    "message": "📌 В статье"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 В статью"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Записей в сводке"
   }
 }
