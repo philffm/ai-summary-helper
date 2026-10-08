@@ -91,7 +91,7 @@
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
-  --controls-overlay-height: 200px;
+  --controls-overlay-height: 230px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
 
   /* scrollbar */
@@ -3516,3 +3516,14 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .graph-list-item:hover { border-color: var(--accent); }
 .graph-list-t { font-size: var(--fs-base); font-weight: 600; }
 .graph-list-s { font-size: var(--fs-sm); color: var(--text-muted); }
+
+/* Markdown tables and headings in chat answers; also tables the model writes as HTML in summaries */
+.md-table-wrap { max-width: 100%; overflow-x: auto; margin: 8px 0; border: 1px solid var(--outline); border-radius: var(--radius-md); }
+.md-table, .summary table, .chat-a-body table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); line-height: 1.45; }
+.md-table th, .md-table td, .summary th, .summary td { padding: 8px 10px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--outline); }
+.md-table th, .summary th { font-weight: 600; color: var(--text-primary); background: var(--field-bg); white-space: nowrap; }
+.md-table tbody tr:last-child td, .summary tr:last-child td { border-bottom: 0; }
+.md-table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--field-bg) 45%, transparent); }
+.md-table td:first-child { font-weight: 600; }
+.chat-a-body .md-h { margin: 12px 0 4px; font-size: var(--fs-base); font-weight: 600; color: var(--text-primary); }
+.chat-a-body code { padding: 1px 5px; border-radius: 4px; background: var(--field-bg); font-size: .92em; }

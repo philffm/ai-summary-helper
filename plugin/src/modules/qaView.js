@@ -3,28 +3,71 @@ import { T, TN } from './feedI18n.js';
 import { pinnedCount, cleanAnswer } from './conversation.js';
 
 /** One Q&A turn: question bubble, answer bubble with 📌 pin toggle and ¶ source chips. */
-/** Safe renderer for cleaned answer text: paragraphs, "- " lists, **bold** (DOM nodes only, no innerHTML). */
+/** Safe renderer for cleaned answer text: headings, paragraphs, lists, **bold** / *italic* / `code` and pipe tables (DOM nodes only, no innerHTML). */
+const TABLE_ROW = /^\s*\|.*\|\s*$/;
+const TABLE_SEP = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/;
+const LIST_ITEM = /^\s*([-*\u2022]|\d+[.)])\s+/;
+const cells = (line) => line.trim().replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map(c => c.trim());
+
 export function renderAnswer(target, text) {
     target.replaceChildren();
     const inline = (parent, line) => {
-        line.split(/(\*\*[^*]+\*\*)/).forEach((part) => {
+        line.split(/(\*\*[^*]+\*\*|`[^`]+`|(?<![*\w])\*[^*\s][^*]*\*(?![*\w]))/).forEach((part) => {
             if (/^\*\*[^*]+\*\*$/.test(part)) { const b = document.createElement('strong'); b.textContent = part.slice(2, -2); parent.appendChild(b); }
+            else if (/^`[^`]+`$/.test(part)) { const c = document.createElement('code'); c.textContent = part.slice(1, -1); parent.appendChild(c); }
+            else if (/^\*[^*]+\*$/.test(part)) { const i = document.createElement('em'); i.textContent = part.slice(1, -1); parent.appendChild(i); }
             else if (part) parent.appendChild(document.createTextNode(part));
         });
     };
-    String(text || '').split(/\n{2,}/).forEach((block) => {
-        const lines = block.split('\n').filter(l => l.trim());
-        if (!lines.length) return;
-        if (lines.every(l => /^\s*([-*•]|\d+[.)])\s+/.test(l))) {
-            const ul = document.createElement('ul');
-            lines.forEach(l => { const li = document.createElement('li'); inline(li, l.replace(/^\s*([-*•]|\d+[.)])\s+/, '')); ul.appendChild(li); });
-            target.appendChild(ul);
-        } else {
-            const p = document.createElement('p');
-            lines.forEach((l, i) => { if (i) p.appendChild(document.createElement('br')); inline(p, l); });
-            target.appendChild(p);
+    const lines = String(text || '').split('\n');
+    let para = [], items = [], ordered = false;
+    const flushPara = () => {
+        if (!para.length) return;
+        const p = document.createElement('p');
+        para.forEach((l, i) => { if (i) p.appendChild(document.createElement('br')); inline(p, l); });
+        target.appendChild(p); para = [];
+    };
+    const flushList = () => {
+        if (!items.length) return;
+        const ul = document.createElement(ordered ? 'ol' : 'ul');
+        items.forEach(l => { const li = document.createElement('li'); inline(li, l); ul.appendChild(li); });
+        target.appendChild(ul); items = [];
+    };
+    const flush = () => { flushPara(); flushList(); };
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (!line.trim()) { flush(); continue; }
+        const h = line.match(/^\s*(#{1,6})\s+(.*?)\s*#*\s*$/);
+        if (h) { flush(); const el = document.createElement('h' + Math.min(6, Math.max(3, h[1].length + 1))); el.className = 'md-h'; inline(el, h[2]); target.appendChild(el); continue; }
+        if (TABLE_ROW.test(line) && i + 1 < lines.length && TABLE_SEP.test(lines[i + 1])) {
+            flush();
+            const head = cells(line);
+            const align = cells(lines[i + 1]).map(c => (/^:-+:$/.test(c) ? 'center' : /-:$/.test(c) ? 'right' : ''));
+            const wrap = document.createElement('div'); wrap.className = 'md-table-wrap';
+            const table = document.createElement('table'); table.className = 'md-table';
+            const thead = table.createTHead().insertRow();
+            head.forEach((c, k) => { const th = document.createElement('th'); th.scope = 'col'; if (align[k]) th.style.textAlign = align[k]; inline(th, c); thead.appendChild(th); });
+            const tbody = table.createTBody();
+            let j = i + 2;
+            while (j < lines.length && TABLE_ROW.test(lines[j])) {
+                const tr = tbody.insertRow();
+                const row = cells(lines[j]);
+                head.forEach((_, k) => { const td = tr.insertCell(); if (align[k]) td.style.textAlign = align[k]; inline(td, row[k] || ''); });
+                j++;
+            }
+            wrap.appendChild(table); target.appendChild(wrap);
+            i = j - 1; continue;
         }
-    });
+        if (LIST_ITEM.test(line)) {
+            flushPara();
+            const isOrdered = /^\s*\d+[.)]\s+/.test(line);
+            if (items.length && isOrdered !== ordered) flushList();
+            ordered = isOrdered;
+            items.push(line.replace(LIST_ITEM, '')); continue;
+        }
+        flushList(); para.push(line);
+    }
+    flush();
 }
 
 export function turnEl(turn, { onPin, onSource } = {}) {
