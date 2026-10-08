@@ -120,6 +120,8 @@ export function openHelp(doc = document) {
     helpSheet = { root, release: trap.release };
 }
 
+/** A dialog / sheet / confirm layer that is actually open (popup.html keeps a hidden aria-modal feed sheet in the DOM). */
+export const modalOpen = (doc = document) => [...doc.querySelectorAll('[aria-modal="true"], .confirm-layer')].some(el => !el.closest('[hidden]'));
 const isTyping = (t) => !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
 
 export function initShortcuts() {
@@ -158,7 +160,7 @@ export function initShortcuts() {
             return;
         }
         if (event.key === '?' && !event.metaKey && !event.ctrlKey && !event.altKey && !isTyping(event.target)) { event.preventDefault(); openHelp(); return; }
-        if (!event.metaKey && !event.ctrlKey && !event.altKey && !isTyping(event.target) && !helpSheet && !document.querySelector('[aria-modal="true"], .confirm-layer')) {
+        if (!event.metaKey && !event.ctrlKey && !event.altKey && !isTyping(event.target) && !helpSheet && !modalOpen()) {
             const dir = (key === 'j' || event.key === 'ArrowDown') ? 1 : (key === 'k' || event.key === 'ArrowUp') ? -1 : 0;
             const t = event.target;
             const plain = !t || t === document.body || (t.matches && t.matches(Object.values(CARD_SEL).join(',')));
@@ -166,7 +168,7 @@ export function initShortcuts() {
         }
         if (event.key === 'Escape' && !event.defaultPrevented && !isTyping(event.target)) {
             // an open dialog / sheet / menu closes itself first (they stop propagation or run in capture phase)
-            if (document.querySelector('[aria-modal="true"], .confirm-layer, #detailMoreMenu:not([hidden])')) return;
+            if (modalOpen() || document.querySelector('#detailMoreMenu:not([hidden])')) return;
             const screen = document.body.dataset.screen;
             if (screen === 'history') {
                 const detail = document.getElementById('articleDetail');

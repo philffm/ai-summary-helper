@@ -3,7 +3,7 @@ import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const { w } = setup({});
 const d = w.document;
 globalThis.document = d; globalThis.window = w;
-d.body.innerHTML = `<div id="feedScroll"><ul><li class="feed-item" tabindex="0">A</li><li class="feed-item" tabindex="0">B</li></ul></div>
+d.body.innerHTML = `<div id="feedSheetLayer" hidden><div role="dialog" aria-modal="true"></div></div><div id="feedScroll"><ul><li class="feed-item" tabindex="0">A</li><li class="feed-item" tabindex="0">B</li></ul></div>
 <ul id="articleList"><li class="article-card" tabindex="0" data-id="x1">1</li><li class="article-card" tabindex="0" data-id="x2">2</li><li class="article-card" tabindex="0" data-id="x3">3</li></ul>`;
 d.querySelectorAll('li').forEach(li => { li.getClientRects = () => [1]; });
 const sc = await imp('modules/shortcuts.js');

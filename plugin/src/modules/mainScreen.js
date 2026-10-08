@@ -8,6 +8,7 @@ import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
+import { modalOpen } from './shortcuts.js';
 import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
 import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
@@ -256,7 +257,7 @@ export function initMainScreen(ui) {
     document.addEventListener('keydown', (e) => {
         if (e.key !== 'Enter' || e.isComposing || e.altKey || e.shiftKey || !(e.metaKey || e.ctrlKey)) return;
         if (document.body.dataset.screen !== 'main' || !composer || composer.state === 'working') return;
-        if (document.querySelector('[aria-modal="true"], .confirm-layer')) return;
+        if (modalOpen()) return;
         if (fetchSummaryButton.disabled) return;
         e.preventDefault();
         fetchSummaryButton.click();
