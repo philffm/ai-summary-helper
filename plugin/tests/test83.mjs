@@ -26,4 +26,11 @@ d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
 await tick(20);
 assert.equal(d.querySelectorAll('.card-menu').length, 0, 'Escape closes');
 assert.equal(btn2.getAttribute('aria-expanded'), 'false');
+// cardMenu imports sendSheet statically (unsuffixed URL), so share that instance rather than imp()'s cache-busted copy
+const SS = await import(new URL('../src/modules/sendSheet.js', import.meta.url).href);
+const li = d.createElement('li'); d.body.appendChild(li); SS.registerCard(art, li);
+assert(CM.menuItems(art).some(i => i.label === 'Select'), 'Select offered for registered summarized card');
+assert(!CM.menuItems({ id: 'z', summary: '<p>x</p>' }).some(i => i.label === 'Select'), 'not for unregistered');
+CM.menuItems(art).find(i => i.label === 'Select').run();
+assert(SS.selectionActive() && li.classList.contains('sel-on'), 'selection mode on, card ticked');
 console.log('TEST 83 OK');

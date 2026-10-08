@@ -47,6 +47,13 @@ export function toggleCard(article) {
     paintBar();
 }
 
+/** ⋯ menu → "Select": enter selection mode with this card ticked. */
+export const canSelect = (a) => !!(a && reg.has(a.id) && isSendable(a));
+export function startSelectionWith(article) {
+    if (!active) setActive(true);
+    if (isSendable(article) && !sel.has(article.id)) toggleCard(article);
+}
+
 function visibleSendable() {
     return [...reg.values()].filter(r => r.li.isConnected && r.li.style.display !== 'none' && isSendable(r.article)).map(r => r.article);
 }

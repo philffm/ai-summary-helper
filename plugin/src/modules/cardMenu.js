@@ -5,6 +5,7 @@
 import { T } from './feedI18n.js';
 import { getReader, streamText, speakable } from './reader.js';
 import { ttsLang } from './languages.js';
+import { canSelect, startSelectionWith } from './sendSheet.js';
 
 let current = null;   // { close }
 const closeMenu = () => { if (current) { const c = current; current = null; c.close(); } };
@@ -40,6 +41,7 @@ export function menuItems(a, { onRemoved } = {}) {
     items.push({ icon: '📚', label: T('Send to Kindle'), run: async () => (await am()).sendToKindle(a) });
     items.push({ icon: '⬇', label: T('Export as Markdown'), run: async () => (await am()).exportToMarkdown(a) });
   }
+  if (a.id && canSelect(a)) items.push({ icon: '☑', label: T('Select'), run: () => startSelectionWith(a), sep: true });
   if (a.id) {
     if (!a.feedStub) items.push({ icon: a.archived ? '↩' : '🗄', label: a.archived ? T('Restore to Inbox') : T('Archive'), run: async () => (await am()).applyStatus([a.id], { archived: !a.archived }), sep: true });
     items.push({ icon: '🗑', label: T('Delete'), danger: true, sep: !hasSummary || a.feedStub, run: async () => { const ok = await (await am()).removeArticle(a); if (ok && onRemoved) onRemoved(a); } });
