@@ -508,6 +508,17 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   box-shadow: 0 10px 28px var(--accent-glow);
 }
 
+/* "Saved ✓" state: green button with a green glow (not the blue one) */
+.settings-save-fab.is-saved,
+.settings-save-fab.is-saved:hover {
+  background: var(--ok);
+  border-color: transparent;
+  color: #fff;
+  filter: none;
+  opacity: 1;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ok) 45%, transparent), 0 2px 8px rgba(0,0,0,0.2);
+}
+
 /* Keep the button centered while pressed. The global `button:active`
    rule sets `transform: scale(0.97)`, which would otherwise override the
    `translateX(-50%)` centering offset and make the button jump to the
@@ -739,7 +750,7 @@ ul#articleList {
 .article-card:hover,
 .tool-card:hover,
 .podcast-card:hover {
-  box-shadow: var(--glass-inner-glow), var(--shadow-raised);
+  border-color: var(--accent);   /* blue border instead of a raised shadow */
 }
 
 .article-card.is-favorite {
@@ -2632,7 +2643,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
   background-image: linear-gradient(100deg, var(--mood-tint), transparent 70%);
   box-shadow: inset 3px 0 0 var(--mood-bar), var(--glass-inner-glow), var(--shadow-card);
 }
-.feed-item.has-mood:hover { box-shadow: inset 3px 0 0 var(--mood-bar), var(--glass-inner-glow), var(--shadow-raised); }
+.feed-item.has-mood:hover { border-color: var(--accent); }
 .feed-item.has-mood.is-favorite { background-image: linear-gradient(rgba(250,204,21,.10), rgba(250,204,21,.10)), linear-gradient(100deg, var(--mood-tint), transparent 70%); }
 
 /* Feeds: suggestions */

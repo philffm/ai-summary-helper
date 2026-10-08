@@ -70,20 +70,15 @@ export async function initSettingsManager(ui) {
 function flashSaveIndicator() {
     const saveButton = document.querySelector('button[form="settingsForm"]');
     if (!saveButton) return;
-
-    const origText = saveButton.textContent;
-    const origBg = saveButton.style.background;
-    const origColor = saveButton.style.color;
-
+    const origText = saveButton.dataset.origText || saveButton.textContent;
+    saveButton.dataset.origText = origText;
+    clearTimeout(saveButton._flashTimer);
     saveButton.textContent = T('Saved! ✓');
-    saveButton.style.background = 'var(--success, #2ecc40)';
-    saveButton.style.color = '#fff';
+    saveButton.classList.add('is-saved');   // green + green glow, see .settings-save-fab.is-saved
     saveButton.disabled = true;
-
-    setTimeout(() => {
+    saveButton._flashTimer = setTimeout(() => {
         saveButton.textContent = origText;
-        saveButton.style.background = origBg;
-        saveButton.style.color = origColor;
+        saveButton.classList.remove('is-saved');
         saveButton.disabled = false;
     }, 1500);
 }
