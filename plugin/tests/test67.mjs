@@ -37,6 +37,10 @@ const hit = matchPagePaper(pdfText, d, loc('https://www.nature.com/articles/s415
 assert(hit && hit.paper.doi === '10.1038/s41562-026-0000-0' && /meta-analysis/.test(hit.title), 'title match');
 assert(matchPagePaper('Quarterly invoice for office supplies, total 12 EUR', d, loc('https://www.nature.com/articles/x')) === null, 'unrelated PDF is not merged');
 assert(matchPagePaper('Some text mentioning 10.1038/s41562-026-0000-0 only', d, loc('https://www.nature.com/articles/x')) !== null, 'DOI in the PDF matches');
+// preprint host page with only an og:title (weak signals), PDF has the title
+d.head.innerHTML = '<meta property="og:title" content="OSF | Small Penises and Fast Cars: Evidence for a Psychological Link">';
+d.body.innerHTML = '<a href="https://doi.org/10.31234/osf.io/uy7ph">doi</a>';
+assert(matchPagePaper('Small Penises and Fast Cars: Evidence for a Psychological Link\nRichardson, Devlin', d, loc('https://osf.io/preprints/psyarxiv/uy7ph_v1')), 'weak page + title in PDF');
 d.head.innerHTML = ''; d.body.innerHTML = '<p>A blog post</p>';
 assert.equal(matchPagePaper(pdfText, d, loc('https://blog.example/x')), null, 'not a paper page');
 console.log('TEST 67 OK'); process.exit(0);

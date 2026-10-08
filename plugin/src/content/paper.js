@@ -130,7 +130,7 @@ export function applyScholarly(paper, raw) {
 
 /**
  * An attached PDF + the paper page open in the tab (typically a DOI / publisher page behind a paywall): does the page describe this PDF?
- * Yes when the page has strong paper signals AND its DOI appears in the PDF's opening text or most words of its title do.
+ * Yes when the page looks like a paper AND its DOI appears in the PDF's opening text or at least half of the words of its title do.
  * Returns { paper, title } (the page's paper metadata) or null. Pure DOM reads.
  */
 export function matchPagePaper(pdfText, doc = document, loc = window.location) {
@@ -139,10 +139,11 @@ export function matchPagePaper(pdfText, doc = document, loc = window.location) {
   const meta = (k) => { const m = doc.querySelector('meta[name="' + k + '" i], meta[property="' + k + '" i]'); return m ? (m.getAttribute('content') || '').trim() : ''; };
   const title = ppCap(meta('citation_title') || meta('dc.title') || meta('og:title') || (doc.title || ''), 300);
   const flat = (x) => String(x || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ');
-  const head = flat(String(pdfText || '').slice(0, 8000));
+  const head = flat(String(pdfText || '').slice(0, 12000));
   const doiHit = !!p.doi && head.replace(/ /g, '').includes(flat(p.doi).replace(/ /g, ''));
   const words = [...new Set(flat(title).split(' ').filter((w) => w.length > 3))];
-  const titleHit = words.length >= 3 && words.filter((w) => head.includes(w)).length / words.length >= 0.6;
-  if (!(doiHit || (p.state === 'yes' && titleHit))) return null;
+  const titleHit = words.length >= 3 && words.filter((w) => head.includes(w)).length / words.length >= 0.5;
+  // A page with only weak signals ('likely', e.g. a preprint host) is fine too when its title is in the PDF.
+  if (!(doiHit || titleHit || (p.state === 'yes' && words.length < 3))) return null;
   return { paper: p, title };
 }
