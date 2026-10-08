@@ -3277,5 +3277,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 Datos clave"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Añade cada resumen bajo su referencia"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Error al buscar la cita: inténtalo de nuevo"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Cita no disponible: no se encontró DOI"
+  },
+  "f_copy_list_d774": {
+    "message": "Copiar lista"
+  },
+  "f_download_bib_ef28": {
+    "message": "Descargar .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "Descargar .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "Descargar .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "Obtener cita"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Incluir mis resúmenes"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Buscando citas en doi.org: solo se envían los DOI…"
+  },
+  "f_looking_up_abff": {
+    "message": "Buscando…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Busca la cita en doi.org. Solo se envía el DOI."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "No hay citas disponibles: los artículos elegidos no tienen DOI o la búsqueda falló."
+  },
+  "f_open_doi_0f60": {
+    "message": "Abrir DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Lista de referencias"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Fuente: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} artículo"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} artículo omitido (sin DOI o búsqueda fallida)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} artículos"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} artículos omitidos (sin DOI o búsqueda fallida)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Citar"
   }
 }

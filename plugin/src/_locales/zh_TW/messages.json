@@ -3277,5 +3277,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 關鍵資訊"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "在每筆參考文獻下附上對應摘要"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "取得引用失敗，請重試"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "無法提供引用：找不到 DOI"
+  },
+  "f_copy_list_d774": {
+    "message": "複製清單"
+  },
+  "f_download_bib_ef28": {
+    "message": "下載 .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "下載 .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "下載 .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "取得引用"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "包含我的摘要"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "正在 doi.org 查詢引用，僅傳送 DOI…"
+  },
+  "f_looking_up_abff": {
+    "message": "查詢中…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "從 doi.org 取得引用，僅傳送 DOI。"
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "沒有可用引用：所選論文沒有 DOI 或查詢失敗。"
+  },
+  "f_open_doi_0f60": {
+    "message": "開啟 DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "參考文獻清單"
+  },
+  "f_source_doi_org_4492": {
+    "message": "來源：doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} 篇論文"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "已略過 {n} 篇論文（無 DOI 或查詢失敗）"
+  },
+  "f_papers_f29a": {
+    "message": "{n} 篇論文"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "已略過 {n} 篇論文（無 DOI 或查詢失敗）"
+  },
+  "f_cite_aef3": {
+    "message": "❝ 引用"
   }
 }

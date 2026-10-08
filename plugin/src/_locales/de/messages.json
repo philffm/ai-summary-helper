@@ -3283,5 +3283,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 Kernaussagen"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Fügt jede Zusammenfassung unter ihrer Quelle ein"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Zitat-Abfrage fehlgeschlagen – erneut versuchen"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Zitat nicht verfügbar – keine DOI gefunden"
+  },
+  "f_copy_list_d774": {
+    "message": "Liste kopieren"
+  },
+  "f_download_bib_ef28": {
+    "message": ".bib laden"
+  },
+  "f_download_ris_a55b": {
+    "message": ".ris laden"
+  },
+  "f_download_txt_fdbd": {
+    "message": ".txt laden"
+  },
+  "f_get_citation_9c44": {
+    "message": "Zitat holen"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Meine Zusammenfassungen einbeziehen"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Zitate werden bei doi.org abgefragt – nur die DOIs werden gesendet…"
+  },
+  "f_looking_up_abff": {
+    "message": "Abfrage läuft…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Holt das Zitat bei doi.org. Nur die DOI wird gesendet."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Keine Zitate verfügbar – die gewählten Paper haben keine DOI oder die Abfrage ist fehlgeschlagen."
+  },
+  "f_open_doi_0f60": {
+    "message": "DOI öffnen ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Literaturliste"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Quelle: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} Paper"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} Paper übersprungen (keine DOI oder Abfrage fehlgeschlagen)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} Paper"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} Paper übersprungen (keine DOI oder Abfrage fehlgeschlagen)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Zitieren"
   }
 }

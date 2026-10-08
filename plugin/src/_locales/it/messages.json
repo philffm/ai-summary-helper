@@ -3193,5 +3193,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 Dati chiave"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Aggiunge ogni riassunto sotto il suo riferimento"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Ricerca della citazione non riuscita: riprova"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Citazione non disponibile: nessun DOI trovato"
+  },
+  "f_copy_list_d774": {
+    "message": "Copia elenco"
+  },
+  "f_download_bib_ef28": {
+    "message": "Scarica .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "Scarica .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "Scarica .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "Ottieni citazione"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Includi i miei riassunti"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Ricerca delle citazioni su doi.org: vengono inviati solo i DOI…"
+  },
+  "f_looking_up_abff": {
+    "message": "Ricerca…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Cerca la citazione su doi.org. Viene inviato solo il DOI."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Nessuna citazione disponibile: gli articoli scelti non hanno DOI o la ricerca è fallita."
+  },
+  "f_open_doi_0f60": {
+    "message": "Apri DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Elenco dei riferimenti"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Fonte: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} articolo"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} articolo saltato (senza DOI o ricerca fallita)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} articoli"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} articoli saltati (senza DOI o ricerca fallita)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Cita"
   }
 }

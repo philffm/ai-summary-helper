@@ -14,7 +14,7 @@ const SRC = path.join(ROOT, 'plugin/src');
 const LOC = path.join(SRC, '_locales');
 const { keyOf } = await import(pathToFileURL(path.join(SRC, 'modules/feedI18n.js')).href);
 
-const FILES = ['feedManager.js', 'feedUtil.js', 'feedPlayer.js', 'feedAi.js', 'feedInsights.js', 'feedRollup.js', 'feedMood.js', 'analyticsManager.js', 'topicsChart.js', 'moodView.js', 'historyMood.js', 'sendSheet.js', 'digestBuilder.js', 'articleManager.js', 'promptSettings.js', 'reviewPrompt.js', 'mainScreen.js', 'composerState.js', 'conversation.js', 'qaView.js', 'paperInfo.js', 'recapStatus.js', 'settingsManager.js', 'settingsNav.js', 'promptManager.js', 'confirmDialog.js', 'workspaceManager.js', 'archiveGraph.js', 'authManager.js', 'podcastManager.js', 'audioManager.js'].map(f => path.join(SRC, 'modules', f)).concat([path.join(SRC, 'popup.js')]);
+const FILES = ['feedManager.js', 'feedUtil.js', 'feedPlayer.js', 'feedAi.js', 'feedInsights.js', 'feedRollup.js', 'feedMood.js', 'analyticsManager.js', 'topicsChart.js', 'moodView.js', 'historyMood.js', 'sendSheet.js', 'digestBuilder.js', 'articleManager.js', 'promptSettings.js', 'reviewPrompt.js', 'mainScreen.js', 'composerState.js', 'conversation.js', 'qaView.js', 'paperInfo.js', 'citation.js', 'recapStatus.js', 'settingsManager.js', 'settingsNav.js', 'promptManager.js', 'confirmDialog.js', 'workspaceManager.js', 'archiveGraph.js', 'authManager.js', 'podcastManager.js', 'audioManager.js'].map(f => path.join(SRC, 'modules', f)).concat([path.join(SRC, 'popup.js')]);
 const unq = (q, body) => { try { return new Function('return ' + q + body + q)(); } catch (e) { return null; } };
 
 export function extract() {

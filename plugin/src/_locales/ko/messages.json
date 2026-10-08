@@ -3265,5 +3265,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 핵심 사실"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "각 요약을 해당 참고문헌 아래에 추가합니다"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "인용 조회 실패 — 다시 시도하세요"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "인용을 사용할 수 없음 — DOI 없음"
+  },
+  "f_copy_list_d774": {
+    "message": "목록 복사"
+  },
+  "f_download_bib_ef28": {
+    "message": ".bib 다운로드"
+  },
+  "f_download_ris_a55b": {
+    "message": ".ris 다운로드"
+  },
+  "f_download_txt_fdbd": {
+    "message": ".txt 다운로드"
+  },
+  "f_get_citation_9c44": {
+    "message": "인용 가져오기"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "내 요약 포함"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "doi.org에서 인용 조회 중 — DOI만 전송됩니다…"
+  },
+  "f_looking_up_abff": {
+    "message": "조회 중…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "doi.org에서 인용을 가져옵니다. DOI만 전송됩니다."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "사용할 수 있는 인용이 없습니다 — 선택한 논문에 DOI가 없거나 조회에 실패했습니다."
+  },
+  "f_open_doi_0f60": {
+    "message": "DOI 열기 ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "참고문헌 목록"
+  },
+  "f_source_doi_org_4492": {
+    "message": "출처: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "논문 {n}편"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "논문 {n}편 건너뜀 (DOI 없음 또는 조회 실패)"
+  },
+  "f_papers_f29a": {
+    "message": "논문 {n}편"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "논문 {n}편 건너뜀 (DOI 없음 또는 조회 실패)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ 인용"
   }
 }

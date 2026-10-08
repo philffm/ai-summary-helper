@@ -3277,5 +3277,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 मुख्य तथ्य"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "हर सारांश को उसके संदर्भ के नीचे जोड़ता है"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "उद्धरण खोज विफल — फिर कोशिश करें"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "उद्धरण उपलब्ध नहीं — DOI नहीं मिला"
+  },
+  "f_copy_list_d774": {
+    "message": "सूची कॉपी करें"
+  },
+  "f_download_bib_ef28": {
+    "message": ".bib डाउनलोड"
+  },
+  "f_download_ris_a55b": {
+    "message": ".ris डाउनलोड"
+  },
+  "f_download_txt_fdbd": {
+    "message": ".txt डाउनलोड"
+  },
+  "f_get_citation_9c44": {
+    "message": "उद्धरण पाएँ"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "मेरे सारांश शामिल करें"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "doi.org पर उद्धरण खोज रहे हैं — केवल DOI भेजे जाते हैं…"
+  },
+  "f_looking_up_abff": {
+    "message": "खोज रहे हैं…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "doi.org से उद्धरण लाता है। केवल DOI भेजा जाता है।"
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "कोई उद्धरण उपलब्ध नहीं — चुने गए पेपर में DOI नहीं है या खोज विफल रही।"
+  },
+  "f_open_doi_0f60": {
+    "message": "DOI खोलें ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "संदर्भ सूची"
+  },
+  "f_source_doi_org_4492": {
+    "message": "स्रोत: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} पेपर"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} पेपर छोड़ा गया (DOI नहीं या खोज विफल)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} पेपर"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} पेपर छोड़े गए (DOI नहीं या खोज विफल)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ उद्धरण"
   }
 }

@@ -15,6 +15,7 @@ import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
+import { CITE_STYLES, formatCitation, ensureCsl, copyText } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
@@ -1402,6 +1403,45 @@ async function renderDetailQa(article, mount) {
 }
 
 /** 🎓 row in the detail view: badges, authors · journal · year, DOI link and the "Mark as paper / Not a paper" override. */
+let citeStyle = 'apa';
+function renderCiteBlock(article, host) {
+    host.replaceChildren();
+    const doi = paperDoi(article);
+    host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-head', textContent: T('❝ Cite') }));
+    const csl = article.meta && article.meta.paper && article.meta.paper.csl;
+    if (!doi || !doiUrl(doi)) { host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-note', textContent: T('Citation unavailable — no DOI found') })); return; }
+    if (!csl) {
+        host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-note', textContent: T('Looks the citation up at doi.org. Only the DOI is sent.') }));
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'button-secondary'; b.textContent = T('Get citation');
+        b.addEventListener('click', async (e) => {
+            e.stopPropagation(); b.disabled = true; b.textContent = T('Looking up…');
+            try {
+                const got = await ensureCsl(article, doi);
+                article.meta = { ...(article.meta || {}), paper: { ...((article.meta || {}).paper || {}), csl: got } };
+                renderCiteBlock(article, host);
+            } catch (_) { b.disabled = false; b.textContent = T('Citation lookup failed — try again'); }
+        });
+        host.appendChild(b);
+        return;
+    }
+    const seg = document.createElement('div'); seg.className = 'cite-styles'; seg.setAttribute('role', 'radiogroup');
+    CITE_STYLES.forEach(([id, label]) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'research-filter' + (citeStyle === id ? ' on' : ''); b.textContent = label; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(citeStyle === id));
+        b.addEventListener('click', (e) => { e.stopPropagation(); citeStyle = id; renderCiteBlock(article, host); });
+        seg.appendChild(b);
+    });
+    const text = formatCitation(csl, citeStyle);
+    const box = document.createElement('pre'); box.className = 'cite-text'; box.textContent = text;
+    const acts = document.createElement('div'); acts.className = 'cite-actions';
+    const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'button-primary'; copy.textContent = T('Copy');
+    copy.addEventListener('click', async (e) => { e.stopPropagation(); if (await copyText(text) && uiManagerRef) uiManagerRef.showToast(T('Copied to clipboard! 📋')); });
+    const open = document.createElement('a'); open.className = 'button-secondary cite-open'; open.href = doiUrl(doi); open.target = '_blank'; open.rel = 'noopener noreferrer'; open.textContent = T('Open DOI ↗');
+    acts.append(copy, open, Object.assign(document.createElement('span'), { className: 'cite-src', textContent: T('Source: doi.org') }));
+    host.append(seg, box, acts);
+}
+
 function renderPaperRow(article, row) {
     if (!row) return;
     row.replaceChildren();
@@ -1420,6 +1460,10 @@ function renderPaperRow(article, row) {
         const box = document.createElement('dl'); box.className = 'paper-facts';
         facts.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; box.append(dt, dd); });
         row.appendChild(box);
+    }
+    if (article.id && paperState(article)) {
+        const cite = document.createElement('div'); cite.className = 'cite-block';
+        row.appendChild(cite); renderCiteBlock(article, cite);
     }
     if (!facts.length && article.id && paperState(article)) {
         const f = document.createElement('button');

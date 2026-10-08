@@ -3277,5 +3277,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 关键信息"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "在每条参考文献下附上对应摘要"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "获取引用失败，请重试"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "无法提供引用：未找到 DOI"
+  },
+  "f_copy_list_d774": {
+    "message": "复制列表"
+  },
+  "f_download_bib_ef28": {
+    "message": "下载 .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "下载 .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "下载 .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "获取引用"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "包含我的摘要"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "正在 doi.org 查询引用，仅发送 DOI…"
+  },
+  "f_looking_up_abff": {
+    "message": "查询中…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "从 doi.org 获取引用，仅发送 DOI。"
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "没有可用引用：所选论文没有 DOI 或查询失败。"
+  },
+  "f_open_doi_0f60": {
+    "message": "打开 DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "参考文献列表"
+  },
+  "f_source_doi_org_4492": {
+    "message": "来源：doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} 篇论文"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "已跳过 {n} 篇论文（无 DOI 或查询失败）"
+  },
+  "f_papers_f29a": {
+    "message": "{n} 篇论文"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "已跳过 {n} 篇论文（无 DOI 或查询失败）"
+  },
+  "f_cite_aef3": {
+    "message": "❝ 引用"
   }
 }

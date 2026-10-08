@@ -3277,5 +3277,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 Points clés"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Ajoute chaque résumé sous sa référence"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Échec de la recherche de citation — réessayez"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Citation indisponible — aucun DOI trouvé"
+  },
+  "f_copy_list_d774": {
+    "message": "Copier la liste"
+  },
+  "f_download_bib_ef28": {
+    "message": "Télécharger .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "Télécharger .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "Télécharger .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "Obtenir la citation"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Inclure mes résumés"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Recherche des citations sur doi.org — seuls les DOI sont envoyés…"
+  },
+  "f_looking_up_abff": {
+    "message": "Recherche…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Recherche la citation sur doi.org. Seul le DOI est envoyé."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Aucune citation disponible — les articles choisis n'ont pas de DOI ou la recherche a échoué."
+  },
+  "f_open_doi_0f60": {
+    "message": "Ouvrir le DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Liste de références"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Source : doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} article"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} article ignoré (sans DOI ou recherche échouée)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} articles"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} articles ignorés (sans DOI ou recherche échouée)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Citer"
   }
 }

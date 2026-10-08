@@ -3193,5 +3193,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 Ключевые факты"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Добавляет каждое резюме под его ссылкой"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Не удалось получить цитату — повторите"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Цитата недоступна — DOI не найден"
+  },
+  "f_copy_list_d774": {
+    "message": "Копировать список"
+  },
+  "f_download_bib_ef28": {
+    "message": "Скачать .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "Скачать .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "Скачать .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "Получить цитату"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Добавить мои резюме"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Поиск цитат на doi.org — отправляются только DOI…"
+  },
+  "f_looking_up_abff": {
+    "message": "Поиск…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Ищет цитату на doi.org. Отправляется только DOI."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Нет доступных цитат — у выбранных статей нет DOI или поиск не удался."
+  },
+  "f_open_doi_0f60": {
+    "message": "Открыть DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Список литературы"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Источник: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} статья"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} статья пропущена (нет DOI или сбой поиска)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} статьи"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} статей пропущено (нет DOI или сбой поиска)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Цитата"
   }
 }

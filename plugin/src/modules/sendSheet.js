@@ -13,6 +13,8 @@ import { generateDigestIntro } from './feedAi.js';
 import { createRecapStatus } from './recapStatus.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
 import { el } from './dom.js';
+import { paperState, paperDoi } from './paperInfo.js';
+import { CITE_STYLES, ensureCsl, formatList, citeFileName, copyText, downloadText } from './citation.js';
 
 let deps = null;
 const sel = new Set();                 // selected article ids
@@ -98,7 +100,7 @@ function paintBar() {
 
 // ───────────────────────────── sheet ─────────────────────────────
 
-const state = { format: 'digest', include: 'summary', intro: 'off', introStyle: 'briefing' };
+const state = { format: 'digest', include: 'summary', intro: 'off', introStyle: 'briefing', refStyle: 'apa', refSummaries: false };
 
 let sheetTrap = null;
 function closeSheet() { if (sheetTrap) { sheetTrap.release(); sheetTrap = null; } if (sheet) { sheet.remove(); sheet = null; } }
@@ -179,8 +181,44 @@ async function viewChoose() {
     const kd = StorageManager.getActiveDevice(cfg, 'kindle');
     body.append(
         row('📚', T('Send to Kindle'), kd ? (kd.label || kd.addresses?.[0] || '') : T('Not set up yet — add your Kindle in Settings'), () => viewKindle()),
+        ...(list.some(paperState) ? [row('📖', T('Reference list'), TN(list.filter(paperState).length, '{n} paper', '{n} papers'), () => viewReferences())] : []),
         row('📡', T('LocalSend'), l.length ? TN(l.length, '{n} receiver', '{n} receivers') : T('Not set up yet — add a receiver in Settings'), () => viewLocalSend()),
         btn(T('Cancel'), false, closeSheet));
+}
+
+/** Reference list of the selected papers (citations from doi.org, formatted locally); copy or download. */
+async function viewReferences() {
+    const papers = selected().filter(paperState);
+    const body = shell(T('Reference list') + ' · ' + TN(papers.length, '{n} paper', '{n} papers'));
+    const status = el('div', 'sendsheet-note', T('Looking up citations at doi.org — only the DOIs are sent…'));
+    body.append(status);
+    const items = []; let missing = 0;
+    for (const a of papers) {
+        const doi = paperDoi(a);
+        if (!doi) { missing++; continue; }
+        try { items.push({ csl: await ensureCsl(a, doi), summary: a.summary }); } catch (_) { missing++; }
+        if (!sheet) return;
+    }
+    if (!sheet) return;
+    body.textContent = '';
+    const h = el('div', 'sendsheet-head'); h.append(el('div', 'sendsheet-title', T('Reference list') + ' · ' + TN(items.length, '{n} paper', '{n} papers'))); body.append(h);
+    if (!items.length) { body.append(el('div', 'sendsheet-note', T('No citations available — the selected papers have no DOI or the lookup failed.')), btn(T('Back'), false, viewChoose)); return; }
+    const preview = el('pre', 'ref-preview');
+    const paint = () => { preview.textContent = formatList(items, state.refStyle, { summaries: state.refSummaries }); };
+    segmented(body, 'refStyle', CITE_STYLES.map(([v, l]) => [v, l]), paint);
+    body.append(preview);
+    const tg = el('button', 'sendsheet-row sendsheet-toggle' + (state.refSummaries ? ' on' : ''));
+    tg.type = 'button'; tg.setAttribute('role', 'switch'); tg.setAttribute('aria-checked', String(state.refSummaries));
+    const tx = el('span', 'sendsheet-row-tx'); tx.append(el('span', 'sendsheet-row-t', T('Include my summaries')), el('span', 'sendsheet-row-s sendsheet-wrap', T('Adds each summary under its reference')));
+    const sw = el('span', 'sendsheet-switch'); sw.append(el('span', 'sendsheet-knob')); tg.append(tx, sw);
+    tg.addEventListener('click', () => { state.refSummaries = !state.refSummaries; tg.classList.toggle('on', state.refSummaries); tg.setAttribute('aria-checked', String(state.refSummaries)); paint(); });
+    body.append(tg);
+    if (missing) body.append(el('div', 'sendsheet-note', TN(missing, '{n} paper skipped (no DOI or lookup failed)', '{n} papers skipped (no DOI or lookup failed)')));
+    paint();
+    body.append(
+        btn(T('Copy list'), true, async () => { if (await copyText(preview.textContent)) deps.toast(T('Copied to clipboard! 📋')); }),
+        btn(state.refStyle === 'bibtex' ? T('Download .bib') : state.refStyle === 'ris' ? T('Download .ris') : T('Download .txt'), false, () => { const [n, m] = citeFileName(state.refStyle); downloadText(n, m, preview.textContent); }),
+        btn(T('Back'), false, viewChoose));
 }
 
 async function viewKindle() {

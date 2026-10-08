@@ -3193,5 +3193,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 أهم النقاط"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "يضيف كل ملخص أسفل مرجعه"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "فشل جلب الاقتباس — حاول مجددًا"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "الاقتباس غير متاح — لم يُعثر على DOI"
+  },
+  "f_copy_list_d774": {
+    "message": "نسخ القائمة"
+  },
+  "f_download_bib_ef28": {
+    "message": "تنزيل ‎.bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "تنزيل ‎.ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "تنزيل ‎.txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "جلب الاقتباس"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "تضمين ملخصاتي"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "جارٍ البحث عن الاقتباسات في doi.org — يُرسل DOI فقط…"
+  },
+  "f_looking_up_abff": {
+    "message": "جارٍ البحث…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "يجلب الاقتباس من doi.org. يُرسل DOI فقط."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "لا توجد اقتباسات — الأوراق المحددة بلا DOI أو فشل البحث."
+  },
+  "f_open_doi_0f60": {
+    "message": "فتح DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "قائمة المراجع"
+  },
+  "f_source_doi_org_4492": {
+    "message": "المصدر: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} ورقة"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "تم تخطي {n} ورقة (بلا DOI أو فشل البحث)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} أوراق"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "تم تخطي {n} أوراق (بلا DOI أو فشل البحث)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ اقتباس"
   }
 }

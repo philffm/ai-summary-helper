@@ -3283,5 +3283,68 @@
   },
   "f_key_facts_4b46": {
     "message": "🔎 要点"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "各要約を参考文献の下に追加します"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "引用の取得に失敗しました。もう一度お試しください"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "引用を利用できません（DOIが見つかりません）"
+  },
+  "f_copy_list_d774": {
+    "message": "リストをコピー"
+  },
+  "f_download_bib_ef28": {
+    "message": ".bibをダウンロード"
+  },
+  "f_download_ris_a55b": {
+    "message": ".risをダウンロード"
+  },
+  "f_download_txt_fdbd": {
+    "message": ".txtをダウンロード"
+  },
+  "f_get_citation_9c44": {
+    "message": "引用を取得"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "自分の要約を含める"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "doi.orgで引用を検索中（送信されるのはDOIのみ）…"
+  },
+  "f_looking_up_abff": {
+    "message": "検索中…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "doi.orgから引用を取得します。送信されるのはDOIのみです。"
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "利用できる引用がありません。選択した論文にDOIがないか、取得に失敗しました。"
+  },
+  "f_open_doi_0f60": {
+    "message": "DOIを開く ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "参考文献リスト"
+  },
+  "f_source_doi_org_4492": {
+    "message": "出典: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n}件の論文"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n}件の論文をスキップ（DOIなし、または取得失敗）"
+  },
+  "f_papers_f29a": {
+    "message": "{n}件の論文"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n}件の論文をスキップ（DOIなし、または取得失敗）"
+  },
+  "f_cite_aef3": {
+    "message": "❝ 引用"
   }
 }

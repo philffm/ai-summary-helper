@@ -3395,3 +3395,12 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .paper-facts dt { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-top: 6px; }
 .paper-facts dt:first-child { margin-top: 0; }
 .paper-facts dd { margin: 2px 0 0; color: var(--text-primary); }
+.cite-block { width: 100%; box-sizing: border-box; margin-top: 8px; padding: 10px; border: 1px solid var(--outline); border-radius: 12px; }
+.cite-head { font-weight: 600; font-size: var(--fs-md); margin-bottom: 6px; color: var(--text-primary); }
+.cite-note { font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: 8px; }
+.cite-styles { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.cite-text { margin: 0 0 8px; padding: 8px 10px; border-radius: 10px; background: var(--accent-a05); font: inherit; font-size: var(--fs-sm); white-space: pre-wrap; word-break: break-word; user-select: text; color: var(--text-primary); max-height: 220px; overflow: auto; }
+.cite-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.cite-open { text-decoration: none; display: inline-flex; align-items: center; }
+.cite-src { font-size: var(--fs-xs); color: var(--text-muted); }
+.ref-preview { margin: 8px 0; padding: 8px 10px; border-radius: 10px; background: var(--accent-a05); font-size: var(--fs-xs); white-space: pre-wrap; word-break: break-word; max-height: 200px; overflow: auto; user-select: text; color: var(--text-primary); }
