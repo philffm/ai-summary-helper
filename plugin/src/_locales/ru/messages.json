@@ -3184,5 +3184,14 @@
   },
   "f_trials_7100": {
     "message": "Испытания"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "Ключевые факты не найдены"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Нечего анализировать"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Ключевые факты"
   }
 }

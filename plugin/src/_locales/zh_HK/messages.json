@@ -3184,5 +3184,14 @@
   },
   "f_trials_7100": {
     "message": "試驗"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "找不到關鍵資訊"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "沒有可分析的內容"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 關鍵資訊"
   }
 }

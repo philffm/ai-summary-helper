@@ -29,4 +29,9 @@ assert(/SCHOLARLY/.test(ct) && /applyScholarly\(/.test(ct) && /replace\(\/<!--\\
 assert.equal((ct.match(/\$\{scholarlyAsk\}/g) || []).length, 2);
 const am = fs.readFileSync(new URL('../src/modules/articleManager.js', import.meta.url), 'utf8');
 assert(/\['research'/.test(am) && /RESEARCH_FILTERS/.test(am) && /paperSearchText\(a\)/.test(am));
+// on-demand key facts
+const { extractPaperFacts } = await imp('modules/paperInfo.js');
+const out = await extractPaperFacts({ id: 'x', content: '<p>We ran a trial of 120 people.</p>', title: 'T', paper: 'yes' }, async () => '{"scholarly":true,"type":"trial","design":"RCT","sample":"n=120","limitations":"short"}', 'German').catch(e => e);
+assert(out instanceof Error ? /./.test(out.message) : out.facts.sample === 'n=120', String(out));
+assert(/paper-facts-btn/.test(am));
 console.log('test64 ok');

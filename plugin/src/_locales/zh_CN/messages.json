@@ -3268,5 +3268,14 @@
   },
   "f_trials_7100": {
     "message": "试验"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "未找到关键信息"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "没有可分析的内容"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 关键信息"
   }
 }

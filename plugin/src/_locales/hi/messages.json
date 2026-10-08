@@ -3268,5 +3268,14 @@
   },
   "f_trials_7100": {
     "message": "परीक्षण"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "कोई मुख्य तथ्य नहीं मिला"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "विश्लेषण के लिए कुछ नहीं"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 मुख्य तथ्य"
   }
 }

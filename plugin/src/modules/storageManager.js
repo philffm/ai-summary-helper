@@ -368,6 +368,20 @@ class StorageManager {
         return true;
     }
 
+    /** Store the paper facts / type on an article (record meta.paper + the lean index fields). */
+    static async savePaperInfo(id, paper) {
+        if (!id || !paper) return false;
+        const key = articleRecKey(id);
+        const [recData, idxData] = await Promise.all([this.getLocal([key]), this.getLocal({ [SK.articlesIndex]: [] })]);
+        const rec = recData[key];
+        if (!rec) return false;
+        const index = idxData[SK.articlesIndex] || [];
+        const entry = index.find(a => a.id === id);
+        if (entry) { if (paper.state) entry.paper = paper.state; if (paper.type) entry.paperType = paper.type; if (paper.preprint) entry.preprint = true; }
+        await this.setLocal({ [key]: { ...rec, meta: { ...(rec.meta || {}), paper: { ...((rec.meta || {}).paper || {}), ...paper } } }, [SK.articlesIndex]: index });
+        return true;
+    }
+
     static async saveArticle({ content, summary, url, title, description, tags = [], modelId = '', connectionMode = '', summaryLength = 200, extra = {} }) {
         const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
         const timestamp = new Date().toISOString();

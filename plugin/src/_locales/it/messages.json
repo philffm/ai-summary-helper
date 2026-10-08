@@ -3184,5 +3184,14 @@
   },
   "f_trials_7100": {
     "message": "Trial"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "Nessun dato chiave trovato"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Niente da analizzare"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Dati chiave"
   }
 }

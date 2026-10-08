@@ -13,7 +13,8 @@ import { initSelection, registerCard, toggleCard, selectionActive } from './send
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
-import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText } from './paperInfo.js';
+import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
+import { aiComplete } from './feedAi.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
@@ -1419,6 +1420,21 @@ function renderPaperRow(article, row) {
         const box = document.createElement('dl'); box.className = 'paper-facts';
         facts.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; box.append(dt, dd); });
         row.appendChild(box);
+    }
+    if (!facts.length && article.id && paperState(article)) {
+        const f = document.createElement('button');
+        f.type = 'button'; f.className = 'button-secondary paper-facts-btn'; f.textContent = T('🔎 Key facts');
+        f.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            f.disabled = true; f.textContent = T('Thinking…');
+            try {
+                const merged = await extractPaperFacts(article, aiComplete, new Intl.DisplayNames(['en'], { type: 'language' }).of(locale()) || 'English');
+                article.meta = { ...(article.meta || {}), paper: { ...((article.meta || {}).paper || {}), ...merged } };
+                article.paperType = merged.type;
+                renderPaperRow(article, row);
+            } catch (err) { f.disabled = false; f.textContent = '❌ ' + ((err && err.message) || T('AI request failed')); }
+        });
+        row.appendChild(f);
     }
     if (article.id) {
         const b = document.createElement('button');

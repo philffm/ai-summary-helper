@@ -3256,5 +3256,14 @@
   },
   "f_trials_7100": {
     "message": "시험"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "핵심 사실을 찾지 못했습니다"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "분석할 내용이 없습니다"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 핵심 사실"
   }
 }

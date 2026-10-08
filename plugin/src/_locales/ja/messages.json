@@ -3274,5 +3274,14 @@
   },
   "f_trials_7100": {
     "message": "試験"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "要点が見つかりません"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "分析する内容がありません"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 要点"
   }
 }

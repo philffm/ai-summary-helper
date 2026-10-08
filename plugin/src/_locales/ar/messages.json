@@ -3184,5 +3184,14 @@
   },
   "f_trials_7100": {
     "message": "تجارب"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "لم يتم العثور على نقاط رئيسية"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "لا شيء لتحليله"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 أهم النقاط"
   }
 }

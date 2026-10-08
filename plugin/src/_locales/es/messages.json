@@ -3268,5 +3268,14 @@
   },
   "f_trials_7100": {
     "message": "Ensayos"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "No se encontraron datos clave"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Nada que analizar"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Datos clave"
   }
 }

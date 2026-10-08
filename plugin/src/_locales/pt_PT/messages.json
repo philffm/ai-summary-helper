@@ -3268,5 +3268,14 @@
   },
   "f_trials_7100": {
     "message": "Ensaios"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "Nenhum facto-chave encontrado"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Nada para analisar"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Factos-chave"
   }
 }
