@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1086. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1087. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1086 | 0 | 0 | 33 |
-| de | 1086 | 0 | 0 | 158 |
-| es | 1086 | 0 | 0 | 123 |
-| fr | 1086 | 0 | 0 | 148 |
-| hi | 1086 | 0 | 0 | 52 |
-| it | 1086 | 0 | 0 | 129 |
-| ja | 1086 | 0 | 0 | 69 |
-| ko | 1086 | 0 | 0 | 15 |
-| pt_PT | 1086 | 0 | 0 | 124 |
-| ru | 1086 | 0 | 0 | 71 |
-| zh_CN | 1086 | 0 | 0 | 1 |
-| zh_HK | 1086 | 0 | 0 | 1 |
-| zh_TW | 1086 | 0 | 0 | 1 |
+| ar | 1086 | 1 | 0 | 33 |
+| de | 1086 | 1 | 0 | 158 |
+| es | 1086 | 1 | 0 | 123 |
+| fr | 1086 | 1 | 0 | 148 |
+| hi | 1086 | 1 | 0 | 52 |
+| it | 1086 | 1 | 0 | 129 |
+| ja | 1086 | 1 | 0 | 69 |
+| ko | 1086 | 1 | 0 | 15 |
+| pt_PT | 1086 | 1 | 0 | 124 |
+| ru | 1086 | 1 | 0 | 71 |
+| zh_CN | 1086 | 1 | 0 | 1 |
+| zh_HK | 1086 | 1 | 0 | 1 |
+| zh_TW | 1086 | 1 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -1010,3 +1010,46 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
+
+## Problems
+
+en is missing 1 strings (run merge)
+
+### ar: 1 missing
+- Article deleted
+
+### de: 1 missing
+- Article deleted
+
+### es: 1 missing
+- Article deleted
+
+### fr: 1 missing
+- Article deleted
+
+### hi: 1 missing
+- Article deleted
+
+### it: 1 missing
+- Article deleted
+
+### ja: 1 missing
+- Article deleted
+
+### ko: 1 missing
+- Article deleted
+
+### pt_PT: 1 missing
+- Article deleted
+
+### ru: 1 missing
+- Article deleted
+
+### zh_CN: 1 missing
+- Article deleted
+
+### zh_HK: 1 missing
+- Article deleted
+
+### zh_TW: 1 missing
+- Article deleted
