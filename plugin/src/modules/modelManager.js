@@ -1,5 +1,5 @@
 import { T } from './feedI18n.js';
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+import { escapeHtml as esc } from './textUtils.js';
 import { SK } from './storageKeys.js';
 // Model Manager modelManager.js
 // Handles service/model config and label logic

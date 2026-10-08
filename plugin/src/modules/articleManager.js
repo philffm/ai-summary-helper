@@ -22,7 +22,7 @@ import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCit
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
-const escAttr = (str) => String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+const escAttr = escapeHtml;
 
 let uiManagerRef = null;
 let currentDetailArticle = null;

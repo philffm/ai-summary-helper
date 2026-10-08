@@ -7,7 +7,7 @@ import { SK } from './storageKeys.js';
 import { generateAudioFromText } from "../api.js";
 import { T } from './feedI18n.js';
 
-const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+import { escapeHtml as esc } from './textUtils.js';
 
 // ─────────────────────────────────────────────
 // GLOBAL STATE

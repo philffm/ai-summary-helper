@@ -11,7 +11,7 @@ import {
     normalizeBuilder, buildArticlePrompt, buildFeedStyle
 } from './promptBuilder.js';
 
-const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+import { escapeHtml as esc } from './textUtils.js';
 const stripTags = h => { try { return new DOMParser().parseFromString(String(h), 'text/html').body.textContent.trim(); } catch (e) { return String(h); } };
 
 const SAMPLE_ARTICLE = 'City builds a rooftop network of 40 community gardens. The program, started in 2023, turns unused roofs into vegetable gardens run by neighbors. '

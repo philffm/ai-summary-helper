@@ -221,7 +221,7 @@ export function initMainScreen(ui) {
     let liveBubbleArticle = null;     // the article object behind the newest bubble
     const bar = document.querySelector('.controls-bar');
 
-    const esc = (x) => String(x || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const esc = escapeHtml;
     const usedOpen = () => { try { return localStorage.getItem('aish:usedOpen') === '1'; } catch (_) { return false; } };
     const setUsedOpen = (v) => { try { localStorage.setItem('aish:usedOpen', v ? '1' : '0'); } catch (_) { /* storage unavailable */ } };
     // Scroll to the newest content. The scrolling element is whichever ancestor really overflows (the screen, not always #feedScroll);

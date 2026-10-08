@@ -117,9 +117,8 @@ export function articlesByDay(articles) {
  */
 export function articlesByWeek(articles) {
     const counts = {};
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const todayMs = today.getTime();
+    const todayMs = startOfDay(Date.now());
+    const today = new Date(todayMs);
 
     articles.forEach(a => {
         const t = new Date(a.timestamp).getTime();
@@ -167,6 +166,7 @@ import { moodSection } from './moodView.js';
 import { moodStoreFor, unscoredIn, scoreArticles } from './historyMood.js';
 import StorageManager from './storageManager.js';
 import { countWords, escapeHtml } from './textUtils.js';
+import { startOfDay } from './dateUtils.js';
 
 /** Localized bar tooltips; `cnt(n)` formats the count with the right noun (articles / items). */
 export function chartTips(cnt) {

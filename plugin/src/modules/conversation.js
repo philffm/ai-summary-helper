@@ -5,7 +5,7 @@ import { T } from './feedI18n.js';
 export const MAX_PROMPT_TURNS = 6;      // turns sent back to the model (plus summary)
 export const MAX_PAGE_CHARS = 20000;
 
-const esc = (x) => String(x == null ? '' : x).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+import { escapeHtml as esc } from './textUtils.js';
 const plain = (html) => String(html || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 const norm = (s) => plain(s).replace(/[‘’]/g, "'").replace(/[“”]/g, '"').toLowerCase();
 

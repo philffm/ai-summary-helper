@@ -6,6 +6,7 @@
 // DOM-pure (no chrome.*, no storage) so it is unit-testable in jsdom.
 import { T } from './feedI18n.js';
 import { t } from './i18n.js';
+import { isMac } from './shortcuts.js';
 
 export const COMPOSER_STATES = ['fetch', 'working', 'followup'];
 
@@ -76,7 +77,7 @@ export function createComposer(bar, { onChange } = {}) {
             button.dataset.state = state; button.textContent = copy[state](); button.disabled = false;
             // Shortcut keycap on the button (drawn by CSS from data-kbd; Stop has none).
             if (state === 'working') { delete button.dataset.kbd; button.removeAttribute('aria-keyshortcuts'); }
-            else { const mac = /Mac|iPhone|iPad/i.test((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''); button.dataset.kbd = (mac ? '⌘' : 'Ctrl') + ' ↵'; button.setAttribute('aria-keyshortcuts', mac ? 'Meta+Enter' : 'Control+Enter'); }
+            else { const mac = isMac(); button.dataset.kbd = (mac ? '⌘' : 'Ctrl') + ' ↵'; button.setAttribute('aria-keyshortcuts', mac ? 'Meta+Enter' : 'Control+Enter'); }
         }
         if (label) label.hidden = state !== 'fetch';
         if (textarea) {
