@@ -2842,7 +2842,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .sendsheet { position: fixed; inset: 0; z-index: var(--z-modal); display: flex; align-items: flex-end; }
 .sendsheet-scrim { position: absolute; inset: 0; background: var(--sheet-scrim); }
 .sendsheet-panel {
-  position: relative; width: 100%; max-width: 560px; margin-inline: auto; max-height: 90%; overflow-y: auto; padding: 8px 16px 20px;
+  position: relative; width: 100%; max-width: 560px; margin-inline: auto; max-height: 90%; overflow-y: auto; padding: 8px 16px calc(20px + var(--nav-clearance)); scroll-padding-bottom: var(--nav-clearance); box-sizing: border-box;   /* clearance keeps the last row/button above the floating nav */
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; background: var(--sheet-bg); border: 1px solid var(--sheet-border); box-shadow: var(--sheet-shadow); color: var(--text-primary);
 }
 .sendsheet-grab { width: 36px; height: 4px; border-radius: 2px; background: var(--grab); margin: 0 auto 12px; }
