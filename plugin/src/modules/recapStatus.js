@@ -15,7 +15,7 @@ export async function activeModelLabel() {
     } catch (e) { return ''; }
 }
 
-const STAGES = ['prepare', 'send', 'wait', 'parse'];
+const STAGES = ['prepare', 'send', 'wait', 'write', 'parse'];
 
 /**
  * @param {{title:string, detail?:string, items?:number}} o  title = headline ("✨ Updating recap…"), detail = what is sent
@@ -32,6 +32,7 @@ export function createRecapStatus({ title, detail = '', onCancel }) {
         prepare: T('Collected the items'),
         send: T('Sent to your AI connection'),
         wait: T('Waiting for the model'),
+        write: T('Model is writing'),
         parse: T('Reading the answer'),
     };
     STAGES.forEach(k => { rows[k] = el('li', 'recap-step', labels[k]); list.append(rows[k]); });
@@ -43,6 +44,7 @@ export function createRecapStatus({ title, detail = '', onCancel }) {
     node.append(head, list, meta, cancel);
 
     const t0 = Date.now();
+    let prog = null, lastMove = Date.now();
     let model = '', cur = '';
     const paint = () => {
         const secs = Math.floor((Date.now() - t0) / 1000);
@@ -52,12 +54,21 @@ export function createRecapStatus({ title, detail = '', onCancel }) {
             r.className = 'recap-step' + (i < at ? ' done' : i === at ? ' active' : '');
         });
         rows.wait.textContent = labels.wait + (cur === 'wait' ? ` · ${secs}s` : '');
+        if (prog) {
+            const bits = [];
+            if (prog.chars) bits.push(T('{n} characters', { n: prog.chars }));
+            if (prog.think) bits.push(T('thinking: {n} characters', { n: prog.think }));
+            rows.write.textContent = labels.write + (bits.length ? ' · ' + bits.join(' · ') : '') + (cur === 'write' && prog.tail ? ` — “…${prog.tail.replace(/\s+/g, ' ')}”` : '');
+        }
+        const idle = Math.floor((Date.now() - lastMove) / 1000);
         rows.send.textContent = labels.send + (model ? ` · ${model}` : '');
-        if (secs >= 25 && cur === 'wait') meta.textContent = (detail ? detail + ' ' : '') + T('No time limit — slow local models can take minutes. Cancel if nothing seems to happen.');
+        if ((cur === 'wait' || cur === 'write') && idle >= 20) meta.textContent = (detail ? detail + ' ' : '') + T('Nothing received for {s}s. There is no time limit — Cancel if it looks stuck.', { s: idle });
+        else meta.textContent = detail;
     };
     const timer = setInterval(paint, 1000);
     activeModelLabel().then(m => { model = m; paint(); });
-    const onStage = (s) => { if (STAGES.includes(s)) { cur = s; paint(); } };
+    const onProgress = (m) => { if (m.chars !== prog?.chars || m.think !== prog?.think || m.phase !== prog?.phase) lastMove = Date.now(); prog = m; paint(); };
+    const onStage = (s) => { if (STAGES.includes(s) && STAGES.indexOf(s) >= STAGES.indexOf(cur)) { cur = s; paint(); } };
     onStage('prepare');
-    return { node, onStage, stop: () => clearInterval(timer), signal: ac.signal };
+    return { node, onStage, onProgress, stop: () => clearInterval(timer), signal: ac.signal };
 }

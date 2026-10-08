@@ -382,6 +382,20 @@ function parseAiResponseText(raw) {
     return String(j.choices?.[0]?.message?.content ?? j.message?.content ?? j.choices?.[0]?.text ?? gem ?? '').trim();
 }
 
+/** Text added by one SSE/NDJSON line: { text, think } (think = reasoning tokens of "thinking" models). */
+function aiDelta(line) {
+    line = line.trim();
+    if (line.startsWith('data:')) line = line.slice(5).trim();
+    if (!line || line === '[DONE]' || line[0] !== '{') return null;
+    try {
+        const j = JSON.parse(line);
+        const d = j.choices?.[0]?.delta || {};
+        const text = d.content ?? j.message?.content ?? (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('') ?? '';
+        const think = d.reasoning_content ?? d.reasoning ?? j.message?.thinking ?? '';
+        return { text: text || '', think: think || '' };
+    } catch (_) { return null; }
+}
+
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
 async function aiComplete({ system, user, id }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
@@ -423,22 +437,46 @@ async function aiComplete({ system, user, id }) {
     const headers = { 'Content-Type': 'application/json' };
     let body;
     if (service === 'gemini') {
-        url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
+        url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:streamGenerateContent?alt=sse`;
         headers['x-goog-api-key'] = apiKey;
         body = JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${system}\n\n${user}` }] }] });
     } else {
         if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
         if (local[SK.installId]) headers['X-Install-ID'] = local[SK.installId];
-        body = JSON.stringify({ model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }], stream: false });
+        body = JSON.stringify({ model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }], stream: true });
     }
 
     // No timeout: local models can take minutes. The user cancels from the recap status card instead.
     const ctrl = new AbortController();
     if (id) aiJobs.set(id, ctrl);
+    const progress = (p) => { if (id) { try { chrome.runtime.sendMessage({ action: 'aiProgress', id, ...p }, () => void chrome.runtime.lastError); } catch (_) { /* popup closed */ } } };
     try {
-        const res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
-        const raw = await res.text();
-        if (!res.ok) throw new Error(aiFriendlyError(res.status, raw));
+        let res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
+        // A provider that rejects "stream": true gets one retry without streaming.
+        if ((res.status === 400 || res.status === 422) && service !== 'gemini') {
+            res = await fetch(url, { method: 'POST', headers, body: body.replace('"stream":true', '"stream":false'), signal: ctrl.signal });
+        }
+        if (!res.ok) throw new Error(aiFriendlyError(res.status, await res.text()));
+        progress({ phase: 'headers' });
+        let raw = '';
+        if (res.body && res.body.getReader) {
+            const reader = res.body.getReader();
+            const dec = new TextDecoder('utf-8');
+            let buf = '', chars = 0, think = 0, last = 0;
+            for (;;) {
+                const { value, done } = await reader.read();
+                if (done) break;
+                const chunk = dec.decode(value, { stream: true });
+                raw += chunk; buf += chunk;
+                const lines = buf.split('\n'); buf = lines.pop();
+                let tail = '';
+                for (const l of lines) { const d = aiDelta(l); if (d) { chars += d.text.length; think += d.think.length; tail += d.text; } }
+                const now = Date.now();
+                if (now - last > 250) { last = now; progress({ phase: 'stream', chars, think, tail: tail.slice(-80) }); }
+            }
+            raw += dec.decode();
+            progress({ phase: 'stream', chars, think, tail: '' });
+        } else raw = await res.text();
         const text = parseAiResponseText(raw);
         if (!text) throw new Error('The model returned an empty response.');
         return { text, model };

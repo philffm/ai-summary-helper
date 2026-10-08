@@ -204,7 +204,7 @@ export function openRollup(scope, anchor, ctx) {
             body.replaceChildren(st.node);
             const send = fresh || P.parts;
             let r;
-            try { r = await generateRollup(send, { label, prev: fresh ? cached : null, edited: (p) => !!(cached && p.key in cached.covered), onStage: st.onStage, signal: st.signal }); }
+            try { r = await generateRollup(send, { label, prev: fresh ? cached : null, edited: (p) => !!(cached && p.key in cached.covered), onStage: st.onStage, signal: st.signal, onProgress: st.onProgress }); }
             finally { st.stop(); }
             const rc = { ...r, at: Date.now(), n: P.total, scope, covered: fresh ? { ...cached.covered, ...sigsOf(send) } : sigsOf(P.parts) };
             ctx.getRecaps()[key] = rc;

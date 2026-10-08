@@ -1650,7 +1650,7 @@ async function openRecap(dayStart, label, source = ui.source) {
             const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true) });
             body.replaceChildren(st.node);
             try {
-                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal });
+                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress });
                 st.stop();
                 applyRatings(r.sent, r, rate);
                 const { labels: _l, scores: _s, sent: sentItems, ...rc } = r;
@@ -1669,7 +1669,7 @@ async function openRecap(dayStart, label, source = ui.source) {
         const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); } });
         body.replaceChildren(st.node);
         try {
-            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal });
+            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress });
             st.stop();
             applyRatings(list, r, rate);
             const { labels: _l, scores: _s, ...rc } = r;
