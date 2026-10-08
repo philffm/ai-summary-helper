@@ -31,4 +31,9 @@ setTimeout(() => st2.node.querySelector('.recap-cancel').click(), 100);
 await assert.rejects(p, (e) => e.cancelled === true);
 assert(sent.includes('aiCancel'));
 st2.stop();
+// Reset button exists in both recap UIs (source check; the sheets need the full feed UI).
+import fs from 'fs';
+const here = new URL('../src/modules/', import.meta.url);
+assert(/confirmBtn\(T\('Reset'\)/.test(fs.readFileSync(new URL('feedManager.js', here), 'utf8')));
+assert(/refreshFromScratch/.test(fs.readFileSync(new URL('feedRollup.js', here), 'utf8')));
 console.log('TEST 59 OK'); process.exit(0);

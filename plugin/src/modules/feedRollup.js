@@ -177,7 +177,19 @@ export function openRollup(scope, anchor, ctx) {
         }
         if (stale) body.append(el('p', 'feed-recap-stale', T('A source recap changed since this one was written — Refresh to include it.')));
         const row = el('div', 'feed-recap-actions');
-        row.append(btn('btn-sm', T('↻ Refresh'), () => refresh(r)),
+        let armed = 0;
+        const reset = btn('btn-sm', T('Reset'), () => {
+            if (!armed) {
+                reset.textContent = T('Discard & rewrite?');
+                armed = setTimeout(() => { armed = 0; reset.textContent = T('Reset'); }, 4000);
+                return;
+            }
+            clearTimeout(armed);
+            delete ctx.getRecaps()[key];
+            ctx.saveRecaps();
+            refreshFromScratch();
+        });
+        row.append(btn('btn-sm', T('↻ Refresh'), () => refresh(r)), reset,
             btn('btn-sm', T('Copy'), async () => {
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); ctx.toast(T('Recap copied')); }
                 catch (e) { ctx.toast(T('Copy failed')); }
@@ -211,6 +223,12 @@ export function openRollup(scope, anchor, ctx) {
             ctx.saveRecaps();
             drawResult(rc, P);
         } catch (e) { if (e.cancelled) return; fail(e, () => run(createMissing)); }
+    };
+
+    const refreshFromScratch = () => {
+        const P = parts();
+        if (P.missing.length) return drawPlan(P, null);
+        run(false);
     };
 
     const refresh = (cached) => {

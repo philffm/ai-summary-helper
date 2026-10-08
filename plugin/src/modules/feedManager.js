@@ -1593,6 +1593,20 @@ function renderMonthWeeks() {
     }
 }
 
+/** Two-step button: first click arms it (label changes for 4 s), second click runs `fn`. */
+function confirmBtn(label, armedLabel, fn) {
+    let timer = 0;
+    const b = btn('btn-sm', label, () => {
+        if (!timer) {
+            b.textContent = armedLabel;
+            timer = setTimeout(() => { timer = 0; b.textContent = label; }, 4000);
+            return;
+        }
+        clearTimeout(timer); timer = 0; fn();
+    });
+    return b;
+}
+
 async function openRecap(dayStart, label, source = ui.source) {
     const all = recapScope(dayStart, source);
     const list = recapCovered(all);
@@ -1627,6 +1641,12 @@ async function openRecap(dayStart, label, source = ui.source) {
         if (stale) body.append(el('p', 'feed-recap-stale', T('New items arrived since this recap — Refresh to include them.')));
         const row = el('div', 'feed-recap-actions');
         row.append(btn('btn-sm', T('↻ Refresh'), () => run(true)),
+            confirmBtn(T('Reset'), T('Discard & rewrite?'), () => {
+                delete recaps[key];
+                chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
+                renderRecapCard();
+                run(false);
+            }),
             btn('btn-sm', T('Copy'), async () => {
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); toast(uiRef, T('Recap copied')); }
                 catch (e) { toast(uiRef, T('Copy failed')); }
