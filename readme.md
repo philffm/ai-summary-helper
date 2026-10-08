@@ -123,6 +123,76 @@ The bookmarklet generator lives on its own page: [ai-summary-helper.byphil.eu/bo
 
 The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). GitHub Pages serves from `docs/`.
 
+## Architecture
+
+AISH is a Manifest V3 extension with four runtime parts that talk to each other only through `chrome.runtime` messages and `chrome.storage`. There is no server of our own in the loop when you bring your own key or use Ollama: the background worker calls the provider directly.
+
+```mermaid
+flowchart LR
+  subgraph Page["Web page (any tab)"]
+    L["loader.js<br/>~6 KB, static content script"]
+    C["content.js<br/>~200 KB bundle, injected on demand"]
+  end
+  subgraph Ext["Extension"]
+    P["Popup / side panel<br/>popup.html + ES modules"]
+    B["Background worker<br/>background.js + finalize.js"]
+    S[("chrome.storage<br/>sync: settings, local: library")]
+  end
+  LLM["LLM provider<br/>OpenAI-compatible, Ollama, byphil Cloud"]
+
+  L -- "aish:injectContent" --> B
+  B -- "scripting.executeScript" --> C
+  P -- "summarize, ping, revealQuote" --> C
+  C -- "streamFetch" --> B
+  B -- "stream / aiComplete" --> LLM
+  B -- "summaryComplete, progress" --> P
+  C --- S
+  P --- S
+  B --- S
+```
+
+### The four parts
+
+- **`loader.js` (every page).** The only script that runs on every page. It checks whether the page has saved highlights (`hl:all`) or the user selects text, and only then asks the background to inject the real content script. Android and iOS keep the full `content.js` as a static content script.
+- **`content.js` (on demand).** Extracts the readable text (HTML, PDFs), paints highlights, shows the selection tooltip, and drives a summary run. It is injected by the background (`ensureContent`) when a highlight, a selection, the context menu, a shortcut, or the popup needs it, and is guarded against double injection.
+- **Background worker.** Streams model output (`handleStreamFetch`, idle timeout only after the first chunk, so slow local models are fine), runs one-shot completions (`aiComplete` / `aiCancel`), polls feeds, hosts audio, and finishes a run whose page went away (`finalize.js` is bundled as a classic script for the worker).
+- **Popup / side panel.** Plain HTML plus native ES modules. The main screen and its core modules load first; Feeds, History and Settings load right after the first paint.
+
+### A summary, end to end
+
+1. The popup asks the content script to summarize (injected first if needed).
+2. The content script extracts the text and sends a `streamFetch` to the background, which streams the provider response back as progress.
+3. `finalizeSummary` (`content/finalize.js`, shared by the page and the worker) cleans the model output into HTML and pulls out tags, ghost highlights, mood, a paper verdict, and **suggested follow-up questions with a short answer each** (`QUESTIONS: [{"q","a"}]`).
+4. The result is saved (`articles:index` + one record per article) and relayed as `summaryComplete`.
+5. The popup shows the card and the question chips. Tapping a chip types the stored short answer out like a person, while the background asks the model to **continue** that answer. The continuation streams in behind the typed text, a "Thinking more…" indicator with a Stop button covers the wait, and Stop keeps the short answer and cancels the request.
+
+Models that ignore the `{q, a}` format still work: the parser accepts plain question strings and simply shows no short answer.
+
+### Storage
+
+All access goes through `StorageManager`; keys are defined once in `modules/storageKeys.js`.
+
+| Area | Where | Notes |
+| --- | --- | --- |
+| Settings, flags, language, theme | `chrome.storage.sync` | small values only |
+| Library index | `local` `articles:index` | lean list, never holds article text |
+| Article record | `local` `articles:rec:<id>` | content, summary, `conversation`, `suggested`, `suggestedAnswers` |
+| Highlights | `local` `hl:all` | one array for all pages, matched by `pageKeyForUrl` |
+| Providers and keys | `local` `config:services` | per service: key, model, endpoint |
+| Feeds | `local` `feeds:*` | subscriptions, items, recaps, UI state |
+
+Reads are targeted (`StorageManager.get([keys])` routes each key to sync or local). `getAll()` is reserved for backup and first-run migration.
+
+### UI, i18n, security
+
+- **i18n.** The English text is the key (`T('Send me a code')`, `data-i18n` ids in `popup.html`). `node scripts/feed-i18n.mjs extract | merge <dir> | check` keeps the 13 locales complete.
+- **Rendering.** Anything model- or page-derived that reaches `innerHTML` goes through `escapeHtml` (`modules/textUtils.js`).
+- **Shared helpers.** `textUtils` (escape, word count), `dateUtils` (day, week, month), `dom` (element helpers), `suggestions` (follow-up parsing), `typewriter` (human-like typing).
+
+### Tests
+
+`npm test` runs the jsdom suite in `plugin/tests` (storage, popup flows, finalize, i18n coverage, loader). `plugin/tests/e2e/*.e2e.cjs` drive real Chromium with the built extension and need Playwright: `node plugin/scripts/build.js chrome` first, then run the script.
+
 ## Under the hood
 
 <details>
@@ -134,7 +204,9 @@ ai-summary-helper/
 ├── plugin/                       # Shippable extension code (monorepo split)
 │   ├── src/                      # Single source of truth (Chrome MV3, Vanilla JS)
 │   │   ├── background.js         # Service worker: context menus, alarms, notifications, side panel
-│   │   ├── content.js            # Content script: page text extraction, highlighting, hybrid sidebar
+│   │   ├── loader.js             # Tiny static content script: injects content.js only when needed
+│   │   ├── content.js            # Full content script (bundled, injected on demand): extraction, highlighting, summary run
+│   │   ├── content/              # Content-script parts (extractor, highlighter, finalize, markdown, …)
 │   │   ├── popup.html            # Popup UI (header → screens → bottom-nav)
 │   │   ├── popup.js              # Popup entry point — wires up all module inits
 │   │   ├── styles.css            # Global styles (glassmorphism, light/dark themes)
@@ -201,32 +273,21 @@ ai-summary-helper/
 
 | Module | Responsibility |
 | --- | --- |
-| `uiManager.js` | Screen navigation (feeds/main/history/settings), bottom-nav blob, `showScreen()` |
-| `feedManager.js` | RSS reader: subscriptions, feed parsing/autodiscovery, OPML import, favorites, one-click summarize |
-| `settingsNav.js` | Settings home, grouped panels and search |
-| `storageManager.js` | Storage abstraction (sync/local), services config, migration, `updateService()` |
-| `extensionApi.js` | Cross-browser `browser`/`chrome` namespace wrapper |
-| `mainScreen.js` | Main screen chat feed, streaming bubbles, onboarding/empty state |
-| `settingsManager.js` | Settings screen logic, model config, bookmarklet generator, Save button |
-| `authManager.js` | byphil Cloud OTP auth flow (request/verify code, token storage) |
-| `modelManager.js` | Service/model config + model identifier tag UI |
-| `promptManager.js` | Prompt dropdown + custom prompt logic |
-| `languageManager.js` | Language dropdown + persistence |
-| `articleManager.js` | Article rendering, expand/collapse, search, detail view |
-| `archiveManager.js` | Podcast-in-history overlay (beta); history rendering itself lives in `articleManager.js` |
-| `archiveGraph.js` | D3.js knowledge-graph visualization of article tags |
-| `analyticsManager.js` | Reading analytics / report view (heatmap, streaks, model stats) |
-| `audioManager.js` | Podcast audio generation and saving |
-| `podcastManager.js` | Podcast feature (beta) |
-| `localSendClient.js` | LocalSend handshake + file upload over LAN |
-| `toolsManager.js` | Compatible tools loading/display |
-| `shortcuts.js` | Keyboard shortcuts (e.g. Cmd+F) |
-| `accordion.js` | Accordion UI behavior |
-| `i18n.js` | Translation loader (applies `data-i18n` attributes) |
+| `uiManager.js`, `settingsNav.js`, `tabbar.js`, `sheet.js`, `dropdownMenu.js`, `confirmDialog.js` | Screens, bottom nav, settings home, tab bars, sheets with focus trap, menus, dialogs |
+| `mainScreen.js`, `composerState.js`, `qaView.js`, `conversation.js` | Summarize screen: feed, composer states, follow-up thread, prompt building and answer parsing |
+| `suggestions.js`, `typewriter.js` | Follow-up suggestions with short answers; human-like typing of the short answer |
+| `feedManager.js`, `feedAi.js`, `feedRollup.js`, `feedParse.js`, `feedPlayer.js`, `feedInsights.js`, `feedMood.js`, `feedSentiment.js`, `feedUtil.js` | RSS reader, OPML, AI recaps, podcast player, insights, mood |
+| `articleManager.js`, `archiveManager.js`, `archiveGraph.js`, `analyticsManager.js`, `topicsChart.js`, `historyMood.js`, `moodView.js`, `digestBuilder.js`, `annotationExporter.js` | History, knowledge graph, analytics, digests and exports |
+| `settingsManager.js`, `modelManager.js`, `promptManager.js`, `promptSettings.js`, `promptBuilder.js`, `languageManager.js`, `moodSetting.js`, `workspaceManager.js` | Settings, providers and models, prompts, languages, workspaces |
+| `authManager.js` | byphil Cloud sign-in (shared form for onboarding and Account, code boxes, plan card) |
+| `storageManager.js`, `storageKeys.js`, `pageKey.js` | Storage abstraction, key registry, page keys for highlights |
+| `localIntelligence.js`, `localSearch.js`, `tagIntelligence.js`, `duplicateDetector.js`, `textMetrics.js`, `textUtils.js`, `dateUtils.js`, `dom.js`, `log.js` | On-device search, tags, duplicates and shared helpers |
+| `audioManager.js`, `podcastManager.js`, `readingTools.js`, `reader.js`, `instantRead.js`, `citation.js`, `paperInfo.js`, `sendSheet.js`, `localSendClient.js` | Read aloud, podcasts, reader, citations, send to devices |
+| `i18n.js`, `feedI18n.js`, `languages.js`, `a11y.js`, `extensionApi.js` | Translations, language data, accessibility settings, browser API shim |
 
 #### Build pipeline
 
-- **Dev sync** — `node plugin/scripts/build.js` (or `npm run build`) copies `plugin/src/` into `plugin/dev/aish-extension-<platform>/` and overlays the matching `plugin/platforms/<platform>/manifest.json`.
+- **Dev sync** — `node plugin/scripts/build.js` (bundles `content.js` and `finalize.js`; `loader.js` and the popup modules are copied as they are) (or `npm run build`) copies `plugin/src/` into `plugin/dev/aish-extension-<platform>/` and overlays the matching `plugin/platforms/<platform>/manifest.json`.
 - **Release** — `./plugin/build.sh` bumps the version in `current_version.json` + all `plugin/platforms/*/manifest.json` + `plugin/src/popup.html`, then zips each platform build into `plugin/prod/`.
 - **CI** — `.github/workflows/release.yml` runs `plugin/build.sh` on tag push, commits the version bump, and creates a GitHub release with the three zips.
 
