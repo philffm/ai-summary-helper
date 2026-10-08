@@ -3502,5 +3502,14 @@
   },
   "settingsFeeds": {
     "message": "الخلاصات"
+  },
+  "f_sent_to_f63d": {
+    "message": "أُرسل إلى {model}"
+  },
+  "f_the_model_d5c1": {
+    "message": "النموذج"
+  },
+  "f_waiting_s_f51e": {
+    "message": "في الانتظار {s} ث"
   }
 }

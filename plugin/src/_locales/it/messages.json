@@ -3502,5 +3502,14 @@
   },
   "settingsFeeds": {
     "message": "Feed"
+  },
+  "f_sent_to_f63d": {
+    "message": "Inviato a {model}"
+  },
+  "f_the_model_d5c1": {
+    "message": "il modello"
+  },
+  "f_waiting_s_f51e": {
+    "message": "in attesa da {s} s"
   }
 }

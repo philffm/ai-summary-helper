@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1026. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1029. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1026 | 0 | 0 | 34 |
-| de | 1026 | 0 | 0 | 151 |
-| es | 1026 | 0 | 0 | 122 |
-| fr | 1026 | 0 | 0 | 144 |
-| hi | 1026 | 0 | 0 | 53 |
-| it | 1026 | 0 | 0 | 125 |
-| ja | 1026 | 0 | 0 | 63 |
-| ko | 1026 | 0 | 0 | 13 |
-| pt_PT | 1026 | 0 | 0 | 124 |
-| ru | 1026 | 0 | 0 | 70 |
-| zh_CN | 1026 | 0 | 0 | 1 |
-| zh_HK | 1026 | 0 | 0 | 1 |
-| zh_TW | 1026 | 0 | 0 | 1 |
+| ar | 1029 | 0 | 0 | 34 |
+| de | 1029 | 0 | 0 | 151 |
+| es | 1029 | 0 | 0 | 122 |
+| fr | 1029 | 0 | 0 | 144 |
+| hi | 1029 | 0 | 0 | 54 |
+| it | 1029 | 0 | 0 | 126 |
+| ja | 1029 | 0 | 0 | 64 |
+| ko | 1029 | 0 | 0 | 13 |
+| pt_PT | 1029 | 0 | 0 | 125 |
+| ru | 1029 | 0 | 0 | 70 |
+| zh_CN | 1029 | 0 | 0 | 1 |
+| zh_HK | 1029 | 0 | 0 | 1 |
+| zh_TW | 1029 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -518,6 +518,7 @@ Strings: 1026. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Scanning... | स्कैन हो रहा है... | 18 vs 11 | 1.64× |
 | View & Copy | देखें और कॉपी करें | 18 vs 11 | 1.64× |
 | View: Filtered | दृश्य: फ़िल्टर किया हुआ | 23 vs 14 | 1.64× |
+| waiting {s}s | प्रतीक्षा {s} सेकंड | 18 vs 11 | 1.64× |
 | Loading... | लोड हो रहा है... | 16 vs 10 | 1.6× |
 | Reading PDF… | PDF पढ़ी जा रही है… | 19 vs 12 | 1.58× |
 | Follows system | सिस्टम का पालन करता है | 22 vs 14 | 1.57× |
@@ -622,6 +623,7 @@ Strings: 1026. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No Kindle email set. | Nessuna email Kindle impostata. | 31 vs 20 | 1.55× |
 | Not a paper | Non è un articolo | 17 vs 11 | 1.55× |
 | Wrong email? Go back | Email sbagliata? Torna indietro | 31 vs 20 | 1.55× |
+| waiting {s}s | in attesa da {s} s | 17 vs 11 | 1.55× |
 | Failed to export backup. | Esportazione del backup non riuscita. | 37 vs 24 | 1.54× |
 | Standup humor | Umorismo da stand-up | 20 vs 13 | 1.54× |
 | Browser Default | Predefinito del browser | 23 vs 15 | 1.53× |
@@ -703,6 +705,7 @@ Strings: 1026. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Tutorial | チュートリアル | 14 vs 8 | 1.75× |
 | Code expired. Please request a new one. | コードの有効期限が切れました。新しいコードをリクエストしてください。 | 68 vs 39 | 1.74× |
 | Creative title | クリエイティブなタイトル | 24 vs 14 | 1.71× |
+| Sent to {model} | {model} に送信しました | 17 vs 10 | 1.7× |
 | Scan failed. Enter IP manually. | スキャンに失敗しました。IPを手動で入力してください。 | 52 vs 31 | 1.68× |
 | Neutral tone | ニュートラルなトーン | 20 vs 12 | 1.67× |
 | No title available | 利用できるタイトルがありません | 30 vs 18 | 1.67× |
@@ -810,6 +813,7 @@ Strings: 1026. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Updates & storage | Atualizações e armazenamento | 28 vs 17 | 1.65× |
 | Auto-Detect | Deteção automática | 18 vs 11 | 1.64× |
 | Customize text size, spacing, font, motion | Personalizar tamanho do texto, espaçamento, tipo de letra e movimento | 69 vs 42 | 1.64× |
+| waiting {s}s | a aguardar há {s} s | 18 vs 11 | 1.64× |
 | Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
 | Failed to export backup. | Falha ao exportar a cópia de segurança. | 39 vs 24 | 1.63× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |

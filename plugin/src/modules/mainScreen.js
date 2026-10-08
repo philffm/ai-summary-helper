@@ -8,7 +8,7 @@ import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
-import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
+import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
 import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
 
@@ -100,6 +100,7 @@ export function initMainScreen(ui) {
     let lastShownStreamProgress = 0;
     let streamPhase = 0;          // 0 starting · 1 waiting for the model · 2 writing (never goes back)
     let lastPhaseTitle = '';
+    let lastStepPhase = 0;
 
     const addStreamBubble = (modelName = '', mode = 'local') => {
         // Remove any existing stream bubble
@@ -107,6 +108,7 @@ export function initMainScreen(ui) {
         if (old) old.remove();
         lastShownStreamProgress = 0;
         streamPhase = 0; lastPhaseTitle = '';
+        stepsStart = Date.now(); lastStepPhase = 0;
 
         const emoji = modelEmoji({ connectionMode: mode, modelId: modelName });
         const bubble = document.createElement('div');
@@ -141,6 +143,7 @@ export function initMainScreen(ui) {
                 const sec = Math.floor((Date.now() - start) / 1000);
                 el.textContent = `${sec}s`;
             }
+            tickWait();
         }, 1000);
         return bubble;
     };
@@ -201,11 +204,23 @@ export function initMainScreen(ui) {
         if (el) el.scrollTop = el.scrollHeight;
     });
 
+    // Steps: ✓ done · … active (the "Sent to <model>" line also shows how long we have been waiting) · dimmed = still to come.
+    let stepsStart = Date.now();
     const renderSteps = (ctx) => {
         const ul = document.getElementById('streamSteps');
-        if (!ul) return;
-        ul.innerHTML = statusLines(ctx).map((l, i, all) =>
-            `<li class="${i === all.length - 1 ? 'sc-step sc-step--now' : 'sc-step'}">${esc(l)}</li>`).join('');
+        if (!ul || !ctx) return;
+        const lines = statusLines(ctx);
+        const now = activeStep(lines, streamPhase);
+        ul.innerHTML = lines.map((l, i) => {
+            const cls = i < now ? 'sc-step' : i === now ? 'sc-step sc-step--now' : 'sc-step sc-step--todo';
+            const wait = (i === now && streamPhase < 2 && i === lines.length - 2) ? ' <span class="sc-wait"></span>' : '';
+            return `<li class="${cls}">${esc(l)}${wait}</li>`;
+        }).join('');
+        tickWait();
+    };
+    const tickWait = () => {
+        const w = document.querySelector('#streamSteps .sc-wait');
+        if (w) w.textContent = '· ' + T('waiting {s}s', { s: Math.floor((Date.now() - stepsStart) / 1000) });
     };
 
     /** Collapsible "What I used" row under a finished summary. */
@@ -691,6 +706,7 @@ export function initMainScreen(ui) {
             } else if (/^(Connected|Waiting)/i.test(raw)) {
                 streamPhase = Math.max(streamPhase, 1);
             }
+            if (streamPhase !== lastStepPhase) { lastStepPhase = streamPhase; if (lastContext) renderSteps(lastContext); }
             const phaseTitle = ['', T('Waiting for the model…'), T('Writing the summary…')][streamPhase];
             if (phaseTitle) { if (phaseTitle !== lastPhaseTitle) { lastPhaseTitle = phaseTitle; updateStream(phaseTitle); } }
             else updateStream(raw || T('Working on it…'));

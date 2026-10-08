@@ -3502,5 +3502,14 @@
   },
   "f_your_settings_8f2d": {
     "message": "現在の設定：{summary}"
+  },
+  "f_sent_to_f63d": {
+    "message": "{model} に送信しました"
+  },
+  "f_the_model_d5c1": {
+    "message": "モデル"
+  },
+  "f_waiting_s_f51e": {
+    "message": "待機中 {s} 秒"
   }
 }

@@ -3484,5 +3484,14 @@
   },
   "f_your_settings_8f2d": {
     "message": "내 설정: {summary}"
+  },
+  "f_sent_to_f63d": {
+    "message": "{model}에 전송됨"
+  },
+  "f_the_model_d5c1": {
+    "message": "모델"
+  },
+  "f_waiting_s_f51e": {
+    "message": "대기 중 {s}초"
   }
 }

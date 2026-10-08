@@ -3502,5 +3502,14 @@
   },
   "promptCustomization": {
     "message": "💬 Personalización del prompt"
+  },
+  "f_sent_to_f63d": {
+    "message": "Enviado a {model}"
+  },
+  "f_the_model_d5c1": {
+    "message": "el modelo"
+  },
+  "f_waiting_s_f51e": {
+    "message": "esperando {s} s"
   }
 }

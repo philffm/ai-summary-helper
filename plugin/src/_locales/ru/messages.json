@@ -3502,5 +3502,14 @@
   },
   "settingsFeeds": {
     "message": "Ленты"
+  },
+  "f_sent_to_f63d": {
+    "message": "Отправлено в {model}"
+  },
+  "f_the_model_d5c1": {
+    "message": "модель"
+  },
+  "f_waiting_s_f51e": {
+    "message": "ожидание {s} с"
   }
 }

@@ -3502,5 +3502,14 @@
   },
   "f_your_settings_8f2d": {
     "message": "Deine Einstellungen: {summary}"
+  },
+  "f_sent_to_f63d": {
+    "message": "An {model} gesendet"
+  },
+  "f_the_model_d5c1": {
+    "message": "das Modell"
+  },
+  "f_waiting_s_f51e": {
+    "message": "wartet seit {s} s"
   }
 }

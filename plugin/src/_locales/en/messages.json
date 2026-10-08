@@ -3653,5 +3653,16 @@
   "f_your_settings_8f2d": {
     "message": "Your settings: {summary}",
     "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_sent_to_f63d": {
+    "message": "Sent to {model}",
+    "description": "Placeholders: {model} (keep as is)"
+  },
+  "f_the_model_d5c1": {
+    "message": "the model"
+  },
+  "f_waiting_s_f51e": {
+    "message": "waiting {s}s",
+    "description": "Placeholders: {s} (keep as is)"
   }
 }

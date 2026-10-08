@@ -3502,5 +3502,14 @@
   },
   "promptCustomization": {
     "message": "💬 提示词自定义"
+  },
+  "f_sent_to_f63d": {
+    "message": "已发送给 {model}"
+  },
+  "f_the_model_d5c1": {
+    "message": "模型"
+  },
+  "f_waiting_s_f51e": {
+    "message": "已等待 {s} 秒"
   }
 }

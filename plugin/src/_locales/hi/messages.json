@@ -3502,5 +3502,14 @@
   },
   "promptCustomization": {
     "message": "💬 प्रॉम्प्ट अनुकूलन"
+  },
+  "f_sent_to_f63d": {
+    "message": "{model} को भेजा गया"
+  },
+  "f_the_model_d5c1": {
+    "message": "मॉडल"
+  },
+  "f_waiting_s_f51e": {
+    "message": "प्रतीक्षा {s} सेकंड"
   }
 }

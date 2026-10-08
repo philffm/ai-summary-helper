@@ -91,7 +91,7 @@
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
-  --controls-overlay-height: 180px;
+  --controls-overlay-height: 200px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
 
   /* scrollbar */
@@ -3201,6 +3201,9 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .sc-step { padding: 1px 0 1px 18px; position: relative; }
 .sc-step::before { content: '✓'; position: absolute; left: 2px; color: var(--accent); }
 .sc-step--now::before { content: '…'; }
+.sc-step--todo { opacity: .5; }
+.sc-step--todo::before { content: '○'; }
+.sc-wait { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .sc-model { font-size: 11px; opacity: 0.5; margin-bottom: 4px; }
 .sc-progress { margin-bottom: 6px; }
 .sc-progress-track { height: 4px; background: var(--outline, rgba(100,116,139,0.25)); border-radius: 999px; overflow: hidden; }

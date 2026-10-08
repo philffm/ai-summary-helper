@@ -34,12 +34,18 @@ export function contextRows(ctx = {}) {
     return rows;
 }
 
-/** Status lines for the card while working. */
+/** Status lines for the card while working: read → (highlights) → sent to the model → writing. */
 export function statusLines(ctx = {}) {
     const lines = [T('Read the page · {n} words', { n: (Number(ctx.words) || 0).toLocaleString('en-US') })];
     if (ctx.highlights > 0) lines.push(T('Found your {n} highlights · using as focus', { n: ctx.highlights }));
+    lines.push(T('Sent to {model}', { model: ctx.model || T('the model') }));
     lines.push(T('Writing a {n}-word summary…', { n: Number(ctx.length) || 200 }));
     return lines;
+}
+
+/** Which line is the active one: the "sent" line while we wait for the model, the last one once it writes. */
+export function activeStep(lines, phase) {
+    return phase >= 2 ? lines.length - 1 : lines.length - 2;
 }
 
 export function createComposer(bar, { onChange } = {}) {
