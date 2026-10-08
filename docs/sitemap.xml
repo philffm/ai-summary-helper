@@ -562,6 +562,23 @@
     <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/privacy.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/blog/feeds-recap.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/feeds-recap.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/feeds-recap.html"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/unread-saves.html</loc>
     <lastmod>2026-10-08</lastmod>
     <priority>0.7</priority>
@@ -611,6 +628,23 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/verify-ai-summary.html"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/verify-ai-summary.html"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/verify-ai-summary.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/bring-your-own-key.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/bring-your-own-key.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/pocket-alternative.html</loc>
@@ -798,6 +832,23 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/from-bookmarklet-to-2.html"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/from-bookmarklet-to-2.html"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/from-bookmarklet-to-2.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/highlighting-vs-asking.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/highlighting-vs-asking.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html</loc>

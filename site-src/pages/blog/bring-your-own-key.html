@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Your Key. Your Model. Your Data. — AI Summary Helper</title>
+<meta name="description" content="What bringing your own API key actually means for a browser extension: where your key lives, where page text goes, and what changes if you use a local model.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/analytics.js"></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-blog-->
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Product · October 2026</span>
+      <h1>Your Key. Your Model. Your Data.</h1>
+      <p class="post-sub">Most AI tools put a server between you and the model. Here is what changes when there isn’t one, and what still depends on you.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Every AI summary has the same shape: some text goes out, some text comes back. The question that decides how much you should trust the tool is who sits in the middle. With many products there is a company server there, and your reading passes through it on the way to a model you didn’t pick.</p>
+
+        <h2>What “bring your own key” means here</h2>
+        <p>You create an API key with a provider you already trust, paste it into AI Summary Helper, and choose a model. When you summarize a page, the extension’s background worker sends the text straight to that provider and streams the answer back. There is no AI Summary Helper server in that path for your own key.</p>
+        <p>You can also point it at a model running on your own machine, for example through Ollama. In that case the page text never leaves your computer at all.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../assets/blog/bring-your-own-key.webp" alt="Slide: Bring your own key, with chips for local models, open source and keys stored in your browser" width="800" height="1000" loading="lazy"><figcaption>You choose the provider, or a local model. The key stays in your browser.</figcaption></figure>
+        <h2>Where your key lives</h2>
+        <p>The key is stored in your browser’s local extension storage, not in synced storage. That means it is not copied to other devices through your browser account. The flip side is that you enter it once per browser. Keys are only used to talk to the provider you configured them for.</p>
+
+        <h2>What this does and doesn’t protect</h2>
+        <p>Be precise about this. Bringing your own key removes a middleman. It does not remove the model provider: whatever you send to a hosted model is covered by that provider’s own terms and retention rules, so read them. Only a local model keeps the text entirely on your machine, and local models are usually smaller and slower than hosted ones.</p>
+        <p>The project is open source, so you don’t have to take any of this on trust. The code that handles keys and requests is in the repository, and you can read it.</p>
+
+        <h2>Choosing a setup</h2>
+        <ol>
+          <li><strong>Everyday reading:</strong> a hosted model from a provider whose terms you are comfortable with. Fast, good quality, and you control the key.</li>
+          <li><strong>Sensitive material:</strong> a local model. Slower and less capable, but nothing leaves the machine.</li>
+          <li><strong>Experimenting:</strong> add more than one provider and compare answers on the same article. That is the quickest way to learn which model suits which kind of text.</li>
+        </ol>
+        <p>The point isn’t that one setup is right. It is that the choice stays with you.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is a free Chrome extension.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--include:footer-blog-->
+</body>
+</html>

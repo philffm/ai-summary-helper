@@ -2,8 +2,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>How to Check an AI Summary Against Its Source in 10 Seconds — AI Summary Helper</title>
-<meta name="description" content="An AI summary is only useful if you can trust it. Here is a quick way to check any answer against the page it came from, and what a quote can and cannot prove.">
+<title>Your Key. Your Model. Your Data. — AI Summary Helper</title>
+<meta name="description" content="What bringing your own API key actually means for a browser extension: where your key lives, where page text goes, and what changes if you use a local model.">
 
 <script>
   (function(){
@@ -22,7 +22,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
 <link rel="stylesheet" href="../assets/styles.css">
 <script src="../assets/analytics.js"></script>
-<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/verify-ai-summary.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"></head>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/lang/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/lang/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/lang/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/lang/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/lang/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/lang/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/lang/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/lang/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/lang/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/lang/vi/blog/bring-your-own-key.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"></head>
 <body>
 
 <a href="#main" class="skip-link">Skip to content</a>
@@ -74,38 +74,35 @@
 <main id="main">
   <div class="wrap">
     <div class="post-hero">
-      <span class="blog-date">Guide · October 2026</span>
-      <h1>How to Check an AI Summary Against Its Source in 10 Seconds</h1>
-      <p class="post-sub">A summary you can't verify is a guess with good grammar. Here is the habit that fixes it, and what AI Summary Helper does to make it quick.</p>
+      <span class="blog-date">Product · October 2026</span>
+      <h1>Your Key. Your Model. Your Data.</h1>
+      <p class="post-sub">Most AI tools put a server between you and the model. Here is what changes when there isn’t one, and what still depends on you.</p>
     </div>
   </div>
 
   <section>
     <div class="wrap">
       <div class="prose">
-        <p>In 2011, Sparrow, Liu, and Wegner reported in <em>Science</em> that when people expect to be able to look something up later, they remember the fact less and remember where to find it more. Search engines turned out to be a kind of external memory, and we adjust to it.</p>
-        <p>AI summaries push that adjustment further. You get a clean paragraph, you remember the paragraph, and the page it came from drops out of the picture. That is fine when the summary is right. It is a problem when it isn't, because nothing in a paragraph tells you which sentence is shaky.</p>
+        <p>Every AI summary has the same shape: some text goes out, some text comes back. The question that decides how much you should trust the tool is who sits in the middle. With many products there is a company server there, and your reading passes through it on the way to a model you didn’t pick.</p>
 
-        <h2>The 10-second check</h2>
-        <p>You don't need to re-read the article. You need to look at one passage. The habit is simple:</p>
+        <h2>What “bring your own key” means here</h2>
+        <p>You create an API key with a provider you already trust, paste it into AI Summary Helper, and choose a model. When you summarize a page, the extension’s background worker sends the text straight to that provider and streams the answer back. There is no AI Summary Helper server in that path for your own key.</p>
+        <p>You can also point it at a model running on your own machine, for example through Ollama. In that case the page text never leaves your computer at all.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../assets/blog/bring-your-own-key.webp" alt="Slide: Bring your own key, with chips for local models, open source and keys stored in your browser" width="800" height="1000" loading="lazy"><figcaption>You choose the provider, or a local model. The key stays in your browser.</figcaption></figure>
+        <h2>Where your key lives</h2>
+        <p>The key is stored in your browser’s local extension storage, not in synced storage. That means it is not copied to other devices through your browser account. The flip side is that you enter it once per browser. Keys are only used to talk to the provider you configured them for.</p>
+
+        <h2>What this does and doesn’t protect</h2>
+        <p>Be precise about this. Bringing your own key removes a middleman. It does not remove the model provider: whatever you send to a hosted model is covered by that provider’s own terms and retention rules, so read them. Only a local model keeps the text entirely on your machine, and local models are usually smaller and slower than hosted ones.</p>
+        <p>The project is open source, so you don’t have to take any of this on trust. The code that handles keys and requests is in the repository, and you can read it.</p>
+
+        <h2>Choosing a setup</h2>
         <ol>
-          <li><strong>Pick the claim you would repeat to someone else.</strong> A number, a date, a name, a cause.</li>
-          <li><strong>Find the sentence in the source that says it.</strong> Not a similar sentence. The one that says it.</li>
-          <li><strong>Read the sentence on each side of it.</strong> Context is where summaries most often slip: a "may" that became a "will", a forecast that became a fact.</li>
+          <li><strong>Everyday reading:</strong> a hosted model from a provider whose terms you are comfortable with. Fast, good quality, and you control the key.</li>
+          <li><strong>Sensitive material:</strong> a local model. Slower and less capable, but nothing leaves the machine.</li>
+          <li><strong>Experimenting:</strong> add more than one provider and compare answers on the same article. That is the quickest way to learn which model suits which kind of text.</li>
         </ol>
-        <p>Step two is the slow one when you do it by hand. That is the step worth automating.</p>
-
-        <h2>What AI Summary Helper does about it</h2>
-        <p>When you ask a follow-up question, the answer comes back with the exact passages from the page that support it. The extension compares each quote against the page text and drops any quote it can't find word for word, so a made-up quotation never shows up as evidence. Click a quote and the page scrolls to that passage and highlights it, if the page is open.</p>
-        <p>The suggested follow-up questions work the same way. Each one arrives with a short first answer, typed out while the model writes the longer one, so you can read, check, and stop the moment you are satisfied.</p>
-
-        <figure class="post-figure post-figure--portrait"><img src="../assets/blog/answer-with-receipt.webp" alt="Slide: every answer comes with its receipt, showing a chat answer with a quoted source and a jump-to-passage button" width="800" height="1000" loading="lazy"><figcaption>An answer, the passage it rests on, and one click to the source.</figcaption></figure>
-        <h2>What a quote proves, and what it doesn't</h2>
-        <p>Be careful with this one. A matching quote proves that the passage exists on the page. It does not prove the model read it correctly. The answer around the quote is still the model's own wording, so the check in step three still applies: read the neighbouring sentences.</p>
-        <p>Used that way, the quote is a shortcut to the right paragraph rather than a stamp of approval. That is the point. You spend ten seconds on the part of the article that decides whether the answer holds, not ten minutes on the whole thing.</p>
-
-        <h2>A habit worth keeping</h2>
-        <p>Pick one answer per article and check it. Over a few weeks you learn how your model behaves: which topics it handles well, where it rounds numbers, whether it softens hedges. That calibration is worth more than any single check.</p>
+        <p>The point isn’t that one setup is right. It is that the choice stays with you.</p>
         <div class="post-cta">
           <p>AI Summary Helper is a free Chrome extension.</p>
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>

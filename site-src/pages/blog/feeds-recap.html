@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>One Recap Instead of 40 Feeds — AI Summary Helper</title>
+<meta name="description" content="Following many feeds means many small task switches. Here is how a daily or weekly recap replaces most of them, and why that matters for focus.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/analytics.js"></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-blog-->
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guide · October 2026</span>
+      <h1>One Recap Instead of 40 Feeds</h1>
+      <p class="post-sub">Forty feeds means forty small interruptions before lunch. A recap turns them into one thing you read once.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>In 2009, Sophie Leroy described what she called attention residue: when you switch from one task to another, part of your attention stays with the task you left. In her experiments, people who had been interrupted on one task did worse on the next one, and the effect was stronger when they had to hurry.</p>
+        <p>A feed reader is a machine for switching tasks. Each item is a different topic, a different tone, a different tab. Even if every item is quick, the residue adds up. By the time you are back at your actual work, part of you is still thinking about a pricing change at a hosting provider.</p>
+
+        <h2>Why “inbox zero” for feeds never works</h2>
+        <p>Unread counts turn reading into a chore. The good feeds are good precisely because they publish often, which means the number only goes up. People respond by declaring bankruptcy, marking everything read, and slowly drifting back to the pile.</p>
+
+        <h2>What a recap changes</h2>
+        <p>The Feeds tab in AI Summary Helper lets you subscribe to the RSS feeds you actually follow. Instead of a list of items, you ask for a recap: one piece, daily or weekly, that covers what came in and links to the articles behind it. You read it once, in one sitting, and the rest of the day is not shaped by what the internet published at 10:42.</p>
+        <p>You can also listen to it as a podcast, which is useful when the alternative is not reading at all. The recap runs on whichever provider you have set up with your own key, the same way a summary does.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../assets/blog/feeds-recap.webp" alt="Slide: Your feeds, in one recap, with a chat showing a weekly recap and links to the articles behind it" width="800" height="1000" loading="lazy"><figcaption>A recap replaces the unread count: one piece to read, with links to every source.</figcaption></figure>
+        <h2>Setting it up so it helps</h2>
+        <ol>
+          <li><strong>Cut the list first.</strong> Keep the feeds you would miss. Recaps get better when the input is better.</li>
+          <li><strong>Pick one time of day.</strong> A recap read at a fixed time replaces the habit of checking. A recap you check hourly is just a slower feed.</li>
+          <li><strong>Follow the links you care about.</strong> Every item in the recap points to its source, so a summary is a doorway rather than a replacement for reading.</li>
+        </ol>
+        <p>The aim is not to read less out of laziness. It is to decide once, deliberately, what gets your attention, instead of forty times by accident.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is a free Chrome extension.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--include:footer-blog-->
+</body>
+</html>

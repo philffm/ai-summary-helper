@@ -644,3 +644,9 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 @media (forced-colors: active){
   .hero-switch-btn.active, .persona-btn.active, .tier-toggle button.active{ outline:2px solid Highlight; }
 }
+
+/* blog figures */
+.post-figure{ margin:36px 0; }
+.post-figure img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border); background:var(--surface,transparent); }
+.post-figure--portrait img{ max-width:400px; margin:0 auto; }
+.post-figure figcaption{ margin-top:12px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
