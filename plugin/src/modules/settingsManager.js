@@ -10,6 +10,7 @@ import { updateModelIdentifierUI } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { escapeHtml } from './textUtils.js';
+import { T, TN } from './feedI18n.js';
 
 export async function initSettingsManager(ui) {
     const storageData = await StorageManager.getAll();
@@ -73,7 +74,7 @@ function flashSaveIndicator() {
     const origBg = saveButton.style.background;
     const origColor = saveButton.style.color;
 
-    saveButton.textContent = 'Saved! ✓';
+    saveButton.textContent = T('Saved! ✓');
     saveButton.style.background = 'var(--success, #2ecc40)';
     saveButton.style.color = '#fff';
     saveButton.disabled = true;
@@ -95,44 +96,45 @@ const autoSave = async (key, value) => {
 // Shows only when the Ollama provider is selected. Modern Ollama rejects
 // cross-origin requests from web pages / extensions unless OLLAMA_ORIGINS
 // is configured — this walks the user through fixing that on their platform.
-const OLLAMA_TUTORIALS = {
+const ollamaTutorials = () => ({
     macos: {
-        title: 'Set up Ollama on macOS',
+        title: T('Set up Ollama on macOS'),
         steps: [
-            { title: 'Quit Ollama', body: 'Click the Ollama icon in the menu bar (top-right) and choose <b>Quit Ollama</b>.' },
-            { title: 'Open Terminal', body: 'Open the <b>Terminal</b> app on your Mac.' },
-            { title: 'Allow all origins (app)', body: 'Run this command so Ollama stays configured after restarting the Mac app:',
+            { title: T('Quit Ollama'), body: T('Click the Ollama icon in the menu bar (top-right) and choose <b>Quit Ollama</b>.') },
+            { title: T('Open Terminal'), body: T('Open the <b>Terminal</b> app on your Mac.') },
+            { title: T('Allow all origins (app)'), body: T('Run this command so Ollama stays configured after restarting the Mac app:'),
               code: 'launchctl setenv OLLAMA_ORIGINS "*"' },
-            { title: 'Restart Ollama', body: 'Launch Ollama again from your Applications folder or Spotlight.' },
-            { title: 'Quick test (terminal)', body: 'Prefer the terminal? Run Ollama directly in a foreground window:',
+            { title: T('Restart Ollama'), body: T('Launch Ollama again from your Applications folder or Spotlight.') },
+            { title: T('Quick test (terminal)'), body: T('Prefer the terminal? Run Ollama directly in a foreground window:'),
               code: 'OLLAMA_ORIGINS="*" ollama serve' }
         ],
-        note: 'Once Ollama restarts, the 403 Forbidden error from this extension is resolved.'
+        note: T('Once Ollama restarts, the 403 Forbidden error from this extension is resolved.')
     },
     windows: {
-        title: 'Set up Ollama on Windows',
+        title: T('Set up Ollama on Windows'),
         steps: [
-            { title: 'Quit Ollama', body: 'Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>.' },
-            { title: 'Open Command Prompt', body: 'Press <b>Win + R</b>, type <code>cmd</code> and press Enter.' },
-            { title: 'Allow all origins', body: 'Run this so the running server accepts requests from any origin:',
+            { title: T('Quit Ollama'), body: T('Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>.') },
+            { title: T('Open Command Prompt'), body: T('Press <b>Win + R</b>, type <code>cmd</code> and press Enter.') },
+            { title: T('Allow all origins'), body: T('Run this so the running server accepts requests from any origin:'),
               code: 'set OLLAMA_ORIGINS=*' },
-            { title: 'Start Ollama', body: 'Run Ollama as a foreground server from the same window:',
+            { title: T('Start Ollama'), body: T('Run Ollama as a foreground server from the same window:'),
               code: 'ollama serve' },
-            { title: 'Persist (optional)', body: 'For a permanent fix, set <code>OLLAMA_ORIGINS=*</code> as a system environment variable under <i>System Properties → Environment Variables</i> and restart Ollama.' }
+            { title: T('Persist (optional)'), body: T('For a permanent fix, set <code>OLLAMA_ORIGINS=*</code> as a system environment variable under <i>System Properties → Environment Variables</i> and restart Ollama.') }
         ],
-        note: 'Once Ollama restarts, the 403 Forbidden error from your extension is fixed.'
+        note: T('Once Ollama restarts, the 403 Forbidden error from your extension is fixed.')
     },
     linux: {
-        title: 'Set up Ollama on Linux',
+        title: T('Set up Ollama on Linux'),
         steps: [
-            { title: 'Stop Ollama', body: 'If running as a systemd service, stop it with <code>sudo systemctl stop ollama</code>.' },
-            { title: 'Allow all origins', body: 'Start Ollama with the global wildcard so any origin can connect:',
+            { title: T('Stop Ollama'), body: T('If running as a systemd service, stop it with <code>sudo systemctl stop ollama</code>.') },
+            { title: T('Allow all origins'), body: T('Start Ollama with the global wildcard so any origin can connect:'),
               code: 'OLLAMA_ORIGINS="*" ollama serve' },
-            { title: 'Persist (optional)', body: 'For a permanent config via systemd, add <code>Environment="OLLAMA_ORIGINS=*"</code> under the service unit (e.g. <code>/etc/systemd/system/ollama.service</code>), then <code>systemctl daemon-reload</code> and restart.' }
+            { title: T('Persist (optional)'), body: T('For a permanent config via systemd, add <code>Environment="OLLAMA_ORIGINS=*"</code> under the service unit (e.g. <code>/etc/systemd/system/ollama.service</code>), then <code>systemctl daemon-reload</code> and restart.') }
         ],
-        note: 'Once Ollama restarts, the 403 Forbidden error from your extension is fixed.'
+        note: T('Once Ollama restarts, the 403 Forbidden error from your extension is fixed.')
     }
-};
+});
+
 
 function detectOS() {
     const ua = navigator.userAgent.toLowerCase();
@@ -151,7 +153,7 @@ function renderOllamaTutorial(serviceId) {
     if (!isOllama) return;
 
     const platform = detectOS();
-    const t = OLLAMA_TUTORIALS[platform] || OLLAMA_TUTORIALS.macos;
+    const t = ollamaTutorials()[platform] || ollamaTutorials().macos;
 
     const stepsHtml = t.steps.map((step, i) => `
         <div class="ollama-step">
@@ -162,7 +164,7 @@ function renderOllamaTutorial(serviceId) {
                 ${step.code ? `
                 <div class="ollama-code-wrap">
                     <pre class="ollama-code">${escapeHtml(step.code)}</pre>
-                    <button type="button" class="button-secondary ollama-copy-btn" data-copy="${escapeHtml(step.code)}">📋 Copy</button>
+                    <button type="button" class="button-secondary ollama-copy-btn" data-copy="${escapeHtml(step.code)}">📋 ${T('Copy')}</button>
                 </div>` : ''}
             </div>
         </div>
@@ -178,8 +180,8 @@ function renderOllamaTutorial(serviceId) {
         copyBtn.addEventListener('click', () => {
             const command = copyBtn.dataset.copy;
             navigator.clipboard.writeText(command).then(() => {
-                copyBtn.textContent = 'Copied! ✓';
-                setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 1500);
+                copyBtn.textContent = T('Copied! ✓');
+                setTimeout(() => { copyBtn.textContent = '📋 ' + T('Copy'); }, 1500);
             }).catch(() => {});
         });
     });
@@ -262,7 +264,7 @@ async function initModelSettings(storageData) {
                         const option = document.createElement('option');
                         option.value = model.id;
                         // Example output: "Gemini 3.8 Flash (Context: 1M)"
-                        option.textContent = `${model.name} (Context: ${Math.round(model.context / 1000)}k)`;
+                        option.textContent = `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})`;
                         cloudModelSelect.appendChild(option);
                     });
 
@@ -274,7 +276,7 @@ async function initModelSettings(storageData) {
             })
             .catch(err => {
                 console.error("Failed to populate dynamic openrouter roster:", err);
-                cloudModelSelect.innerHTML = '<option value="google/gemini-3.8-flash">Gemini 3.8 Flash (Fallback)</option>';
+                cloudModelSelect.innerHTML = '<option value="google/gemini-3.8-flash">Gemini 3.8 Flash (' + escapeHtml(T('Fallback')) + ')</option>';
             });
 
         // Retain auto-save trigger on user selection change
@@ -301,9 +303,9 @@ async function initModelSettings(storageData) {
 
     // Initialize display state of active token if it exists
     if (storageData[SK.licenseKey]) {
-        refreshLicenseUIStatus('Pro Active ✓', true);
+        refreshLicenseUIStatus(T('Pro Active ✓'), true);
     } else {
-        refreshLicenseUIStatus('Free Trial Mode');
+        refreshLicenseUIStatus(T('Free Trial Mode'));
     }
 
     // Handshake execution with api.byphil.eu
@@ -311,12 +313,12 @@ async function initModelSettings(storageData) {
         verifyLicenseBtn.addEventListener('click', async () => {
             const inputKey = licenseKeyInput.value.trim();
             if (!inputKey) {
-                alert('Please enter a license key.');
+                alert(T('Please enter a license key.'));
                 return;
             }
 
             verifyLicenseBtn.disabled = true;
-            verifyLicenseBtn.textContent = 'Verifying...';
+            verifyLicenseBtn.textContent = T('Verifying...');
 
             try {
                 const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/license/verify`, {
@@ -329,18 +331,18 @@ async function initModelSettings(storageData) {
 
                 if (response.ok && resData.valid && resData.status === 'active') {
                     await StorageManager.set({ [SK.licenseKey]: inputKey });
-                    refreshLicenseUIStatus('Pro Active ✓', true);
+                    refreshLicenseUIStatus(T('Pro Active ✓'), true);
                     flashSaveIndicator();
                 } else {
-                    alert('Invalid or deactivated license key. Check your subscription parameters.');
-                    refreshLicenseUIStatus('Invalid Key');
+                    alert(T('Invalid or deactivated license key. Check your subscription parameters.'));
+                    refreshLicenseUIStatus(T('Invalid Key'));
                 }
             } catch (err) {
                 console.error('License authorization handshake broke down:', err);
-                alert('Infrastructural link execution failed. Ensure network connection to gateway.');
+                alert(T('Infrastructural link execution failed. Ensure network connection to gateway.'));
             } finally {
                 verifyLicenseBtn.disabled = false;
-                verifyLicenseBtn.textContent = 'Activate';
+                verifyLicenseBtn.textContent = T('Activate');
             }
         });
     }
@@ -369,7 +371,7 @@ async function initModelSettings(storageData) {
         const apiKeyLink = document.getElementById('apiKeyLink');
         if (apiKeyLink) {
             apiKeyLink.innerHTML = service?.apiKeyDocumentationUrl
-                ? `(<a href="${service.apiKeyDocumentationUrl}" target="_blank">Get Key</a>)`
+                ? `(<a href="${service.apiKeyDocumentationUrl}" target="_blank">${escapeHtml(T('Get Key'))}</a>)`
                 : '';
         }
 
@@ -437,7 +439,7 @@ function initGeneralSettings(storageData) {
             // visible for people who already picked it, so the control isn't blank.
             const legacy = document.createElement('option');
             legacy.value = savedUiLang;
-            legacy.textContent = ({ ar: 'العربية', it: 'Italiano', ru: 'Русский', bn: 'বাংলা' }[savedUiLang] || savedUiLang) + ' (no longer updated)';
+            legacy.textContent = ({ ar: 'العربية', it: 'Italiano', ru: 'Русский', bn: 'বাংলা' }[savedUiLang] || savedUiLang) + ' (' + T('no longer updated') + ')';
             uiLangSelect.appendChild(legacy);
         }
         uiLangSelect.value = savedUiLang;
@@ -549,24 +551,25 @@ function initBookmarkletGenerator() {
         const token = data[SK.token];
 
         if (!token) {
-            alert('⚠️ You must be logged into byphil Cloud first to generate a bookmarklet.');
+            alert(T('⚠️ You must be logged into byphil Cloud first to generate a bookmarklet.'));
             return;
         }
 
         // Minified payload with the token injected. The token is embedded
         // directly so the bookmarklet can authenticate without storage access.
+        const js = (str) => JSON.stringify(String(str)).replace(/</g, '\\u003c');
         const rawJs = `
             (async function(){
                 const t='${token}';
                 const d=document;
                 const ui=d.createElement('div');
                 ui.style.cssText='position:fixed;top:20px;right:20px;width:350px;max-height:80vh;overflow-y:auto;background:#fff;color:#171717;z-index:999999;padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.2);font-family:sans-serif;font-size:14px;line-height:1.5;';
-                ui.innerHTML='<b>✨ AI Summary Helper</b><br><span id="as-st">Reading page...</span><br><button id="as-cl" style="margin-top:10px;padding:4px 8px;border:none;background:#eee;border-radius:4px;cursor:pointer;">Close</button>';
+                ui.innerHTML='<b>✨ AI Summary Helper</b><br><span id="as-st">'+${js(escapeHtml(T('Reading page...')))}+'</span><br><button id="as-cl" style="margin-top:10px;padding:4px 8px;border:none;background:#eee;border-radius:4px;cursor:pointer;">'+${js(escapeHtml(T('Close')))}+'</button>';
                 d.body.appendChild(ui);
                 d.getElementById('as-cl').onclick=()=>ui.remove();
                 try{
                     const text=d.body.innerText.substring(0,15000);
-                    d.getElementById('as-st').innerText='Summarizing...';
+                    d.getElementById('as-st').innerText=${js(T('Summarizing...'))};
                     const r=await fetch('https://api.byphil.eu/v1/projects/ai_summary_helper/chat',{
                         method:'POST',
                         headers:{'Content-Type':'application/json','Authorization':'Bearer '+t},
@@ -578,13 +581,13 @@ function initBookmarkletGenerator() {
                             ]
                         })
                     });
-                    if(!r.ok) throw new Error(r.status===401?'Session expired. Generate a new bookmarklet.':'API Error: '+r.status);
+                    if(!r.ok) throw new Error(r.status===401?${js(T('Session expired. Generate a new bookmarklet.'))}:${js(T('API Error:'))}+' '+r.status);
                     const j=await r.json();
-                    const s=j.result?.choices?.[0]?.message?.content||j.choices?.[0]?.message?.content||j.summary||'No summary returned.';
+                    const s=j.result?.choices?.[0]?.message?.content||j.choices?.[0]?.message?.content||j.summary||${js(T('No summary returned.'))};
                     const html=s.replace(/\\*\\*(.*?)\\*\\*/g,'<b>$1</b>').replace(/\\n/g,'<br>');
                     d.getElementById('as-st').innerHTML='<div style="margin-top:8px;padding-top:8px;border-top:1px solid #eee;">'+html+'</div>';
                 }catch(e){
-                    d.getElementById('as-st').innerText='❌ Error: '+e.message;
+                    d.getElementById('as-st').innerText='❌ '+${js(T('Error:'))}+' '+e.message;
                 }
             })();
         `;
@@ -659,19 +662,19 @@ function initLocalSendSettings(storageData) {
     const renderDeviceList = (type, container) => {
         const list = devices.filter(d => d.type === type);
         if (list.length === 0) {
-            container.innerHTML = `<div style="font-size:11px;color:var(--text-muted);">No devices added yet.</div>`;
+            container.innerHTML = `<div style="font-size:11px;color:var(--text-muted);">${T('No devices added yet.')}</div>`;
             return;
         }
         container.innerHTML = list.map(d => {
             const isActive = activeDeviceIds[type] === d.id || (!activeDeviceIds[type] && list[0].id === d.id);
             return `
                 <div class="device-row" data-id="${d.id}" style="display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--outline);border-radius:6px;background:var(--glass-input);">
-                    <button type="button" class="device-active-btn" data-type="${type}" title="${isActive ? 'Active send target' : 'Set as active send target'}" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;line-height:1;color:${isActive ? '#f5b301' : 'var(--text-muted)'};">${isActive ? '★' : '☆'}</button>
+                    <button type="button" class="device-active-btn" data-type="${type}" title="${escapeHtml(isActive ? T('Active send target') : T('Set as active send target'))}" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;line-height:1;color:${isActive ? '#f5b301' : 'var(--text-muted)'};">${isActive ? '★' : '☆'}</button>
                     <div style="flex:1;min-width:0;">
-                        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.label || (type === 'kindle' ? 'Kindle' : 'Device')}</div>
+                        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.label || (type === 'kindle' ? 'Kindle' : T('Device'))}</div>
                         <div style="font-size:11px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${addressLabel(d)}</div>
                     </div>
-                    <button type="button" class="device-delete-btn" title="Remove device" style="background:none;border:none;cursor:pointer;font-size:13px;opacity:0.6;padding:0;line-height:1;">🗑</button>
+                    <button type="button" class="device-delete-btn" title="${escapeHtml(T('Remove device'))}" style="background:none;border:none;cursor:pointer;font-size:13px;opacity:0.6;padding:0;line-height:1;">🗑</button>
                 </div>`;
         }).join('');
 
@@ -696,7 +699,7 @@ function initLocalSendSettings(storageData) {
 
     const addDevice = (type, label, address) => {
         const id = `device_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-        devices.push({ id, label: label || (type === 'kindle' ? 'Kindle' : 'Device'), type, addresses: [address] });
+        devices.push({ id, label: label || (type === 'kindle' ? 'Kindle' : T('Device')), type, addresses: [address] });
         // First device of its type becomes active automatically.
         if (!activeDeviceIds[type]) activeDeviceIds[type] = id;
         persistDevices();
@@ -760,10 +763,10 @@ function initLocalSendSettings(storageData) {
     if (scanBtn) {
         scanBtn.addEventListener('click', async () => {
             scanBtn.disabled = true;
-            scanBtn.textContent = 'Scanning...';
+            scanBtn.textContent = T('Scanning...');
 
             if (statusLabel) {
-                statusLabel.textContent = 'Searching LAN for LocalSend receiver...';
+                statusLabel.textContent = T('Searching LAN for LocalSend receiver...');
                 statusLabel.style.color = 'var(--text-muted)';
             }
 
@@ -772,22 +775,22 @@ function initLocalSendSettings(storageData) {
                 if (foundIp) {
                     if (newLocalSendIp) newLocalSendIp.value = foundIp;
                     if (statusLabel) {
-                        statusLabel.textContent = `Found device at ${foundIp} — click Add to save it ✓`;
+                        statusLabel.textContent = T('Found device at {ip} — click Add to save it ✓', { ip: foundIp });
                         statusLabel.style.color = '#2ecc40';
                     }
                 } else if (statusLabel) {
-                    statusLabel.textContent = 'No active receiver found.';
+                    statusLabel.textContent = T('No active receiver found.');
                     statusLabel.style.color = 'var(--text-muted)';
                 }
             } catch (err) {
                 console.error('LocalSend scan failed:', err);
                 if (statusLabel) {
-                    statusLabel.textContent = 'Scan failed. Enter IP manually.';
+                    statusLabel.textContent = T('Scan failed. Enter IP manually.');
                     statusLabel.style.color = 'var(--danger, #dc2626)';
                 }
             } finally {
                 scanBtn.disabled = false;
-                scanBtn.textContent = 'Auto-Detect';
+                scanBtn.textContent = T('Auto-Detect');
             }
         });
     }
@@ -908,7 +911,7 @@ function initLocalIntelligence() {
     btn.addEventListener('click', async () => {
         btn.disabled = true;
         const originalLabel = btn.textContent;
-        btn.textContent = '🧹 Analyzing tags…';
+        btn.textContent = '🧹 ' + T('Analyzing tags…');
         if (resultEl) resultEl.style.display = 'none';
 
         try {
@@ -917,7 +920,7 @@ function initLocalIntelligence() {
             const articles = await StorageManager.getArticlesIndex({ includeArchived: true });
 
             if (articles.length === 0) {
-                if (resultEl) { resultEl.textContent = 'No articles saved yet.'; resultEl.style.display = 'block'; }
+                if (resultEl) { resultEl.textContent = T('No articles saved yet.'); resultEl.style.display = 'block'; }
                 return;
             }
 
@@ -941,13 +944,13 @@ function initLocalIntelligence() {
 
             if (resultEl) {
                 resultEl.textContent = changedArticles > 0
-                    ? `✓ Updated ${changedArticles} article${changedArticles === 1 ? '' : 's'}, merged ${tagsMerged} duplicate tag${tagsMerged === 1 ? '' : 's'}.`
-                    : '✓ Tags already look consistent — nothing to merge.';
+                    ? T('✓ Updated {a}, merged {b}.', { a: TN(changedArticles, '{n} article', '{n} articles'), b: TN(tagsMerged, '{n} duplicate tag', '{n} duplicate tags') })
+                    : T('✓ Tags already look consistent — nothing to merge.');
                 resultEl.style.display = 'block';
             }
         } catch (err) {
             console.error('[AISH] Tag cleanup failed:', err);
-            if (resultEl) { resultEl.textContent = 'Something went wrong — please try again.'; resultEl.style.display = 'block'; }
+            if (resultEl) { resultEl.textContent = T('Something went wrong — please try again.'); resultEl.style.display = 'block'; }
         } finally {
             btn.disabled = false;
             btn.textContent = originalLabel;
@@ -963,9 +966,9 @@ function initDangerZone() {
     if (btnSettings) {
         btnSettings.addEventListener('click', async () => {
             const yes = await confirmDestructive({
-                title: 'Delete all settings?',
-                body: 'This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload.',
-                confirmLabel: 'Delete settings'
+                title: T('Delete all settings?'),
+                body: T('This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload.'),
+                confirmLabel: T('Delete settings')
             });
             if (!yes) return;
             await chrome.storage.sync.clear();
@@ -977,10 +980,10 @@ function initDangerZone() {
         btnHistory.addEventListener('click', async () => {
             const count = (await StorageManager.getArticlesIndex({ includeArchived: true }).catch(() => [])).length;
             const yes = await confirmDestructive({
-                title: 'Delete all history?',
-                body: `This permanently removes ${count ? count + ' summaries' : 'all summaries'} and the archive from this device. This cannot be undone.`,
-                confirmLabel: 'Delete history',
-                extraLabel: 'Export backup first',
+                title: T('Delete all history?'),
+                body: T('This permanently removes {what} and the archive from this device. This cannot be undone.', { what: count ? TN(count, '{n} summary', '{n} summaries') : T('all summaries') }),
+                confirmLabel: T('Delete history'),
+                extraLabel: T('Export backup first'),
                 onExtra: () => { document.getElementById('exportSettingsButton')?.click(); }
             });
             if (!yes) return;
@@ -988,8 +991,8 @@ function initDangerZone() {
             // a plain articlesIndex reset would leave every record
             // orphaned in storage.
             await StorageManager.clearAllArticles();
-            btnHistory.textContent = 'History deleted ✓';
-            setTimeout(() => { btnHistory.textContent = 'Delete history…'; }, 2500);
+            btnHistory.textContent = T('History deleted ✓');
+            setTimeout(() => { btnHistory.textContent = T('Delete history…'); }, 2500);
         });
     }
 }
@@ -1011,21 +1014,21 @@ function initBackupRestore() {
             border-radius:var(--radius-md);
         `;
         choicePanel.innerHTML = `
-            <p style="font-size:11px;font-weight:600;color:var(--text-secondary);margin:0 0 4px;">What to export?</p>
-            <button type="button" id="exportSettingsOnly" class="button-secondary" style="font-size:12px;justify-content:flex-start;">⚙️ Settings only</button>
-            <button type="button" id="exportFullBackup"   class="button-secondary" style="font-size:12px;justify-content:flex-start;">📚 Settings + Article History</button>
+            <p style="font-size:11px;font-weight:600;color:var(--text-secondary);margin:0 0 4px;">${T('What to export?')}</p>
+            <button type="button" id="exportSettingsOnly" class="button-secondary" style="font-size:12px;justify-content:flex-start;">⚙️ ${T('Settings only')}</button>
+            <button type="button" id="exportFullBackup"   class="button-secondary" style="font-size:12px;justify-content:flex-start;">📚 ${T('Settings + Article History')}</button>
         `;
         btnExport.parentElement.insertAdjacentElement('afterend', choicePanel);
 
         btnExport.addEventListener('click', () => {
             const isOpen = choicePanel.style.display === 'flex';
             choicePanel.style.display = isOpen ? 'none' : 'flex';
-            btnExport.textContent = isOpen ? '📤 Export' : '📤 Export ▲';
+            btnExport.textContent = isOpen ? '📤 ' + T('Export') : '📤 ' + T('Export') + ' ▲';
         });
 
         const doExport = async (includeContent) => {
             choicePanel.style.display = 'none';
-            btnExport.textContent = '📤 Export';
+            btnExport.textContent = '📤 ' + T('Export');
             try {
                 // Fetch cleanly separated sync and local data
                 const [syncData, localData] = await Promise.all([
@@ -1070,12 +1073,12 @@ function initBackupRestore() {
 
                 const origText = btnExport.textContent;
                 btnExport.textContent = includeContent
-                    ? `Exported! ✓ (${backup._article_count} articles)`
-                    : 'Exported! ✓';
+                    ? T('Exported! ✓ ({n} articles)', { n: backup._article_count })
+                    : T('Exported! ✓');
                 setTimeout(() => btnExport.textContent = origText, 2500);
             } catch (err) {
                 console.error('Export failed:', err);
-                alert('Failed to export backup.');
+                alert(T('Failed to export backup.'));
             }
         };
 
@@ -1137,18 +1140,18 @@ function initBackupRestore() {
                         }
 
                         const count = (local?.[SK.articlesIndex] || local?.articles || []).length;
-                        alert(`Backup restored successfully!\n${count} articles imported.\n\nThe extension will now reload.`);
+                        alert(T('Backup restored successfully!\n{n} articles imported.\n\nThe extension will now reload.', { n: count }));
                     } else {
                         // Legacy v1 backup — settings only
                         // Safe to use StorageManager.set() since it routes automatically
                         await StorageManager.set(renameKeys(importedData));
-                        alert('Settings imported successfully! The extension will now reload.');
+                        alert(T('Settings imported successfully! The extension will now reload.'));
                     }
 
                     chrome.runtime.reload();
                 } catch (err) {
                     console.error('Import failed:', err);
-                    alert('Invalid backup file. Please select a valid AI Summary Helper export.');
+                    alert(T('Invalid backup file. Please select a valid AI Summary Helper export.'));
                 } finally {
                     fileInput.value = '';
                 }

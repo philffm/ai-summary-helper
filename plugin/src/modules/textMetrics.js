@@ -6,6 +6,7 @@
 // and cached in memory for the life of the page/popup.
 
 import { stripHtml, tokenize, countSyllables, NEGATORS } from './textUtils.js';
+import { T } from './feedI18n.js';
 
 let afinnCache = null;
 let afinnLoadPromise = null;
@@ -44,10 +45,10 @@ export function readingLevel(html) {
     const grade = 0.39 * wordsPerSentence + 11.8 * syllablesPerWord - 15.59;
 
     let label;
-    if (ease >= 80) label = 'Easy';
-    else if (ease >= 60) label = 'Standard';
-    else if (ease >= 40) label = 'Fairly hard';
-    else label = 'Hard';
+    if (ease >= 80) label = T('Easy');
+    else if (ease >= 60) label = T('Standard');
+    else if (ease >= 40) label = T('Fairly hard');
+    else label = T('Hard');
 
     return {
         ease: Math.round(Math.max(0, Math.min(100, ease))),

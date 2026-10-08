@@ -13,7 +13,7 @@
 
 import { cosineSim } from './localSearch.js';
 import { sentiment as scoreSentiment } from './textMetrics.js';
-import { T } from './feedI18n.js';
+import { T, TN } from './feedI18n.js';
 import { markHighlights, renderAnnotationsHtml } from './annotationExporter.js';
 import { escapeHtml } from './textUtils.js';
 
@@ -25,16 +25,16 @@ import { escapeHtml } from './textUtils.js';
  */
 export function buildMagazineArticle(articles, { title, includeContent = false, intro = '' } = {}) {
     const ordered = [...articles].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    const magazineTitle = title || `Reading bundle — ${new Date().toLocaleDateString()} (${ordered.length} article${ordered.length === 1 ? '' : 's'})`;
+    const magazineTitle = title || T('Reading bundle — {date} ({count})', { date: new Date().toLocaleDateString(), count: TN(ordered.length, '{n} article', '{n} articles') });
 
     const toc = ordered.map((a, i) =>
-        `<li><a href="#aish-mag-${i}">${escapeHtml(a.title || 'Untitled')}</a></li>`
+        `<li><a href="#aish-mag-${i}">${escapeHtml(a.title || T('Untitled'))}</a></li>`
     ).join('');
 
     const sections = ordered.map((a, i) => {
         const domain = a.url ? (() => { try { return new URL(a.url).hostname; } catch { return ''; } })() : '';
         return `
-          <h2 id="aish-mag-${i}">${escapeHtml(a.title || 'Untitled')}</h2>
+          <h2 id="aish-mag-${i}">${escapeHtml(a.title || T('Untitled'))}</h2>
           <p style="color:#666;font-style:italic;">${a.url ? `<a href="${a.url}">${domain}</a> &middot; ` : ''}${new Date(a.timestamp).toLocaleDateString()}</p>
           <div>${markHighlights(a.summary || '', a.annotations)}</div>
           ${includeContent && a.content ? `<h3>${escapeHtml(T('Full article'))}</h3><div>${markHighlights(a.content, a.annotations)}</div>` : ''}
@@ -46,7 +46,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
     const content = `
       <div>
         <h1>${escapeHtml(magazineTitle)}</h1>
-        <p>${ordered.length} article${ordered.length === 1 ? '' : 's'}, curated from your AI Summary Helper archive.</p>
+        <p>${escapeHtml(T('{count}, curated from your AI Summary Helper archive.', { count: TN(ordered.length, '{n} article', '{n} articles') }))}</p>
         ${intro ? `<blockquote class="aish-intro" style="border-left:4px solid #c9a227;margin:14px 0;padding:2px 0 2px 12px;font-style:italic;">${escapeHtml(intro)}</blockquote>` : ''}
         <ol>${toc}</ol>
         <hr />
@@ -57,7 +57,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
     return {
         title: magazineTitle,
         content,
-        summary: `${intro ? intro + ' ' : ''}A bundle of ${ordered.length} article${ordered.length === 1 ? '' : 's'}: ${ordered.map(a => a.title).filter(Boolean).slice(0, 5).join(', ')}${ordered.length > 5 ? '…' : ''}`,
+        summary: `${intro ? intro + ' ' : ''}${T('A bundle of {count}: {titles}', { count: TN(ordered.length, '{n} article', '{n} articles'), titles: ordered.map(a => a.title).filter(Boolean).slice(0, 5).join(', ') + (ordered.length > 5 ? '…' : '') })}`,
         url: '',
         timestamp: new Date().toISOString(),
         tags: Array.from(new Set(ordered.flatMap(a => a.tags || []))).slice(0, 10),

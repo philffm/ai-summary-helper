@@ -36,6 +36,7 @@
 //   similarity links.
 
 import { cosineSim } from './localSearch.js';
+import { T, TN } from './feedI18n.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 
 let d3LoadPromise = null;
@@ -146,7 +147,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         });
         if (articleTags.length === 0) return;
 
-        const title = article.title || article.content?.split('\n')[0] || 'Untitled';
+        const title = article.title || article.content?.split('\n')[0] || T('Untitled');
         const id = 'article-' + (article.timestamp || Math.random());
         const articleNode = { id, label: title, group: 'article', data: article };
         nodeById.set(id, articleNode);
@@ -179,7 +180,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
         const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds);
         if (best) {
-            const title = article.title || article.content?.split('\n')[0] || 'Untitled';
+            const title = article.title || article.content?.split('\n')[0] || T('Untitled');
             const orphanNode = { id, label: title, group: 'article', data: article };
             nodeById.set(id, orphanNode);
             nodes.push(orphanNode);
@@ -276,7 +277,7 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     return loadD3()
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
         .catch(() => {
-            container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">D3 library failed to load.</div>';
+            container.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('D3 library failed to load.')}</div>`;
         });
 }
 
@@ -449,7 +450,7 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     if (typeof d3 === 'undefined') {
-        container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">D3 library failed to load.</div>';
+        container.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('D3 library failed to load.')}</div>`;
         return;
     }
 
@@ -777,15 +778,15 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     // local state).
     const parts = [];
     if (capped) {
-        parts.push('Showing top tags (archive is large)');
+        parts.push(T('Showing top tags (archive is large)'));
     } else if (currentlyFiltered && hiddenTagCount > 0) {
-        parts.push(`${hiddenTagCount} rarely-used tag${hiddenTagCount === 1 ? '' : 's'} hidden`);
+        parts.push(TN(hiddenTagCount, '{n} rarely-used tag hidden', '{n} rarely-used tags hidden'));
     }
     if (neglectedCount > 0) {
-        parts.push(`${neglectedCount} unopened 30d+`);
+        parts.push(T('{n} unopened 30d+', { n: neglectedCount }));
     }
     if (stillOrphanCount > 0) {
-        parts.push(`${stillOrphanCount} article${stillOrphanCount === 1 ? '' : 's'} not shown`);
+        parts.push(TN(stillOrphanCount, '{n} article not shown', '{n} articles not shown'));
     }
     if (parts.length && !container.__archiveGraphStatsDismissed) {
         const statsRow = document.createElement('div');
@@ -807,8 +808,8 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
         const dismissBtn = document.createElement('button');
         dismissBtn.type = 'button';
         dismissBtn.textContent = '✕';
-        dismissBtn.title = 'Dismiss';
-        dismissBtn.setAttribute('aria-label', 'Dismiss graph stats');
+        dismissBtn.title = T('Dismiss');
+        dismissBtn.setAttribute('aria-label', T('Dismiss graph stats'));
         dismissBtn.style.cssText = `
             border: none;
             background: transparent;
@@ -841,12 +842,12 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
 
     const wellBtn = document.createElement('button');
     wellBtn.type = 'button';
-    wellBtn.textContent = 'Well-connected';
+    wellBtn.textContent = T('Well-connected');
     wellBtn.className = currentlyFiltered ? 'active' : '';
 
     const allBtn = document.createElement('button');
     allBtn.type = 'button';
-    allBtn.textContent = 'All';
+    allBtn.textContent = T('All');
     allBtn.className = currentlyFiltered ? '' : 'active';
 
     wellBtn.addEventListener('click', () => { if (!currentlyFiltered) onToggleDegree(); });
@@ -888,10 +889,10 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     `;
     legendRow.innerHTML = `
         <span style="display:inline-flex;align-items:center;gap:4px;">
-            <span style="display:inline-block;width:14px;height:0;border-top:2px solid var(--outline);"></span> shared tag
+            <span style="display:inline-block;width:14px;height:0;border-top:2px solid var(--outline);"></span> ${T('shared tag')}
         </span>
         <span style="display:inline-flex;align-items:center;gap:4px;">
-            <span style="display:inline-block;width:14px;height:0;border-top:1px dashed var(--text-muted);"></span> similar content
+            <span style="display:inline-block;width:14px;height:0;border-top:1px dashed var(--text-muted);"></span> ${T('similar content')}
         </span>
     `;
     rightBar.appendChild(legendRow);
@@ -933,12 +934,12 @@ async function renderPreviewHighlights(card, article) {
     const parts = [];
     if (userItems.length) {
         parts.push(`
-            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">📝 Your highlights</div>
+            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">${T('📝 Your highlights')}</div>
             <ul style="margin:0;padding-left:16px;font-size:12px;">${itemsHtml(userItems)}</ul>`);
     }
     if (ghostItems.length) {
         parts.push(`
-            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">🤖 AI-suggested highlights</div>
+            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">${T('🤖 AI-suggested highlights')}</div>
             <ul style="margin:0;padding-left:16px;font-size:12px;">${itemsHtml(ghostItems)}</ul>`);
     }
     if (!parts.length) return;
@@ -959,7 +960,7 @@ function showPreviewCard(container, article) {
     const existing = containerEl.querySelector('.graph-preview-card');
     if (existing) existing.remove();
 
-    const safeTitle = article.title || (article.content && article.content.split('\n')[0]) || 'Untitled';
+    const safeTitle = article.title || (article.content && article.content.split('\n')[0]) || T('Untitled');
     const summaryPlain = (article.summary || '')
         .replace(/<[^>]+>/g, '').trim()
         .slice(0, 200);
@@ -1007,7 +1008,7 @@ function showPreviewCard(container, article) {
             <div style="display:flex;flex-wrap:wrap;gap:4px;">${tags}</div>
         </div>
         <div style="padding:8px 14px 14px;flex-shrink:0;">
-            <button class="graph-preview-open" style="width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent,#007bff);color:#fff;font-size:11px;cursor:pointer;">Open in History</button>
+            <button class="graph-preview-open" style="width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent,#007bff);color:#fff;font-size:11px;cursor:pointer;">${T('Open in History')}</button>
         </div>
     `;
 

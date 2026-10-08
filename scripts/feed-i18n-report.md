@@ -1,42 +1,58 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 545. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 940. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 545 | 0 | 0 | 16 |
-| de | 545 | 0 | 0 | 76 |
-| es | 545 | 0 | 0 | 55 |
-| fr | 545 | 0 | 0 | 56 |
-| hi | 545 | 0 | 0 | 23 |
-| it | 545 | 0 | 0 | 50 |
-| ja | 545 | 0 | 0 | 23 |
-| ko | 545 | 0 | 0 | 4 |
-| pt_PT | 545 | 0 | 0 | 45 |
-| ru | 545 | 0 | 0 | 29 |
-| zh_CN | 545 | 0 | 0 | 0 |
-| zh_HK | 545 | 0 | 0 | 0 |
-| zh_TW | 545 | 0 | 0 | 0 |
+| ar | 940 | 0 | 0 | 32 |
+| de | 940 | 0 | 0 | 145 |
+| es | 940 | 0 | 0 | 114 |
+| fr | 940 | 0 | 0 | 135 |
+| hi | 940 | 0 | 0 | 51 |
+| it | 940 | 0 | 0 | 117 |
+| ja | 940 | 0 | 0 | 60 |
+| ko | 940 | 0 | 0 | 12 |
+| pt_PT | 940 | 0 | 0 | 114 |
+| ru | 940 | 0 | 0 | 66 |
+| zh_CN | 940 | 0 | 0 | 1 |
+| zh_HK | 940 | 0 | 0 | 1 |
+| zh_TW | 940 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
 ### ar
 | English | Translation | width | ratio |
 |---|---|---|---|
+| AI Model | نموذج الذكاء الاصطناعي | 22 vs 8 | 2.75× |
 | vs {label} | مقارنةً بـ {label} | 13 vs 5 | 2.6× |
 | Sent | تم الإرسال | 10 vs 4 | 2.5× |
 | reused | مُعاد استخدامه | 14 vs 6 | 2.33× |
 | Noisy | كثير الضجيج | 11 vs 5 | 2.2× |
 | AI analysis | تحليل بالذكاء الاصطناعي | 23 vs 11 | 2.09× |
+| Get Key | احصل على مفتاح | 14 vs 7 | 2× |
+| Preset: {name} | المطالبة الجاهزة: {name} | 20 vs 10 | 2× |
+| Endpoint URL | عنوان URL لنقطة النهاية | 23 vs 12 | 1.92× |
+| Endpoint URL: | عنوان URL لنقطة النهاية: | 24 vs 13 | 1.85× |
+| 🧙 AI Summary | 🧙 ملخص الذكاء الاصطناعي | 24 vs 13 | 1.85× |
 | AI category | فئة الذكاء الاصطناعي | 20 vs 11 | 1.82× |
 | Testing… | جارٍ الاختبار… | 14 vs 8 | 1.75× |
 | Reading · AI · updates | القراءة · الذكاء الاصطناعي · التحديثات | 38 vs 22 | 1.73× |
+| No articles to graph yet. | لا توجد مقالات لعرضها في الرسم البياني بعد. | 43 vs 25 | 1.72× |
 | Sent to {name} | تم الإرسال إلى {name} | 17 vs 10 | 1.7× |
 | Sort: Unread | الترتيب: غير المقروء | 20 vs 12 | 1.67× |
+| Sign in / Sign up via Email | تسجيل الدخول / إنشاء حساب بالبريد الإلكتروني | 44 vs 27 | 1.63× |
+| Enter 6-digit code | أدخل الرمز المكوّن من 6 أرقام | 29 vs 18 | 1.61× |
+| No Kindle email set. | لم يُضبط بريد Kindle الإلكتروني. | 32 vs 20 | 1.6× |
 | Words Read | الكلمات المقروءة | 16 vs 10 | 1.6× |
+| {n} unopened 30d+ | {n} لم تُفتح منذ 30+ يومًا | 25 vs 16 | 1.56× |
 | ✅ Sent · {date} | ✅ تم الإرسال · {date} | 17 vs 11 | 1.55× |
+| Keep feed items for | الاحتفاظ بعناصر الخلاصات لمدة | 29 vs 19 | 1.53× |
+| AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
+| Logged in as: {email} | تم تسجيل الدخول باسم: {email} | 24 vs 16 | 1.5× |
+| ✨ AI Ghost Highlighting | ✨ التمييز الشبحي بالذكاء الاصطناعي | 34 vs 23 | 1.48× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
 | 🗂️ Keep items for | 🗂️ الاحتفاظ بالعناصر لمدة | 26 vs 18 | 1.44× |
+| Dismiss graph stats | إخفاء إحصاءات الرسم البياني | 27 vs 19 | 1.42× |
 | Week & month recaps | الملخصات الأسبوعية والشهرية | 27 vs 19 | 1.42× |
 | AI request failed | فشل طلب الذكاء الاصطناعي | 24 vs 17 | 1.41× |
 
@@ -45,84 +61,155 @@ Strings: 545. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 |---|---|---|---|
 | Add | Hinzufügen | 10 vs 3 | 3.33× |
 | Mute | Stummschalten | 13 vs 4 | 3.25× |
+| or consider | oder unterstütze das Projekt mit | 32 vs 11 | 2.91× |
+| News | Nachrichten | 11 vs 4 | 2.75× |
 | Edit | Bearbeiten | 10 vs 4 | 2.5× |
 | Undo | Rückgängig | 10 vs 4 | 2.5× |
+| Own key | Eigener Schlüssel | 17 vs 7 | 2.43× |
+| + Add | + Hinzufügen | 12 vs 5 | 2.4× |
 | Reset | Zurücksetzen | 12 vs 5 | 2.4× |
 | Failed | Fehlgeschlagen | 14 vs 6 | 2.33× |
 | Unmute | Stumm aufheben | 14 vs 6 | 2.33× |
 | Inbox | Posteingang | 11 vs 5 | 2.2× |
+| Label | Bezeichnung | 11 vs 5 | 2.2× |
 | What moved | Was sich verändert hat | 22 vs 10 | 2.2× |
 | ＋ Add | ＋ Hinzufügen | 13 vs 6 | 2.17× |
+| Get Key | Schlüssel holen | 15 vs 7 | 2.14× |
 | Summary | Zusammenfassung | 15 vs 7 | 2.14× |
 | Copy failed | Kopieren fehlgeschlagen | 23 vs 11 | 2.09× |
 | Add tag | Tag hinzufügen | 14 vs 7 | 2× |
 | Hide ⌃ | Ausblenden ⌃ | 12 vs 6 | 2× |
 | Mark {n} read | {n} als gelesen markieren | 24 vs 12 | 2× |
 | Recap failed | Rückblick fehlgeschlagen | 24 vs 12 | 2× |
+| UI Language | Sprache der Oberfläche | 22 vs 11 | 2× |
+| UI language | Sprache der Oberfläche | 22 vs 11 | 2× |
 | What I used | Was ich verwendet habe | 22 vs 11 | 2× |
 | Sort: Mood | Sortieren: Stimmung | 19 vs 10 | 1.9× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
+| API key | API-Schlüssel | 13 vs 7 | 1.86× |
 | Refresh | Aktualisieren | 13 vs 7 | 1.86× |
+| Recent models | Zuletzt genutzte Modelle | 24 vs 13 | 1.85× |
 | Last summary | Letzte Zusammenfassung | 22 vs 12 | 1.83× |
+| Invalid Key | Ungültiger Schlüssel | 20 vs 11 | 1.82× |
+| {name} · API key set | {name} · API-Schlüssel hinterlegt | 29 vs 16 | 1.81× |
 | {n} summary | {n} Zusammenfassung | 18 vs 10 | 1.8× |
+| Summary Length | Länge der Zusammenfassung | 25 vs 14 | 1.79× |
 | Try again | Erneut versuchen | 16 vs 9 | 1.78× |
 | ✨ Updating recap… | ✨ Rückblick wird aktualisiert… | 30 vs 17 | 1.76× |
+| API Key: | API-Schlüssel: | 14 vs 8 | 1.75× |
 | Full article | Vollständiger Artikel | 21 vs 12 | 1.75× |
 | Mark as… | Markieren als… | 14 vs 8 | 1.75× |
 | No items | Keine Einträge | 14 vs 8 | 1.75× |
+| Saved! ✓ | Gespeichert! ✓ | 14 vs 8 | 1.75× |
+| Summary Mode | Zusammenfassungsmodus | 21 vs 12 | 1.75× |
+| {n} unopened 30d+ | {n} seit 30+ Tagen ungeöffnet | 28 vs 16 | 1.75× |
+| Enter the code sent to: | Gib den Code ein, der gesendet wurde an: | 40 vs 23 | 1.74× |
+| Failed to send code | Code konnte nicht gesendet werden | 33 vs 19 | 1.74× |
 | Mark {n} summary as… | {n} Zusammenfassung markieren als… | 33 vs 19 | 1.74× |
 | No recent summaries | Keine aktuellen Zusammenfassungen | 33 vs 19 | 1.74× |
 | 📄 View summary | 📄 Zusammenfassung ansehen | 26 vs 15 | 1.73× |
+| Export or restore all settings as a JSON file. | Exportiere alle Einstellungen als JSON-Datei oder stelle sie daraus wieder her. | 79 vs 46 | 1.72× |
+| Failed to load models | Modelle konnten nicht geladen werden | 36 vs 21 | 1.71× |
 | Send summaries | Zusammenfassungen senden | 24 vs 14 | 1.71× |
+| ⏳ Summarizing… | ⏳ Wird zusammengefasst … | 24 vs 14 | 1.71× |
 | ✨ Build my own | ✨ Selbst zusammenstellen | 24 vs 14 | 1.71× |
 | Select summaries | Zusammenfassungen auswählen | 27 vs 16 | 1.69× |
+| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Melde dich an, um kostenlose Cloud-Modelle und die Synchronisierung deiner Zusammenfassungen freizuschalten – oder nutze deine eigenen API-Schlüssel. | 149 vs 88 | 1.69× |
+| Summary Language | Sprache der Zusammenfassung | 27 vs 16 | 1.69× |
 | View & edit › | Ansehen & bearbeiten › | 22 vs 13 | 1.69× |
+| all summaries | alle Zusammenfassungen | 22 vs 13 | 1.69× |
+| Enter the code sent to your email. | Gib den Code ein, den wir dir per E-Mail geschickt haben. | 57 vs 34 | 1.68× |
+| Export settings | Einstellungen exportieren | 25 vs 15 | 1.67× |
+| Import settings | Einstellungen importieren | 25 vs 15 | 1.67× |
 | Mark {n} summaries as… | {n} Zusammenfassungen markieren als… | 35 vs 21 | 1.67× |
 | Send {n} summary | {n} Zusammenfassung senden | 25 vs 15 | 1.67× |
 | Sort: Unread | Sortieren: Ungelesen | 20 vs 12 | 1.67× |
 | {n} summaries | {n} Zusammenfassungen | 20 vs 12 | 1.67× |
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
+| View & Copy | Ansehen & kopieren | 18 vs 11 | 1.64× |
 | ✨ Writing recap… | ✨ Rückblick wird erstellt… | 26 vs 16 | 1.63× |
+| D3 library failed to load. | D3-Bibliothek konnte nicht geladen werden. | 42 vs 26 | 1.62× |
 | Import failed | Import fehlgeschlagen | 21 vs 13 | 1.62× |
+| Used for Send to Kindle delivery. Add | Wird für die Zustellung per „An Kindle senden“ genutzt. Füge | 60 vs 37 | 1.62× |
+| 🧙 AI Summary | 🧙 KI-Zusammenfassung | 21 vs 13 | 1.62× |
+| Analyzing tags… | Tags werden analysiert … | 24 vs 15 | 1.6× |
 | recap done | Rückblick fertig | 16 vs 10 | 1.6× |
 | 😟 Mostly heavy | 😟 Überwiegend belastend | 24 vs 15 | 1.6× |
 | AI scoring failed | KI-Bewertung fehlgeschlagen | 27 vs 17 | 1.59× |
 | Send {n} summaries | {n} Zusammenfassungen senden | 27 vs 17 | 1.59× |
+| Failed to export backup. | Backup konnte nicht exportiert werden. | 38 vs 24 | 1.58× |
 | No items yet | Noch keine Beiträge | 19 vs 12 | 1.58× |
+| Own model / API key | Eigenes Modell / API-Schlüssel | 30 vs 19 | 1.58× |
 | Select summaries to send | Zusammenfassungen zum Senden auswählen | 38 vs 24 | 1.58× |
 | Summary only | Nur Zusammenfassung | 19 vs 12 | 1.58× |
+| Transfer failed: {message} | Übertragung fehlgeschlagen: {message} | 30 vs 19 | 1.58× |
+| ✓ Updated {a}, merged {b}. | ✓ {a} aktualisiert, {b} zusammengeführt. | 38 vs 24 | 1.58× |
+| Mark read when opened | Beim Öffnen als gelesen markieren | 33 vs 21 | 1.57× |
 | Request failed | Anfrage fehlgeschlagen | 22 vs 14 | 1.57× |
+| Summarizing... | Wird zusammengefasst … | 22 vs 14 | 1.57× |
+| Add custom model | Eigenes Modell hinzufügen | 25 vs 16 | 1.56× |
 | Marked {n} unread | {n} als ungelesen markiert | 25 vs 16 | 1.56× |
 | Not set up yet — add a receiver in Settings | Noch nicht eingerichtet — Empfänger in den Einstellungen hinzufügen | 67 vs 43 | 1.56× |
+| Please enter a valid email. | Bitte gib eine gültige E-Mail-Adresse ein. | 42 vs 27 | 1.56× |
 | Restore to Inbox | In den Posteingang zurück | 25 vs 16 | 1.56× |
+| Share failed: {message} | Teilen fehlgeschlagen: {message} | 25 vs 16 | 1.56× |
 | ✨ Writing intro… | ✨ Intro wird geschrieben… | 25 vs 16 | 1.56× |
+| No Kindle email set. | Keine Kindle-E-Mail hinterlegt. | 31 vs 20 | 1.55× |
+| No summary available | Keine Zusammenfassung verfügbar | 31 vs 20 | 1.55× |
+| No summary returned. | Keine Zusammenfassung erhalten. | 31 vs 20 | 1.55× |
+| Close pane {n} | Bereich {n} schließen | 20 vs 13 | 1.54× |
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
+| Found device at {ip} — click Add to save it ✓ | Gerät unter {ip} gefunden – zum Speichern auf „Hinzufügen“ klicken ✓ | 66 vs 43 | 1.53× |
+| 💾 Backup & restore | 💾 Backup & Wiederherstellung | 29 vs 19 | 1.53× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
+| Clean up & merge tags | Tags bereinigen & zusammenführen | 32 vs 21 | 1.52× |
 | Edit feeds & tags in Settings | Feeds & Tags in den Einstellungen bearbeiten | 44 vs 29 | 1.52× |
 | Summarize a page to see it here | Fasse eine Seite zusammen, um sie hier zu sehen | 47 vs 31 | 1.52× |
+| Auto-summarize favorites | Favoriten automatisch zusammenfassen | 36 vs 24 | 1.5× |
+| Import / export OPML | OPML importieren / exportieren | 30 vs 20 | 1.5× |
 | Writing the summary… | Schreibe die Zusammenfassung … | 30 vs 20 | 1.5× |
 | ↩ Restore to Inbox | ↩ In den Posteingang zurück | 27 vs 18 | 1.5× |
 | No tags found. Add tags to your summaries! | Keine Tags gefunden. Füge deinen Zusammenfassungen Tags hinzu! | 62 vs 42 | 1.48× |
 | Set your Kindle email in Settings first. | Hinterlege zuerst deine Kindle-E-Mail in den Einstellungen. | 59 vs 40 | 1.48× |
 | Used whenever you summarize a page or article. | Wird verwendet, wenn du eine Seite oder einen Artikel zusammenfasst. | 68 vs 46 | 1.48× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
+| Don't have a key? | Du hast keinen Schlüssel? | 25 vs 17 | 1.47× |
+| Open in sidebar | In Seitenleiste öffnen | 22 vs 15 | 1.47× |
+| Saved for Later | Für später gespeichert | 22 vs 15 | 1.47× |
 | Writing a {n}-word summary… | Schreibe Zusammenfassung ({n} Wörter) … | 38 vs 26 | 1.46× |
 | Not set up yet — add your Kindle in Settings | Noch nicht eingerichtet — Kindle in den Einstellungen hinzufügen | 64 vs 44 | 1.45× |
 | Summary + full article | Zusammenfassung + ganzer Artikel | 32 vs 22 | 1.45× |
+| Delete settings… | Einstellungen löschen … | 23 vs 16 | 1.44× |
+| {n} rarely-used tag hidden | {n} selten genutzter Tag ausgeblendet | 36 vs 25 | 1.44× |
 | {n}/mo · {r}% read | {n}/Monat · {r} % gelesen | 23 vs 16 | 1.44× |
+| Copied to clipboard! 📋 | In die Zwischenablage kopiert! 📋 | 33 vs 23 | 1.43× |
+| Kindle delivery failed. | Kindle-Zustellung fehlgeschlagen. | 33 vs 23 | 1.43× |
+| No devices added yet. | Noch keine Geräte hinzugefügt. | 30 vs 21 | 1.43× |
+| Sources · rename · tags · mute | Quellen · umbenennen · Tags · stummschalten | 43 vs 30 | 1.43× |
+| for unlimited, zero-config summaries. | für unbegrenzte Zusammenfassungen ohne Konfiguration. | 53 vs 37 | 1.43× |
+| No receiver address set. | Keine Empfängeradresse festgelegt. | 34 vs 24 | 1.42× |
 | Only summarized articles can be sent | Nur zusammengefasste Artikel können gesendet werden | 51 vs 36 | 1.42× |
 | Digest of {n} summaries | Digest aus {n} Zusammenfassungen | 31 vs 22 | 1.41× |
+| No articles saved yet. | Noch keine Artikel gespeichert. | 31 vs 22 | 1.41× |
 | No sources match. | Keine passenden Quellen. | 24 vs 17 | 1.41× |
+| {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
+| This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload. | Das setzt alle Einstellungen, Prompts und API-Schlüssel auf diesem Gerät zurück. Deine Zusammenfassungen bleiben erhalten. Die Erweiterung wird neu geladen. | 156 vs 112 | 1.39× |
+| I want to use my own Custom API / Local Model | Ich möchte meine eigene Custom-API / ein lokales Modell nutzen | 62 vs 45 | 1.38× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
 | Please set your LocalSend IP in Settings first. | Bitte hinterlege zuerst deine LocalSend-IP in den Einstellungen. | 64 vs 47 | 1.36× |
 | e.g. Prefer European news and keep it upbeat. | z. B. Bevorzuge europäische Nachrichten und halte es positiv. | 61 vs 45 | 1.36× |
+| Resets all preferences, prompts and keys on this device. Your history stays. | Setzt alle Einstellungen, Prompts und Schlüssel auf diesem Gerät zurück. Dein Verlauf bleibt erhalten. | 102 vs 76 | 1.34× |
+| Run this command so Ollama stays configured after restarting the Mac app: | Führe diesen Befehl aus, damit Ollama auch nach einem Neustart der Mac-App so konfiguriert bleibt: | 98 vs 73 | 1.34× |
+| Inline mode is great for "Send to Kindle". | Der Inline-Modus eignet sich gut für „An Kindle senden“. | 56 vs 42 | 1.33× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Bewertet den Ton von Zusammenfassungen und Feed-Beiträgen. Steuert Stimmungsfilter, Diagramme und die Quellen-Bilanz. Ausschalten blendet alle Stimmungsfunktionen aus. | 167 vs 128 | 1.3× |
 
 ### es
 | English | Translation | width | ratio |
 |---|---|---|---|
+| on | activado | 8 vs 2 | 4× |
+| off | desactivado | 11 vs 3 | 3.67× |
 | Inbox | Bandeja de entrada | 18 vs 5 | 3.6× |
 | Unmute | Dejar de silenciar | 18 vs 6 | 3× |
 | Play | Reproducir | 10 vs 4 | 2.5× |
@@ -131,112 +218,248 @@ Strings: 545. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | vs {label} | frente a {label} | 11 vs 5 | 2.2× |
 | Custom | Personalizado | 13 vs 6 | 2.17× |
 | Add tag | Añadir etiqueta | 15 vs 7 | 2.14× |
+| Account Sync | Sincronización de cuenta | 24 vs 12 | 2× |
 | ▶ Play | ▶ Reproducir | 12 vs 6 | 2× |
+| UI Language | Idioma de la interfaz | 21 vs 11 | 1.91× |
+| UI language | Idioma de la interfaz | 21 vs 11 | 1.91× |
+| Enter code | Introduce el código | 19 vs 10 | 1.9× |
+| shared tag | etiqueta compartida | 19 vs 10 | 1.9× |
 | + Add tag | + Añadir etiqueta | 17 vs 9 | 1.89× |
+| Keep feed items for | Conservar elementos del feed durante | 36 vs 19 | 1.89× |
 | Any mood | Cualquier ánimo | 15 vs 8 | 1.88× |
 | Any time | Cualquier fecha | 15 vs 8 | 1.88× |
 | Updates & storage | Actualizaciones y almacenamiento | 32 vs 17 | 1.88× |
+| Browser Default | Predeterminado del navegador | 28 vs 15 | 1.87× |
+| Get Key | Obtener clave | 13 vs 7 | 1.86× |
+| Log Out | Cerrar sesión | 13 vs 7 | 1.86× |
+| System Default | Predeterminado del sistema | 26 vs 14 | 1.86× |
+| Verify & Login | Verificar e iniciar sesión | 26 vs 14 | 1.86× |
+| About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
+| 🧠 On-device tools | 🧠 Herramientas en el dispositivo | 33 vs 18 | 1.83× |
+| Auto-Detect | Detección automática | 20 vs 11 | 1.82× |
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
+| No Kindle email set. | No hay correo de Kindle configurado. | 36 vs 20 | 1.8× |
+| Enter 6-digit code | Introduce el código de 6 dígitos | 32 vs 18 | 1.78× |
 | 📈 Mood over time | 📈 Ánimo a lo largo del tiempo | 30 vs 17 | 1.76× |
+| Failed to export backup. | No se pudo exportar la copia de seguridad. | 42 vs 24 | 1.75× |
 | Newest first | Más recientes primero | 21 vs 12 | 1.75× |
 | Unplayed | Sin reproducir | 14 vs 8 | 1.75× |
 | {a} vs {b} | {a} frente a {b} | 14 vs 8 | 1.75× |
 | Recap scope | Alcance del resumen | 19 vs 11 | 1.73× |
+| Verify & Log In | Verificar e iniciar sesión | 26 vs 15 | 1.73× |
+| No receiver address set. | No hay dirección de receptor configurada. | 41 vs 24 | 1.71× |
+| Add custom model | Añadir modelo personalizado | 27 vs 16 | 1.69× |
 | Topics over time | Temas a lo largo del tiempo | 27 vs 16 | 1.69× |
+| Custom prompt text | Texto del prompt personalizado | 30 vs 18 | 1.67× |
 | Feed name | Nombre del feed | 15 vs 9 | 1.67× |
+| Feed refresh interval | Intervalo de actualización de feeds | 35 vs 21 | 1.67× |
+| Mood on/off (tone analysis) | Ánimo activado/desactivado (análisis de tono) | 45 vs 27 | 1.67× |
 | No items yet | Aún no hay elementos | 20 vs 12 | 1.67× |
+| Open in sidebar | Abrir en la barra lateral | 25 vs 15 | 1.67× |
+| Showing top tags (archive is large) | Mostrando las etiquetas principales (el archivo es grande) | 58 vs 35 | 1.66× |
 | Marked {n} read | {n} marcados como leídos | 23 vs 14 | 1.64× |
 | Marked {n} unread | {n} marcados como no leídos | 26 vs 16 | 1.63× |
 | Model is writing | El modelo está escribiendo | 26 vs 16 | 1.63× |
 | Week & month recaps | Resúmenes semanales y mensuales | 31 vs 19 | 1.63× |
+| {name} · API key set | {name} · clave API configurada | 26 vs 16 | 1.63× |
+| Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
 | Not enough rated items yet | Aún no hay suficientes elementos valorados | 42 vs 26 | 1.62× |
+| (on iOS, hold to drag for 2 seconds) | (en iOS, mantén pulsado para arrastrar durante 2 segundos) | 58 vs 36 | 1.61× |
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Page text · {n} words | Texto de la página · {n} palabras | 32 vs 20 | 1.6× |
 | Select all | Seleccionar todo | 16 vs 10 | 1.6× |
+| Allow all origins | Permitir todos los orígenes | 27 vs 17 | 1.59× |
+| Dismiss graph stats | Ocultar estadísticas del grafo | 30 vs 19 | 1.58× |
 | Recap failed | Error en el resumen | 19 vs 12 | 1.58× |
 | 📈 Topics over time | 📈 Temas a lo largo del tiempo | 30 vs 19 | 1.58× |
 | Best match · {n} items | Mejor coincidencia · {n} elementos | 33 vs 21 | 1.57× |
+| Failed to load models | No se pudieron cargar los modelos | 33 vs 21 | 1.57× |
+| No devices added yet. | Aún no hay dispositivos añadidos. | 33 vs 21 | 1.57× |
 | Podcast player | Reproductor de podcast | 22 vs 14 | 1.57× |
+| Set as active send target | Establecer como destino de envío activo | 39 vs 25 | 1.56× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
+| Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
+| Magic code sent! ✨ Check your inbox. | ¡Código mágico enviado! ✨ Revisa tu bandeja de entrada. | 55 vs 36 | 1.53× |
 | Mood over time per category | Ánimo a lo largo del tiempo por categoría | 41 vs 27 | 1.52× |
+| No active receiver found. | No se encontró ningún receptor activo. | 38 vs 25 | 1.52× |
+| Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓ | 65 vs 43 | 1.51× |
+| Compatible tools | Herramientas compatibles | 24 vs 16 | 1.5× |
 | Include all questions in exports | Incluir todas las preguntas en las exportaciones | 48 vs 32 | 1.5× |
+| Logged in as: {email} | Sesión iniciada como: {email} | 24 vs 16 | 1.5× |
+| Model identifier | Identificador del modelo | 24 vs 16 | 1.5× |
+| No summary returned. | No se devolvió ningún resumen. | 30 vs 20 | 1.5× |
+| Welcome to AI Summary Helper | Te damos la bienvenida a AI Summary Helper | 42 vs 28 | 1.5× |
+| Copied as plain text. | Copiado como texto sin formato. | 31 vs 21 | 1.48× |
 | No tags found. Add tags to your summaries! | No se encontraron etiquetas. ¡Añade etiquetas a tus resúmenes! | 62 vs 42 | 1.48× |
+| Scan failed. Enter IP manually. | Falló el escaneo. Introduce la IP manualmente. | 46 vs 31 | 1.48× |
+| Add Kindle device | Añadir dispositivo Kindle | 25 vs 17 | 1.47× |
+| Delete all history? | ¿Eliminar todo el historial? | 28 vs 19 | 1.47× |
+| Open Command Prompt | Abrir el símbolo del sistema | 28 vs 19 | 1.47× |
 | Queue a question… | Pon una pregunta en cola… | 25 vs 17 | 1.47× |
 | Writing a {n}-word summary… | Escribiendo un resumen de {n} palabras… | 38 vs 26 | 1.46× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
+| Sign in / Sign up via Email | Iniciar sesión / registrarse por correo | 39 vs 27 | 1.44× |
 | Sort: Read share | Orden: Porcentaje leído | 23 vs 16 | 1.44× |
+| {n} unopened 30d+ | {n} sin abrir hace 30 d+ | 23 vs 16 | 1.44× |
 | ✨ Writing intro… | ✨ Escribiendo la intro… | 23 vs 16 | 1.44× |
 | 🏷️ Top Categories | 🏷️ Categorías principales | 26 vs 18 | 1.44× |
+| Allow all origins (app) | Permitir todos los orígenes (app) | 33 vs 23 | 1.43× |
+| Sources · rename · tags · mute | Fuentes · renombrar · etiquetas · silenciar | 43 vs 30 | 1.43× |
+| Failed to send code | No se pudo enviar el código | 27 vs 19 | 1.42× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
 | AI request failed | Error de la solicitud IA | 24 vs 17 | 1.41× |
+| No articles saved yet. | Aún no hay artículos guardados. | 31 vs 22 | 1.41× |
+| Use "{name}" as custom language code | Usar «{name}» como código de idioma personalizado | 45 vs 32 | 1.41× |
+| Automatic light-blue quote highlights from summaries | Citas resaltadas en azul claro automáticamente a partir de los resúmenes | 72 vs 52 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Valora el tono de los resúmenes y de los elementos del feed. Activa filtros de ánimo, gráficos y el balance de fuentes. Desactívalo para ocultar todas las funciones de ánimo. | 174 vs 128 | 1.36× |
 | Shown in the article and included in exports | Se muestra en el artículo y se incluye en las exportaciones | 59 vs 44 | 1.34× |
 | Style for AI briefings and week & month recaps. | Estilo para briefings con IA y resúmenes semanales y mensuales. | 63 vs 47 | 1.34× |
 | e.g. Prefer European news and keep it upbeat. | p. ej. Prefiere noticias europeas y mantén un tono positivo. | 60 vs 45 | 1.33× |
 | Found your {n} highlights · using as focus | Se encontraron tus {n} destacados · usados como enfoque | 54 vs 41 | 1.32× |
 | Mood history is kept for 13 months, even after items are removed. | El historial de ánimo se conserva 13 meses, incluso después de eliminar los artículos. | 86 vs 65 | 1.32× |
+| Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Haz clic derecho en el icono de Ollama de la bandeja (abajo a la derecha) y elige <b>Quit</b>. | 94 vs 71 | 1.32× |
+| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Inicia sesión para desbloquear modelos de nube gratuitos y sincronizar tus resúmenes, o usa tus propias claves API. | 115 vs 88 | 1.31× |
 
 ### fr
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Inbox | Boîte de réception | 18 vs 5 | 3.6× |
+| off | désactivé | 9 vs 3 | 3× |
 | Reset | Réinitialiser | 13 vs 5 | 2.6× |
+| News | Actualités | 10 vs 4 | 2.5× |
+| A few | Quelques-uns | 12 vs 5 | 2.4× |
 | Newer | Plus récents | 12 vs 5 | 2.4× |
 | Older | Plus anciens | 12 vs 5 | 2.4× |
 | No items yet | Aucun élément pour l’instant | 28 vs 12 | 2.33× |
 | Today | Aujourd’hui | 11 vs 5 | 2.2× |
+| Get Key | Obtenir une clé | 15 vs 7 | 2.14× |
 | Add tag | Ajouter un tag | 14 vs 7 | 2× |
 | Custom | Personnalisé | 12 vs 6 | 2× |
+| Keep feed items for | Conserver les éléments de flux pendant | 38 vs 19 | 2× |
+| Layout | Mise en page | 12 vs 6 | 2× |
+| Log Out | Se déconnecter | 14 vs 7 | 2× |
+| Open in sidebar | Ouvrir dans le panneau latéral | 30 vs 15 | 2× |
 | Select | Sélectionner | 12 vs 6 | 2× |
+| TTS returned no audio. | La synthèse vocale n’a renvoyé aucun audio. | 43 vs 22 | 1.95× |
+| What to export? | Que souhaitez-vous exporter ? | 29 vs 15 | 1.93× |
+| UI Language | Langue de l’interface | 21 vs 11 | 1.91× |
+| UI language | Langue de l’interface | 21 vs 11 | 1.91× |
+| No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
+| No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
+| No devices added yet. | Aucun appareil ajouté pour l’instant. | 37 vs 21 | 1.76× |
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
+| Saved! ✓ | Enregistré ! ✓ | 14 vs 8 | 1.75× |
 | Testing… | Test en cours… | 14 vs 8 | 1.75× |
 | Open week › | Ouvrir la semaine › | 19 vs 11 | 1.73× |
 | What I used | Ce que j'ai utilisé | 19 vs 11 | 1.73× |
+| Allow all origins | Autoriser toutes les origines | 29 vs 17 | 1.71× |
+| Verify & Login | Vérifier et se connecter | 24 vs 14 | 1.71× |
 | Why it matters | Pourquoi c’est important | 24 vs 14 | 1.71× |
 | Select all | Tout sélectionner | 17 vs 10 | 1.7× |
+| {n} unopened 30d+ | {n} non ouverts depuis 30 j+ | 27 vs 16 | 1.69× |
 | Week & month recaps | Récapitulatifs hebdo et mensuels | 32 vs 19 | 1.68× |
+| Clear search | Effacer la recherche | 20 vs 12 | 1.67× |
+| Feed refresh interval | Intervalle d’actualisation des flux | 35 vs 21 | 1.67× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
+| Reader 👓 | Mode Lecture 👓 | 15 vs 9 | 1.67× |
+| Saved for Later | Enregistré pour plus tard | 25 vs 15 | 1.67× |
 | Queue a question… | Mettre une question en file… | 28 vs 17 | 1.65× |
+| Scan failed. Enter IP manually. | Échec de la recherche. Saisissez l’IP manuellement. | 51 vs 31 | 1.65× |
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
 | Good mood only | Bonne humeur uniquement | 23 vs 14 | 1.64× |
+| Library & Data | Bibliothèque et données | 23 vs 14 | 1.64× |
+| Export backup first | Exporter d’abord une sauvegarde | 31 vs 19 | 1.63× |
+| D3 library failed to load. | Échec du chargement de la bibliothèque D3. | 42 vs 26 | 1.62× |
+| No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
+| Browser Default | Par défaut du navigateur | 24 vs 15 | 1.6× |
+| No articles to graph yet. | Aucun article à afficher dans le graphe. | 40 vs 25 | 1.6× |
 | Open day › | Ouvrir le jour › | 16 vs 10 | 1.6× |
+| Open in History | Ouvrir dans l’historique | 24 vs 15 | 1.6× |
+| Verify & Log In | Vérifier et se connecter | 24 vs 15 | 1.6× |
 | no recap yet | pas encore de récap | 19 vs 12 | 1.58× |
 | ☁️ Top terms | ☁️ Termes fréquents | 19 vs 12 | 1.58× |
+| Delete history | Supprimer l’historique | 22 vs 14 | 1.57× |
 | Edit style for | Modifier le style pour | 22 vs 14 | 1.57× |
 | Extra instructions | Instructions supplémentaires | 28 vs 18 | 1.56× |
+| Logged in as: {email} | Connecté en tant que : {email} | 25 vs 16 | 1.56× |
+| Mood on/off (tone analysis) | Humeur activée/désactivée (analyse du ton) | 42 vs 27 | 1.56× |
+| Please enter a valid email. | Veuillez saisir une adresse e-mail valide. | 42 vs 27 | 1.56× |
+| Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Faites un clic droit sur l’icône Ollama de la zone de notification (en bas à droite) et choisissez <b>Quit</b>. | 111 vs 71 | 1.56× |
 | Copy failed | Échec de la copie | 17 vs 11 | 1.55× |
 | Search feeds… | Rechercher des flux… | 20 vs 13 | 1.54× |
+| Use Native Chrome Side Panel | Utiliser le panneau latéral natif de Chrome | 43 vs 28 | 1.54× |
 | {n} day recaps | {n} récaps quotidiens | 20 vs 13 | 1.54× |
+| Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
+| Delete all history? | Supprimer tout l’historique ? | 29 vs 19 | 1.53× |
+| Delete history… | Supprimer l’historique… | 23 vs 15 | 1.53× |
+| Send Magic Code | Envoyer le code magique | 23 vs 15 | 1.53× |
+| 💾 Backup & restore | 💾 Sauvegarde et restauration | 29 vs 19 | 1.53× |
+| Allow all origins (app) | Autoriser toutes les origines (app) | 35 vs 23 | 1.52× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
+| Enter 6-digit code | Saisir le code à 6 chiffres | 27 vs 18 | 1.5× |
+| Error generating podcast: {msg} | Erreur lors de la création du podcast : {msg} | 42 vs 28 | 1.5× |
+| No receiver address set. | Aucune adresse de récepteur définie. | 36 vs 24 | 1.5× |
 | Only in the conversation log | Uniquement dans le journal de conversation | 42 vs 28 | 1.5× |
+| Pick a name for your show: | Choisissez un nom pour votre émission : | 39 vs 26 | 1.5× |
 | Select summaries | Sélectionner des résumés | 24 vs 16 | 1.5× |
+| Type {word} to confirm | Saisissez {word} pour confirmer | 27 vs 18 | 1.5× |
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |
 | Best match · {n} items | Meilleur résultat · {n} éléments | 31 vs 21 | 1.48× |
 | Edit feeds & tags in Settings | Modifier les flux et tags dans les réglages | 43 vs 29 | 1.48× |
+| Failed to load models | Échec du chargement des modèles | 31 vs 21 | 1.48× |
+| Delete settings | Supprimer les réglages | 22 vs 15 | 1.47× |
+| Found device at {ip} — click Add to save it ✓ | Appareil trouvé à {ip} — cliquez sur Ajouter pour l’enregistrer ✓ | 63 vs 43 | 1.47× |
 | Full style text | Texte de style complet | 22 vs 15 | 1.47× |
+| Open Command Prompt | Ouvrir l’invite de commandes | 28 vs 19 | 1.47× |
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
+| Add model ID, e.g. gemma3:4b | Ajouter un ID de modèle, p. ex. gemma3:4b | 41 vs 28 | 1.46× |
+| Export or restore all settings as a JSON file. | Exportez ou restaurez tous les réglages sous forme de fichier JSON. | 67 vs 46 | 1.46× |
+| Failed to export backup. | Échec de l’export de la sauvegarde. | 35 vs 24 | 1.46× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Rien n’est encore évalué — rédigez un ✨ Résumé pour évaluer les articles. | 73 vs 50 | 1.46× |
+| Searching LAN for LocalSend receiver... | Recherche d’un récepteur LocalSend sur le réseau local... | 57 vs 39 | 1.46× |
+| Showing top tags (archive is large) | Affichage des principaux tags (archive volumineuse) | 51 vs 35 | 1.46× |
 | {n} older items are not in this recap. | {n} anciens éléments ne sont pas dans ce récapitulatif. | 54 vs 37 | 1.46× |
 | AI-rated: heavy news | Selon l’IA : actualité lourde | 29 vs 20 | 1.45× |
+| Add LocalSend device | Ajouter un appareil LocalSend | 29 vs 20 | 1.45× |
+| Delete all settings? | Supprimer tous les réglages ? | 29 vs 20 | 1.45× |
+| Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
+| Add custom model | Ajouter un modèle perso | 23 vs 16 | 1.44× |
+| Delete settings… | Supprimer les réglages… | 23 vs 16 | 1.44× |
 | Nothing here yet | Rien ici pour l’instant | 23 vs 16 | 1.44× |
+| Searching Cloud... | Recherche dans le cloud... | 26 vs 18 | 1.44× |
 | ✨ Writing intro… | ✨ Rédaction de l’intro… | 23 vs 16 | 1.44× |
 | 🏷️ Top Categories | 🏷️ Principales catégories | 26 vs 18 | 1.44× |
+| Clean up & merge tags | Nettoyer et fusionner les tags | 30 vs 21 | 1.43× |
+| Copied to clipboard! 📋 | Copié dans le presse-papiers ! 📋 | 33 vs 23 | 1.43× |
 | Customize how the AI writes. | Personnalisez la façon d’écrire de l’IA. | 40 vs 28 | 1.43× |
+| Mark read when opened | Marquer comme lu à l’ouverture | 30 vs 21 | 1.43× |
+| Questions, bugs or happy? 💡, feel free to | Une question, un bug ou un coup de cœur ? 💡 N’hésitez pas à | 60 vs 42 | 1.43× |
 | {n} older item is not in this recap. | {n} ancien élément n'est pas dans ce récapitulatif. | 50 vs 35 | 1.43× |
 | Creating day recaps… {a}/{b} | Création des récaps quotidiens… {a}/{b} | 37 vs 26 | 1.42× |
+| Dismiss graph stats | Masquer les stats du graphe | 27 vs 19 | 1.42× |
+| Magic code sent! ✨ Check your inbox. | Code magique envoyé ! ✨ Consultez votre boîte mail. | 51 vs 36 | 1.42× |
 | Not set up yet — add a receiver in Settings | Pas encore configuré — ajoutez un récepteur dans les Réglages | 61 vs 43 | 1.42× |
+| Runs entirely in your browser — no data leaves it. | Fonctionne entièrement dans votre navigateur — aucune donnée n’en sort. | 71 vs 50 | 1.42× |
 | Select summaries to send | Sélectionner des résumés à envoyer | 34 vs 24 | 1.42× |
+| Backup · tags · delete | Sauvegarde · tags · suppression | 31 vs 22 | 1.41× |
+| Feed briefing & recap style | Style du briefing et du récap des flux | 38 vs 27 | 1.41× |
 | Include all questions in exports | Inclure toutes les questions dans les exports | 45 vs 32 | 1.41× |
 | Only {r} of {n} items are rated | Seulement {r} articles sur {n} sont évalués | 41 vs 29 | 1.41× |
 | Updates & storage | Mises à jour et stockage | 24 vs 17 | 1.41× |
 | Not set up yet — add your Kindle in Settings | Pas encore configuré — ajoutez votre Kindle dans les Réglages | 61 vs 44 | 1.39× |
+| Prefer the terminal? Run Ollama directly in a foreground window: | Vous préférez le terminal ? Lancez Ollama directement dans une fenêtre au premier plan : | 88 vs 64 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Évalue le ton des résumés et des éléments du flux. Alimente les filtres d’humeur, les graphiques et le bilan des sources. Désactivez pour masquer toutes les fonctions d’humeur. | 176 vs 128 | 1.38× |
+| Sharing is not supported in this browser/environment. | Le partage n’est pas pris en charge dans ce navigateur/cet environnement. | 73 vs 53 | 1.38× |
+| Automatic light-blue quote highlights from summaries | Citations surlignées en bleu clair automatiquement à partir des résumés | 71 vs 52 | 1.37× |
 | Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
+| Inline mode is great for "Send to Kindle". | Le mode en ligne convient bien à « Envoyer vers Kindle ». | 57 vs 42 | 1.36× |
+| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Connectez-vous pour débloquer les modèles cloud gratuits et synchroniser vos résumés, ou utilisez vos propres clés API. | 119 vs 88 | 1.35× |
 | Style for AI briefings and week & month recaps. | Style des briefings IA et des récapitulatifs hebdo et mensuels. | 63 vs 47 | 1.34× |
+| Press <b>Win + R</b>, type <code>cmd</code> and press Enter. | Appuyez sur <b>Win + R</b>, saisissez <code>cmd</code> puis appuyez sur Entrée. | 79 vs 60 | 1.32× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} anciens éléments ne sont pas dans ce récapitulatif (limite : {max} par récap). | 78 vs 59 | 1.32× |
 
 ### hi
@@ -251,20 +474,48 @@ Strings: 545. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | What I used | मैंने क्या इस्तेमाल किया | 24 vs 11 | 2.18× |
 | Resume | फिर शुरू करें | 13 vs 6 | 2.17× |
 | Archived | आर्काइव किया गया | 16 vs 8 | 2× |
+| Verify & Login | सत्यापित करें और लॉग इन करें | 28 vs 14 | 2× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Testing… | जाँच हो रही है… | 15 vs 8 | 1.88× |
+| Verify & Log In | सत्यापित करें और लॉग इन करें | 28 vs 15 | 1.87× |
+| Copied as plain text. | सादे टेक्स्ट के रूप में कॉपी किया गया। | 38 vs 21 | 1.81× |
 | View & edit › | देखें और संपादित करें › | 23 vs 13 | 1.77× |
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
+| No audio | कोई ऑडियो नहीं | 14 vs 8 | 1.75× |
+| Verifying... | सत्यापित हो रहा है... | 21 vs 12 | 1.75× |
+| Analyzing tags… | टैग का विश्लेषण हो रहा है… | 26 vs 15 | 1.73× |
 | Best Streak | सर्वश्रेष्ठ स्ट्रीक | 19 vs 11 | 1.73× |
+| Exported! ✓ | एक्सपोर्ट हो गया! ✓ | 19 vs 11 | 1.73× |
+| Sending... | भेजा जा रहा है... | 17 vs 10 | 1.7× |
+| contact me | मुझसे संपर्क करें | 17 vs 10 | 1.7× |
+| Set as active send target | सक्रिय भेजने के गंतव्य के रूप में सेट करें | 42 vs 25 | 1.68× |
 | Starting… | शुरू हो रहा है… | 15 vs 9 | 1.67× |
+| Scanning... | स्कैन हो रहा है... | 18 vs 11 | 1.64× |
+| View & Copy | देखें और कॉपी करें | 18 vs 11 | 1.64× |
+| View: Filtered | दृश्य: फ़िल्टर किया हुआ | 23 vs 14 | 1.64× |
+| Loading... | लोड हो रहा है... | 16 vs 10 | 1.6× |
+| No devices added yet. | अभी कोई डिवाइस नहीं जोड़ा गया है। | 33 vs 21 | 1.57× |
 | Why it matters | यह क्यों मायने रखता है | 22 vs 14 | 1.57× |
 | Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
+| Checking... | जांच हो रही है... | 17 vs 11 | 1.55× |
+| Export settings | सेटिंग्स एक्सपोर्ट करें | 23 vs 15 | 1.53× |
+| What to export? | क्या एक्सपोर्ट करना है? | 23 vs 15 | 1.53× |
+| Export or restore all settings as a JSON file. | सारी सेटिंग्स को JSON फ़ाइल के रूप में एक्सपोर्ट या पुनर्स्थापित करें। | 70 vs 46 | 1.52× |
+| Searching Cloud... | क्लाउड में खोज हो रही है... | 27 vs 18 | 1.5× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
+| Scan failed. Enter IP manually. | स्कैन विफल रहा। IP मैन्युअल रूप से दर्ज करें। | 45 vs 31 | 1.45× |
+| Sent to Kindle! 📚 | Kindle पर भेज दिया गया! 📚 | 26 vs 18 | 1.44× |
+| Type {word} to confirm | पुष्टि के लिए {word} टाइप करें | 26 vs 18 | 1.44× |
 | ✨ Writing intro… | ✨ परिचय लिखा जा रहा है… | 23 vs 16 | 1.44× |
+| Enter the code sent to: | इस पते पर भेजा गया कोड दर्ज करें: | 33 vs 23 | 1.43× |
+| Mark read when opened | खोलने पर पढ़ा हुआ चिह्नित करें | 30 vs 21 | 1.43× |
+| No settings match “{query}”. | “{query}” से मेल खाती कोई सेटिंग नहीं। | 33 vs 23 | 1.43× |
 | Not enough rated items yet | अभी पर्याप्त रेट किए गए आइटम नहीं हैं | 37 vs 26 | 1.42× |
 | e.g. Prefer European news and keep it upbeat. | जैसे: यूरोपीय समाचारों को प्राथमिकता दें और लहजा सकारात्मक रखें। | 64 vs 45 | 1.42× |
+| Allow all origins | सभी ऑरिजिन की अनुमति दें | 24 vs 17 | 1.41× |
 | {done} of {total} sent. {error} | {total} में से {done} भेजे गए। {error} | 24 vs 17 | 1.41× |
 | ✨ Updating recap… | ✨ रीकैप अपडेट हो रहा है… | 24 vs 17 | 1.41× |
+| Found device at {ip} — click Add to save it ✓ | {ip} पर डिवाइस मिला — सहेजने के लिए जोड़ें पर क्लिक करें ✓ | 56 vs 43 | 1.3× |
 
 ### it
 | English | Translation | width | ratio |
@@ -275,133 +526,328 @@ Strings: 545. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Newer | Più recenti | 11 vs 5 | 2.2× |
 | Saved | Risparmiato | 11 vs 5 | 2.2× |
 | Week recap | Riepilogo settimanale | 21 vs 10 | 2.1× |
+| UI Language | Lingua dell'interfaccia | 23 vs 11 | 2.09× |
+| UI language | Lingua dell'interfaccia | 23 vs 11 | 2.09× |
+| Account Sync | Sincronizzazione account | 24 vs 12 | 2× |
+| Auto-Detect | Rilevamento automatico | 22 vs 11 | 2× |
 | Failed | Non riuscito | 12 vs 6 | 2× |
+| Get Key | Ottieni chiave | 14 vs 7 | 2× |
+| Own key | Chiave propria | 14 vs 7 | 2× |
 | {n} day recap | {n} riepilogo giornaliero | 24 vs 12 | 2× |
+| Add custom model | Aggiungi modello personalizzato | 31 vs 16 | 1.94× |
 | Import failed | Importazione non riuscita | 25 vs 13 | 1.92× |
 | {n} day recaps | {n} riepiloghi giornalieri | 25 vs 13 | 1.92× |
+| Enter code | Inserisci il codice | 19 vs 10 | 1.9× |
 | No items | Nessun articolo | 15 vs 8 | 1.88× |
 | Testing… | Prova in corso… | 15 vs 8 | 1.88× |
 | No items yet | Ancora nessun elemento | 22 vs 12 | 1.83× |
 | Recap failed | Riepilogo non riuscito | 22 vs 12 | 1.83× |
 | no recap yet | ancora senza riepilogo | 22 vs 12 | 1.83× |
+| Checking... | Verifica in corso... | 20 vs 11 | 1.82× |
 | Recap scope | Ambito del riepilogo | 20 vs 11 | 1.82× |
 | Not enough rated items yet | Non ci sono ancora abbastanza elementi valutati | 47 vs 26 | 1.81× |
+| Share failed: {message} | Condivisione non riuscita: {message} | 29 vs 16 | 1.81× |
+| Keep feed items for | Conserva gli elementi dei feed per | 34 vs 19 | 1.79× |
+| No receiver address set. | Nessun indirizzo del ricevitore impostato. | 42 vs 24 | 1.75× |
+| No settings match “{query}”. | Nessuna impostazione corrisponde a «{query}». | 40 vs 23 | 1.74× |
+| Free Trial Mode | Modalità di prova gratuita | 26 vs 15 | 1.73× |
+| Custom prompt text | Testo del prompt personalizzato | 31 vs 18 | 1.72× |
+| Feed refresh interval | Intervallo di aggiornamento dei feed | 36 vs 21 | 1.71× |
 | Mood index | Indice dell’umore | 17 vs 10 | 1.7× |
 | No answer. | Nessuna risposta. | 17 vs 10 | 1.7× |
 | World news | Notizie dal mondo | 17 vs 10 | 1.7× |
+| Not signed in | Accesso non effettuato | 22 vs 13 | 1.69× |
 | Week & month recaps | Riepiloghi settimanali e mensili | 32 vs 19 | 1.68× |
+| Open in sidebar | Apri nella barra laterale | 25 vs 15 | 1.67× |
+| Verifying... | Verifica in corso... | 20 vs 12 | 1.67× |
+| Scan failed. Enter IP manually. | Scansione non riuscita. Inserisci l'IP manualmente. | 51 vs 31 | 1.65× |
 | Copy failed | Copia non riuscita | 18 vs 11 | 1.64× |
+| Set as active send target | Imposta come destinazione di invio attiva | 41 vs 25 | 1.64× |
+| Summary Length | Lunghezza del riassunto | 23 vs 14 | 1.64× |
 | Unsubscribe | Annulla iscrizione | 18 vs 11 | 1.64× |
+| Model identifier | Identificatore del modello | 26 vs 16 | 1.63× |
+| Custom style: | Stile personalizzato: | 21 vs 13 | 1.62× |
+| Enter 6-digit code | Inserisci il codice a 6 cifre | 29 vs 18 | 1.61× |
+| Delete all settings? | Eliminare tutte le impostazioni? | 32 vs 20 | 1.6× |
 | Key quotes | Citazioni chiave | 16 vs 10 | 1.6× |
 | Pick a day | Scegli un giorno | 16 vs 10 | 1.6× |
 | AI scoring failed | Valutazione IA non riuscita | 27 vs 17 | 1.59× |
+| Add Kindle device | Aggiungi dispositivo Kindle | 27 vs 17 | 1.59× |
+| Ghost Highlight Amount | Quantità di evidenziazione fantasma | 35 vs 22 | 1.59× |
+| Ghost highlight amount | Quantità di evidenziazione fantasma | 35 vs 22 | 1.59× |
+| Delete all history? | Eliminare tutta la cronologia? | 30 vs 19 | 1.58× |
+| Dismiss graph stats | Nascondi statistiche del grafo | 30 vs 19 | 1.58× |
+| Model source | Origine del modello | 19 vs 12 | 1.58× |
 | Next day with items | Giorno successivo con articoli | 30 vs 19 | 1.58× |
+| Transfer failed: {message} | Trasferimento non riuscito: {message} | 30 vs 19 | 1.58× |
 | {day}, no items | {day}, nessun articolo | 19 vs 12 | 1.58× |
 | Request failed | Richiesta non riuscita | 22 vs 14 | 1.57× |
+| System Default | Predefinito di sistema | 22 vs 14 | 1.57× |
+| Active send target | Destinazione di invio attiva | 28 vs 18 | 1.56× |
+| Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clicca con il tasto destro sull'icona di Ollama nell'area di notifica (in basso a destra) e scegli <b>Quit</b>. | 111 vs 71 | 1.56× |
+| {name} · API key set | {name} · chiave API impostata | 25 vs 16 | 1.56× |
+| 🧠 On-device tools | 🧠 Strumenti sul dispositivo | 28 vs 18 | 1.56× |
+| Invalid Key | Chiave non valida | 17 vs 11 | 1.55× |
+| No Kindle email set. | Nessuna email Kindle impostata. | 31 vs 20 | 1.55× |
+| Wrong email? Go back | Email sbagliata? Torna indietro | 31 vs 20 | 1.55× |
+| Failed to export backup. | Esportazione del backup non riuscita. | 37 vs 24 | 1.54× |
 | Standup humor | Umorismo da stand-up | 20 vs 13 | 1.54× |
+| Browser Default | Predefinito del browser | 23 vs 15 | 1.53× |
+| Connection Path | Percorso di connessione | 23 vs 15 | 1.53× |
+| Connection path | Percorso di connessione | 23 vs 15 | 1.53× |
+| Failed to send code | Invio del codice non riuscito | 29 vs 19 | 1.53× |
 | Full style text | Testo di stile completo | 23 vs 15 | 1.53× |
 | Queue a question… | Metti in coda una domanda… | 26 vs 17 | 1.53× |
+| Reading page... | Lettura della pagina... | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
 | Not set up yet — add a receiver in Settings | Non ancora configurato: aggiungi un ricevitore nelle Impostazioni | 65 vs 43 | 1.51× |
+| Add LocalSend device | Aggiungi dispositivo LocalSend | 30 vs 20 | 1.5× |
+| Auto-summarize favorites | Riassumi automaticamente i preferiti | 36 vs 24 | 1.5× |
 | Creating day recaps… {a}/{b} | Creazione riepiloghi giornalieri… {a}/{b} | 39 vs 26 | 1.5× |
 | Model is writing | Il modello sta scrivendo | 24 vs 16 | 1.5× |
 | Page text · {n} words | Testo della pagina · {n} parole | 30 vs 20 | 1.5× |
+| Switch graph search to highlight mode | Passa la ricerca del grafo alla modalità evidenziazione | 55 vs 37 | 1.49× |
 | Not set up yet — add your Kindle in Settings | Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni | 65 vs 44 | 1.48× |
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
+| Allow all origins | Consenti tutte le origini | 25 vs 17 | 1.47× |
+| Custom style (optional): | Stile personalizzato (facoltativo): | 35 vs 24 | 1.46× |
+| Use Native Chrome Side Panel | Usa il pannello laterale nativo di Chrome | 41 vs 28 | 1.46× |
+| (on iOS, hold to drag for 2 seconds) | (su iOS, tieni premuto per trascinare per 2 secondi) | 52 vs 36 | 1.44× |
+| No articles to graph yet. | Ancora nessun articolo per il grafo. | 36 vs 25 | 1.44× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Ancora nulla di valutato: crea un ✨ Riepilogo per valutare gli articoli. | 72 vs 50 | 1.44× |
 | ✨ Writing intro… | ✨ Scrittura dell’intro… | 23 vs 16 | 1.44× |
 | ⭐ Leave a review | ⭐ Lascia una recensione | 23 vs 16 | 1.44× |
+| AI ghost highlighting | Evidenziazione fantasma con IA | 30 vs 21 | 1.43× |
+| Error generating podcast: {msg} | Errore nella generazione del podcast: {msg} | 40 vs 28 | 1.43× |
+| Failed to load models | Impossibile caricare i modelli | 30 vs 21 | 1.43× |
 | {n} older item is not in this recap. | {n} elemento più vecchio non è in questo riepilogo. | 50 vs 35 | 1.43× |
+| Native Chrome side panel | Pannello laterale nativo di Chrome | 34 vs 24 | 1.42× |
+| Own model / API key | Modello / chiave API propri | 27 vs 19 | 1.42× |
+| TTS returned no audio. | Il TTS non ha restituito audio. | 31 vs 22 | 1.41× |
+| {name} · local, no API key | {name} · locale, nessuna chiave API | 31 vs 22 | 1.41× |
 | {n} older items are not in this recap. | {n} elementi più vecchi non sono in questo riepilogo. | 52 vs 37 | 1.41× |
 | 📍 Add to article | 📍 Aggiungi all'articolo | 24 vs 17 | 1.41× |
+| Found device at {ip} — click Add to save it ✓ | Dispositivo trovato su {ip}: clicca su Aggiungi per salvarlo ✓ | 60 vs 43 | 1.4× |
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
+| Start Ollama with the global wildcard so any origin can connect: | Avvia Ollama con il carattere jolly globale così che qualsiasi origine possa connettersi: | 89 vs 64 | 1.39× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 | {n} older item is not in this recap (limit: {max} per recap). | {n} elemento più vecchio non è in questo riepilogo (limite: {max} per riepilogo). | 77 vs 57 | 1.35× |
+| {name} · API key missing — add it in Settings | {name} · chiave API mancante: aggiungila nelle Impostazioni | 55 vs 41 | 1.34× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} elementi più vecchi non sono in questo riepilogo (limite: {max} per riepilogo). | 79 vs 59 | 1.34× |
+| Choose one delivery method for article detail actions. | Scegli un metodo di consegna per le azioni nel dettaglio dell'articolo. | 71 vs 54 | 1.31× |
+| Run this so the running server accepts requests from any origin: | Esegui questo perché il server in esecuzione accetti richieste da qualsiasi origine: | 84 vs 64 | 1.31× |
 | e.g. Prefer European news and keep it upbeat. | es. Preferisci notizie europee e mantieni un tono positivo. | 59 vs 45 | 1.31× |
 
 ### ja
 | English | Translation | width | ratio |
 |---|---|---|---|
 | {n} file sent | {n}件のファイルを送信しました | 28 vs 12 | 2.33× |
+| or consider | または次をご検討ください: | 25 vs 11 | 2.27× |
 | {n} files sent | {n}件のファイルを送信しました | 28 vs 13 | 2.15× |
 | Cancelled | キャンセルしました | 18 vs 9 | 2× |
+| Export | エクスポート | 12 vs 6 | 2× |
 | No items yet | アイテムはまだありません | 24 vs 12 | 2× |
 | Unmute | ミュート解除 | 12 vs 6 | 2× |
 | 🗄️ {n} archived | 🗄️ {n}件をアーカイブしました | 28 vs 15 | 1.87× |
+| For KOReader, prefer | KOReaderには、こちらをおすすめします: | 37 vs 20 | 1.85× |
 | Standup humor | スタンドアップ風ユーモア | 24 vs 13 | 1.85× |
+| Logged out. | ログアウトしました。 | 20 vs 11 | 1.82× |
+| No Kindle email set. | Kindleのメールアドレスが未設定です。 | 36 vs 20 | 1.8× |
 | No answer. | 回答がありません。 | 18 vs 10 | 1.8× |
+| Podcast style: | ポッドキャストのスタイル: | 25 vs 14 | 1.79× |
+| Copied! ✓ | コピーしました ✓ | 16 vs 9 | 1.78× |
 | Enjoying AI Summary Helper? | AI Summary Helper を気に入っていただけましたか？ | 48 vs 27 | 1.78× |
+| Session expired. Generate a new bookmarklet. | セッションの有効期限が切れました。新しいブックマークレットを生成してください。 | 78 vs 44 | 1.77× |
 | Archived | アーカイブ済み | 14 vs 8 | 1.75× |
 | Briefing | ブリーフィング | 14 vs 8 | 1.75× |
+| Fallback | フォールバック | 14 vs 8 | 1.75× |
+| Invalid code or expired session. | コードが無効、またはセッションの有効期限が切れています。 | 56 vs 32 | 1.75× |
 | Podcasts | ポッドキャスト | 14 vs 8 | 1.75× |
+| Saved! ✓ | 保存しました ✓ | 14 vs 8 | 1.75× |
+| Code expired. Please request a new one. | コードの有効期限が切れました。新しいコードをリクエストしてください。 | 68 vs 39 | 1.74× |
 | Creative title | クリエイティブなタイトル | 24 vs 14 | 1.71× |
+| Scan failed. Enter IP manually. | スキャンに失敗しました。IPを手動で入力してください。 | 52 vs 31 | 1.68× |
+| Neutral tone | ニュートラルなトーン | 20 vs 12 | 1.67× |
+| No title available | 利用できるタイトルがありません | 30 vs 18 | 1.67× |
+| 📤 Export | 📤 エクスポート | 15 vs 9 | 1.67× |
 | {done} of {total} sent. {error} | {total}件中{done}件を送信しました。{error} | 28 vs 17 | 1.65× |
+| Network error sending to Kindle. | Kindleへの送信中にネットワークエラーが発生しました。 | 52 vs 32 | 1.63× |
+| Copied as plain text. | プレーンテキストでコピーしました。 | 34 vs 21 | 1.62× |
+| No content available. | 利用できるコンテンツがありません。 | 34 vs 21 | 1.62× |
+| No devices added yet. | デバイスはまだ追加されていません。 | 34 vs 21 | 1.62× |
 | Sent to {name} | {name}に送信しました | 16 vs 10 | 1.6× |
 | Sort: Mood | 並び替え: ムード | 16 vs 10 | 1.6× |
 | ✨ Intro written | ✨ イントロを作成しました | 24 vs 15 | 1.6× |
+| Failed to export backup. | バックアップの書き出しに失敗しました。 | 38 vs 24 | 1.58× |
+| Magic code sent! ✨ Check your inbox. | マジックコードを送信しました ✨ 受信箱を確認してください。 | 57 vs 36 | 1.58× |
 | Daily briefing | デイリーブリーフィング | 22 vs 14 | 1.57× |
+| Import / export OPML | OPMLのインポート / エクスポート | 31 vs 20 | 1.55× |
+| Session lost. Please request a new code. | セッションが切れました。新しいコードをリクエストしてください。 | 62 vs 40 | 1.55× |
 | 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
 | 📅 Activity | 📅 アクティビティ | 17 vs 11 | 1.55× |
+| Preset prompt | プリセットプロンプト | 20 vs 13 | 1.54× |
+| give feedback | フィードバックを送る | 20 vs 13 | 1.54× |
+| No matches found | 一致するものがありません | 24 vs 16 | 1.5× |
+| TTS returned no audio. | TTSから音声が返されませんでした。 | 33 vs 22 | 1.5× |
+| No settings match “{query}”. | 「{query}」に一致する設定はありません。 | 34 vs 23 | 1.48× |
+| Please enter a valid email. | 有効なメールアドレスを入力してください。 | 40 vs 27 | 1.48× |
+| Failed to send code | コードを送信できませんでした | 28 vs 19 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
+| No articles to graph yet. | グラフ化できる記事がまだありません。 | 36 vs 25 | 1.44× |
+| Copied to clipboard! 📋 | クリップボードにコピーしました 📋 | 33 vs 23 | 1.43× |
 | Please keep this window open | このウィンドウを開いたままにしてください | 40 vs 28 | 1.43× |
+| ✓ Updated {a}, merged {b}. | ✓ {a}件を更新、{b}件を統合しました。 | 34 vs 24 | 1.42× |
+| Don't have a key? | キーをお持ちでない場合は | 24 vs 17 | 1.41× |
+| Run this so the running server accepts requests from any origin: | 実行中のサーバーがあらゆるオリジンからのリクエストを受け付けるよう、次を実行してください: | 89 vs 64 | 1.39× |
+| Invalid backup file. Please select a valid AI Summary Helper export. | 無効なバックアップファイルです。AI Summary Helperのエクスポートファイルを選択してください。 | 91 vs 68 | 1.34× |
 | Pick the receiver. Its app has to be open and on the same Wi‑Fi. | 受信先を選択してください。相手のアプリを開き、同じWi‑Fiに接続しておく必要があります。 | 85 vs 64 | 1.33× |
 
 ### ko
 | English | Translation | width | ratio |
 |---|---|---|---|
 | n/a | 해당 없음 | 9 vs 3 | 3× |
+| or consider | 또는 다음을 고려해 보세요: | 26 vs 11 | 2.36× |
 | Sent to {name} | {name}(으)로 전송했습니다 | 21 vs 10 | 2.1× |
+| No Kindle email set. | Kindle 이메일이 설정되지 않았어요. | 34 vs 20 | 1.7× |
 | No items yet | 아직 항목이 없습니다 | 20 vs 12 | 1.67× |
 | No answer. | 답변이 없습니다. | 16 vs 10 | 1.6× |
+| TTS returned no audio. | TTS에서 오디오가 반환되지 않았어요. | 35 vs 22 | 1.59× |
+| {n} unopened 30d+ | 30일 넘게 안 연 항목 {n}개 | 25 vs 16 | 1.56× |
+| For KOReader, prefer | KOReader에는 다음을 권장해요: | 29 vs 20 | 1.45× |
+| Network error sending to Kindle. | Kindle로 보내는 중 네트워크 오류가 발생했어요. | 46 vs 32 | 1.44× |
+| Welcome to AI Summary Helper | AI Summary Helper에 오신 것을 환영합니다 | 40 vs 28 | 1.43× |
+| Runs entirely in your browser — no data leaves it. | 모든 작업이 브라우저 안에서 처리되며 데이터는 밖으로 나가지 않아요. | 67 vs 50 | 1.34× |
 
 ### pt_PT
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Inbox | Caixa de entrada | 16 vs 5 | 3.2× |
 | Add | Adicionar | 9 vs 3 | 3× |
+| off | desligado | 9 vs 3 | 3× |
 | Newer | Mais recentes | 13 vs 5 | 2.6× |
 | Add tag | Adicionar etiqueta | 18 vs 7 | 2.57× |
 | Play | Reproduzir | 10 vs 4 | 2.5× |
+| Solo | Individual | 10 vs 4 | 2.5× |
 | Older | Mais antigos | 12 vs 5 | 2.4× |
+| + Add | + Adicionar | 11 vs 5 | 2.2× |
 | Custom | Personalizado | 13 vs 6 | 2.17× |
+| Log Out | Terminar sessão | 15 vs 7 | 2.14× |
+| Export backup first | Exporte primeiro uma cópia de segurança | 39 vs 19 | 2.05× |
 | AI-rated | Avaliados por IA | 16 vs 8 | 2× |
 | Casual | Descontraído | 12 vs 6 | 2× |
 | Preset | Predefinição | 12 vs 6 | 2× |
 | ▶ Play | ▶ Reproduzir | 12 vs 6 | 2× |
 | ＋ Add | ＋ Adicionar | 12 vs 6 | 2× |
+| shared tag | etiqueta partilhada | 19 vs 10 | 1.9× |
+| Add custom model | Adicionar modelo personalizado | 30 vs 16 | 1.88× |
+| Backup · tags · delete | Cópia de segurança · etiquetas · eliminar | 41 vs 22 | 1.86× |
+| Own key | Chave própria | 13 vs 7 | 1.86× |
+| Verify & Login | Verificar e iniciar sessão | 26 vs 14 | 1.86× |
+| Account Sync | Sincronização da conta | 22 vs 12 | 1.83× |
 | Newest first | Mais recentes primeiro | 22 vs 12 | 1.83× |
+| No devices added yet. | Ainda não há dispositivos adicionados. | 38 vs 21 | 1.81× |
+| Enter code | Introduza o código | 18 vs 10 | 1.8× |
+| — Feel free to | — Sinta-se à vontade para | 25 vs 14 | 1.79× |
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
+| Copied to clipboard! 📋 | Copiado para a área de transferência! 📋 | 40 vs 23 | 1.74× |
+| Free Trial Mode | Modo de avaliação gratuita | 26 vs 15 | 1.73× |
+| UI Language | Idioma da interface | 19 vs 11 | 1.73× |
+| UI language | Idioma da interface | 19 vs 11 | 1.73× |
+| Verify & Log In | Verificar e iniciar sessão | 26 vs 15 | 1.73× |
+| Enter 6-digit code | Introduza o código de 6 dígitos | 31 vs 18 | 1.72× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
+| 💾 Backup & restore | 💾 Cópia de segurança e restauro | 32 vs 19 | 1.68× |
+| Browser Default | Predefinição do navegador | 25 vs 15 | 1.67× |
 | ☁️ Top terms | ☁️ Termos principais | 20 vs 12 | 1.67× |
 | AI-rated: heavy news | Avaliado por IA: notícias pesadas | 33 vs 20 | 1.65× |
+| Add Kindle device | Adicionar dispositivo Kindle | 28 vs 17 | 1.65× |
+| No Kindle email set. | Nenhum e-mail do Kindle definido. | 33 vs 20 | 1.65× |
 | Updates & storage | Atualizações e armazenamento | 28 vs 17 | 1.65× |
+| Auto-Detect | Deteção automática | 18 vs 11 | 1.64× |
+| System Default | Predefinição do sistema | 23 vs 14 | 1.64× |
+| Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
+| Failed to export backup. | Falha ao exportar a cópia de segurança. | 39 vs 24 | 1.63× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
+| {name} · API key set | {name} · chave da API definida | 26 vs 16 | 1.63× |
+| Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
+| Feed refresh interval | Intervalo de atualização dos feeds | 34 vs 21 | 1.62× |
 | {n} files sent | {n} ficheiros enviados | 21 vs 13 | 1.62× |
+| Custom prompt text | Texto do prompt personalizado | 29 vs 18 | 1.61× |
+| Magic code sent! ✨ Check your inbox. | Código mágico enviado! ✨ Verifique a sua caixa de entrada. | 58 vs 36 | 1.61× |
+| No settings match “{query}”. | Nenhuma definição corresponde a “{query}”. | 37 vs 23 | 1.61× |
+| 🧠 On-device tools | 🧠 Ferramentas no dispositivo | 29 vs 18 | 1.61× |
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Hard facts | Factos concretos | 16 vs 10 | 1.6× |
+| Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
+| Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
+| Own model / API key | Modelo / chave de API próprios | 30 vs 19 | 1.58× |
 | {n} file sent | {n} ficheiro enviado | 19 vs 12 | 1.58× |
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
+| Account sync · sign in / log out | Sincronização da conta · iniciar / terminar sessão | 50 vs 32 | 1.56× |
+| Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado em {ip} — clique em Adicionar para o guardar ✓ | 67 vs 43 | 1.56× |
 | Restore to Inbox | Repor na caixa de entrada | 25 vs 16 | 1.56× |
 | Sort: Read share | Ordenar: percentagem lida | 25 vs 16 | 1.56× |
+| Add LocalSend device | Adicionar dispositivo LocalSend | 31 vs 20 | 1.55× |
+| Logged out. | Sessão terminada. | 17 vs 11 | 1.55× |
 | No tags found. Add tags to your summaries! | Nenhuma etiqueta encontrada. Adicione etiquetas aos seus resumos! | 65 vs 42 | 1.55× |
 | Unsubscribe | Anular subscrição | 17 vs 11 | 1.55× |
 | Not enough rated items yet | Ainda não há itens avaliados suficientes | 40 vs 26 | 1.54× |
+| Showing top tags (archive is large) | A mostrar as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
+| Logged in as: {email} | Sessão iniciada como: {email} | 24 vs 16 | 1.5× |
 | Model is writing | O modelo está a escrever | 24 vs 16 | 1.5× |
+| No receiver address set. | Nenhum endereço de recetor definido. | 36 vs 24 | 1.5× |
 | ↩ Restore to Inbox | ↩ Repor na caixa de entrada | 27 vs 18 | 1.5× |
 | Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
+| Allow all origins | Permitir todas as origens | 25 vs 17 | 1.47× |
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
+| Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |
 | Queue a question… | Colocar pergunta em fila… | 25 vs 17 | 1.47× |
+| Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
+| Delete all settings? | Eliminar todas as definições? | 29 vs 20 | 1.45× |
+| Ghost Highlight Amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
+| Ghost highlight amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
 | Page text · {n} words | Texto da página · {n} palavras | 29 vs 20 | 1.45× |
+| Scan failed. Enter IP manually. | Falha na procura. Introduza o IP manualmente. | 45 vs 31 | 1.45× |
+| Compatible tools | Ferramentas compatíveis | 23 vs 16 | 1.44× |
 | Could not add feed | Não foi possível adicionar | 26 vs 18 | 1.44× |
+| Flesch reading ease: {ease}/100 | Facilidade de leitura de Flesch: {ease}/100 | 39 vs 27 | 1.44× |
+| Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
+| Mood on/off (tone analysis) | Humor ligado/desligado (análise de tom) | 39 vs 27 | 1.44× |
+| No matches found | Nenhuma correspondência | 23 vs 16 | 1.44× |
+| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Inicie sessão para desbloquear modelos na nuvem gratuitos e sincronizar os seus resumos, ou use as suas próprias chaves de API. | 127 vs 88 | 1.44× |
 | Topics over time | Temas ao longo do tempo | 23 vs 16 | 1.44× |
+| Sources · rename · tags · mute | Fontes · mudar nome · etiquetas · silenciar | 43 vs 30 | 1.43× |
+| (on iOS, hold to drag for 2 seconds) | (no iOS, mantenha premido 2 segundos para arrastar) | 51 vs 36 | 1.42× |
 | Mood history is kept for 13 months, even after items are removed. | O histórico de humor é mantido durante 13 meses, mesmo depois de os artigos serem removidos. | 92 vs 65 | 1.42× |
+| Preset and custom prompt | Prompt predefinido e personalizado | 34 vs 24 | 1.42× |
+| No articles saved yet. | Ainda não há artigos guardados. | 31 vs 22 | 1.41× |
+| Use "{name}" as custom language code | Usar "{name}" como código de idioma personalizado | 45 vs 32 | 1.41× |
+| Invalid backup file. Please select a valid AI Summary Helper export. | Ficheiro de cópia de segurança inválido. Selecione uma exportação válida do AI Summary Helper. | 94 vs 68 | 1.38× |
+| to your Kindle's approved senders first — | à lista de remetentes aprovados do seu Kindle primeiro — | 56 vs 41 | 1.37× |
 | Not set up yet — add your Kindle in Settings | Ainda não configurado — adiciona o teu Kindle nas Definições | 60 vs 44 | 1.36× |
 | Not set up yet — add a receiver in Settings | Ainda não configurado — adiciona um recetor nas Definições | 58 vs 43 | 1.35× |
+| 📚 Send to Kindle
+
+Free tier: 3 Kindle sends included.
+Upgrade to Pro for unlimited.
+
+Make sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).
+
+Send this article to Kindle? | 📚 Enviar para o Kindle
+
+Plano gratuito: 3 envios para o Kindle incluídos.
+Atualize para o Pro para envios ilimitados.
+
+Certifique-se de que kindle@byphil.eu está na lista de remetentes aprovados do seu Kindle (veja a ajuda da Amazon).
+
+Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
+| Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically. | Os feeds e caixas de entrada (feed do LinkedIn, página inicial do X, …) já são ignorados automaticamente. | 105 vs 79 | 1.33× |
 | AI adds 2–3 sentences on top of the digest | A IA acrescenta 2–3 frases no início do resumo conjunto | 55 vs 42 | 1.31× |
+| Automatic light-blue quote highlights from summaries | Destaques de citações em azul-claro automáticos a partir dos resumos | 68 vs 52 | 1.31× |
+| I want to use my own Custom API / Local Model | Quero usar a minha própria API personalizada / modelo local | 59 vs 45 | 1.31× |
 | e.g. Prefer European news and keep it upbeat. | p. ex. Prefere notícias europeias e mantém um tom positivo. | 59 vs 45 | 1.31× |
 
 ### ru
@@ -415,24 +861,76 @@ Strings: 545. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Sort: Unread | Сортировка: непрочитанные | 25 vs 12 | 2.08× |
 | Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | Sort: Name | Сортировка: название | 20 vs 10 | 2× |
+| View & Copy | Просмотр и копирование | 22 vs 11 | 2× |
 | reused | использована | 12 vs 6 | 2× |
+| About & Tools | О программе и инструменты | 25 vs 13 | 1.92× |
+| Send & Share | Отправка и общий доступ | 23 vs 12 | 1.92× |
+| Copy 📋 | Копировать 📋 | 13 vs 7 | 1.86× |
+| Get Key | Получить ключ | 13 vs 7 | 1.86× |
 | Stacked | С накоплением | 13 vs 7 | 1.86× |
+| Account Sync | Синхронизация аккаунта | 22 vs 12 | 1.83× |
 | Sort: Read share | Сортировка: доля прочитанного | 29 vs 16 | 1.81× |
 | Good mood only | Только хорошее настроение | 25 vs 14 | 1.79× |
+| Free Tier | Бесплатный тариф | 16 vs 9 | 1.78× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |
 | Mood index | Индекс настроения | 17 vs 10 | 1.7× |
+| Found device at {ip} — click Add to save it ✓ | Устройство найдено по адресу {ip} — нажмите «Добавить», чтобы сохранить ✓ | 71 vs 43 | 1.65× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |
+| Use Native Chrome Side Panel | Использовать встроенную боковую панель Chrome | 45 vs 28 | 1.61× |
+| Free Trial Mode | Бесплатный пробный режим | 24 vs 15 | 1.6× |
+| Open in sidebar | Открыть в боковой панели | 24 vs 15 | 1.6× |
 | Sent to {name} | Отправлено на {name} | 16 vs 10 | 1.6× |
 | Queue a question… | Поставить вопрос в очередь… | 27 vs 17 | 1.59× |
 | No items yet | Пока нет материалов | 19 vs 12 | 1.58× |
+| Allow all origins (app) | Разрешить все источники (приложение) | 36 vs 23 | 1.57× |
+| Mark read when opened | Отмечать прочитанным при открытии | 33 vs 21 | 1.57× |
+| Share failed: {message} | Не удалось поделиться: {message} | 25 vs 16 | 1.56× |
+| Type {word} to confirm | Введите {word} для подтверждения | 28 vs 18 | 1.56× |
+| 🧠 On-device tools | 🧠 Инструменты на устройстве | 28 vs 18 | 1.56× |
+| Exported! ✓ | Экспортировано! ✓ | 17 vs 11 | 1.55× |
+| For KOReader, prefer | Для KOReader лучше использовать | 31 vs 20 | 1.55× |
+| Stop Ollama | Остановить Ollama | 17 vs 11 | 1.55× |
 | ✅ Sent · {date} | ✅ Отправлено · {date} | 17 vs 11 | 1.55× |
 | View & edit › | Смотреть и править › | 20 vs 13 | 1.54× |
+| Add Kindle device | Добавить устройство Kindle | 26 vs 17 | 1.53× |
+| Send Magic Code | Отправить волшебный код | 23 vs 15 | 1.53× |
+| Sources · rename · tags · mute | Источники · переименование · теги · отключение | 46 vs 30 | 1.53× |
+| Auto-summarize favorites | Автоматически резюмировать избранное | 36 vs 24 | 1.5× |
+| Backup · tags · delete | Резервная копия · теги · удаление | 33 vs 22 | 1.5× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |
+| Start Ollama with the global wildcard so any origin can connect: | Запустите Ollama с глобальным подстановочным знаком, чтобы подключаться могли любые источники: | 94 vs 64 | 1.47× |
 | Summarize this page | Кратко изложить эту страницу | 28 vs 19 | 1.47× |
+| Add LocalSend device | Добавить устройство LocalSend | 29 vs 20 | 1.45× |
+| Compatible tools | Совместимые инструменты | 23 vs 16 | 1.44× |
+| {n} duplicate tag | Повторяющихся тегов: {n} | 23 vs 16 | 1.44× |
+| Copied as plain text. | Скопировано как обычный текст. | 30 vs 21 | 1.43× |
+| Inline mode is great for "Send to Kindle". | Встроенный режим отлично подходит для "Отправить на Kindle". | 60 vs 42 | 1.43× |
+| Preferred Cloud Model | Предпочитаемая облачная модель | 30 vs 21 | 1.43× |
+| Preferred cloud model | Предпочитаемая облачная модель | 30 vs 21 | 1.43× |
 | ✨ Write a short intro | ✨ Написать короткое вступление | 30 vs 21 | 1.43× |
+| Export backup first | Сначала экспортируйте копию | 27 vs 19 | 1.42× |
+| Scan failed. Enter IP manually. | Сканирование не удалось. Введите IP вручную. | 44 vs 31 | 1.42× |
 | Week & month recaps | Недельные и месячные обзоры | 27 vs 19 | 1.42× |
+| Ghost Highlight Amount | Количество призрачных выделений | 31 vs 22 | 1.41× |
+| Ghost highlight amount | Количество призрачных выделений | 31 vs 22 | 1.41× |
 | 📈 Mood over time | 📈 Настроение во времени | 24 vs 17 | 1.41× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Пока ничего не оценено — составьте ✨ сводку, чтобы оценить материалы. | 69 vs 50 | 1.38× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
 | Uses your AI model · one extra call · in your app language | Использует вашу модель ИИ · один дополнительный запрос · на языке приложения | 76 vs 58 | 1.31× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |
+| Run this command so Ollama stays configured after restarting the Mac app: | Выполните эту команду, чтобы настройка Ollama сохранилась после перезапуска приложения для Mac: | 95 vs 73 | 1.3× |
+
+### zh_CN
+| English | Translation | width | ratio |
+|---|---|---|---|
+| For KOReader, prefer | 使用 KOReader 时，建议优先使用 | 30 vs 20 | 1.5× |
+
+### zh_HK
+| English | Translation | width | ratio |
+|---|---|---|---|
+| For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
+
+### zh_TW
+| English | Translation | width | ratio |
+|---|---|---|---|
+| For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |

@@ -1,3 +1,4 @@
+import { T } from './feedI18n.js';
 // localSendClient.js
 // Handles LocalSend handshake and file upload over local network.
 
@@ -18,7 +19,7 @@ function sendViaBackground(targetUrl, body, isJson = true, headers = null, metho
                     return;
                 }
                 if (!response?.success) {
-                    reject(new Error(response?.error || 'LocalSend transfer failed'));
+                    reject(new Error(response?.error || T('LocalSend transfer failed')));
                     return;
                 }
                 resolve(response);
@@ -29,7 +30,7 @@ function sendViaBackground(targetUrl, body, isJson = true, headers = null, metho
 
 function parseTargetIp(targetIp, defaultPort) {
     let input = (targetIp || '').trim();
-    if (!input) throw new Error('LocalSend target IP is empty.');
+    if (!input) throw new Error(T('LocalSend target IP is empty.'));
 
     const markdownUrlMatch = input.match(/\]\((https?:\/\/[^)]+)\)$/i);
     if (markdownUrlMatch?.[1]) {
@@ -42,7 +43,7 @@ function parseTargetIp(targetIp, defaultPort) {
     const port = url.port || String(defaultPort);
     const preferredProtocol = explicitProtocol ? url.protocol.replace(':', '').toLowerCase() : null;
 
-    if (!host) throw new Error('Invalid LocalSend IP/URL.');
+    if (!host) throw new Error(T('Invalid LocalSend IP/URL.'));
 
     return { host, port, preferredProtocol };
 }
@@ -110,7 +111,7 @@ export async function sendToLocalSend(targetIp, fileName, fileDataString, mimeTy
 
             if (!prepareResp.ok) {
                 lastStatus = prepareResp.status;
-                throw new Error(`Handshake Failed: HTTP ${prepareResp.status}`);
+                throw new Error(T('Handshake Failed: HTTP {status}', { status: prepareResp.status }));
             }
 
             prepareData = prepareResp.data;
@@ -123,14 +124,14 @@ export async function sendToLocalSend(targetIp, fileName, fileDataString, mimeTy
 
     if (!selectedBaseUrl || !prepareData) {
         if (lastError?.message) throw new Error(lastError.message);
-        throw new Error(`Handshake Failed: HTTP ${lastStatus || 'unknown'}`);
+        throw new Error(T('Handshake Failed: HTTP {status}', { status: lastStatus || T('unknown') }));
     }
 
     const sessionId = prepareData.sessionId || prepareData.session_id;
     const files = prepareData.files || {};
     const fileToken = files[fileId] || prepareData.tokens?.[fileId];
 
-    if (!sessionId) throw new Error('LocalSend rejected upload session (missing sessionId).');
+    if (!sessionId) throw new Error(T('LocalSend rejected upload session (missing sessionId).'));
 
     let uploadUrl = `${selectedBaseUrl}/upload?sessionId=${encodeURIComponent(sessionId)}&fileId=${encodeURIComponent(fileId)}`;
     if (fileToken) {
@@ -145,7 +146,7 @@ export async function sendToLocalSend(targetIp, fileName, fileDataString, mimeTy
         'POST'
     );
 
-    if (!uploadResp.ok) throw new Error(`Upload Failed: HTTP ${uploadResp.status}`);
+    if (!uploadResp.ok) throw new Error(T('Upload Failed: HTTP {status}', { status: uploadResp.status }));
 
     return true;
 }

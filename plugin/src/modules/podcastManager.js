@@ -5,6 +5,9 @@ import { SK } from './storageKeys.js';
  ******************************************************************/
 
 import { generateAudioFromText } from "../api.js";
+import { T } from './feedI18n.js';
+
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 // ─────────────────────────────────────────────
 // GLOBAL STATE
@@ -41,13 +44,13 @@ export function renderPodcastUI(targetContainer) {
     const nav = document.createElement("div");
     nav.className = "flex row gap-2 mt-2";
     nav.innerHTML = `
-        <button id="prevStepBtn" class="button-secondary">◀ Back</button>
-        <button id="nextStepBtn" class="button-primary">Next ▶</button>
+        <button id="prevStepBtn" class="button-secondary">◀ ${esc(T('Back'))}</button>
+        <button id="nextStepBtn" class="button-primary">${esc(T('Next'))} ▶</button>
     `;
     container.appendChild(nav);
 
     const createdHeader = document.createElement("h3");
-    createdHeader.textContent = "Created Podcasts";
+    createdHeader.textContent = T('Created Podcasts');
     container.appendChild(createdHeader);
 
     const podcastList = document.createElement("div");
@@ -88,7 +91,7 @@ function renderStep(container) {
     const nextBtn = document.getElementById("nextStepBtn");
 
     prevBtn.style.display = currentStep === 1 ? "none" : "block";
-    nextBtn.textContent = currentStep === 4 ? "Generate 🎙️" : "Next ▶";
+    nextBtn.textContent = currentStep === 4 ? T('Generate 🎙️') : T('Next') + ' ▶';
 
     if (currentStep === 2) {
         nextBtn.disabled = podcastWizardState.selectedArticles.size === 0;
@@ -111,11 +114,11 @@ function goNextStep() {
 
 function renderStep1(container) {
     const label = document.createElement("label");
-    label.textContent = "Pick a name for your show:";
+    label.textContent = T('Pick a name for your show:');
 
     const input = document.createElement("input");
     input.id = "podcastNameInput";
-    input.placeholder = "Podcast Name";
+    input.placeholder = T('Podcast Name');
 
     chrome.storage.local.get([SK.podcastName], data => {
         if (data[SK.podcastName]) input.value = data[SK.podcastName];
@@ -137,7 +140,7 @@ function renderStep1(container) {
 
 function renderStep2(container) {
     const label = document.createElement("label");
-    label.textContent = "Select up to 5 articles:";
+    label.textContent = T('Select up to 5 articles:');
     container.appendChild(label);
 
     const list = document.createElement("div");
@@ -163,7 +166,7 @@ function renderStep2(container) {
         card.onclick = () => toggleArticle(id, card);
 
         const title = document.createElement("div");
-        title.textContent = article.title || "Untitled";
+        title.textContent = article.title || T('Untitled');
         title.style.fontWeight = "bold";
         title.style.marginBottom = "0.5rem";
 
@@ -226,7 +229,7 @@ function updateNextButtonState() {
 
 function renderStep3(container) {
     const label = document.createElement("label");
-    label.textContent = "Podcast length (minutes):";
+    label.textContent = T('Podcast length (minutes):');
 
     const slider = document.createElement("input");
     slider.type = "range";
@@ -242,7 +245,7 @@ function renderStep3(container) {
     sliderWrapper.appendChild(slider);
 
     const value = document.createElement("span");
-    value.textContent = slider.value + " min";
+    value.textContent = T('{n} min', { n: slider.value });
     value.style.position = "absolute";
     value.style.top = "48px";
     value.style.left = "0";
@@ -262,7 +265,7 @@ function renderStep3(container) {
         const thumbWidth = 16;
         const offset = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
         value.style.left = `${offset}px`;
-        value.textContent = slider.value + " min";
+        value.textContent = T('{n} min', { n: slider.value });
     }
 
     slider.oninput = () => {
@@ -297,7 +300,7 @@ function renderStep3(container) {
 
     // Podcast style chips
     const styleLabel = document.createElement("label");
-    styleLabel.textContent = "Podcast style:";
+    styleLabel.textContent = T('Podcast style:');
     styleLabel.style.marginTop = "1em";
     container.appendChild(styleLabel);
 
@@ -310,6 +313,10 @@ function renderStep3(container) {
         "Panel",
         "Solo"
     ];
+    const styleLabels = {
+        Interview: () => T('Interview'), News: () => T('News'), Comedy: () => T('Comedy'),
+        Storytelling: () => T('Storytelling'), Educational: () => T('Educational'), Panel: () => T('Panel'), Solo: () => T('Solo')
+    };
     const chipsContainer = document.createElement("div");
     chipsContainer.className = "podcast-style-chips";
     chipsContainer.style.display = "flex";
@@ -323,7 +330,7 @@ function renderStep3(container) {
                 podcastWizardState.style = data[SK.podcastStyle];
             }
             Array.from(chipsContainer.children).forEach(c => {
-                if (c.textContent === podcastWizardState.style) {
+                if (c.dataset.style === podcastWizardState.style) {
                     c.style.background = "#cce6ff";
                 }
             });
@@ -334,7 +341,8 @@ function renderStep3(container) {
         const chip = document.createElement("button");
         chip.type = "button";
         chip.className = "chip";
-        chip.textContent = style;
+        chip.textContent = styleLabels[style] ? styleLabels[style]() : style;
+        chip.dataset.style = style;
         chip.style.padding = "0.3em 0.8em";
         chip.style.borderRadius = "16px";
         chip.style.border = "1px solid #0084ff";
@@ -355,13 +363,13 @@ function renderStep3(container) {
 
     // Custom style input
     const customStyleLabel = document.createElement("label");
-    customStyleLabel.textContent = "Custom style (optional):";
+    customStyleLabel.textContent = T('Custom style (optional):');
     customStyleLabel.style.marginTop = "1em";
     container.appendChild(customStyleLabel);
 
     const customStyleInput = document.createElement("input");
     customStyleInput.type = "text";
-    customStyleInput.placeholder = "Describe your podcast style";
+    customStyleInput.placeholder = T('Describe your podcast style');
     customStyleInput.style.marginBottom = "0.5em";
     // Load saved custom style from local storage
     import('./storageManager.js').then(({ default: StorageManager }) => {
@@ -399,13 +407,13 @@ function renderStep4(container) {
     const customStyle = podcastWizardState.customStyle || "";
 
     container.innerHTML = `
-        <p>You're ready to generate your podcast! 🎙️</p>
-        <p><strong>Name:</strong> ${podcastWizardState.name}</p>
-        <p><strong>Articles:</strong> ${titles.join(", ")}</p>
-        <p><strong>Length:</strong> ${podcastWizardState.length} min</p>
-        <p><strong>Style:</strong> ${style ? style : "-"}</p>
-        <p><strong>Custom style:</strong> ${customStyle ? customStyle : "-"}</p>
-        <p>Click “Generate 🎙️” to create your episode.</p>
+        <p>${esc(T("You're ready to generate your podcast!"))} 🎙️</p>
+        <p><strong>${esc(T('Name:'))}</strong> ${podcastWizardState.name}</p>
+        <p><strong>${esc(T('Articles:'))}</strong> ${titles.join(", ")}</p>
+        <p><strong>${esc(T('Length:'))}</strong> ${esc(T('{n} min', { n: podcastWizardState.length }))}</p>
+        <p><strong>${esc(T('Style:'))}</strong> ${style ? style : "-"}</p>
+        <p><strong>${esc(T('Custom style:'))}</strong> ${customStyle ? customStyle : "-"}</p>
+        <p>${esc(T('Click “Generate 🎙️” to create your episode.'))}</p>
     `;
 }
 
@@ -476,7 +484,7 @@ async function generatePodcast() {
         const { createChatCompletion } = await import("../api.js");
 
         nextBtn.disabled = true;
-        nextBtn.textContent = "Generating…";
+        nextBtn.textContent = T('Generating…');
 
         try {
             const script = await createChatCompletion(
@@ -510,11 +518,11 @@ async function generatePodcast() {
             renderCreatedPodcasts(document.getElementById("podcastList"));
 
         } catch (err) {
-            alert("Error generating podcast: " + err.message);
+            alert(T('Error generating podcast: {msg}', { msg: err.message }));
         }
 
         nextBtn.disabled = false;
-        nextBtn.textContent = "Generate 🎙️";
+        nextBtn.textContent = T('Generate 🎙️');
     });
 }
 
@@ -541,8 +549,8 @@ function renderCreatedPodcasts(container) {
 
             card.innerHTML = `
                 <h3>${p.name}</h3>
-                ${p.audio ? `<audio controls src="${p.audio}"></audio>` : "<em>No audio</em>"}
-                <button class="delete-podcast-button">Delete</button>
+                ${p.audio ? `<audio controls src="${p.audio}"></audio>` : `<em>${esc(T('No audio'))}</em>`}
+                <button class="delete-podcast-button">${esc(T('Delete'))}</button>
             `;
 
             card.querySelector(".delete-podcast-button").onclick = () => {

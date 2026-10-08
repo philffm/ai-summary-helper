@@ -1,5 +1,6 @@
 // toolsManager.js
 // Handles loading and displaying compatible tools
+import { T } from './feedI18n.js';
 
 function loadCompatibleTools(compatibleToolsSection) {
     fetch('compatible-tools.json')
@@ -7,17 +8,17 @@ function loadCompatibleTools(compatibleToolsSection) {
         .then(tools => {
             compatibleToolsSection.innerHTML = '';
             if (!tools.length) {
-                compatibleToolsSection.innerHTML = '<div class="explanatory-card">No tools available yet.</div>';
+                compatibleToolsSection.innerHTML = `<div class="explanatory-card">${T('No tools available yet.')}</div>`;
                 return;
             }
             tools.forEach(tool => {
                 const card = document.createElement('div');
                 card.className = 'tool-card';
-                const name = tool.name || tool.Name || tool.title || tool.Title || 'Unnamed Tool';
+                const name = tool.name || tool.Name || tool.title || tool.Title || T('Unnamed Tool');
                 const description = tool.description || tool.Description || tool.desc || tool.Desc || '';
                 const url = tool.url || tool.URL || tool.link || '';
                 const linkHtml = url
-                    ? `<a class="discover-button" href="${url}" target="_blank">Open →</a>`
+                    ? `<a class="discover-button" href="${url}" target="_blank">${T('Open →')}</a>`
                     : '';
                 card.innerHTML = `
                     <div class="tool-card-content">
@@ -32,7 +33,7 @@ function loadCompatibleTools(compatibleToolsSection) {
         })
         .catch(error => {
             console.error('Error loading compatible tools:', error);
-            compatibleToolsSection.innerHTML = '<div class="explanatory-card">Failed to load tools.</div>';
+            compatibleToolsSection.innerHTML = `<div class="explanatory-card">${T('Failed to load tools.')}</div>`;
         });
 }
 

@@ -1,3 +1,5 @@
+import { T } from './feedI18n.js';
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 import { SK } from './storageKeys.js';
 // Model Manager modelManager.js
 // Handles service/model config and label logic
@@ -23,18 +25,18 @@ import StorageManager from './storageManager.js';
                 allModels.push({ id: defaultModel, provider: serviceId });
             }
             modelIdentifierContainer.innerHTML = `
-                <label style="display:block;margin-bottom:6px;">Model Identifiers</label>
+                <label style="display:block;margin-bottom:6px;">${T('Model Identifiers')}</label>
                 <div id="modelTagList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">
                   ${allModels.map(m => {
                     const isDefault = m.id === defaultModel && !modelIds.includes(m.id);
                     const safeId = m.id.replace(/"/g, '&quot;');
-                    return `<span class="model-id-tag" data-model="${safeId}" data-provider="${m.provider}">${m.id}${isDefault ? ' (default)' : ''} ${!isDefault ? '<span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span>' : ''}</span>`;
+                    return `<span class="model-id-tag" data-model="${safeId}" data-provider="${m.provider}">${m.id}${isDefault ? ` ${T('(default)')}` : ''} ${!isDefault ? '<span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span>' : ''}</span>`;
                   }).join('')}
                 </div>
                 </div>
                 <div style="display:flex;gap:6px;">
-                  <input type="text" id="addModelInput" placeholder="e.g. gpt-5-mini" style="flex:1;padding:8px 10px;" />
-                  <button id="addModelBtn" class="button-secondary" style="flex-shrink:0;">+ Add</button>
+                  <input type="text" id="addModelInput" placeholder="${esc(T('e.g. gpt-5-mini'))}" style="flex:1;padding:8px 10px;" />
+                  <button id="addModelBtn" class="button-secondary" style="flex-shrink:0;">${T('+ Add')}</button>
                 </div>
             `;
 

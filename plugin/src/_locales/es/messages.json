@@ -2029,5 +2029,1187 @@
   },
   "f_items_per_recap_fac3": {
     "message": "📝 Elementos por resumen"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(en iOS, mantén pulsado para arrastrar durante 2 segundos)"
+  },
+  "f_add_59dd": {
+    "message": "+ Añadir"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "Un paquete de {count}: {titles}"
+  },
+  "f_a_few_18aa": {
+    "message": "Unos pocos"
+  },
+  "f_a_lot_9f13": {
+    "message": "Muchos"
+  },
+  "f_ai_model_1862": {
+    "message": "Modelo de IA"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "Resaltado fantasma con IA"
+  },
+  "f_api_error_e311": {
+    "message": "Error de API:"
+  },
+  "f_api_key_6382": {
+    "message": "Clave API:"
+  },
+  "f_api_key_c6ec": {
+    "message": "Clave API"
+  },
+  "f_about_tools_9c0f": {
+    "message": "Acerca de y herramientas"
+  },
+  "f_account_a2fc": {
+    "message": "Cuenta"
+  },
+  "f_account_plan_bd49": {
+    "message": "Cuenta y plan"
+  },
+  "f_account_sync_cdb7": {
+    "message": "Sincronización de cuenta"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "Sincronización · iniciar / cerrar sesión"
+  },
+  "f_activate_0190": {
+    "message": "Activar"
+  },
+  "f_active_send_target_69d8": {
+    "message": "Destino de envío activo"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "Añadir dispositivo Kindle"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "Añadir dispositivo LocalSend"
+  },
+  "f_add_custom_model_336a": {
+    "message": "Añadir modelo personalizado"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "Añade un ID de modelo, p. ej. gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "Permitir todos los orígenes"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "Permitir todos los orígenes (app)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "la guía de Amazon"
+  },
+  "f_analytics_e02b": {
+    "message": "Analíticas"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "Analizando etiquetas…"
+  },
+  "f_appearance_language_6075": {
+    "message": "Apariencia e idioma"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "¿Seguro que quieres eliminar este artículo?"
+  },
+  "f_article_05f9": {
+    "message": "Artículo"
+  },
+  "f_articles_ae4c": {
+    "message": "Artículos:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "Error al generar el audio: {msg}"
+  },
+  "f_auto_detect_0006": {
+    "message": "Detección automática"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "Resumir favoritos automáticamente"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "Citas resaltadas en azul claro automáticamente a partir de los resúmenes"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "¡Copia de seguridad restaurada!\n{n} artículos importados.\n\nLa extensión se recargará ahora."
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "Copia · etiquetas · eliminar"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "Generador de bookmarklet"
+  },
+  "f_browser_default_9336": {
+    "message": "Predeterminado del navegador"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "Comprobar feeds en segundo plano"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "Comprueba si el receptor está en línea."
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "Comprueba si el receptor está en línea."
+  },
+  "f_checking_f2f5": {
+    "message": "Comprobando..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "Elige un método de entrega para las acciones del detalle del artículo."
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "Limpiar y fusionar etiquetas"
+  },
+  "f_clear_search_e946": {
+    "message": "Borrar búsqueda"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "Haz clic en el icono de Ollama en la barra de menús (arriba a la derecha) y elige <b>Quit Ollama</b>."
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "Pulsa «Generar 🎙️» para crear tu episodio."
+  },
+  "f_close_pane_d66b": {
+    "message": "Cerrar panel {n}"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "El código ha caducado. Solicita uno nuevo."
+  },
+  "f_comedy_0972": {
+    "message": "Comedia"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "Herramientas compatibles"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "Primero configura la dirección IP de LocalSend en los ajustes."
+  },
+  "f_connection_path_790c": {
+    "message": "Ruta de conexión"
+  },
+  "f_connection_path_e1ec": {
+    "message": "Ruta de conexión"
+  },
+  "f_context_k_1bbb": {
+    "message": "Contexto: {n}k"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "Copiado como texto sin formato."
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "¡Copiado al portapapeles! 📋"
+  },
+  "f_copied_f355": {
+    "message": "¡Copiado! ✓"
+  },
+  "f_copy_0d38": {
+    "message": "Copiar 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "Podcasts creados"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "Texto del prompt personalizado"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "Estilo personalizado (opcional):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "Estilo personalizado:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "No se pudo cargar la biblioteca D3."
+  },
+  "f_dark_mode_05f8": {
+    "message": "Modo oscuro"
+  },
+  "f_delete_ea6a": {
+    "message": "Eliminar"
+  },
+  "f_delete_article_14d4": {
+    "message": "Eliminar artículo"
+  },
+  "f_delete_all_history_f022": {
+    "message": "¿Eliminar todo el historial?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "¿Eliminar todos los ajustes?"
+  },
+  "f_delete_history_09b6": {
+    "message": "Eliminar historial"
+  },
+  "f_delete_history_6db0": {
+    "message": "Eliminar historial…"
+  },
+  "f_delete_settings_448b": {
+    "message": "Eliminar ajustes"
+  },
+  "f_delete_settings_7c57": {
+    "message": "Eliminar ajustes…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "Método de entrega"
+  },
+  "f_delivery_method_60a6": {
+    "message": "Método de entrega"
+  },
+  "f_delivery_83d6": {
+    "message": "Entrega: {name}"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "Describe el estilo de tu podcast"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "Ocultar estadísticas del grafo"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "¿No tienes una clave?"
+  },
+  "f_done_645e": {
+    "message": "Listo 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "Arrastra este enlace a tu barra de marcadores 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "Educativo"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "URL del endpoint"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "URL del endpoint:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "Introduce el código de 6 dígitos"
+  },
+  "f_enter_code_6556": {
+    "message": "Introduce el código"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "Introduce el código enviado a tu correo."
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "Introduce el código enviado a:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "Introduce tu correo..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "Error al generar el podcast: {msg}"
+  },
+  "f_error_d391": {
+    "message": "Error:"
+  },
+  "f_error_2626": {
+    "message": "Error: {message}"
+  },
+  "f_export_49d3": {
+    "message": "Exportar"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "Exporta primero una copia"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "Exporta o restaura todos los ajustes como archivo JSON."
+  },
+  "f_export_settings_1454": {
+    "message": "Exportar ajustes"
+  },
+  "f_exported_1988": {
+    "message": "¡Exportado! ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "¡Exportado! ✓ ({n} artículos)"
+  },
+  "f_ext_8e14": {
+    "message": "Ext"
+  },
+  "f_extension_723a": {
+    "message": "Extensión"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "No se pudo exportar la copia de seguridad."
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "No se pudieron cargar los modelos"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "No se pudo enviar el código"
+  },
+  "f_fallback_79db": {
+    "message": "Alternativa"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "Estilo del resumen y recap de feeds"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "Intervalo de actualización de feeds"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "Opiniones · contacto · donar"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "Los feeds y bandejas (feed de LinkedIn, inicio de X, …) ya se omiten automáticamente."
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "Archivo compartido correctamente."
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "Filtrando el grafo solo por coincidencias: haz clic para resaltar las coincidencias en todo el archivo"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Facilidad de lectura Flesch: {ease}/100"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "Para KOReader, usa mejor"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "Para una configuración permanente con systemd, añade <code>Environment=\"OLLAMA_ORIGINS=*\"</code> en la unidad del servicio (p. ej. <code>/etc/systemd/system/ollama.service</code>), luego ejecuta <code>systemctl daemon-reload</code> y reinicia."
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "Para una solución permanente, define <code>OLLAMA_ORIGINS=*</code> como variable de entorno del sistema en <i>Propiedades del sistema → Variables de entorno</i> y reinicia Ollama."
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓"
+  },
+  "f_free_tier_a065": {
+    "message": "Plan gratuito"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "Modo de prueba gratuita"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "Genera un bookmarklet que resume cualquier página en cualquier navegador, incluso en iOS/Android, donde la extensión no funciona. Usa tu inicio de sesión de byphil Cloud."
+  },
+  "f_generate_237e": {
+    "message": "Generar 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "Generando audio… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "Generando…"
+  },
+  "f_get_key_4f7c": {
+    "message": "Obtener clave"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "Cantidad de resaltado fantasma"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "Cantidad de resaltado fantasma"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "Ocultar el panel de resaltados en estos sitios"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "Resaltando coincidencias en todo el archivo: haz clic para filtrar solo por coincidencias"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "Resaltado {a} · fantasma {b}"
+  },
+  "f_history_deleted_89bf": {
+    "message": "Historial eliminado ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "Quiero usar mi propia API personalizada / modelo local"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "Si se ejecuta como servicio de systemd, detenlo con <code>sudo systemctl stop ollama</code>."
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "Importar / exportar OPML"
+  },
+  "f_import_settings_8d81": {
+    "message": "Importar ajustes"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "Incluido con tu cuenta de byPhil: no necesitas clave API."
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "Falló la ejecución del enlace de infraestructura. Comprueba la conexión de red con el gateway."
+  },
+  "f_inl_2296": {
+    "message": "Inl"
+  },
+  "f_inline_1554": {
+    "message": "En línea"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "El modo en línea es ideal para «Enviar a Kindle»."
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "Insertar en la página"
+  },
+  "f_interview_0334": {
+    "message": "Entrevista"
+  },
+  "f_invalid_key_620f": {
+    "message": "Clave no válida"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "Archivo de copia no válido. Selecciona una exportación válida de AI Summary Helper."
+  },
+  "f_invalid_code_4325": {
+    "message": "Código no válido"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "Código no válido o sesión caducada."
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "Clave de licencia no válida o desactivada. Revisa los datos de tu suscripción."
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "Dispositivos KOReader / LocalSend"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "Plugin de KOReader:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "Conservar elementos del feed durante"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "Falló la entrega a Kindle."
+  },
+  "f_kindle_devices_5273": {
+    "message": "Dispositivos Kindle"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · bookmarklet"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "Etiqueta"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "Abre Ollama de nuevo desde la carpeta Aplicaciones o con Spotlight."
+  },
+  "f_layout_421f": {
+    "message": "Diseño"
+  },
+  "f_length_729d": {
+    "message": "Longitud:"
+  },
+  "f_library_data_0b46": {
+    "message": "Biblioteca y datos"
+  },
+  "f_light_mode_608a": {
+    "message": "Modo claro"
+  },
+  "f_list_37a1": {
+    "message": "Lista"
+  },
+  "f_loading_1033": {
+    "message": "Cargando..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "Cerrar sesión"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "Sesión iniciada como: {email}"
+  },
+  "f_logged_out_5877": {
+    "message": "Sesión cerrada."
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "¡Código mágico enviado! ✨ Revisa tu bandeja de entrada."
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "Resaltados amarillos manuales"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "Marcar como leído al abrir"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "Fusiona etiquetas casi duplicadas como «ML» y «Machine Learning» en todo tu archivo."
+  },
+  "f_model_e8fa": {
+    "message": "Modelo"
+  },
+  "f_model_identifier_527d": {
+    "message": "Identificador del modelo"
+  },
+  "f_model_source_5863": {
+    "message": "Origen del modelo"
+  },
+  "f_models_api_7e45": {
+    "message": "Modelos y API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "Ánimo activado/desactivado (análisis de tono)"
+  },
+  "f_name_6774": {
+    "message": "Nombre:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Panel lateral nativo de Chrome"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "Tono negativo"
+  },
+  "f_network_error_608f": {
+    "message": "Error de red"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "Error de red al enviar a Kindle."
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "Tono neutro"
+  },
+  "f_news_0866": {
+    "message": "Noticias"
+  },
+  "f_next_da08": {
+    "message": "Siguiente"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "No hay correo de Kindle configurado."
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "No se encontró ningún receptor activo."
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "Aún no hay artículos guardados."
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "Aún no hay artículos para el grafo."
+  },
+  "f_no_audio_8798": {
+    "message": "Sin audio"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "No hay contenido disponible."
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "Aún no hay dispositivos añadidos."
+  },
+  "f_no_matches_found_1b67": {
+    "message": "Sin coincidencias"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "No hay modelos configurados"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "No hay dirección de receptor configurada."
+  },
+  "f_no_settings_match_918b": {
+    "message": "Ningún ajuste coincide con «{query}»."
+  },
+  "f_no_summary_available_1155": {
+    "message": "No hay resumen disponible"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "No se devolvió ningún resumen."
+  },
+  "f_no_title_available_2723": {
+    "message": "No hay título disponible"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "Sesión no iniciada"
+  },
+  "f_not_signed_in_7281": {
+    "message": "Sin iniciar sesión"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Cuando Ollama se reinicie, el error 403 Forbidden de esta extensión quedará resuelto."
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Cuando Ollama se reinicie, el error 403 Forbidden de tu extensión quedará resuelto."
+  },
+  "f_one_pane_9d53": {
+    "message": "Un panel"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "Abrir el símbolo del sistema"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "Software de código abierto de"
+  },
+  "f_open_terminal_8167": {
+    "message": "Abrir Terminal"
+  },
+  "f_open_in_history_0990": {
+    "message": "Abrir en Historial"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "Abrir en la barra lateral"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "Abre la app <b>Terminal</b> en tu Mac."
+  },
+  "f_own_key_7e24": {
+    "message": "Clave propia"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "Modelo / clave API propios"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "Resaltado de página"
+  },
+  "f_pane_view_fde8": {
+    "message": "Vista del panel {n}"
+  },
+  "f_panel_37e5": {
+    "message": "Panel"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "Elimina de forma permanente todos los resúmenes y el archivo. Exporta antes una copia."
+  },
+  "f_persist_optional_29ce": {
+    "message": "Conservar (opcional)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "Elige un nombre para tu programa:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "Primero configura tu correo de entrega de Kindle en los ajustes."
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "Introduce una clave de licencia."
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "Introduce un correo válido."
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "Introduce el código de verificación."
+  },
+  "f_podcast_name_1b92": {
+    "message": "Nombre del podcast"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "Duración del podcast (minutos):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "Estilo del podcast:"
+  },
+  "f_positive_tone_6466": {
+    "message": "Tono positivo"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "¿Prefieres el terminal? Ejecuta Ollama directamente en una ventana en primer plano:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "Modelo de nube preferido"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "Modelo de nube preferido"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "Preparando la entrega a Kindle... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "Preajuste y prompt personalizado"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "Prompt predefinido"
+  },
+  "f_preset_4569": {
+    "message": "Preajuste: {name}"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "Pulsa <b>Win + R</b>, escribe <code>cmd</code> y pulsa Intro."
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro activo ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Clave de licencia Pro"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Clave de licencia Pro"
+  },
+  "f_prompts_7bf8": {
+    "message": "Prompts"
+  },
+  "f_provider_88dc": {
+    "message": "Proveedor"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "¿Dudas, errores o contento? 💡 Escríbeme sin problema:"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "Prueba rápida (terminal)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "Cerrar Ollama"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "Valorar elementos con el recap"
+  },
+  "f_reader_4efa": {
+    "message": "Lector 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "Lectura y resaltado"
+  },
+  "f_reading_bundle_c191": {
+    "message": "Paquete de lectura — {date} ({count})"
+  },
+  "f_reading_page_0cb0": {
+    "message": "Leyendo la página..."
+  },
+  "f_recent_models_20ec": {
+    "message": "Modelos recientes"
+  },
+  "f_regular_f2b7": {
+    "message": "Normal"
+  },
+  "f_remove_device_c1ed": {
+    "message": "Quitar dispositivo"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "Restablece todas las preferencias, prompts y claves de este dispositivo. Tu historial se conserva."
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "Reiniciar Ollama"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "Haz clic derecho en el icono de Ollama de la bandeja (abajo a la derecha) y elige <b>Quit</b>."
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "Ejecuta Ollama como servidor en primer plano desde la misma ventana:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "Ejecuta este comando para que Ollama conserve la configuración tras reiniciar la app del Mac:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "Ejecuta esto para que el servidor en marcha acepte solicitudes de cualquier origen:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "Funciona íntegramente en tu navegador: ningún dato sale de él."
+  },
+  "f_saved_for_later_516d": {
+    "message": "Guardado para después"
+  },
+  "f_saved_549a": {
+    "message": "¡Guardado! ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "Falló el escaneo. Introduce la IP manualmente."
+  },
+  "f_scanning_96ac": {
+    "message": "Escaneando..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "Buscar modelos de nube…"
+  },
+  "f_search_languages_1344": {
+    "message": "Buscar idiomas…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "Buscando en la nube..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "Buscando receptor LocalSend en la LAN..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "Selecciona hasta 5 artículos:"
+  },
+  "f_send_share_bb4a": {
+    "message": "Enviar y compartir"
+  },
+  "f_send_magic_code_de19": {
+    "message": "Enviar código mágico"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "Enviando a LocalSend por Wi-Fi... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "Enviando..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "¡Enviado! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "¡Enviado a Kindle! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "La sesión ha caducado. Genera un nuevo bookmarklet."
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "Sesión perdida. Solicita un código nuevo."
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "Establecer como destino de envío activo"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "Configurar Ollama en Linux"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "Configurar Ollama en Windows"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "Configurar Ollama en macOS"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "Ajustes + historial de artículos"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "¡Ajustes importados! La extensión se recargará ahora."
+  },
+  "f_settings_only_750a": {
+    "message": "Solo ajustes"
+  },
+  "f_share_failed_4922": {
+    "message": "Error al compartir: {message}"
+  },
+  "f_share_cf08": {
+    "message": "Compartir 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "Compartir no es compatible con este navegador/entorno."
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "Mostrando las etiquetas principales (el archivo es grande)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "Iniciar sesión / registrarse por correo"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "Inicia sesión para desbloquear modelos de nube gratuitos y sincronizar tus resúmenes, o usa tus propias claves API."
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "Sesión iniciada · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "Solo"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "Algo salió mal. Inténtalo de nuevo."
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "Fuentes · renombrar · etiquetas · silenciar"
+  },
+  "f_start_ollama_136b": {
+    "message": "Iniciar Ollama"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "Inicia Ollama con el comodín global para que cualquier origen pueda conectarse:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "Detener Ollama"
+  },
+  "f_storytelling_6d0b": {
+    "message": "Narrativa"
+  },
+  "f_style_fba4": {
+    "message": "Estilo:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "¡Conectado! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "Resumiendo..."
+  },
+  "f_summary_language_a8df": {
+    "message": "Idioma del resumen"
+  },
+  "f_summary_length_2b31": {
+    "message": "Longitud del resumen"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "Modo de resumen"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "Cambiar la búsqueda del grafo a modo filtro"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "Cambiar la búsqueda del grafo a modo resaltado"
+  },
+  "f_system_default_c329": {
+    "message": "Predeterminado del sistema"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "El TTS no devolvió audio."
+  },
+  "f_theme_7c92": {
+    "message": "Tema"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "Tema · idioma · panel lateral"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "Esto elimina de forma permanente {what} y el archivo de este dispositivo. No se puede deshacer."
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "Esto restablece todas las preferencias, prompts y claves API de este dispositivo. Tus resúmenes se conservan. La extensión se recargará."
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "Esto invalidará el código actual. ¿Continuar?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "Falló la transferencia: {message}"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "Escribe {word} para confirmar"
+  },
+  "f_ui_language_08b7": {
+    "message": "Idioma de la interfaz"
+  },
+  "f_ui_language_b097": {
+    "message": "Idioma de la interfaz"
+  },
+  "f_unavailable_aaa9": {
+    "message": "No disponible"
+  },
+  "f_unknown_error_2b43": {
+    "message": "Error desconocido"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "Pásate a Pro Pass"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "Usar «{name}» como código de idioma personalizado"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "Usar el panel lateral nativo de Chrome"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "Se usa para el envío a Kindle. Añade"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "Verificar e iniciar sesión"
+  },
+  "f_verify_login_274f": {
+    "message": "Verificar e iniciar sesión"
+  },
+  "f_verifying_174a": {
+    "message": "Verificando..."
+  },
+  "f_version_github_fae0": {
+    "message": "Versión y GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "Ver y copiar"
+  },
+  "f_view_filtered_f87d": {
+    "message": "Vista: filtrada"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "Vista: resaltada"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "Te damos la bienvenida a AI Summary Helper"
+  },
+  "f_well_connected_1033": {
+    "message": "Bien conectado"
+  },
+  "f_what_to_export_3317": {
+    "message": "¿Qué exportar?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "¿Correo equivocado? Volver"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "¡Todo listo para generar tu podcast!"
+  },
+  "f_a_donation_8832": {
+    "message": "una donación"
+  },
+  "f_all_summaries_c680": {
+    "message": "todos los resúmenes"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "escríbeme"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "colabora en GitHub 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "p. ej. 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "p. ej., gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "para resúmenes ilimitados y sin configuración."
+  },
+  "f_from_8075": {
+    "message": "de"
+  },
+  "f_give_feedback_9abb": {
+    "message": "danos tu opinión"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "en lugar de HTTPS, que puede dar problemas."
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "ya no se actualiza"
+  },
+  "f_off_8a0a": {
+    "message": "desactivado"
+  },
+  "f_on_2fd0": {
+    "message": "activado"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "un sitio por línea, p. ej. linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "o considera"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "etiqueta compartida"
+  },
+  "f_similar_content_784b": {
+    "message": "contenido similar"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "a los remitentes aprobados de tu Kindle primero —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}, seleccionados de tu archivo de AI Summary Helper."
+  },
+  "f_tone_f081": {
+    "message": "Tono {label}"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · nivel {grade}"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · falta la clave API: añádela en Ajustes"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · clave API configurada"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · local, sin clave API"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "{n} artículo no mostrado"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "{n} artículos no mostrados"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "{n} etiqueta duplicada"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "{n} etiquetas duplicadas"
+  },
+  "f_min_4e03": {
+    "message": "{n} min"
+  },
+  "f_panes_2444": {
+    "message": "{n} paneles"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "{n} etiqueta poco usada oculta"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "{n} etiquetas poco usadas ocultas"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} sin abrir hace 30 d+"
+  },
+  "f_similar_e273": {
+    "message": "{n}% similar"
+  },
+  "f_min_read_b555": {
+    "message": "~{n} min de lectura"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— Puedes"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ Resumiendo…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ Ajustes"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ Zona de peligro"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ Primero debes iniciar sesión en byphil Cloud para generar un bookmarklet."
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ Resaltado de página"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ Las etiquetas ya son coherentes: nada que fusionar."
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ Actualizadas {a}, fusionadas {b}."
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ Resaltado fantasma con IA"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ Volver al historial"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 Usa tu propia clave"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 Copia y restauración"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 Contenido original"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 Has alcanzado el límite del plan gratuito (3 envíos).\n\nPásate a Pro para envíos ilimitados a Kindle.\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Enviar a Kindle\n\nPlan gratuito: 3 envíos a Kindle incluidos.\nPásate a Pro para envíos ilimitados.\n\nAsegúrate de que kindle@byphil.eu esté en tu lista de remitentes aprobados de Kindle (consulta la ayuda de Amazon).\n\n¿Enviar este artículo a Kindle?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 Tus resaltados"
+  },
+  "f_export_6eba": {
+    "message": "📤 Exportar"
+  },
+  "f_import_d884": {
+    "message": "📥 Importar"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 Conectando con las métricas del proxy..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 Mantenlo en privado: este bookmarklet contiene tu token personal de la nube. No lo compartas. Si tu token caduca, vuelve aquí para generar uno nuevo."
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 Guardado localmente en tu navegador."
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 Generador de bookmarklet"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 Similares en tu archivo"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ ¡Tu archivo está más vacío que un desierto! Empieza a guardar artículos para llenarlo. 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 Resaltados sugeridos por IA"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 Resumen IA"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 Herramientas en el dispositivo"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 Limpiar"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 Generar bookmarklet"
   }
 }

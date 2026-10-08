@@ -3,6 +3,7 @@ import { SK } from './storageKeys.js';
 // Handles podcast audio generation and saving
 
 import { generateAudioFromText } from "../api.js";
+import { T } from './feedI18n.js';
 
 /**
  * Generates podcast audio and saves it.
@@ -26,7 +27,7 @@ export async function handlePlayPodcast(
     try {
         if (playButton) {
             playButton.disabled = true;
-            playButton.textContent = "Generating audio… 🔊";
+            playButton.textContent = T('Generating audio… 🔊');
         }
 
         const audioBlob = await generateAudioFromText(
@@ -35,7 +36,7 @@ export async function handlePlayPodcast(
             activeService
         );
 
-        if (!audioBlob) throw new Error("TTS returned no audio.");
+        if (!audioBlob) throw new Error(T('TTS returned no audio.'));
 
         // Save podcast (simple local storage)
         savePodcast(`Podcast - ${new Date().toLocaleString()}`, audioBlob);
@@ -53,15 +54,15 @@ export async function handlePlayPodcast(
         }, 1000);
 
         if (playButton) {
-            playButton.textContent = "Done 🎧";
+            playButton.textContent = T('Done 🎧');
             playButton.disabled = false;
         }
     } catch (err) {
         console.error("handlePlayPodcast error:", err);
-        alert("Audio generation failed: " + err.message);
+        alert(T('Audio generation failed: {msg}', { msg: err.message }));
         if (playButton) {
             playButton.disabled = false;
-            playButton.textContent = "Generate 🎙️";
+            playButton.textContent = T('Generate 🎙️');
         }
     }
 }

@@ -17,6 +17,7 @@ import { initToolsManager } from './modules/toolsManager.js';
 import { initFeedManager } from './modules/feedManager.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
+import { T } from './modules/feedI18n.js';
 
 // ── Cross-browser shim ─────────────────────────────────────────────────────
 // Safari/iOS Web Extensions expose ONLY the `browser.*` namespace; `chrome.*`
@@ -212,7 +213,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const customBtn = document.createElement('button');
                 customBtn.className = 'pill pill--sm pill--soft';
                 customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${filter}"`;
-                customBtn.title = `Use "${filter}" as custom language code`;
+                customBtn.title = T('Use "{name}" as custom language code', { name: filter });
                 customBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     // Add a temporary option for this custom code
@@ -332,7 +333,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const grid = document.getElementById('modelModeGrid');
             if (!grid) return;
             grid.innerHTML = '';
-            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 Own model / API key' }].forEach(m => {
+            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 ' + T('Own model / API key') }].forEach(m => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'pill pill--sm pill--soft' + (m.id === mode ? ' active' : '');
@@ -350,9 +351,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const show = (id, on) => { const e = document.getElementById(id); if (e) e.style.display = on ? '' : 'none'; };
             show('modelNote', mode === 'cloud'); show('providerLabel', mode !== 'cloud'); show('modelProviderGrid', mode !== 'cloud');
             const note = document.getElementById('modelNote');
-            if (note) note.textContent = 'Included with your byPhil account — no API key needed.';
-            const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? 'Recent models' : 'Model';
-            customModelInput.placeholder = mode === 'cloud' ? 'Search cloud models…' : 'Add model ID, e.g. gemma3:4b';
+            if (note) note.textContent = T('Included with your byPhil account — no API key needed.');
+            const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? T('Recent models') : T('Model');
+            customModelInput.placeholder = mode === 'cloud' ? T('Search cloud models…') : T('Add model ID, e.g. gemma3:4b');
             customModelInput.setAttribute('aria-label', customModelInput.placeholder);
             if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'cloud' ? 'none' : '';
         };
@@ -427,7 +428,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         return;
                     }
 
-                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">🔍 Searching Cloud...</span>';
+                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">🔍 ' + T('Searching Cloud...') + '</span>';
                     try {
                         const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`);
                         const data = await response.json();
@@ -438,7 +439,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             );
                             
                             if (searchResults.length === 0) {
-                                modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">No matches found</span>';
+                                modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">' + T('No matches found') + '</span>';
                                 return;
                             }
 
@@ -464,7 +465,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             });
                         }
                     } catch (err) {
-                        modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--danger);padding:4px 0;">Failed to load models</span>';
+                        modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--danger);padding:4px 0;">' + T('Failed to load models') + '</span>';
                     }
                     return;
                 }
@@ -493,9 +494,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Update chip label to show only the active model ID
                 chipModelLabel.textContent = activeModel;
-                if (meta?.apiKeyOptional) setModelStatus(`${meta.name} · local, no API key`, '');
-                else if (cfg.apiKey) setModelStatus(`${meta?.name || curSvcId} · API key set`, '');
-                else setModelStatus(`${meta?.name || curSvcId} · API key missing — add it in Settings`, 'warn');
+                if (meta?.apiKeyOptional) setModelStatus(T('{name} · local, no API key', { name: meta.name }), '');
+                else if (cfg.apiKey) setModelStatus(T('{name} · API key set', { name: meta?.name || curSvcId }), '');
+                else setModelStatus(T('{name} · API key missing — add it in Settings', { name: meta?.name || curSvcId }), 'warn');
 
                 // Provider tags
                 modelProviderGrid.innerHTML = '';
@@ -516,7 +517,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Model ID tags for selected provider
                 modelIdGrid.innerHTML = '';
                 if (deduped.length === 0) {
-                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">No models configured</span>';
+                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">' + T('No models configured') + '</span>';
                     return;
                 }
                 deduped.forEach((modelObj) => {
@@ -655,7 +656,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             tab.classList.add('active');
             const mode = tab.dataset.mode;
             chrome.storage.local.set({ [SK.summaryMode]: mode });
-            if (chipModeLabel) chipModeLabel.textContent = mode === 'extension' ? 'Ext' : 'Inl';
+            if (chipModeLabel) chipModeLabel.textContent = mode === 'extension' ? T('Ext') : T('Inl');
         });
     });
 
@@ -665,7 +666,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             modeTabs.forEach(t => {
                 t.classList.toggle('active', t.dataset.mode === data[SK.summaryMode]);
             });
-            if (chipModeLabel) chipModeLabel.textContent = data[SK.summaryMode] === 'extension' ? 'Ext' : 'Inl';
+            if (chipModeLabel) chipModeLabel.textContent = data[SK.summaryMode] === 'extension' ? T('Ext') : T('Inl');
         }
     });
 });

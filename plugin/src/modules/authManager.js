@@ -11,6 +11,7 @@ import { SK } from './storageKeys.js';
 // Every registered view is kept in sync whenever auth state changes, so the
 // Settings panel and the onboarding mask never drift apart.
 import StorageManager from './storageManager.js';
+import { T } from './feedI18n.js';
 
 let activeOtpId = null;
 let otpExpiryTimeoutId = null;
@@ -76,7 +77,7 @@ function clearLoading(btn) {
 
 function setCodeCaption(view, email) {
     if (view.codeCaption && email) {
-        view.codeCaption.innerHTML = `Enter the code sent to:<br/><strong>${email}</strong>`;
+        view.codeCaption.innerHTML = `${T('Enter the code sent to:')}<br/><strong>${email}</strong>`;
     }
 }
 
@@ -145,7 +146,7 @@ const refreshUsageAnalytics = async (view, token) => {
         model: document.getElementById('analyticsLastModel'),
     };
     const show = (o) => { for (const k of Object.keys(out)) if (out[k] && k in o) out[k].textContent = o[k]; };
-    show({ status: 'Loading...' });
+    show({ status: T('Loading...') });
 
     try {
         const installId = await ensureInstallId();
@@ -171,13 +172,13 @@ const refreshUsageAnalytics = async (view, token) => {
             trial: String(result?.trial?.remaining ?? '-'),
             done: String(result?.account?.completed_requests ?? 0),
             model: result?.account?.last_model || '-',
-            status: result?.account?.logged_in ? 'Account' : 'Free Tier',
+            status: result?.account?.logged_in ? T('Account') : T('Free Tier'),
         });
 
         const isPro = result?.account?.subscription_status === 'active';
         setStatusBadge(view.authStatusLabel, isPro);
     } catch (error) {
-        show({ trial: '-', done: '-', model: '-', status: 'Unavailable' });
+        show({ trial: '-', done: '-', model: '-', status: T('Unavailable') });
         setStatusBadge(view.authStatusLabel, false);
         console.error('Usage analytics refresh failed:', error.message);
     }
@@ -185,7 +186,7 @@ const refreshUsageAnalytics = async (view, token) => {
 
 function setStatusBadge(label, isPro) {
     if (!label) return;
-    label.textContent = isPro ? 'Pro Active ✓' : 'Free Tier';
+    label.textContent = isPro ? T('Pro Active ✓') : T('Free Tier');
     label.style.background = isPro ? 'var(--success, #2ecc40)' : 'rgba(0,0,0,0.2)';
     label.style.color = isPro ? '#fff' : 'var(--text-muted, #889999)';
 }
@@ -276,9 +277,9 @@ function applyStateToView(view, stateName, data, user) {
         show(view.emailStage, false);
         show(view.codeStage, false);
         show(view.loggedInStage, true);
-        if (view.userEmailLabel) view.userEmailLabel.textContent = `Logged in as: ${user.email}`;
+        if (view.userEmailLabel) view.userEmailLabel.textContent = T('Logged in as: {email}', { email: user.email });
         if (view.authStatusLabel) {
-            view.authStatusLabel.textContent = 'Checking...';
+            view.authStatusLabel.textContent = T('Checking...');
             view.authStatusLabel.style.background = 'rgba(0,0,0,0.2)';
             view.authStatusLabel.style.color = 'var(--text-muted, #889999)';
         }
@@ -294,7 +295,7 @@ function applyStateToView(view, stateName, data, user) {
         show(view.codeStage, false);
         show(view.loggedInStage, false);
         if (view.authStatusLabel) {
-            view.authStatusLabel.textContent = 'Not logged in';
+            view.authStatusLabel.textContent = T('Not logged in');
             view.authStatusLabel.style.background = 'rgba(0,0,0,0.2)';
             view.authStatusLabel.style.color = 'var(--text-muted, #889999)';
         }
@@ -307,11 +308,11 @@ async function requestOtp(view) {
 
     const email = view.emailInput.value.trim();
     if (!email) {
-        notify(view, 'Please enter a valid email.');
+        notify(view, T('Please enter a valid email.'));
         return;
     }
 
-    setLoading(view.requestBtn, 'Sending...');
+    setLoading(view.requestBtn, T('Sending...'));
 
     try {
         const requestedAt = Date.now();
@@ -328,7 +329,7 @@ async function requestOtp(view) {
         }
 
         const result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Failed to send code');
+        if (!response.ok) throw new Error(result.error || T('Failed to send code'));
 
         activeOtpId = result.otpId;
         const otpExpiresAt = resolveOtpExpiry(result.otpExpiresAt, requestedAt);
@@ -343,10 +344,10 @@ async function requestOtp(view) {
 
         await refreshAuthState();
         if (view.codeInput) view.codeInput.focus();
-        notify(view, 'Magic code sent! ✨ Check your inbox.');
+        notify(view, T('Magic code sent! ✨ Check your inbox.'));
     } catch (err) {
         console.error('OTP request error:', err);
-        notify(view, `Error: ${err.message}`);
+        notify(view, T('Error: {message}', { message: err.message }));
     } finally {
         clearLoading(view.requestBtn);
     }
@@ -357,7 +358,7 @@ async function verifyOtp(view) {
 
     const code = view.codeInput.value.replace(/\s+/g, '').trim();
     if (!code) {
-        notify(view, 'Please enter the verification code.');
+        notify(view, T('Please enter the verification code.'));
         return;
     }
 
@@ -366,18 +367,18 @@ async function verifyOtp(view) {
     const pendingOtpExpiryTime = parseOtpExpiry(stored[SK.otpExpiresAt]);
 
     if (!effectiveOtpId) {
-        notify(view, 'Session lost. Please request a new code.');
+        notify(view, T('Session lost. Please request a new code.'));
         return;
     }
     if (!pendingOtpExpiryTime || pendingOtpExpiryTime <= Date.now()) {
         const patch = await clearPendingOtpState();
         const currentState = await StorageManager.getAll();
         await refreshAuthState({ ...currentState, ...patch });
-        notify(view, 'Code expired. Please request a new one.');
+        notify(view, T('Code expired. Please request a new one.'));
         return;
     }
 
-    setLoading(view.verifyBtn, 'Verifying...');
+    setLoading(view.verifyBtn, T('Verifying...'));
 
     try {
         const response = await fetch(`${StorageManager.getApiBase()}/v1/auth/verify-otp`, {
@@ -393,7 +394,7 @@ async function verifyOtp(view) {
         }
 
         const result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Invalid code');
+        if (!response.ok) throw new Error(result.error || T('Invalid code'));
 
         let userRecord = result.record;
         const token = result.token;
@@ -453,14 +454,14 @@ async function verifyOtp(view) {
         clearOtpExpiryTimeout();
         activeOtpId = null;
 
-        notify(view, 'Successfully connected! 🧙');
+        notify(view, T('Successfully connected! 🧙'));
         if (view.codeInput) view.codeInput.value = '';
 
         const currentState = await StorageManager.getAll();
         await refreshAuthState({ ...currentState, ...authData });
     } catch (err) {
         console.error('Validation failure:', err);
-        notify(view, err.message || 'Invalid code or expired session.');
+        notify(view, err.message || T('Invalid code or expired session.'));
     } finally {
         clearLoading(view.verifyBtn);
     }
@@ -482,12 +483,12 @@ async function logout() {
     const currentState = await StorageManager.getAll();
     await refreshAuthState({ ...currentState, ...logoutData });
 
-    if (uiManagerRef) uiManagerRef.showToast('Logged out.');
-    else alert('Logged out.');
+    if (uiManagerRef) uiManagerRef.showToast(T('Logged out.'));
+    else alert(T('Logged out.'));
 }
 
 async function goBackToEmail(view) {
-    if (!confirm('This will invalidate the current code. Continue?')) return;
+    if (!confirm(T('This will invalidate the current code. Continue?'))) return;
     await clearPendingOtpState();
     if (view.codeStage) view.codeStage.style.display = 'none';
     if (view.emailStage) view.emailStage.style.display = 'block';
@@ -590,7 +591,7 @@ export async function refreshAuthStateFromSettings() {
                     if (licenseKeyInput) licenseKeyInput.value = serverLicenseKey;
                     const licenseStatusLabel = document.getElementById('licenseStatusLabel');
                     if (licenseStatusLabel) {
-                        licenseStatusLabel.textContent = 'Pro Active ✓';
+                        licenseStatusLabel.textContent = T('Pro Active ✓');
                         licenseStatusLabel.style.color = '#fff';
                         licenseStatusLabel.style.background = 'var(--success, #2ecc40)';
                     }

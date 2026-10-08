@@ -1,3 +1,4 @@
+import { T } from './feedI18n.js';
 // confirmDialog.js — type-to-confirm dialog for destructive actions (replaces window.confirm/alert).
 // Resolves true only when the user typed the confirmation word and pressed the red button.
 
@@ -15,7 +16,7 @@ export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE',
             <div class="confirm-actions">
               <button type="button" class="button-secondary btn-sm confirm-extra" hidden></button>
               <span class="confirm-spacer"></span>
-              <button type="button" class="button-tertiary btn-sm confirm-cancel">Cancel</button>
+              <button type="button" class="button-tertiary btn-sm confirm-cancel">${T('Cancel')}</button>
               <button type="button" class="button-danger btn-sm confirm-ok" disabled></button>
             </div>
           </div>`;
@@ -23,7 +24,7 @@ export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE',
         q('#cdTitle').textContent = title;
         q('#cdBody').textContent = body;
         const input = q('.confirm-input'), ok = q('.confirm-ok'), cancel = q('.confirm-cancel'), extra = q('.confirm-extra');
-        input.placeholder = `Type ${word} to confirm`;
+        input.placeholder = T('Type {word} to confirm', { word });
         ok.textContent = confirmLabel;
         if (extraLabel && onExtra) { extra.hidden = false; extra.textContent = extraLabel; extra.addEventListener('click', onExtra); }
 

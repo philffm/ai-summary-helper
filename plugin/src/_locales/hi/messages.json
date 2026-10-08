@@ -2029,5 +2029,1187 @@
   },
   "f_items_per_recap_fac3": {
     "message": "📝 प्रति रीकैप आइटम"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(iOS पर, 2 सेकंड तक दबाकर खींचें)"
+  },
+  "f_add_59dd": {
+    "message": "+ जोड़ें"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "{count} का बंडल: {titles}"
+  },
+  "f_a_few_18aa": {
+    "message": "कुछ"
+  },
+  "f_a_lot_9f13": {
+    "message": "बहुत सारे"
+  },
+  "f_ai_model_1862": {
+    "message": "AI मॉडल"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "AI घोस्ट हाइलाइटिंग"
+  },
+  "f_api_error_e311": {
+    "message": "API त्रुटि:"
+  },
+  "f_api_key_6382": {
+    "message": "API कुंजी:"
+  },
+  "f_api_key_c6ec": {
+    "message": "API कुंजी"
+  },
+  "f_about_tools_9c0f": {
+    "message": "जानकारी और टूल"
+  },
+  "f_account_a2fc": {
+    "message": "खाता"
+  },
+  "f_account_plan_bd49": {
+    "message": "खाता और प्लान"
+  },
+  "f_account_sync_cdb7": {
+    "message": "खाता सिंक"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "खाता सिंक · साइन इन / लॉग आउट"
+  },
+  "f_activate_0190": {
+    "message": "सक्रिय करें"
+  },
+  "f_active_send_target_69d8": {
+    "message": "सक्रिय भेजने का गंतव्य"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "Kindle डिवाइस जोड़ें"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "LocalSend डिवाइस जोड़ें"
+  },
+  "f_add_custom_model_336a": {
+    "message": "कस्टम मॉडल जोड़ें"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "मॉडल ID जोड़ें, जैसे gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "सभी ऑरिजिन की अनुमति दें"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "सभी ऑरिजिन की अनुमति दें (ऐप)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "Amazon की गाइड"
+  },
+  "f_analytics_e02b": {
+    "message": "एनालिटिक्स"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "टैग का विश्लेषण हो रहा है…"
+  },
+  "f_appearance_language_6075": {
+    "message": "रूप और भाषा"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "क्या आप इस लेख को हटाना चाहते हैं?"
+  },
+  "f_article_05f9": {
+    "message": "लेख"
+  },
+  "f_articles_ae4c": {
+    "message": "लेख:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "ऑडियो बनाना विफल रहा: {msg}"
+  },
+  "f_auto_detect_0006": {
+    "message": "स्वतः पहचान"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "पसंदीदा का स्वतः सारांश बनाएं"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "सारांश से हल्के नीले रंग के उद्धरण हाइलाइट अपने-आप"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "बैकअप सफलतापूर्वक पुनर्स्थापित हुआ!\n{n} लेख आयात किए गए।\n\nअब एक्सटेंशन फिर से लोड होगा।"
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "बैकअप · टैग · हटाएं"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "बुकमार्कलेट जनरेटर"
+  },
+  "f_browser_default_9336": {
+    "message": "ब्राउज़र डिफ़ॉल्ट"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "पृष्ठभूमि में फ़ीड जांचें"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "जांचें कि रिसीवर ऑनलाइन है।"
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "जांचें कि रिसीवर ऑनलाइन है।"
+  },
+  "f_checking_f2f5": {
+    "message": "जांच हो रही है..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "लेख विवरण की कार्रवाइयों के लिए एक डिलीवरी तरीका चुनें।"
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "टैग साफ़ करें और मर्ज करें"
+  },
+  "f_clear_search_e946": {
+    "message": "खोज साफ़ करें"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "मेनू बार (ऊपर दाईं ओर) में Ollama आइकन पर क्लिक करें और <b>Quit Ollama</b> चुनें।"
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "अपना एपिसोड बनाने के लिए “जनरेट करें 🎙️” पर क्लिक करें।"
+  },
+  "f_close_pane_d66b": {
+    "message": "पेन {n} बंद करें"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "कोड की समय-सीमा समाप्त हो गई। कृपया नया कोड मंगवाएं।"
+  },
+  "f_comedy_0972": {
+    "message": "कॉमेडी"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "संगत टूल"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "पहले सेटिंग्स में अपना LocalSend IP पता कॉन्फ़िगर करें।"
+  },
+  "f_connection_path_790c": {
+    "message": "कनेक्शन पथ"
+  },
+  "f_connection_path_e1ec": {
+    "message": "कनेक्शन पथ"
+  },
+  "f_context_k_1bbb": {
+    "message": "संदर्भ: {n}k"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "सादे टेक्स्ट के रूप में कॉपी किया गया।"
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "क्लिपबोर्ड पर कॉपी हो गया! 📋"
+  },
+  "f_copied_f355": {
+    "message": "कॉपी हो गया! ✓"
+  },
+  "f_copy_0d38": {
+    "message": "कॉपी करें 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "बनाए गए पॉडकास्ट"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "कस्टम प्रॉम्प्ट टेक्स्ट"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "कस्टम शैली (वैकल्पिक):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "कस्टम शैली:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "D3 लाइब्रेरी लोड नहीं हो सकी।"
+  },
+  "f_dark_mode_05f8": {
+    "message": "डार्क मोड"
+  },
+  "f_delete_ea6a": {
+    "message": "हटाएं"
+  },
+  "f_delete_article_14d4": {
+    "message": "लेख हटाएं"
+  },
+  "f_delete_all_history_f022": {
+    "message": "सारा इतिहास हटाएं?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "सारी सेटिंग्स हटाएं?"
+  },
+  "f_delete_history_09b6": {
+    "message": "इतिहास हटाएं"
+  },
+  "f_delete_history_6db0": {
+    "message": "इतिहास हटाएं…"
+  },
+  "f_delete_settings_448b": {
+    "message": "सेटिंग्स हटाएं"
+  },
+  "f_delete_settings_7c57": {
+    "message": "सेटिंग्स हटाएं…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "डिलीवरी तरीका"
+  },
+  "f_delivery_method_60a6": {
+    "message": "डिलीवरी तरीका"
+  },
+  "f_delivery_83d6": {
+    "message": "डिलीवरी: {name}"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "अपने पॉडकास्ट की शैली बताएं"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "ग्राफ़ आंकड़े छिपाएं"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "कुंजी नहीं है?"
+  },
+  "f_done_645e": {
+    "message": "हो गया 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "इस लिंक को अपने बुकमार्क बार में खींचें 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "शैक्षिक"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "एंडपॉइंट URL"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "एंडपॉइंट URL:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "6 अंकों का कोड दर्ज करें"
+  },
+  "f_enter_code_6556": {
+    "message": "कोड दर्ज करें"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "अपने ईमेल पर भेजा गया कोड दर्ज करें।"
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "इस पते पर भेजा गया कोड दर्ज करें:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "अपना ईमेल दर्ज करें..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "पॉडकास्ट बनाने में त्रुटि: {msg}"
+  },
+  "f_error_d391": {
+    "message": "त्रुटि:"
+  },
+  "f_error_2626": {
+    "message": "त्रुटि: {message}"
+  },
+  "f_export_49d3": {
+    "message": "एक्सपोर्ट"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "पहले बैकअप एक्सपोर्ट करें"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "सारी सेटिंग्स को JSON फ़ाइल के रूप में एक्सपोर्ट या पुनर्स्थापित करें।"
+  },
+  "f_export_settings_1454": {
+    "message": "सेटिंग्स एक्सपोर्ट करें"
+  },
+  "f_exported_1988": {
+    "message": "एक्सपोर्ट हो गया! ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "एक्सपोर्ट हो गया! ✓ ({n} लेख)"
+  },
+  "f_ext_8e14": {
+    "message": "एक्सट."
+  },
+  "f_extension_723a": {
+    "message": "एक्सटेंशन"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "बैकअप एक्सपोर्ट नहीं हो सका।"
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "मॉडल लोड नहीं हो सके"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "कोड भेजा नहीं जा सका"
+  },
+  "f_fallback_79db": {
+    "message": "फ़ॉलबैक"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "फ़ीड ब्रीफ़िंग और रीकैप की शैली"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "फ़ीड रीफ़्रेश अंतराल"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "फ़ीडबैक · संपर्क · दान"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "फ़ीड और इनबॉक्स (LinkedIn फ़ीड, X होम, …) अपने-आप छोड़ दिए जाते हैं।"
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "फ़ाइल सफलतापूर्वक साझा हुई।"
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "ग्राफ़ केवल मिलान तक फ़िल्टर है — पूरे आर्काइव में मिलान हाइलाइट करने के लिए क्लिक करें"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Flesch पठन सुगमता: {ease}/100"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "KOReader के लिए बेहतर है"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "systemd से स्थायी कॉन्फ़िग के लिए, सेवा यूनिट (जैसे <code>/etc/systemd/system/ollama.service</code>) में <code>Environment=\"OLLAMA_ORIGINS=*\"</code> जोड़ें, फिर <code>systemctl daemon-reload</code> चलाएं और रीस्टार्ट करें।"
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "स्थायी समाधान के लिए, <code>OLLAMA_ORIGINS=*</code> को <i>System Properties → Environment Variables</i> में सिस्टम एनवायरनमेंट वेरिएबल के रूप में सेट करें और Ollama रीस्टार्ट करें।"
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "{ip} पर डिवाइस मिला — सहेजने के लिए जोड़ें पर क्लिक करें ✓"
+  },
+  "f_free_tier_a065": {
+    "message": "मुफ़्त टियर"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "मुफ़्त ट्रायल मोड"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "ऐसा बुकमार्कलेट बनाएं जो किसी भी ब्राउज़र में किसी भी पेज का सारांश बनाए — iOS/Android पर भी, जहां एक्सटेंशन नहीं चलता। यह आपके byphil Cloud लॉगिन का उपयोग करता है।"
+  },
+  "f_generate_237e": {
+    "message": "जनरेट करें 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "ऑडियो बन रहा है… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "बन रहा है…"
+  },
+  "f_get_key_4f7c": {
+    "message": "कुंजी पाएं"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "घोस्ट हाइलाइट की मात्रा"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "घोस्ट हाइलाइट की मात्रा"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "इन साइटों पर हाइलाइट पैनल छिपाएं"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "पूरे आर्काइव में मिलान हाइलाइट हो रहे हैं — केवल मिलान तक फ़िल्टर करने के लिए क्लिक करें"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "हाइलाइट {a} · घोस्ट {b}"
+  },
+  "f_history_deleted_89bf": {
+    "message": "इतिहास हटा दिया गया ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "अपना कस्टम API / लोकल मॉडल उपयोग करें"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "यदि systemd सेवा के रूप में चल रहा है, तो इसे <code>sudo systemctl stop ollama</code> से रोकें।"
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "OPML आयात / एक्सपोर्ट"
+  },
+  "f_import_settings_8d81": {
+    "message": "सेटिंग्स आयात करें"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "आपके byPhil खाते में शामिल — API कुंजी की ज़रूरत नहीं।"
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "इन्फ्रास्ट्रक्चर लिंक निष्पादन विफल रहा। गेटवे से नेटवर्क कनेक्शन जांचें।"
+  },
+  "f_inl_2296": {
+    "message": "इनलाइन"
+  },
+  "f_inline_1554": {
+    "message": "इनलाइन"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "इनलाइन मोड \"Kindle पर भेजें\" के लिए बहुत अच्छा है।"
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "पृष्ठ में डालें"
+  },
+  "f_interview_0334": {
+    "message": "इंटरव्यू"
+  },
+  "f_invalid_key_620f": {
+    "message": "अमान्य कुंजी"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "बैकअप फ़ाइल अमान्य है। कृपया AI Summary Helper का मान्य एक्सपोर्ट चुनें।"
+  },
+  "f_invalid_code_4325": {
+    "message": "अमान्य कोड"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "कोड अमान्य है या सत्र समाप्त हो गया है।"
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "लाइसेंस कुंजी अमान्य या निष्क्रिय है। अपनी सदस्यता का विवरण जांचें।"
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "KOReader / LocalSend डिवाइस"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "KOReader प्लगइन:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "फ़ीड आइटम रखें"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "Kindle डिलीवरी विफल रही।"
+  },
+  "f_kindle_devices_5273": {
+    "message": "Kindle डिवाइस"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · बुकमार्कलेट"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "लेबल"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "Ollama को अपने Applications फ़ोल्डर या Spotlight से फिर शुरू करें।"
+  },
+  "f_layout_421f": {
+    "message": "लेआउट"
+  },
+  "f_length_729d": {
+    "message": "लंबाई:"
+  },
+  "f_library_data_0b46": {
+    "message": "लाइब्रेरी और डेटा"
+  },
+  "f_light_mode_608a": {
+    "message": "लाइट मोड"
+  },
+  "f_list_37a1": {
+    "message": "सूची"
+  },
+  "f_loading_1033": {
+    "message": "लोड हो रहा है..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "लॉग आउट"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "{email} के रूप में लॉग इन"
+  },
+  "f_logged_out_5877": {
+    "message": "लॉग आउट हो गया।"
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "मैजिक कोड भेज दिया गया! ✨ अपना इनबॉक्स देखें।"
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "मैन्युअल पीले हाइलाइट"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "खोलने पर पढ़ा हुआ चिह्नित करें"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "आपके आर्काइव में “ML” और “Machine Learning” जैसे मिलते-जुलते टैग मर्ज करता है।"
+  },
+  "f_model_e8fa": {
+    "message": "मॉडल"
+  },
+  "f_model_identifier_527d": {
+    "message": "मॉडल पहचानकर्ता"
+  },
+  "f_model_source_5863": {
+    "message": "मॉडल स्रोत"
+  },
+  "f_models_api_7e45": {
+    "message": "मॉडल और API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "मूड चालू/बंद (टोन विश्लेषण)"
+  },
+  "f_name_6774": {
+    "message": "नाम:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Chrome का नेटिव साइड पैनल"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "नकारात्मक टोन"
+  },
+  "f_network_error_608f": {
+    "message": "नेटवर्क त्रुटि"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "Kindle पर भेजते समय नेटवर्क त्रुटि।"
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "तटस्थ टोन"
+  },
+  "f_news_0866": {
+    "message": "समाचार"
+  },
+  "f_next_da08": {
+    "message": "आगे"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "Kindle ईमेल सेट नहीं है।"
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "कोई सक्रिय रिसीवर नहीं मिला।"
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "अभी कोई लेख सहेजा नहीं गया है।"
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "ग्राफ़ के लिए अभी कोई लेख नहीं हैं।"
+  },
+  "f_no_audio_8798": {
+    "message": "कोई ऑडियो नहीं"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "कोई सामग्री उपलब्ध नहीं।"
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "अभी कोई डिवाइस नहीं जोड़ा गया है।"
+  },
+  "f_no_matches_found_1b67": {
+    "message": "कोई मिलान नहीं मिला"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "कोई मॉडल कॉन्फ़िगर नहीं है"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "रिसीवर का पता सेट नहीं है।"
+  },
+  "f_no_settings_match_918b": {
+    "message": "“{query}” से मेल खाती कोई सेटिंग नहीं।"
+  },
+  "f_no_summary_available_1155": {
+    "message": "कोई सारांश उपलब्ध नहीं"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "कोई सारांश नहीं मिला।"
+  },
+  "f_no_title_available_2723": {
+    "message": "कोई शीर्षक उपलब्ध नहीं"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "लॉग इन नहीं हैं"
+  },
+  "f_not_signed_in_7281": {
+    "message": "साइन इन नहीं हैं"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Ollama के रीस्टार्ट होते ही इस एक्सटेंशन की 403 Forbidden त्रुटि ठीक हो जाएगी।"
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Ollama के रीस्टार्ट होते ही आपके एक्सटेंशन की 403 Forbidden त्रुटि ठीक हो जाएगी।"
+  },
+  "f_one_pane_9d53": {
+    "message": "एक पेन"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "Command Prompt खोलें"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "ओपन सोर्स सॉफ़्टवेयर, डेवलपर:"
+  },
+  "f_open_terminal_8167": {
+    "message": "Terminal खोलें"
+  },
+  "f_open_in_history_0990": {
+    "message": "इतिहास में खोलें"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "साइडबार में खोलें"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "अपने Mac पर <b>Terminal</b> ऐप खोलें।"
+  },
+  "f_own_key_7e24": {
+    "message": "अपनी कुंजी"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "अपना मॉडल / API कुंजी"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "पेज हाइलाइटिंग"
+  },
+  "f_pane_view_fde8": {
+    "message": "पेन {n} दृश्य"
+  },
+  "f_panel_37e5": {
+    "message": "पैनल"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "यह सभी सारांश और आर्काइव को स्थायी रूप से हटा देता है। पहले बैकअप एक्सपोर्ट करें।"
+  },
+  "f_persist_optional_29ce": {
+    "message": "स्थायी रखें (वैकल्पिक)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "अपने शो का नाम चुनें:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "कृपया पहले सेटिंग्स में अपना Kindle डिलीवरी ईमेल पता कॉन्फ़िगर करें।"
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "कृपया लाइसेंस कुंजी दर्ज करें।"
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "कृपया मान्य ईमेल दर्ज करें।"
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "कृपया सत्यापन कोड दर्ज करें।"
+  },
+  "f_podcast_name_1b92": {
+    "message": "पॉडकास्ट का नाम"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "पॉडकास्ट की अवधि (मिनट):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "पॉडकास्ट की शैली:"
+  },
+  "f_positive_tone_6466": {
+    "message": "सकारात्मक टोन"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "टर्मिनल पसंद है? Ollama को सीधे फ़ोरग्राउंड विंडो में चलाएं:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "पसंदीदा क्लाउड मॉडल"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "पसंदीदा क्लाउड मॉडल"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "Kindle डिलीवरी तैयार हो रही है... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "प्रीसेट और कस्टम प्रॉम्प्ट"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "प्रीसेट प्रॉम्प्ट"
+  },
+  "f_preset_4569": {
+    "message": "प्रीसेट: {name}"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "<b>Win + R</b> दबाएं, <code>cmd</code> टाइप करें और Enter दबाएं।"
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro सक्रिय ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro लाइसेंस कुंजी"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro लाइसेंस कुंजी"
+  },
+  "f_prompts_7bf8": {
+    "message": "प्रॉम्प्ट"
+  },
+  "f_provider_88dc": {
+    "message": "प्रदाता"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "सवाल, बग या खुश हैं? 💡 बेझिझक"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "त्वरित परीक्षण (टर्मिनल)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "Ollama बंद करें"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "रीकैप के साथ आइटम रेट करें"
+  },
+  "f_reader_4efa": {
+    "message": "रीडर 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "पढ़ना और हाइलाइट"
+  },
+  "f_reading_bundle_c191": {
+    "message": "रीडिंग बंडल — {date} ({count})"
+  },
+  "f_reading_page_0cb0": {
+    "message": "पेज पढ़ा जा रहा है..."
+  },
+  "f_recent_models_20ec": {
+    "message": "हाल के मॉडल"
+  },
+  "f_regular_f2b7": {
+    "message": "सामान्य"
+  },
+  "f_remove_device_c1ed": {
+    "message": "डिवाइस हटाएं"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "इस डिवाइस की सभी प्राथमिकताएं, प्रॉम्प्ट और कुंजियां रीसेट हो जाती हैं। आपका इतिहास बना रहता है।"
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "Ollama रीस्टार्ट करें"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "Ollama ट्रे आइकन (नीचे दाईं ओर) पर राइट-क्लिक करें और <b>Quit</b> चुनें।"
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "Ollama को इसी विंडो से फ़ोरग्राउंड सर्वर के रूप में चलाएं:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "Mac ऐप रीस्टार्ट के बाद भी Ollama कॉन्फ़िगर रहे, इसके लिए यह कमांड चलाएं:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "इसे चलाएं ताकि चल रहा सर्वर किसी भी ऑरिजिन से अनुरोध स्वीकार करे:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "पूरी तरह आपके ब्राउज़र में चलता है — कोई डेटा बाहर नहीं जाता।"
+  },
+  "f_saved_for_later_516d": {
+    "message": "बाद के लिए सहेजा"
+  },
+  "f_saved_549a": {
+    "message": "सहेजा गया! ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "स्कैन विफल रहा। IP मैन्युअल रूप से दर्ज करें।"
+  },
+  "f_scanning_96ac": {
+    "message": "स्कैन हो रहा है..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "क्लाउड मॉडल खोजें…"
+  },
+  "f_search_languages_1344": {
+    "message": "भाषाएं खोजें…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "क्लाउड में खोज हो रही है..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "LAN में LocalSend रिसीवर खोजा जा रहा है..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "अधिकतम 5 लेख चुनें:"
+  },
+  "f_send_share_bb4a": {
+    "message": "भेजें और साझा करें"
+  },
+  "f_send_magic_code_de19": {
+    "message": "मैजिक कोड भेजें"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "Wi-Fi से LocalSend पर भेजा जा रहा है... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "भेजा जा रहा है..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "सफलतापूर्वक भेजा गया! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "Kindle पर भेज दिया गया! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "सत्र समाप्त हो गया। नया बुकमार्कलेट बनाएं।"
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "सत्र खो गया। कृपया नया कोड मंगवाएं।"
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "सक्रिय भेजने के गंतव्य के रूप में सेट करें"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "Linux पर Ollama सेट अप करें"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "Windows पर Ollama सेट अप करें"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "macOS पर Ollama सेट अप करें"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "सेटिंग्स + लेख इतिहास"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "सेटिंग्स सफलतापूर्वक आयात हुईं! अब एक्सटेंशन फिर से लोड होगा।"
+  },
+  "f_settings_only_750a": {
+    "message": "केवल सेटिंग्स"
+  },
+  "f_share_failed_4922": {
+    "message": "साझा करना विफल रहा: {message}"
+  },
+  "f_share_cf08": {
+    "message": "साझा करें 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "इस ब्राउज़र/परिवेश में साझा करना समर्थित नहीं है।"
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "शीर्ष टैग दिखाए जा रहे हैं (आर्काइव बड़ा है)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "ईमेल से साइन इन / साइन अप करें"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "मुफ़्त क्लाउड मॉडल अनलॉक करने और सारांश सिंक करने के लिए साइन इन करें, या अपनी API कुंजियां उपयोग करें।"
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "साइन इन हैं · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "अकेले"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "कुछ गड़बड़ हो गई — कृपया फिर कोशिश करें।"
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "स्रोत · नाम बदलें · टैग · म्यूट"
+  },
+  "f_start_ollama_136b": {
+    "message": "Ollama शुरू करें"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "Ollama को ग्लोबल वाइल्डकार्ड के साथ शुरू करें ताकि कोई भी ऑरिजिन कनेक्ट हो सके:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "Ollama रोकें"
+  },
+  "f_storytelling_6d0b": {
+    "message": "कहानी सुनाना"
+  },
+  "f_style_fba4": {
+    "message": "शैली:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "सफलतापूर्वक कनेक्ट हो गया! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "सारांश बन रहा है..."
+  },
+  "f_summary_language_a8df": {
+    "message": "सारांश की भाषा"
+  },
+  "f_summary_length_2b31": {
+    "message": "सारांश की लंबाई"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "सारांश मोड"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "ग्राफ़ खोज को फ़िल्टर मोड में बदलें"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "ग्राफ़ खोज को हाइलाइट मोड में बदलें"
+  },
+  "f_system_default_c329": {
+    "message": "सिस्टम डिफ़ॉल्ट"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "TTS से कोई ऑडियो नहीं मिला।"
+  },
+  "f_theme_7c92": {
+    "message": "थीम"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "थीम · भाषा · साइड पैनल"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "यह इस डिवाइस से {what} और आर्काइव को स्थायी रूप से हटा देता है। इसे पूर्ववत नहीं किया जा सकता।"
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "यह इस डिवाइस की हर प्राथमिकता, प्रॉम्प्ट और API कुंजी रीसेट कर देता है। आपके सारांश बने रहेंगे। एक्सटेंशन फिर से लोड होगा।"
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "इससे मौजूदा कोड अमान्य हो जाएगा। जारी रखें?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "ट्रांसफ़र विफल रहा: {message}"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "पुष्टि के लिए {word} टाइप करें"
+  },
+  "f_ui_language_08b7": {
+    "message": "UI भाषा"
+  },
+  "f_ui_language_b097": {
+    "message": "UI भाषा"
+  },
+  "f_unavailable_aaa9": {
+    "message": "अनुपलब्ध"
+  },
+  "f_unknown_error_2b43": {
+    "message": "अज्ञात त्रुटि"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "Pro Pass में अपग्रेड करें"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "\"{name}\" को कस्टम भाषा कोड के रूप में उपयोग करें"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "Chrome के नेटिव साइड पैनल का उपयोग करें"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "Kindle पर भेजने के लिए उपयोग होता है। जोड़ें"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "सत्यापित करें और लॉग इन करें"
+  },
+  "f_verify_login_274f": {
+    "message": "सत्यापित करें और लॉग इन करें"
+  },
+  "f_verifying_174a": {
+    "message": "सत्यापित हो रहा है..."
+  },
+  "f_version_github_fae0": {
+    "message": "संस्करण और GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "देखें और कॉपी करें"
+  },
+  "f_view_filtered_f87d": {
+    "message": "दृश्य: फ़िल्टर किया हुआ"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "दृश्य: हाइलाइट किया हुआ"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "AI Summary Helper में आपका स्वागत है"
+  },
+  "f_well_connected_1033": {
+    "message": "अच्छी तरह जुड़ा हुआ"
+  },
+  "f_what_to_export_3317": {
+    "message": "क्या एक्सपोर्ट करना है?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "गलत ईमेल? वापस जाएं"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "आप अपना पॉडकास्ट बनाने के लिए तैयार हैं!"
+  },
+  "f_a_donation_8832": {
+    "message": "दान"
+  },
+  "f_all_summaries_c680": {
+    "message": "सभी सारांश"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "मुझसे संपर्क करें"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "GitHub पर योगदान दें 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "जैसे 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "जैसे gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "असीमित, बिना कॉन्फ़िग वाले सारांश के लिए।"
+  },
+  "f_from_8075": {
+    "message": "से"
+  },
+  "f_give_feedback_9abb": {
+    "message": "फ़ीडबैक दें"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "HTTPS के बजाय, जिसमें गड़बड़ियां हो सकती हैं।"
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "अब अपडेट नहीं होता"
+  },
+  "f_off_8a0a": {
+    "message": "बंद"
+  },
+  "f_on_2fd0": {
+    "message": "चालू"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "हर पंक्ति में एक साइट, जैसे linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "या विचार करें"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "साझा टैग"
+  },
+  "f_similar_content_784b": {
+    "message": "मिलती-जुलती सामग्री"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "अपने Kindle के स्वीकृत प्रेषकों में पहले जोड़ें —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}, आपके AI Summary Helper आर्काइव से चुने हुए।"
+  },
+  "f_tone_f081": {
+    "message": "{label} टोन"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · ग्रेड {grade}"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · API कुंजी नहीं है — सेटिंग्स में जोड़ें"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · API कुंजी सेट है"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · लोकल, API कुंजी नहीं"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "{n} लेख नहीं दिखाया गया"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "{n} लेख नहीं दिखाए गए"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "{n} डुप्लिकेट टैग"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "{n} डुप्लिकेट टैग"
+  },
+  "f_min_4e03": {
+    "message": "{n} मिनट"
+  },
+  "f_panes_2444": {
+    "message": "{n} पेन"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "{n} कम उपयोग वाला टैग छिपा है"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "{n} कम उपयोग वाले टैग छिपे हैं"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} 30+ दिनों से अनखुले"
+  },
+  "f_similar_e273": {
+    "message": "{n}% मिलता-जुलता"
+  },
+  "f_min_read_b555": {
+    "message": "~{n} मिनट पढ़ें"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— बेझिझक"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ सारांश बन रहा है…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ सेटिंग्स"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ खतरनाक क्षेत्र"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ बुकमार्कलेट बनाने के लिए पहले byphil Cloud में लॉग इन करना होगा।"
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ पेज हाइलाइटिंग"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ टैग पहले से एकसमान हैं — मर्ज करने को कुछ नहीं।"
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ {a} अपडेट किए, {b} मर्ज किए।"
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ AI घोस्ट हाइलाइटिंग"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ इतिहास पर वापस"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 अपनी कुंजी लाएं"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 बैकअप और पुनर्स्थापना"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 मूल सामग्री"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 मुफ़्त टियर की सीमा पूरी हो गई (3 भेजना)।\n\nअसीमित Kindle डिलीवरी के लिए Pro में अपग्रेड करें।\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Kindle पर भेजें\n\nमुफ़्त टियर: 3 Kindle भेजना शामिल।\nअसीमित के लिए Pro में अपग्रेड करें।\n\nसुनिश्चित करें कि kindle@byphil.eu आपकी Kindle स्वीकृत प्रेषक सूची में है (Amazon सहायता देखें)।\n\nक्या यह लेख Kindle पर भेजें?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 आपके हाइलाइट"
+  },
+  "f_export_6eba": {
+    "message": "📤 एक्सपोर्ट"
+  },
+  "f_import_d884": {
+    "message": "📥 आयात"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 प्रॉक्सी मेट्रिक्स से कनेक्ट हो रहा है..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 इसे निजी रखें: इस बुकमार्कलेट में आपका निजी क्लाउड टोकन है। इसे किसी से साझा न करें। टोकन की समय-सीमा खत्म होने पर नया बनाने यहीं लौटें।"
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 आपके ब्राउज़र में लोकल रूप से संग्रहीत।"
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 बुकमार्कलेट जनरेटर"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 आपके आर्काइव में मिलते-जुलते"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ आपका आर्काइव रेगिस्तान जितना खाली है! इसे भरने के लिए कुछ लेख सहेजना शुरू करें। 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 AI के सुझाए हाइलाइट"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 AI सारांश"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 ऑन-डिवाइस टूल"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 साफ़ करें"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 बुकमार्कलेट बनाएं"
   }
 }

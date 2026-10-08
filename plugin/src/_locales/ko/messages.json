@@ -2017,5 +2017,1187 @@
   },
   "f_items_per_recap_fac3": {
     "message": "📝 요약당 항목 수"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(iOS에서는 2초간 길게 눌러 드래그하세요)"
+  },
+  "f_add_59dd": {
+    "message": "＋ 추가"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "{count}개 묶음: {titles}"
+  },
+  "f_a_few_18aa": {
+    "message": "조금"
+  },
+  "f_a_lot_9f13": {
+    "message": "많이"
+  },
+  "f_ai_model_1862": {
+    "message": "AI 모델"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "AI 고스트 하이라이트"
+  },
+  "f_api_error_e311": {
+    "message": "API 오류:"
+  },
+  "f_api_key_6382": {
+    "message": "API 키:"
+  },
+  "f_api_key_c6ec": {
+    "message": "API 키"
+  },
+  "f_about_tools_9c0f": {
+    "message": "정보 및 도구"
+  },
+  "f_account_a2fc": {
+    "message": "계정"
+  },
+  "f_account_plan_bd49": {
+    "message": "계정 및 요금제"
+  },
+  "f_account_sync_cdb7": {
+    "message": "계정 동기화"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "계정 동기화 · 로그인 / 로그아웃"
+  },
+  "f_activate_0190": {
+    "message": "활성화"
+  },
+  "f_active_send_target_69d8": {
+    "message": "활성 전송 대상"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "Kindle 기기 추가"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "LocalSend 기기 추가"
+  },
+  "f_add_custom_model_336a": {
+    "message": "사용자 지정 모델 추가"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "모델 ID 추가 (예: gemma3:4b)"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "모든 출처 허용"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "모든 출처 허용 (앱)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "Amazon 가이드"
+  },
+  "f_analytics_e02b": {
+    "message": "분석"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "태그 분석 중…"
+  },
+  "f_appearance_language_6075": {
+    "message": "화면 및 언어"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "이 기사를 삭제할까요?"
+  },
+  "f_article_05f9": {
+    "message": "기사"
+  },
+  "f_articles_ae4c": {
+    "message": "기사:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "오디오 생성 실패: {msg}"
+  },
+  "f_auto_detect_0006": {
+    "message": "자동 감지"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "즐겨찾기 자동 요약"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "요약의 인용문을 연한 파란색으로 자동 하이라이트"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "백업을 복원했어요!\n기사 {n}개를 가져왔어요.\n\n확장 프로그램이 다시 로드됩니다."
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "백업 · 태그 · 삭제"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "북마클릿 생성기"
+  },
+  "f_browser_default_9336": {
+    "message": "브라우저 기본값"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "백그라운드에서 피드 확인"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "수신 기기가 온라인인지 확인하세요."
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "수신 기기가 온라인인지 확인하세요."
+  },
+  "f_checking_f2f5": {
+    "message": "확인 중..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "기사 상세 화면의 전송 방법을 하나 선택하세요."
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "태그 정리 및 병합"
+  },
+  "f_clear_search_e946": {
+    "message": "검색어 지우기"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "메뉴 바(오른쪽 위)의 Ollama 아이콘을 클릭하고 <b>Quit Ollama</b>를 선택하세요."
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "“생성 🎙️”을 눌러 에피소드를 만드세요."
+  },
+  "f_close_pane_d66b": {
+    "message": "패널 {n} 닫기"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "코드가 만료되었어요. 새 코드를 요청하세요."
+  },
+  "f_comedy_0972": {
+    "message": "코미디"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "호환 도구"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "먼저 설정에서 LocalSend IP 주소를 입력하세요."
+  },
+  "f_connection_path_790c": {
+    "message": "연결 경로"
+  },
+  "f_connection_path_e1ec": {
+    "message": "연결 경로"
+  },
+  "f_context_k_1bbb": {
+    "message": "컨텍스트: {n}k"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "일반 텍스트로 복사했어요."
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "클립보드에 복사했어요! 📋"
+  },
+  "f_copied_f355": {
+    "message": "복사됨 ✓"
+  },
+  "f_copy_0d38": {
+    "message": "복사 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "만든 팟캐스트"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "사용자 지정 프롬프트"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "사용자 지정 스타일 (선택):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "사용자 지정 스타일:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "D3 라이브러리를 불러오지 못했어요."
+  },
+  "f_dark_mode_05f8": {
+    "message": "다크 모드"
+  },
+  "f_delete_ea6a": {
+    "message": "삭제"
+  },
+  "f_delete_article_14d4": {
+    "message": "기사 삭제"
+  },
+  "f_delete_all_history_f022": {
+    "message": "모든 기록을 삭제할까요?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "모든 설정을 삭제할까요?"
+  },
+  "f_delete_history_09b6": {
+    "message": "기록 삭제"
+  },
+  "f_delete_history_6db0": {
+    "message": "기록 삭제…"
+  },
+  "f_delete_settings_448b": {
+    "message": "설정 삭제"
+  },
+  "f_delete_settings_7c57": {
+    "message": "설정 삭제…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "전송 방법"
+  },
+  "f_delivery_method_60a6": {
+    "message": "전송 방법"
+  },
+  "f_delivery_83d6": {
+    "message": "전송: {name}"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "팟캐스트 스타일을 설명하세요"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "그래프 통계 닫기"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "키가 없나요?"
+  },
+  "f_done_645e": {
+    "message": "완료 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "이 링크를 북마크 바로 드래그하세요 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "교육"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "엔드포인트 URL"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "엔드포인트 URL:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "6자리 코드 입력"
+  },
+  "f_enter_code_6556": {
+    "message": "코드 입력"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "이메일로 받은 코드를 입력하세요."
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "코드를 보낸 주소:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "이메일을 입력하세요..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "팟캐스트 생성 오류: {msg}"
+  },
+  "f_error_d391": {
+    "message": "오류:"
+  },
+  "f_error_2626": {
+    "message": "오류: {message}"
+  },
+  "f_export_49d3": {
+    "message": "내보내기"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "먼저 백업 내보내기"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "모든 설정을 JSON 파일로 내보내거나 복원해요."
+  },
+  "f_export_settings_1454": {
+    "message": "설정 내보내기"
+  },
+  "f_exported_1988": {
+    "message": "내보냈어요 ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "내보냈어요 ✓ (기사 {n}개)"
+  },
+  "f_ext_8e14": {
+    "message": "확장"
+  },
+  "f_extension_723a": {
+    "message": "확장 프로그램"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "백업을 내보내지 못했어요."
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "모델을 불러오지 못했어요"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "코드를 보내지 못했어요"
+  },
+  "f_fallback_79db": {
+    "message": "대체"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "피드 브리핑 및 요약 스타일"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "피드 새로고침 주기"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "의견 · 문의 · 후원"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "피드와 받은편지함(LinkedIn 피드, X 홈 등)은 이미 자동으로 건너뛰어요."
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "파일을 공유했어요."
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "일치 항목만 그래프에 표시 중 — 클릭하면 전체 보관함에서 일치 항목을 하이라이트해요"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Flesch 읽기 쉬움 지수: {ease}/100"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "KOReader에는 다음을 권장해요:"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "systemd로 영구 설정하려면 서비스 유닛(예: <code>/etc/systemd/system/ollama.service</code>)에 <code>Environment=\"OLLAMA_ORIGINS=*\"</code>를 추가한 뒤 <code>systemctl daemon-reload</code>를 실행하고 다시 시작하세요."
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "영구적으로 해결하려면 <code>OLLAMA_ORIGINS=*</code>를 시스템 환경 변수로 <i>시스템 속성 → 환경 변수</i>에서 설정하고 Ollama를 다시 시작하세요."
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "{ip}에서 기기를 찾았어요 — 추가를 눌러 저장하세요 ✓"
+  },
+  "f_free_tier_a065": {
+    "message": "무료 요금제"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "무료 체험 모드"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "확장 프로그램이 실행되지 않는 iOS/Android를 포함해 어떤 브라우저에서든 페이지를 요약하는 북마클릿을 만들어요. byphil Cloud 로그인을 사용합니다."
+  },
+  "f_generate_237e": {
+    "message": "생성 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "오디오 생성 중… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "생성 중…"
+  },
+  "f_get_key_4f7c": {
+    "message": "키 받기"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "고스트 하이라이트 양"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "고스트 하이라이트 양"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "이 사이트에서는 하이라이트 패널 숨기기"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "전체 보관함에서 일치 항목 하이라이트 중 — 클릭하면 일치 항목만 표시해요"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "하이라이트 {a} · 고스트 {b}"
+  },
+  "f_history_deleted_89bf": {
+    "message": "기록을 삭제했어요 ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "내 사용자 지정 API / 로컬 모델을 사용할래요"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "systemd 서비스로 실행 중이면 <code>sudo systemctl stop ollama</code>로 중지하세요."
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "OPML 가져오기 / 내보내기"
+  },
+  "f_import_settings_8d81": {
+    "message": "설정 가져오기"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "byPhil 계정에 포함되어 있어요 — API 키가 필요 없어요."
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "링크 실행에 실패했어요. 게이트웨이 네트워크 연결을 확인하세요."
+  },
+  "f_inl_2296": {
+    "message": "인라인"
+  },
+  "f_inline_1554": {
+    "message": "인라인"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "인라인 모드는 \"Send to Kindle\"에 매우 유용해요."
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "페이지에 삽입"
+  },
+  "f_interview_0334": {
+    "message": "인터뷰"
+  },
+  "f_invalid_key_620f": {
+    "message": "잘못된 키"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "잘못된 백업 파일이에요. 올바른 AI Summary Helper 내보내기 파일을 선택하세요."
+  },
+  "f_invalid_code_4325": {
+    "message": "잘못된 코드"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "코드가 잘못되었거나 세션이 만료되었어요."
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "라이선스 키가 잘못되었거나 비활성화되었어요. 구독 정보를 확인하세요."
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "KOReader / LocalSend 기기"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "KOReader 플러그인:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "피드 항목 보관 기간"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "Kindle 전송에 실패했어요."
+  },
+  "f_kindle_devices_5273": {
+    "message": "Kindle 기기"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · 북마클릿"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "이름표"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "Applications 폴더나 Spotlight에서 Ollama를 다시 실행하세요."
+  },
+  "f_layout_421f": {
+    "message": "레이아웃"
+  },
+  "f_length_729d": {
+    "message": "길이:"
+  },
+  "f_library_data_0b46": {
+    "message": "보관함 및 데이터"
+  },
+  "f_light_mode_608a": {
+    "message": "라이트 모드"
+  },
+  "f_list_37a1": {
+    "message": "목록"
+  },
+  "f_loading_1033": {
+    "message": "로딩 중..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "로그아웃"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "로그인됨: {email}"
+  },
+  "f_logged_out_5877": {
+    "message": "로그아웃했어요."
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "매직 코드를 보냈어요! ✨ 받은편지함을 확인하세요."
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "수동 노란색 하이라이트"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "열면 읽음으로 표시"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "“ML”과 “Machine Learning”처럼 비슷한 태그를 보관함 전체에서 병합해요."
+  },
+  "f_model_e8fa": {
+    "message": "모델"
+  },
+  "f_model_identifier_527d": {
+    "message": "모델 식별자"
+  },
+  "f_model_source_5863": {
+    "message": "모델 출처"
+  },
+  "f_models_api_7e45": {
+    "message": "모델 및 API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "분위기 켜기/끄기 (톤 분석)"
+  },
+  "f_name_6774": {
+    "message": "이름:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Chrome 기본 사이드 패널"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "부정적 톤"
+  },
+  "f_network_error_608f": {
+    "message": "네트워크 오류"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "Kindle로 보내는 중 네트워크 오류가 발생했어요."
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "중립적 톤"
+  },
+  "f_news_0866": {
+    "message": "뉴스"
+  },
+  "f_next_da08": {
+    "message": "다음"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "Kindle 이메일이 설정되지 않았어요."
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "활성 수신 기기를 찾지 못했어요."
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "저장된 기사가 아직 없어요."
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "그래프로 표시할 기사가 아직 없어요."
+  },
+  "f_no_audio_8798": {
+    "message": "오디오 없음"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "사용 가능한 콘텐츠가 없어요."
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "추가된 기기가 아직 없어요."
+  },
+  "f_no_matches_found_1b67": {
+    "message": "일치하는 항목 없음"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "설정된 모델 없음"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "수신 주소가 설정되지 않았어요."
+  },
+  "f_no_settings_match_918b": {
+    "message": "“{query}”와 일치하는 설정이 없어요."
+  },
+  "f_no_summary_available_1155": {
+    "message": "사용 가능한 요약 없음"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "요약이 반환되지 않았어요."
+  },
+  "f_no_title_available_2723": {
+    "message": "사용 가능한 제목 없음"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "로그인 안 됨"
+  },
+  "f_not_signed_in_7281": {
+    "message": "로그인 안 됨"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Ollama가 다시 시작되면 이 확장 프로그램의 403 Forbidden 오류가 해결돼요."
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Ollama가 다시 시작되면 확장 프로그램의 403 Forbidden 오류가 해결돼요."
+  },
+  "f_one_pane_9d53": {
+    "message": "패널 1개"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "명령 프롬프트 열기"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "오픈 소스 소프트웨어 제공:"
+  },
+  "f_open_terminal_8167": {
+    "message": "터미널 열기"
+  },
+  "f_open_in_history_0990": {
+    "message": "기록에서 열기"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "사이드바에서 열기"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "Mac에서 <b>터미널</b> 앱을 여세요."
+  },
+  "f_own_key_7e24": {
+    "message": "내 키"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "내 모델 / API 키"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "페이지 하이라이트"
+  },
+  "f_pane_view_fde8": {
+    "message": "패널 {n} 보기"
+  },
+  "f_panel_37e5": {
+    "message": "패널"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "모든 요약과 보관함을 영구 삭제해요. 먼저 백업을 내보내세요."
+  },
+  "f_persist_optional_29ce": {
+    "message": "유지 (선택)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "프로그램 이름을 정하세요:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "먼저 설정에서 Kindle 전송용 이메일 주소를 입력하세요."
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "라이선스 키를 입력하세요."
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "올바른 이메일을 입력하세요."
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "인증 코드를 입력하세요."
+  },
+  "f_podcast_name_1b92": {
+    "message": "팟캐스트 이름"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "팟캐스트 길이(분):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "팟캐스트 스타일:"
+  },
+  "f_positive_tone_6466": {
+    "message": "긍정적 톤"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "터미널이 편하다면 포그라운드 창에서 Ollama를 직접 실행하세요:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "선호하는 클라우드 모델"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "선호하는 클라우드 모델"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "Kindle 전송 준비 중... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "프리셋 및 사용자 지정 프롬프트"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "프리셋 프롬프트"
+  },
+  "f_preset_4569": {
+    "message": "프리셋: {name}"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "<b>Win + R</b>을 누르고 <code>cmd</code>를 입력한 뒤 Enter를 누르세요."
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro 활성 ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro 라이선스 키"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro 라이선스 키"
+  },
+  "f_prompts_7bf8": {
+    "message": "프롬프트"
+  },
+  "f_provider_88dc": {
+    "message": "제공업체"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "질문, 버그, 좋은 소식? 💡 편하게"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "빠른 테스트 (터미널)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "Ollama 종료"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "요약에서 항목 평가하기"
+  },
+  "f_reader_4efa": {
+    "message": "리더 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "읽기 및 하이라이트"
+  },
+  "f_reading_bundle_c191": {
+    "message": "읽기 묶음 — {date} ({count})"
+  },
+  "f_reading_page_0cb0": {
+    "message": "페이지 읽는 중..."
+  },
+  "f_recent_models_20ec": {
+    "message": "최근 모델"
+  },
+  "f_regular_f2b7": {
+    "message": "보통"
+  },
+  "f_remove_device_c1ed": {
+    "message": "기기 삭제"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "이 기기의 모든 환경설정, 프롬프트, 키를 초기화해요. 기록은 유지돼요."
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "Ollama 다시 시작"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "트레이의 Ollama 아이콘(오른쪽 아래)을 우클릭하고 <b>Quit</b>를 선택하세요."
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "같은 창에서 Ollama를 포그라운드 서버로 실행하세요:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "Mac 앱을 다시 시작해도 설정이 유지되도록 이 명령을 실행하세요:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "실행 중인 서버가 모든 출처의 요청을 받도록 이 명령을 실행하세요:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "모든 작업이 브라우저 안에서 처리되며 데이터는 밖으로 나가지 않아요."
+  },
+  "f_saved_for_later_516d": {
+    "message": "나중에 읽기"
+  },
+  "f_saved_549a": {
+    "message": "저장됨 ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "검색에 실패했어요. IP를 직접 입력하세요."
+  },
+  "f_scanning_96ac": {
+    "message": "검색 중..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "클라우드 모델 검색…"
+  },
+  "f_search_languages_1344": {
+    "message": "언어 검색…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "클라우드 검색 중..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "LAN에서 LocalSend 수신 기기를 찾는 중..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "기사를 최대 5개 선택하세요:"
+  },
+  "f_send_share_bb4a": {
+    "message": "전송 및 공유"
+  },
+  "f_send_magic_code_de19": {
+    "message": "매직 코드 보내기"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "Wi-Fi로 LocalSend에 전송 중... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "전송 중..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "전송했어요! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "Kindle로 전송했어요! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "세션이 만료되었어요. 새 북마클릿을 생성하세요."
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "세션이 끊겼어요. 새 코드를 요청하세요."
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "활성 전송 대상으로 설정"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "Linux에서 Ollama 설정"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "Windows에서 Ollama 설정"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "macOS에서 Ollama 설정"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "설정 + 기사 기록"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "설정을 가져왔어요! 확장 프로그램이 다시 로드됩니다."
+  },
+  "f_settings_only_750a": {
+    "message": "설정만"
+  },
+  "f_share_failed_4922": {
+    "message": "공유 실패: {message}"
+  },
+  "f_share_cf08": {
+    "message": "공유 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "이 브라우저/환경에서는 공유를 지원하지 않아요."
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "상위 태그를 표시 중 (보관함이 커요)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "이메일로 로그인 / 가입"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "로그인하면 무료 클라우드 모델을 쓰고 요약을 동기화할 수 있어요. 직접 API 키를 사용해도 돼요."
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "로그인됨 · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "솔로"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "문제가 발생했어요. 다시 시도하세요."
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "출처 · 이름 변경 · 태그 · 숨김"
+  },
+  "f_start_ollama_136b": {
+    "message": "Ollama 시작"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "어떤 출처에서든 연결되도록 전역 와일드카드로 Ollama를 시작하세요:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "Ollama 중지"
+  },
+  "f_storytelling_6d0b": {
+    "message": "스토리텔링"
+  },
+  "f_style_fba4": {
+    "message": "스타일:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "연결되었어요! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "요약 중..."
+  },
+  "f_summary_language_a8df": {
+    "message": "요약 언어"
+  },
+  "f_summary_length_2b31": {
+    "message": "요약 길이"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "요약 모드"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "그래프 검색을 필터 모드로 전환"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "그래프 검색을 하이라이트 모드로 전환"
+  },
+  "f_system_default_c329": {
+    "message": "시스템 기본값"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "TTS에서 오디오가 반환되지 않았어요."
+  },
+  "f_theme_7c92": {
+    "message": "테마"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "테마 · 언어 · 사이드 패널"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "{what}과(와) 보관함을 이 기기에서 영구 삭제해요. 되돌릴 수 없어요."
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "이 기기의 모든 환경설정, 프롬프트, API 키를 초기화해요. 요약은 유지돼요. 확장 프로그램이 다시 로드됩니다."
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "현재 코드가 무효화돼요. 계속할까요?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "전송 실패: {message}"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "확인하려면 {word} 입력"
+  },
+  "f_ui_language_08b7": {
+    "message": "UI 언어"
+  },
+  "f_ui_language_b097": {
+    "message": "UI 언어"
+  },
+  "f_unavailable_aaa9": {
+    "message": "사용 불가"
+  },
+  "f_unknown_error_2b43": {
+    "message": "알 수 없는 오류"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "Pro Pass로 업그레이드"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "\"{name}\"을(를) 사용자 지정 언어 코드로 사용"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "Chrome 기본 사이드 패널 사용"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "Kindle 전송에 사용돼요. 추가:"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "인증 후 로그인"
+  },
+  "f_verify_login_274f": {
+    "message": "인증 후 로그인"
+  },
+  "f_verifying_174a": {
+    "message": "인증 중..."
+  },
+  "f_version_github_fae0": {
+    "message": "버전 및 GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "보기 및 복사"
+  },
+  "f_view_filtered_f87d": {
+    "message": "보기: 필터링됨"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "보기: 하이라이트됨"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "AI Summary Helper에 오신 것을 환영합니다"
+  },
+  "f_well_connected_1033": {
+    "message": "연결 많음"
+  },
+  "f_what_to_export_3317": {
+    "message": "무엇을 내보낼까요?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "이메일이 틀렸나요? 뒤로 가기"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "팟캐스트를 생성할 준비가 되었어요!"
+  },
+  "f_a_donation_8832": {
+    "message": "후원"
+  },
+  "f_all_summaries_c680": {
+    "message": "모든 요약"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "문의하기"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "GitHub에서 기여하기 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "예: 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "예: gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "무제한 요약을 설정 없이 쓸 수 있어요."
+  },
+  "f_from_8075": {
+    "message": "제공:"
+  },
+  "f_give_feedback_9abb": {
+    "message": "의견 보내기"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "HTTPS 대신 사용하세요. HTTPS는 불안정할 수 있어요."
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "업데이트 중단됨"
+  },
+  "f_off_8a0a": {
+    "message": "끔"
+  },
+  "f_on_2fd0": {
+    "message": "켬"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "한 줄에 사이트 하나 (예: linkedin.com)"
+  },
+  "f_or_consider_a223": {
+    "message": "또는 다음을 고려해 보세요:"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "공통 태그"
+  },
+  "f_similar_content_784b": {
+    "message": "비슷한 콘텐츠"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "을(를) 먼저 Kindle 승인된 발신자에 추가하세요 —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}, AI Summary Helper 보관함에서 엄선했어요."
+  },
+  "f_tone_f081": {
+    "message": "{label} 톤"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · {grade}학년 수준"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · API 키 없음 — 설정에서 추가하세요"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · API 키 설정됨"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · 로컬, API 키 불필요"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "기사 {n}개 표시 안 됨"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "기사 {n}개 표시 안 됨"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "중복 태그 {n}개"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "중복 태그 {n}개"
+  },
+  "f_min_4e03": {
+    "message": "{n}분"
+  },
+  "f_panes_2444": {
+    "message": "패널 {n}개"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "거의 안 쓰는 태그 {n}개 숨김"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "거의 안 쓰는 태그 {n}개 숨김"
+  },
+  "f_unopened_30d_61af": {
+    "message": "30일 넘게 안 연 항목 {n}개"
+  },
+  "f_similar_e273": {
+    "message": "{n}% 유사"
+  },
+  "f_min_read_b555": {
+    "message": "약 {n}분 소요"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— 편하게"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ 요약 중…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ 설정"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ 위험 구역"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ 북마클릿을 생성하려면 먼저 byphil Cloud에 로그인해야 해요."
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ 페이지 하이라이트"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ 태그가 이미 일관돼요 — 병합할 항목이 없어요."
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ {a}개 업데이트, {b}개 병합했어요."
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ AI 고스트 하이라이트"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ 기록으로 돌아가기"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 내 키 사용"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 백업 및 복원"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 원본 콘텐츠"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 무료 요금제 한도에 도달했어요 (3회 전송).\n\nPro로 업그레이드하면 Kindle 전송이 무제한이에요.\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Kindle로 보내기\n\n무료 요금제는 Kindle 전송 3회가 포함돼요.\nPro로 업그레이드하면 무제한이에요.\n\nkindle@byphil.eu가 Kindle 승인된 발신자 목록에 있는지 확인하세요 (Amazon 도움말 참고).\n\n이 기사를 Kindle로 보낼까요?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 내 하이라이트"
+  },
+  "f_export_6eba": {
+    "message": "📤 내보내기"
+  },
+  "f_import_d884": {
+    "message": "📥 가져오기"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 프록시 지표에 연결 중..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 비공개로 유지하세요: 이 북마클릿에는 개인 클라우드 토큰이 들어 있어요. 다른 사람과 공유하지 마세요. 토큰이 만료되면 여기로 돌아와 새로 생성하세요."
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 브라우저에 로컬로 저장돼요."
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 북마클릿 생성기"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 보관함의 비슷한 기사"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ 보관함이 사막처럼 텅 비었어요! 기사를 저장해서 채워 보세요. 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 AI 추천 하이라이트"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 AI 요약"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 기기 내 도구"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 정리"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 북마클릿 생성"
   }
 }

@@ -1945,5 +1945,1187 @@
   },
   "f_items_per_recap_fac3": {
     "message": "📝 每次回顧項目數"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "（iOS 上請按住拖曳 2 秒）"
+  },
+  "f_add_59dd": {
+    "message": "+ 新增"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "共 {count} 篇合集：{titles}"
+  },
+  "f_a_few_18aa": {
+    "message": "少量"
+  },
+  "f_a_lot_9f13": {
+    "message": "大量"
+  },
+  "f_ai_model_1862": {
+    "message": "AI 模型"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "AI 幽靈標示"
+  },
+  "f_api_error_e311": {
+    "message": "API 錯誤："
+  },
+  "f_api_key_6382": {
+    "message": "API 金鑰："
+  },
+  "f_api_key_c6ec": {
+    "message": "API 金鑰"
+  },
+  "f_about_tools_9c0f": {
+    "message": "關於與工具"
+  },
+  "f_account_a2fc": {
+    "message": "帳號"
+  },
+  "f_account_plan_bd49": {
+    "message": "帳號與方案"
+  },
+  "f_account_sync_cdb7": {
+    "message": "帳號同步"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "帳號同步 · 登入 / 登出"
+  },
+  "f_activate_0190": {
+    "message": "啟用"
+  },
+  "f_active_send_target_69d8": {
+    "message": "目前傳送目標"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "新增 Kindle 裝置"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "新增 LocalSend 裝置"
+  },
+  "f_add_custom_model_336a": {
+    "message": "新增自訂模型"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "新增模型 ID，例如 gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "允許所有來源"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "允許所有來源（App）"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "Amazon 指南"
+  },
+  "f_analytics_e02b": {
+    "message": "分析"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "正在分析標籤…"
+  },
+  "f_appearance_language_6075": {
+    "message": "外觀與語言"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "確定要刪除這篇文章嗎？"
+  },
+  "f_article_05f9": {
+    "message": "文章"
+  },
+  "f_articles_ae4c": {
+    "message": "文章："
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "音訊產生失敗：{msg}"
+  },
+  "f_auto_detect_0006": {
+    "message": "自動偵測"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "自動摘要我的最愛"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "依摘要自動產生淺藍色引文標示"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "備份已成功還原！\n已匯入 {n} 篇文章。\n\n擴充功能即將重新載入。"
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "備份 · 標籤 · 刪除"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "書籤小工具產生器"
+  },
+  "f_browser_default_9336": {
+    "message": "瀏覽器預設"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "在背景檢查訂閱源"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "檢查接收端是否在線上。"
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "檢查接收端是否在線上。"
+  },
+  "f_checking_f2f5": {
+    "message": "檢查中..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "請為文章詳情頁的操作選擇一種傳送方式。"
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "清理並合併標籤"
+  },
+  "f_clear_search_e946": {
+    "message": "清除搜尋"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "點擊選單列（右上角）的 Ollama 圖示，選擇 <b>Quit Ollama</b>。"
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "點擊「產生 🎙️」來建立你的節目。"
+  },
+  "f_close_pane_d66b": {
+    "message": "關閉窗格 {n}"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "驗證碼已過期，請重新取得。"
+  },
+  "f_comedy_0972": {
+    "message": "喜劇"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "相容的工具"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "請先在設定中設定 LocalSend 的 IP 位址。"
+  },
+  "f_connection_path_790c": {
+    "message": "連線路徑"
+  },
+  "f_connection_path_e1ec": {
+    "message": "連線路徑"
+  },
+  "f_context_k_1bbb": {
+    "message": "上下文：{n}k"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "已複製為純文字。"
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "已複製到剪貼簿！📋"
+  },
+  "f_copied_f355": {
+    "message": "已複製！✓"
+  },
+  "f_copy_0d38": {
+    "message": "複製 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "已建立的 Podcast"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "自訂提示詞文字"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "自訂風格（選填）："
+  },
+  "f_custom_style_ba7f": {
+    "message": "自訂風格："
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "D3 函式庫載入失敗。"
+  },
+  "f_dark_mode_05f8": {
+    "message": "深色模式"
+  },
+  "f_delete_ea6a": {
+    "message": "刪除"
+  },
+  "f_delete_article_14d4": {
+    "message": "刪除文章"
+  },
+  "f_delete_all_history_f022": {
+    "message": "刪除所有歷史記錄？"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "刪除所有設定？"
+  },
+  "f_delete_history_09b6": {
+    "message": "刪除歷史記錄"
+  },
+  "f_delete_history_6db0": {
+    "message": "刪除歷史記錄…"
+  },
+  "f_delete_settings_448b": {
+    "message": "刪除設定"
+  },
+  "f_delete_settings_7c57": {
+    "message": "刪除設定…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "傳送方式"
+  },
+  "f_delivery_method_60a6": {
+    "message": "傳送方式"
+  },
+  "f_delivery_83d6": {
+    "message": "傳送方式：{name}"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "描述你的 Podcast 風格"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "關閉圖譜統計"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "還沒有金鑰？"
+  },
+  "f_done_645e": {
+    "message": "完成 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "將此連結拖曳到書籤列 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "教育"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "端點 URL"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "端點 URL："
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "輸入 6 位數驗證碼"
+  },
+  "f_enter_code_6556": {
+    "message": "輸入驗證碼"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "請輸入寄到你信箱的驗證碼。"
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "請輸入寄至以下信箱的驗證碼："
+  },
+  "f_enter_your_email_b13a": {
+    "message": "輸入你的電子郵件..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "產生 Podcast 時發生錯誤：{msg}"
+  },
+  "f_error_d391": {
+    "message": "錯誤："
+  },
+  "f_error_2626": {
+    "message": "錯誤：{message}"
+  },
+  "f_export_49d3": {
+    "message": "匯出"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "先匯出備份"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "將所有設定匯出或還原為 JSON 檔案。"
+  },
+  "f_export_settings_1454": {
+    "message": "匯出設定"
+  },
+  "f_exported_1988": {
+    "message": "已匯出！✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "已匯出！✓（{n} 篇文章）"
+  },
+  "f_ext_8e14": {
+    "message": "擴充"
+  },
+  "f_extension_723a": {
+    "message": "擴充功能"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "匯出備份失敗。"
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "載入模型失敗"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "驗證碼寄送失敗"
+  },
+  "f_fallback_79db": {
+    "message": "備用"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "訂閱源簡報與回顧風格"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "訂閱源更新間隔"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "意見回饋 · 聯絡 · 贊助"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "訂閱源和收件匣（LinkedIn 動態、X 首頁等）已自動略過。"
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "檔案分享成功。"
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "圖譜僅顯示符合項目 — 點擊可改為在整個封存中標示符合項目"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Flesch 易讀度：{ease}/100"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "使用 KOReader 時，建議優先使用"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "若要透過 systemd 永久設定，請在服務單元（例如 <code>/etc/systemd/system/ollama.service</code>）下加入 <code>Environment=\"OLLAMA_ORIGINS=*\"</code>，然後執行 <code>systemctl daemon-reload</code> 並重新啟動。"
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "若要永久生效，請將 <code>OLLAMA_ORIGINS=*</code> 設為系統環境變數（<i>系統內容 → 環境變數</i>），然後重新啟動 Ollama。"
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "在 {ip} 找到裝置 — 點擊「新增」即可儲存 ✓"
+  },
+  "f_free_tier_a065": {
+    "message": "免費方案"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "免費試用模式"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "產生一個可在任何瀏覽器中摘要網頁的書籤小工具，包括無法執行擴充功能的 iOS/Android。它會使用你的 byphil Cloud 登入狀態。"
+  },
+  "f_generate_237e": {
+    "message": "產生 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "正在產生音訊… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "產生中…"
+  },
+  "f_get_key_4f7c": {
+    "message": "取得金鑰"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "幽靈標示數量"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "幽靈標示數量"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "在這些網站上隱藏標示面板"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "正在整個封存中標示符合項目 — 點擊可僅顯示符合項目"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "標示 {a} · 幽靈 {b}"
+  },
+  "f_history_deleted_89bf": {
+    "message": "歷史記錄已刪除 ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "我想使用自己的自訂 API / 本機模型"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "若 Ollama 以 systemd 服務執行，請用 <code>sudo systemctl stop ollama</code> 停止它。"
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "匯入 / 匯出 OPML"
+  },
+  "f_import_settings_8d81": {
+    "message": "匯入設定"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "已包含在你的 byPhil 帳號中 — 無需 API 金鑰。"
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "基礎連結執行失敗。請確認與閘道的網路連線正常。"
+  },
+  "f_inl_2296": {
+    "message": "內嵌"
+  },
+  "f_inline_1554": {
+    "message": "內嵌"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "內嵌模式非常適合「傳送到 Kindle」。"
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "插入頁面"
+  },
+  "f_interview_0334": {
+    "message": "訪談"
+  },
+  "f_invalid_key_620f": {
+    "message": "金鑰無效"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "備份檔案無效。請選擇有效的 AI Summary Helper 匯出檔。"
+  },
+  "f_invalid_code_4325": {
+    "message": "驗證碼無效"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "驗證碼無效或工作階段已過期。"
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "授權金鑰無效或已停用。請檢查你的訂閱資訊。"
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "KOReader / LocalSend 裝置"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "KOReader 外掛："
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "訂閱源項目保留"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "傳送到 Kindle 失敗。"
+  },
+  "f_kindle_devices_5273": {
+    "message": "Kindle 裝置"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · 書籤小工具"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "標籤"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "從「應用程式」資料夾或 Spotlight 再次啟動 Ollama。"
+  },
+  "f_layout_421f": {
+    "message": "版面配置"
+  },
+  "f_length_729d": {
+    "message": "長度："
+  },
+  "f_library_data_0b46": {
+    "message": "資料庫與資料"
+  },
+  "f_light_mode_608a": {
+    "message": "淺色模式"
+  },
+  "f_list_37a1": {
+    "message": "清單"
+  },
+  "f_loading_1033": {
+    "message": "載入中..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "登出"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "已登入：{email}"
+  },
+  "f_logged_out_5877": {
+    "message": "已登出。"
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "驗證碼已寄出！✨ 請查看收件匣。"
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "手動黃色標示"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "開啟時標示為已讀"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "合併封存中相近的重複標籤，例如「ML」與「Machine Learning」。"
+  },
+  "f_model_e8fa": {
+    "message": "模型"
+  },
+  "f_model_identifier_527d": {
+    "message": "模型識別碼"
+  },
+  "f_model_source_5863": {
+    "message": "模型來源"
+  },
+  "f_models_api_7e45": {
+    "message": "模型與 API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "情緒開/關（語氣分析）"
+  },
+  "f_name_6774": {
+    "message": "名稱："
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Chrome 原生側邊欄"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "負面語氣"
+  },
+  "f_network_error_608f": {
+    "message": "網路錯誤"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "傳送到 Kindle 時發生網路錯誤。"
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "中性語氣"
+  },
+  "f_news_0866": {
+    "message": "新聞"
+  },
+  "f_next_da08": {
+    "message": "下一步"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "尚未設定 Kindle 電子郵件。"
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "找不到可用的接收端。"
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "尚未儲存文章。"
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "還沒有可繪製圖譜的文章。"
+  },
+  "f_no_audio_8798": {
+    "message": "無音訊"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "沒有可用內容。"
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "尚未新增裝置。"
+  },
+  "f_no_matches_found_1b67": {
+    "message": "找不到符合項目"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "尚未設定模型"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "尚未設定接收端位址。"
+  },
+  "f_no_settings_match_918b": {
+    "message": "沒有符合「{query}」的設定。"
+  },
+  "f_no_summary_available_1155": {
+    "message": "暫無摘要"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "未傳回摘要。"
+  },
+  "f_no_title_available_2723": {
+    "message": "暫無標題"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "未登入"
+  },
+  "f_not_signed_in_7281": {
+    "message": "未登入"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Ollama 重新啟動後，此擴充功能的 403 Forbidden 錯誤即可解決。"
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Ollama 重新啟動後，你的擴充功能的 403 Forbidden 錯誤即可修復。"
+  },
+  "f_one_pane_9d53": {
+    "message": "單窗格"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "開啟命令提示字元"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "開源軟體，作者："
+  },
+  "f_open_terminal_8167": {
+    "message": "開啟終端機"
+  },
+  "f_open_in_history_0990": {
+    "message": "在歷史記錄中開啟"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "在側邊欄中開啟"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "在 Mac 上開啟<b>終端機</b>App。"
+  },
+  "f_own_key_7e24": {
+    "message": "自有金鑰"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "自有模型 / API 金鑰"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "頁面標示"
+  },
+  "f_pane_view_fde8": {
+    "message": "窗格 {n} 檢視"
+  },
+  "f_panel_37e5": {
+    "message": "面板"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "永久刪除所有摘要和封存。請先匯出備份。"
+  },
+  "f_persist_optional_29ce": {
+    "message": "保留（選填）"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "為你的節目取個名字："
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "請先在設定中設定 Kindle 接收信箱。"
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "請輸入授權金鑰。"
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "請輸入有效的電子郵件。"
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "請輸入驗證碼。"
+  },
+  "f_podcast_name_1b92": {
+    "message": "Podcast 名稱"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "Podcast 長度（分鐘）："
+  },
+  "f_podcast_style_61d0": {
+    "message": "Podcast 風格："
+  },
+  "f_positive_tone_6466": {
+    "message": "正面語氣"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "偏好使用終端機？直接在前景視窗中執行 Ollama："
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "偏好的雲端模型"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "偏好的雲端模型"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "正在準備傳送到 Kindle... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "預設與自訂提示詞"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "預設提示詞"
+  },
+  "f_preset_4569": {
+    "message": "預設：{name}"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "按 <b>Win + R</b>，輸入 <code>cmd</code> 後按 Enter。"
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro 已啟用 ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro 授權金鑰"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro 授權金鑰"
+  },
+  "f_prompts_7bf8": {
+    "message": "提示詞"
+  },
+  "f_provider_88dc": {
+    "message": "供應商"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "有問題、發現 Bug 或覺得好用？💡 歡迎"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "快速測試（終端機）"
+  },
+  "f_quit_ollama_1194": {
+    "message": "結束 Ollama"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "在回顧中為項目評分"
+  },
+  "f_reader_4efa": {
+    "message": "閱讀器 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "閱讀與標示"
+  },
+  "f_reading_bundle_c191": {
+    "message": "閱讀合集 — {date}（{count}）"
+  },
+  "f_reading_page_0cb0": {
+    "message": "正在讀取頁面..."
+  },
+  "f_recent_models_20ec": {
+    "message": "最近使用的模型"
+  },
+  "f_regular_f2b7": {
+    "message": "一般"
+  },
+  "f_remove_device_c1ed": {
+    "message": "移除裝置"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "重設此裝置上的所有偏好設定、提示詞和金鑰。歷史記錄會保留。"
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "重新啟動 Ollama"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "在系統匣（右下角）的 Ollama 圖示上按右鍵，選擇 <b>Quit</b>。"
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "在同一視窗中以前景伺服器方式執行 Ollama："
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "執行此指令，讓 Ollama 在重新啟動 Mac App 後仍保持此設定："
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "執行此指令，讓執行中的伺服器接受來自任何來源的請求："
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "完全在瀏覽器中執行 — 資料不會外傳。"
+  },
+  "f_saved_for_later_516d": {
+    "message": "稍後閱讀"
+  },
+  "f_saved_549a": {
+    "message": "已儲存！✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "掃描失敗。請手動輸入 IP。"
+  },
+  "f_scanning_96ac": {
+    "message": "掃描中..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "搜尋雲端模型…"
+  },
+  "f_search_languages_1344": {
+    "message": "搜尋語言…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "正在搜尋雲端..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "正在區域網路中搜尋 LocalSend 接收端..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "最多選擇 5 篇文章："
+  },
+  "f_send_share_bb4a": {
+    "message": "傳送與分享"
+  },
+  "f_send_magic_code_de19": {
+    "message": "寄送驗證碼"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "正在透過 Wi-Fi 傳送到 LocalSend... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "傳送中..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "傳送成功！📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "已傳送到 Kindle！📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "工作階段已過期。請重新產生書籤小工具。"
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "工作階段已失效。請重新取得驗證碼。"
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "設為目前傳送目標"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "在 Linux 上設定 Ollama"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "在 Windows 上設定 Ollama"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "在 macOS 上設定 Ollama"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "設定 + 文章歷史"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "設定匯入成功！擴充功能即將重新載入。"
+  },
+  "f_settings_only_750a": {
+    "message": "僅設定"
+  },
+  "f_share_failed_4922": {
+    "message": "分享失敗：{message}"
+  },
+  "f_share_cf08": {
+    "message": "分享 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "此瀏覽器/環境不支援分享。"
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "顯示熱門標籤（封存較大）"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "透過電子郵件登入 / 註冊"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "登入即可使用免費雲端模型並同步摘要，也可以使用自己的 API 金鑰。"
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "已登入 · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "單人"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "發生錯誤，請再試一次。"
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "來源 · 重新命名 · 標籤 · 靜音"
+  },
+  "f_start_ollama_136b": {
+    "message": "啟動 Ollama"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "使用全域萬用字元啟動 Ollama，允許任何來源連線："
+  },
+  "f_stop_ollama_b489": {
+    "message": "停止 Ollama"
+  },
+  "f_storytelling_6d0b": {
+    "message": "故事敘述"
+  },
+  "f_style_fba4": {
+    "message": "風格："
+  },
+  "f_successfully_connected_ec77": {
+    "message": "連線成功！🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "摘要中..."
+  },
+  "f_summary_language_a8df": {
+    "message": "摘要語言"
+  },
+  "f_summary_length_2b31": {
+    "message": "摘要長度"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "摘要模式"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "將圖譜搜尋切換為篩選模式"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "將圖譜搜尋切換為標示模式"
+  },
+  "f_system_default_c329": {
+    "message": "系統預設"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "TTS 未傳回音訊。"
+  },
+  "f_theme_7c92": {
+    "message": "主題"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "主題 · 語言 · 側邊欄"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "這將從此裝置永久刪除{what}及封存，且無法復原。"
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "這將重設此裝置上的所有偏好設定、提示詞和 API 金鑰。你的摘要會保留。擴充功能將重新載入。"
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "這會使目前的驗證碼失效。要繼續嗎？"
+  },
+  "f_transfer_failed_6750": {
+    "message": "傳輸失敗：{message}"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "輸入 {word} 以確認"
+  },
+  "f_ui_language_08b7": {
+    "message": "介面語言"
+  },
+  "f_ui_language_b097": {
+    "message": "介面語言"
+  },
+  "f_unavailable_aaa9": {
+    "message": "無法使用"
+  },
+  "f_unknown_error_2b43": {
+    "message": "未知錯誤"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "升級至 Pro 通行證"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "將「{name}」用作自訂語言代碼"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "使用 Chrome 原生側邊欄"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "用於「傳送到 Kindle」。請先新增"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "驗證並登入"
+  },
+  "f_verify_login_274f": {
+    "message": "驗證並登入"
+  },
+  "f_verifying_174a": {
+    "message": "驗證中..."
+  },
+  "f_version_github_fae0": {
+    "message": "版本與 GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "檢視並複製"
+  },
+  "f_view_filtered_f87d": {
+    "message": "檢視：已篩選"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "檢視：已標示"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "歡迎使用 AI Summary Helper"
+  },
+  "f_well_connected_1033": {
+    "message": "關聯緊密"
+  },
+  "f_what_to_export_3317": {
+    "message": "要匯出哪些內容？"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "信箱填錯了？返回"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "可以產生你的 Podcast 了！"
+  },
+  "f_a_donation_8832": {
+    "message": "贊助"
+  },
+  "f_all_summaries_c680": {
+    "message": "所有摘要"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "聯絡我"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "在 GitHub 上參與貢獻 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "例如 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "例如 gpt-5-mini、llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "，享受無限量、免設定的摘要。"
+  },
+  "f_from_8075": {
+    "message": "來自"
+  },
+  "f_give_feedback_9abb": {
+    "message": "提供意見回饋"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "而非可能不穩定的 HTTPS。"
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "已停止更新"
+  },
+  "f_off_8a0a": {
+    "message": "關"
+  },
+  "f_on_2fd0": {
+    "message": "開"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "每行一個網站，例如 linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "或考慮"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "共同標籤"
+  },
+  "f_similar_content_784b": {
+    "message": "相似內容"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "到你的 Kindle 認可寄件者清單 —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}，精選自你的 AI Summary Helper 封存。"
+  },
+  "f_tone_f081": {
+    "message": "{label}語氣"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · {grade} 級"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · 缺少 API 金鑰 — 請在設定中新增"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · 已設定 API 金鑰"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · 本機，無需 API 金鑰"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "{n} 篇文章未顯示"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "{n} 篇文章未顯示"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "{n} 個重複標籤"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "{n} 個重複標籤"
+  },
+  "f_min_4e03": {
+    "message": "{n} 分鐘"
+  },
+  "f_panes_2444": {
+    "message": "{n} 個窗格"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "已隱藏 {n} 個很少使用的標籤"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "已隱藏 {n} 個很少使用的標籤"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} 篇超過 30 天未開啟"
+  },
+  "f_similar_e273": {
+    "message": "相似度 {n}%"
+  },
+  "f_min_read_b555": {
+    "message": "約 {n} 分鐘閱讀"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— 歡迎"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ 摘要中…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ 設定"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ 危險區域"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ 必須先登入 byphil Cloud 才能產生書籤小工具。"
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ 頁面標示"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ 標籤看起來已經很一致 — 無需合併。"
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ 已更新 {a} 個，合併 {b} 個。"
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ AI 幽靈標示"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ 返回歷史記錄"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 使用自己的金鑰"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 備份與還原"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 原始內容"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 已達免費方案上限（3 次傳送）。\n\n升級至 Pro 即可無限傳送到 Kindle。\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 傳送到 Kindle\n\n免費方案：包含 3 次 Kindle 傳送。\n升級至 Pro 可無限傳送。\n\n請確認 kindle@byphil.eu 已在你的 Kindle 認可寄件者清單中（請見 Amazon 說明）。\n\n要將這篇文章傳送到 Kindle 嗎？"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 你的標示"
+  },
+  "f_export_6eba": {
+    "message": "📤 匯出"
+  },
+  "f_import_d884": {
+    "message": "📥 匯入"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 正在連線至代理指標..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 請妥善保密：此書籤小工具包含你的個人雲端權杖，請勿分享給他人。若權杖過期，只需回到這裡重新產生即可。"
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 儲存在你的瀏覽器本機。"
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 書籤小工具產生器"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 封存中的相似內容"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ 你的封存空空如也，像沙漠一樣！快去儲存幾篇文章來充實它吧。🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 AI 建議的標示"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 AI 摘要"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 裝置端工具"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 清理"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 產生書籤小工具"
   }
 }

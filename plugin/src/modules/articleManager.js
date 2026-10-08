@@ -15,6 +15,9 @@ import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
+// Escapes translated text for use inside double-quoted HTML attributes.
+const escAttr = (str) => String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
 let uiManagerRef = null;
 let currentDetailArticle = null;
 let cachedArticles = [];          // not archived: graph, search and the Inbox/Read/Sent tabs read from here
@@ -240,8 +243,8 @@ async function buildArticleHtmlFile(article) {
  */
 async function shareArticle(article) {
     if (!navigator.share) {
-        if (uiManagerRef) uiManagerRef.showToast('Sharing is not supported in this browser/environment.');
-        else alert('Sharing is not supported in this browser/environment.');
+        if (uiManagerRef) uiManagerRef.showToast(T('Sharing is not supported in this browser/environment.'));
+        else alert(T('Sharing is not supported in this browser/environment.'));
         return;
     }
 
@@ -255,7 +258,7 @@ async function shareArticle(article) {
         // Prefer file sharing so AirDrop imports as an offline document.
         if (navigator.canShare && navigator.canShare(fileShareData)) {
             await navigator.share(fileShareData);
-            if (uiManagerRef) uiManagerRef.showToast('File shared successfully.');
+            if (uiManagerRef) uiManagerRef.showToast(T('File shared successfully.'));
             return;
         }
 
@@ -268,7 +271,7 @@ async function shareArticle(article) {
     } catch (err) {
         console.error('Share failed:', err);
         if (uiManagerRef && err?.name !== 'AbortError') {
-            uiManagerRef.showToast(`Share failed: ${err?.message || 'Unknown error'}`);
+            uiManagerRef.showToast(T('Share failed: {message}', { message: err?.message || T('Unknown error') }));
         }
     }
 }
@@ -422,13 +425,13 @@ async function copyArticleToClipboard(article) {
         })];
 
         await navigator.clipboard.write(data);
-        if (uiManagerRef) uiManagerRef.showToast('Copied to clipboard! 📋');
+        if (uiManagerRef) uiManagerRef.showToast(T('Copied to clipboard! 📋'));
     } catch (err) {
         console.error('Clipboard copy failed:', err);
         // Fallback for cases where ClipboardItem might fail
         try {
             await navigator.clipboard.writeText(plainText);
-            if (uiManagerRef) uiManagerRef.showToast('Copied as plain text.');
+            if (uiManagerRef) uiManagerRef.showToast(T('Copied as plain text.'));
         } catch (e) {
             console.error('Final copy fallback failed:', e);
         }
@@ -448,24 +451,24 @@ async function sendToKindle(article) {
     const kindleEmail = (device?.addresses?.[0] || '').replace(/^mailto:/i, '');
     if (!kindleEmail) {
         if (uiManagerRef) {
-            uiManagerRef.showToast('Set your Kindle email in Settings first.');
+            uiManagerRef.showToast(T('Set your Kindle email in Settings first.'));
             uiManagerRef.showScreen('settings');
             import('./settingsNav.js').then(m => m.openSettingsPanel('send', 'newKindleEmail')).catch(() => {});
         } else {
-            alert('Please configure your Kindle delivery email address inside settings first.');
+            alert(T('Please configure your Kindle delivery email address inside settings first.'));
         }
         return;
     }
 
     const isPro = config[SK.user]?.subscription_status === 'active';
     if (!isPro) {
-        const confirmation = confirm('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?');
+        const confirmation = confirm(T('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?'));
         if (!confirmation) return;
     }
 
     // Content now arrives pre-optimized from content capture.
     if (uiManagerRef) {
-        uiManagerRef.showToast('Preparing Kindle delivery... ⏳', 3000);
+        uiManagerRef.showToast(T('Preparing Kindle delivery... ⏳'), 3000);
     }
 
     try {
@@ -494,13 +497,13 @@ async function sendToKindle(article) {
 
         const resData = await response.json();
         if (response.ok && resData.success) {
-            if (uiManagerRef) uiManagerRef.showToast('Sent to Kindle! 📚');
+            if (uiManagerRef) uiManagerRef.showToast(T('Sent to Kindle! 📚'));
             if (device) StorageManager.setActiveDevice('kindle', device.id);
             if (article.id) applyStatus([article.id], { sent: { kind: 'kindle', label: device?.label || '' } }).catch(() => {});
         } else {
-            const msg = resData.error || 'Kindle delivery failed.';
+            const msg = resData.error || T('Kindle delivery failed.');
             if (resData.error?.includes('Free tier limit') || resData.error?.includes('402')) {
-                alert(`📚 Free tier limit reached (3 sends).\n\nUpgrade to Pro for unlimited Kindle delivery.\n\nhttps://philwornath.com/links`);
+                alert(T('📚 Free tier limit reached (3 sends).\n\nUpgrade to Pro for unlimited Kindle delivery.\n\nhttps://philwornath.com/links'));
             } else if (uiManagerRef) {
                 uiManagerRef.showToast(msg);
             } else {
@@ -509,7 +512,7 @@ async function sendToKindle(article) {
         }
     } catch (err) {
         console.error('Kindle dispatch error:', err);
-        if (uiManagerRef) uiManagerRef.showToast('Network error sending to Kindle.');
+        if (uiManagerRef) uiManagerRef.showToast(T('Network error sending to Kindle.'));
     }
 }
 
@@ -522,28 +525,28 @@ async function dispatchToLocalSend(article) {
 
     if (!readerIp) {
         if (uiManagerRef) {
-            uiManagerRef.showToast('Please set your LocalSend IP in Settings first.');
+            uiManagerRef.showToast(T('Please set your LocalSend IP in Settings first.'));
             uiManagerRef.showScreen('settings');
             import('./settingsNav.js').then(m => m.openSettingsPanel('send', 'newLocalSendIp')).catch(() => {});
         } else {
-            alert('Configure your LocalSend IP address inside settings first.');
+            alert(T('Configure your LocalSend IP address inside settings first.'));
         }
         return;
     }
 
-    if (uiManagerRef) uiManagerRef.showToast('Sending to LocalSend over Wi-Fi... 🚀');
+    if (uiManagerRef) uiManagerRef.showToast(T('Sending to LocalSend over Wi-Fi... 🚀'));
 
     try {
         const { fileName, docHtml } = await buildArticleHtmlFile(article);
 
         await sendToLocalSend(readerIp, fileName, docHtml, 'text/html');
 
-        if (uiManagerRef) uiManagerRef.showToast('Sent successfully! 📖');
+        if (uiManagerRef) uiManagerRef.showToast(T('Sent successfully! 📖'));
         if (device) StorageManager.setActiveDevice('localsend', device.id);
         if (article.id) applyStatus([article.id], { sent: { kind: 'localsend', label: device?.label || '' } }).catch(() => {});
     } catch (err) {
         console.error('[LocalSend Error]', err);
-        if (uiManagerRef) uiManagerRef.showToast(`Transfer failed: ${err?.message || 'Check if receiver is online.'}`);
+        if (uiManagerRef) uiManagerRef.showToast(T('Transfer failed: {message}', { message: err?.message || T('Check if receiver is online.') }));
     }
 }
 
@@ -555,7 +558,7 @@ export async function deliverKindle(article, device) {
     article = await exportView(article);
     const config = await StorageManager.getAll();
     const kindleEmail = (device?.addresses?.[0] || '').replace(/^mailto:/i, '');
-    if (!kindleEmail) return { ok: false, error: 'No Kindle email set.' };
+    if (!kindleEmail) return { ok: false, error: T('No Kindle email set.') };
     try {
         const apiBase = StorageManager.getApiBase();
         const headers = { 'Content-Type': 'application/json' };
@@ -575,21 +578,21 @@ export async function deliverKindle(article, device) {
         });
         const resData = await response.json().catch(() => ({}));
         if (response.ok && resData.success) return { ok: true };
-        return { ok: false, error: resData.error || 'Kindle delivery failed.' };
+        return { ok: false, error: resData.error || T('Kindle delivery failed.') };
     } catch (err) {
-        return { ok: false, error: err?.message || 'Network error' };
+        return { ok: false, error: err?.message || T('Network error') };
     }
 }
 
 export async function deliverLocalSend(article, device) {
     const ip = (device?.addresses?.[0] || '').trim();
-    if (!ip) return { ok: false, error: 'No receiver address set.' };
+    if (!ip) return { ok: false, error: T('No receiver address set.') };
     try {
         const { fileName, docHtml } = await buildArticleHtmlFile(article);
         await sendToLocalSend(ip, fileName, docHtml, 'text/html');
         return { ok: true };
     } catch (err) {
-        return { ok: false, error: err?.message || 'Check if the receiver is online.' };
+        return { ok: false, error: err?.message || T('Check if the receiver is online.') };
     }
 }
 
@@ -626,13 +629,13 @@ export function initArticleManager(uiManager) {
     const syncGraphScopeToggleBtn = () => {
         if (!graphScopeToggleBtn) return;
         if (graphScopeMode === 'all') {
-            graphScopeToggleBtn.textContent = 'View: Highlighted';
-            graphScopeToggleBtn.title = 'Highlighting matches in the whole archive — click to filter to matches only';
-            graphScopeToggleBtn.setAttribute('aria-label', 'Switch graph search to filter mode');
+            graphScopeToggleBtn.textContent = T('View: Highlighted');
+            graphScopeToggleBtn.title = T('Highlighting matches in the whole archive — click to filter to matches only');
+            graphScopeToggleBtn.setAttribute('aria-label', T('Switch graph search to filter mode'));
         } else {
-            graphScopeToggleBtn.textContent = 'View: Filtered';
-            graphScopeToggleBtn.title = 'Filtering graph to matches only — click to highlight matches in the whole archive instead';
-            graphScopeToggleBtn.setAttribute('aria-label', 'Switch graph search to highlight mode');
+            graphScopeToggleBtn.textContent = T('View: Filtered');
+            graphScopeToggleBtn.title = T('Filtering graph to matches only — click to highlight matches in the whole archive instead');
+            graphScopeToggleBtn.setAttribute('aria-label', T('Switch graph search to highlight mode'));
         }
     };
 
@@ -679,7 +682,7 @@ export function initArticleManager(uiManager) {
 
     const deleteCurrentDetailArticle = () => {
         if (!currentDetailArticle) return;
-        if (!confirm('Are you sure you want to delete this article?')) return;
+        if (!confirm(T('Are you sure you want to delete this article?'))) return;
 
         StorageManager.deleteArticle(currentDetailArticle.id).then(() => {
             const deletedId = currentDetailArticle.id;
@@ -795,7 +798,7 @@ export function initArticleManager(uiManager) {
                         mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp, buildIndex(articles));
                     });
                 } else {
-                    graphContainer.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">No articles to graph yet.</div>';
+                    graphContainer.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('No articles to graph yet.')}</div>`;
                 }
             });
         }
@@ -1015,7 +1018,7 @@ export function renderArticles(articles) {
         const emptyMessage = document.createElement('div');
         emptyMessage.id = 'emptyMessage';
         const p = document.createElement('p');
-        if (historyTab === 'inbox' && cachedArticles.length === 0 && archivedCache.length === 0) p.textContent = '🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵';
+        if (historyTab === 'inbox' && cachedArticles.length === 0 && archivedCache.length === 0) p.textContent = T('🗂️ Your archive is as empty as a desert! Start saving some articles to fill it up. 🌵');
         else p.textContent = T('Nothing here yet');
         emptyMessage.appendChild(p);
         articleList.appendChild(emptyMessage);
@@ -1067,7 +1070,7 @@ export function renderArticles(articles) {
  * @returns {HTMLLIElement}
  */
 function buildArticleCard(article) {
-    const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || "No title available";
+    const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || T('No title available');
     const listItem = document.createElement('li');
     listItem.classList.add('article-card');
     listItem.dataset.ts = String(article.timestamp);
@@ -1094,12 +1097,12 @@ function buildArticleCard(article) {
         <div class="article-header">
           <div>
             <h4>${articleHeader}</h4>
-            <p class="article-date">💾 ${formattedDate} ${article.url ? `from <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
+            <p class="article-date">💾 ${formattedDate} ${article.url ? `${T('from')} <a href="${article.url}" target="_blank">${articleDomain}</a> ↗` : ''}</p>
             ${tagsHtml}
             ${modelBadge}
             ${decisionHtml}
           </div>
-          <button class="star-button" title="Favorite" aria-label="Favorite" aria-pressed="${article.favorite ? 'true' : 'false'}">${article.favorite ? '★' : '☆'}</button>
+          <button class="star-button" title="${escAttr(T('Favorite'))}" aria-label="${escAttr(T('Favorite'))}" aria-pressed="${article.favorite ? 'true' : 'false'}">${article.favorite ? '★' : '☆'}</button>
         </div>
     `;
     listItem.classList.toggle('is-favorite', !!article.favorite);
@@ -1110,15 +1113,15 @@ function buildArticleCard(article) {
         sumBtn.type = 'button';
         sumBtn.className = 'button-primary btn-sm';
         sumBtn.style.marginTop = '8px';
-        sumBtn.textContent = '✨ Summarize';
+        sumBtn.textContent = T('✨ Summarize');
         sumBtn.addEventListener('click', (event) => {
             event.stopPropagation();
             sumBtn.disabled = true;
-            sumBtn.textContent = '⏳ Summarizing…';
+            sumBtn.textContent = T('⏳ Summarizing…');
             chrome.runtime.sendMessage({ action: 'openFeedItem', url: article.url, summarize: true }, (res) => {
                 if (chrome.runtime.lastError || !res || !res.success) {
                     sumBtn.disabled = false;
-                    sumBtn.textContent = '✨ Summarize';
+                    sumBtn.textContent = T('✨ Summarize');
                     return;
                 }
                 // Re-check shortly; the summary replaces this placeholder when saved.
@@ -1131,7 +1134,7 @@ function buildArticleCard(article) {
                         if (done || tries > 40) {
                             clearInterval(poll);
                             if (done && document.getElementById('articleList')?.style.display !== 'none') loadHistory();
-                            else { sumBtn.disabled = false; sumBtn.textContent = '✨ Summarize'; }
+                            else { sumBtn.disabled = false; sumBtn.textContent = T('✨ Summarize'); }
                         }
                     } catch (_) { clearInterval(poll); }
                 }, 3000);
@@ -1310,20 +1313,20 @@ async function renderLocalInsights(article, container) {
 
         const badges = [];
         if (metrics.readingLevel) {
-            badges.push(`<span class="tag-chip" style="font-size:11px;" title="Flesch reading ease: ${metrics.readingLevel.ease}/100">📖 ${metrics.readingLevel.label} · grade ${metrics.readingLevel.grade}</span>`);
+            badges.push(`<span class="tag-chip" style="font-size:11px;" title="${escAttr(T('Flesch reading ease: {ease}/100', { ease: metrics.readingLevel.ease }))}">📖 ${T('{label} · grade {grade}', { label: metrics.readingLevel.label, grade: metrics.readingLevel.grade })}</span>`);
         }
         if (metrics.sentiment && metrics.sentiment.matches > 0) {
             const moodEmoji = metrics.sentiment.label === 'Positive' ? '🙂' : metrics.sentiment.label === 'Negative' ? '🙁' : '😐';
-            badges.push(`<span class="tag-chip" style="font-size:11px;">${moodEmoji} ${metrics.sentiment.label} tone</span>`);
+            badges.push(`<span class="tag-chip" style="font-size:11px;">${moodEmoji} ${metrics.sentiment.label === 'Positive' ? T('Positive tone') : metrics.sentiment.label === 'Negative' ? T('Negative tone') : metrics.sentiment.label === 'Neutral' ? T('Neutral tone') : T('{label} tone', { label: metrics.sentiment.label })}</span>`);
         }
         if (metrics.estimatedMinutes) {
-            badges.push(`<span class="tag-chip" style="font-size:11px;">⏱️ ~${metrics.estimatedMinutes} min read</span>`);
+            badges.push(`<span class="tag-chip" style="font-size:11px;">⏱️ ${T('~{n} min read', { n: metrics.estimatedMinutes })}</span>`);
         }
 
         const relatedHtml = related.length ? `
           <div style="margin-top:10px;">
-            <strong style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">🔗 Similar in your archive</strong>
-            ${related.map(r => `<div class="related-article-link" data-ts="${r.article.timestamp}" style="font-size:12px;padding:6px 0;border-top:1px solid rgba(148,163,184,0.15);cursor:pointer;">${(r.article.title || 'Untitled')} <span style="color:var(--text-muted);">(${Math.round(r.score * 100)}% similar)</span></div>`).join('')}
+            <strong style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">${T('🔗 Similar in your archive')}</strong>
+            ${related.map(r => `<div class="related-article-link" data-ts="${r.article.timestamp}" style="font-size:12px;padding:6px 0;border-top:1px solid rgba(148,163,184,0.15);cursor:pointer;">${(r.article.title || T('Untitled'))} <span style="color:var(--text-muted);">(${T('{n}% similar', { n: Math.round(r.score * 100) })})</span></div>`).join('')}
           </div>` : '';
 
         container.innerHTML = `${badges.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;">${badges.join('')}</div>` : ''}${relatedHtml}`;
@@ -1402,8 +1405,8 @@ export async function showArticleDetail(article) {
     // Choose the highest fidelity data field available instantly
     const rawContentSource = article.content || article.html || article.text || '';
 
-    const safeTitle = article.title || (rawContentSource && rawContentSource.split('\n')[0]) || 'Article';
-    const safeSummary = (article.summaryBase !== undefined ? article.summaryBase : (article.summary || 'No summary available')).replace(/<img[^>]*>/gi, '');
+    const safeTitle = article.title || (rawContentSource && rawContentSource.split('\n')[0]) || T('Article');
+    const safeSummary = (article.summaryBase !== undefined ? article.summaryBase : (article.summary || T('No summary available'))).replace(/<img[^>]*>/gi, '');
 
     // Safely extract pristine plain text via an isolated DOM Parser
     const detailParser = new DOMParser();
@@ -1416,7 +1419,7 @@ export async function showArticleDetail(article) {
     });
 
     // Strip remaining tags cleanly, preserving line breaks
-    const safeContent = detailDoc.body.innerHTML || 'No content available.';
+    const safeContent = detailDoc.body.innerHTML || T('No content available.');
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
     const tags = article.tags || [];
     const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">${tags.map(t => `<span class="tag-chip" style="font-size:12px;">${t}</span>`).join('')}</div>` : '';
@@ -1428,7 +1431,7 @@ export async function showArticleDetail(article) {
       <div style="background:rgba(59,130,246,0.1);border-left:3px solid #3b82f6;padding:12px;margin-bottom:12px;border-radius:6px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
           <span style="font-size:14px;">🔖</span>
-          <span style="font-size:13px;font-weight:600;color:#3b82f6;">Saved for Later</span>
+          <span style="font-size:13px;font-weight:600;color:#3b82f6;">${T('Saved for Later')}</span>
           ${article.decisionTimeframe ? `<span style="font-size:11px;background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;">${article.decisionTimeframe}</span>` : ''}
         </div>
         ${article.decisionReason ? `<p style="margin:0;font-size:12px;color:var(--text-secondary);">${article.decisionReason}</p>` : ''}
@@ -1449,21 +1452,21 @@ export async function showArticleDetail(article) {
         ${tagsHtml}
         ${decisionBadge}
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="button-secondary share-button">Share 🔗</button>
-          <button class="button-secondary copy-button">Copy 📋</button>
-          <button class="button-secondary kindle-button">Kindle 📚</button>
-                    <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">LocalSend 📱</button>
-          <button class="button-secondary md-button">.MD 💾</button>
-          <button class="button-secondary open-button">Reader 👓</button>
+          <button class="button-secondary share-button">${T('Share 🔗')}</button>
+          <button class="button-secondary copy-button">${T('Copy 📋')}</button>
+          <button class="button-secondary kindle-button">${T('Kindle 📚')}</button>
+                    <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">${T('LocalSend 📱')}</button>
+          <button class="button-secondary md-button">${T('.MD 💾')}</button>
+          <button class="button-secondary open-button">${T('Reader 👓')}</button>
         </div>
         <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:12px;">
-          <strong style="display:block;margin-bottom:8px;">🧙 AI Summary</strong>
+          <strong style="display:block;margin-bottom:8px;">${T('🧙 AI Summary')}</strong>
           <div>${safeSummary}</div>
           <div id="qaMount" style="margin-top:12px;"></div>
         </div>
         <div id="localInsights" style="margin-bottom:16px;"></div>
         <details style="margin-top:8px;">
-          <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">📄 Original Content</summary>
+          <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">${T('📄 Original Content')}</summary>
           <div style="font-size:13px;opacity:0.85;margin-top:8px;">${safeContent}</div>
         </details>
       </div>

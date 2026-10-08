@@ -1,3 +1,4 @@
+import { T } from './feedI18n.js';
 // Prompt Manager
 // Handles prompt dropdown and logic
 
@@ -13,7 +14,7 @@ export function initPromptManager(promptSelectEl, promptInput, onPromptChange) {
     // Add a "Custom" option to the dropdown
     const customOption = document.createElement('option');
     customOption.value = 'custom';
-    customOption.textContent = 'Custom';
+    customOption.textContent = T('Custom');
     promptSelectEl.appendChild(customOption);
 
     // Load prompts from prompts.json and populate the dropdown

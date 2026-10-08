@@ -1,3 +1,4 @@
+import { T, N_ } from './feedI18n.js';
 import { SK } from './storageKeys.js';
 // workspaceManager.js — split-screen workspace for wide windows.
 // Shows up to three of List / Graph / Analytics side by side inside the History
@@ -5,7 +6,7 @@ import { SK } from './storageKeys.js';
 // Breakpoints: <720px one pane · 720–1099px up to two · ≥1100px up to three.
 
 const VIEWS = ['list', 'graph', 'report'];
-const LABEL = { list: 'List', graph: 'Graph', report: 'Analytics' };
+const LABEL = { list: N_('List'), graph: N_('Graph'), report: N_('Analytics') };
 const STORE_KEY = SK.workspace;
 
 let layout = 1;                       // user's wish (1..3)
@@ -84,17 +85,17 @@ function buildHead(slot, view, n) {
     head.className = `ws-head ws-p${slot + 1}`;
     const sel = document.createElement('select');
     sel.className = 'ws-select';
-    sel.setAttribute('aria-label', `Pane ${slot + 1} view`);
+    sel.setAttribute('aria-label', T('Pane {n} view', { n: slot + 1 }));
     for (const v of VIEWS) {
         const o = document.createElement('option');
-        o.value = v; o.textContent = LABEL[v]; o.selected = v === view;
+        o.value = v; o.textContent = T(LABEL[v]); o.selected = v === view;
         sel.appendChild(o);
     }
     sel.addEventListener('change', () => { setView(slot, sel.value); save(); apply(); });
     head.appendChild(sel);
     const x = document.createElement('button');
     x.type = 'button'; x.className = 'ws-close'; x.textContent = '✕';
-    x.setAttribute('aria-label', `Close pane ${slot + 1}`);
+    x.setAttribute('aria-label', T('Close pane {n}', { n: slot + 1 }));
     x.addEventListener('click', () => {
         views.push(views.splice(slot, 1)[0]); // closed view moves out of the visible slots
         layout = n - 1; save(); apply();
@@ -112,11 +113,11 @@ function buildSwitchers() {
     const seg = document.createElement('div');
     seg.className = 'ws-seg';
     seg.setAttribute('role', 'group');
-    seg.setAttribute('aria-label', 'Layout');
+    seg.setAttribute('aria-label', T('Layout'));
     [1, 2, 3].forEach(k => {
         const b = document.createElement('button');
         b.type = 'button'; b.dataset.n = String(k);
-        b.title = k === 1 ? 'One pane' : `${k} panes`;
+        b.title = k === 1 ? T('One pane') : T('{n} panes', { n: k });
         b.setAttribute('aria-label', b.title);
         for (let i = 0; i < k; i++) b.appendChild(document.createElement('i'));
         b.addEventListener('click', () => { layout = k; save(); apply(); });

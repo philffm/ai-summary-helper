@@ -24,6 +24,7 @@ function pageKeyForUrl(url) {
  */
 export { escapeHtml } from './textUtils.js';
 import { escapeHtml } from './textUtils.js';
+import { T } from './feedI18n.js';
 
 const MARK_STYLE = {
     user: 'background-color:#fff3a3;color:inherit;padding:0 1px;',
@@ -144,18 +145,18 @@ export function renderAnnotationsHtml(list, { level = 2 } = {}) {
     const itemHtml = (items, cls) => items.map(a => `
           <li style="margin-bottom:8px;line-height:1.5;">
             <mark style="${MARK_STYLE[cls]}">${escapeHtml(a.text)}</mark>
-            <span style="display:block;font-size:11px;color:#888;margin-top:2px;">${cls === 'ghost' ? '🤖 AI highlight' : '📝 Your highlight'}</span>
+            <span style="display:block;font-size:11px;color:#888;margin-top:2px;">${cls === 'ghost' ? '🤖 ' + escapeHtml(T('AI highlight')) : '📝 ' + escapeHtml(T('Your highlight'))}</span>
           </li>`).join('');
 
     const parts = [];
     if (userItems.length) {
         parts.push(`
-      <${H} style="font-size:${level === 2 ? 18 : 15}px;margin:24px 0 8px;color:#444;">📝 Highlights &amp; Notes</${H}>
+      <${H} style="font-size:${level === 2 ? 18 : 15}px;margin:24px 0 8px;color:#444;">📝 ${escapeHtml(T('Highlights & Notes'))}</${H}>
       <ul style="margin:0;padding-left:20px;color:#333;">${itemHtml(userItems, 'user')}</ul>`);
     }
     if (ghostItems.length) {
         parts.push(`
-      <${H} style="font-size:${level === 2 ? 18 : 15}px;margin:24px 0 8px;color:#444;">🤖 AI Suggested Highlights</${H}>
+      <${H} style="font-size:${level === 2 ? 18 : 15}px;margin:24px 0 8px;color:#444;">🤖 ${escapeHtml(T('AI Suggested Highlights'))}</${H}>
       <ul style="margin:0;padding-left:20px;color:#333;">${itemHtml(ghostItems, 'ghost')}</ul>`);
     }
 
@@ -175,11 +176,11 @@ export async function buildAnnotationsPlainText(article, annotations = null) {
 
     const lines = [];
     if (userItems.length) {
-        lines.push('## 📝 Your Highlights & Notes');
+        lines.push('## 📝 ' + T('Your Highlights & Notes'));
         userItems.forEach(a => lines.push(`- "${a.text}"`));
     }
     if (ghostItems.length) {
-        lines.push('## 🤖 AI Suggested Highlights');
+        lines.push('## 🤖 ' + T('AI Suggested Highlights'));
         ghostItems.forEach(a => lines.push(`- "${a.text}"`));
     }
     return lines.join('\n');

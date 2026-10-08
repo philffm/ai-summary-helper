@@ -1,4 +1,5 @@
 import { SK } from './storageKeys.js';
+import { T, N_ } from './feedI18n.js';
 // settingsNav.js
 // Settings home (grouped list) → panel navigation, live row subtitles, and
 // search. All controls keep their original ids (settingsManager.js / authManager.js
@@ -7,49 +8,49 @@ import { SK } from './storageKeys.js';
 // Search index: one entry per control. `target` is the element id to scroll to
 // and flash after jumping to its panel; `kw` are extra match words.
 const INDEX = [
-    ['account', 'Account sync · sign in / log out', 'otpEmail', 'login log in email magic code logout log out account'],
-    ['account', 'Pro license key', 'licenseKey', 'activate plan upgrade pass pro subscription'],
-    ['models', 'Connection path', 'modeCloud', 'cloud byphil own key bring your own'],
-    ['models', 'Preferred cloud model', 'cloudModelSelect', 'gemini gpt claude model cloud'],
-    ['models', 'Provider', 'model', 'openai mistral deepseek gemini ollama api'],
-    ['models', 'Model identifier', 'modelIdentifier', 'model name id gpt llama'],
-    ['models', 'API key', 'apiKey', 'key token secret'],
-    ['models', 'Endpoint URL', 'customEndpoint', 'ollama local server custom'],
-    ['prompts', 'Preset prompt', 'promptSettingsRoot', 'prompt preset template'],
-    ['prompts', 'Custom prompt text', 'promptSettingsRoot', 'prompt instructions system custom guided builder tone length focus'],
-    ['prompts', 'Feed briefing & recap style', 'promptSettingsRoot', 'feeds briefing recap style tone length'],
-    ['feeds', 'Sources · rename · tags · mute', 'feedSubsCard', 'rss feeds subscriptions tags folder group rename mute unsubscribe sources'],
-    ['feeds', 'Import / export OPML', 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
-    ['feedprefs', 'Mark read when opened', 'feedSetMarkRead', 'feed read unread open'],
-    ['feedprefs', 'Mood on/off (tone analysis)', 'feedSetMood', 'mood sentiment tone positive negative disable hide analysis diet'],
-    ['feedprefs', 'Rate items with the recap', 'feedSetRate', 'feed ai recap rate score sentiment mood category label automatic'],
-    ['feedprefs', 'Auto-summarize favorites', 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
-    ['feedprefs', 'Check feeds in the background', 'feedSetPoll', 'feed badge notification new items poll background'],
-    ['feedprefs', 'Feed refresh interval', 'feedSetRefresh', 'feed refresh update minutes hour interval'],
-    ['feedprefs', 'Keep feed items for', 'feedSetKeep', 'feed retention days delete old cleanup'],
-    ['reading', 'Page highlighting', 'highlightingToggle', 'highlight yellow marker annotate'],
-    ['reading', 'AI ghost highlighting', 'aiHighlightingToggle', 'ghost highlight ai quotes blue'],
-    ['reading', 'Ghost highlight amount', 'ghostHighlightAmount', 'ghost highlight few regular a lot'],
-    ['send', 'Delivery method', 'deliveryPreference', 'kindle koreader localsend send deliver'],
-    ['send', 'Kindle devices', 'newKindleEmail', 'kindle email device send to kindle'],
-    ['send', 'KOReader / LocalSend devices', 'newLocalSendIp', 'koreader localsend ip device scan'],
-    ['send', 'Bookmarklet generator', 'generateBookmarkletBtn', 'bookmarklet ios android mobile safari'],
-    ['appearance', 'Theme', 'themeSelect', 'dark light mode appearance system'],
-    ['appearance', 'UI language', 'uiLangSelect', 'language translation locale interface'],
-    ['appearance', 'Native Chrome side panel', 'nativeSidePanelToggle', 'sidebar side panel popup window'],
-    ['library', 'Export settings', 'exportSettingsButton', 'backup export download json'],
-    ['library', 'Import settings', 'importSettingsButton', 'restore import backup json'],
-    ['library', 'Clean up & merge tags', 'cleanupTagsButton', 'tags duplicates merge clean on-device'],
-    ['library', 'Delete history', 'deleteHistoryButton', 'danger erase clear remove articles archive'],
-    ['library', 'Delete settings', 'deleteSettingsButton', 'danger reset erase remove'],
-    ['about', 'Compatible tools', 'compatibleToolsList', 'apps extensions tools integrations'],
-    ['about', 'Feedback · contact · donate', 'settingsPanel-about', 'bug support feedback contact donation help'],
-    ['about', 'Version & GitHub', 'versionNumber', 'version contribute open source github'],
+    ['account', N_('Account sync · sign in / log out'), 'otpEmail', 'login log in email magic code logout log out account'],
+    ['account', N_('Pro license key'), 'licenseKey', 'activate plan upgrade pass pro subscription'],
+    ['models', N_('Connection path'), 'modeCloud', 'cloud byphil own key bring your own'],
+    ['models', N_('Preferred cloud model'), 'cloudModelSelect', 'gemini gpt claude model cloud'],
+    ['models', N_('Provider'), 'model', 'openai mistral deepseek gemini ollama api'],
+    ['models', N_('Model identifier'), 'modelIdentifier', 'model name id gpt llama'],
+    ['models', N_('API key'), 'apiKey', 'key token secret'],
+    ['models', N_('Endpoint URL'), 'customEndpoint', 'ollama local server custom'],
+    ['prompts', N_('Preset prompt'), 'promptSettingsRoot', 'prompt preset template'],
+    ['prompts', N_('Custom prompt text'), 'promptSettingsRoot', 'prompt instructions system custom guided builder tone length focus'],
+    ['prompts', N_('Feed briefing & recap style'), 'promptSettingsRoot', 'feeds briefing recap style tone length'],
+    ['feeds', N_('Sources · rename · tags · mute'), 'feedSubsCard', 'rss feeds subscriptions tags folder group rename mute unsubscribe sources'],
+    ['feeds', N_('Import / export OPML'), 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
+    ['feedprefs', N_('Mark read when opened'), 'feedSetMarkRead', 'feed read unread open'],
+    ['feedprefs', N_('Mood on/off (tone analysis)'), 'feedSetMood', 'mood sentiment tone positive negative disable hide analysis diet'],
+    ['feedprefs', N_('Rate items with the recap'), 'feedSetRate', 'feed ai recap rate score sentiment mood category label automatic'],
+    ['feedprefs', N_('Auto-summarize favorites'), 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
+    ['feedprefs', N_('Check feeds in the background'), 'feedSetPoll', 'feed badge notification new items poll background'],
+    ['feedprefs', N_('Feed refresh interval'), 'feedSetRefresh', 'feed refresh update minutes hour interval'],
+    ['feedprefs', N_('Keep feed items for'), 'feedSetKeep', 'feed retention days delete old cleanup'],
+    ['reading', N_('Page highlighting'), 'highlightingToggle', 'highlight yellow marker annotate'],
+    ['reading', N_('AI ghost highlighting'), 'aiHighlightingToggle', 'ghost highlight ai quotes blue'],
+    ['reading', N_('Ghost highlight amount'), 'ghostHighlightAmount', 'ghost highlight few regular a lot'],
+    ['send', N_('Delivery method'), 'deliveryPreference', 'kindle koreader localsend send deliver'],
+    ['send', N_('Kindle devices'), 'newKindleEmail', 'kindle email device send to kindle'],
+    ['send', N_('KOReader / LocalSend devices'), 'newLocalSendIp', 'koreader localsend ip device scan'],
+    ['send', N_('Bookmarklet generator'), 'generateBookmarkletBtn', 'bookmarklet ios android mobile safari'],
+    ['appearance', N_('Theme'), 'themeSelect', 'dark light mode appearance system'],
+    ['appearance', N_('UI language'), 'uiLangSelect', 'language translation locale interface'],
+    ['appearance', N_('Native Chrome side panel'), 'nativeSidePanelToggle', 'sidebar side panel popup window'],
+    ['library', N_('Export settings'), 'exportSettingsButton', 'backup export download json'],
+    ['library', N_('Import settings'), 'importSettingsButton', 'restore import backup json'],
+    ['library', N_('Clean up & merge tags'), 'cleanupTagsButton', 'tags duplicates merge clean on-device'],
+    ['library', N_('Delete history'), 'deleteHistoryButton', 'danger erase clear remove articles archive'],
+    ['library', N_('Delete settings'), 'deleteSettingsButton', 'danger reset erase remove'],
+    ['about', N_('Compatible tools'), 'compatibleToolsList', 'apps extensions tools integrations'],
+    ['about', N_('Feedback · contact · donate'), 'settingsPanel-about', 'bug support feedback contact donation help'],
+    ['about', N_('Version & GitHub'), 'versionNumber', 'version contribute open source github'],
 ];
 
 const PANEL_TITLES = {
-    account: 'Account & Plan', models: 'Models & API', prompts: 'Prompts', feeds: 'Sources', feedprefs: 'Feed preferences', reading: 'Reading & Highlighting',
-    send: 'Send & Share', appearance: 'Appearance & Language', library: 'Library & Data', about: 'About & Tools'
+    account: N_('Account & Plan'), models: N_('Models & API'), prompts: N_('Prompts'), feeds: N_('Sources'), feedprefs: N_('Feed preferences'), reading: N_('Reading & Highlighting'),
+    send: N_('Send & Share'), appearance: N_('Appearance & Language'), library: N_('Library & Data'), about: N_('About & Tools')
 };
 
 let screenEl = null;
@@ -81,7 +82,7 @@ function selectedText(id) {
     return opt ? opt.textContent.trim() : '';
 }
 
-function onOff(id) { const el = $(id); return el && el.checked ? 'on' : 'off'; }
+function onOff(id) { const el = $(id); return el && el.checked ? T('on') : T('off'); }
 
 async function refreshSubtitles() {
     const set = (key, text) => {
@@ -90,26 +91,26 @@ async function refreshSubtitles() {
     };
     try {
         const local = await chrome.storage.local.get([SK.token]);
-        set('account', local[SK.token] ? 'Signed in · byPhil Cloud' : 'Not signed in');
+        set('account', local[SK.token] ? T('Signed in · byPhil Cloud') : T('Not signed in'));
         const sync = await chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']);
         const mode = sync.connectionMode || 'cloud';
         if (mode === 'cloud') {
             const m = (sync.preferredCloudModel || selectedText('cloudModelSelect') || '').split('/').pop();
-            set('models', 'byPhil Cloud' + (m ? ' · ' + m : ''));
+            set('models', T('byPhil Cloud') + (m ? ' · ' + m : ''));
         } else {
             const prov = selectedText('model');
-            set('models', 'Own key' + (prov ? ' · ' + prov : ''));
+            set('models', T('Own key') + (prov ? ' · ' + prov : ''));
         }
     } catch (e) { /* storage unavailable (context invalidated) */ }
     const preset = selectedText('promptSelect');
-    set('prompts', preset ? 'Preset: ' + preset : 'Preset and custom prompt');
-    set('reading', `Highlighting ${onOff('highlightingToggle')} · ghost ${onOff('aiHighlightingToggle')}`);
+    set('prompts', preset ? T('Preset: {name}', { name: preset }) : T('Preset and custom prompt'));
+    set('reading', T('Highlighting {a} · ghost {b}', { a: onOff('highlightingToggle'), b: onOff('aiHighlightingToggle') }));
     const delivery = selectedText('deliveryPreference');
-    set('send', delivery ? 'Delivery: ' + delivery : 'Kindle · LocalSend · bookmarklet');
+    set('send', delivery ? T('Delivery: {name}', { name: delivery }) : T('Kindle · LocalSend · bookmarklet'));
     const theme = selectedText('themeSelect'); const lang = selectedText('uiLangSelect');
-    set('appearance', [theme, lang].filter(Boolean).join(' · ') || 'Theme · language · side panel');
+    set('appearance', [theme, lang].filter(Boolean).join(' · ') || T('Theme · language · side panel'));
     const v = $('versionNumber');
-    set('about', 'Compatible tools' + (v ? ' · v' + v.textContent.trim() : ''));
+    set('about', T('Compatible tools') + (v ? ' · v' + v.textContent.trim() : ''));
 }
 
 function showHome() {
@@ -150,14 +151,14 @@ function renderResults(query) {
     if (!q) { results.hidden = true; results.replaceChildren(); groups.hidden = false; return; }
     const tokens = q.split(/\s+/);
     const hits = INDEX.filter(([panel, label, , kw]) => {
-        const hay = (label + ' ' + kw + ' ' + PANEL_TITLES[panel]).toLowerCase();
+        const hay = (label + ' ' + T(label) + ' ' + kw + ' ' + PANEL_TITLES[panel] + ' ' + T(PANEL_TITLES[panel])).toLowerCase();
         return tokens.every(t => hay.includes(t));
     });
     groups.hidden = true; results.hidden = false; results.replaceChildren();
     if (!hits.length) {
         const empty = document.createElement('div');
         empty.className = 'explanatory-card';
-        empty.textContent = 'No settings match “' + query.trim() + '”.';
+        empty.textContent = T('No settings match “{query}”.', { query: query.trim() });
         results.appendChild(empty);
         return;
     }
@@ -165,8 +166,8 @@ function renderResults(query) {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'settings-row settings-result';
         const text = document.createElement('span'); text.className = 'settings-row-text';
-        const t = document.createElement('span'); t.className = 'settings-row-title'; t.textContent = label;
-        const s = document.createElement('span'); s.className = 'settings-row-sub'; s.textContent = PANEL_TITLES[panel];
+        const t = document.createElement('span'); t.className = 'settings-row-title'; t.textContent = T(label);
+        const s = document.createElement('span'); s.className = 'settings-row-sub'; s.textContent = T(PANEL_TITLES[panel]);
         text.append(t, s);
         const chev = document.createElement('span'); chev.className = 'settings-row-chev'; chev.textContent = '›';
         b.append(text, chev);

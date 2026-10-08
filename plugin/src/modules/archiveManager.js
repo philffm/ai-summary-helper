@@ -2,6 +2,7 @@
 // Shows the podcast manager overlaid on the history screen, and restores
 // the history list (owned by articleManager.js) when the user backs out.
 import { renderPodcastUI } from './podcastManager.js';
+import { T } from './feedI18n.js';
 
 // Show podcast manager in history view
 export function showPodcastManagerInHistory() {
@@ -15,7 +16,7 @@ export function showPodcastManagerInHistory() {
         podcastScreen.innerHTML = '';
         // Add back button
         const backBtn = document.createElement('button');
-        backBtn.textContent = '← Back to History';
+        backBtn.textContent = T('← Back to History');
         backBtn.className = 'button-secondary';
         backBtn.style.marginBottom = '1em';
         backBtn.onclick = async () => {
