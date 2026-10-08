@@ -1,3 +1,4 @@
+import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
 import { debug } from './log.js';
 // mainScreen.js
@@ -38,8 +39,7 @@ export function initMainScreen(ui) {
 
         const tags = article.tags || [];
         const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${t}</span>`).join('')}</div>` : '';
-        const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
-        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji} ${article.modelId}</span>` : '';
+        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji(article)} ${article.modelId}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         bubble.innerHTML = `
@@ -80,7 +80,7 @@ export function initMainScreen(ui) {
         lastShownStreamProgress = 0;
         streamPhase = 0; lastPhaseTitle = '';
 
-        const emoji = mode === 'cloud' ? '☁️' : '💻';
+        const emoji = modelEmoji({ connectionMode: mode, modelId: modelName });
         const bubble = document.createElement('div');
         bubble.className = 'stream-bubble';
         bubble.id = 'streamBubble';

@@ -1,3 +1,4 @@
+import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
 // Article Manager
 // Handles article rendering, expand/collapse, search, etc.
@@ -1077,8 +1078,7 @@ function buildArticleCard(article) {
     }
     const tags = article.tags || [];
     const tagsHtml = tags.length ? `<div class="card-tags">${tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>` : '';
-    const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
-    const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji} ${article.modelId}</span>` : '';
+    const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji(article)} ${article.modelId}</span>` : '';
 
     // Decision metadata (timeframe + reason)
     const decisionHtml = article.isDecision ? `
@@ -1420,8 +1420,7 @@ export async function showArticleDetail(article) {
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
     const tags = article.tags || [];
     const tagsHtml = tags.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">${tags.map(t => `<span class="tag-chip" style="font-size:12px;">${t}</span>`).join('')}</div>` : '';
-    const modelEmoji = article.connectionMode === 'cloud' ? '☁️' : '💻';
-    const modelInfo = article.modelId ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;margin-right:12px;">${modelEmoji} ${article.modelId}</span>` : '';
+    const modelInfo = article.modelId ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;margin-right:12px;">${modelEmoji(article)} ${article.modelId}</span>` : '';
     const lengthInfo = article.summaryLength ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;">📏 ${article.summaryLength}w</span>` : '';
     
     // Decision metadata
