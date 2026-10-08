@@ -255,10 +255,79 @@ export function initMainScreen(ui) {
         document.getElementById('pageCard')?.remove();
         document.getElementById('convChip')?.remove();
     };
+    // A PDF attached in the popup (button or drag & drop): extracted here, summarized instead of the open tab.
+    let attached = null;          // { name, html, text } once extracted
+    let attaching = '';           // file name while it is being read
+    let attachError = '';
+    const PDF_ERRORS = () => ({
+        PASSWORD: T('This PDF is password protected.'),
+        EMPTY: T('This PDF has no selectable text (probably a scan). Text recognition is not supported yet.'),
+        NOT_PDF: T('This file is not a readable PDF.')
+    });
+    const attachmentChip = () => {
+        const chip = document.createElement('div');
+        chip.id = 'pageCard'; chip.className = 'page-chip page-chip--attach';
+        chip.dataset.title = attached ? attached.name : attaching; chip.dataset.host = 'PDF';
+        const txt = document.createElement('div'); txt.className = 'page-chip-txt';
+        const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = '📎 ' + clip(chip.dataset.title, 80);
+        const meta = document.createElement('div'); meta.className = 'page-chip-meta';
+        meta.textContent = attachError || (attaching ? T('Reading PDF…') : T('PDF · {n} words', { n: (attached.text.match(/\S+/g) || []).length }));
+        txt.append(title, meta); chip.appendChild(txt);
+        const x = document.createElement('button'); x.type = 'button'; x.className = 'page-chip-x'; x.textContent = '✕';
+        x.title = T('Remove attachment'); x.setAttribute('aria-label', T('Remove attachment'));
+        x.addEventListener('click', () => { attached = null; attaching = ''; attachError = ''; refreshFetchExtras(); });
+        chip.appendChild(x);
+        return chip;
+    };
+    const attachPdf = async (file) => {
+        if (!file) return;
+        if (!/pdf$/i.test(file.type) && !/\.pdf$/i.test(file.name)) { attachError = T('This file is not a readable PDF.'); attaching = ''; attached = null; refreshFetchExtras(); return; }
+        attached = null; attachError = ''; attaching = file.name; refreshFetchExtras();
+        try {
+            if (file.size > 80 * 1024 * 1024) throw Object.assign(new Error('big'), { code: 'BIG' });
+            const { extractPdfBytes } = await import('../content/pdfExtractor.js');
+            const ex = await extractPdfBytes(await file.arrayBuffer());
+            attached = { name: file.name, html: ex.html, text: ex.text };
+            attachError = '';
+        } catch (err) {
+            attached = null;
+            attachError = (err && err.code === 'BIG') ? T('This PDF is too large (limit 80 MB).') : (PDF_ERRORS()[err && err.code] || T('Could not read this PDF.'));
+        }
+        attaching = '';
+        refreshFetchExtras();
+    };
+    const buildAttachUi = () => {
+        const row = document.getElementById('chipRow');
+        if (!row || document.getElementById('chipAttach')) return;
+        const input = document.createElement('input');
+        input.type = 'file'; input.accept = 'application/pdf,.pdf'; input.hidden = true; input.id = 'attachPdfInput';
+        input.addEventListener('change', () => { const f = input.files && input.files[0]; input.value = ''; attachPdf(f); });
+        const b = document.createElement('button');
+        b.type = 'button'; b.id = 'chipAttach'; b.className = 'chip chip-attach';
+        b.title = T('Attach a PDF to summarize'); b.setAttribute('aria-label', T('Attach a PDF to summarize'));
+        const ic = document.createElement('span'); ic.className = 'chip-icon'; ic.textContent = '📎';
+        const lb = document.createElement('span'); lb.textContent = 'PDF';
+        b.append(ic, lb);
+        b.addEventListener('click', () => input.click());
+        row.append(b, input);
+        // Drag & drop a PDF anywhere on the Summarize screen.
+        const screen = document.getElementById('mainScreen');
+        const hasPdf = (e) => e.dataTransfer && [...(e.dataTransfer.items || [])].some(i => i.kind === 'file');
+        if (screen) {
+            screen.addEventListener('dragover', (e) => { if (hasPdf(e)) { e.preventDefault(); screen.classList.add('drop-pdf'); } });
+            screen.addEventListener('dragleave', (e) => { if (e.target === screen) screen.classList.remove('drop-pdf'); });
+            screen.addEventListener('drop', (e) => { screen.classList.remove('drop-pdf'); const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) { e.preventDefault(); attachPdf(f); } });
+        }
+    };
     const refreshFetchExtras = async () => {
         clearNote();
         const token = extrasToken;
         if (!composer || composer.state !== 'fetch' || !bar) return;
+        if (attached || attaching || attachError) {
+            const card = bar.querySelector('.input-card');
+            if (card) card.insertBefore(attachmentChip(), card.querySelector('.chip-row'));
+            return;
+        }
         let tab = null;
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
         if (token !== extrasToken || composer.state !== 'fetch') return;
@@ -347,6 +416,7 @@ export function initMainScreen(ui) {
         }
     });
 
+    buildAttachUi();
     refreshFetchExtras();
 
     // Different-page rule: when the active tab is another page than the conversation, offer a fresh summary.
@@ -771,7 +841,9 @@ export function initMainScreen(ui) {
             let promptToUse = data.prompt || '';
 
             const { [SK.summaryMode]: summaryMode } = await chrome.storage.local.get(SK.summaryMode);
-            const mode = summaryMode || 'extension';
+            if (attaching) return;                                          // still reading the file
+            const attachment = attached ? { name: attached.name, html: attached.html, text: attached.text } : null;
+            const mode = attachment ? 'extension' : (summaryMode || 'extension');   // an attached PDF is always shown in the panel
 
             if (mode === 'extension' && composer) {
                 composer.set('working');
@@ -840,10 +912,12 @@ export function initMainScreen(ui) {
                     summaryLength: await chrome.storage.local.get(SK.summaryLength).then(d => d[SK.summaryLength] || 200),
                     connectionMode,
                     preferredCloudModel,
+                    ...(attachment ? { attachment } : {}),
                 };
 
                 try {
                     await sendMessageToTab(activeTab.id, message);
+                    if (attachment) { attached = null; attachError = ''; }
                 } catch (err) {
                     console.warn("Popup communication error:", err);
                     updateStream('❌ Could not reach page — try refreshing the tab.');

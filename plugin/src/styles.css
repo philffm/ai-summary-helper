@@ -3404,3 +3404,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .cite-open { text-decoration: none; display: inline-flex; align-items: center; }
 .cite-src { font-size: var(--fs-xs); color: var(--text-muted); }
 .ref-preview { margin: 8px 0; padding: 8px 10px; border-radius: 10px; background: var(--accent-a05); font-size: var(--fs-xs); white-space: pre-wrap; word-break: break-word; max-height: 200px; overflow: auto; user-select: text; color: var(--text-primary); }
+.page-chip--attach { position: relative; }
+.page-chip-x { margin-left: auto; flex: none; border: 0; background: transparent; color: var(--text-muted); cursor: pointer; font-size: var(--fs-md); padding: 2px 6px; border-radius: 8px; }
+.page-chip-x:hover { color: var(--text-primary); background: var(--accent-a08); }
+#mainScreen.drop-pdf { outline: 2px dashed var(--accent); outline-offset: -6px; }

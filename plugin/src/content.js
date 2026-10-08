@@ -337,7 +337,7 @@ import {
     }
 
     if (request.action === 'fetchSummary') {
-      const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode, summaryLength: msgSummaryLength } = request;
+      const { additionalQuestions: popupQuestions, selectedLanguage, prompt: popupPrompt, summaryMode, summaryLength: msgSummaryLength, attachment } = request;
       // Original feed link when started from the Feed (page URL may differ after redirects).
       pendingFeedUrl = request.feedUrl || '';
       sendResponse({ success: true, message: summaryMode === 'extension' ? 'Fetching summary...' : 'Selection started' });
@@ -361,7 +361,8 @@ import {
               length,
               hiddenTarget,
               data.debugEnabled || false,
-              summaryMode
+              summaryMode,
+              attachment
             );
           });
           return;
@@ -414,8 +415,12 @@ import {
   // requestId of the summary currently streaming (Stop button → stopSummary).
   let activeSummaryRequestId = null;
 
-  async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension') {
+  async function fetchSummary(additionalQuestions, selectedLanguage, prompt, summaryLength, targetElement, debugEnabled, summaryMode = 'extension', attachment = null) {
     const tokenLimit = 20000;
+    // A PDF the user attached in the popup: its text was already extracted there, so the page itself is not read at all.
+    const attached = attachment && typeof attachment.text === 'string' && attachment.text ? attachment : null;
+    const pdfMode = !!attached || isPdfPage();
+    const sourceUrl = attached ? 'pdf://attached/' + encodeURIComponent(String(attached.name || 'document.pdf').slice(0, 120)) : window.location.href;
 
     // ── relay: defined first so every path (incl. PDF extraction errors) can report back ──
     const relay = (action, payload = {}) => {
@@ -449,7 +454,10 @@ import {
     // getAllTextContent(), so everything downstream keeps working unchanged.
     // For regular HTML pages isPdfPage() is false and this branch never runs.
     let contentHtml, contentText;
-    if (isPdfPage()) {
+    if (attached) {
+      contentHtml = String(attached.html || '');
+      contentText = attached.text;
+    } else if (isPdfPage()) {
       try {
         const extracted = await extractPdfText();
         contentHtml = extracted.html;
@@ -476,8 +484,8 @@ import {
       relay('summaryContext', {
         words: (truncatedContent.match(/\S+/g) || []).length,
         shortened: truncatedContent.length < contentText.length,
-        host: hostOf(window.location.href),
-        highlights: isPdfPage() ? 0 : getUserHighlightTexts().length,
+        host: attached ? 'PDF' : hostOf(window.location.href),
+        highlights: pdfMode ? 0 : getUserHighlightTexts().length,
         focus: !!(additionalQuestions || '').trim(),
         source: pendingFeedUrl ? hostOf(pendingFeedUrl) : '',
         language: selectedLanguage || '',
@@ -721,7 +729,7 @@ import {
                     return true;
                   });
               }
-              tags = await ensureGeneralTag(tags, contentText, document.title);
+              tags = await ensureGeneralTag(tags, contentText, attached ? String(attached.name || '') : document.title);
               let ghostQuotes = [];
               const ghostMatch = summary.match(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/i);
               if (ghostMatch) {
@@ -743,8 +751,8 @@ import {
               }
 
               let pageMeta = {};
-              try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ }
-              try { if (pageMeta && !pageMeta.paper && isPdfPage()) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
+              if (!attached) { try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ } }   // an attached PDF has nothing to do with the open tab
+              try { if (pageMeta && !pageMeta.paper && pdfMode) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
 
               // The model's verdict on "is this a paper?" (works for PDFs and pages without metadata); merged with the page signals.
               try {
@@ -784,7 +792,7 @@ import {
               // internal component with no injectable DOM, so there's nothing to
               // highlight. The quotes are still saved in the article data and will
               // render in our own history/detail view.
-              if (ghostQuotes.length > 0 && !isPdfPage()) applyGhostHighlights(ghostQuotes);
+              if (ghostQuotes.length > 0 && !pdfMode) applyGhostHighlights(ghostQuotes);
 
               // WAIT FOR IMAGE COMPRESSION TO FINISH BEFORE SAVING
               let finalContentHtml = contentHtml;
@@ -798,7 +806,7 @@ import {
               // never have one) — fall back to the AI summary's own <h2>, which
               // the system prompt always requests, before resorting to a generic
               // placeholder. Regular HTML pages still use document.title.
-              const articleTitle = document.title || extractSummaryTitle(cleanHtml) || 'Untitled';
+              const articleTitle = attached ? (extractSummaryTitle(cleanHtml) || String(attached.name || '').replace(/\.pdf$/i, '') || 'Untitled') : (document.title || extractSummaryTitle(cleanHtml) || 'Untitled');
 
               if (summaryMode === 'inline') {
                 const summaryContainer = document.createElement('blockquote');
@@ -811,7 +819,7 @@ import {
                 relay('summaryComplete', {
                   summary: cleanHtml,
                   title: articleTitle,
-                  url: window.location.href,
+                  url: sourceUrl,
                   timestamp: new Date().toISOString(),
                   tags: tags,
                   modelId: modelIdentifier,
@@ -822,9 +830,9 @@ import {
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, window.location.href, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, { ...(pendingFeedUrl && pendingFeedUrl !== window.location.href ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, pageMeta)
+              saveToLocalStorage(finalContentHtml, cleanHtml, sourceUrl, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, { ...(pendingFeedUrl && pendingFeedUrl !== sourceUrl ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, pageMeta)
                 .then(savedArticle => {
-                  if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: window.location.href });
+                  if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: sourceUrl });
                   resolve({ success: true, article: savedArticle });
                 })
                 .catch(err => {

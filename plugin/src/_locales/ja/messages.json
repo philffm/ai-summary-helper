@@ -3346,5 +3346,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ 引用"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "要約するPDFを添付"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "このPDFを読み取れませんでした。"
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n}語"
+  },
+  "f_reading_pdf_926d": {
+    "message": "PDFを読み込み中…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "添付を削除"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "このPDFには選択可能なテキストがありません（スキャンの可能性）。文字認識にはまだ対応していません。"
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "このPDFはパスワードで保護されています。"
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "このPDFは大きすぎます（上限80 MB）。"
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "このファイルは読み取れるPDFではありません。"
   }
 }

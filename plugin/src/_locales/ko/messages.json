@@ -3328,5 +3328,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ 인용"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "요약할 PDF 첨부"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "이 PDF를 읽을 수 없습니다."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n}단어"
+  },
+  "f_reading_pdf_926d": {
+    "message": "PDF 읽는 중…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "첨부 제거"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "이 PDF에는 선택 가능한 텍스트가 없습니다(스캔본일 수 있음). 텍스트 인식은 아직 지원되지 않습니다."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "이 PDF는 비밀번호로 보호되어 있습니다."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "이 PDF는 너무 큽니다(최대 80 MB)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "읽을 수 있는 PDF 파일이 아닙니다."
   }
 }

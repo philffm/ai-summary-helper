@@ -3256,5 +3256,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ Цитата"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "Прикрепить PDF для резюме"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "Не удалось прочитать этот PDF."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} слов"
+  },
+  "f_reading_pdf_926d": {
+    "message": "Чтение PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "Убрать вложение"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "В этом PDF нет выделяемого текста (вероятно, скан). Распознавание текста пока не поддерживается."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "Этот PDF защищён паролем."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "Этот PDF слишком большой (лимит 80 МБ)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "Этот файл не является читаемым PDF."
   }
 }

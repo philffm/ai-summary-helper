@@ -3346,5 +3346,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ Zitieren"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "PDF zum Zusammenfassen anhängen"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "Dieses PDF konnte nicht gelesen werden."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} Wörter"
+  },
+  "f_reading_pdf_926d": {
+    "message": "PDF wird gelesen…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "Anhang entfernen"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "Dieses PDF enthält keinen auswählbaren Text (vermutlich ein Scan). Texterkennung wird noch nicht unterstützt."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "Dieses PDF ist passwortgeschützt."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "Dieses PDF ist zu groß (Limit 80 MB)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "Diese Datei ist kein lesbares PDF."
   }
 }

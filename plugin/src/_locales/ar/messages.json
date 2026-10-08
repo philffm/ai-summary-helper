@@ -3256,5 +3256,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ اقتباس"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "إرفاق ملف PDF للتلخيص"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "تعذرت قراءة هذا الملف."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} كلمة"
+  },
+  "f_reading_pdf_926d": {
+    "message": "جارٍ قراءة PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "إزالة المرفق"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "لا يحتوي هذا الملف على نص قابل للتحديد (ربما صورة ممسوحة). التعرف على النص غير مدعوم بعد."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "هذا الملف محمي بكلمة مرور."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "حجم هذا الملف كبير جدًا (الحد 80 ميغابايت)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "هذا الملف ليس PDF قابلًا للقراءة."
   }
 }

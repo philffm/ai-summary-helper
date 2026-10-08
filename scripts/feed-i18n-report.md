@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 977. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 986. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 977 | 0 | 0 | 34 |
-| de | 977 | 0 | 0 | 147 |
-| es | 977 | 0 | 0 | 118 |
-| fr | 977 | 0 | 0 | 138 |
-| hi | 977 | 0 | 0 | 51 |
-| it | 977 | 0 | 0 | 121 |
-| ja | 977 | 0 | 0 | 62 |
-| ko | 977 | 0 | 0 | 13 |
-| pt_PT | 977 | 0 | 0 | 116 |
-| ru | 977 | 0 | 0 | 67 |
-| zh_CN | 977 | 0 | 0 | 1 |
-| zh_HK | 977 | 0 | 0 | 1 |
-| zh_TW | 977 | 0 | 0 | 1 |
+| ar | 977 | 9 | 0 | 34 |
+| de | 977 | 9 | 0 | 147 |
+| es | 977 | 9 | 0 | 118 |
+| fr | 977 | 9 | 0 | 138 |
+| hi | 977 | 9 | 0 | 51 |
+| it | 977 | 9 | 0 | 121 |
+| ja | 977 | 9 | 0 | 62 |
+| ko | 977 | 9 | 0 | 13 |
+| pt_PT | 977 | 9 | 0 | 116 |
+| ru | 977 | 9 | 0 | 67 |
+| zh_CN | 977 | 9 | 0 | 1 |
+| zh_HK | 977 | 9 | 0 | 1 |
+| zh_TW | 977 | 9 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -955,3 +955,150 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
+
+## Problems
+
+en is missing 9 strings (run merge)
+
+### ar: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### de: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### es: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### fr: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### hi: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### it: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### ja: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### ko: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### pt_PT: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### ru: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### zh_CN: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### zh_HK: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.
+
+### zh_TW: 9 missing
+- Attach a PDF to summarize
+- Could not read this PDF.
+- PDF · {n} words
+- Reading PDF…
+- Remove attachment
+- This PDF has no selectable text (probably a scan). Text recognition is not supported yet.
+- This PDF is password protected.
+- This PDF is too large (limit 80 MB).
+- This file is not a readable PDF.

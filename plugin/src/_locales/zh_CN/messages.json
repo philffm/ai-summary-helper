@@ -3340,5 +3340,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ 引用"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "附加 PDF 进行摘要"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "无法读取此 PDF。"
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} 词"
+  },
+  "f_reading_pdf_926d": {
+    "message": "正在读取 PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "移除附件"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "此 PDF 没有可选择的文字（可能是扫描件）。暂不支持文字识别。"
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "此 PDF 已设置密码保护。"
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "此 PDF 过大（上限 80 MB）。"
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "此文件不是可读取的 PDF。"
   }
 }

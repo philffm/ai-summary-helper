@@ -3340,5 +3340,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ उद्धरण"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "सारांश के लिए PDF जोड़ें"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "यह PDF पढ़ी नहीं जा सकी।"
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} शब्द"
+  },
+  "f_reading_pdf_926d": {
+    "message": "PDF पढ़ी जा रही है…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "अटैचमेंट हटाएँ"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "इस PDF में चुनने योग्य टेक्स्ट नहीं है (शायद स्कैन)। टेक्स्ट पहचान अभी समर्थित नहीं है।"
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "यह PDF पासवर्ड से सुरक्षित है।"
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "यह PDF बहुत बड़ी है (सीमा 80 MB)।"
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "यह फ़ाइल पढ़ने योग्य PDF नहीं है।"
   }
 }

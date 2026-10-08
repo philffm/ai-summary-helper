@@ -3340,5 +3340,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ Citar"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "Anexar um PDF para resumir"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "Não foi possível ler este PDF."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} palavras"
+  },
+  "f_reading_pdf_926d": {
+    "message": "A ler o PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "Remover anexo"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "Este PDF não tem texto selecionável (provavelmente uma digitalização). O reconhecimento de texto ainda não é suportado."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "Este PDF está protegido por palavra-passe."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "Este PDF é demasiado grande (limite 80 MB)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "Este ficheiro não é um PDF legível."
   }
 }

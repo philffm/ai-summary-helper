@@ -75,9 +75,19 @@ export async function extractPdfText(url) {
     || (document.contentType === 'application/pdf' ? window.location.href : findEmbeddedPdfUrl());
   if (!targetUrl) throw new Error('Could not locate a PDF on this page.');
 
-  const pdfjsLib = await loadPdfJs(); // local variable now, not a global
+  return extractPdfBytes(await fetchPdfBytes(targetUrl));
+}
 
-  const bytes = await fetchPdfBytes(targetUrl);
+/**
+ * Extract text from PDF bytes already in memory (a file the user attached in the popup, or fetched bytes).
+ * Throws errors with .code 'NOT_PDF' | 'PASSWORD' | 'EMPTY'.
+ *
+ * @param {ArrayBuffer|Uint8Array} bytes
+ * @returns {Promise<{ html: string, text: string }>}
+ */
+export async function extractPdfBytes(input) {
+  const bytes = checkPdfBytes(input instanceof ArrayBuffer ? input : (input.buffer.slice(input.byteOffset, input.byteOffset + input.byteLength)));
+  const pdfjsLib = await loadPdfJs(); // local variable now, not a global
 
   // Bound full-page canvas renders on figure-heavy papers (mirrors the
   // NODE_CAP pattern in modules/archiveGraph.js). 8 is a starting guess.

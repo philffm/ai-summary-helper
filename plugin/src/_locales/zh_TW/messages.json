@@ -3340,5 +3340,32 @@
   },
   "f_cite_aef3": {
     "message": "❝ 引用"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "附加 PDF 進行摘要"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "無法讀取此 PDF。"
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} 字"
+  },
+  "f_reading_pdf_926d": {
+    "message": "正在讀取 PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "移除附件"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "此 PDF 沒有可選取的文字（可能是掃描檔）。尚不支援文字辨識。"
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "此 PDF 受密碼保護。"
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "此 PDF 過大（上限 80 MB）。"
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "此檔案不是可讀取的 PDF。"
   }
 }
