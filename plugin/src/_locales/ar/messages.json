@@ -3412,5 +3412,95 @@
   },
   "f_your_settings_8f2d": {
     "message": "إعداداتك: {summary}"
+  },
+  "navFeeds": {
+    "message": "الخلاصات"
+  },
+  "feedAddPlaceholder": {
+    "message": "عنوان الموقع أو الخلاصة…"
+  },
+  "feedCurrentSite": {
+    "message": "الموقع الحالي"
+  },
+  "feedImportOpml": {
+    "message": "استيراد OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "وضع علامة مقروء على الكل"
+  },
+  "feedSubscriptions": {
+    "message": "الاشتراكات"
+  },
+  "searchSettings": {
+    "message": "البحث في الإعدادات…"
+  },
+  "settingsBack": {
+    "message": "‹ الإعدادات"
+  },
+  "settingsAccount": {
+    "message": "الحساب والخطة"
+  },
+  "settingsModels": {
+    "message": "النماذج وواجهة API"
+  },
+  "settingsPrompts": {
+    "message": "الموجّهات"
+  },
+  "settingsReading": {
+    "message": "القراءة والتمييز"
+  },
+  "settingsSend": {
+    "message": "الإرسال والمشاركة"
+  },
+  "settingsAppearance": {
+    "message": "المظهر واللغة"
+  },
+  "settingsLibrary": {
+    "message": "المكتبة والبيانات"
+  },
+  "settingsAbout": {
+    "message": "حول والأدوات"
+  },
+  "settingsCapAccount": {
+    "message": "الحساب"
+  },
+  "settingsCapSummarizing": {
+    "message": "التلخيص"
+  },
+  "settingsCapReading": {
+    "message": "القراءة"
+  },
+  "settingsCapApp": {
+    "message": "التطبيق"
+  },
+  "modelConfiguration": {
+    "message": "🤖 إعداد النموذج"
+  },
+  "modelDesc": {
+    "message": "اختر نموذج LLM الذي ينشئ ملخصاتك."
+  },
+  "promptCustomization": {
+    "message": "💬 تخصيص الموجّه"
+  },
+  "promptDesc": {
+    "message": "خصّص طريقة تحليل الذكاء الاصطناعي للنص."
+  },
+  "historyGraph": {
+    "message": "الرسم البياني"
+  },
+  "historyReport": {
+    "message": "التحليلات"
+  },
+  "viewGraph": {
+    "message": "عرض الرسم البياني"
+  },
+  "viewAnalytics": {
+    "message": "عرض تقرير التحليلات"
+  },
+  "settingsCapFeeds": {
+    "message": "الخلاصات"
+  },
+  "settingsFeeds": {
+    "message": "الخلاصات"
   }
 }

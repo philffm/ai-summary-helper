@@ -835,10 +835,6 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     // not a read.
     const toggleGroup = document.createElement('div');
     toggleGroup.className = 'segmented-control segmented-control-buttons graph-toggle-large';
-    toggleGroup.style.cssText = `
-        background: var(--glass-base, #fff);
-        border: 1px solid var(--outline, #ddd);
-    `;
 
     const wellBtn = document.createElement('button');
     wellBtn.type = 'button';

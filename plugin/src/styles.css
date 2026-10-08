@@ -982,14 +982,15 @@ ul#articleList {
 }
 
 .segmented-control-buttons button.active {
-    background: var(--glass-card);
-    color: var(--text-primary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: var(--accent);       /* solid, never translucent */
+    color: var(--on-accent);
+    box-shadow: none;
 }
 
 /* Larger variant — archiveGraph.js's well-connected/all-tags toggle is
    primary navigation for that view, not a secondary control, so it gets
    more presence than the default compact size. */
+.segmented-control.segmented-control-buttons { background: var(--nav-bg); }   /* solid surface: the toggle floats over the graph */
 .segmented-control-buttons.graph-toggle-large button {
     padding: 10px 16px;
     font-size: var(--fs-md);

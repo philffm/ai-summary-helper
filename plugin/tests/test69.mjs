@@ -36,3 +36,14 @@ console.log('TEST 69 OK');
 const src = fs.readFileSync(new URL('../src/modules/settingsManager.js', import.meta.url), 'utf8');
 assert(/default: \(\) => \(\{ theme: leaveContrast\(\)/.test(src) && /large: \(\) => \(\{ theme: leaveContrast\(\), textScale: 125, lineSpacing: 'relaxed', reduceMotion: false/.test(src), 'profiles reset theme + motion');
 assert(/--range-progress/.test(src), 'slider fill follows value');
+// every locale has every English key (graph/settings labels used to be missing in ar/it/ru/zh_HK)
+{
+  const dir = new URL('../src/_locales/', import.meta.url);
+  const en = JSON.parse(fs.readFileSync(new URL('en/messages.json', dir), 'utf8'));
+  for (const l of fs.readdirSync(dir).filter(x => !x.startsWith('.') && x !== 'en')) {
+    const d = JSON.parse(fs.readFileSync(new URL(l + '/messages.json', dir), 'utf8'));
+    const miss = Object.keys(en).filter(k => !(k in d));
+    assert.equal(miss.length, 0, l + ' is missing ' + miss.slice(0, 5).join(','));
+  }
+}
+console.log('TEST 69 locales OK');

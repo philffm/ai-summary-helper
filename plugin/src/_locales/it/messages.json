@@ -3412,5 +3412,95 @@
   },
   "f_your_settings_8f2d": {
     "message": "Le tue impostazioni: {summary}"
+  },
+  "navFeeds": {
+    "message": "Feed"
+  },
+  "feedAddPlaceholder": {
+    "message": "Indirizzo del sito o del feed…"
+  },
+  "feedCurrentSite": {
+    "message": "Sito attuale"
+  },
+  "feedImportOpml": {
+    "message": "Importa OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Segna tutto come letto"
+  },
+  "feedSubscriptions": {
+    "message": "Iscrizioni"
+  },
+  "searchSettings": {
+    "message": "Cerca nelle impostazioni…"
+  },
+  "settingsBack": {
+    "message": "‹ Impostazioni"
+  },
+  "settingsAccount": {
+    "message": "Account e piano"
+  },
+  "settingsModels": {
+    "message": "Modelli e API"
+  },
+  "settingsPrompts": {
+    "message": "Prompt"
+  },
+  "settingsReading": {
+    "message": "Lettura ed evidenziazione"
+  },
+  "settingsSend": {
+    "message": "Invio e condivisione"
+  },
+  "settingsAppearance": {
+    "message": "Aspetto e lingua"
+  },
+  "settingsLibrary": {
+    "message": "Libreria e dati"
+  },
+  "settingsAbout": {
+    "message": "Info e strumenti"
+  },
+  "settingsCapAccount": {
+    "message": "ACCOUNT"
+  },
+  "settingsCapSummarizing": {
+    "message": "RIASSUNTI"
+  },
+  "settingsCapReading": {
+    "message": "LETTURA"
+  },
+  "settingsCapApp": {
+    "message": "APP"
+  },
+  "modelConfiguration": {
+    "message": "🤖 Configurazione del modello"
+  },
+  "modelDesc": {
+    "message": "Scegli il modello LLM che genera i tuoi riassunti."
+  },
+  "promptCustomization": {
+    "message": "💬 Personalizzazione del prompt"
+  },
+  "promptDesc": {
+    "message": "Personalizza il modo in cui l'IA analizza il testo."
+  },
+  "historyGraph": {
+    "message": "Grafo"
+  },
+  "historyReport": {
+    "message": "Analisi"
+  },
+  "viewGraph": {
+    "message": "Mostra grafo"
+  },
+  "viewAnalytics": {
+    "message": "Mostra report di analisi"
+  },
+  "settingsCapFeeds": {
+    "message": "FEED"
+  },
+  "settingsFeeds": {
+    "message": "Feed"
   }
 }

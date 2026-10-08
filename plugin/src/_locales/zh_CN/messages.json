@@ -3496,5 +3496,11 @@
   },
   "f_your_settings_8f2d": {
     "message": "你的设置：{summary}"
+  },
+  "modelConfiguration": {
+    "message": "🤖 模型配置"
+  },
+  "promptCustomization": {
+    "message": "💬 提示词自定义"
   }
 }

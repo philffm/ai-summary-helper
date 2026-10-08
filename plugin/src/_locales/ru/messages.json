@@ -3412,5 +3412,95 @@
   },
   "f_your_settings_8f2d": {
     "message": "Ваши настройки: {summary}"
+  },
+  "navFeeds": {
+    "message": "Ленты"
+  },
+  "feedAddPlaceholder": {
+    "message": "Адрес сайта или ленты…"
+  },
+  "feedCurrentSite": {
+    "message": "Текущий сайт"
+  },
+  "feedImportOpml": {
+    "message": "Импорт OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Отметить всё прочитанным"
+  },
+  "feedSubscriptions": {
+    "message": "Подписки"
+  },
+  "searchSettings": {
+    "message": "Поиск по настройкам…"
+  },
+  "settingsBack": {
+    "message": "‹ Настройки"
+  },
+  "settingsAccount": {
+    "message": "Аккаунт и тариф"
+  },
+  "settingsModels": {
+    "message": "Модели и API"
+  },
+  "settingsPrompts": {
+    "message": "Промпты"
+  },
+  "settingsReading": {
+    "message": "Чтение и выделение"
+  },
+  "settingsSend": {
+    "message": "Отправка и обмен"
+  },
+  "settingsAppearance": {
+    "message": "Внешний вид и язык"
+  },
+  "settingsLibrary": {
+    "message": "Библиотека и данные"
+  },
+  "settingsAbout": {
+    "message": "О программе и инструменты"
+  },
+  "settingsCapAccount": {
+    "message": "АККАУНТ"
+  },
+  "settingsCapSummarizing": {
+    "message": "КРАТКИЕ ИЗЛОЖЕНИЯ"
+  },
+  "settingsCapReading": {
+    "message": "ЧТЕНИЕ"
+  },
+  "settingsCapApp": {
+    "message": "ПРИЛОЖЕНИЕ"
+  },
+  "modelConfiguration": {
+    "message": "🤖 Настройка модели"
+  },
+  "modelDesc": {
+    "message": "Выберите языковую модель для создания кратких изложений."
+  },
+  "promptCustomization": {
+    "message": "💬 Настройка промпта"
+  },
+  "promptDesc": {
+    "message": "Настройте, как ИИ анализирует текст."
+  },
+  "historyGraph": {
+    "message": "Граф"
+  },
+  "historyReport": {
+    "message": "Аналитика"
+  },
+  "viewGraph": {
+    "message": "Показать граф"
+  },
+  "viewAnalytics": {
+    "message": "Показать отчёт аналитики"
+  },
+  "settingsCapFeeds": {
+    "message": "ЛЕНТЫ"
+  },
+  "settingsFeeds": {
+    "message": "Ленты"
   }
 }

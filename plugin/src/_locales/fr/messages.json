@@ -3496,5 +3496,11 @@
   },
   "f_your_settings_8f2d": {
     "message": "Vos réglages : {summary}"
+  },
+  "modelConfiguration": {
+    "message": "🤖 Configuration du modèle"
+  },
+  "promptCustomization": {
+    "message": "💬 Personnalisation du prompt"
   }
 }

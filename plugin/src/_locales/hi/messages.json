@@ -3496,5 +3496,11 @@
   },
   "f_your_settings_8f2d": {
     "message": "आपकी सेटिंग: {summary}"
+  },
+  "modelConfiguration": {
+    "message": "🤖 मॉडल कॉन्फ़िगरेशन"
+  },
+  "promptCustomization": {
+    "message": "💬 प्रॉम्प्ट अनुकूलन"
   }
 }
