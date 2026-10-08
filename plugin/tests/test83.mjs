@@ -20,6 +20,14 @@ assert(!x.getAllTextContent().text.includes('Roche Analysen'), 'extractor ignore
 // Ordinary pages keep the old first-match result: several articles, first one has the h1 -> first; no h1 anywhere -> first
 w.document.body.innerHTML = '<article id="a"><h1>T</h1><p>' + body + '</p></article><article id="b"><h1>Other</h1><p>' + body + body + '</p></article>';
 assert.equal(a.ancScopeRoot(w.document).id, 'a', 'first article with h1 stays');
-w.document.body.innerHTML = '<article id="a"><p>short</p></article><article id="b"><p>' + body + body + '</p></article>';
-assert.equal(a.ancScopeRoot(w.document).id, 'a', 'no h1 anywhere: unchanged first match');
+w.document.body.innerHTML = '<article id="a"><p>' + body + '</p></article><article id="b"><p>' + body + body + '</p></article>';
+assert.equal(a.ancScopeRoot(w.document).id, 'a', 'no h1 anywhere, similar-looking articles: unchanged first match');
+// no h1 anywhere (h2-only layouts): overlay-looking first article loses to the one with the text; plain first is kept
+const big = body.repeat(3);
+w.document.body.innerHTML = '<div class="login-overlay"><article id="a"><p>Melde dich an. ' + 'x'.repeat(100) + '</p></article></div><article id="b"><h2>Story</h2><p>' + big + '</p></article>';
+assert.equal(a.ancScopeRoot(w.document).id, 'b', 'furniture-looking first article is skipped without an h1');
+w.document.body.innerHTML = '<article id="a"><h2>Short note</h2><p>' + body.slice(0, 600) + '</p></article><article id="b"><h2>Second</h2><p>' + body.slice(0, 900) + '</p></article>';
+assert.equal(a.ancScopeRoot(w.document).id, 'a', 'two comparable plain articles: first stays');
+w.document.body.innerHTML = '<article id="a"><h2>Teaser</h2><p>kurz</p></article><article id="b"><h2>Story</h2><p>' + big + '</p></article>';
+assert.equal(a.ancScopeRoot(w.document).id, 'b', 'tiny first article vs dominant later one: later wins');
 console.log('TEST 83 OK'); process.exit(0);
