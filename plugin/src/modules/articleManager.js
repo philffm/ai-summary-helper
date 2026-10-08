@@ -1459,10 +1459,11 @@ let citeStyle = 'apa';
 function renderCiteBlock(article, host) {
     host.replaceChildren();
     const doi = paperDoi(article);
-    host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-head', textContent: T('❝ Cite') }));
     const csl = article.meta && article.meta.paper && article.meta.paper.csl;
-    if (!doi || !doiUrl(doi)) { host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-note', textContent: T('Citation unavailable — no DOI found') })); return; }
+    const head = () => host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-head', textContent: T('❝ Cite') }));
+    if (!doi || !doiUrl(doi)) { head(); host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-note', textContent: T('Citation unavailable — no DOI found') })); return; }
     if (!csl) {
+        head();
         host.appendChild(Object.assign(document.createElement('div'), { className: 'cite-note', textContent: T('Looks the citation up at doi.org. Only the DOI is sent.') }));
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'button-secondary'; b.textContent = T('Get citation');
@@ -1485,13 +1486,15 @@ function renderCiteBlock(article, host) {
         seg.appendChild(b);
     });
     const text = formatCitation(csl, citeStyle);
-    const box = document.createElement('pre'); box.className = 'cite-text'; box.textContent = text;
+    const wrap = document.createElement('div'); wrap.className = 'cite-box';
     const acts = document.createElement('div'); acts.className = 'cite-actions';
-    const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'button-primary'; copy.textContent = T('Copy');
+    const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'cite-btn cite-copy'; copy.textContent = '⧉'; copy.title = T('Copy'); copy.setAttribute('aria-label', T('Copy'));
     copy.addEventListener('click', async (e) => { e.stopPropagation(); if (await copyText(text) && uiManagerRef) uiManagerRef.showToast(T('Copied to clipboard! 📋')); });
-    const open = document.createElement('a'); open.className = 'button-secondary cite-open'; open.href = doiUrl(doi); open.target = '_blank'; open.rel = 'noopener noreferrer'; open.textContent = T('Open DOI ↗');
-    acts.append(copy, open, Object.assign(document.createElement('span'), { className: 'cite-src', textContent: T('Source: doi.org') }));
-    host.append(seg, box, acts);
+    const open = document.createElement('a'); open.className = 'cite-btn cite-open'; open.href = doiUrl(doi); open.target = '_blank'; open.rel = 'noopener noreferrer'; open.textContent = T('DOI ↗'); open.title = T('Open DOI ↗');
+    acts.append(copy, open);
+    const box = document.createElement('pre'); box.className = 'cite-text'; box.textContent = text;
+    wrap.append(acts, box);
+    host.append(seg, wrap, Object.assign(document.createElement('div'), { className: 'cite-src', textContent: T('Source: doi.org') }));
 }
 
 function renderPaperRow(article, row) {
@@ -1502,18 +1505,18 @@ function renderPaperRow(article, row) {
     row.className = 'paper-row';
     const line = paperLine(article);
     if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; row.appendChild(l); }
-    const url = paperState(article) ? doiUrl(paperDoi(article)) : '';
-    if (url) { const a = document.createElement('a'); a.className = 'paper-doi'; a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'doi:' + paperDoi(article) + ' ↗'; row.appendChild(a); }
     const facts = paperFacts(article);
+    const card = document.createElement('div'); card.className = 'paper-card';
     if (facts.length) {
         const box = document.createElement('dl'); box.className = 'paper-facts';
         facts.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; box.append(dt, dd); });
-        row.appendChild(box);
+        card.appendChild(box);
     }
     if (article.id && paperState(article)) {
         const cite = document.createElement('div'); cite.className = 'cite-block';
-        row.appendChild(cite); renderCiteBlock(article, cite);
+        card.appendChild(cite); renderCiteBlock(article, cite);
     }
+    row.appendChild(card);
     if (!facts.length && article.id && paperState(article)) {
         const f = document.createElement('button');
         f.type = 'button'; f.className = 'button-secondary paper-facts-btn'; f.textContent = T('🔎 Key facts');
@@ -1527,7 +1530,7 @@ function renderPaperRow(article, row) {
                 renderPaperRow(article, row);
             } catch (err) { f.disabled = false; f.textContent = '❌ ' + ((err && err.message) || T('AI request failed')); }
         });
-        row.appendChild(f);
+        card.insertBefore(f, card.firstChild);
     }
 }
 

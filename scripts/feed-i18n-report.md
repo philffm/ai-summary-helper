@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 991. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 987 | 3 | 0 | 34 |
-| de | 987 | 3 | 0 | 148 |
-| es | 987 | 3 | 0 | 118 |
-| fr | 987 | 3 | 0 | 139 |
-| hi | 987 | 3 | 0 | 52 |
-| it | 987 | 3 | 0 | 122 |
-| ja | 987 | 3 | 0 | 62 |
-| ko | 987 | 3 | 0 | 13 |
-| pt_PT | 987 | 3 | 0 | 117 |
-| ru | 987 | 3 | 0 | 67 |
-| zh_CN | 987 | 3 | 0 | 1 |
-| zh_HK | 987 | 3 | 0 | 1 |
-| zh_TW | 987 | 3 | 0 | 1 |
+| ar | 991 | 0 | 0 | 34 |
+| de | 991 | 0 | 0 | 149 |
+| es | 991 | 0 | 0 | 119 |
+| fr | 991 | 0 | 0 | 140 |
+| hi | 991 | 0 | 0 | 52 |
+| it | 991 | 0 | 0 | 122 |
+| ja | 991 | 0 | 0 | 62 |
+| ko | 991 | 0 | 0 | 13 |
+| pt_PT | 991 | 0 | 0 | 119 |
+| ru | 991 | 0 | 0 | 67 |
+| zh_CN | 991 | 0 | 0 | 1 |
+| zh_HK | 991 | 0 | 0 | 1 |
+| zh_TW | 991 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -87,6 +87,7 @@ Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | What I used | Was ich verwendet habe | 22 vs 11 | 2× |
 | Sort: Mood | Sortieren: Stimmung | 19 vs 10 | 1.9× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
+| Add tag… | Tag hinzufügen… | 15 vs 8 | 1.88× |
 | API key | API-Schlüssel | 13 vs 7 | 1.86× |
 | Refresh | Aktualisieren | 13 vs 7 | 1.86× |
 | Recent models | Zuletzt genutzte Modelle | 24 vs 13 | 1.85× |
@@ -224,6 +225,7 @@ Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Custom | Personalizado | 13 vs 6 | 2.17× |
 | Add tag | Añadir etiqueta | 15 vs 7 | 2.14× |
 | Account Sync | Sincronización de cuenta | 24 vs 12 | 2× |
+| Add tag… | Añadir etiqueta… | 16 vs 8 | 2× |
 | ▶ Play | ▶ Reproducir | 12 vs 6 | 2× |
 | 💬 Ask | 💬 Preguntar | 12 vs 6 | 2× |
 | UI Language | Idioma de la interfaz | 21 vs 11 | 1.91× |
@@ -356,6 +358,7 @@ Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | What to export? | Que souhaitez-vous exporter ? | 29 vs 15 | 1.93× |
 | UI Language | Langue de l’interface | 21 vs 11 | 1.91× |
 | UI language | Langue de l’interface | 21 vs 11 | 1.91× |
+| Add tag… | Ajouter un tag… | 15 vs 8 | 1.88× |
 | No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
 | No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
@@ -751,6 +754,7 @@ Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Play | Reproduzir | 10 vs 4 | 2.5× |
 | Solo | Individual | 10 vs 4 | 2.5× |
 | Older | Mais antigos | 12 vs 5 | 2.4× |
+| Add tag… | Adicionar etiqueta… | 19 vs 8 | 2.38× |
 | + Add | + Adicionar | 11 vs 5 | 2.2× |
 | Custom | Personalizado | 13 vs 6 | 2.17× |
 | Log Out | Terminar sessão | 15 vs 7 | 2.14× |
@@ -803,6 +807,7 @@ Strings: 990. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Hard facts | Factos concretos | 16 vs 10 | 1.6× |
 | Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
+| Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
 | Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
 | Own model / API key | Modelo / chave de API próprios | 30 vs 19 | 1.58× |
 | {n} file sent | {n} ficheiro enviado | 19 vs 12 | 1.58× |
@@ -960,72 +965,3 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
-
-## Problems
-
-en is missing 3 strings (run merge)
-
-### ar: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### de: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### es: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### fr: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### hi: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### it: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### ja: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### ko: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### pt_PT: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### ru: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### zh_CN: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### zh_HK: 3 missing
-- + Tag
-- Add tag…
-- Remove tag
-
-### zh_TW: 3 missing
-- + Tag
-- Add tag…
-- Remove tag

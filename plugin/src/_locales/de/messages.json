@@ -3385,5 +3385,8 @@
   },
   "f_remove_tag_e50d": {
     "message": "Tag entfernen"
+  },
+  "f_doi_bad6": {
+    "message": "DOI ↗"
   }
 }

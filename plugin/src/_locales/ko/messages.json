@@ -3367,5 +3367,8 @@
   },
   "f_remove_tag_e50d": {
     "message": "태그 삭제"
+  },
+  "f_doi_bad6": {
+    "message": "DOI ↗"
   }
 }

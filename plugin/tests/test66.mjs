@@ -25,7 +25,7 @@ let cb = d.querySelector('.cite-block');
 assert(cb && /Smith, J\. \(2026\)\. Sleep and memory\. Nature, 1\(2\), 3–4\./.test(cb.querySelector('.cite-text').textContent), cb && cb.textContent);
 [...cb.querySelectorAll('.research-filter')].find(b => b.textContent === 'BibTeX').click();
 assert(/^@article\{smith2026sleep,/.test(d.querySelector('.cite-text').textContent));
-d.querySelector('.cite-actions .button-primary').click(); await tick(20);
+d.querySelector('.cite-actions .cite-copy').click(); await tick(20);
 assert(copied.length === 1 && /^@article/.test(copied[0]));
 // tag row: 🎓 chip first, then tags; tags removable and addable; paper chip removable
 let tr = d.querySelector('.detail-tags');

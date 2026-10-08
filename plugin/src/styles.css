@@ -2886,8 +2886,6 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .paper-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 12px; }
 .paper-row[hidden] { display: none; }
 .paper-line { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
-.paper-doi { font-size: var(--fs-xs); color: var(--accent); text-decoration: none; }
-.paper-doi:hover { text-decoration: underline; }
 .paper-toggle { margin-left: auto; font-size: var(--fs-xs); padding: 4px 10px; }
 .status-restore { margin-top: 8px; font-size: var(--fs-sm); padding: 6px 12px; }
 .sel-bar .sel-more { width: 36px; height: 36px; padding: 0; flex: none; font-size: var(--fs-xl); line-height: 1; }
@@ -3391,17 +3389,19 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .research-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 0; }
 .research-filter { border: 1px solid var(--outline); background: transparent; color: var(--text-secondary); border-radius: 999px; padding: 3px 10px; font-size: var(--fs-xs); cursor: pointer; }
 .research-filter.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.paper-facts { margin: 8px 0 0; padding: 8px 10px; border: 1px solid var(--outline); border-radius: 10px; background: var(--accent-a05); font-size: var(--fs-sm); width: 100%; box-sizing: border-box; }
-.paper-facts dt { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-top: 6px; }
-.paper-facts dt:first-child { margin-top: 0; }
-.paper-facts dd { margin: 2px 0 0; color: var(--text-primary); }
-.cite-block { width: 100%; box-sizing: border-box; margin-top: 8px; padding: 10px; border: 1px solid var(--outline); border-radius: 12px; }
-.cite-head { font-weight: 600; font-size: var(--fs-md); margin-bottom: 6px; color: var(--text-primary); }
-.cite-note { font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: 8px; }
-.cite-styles { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-.cite-text { margin: 0 0 8px; padding: 8px 10px; border-radius: 10px; background: var(--accent-a05); font: inherit; font-size: var(--fs-sm); white-space: pre-wrap; word-break: break-word; user-select: text; color: var(--text-primary); max-height: 220px; overflow: auto; }
-.cite-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.cite-open { text-decoration: none; display: inline-flex; align-items: center; }
+.paper-card { width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; padding: 12px; border: 1px solid var(--outline); border-radius: 12px; }
+.paper-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 0; font-size: var(--fs-sm); padding-bottom: 10px; border-bottom: 1px solid var(--outline); }
+.paper-facts dt { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); padding-top: 2px; }
+.paper-facts dd { margin: 0; color: var(--text-primary); }
+.cite-block { display: flex; flex-direction: column; gap: 10px; }
+.cite-head { font-weight: 600; font-size: var(--fs-md); color: var(--text-primary); }
+.cite-note { font-size: var(--fs-sm); color: var(--text-muted); }
+.cite-styles { display: flex; gap: 6px; flex-wrap: wrap; }
+.cite-box { padding: 6px 10px 8px; border-radius: 10px; background: var(--accent-a05); display: flex; flex-direction: column; gap: 4px; }
+.cite-actions { display: flex; gap: 6px; justify-content: flex-end; }
+.cite-btn { font: inherit; font-size: var(--fs-xs); font-weight: 600; color: var(--accent); background: transparent; border: 1px solid var(--outline); border-radius: 8px; padding: 3px 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.cite-btn:hover { background: var(--accent-a08); }
+.cite-text { margin: 0; padding: 0; background: none; font: inherit; font-size: var(--fs-sm); white-space: pre-wrap; word-break: break-word; user-select: text; color: var(--text-primary); max-height: 220px; overflow: auto; }
 .cite-src { font-size: var(--fs-xs); color: var(--text-muted); }
 .ref-preview { margin: 8px 0; padding: 8px 10px; border-radius: 10px; background: var(--accent-a05); font-size: var(--fs-xs); white-space: pre-wrap; word-break: break-word; max-height: 200px; overflow: auto; user-select: text; color: var(--text-primary); }
 .page-chip--attach { position: relative; }
