@@ -3397,5 +3397,56 @@
   },
   "f_read_1d4f": {
     "message": "Ler 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, concebida para baixa visão. Apenas escrita latina."
+  },
+  "f_compact_ad86": {
+    "message": "Compacto"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "A seguir o sistema: desativado"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "A seguir o sistema: {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "Ecrã"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Tipo de letra fácil de ler"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Contraste elevado"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Espaçamento entre linhas"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Movimento e esquema"
+  },
+  "f_normal_2772": {
+    "message": "Normal"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Reduzir movimento"
+  },
+  "f_relaxed_38bc": {
+    "message": "Amplo"
+  },
+  "f_text_2d5e": {
+    "message": "Texto"
+  },
+  "f_text_size_1143": {
+    "message": "Tamanho do texto"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "À noite, vovô Kowalsky vê o ímã cair no pé do pinguim queixoso. Os resumos usam este tamanho e espaçamento."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "O seu sistema já pede menos movimento: é sempre respeitado."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Detalhes do artigo · Factos · Citação · DOI"
   }
 }

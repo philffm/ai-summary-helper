@@ -1,3 +1,4 @@
+import { applyA11y, clampScale, systemTheme, systemReducesMotion } from './a11y.js';
 import { SK, renameKeys } from './storageKeys.js';
 // settingsManager.js
 // Settings screen initialization — UI is in popup.html (static accordion),
@@ -415,19 +416,46 @@ async function initModelSettings(storageData) {
 
 // ── Section: General Settings ────────────────────────────────────────
 function initGeneralSettings(storageData) {
-    // ── Theme ──────────────────────────────────────────────────────
+    // ── Theme + display & reading preferences ───────────────────────
+    const a11yState = { theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing || 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
+    const reapply = () => applyA11y({ ...a11yState, theme: a11yState.theme === 'system' ? '' : a11yState.theme });
     const themeSelect = document.getElementById('themeSelect');
+    const themeHint = document.getElementById('themeHint');
+    const showThemeHint = () => { if (themeHint) themeHint.textContent = a11yState.theme === 'system' ? T('Currently following your system: {theme}').replace('{theme}', systemTheme() === 'dark' ? T('Dark Mode') : T('Light Mode')) : ''; };
     if (themeSelect) {
-        themeSelect.value = storageData.theme || 'system';
+        themeSelect.value = a11yState.theme;
+        showThemeHint();
         themeSelect.addEventListener('change', () => {
-            const val = themeSelect.value;
-            autoSave('theme', val);
-            if (val === 'dark' || val === 'light') {
-                document.documentElement.setAttribute('data-theme', val);
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
+            a11yState.theme = themeSelect.value;
+            autoSave('theme', a11yState.theme);
+            reapply(); showThemeHint();
         });
+    }
+    const scaleRange = document.getElementById('textScaleRange');
+    const scaleValue = document.getElementById('textScaleValue');
+    if (scaleRange) {
+        scaleRange.value = String(a11yState.textScale);
+        if (scaleValue) scaleValue.textContent = a11yState.textScale + '%';
+        scaleRange.addEventListener('input', () => { a11yState.textScale = clampScale(scaleRange.value); if (scaleValue) scaleValue.textContent = a11yState.textScale + '%'; reapply(); });
+        scaleRange.addEventListener('change', () => autoSave('textScale', a11yState.textScale));
+    }
+    const lineSel = document.getElementById('lineSpacingSelect');
+    if (lineSel) {
+        lineSel.value = a11yState.lineSpacing === 'compact' || a11yState.lineSpacing === 'relaxed' ? a11yState.lineSpacing : 'normal';
+        lineSel.addEventListener('change', () => { a11yState.lineSpacing = lineSel.value; autoSave('lineSpacing', lineSel.value); reapply(); });
+    }
+    const fontToggle = document.getElementById('readableFontToggle');
+    if (fontToggle) {
+        fontToggle.checked = a11yState.readableFont;
+        fontToggle.addEventListener('change', () => { a11yState.readableFont = fontToggle.checked; autoSave('readableFont', fontToggle.checked); reapply(); });
+    }
+    const motionToggle = document.getElementById('reduceMotionToggle');
+    const motionHint = document.getElementById('motionHint');
+    if (motionToggle) {
+        const sysMotion = systemReducesMotion();
+        motionToggle.checked = a11yState.reduceMotion || sysMotion;
+        if (motionHint) motionHint.textContent = sysMotion ? T('Your system already asks for reduced motion — it is always respected.') : T('Currently following your system: off');
+        motionToggle.addEventListener('change', () => { a11yState.reduceMotion = motionToggle.checked; autoSave('reduceMotion', motionToggle.checked); reapply(); });
     }
 
     // ── UI Language ────────────────────────────────────────────────

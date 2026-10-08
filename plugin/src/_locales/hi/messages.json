@@ -3397,5 +3397,56 @@
   },
   "f_read_1d4f": {
     "message": "पढ़ें 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, कम दृष्टि के लिए बना। केवल लैटिन लिपि।"
+  },
+  "f_compact_ad86": {
+    "message": "सघन"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "अभी आपके सिस्टम का पालन: बंद"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "अभी आपके सिस्टम का पालन: {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "डिस्प्ले"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "पढ़ने में आसान फ़ॉन्ट"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "उच्च कंट्रास्ट"
+  },
+  "f_line_spacing_d3de": {
+    "message": "पंक्ति अंतर"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "गति और लेआउट"
+  },
+  "f_normal_2772": {
+    "message": "सामान्य"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "गति कम करें"
+  },
+  "f_relaxed_38bc": {
+    "message": "खुला"
+  },
+  "f_text_2d5e": {
+    "message": "टेक्स्ट"
+  },
+  "f_text_size_1143": {
+    "message": "टेक्स्ट आकार"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "The quick brown fox jumps over the lazy dog. सारांश इसी आकार और अंतर का उपयोग करते हैं।"
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "आपका सिस्टम पहले से कम गति माँगता है — इसका हमेशा पालन होता है।"
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 पेपर विवरण · तथ्य · उद्धरण · DOI"
   }
 }

@@ -3313,5 +3313,56 @@
   },
   "f_read_1d4f": {
     "message": "Leggi 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, pensato per la bassa visione. Solo alfabeto latino."
+  },
+  "f_compact_ad86": {
+    "message": "Compatto"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Segue il sistema: disattivato"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Segue il sistema: {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "Schermo"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Carattere di facile lettura"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Contrasto elevato"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Interlinea"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Movimento e layout"
+  },
+  "f_normal_2772": {
+    "message": "Normale"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Riduci movimento"
+  },
+  "f_relaxed_38bc": {
+    "message": "Ampia"
+  },
+  "f_text_2d5e": {
+    "message": "Testo"
+  },
+  "f_text_size_1143": {
+    "message": "Dimensione del testo"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "Quel fez zuccherino lo porge un vecchio mago. I riassunti usano questa dimensione e spaziatura."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Il tuo sistema chiede già meno movimento: viene sempre rispettato."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Dettagli dell'articolo · Dati · Citazione · DOI"
   }
 }

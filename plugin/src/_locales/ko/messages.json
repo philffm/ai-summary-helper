@@ -3385,5 +3385,56 @@
   },
   "f_read_1d4f": {
     "message": "읽기 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, 저시력자를 위해 설계. 라틴 문자만 지원."
+  },
+  "f_compact_ad86": {
+    "message": "촘촘하게"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "현재 시스템 설정을 따름: 꺼짐"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "현재 시스템 설정을 따름: {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "화면"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "읽기 쉬운 글꼴"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "고대비"
+  },
+  "f_line_spacing_d3de": {
+    "message": "줄 간격"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "모션 및 레이아웃"
+  },
+  "f_normal_2772": {
+    "message": "보통"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "모션 줄이기"
+  },
+  "f_relaxed_38bc": {
+    "message": "넓게"
+  },
+  "f_text_2d5e": {
+    "message": "텍스트"
+  },
+  "f_text_size_1143": {
+    "message": "텍스트 크기"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "The quick brown fox jumps over the lazy dog. 요약은 이 크기와 간격을 사용합니다."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "시스템이 이미 모션 줄이기를 요청하고 있어 항상 적용됩니다."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 논문 상세 · 핵심 사실 · 인용 · DOI"
   }
 }

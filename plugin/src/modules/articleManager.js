@@ -738,6 +738,17 @@ export function initArticleManager(uiManager) {
     if (detailDeleteBtn) {
         detailDeleteBtn.addEventListener('click', deleteCurrentDetailArticle);
     }
+    {   // ⋯ menu in the detail top bar: Graph / Analytics / Delete
+        const moreBtn = document.getElementById('detailMoreBtn');
+        const moreMenu = document.getElementById('detailMoreMenu');
+        if (moreBtn && moreMenu) {
+            const setOpen = (open) => { moreMenu.hidden = !open; moreBtn.setAttribute('aria-expanded', String(open)); };
+            moreBtn.addEventListener('click', (e) => { e.stopPropagation(); setOpen(moreMenu.hidden); });
+            moreMenu.addEventListener('click', () => setOpen(false));
+            document.addEventListener('click', (e) => { if (!moreMenu.hidden && !moreMenu.contains(e.target)) setOpen(false); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !moreMenu.hidden) { setOpen(false); moreBtn.focus(); } });
+        }
+    }
 
     if (historyScreen) {
         historyScreen.addEventListener('scroll', () => {
@@ -1512,14 +1523,19 @@ function renderCiteBlock(article, host) {
     host.append(seg, wrap, Object.assign(document.createElement('div'), { className: 'cite-src', textContent: T('Source: doi.org') }));
 }
 
+let paperDetailsOpen = false;
 function renderPaperRow(article, row) {
     if (!row) return;
     row.replaceChildren();
     if (!paperState(article)) { row.hidden = true; return; }   // the 🎓 chip itself lives in the tag row (renderDetailTags)
     row.hidden = false;
     row.className = 'paper-row';
+    const wrapper = document.createElement('details'); wrapper.className = 'paper-details'; wrapper.open = paperDetailsOpen;
+    wrapper.addEventListener('toggle', () => { paperDetailsOpen = wrapper.open; });
+    const sum = document.createElement('summary'); sum.textContent = T('🎓 Paper details · Facts · Cite · DOI');
+    wrapper.appendChild(sum); row.appendChild(wrapper);
     const line = paperLine(article);
-    if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; row.appendChild(l); }
+    if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; wrapper.appendChild(l); }
     const facts = paperFacts(article);
     const card = document.createElement('div'); card.className = 'paper-card';
     if (facts.length) {
@@ -1531,7 +1547,7 @@ function renderPaperRow(article, row) {
         const cite = document.createElement('div'); cite.className = 'cite-block';
         card.appendChild(cite); renderCiteBlock(article, cite);
     }
-    row.appendChild(card);
+    wrapper.appendChild(card);
     if (!facts.length && article.id && paperState(article)) {
         const f = document.createElement('button');
         f.type = 'button'; f.className = 'button-secondary paper-facts-btn'; f.textContent = T('🔎 Key facts');
@@ -1624,23 +1640,20 @@ export async function showArticleDetail(article) {
       <div class="article-detail-card">
         <h3 style="margin-bottom:8px;"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>
         <p class="detail-desc" hidden></p>
-        <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
+        <p class="detail-meta" style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
           ${article.url ? `<a href="${article.url}" target="_blank">${domain} ↗</a> · ` : ''}
-          ${new Date(article.timestamp).toLocaleDateString()}
-        </p>
-        <p style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">
-          ${modelInfo}${lengthInfo}
+          ${new Date(article.timestamp).toLocaleDateString()}${(modelInfo || lengthInfo) ? ' · ' : ''}${modelInfo}${lengthInfo}
         </p>
         <div class="detail-tags"></div>
         ${decisionBadge}
         <div class="paper-row" hidden></div>
         <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="button-secondary share-button">${T('Share 🔗')}</button>
+          <button class="button-primary open-button">${T('Read 👓')}</button>
           <button class="button-secondary copy-button">${T('Copy 📋')}</button>
-          <button class="button-secondary kindle-button">${T('Kindle 📚')}</button>
-                    <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">${T('LocalSend 📱')}</button>
           <button class="button-secondary md-button">${T('.MD 💾')}</button>
-          <button class="button-secondary open-button">${T('Read 👓')}</button>
+          <button class="button-secondary share-button">${T('Share 🔗')}</button>
+          <button class="button-secondary kindle-button">${T('Kindle 📚')}</button>
+          <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">${T('LocalSend 📱')}</button>
         </div>
         <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:12px;">
           <strong style="display:block;margin-bottom:8px;">${T('🧙 AI Summary')}</strong>

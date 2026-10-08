@@ -3313,5 +3313,56 @@
   },
   "f_read_1d4f": {
     "message": "Читать 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, создан для слабовидящих. Только латиница."
+  },
+  "f_compact_ad86": {
+    "message": "Компактно"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Сейчас следует системе: выкл."
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Сейчас следует системе: {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "Экран"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Легко читаемый шрифт"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Высокая контрастность"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Межстрочный интервал"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Анимация и макет"
+  },
+  "f_normal_2772": {
+    "message": "Обычный"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Уменьшить анимацию"
+  },
+  "f_relaxed_38bc": {
+    "message": "Свободный"
+  },
+  "f_text_2d5e": {
+    "message": "Текст"
+  },
+  "f_text_size_1143": {
+    "message": "Размер текста"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "Съешь же ещё этих мягких французских булок. Сводки используют этот размер и интервал."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Ваша система уже просит меньше анимации — это всегда учитывается."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 О статье · Факты · Цитата · DOI"
   }
 }

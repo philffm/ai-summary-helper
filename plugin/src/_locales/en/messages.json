@@ -3551,5 +3551,57 @@
   },
   "f_read_1d4f": {
     "message": "Read 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, designed for low vision. Latin scripts only."
+  },
+  "f_compact_ad86": {
+    "message": "Compact"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Currently following your system: off"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Currently following your system: {theme}",
+    "description": "Placeholders: {theme} (keep as is)"
+  },
+  "f_display_d9b5": {
+    "message": "Display"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Easy-read font"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "High contrast"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Line spacing"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Motion & layout"
+  },
+  "f_normal_2772": {
+    "message": "Normal"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Reduce motion"
+  },
+  "f_relaxed_38bc": {
+    "message": "Relaxed"
+  },
+  "f_text_2d5e": {
+    "message": "Text"
+  },
+  "f_text_size_1143": {
+    "message": "Text size"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "The quick brown fox jumps over the lazy dog. Summaries use this size and spacing."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Your system already asks for reduced motion — it is always respected."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Paper details · Facts · Cite · DOI"
   }
 }

@@ -3403,5 +3403,56 @@
   },
   "f_read_1d4f": {
     "message": "Lesen 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, für Sehschwäche entwickelt. Nur lateinische Schrift."
+  },
+  "f_compact_ad86": {
+    "message": "Kompakt"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Folgt gerade deinem System: aus"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Folgt gerade deinem System: {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "Anzeige"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Gut lesbare Schrift"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Hoher Kontrast"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Zeilenabstand"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Bewegung & Layout"
+  },
+  "f_normal_2772": {
+    "message": "Normal"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Bewegung reduzieren"
+  },
+  "f_relaxed_38bc": {
+    "message": "Großzügig"
+  },
+  "f_text_2d5e": {
+    "message": "Text"
+  },
+  "f_text_size_1143": {
+    "message": "Textgröße"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Zusammenfassungen nutzen diese Größe und diesen Abstand."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Dein System verlangt bereits weniger Bewegung – das wird immer beachtet."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Paper-Details · Fakten · Zitat · DOI"
   }
 }

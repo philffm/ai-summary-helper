@@ -3397,5 +3397,56 @@
   },
   "f_read_1d4f": {
     "message": "Lire 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, conçue pour la basse vision. Alphabet latin uniquement."
+  },
+  "f_compact_ad86": {
+    "message": "Compact"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Suit actuellement votre système : désactivé"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Suit actuellement votre système : {theme}"
+  },
+  "f_display_d9b5": {
+    "message": "Affichage"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Police facile à lire"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Contraste élevé"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Interligne"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Animations et mise en page"
+  },
+  "f_normal_2772": {
+    "message": "Normal"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Réduire les animations"
+  },
+  "f_relaxed_38bc": {
+    "message": "Aéré"
+  },
+  "f_text_2d5e": {
+    "message": "Texte"
+  },
+  "f_text_size_1143": {
+    "message": "Taille du texte"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "Portez ce vieux whisky au juge blond qui fume. Les résumés utilisent cette taille et cet espacement."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Votre système demande déjà moins d'animations : c'est toujours respecté."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Détails de l'article · Faits · Citation · DOI"
   }
 }

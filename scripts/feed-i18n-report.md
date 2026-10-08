@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1012. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 995 | 0 | 0 | 34 |
-| de | 995 | 0 | 0 | 150 |
-| es | 995 | 0 | 0 | 119 |
-| fr | 995 | 0 | 0 | 139 |
-| hi | 995 | 0 | 0 | 52 |
-| it | 995 | 0 | 0 | 122 |
-| ja | 995 | 0 | 0 | 63 |
-| ko | 995 | 0 | 0 | 13 |
-| pt_PT | 995 | 0 | 0 | 119 |
-| ru | 995 | 0 | 0 | 67 |
-| zh_CN | 995 | 0 | 0 | 1 |
-| zh_HK | 995 | 0 | 0 | 1 |
-| zh_TW | 995 | 0 | 0 | 1 |
+| ar | 1012 | 0 | 0 | 34 |
+| de | 1012 | 0 | 0 | 151 |
+| es | 1012 | 0 | 0 | 120 |
+| fr | 1012 | 0 | 0 | 142 |
+| hi | 1012 | 0 | 0 | 52 |
+| it | 1012 | 0 | 0 | 124 |
+| ja | 1012 | 0 | 0 | 63 |
+| ko | 1012 | 0 | 0 | 13 |
+| pt_PT | 1012 | 0 | 0 | 123 |
+| ru | 1012 | 0 | 0 | 69 |
+| zh_CN | 1012 | 0 | 0 | 1 |
+| zh_HK | 1012 | 0 | 0 | 1 |
+| zh_TW | 1012 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -176,6 +176,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | No key facts found | Keine Kernaussagen gefunden | 27 vs 18 | 1.5× |
 | Writing the summary… | Schreibe die Zusammenfassung … | 30 vs 20 | 1.5× |
 | ↩ Restore to Inbox | ↩ In den Posteingang zurück | 27 vs 18 | 1.5× |
+| The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Zusammenfassungen nutzen diese Größe und diesen Abstand. | 121 vs 81 | 1.49× |
 | No tags found. Add tags to your summaries! | Keine Tags gefunden. Füge deinen Zusammenfassungen Tags hinzu! | 62 vs 42 | 1.48× |
 | Set your Kindle email in Settings first. | Hinterlege zuerst deine Kindle-E-Mail in den Einstellungen. | 59 vs 40 | 1.48× |
 | Used whenever you summarize a page or article. | Wird verwendet, wenn du eine Seite oder einen Artikel zusammenfasst. | 68 vs 46 | 1.48× |
@@ -249,6 +250,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
 | No Kindle email set. | No hay correo de Kindle configurado. | 36 vs 20 | 1.8× |
 | Enter 6-digit code | Introduce el código de 6 dígitos | 32 vs 18 | 1.78× |
+| Text size | Tamaño del texto | 16 vs 9 | 1.78× |
 | 📈 Mood over time | 📈 Ánimo a lo largo del tiempo | 30 vs 17 | 1.76× |
 | Failed to export backup. | No se pudo exportar la copia de seguridad. | 42 vs 24 | 1.75× |
 | Newest first | Más recientes primero | 21 vs 12 | 1.75× |
@@ -367,12 +369,14 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
 | Saved! ✓ | Enregistré ! ✓ | 14 vs 8 | 1.75× |
 | Testing… | Test en cours… | 14 vs 8 | 1.75× |
+| Motion & layout | Animations et mise en page | 26 vs 15 | 1.73× |
 | Open week › | Ouvrir la semaine › | 19 vs 11 | 1.73× |
 | What I used | Ce que j'ai utilisé | 19 vs 11 | 1.73× |
 | Allow all origins | Autoriser toutes les origines | 29 vs 17 | 1.71× |
 | Verify & Login | Vérifier et se connecter | 24 vs 14 | 1.71× |
 | Why it matters | Pourquoi c’est important | 24 vs 14 | 1.71× |
 | Select all | Tout sélectionner | 17 vs 10 | 1.7× |
+| Reduce motion | Réduire les animations | 22 vs 13 | 1.69× |
 | {n} unopened 30d+ | {n} non ouverts depuis 30 j+ | 27 vs 16 | 1.69× |
 | Week & month recaps | Récapitulatifs hebdo et mensuels | 32 vs 19 | 1.68× |
 | Clear search | Effacer la recherche | 20 vs 12 | 1.67× |
@@ -380,6 +384,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Feed refresh interval | Intervalle d’actualisation des flux | 35 vs 21 | 1.67× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
 | Saved for Later | Enregistré pour plus tard | 25 vs 15 | 1.67× |
+| Text size | Taille du texte | 15 vs 9 | 1.67× |
 | Queue a question… | Mettre une question en file… | 28 vs 17 | 1.65× |
 | Scan failed. Enter IP manually. | Échec de la recherche. Saisissez l’IP manuellement. | 51 vs 31 | 1.65× |
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
@@ -540,6 +545,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Inbox | Posta in arrivo | 15 vs 5 | 3× |
 | Older | Meno recenti | 12 vs 5 | 2.4× |
 | Custom | Personalizzato | 14 vs 6 | 2.33× |
+| Text size | Dimensione del testo | 20 vs 9 | 2.22× |
 | Newer | Più recenti | 11 vs 5 | 2.2× |
 | Saved | Risparmiato | 11 vs 5 | 2.2× |
 | Week recap | Riepilogo settimanale | 21 vs 10 | 2.1× |
@@ -552,6 +558,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Own key | Chiave propria | 14 vs 7 | 2× |
 | {n} day recap | {n} riepilogo giornaliero | 24 vs 12 | 2× |
 | Add custom model | Aggiungi modello personalizzato | 31 vs 16 | 1.94× |
+| Easy-read font | Carattere di facile lettura | 27 vs 14 | 1.93× |
 | Import failed | Importazione non riuscita | 25 vs 13 | 1.92× |
 | {n} day recaps | {n} riepiloghi giornalieri | 25 vs 13 | 1.92× |
 | Enter code | Inserisci il codice | 19 vs 10 | 1.9× |
@@ -762,6 +769,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Export backup first | Exporte primeiro uma cópia de segurança | 39 vs 19 | 2.05× |
 | AI-rated | Avaliados por IA | 16 vs 8 | 2× |
 | Casual | Descontraído | 12 vs 6 | 2× |
+| Line spacing | Espaçamento entre linhas | 24 vs 12 | 2× |
 | Preset | Predefinição | 12 vs 6 | 2× |
 | ▶ Play | ▶ Reproduzir | 12 vs 6 | 2× |
 | 💬 Ask | 💬 Perguntar | 12 vs 6 | 2× |
@@ -769,6 +777,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | shared tag | etiqueta partilhada | 19 vs 10 | 1.9× |
 | Add custom model | Adicionar modelo personalizado | 30 vs 16 | 1.88× |
 | Backup · tags · delete | Cópia de segurança · etiquetas · eliminar | 41 vs 22 | 1.86× |
+| Easy-read font | Tipo de letra fácil de ler | 26 vs 14 | 1.86× |
 | Own key | Chave própria | 13 vs 7 | 1.86× |
 | Verify & Login | Verificar e iniciar sessão | 26 vs 14 | 1.86× |
 | Account Sync | Sincronização da conta | 22 vs 12 | 1.83× |
@@ -776,6 +785,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | No devices added yet. | Ainda não há dispositivos adicionados. | 38 vs 21 | 1.81× |
 | Enter code | Introduza o código | 18 vs 10 | 1.8× |
 | — Feel free to | — Sinta-se à vontade para | 25 vs 14 | 1.79× |
+| Text size | Tamanho do texto | 16 vs 9 | 1.78× |
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
 | Copied to clipboard! 📋 | Copiado para a área de transferência! 📋 | 40 vs 23 | 1.74× |
 | Free Trial Mode | Modo de avaliação gratuita | 26 vs 15 | 1.73× |
@@ -876,6 +886,7 @@ Certifique-se de que kindle@byphil.eu está na lista de remetentes aprovados do 
 
 Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically. | Os feeds e caixas de entrada (feed do LinkedIn, página inicial do X, …) já são ignorados automaticamente. | 105 vs 79 | 1.33× |
+| The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | À noite, vovô Kowalsky vê o ímã cair no pé do pinguim queixoso. Os resumos usam este tamanho e espaçamento. | 107 vs 81 | 1.32× |
 | AI adds 2–3 sentences on top of the digest | A IA acrescenta 2–3 frases no início do resumo conjunto | 55 vs 42 | 1.31× |
 | Automatic light-blue quote highlights from summaries | Destaques de citações em azul-claro automáticos a partir dos resumos | 68 vs 52 | 1.31× |
 | I want to use my own Custom API / Local Model | Quero usar a minha própria API personalizada / modelo local | 59 vs 45 | 1.31× |
@@ -906,7 +917,9 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Free Tier | Бесплатный тариф | 16 vs 9 | 1.78× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |
 | Mood index | Индекс настроения | 17 vs 10 | 1.7× |
+| Line spacing | Межстрочный интервал | 20 vs 12 | 1.67× |
 | Found device at {ip} — click Add to save it ✓ | Устройство найдено по адресу {ip} — нажмите «Добавить», чтобы сохранить ✓ | 71 vs 43 | 1.65× |
+| High contrast | Высокая контрастность | 21 vs 13 | 1.62× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |
 | Use Native Chrome Side Panel | Использовать встроенную боковую панель Chrome | 45 vs 28 | 1.61× |
 | Free Trial Mode | Бесплатный пробный режим | 24 vs 15 | 1.6× |

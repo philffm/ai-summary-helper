@@ -1,3 +1,4 @@
+import { applyA11y } from './modules/a11y.js';
 import { SK } from './modules/storageKeys.js';
 import { initMoodSetting } from './modules/moodSetting.js';
 import UIManager from './modules/uiManager.js';
@@ -31,9 +32,7 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 document.addEventListener("DOMContentLoaded", async () => {
     // Load theme and beta toggle preferences
     const storageData = await StorageManager.getAll();
-    if (storageData.theme === 'dark' || storageData.theme === 'light') {
-        document.documentElement.setAttribute('data-theme', storageData.theme);
-    }
+    applyA11y({ ...storageData, theme: storageData.theme === 'system' ? '' : storageData.theme });
     
     const ui = new UIManager();
 

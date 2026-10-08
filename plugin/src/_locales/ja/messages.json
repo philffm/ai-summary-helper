@@ -3403,5 +3403,56 @@
   },
   "f_read_1d4f": {
     "message": "読む 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible。ロービジョン向けに設計。ラテン文字のみ。"
+  },
+  "f_compact_ad86": {
+    "message": "コンパクト"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "現在システム設定に従っています：オフ"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "現在システム設定に従っています：{theme}"
+  },
+  "f_display_d9b5": {
+    "message": "表示"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "読みやすいフォント"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "ハイコントラスト"
+  },
+  "f_line_spacing_d3de": {
+    "message": "行間"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "動きとレイアウト"
+  },
+  "f_normal_2772": {
+    "message": "標準"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "動きを減らす"
+  },
+  "f_relaxed_38bc": {
+    "message": "ゆったり"
+  },
+  "f_text_2d5e": {
+    "message": "テキスト"
+  },
+  "f_text_size_1143": {
+    "message": "文字サイズ"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "The quick brown fox jumps over the lazy dog。要約にはこのサイズと行間が使われます。"
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "システムがすでに動きの軽減を求めています。常に尊重されます。"
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 論文の詳細 · 要点 · 引用 · DOI"
   }
 }

@@ -187,9 +187,12 @@
         </div>
         <div id="detailTopBar" class="topbar topbar--row" style="display:none;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;" data-i18n="f_back_to_history_9fd8">⬅ Back to History</button>
-          <button id="detailGraphToggleBtn" class="button-secondary action-btn" type="button" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
-          <button id="detailReportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
-          <button id="detailDeleteBtn" class="button-secondary delete-top-button" title="Delete Article" aria-label="Delete Article" style="height:44px;width:44px;flex-shrink:0;" data-i18n-title="f_delete_article_14d4">🗑️</button>
+          <button id="detailMoreBtn" class="button-secondary action-btn" type="button" title="More" aria-label="More" aria-haspopup="menu" aria-expanded="false" data-i18n-title="f_more_d900"><span class="btn-icon" aria-hidden="true">⋯</span></button>
+          <div id="detailMoreMenu" class="more-menu" role="menu" hidden>
+            <button id="detailGraphToggleBtn" class="button-secondary" type="button" role="menuitem" title="View graph" aria-label="View graph" data-i18n-title="viewGraph"><span class="btn-icon" aria-hidden="true">🕸️</span><span class="btn-label" data-i18n="historyGraph">Graph</span></button>
+            <button id="detailReportToggleBtn" class="button-secondary" type="button" role="menuitem" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
+            <button id="detailDeleteBtn" class="button-secondary delete-top-button" type="button" role="menuitem" title="Delete Article" aria-label="Delete Article" data-i18n-title="f_delete_article_14d4"><span class="btn-icon" aria-hidden="true">🗑️</span><span class="btn-label" data-i18n="f_delete_ea6a">Delete</span></button>
+          </div>
         </div>
         <ul id="articleList"></ul>
         <div id="graphContainer" style="display:none;"></div>
@@ -478,39 +481,71 @@
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsAppearance">Appearance &amp; Language</span></h2>
   </div>
-                <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="themeSelect" data-i18n="f_theme_7c92">Theme</label>
-                  <select id="themeSelect">
-                      <option value="system" data-i18n="f_system_default_c329">System Default</option>
-                      <option value="light" data-i18n="f_light_mode_608a">Light Mode</option>
-                      <option value="dark" data-i18n="f_dark_mode_05f8">Dark Mode</option>
-                  </select>
+                <div class="a11y-block">
+                  <h3 data-i18n="f_display_d9b5">Display</h3>
+                  <div class="setting-group flex justify-between align-center">
+                    <label for="themeSelect" data-i18n="f_theme_7c92">Theme</label>
+                    <select id="themeSelect">
+                        <option value="system" data-i18n="f_system_default_c329">System Default</option>
+                        <option value="light" data-i18n="f_light_mode_608a">Light Mode</option>
+                        <option value="dark" data-i18n="f_dark_mode_05f8">Dark Mode</option>
+                        <option value="contrast" data-i18n="f_high_contrast_9fd1">High contrast</option>
+                    </select>
+                  </div>
+                  <p class="a11y-hint" id="themeHint"></p>
+                  <div class="setting-group flex justify-between align-center">
+                    <label for="uiLangSelect" data-i18n="f_ui_language_08b7">UI Language</label>
+                    <select id="uiLangSelect">
+                        <option value="" data-i18n="f_browser_default_9336">Browser Default</option>
+                        <option value="en">🌍 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="pt">🇵🇹 Português</option>
+                        <option value="hi">🇮🇳 हिन्दी</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="ar">🇦🇪 العربية</option>
+                        <option value="ko">🇰🇷 한국어</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="zh_CN">🇨🇳 简体中文</option>
+                        <option value="zh_TW">🇹🇼 繁體中文</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="uiLangSelect" data-i18n="f_ui_language_08b7">UI Language</label>
-                  <select id="uiLangSelect">
-                      <option value="" data-i18n="f_browser_default_9336">Browser Default</option>
-                      <option value="en">English</option>
-                      <option value="de">Deutsch</option>
-                      <option value="es">Español</option>
-                      <option value="fr">Français</option>
-                      <option value="pt">Português</option>
-                      <option value="hi">हिन्दी</option>
-                      <option value="it">Italiano</option>
-                      <option value="ru">Русский</option>
-                      <option value="ar">العربية</option>
-                      <option value="ko">한국어</option>
-                      <option value="ja">日本語</option>
-                      <option value="zh_CN">简体中文</option>
-                      <option value="zh_TW">繁體中文</option>
-                  </select>
+                <div class="a11y-block">
+                  <h3 data-i18n="f_text_2d5e">Text</h3>
+                  <label for="textScaleRange" style="margin:0;"><span data-i18n="f_text_size_1143">Text size</span> · <span id="textScaleValue">100%</span></label>
+                  <div class="a11y-slider"><span aria-hidden="true" style="font-size:11px;">A</span><input type="range" id="textScaleRange" min="85" max="150" step="5" value="100" /><span aria-hidden="true" style="font-size:18px;">A</span></div>
+                  <div class="setting-group flex justify-between align-center">
+                    <label for="lineSpacingSelect" data-i18n="f_line_spacing_d3de">Line spacing</label>
+                    <select id="lineSpacingSelect">
+                        <option value="compact" data-i18n="f_compact_ad86">Compact</option>
+                        <option value="normal" data-i18n="f_normal_2772">Normal</option>
+                        <option value="relaxed" data-i18n="f_relaxed_38bc">Relaxed</option>
+                    </select>
+                  </div>
+                  <div class="setting-group flex justify-between align-center">
+                    <label for="readableFontToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_easy_read_font_b69f">Easy-read font</label>
+                    <label class="switch"><input type="checkbox" id="readableFontToggle" /><span class="slider-toggle"></span></label>
+                  </div>
+                  <p class="a11y-hint" data-i18n="f_atkinson_hyperlegible_design_954e">Atkinson Hyperlegible, designed for low vision. Latin scripts only.</p>
+                  <div class="a11y-preview" id="a11yPreview" data-i18n="f_the_quick_brown_fox_jumps_ov_fd42">The quick brown fox jumps over the lazy dog. Summaries use this size and spacing.</div>
                 </div>
-                <div class="setting-group flex justify-between align-center mb-3">
-                  <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
-                  <label class="switch">
-                    <input type="checkbox" id="nativeSidePanelToggle" />
-                    <span class="slider-toggle"></span>
-                  </label>
+                <div class="a11y-block">
+                  <h3 data-i18n="f_motion_layout_e4f1">Motion & layout</h3>
+                  <div class="setting-group flex justify-between align-center">
+                    <label for="reduceMotionToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_reduce_motion_ecc7">Reduce motion</label>
+                    <label class="switch"><input type="checkbox" id="reduceMotionToggle" /><span class="slider-toggle"></span></label>
+                  </div>
+                  <p class="a11y-hint" id="motionHint"></p>
+                  <div class="setting-group flex justify-between align-center">
+                    <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
+                    <label class="switch">
+                      <input type="checkbox" id="nativeSidePanelToggle" />
+                      <span class="slider-toggle"></span>
+                    </label>
+                  </div>
                 </div>
 </section>
 <section class="settings-panel" id="settingsPanel-library" data-panel="library" hidden>
