@@ -1,6 +1,12 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — BYOK/Local AI Summarizer + Save for Later + Kindle"
+    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+  },
+  "extensionNameFirefox": {
+    "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
+  },
+  "extensionShortName": {
+    "message": "AI Summary Helper"
   },
   "extensionDescription": {
     "message": "Summarize with your own AI key or Ollama. Built-in RSS reader, save for later, highlights, Kindle export. Open source, no login."
