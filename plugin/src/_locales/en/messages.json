@@ -3789,5 +3789,12 @@
   "f_assign_doi_e263": {
     "message": "🎓 Assign DOI {doi}",
     "description": "Placeholders: {doi} (keep as is)"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Raise the context length in Ollama (OLLAMA_CONTEXT_LENGTH) or use a model with a longer context."
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.",
+    "description": "Placeholders: {a} {b} (keep as is)"
   }
 }

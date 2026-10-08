@@ -168,6 +168,27 @@ export function truncateToTokenLimit(text, maxTokens) {
   return text.slice(0, allowedChars);
 }
 
+/** Rough token count (3 characters per token: errs on the high side for English, about right for German). */
+export const estimateTokens = (text) => Math.ceil(String(text || '').length / 3);
+
+/**
+ * Context window to ask Ollama for: the prompt plus room for the reply (summary, HTML comments, reasoning), in steps
+ * (4k / 8k / 16k / 32k) so the model is not reloaded for every page. Ollama clamps this to what the model supports.
+ */
+export function ollamaNumCtx(promptTokens, outputWords = 200) {
+  const need = promptTokens + Math.ceil((Number(outputWords) || 200) * 2.2) + 1800;
+  for (const c of [4096, 8192, 16384, 32768]) if (need <= c) return c;
+  return 32768;
+}
+
+/**
+ * Did the model read much less than we sent? `seen` = tokens it evaluated (Ollama's prompt_eval_count), `est` = our estimate.
+ * Small counts are ignored: a cached prompt prefix is not re-evaluated, so very low numbers do not mean truncation.
+ */
+export function wasCutOff(seen, est) {
+  return Number(est) > 3000 && Number(seen) > 300 && Number(seen) < Number(est) * 0.7;
+}
+
 /**
  * Split text into chunks of a given size.
  */

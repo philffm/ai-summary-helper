@@ -232,7 +232,15 @@ export function initMainScreen(ui) {
         det.innerHTML = `<summary>${esc(T('What I used'))}</summary>`
             + `<ul>${contextRows(ctx).map(r => `<li data-k="${r.key}">${esc(r.text)}</li>`).join('')}</ul>`;
         det.addEventListener('toggle', () => setUsedOpen(det.open));
-        return det;
+        const cut = contextRows(ctx).find(r => r.warn);
+        if (!cut) return det;
+        const box = document.createElement('div');
+        const note = document.createElement('div');
+        note.className = 'sc-cut'; note.setAttribute('role', 'note');
+        const hint = T('Raise the context length in Ollama (OLLAMA_CONTEXT_LENGTH) or use a model with a longer context.');
+        note.append(Object.assign(document.createElement('strong'), { textContent: '⚠ ' + cut.text }), document.createElement('br'), document.createTextNode(hint));
+        box.append(note, det);
+        return box;
     };
 
     const composer = createComposer(bar, {

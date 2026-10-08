@@ -26,6 +26,7 @@ export function contextRows(ctx = {}) {
         text: T('Page text · {n} words', { n: words.toLocaleString('en-US') }) + (ctx.host ? ` · ${ctx.host}` : '')
             + (ctx.shortened ? ' · ' + T('shortened to fit') : '')
     });
+    if (ctx.seenTokens > 0 && ctx.pageTokens > 0) rows.push({ key: 'cut', warn: true, text: T('The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.', { a: ctx.seenTokens.toLocaleString('en-US'), b: ctx.pageTokens.toLocaleString('en-US') }) });
     if (ctx.highlights > 0) rows.push({ key: 'highlights', text: T('Your highlights · {n}', { n: ctx.highlights }) });
     if (ctx.focus) rows.push({ key: 'focus', text: T('Your focus question') });
     if (ctx.source) rows.push({ key: 'source', text: T('Feed item from {host}', { host: ctx.source }) });

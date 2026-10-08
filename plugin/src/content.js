@@ -10,6 +10,9 @@ import { paperIndexFields, detectPaperInText, applyScholarly, matchPagePaper } f
 import {
   getAllTextContent,
   truncateToTokenLimit,
+  estimateTokens,
+  ollamaNumCtx,
+  wasCutOff,
   inlineAndCompressImages,
   markdownToHtml,
   stripReasoning
@@ -486,9 +489,10 @@ import {
 
     // Tell the popup what this summary is built from (shown as "What I used"). Only things that are
     // really sent to the model: page text, the user's highlights, the focus question, the feed source.
+    let ctxMsg = null;
     {
       const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
-      relay('summaryContext', {
+      relay('summaryContext', ctxMsg = {
         words: (truncatedContent.match(/\S+/g) || []).length,
         shortened: truncatedContent.length < contentText.length,
         host: attached && !pageMatch ? 'PDF' : hostOf(window.location.href),
@@ -586,6 +590,7 @@ import {
 
           const headers = { 'Content-Type': 'application/json' };
           let requestBody;
+          let promptTokensEst = 0;
           let finalApiUrl = apiUrl;
 
           // 🔥 IMPORTANT: This tells the AI to return EXACT verbatim quotes so `indexOf()` never fails
@@ -622,14 +627,23 @@ import {
             const { [SK.installId]: installId } = await chrome.storage.local.get(SK.installId);
             if (installId) headers['X-Install-ID'] = installId;
 
-            requestBody = JSON.stringify({
+            const userMessage = `Language: ${languageEnglishName(selectedLanguage)}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${truncatedContent}\n\n${finalReminder}`;
+            const body = {
               model: modelIdentifier,
               messages: [
                 { role: 'system', content: systemPrompt },
-                { role: 'user', content: `Language: ${languageEnglishName(selectedLanguage)}. Limit: ${summaryLength} words. Instruction: ${prompt}. Additional Context/Questions: ${additionalQuestions}. Content: ${truncatedContent}\n\n${finalReminder}` }
+                { role: 'user', content: userMessage }
               ],
               stream: true
-            });
+            };
+            // Ollama silently cuts the prompt to its default 4096-token window (keeping only the first few tokens and the tail).
+            // Ask for a window that fits this page, and tell the popup what we sent so it can warn when it still does not fit.
+            if (activeService === 'ollama' && /\/api\/chat\b/.test(finalApiUrl)) {
+              promptTokensEst = estimateTokens(systemPrompt + userMessage);
+              body.options = { num_ctx: ollamaNumCtx(promptTokensEst, summaryLength) };
+              if (ctxMsg) relay('summaryContext', ctxMsg = { ...ctxMsg, pageTokens: promptTokensEst, numCtx: body.options.num_ctx });
+            }
+            requestBody = JSON.stringify(body);
           }
 
           if (debugEnabled) {
@@ -884,6 +898,9 @@ import {
                   const cleanLine = line.startsWith('data: ') ? line.substring(6) : line;
                   const json = JSON.parse(cleanLine);
 
+                  if (activeService === 'ollama' && json.done && typeof json.prompt_eval_count === 'number' && ctxMsg && wasCutOff(json.prompt_eval_count, promptTokensEst)) {
+                    relay('summaryContext', ctxMsg = { ...ctxMsg, seenTokens: json.prompt_eval_count });   // the popup shows the "cut off" notice
+                  }
                   if (activeService === 'gemini') {
                     contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
                   } else if (activeService === 'ollama') {

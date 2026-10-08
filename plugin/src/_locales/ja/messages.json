@@ -3631,5 +3631,11 @@
   },
   "f_assign_doi_e263": {
     "message": "🎓 DOI {doi} を割り当て"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Ollama のコンテキスト長（OLLAMA_CONTEXT_LENGTH）を増やすか、より長いコンテキストのモデルを使ってください。"
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "モデルは {b} トークンのうち約 {a} しか読めませんでした。コンテキストウィンドウが小さすぎるため、Ollama が残りを切り捨てました。"
   }
 }

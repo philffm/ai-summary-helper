@@ -3613,5 +3613,11 @@
   },
   "f_assign_doi_e263": {
     "message": "🎓 DOI {doi} 지정"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Ollama의 컨텍스트 길이(OLLAMA_CONTEXT_LENGTH)를 늘리거나 더 긴 컨텍스트의 모델을 사용하세요."
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "모델이 {b}개 토큰 중 약 {a}개만 읽었습니다. 컨텍스트 창이 너무 작아 Ollama가 나머지를 잘라냈습니다."
   }
 }

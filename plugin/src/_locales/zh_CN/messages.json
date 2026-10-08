@@ -3631,5 +3631,11 @@
   },
   "f_assign_doi_e263": {
     "message": "🎓 指定 DOI {doi}"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "请在 Ollama 中增大上下文长度（OLLAMA_CONTEXT_LENGTH），或使用上下文更长的模型。"
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "模型只读取了 {b} 个令牌中的约 {a} 个。由于上下文窗口太小，Ollama 截掉了其余部分。"
   }
 }

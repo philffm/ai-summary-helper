@@ -3547,3 +3547,6 @@ body[data-screen="feeds"]:has(#feedControls:not(.scroll-hidden)) .header::before
 body[data-screen="history"]:has(#historyTopBar:not(.scroll-hidden):not([style*="display: none"])) .header::before,
 body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="display: none"])) .header::before { display: none; }
 .header, .header::before { transition: background-color .2s ease, opacity .2s ease; }
+
+.sc-cut { margin: 0 0 8px; padding: 10px 12px; border: 1px solid var(--warn, #e4a83e); border-radius: var(--radius-md); background: color-mix(in srgb, var(--warn, #e4a83e) 12%, transparent); color: var(--text-primary); font-size: var(--fs-sm); line-height: 1.45; }
+.sc-cut strong { font-weight: 600; }

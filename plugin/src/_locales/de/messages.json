@@ -3631,5 +3631,11 @@
   },
   "f_assign_doi_e263": {
     "message": "🎓 DOI {doi} zuweisen"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Erhöhe die Kontextlänge in Ollama (OLLAMA_CONTEXT_LENGTH) oder nutze ein Modell mit längerem Kontext."
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "Das Modell hat nur etwa {a} von {b} Tokens gelesen. Ollama hat den Rest abgeschnitten, weil das Kontextfenster zu klein ist."
   }
 }

@@ -3631,5 +3631,11 @@
   },
   "f_assign_doi_e263": {
     "message": "🎓 DOI {doi} असाइन करें"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Ollama में संदर्भ लंबाई (OLLAMA_CONTEXT_LENGTH) बढ़ाएँ या लंबे संदर्भ वाला मॉडल इस्तेमाल करें।"
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "मॉडल ने {b} टोकन में से केवल लगभग {a} पढ़े। संदर्भ विंडो बहुत छोटी होने के कारण Ollama ने बाकी हिस्सा काट दिया।"
   }
 }
