@@ -2992,7 +2992,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
    Hides on scroll down, returns on scroll up (`.scroll-hidden`, toggled from JS). */
 .screen.has-topbar { padding-top: var(--header-h); }
 .topbar {
-  position: sticky; top: var(--header-h); z-index: var(--z-bar);
+  position: sticky; top: 0; z-index: var(--z-bar);   /* sticky offsets are measured inside the screen padding, which already clears the header */
   margin: 0 calc(-1 * var(--spacing-s-4)) 12px;
   padding: 10px var(--spacing-s-4);
   background: var(--glass-base);
