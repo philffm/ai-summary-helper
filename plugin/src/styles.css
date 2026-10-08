@@ -375,10 +375,15 @@ h3 {
   justify-content: space-between;
   gap: var(--spacing-s-3);
   padding: var(--spacing-s-3) var(--spacing-s-5) var(--spacing-s-2);
-  background: var(--glass-base);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  border-bottom: 1px solid var(--glass-border);
+  background: transparent;
+  border-bottom: 0;
+}
+/* Same idea as .controls-bar::before, mirrored: the page fades out under the header (no bar edge, no hard border). */
+.header::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  left: 50%; width: 100vw; transform: translateX(-50%);
+  top: 0; bottom: -32px;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 94%, transparent) 0, color-mix(in srgb, var(--bg-page) 88%, transparent) calc(100% - 36px), color-mix(in srgb, var(--bg-page) 50%, transparent) calc(100% - 16px), transparent 100%);
 }
 
 .logoheader {
