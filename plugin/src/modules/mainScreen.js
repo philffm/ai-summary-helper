@@ -530,6 +530,7 @@ export function initMainScreen(ui) {
             id: article.id, url: f.url || article.url || '', title: f.title || article.title || '', content: f.content || '', summary: f.summary || article.summary || '',
             meta: f.meta || (f.favicon ? { favicon: f.favicon } : {}), turns: Array.isArray(turns) ? turns : [], pool: Array.isArray(pool) ? pool.slice() : [], bubble, detached: true
         };
+        try { instant && instant.refresh(); } catch (_) { /* optional */ }
         const host = document.createElement('div');
         host.className = 'ask-thread';
         bubble.after(host);
@@ -603,6 +604,7 @@ export function initMainScreen(ui) {
             try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
+            try { instant && instant.refresh(); } catch (_) { /* optional */ }
             paintAskCount();
             const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });
             qEl.remove(); ans.replaceWith(el);
@@ -743,7 +745,8 @@ export function initMainScreen(ui) {
     let instant = null;
     try {
         const pill = document.querySelector('.composer-pill');
-        instant = initInstantRead({ chip: document.getElementById('chipSound'), panel: document.getElementById('panelSound'), barHost: pill && pill.parentElement });
+        instant = initInstantRead({ chip: document.getElementById('chipSound'), panel: document.getElementById('panelSound'), barHost: pill && pill.parentElement, button: document.getElementById('readAloudBtn'),
+            fallback: () => { const c = conversation; if (!c) return ''; const last = c.turns && c.turns.length ? c.turns[c.turns.length - 1] : null; return (last && last.a) || c.summary || ''; } });
     } catch (_) { /* reading aloud is optional */ }
     const handleStreamMessage = (msg) => {
         if (instant) { try { instant.onMessage(msg); } catch (_) { /* never block the stream */ } }

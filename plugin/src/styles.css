@@ -92,7 +92,7 @@
   --bottom-nav-height: 60px;
   --controls-bottom-gap: 8px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
-  --controls-overlay-height: 230px;
+  --controls-overlay-height: 250px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
 
   /* scrollbar */
@@ -3616,3 +3616,11 @@ body[data-surface="sidebar"] { min-width: 0; }
 .sr-b { border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 12px; min-width: 28px; min-height: 28px; padding: 0 6px; border-radius: 999px; }
 .sr-b:hover, .sr-b:focus-visible { background: rgba(128,128,128,.18); }
 .sr-b.is-on { opacity: .6; }
+
+/* Permanent read button next to the primary composer button */
+.composer-pill .composer-read { flex: none; width: 36px; height: 36px; min-height: 36px; margin: 0; padding: 0; border-radius: 18px; border: 1px solid var(--outline); background: transparent; color: var(--text-secondary); cursor: pointer; font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+.composer-pill .composer-read[hidden] { display: none; }
+.composer-pill .composer-read:hover:not(:disabled) { background: rgba(128,128,128,.16); color: var(--text-primary, inherit); }
+.composer-pill .composer-read:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.composer-pill .composer-read:disabled { opacity: .4; cursor: default; }
+.composer-pill .composer-read.is-speaking { color: var(--accent); border-color: var(--accent); }

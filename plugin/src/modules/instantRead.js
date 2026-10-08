@@ -9,7 +9,7 @@ const uiLang = () => { try { return ttsLang((typeof browser !== 'undefined' ? br
 
 const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(/[*_`#>]+/g, '').replace(/\[(.*?)\]\([^)]*\)/g, '$1');
 
-export function initInstantRead({ chip, panel, barHost }) {
+export function initInstantRead({ chip, panel, barHost, button, fallback }) {
   const reader = getReader();
   let chain = Promise.resolve(), on = false, dismissed = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null, done = false;
 
@@ -22,13 +22,42 @@ export function initInstantRead({ chip, panel, barHost }) {
     chip.title = T('Instant read'); chip.setAttribute('aria-label', T('Instant read') + ': ' + (on ? T('On') : T('Off')));
   };
 
+  const fallbackUnits = async () => {
+    let html = ''; try { html = (fallback && fallback()) || ''; } catch (_) { html = ''; }
+    if (!html) return [];
+    let code = 'en'; try { code = (await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'; } catch (_) { /* default */ }
+    sumLang = ttsLang(code);
+    return speakable(streamText(html), true).map(text => ({ text, lang: sumLang }));
+  };
+  const paintButton = () => {
+    if (!button) return;
+    const st = reader.state, mine = st.meta && st.meta.tool === 'instant';
+    const running = mine && ['playing', 'paused', 'waiting'].includes(st.state);
+    button.hidden = !ready;
+    const label = running ? (st.state === 'paused' ? T('Play') : T('Pause')) : T('Read again');
+    button.title = label; button.setAttribute('aria-label', label);
+    const ic = button.querySelector('.composer-read-ic'); if (ic) ic.textContent = running ? (st.state === 'paused' ? '▶' : '❚❚') : '🔊';
+    button.classList.toggle('is-speaking', !!running);
+    let has = lastUnits.length > 0; try { has = has || !!(fallback && fallback()); } catch (_) { /* none */ }
+    button.disabled = !running && !has;
+  };
+  if (button) button.addEventListener('click', async () => {
+    const st = reader.state;
+    if (st.meta && st.meta.tool === 'instant' && ['playing', 'paused', 'waiting'].includes(st.state)) { reader.toggle(); return; }
+    const units = lastUnits.length ? lastUnits : await fallbackUnits();
+    if (!units.length) return;
+    if (!lastUnits.length) lastUnits = units;
+    await reader.start(units, sumLang, { meta: { tool: 'instant', lang: sumLang } });
+  });
+
   const paintBar = () => {
+    paintButton();
     const st = reader.state, mine = st.meta && st.meta.tool === 'instant';
     const running = mine && ['playing', 'paused', 'waiting'].includes(st.state);
     if (running) { wasReading = true; dismissed = false; }
     // "Finished" is derived from what is true now, not from having seen the right transition: nothing is playing, the run
     // is over and there is text to read again.
-    done = !running && !active && lastUnits.length > 0 && !dismissed;
+    done = false;   // finished state lives in the permanent button next to the composer button
     if (!running && !done) { if (bar) bar.hidden = true; return; }
     if (!bar || !bar.isConnected) { bar = mk('div', 'sr-bar'); bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', T('Instant read')); if (!barHost) return; barHost.prepend(bar); }
     bar.hidden = false; bar.textContent = '';
@@ -70,6 +99,7 @@ export function initInstantRead({ chip, panel, barHost }) {
 
   const ready_ = reader.ready.then(async (ok) => {
     ready = ok;
+    paintButton();
     if (!ok) { if (chip) chip.hidden = true; return; }
     on = !!(await reader.prefs()).instant; paintChip();
     if (chip) chip.addEventListener('click', () => setTimeout(() => { if (panel && panel.style.display === 'block') paintPanel(); }, 0));
@@ -118,9 +148,11 @@ export function initInstantRead({ chip, panel, barHost }) {
 
   return {
     ready: ready_,
+    refresh: paintButton,
     get on() { return on; },
     onMessage(msg) {
       if (!msg) return;
+      setTimeout(paintButton, 0);
       // Strictly in order: begin() is async (language detection), so progress / completion wait for it.
       if (msg.action === 'summaryContext') chain = chain.then(() => begin(msg)).catch(() => {});
       else if (msg.action === 'summaryProgress' && msg.preview) chain = chain.then(() => feed(msg.preview)).catch(() => {});
