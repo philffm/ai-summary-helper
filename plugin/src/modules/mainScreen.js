@@ -10,6 +10,7 @@ import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { modalOpen } from './shortcuts.js';
 import { initInstantRead } from './instantRead.js';
+import { getReader } from './reader.js';
 import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
 import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
@@ -90,6 +91,27 @@ export function initMainScreen(ui) {
                 c.type = 'button'; c.className = 'ask-count'; c.textContent = TN(article.qaCount, '💬 {n} reply', '💬 {n} replies');
                 c.addEventListener('click', go);
                 row.appendChild(c);
+            }
+            // 🔊 Read again: reads this card's summary aloud (pause / play while it speaks). Hidden where the device has no speech engine.
+            if (article.summary) {
+                const rb = document.createElement('button');
+                rb.type = 'button'; rb.className = 'read-btn'; rb.hidden = true;
+                const reader = getReader();
+                const mine = () => { const m = reader.state.meta; return !!(m && m.tool === 'instant' && m.id === article.id && ['playing', 'paused', 'waiting'].includes(reader.state.state)); };
+                const paint = () => {
+                    if (!bubble.isConnected && off) { off(); return; }
+                    const playing = mine(), paused = playing && reader.state.state === 'paused';
+                    rb.textContent = playing ? (paused ? '▶ ' + T('Play') : '❚❚ ' + T('Pause')) : '🔊 ' + T('Read again');
+                    rb.classList.toggle('is-speaking', playing);
+                };
+                const off = reader.onState(paint);
+                reader.ready.then((ok) => { rb.hidden = !ok; paint(); });
+                rb.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (mine()) { reader.toggle(); return; }
+                    if (instant) instant.readHtml(article.summary, article.id);
+                });
+                row.appendChild(rb);
             }
             bubble.appendChild(row);
         }
@@ -745,8 +767,7 @@ export function initMainScreen(ui) {
     let instant = null;
     try {
         const pill = document.querySelector('.composer-pill');
-        instant = initInstantRead({ chip: document.getElementById('chipSound'), panel: document.getElementById('panelSound'), barHost: pill && pill.parentElement, button: document.getElementById('readAloudBtn'),
-            fallback: () => { const c = conversation; if (!c) return ''; const last = c.turns && c.turns.length ? c.turns[c.turns.length - 1] : null; return (last && last.a) || c.summary || ''; } });
+        instant = initInstantRead({ chip: document.getElementById('chipSound'), panel: document.getElementById('panelSound'), barHost: pill && pill.parentElement, });
     } catch (_) { /* reading aloud is optional */ }
     const handleStreamMessage = (msg) => {
         if (instant) { try { instant.onMessage(msg); } catch (_) { /* never block the stream */ } }

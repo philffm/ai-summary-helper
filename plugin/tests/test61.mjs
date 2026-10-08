@@ -20,6 +20,7 @@ assert.equal(bubbles.length, 2);
 const [b1, b2] = bubbles;   // oldest first
 assert(b1.querySelector('.ask-btn') && /1 reply/.test(b1.querySelector('.ask-count').textContent), 'Ask + count');
 assert(!b2.querySelector('.ask-count'));
+assert(b1.querySelector('.ask-actions .read-btn'), 'Read again button sits in the card action row (hidden until a speech engine exists)');
 // Ask on the older card: thread directly after that card, stored turn shown, follow-up composer
 b1.querySelector('.ask-btn').click(); await tick(120);
 const host = b1.nextElementSibling;

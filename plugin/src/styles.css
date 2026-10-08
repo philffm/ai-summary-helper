@@ -3617,10 +3617,10 @@ body[data-surface="sidebar"] { min-width: 0; }
 .sr-b:hover, .sr-b:focus-visible { background: rgba(128,128,128,.18); }
 .sr-b.is-on { opacity: .6; }
 
-/* Permanent read button next to the primary composer button */
-.composer-pill .composer-read { flex: none; width: 36px; height: 36px; min-height: 36px; margin: 0; padding: 0; border-radius: 18px; border: 1px solid var(--outline); background: transparent; color: var(--text-secondary); cursor: pointer; font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
-.composer-pill .composer-read[hidden] { display: none; }
-.composer-pill .composer-read:hover:not(:disabled) { background: rgba(128,128,128,.16); color: var(--text-primary, inherit); }
-.composer-pill .composer-read:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.composer-pill .composer-read:disabled { opacity: .4; cursor: default; }
-.composer-pill .composer-read.is-speaking { color: var(--accent); border-color: var(--accent); }
+
+/* Read again: secondary button in a summary card's action row, next to Ask / replies */
+.read-btn { border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-muted); border-radius: var(--radius-full); padding: 4px 10px; font-size: var(--fs-2xs); cursor: pointer; white-space: nowrap; }
+.read-btn:hover { color: var(--text-primary, inherit); }
+.read-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.read-btn.is-speaking { border-color: var(--accent); color: var(--accent); }
+.read-btn[hidden] { display: none; }

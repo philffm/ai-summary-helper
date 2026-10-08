@@ -149,6 +149,16 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
   return {
     ready: ready_,
     refresh: paintButton,
+    /** Read a finished summary (card button): `id` marks whose text is playing. */
+    async readHtml(html, id) {
+      let code = 'en'; try { code = (await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'; } catch (_) { /* default */ }
+      sumLang = ttsLang(code);
+      const units = speakable(streamText(html), true).map(text => ({ text, lang: sumLang }));
+      if (!units.length) return false;
+      active = false; lastUnits = units; dismissed = false;
+      await reader.start(units, sumLang, { meta: { tool: 'instant', lang: sumLang, id } });
+      return true;
+    },
     get on() { return on; },
     onMessage(msg) {
       if (!msg) return;
