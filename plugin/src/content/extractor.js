@@ -1,5 +1,6 @@
 import { debug } from '../modules/log.js';
 import { getUserHighlightTexts } from './highlighter.js';
+import { ancArticleRoot } from './anchor.js';
 // content/extractor.js
 // Pure page-content extraction & parsing helpers. No DOM event wiring here —
 // these are called by the content.js orchestrator.
@@ -49,9 +50,7 @@ export function getAllTextContent() {
   ];
 
   const articleEl = document.querySelector('#storytext')
-    || document.querySelector('article')
-    || document.querySelector('[role="main"]')
-    || document.querySelector('main')
+    || ancArticleRoot(document)
     || document.querySelector('ytd-text-inline-expander')
     || document.querySelector('ytd-section-list-renderer')
     || document.querySelector('#description')
