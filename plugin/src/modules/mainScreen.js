@@ -13,7 +13,7 @@ import { modalOpen } from './shortcuts.js';
 import { initInstantRead } from './instantRead.js';
 import { getReader } from './reader.js';
 import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
-import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
+import { answerPreview, newTurn, buildPrompt, parseAnswer, joinContinuation } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
 
@@ -237,7 +237,8 @@ export function initMainScreen(ui) {
     const scrollToNewest = () => {
         try {
             const cards = feed.querySelectorAll('.summary-bubble');
-            if (cards.length === 1) { cards[0].scrollIntoView({ block: 'start', behavior: 'auto' }); return; }
+            // a lone card is shown from its top — unless a conversation is running under it: then follow the newest turn
+            if (cards.length === 1 && !feed.querySelector('.chat-turn, .chat-turn-group')) { cards[0].scrollIntoView({ block: 'start', behavior: 'auto' }); return; }
             const sp = scrollParent(feed) || document.getElementById('feedScroll');
             if (sp) sp.scrollTop = sp.scrollHeight;
         } catch (_) { /* layout unavailable */ }
@@ -632,27 +633,48 @@ export function initMainScreen(ui) {
         // A suggested question comes with a short answer: type it out like a person while the full answer is requested.
         const quickText = (conversation.quick && conversation.quick[q]) || '';
         const ans = addTurn('chat-a chat-a--pending', quickText ? '' : T('Thinking…'));
-        let typer = null, fullDone = false, streamed = '';
+        // The model continues the short answer (it is told what is on screen): nothing is wiped, the text just grows.
+        let typer = null, typing = false, typed = '', cont = '', fullDone = false, failed = false;
+        const more = document.createElement('div');
+        more.className = 'chat-more'; more.setAttribute('role', 'status');
+        more.innerHTML = `<span class="chat-more-label">${escapeHtml(T('Thinking more…'))}</span><i></i><i></i><i></i><button type="button" class="chat-more-stop"></button>`;
+        const stopBtn = more.querySelector('.chat-more-stop');
+        stopBtn.textContent = T('■ Stop');
+        const ctrl = new AbortController();
+        let stopped = false;
+        // Happy with the short answer? Stop keeps it (and what was already written) and cancels the request.
+        stopBtn.addEventListener('click', () => { stopped = true; fullDone = true; ctrl.abort(); });
+        const paint = () => {
+            if (failed) return;
+            renderAnswer(ans, typing ? typed : joinContinuation(quickText, cont));
+            more.classList.toggle('is-writing', !typing && !!cont);   // label gone once text flows, the Stop button stays
+            scrollFeed();
+        };
         if (quickText) {
             const reduce = document.documentElement.getAttribute('data-motion') === 'reduce';
-            typer = typeText(quickText, (t) => { renderAnswer(ans, t); scrollFeed(); }, { fast: () => fullDone, instant: reduce });
+            typing = true;
             ans.classList.add('chat-a--quick');
+            ans.after(more);
+            scrollFeed();
+            typer = typeText(quickText, (t) => { typed = t; paint(); }, { fast: () => fullDone, instant: reduce });
+            typer.done.then(() => { typing = false; paint(); });
         }
         try {
             const { system, user } = buildPrompt({ ...conversation, question: q, draft: quickText });
-            let typing = !!typer;
-            if (typer) typer.done.then((ok) => { typing = false; if (ok && streamed) { renderAnswer(ans, streamed); scrollFeed(); } });
-            const raw = await aiComplete(system, user, null, null, (m) => {
-                // Stream the answer in as it is written (cleaned of HTML / code fences / the SOURCES line).
+            const raw = await aiComplete(system, user, null, quickText ? ctrl.signal : null, (m) => {
+                // Stream the continuation in as it is written (cleaned of HTML / code fences / the SOURCES line).
                 const t = m && m.text ? answerPreview(m.text) : '';
                 if (!t) return;
-                streamed = t;
-                if (!typing) { renderAnswer(ans, t); scrollFeed(); }   // while the short answer is still being typed, it keeps going
-                try { instant && instant.chatText(t); } catch (_) { /* optional */ }
+                cont = t;
+                if (!typing) paint();      // while the short answer is still being typed, it keeps going first
+                try { instant && instant.chatText(joinContinuation(quickText, t)); } catch (_) { /* optional */ }
             }, { partial: true });
             fullDone = true;
-            if (typer) await typer.done;       // let the typed answer finish (it speeds up now) before the full one replaces it
-            const { a, sources, questions, quick } = parseAnswer(raw, conversation.content);
+            if (typer) await typer.done;
+            more.remove();
+            const parsed = parseAnswer(raw, conversation.content);
+            const { sources, questions, quick } = parsed;
+            const a = joinContinuation(quickText, parsed.a);
             try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
@@ -666,9 +688,29 @@ export function initMainScreen(ui) {
             renderSuggestions();
             persistConversation();
         } catch (err) {
+            if (stopped) {
+                // Keep the short answer (finish typing at once) and only the complete sentences of what was already written.
+                if (typer) await typer.done;
+                more.remove();
+                const keep = (cont.match(/^[\s\S]*[.!?…。!?](?=\s|$)/) || [''])[0];
+                const a = joinContinuation(quickText, keep);
+                try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
+                const turn = newTurn(conversation.turns, { q, a, sources: [] });
+                conversation.turns.push(turn);
+                try { instant && instant.refresh(); } catch (_) { /* optional */ }
+                paintAskCount();
+                qEl.remove(); ans.replaceWith(turnEl(turn, { onPin: persistConversation, onSource: revealOnPage }));
+                renderSuggestions();
+                persistConversation();
+                fetchSummaryButton.disabled = false;
+                scrollFeed();
+                return;
+            }
+            failed = true;
             if (typer) typer.stop();
+            more.remove();
             try { instant && instant.abort(); } catch (_) { /* optional */ }
-            ans.textContent = '❌ ' + ((err && err.message) || T('AI request failed'));
+            ans.textContent = (quickText ? quickText + '\n' : '') + '❌ ' + ((err && err.message) || T('AI request failed'));
             ans.classList.remove('chat-a--pending');
             renderSuggestions();
         }

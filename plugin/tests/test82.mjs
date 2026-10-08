@@ -10,8 +10,8 @@ chrome.tabs = { query: async () => [{ id: 7, url: 'https://a.example.com/x', tit
   sendMessage: (id, m, cb) => cb && cb(m.action === 'getSummaryState' ? { running: false } : { success: true }), onActivated: { addListener() {} }, onUpdated: { addListener() {} } };
 // the model answers slowly (1.2 s) so the typed short answer is visible meanwhile
 const send = chrome.runtime.sendMessage;
-chrome.runtime.sendMessage = (msg, cb) => { if (msg.action === 'aiComplete') { const res = globalThis.__ai(msg); setTimeout(() => cb && cb(res), 1200); } else send(msg, cb); };
-globalThis.__ai = () => ({ ok: true, text: 'The city paid for the whole project, roughly three million euros, spread over three years.\nQUESTIONS: [{"q":"What happens next?","a":"Phase two starts next spring. It is already funded."}]' });
+chrome.runtime.sendMessage = (msg, cb) => { if (msg.action === 'aiComplete') { const res = globalThis.__ai(msg); setTimeout(() => cb && cb(res), globalThis.__delay || 1200); } else send(msg, cb); };
+globalThis.__ai = (m) => { globalThis.__lastPrompt = m; return { ok: true, text: 'Roughly three million euros in total, spread over three years.\nQUESTIONS: [{"q":"What happens next?","a":"Phase two starts next spring. It is already funded."}]' }; };
 const MS = await imp('modules/mainScreen.js');
 MS.initMainScreen({ showScreen() {} });
 await tick(150);
@@ -31,10 +31,27 @@ await tick(500);
 const t1 = ans().textContent;
 assert(t1.length > t0.length && SHORT.startsWith(t1.replace(/\s…$/, '').trim()) , 'typing in progress: ' + JSON.stringify(t1));
 assert(d.querySelector('.chat-a--quick'), 'marked as quick answer');
-await tick(6000);   // typing + the slow full answer
+assert(d.querySelector('.chat-more') && /Thinking more/.test(d.querySelector('.chat-more').textContent), '"Thinking more…" indicator while waiting');
+// the model's continuation must not wipe what is on screen: every later state starts with the short answer
+let seen = []; for (let i = 0; i < 30; i++) { await tick(250); const e = ans(); if (e) seen.push(e.textContent); }
+const grown = seen.filter(t => t.length > 0 && !t.startsWith('Thinking'));
+assert(grown.length, 'answer text seen');
+for (const t of seen) { if (t.length > SHORT.length) assert(t.startsWith(SHORT), 'continues the typed text, never restarts: ' + JSON.stringify(t)); }
+await tick(2500);
 const turns = [...d.querySelectorAll('.chat-a')].map(e => e.textContent);
-assert(/three million euros/.test(turns[turns.length - 1]), 'full answer replaced it: ' + JSON.stringify(turns));
-assert(!d.querySelector('.chat-a--quick'), 'quick marker gone');
-// the new suggestion with its own short answer is usable
+const last = turns[turns.length - 1];
+assert(last.startsWith(SHORT) && /three million euros/.test(last), 'short answer + continuation: ' + JSON.stringify(last));
+assert(!d.querySelector('.chat-a--quick') && !d.querySelector('.chat-more'), 'markers gone');
 assert([...d.querySelectorAll('.chat-suggest-chip')].some(c => c.textContent === 'What happens next?'), 'next suggestion');
+// Stop: happy with the short answer → the request is cancelled and the short answer is kept as the answer
+globalThis.__delay = 60000;
+const next = [...d.querySelectorAll('.chat-suggest-chip')].find(c => c.textContent === 'What happens next?'); next.click();
+await tick(300);
+assert(d.querySelector('.chat-more-stop'), 'Stop button next to "Thinking more…"');
+await tick(5000);   // short answer typed completely, the model is still thinking (1.2 s delay is over soon, so stop right away)
+d.querySelector('.chat-more-stop')?.click();
+await tick(600);
+const all = [...d.querySelectorAll('.chat-a')].map(e => e.textContent);
+assert(/Phase two starts next spring\. It is already funded\./.test(all[all.length - 1]), 'kept the short answer: ' + JSON.stringify(all[all.length - 1]));
+assert(!d.querySelector('.chat-more'), 'indicator gone');
 console.log('TEST 82 OK');

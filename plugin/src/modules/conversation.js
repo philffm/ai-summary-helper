@@ -56,9 +56,29 @@ export function buildPrompt({ title, content, summary, turns = [], question, dra
     const user = `PAGE TITLE: ${title || ''}\n\nPAGE TEXT:\n${plain(content).slice(0, MAX_PAGE_CHARS)}\n\n`
         + `SUMMARY:\n${plain(summary)}\n\n`
         + (history ? `EARLIER QUESTIONS:\n${history}\n\n` : '')
-        + (draft ? `SHORT ANSWER THE READER ALREADY SEES (write the full answer, consistent with it, and go deeper):\n${draft}\n\n` : '')
+        + (draft ? `THE READER ALREADY SEES THE FIRST PART OF YOUR ANSWER (it is being typed out on screen):\n${draft}\n`
+            + 'Continue directly after it: do NOT repeat or rephrase it, write only what follows (more depth, details, context) in the same language and style. '
+            + 'Then the SOURCES and QUESTIONS lines as usual.\n\n' : '')
         + `QUESTION: ${question}`;
     return { system, user };
+}
+
+/**
+ * Short answer already on screen + the model's continuation → one answer. A model that repeats the start anyway
+ * is tolerated (the repeated part is cut); a list or new paragraph continues on its own line.
+ */
+export function joinContinuation(head, cont) {
+    const h = String(head || '').trim();
+    let c = String(cont || '').trim();
+    if (!h) return c;
+    if (!c) return h;
+    const nh = norm(h);
+    if (nh.length >= 20 && norm(c).startsWith(nh)) {      // the model started over: drop the repeated part
+        const words = h.split(/\s+/).length;
+        c = c.split(/\s+/).slice(words).join(' ').trim();
+        if (!c) return h;
+    }
+    return h + (/^(?:[-*•]\s|\d+[.)]\s|\n)/.test(c) ? '\n\n' : ' ') + c;
 }
 
 /** Split the model reply into the answer and its source quotes; quotes not found in the page text are dropped. */

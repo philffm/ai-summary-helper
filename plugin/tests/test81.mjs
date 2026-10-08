@@ -6,7 +6,7 @@ import { pathToFileURL } from 'url';
 const SRC = process.env.AISH_SRC;
 const imp = (f) => import(pathToFileURL(path.join(SRC, f)).href);
 const { parseSuggestionList } = await imp('modules/suggestions.js');
-const { parseAnswer, buildPrompt } = await imp('modules/conversation.js');
+const { parseAnswer, buildPrompt, joinContinuation } = await imp('modules/conversation.js');
 const { typeText, typingDelay } = await imp('modules/typewriter.js');
 
 // 1) objects
@@ -53,4 +53,11 @@ assert.deepEqual(log2, ['abcd', 'abcdefgh']);
 // stop() ends it without finishing; instant shows everything at once
 const q3 = []; const t3 = typeText('abc', () => {}, { setTimer: (fn) => { q3.push(fn); return 1; }, clearTimer: () => {} }); t3.stop(); assert.equal(await t3.done, false);
 const log4 = []; const t4 = typeText('abc', (s) => log4.push(s), { instant: true }); assert.deepEqual(log4, ['abc']); assert.equal(await t4.done, true);
+// continuation: appended to the short answer; a model that starts over is tolerated; lists go on their own paragraph
+const H = 'The city paid for it. It was funded in 2019.';
+assert.equal(joinContinuation(H, 'More detail follows here.'), H + ' More detail follows here.');
+assert.equal(joinContinuation(H, H + ' Then more detail.'), H + ' Then more detail.', 'repeated start is cut');
+assert.equal(joinContinuation(H, H), H); assert.equal(joinContinuation('', 'Only the model.'), 'Only the model.'); assert.equal(joinContinuation(H, ''), H);
+assert.equal(joinContinuation(H, '- first\n- second'), H + '\n\n- first\n- second');
+assert(/Continue directly after it/.test(p.user), 'prompt tells the model to continue');
 console.log('TEST 81 OK');
