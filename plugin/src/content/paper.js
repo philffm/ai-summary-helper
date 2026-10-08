@@ -98,6 +98,13 @@ export function detectPaperInText(text, loc = window.location) {
   if (!head) return null;
   const host = String(loc.hostname || '').replace(/^www\./, '');
   const preprint = PP_PREPRINT_HOSTS.test(host) || /\barXiv:\d{4}\.\d{4,5}/i.test(head);
+  // Journals print their own DOI in the page header ("https://doi.org/10.1257/…", "DOI: 10.1038/…"): in the first lines it is the paper's own.
+  const early = head.slice(0, 1500).match(/(?:\bdoi\s*[:\s]\s*|doi\.org\/)(10\.\d{4,9}\/[^\s"'<>]+)/i);
+  if (early) {
+    const own = { state: 'yes', doi: ppCap(normalizeDoi(early[1]), 200) };
+    if (preprint) own.preprint = true;
+    return own;
+  }
   const m = head.match(PP_DOI_RE);
   const hasAbstract = /\babstract\b/i.test(head);
   if (!(m && hasAbstract) && !preprint && !(hasAbstract && /\b(keywords?|references|introduction)\b/i.test(head))) return null;
