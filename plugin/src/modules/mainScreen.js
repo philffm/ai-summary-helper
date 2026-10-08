@@ -589,6 +589,7 @@ export function initMainScreen(ui) {
         feed.querySelector('.chat-suggest')?.remove();
         additionalQuestionsInput.value = '';
         fetchSummaryButton.disabled = true;
+        try { instant && instant.startChat(q); } catch (_) { /* optional */ }
         const qEl = addTurn('chat-q', q);
         const ans = addTurn('chat-a chat-a--pending', T('Thinking…'));
         try {
@@ -596,9 +597,10 @@ export function initMainScreen(ui) {
             const raw = await aiComplete(system, user, null, null, (m) => {
                 // Stream the answer in as it is written (cleaned of HTML / code fences / the SOURCES line).
                 const t = m && m.text ? answerPreview(m.text) : '';
-                if (t) { renderAnswer(ans, t); scrollFeed(); }
+                if (t) { renderAnswer(ans, t); scrollFeed(); try { instant && instant.chatText(t); } catch (_) { /* optional */ } }
             }, { partial: true });
             const { a, sources, questions } = parseAnswer(raw, conversation.content);
+            try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
             const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
             conversation.turns.push(turn);
             paintAskCount();
@@ -609,6 +611,7 @@ export function initMainScreen(ui) {
             renderSuggestions();
             persistConversation();
         } catch (err) {
+            try { instant && instant.abort(); } catch (_) { /* optional */ }
             ans.textContent = '❌ ' + ((err && err.message) || T('AI request failed'));
             ans.classList.remove('chat-a--pending');
             renderSuggestions();

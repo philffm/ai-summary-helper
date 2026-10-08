@@ -20,7 +20,7 @@
         function speakAt(i) {
             cancelSpeech();
             const my = gen;
-            if (i >= queue.length && open && queue.length) { idx = queue.length; state = 'waiting'; emit(); return; }   // streaming: more sentences are coming
+            if (i >= queue.length && open) { idx = queue.length; state = 'waiting'; emit(); return; }   // streaming: more sentences are coming
             if (i < 0 || i >= queue.length) { state = 'idle'; idx = 0; queue = []; open = false; emit(); return; }
             idx = i; state = 'playing'; error = ''; emit();
             const it = queue[i];

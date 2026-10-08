@@ -1,11 +1,13 @@
 // Instant read: speak the summary while the model is still writing it. Title and site are announced as soon as Fetch
 // starts; then every finished sentence of the stream is queued for the voice (never half a sentence).
 import { T } from './feedI18n.js';
-import { getReader, streamText, finishedSentences, detectLang, pickVoice } from './reader.js';
+import { getReader, streamText, speakable, detectLang, pickVoice } from './reader.js';
 import { ttsLang, langBase } from './languages.js';
 
 const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
 const uiLang = () => { try { return ttsLang((typeof browser !== 'undefined' ? browser : chrome).i18n.getUILanguage()); } catch (_) { return ttsLang(document.documentElement.lang || 'en'); } };
+
+const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(/[*_`#>]+/g, '').replace(/\[(.*?)\]\([^)]*\)/g, '$1');
 
 export function initInstantRead({ chip, panel, barHost }) {
   const reader = getReader();
@@ -94,7 +96,7 @@ export function initInstantRead({ chip, panel, barHost }) {
   }
   function feed(preview) {
     if (!active) return;
-    const list = finishedSentences(streamText(preview));
+    const list = speakable(streamText(preview));
     const more = list.slice(spoken);
     if (!more.length) return;
     spoken = list.length; lastUnits = lastUnits.concat(more.map(text => ({ text })));
@@ -103,7 +105,7 @@ export function initInstantRead({ chip, panel, barHost }) {
   function complete(summaryHtml) {
     if (!active) return;
     active = false;
-    const list = finishedSentences(streamText(summaryHtml), true);
+    const list = speakable(streamText(summaryHtml), true);
     const more = list.slice(spoken); spoken = list.length;
     lastUnits = list.map(text => ({ text, lang: sumLang }));
     if (more.length) reader.append(more.map(text => ({ text, lang: sumLang })), sumLang);
@@ -121,6 +123,17 @@ export function initInstantRead({ chip, panel, barHost }) {
       else if (msg.action === 'summaryComplete') complete(msg.summary);
       else if (msg.action === 'summaryError' || msg.action === 'summaryCancelled') abort();
     },
-    abort
+    abort,
+    /** Follow-up answers: same stream, no title announcement. */
+    async startChat(question) {
+      if (!on || !ready || active) return;
+      active = true; spoken = 0; done = false; lastUnits = [];
+      let base = 'en'; try { base = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* default */ }
+      sumLang = question ? (ttsLang((await detectLang(question)) || '') || base) : base;
+      if (!active) return;
+      await reader.start([], sumLang, { open: true, meta: { tool: 'instant', lang: sumLang } });
+    },
+    chatText(text) { feed(plain(text)); },
+    chatDone(text) { complete(plain(text)); }
   };
 }

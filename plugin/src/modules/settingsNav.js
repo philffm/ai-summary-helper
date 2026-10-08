@@ -44,7 +44,6 @@ const INDEX = [
     ['library', N_('Clean up & merge tags'), 'cleanupTagsButton', 'tags duplicates merge clean on-device'],
     ['library', N_('Delete history'), 'deleteHistoryButton', 'danger erase clear remove articles archive'],
     ['library', N_('Delete settings'), 'deleteSettingsButton', 'danger reset erase remove'],
-    ['about', N_('Compatible tools'), 'compatibleToolsList', 'apps extensions tools integrations'],
     ['about', N_('Feedback · contact · donate'), 'settingsPanel-about', 'bug support feedback contact donation help'],
     ['about', N_('Version & GitHub'), 'versionNumber', 'version contribute open source github'],
 ];
@@ -113,7 +112,7 @@ async function refreshSubtitles() {
     const theme = selectedText('themeSeg'); const lang = selectedText('uiLangSelect');
     set('appearance', [theme, lang].filter(Boolean).join(' · ') || T('Theme · language · side panel'));
     const v = $('versionNumber');
-    set('about', T('Compatible tools') + (v ? ' · v' + v.textContent.trim() : ''));
+    set('about', T('Feedback · contact · donate') + (v ? ' · v' + v.textContent.trim() : ''));
 }
 
 function showHome() {

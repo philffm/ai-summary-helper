@@ -123,3 +123,24 @@ export function finishedSentences(text, all = false) {
   const done = all ? parts : parts.slice(0, -1);
   return done.filter(x => /[\p{L}\p{N}]/u.test(x)).flatMap(x => sentences(x));
 }
+
+const wordCount = (s) => { const w = s.trim().split(/\s+/).filter(Boolean).length; return w <= 1 ? Math.round(s.length / 3) : w; };
+/**
+ * Units for streaming speech: finished sentences, and — to start sooner — clauses cut at , ; : – once at least `minWords`
+ * words are collected. Prefix-stable: more text never changes units that were already returned, so a running stream can
+ * simply skip the first N. The unfinished tail is held back unless `all`.
+ */
+export function speakable(text, all = false, minWords = 6) {
+  const parts = String(text || '').split(/\n+|(?<=[.!?。！？…])\s+/).map(x => x.trim()).filter(Boolean);
+  const out = [];
+  parts.forEach((part, i) => {
+    const tail = i === parts.length - 1 && !all && !/[.!?。！？…]$/.test(part) ;
+    if (!/[\p{L}\p{N}]/u.test(part)) return;
+    const raw = part.split(/(?<=[,;:，；：、–—])\s+/);
+    if (tail) raw.pop();            // the last piece may still be growing
+    let buf = '';
+    for (const p of raw) { buf = buf ? buf + ' ' + p : p; if (wordCount(buf) >= minWords) { out.push(...sentences(buf)); buf = ''; } }
+    if (!tail && buf) out.push(...sentences(buf));
+  });
+  return out;
+}

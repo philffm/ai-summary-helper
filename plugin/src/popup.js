@@ -14,7 +14,6 @@ import { languageMatches } from './modules/languages.js';
 import { initShortcuts } from './modules/shortcuts.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
-import { initToolsManager } from './modules/toolsManager.js';
 import { initFeedManager } from './modules/feedManager.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
@@ -55,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // initModelManager(ui); // Not exported from modelManager.js
     initSettingsManager(ui);
     initLanguageManager(ui);
-    initToolsManager(ui);
     initFeedManager(ui);
     initSettingsNav(ui);
     if (window.initPodcastManager) {
