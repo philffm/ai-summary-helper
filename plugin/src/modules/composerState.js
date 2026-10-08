@@ -27,7 +27,11 @@ export function contextRows(ctx = {}) {
             + (ctx.shortened ? ' · ' + T('shortened to fit') : '')
     });
     if (ctx.parts > 1) rows.push({ key: 'parts', text: T('Read in {n} parts, because the model\'s context window ({w} tokens) is too small for the whole page.', { n: ctx.parts, w: (ctx.window || 0).toLocaleString('en-US') }) });
-    if (ctx.seenTokens > 0 && ctx.pageTokens > 0) rows.push({ key: 'cut', warn: true, text: T('The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.', { a: ctx.seenTokens.toLocaleString('en-US'), b: ctx.pageTokens.toLocaleString('en-US') }) });
+    if (ctx.seenTokens > 0 && ctx.pageTokens > 0) {
+        const a = ctx.seenTokens.toLocaleString('en-US'), b = ctx.pageTokens.toLocaleString('en-US');
+        if (ctx.seenTokens < ctx.pageTokens * 0.7) rows.push({ key: 'cut', warn: true, text: T('The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.', { a, b }) });
+        else rows.push({ key: 'read', text: T('The model read {a} of {b} tokens.', { a, b }) });
+    } else if (ctx.pageTokens > 0) rows.push({ key: 'read', text: T('Sent ~{n} tokens to the model.', { n: ctx.pageTokens.toLocaleString('en-US') }) });
     if (ctx.highlights > 0) rows.push({ key: 'highlights', text: T('Your highlights · {n}', { n: ctx.highlights }) });
     if (ctx.focus) rows.push({ key: 'focus', text: T('Your focus question') });
     if (ctx.source) rows.push({ key: 'source', text: T('Feed item from {host}', { host: ctx.source }) });
@@ -40,7 +44,10 @@ export function contextRows(ctx = {}) {
 export function statusLines(ctx = {}) {
     const lines = [T('Read the page · {n} words', { n: (Number(ctx.words) || 0).toLocaleString('en-US') })];
     if (ctx.highlights > 0) lines.push(T('Found your {n} highlights · using as focus', { n: ctx.highlights }));
-    lines.push(T('Sent to {model}', { model: ctx.model || T('the model') }));
+    const tokens = Number(ctx.pageTokens) || 0;
+    const model = ctx.model || T('the model');
+    lines.push(tokens > 0 ? T('Sent to {model} · ~{n} tokens', { model, n: tokens.toLocaleString('en-US') }) : T('Sent to {model}', { model }));
+    if (tokens > 8000) lines[lines.length - 1] += ' — ' + T('Long page: a local model reads all of it first, this can take a minute or two.');
     lines.push(T('Writing a {n}-word summary…', { n: Number(ctx.length) || 200 }));
     return lines;
 }

@@ -3640,5 +3640,17 @@
   },
   "f_read_in_parts_because_the_mo_a936": {
     "message": "模型的上下文窗口（{w} 个令牌）不足以容纳整个页面，因此分 {n} 部分阅读。"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "页面较长：本地模型会先通读全文，可能需要一到两分钟。"
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "已发送至 {model} · 约 {n} 个令牌"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "已向模型发送约 {n} 个令牌。"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "模型读取了 {b} 个令牌中的 {a} 个。"
   }
 }

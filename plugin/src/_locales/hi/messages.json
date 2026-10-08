@@ -3640,5 +3640,17 @@
   },
   "f_read_in_parts_because_the_mo_a936": {
     "message": "{n} हिस्सों में पढ़ा गया, क्योंकि मॉडल की संदर्भ विंडो ({w} टोकन) पूरे पेज के लिए बहुत छोटी है।"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "लंबा पेज: लोकल मॉडल पहले पूरा पढ़ता है, इसमें एक-दो मिनट लग सकते हैं।"
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "{model} को भेजा गया · ~{n} टोकन"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "मॉडल को ~{n} टोकन भेजे गए।"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "मॉडल ने {b} में से {a} टोकन पढ़े।"
   }
 }

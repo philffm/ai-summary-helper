@@ -975,8 +975,8 @@ import {
                   const cleanLine = line.startsWith('data: ') ? line.substring(6) : line;
                   const json = JSON.parse(cleanLine);
 
-                  if (activeService === 'ollama' && json.done && typeof json.prompt_eval_count === 'number' && ctxMsg && wasCutOff(json.prompt_eval_count, promptTokensEst)) {
-                    relay('summaryContext', ctxMsg = { ...ctxMsg, seenTokens: json.prompt_eval_count });   // the popup shows the "cut off" notice
+                  if (activeService === 'ollama' && json.done && typeof json.prompt_eval_count === 'number' && ctxMsg && promptTokensEst > 3000 && json.prompt_eval_count > 300) {
+                    relay('summaryContext', ctxMsg = { ...ctxMsg, seenTokens: json.prompt_eval_count });   // the popup shows how much was read (or the "cut off" notice)
                   }
                   if (activeService === 'gemini') {
                     contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';

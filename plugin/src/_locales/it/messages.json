@@ -3640,5 +3640,17 @@
   },
   "f_read_in_parts_because_the_mo_a936": {
     "message": "Letto in {n} parti, perché la finestra di contesto del modello ({w} token) è troppo piccola per l'intera pagina."
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "Pagina lunga: un modello locale la legge prima per intero, può volerci uno o due minuti."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "Inviato a {model} · ~{n} token"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "Inviati ~{n} token al modello."
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "Il modello ha letto {a} di {b} token."
   }
 }

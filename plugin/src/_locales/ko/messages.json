@@ -3622,5 +3622,17 @@
   },
   "f_read_in_parts_because_the_mo_a936": {
     "message": "모델의 컨텍스트 창({w} 토큰)이 페이지 전체에 비해 너무 작아 {n}개 부분으로 나눠 읽었습니다."
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "긴 페이지: 로컬 모델이 먼저 전체를 읽기 때문에 1~2분 걸릴 수 있습니다."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "{model}에 전송 · 약 {n}개 토큰"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "약 {n}개 토큰을 모델에 보냈습니다."
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "모델이 {b}개 토큰 중 {a}개를 읽었습니다."
   }
 }

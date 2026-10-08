@@ -3640,5 +3640,17 @@
   },
   "f_read_in_parts_because_the_mo_a936": {
     "message": "モデルのコンテキストウィンドウ（{w} トークン）がページ全体には小さすぎるため、{n} つに分けて読みました。"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "長いページ：ローカルモデルはまず全体を読み込むため、1〜2分かかることがあります。"
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "{model} に送信 · 約 {n} トークン"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "約 {n} トークンをモデルに送信しました。"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "モデルは {b} トークン中 {a} を読みました。"
   }
 }

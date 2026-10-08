@@ -25,4 +25,9 @@ assert(x.splitForContext('x'.repeat(20000), 1000).every(p => p.length <= 3000), 
 assert.equal(x.modelContextFromShow({ model_info: { 'general.architecture': 'llama', 'llama.context_length': 8192 } }), 8192);
 assert.equal(x.modelContextFromShow({}), 0);
 assert(c.contextRows({ words: 9000, parts: 4, window: 8192 }).find(r => r.key === 'parts').text.includes('4'));
+const rr = c.contextRows({ words: 1, pageTokens: 20000, seenTokens: 19000 });
+assert(rr.some(r => r.key === 'read' && r.text.includes('19,000') && !r.warn) && !rr.some(r => r.key === 'cut'));
+assert(c.contextRows({ words: 1, pageTokens: 9000 }).find(r => r.key === 'read').text.includes('9,000'));
+const sl = c.statusLines({ words: 5, length: 100, model: 'M', pageTokens: 25000 });
+assert(sl.some(l => l.includes('25,000') && /minute/.test(l)) && !c.statusLines({ words: 5, pageTokens: 4000 }).some(l => /minute/.test(l)));
 console.log('TEST 74 OK'); process.exit(0);

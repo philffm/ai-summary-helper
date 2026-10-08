@@ -3640,5 +3640,17 @@
   },
   "f_read_in_parts_because_the_mo_a936": {
     "message": "تمت القراءة على {n} أجزاء لأن نافذة سياق النموذج ({w} رمزًا) صغيرة جدًا للصفحة كاملة."
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "صفحة طويلة: يقرؤها النموذج المحلي كاملةً أولًا، وقد يستغرق ذلك دقيقة أو دقيقتين."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "أُرسل إلى {model} · ~{n} رمز"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "أُرسل ~{n} رمز إلى النموذج."
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "قرأ النموذج {a} من أصل {b} رمزًا."
   }
 }

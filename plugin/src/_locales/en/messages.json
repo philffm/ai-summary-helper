@@ -3800,5 +3800,20 @@
   "f_read_in_parts_because_the_mo_a936": {
     "message": "Read in {n} parts, because the model's context window ({w} tokens) is too small for the whole page.",
     "description": "Placeholders: {n} {w} (keep as is)"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "Long page: a local model reads all of it first, this can take a minute or two."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "Sent to {model} · ~{n} tokens",
+    "description": "Placeholders: {model} {n} (keep as is)"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "Sent ~{n} tokens to the model.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "The model read {a} of {b} tokens.",
+    "description": "Placeholders: {a} {b} (keep as is)"
   }
 }
