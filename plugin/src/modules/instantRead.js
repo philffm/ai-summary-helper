@@ -11,7 +11,7 @@ const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(
 
 export function initInstantRead({ chip, panel, barHost }) {
   const reader = getReader();
-  let on = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null, done = false;
+  let chain = Promise.resolve(), on = false, dismissed = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null, done = false;
 
   const paintChip = () => {
     if (!chip) return;
@@ -25,10 +25,12 @@ export function initInstantRead({ chip, panel, barHost }) {
   const paintBar = () => {
     const st = reader.state, mine = st.meta && st.meta.tool === 'instant';
     const running = mine && ['playing', 'paused', 'waiting'].includes(st.state);
-    if (running) { wasReading = true; done = false; }
-    else if (wasReading && !active) { wasReading = false; done = lastUnits.length > 0; }
+    if (running) { wasReading = true; dismissed = false; }
+    // "Finished" is derived from what is true now, not from having seen the right transition: nothing is playing, the run
+    // is over and there is text to read again.
+    done = !running && !active && lastUnits.length > 0 && !dismissed;
     if (!running && !done) { if (bar) bar.hidden = true; return; }
-    if (!bar) { bar = mk('div', 'sr-bar'); bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', T('Instant read')); barHost.prepend(bar); }
+    if (!bar || !bar.isConnected) { bar = mk('div', 'sr-bar'); bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', T('Instant read')); if (!barHost) return; barHost.prepend(bar); }
     bar.hidden = false; bar.textContent = '';
     const b = (cls, txt, label, fn) => { const x = mk('button', 'sr-b ' + cls, txt); x.type = 'button'; x.title = label; x.setAttribute('aria-label', label); x.addEventListener('click', fn); return x; };
     if (running) {
@@ -38,8 +40,8 @@ export function initInstantRead({ chip, panel, barHost }) {
         b('sr-rate', String(st.rate || 1) + '×', T('Reading speed'), async () => { const steps = [1, 1.25, 1.5, 0.8]; await reader.setRate(steps[(steps.indexOf(st.rate || 1) + 1) % steps.length]); }));
     } else {
       bar.append(mk('span', 'sr-ok', '✓'), mk('span', 'sr-t', T('Finished reading')),
-        b('sr-again', '▶ ' + T('Read again'), T('Read again'), () => { done = false; wasReading = true; reader.start(lastUnits, sumLang, { meta: { tool: 'instant', lang: sumLang } }); }),
-        b('sr-x', '✕', T('Close'), () => { done = false; paintBar(); }));
+        b('sr-again', '▶ ' + T('Read again'), T('Read again'), () => { dismissed = false; wasReading = true; reader.start(lastUnits, sumLang, { meta: { tool: 'instant', lang: sumLang } }); }),
+        b('sr-x', '✕', T('Close'), () => { dismissed = true; paintBar(); }));
     }
   };
   reader.onState(() => { paintChip(); paintBar(); });
@@ -81,7 +83,7 @@ export function initInstantRead({ chip, panel, barHost }) {
 
   async function begin(ctx) {
     if (!on || !ready || active) return;
-    active = true; spoken = 0; done = false; lastUnits = [];
+    active = true; spoken = 0; done = false; dismissed = false; lastUnits = [];
     try { sumLang = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { sumLang = 'en'; }
     const title = ((document.getElementById('pageCard') || {}).dataset || {}).title || '';
     const ui = uiLang();
@@ -110,24 +112,33 @@ export function initInstantRead({ chip, panel, barHost }) {
     lastUnits = list.map(text => ({ text, lang: sumLang }));
     if (more.length) reader.append(more.map(text => ({ text, lang: sumLang })), sumLang);
     reader.finish();
+    paintBar();
   }
-  function abort() { if (!active && !wasReading) return; active = false; wasReading = false; done = false; reader.stop(); paintBar(); }
+  function abort() { if (!active && !wasReading) return; active = false; wasReading = false; done = false; lastUnits = []; reader.stop(); paintBar(); }
 
   return {
     ready: ready_,
     get on() { return on; },
     onMessage(msg) {
       if (!msg) return;
-      if (msg.action === 'summaryContext') begin(msg);
-      else if (msg.action === 'summaryProgress' && msg.preview) feed(msg.preview);
-      else if (msg.action === 'summaryComplete') complete(msg.summary);
-      else if (msg.action === 'summaryError' || msg.action === 'summaryCancelled') abort();
+      // Strictly in order: begin() is async (language detection), so progress / completion wait for it.
+      if (msg.action === 'summaryContext') chain = chain.then(() => begin(msg)).catch(() => {});
+      else if (msg.action === 'summaryProgress' && msg.preview) chain = chain.then(() => feed(msg.preview)).catch(() => {});
+      else if (msg.action === 'summaryComplete') chain = chain.then(async () => {
+        if (!active && !lastUnits.length && msg.summary) {   // completed without a stream we followed (finished in the background, or very fast): keep it readable
+          try { sumLang = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* keep */ }
+          lastUnits = speakable(streamText(msg.summary), true).map(text => ({ text, lang: sumLang }));
+          dismissed = false; paintBar(); return;
+        }
+        complete(msg.summary);
+      }).catch(() => {});
+      else if (msg.action === 'summaryError' || msg.action === 'summaryCancelled') { chain = chain.then(() => abort()).catch(() => {}); }
     },
     abort,
     /** Follow-up answers: same stream, no title announcement. */
     async startChat(question) {
       if (!on || !ready || active) return;
-      active = true; spoken = 0; done = false; lastUnits = [];
+      active = true; spoken = 0; done = false; dismissed = false; lastUnits = [];
       let base = 'en'; try { base = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* default */ }
       sumLang = question ? (ttsLang((await detectLang(question)) || '') || base) : base;
       if (!active) return;
