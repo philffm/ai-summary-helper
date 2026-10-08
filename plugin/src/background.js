@@ -1021,12 +1021,11 @@ async function handleStreamFetch(msg, tabId) {
         runs.set(requestId, run);
     }
 
-    // Activity-based timeout: resets on every received chunk. This prevents
-    // long-running streams (e.g. Ollama thinking models like qwen3:8b) from
-    // being killed just because the overall request exceeds a fixed
-    // wall-clock limit — as long as output keeps flowing, the request stays
-    // alive. We only abort if the stream is truly idle for IDLE_TIMEOUT_MS.
-    const IDLE_TIMEOUT_MS = 120000;
+    // No timeout while we wait for the first byte: the model may be reading a long page (local models, thinking models) and the UI
+    // shows the elapsed time via the heartbeat, with a Stop button — the user decides, not a fixed clock.
+    // Once the stream is flowing we only guard against a connection that goes silent mid-stream: the timer resets on every chunk
+    // and aborts after IDLE_TIMEOUT_MS without data.
+    const IDLE_TIMEOUT_MS = 300000;
     let timeoutId = null;
     const armTimeout = () => {
         if (timeoutId) clearTimeout(timeoutId);
@@ -1046,9 +1045,6 @@ async function handleStreamFetch(msg, tabId) {
         heartbeatId = setInterval(() => {
             push({ meta: 'heartbeat', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
         }, 3000);
-
-        // Start the idle timeout (aborts only if no data arrives).
-        armTimeout();
 
         const response = await fetch(apiUrl, { method: 'POST', headers, body, signal: controller.signal });
 
