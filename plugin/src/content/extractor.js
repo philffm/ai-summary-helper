@@ -330,15 +330,21 @@ export function sanitizeHtml(html) {
     for (let i = node.children.length - 1; i >= 0; i--) {
       const child = node.children[i];
       const tag = child.tagName ? child.tagName.toLowerCase() : '';
+      // Sanitize the subtree FIRST, before deciding to keep or unwrap this
+      // element. Unwrapping promotes child.children into the parent at the
+      // current loop position, which the decrementing index never revisits —
+      // if those grandchildren were sanitized afterwards (or not at all),
+      // malicious nested tags/attributes (e.g. <div><img onerror=...>)
+      // could escape the allowlist entirely.
+      walk(child);
       if (tag && ALLOWED_TAGS.has(tag)) {
         // Keep the element but strip every attribute.
         for (let a = child.attributes.length - 1; a >= 0; a--) {
           const attr = child.attributes[a].name;
           if (!ALLOWED_ATTRS.has(attr.toLowerCase())) child.removeAttribute(attr);
         }
-        walk(child);
       } else {
-        // Disallowed element: unwrap, keeping its text/children.
+        // Disallowed element: unwrap, keeping its (already sanitized) children.
         const parent = child.parentNode;
         while (child.firstChild) parent.insertBefore(child.firstChild, child);
         parent.removeChild(child);
