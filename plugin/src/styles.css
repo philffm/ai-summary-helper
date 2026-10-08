@@ -3496,3 +3496,23 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 
 /* Keyboard focus: every control gets a clear blue border-style ring (low specificity so component rules still win) */
 :where(button, a[href], summary, select, [role='radio'], [role='button'], [tabindex]):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Keyboard: keycap on the composer button, shortcut help sheet */
+#fetchSummary[data-kbd]:not([data-state="working"])::after { content: attr(data-kbd); margin-left: 8px; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.22); color: inherit; font-size: var(--fs-xs, 11px); font-weight: 600; letter-spacing: .02em; vertical-align: 1px; }
+.kbd-filter { width: 100%; box-sizing: border-box; margin: 4px 0 12px; padding: 9px 12px; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--field-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-base); }
+.kbd-groups { display: flex; flex-direction: column; gap: 14px; }
+.kbd-group-t { font-size: var(--fs-xs, 11px); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.kbd-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: var(--fs-base); border-bottom: 1px solid var(--outline); }
+.kbd-keys { display: flex; gap: 4px; flex: none; }
+.kbd-key { min-width: 22px; padding: 2px 7px; text-align: center; border: 1px solid var(--outline); border-bottom-width: 2px; border-radius: 6px; background: var(--field-bg); color: var(--text-primary); font: 600 var(--fs-sm) / 1.3 inherit; font-family: inherit; }
+.kbd-tip { margin-top: 12px; font-size: var(--fs-sm); color: var(--text-muted); }
+.kbd-hintbar { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px); z-index: var(--z-float); display: flex; gap: 12px; padding: 6px 12px; border: 1px solid var(--outline); border-radius: 999px; background: var(--nav-bg); color: var(--text-muted); font-size: var(--fs-xs); white-space: nowrap; }
+.kbd-hint-g { display: inline-flex; align-items: center; gap: 4px; }
+.kbd-hintbar[hidden] { display: none; }
+.graph-view-toggle { position: absolute; top: 10px; left: 10px; z-index: 6; }
+.graph-list { position: absolute; inset: 0; z-index: 5; margin: 0; padding: 56px 16px calc(var(--nav-clearance) + 8px); list-style: none; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; background: var(--bg-page); border-radius: var(--radius-lg); }
+.graph-list[hidden] { display: none; }
+.graph-list-item { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 10px 12px; text-align: left; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-base); color: var(--text-primary); font: inherit; cursor: pointer; }
+.graph-list-item:hover { border-color: var(--accent); }
+.graph-list-t { font-size: var(--fs-base); font-weight: 600; }
+.graph-list-s { font-size: var(--fs-sm); color: var(--text-muted); }

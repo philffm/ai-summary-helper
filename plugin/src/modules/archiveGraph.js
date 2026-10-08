@@ -406,6 +406,8 @@ export function destroyArchiveGraph(container) {
         container.__archiveGraphSimulation = null;
     }
 
+    if (container.__graphKeyDoc) { document.removeEventListener('keydown', container.__graphKeyDoc); container.__graphKeyDoc = null; }
+
     // Cancel any in-flight pulse transition on the highlighted node.
     if (container.__archiveGraphPulse) {
         try { container.__archiveGraphPulse.stop(); } catch (e) { /* best-effort */ }
@@ -728,6 +730,7 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     // well-connected/all-tags toggle is primary navigation, not optional
     // status text. (The filtered/highlight scope switch lives in the
     // archive search box itself now, not here — see articleManager.js.)
+    renderGraphList(container, nodes, links);
     renderGraphControls(container, {
         hiddenTagCount,
         capped,
@@ -740,6 +743,80 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
             renderGraph(container, articles, highlightTimestamp, nextMinDegree, similarityIndex);
         },
     });
+}
+
+
+/**
+ * Text twin of the graph for screen readers and keyboard users: a "Graph | List" switch (top-left) and a list of the tags
+ * (most connected first) with article counts and neighbours. Enter on a tag filters the archive by it, like clicking the node.
+ * A polite live region says what the view contains and announces every switch.
+ */
+export function renderGraphList(container, nodes, links) {
+    container.querySelectorAll('.graph-view-toggle, .graph-list, .graph-live').forEach(el => el.remove());
+    const id = (x) => (typeof x === 'object' ? x.id : x);
+    const byId = new Map(nodes.map(n => [n.id, n]));
+    const tags = nodes.filter(n => n.group === 'tag');
+    const articleCount = nodes.filter(n => n.group === 'article').length;
+    const articlesOf = new Map(); const tagsOf = new Map();
+    links.forEach(l => {
+        const a = byId.get(id(l.source)), b = byId.get(id(l.target));
+        if (!a || !b) return;
+        const [art, tag] = a.group === 'article' && b.group === 'tag' ? [a, b] : b.group === 'article' && a.group === 'tag' ? [b, a] : [null, null];
+        if (!art) return;
+        (articlesOf.get(tag.id) || articlesOf.set(tag.id, new Set()).get(tag.id)).add(art.id);
+        (tagsOf.get(art.id) || tagsOf.set(art.id, new Set()).get(art.id)).add(tag.id);
+    });
+    const related = (tag) => { const out = new Set(); (articlesOf.get(tag.id) || []).forEach(a => (tagsOf.get(a) || []).forEach(t => { if (t !== tag.id) out.add(t); })); return [...out].map(t => byId.get(t).label); };
+    const summary = T('Graph of your archive. {tags} tags, {articles} articles. Press L for the list view.', { tags: tags.length, articles: articleCount });
+    const svgEl = container.querySelector('svg');
+    if (svgEl) { svgEl.setAttribute('role', 'img'); svgEl.setAttribute('aria-label', summary); }
+
+    const live = document.createElement('div');
+    live.className = 'graph-live'; live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite');
+    live.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;';
+    live.textContent = summary;
+
+    const list = document.createElement('ul');
+    list.className = 'graph-list'; list.hidden = true; list.setAttribute('aria-label', T('Tags in your archive'));
+    [...tags].sort((x, y) => (articlesOf.get(y.id)?.size || 0) - (articlesOf.get(x.id)?.size || 0) || String(x.label).localeCompare(String(y.label))).forEach((tag) => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'graph-list-item';
+        const n = articlesOf.get(tag.id)?.size || 0; const rel = related(tag).slice(0, 4);
+        const t = document.createElement('span'); t.className = 'graph-list-t'; t.textContent = tag.label;
+        const sub = document.createElement('span'); sub.className = 'graph-list-s';
+        sub.textContent = TN(n, '{n} article', '{n} articles') + (rel.length ? ' · ' + T('linked to {tags}', { tags: rel.join(', ') }) : '');
+        btn.append(t, sub);
+        btn.addEventListener('click', () => {
+            live.textContent = T('Filter on: {tag}. {n} articles shown.', { tag: tag.label, n });
+            container.dispatchEvent(new CustomEvent('filter-by-tag', { detail: { tag: tag.label }, bubbles: true, composed: true }));
+        });
+        li.append(btn); list.append(li);
+    });
+
+    const toggle = document.createElement('div');
+    toggle.className = 'segmented-control segmented-control-buttons graph-view-toggle'; toggle.setAttribute('role', 'group'); toggle.setAttribute('aria-label', T('Graph view'));
+    const mk = (label) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; return b; };
+    const gBtn = mk(T('Graph')), lBtn = mk(T('List'));
+    const set = (listMode, announce = true) => {
+        list.hidden = !listMode;
+        if (svgEl) svgEl.style.visibility = listMode ? 'hidden' : '';
+        gBtn.classList.toggle('active', !listMode); lBtn.classList.toggle('active', listMode);
+        gBtn.setAttribute('aria-pressed', String(!listMode)); lBtn.setAttribute('aria-pressed', String(listMode));
+        if (announce) live.textContent = listMode ? T('List view: {tags} tags. Press Tab to browse, Enter to filter.', { tags: tags.length }) : T('Graph view');
+        if (listMode) { const f = list.querySelector('button'); if (f) f.focus({ preventScroll: true }); }
+    };
+    gBtn.addEventListener('click', () => set(false)); lBtn.addEventListener('click', () => set(true));
+    // "L" switches the view while this graph is on screen (one document listener per container, replaced on re-render).
+    if (container.__graphKeyDoc) document.removeEventListener('keydown', container.__graphKeyDoc);
+    container.__graphKeyDoc = (e) => {
+        if (!container.isConnected || container.style.display === 'none' || container.getClientRects().length === 0) return;
+        if (e.metaKey || e.ctrlKey || e.altKey || e.key.toLowerCase() !== 'l' || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+        set(list.hidden);
+    };
+    document.addEventListener('keydown', container.__graphKeyDoc);
+    toggle.append(gBtn, lBtn);
+    set(false, false);
+    container.append(toggle, list, live);
 }
 
 /**

@@ -63,7 +63,12 @@ export function createComposer(bar, { onChange } = {}) {
     if (textarea && !textarea.dataset.fetchPlaceholder) textarea.dataset.fetchPlaceholder = T('Focus on something… (optional)');   // short: it must fit one line in a narrow popup
     const apply = () => {
         bar.dataset.state = state;
-        if (button) { button.dataset.state = state; button.textContent = copy[state](); button.disabled = false; }
+        if (button) {
+            button.dataset.state = state; button.textContent = copy[state](); button.disabled = false;
+            // Shortcut keycap on the button (drawn by CSS from data-kbd; Stop has none).
+            if (state === 'working') { delete button.dataset.kbd; button.removeAttribute('aria-keyshortcuts'); }
+            else { const mac = /Mac|iPhone|iPad/i.test((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''); button.dataset.kbd = (mac ? '⌘' : 'Ctrl') + ' ↵'; button.setAttribute('aria-keyshortcuts', mac ? 'Meta+Enter' : 'Control+Enter'); }
+        }
         if (label) label.hidden = state !== 'fetch';
         if (textarea) {
             textarea.placeholder = state === 'fetch' ? textarea.dataset.fetchPlaceholder

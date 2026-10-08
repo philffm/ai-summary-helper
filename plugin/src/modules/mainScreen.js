@@ -243,8 +243,17 @@ export function initMainScreen(ui) {
             if (next === 'followup' && additionalQuestionsInput.value.trim()) sendFollowUp(additionalQuestionsInput.value.trim());
         }
     });
+    // ⌘/Ctrl+Enter: Summarize (fetch state) or Send (follow-up), from the focus field or anywhere on this screen.
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' || e.isComposing || e.altKey || e.shiftKey || !(e.metaKey || e.ctrlKey)) return;
+        if (document.body.dataset.screen !== 'main' || !composer || composer.state === 'working') return;
+        if (document.querySelector('[aria-modal="true"], .confirm-layer')) return;
+        if (fetchSummaryButton.disabled) return;
+        e.preventDefault();
+        fetchSummaryButton.click();
+    });
     additionalQuestionsInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && composer && composer.state === 'followup') {
+        if (e.key === 'Enter' && !e.shiftKey && !e.metaKey && !e.ctrlKey && !e.isComposing && composer && composer.state === 'followup') {
             e.preventDefault();
             const q = additionalQuestionsInput.value.trim();
             if (q && !fetchSummaryButton.disabled) sendFollowUp(q);

@@ -723,6 +723,7 @@ export function initArticleManager(uiManager) {
     // ── Handle Detail Back Button ───────────────────────────────────────
     if (detailBackBtn) {
         detailBackBtn.addEventListener('click', () => {
+            const openedId = currentDetailArticle && currentDetailArticle.id;
             const articleDetail = document.getElementById('articleDetail');
             const articleList = document.getElementById('articleList');
             const graphContainer = document.getElementById('graphContainer');
@@ -733,6 +734,7 @@ export function initArticleManager(uiManager) {
             if (articleList) articleList.style.display = 'block';
             if (historyTopBar) historyTopBar.style.display = 'flex';
             if (detailTopBar) detailTopBar.style.display = 'none';
+            restoreCardFocus(openedId);
         });
     }
 
@@ -1744,4 +1746,16 @@ export async function showArticleDetail(article) {
     if (historyTopBar) historyTopBar.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'flex';
     articleDetail.style.display = 'block';
+    // Keyboard: focus moves to "Back" (so Esc / Enter returns); the card that opened this stays remembered.
+    const back = document.getElementById('detailBackButton');
+    if (back) back.focus({ preventScroll: true });
+}
+
+/** After "Back": focus the card that was open (or its neighbour when it is gone) and keep it in view. */
+function restoreCardFocus(id) {
+    const list = document.getElementById('articleList');
+    if (!list) return;
+    const card = (id && [...list.querySelectorAll('li[data-id]')].find(li => li.dataset.id === id)) || list.querySelector('li[tabindex="0"]');
+    if (card) card.focus({ preventScroll: true });
+    if (card && typeof card.scrollIntoView === 'function') card.scrollIntoView({ block: 'nearest' });
 }
