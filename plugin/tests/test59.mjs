@@ -79,4 +79,8 @@ assert.equal(answerPreview('Questions about this: many'), 'Questions about this:
 const { languageRule } = await imp('modules/languages.js');
 assert.equal(languageRule('en'), '');
 assert(/German/.test(languageRule('de')) && /Antworte ausschließlich auf Deutsch/.test(languageRule('de')) && /Do NOT write it in English/.test(languageRule('de')));
+const contentSrc = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
+assert(/FINAL INSTRUCTIONS/.test(contentSrc) && /LENGTH RULE/.test(contentSrc), 'final reminder block');
+assert(/content: `[^`]*Content: \$\{truncatedContent\}\\n\\n\$\{finalReminder\}`/.test(contentSrc), 'reminder is the last thing in the user message');
+assert(/parts\.push\(\{ text: finalReminder \}\)/.test(contentSrc), 'gemini: reminder is the last part');
 console.log('TEST 59 OK'); process.exit(0);
