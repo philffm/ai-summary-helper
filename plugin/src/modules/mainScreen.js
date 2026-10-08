@@ -9,7 +9,7 @@ import { T, TN } from './feedI18n.js';
 import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { createComposer, samePage, contextRows, statusLines } from './composerState.js';
-import { answerPreview, newTurn, buildPrompt, parseAnswer, buildSuggestPrompt, parseSuggestions } from './conversation.js';
+import { answerPreview, newTurn, buildPrompt, parseAnswer } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
 
 export function initMainScreen(ui) {
@@ -676,17 +676,6 @@ export function initMainScreen(ui) {
                 const given = (Array.isArray(msg.questions) ? msg.questions : []).filter(Boolean);
                 conversation.pool = given.slice();
                 renderSuggestions();
-                if (!given.length) {
-                    // The model did not include the QUESTIONS comment: ask for them separately (one short call).
-                    const forConv = conversation;
-                    const { system, user } = buildSuggestPrompt(forConv);
-                    aiComplete(system, user).then((raw) => {
-                        if (conversation !== forConv || forConv.turns.length) return;
-                        forConv.pool = parseSuggestions(raw);
-                        renderSuggestions();
-                        scrollFeed();
-                    }).catch(() => { /* suggestions are optional */ });
-                }
                 if (composer) composer.set('followup');
                 scrollFeed();
             } else {

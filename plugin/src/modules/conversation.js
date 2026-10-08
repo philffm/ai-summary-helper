@@ -103,15 +103,6 @@ export function qaMarkdown(turns, { all = false } = {}) {
         + list.map(t => `**${t.q}**\n\n${t.a}\n`).join('\n');
 }
 
-/** Fallback when the summary reply carried no QUESTIONS comment: ask for three follow-up questions separately. */
-export function buildSuggestPrompt({ title, summary, content }) {
-    return {
-        system: 'You suggest follow-up questions a curious reader would ask about a web page. Reply with ONLY a JSON array of exactly 3 short questions '
-            + '(3-6 words each), answerable from the page, written in the language of the summary.',
-        user: `TITLE: ${title || ''}\n\nSUMMARY:\n${plain(summary)}\n\nPAGE EXCERPT:\n${plain(content).slice(0, 4000)}`
-    };
-}
-
 export function parseSuggestions(raw) {
     try {
         const m = String(raw || '').match(/\[[\s\S]*\]/);

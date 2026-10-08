@@ -586,7 +586,8 @@ import {
             `LENGTH RULE (mandatory): about ${summaryLength} words — never more than ${summaryLength}, and not far below it.`,
             prompt ? `STYLE / INSTRUCTION: ${prompt}` : '',
             (additionalQuestions || '').trim() ? `ALSO ANSWER / FOCUS ON: ${additionalQuestions}` : '',
-            'Output only the HTML (a single <div> with <h2> and <p>), then the HTML comments — no reasoning, no preamble, no code fences.'
+            'Output only the HTML (a single <div> with <h2> and <p>), then the HTML comments — no reasoning, no preamble, no code fences.',
+            'The comments must include <!-- QUESTIONS: ["...", "...", "..."] --> with 3 short follow-up questions (in the output language) — the follow-up chips depend on it.'
           ].filter(Boolean).join('\n');
           const systemPrompt = `${langRule ? langRule + ' ' : ''}You are a summarizer returning HTML <div> with <h2> and <p> tags. At the end include ${moodOn ? 'four' : 'three'} HTML comments: one with 3-5 broad topic tags strictly based on the core subject matter of the source article (ignore user style preferences, tone, or your persona when generating tags): <!-- TAGS: tag1, tag2, tag3 --> and one with ${ghostCfg.promptRange} EXACT verbatim snippets of 8-25 words each (each must appear only once in the text) representing the most critical key insights, core facts, or main arguments from the source text (avoid conversational quotes or dialogue unless they state a core thesis): <!-- GHOST_HIGHLIGHTS: ["exact key passage 1", "exact key passage 2"] --> ${moodOn ? ' and another one rating the news sentiment of the source article as one number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the content and not on tone of voice: <!-- MOOD: 0.0 -->' : ''} and one with exactly 3 short follow-up questions (3-6 words each, in the output language) that a curious reader would most likely ask next about this page, each answerable from the page text: <!-- QUESTIONS: ["question 1", "question 2", "question 3"] -->. Output ONLY the HTML described here: no reasoning, no thinking notes, no preamble, no markdown code fences, nothing after the last comment.${langRule ? ' ' + langRule : ''}`;
 
@@ -747,12 +748,14 @@ import {
 
               // Suggested follow-up questions (shown as chips under the summary); invalid output is ignored.
               let suggestedQuestions = [];
-              const qMatch = summary.match(/<!--\s*QUESTIONS:\s*([\s\S]*?)\s*-->/i);
+              // One request only: the questions ride along with the summary. Parsing is forgiving (a missing "-->" or a
+              // list that is not valid JSON still yields the quoted questions) because there is no second request to fall back on.
+              const qMatch = summary.match(/<!--\s*QUESTIONS:\s*([\s\S]*?)\s*(?:-->|$)/i);
               if (qMatch) {
-                try {
-                  const arr = JSON.parse(qMatch[1].trim().replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim());
-                  if (Array.isArray(arr)) suggestedQuestions = arr.map(x => String(x || '').trim()).filter(x => x.length >= 4 && x.length <= 120).slice(0, 3);
-                } catch (e) { /* ignore */ }
+                const body = qMatch[1].trim().replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
+                let arr = null;
+                try { arr = JSON.parse(body); } catch (e) { arr = [...body.matchAll(/["“]([^"”\n]{4,120})["”]/g)].map(x => x[1]); }
+                if (Array.isArray(arr)) suggestedQuestions = arr.map(x => String(x || '').trim()).filter(x => x.length >= 4 && x.length <= 120).slice(0, 3);
               }
 
               // Strip tags and ghost comments from the raw summary string
@@ -760,7 +763,7 @@ import {
                 .replace(/<!--\s*GHOST_HIGHLIGHTS:\s*([\s\S]*?)\s*-->/gi, '')
                 .replace(/<!--\s*TAGS:\s*[^>]+\s*-->/gi, '')
                 .replace(/<!--\s*MOOD:[^>]*-->/gi, '')
-                .replace(/<!--\s*QUESTIONS:[\s\S]*?-->/gi, '')
+                .replace(/<!--\s*QUESTIONS:[\s\S]*?(?:-->|$)/gi, '')
                 .trim();
 
               // Finally, convert the cleaned text to HTML

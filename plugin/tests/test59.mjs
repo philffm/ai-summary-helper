@@ -97,4 +97,13 @@ assert.equal(stI.node.querySelector('.recap-preview').hidden, false);
 stI.stop();
 const ss = fs.readFileSync(new URL('../src/modules/sendSheet.js', import.meta.url), 'utf8');
 assert(/createRecapStatus\(\{[\s\S]*preview: true/.test(ss) && /generateDigestIntro\(list0, state\.introStyle, \{ onStage/.test(ss));
+// Suggested questions cost no extra request: they ride along with the summary, the last instructions repeat the ask,
+// parsing is forgiving, and there is no separate suggestion call any more.
+{
+  const c = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
+  const m = fs.readFileSync(new URL('mainScreen.js', here), 'utf8');
+  assert(/FINAL INSTRUCTIONS[\s\S]*QUESTIONS: \["\.\.\."/.test(c), 'QUESTIONS in the final reminder');
+  assert(/QUESTIONS:\\s\*\(\[\\s\\S\]\*\?\)\\s\*\(\?:-->\|\$\)/.test(c) && /matchAll\(\/\["“\]/.test(c), 'forgiving parsing');
+  assert(!/buildSuggestPrompt|parseSuggestions/.test(m), 'no second request for suggestions');
+}
 console.log('TEST 59 OK'); process.exit(0);

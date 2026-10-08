@@ -20,7 +20,6 @@ assert.equal(p.a, 'It was approved.'); assert.deepEqual(p.sources, ['voted on Tu
 assert.deepEqual(C.parseAnswer('Just text', page), { a: 'Just text', sources: [], questions: [] });
 assert.deepEqual(C.parseSuggestions('Sure!\n["Who disagrees?", "What are the costs?", "ab", "Next steps for users?", "extra one here"]'), ['Who disagrees?', 'What are the costs?', 'Next steps for users?']);
 assert.deepEqual(C.parseSuggestions('no json'), []);
-assert(C.buildSuggestPrompt({ title: 'T', summary: '<p>S</p>', content: '<p>c</p>' }).user.includes('SUMMARY'));
 
 // prompt: page text capped, only the last 6 turns go back
 const many = Array.from({ length: 9 }, (_, i) => ({ q: 'q' + i, a: 'a' + i }));
