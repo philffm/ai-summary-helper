@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "コードを送信"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "コードを入力"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "無料のクラウドモデルと要約をすべてのデバイスで。スキップして自分のAPIキーを使うこともできます。"
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "AI Summary Helper にサインイン"
   }
 }

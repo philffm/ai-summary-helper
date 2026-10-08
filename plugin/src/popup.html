@@ -29,8 +29,8 @@
       <div class="main-screen-layout">
         <!-- Onboarding / Empty State (shown when not authed & no API key & no articles) -->
         <div id="mainScreenOnboarding" class="onboarding-container" style="display: none;">
-          <h2 data-i18n="f_welcome_to_ai_summary_helper_892e">Welcome to AI Summary Helper</h2>
-          <p data-i18n="f_sign_in_to_unlock_free_cloud_f976">Sign in to unlock free cloud models and sync your summaries, or bring your own API keys.</p>
+          <h2 id="onboardingTitle">Sign in to AI Summary Helper</h2>
+          <p id="onboardingLead">Free cloud models and your summaries on every device. Or skip this and use your own API key.</p>
 
           <div class="onboarding-auth-box auth-form">
             <div id="onboardingEmailStage">
@@ -284,7 +284,6 @@
                     <div class="setting-group auth-form auth-section" id="authSection">
                         <div class="flex-label-row">
                             <label class="type-badge" data-i18n="f_account_sync_cdb7">Account Sync</label>
-                            <span id="authStatusLabel" class="status-badge" hidden></span>
                         </div>
                         
                         <div id="otpEmailStage">
@@ -300,8 +299,17 @@
                         </div>
 
                         <div id="loggedInStage" style="display: none;">
-                            <p class="input-caption" id="userEmailLabel">Logged in as: ...</p>
-                            <button type="button" id="logoutBtn" class="button-secondary auth-logout" data-i18n="f_log_out_0355">Log Out</button>
+                            <div class="account-id">
+                                <span class="account-avatar" id="accountAvatar" aria-hidden="true"></span>
+                                <div class="account-who">
+                                    <div class="account-email" id="userEmailLabel">…</div>
+                                    <span id="authStatusLabel" class="status-badge" hidden></span>
+                                </div>
+                            </div>
+                            <div class="account-actions">
+                                <button type="button" id="licenseToggleBtn" class="button-secondary" data-i18n="f_pro_license_key_d198">Pro License Key</button>
+                                <button type="button" id="logoutBtn" class="button-secondary" data-i18n="f_log_out_0355">Log Out</button>
+                            </div>
                         </div>
                     </div>
                     <div class="setting-group" id="legacyLicenseGroup">

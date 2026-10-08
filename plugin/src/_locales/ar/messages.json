@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "أرسل لي رمزًا"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "أدخل رمزك"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "نماذج سحابية مجانية وملخصاتك على كل أجهزتك. أو تخطَّ هذه الخطوة واستخدم مفتاح API الخاص بك."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "سجّل الدخول إلى AI Summary Helper"
   }
 }

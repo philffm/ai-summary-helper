@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "發送驗證碼"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "輸入驗證碼"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "免費雲端模型，摘要同步到每部裝置。亦可略過，使用自己的 API 金鑰。"
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "登入 AI Summary Helper"
   }
 }

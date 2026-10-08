@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "发送验证码"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "输入验证码"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "免费云端模型，摘要同步到每台设备。也可以跳过，使用自己的 API 密钥。"
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "登录 AI Summary Helper"
   }
 }

@@ -4,15 +4,15 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1085 | 0 | 0 | 34 |
+| ar | 1085 | 0 | 0 | 33 |
 | de | 1085 | 0 | 0 | 158 |
-| es | 1085 | 0 | 0 | 126 |
-| fr | 1085 | 0 | 0 | 149 |
+| es | 1085 | 0 | 0 | 123 |
+| fr | 1085 | 0 | 0 | 147 |
 | hi | 1085 | 0 | 0 | 52 |
 | it | 1085 | 0 | 0 | 128 |
 | ja | 1085 | 0 | 0 | 69 |
-| ko | 1085 | 0 | 0 | 16 |
-| pt_PT | 1085 | 0 | 0 | 126 |
+| ko | 1085 | 0 | 0 | 15 |
+| pt_PT | 1085 | 0 | 0 | 124 |
 | ru | 1085 | 0 | 0 | 71 |
 | zh_CN | 1085 | 0 | 0 | 1 |
 | zh_HK | 1085 | 0 | 0 | 1 |
@@ -49,7 +49,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ✅ Sent · {date} | ✅ تم الإرسال · {date} | 17 vs 11 | 1.55× |
 | Keep feed items for | الاحتفاظ بعناصر الخلاصات لمدة | 29 vs 19 | 1.53× |
 | AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
-| Logged in as: {email} | تم تسجيل الدخول باسم: {email} | 24 vs 16 | 1.5× |
 | 🎓 Mark as paper | 🎓 وضع علامة كورقة بحثية | 24 vs 16 | 1.5× |
 | ✨ AI Ghost Highlighting | ✨ التمييز الشبحي بالذكاء الاصطناعي | 34 vs 23 | 1.48× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
@@ -117,7 +116,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ⏳ Summarizing… | ⏳ Wird zusammengefasst … | 24 vs 14 | 1.71× |
 | ✨ Build my own | ✨ Selbst zusammenstellen | 24 vs 14 | 1.71× |
 | Select summaries | Zusammenfassungen auswählen | 27 vs 16 | 1.69× |
-| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Melde dich an, um kostenlose Cloud-Modelle und die Synchronisierung deiner Zusammenfassungen freizuschalten – oder nutze deine eigenen API-Schlüssel. | 149 vs 88 | 1.69× |
 | Summary Language | Sprache der Zusammenfassung | 27 vs 16 | 1.69× |
 | View & edit › | Ansehen & bearbeiten › | 22 vs 13 | 1.69× |
 | all summaries | alle Zusammenfassungen | 22 vs 13 | 1.69× |
@@ -211,6 +209,7 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
 | This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload. | Das setzt alle Einstellungen, Prompts und API-Schlüssel auf diesem Gerät zurück. Deine Zusammenfassungen bleiben erhalten. Die Erweiterung wird neu geladen. | 156 vs 112 | 1.39× |
 | I want to use my own Custom API / Local Model | Ich möchte meine eigene Custom-API / ein lokales Modell nutzen | 62 vs 45 | 1.38× |
+| Free cloud models and your summaries on every device. Or skip this and use your own API key. | Kostenlose Cloud-Modelle und deine Zusammenfassungen auf jedem Gerät. Oder überspringen und den eigenen API-Schlüssel nutzen. | 125 vs 92 | 1.36× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
 | Please set your LocalSend IP in Settings first. | Bitte hinterlege zuerst deine LocalSend-IP in den Einstellungen. | 64 vs 47 | 1.36× |
 | e.g. Prefer European news and keep it upbeat. | z. B. Bevorzuge europäische Nachrichten und halte es positiv. | 61 vs 45 | 1.36× |
@@ -310,10 +309,8 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No active receiver found. | No se encontró ningún receptor activo. | 38 vs 25 | 1.52× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓ | 65 vs 43 | 1.51× |
 | Include all questions in exports | Incluir todas las preguntas en las exportaciones | 48 vs 32 | 1.5× |
-| Logged in as: {email} | Sesión iniciada como: {email} | 24 vs 16 | 1.5× |
 | Model identifier | Identificador del modelo | 24 vs 16 | 1.5× |
 | No summary returned. | No se devolvió ningún resumen. | 30 vs 20 | 1.5× |
-| Welcome to AI Summary Helper | Te damos la bienvenida a AI Summary Helper | 42 vs 28 | 1.5× |
 | Copied as plain text. | Copiado como texto sin formato. | 31 vs 21 | 1.48× |
 | No tags found. Add tags to your summaries! | No se encontraron etiquetas. ¡Añade etiquetas a tus resúmenes! | 62 vs 42 | 1.48× |
 | Scan failed. Enter IP manually. | Falló el escaneo. Introduce la IP manualmente. | 46 vs 31 | 1.48× |
@@ -348,7 +345,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Found your {n} highlights · using as focus | Se encontraron tus {n} destacados · usados como enfoque | 54 vs 41 | 1.32× |
 | Mood history is kept for 13 months, even after items are removed. | El historial de ánimo se conserva 13 meses, incluso después de eliminar los artículos. | 86 vs 65 | 1.32× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Haz clic derecho en el icono de Ollama de la bandeja (abajo a la derecha) y elige <b>Quit</b>. | 94 vs 71 | 1.32× |
-| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Inicia sesión para desbloquear modelos de nube gratuitos y sincronizar tus resúmenes, o usa tus propias claves API. | 115 vs 88 | 1.31× |
 
 ### fr
 | English | Translation | width | ratio |
@@ -425,7 +421,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Delete history | Supprimer l’historique | 22 vs 14 | 1.57× |
 | Edit style for | Modifier le style pour | 22 vs 14 | 1.57× |
 | Extra instructions | Instructions supplémentaires | 28 vs 18 | 1.56× |
-| Logged in as: {email} | Connecté en tant que : {email} | 25 vs 16 | 1.56× |
 | Mood on/off (tone analysis) | Humeur activée/désactivée (analyse du ton) | 42 vs 27 | 1.56× |
 | Please enter a valid email. | Veuillez saisir une adresse e-mail valide. | 42 vs 27 | 1.56× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Faites un clic droit sur l’icône Ollama de la zone de notification (en bas à droite) et choisissez <b>Quit</b>. | 111 vs 71 | 1.56× |
@@ -497,7 +492,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Automatic light-blue quote highlights from summaries | Citations surlignées en bleu clair automatiquement à partir des résumés | 71 vs 52 | 1.37× |
 | Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
 | Inline mode is great for "Send to Kindle". | Le mode en ligne convient bien à « Envoyer vers Kindle ». | 57 vs 42 | 1.36× |
-| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Connectez-vous pour débloquer les modèles cloud gratuits et synchroniser vos résumés, ou utilisez vos propres clés API. | 119 vs 88 | 1.35× |
 | Paste works. It signs you in after the last digit. | Le collage fonctionne. Vous êtes connecté après le dernier chiffre. | 67 vs 50 | 1.34× |
 | Style for AI briefings and week & month recaps. | Style des briefings IA et des récapitulatifs hebdo et mensuels. | 63 vs 47 | 1.34× |
 | Press <b>Win + R</b>, type <code>cmd</code> and press Enter. | Appuyez sur <b>Win + R</b>, saisissez <code>cmd</code> puis appuyez sur Entrée. | 79 vs 60 | 1.32× |
@@ -781,7 +775,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | For KOReader, prefer | KOReader에는 다음을 권장해요: | 29 vs 20 | 1.45× |
 | Network error sending to Kindle. | Kindle로 보내는 중 네트워크 오류가 발생했어요. | 46 vs 32 | 1.44× |
 | No shortcuts match | 일치하는 단축키가 없습니다 | 26 vs 18 | 1.44× |
-| Welcome to AI Summary Helper | AI Summary Helper에 오신 것을 환영합니다 | 40 vs 28 | 1.43× |
 | Runs entirely in your browser — no data leaves it. | 모든 작업이 브라우저 안에서 처리되며 데이터는 밖으로 나가지 않아요. | 67 vs 50 | 1.34× |
 
 ### pt_PT
@@ -874,7 +867,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
 | No password. We email you a short code. | Sem palavra-passe. Enviamos-lhe um código curto por e-mail. | 59 vs 39 | 1.51× |
-| Logged in as: {email} | Sessão iniciada como: {email} | 24 vs 16 | 1.5× |
 | Model is writing | O modelo está a escrever | 24 vs 16 | 1.5× |
 | No receiver address set. | Nenhum endereço de recetor definido. | 36 vs 24 | 1.5× |
 | ↩ Restore to Inbox | ↩ Repor na caixa de entrada | 27 vs 18 | 1.5× |
@@ -893,7 +885,6 @@ Strings: 1085. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
 | Mood on/off (tone analysis) | Humor ligado/desligado (análise de tom) | 39 vs 27 | 1.44× |
 | No matches found | Nenhuma correspondência | 23 vs 16 | 1.44× |
-| Sign in to unlock free cloud models and sync your summaries, or bring your own API keys. | Inicie sessão para desbloquear modelos na nuvem gratuitos e sincronizar os seus resumos, ou use as suas próprias chaves de API. | 127 vs 88 | 1.44× |
 | Topics over time | Temas ao longo do tempo | 23 vs 16 | 1.44× |
 | Sources · rename · tags · mute | Fontes · mudar nome · etiquetas · silenciar | 43 vs 30 | 1.43× |
 | (on iOS, hold to drag for 2 seconds) | (no iOS, mantenha premido 2 segundos para arrastar) | 51 vs 36 | 1.42× |

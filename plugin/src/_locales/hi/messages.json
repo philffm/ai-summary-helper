@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "मुझे कोड भेजें"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "अपना कोड दर्ज करें"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "मुफ़्त क्लाउड मॉडल और आपके सारांश हर डिवाइस पर। या इसे छोड़कर अपनी API कुंजी इस्तेमाल करें।"
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "AI Summary Helper में साइन इन करें"
   }
 }

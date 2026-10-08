@@ -3730,5 +3730,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "코드 보내기"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "코드를 입력하세요"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "무료 클라우드 모델과 요약을 모든 기기에서. 건너뛰고 나만의 API 키를 사용할 수도 있습니다."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "AI Summary Helper에 로그인"
   }
 }

@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "Envíame un código"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "Introduce tu código"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "Modelos en la nube gratis y tus resúmenes en todos tus dispositivos. O sáltate esto y usa tu propia clave de API."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "Inicia sesión en AI Summary Helper"
   }
 }

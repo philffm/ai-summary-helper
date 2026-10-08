@@ -42,6 +42,10 @@ function buildView(ids = {}) {
         backBtn: $(ids.backBtn),
         logoutBtn: $(ids.logoutBtn),
         userEmailLabel: $(ids.userEmailLabel),
+        avatarEl: $(ids.avatarEl),
+        titleEl: $(ids.titleEl),
+        leadEl: $(ids.leadEl),
+        licenseToggleBtn: $(ids.licenseToggleBtn),
         authStatusLabel: $(ids.authStatusLabel),
         messageEl: $(ids.messageEl),
         codeCaption: codeStage ? codeStage.querySelector('.input-caption') : null,
@@ -213,9 +217,13 @@ function setStatusBadge(label, isPro) {
 
 function setLoggedInOnlySectionsVisible(isLoggedIn) {
     // Settings-only extras (legacy license key). Harmless no-op for views that don't have them (onboarding).
-    const displayValue = isLoggedIn ? 'block' : 'none';
+    // Pro key field: signed out → hidden; signed in → hidden until "Pro License Key" is pressed (unless a key is already stored).
     const legacyLicenseGroup = document.getElementById('legacyLicenseGroup');
-    if (legacyLicenseGroup) legacyLicenseGroup.style.display = displayValue;
+    if (!legacyLicenseGroup) return;
+    if (!isLoggedIn) { legacyLicenseGroup.style.display = 'none'; legacyLicenseGroup.dataset.open = ''; return; }
+    const keyInput = document.getElementById('licenseKey');
+    const open = legacyLicenseGroup.dataset.open === '1' || !!(keyInput && keyInput.value);
+    legacyLicenseGroup.style.display = open ? 'block' : 'none';
 }
 
 // ── Core: render current auth/OTP state into every registered view ─────
@@ -290,14 +298,24 @@ async function refreshAuthState(forceData = null) {
     document.dispatchEvent(new CustomEvent('aish:authStateChanged', { detail: { stateName } }));
 }
 
+function applyHero(view, stateName) {
+    if (view.titleEl) view.titleEl.textContent = stateName === 'otpPending' ? T('Enter your code') : T('Sign in to AI Summary Helper');
+    if (view.leadEl) {
+        view.leadEl.textContent = T('Free cloud models and your summaries on every device. Or skip this and use your own API key.');
+        view.leadEl.style.display = stateName === 'otpPending' ? 'none' : '';
+    }
+}
+
 function applyStateToView(view, stateName, data, user) {
-    const show = (el, visible) => { if (el) el.style.display = visible ? 'block' : 'none'; };
+    applyHero(view, stateName);
+    const show = (el, visible) => { if (el) el.style.display = visible ? '' : 'none'; };   // '' keeps the stylesheet's flex layout
 
     if (stateName === 'loggedIn') {
         show(view.emailStage, false);
         show(view.codeStage, false);
         show(view.loggedInStage, true);
-        if (view.userEmailLabel) view.userEmailLabel.textContent = T('Logged in as: {email}', { email: user.email });
+        if (view.userEmailLabel) view.userEmailLabel.textContent = user.email;
+        if (view.avatarEl) view.avatarEl.textContent = (user.email || '?').trim().charAt(0).toUpperCase();
         if (view.authStatusLabel) {
             view.authStatusLabel.hidden = false;
             view.authStatusLabel.textContent = T('Checking...');
@@ -552,6 +570,14 @@ export function registerAuthView(ids) {
     view.verifyBtn.addEventListener('click', () => verifyOtp(view));
     if (view.backBtn) view.backBtn.addEventListener('click', () => goBackToEmail(view));
     if (view.logoutBtn) view.logoutBtn.addEventListener('click', () => logout());
+    if (view.licenseToggleBtn) view.licenseToggleBtn.addEventListener('click', () => {
+        const g = document.getElementById('legacyLicenseGroup');
+        if (!g) return;
+        const open = g.style.display === 'none';
+        g.dataset.open = open ? '1' : '';
+        g.style.display = open ? 'block' : 'none';
+        if (open) { const k = document.getElementById('licenseKey'); if (k) k.focus(); }
+    });
 
     // Shared look & wording for every sign-in form (Variant B): hint under the button, 4 digit boxes, auto-verify, resend.
     view.requestBtn.textContent = T('Send me a code');
@@ -600,6 +626,8 @@ export async function initAuthManager(uiManager) {
         backBtn: 'otpBackBtn',
         logoutBtn: 'logoutBtn',
         userEmailLabel: 'userEmailLabel',
+        avatarEl: 'accountAvatar',
+        licenseToggleBtn: 'licenseToggleBtn',
         authStatusLabel: 'authStatusLabel',
     });
 
@@ -612,6 +640,8 @@ export async function initAuthManager(uiManager) {
         verifyBtn: 'onboardingVerifyBtn',
         backBtn: 'onboardingBackBtn',
         messageEl: 'onboardingAuthMessage',
+        titleEl: 'onboardingTitle',
+        leadEl: 'onboardingLead',
     });
 
     if (!views.length) return;

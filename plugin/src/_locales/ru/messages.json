@@ -3748,5 +3748,14 @@
   },
   "f_send_me_a_code_a679": {
     "message": "Отправить код"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "Введите код"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "Бесплатные облачные модели и ваши сводки на всех устройствах. Или пропустите и используйте свой API-ключ."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "Вход в AI Summary Helper"
   }
 }

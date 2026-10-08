@@ -1881,7 +1881,12 @@ text.graph-search-dim {
 .auth-form .auth-hint { margin: 0; text-align: center; font-size: var(--fs-2xs); color: var(--text-muted); }
 .auth-form .auth-link-row { display: flex; justify-content: center; gap: 16px; }
 .auth-form .auth-link-row .btn-link { width: auto; }
-.auth-form .auth-logout { width: 100%; }
+.account-id { display: flex; align-items: center; gap: 12px; }
+.account-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: var(--fs-lg, 1.1rem); flex: none; }
+.account-who { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.account-email { font-weight: 600; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.account-actions { display: flex; gap: 8px; }
+.account-actions > button { flex: 1; }
 .auth-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--glass-border); }
 .auth-section > div { display: flex; flex-direction: column; gap: 10px; }
 .auth-section > .flex-label-row { flex-direction: row; }
