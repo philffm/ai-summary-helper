@@ -12,6 +12,7 @@ import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
+import { attachCardMenu } from './cardMenu.js';
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
@@ -251,7 +252,7 @@ async function buildArticleHtmlFile(article) {
 /**
  * Triggers the native OS share sheet
  */
-async function shareArticle(article) {
+export async function shareArticle(article) {
     if (!navigator.share) {
         if (uiManagerRef) uiManagerRef.showToast(T('Sharing is not supported in this browser/environment.'));
         else alert(T('Sharing is not supported in this browser/environment.'));
@@ -288,7 +289,7 @@ async function shareArticle(article) {
 /**
  * Generates and downloads a Markdown file with YAML Frontmatter
  */
-async function exportToMarkdown(article) {
+export async function exportToMarkdown(article) {
     // 1. Format date as YYYY-MM-DD for Obsidian frontmatter
     const createdDate = new Date(article.timestamp).toISOString().split('T')[0];
     
@@ -393,7 +394,7 @@ ${contentPlain.trim().replace(/\n{3,}/g, '\n\n')}
 /**
  * Copies summary and content to clipboard as formatted text (HTML) and plain text (Markdown-ish)
  */
-async function copyArticleToClipboard(article) {
+export async function copyArticleToClipboard(article) {
     article = await exportView(article);
     const title = article.title || 'AI Summary';
     const summary = article.summary || '';
@@ -458,7 +459,7 @@ async function copyArticleToClipboard(article) {
 /**
  * Sends article summary and content to a Kindle email via the proxy API
  */
-async function sendToKindle(article) {
+export async function sendToKindle(article) {
     article = await exportView(article);
     const config = await StorageManager.getAll();
     // Multiple Kindle devices can be configured; always send to the active
@@ -532,7 +533,7 @@ async function sendToKindle(article) {
     }
 }
 
-async function dispatchToLocalSend(article) {
+export async function dispatchToLocalSend(article) {
     const config = await StorageManager.getAll();
     // Multiple LocalSend receivers can be configured; always send to the
     // active one (last used, or the first configured if none has been used yet).
@@ -613,6 +614,19 @@ export async function deliverLocalSend(article, device) {
 }
 
 const wsActive = () => !!document.getElementById('historyScreen')?.classList.contains('ws-active');
+
+/** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
+export async function removeArticle(article) {
+    if (!article || !article.id) return false;
+    if (!confirm(T('Are you sure you want to delete this article?'))) return false;
+    await StorageManager.deleteArticle(article.id);
+    cachedArticles = cachedArticles.filter(i => i.id !== article.id);
+    archivedCache = archivedCache.filter(i => i.id !== article.id);
+    invalidateSearchIndex();
+    if (document.getElementById('articleList')) renderTab();
+    if (uiManagerRef) uiManagerRef.showToast(T('Article deleted'));
+    return true;
+}
 
 export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
@@ -1144,6 +1158,12 @@ function buildArticleCard(article) {
         </div>
     `;
     listItem.classList.toggle('is-favorite', !!article.favorite);
+    {   // ⋯ actions menu sits next to the star
+        const star = listItem.querySelector('.star-button');
+        const side = document.createElement('div'); side.className = 'card-side';
+        star.replaceWith(side); side.appendChild(star);
+        attachCardMenu(side, article);
+    }
 
     // Favorited from a feed but never summarized: one-click summarize.
     if (article.feedStub && article.url) {

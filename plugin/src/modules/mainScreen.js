@@ -16,6 +16,7 @@ import { createComposer, samePage, contextRows, statusLines, activeStep } from '
 import { answerPreview, newTurn, buildPrompt, parseAnswer, joinContinuation } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
+import { attachCardMenu } from './cardMenu.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -66,6 +67,11 @@ export function initMainScreen(ui) {
                 if (!row) { row = document.createElement('div'); row.className = 'bubble-tags'; bubble.querySelector('.summary-bubble-body').after(row); }
                 chips.slice().reverse().forEach(([tone, text]) => { const s = document.createElement('span'); s.className = 'bubble-tag paper paper-' + tone; s.textContent = text; row.prepend(s); });
             }
+        }
+        // ⋯ actions (copy, share, LocalSend, Kindle, read aloud, delete …)
+        if (article.id && !article.feedStub) {
+            const hdr = bubble.querySelector('.summary-bubble-header');
+            if (hdr) attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() });
         }
         // Click to open in history
         bubble.style.cursor = 'pointer';
