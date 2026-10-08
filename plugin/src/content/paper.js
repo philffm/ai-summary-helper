@@ -89,3 +89,18 @@ export function paperIndexFields(p) {
   if (p.preprint) f.preprint = true;
   return f;
 }
+
+/** PDFs have no meta tags: look at the extracted opening text (DOI + "Abstract", or an arXiv / journal-style header). */
+export function detectPaperInText(text, loc = window.location) {
+  const head = ppCap(text, 6000);
+  if (!head) return null;
+  const host = String(loc.hostname || '').replace(/^www\./, '');
+  const preprint = PP_PREPRINT_HOSTS.test(host) || /\barXiv:\d{4}\.\d{4,5}/i.test(head);
+  const m = head.match(PP_DOI_RE);
+  const hasAbstract = /\babstract\b/i.test(head);
+  if (!(m && hasAbstract) && !preprint && !(hasAbstract && /\b(keywords?|references|introduction)\b/i.test(head))) return null;
+  const out = { state: 'likely' };
+  if (m) out.doi = ppCap(normalizeDoi(m[0]), 200);
+  if (preprint) out.preprint = true;
+  return out;
+}

@@ -1,0 +1,20 @@
+// PDF reading: error messages, credentials + base64 transfer, %PDF check, empty-text check, paper detection from PDF text.
+import assert from 'assert';
+import fs from 'fs';
+import { setup, imp } from './harness.mjs';
+setup({});
+const { detectPaperInText } = await imp('content/paper.js');
+const loc = (u) => { const x = new URL(u); return { hostname: x.hostname, pathname: x.pathname }; };
+let p = detectPaperInText('Title\nAbstract We study sleep. https://doi.org/10.1038/s41562-026-0000-0 Introduction', loc('https://x.org/a.pdf'));
+assert.equal(p.state, 'likely'); assert.equal(p.doi, '10.1038/s41562-026-0000-0');
+p = detectPaperInText('arXiv:2610.00000v1 Scaling laws', loc('https://example.org/a.pdf'));
+assert.equal(p.preprint, true);
+assert.equal(detectPaperInText('Invoice 2026 total 12 EUR', loc('https://x.org/i.pdf')), null);
+const ex = fs.readFileSync(new URL('../src/content/pdfExtractor.js', import.meta.url), 'utf8');
+const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'utf8');
+const ct = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
+assert(/credentials: 'include'/.test(ex) && /credentials: 'include'/.test(bg.slice(bg.indexOf("'fetchPdfBytes'"))));
+assert(/btoa\(bin\)/.test(bg) && !/Array\.from\(new Uint8Array\(buf\)\)/.test(bg.slice(bg.indexOf("'fetchPdfBytes'"), bg.indexOf("'fetchPdfBytes'") + 1500)));
+assert(/%PDF/.test(ex) && /pdfError\('EMPTY'/.test(ex) && /pdfError\('PASSWORD'/.test(ex));
+assert(/pdfErrorMessage\(err\)/.test(ct));
+console.log('test63 ok');

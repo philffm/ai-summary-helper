@@ -100,7 +100,12 @@ export async function extractPdfText(url) {
   // tears it down once no other loading task references it.
   let pdf = null;
   try {
-    pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
+    try {
+      pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
+    } catch (e) {
+      if (e && (e.name === 'PasswordException' || e.code === 1 || e.code === 2)) throw pdfError('PASSWORD', 'Password protected');
+      throw e;
+    }
 
     for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);
@@ -136,9 +141,11 @@ export async function extractPdfText(url) {
     }
   }
 
+  const fullText = pageTexts.join('\n\n');
+  if (fullText.replace(/\s+/g, '').length < 50) throw pdfError('EMPTY', 'No text');
   return {
     html: pageHtmls.join('\n'),
-    text: pageTexts.join('\n\n'),
+    text: fullText,
   };
 }
 
@@ -271,19 +278,59 @@ async function extractPageImage(page, pdfjsLib, maxWidth = 600, quality = 0.6) {
  */
 function fetchPdfBytes(url) {
   if (url.startsWith('file:')) {
-    return fetchArrayBufferViaXhr(url);
+    return fetchArrayBufferViaXhr(url).then(checkPdfBytes);
   }
+  // 1) Same-origin first, with the user's cookies: this is what a PDF opened in the browser's own viewer needs
+  //    (paywalled / logged-in PDFs). The service worker has no access to the page's session.
+  // 2) Anything else (cross-origin embed, or the first attempt failed): the background worker, also with credentials.
+  return fetchViaPage(url).then(checkPdfBytes).catch((first) => viaBackground(url).then(checkPdfBytes).catch((second) => {
+    throw (first && first.code && first.code !== 'NETWORK') ? first : second;
+  }));
+}
+
+function pdfError(code, message) { const e = new Error(message); e.code = code; return e; }
+
+/** Message shown to the user for a failed PDF read (keeps the error codes in one place). */
+export function pdfErrorMessage(err) {
+  switch (err && err.code) {
+    case 'LOGIN': return 'This PDF needs a login or is behind a paywall, so the extension cannot download it. Open it while signed in, or select its text and summarize the selection.';
+    case 'NOT_PDF': return 'The address did not return a PDF (probably a login or error page).';
+    case 'PASSWORD': return 'This PDF is password protected.';
+    case 'EMPTY': return 'This PDF has no selectable text (probably a scan). Text recognition is not supported yet.';
+    case 'FILE': return 'Chrome blocks access to local PDFs. Enable "Allow access to file URLs" for this extension in chrome://extensions, then try again.';
+    default: return 'Cannot read this PDF directly. If it is a local file, enable "Allow access to file URLs" for the extension; otherwise try opening the paper from its original web URL.';
+  }
+}
+
+function checkPdfBytes(buf) {
+  const u = new Uint8Array(buf);
+  // "%PDF" may follow a few bytes of junk, but not a whole HTML page.
+  const head = String.fromCharCode.apply(null, u.subarray(0, 1024));
+  if (head.indexOf('%PDF') === -1) throw pdfError('NOT_PDF', 'Not a PDF');
+  return buf;
+}
+
+async function fetchViaPage(url) {
+  let r;
+  try { r = await fetch(url, { credentials: 'include' }); } catch (_) { throw pdfError('NETWORK', 'Failed to fetch PDF'); }
+  if (r.status === 401 || r.status === 402 || r.status === 403) throw pdfError('LOGIN', 'Login required');
+  if (!r.ok) throw pdfError('NETWORK', 'Failed to fetch PDF (' + r.status + ')');
+  return r.arrayBuffer();
+}
+
+function viaBackground(url) {
   return new Promise((resolve, reject) => {
     chrome.runtime.sendMessage({ action: 'fetchPdfBytes', url }, (res) => {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
-        return;
-      }
-      if (!res?.success) {
-        reject(new Error(res?.error || 'Failed to fetch PDF'));
-        return;
-      }
-      resolve(new Uint8Array(res.bytes).buffer);
+      if (chrome.runtime.lastError) { reject(pdfError('NETWORK', chrome.runtime.lastError.message)); return; }
+      if (!res || !res.success) { reject(pdfError(res && res.code ? res.code : 'NETWORK', (res && res.error) || 'Failed to fetch PDF')); return; }
+      if (typeof res.base64 === 'string') {
+        const bin = atob(res.base64);
+        const out = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+        resolve(out.buffer);
+      } else if (res.bytes) {
+        resolve(new Uint8Array(res.bytes).buffer);
+      } else reject(pdfError('NETWORK', 'Failed to fetch PDF'));
     });
   });
 }
@@ -311,7 +358,7 @@ function fetchArrayBufferViaXhr(url) {
         reject(new Error(`Failed to fetch PDF (${xhr.status})`));
       }
     };
-    xhr.onerror = () => reject(new Error('Failed to fetch PDF (network error)'));
+    xhr.onerror = () => reject(pdfError('FILE', 'Failed to fetch PDF (network error)'));
     xhr.send();
   });
 }

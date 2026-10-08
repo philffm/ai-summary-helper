@@ -883,17 +883,20 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     // privileged context, so it can fetch cross-origin freely (same
     // precedent as fetchImageAsDataUrl above).
     if (msg.action === 'fetchPdfBytes' && msg.url) {
-        fetch(msg.url)
+        fetch(msg.url, { credentials: 'include' })
             .then(r => {
+                if (r.status === 401 || r.status === 402 || r.status === 403) { const e = new Error('Login required'); e.code = 'LOGIN'; throw e; }
                 if (!r.ok) throw new Error(`Failed to fetch PDF (${r.status})`);
                 return r.arrayBuffer();
             })
             .then(buf => {
-                // ArrayBuffer isn't structured-cloneable across some contexts —
-                // send as a plain array of bytes, reassembled on the other end.
-                sendResponse({ success: true, bytes: Array.from(new Uint8Array(buf)) });
+                // base64 in chunks: a number array of a 20 MB PDF is ~100 MB of JSON and often fails to arrive.
+                const u = new Uint8Array(buf);
+                let bin = '';
+                for (let i = 0; i < u.length; i += 0x8000) bin += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
+                sendResponse({ success: true, base64: btoa(bin) });
             })
-            .catch(err => sendResponse({ success: false, error: err.message }));
+            .catch(err => sendResponse({ success: false, error: err.message, code: err.code }));
         return true;
     }
 

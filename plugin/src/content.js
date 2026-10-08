@@ -1,6 +1,6 @@
 import { SK } from './modules/storageKeys.js';
 import { languageEnglishName, languageRule } from './modules/languages.js';
-import { paperIndexFields } from './content/paper.js';
+import { paperIndexFields, detectPaperInText } from './content/paper.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -57,7 +57,8 @@ import {
 
 import {
   isPdfPage,
-  extractPdfText
+  extractPdfText,
+  pdfErrorMessage
 } from './content/pdfExtractor.js';
 
 (() => {
@@ -458,11 +459,7 @@ import {
         // whose read was denied). Fail loudly and helpfully rather than send
         // an empty/scrubbed prompt upstream or leaving the UI stuck.
         showPlaceholder(targetElement, 'Could not read this PDF.');
-        relay('summaryError', {
-          error: err?.message && !/Failed to fetch PDF/.test(err.message)
-            ? err.message
-            : 'Cannot read this PDF directly. If it is a local file, try opening the paper from its original web URL.'
-        });
+        relay('summaryError', { error: pdfErrorMessage(err) });
         throw err;
       }
     } else {
@@ -745,6 +742,7 @@ import {
 
               let pageMeta = {};
               try { pageMeta = collectPageMeta(); } catch (_) { /* metadata is optional */ }
+              try { if (pageMeta && !pageMeta.paper && isPdfPage()) { const pp = detectPaperInText(contentText); if (pp) pageMeta.paper = pp; } } catch (_) { /* optional */ }
 
               // Suggested follow-up questions (shown as chips under the summary); invalid output is ignored.
               let suggestedQuestions = [];
