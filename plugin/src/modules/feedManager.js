@@ -175,7 +175,7 @@ async function loadHistoryMap() {
             const key = normalizeUrl(u);
             const cur = map.get(key) || { fav: false, summarized: false };
             if (a.favorite) cur.fav = true;
-            if (!a.feedStub) cur.summarized = true;
+            if (!a.feedStub && !a.savedOnly) cur.summarized = true;
             map.set(key, cur);
         }
     }
@@ -188,12 +188,12 @@ function histOf(item) { return historyByUrl.get(normalizeUrl(item.link)) || { fa
 // and the stub is removed so History doesn't show the page twice.
 export async function reconcileStubs() {
     const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
-    const stubs = articlesIndex.filter(a => a.feedStub && a.url);
+    const stubs = articlesIndex.filter(a => (a.feedStub || a.savedOnly) && a.url);
     if (!stubs.length) return;
     const drop = new Set();
     for (const stub of stubs) {
         const key = normalizeUrl(stub.url);
-        const real = articlesIndex.filter(a => !a.feedStub && hasUrl(a, key));
+        const real = articlesIndex.filter(a => !a.feedStub && !a.savedOnly && hasUrl(a, key));
         if (!real.length) continue;
         if (stub.favorite) real.forEach(r => { r.favorite = true; });
         drop.add(stub.id);
@@ -208,7 +208,7 @@ export async function reconcileStubs() {
 async function findSummarizedArticle(url) {
     const key = normalizeUrl(url);
     const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
-    const real = articlesIndex.filter(a => !a.feedStub && hasUrl(a, key));
+    const real = articlesIndex.filter(a => !a.feedStub && !a.savedOnly && hasUrl(a, key));
     real.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
     return real[0] || null;
 }

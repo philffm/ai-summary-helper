@@ -1,3 +1,4 @@
+import { modelEmoji } from './modules/modelBadge.js';
 import { applyA11y } from './modules/a11y.js';
 import { SK } from './modules/storageKeys.js';
 import { initMoodSetting } from './modules/moodSetting.js';
@@ -271,6 +272,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const customModelInput = document.getElementById('customModelInput');
     const setCustomModelBtn = document.getElementById('setCustomModelBtn');
 
+    // Chip icon follows the model: ☁️ cloud, 🦙 Ollama, 💻 other own model/API (see modelBadge.js).
+    const chipModelIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
+    const setModelChip = (label, emoji) => {
+        if (chipModelLabel) chipModelLabel.textContent = label;
+        if (chipModelIcon && emoji) chipModelIcon.textContent = emoji;
+    };
+
     let servicesMetaCache = [];
 
     // Module-level hook so the model panel can re-render the model grid
@@ -292,7 +300,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const active = preferredCloudModel || 'google/gemini-3.8-flash';
             // Just take the model name part (after /) for the chip if it's long
             const label = active.includes('/') ? active.split('/').pop() : active;
-            if (chipModelLabel) chipModelLabel.textContent = label;
+            setModelChip(label, modelEmoji({ connectionMode: 'cloud' }));
             return;
         }
 
@@ -304,7 +312,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Normalize custom models (legacy strings or { id, provider } objects)
         const customIds = custom.map(m => typeof m === 'string' ? m : m?.id);
         const activeId = (typeof cfg.activeModelId === 'string' ? cfg.activeModelId : cfg.activeModelId?.id) || customIds[0] || def;
-        if (chipModelLabel) chipModelLabel.textContent = activeId || svcId;
+        setModelChip(activeId || svcId, modelEmoji({ connectionMode, service: svcId, modelId: activeId }));
     };
 
     if (modelSettingsLink) {
@@ -405,7 +413,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // Update chip label
                     const activeCloudModel = preferredCloudModel || 'google/gemini-3.8-flash';
                     const chipLabel = activeCloudModel.includes('/') ? activeCloudModel.split('/').pop() : activeCloudModel;
-                    chipModelLabel.textContent = chipLabel;
+                    setModelChip(chipLabel, modelEmoji({ connectionMode: 'cloud' }));
 
                     modelProviderGrid.innerHTML = '';
                     setModelStatus('byPhil Cloud', '');
@@ -508,7 +516,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const deduped = allModels.filter((m, i, a) => a.findIndex(x => x.id === m.id) === i);
 
                 // Update chip label to show only the active model ID
-                chipModelLabel.textContent = activeModel;
+                setModelChip(activeModel, modelEmoji({ connectionMode: 'local', service: curSvcId, modelId: activeModel }));
                 if (meta?.apiKeyOptional) setModelStatus(T('{name} · local, no API key', { name: meta.name }), '');
                 else if (cfg.apiKey) setModelStatus(T('{name} · API key set', { name: meta?.name || curSvcId }), '');
                 else setModelStatus(T('{name} · API key missing — add it in Settings', { name: meta?.name || curSvcId }), 'warn');

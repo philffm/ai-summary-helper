@@ -339,6 +339,29 @@ import {
       return false;
     }
 
+    // "Save only": keep the page in History without calling the AI.
+    if (request.action === 'savePage') {
+      (async () => {
+        try {
+          let html = '', text = '';
+          if (isPdfPage()) { const ex = await extractPdfText(); html = ex.html; text = ex.text; }
+          else { const sc = getAllTextContent(); html = sc.html; text = sc.text; }
+          if (!String(text || '').trim()) { sendResponse({ success: false, error: 'empty' }); return; }
+          let meta = {};
+          try { meta = collectPageMeta(); } catch (_) { /* optional */ }
+          try { html = await inlineAndCompressImages(html); } catch (_) { /* keep original html */ }
+          const title = (meta.title || document.title || window.location.hostname || 'Untitled').toString().slice(0, 200);
+          const feedUrl = request.feedUrl && request.feedUrl !== window.location.href ? { feedUrl: request.feedUrl } : {};
+          const saved = await saveToLocalStorage(html, '', window.location.href, title, '', [], '', 0, undefined,
+            { savedOnly: true, ...feedUrl, ...paperIndexFields(meta.paper) }, meta);
+          sendResponse({ success: true, id: saved && saved.id, title });
+        } catch (err) {
+          sendResponse({ success: false, error: String(err && err.message || err) });
+        }
+      })();
+      return true;
+    }
+
     if (request.action === 'revealQuote') {
       sendResponse({ success: revealQuote(String(request.quote || '')) });
       return false;
