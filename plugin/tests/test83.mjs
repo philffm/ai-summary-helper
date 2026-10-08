@@ -11,4 +11,10 @@ assert(text.includes('Börsenwert') && !text.includes('Single Sign-on'), 'extrac
 w.document.body.innerHTML = '<article id="m"><p>' + body + '</p></article><div role="dialog"><article>' + body + body + '</article></div>'; const d = w.document;
 assert.equal(a.ancLargestMatch(d, 'article').id, 'm', 'dialog content is skipped even when larger');
 assert.equal(a.ancLargestMatch(d, 'section'), null);
+// Roche page: a sibling <article> whose inline <script> is longer than the story must not win (textContent counts script source)
+w.document.body.innerHTML = `<div id="onetap"><article class="onetap-popup"><p>${'Google Anmeldung. '.repeat(20)}</p></article></div>
+<main><article class="news-container"><h1>Roche Tecentriq</h1><p>${body}</p></article>
+<article class="analysen"><h2>Roche Analysen</h2><table><tr><td>Hold</td></tr></table><script>${'var x = 1; '.repeat(800)}</script></article></main>`;
+assert(a.ancScopeRoot(w.document).classList.contains('news-container'), 'script source and h2-only articles do not win');
+assert(!x.getAllTextContent().text.includes('Roche Analysen'), 'extractor ignores the analysis box');
 console.log('TEST 83 OK'); process.exit(0);
