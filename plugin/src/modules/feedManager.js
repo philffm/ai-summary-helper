@@ -1607,7 +1607,7 @@ function confirmBtn(label, armedLabel, fn) {
     return b;
 }
 
-async function openRecap(dayStart, label, source = ui.source) {
+async function openRecap(dayStart, label, source = ui.source, autoRefresh = false) {
     const all = recapScope(dayStart, source);
     const list = recapCovered(all);
     const missing = all.slice(list.length);
@@ -1631,7 +1631,11 @@ async function openRecap(dayStart, label, source = ui.source) {
             const box = el('div', 'feed-recap-missing');
             box.append(el('p', 'feed-recap-stale', TN(missing.length, '{n} older item is not in this recap (limit: {max} per recap).', '{n} older items are not in this recap (limit: {max} per recap).', { max: list.length })));
             const nxt = Math.min(Math.max(all.length, 10), 400);
-            box.append(btn('btn-sm', T('Raise limit to {n} and refresh', { n: nxt }), async () => { await setSetting('recapLimit', nxt); closeSheet(); openRecap(dayStart, label, source); }));
+            if (nxt > list.length) {
+                box.append(btn('btn-sm', T('Raise limit to {n} and refresh', { n: nxt }), async () => { await setSetting('recapLimit', nxt); closeSheet(); openRecap(dayStart, label, source, true); }));
+            } else {
+                box.append(el('p', 'feed-muted', T('That is the maximum per recap. Use the Week or Month recap for a bigger picture, or filter by feed.')));
+            }
             const det = el('details', 'feed-recap-missing-list');
             det.append(el('summary', null, T('Show them — open one by one')));
             missing.forEach(x => { const a = el('a', null, x.title || x.link); a.href = x.link; a.target = '_blank'; a.rel = 'noopener'; det.append(a); });
@@ -1666,7 +1670,12 @@ async function openRecap(dayStart, label, source = ui.source) {
         const rate = settings.rateWithRecap !== false;
         // Refresh = previous recap + only the new/edited items; nothing new means no AI request at all.
         if (cached && fresh) {
-            if (!fresh.length) { toast(uiRef, T('Nothing new since this recap')); return draw(cached, false); }
+            if (!fresh.length) {
+                toast(uiRef, T('Nothing new since this recap'));
+                draw(cached, false);
+                body.prepend(el('p', 'feed-muted', T('Nothing new since this recap — Reset rewrites it from scratch.')));
+                return;
+            }
             const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true) });
             body.replaceChildren(st.node);
             try {
@@ -1704,7 +1713,7 @@ async function openRecap(dayStart, label, source = ui.source) {
                 btn('btn-sm', T('Try again'), () => run(true)));
         }
     };
-    run(false);
+    run(!!autoRefresh);
 }
 
 // An item needs the AI only if it has no AI score or no category yet.
