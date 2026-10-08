@@ -1640,7 +1640,7 @@ export async function showArticleDetail(article) {
           <button class="button-secondary kindle-button">${T('Kindle 📚')}</button>
                     <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">${T('LocalSend 📱')}</button>
           <button class="button-secondary md-button">${T('.MD 💾')}</button>
-          <button class="button-secondary open-button">${T('Reader 👓')}</button>
+          <button class="button-secondary open-button">${T('Read 👓')}</button>
         </div>
         <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:12px;">
           <strong style="display:block;margin-bottom:8px;">${T('🧙 AI Summary')}</strong>

@@ -7,7 +7,7 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | ar | 995 | 0 | 0 | 34 |
 | de | 995 | 0 | 0 | 150 |
 | es | 995 | 0 | 0 | 119 |
-| fr | 995 | 0 | 0 | 140 |
+| fr | 995 | 0 | 0 | 139 |
 | hi | 995 | 0 | 0 | 52 |
 | it | 995 | 0 | 0 | 122 |
 | ja | 995 | 0 | 0 | 63 |
@@ -379,7 +379,6 @@ Strings: 995. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lon
 | Copy list | Copier la liste | 15 vs 9 | 1.67× |
 | Feed refresh interval | Intervalle d’actualisation des flux | 35 vs 21 | 1.67× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
-| Reader 👓 | Mode Lecture 👓 | 15 vs 9 | 1.67× |
 | Saved for Later | Enregistré pour plus tard | 25 vs 15 | 1.67× |
 | Queue a question… | Mettre une question en file… | 28 vs 17 | 1.65× |
 | Scan failed. Enter IP manually. | Échec de la recherche. Saisissez l’IP manuellement. | 51 vs 31 | 1.65× |
