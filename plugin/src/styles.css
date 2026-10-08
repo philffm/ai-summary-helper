@@ -2827,10 +2827,11 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 #historyScreen.selecting .article-card.not-selectable { opacity: 0.45; cursor: not-allowed; }
 .action-btn.active, .action-btn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
 .sel-bar {
-  position: sticky; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px); z-index: var(--z-raised); display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 10px 12px;
+  position: sticky; bottom: 8px; z-index: var(--z-raised); display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 10px 12px;
   border-radius: 16px; background: var(--glass-base); border: 1px solid var(--glass-border-strong); box-shadow: var(--shadow-raised);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
+.screen.ws-active .sel-bar { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px); }   /* split view: lift above the floating nav */
 .sel-bar .sel-x { width: 36px; height: 36px; padding: 0; flex: none; }
 .sel-bar .sel-info { flex: 1; min-width: 0; }
 .sel-bar .sel-count { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }
