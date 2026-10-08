@@ -3642,6 +3642,10 @@ body[data-surface="sidebar"] { min-width: 0; }
 /* "Thinking more…" under the typed short answer until the model's continuation arrives */
 .chat-more { display: flex; align-items: center; gap: 3px; margin: 2px 0 6px 14px; font-size: var(--fs-2xs); color: var(--text-muted); }
 .chat-more.is-writing .chat-more-label, .chat-more.is-writing i { display: none; }
+.chat-more[hidden] { display: none; }
+.chat-dig { display: flex; gap: 6px; margin: 2px 0 6px 14px; }
+.chat-dig button { background: none; border: 1px solid var(--outline); border-radius: var(--radius-sm); color: var(--text-secondary); font-size: var(--fs-2xs); padding: 2px 8px; cursor: pointer; }
+.chat-dig button:hover { border-color: var(--accent); color: var(--text-primary); }
 .chat-more-stop { margin-left: auto; background: none; border: 1px solid var(--outline); border-radius: var(--radius-sm); color: var(--text-secondary); font-size: var(--fs-2xs); padding: 2px 8px; cursor: pointer; }
 .chat-more-stop:hover { border-color: var(--accent); color: var(--text-primary); }
 .chat-more i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: .35; animation: chat-more-dot 1.2s infinite ease-in-out; }

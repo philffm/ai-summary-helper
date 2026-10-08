@@ -629,6 +629,14 @@ export function initMainScreen(ui) {
         return sug;
     }
 
+    /** Is the active connection a local Ollama model? (then the full answer is requested without asking) */
+    async function isOllamaActive() {
+        try {
+            const s = await chrome.storage.sync.get(['connectionMode', 'activeService']);
+            return s.connectionMode === 'local' && String(s.activeService || '').toLowerCase() === 'ollama';
+        } catch (_) { return false; }
+    }
+
     async function sendFollowUp(q) {
         if (!conversation || !q) return;
         feed.querySelector('.chat-suggest')?.remove();
@@ -648,6 +656,9 @@ export function initMainScreen(ui) {
         stopBtn.textContent = T('■ Stop');
         const ctrl = new AbortController();
         let stopped = false;
+        // Local Ollama models are slow but free: start the full answer straight away so it is (partly) ready when the short one is read.
+        // Paid / cloud models: the short answer stands, the user decides whether the full one is worth the tokens.
+        const auto = !quickText || await isOllamaActive();
         // Happy with the short answer? Stop keeps it (and what was already written) and cancels the request.
         stopBtn.addEventListener('click', () => { stopped = true; fullDone = true; ctrl.abort(); });
         const paint = () => {
@@ -661,11 +672,33 @@ export function initMainScreen(ui) {
             typing = true;
             ans.classList.add('chat-a--quick');
             ans.after(more);
+            more.hidden = !auto;
             scrollFeed();
             typer = typeText(quickText, (t) => { typed = t; paint(); try { instant && instant.chatText(t); } catch (_) { /* optional */ } }, { fast: () => fullDone, instant: reduce });   // read aloud as it is typed
             typer.done.then(() => { typing = false; paint(); try { instant && instant.chatText(joinContinuation(quickText, cont)); } catch (_) { /* optional */ } });
         }
         try {
+            if (!auto) {
+                await typer.done;
+                const dig = document.createElement('div');
+                dig.className = 'chat-dig';
+                dig.innerHTML = '<button type="button" class="chat-dig-go"></button><button type="button" class="chat-dig-skip"></button>';
+                dig.querySelector('.chat-dig-go').textContent = T('Dig deeper');
+                dig.querySelector('.chat-dig-skip').textContent = T('That is enough');
+                ans.after(dig);
+                scrollFeed();
+                fetchSummaryButton.disabled = false;
+                const deeper = await new Promise((res) => {
+                    dig.querySelector('.chat-dig-go').addEventListener('click', () => res(true));
+                    dig.querySelector('.chat-dig-skip').addEventListener('click', () => res(false));
+                });
+                dig.remove();
+                fetchSummaryButton.disabled = true;
+                if (!deeper) { stopped = true; throw Object.assign(new Error('Cancelled'), { name: 'AbortError' }); }
+                more.hidden = false;
+                more.classList.remove('is-writing');
+                ans.after(more);
+            }
             const { system, user } = buildPrompt({ ...conversation, question: q, draft: quickText });
             const raw = await aiComplete(system, user, null, quickText ? ctrl.signal : null, (m) => {
                 // Stream the continuation in as it is written (cleaned of HTML / code fences / the SOURCES line).

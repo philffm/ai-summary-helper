@@ -3,6 +3,7 @@
 import assert from 'assert';
 import { setup, imp, tick } from './harness.mjs';
 const { w, store } = setup({}); const d = w.document;
+store.connectionMode = 'local'; store.activeService = 'ollama';   // local Ollama: the full answer is requested right away
 globalThis.requestAnimationFrame = (f) => setTimeout(f, 0);
 w.HTMLElement.prototype.scrollIntoView = function () {};
 chrome.runtime.getURL = (p) => 'chrome-extension://abc/' + p;
