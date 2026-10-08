@@ -13,9 +13,9 @@ assert(!root.style.getPropertyValue('--text-scale'));
 assert.equal(a.clampScale(500), 150); assert.equal(a.clampScale(10), 85); assert.equal(a.clampScale('x'), 100);
 // popup.html: controls exist, flags in the UI language list
 const html = fs.readFileSync(new URL('../src/popup.html', import.meta.url), 'utf8');
-for (const id of ['textScaleRange', 'lineSpacingSelect', 'readableFontToggle', 'reduceMotionToggle', 'detailMoreBtn', 'detailMoreMenu']) assert(html.includes('id="' + id + '"'), id);
+for (const id of ['textScaleRange', 'readableFontToggle', 'reduceMotionToggle', 'themeSeg', 'lineSeg', 'detailMoreBtn', 'detailMoreMenu']) assert(html.includes('id="' + id + '"'), id);
 assert(/value="de">🇩🇪 Deutsch/.test(html) && /value="ja">🇯🇵 日本語/.test(html));
-assert(/value="contrast"/.test(html));
+assert(/data-value="contrast"/.test(html));
 // detail view
 const iso = (d) => new Date(Date.now() - d).toISOString();
 store['articles:index'] = [{ id: 'a1', url: 'https://x.com/1', title: 'Paper one', timestamp: iso(0), summary: '<p>one</p>', tags: [], paper: 'yes', doi: '10.1038/s41562-026-0000-0' }];

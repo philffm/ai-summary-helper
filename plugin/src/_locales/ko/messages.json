@@ -3436,5 +3436,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 논문 상세 · 핵심 사실 · 인용 · DOI"
+  },
+  "f_dark_0065": {
+    "message": "다크"
+  },
+  "f_light_f8cf": {
+    "message": "라이트"
+  },
+  "f_system_84bc": {
+    "message": "시스템"
   }
 }

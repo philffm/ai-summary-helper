@@ -3364,5 +3364,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 論文詳情 · 重點 · 引用 · DOI"
+  },
+  "f_dark_0065": {
+    "message": "深色"
+  },
+  "f_light_f8cf": {
+    "message": "淺色"
+  },
+  "f_system_84bc": {
+    "message": "系統"
   }
 }

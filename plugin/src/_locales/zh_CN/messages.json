@@ -3448,5 +3448,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 论文详情 · 要点 · 引用 · DOI"
+  },
+  "f_dark_0065": {
+    "message": "深色"
+  },
+  "f_light_f8cf": {
+    "message": "浅色"
+  },
+  "f_system_84bc": {
+    "message": "系统"
   }
 }

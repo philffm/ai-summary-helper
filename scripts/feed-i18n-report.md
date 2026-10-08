@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1012. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1014. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1012 | 0 | 0 | 34 |
-| de | 1012 | 0 | 0 | 151 |
-| es | 1012 | 0 | 0 | 120 |
-| fr | 1012 | 0 | 0 | 142 |
-| hi | 1012 | 0 | 0 | 52 |
-| it | 1012 | 0 | 0 | 124 |
-| ja | 1012 | 0 | 0 | 63 |
-| ko | 1012 | 0 | 0 | 13 |
-| pt_PT | 1012 | 0 | 0 | 123 |
-| ru | 1012 | 0 | 0 | 69 |
-| zh_CN | 1012 | 0 | 0 | 1 |
-| zh_HK | 1012 | 0 | 0 | 1 |
-| zh_TW | 1012 | 0 | 0 | 1 |
+| ar | 1014 | 0 | 0 | 34 |
+| de | 1014 | 0 | 0 | 151 |
+| es | 1014 | 0 | 0 | 119 |
+| fr | 1014 | 0 | 0 | 142 |
+| hi | 1014 | 0 | 0 | 52 |
+| it | 1014 | 0 | 0 | 123 |
+| ja | 1014 | 0 | 0 | 63 |
+| ko | 1014 | 0 | 0 | 13 |
+| pt_PT | 1014 | 0 | 0 | 122 |
+| ru | 1014 | 0 | 0 | 69 |
+| zh_CN | 1014 | 0 | 0 | 1 |
+| zh_HK | 1014 | 0 | 0 | 1 |
+| zh_TW | 1014 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -242,7 +242,6 @@ Strings: 1012. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Browser Default | Predeterminado del navegador | 28 vs 15 | 1.87× |
 | Get Key | Obtener clave | 13 vs 7 | 1.86× |
 | Log Out | Cerrar sesión | 13 vs 7 | 1.86× |
-| System Default | Predeterminado del sistema | 26 vs 14 | 1.86× |
 | Verify & Login | Verificar e iniciar sesión | 26 vs 14 | 1.86× |
 | About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
 | 🧠 On-device tools | 🧠 Herramientas en el dispositivo | 33 vs 18 | 1.83× |
@@ -608,7 +607,6 @@ Strings: 1012. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ⚠ Not peer-reviewed | ⚠ Non sottoposto a peer review | 30 vs 19 | 1.58× |
 | Reference list | Elenco dei riferimenti | 22 vs 14 | 1.57× |
 | Request failed | Richiesta non riuscita | 22 vs 14 | 1.57× |
-| System Default | Predefinito di sistema | 22 vs 14 | 1.57× |
 | Active send target | Destinazione di invio attiva | 28 vs 18 | 1.56× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clicca con il tasto destro sull'icona di Ollama nell'area di notifica (in basso a destra) e scegli <b>Quit</b>. | 111 vs 71 | 1.56× |
 | {name} · API key set | {name} · chiave API impostata | 25 vs 16 | 1.56× |
@@ -802,7 +800,6 @@ Strings: 1012. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No Kindle email set. | Nenhum e-mail do Kindle definido. | 33 vs 20 | 1.65× |
 | Updates & storage | Atualizações e armazenamento | 28 vs 17 | 1.65× |
 | Auto-Detect | Deteção automática | 18 vs 11 | 1.64× |
-| System Default | Predefinição do sistema | 23 vs 14 | 1.64× |
 | Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
 | Failed to export backup. | Falha ao exportar a cópia de segurança. | 39 vs 24 | 1.63× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |

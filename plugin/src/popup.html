@@ -483,14 +483,12 @@
   </div>
                 <div class="a11y-block">
                   <h3 data-i18n="f_display_d9b5">Display</h3>
-                  <div class="setting-group flex justify-between align-center">
-                    <label for="themeSelect" data-i18n="f_theme_7c92">Theme</label>
-                    <select id="themeSelect">
-                        <option value="system" data-i18n="f_system_default_c329">System Default</option>
-                        <option value="light" data-i18n="f_light_mode_608a">Light Mode</option>
-                        <option value="dark" data-i18n="f_dark_mode_05f8">Dark Mode</option>
-                        <option value="contrast" data-i18n="f_high_contrast_9fd1">High contrast</option>
-                    </select>
+                  <span class="a11y-label" id="themeLabel" data-i18n="f_theme_7c92">Theme</span>
+                  <div class="a11y-seg" id="themeSeg" role="radiogroup" aria-labelledby="themeLabel">
+                    <button type="button" role="radio" data-value="system" data-i18n="f_system_84bc">System</button>
+                    <button type="button" role="radio" data-value="light" data-i18n="f_light_f8cf">Light</button>
+                    <button type="button" role="radio" data-value="dark" data-i18n="f_dark_0065">Dark</button>
+                    <button type="button" role="radio" data-value="contrast" data-i18n="f_high_contrast_9fd1">High contrast</button>
                   </div>
                   <p class="a11y-hint" id="themeHint"></p>
                   <div class="setting-group flex justify-between align-center">
@@ -517,13 +515,11 @@
                   <h3 data-i18n="f_text_2d5e">Text</h3>
                   <label for="textScaleRange" style="margin:0;"><span data-i18n="f_text_size_1143">Text size</span> · <span id="textScaleValue">100%</span></label>
                   <div class="a11y-slider"><span aria-hidden="true" style="font-size:11px;">A</span><input type="range" id="textScaleRange" min="85" max="150" step="5" value="100" /><span aria-hidden="true" style="font-size:18px;">A</span></div>
-                  <div class="setting-group flex justify-between align-center">
-                    <label for="lineSpacingSelect" data-i18n="f_line_spacing_d3de">Line spacing</label>
-                    <select id="lineSpacingSelect">
-                        <option value="compact" data-i18n="f_compact_ad86">Compact</option>
-                        <option value="normal" data-i18n="f_normal_2772">Normal</option>
-                        <option value="relaxed" data-i18n="f_relaxed_38bc">Relaxed</option>
-                    </select>
+                  <span class="a11y-label" id="lineLabel" data-i18n="f_line_spacing_d3de">Line spacing</span>
+                  <div class="a11y-seg" id="lineSeg" role="radiogroup" aria-labelledby="lineLabel">
+                    <button type="button" role="radio" data-value="compact" data-i18n="f_compact_ad86">Compact</button>
+                    <button type="button" role="radio" data-value="normal" data-i18n="f_normal_2772">Normal</button>
+                    <button type="button" role="radio" data-value="relaxed" data-i18n="f_relaxed_38bc">Relaxed</button>
                   </div>
                   <div class="setting-group flex justify-between align-center">
                     <label for="readableFontToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_easy_read_font_b69f">Easy-read font</label>

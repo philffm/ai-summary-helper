@@ -3448,5 +3448,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 Détails de l'article · Faits · Citation · DOI"
+  },
+  "f_dark_0065": {
+    "message": "Sombre"
+  },
+  "f_light_f8cf": {
+    "message": "Clair"
+  },
+  "f_system_84bc": {
+    "message": "Système"
   }
 }

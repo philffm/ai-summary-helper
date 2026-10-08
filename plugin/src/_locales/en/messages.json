@@ -3603,5 +3603,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 Paper details · Facts · Cite · DOI"
+  },
+  "f_dark_0065": {
+    "message": "Dark"
+  },
+  "f_light_f8cf": {
+    "message": "Light"
+  },
+  "f_system_84bc": {
+    "message": "System"
   }
 }

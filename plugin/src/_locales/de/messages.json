@@ -3454,5 +3454,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 Paper-Details · Fakten · Zitat · DOI"
+  },
+  "f_dark_0065": {
+    "message": "Dunkel"
+  },
+  "f_light_f8cf": {
+    "message": "Hell"
+  },
+  "f_system_84bc": {
+    "message": "System"
   }
 }

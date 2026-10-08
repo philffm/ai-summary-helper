@@ -35,8 +35,9 @@ const INDEX = [
     ['send', N_('Kindle devices'), 'newKindleEmail', 'kindle email device send to kindle'],
     ['send', N_('KOReader / LocalSend devices'), 'newLocalSendIp', 'koreader localsend ip device scan'],
     ['send', N_('Bookmarklet generator'), 'generateBookmarkletBtn', 'bookmarklet ios android mobile safari'],
-    ['appearance', N_('Theme'), 'themeSelect', 'dark light mode appearance system'],
+    ['appearance', N_('Theme'), 'themeSeg', 'dark light mode appearance system contrast'],
     ['appearance', N_('UI language'), 'uiLangSelect', 'language translation locale interface'],
+    ['appearance', N_('Line spacing'), 'lineSeg', 'text size font dyslexia reading spacing'],
     ['appearance', N_('Native Chrome side panel'), 'nativeSidePanelToggle', 'sidebar side panel popup window'],
     ['library', N_('Export settings'), 'exportSettingsButton', 'backup export download json'],
     ['library', N_('Import settings'), 'importSettingsButton', 'restore import backup json'],
@@ -79,7 +80,9 @@ function $(id) { return document.getElementById(id); }
 function selectedText(id) {
     const el = $(id);
     const opt = el && el.selectedOptions && el.selectedOptions[0];
-    return opt ? opt.textContent.trim() : '';
+    if (opt) return opt.textContent.trim();
+    const on = el && el.querySelector && el.querySelector('[role=radio].on');   // segmented control
+    return on ? on.textContent.trim() : '';
 }
 
 function onOff(id) { const el = $(id); return el && el.checked ? T('on') : T('off'); }
@@ -107,7 +110,7 @@ async function refreshSubtitles() {
     set('reading', T('Highlighting {a} · ghost {b}', { a: onOff('highlightingToggle'), b: onOff('aiHighlightingToggle') }));
     const delivery = selectedText('deliveryPreference');
     set('send', delivery ? T('Delivery: {name}', { name: delivery }) : T('Kindle · LocalSend · bookmarklet'));
-    const theme = selectedText('themeSelect'); const lang = selectedText('uiLangSelect');
+    const theme = selectedText('themeSeg'); const lang = selectedText('uiLangSelect');
     set('appearance', [theme, lang].filter(Boolean).join(' · ') || T('Theme · language · side panel'));
     const v = $('versionNumber');
     set('about', T('Compatible tools') + (v ? ' · v' + v.textContent.trim() : ''));

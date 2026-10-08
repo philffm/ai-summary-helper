@@ -3458,3 +3458,9 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .a11y-slider { display: flex; align-items: center; gap: 10px; }
 .a11y-slider input[type=range] { flex: 1; accent-color: var(--accent); }
 .a11y-preview { padding: 10px 12px; border: 1px solid var(--outline); border-radius: 12px; font-size: var(--fs-base); }
+
+.a11y-label { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }
+.a11y-seg { display: flex; gap: 2px; padding: 2px; border-radius: 999px; background: var(--glass-input); border: 1px solid var(--outline); }
+.a11y-seg button { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 600; padding: 7px 6px; border-radius: 999px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.a11y-seg button.on { background: var(--accent); color: var(--on-accent); }
+.a11y-seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }

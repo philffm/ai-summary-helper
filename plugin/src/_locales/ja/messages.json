@@ -3454,5 +3454,14 @@
   },
   "f_paper_details_facts_cite_doi_245b": {
     "message": "🎓 論文の詳細 · 要点 · 引用 · DOI"
+  },
+  "f_dark_0065": {
+    "message": "ダーク"
+  },
+  "f_light_f8cf": {
+    "message": "ライト"
+  },
+  "f_system_84bc": {
+    "message": "システム"
   }
 }

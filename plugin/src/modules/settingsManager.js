@@ -419,18 +419,28 @@ function initGeneralSettings(storageData) {
     // ── Theme + display & reading preferences ───────────────────────
     const a11yState = { theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing || 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
     const reapply = () => applyA11y({ ...a11yState, theme: a11yState.theme === 'system' ? '' : a11yState.theme });
-    const themeSelect = document.getElementById('themeSelect');
+    // Segmented controls (radiogroups): one round-trip for Theme and Line spacing.
+    const seg = (id, value, onPick) => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        const btns = [...el.querySelectorAll('[role=radio]')];
+        const paint = (v) => btns.forEach(b => { const on = b.dataset.value === v; b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
+        paint(value);
+        btns.forEach((b, i) => {
+            b.addEventListener('click', () => { paint(b.dataset.value); onPick(b.dataset.value); });
+            b.addEventListener('keydown', (e) => {
+                const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+                if (!d) return;
+                e.preventDefault();
+                const n = btns[(i + d + btns.length) % btns.length]; n.focus(); n.click();
+            });
+        });
+        return el;
+    };
     const themeHint = document.getElementById('themeHint');
     const showThemeHint = () => { if (themeHint) themeHint.textContent = a11yState.theme === 'system' ? T('Currently following your system: {theme}').replace('{theme}', systemTheme() === 'dark' ? T('Dark Mode') : T('Light Mode')) : ''; };
-    if (themeSelect) {
-        themeSelect.value = a11yState.theme;
-        showThemeHint();
-        themeSelect.addEventListener('change', () => {
-            a11yState.theme = themeSelect.value;
-            autoSave('theme', a11yState.theme);
-            reapply(); showThemeHint();
-        });
-    }
+    seg('themeSeg', a11yState.theme, (v) => { a11yState.theme = v; autoSave('theme', v); reapply(); showThemeHint(); });
+    showThemeHint();
     const scaleRange = document.getElementById('textScaleRange');
     const scaleValue = document.getElementById('textScaleValue');
     if (scaleRange) {
@@ -439,11 +449,7 @@ function initGeneralSettings(storageData) {
         scaleRange.addEventListener('input', () => { a11yState.textScale = clampScale(scaleRange.value); if (scaleValue) scaleValue.textContent = a11yState.textScale + '%'; reapply(); });
         scaleRange.addEventListener('change', () => autoSave('textScale', a11yState.textScale));
     }
-    const lineSel = document.getElementById('lineSpacingSelect');
-    if (lineSel) {
-        lineSel.value = a11yState.lineSpacing === 'compact' || a11yState.lineSpacing === 'relaxed' ? a11yState.lineSpacing : 'normal';
-        lineSel.addEventListener('change', () => { a11yState.lineSpacing = lineSel.value; autoSave('lineSpacing', lineSel.value); reapply(); });
-    }
+    seg('lineSeg', a11yState.lineSpacing === 'compact' || a11yState.lineSpacing === 'relaxed' ? a11yState.lineSpacing : 'normal', (v) => { a11yState.lineSpacing = v; autoSave('lineSpacing', v); reapply(); });
     const fontToggle = document.getElementById('readableFontToggle');
     if (fontToggle) {
         fontToggle.checked = a11yState.readableFont;
