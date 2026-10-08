@@ -1124,12 +1124,24 @@ export function getActiveTab() {
  * Send a message to a tab, resolving with the response. Falls back to
  * background.js when `chrome.tabs` is unavailable. Rejects on error.
  */
-export function sendMessageToTab(tabId, message) {
+// Pages run only a tiny loader (loader.js); the full content script is injected the first time we talk to the page.
+// ping / stopSummary / getSummaryState are probes and must not inject.
+const NO_INJECT = new Set(['ping', 'stopSummary', 'getSummaryState']);
+const NOT_THERE = /Receiving end does not exist|Could not establish connection|No matching message handler/i;
+export function sendMessageToTab(tabId, message, _retried = false) {
     return new Promise((resolve, reject) => {
         if (typeof chrome.tabs?.sendMessage === 'function') {
-            chrome.tabs.sendMessage(tabId, message, (response) => {
+            chrome.tabs.sendMessage(tabId, message, async (response) => {
                 if (chrome.runtime.lastError) {
-                    reject(chrome.runtime.lastError);
+                    const err = chrome.runtime.lastError;
+                    if (!_retried && message && !NO_INJECT.has(message.action) && NOT_THERE.test(err.message || '') && chrome.scripting?.executeScript) {
+                        try {
+                            await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+                            resolve(await sendMessageToTab(tabId, message, true));
+                            return;
+                        } catch (_) { /* restricted page: report the original error */ }
+                    }
+                    reject(err);
                     return;
                 }
                 resolve(response);

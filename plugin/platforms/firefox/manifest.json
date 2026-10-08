@@ -62,7 +62,7 @@
         "file:///*"
       ],
       "js": [
-        "content.js"
+        "loader.js"
       ]
     }
   ],

@@ -227,16 +227,24 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
+// Pages run only a tiny loader (loader.js). The full content script is injected the first time something needs it:
+// the loader asks for it (saved highlights, text selection), and every sender below injects before it talks to a tab.
+async function ensureContent(tabId) {
+    try { const r = await chrome.tabs.sendMessage(tabId, { action: 'ping' }); if (r && r.status === 'pong') return true; } catch (_) { /* not injected yet */ }
+    try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); return true; } catch (_) { return false; }
+}
+async function sendToTab(tabId, message) { await ensureContent(tabId); return chrome.tabs.sendMessage(tabId, message); }
+
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (!tab?.id) return;
     if (info.menuItemId === 'aish-highlight') {
-        chrome.tabs.sendMessage(tab.id, { action: 'contextMenuHighlight', text: info.selectionText }).catch(() => {});
+        sendToTab(tab.id, { action: 'contextMenuHighlight', text: info.selectionText }).catch(() => {});
     } else if (info.menuItemId === 'aish-clear-highlights') {
-        chrome.tabs.sendMessage(tab.id, { action: 'contextMenuClearHighlights' }).catch(() => {});
+        sendToTab(tab.id, { action: 'contextMenuClearHighlights' }).catch(() => {});
     } else if (info.menuItemId === 'aish-summarize') {
-        chrome.tabs.sendMessage(tab.id, { action: 'fetchSummary', summaryMode: 'extension' }).catch(() => {});
+        sendToTab(tab.id, { action: 'fetchSummary', summaryMode: 'extension' }).catch(() => {});
     } else if (info.menuItemId === 'aish-summarize-close') {
-        chrome.tabs.sendMessage(tab.id, { action: 'fetchSummaryAndClose', summaryMode: 'extension' }).catch(() => {});
+        sendToTab(tab.id, { action: 'fetchSummaryAndClose', summaryMode: 'extension' }).catch(() => {});
     }
 });
 
@@ -687,7 +695,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                     try {
                         await chrome.tabs.sendMessage(tabId, { action: 'ping' });
                     } catch (e) {
-                        if (attempt === 2) {
+                        if (attempt === 1) {   // pages run only loader.js until the full script is injected
                             try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); } catch (_) { /* restricted page cannot be scripted; the retry loop handles it */ }
                         }
                         if (attempt < 6) return setTimeout(() => start(attempt + 1), 800);
@@ -746,6 +754,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             const tab = tabs && tabs[0];
             sendResponse({ success: !!tab, tab: tab ? { id: tab.id, url: tab.url } : null });
         });
+        return true;
+    }
+
+    // The loader (loader.js) asks for the full content script: saved highlights on this page, or a text selection.
+    if (msg.action === 'aish:injectContent') {
+        const id = sender && sender.tab && sender.tab.id;
+        if (id == null) { sendResponse({ ok: false }); return false; }
+        ensureContent(id).then((ok) => sendResponse({ ok })).catch(() => sendResponse({ ok: false }));
         return true;
     }
 
@@ -964,7 +980,7 @@ chrome.commands.onCommand.addListener((command) => {
         chrome.action.openPopup();
     } else if (command === 'fetch-summary') {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            chrome.tabs.sendMessage(tabs[0].id, { action: 'fetchSummary' });
+            if (tabs && tabs[0]) sendToTab(tabs[0].id, { action: 'fetchSummary' }).catch(() => {});
         });
     }
 });
