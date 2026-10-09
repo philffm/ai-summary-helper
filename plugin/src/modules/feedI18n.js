@@ -3,7 +3,7 @@
 // `f_mark_read_<hash>` in _locales/<lang>/messages.json and falls back to the
 // English text itself. `scripts/feed-i18n.mjs` extracts every T()/TN()/TU()/N_()
 // literal, checks coverage per locale and flags over-long translations.
-import { t } from './i18n.js';
+import { t, resolveLocale } from './i18n.js';
 
 // FNV-1a, 4 hex chars: keeps keys unique even when two texts share a slug.
 export function keyOf(en) {
@@ -32,3 +32,6 @@ export function locale() {
     const l = typeof document !== 'undefined' && document.documentElement && document.documentElement.lang;
     return l || undefined;
 }
+
+// The UI language as a _locales folder code ('de', 'pt_PT', …) — what topicConcepts.js labels are keyed by.
+export const uiLocale = () => resolveLocale(locale());

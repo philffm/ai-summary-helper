@@ -44,7 +44,7 @@ export const cleanBatchSize = (n) => BATCH_SIZES.includes(Number(n)) ? Number(n)
  * rate: items without AI score or category (newest first)
  * days: days with items the recap has not covered yet (today is skipped unless includeToday is true),
  *       oldest first, each { day, total, todo } where todo = items still to be covered (newest first).
- * tag:  (only when ctx.subs is given) feeds that still need topic tags in ctx.topicLang, each { id, items, all }:
+ * tag:  (only when ctx.subs is given) feeds that still need topic tags in ctx.topicLang, each { id, items, all, keys? }:
  *       items = an even sample (TOPIC_SAMPLE) over all the feed's stored items, all = every stored item of the feed. Feeds without any stored item are left out: there is nothing to base tags on.
  */
 export function planLibrary(ctx) {
@@ -70,8 +70,10 @@ export function planLibrary(ctx) {
     if (ctx.subs) {
         plan.tag = ctx.subs.filter((s) => needsTopics(s, ctx.topicLang)).map((s) => {
             const all = items.filter((i) => i.feedId === s.id).sort((a, b) => b.published - a.published);
-            return { id: s.id, items: evenSample(all, TOPIC_SAMPLE), all };
-        }).filter((e) => e.items.length);
+            // keys = the tags' English names: a language change then only needs a short translation, not a new look at the feed
+            const keys = s.topics && s.topics.length && s.topicKeys && s.topicKeys.length === s.topics.length && s.topicKeys.every(Boolean) ? s.topicKeys : null;
+            return { id: s.id, items: evenSample(all, TOPIC_SAMPLE), all, ...(keys ? { keys } : {}) };
+        }).filter((e) => e.items.length || e.keys);
     }
     return plan;
 }

@@ -9,7 +9,7 @@
 import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
 import { resolveLocale } from './i18n.js';
-import { conceptKey, conceptList } from './topicConcepts.js';
+import { conceptKey, conceptId, conceptList, topicLabel, normalizeTopic } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
@@ -116,15 +116,22 @@ export function cleanLabel(v) {
     return t || null;
 }
 
-/** Reply of the topic prompt ("Climate, Energy, Policy") -> up to 3 distinct short tags. */
-export function parseTopicTags(text) {
+/**
+ * Reply of the topic prompt ("Fußball = Football, Wirtschaft = Economy") -> up to 3 distinct { label, en }.
+ * label = the tag in the UI language, en = its English name (the language-independent identity, '' when not given).
+ * "News" and "Nachrichten" are one tag (see topicConcepts.js).
+ */
+export function parseTopicPairs(text) {
     const seen = new Set(), out = [];
     String(text || '').split(/[,;|\n]/).forEach(part => {
-        const v = cleanLabel(part.replace(/^\s*(?:tags?|topics?)\s*:\s*/i, '').replace(/^\s*(?:[-•*]|\d+[.):])\s*/, '').replace(/^#+/, ''));
-        if (v && !seen.has(conceptKey(v))) { seen.add(conceptKey(v)); out.push(v); }   // "News" and "Nachrichten" are one tag
+        const [a, b] = part.replace(/^\s*(?:tags?|topics?)\s*:\s*/i, '').replace(/^\s*(?:[-•*]|\d+[.):])\s*/, '').replace(/^#+/, '').split(/\s*(?:=|→|->|:)\s*/);
+        const label = cleanLabel(a), en = b ? cleanLabel(b) : null;
+        const key = label && conceptKey(en || label);
+        if (label && !seen.has(key)) { seen.add(key); out.push({ label, en: en ? en.toLowerCase() : '' }); }
     });
     return out.slice(0, 3);
 }
+export const parseTopicTags = (text) => parseTopicPairs(text).map(p => p.label);
 
 /**
  * Up to 3 topic tags for ONE feed, written in the UI language. The model sees an even sample of the feed's headlines
@@ -138,11 +145,30 @@ export async function generateFeedTopics(title, list, { cats = [], signal, onSta
         + `Reply in the language ${name}. Give at most 3 tags, each one or two words, naming what the source mainly posts about `
         + (`Reuse these words when they fit (so the same topic always has the same tag): ${vocab.join(', ')}; otherwise choose your own, more specific tag. `)
         + 'Prefer topics that recur across the whole sample over one-off stories, and use fewer tags when the source is narrow. '
-        + 'Reply with ONLY the tags separated by commas, nothing else.';
+        + (code === 'en' ? 'Reply with ONLY the tags separated by commas, nothing else.'
+            : 'Write each tag as "tag in that language = its English name", e.g. "Fußball = Football". Reply with ONLY these pairs separated by commas, nothing else.');
     const dist = cats.length ? `\nCategory distribution of all its posts: ${cats.map(([c, n]) => `${c} ×${n}`).join(', ')}` : '';
     const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, 80)}`;
-    const tags = parseTopicTags(await aiComplete(system, user, onStage, signal, onProgress, { service }));
-    if (!tags.length) throw new Error(T('The AI reply could not be read'));
+    const pairs = parseTopicPairs(await aiComplete(system, user, onStage, signal, onProgress, { service }));
+    if (!pairs.length) throw new Error(T('The AI reply could not be read'));
+    // keys = language-independent identity of each tag (its English name), stored next to the labels
+    return { tags: pairs.map(p => p.label), keys: pairs.map(p => normalizeTopic(p.en || (code === 'en' ? p.label : ''))), lang: code };
+}
+
+/**
+ * The same tags in a NEW UI language, without looking at the feed again: known topics come from the dictionary,
+ * the rest from one short translation request over their English names (keys). Returns { tags, lang }.
+ */
+export async function translateFeedTopics(keys, { signal, onStage, onProgress, service } = {}) {
+    const { code, name } = await uiLanguage();
+    const tags = keys.map(k => (conceptId(k) ? topicLabel(k, code) : null));
+    const todo = keys.filter((_, n) => tags[n] === null);
+    if (todo.length) {
+        const system = `Translate these topic names into ${name}. Each stays a short tag of one or two words. Reply with ONLY the translations, in the same order, separated by commas.`;
+        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service })).split(/[,;|\n]/).map(cleanLabel).filter(Boolean);
+        if (parts.length !== todo.length) throw new Error(T('The AI reply could not be read'));
+        let k = 0; keys.forEach((_, n) => { if (tags[n] === null) tags[n] = parts[k++]; });
+    }
     return { tags, lang: code };
 }
 

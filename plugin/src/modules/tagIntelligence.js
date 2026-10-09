@@ -9,6 +9,7 @@
 
 import { levenshtein } from './textUtils.js';
 import { topTermsFor } from './localSearch.js';
+import { conceptId } from './topicConcepts.js';
 
 // Small curated alias table for the abbreviations/variants that come up
 // constantly in tech/news reading archives. Extend freely — this is data,
@@ -42,6 +43,8 @@ function basicNormalize(tag) {
 export function normalizeTag(tag) {
     const base = basicNormalize(tag);
     if (!base) return '';
+    const topic = conceptId(tag);   // "News" / "Nachrichten" / "Noticias" → one key, whatever the language
+    if (topic) return 'c:' + topic;
     if (CANONICAL_ALIASES[base]) return CANONICAL_ALIASES[base];
     return base;
 }
@@ -76,6 +79,7 @@ export function buildCanonicalTagMap(articles) {
     for (let i = 0; i < bases.length; i++) {
         for (let j = i + 1; j < bases.length; j++) {
             const a = bases[i], b = bases[j];
+            if (a.startsWith('c:') || b.startsWith('c:')) continue;   // known topics are merged by meaning, never by spelling
             if (Math.abs(a.length - b.length) > FUZZY_MERGE_THRESHOLD) continue;
             if (levenshtein(a, b) <= FUZZY_MERGE_THRESHOLD) union(a, b);
         }

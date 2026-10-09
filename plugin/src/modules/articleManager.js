@@ -15,6 +15,7 @@ import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive, canSelect, startSelectionWith } from './sendSheet.js';
 import { attachCardMenu } from './cardMenu.js';
 import { T, locale } from './feedI18n.js';
+import { tagMatches } from './topicConcepts.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { normalizeDoi } from '../content/paper.js';
@@ -168,7 +169,7 @@ function graphScopeVisibleArticles() {
     if (!filterText) return cachedArticles;
     const filtered = cachedArticles.filter(a => {
         const titleMatch = (a.title || '').toLowerCase().includes(filterText);
-        const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(filterText));
+        const tagMatch = (a.tags || []).some(t => tagMatches(t, filterText));
         return titleMatch || tagMatch;
     });
     return filtered.length > 0 ? filtered : cachedArticles;
@@ -1362,7 +1363,7 @@ export function filterArticles() {
     // an empty or very short query, same as the original behaviour.
     const cheapMatch = (a) => {
         const titleMatch = (a.title || '').toLowerCase().includes(lowerFilter);
-        const tagMatch = (a.tags || []).some(t => t.toLowerCase().includes(lowerFilter));
+        const tagMatch = (a.tags || []).some(t => tagMatches(t, lowerFilter));
         return titleMatch || tagMatch || paperSearchText(a).includes(lowerFilter);
     };
 

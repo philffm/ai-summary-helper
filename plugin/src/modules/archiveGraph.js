@@ -36,7 +36,8 @@
 //   similarity links.
 
 import { cosineSim } from './localSearch.js';
-import { T, TN } from './feedI18n.js';
+import { T, TN, uiLocale } from './feedI18n.js';
+import { conceptId, topicLabel } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 
 let d3LoadPromise = null;
@@ -113,6 +114,10 @@ function mostSimilarIncluded(similarityIndex, article, allArticles, includedArti
  *        so orphaned articles can be reconnected without any extra
  *        indexing pass. Pass null to skip reconnection entirely.
  */
+// One node per topic, not per spelling: News / Nachrichten / Noticias share a node, shown in the UI language.
+const tagIdOf = (tag) => { const c = conceptId(tag); return 'tag-' + (c ? 'c-' + c : tag.toLowerCase().replace(/\s+/g, '-')); };
+const tagLabelOf = (tag) => topicLabel(tag, uiLocale());
+
 function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null) {
     // 1. Count tag degree first, so we can filter before building nodes/links.
     const tagDegree = new Map(); // tagId -> count
@@ -120,9 +125,9 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
     articles.forEach(article => {
         (article.tags || []).forEach(tag => {
-            const tagId = 'tag-' + tag.toLowerCase().replace(/\s+/g, '-');
+            const tagId = tagIdOf(tag);
             tagDegree.set(tagId, (tagDegree.get(tagId) || 0) + 1);
-            tagLabelById.set(tagId, tag);
+            tagLabelById.set(tagId, tagLabelOf(tag));
         });
     });
 
@@ -142,7 +147,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
     articles.forEach(article => {
         const articleTags = (article.tags || []).filter(tag => {
-            const tagId = 'tag-' + tag.toLowerCase().replace(/\s+/g, '-');
+            const tagId = tagIdOf(tag);
             return allowedTagIds.has(tagId);
         });
         if (articleTags.length === 0) return;
@@ -154,9 +159,9 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         nodes.push(articleNode);
 
         articleTags.forEach(tag => {
-            const tagId = 'tag-' + tag.toLowerCase().replace(/\s+/g, '-');
+            const tagId = tagIdOf(tag);
             if (!nodeById.has(tagId)) {
-                const tagNode = { id: tagId, label: tag, group: 'tag', degree: tagDegree.get(tagId) };
+                const tagNode = { id: tagId, label: tagLabelOf(tag), group: 'tag', degree: tagDegree.get(tagId) };
                 nodeById.set(tagId, tagNode);
                 nodes.push(tagNode);
             }

@@ -56,5 +56,28 @@ assert.deepEqual(parseTopicTags('News, Nachrichten, Wirtschaft, Economics, Sport
 // A feed whose tags are all known topics is not re-tagged when the UI language changes (it is just shown in the new language).
 assert(!needsTopics({ topics: ['News', 'Wirtschaft'], topicsLang: 'de' }, 'en'));
 assert(needsTopics({ topics: ['News', 'Bundesliga'], topicsLang: 'de' }, 'en'));
+
+// AI-named topics: "tag = English name" pairs give every tag a language-independent key.
+const { parseTopicPairs, translateFeedTopics, setAiTransport } = await imp('modules/feedAi.js');
+assert.deepEqual(parseTopicPairs('Fußball = Football, Wirtschaft = Economy, Economics, Nachrichten = News, Politik'),
+    [{ label: 'Fußball', en: 'football' }, { label: 'Wirtschaft', en: 'economy' }, { label: 'Nachrichten', en: 'news' }], 'pairs, max 3; Economics dedupes against Wirtschaft');
+assert.deepEqual(parseTopicPairs('Tech, Politics'), [{ label: 'Tech', en: '' }, { label: 'Politics', en: '' }], 'plain tags still work');
+// Language change: known topics from the dictionary, the rest from ONE short translation request.
+const asked = [];
+setAiTransport(async ({ system, user }) => { asked.push(user); return 'Fußball'; });
+const tr = await translateFeedTopics(['football', 'economy']);
+assert.deepEqual(asked, ['football'], 'only the unknown topic is sent');
+assert.equal(tr.tags.length, 2); assert.equal(tr.tags[1], 'Economy'); assert.equal(tr.tags[0], 'Fußball');
+const plan2 = planLibrary({ ...base, subs: [{ id: 'a', topics: ['Fußball'], topicKeys: ['football'], topicsLang: 'de' }, { id: 'b', topics: ['X'], topicsLang: 'de' }], topicLang: 'en' });
+assert.deepEqual(plan2.tag.map(e => [e.id, e.keys || null]), [['a', ['football']], ['b', null]], 'keys → translate only; no keys → look at the feed again');
+
+// History / graph / analytics / search: the same topic in other languages is one topic.
+const { normalizeTag, buildCanonicalTagMap, applyCanonicalTags } = await imp('modules/tagIntelligence.js');
+assert.equal(normalizeTag('Nachrichten'), normalizeTag('News'));
+const arts = [{ tags: ['News', 'Wirtschaft'] }, { tags: ['Nachrichten', 'News'] }, { tags: ['Economics'] }];
+const cmap = buildCanonicalTagMap(arts);
+assert.deepEqual(applyCanonicalTags(['News', 'Nachrichten'], cmap), ['News'], 'merge tool folds languages');
+const { tagMatches } = await imp('modules/topicConcepts.js');
+assert(tagMatches('News', 'nachrichten') && tagMatches('Tech news', 'news') && !tagMatches('Sport', 'nachrichten'));
 console.log('TEST 112 OK');
 process.exit(0);

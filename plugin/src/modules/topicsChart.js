@@ -2,16 +2,19 @@
 // Rendered inside the analytics report (History) — pure SVG, no dependencies.
 
 import { moodEnabled } from './moodSetting.js';
-import { T } from './feedI18n.js';
+import { T, uiLocale } from './feedI18n.js';
+import { conceptId, labelOfKey } from './topicConcepts.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const TOP_OPTIONS = [3, 5, 8];
 const DAY = 86400000;
 
-const normTag = (tag) => String(tag).trim()
-    .replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
-    .toLowerCase().replace(/\s+/g, ' ').trim();
-const titleCase = (k) => k.replace(/\b\w/g, c => c.toUpperCase());
+// Known topics group across languages ('c:news' = News = Nachrichten); other tags by their lowercase text.
+const normTag = (tag) => {
+    const t = String(tag).trim().replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
+    return conceptId(t) ? 'c:' + conceptId(t) : t.toLowerCase().replace(/\s+/g, ' ').trim();
+};
+const titleCase = (k) => labelOfKey(k, uiLocale()) || k.replace(/\b\w/g, c => c.toUpperCase());
 
 function buckets(view, now = new Date()) {
     const out = [];

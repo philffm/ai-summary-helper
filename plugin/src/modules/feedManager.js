@@ -28,7 +28,7 @@ import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
-import { generateRecap, generateRecapUpdate, generateFeedTopics, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
+import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
 import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
@@ -37,7 +37,7 @@ import { startOfDay } from './dateUtils.js';
 import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
-import { conceptKey, topicLabel } from './topicConcepts.js';
+import { conceptKey, topicLabel, normalizeTopic } from './topicConcepts.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
@@ -149,7 +149,16 @@ function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: s
 
 // ── Tags (a feed can have several) ─────────────────────────────────────────
 // A tag's identity is its topic, not its spelling: News = Nachrichten = Noticias, Wirtschaft = Economics (see topicConcepts.js).
-const tagKey = conceptKey;
+// Tags the AI gave an English name (sub.topicKeys) are identified by it too: "Fußball" (de) = "Football" (en).
+let aliasSrc = null, aliasRev = -1, topicsRev = 0, aliasMap = new Map();
+function topicAliases() {
+    if (aliasSrc !== subs || aliasRev !== topicsRev) {
+        aliasSrc = subs; aliasRev = topicsRev; aliasMap = new Map();
+        (subs || []).forEach(s => (s.topics || []).forEach((t, n) => { const k = (s.topicKeys || [])[n]; if (k) aliasMap.set(normalizeTopic(t), conceptKey(k)); }));
+    }
+    return aliasMap;
+}
+const tagKey = (t) => topicAliases().get(normalizeTopic(t)) || conceptKey(t);
 let topicLang = '';   // UI language code (locale folder): topic tags are written and shown in it
 function cleanTags(list) {
     const seen = new Set(), out = [];
@@ -2216,8 +2225,10 @@ function libraryPlan() {
 /** Up to 3 topic tags for one feed in the UI language; kept apart from the user's own tags (s.tags) so those are never touched. */
 async function libraryTagFeed(entry, signal, ctx = {}) {
     const s = subs.find(x => x.id === entry.id); if (!s) return;
-    const r = await generateFeedTopics(subTitle(s), entry.items, { cats: categoryCounts(entry.all), signal, onStage: ctx.onStage, service: 'ollama' });
-    s.topics = cleanTags(r.tags).slice(0, 3); s.topicsLang = r.lang;
+    const r = entry.keys
+        ? { ...(await translateFeedTopics(entry.keys, { signal, onStage: ctx.onStage, service: 'ollama' })), keys: entry.keys }
+        : await generateFeedTopics(subTitle(s), entry.items, { cats: categoryCounts(entry.all), signal, onStage: ctx.onStage, service: 'ollama' });
+    s.topics = r.tags.slice(0, 3); s.topicKeys = r.keys; s.topicsLang = r.lang; topicsRev++;
     await persist();
 }
 async function libraryRateChunk(chunk, signal, ctx = {}) {

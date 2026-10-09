@@ -598,11 +598,13 @@ async function pollFeeds() {
         // Up to 3 topic tags per feed in the UI language, stored as `topics` (the user's own `tags` are never touched).
         const tagFeed = async (entry, signal) => {
             const sub = subscriptions.get(entry.id) || {};
-            const result = await aiCall(aiSignal => FEED_WORKER.generateFeedTopics(sub.customTitle || sub.title || '', entry.items, { cats: FEED_WORKER.categoryCounts(entry.all), signal: aiSignal, service: 'ollama' }), signal);
+            const result = entry.keys
+                ? { ...(await aiCall(aiSignal => FEED_WORKER.translateFeedTopics(entry.keys, { signal: aiSignal, service: 'ollama' }), signal)), keys: entry.keys }
+                : await aiCall(aiSignal => FEED_WORKER.generateFeedTopics(sub.customTitle || sub.title || '', entry.items, { cats: FEED_WORKER.categoryCounts(entry.all), signal: aiSignal, service: 'ollama' }), signal);
             const stored = (await localGet(SK.feedSubs))[SK.feedSubs] || [];
             const target = stored.find(x => x.id === entry.id);
             if (!target) return;
-            target.topics = result.tags.slice(0, 3); target.topicsLang = result.lang;
+            target.topics = result.tags.slice(0, 3); target.topicKeys = result.keys; target.topicsLang = result.lang;
             await chrome.storage.local.set({ [SK.feedSubs]: stored });
         };
         const recapDay = async (entry, size, signal, ctx = {}) => {

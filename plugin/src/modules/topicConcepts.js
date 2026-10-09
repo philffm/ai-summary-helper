@@ -48,3 +48,17 @@ export function topicLabel(tag, locale) {
 
 /** Labels of all known topics in `locale` — suggested vocabulary so the AI reuses the same words. */
 export const conceptList = (locale) => Object.values(CONCEPTS).map((c) => (c[locale] || c.en)[0]);
+
+/** Label for a comparison key from conceptKey(): 'c:news' → the topic's label in `locale`; other keys → null. */
+export function labelOfKey(key, locale) {
+    const id = String(key).startsWith('c:') ? String(key).slice(2) : null;
+    const names = id && CONCEPTS[id] && (CONCEPTS[id][locale] || CONCEPTS[id].en);
+    return names ? names[0] : null;
+}
+
+/** True when tag `t` matches the search text `q` (lowercase): plain substring, or both name the same known topic ("Nachrichten" finds "News"). */
+export function tagMatches(t, q) {
+    if (String(t).toLowerCase().includes(q)) return true;
+    const id = conceptId(q);
+    return !!id && conceptId(t) === id;
+}
