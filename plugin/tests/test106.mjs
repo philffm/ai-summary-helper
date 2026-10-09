@@ -57,6 +57,7 @@ assert.equal(plan.rate.length, 30);
 assert.ok(Math.ceil(plan.rate.length / 10) <= 3, 'bounded plan has at most three AI requests');
 const withRecaps = boundedLibraryPlan({ rate: [], days: Array.from({ length: 4 }, (_, day) => ({ day, todo: Array.from({ length: 25 }, (_, id) => ({ id })) })) }, 10, 3);
 assert.ok(withRecaps.days.reduce((n, day) => n + Math.ceil(day.todo.length / 10), 0) <= 3);
+assert.deepEqual(withRecaps.days.map(d => d.day), [3, 2, 1, 0].slice(0, withRecaps.days.length), 'background recaps start with the newest day');
 const feedAi = await imp('modules/feedAi.js');
 let transportService = '';
 feedAi.setAiTransport(async request => {

@@ -72,7 +72,7 @@ globalThis.fetch = async (url, options = {}) => {
 };
 try {
     const sub = { id: 's1', url: 'https://example.test/feed', title: 'Example' };
-    const settings = { autoProcess: true, backgroundPoll: false, autoProcessMinutes: 15, libraryBatch: 10, keepDays: 30 };
+    const settings = { autoProcess: true, backgroundPoll: false, autoProcessMinutes: 15, libraryBatch: 10, keepDays: 30, rateWithRecap: false };   // separate rating requests: the tick budget below counts them
     const bg = makeBackground({ 'feeds:subs': [sub], 'feeds:items': [], 'feeds:settings': settings });
     await bg.run.applyFeedPollConfig();
     assert.deepEqual(bg.alarms[1], ['create', 'feedPoll', { delayInMinutes: 1, periodInMinutes: 15 }]);
@@ -96,6 +96,13 @@ try {
     await cloud.run.pollFeeds();
     assert.equal(fetchCalls, beforeFetches, 'automatic feed processing does no work without Ollama');
     assert.equal(aiCalls, 4);
+
+    // Default (rateWithRecap on): today's items are rated by their recap call, so no separate rating request is sent for them.
+    const before = aiCalls;
+    const merged = makeBackground({ 'feeds:subs': [sub], 'feeds:items': [], 'feeds:settings': { ...settings, rateWithRecap: undefined } });
+    await merged.run.pollFeeds();
+    assert.equal(aiCalls, before, 'no separate rating request for items that the day recap rates');
+    assert(Object.keys(merged.store['feeds:background'].recaps).length > 0, 'the recap still runs');
 
     const stopped = makeBackground({ 'feeds:settings': { autoProcess: false, backgroundPoll: false } });
     await stopped.run.applyFeedPollConfig();

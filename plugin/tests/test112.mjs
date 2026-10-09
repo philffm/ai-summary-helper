@@ -121,3 +121,19 @@ assert.deepEqual(named, [['A1', 'A2']]); assert.equal(outL.doneRequests, 1);
 tc.setLexicon({});
 console.log('TEST 112 OK');
 process.exit(0);
+
+// rateWithRecap: items that a recap in the same plan will rate are not rated separately (same call, half the input tokens).
+{
+    const yesterday = startOfDay(now) - 86400000;
+    const un = (id, ts) => ({ id, feedId: 'a', title: 'T' + id, published: ts });   // not rated yet
+    const list = [un('y1', yesterday + 3600e3), un('y2', yesterday + 7200e3), un('t1', now - 1000)];
+    const ctx = { items: list, recaps: {}, source: 'all', inSource: () => true, startOfDay, itemSig: (i) => i.id, today: startOfDay(now) };
+    const withSep = planLibrary(ctx);
+    assert.deepEqual(withSep.rate.map(i => i.id).sort(), ['t1', 'y1', 'y2'], 'default: rating and recap are separate requests');
+    const merged = planLibrary({ ...ctx, rateWithRecap: true });
+    assert.deepEqual(merged.rate.map(i => i.id), ['t1'], "yesterday's items are rated by their recap; today (no recap in this plan) still needs rating");
+    assert.equal(merged.days[0].todo.length, 2);
+    assert(countRequests(merged, 20) < countRequests(withSep, 20), 'fewer requests');
+    const incl = planLibrary({ ...ctx, rateWithRecap: true, includeToday: true });
+    assert.equal(incl.rate.length, 0, 'with today included its recap rates everything');
+}
