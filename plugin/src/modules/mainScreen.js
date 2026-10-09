@@ -241,6 +241,16 @@ export function initMainScreen(ui) {
     const savedIds = {};              // url → id, when 'summarySaved' arrives before 'summaryComplete'
     let liveBubbleArticle = null;     // the article object behind the newest bubble
     const bar = document.querySelector('.controls-bar');
+    // --floating-stack-height follows the real height of the controls bar (page chip, wrapped input, open panels…)
+    // instead of the 250px CSS estimate, so the feed's bottom padding always clears it.
+    if (bar && typeof ResizeObserver === 'function') {
+        const syncControlsHeight = () => {
+            const h = Math.ceil(bar.getBoundingClientRect().height);
+            if (h > 0) document.documentElement.style.setProperty('--controls-overlay-height', h + 'px');
+        };
+        new ResizeObserver(syncControlsHeight).observe(bar);
+        syncControlsHeight();
+    }
 
     const esc = escapeHtml;
     const usedOpen = () => { try { return localStorage.getItem('aish:usedOpen') === '1'; } catch (_) { return false; } };
