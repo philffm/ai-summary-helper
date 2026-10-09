@@ -2,6 +2,27 @@
 
 Measured on `plugin/src` (20k lines JS/CSS/HTML), `scripts/`, build and repo layout. Companion to `STYLE_AUDIT.md` (CSS only).
 
+## Status (2026-10-09)
+Sections 1–7 below are the original audit, kept as written. What has changed since:
+
+**Done**
+- Tests live in `plugin/tests/` (85 jsdom tests + 2 Playwright checks in `tests/e2e/`), run by `npm test`, and `release.yml` runs lint + tests before packaging. No known-failing tests.
+- `content.js.bak` and the root `compatible-tools.json` / `translations.json` copies are gone; so are `fix-paths.mjs` (unused, pointed at a `./lang` folder that does not exist) and the root `CNAME` (Pages serves `docs/`, which has its own).
+- `log.js` wrapper; no `console.log` and no silent `catch {}` left in shipped code. `eslint plugin/src` reports 0 problems.
+- Shared helpers: `dom.js`, `textUtils.js` (`escapeHtml`, `countWords`, `cleanUntrustedHtml`), `dateUtils.js`, `sheet.js`.
+- Dead ids: `cloudModelGroup/Teaser`, `betaPodcastToggle` and `summarizeButton` are gone; the `#analytics*` readout is kept on purpose and guarded (see `authManager.js`).
+- Security:
+  - The in-page sidebar takes `postMessage` events only when they come from its parent and carry the per-iframe token (`modules/sidebarChannel.js`).
+  - Background actions that spend the AI key or fetch for the extension refuse content scripts (`EXTENSION_PAGE_ACTIONS` in `background.js`).
+  - History, the detail view and the graph preview escape page-derived fields and clean stored HTML.
+- Release: the version bump is stamped onto the latest main (`scripts/set-version.sh`) instead of `rebase -X theirs`, one release at a time.
+
+**Still open**
+- Module size (section 2): `feedManager.js` 2092 lines, `articleManager.js` 1757, `mainScreen.js` 1341, `settingsManager.js` 1230, `archiveGraph.js` 1054, `styles.css` 3698. The proposed splits still apply.
+- Inline styles (section 4): about 400 in JS and 84 in `popup.html`. History cards, the detail view and the graph legend/preview card are converted; `content/ui.js` (in-page UI, must not depend on page CSS), `podcastManager.js`, `settingsManager.js` and `uiManager.js` remain.
+- About 86 `innerHTML` assignments remain; new code should build DOM or use `escapeHtml` for anything that is not a literal.
+- Sections 5 and 6 (accessibility pass, lazy pdf.js, i18n check in CI) are unchanged.
+
 ## 1. Biggest risks (fix first)
 1. **No tests in the repo.** All ~40 jsdom tests (`test1…test37`, harness) live in `~/t`, outside git and CI. `release.yml` runs no test step. One machine loss = no regression net. → move to `plugin/tests/`, add `npm test`, run in `release.yml` before packaging.
 2. **`src/content.js.bak` (81 KB) is tracked** and is a stale copy of the content script. Delete.
@@ -52,7 +73,7 @@ Same helper defined in several modules instead of one shared file:
 - `lib/` is 2.7 MB (pdf.js 2.4 MB + d3 276 KB); load pdf.js lazily only when a PDF is summarised (check it isn't in the popup path).
 - `docs/i18n/manifest.json` 1.2 MB tracked: generated; consider building in CI instead.
 - Locale tooling: `feed-i18n.mjs check` should run in CI so new `T()` strings can't ship untranslated (currently 452 strings x 13 locales, 0 missing).
-- Stray/untracked-looking files at root (`extension.png`, `og-share.jpeg`, `fix-paths.mjs`, `changelog.txt`) – move into `assets/` or `scripts/`.
+- Stray/untracked-looking files at root (`extension.png`, `og-share.jpeg`, `changelog.txt`) – move into `assets/` or `scripts/`.
 
 ## 7. Suggested sequence
 1. Housekeeping (1 hour): delete `content.js.bak`, root duplicates, move tests into repo + `npm test` + CI step, fix/delete the dead id references, log wrapper.

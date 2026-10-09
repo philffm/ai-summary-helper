@@ -186,7 +186,8 @@ Reads are targeted (`StorageManager.get([keys])` routes each key to sync or loca
 ### UI, i18n, security
 
 - **i18n.** The English text is the key (`T('Send me a code')`, `data-i18n` ids in `popup.html`). `node scripts/feed-i18n.mjs extract | merge <dir> | check` keeps the 13 locales complete.
-- **Rendering.** Anything model- or page-derived that reaches `innerHTML` goes through `escapeHtml` (`modules/textUtils.js`).
+- **Rendering.** Anything model- or page-derived that reaches `innerHTML` goes through `escapeHtml` (`modules/textUtils.js`); saved page and summary HTML shown in History goes through `cleanUntrustedHtml`.
+- **Messaging.** The in-page sidebar (`popup.html` in an iframe) accepts `postMessage` only from its parent with the per-iframe token from its `#hash` (`modules/sidebarChannel.js`). Background actions that spend the AI key or fetch for the extension (`EXTENSION_PAGE_ACTIONS` in `background.js`) refuse content scripts.
 - **Shared helpers.** `textUtils` (escape, word count), `dateUtils` (day, week, month), `dom` (element helpers), `suggestions` (follow-up parsing), `typewriter` (human-like typing).
 
 ### Tests
@@ -230,7 +231,8 @@ ai-summary-helper/
 │   │   └── ios/manifest.json     # Safari/iOS: background.scripts
 │   │
 │   ├── scripts/
-│   │   └── build.js              # Node dev-sync tool (src → dev/<platform>)
+│   │   ├── build.js              # Node dev-sync tool (src → dev/<platform>)
+│   │   └── set-version.sh        # Stamps one version into manifests, current_version.json, popup.html
 │   │
 │   ├── build.sh                  # Release build: version bump + zip into prod/
 │   │
@@ -281,6 +283,7 @@ ai-summary-helper/
 | `settingsManager.js`, `modelManager.js`, `promptManager.js`, `promptSettings.js`, `promptBuilder.js`, `languageManager.js`, `moodSetting.js`, `workspaceManager.js` | Settings, providers and models, prompts, languages, workspaces |
 | `authManager.js` | byphil Cloud sign-in (shared form for onboarding and Account, code boxes, plan card) |
 | `storageManager.js`, `storageKeys.js`, `pageKey.js` | Storage abstraction, key registry, page keys for highlights |
+| `sidebarChannel.js` | Token check for `postMessage` from the content script into the in-page sidebar |
 | `localIntelligence.js`, `localSearch.js`, `tagIntelligence.js`, `duplicateDetector.js`, `textMetrics.js`, `textUtils.js`, `dateUtils.js`, `dom.js`, `log.js` | On-device search, tags, duplicates and shared helpers |
 | `audioManager.js`, `podcastManager.js`, `readingTools.js`, `reader.js`, `instantRead.js`, `citation.js`, `paperInfo.js`, `sendSheet.js`, `localSendClient.js` | Read aloud, podcasts, reader, citations, send to devices |
 | `i18n.js`, `feedI18n.js`, `languages.js`, `a11y.js`, `extensionApi.js` | Translations, language data, accessibility settings, browser API shim |
@@ -288,8 +291,8 @@ ai-summary-helper/
 #### Build pipeline
 
 - **Dev sync** — `node plugin/scripts/build.js` (bundles `content.js` and `finalize.js`; `loader.js` and the popup modules are copied as they are) (or `npm run build`) copies `plugin/src/` into `plugin/dev/aish-extension-<platform>/` and overlays the matching `plugin/platforms/<platform>/manifest.json`.
-- **Release** — `./plugin/build.sh` bumps the version in `current_version.json` + all `plugin/platforms/*/manifest.json` + `plugin/src/popup.html`, then zips each platform build into `plugin/prod/`.
-- **CI** — `.github/workflows/release.yml` runs `plugin/build.sh` on tag push, commits the version bump, and creates a GitHub release with the three zips.
+- **Release** — `./plugin/build.sh` bumps the version in `current_version.json` + all `plugin/platforms/*/manifest.json` + `plugin/src/popup.html` (via `plugin/scripts/set-version.sh`), then zips each platform build into `plugin/prod/`.
+- **CI** — `.github/workflows/release.yml` runs lint, tests and `plugin/build.sh` on tag push, stamps the new version onto the latest `main` and pushes it (retrying from a fresh `main` if it moved, never overwriting), and creates a GitHub release with the three zips. Only one release runs at a time.
 
 #### Cross-browser notes
 
