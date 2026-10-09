@@ -36,6 +36,7 @@ import { startOfDay } from './dateUtils.js';
 import { planLibrary, runLibrary, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
+import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
 const ITEMS_KEY = SK.feedItems;
@@ -63,7 +64,8 @@ export const FEED_DEFAULTS = {
     libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
     autoProcess: false,           // fetch + process new items on a timer (Ollama only)
     autoProcessMinutes: 30,
-    autoProcessAt: 0
+    autoProcessAt: 0,
+    smartRefreshOrder: true
 };
 
 let subs = [];
@@ -295,9 +297,9 @@ function toast(ui, msg) {
 }
 
 // ── Network (via background) ───────────────────────────────────────────────
-function sendFetch(url) {
+function sendFetch(url, options = {}) {
     return new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage({ action: 'fetchFeedText', url }, (res) => {
+        chrome.runtime.sendMessage({ action: 'fetchFeedText', url, ...options }, (res) => {
             if (chrome.runtime.lastError) {
                 const m = chrome.runtime.lastError.message || '';
                 // Nobody answered: the background worker is an older build that
@@ -306,7 +308,11 @@ function sendFetch(url) {
                     ? T('Background script is outdated — reload the extension at chrome://extensions')
                     : m));
             }
-            if (!res || !res.ok) return reject(new Error((res && res.error) || T('Request failed')));
+            if (!res || !res.ok) {
+                const error = new Error((res && res.error) || T('Request failed'));
+                if (res) Object.assign(error, res);
+                return reject(error);
+            }
             resolve(res);
         });
     });
@@ -321,13 +327,13 @@ const permCall = (fn, arg) => new Promise((resolve) => {
 // Firefox MV3 doesn't grant <all_urls> at install; without it the background
 // fetch is subject to CORS and fails with "NetworkError". Detect that, ask for
 // access (works when called from a click), and retry once.
-async function fetchText(url) {
+async function fetchText(url, options = {}) {
     try {
-        return await sendFetch(url);
+        return await sendFetch(url, options);
     } catch (e) {
         if (!/NetworkError|Failed to fetch|Load failed|CORS/i.test(e.message || '') || typeof chrome.permissions?.contains !== 'function') throw e;
         if (await permCall(chrome.permissions.contains, ALL_SITES) !== false) throw e;
-        if (await permCall(chrome.permissions.request, ALL_SITES)) return sendFetch(url);
+        if (await permCall(chrome.permissions.request, ALL_SITES)) return sendFetch(url, options);
         throw new Error(T('Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh.'));
     }
 }
@@ -408,40 +414,119 @@ function pruneItems() {
     chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
 }
 
-async function refreshSub(sub) {
+function responseRetryAt(value, now) {
+    if (!value) return 0;
+    const seconds = Number(value);
+    if (Number.isFinite(seconds)) return now + Math.max(0, seconds) * 1000;
+    const date = Date.parse(value);
+    return Number.isFinite(date) ? Math.max(now, date) : 0;
+}
+
+function responseMaxAge(value) {
+    const match = String(value || '').match(/(?:^|,)\s*max-age=(\d+)/i);
+    return match ? Number(match[1]) * 1000 : 0;
+}
+
+function applyFetchHeaders(sub, response, now) {
+    sub.nextFetchAt = 0;
+    if (response.etag) sub.etag = response.etag;
+    if (response.lastModified) sub.lastModified = response.lastModified;
+    const delays = [responseMaxAge(response.cacheControl), responseRetryAt(response.retryAfter, now)].filter(Boolean);
+    if (delays.length) sub.nextFetchAt = Math.max(...delays.map(delay => delay > now ? delay : now + delay));
+}
+
+async function refreshSub(sub, { force = false } = {}) {
+    const started = Date.now();
+    const priorIds = new Set(items.filter(item => item.feedId === sub.id).map(item => item.id));
     try {
-        const res = await fetchText(sub.url);
+        const res = await fetchText(sub.url, {
+            etag: force || sub.validatorFailures >= 10 ? '' : (sub.etag || ''),
+            lastModified: force || sub.validatorFailures >= 10 ? '' : (sub.lastModified || ''),
+            timeoutMs: sub.slow || sub.errorCount ? 5000 : 15000
+        });
+        const now = Date.now();
+        sub.fetchDurationMs = now - started;
+        sub.slow = sub.fetchDurationMs >= 8000;
+        applyFetchHeaders(sub, res, now);
+        sub.lastFetched = now;
+        if (res.status === 304) {
+            sub.validatorFailures = (sub.validatorFailures || 0) + 1;
+            sub.lastRefreshAdded = 0;
+            sub.error = '';
+            sub.errorCount = 0;
+            console.debug('[feeds] refresh', sub.id, `${sub.fetchDurationMs}ms`, 'newItems=0');
+            return;
+        }
+        sub.validatorFailures = 0;
         const parsed = parseFeed(res.text, res.url);
         if (!parsed) throw new Error(T('Not a valid feed'));
         if (!sub.customTitle && parsed.title) sub.title = parsed.title;
         if (parsed.siteUrl) sub.siteUrl = parsed.siteUrl;
         if (parsed.image) sub.image = parsed.image;
         mergeItems(sub, parsed.items);
-        sub.lastFetched = Date.now();
+        sub.lastRefreshAdded = items.filter(item => item.feedId === sub.id && !priorIds.has(item.id)).length;
         sub.error = '';
+        sub.errorCount = 0;
+        console.debug('[feeds] refresh', sub.id, `${sub.fetchDurationMs}ms`, `newItems=${sub.lastRefreshAdded}`);
     } catch (e) {
+        const now = Date.now();
+        sub.fetchDurationMs = now - started;
+        sub.slow = sub.fetchDurationMs >= 8000;
         sub.error = e.message || T('Failed');
-        sub.lastFetched = Date.now();
+        sub.errorCount = (sub.errorCount || 0) + 1;
+        sub.lastRefreshAdded = 0;
+        const retryAt = responseRetryAt(e.retryAfter, now);
+        const maxAge = responseMaxAge(e.cacheControl);
+        sub.nextFetchAt = retryAt || (maxAge ? now + maxAge : now + Math.min(15 * 60 * 1000, 30000 * (2 ** Math.min(sub.errorCount - 1, 5))));
+        sub.lastFetched = now;
+        console.debug('[feeds] refresh', sub.id, `${sub.fetchDurationMs}ms`, 'newItems=0', sub.error);
     }
 }
 
 async function refreshAll(uiObj, { force = false } = {}) {
     if (refreshing) return;
     const staleMs = settings.refreshMinutes * 60 * 1000;
-    const due = subs.filter(s => force || !s.lastFetched || Date.now() - s.lastFetched > staleMs);
+    const now = Date.now();
+    const due = subs.filter(s => force || ((!s.nextFetchAt || s.nextFetchAt <= now) &&
+        (!s.lastFetched || now - s.lastFetched >= (settings.smartRefreshOrder
+            ? estimateFeedInterval(items, s.id, staleMs, now) : staleMs))));
     if (!due.length) return;
     refreshing = true;
     setRefreshState(true);
     try {
-        const queue = [...due];
+        const behaviorItems = items.map(item => {
+            const history = histOf(item);
+            return { ...item, favorite: history.fav, summarized: history.summarized };
+        });
+        const queue = settings.smartRefreshOrder
+            ? [...due].sort((a, b) => {
+                const aRisk = Math.max(a.errorCount || 0, a.slow ? 2 : 0);
+                const bRisk = Math.max(b.errorCount || 0, b.slow ? 2 : 0);
+                return aRisk - bRisk ||
+                    feedPriority(b, behaviorItems, feedQualityWeight(behaviorItems, b.id, now), now) -
+                    feedPriority(a, behaviorItems, feedQualityWeight(behaviorItems, a.id, now), now) ||
+                    (Number(a.lastFetched) || 0) - (Number(b.lastFetched) || 0);
+            })
+            : [...due];
+        let writeQueue = Promise.resolve();
+        const saveResults = () => {
+            writeQueue = writeQueue.then(async () => {
+                items.sort((a, b) => b.published - a.published);
+                pruneItems();
+                if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
+                await persist();
+                render();
+            });
+            return writeQueue;
+        };
         const worker = async () => {
-            while (queue.length) await refreshSub(queue.shift());
+            while (queue.length) {
+                const sub = queue.shift();
+                await refreshSub(sub, { force });
+                await saveResults();
+            }
         };
         await Promise.all(Array.from({ length: Math.min(CONCURRENCY, due.length) }, worker));
-        items.sort((a, b) => b.published - a.published);
-        pruneItems();
-        if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
-        await persist();
     } finally {
         refreshing = false;
         setRefreshState(false);
@@ -2314,6 +2399,7 @@ function renderFeedPrefs() {
     card('feedPrefsUpdates', TU('Updates & storage'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
         selectRow('feedSetRefresh', T('🔄 Refresh feeds every'), 'refreshMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')]]),
+        toggleRow('feedSetSmartRefresh', T('✨ Smart refresh order'), T('Refresh feeds that post often and that you read first'), 'smartRefreshOrder'),
         selectRow('feedSetKeep', T('🗂️ Keep items for'), 'keepDays', [[7, T('7 days')], [30, T('30 days')], [90, T('90 days')], [180, T('6 months')], [365, T('1 year')]]));
 }
 

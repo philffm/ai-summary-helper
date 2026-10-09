@@ -3,6 +3,35 @@ import { hash } from './feedHash.js';
 const AUDIO_EXT = /\.(mp3|m4a|aac|ogg|oga|opus|wav|flac)(\?|#|$)/i;
 const MAX_FEED_ITEMS = 100;
 
+export function medianItemGap(items, feedId, now = Date.now()) {
+    const dates = [...new Set((items || [])
+        .filter(item => item.feedId === feedId && Number(item.published) > 0 && Number(item.published) <= now && Number(item.published) >= now - 90 * 86400000)
+        .map(item => Number(item.published)))]
+        .sort((a, b) => a - b).slice(-12);
+    const gaps = dates.slice(1).map((date, i) => date - dates[i]).filter(gap => gap > 0).sort((a, b) => a - b);
+    if (!gaps.length) return 0;
+    const middle = Math.floor(gaps.length / 2);
+    return gaps.length % 2 ? gaps[middle] : (gaps[middle - 1] + gaps[middle]) / 2;
+}
+
+export function estimateFeedInterval(items, feedId, minimumMs, now = Date.now()) {
+    const gap = medianItemGap(items, feedId, now);
+    return Math.max(Number(minimumMs) || 0, gap ? gap / 2 : Number(minimumMs) || 0);
+}
+
+export function feedQualityWeight(items, feedId, now = Date.now()) {
+    const recent = (items || []).filter(item => item.feedId === feedId && Number(item.published) >= now - 30 * 86400000);
+    if (!recent.length) return 1;
+    const engaged = recent.filter(item => item.read || item.favorite || item.summarized).length;
+    return 0.1 + 0.9 * engaged / recent.length;
+}
+
+export function feedPriority(sub, items, qualityWeight = 1, now = Date.now()) {
+    const gap = medianItemGap(items, sub.id, now);
+    const elapsed = Math.max(0, now - (Number(sub.lastFetched) || 0));
+    return (gap ? elapsed / gap : 1) * (Number(qualityWeight) || 0);
+}
+
 export const feedItemId = (sub, item) => hash(sub.id + '|' + (item.guid || item.link));
 
 function decodeXml(text) {
