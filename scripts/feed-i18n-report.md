@@ -4,19 +4,19 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1131 | 2 | 0 | 36 |
-| de | 1131 | 2 | 0 | 172 |
-| es | 1131 | 2 | 0 | 127 |
-| fr | 1131 | 2 | 0 | 160 |
-| hi | 1131 | 2 | 0 | 56 |
-| it | 1131 | 2 | 0 | 135 |
-| ja | 1131 | 2 | 0 | 74 |
-| ko | 1131 | 2 | 0 | 16 |
-| pt_PT | 1131 | 2 | 0 | 126 |
-| ru | 1131 | 2 | 0 | 74 |
-| zh_CN | 1131 | 2 | 0 | 1 |
-| zh_HK | 1131 | 2 | 0 | 1 |
-| zh_TW | 1131 | 2 | 0 | 1 |
+| ar | 1133 | 0 | 0 | 36 |
+| de | 1133 | 0 | 0 | 172 |
+| es | 1133 | 0 | 0 | 127 |
+| fr | 1133 | 0 | 0 | 160 |
+| hi | 1133 | 0 | 0 | 56 |
+| it | 1133 | 0 | 0 | 135 |
+| ja | 1133 | 0 | 0 | 74 |
+| ko | 1133 | 0 | 0 | 16 |
+| pt_PT | 1133 | 0 | 0 | 126 |
+| ru | 1133 | 0 | 0 | 75 |
+| zh_CN | 1133 | 0 | 0 | 1 |
+| zh_HK | 1133 | 0 | 0 | 1 |
+| zh_TW | 1133 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -992,6 +992,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Resend code | Отправить код ещё раз | 21 vs 11 | 1.91× |
 | Copy list | Копировать список | 17 vs 9 | 1.89× |
 | Motion on | Анимация включена | 17 vs 9 | 1.89× |
+| No limit | Без ограничений | 15 vs 8 | 1.88× |
 | Copy 📋 | Копировать 📋 | 13 vs 7 | 1.86× |
 | Get Key | Получить ключ | 13 vs 7 | 1.86× |
 | Stacked | С накоплением | 13 vs 7 | 1.86× |
@@ -1064,57 +1065,3 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
-
-## Problems
-
-### ar: 2 missing
-- No limit
-- Remove limit and refresh
-
-### de: 2 missing
-- No limit
-- Remove limit and refresh
-
-### es: 2 missing
-- No limit
-- Remove limit and refresh
-
-### fr: 2 missing
-- No limit
-- Remove limit and refresh
-
-### hi: 2 missing
-- No limit
-- Remove limit and refresh
-
-### it: 2 missing
-- No limit
-- Remove limit and refresh
-
-### ja: 2 missing
-- No limit
-- Remove limit and refresh
-
-### ko: 2 missing
-- No limit
-- Remove limit and refresh
-
-### pt_PT: 2 missing
-- No limit
-- Remove limit and refresh
-
-### ru: 2 missing
-- No limit
-- Remove limit and refresh
-
-### zh_CN: 2 missing
-- No limit
-- Remove limit and refresh
-
-### zh_HK: 2 missing
-- No limit
-- Remove limit and refresh
-
-### zh_TW: 2 missing
-- No limit
-- Remove limit and refresh

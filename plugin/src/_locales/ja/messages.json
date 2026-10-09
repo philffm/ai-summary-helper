@@ -3913,5 +3913,11 @@
   },
   "f_items_could_not_be_scored_31d6": {
     "message": "{n} 件をスコアリングできませんでした"
+  },
+  "f_no_limit_f47d": {
+    "message": "上限なし"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "上限を外して更新"
   }
 }

@@ -3913,5 +3913,11 @@
   },
   "f_items_could_not_be_scored_31d6": {
     "message": "{n} 个条目无法评分"
+  },
+  "f_no_limit_f47d": {
+    "message": "无限制"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "取消限制并刷新"
   }
 }

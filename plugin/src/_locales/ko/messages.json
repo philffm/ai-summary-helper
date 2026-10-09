@@ -3895,5 +3895,11 @@
   },
   "f_items_could_not_be_scored_31d6": {
     "message": "{n}개 항목의 점수를 매기지 못했습니다"
+  },
+  "f_no_limit_f47d": {
+    "message": "제한 없음"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "제한 해제 후 새로고침"
   }
 }

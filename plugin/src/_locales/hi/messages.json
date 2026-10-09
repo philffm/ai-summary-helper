@@ -3913,5 +3913,11 @@
   },
   "f_items_could_not_be_scored_31d6": {
     "message": "{n} आइटम स्कोर नहीं हो सके"
+  },
+  "f_no_limit_f47d": {
+    "message": "कोई सीमा नहीं"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "सीमा हटाएँ और रीफ़्रेश करें"
   }
 }

@@ -3913,5 +3913,11 @@
   },
   "f_items_could_not_be_scored_31d6": {
     "message": "{n} Einträge konnten nicht bewertet werden"
+  },
+  "f_no_limit_f47d": {
+    "message": "Kein Limit"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "Limit entfernen und aktualisieren"
   }
 }

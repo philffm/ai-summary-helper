@@ -3913,5 +3913,11 @@
   },
   "f_items_could_not_be_scored_31d6": {
     "message": "No se pudieron puntuar {n} elementos"
+  },
+  "f_no_limit_f47d": {
+    "message": "Sin límite"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "Quitar el límite y actualizar"
   }
 }
