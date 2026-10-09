@@ -4174,5 +4174,113 @@
   },
   "f_tag_lists_to_name_846e": {
     "message": "{n} टैग सूचियाँ नामित करनी हैं"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "हर उस अज्ञात टैग के लिए, जो कम से कम दो बार इस्तेमाल हुआ है, आपके AI कनेक्शन से एक बार अंग्रेज़ी नाम और इंटरफ़ेस भाषा का शब्द पूछता है, सबसे ज़्यादा इस्तेमाल वाले पहले। आपके लेखों के टैग वैसे ही रहते हैं।"
+  },
+  "f_balanced_603d": {
+    "message": "संतुलित"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "केवल CPU या पुराना कंप्यूटर"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU या Apple Silicon, 7–8B मॉडल"
+  },
+  "f_gentle_9fd8": {
+    "message": "हल्का"
+  },
+  "f_measure_again_7f07": {
+    "message": "फिर से मापें"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "इस कंप्यूटर को मापें"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "माप विफल रहा: {e}"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "माप रहा है… दूसरा अनुरोध।"
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "माप रहा है… पहला अनुरोध मॉडल भी लोड करता है।"
+  },
+  "f_name_tags_4a5b": {
+    "message": "टैग को नाम दें"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "अपनी भाषा में टैग को नाम दें"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "टैग को नाम दे रहा है… {total} में से {done}"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "अभी मापा नहीं गया। यह टेस्ट Ollama को दो छोटे रेटिंग बैच भेजता है (धीमे कंप्यूटर पर लगभग एक मिनट) और आपके कंप्यूटर से कुछ बाहर नहीं जाता।"
+  },
+  "f_powerful_0df9": {
+    "message": "शक्तिशाली"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "हाल का लैपटॉप, छोटा मॉडल (3–4B)"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "उन फ़ीड को रिफ़्रेश करें जो अक्सर पोस्ट करते हैं और जिन्हें आप पहले पढ़ते हैं"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "एक बैच के लिए विशिष्ट सेटअप (मोटे संदर्भ दायरे):"
+  },
+  "f_use_b076": {
+    "message": "{p} इस्तेमाल करें"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "बहुत धीमा: छोटा मॉडल इस्तेमाल करें"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "इस कंप्यूटर पर हर प्रोफ़ाइल क्या करेगी:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "बैच आकार, प्रति रन अनुरोध और अंतराल का आपका अपना मेल।"
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "एक रन में लगभग {t} लगता है"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "पहला अनुरोध {s} (मॉडल लोड करता है)"
+  },
+  "f_over_352a": {
+    "message": "{s} से ज़्यादा"
+  },
+  "f_recommended_a2ac": {
+    "message": "अनुशंसित"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "प्रति घंटे अधिकतम {n} आइटम"
+  },
+  "f_up_to_196c": {
+    "message": "अधिकतम {s}"
+  },
+  "f_you_d09c": {
+    "message": "आप"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "{n} आइटम प्रति अनुरोध · {r} अनुरोध प्रति रन · हर {m} मिनट"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{n} शीर्षकों के लिए {s}"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ प्रदर्शन प्रोफ़ाइल"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ हर बार-बार इस्तेमाल होने वाले टैग का नाम पहले से है — कुछ करने की ज़रूरत नहीं।"
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ {total} में से {n} टैग को नाम दिया गया।"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ स्मार्ट रिफ़्रेश क्रम"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 प्रति स्वचालित रन अनुरोध"
   }
 }

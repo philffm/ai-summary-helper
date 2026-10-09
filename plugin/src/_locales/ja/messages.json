@@ -4174,5 +4174,113 @@
   },
   "f_tag_lists_to_name_846e": {
     "message": "名前を付けるタグリスト: {n}件"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "未知で2回以上使われているタグごとに、英語名とUI言語の語を AI 接続へ一度だけ尋ねます（よく使われるものから）。記事のタグはそのままです。"
+  },
+  "f_balanced_603d": {
+    "message": "バランス"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "CPUのみ、または古いPC"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPUまたはApple Silicon、7～8Bモデル"
+  },
+  "f_gentle_9fd8": {
+    "message": "控えめ"
+  },
+  "f_measure_again_7f07": {
+    "message": "もう一度測定"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "このコンピューターを測定"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "測定に失敗しました: {e}"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "測定中… 2回目のリクエスト。"
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "測定中… 最初のリクエストはモデルの読み込みも含みます。"
+  },
+  "f_name_tags_4a5b": {
+    "message": "タグに名前を付ける"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "自分の言語でタグに名前を付ける"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "タグに名前を付けています… {done}/{total}"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "未測定です。テストでは小さな評価バッチを Ollama に2回送ります（遅いPCで約1分）。データはコンピューターの外に出ません。"
+  },
+  "f_powerful_0df9": {
+    "message": "パワフル"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "最近のノートPC、小型モデル（3～4B）"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "よく投稿し、先に読むフィードを更新"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "1バッチの一般的な構成（おおよその目安）:"
+  },
+  "f_use_b076": {
+    "message": "{p}を使う"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "とても遅い: より小さいモデルを使ってください"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "このコンピューターで各プロファイルが行うこと:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "バッチサイズ、実行あたりのリクエスト数、間隔の独自の組み合わせ。"
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "1回の実行に約{t}"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "最初のリクエスト {s}（モデルを読み込み）"
+  },
+  "f_over_352a": {
+    "message": "{s}超"
+  },
+  "f_recommended_a2ac": {
+    "message": "おすすめ"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "1時間あたり最大{n}件"
+  },
+  "f_up_to_196c": {
+    "message": "最大{s}"
+  },
+  "f_you_d09c": {
+    "message": "あなた"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "1リクエスト{n}件 · 1回の実行で{r}リクエスト · {m}分ごと"
+  },
+  "f_for_headlines_10c8": {
+    "message": "見出し{n}件で{s}"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ パフォーマンスプロファイル"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ よく使われるタグにはすべて名前が付いています — 何もする必要はありません。"
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ {total}個中{n}個のタグに名前を付けました。"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ スマート更新順"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 自動実行あたりのリクエスト数"
   }
 }

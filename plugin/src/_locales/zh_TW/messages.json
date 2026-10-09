@@ -4174,5 +4174,113 @@
   },
   "f_tag_lists_to_name_846e": {
     "message": "{n} 組標籤待命名"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "對每個尚未辨識且至少使用兩次的標籤，向你的 AI 連線詢問一次英文名稱和介面語言中的詞（最常用的優先）。文章的標籤維持不變。"
+  },
+  "f_balanced_603d": {
+    "message": "均衡"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "僅 CPU 或較舊的電腦"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU 或 Apple Silicon，7–8B 模型"
+  },
+  "f_gentle_9fd8": {
+    "message": "節能"
+  },
+  "f_measure_again_7f07": {
+    "message": "重新測量"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "測量這台電腦"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "測量失敗：{e}"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "測量中…第二個請求。"
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "測量中…第一個請求同時會載入模型。"
+  },
+  "f_name_tags_4a5b": {
+    "message": "為標籤命名"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "用你的語言為標籤命名"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "正在為標籤命名…{done}/{total}"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "尚未測量。測試會向 Ollama 傳送兩個小型評分批次（慢速電腦約一分鐘），資料不會離開你的電腦。"
+  },
+  "f_powerful_0df9": {
+    "message": "強勁"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "近年的筆記型電腦，小型模型（3–4B）"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "重新整理發文頻繁且你優先閱讀的訂閱源"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "單一批次的典型設定（大致參考範圍）："
+  },
+  "f_use_b076": {
+    "message": "使用{p}"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "非常慢：請使用更小的模型"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "每個設定檔在這台電腦上的表現："
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "你自己的批次大小、每次執行請求數和間隔的組合。"
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "一次執行約需 {t}"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "第一個請求 {s}（載入模型）"
+  },
+  "f_over_352a": {
+    "message": "超過 {s}"
+  },
+  "f_recommended_a2ac": {
+    "message": "建議"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "每小時最多 {n} 項"
+  },
+  "f_up_to_196c": {
+    "message": "最多 {s}"
+  },
+  "f_you_d09c": {
+    "message": "你"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "每個請求 {n} 項 · 每次執行 {r} 個請求 · 每 {m} 分鐘"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{n} 個標題用時 {s}"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ 效能設定檔"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ 每個常用標籤都已有名稱 — 無需操作。"
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ 已為 {total} 個標籤中的 {n} 個命名。"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ 智慧重新整理順序"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 每次自動執行的請求數"
   }
 }

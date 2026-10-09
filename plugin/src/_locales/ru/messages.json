@@ -4174,5 +4174,113 @@
   },
   "f_tag_lists_to_name_846e": {
     "message": "Списков тегов для названий: {n}"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "Один раз спрашивает у вашего ИИ-подключения английское название и слово на языке интерфейса для каждого пока неизвестного тега, который встречается не менее двух раз, самые частые первыми. Ваши статьи сохраняют свои теги."
+  },
+  "f_balanced_603d": {
+    "message": "Сбалансированный"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "Только CPU или старый компьютер"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU или Apple Silicon, модель 7–8B"
+  },
+  "f_gentle_9fd8": {
+    "message": "Щадящий"
+  },
+  "f_measure_again_7f07": {
+    "message": "Измерить снова"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "Измерить этот компьютер"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "Не удалось измерить: {e}"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "Измерение… второй запрос."
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "Измерение… первый запрос также загружает модель."
+  },
+  "f_name_tags_4a5b": {
+    "message": "Назвать теги"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "Назвать теги на вашем языке"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "Именование тегов… {done} из {total}"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "Ещё не измерено. Тест отправляет в Ollama два небольших пакета для оценки (около минуты на медленном компьютере), и ничего не покидает ваш компьютер."
+  },
+  "f_powerful_0df9": {
+    "message": "Мощный"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "Современный ноутбук, небольшая модель (3–4B)"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "Обновлять ленты, которые часто публикуют и которые вы читаете первыми"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "Типичные конфигурации для одного пакета (ориентировочно):"
+  },
+  "f_use_b076": {
+    "message": "Использовать {p}"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "Очень медленно: используйте модель поменьше"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "Что сделал бы каждый профиль на этом компьютере:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "Ваше сочетание размера пакета, запросов за запуск и интервала."
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "запуск занимает около {t}"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "первый запрос {s} (загружает модель)"
+  },
+  "f_over_352a": {
+    "message": "более {s}"
+  },
+  "f_recommended_a2ac": {
+    "message": "рекомендуется"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "до {n} элементов в час"
+  },
+  "f_up_to_196c": {
+    "message": "до {s}"
+  },
+  "f_you_d09c": {
+    "message": "вы"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "{n} элементов за запрос · {r} запросов за запуск · каждые {m} мин"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{s} на {n} заголовков"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ Профиль производительности"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ У каждого часто используемого тега уже есть название — делать нечего."
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ Названо тегов: {n} из {total}."
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ Умный порядок обновления"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 Запросов за автоматический запуск"
   }
 }

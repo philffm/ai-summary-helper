@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1186 | 0 | 0 | 36 |
-| de | 1186 | 0 | 0 | 175 |
-| es | 1186 | 0 | 0 | 141 |
-| fr | 1186 | 0 | 0 | 168 |
-| hi | 1186 | 0 | 0 | 57 |
-| it | 1186 | 0 | 0 | 143 |
-| ja | 1186 | 0 | 0 | 76 |
-| ko | 1186 | 0 | 0 | 17 |
-| pt_PT | 1186 | 0 | 0 | 135 |
-| ru | 1186 | 0 | 0 | 82 |
-| zh_CN | 1186 | 0 | 0 | 1 |
-| zh_HK | 1186 | 0 | 0 | 1 |
-| zh_TW | 1186 | 0 | 0 | 1 |
+| ar | 1238 | 0 | 0 | 39 |
+| de | 1238 | 0 | 0 | 180 |
+| es | 1238 | 0 | 0 | 151 |
+| fr | 1238 | 0 | 0 | 177 |
+| hi | 1238 | 0 | 0 | 66 |
+| it | 1238 | 0 | 0 | 151 |
+| ja | 1238 | 0 | 0 | 82 |
+| ko | 1238 | 0 | 0 | 19 |
+| pt_PT | 1238 | 0 | 0 | 145 |
+| ru | 1238 | 0 | 0 | 88 |
+| zh_CN | 1238 | 0 | 0 | 2 |
+| zh_HK | 1238 | 0 | 0 | 2 |
+| zh_TW | 1238 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -46,6 +46,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No key facts found | لم يتم العثور على نقاط رئيسية | 29 vs 18 | 1.61× |
 | No Kindle email set. | لم يُضبط بريد Kindle الإلكتروني. | 32 vs 20 | 1.6× |
 | Words Read | الكلمات المقروءة | 16 vs 10 | 1.6× |
+| {n} feeds to tag | {n} خلاصات بحاجة إلى وسوم | 24 vs 15 | 1.6× |
 | {n} unopened 30d+ | {n} لم تُفتح منذ 30+ يومًا | 25 vs 16 | 1.56× |
 | Resend code | إعادة إرسال الرمز | 17 vs 11 | 1.55× |
 | ✅ Sent · {date} | ✅ تم الإرسال · {date} | 17 vs 11 | 1.55× |
@@ -54,6 +55,8 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
 | 🎓 Mark as paper | 🎓 وضع علامة كورقة بحثية | 24 vs 16 | 1.5× |
 | ✨ AI Ghost Highlighting | ✨ التمييز الشبحي بالذكاء الاصطناعي | 34 vs 23 | 1.48× |
+| GPU or Apple Silicon, 7–8B model | وحدة معالجة رسومات أو Apple Silicon، نموذج 7–8B | 47 vs 32 | 1.47× |
+| {n} tag lists to name | {n} قوائم وسوم بحاجة إلى تسمية | 29 vs 20 | 1.45× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
 | 🗂️ Keep items for | 🗂️ الاحتفاظ بالعناصر لمدة | 26 vs 18 | 1.44× |
 | Dismiss graph stats | إخفاء إحصاءات الرسم البياني | 27 vs 19 | 1.42× |
@@ -90,7 +93,9 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Recap failed | Rückblick fehlgeschlagen | 24 vs 12 | 2× |
 | UI Language | Sprache der Oberfläche | 22 vs 11 | 2× |
 | UI language | Sprache der Oberfläche | 22 vs 11 | 2× |
+| Use {p} | {p} verwenden | 12 vs 6 | 2× |
 | What I used | Was ich verwendet habe | 22 vs 11 | 2× |
+| ✨ Smart refresh order | ✨ Intelligente Aktualisierungsreihenfolge | 41 vs 21 | 1.95× |
 | Sort: Mood | Sortieren: Stimmung | 19 vs 10 | 1.9× |
 | {n} failed | {n} fehlgeschlagen | 17 vs 9 | 1.89× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
@@ -101,6 +106,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Invalid Key | Ungültiger Schlüssel | 20 vs 11 | 1.82× |
 | New summary | Neue Zusammenfassung | 20 vs 11 | 1.82× |
 | {name} · API key set | {name} · API-Schlüssel hinterlegt | 29 vs 16 | 1.81× |
+| {n} feeds to tag | {n} Feeds zu verschlagworten | 27 vs 15 | 1.8× |
 | {n} summary | {n} Zusammenfassung | 18 vs 10 | 1.8× |
 | Summary Length | Länge der Zusammenfassung | 25 vs 14 | 1.79× |
 | Try again | Erneut versuchen | 16 vs 9 | 1.78× |
@@ -135,6 +141,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Reference | Nachschlagewerk | 15 vs 9 | 1.67× |
 | Send {n} summary | {n} Zusammenfassung senden | 25 vs 15 | 1.67× |
 | Sort: Unread | Sortieren: Ungelesen | 20 vs 12 | 1.67× |
+| Tagging feed {a} of {b} | Feed {a} von {b} wird verschlagwortet | 35 vs 21 | 1.67× |
 | Voice · auto | Stimme · automatisch | 20 vs 12 | 1.67× |
 | {n} summaries | {n} Zusammenfassungen | 20 vs 12 | 1.67× |
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
@@ -237,6 +244,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | This needs your account. Log in or check your plan in the settings. | Dafür brauchst du dein Konto. Melde dich an oder prüfe deinen Tarif in den Einstellungen. | 89 vs 67 | 1.33× |
 | Paste works. It signs you in after the last digit. | Einfügen funktioniert. Nach der letzten Ziffer bist du angemeldet. | 66 vs 50 | 1.32× |
 | Run this command. It lets extensions, and only extensions, talk to Ollama: | Führe diesen Befehl aus. Er erlaubt Erweiterungen, und nur Erweiterungen, mit Ollama zu sprechen: | 97 vs 74 | 1.31× |
+| Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh. | Der Zugriff auf Websites ist aus. Erlaube ihn unter about:addons → diese Erweiterung → Berechtigungen („Auf Ihre Daten für alle Websites zugreifen“) und aktualisiere dann. | 171 vs 131 | 1.31× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Bewertet den Ton von Zusammenfassungen und Feed-Beiträgen. Steuert Stimmungsfilter, Diagramme und die Quellen-Bilanz. Ausschalten blendet alle Stimmungsfunktionen aus. | 167 vs 128 | 1.3× |
 
 ### es
@@ -266,6 +274,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | shared tag | etiqueta compartida | 19 vs 10 | 1.9× |
 | + Add tag | + Añadir etiqueta | 17 vs 9 | 1.89× |
 | Keep feed items for | Conservar elementos del feed durante | 36 vs 19 | 1.89× |
+| Name tags | Nombrar etiquetas | 17 vs 9 | 1.89× |
 | Any mood | Cualquier ánimo | 15 vs 8 | 1.88× |
 | Any time | Cualquier fecha | 15 vs 8 | 1.88× |
 | Updates & storage | Actualizaciones y almacenamiento | 32 vs 17 | 1.88× |
@@ -276,6 +285,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
 | 🧠 On-device tools | 🧠 Herramientas en el dispositivo | 33 vs 18 | 1.83× |
 | Auto-Detect | Detección automática | 20 vs 11 | 1.82× |
+| No background run yet. | Aún no hay ejecuciones en segundo plano. | 40 vs 22 | 1.82× |
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
 | Auto length bias | Ajuste de longitud automática | 29 vs 16 | 1.81× |
 | No Kindle email set. | No hay correo de Kindle configurado. | 36 vs 20 | 1.8× |
@@ -289,6 +299,8 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Recap scope | Alcance del resumen | 19 vs 11 | 1.73× |
 | Verify & Log In | Verificar e iniciar sesión | 26 vs 15 | 1.73× |
 | No receiver address set. | No hay dirección de receptor configurada. | 41 vs 24 | 1.71× |
+| ✨ Smart refresh order | ✨ Orden de actualización inteligente | 36 vs 21 | 1.71× |
+| {n} tag lists to name | {n} listas de etiquetas por nombrar | 34 vs 20 | 1.7× |
 | Add custom model | Añadir modelo personalizado | 27 vs 16 | 1.69× |
 | Topics over time | Temas a lo largo del tiempo | 27 vs 16 | 1.69× |
 | Custom prompt text | Texto del prompt personalizado | 30 vs 18 | 1.67× |
@@ -299,6 +311,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Open in sidebar | Abrir en la barra lateral | 25 vs 15 | 1.67× |
 | Save options | Opciones de guardado | 20 vs 12 | 1.67× |
 | Showing top tags (archive is large) | Mostrando las etiquetas principales (el archivo es grande) | 58 vs 35 | 1.66× |
+| By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | De forma predeterminada, las copias de seguridad omiten las claves API, los datos de inicio de sesión, las licencias y los identificadores de instalación. Mantén privados los archivos exportados. | 195 vs 119 | 1.64× |
 | Check again | Comprobar de nuevo | 18 vs 11 | 1.64× |
 | Marked {n} read | {n} marcados como leídos | 23 vs 14 | 1.64× |
 | Delete all data? | ¿Eliminar todos los datos? | 26 vs 16 | 1.63× |
@@ -345,6 +358,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No active receiver found. | No se encontró ningún receptor activo. | 38 vs 25 | 1.52× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓ | 65 vs 43 | 1.51× |
 | Include all questions in exports | Incluir todas las preguntas en las exportaciones | 48 vs 32 | 1.5× |
+| Last background run: {time} · {result} | Última ejecución en segundo plano: {time} · {result} | 42 vs 28 | 1.5× |
 | Model identifier | Identificador del modelo | 24 vs 16 | 1.5× |
 | No summary returned. | No se devolvió ningún resumen. | 30 vs 20 | 1.5× |
 | Copied as plain text. | Copiado como texto sin formato. | 31 vs 21 | 1.48× |
@@ -354,6 +368,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add tag or DOI… | Añadir etiqueta o DOI… | 22 vs 15 | 1.47× |
 | Open Command Prompt | Abrir el símbolo del sistema | 28 vs 19 | 1.47× |
 | Queue a question… | Pon una pregunta en cola… | 25 vs 17 | 1.47× |
+| {n} feeds to tag | {n} feeds por etiquetar | 22 vs 15 | 1.47× |
 | Writing a {n}-word summary… | Escribiendo un resumen de {n} palabras… | 38 vs 26 | 1.46× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
 | Sort: Read share | Orden: Porcentaje leído | 23 vs 16 | 1.44× |
@@ -368,13 +383,16 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Failed to send code | No se pudo enviar el código | 27 vs 19 | 1.42× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
+| {a} items rated · {b} day recaps written | {a} elementos valorados · {b} resúmenes diarios escritos | 54 vs 38 | 1.42× |
 | AI request failed | Error de la solicitud IA | 24 vs 17 | 1.41× |
 | No articles saved yet. | Aún no hay artículos guardados. | 31 vs 22 | 1.41× |
 | No password. We email you a short code. | Sin contraseña. Te enviamos un código corto por correo. | 55 vs 39 | 1.41× |
 | Use "{name}" as custom language code | Usar «{name}» como código de idioma personalizado | 45 vs 32 | 1.41× |
+| ✓ Named {n} of {total} tags. | ✓ {n} de {total} etiquetas nombradas. | 31 vs 22 | 1.41× |
 | 🔁 Process new items automatically | 🔁 Procesar automáticamente los elementos nuevos | 48 vs 34 | 1.41× |
 | Automatic light-blue quote highlights from summaries | Citas resaltadas en azul claro automáticamente a partir de los resúmenes | 72 vs 52 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Valora el tono de los resúmenes y de los elementos del feed. Activa filtros de ánimo, gráficos y el balance de fuentes. Desactívalo para ocultar todas las funciones de ánimo. | 174 vs 128 | 1.36× |
+| Your own mix of batch size, requests per run and interval. | Tu propia combinación de tamaño de lote, solicitudes por ejecución e intervalo. | 79 vs 58 | 1.36× |
 | Shown in the article and included in exports | Se muestra en el artículo y se incluye en las exportaciones | 59 vs 44 | 1.34× |
 | Style for AI briefings and week & month recaps. | Estilo para briefings con IA y resúmenes semanales y mensuales. | 63 vs 47 | 1.34× |
 | e.g. Prefer European news and keep it upbeat. | p. ej. Prefiere noticias europeas y mantén un tono positivo. | 60 vs 45 | 1.33× |
@@ -399,6 +417,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No items yet | Aucun élément pour l’instant | 28 vs 12 | 2.33× |
 | Save only | Enregistrer seulement | 21 vs 9 | 2.33× |
 | Today | Aujourd’hui | 11 vs 5 | 2.2× |
+| No background run yet. | Aucune exécution en arrière-plan pour le moment. | 48 vs 22 | 2.18× |
 | Get Key | Obtenir une clé | 15 vs 7 | 2.14× |
 | Detach to popup | Détacher en fenêtre contextuelle | 32 vs 15 | 2.13× |
 | Motion on | Animations activées | 19 vs 9 | 2.11× |
@@ -442,10 +461,12 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Copy list | Copier la liste | 15 vs 9 | 1.67× |
 | Feed refresh interval | Intervalle d’actualisation des flux | 35 vs 21 | 1.67× |
 | Focus search | Activer la recherche | 20 vs 12 | 1.67× |
+| Name tags | Nommer les tags | 15 vs 9 | 1.67× |
 | Newest first | Plus récents d’abord | 20 vs 12 | 1.67× |
 | No password. We email you a short code. | Pas de mot de passe. Nous vous envoyons un court code par e-mail. | 65 vs 39 | 1.67× |
 | Saved for Later | Enregistré pour plus tard | 25 vs 15 | 1.67× |
 | Text size | Taille du texte | 15 vs 9 | 1.67× |
+| ✨ Smart refresh order | ✨ Ordre d’actualisation intelligent | 35 vs 21 | 1.67× |
 | Queue a question… | Mettre une question en file… | 28 vs 17 | 1.65× |
 | Scan failed. Enter IP manually. | Échec de la recherche. Saisissez l’IP manuellement. | 51 vs 31 | 1.65× |
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
@@ -474,17 +495,20 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ☁️ Top terms | ☁️ Termes fréquents | 19 vs 12 | 1.58× |
 | Delete history | Supprimer l’historique | 22 vs 14 | 1.57× |
 | Edit style for | Modifier le style pour | 22 vs 14 | 1.57× |
+| Last background run: {time} · {result} | Dernière exécution en arrière-plan : {time} · {result} | 44 vs 28 | 1.57× |
 | Tip: press {key} on any page to summarize it. | Astuce : appuyez sur {key} sur n’importe quelle page pour la résumer. | 66 vs 42 | 1.57× |
 | Extra instructions | Instructions supplémentaires | 28 vs 18 | 1.56× |
 | Mood on/off (tone analysis) | Humeur activée/désactivée (analyse du ton) | 42 vs 27 | 1.56× |
 | Please enter a valid email. | Veuillez saisir une adresse e-mail valide. | 42 vs 27 | 1.56× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Faites un clic droit sur l’icône Ollama de la zone de notification (en bas à droite) et choisissez <b>Quit</b>. | 111 vs 71 | 1.56× |
 | Copy failed | Échec de la copie | 17 vs 11 | 1.55× |
+| {n} tag lists to name | {n} listes d’étiquettes à nommer | 31 vs 20 | 1.55× |
 | Search feeds… | Rechercher des flux… | 20 vs 13 | 1.54× |
 | Use Native Chrome Side Panel | Utiliser le panneau latéral natif de Chrome | 43 vs 28 | 1.54× |
 | {n} day recaps | {n} récaps quotidiens | 20 vs 13 | 1.54× |
 | Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
 | Delete history… | Supprimer l’historique… | 23 vs 15 | 1.53× |
+| {a} items rated · {b} day recaps written | {a} éléments évalués · {b} récapitulatifs quotidiens rédigés | 58 vs 38 | 1.53× |
 | 💾 Backup & restore | 💾 Sauvegarde et restauration | 29 vs 19 | 1.53× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
 | Delete settings? | Supprimer les réglages ? | 24 vs 16 | 1.5× |
@@ -515,6 +539,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add model ID, e.g. gemma4:e2b | Ajouter un ID de modèle, p. ex. gemma4:e2b | 42 vs 29 | 1.45× |
 | Customize text size, spacing, font, motion | Personnaliser taille du texte, interligne, police, animations | 61 vs 42 | 1.45× |
 | Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
+| a run takes about {t} | une exécution dure environ {t} | 29 vs 20 | 1.45× |
 | Add custom model | Ajouter un modèle perso | 23 vs 16 | 1.44× |
 | Delete settings… | Supprimer les réglages… | 23 vs 16 | 1.44× |
 | Nothing here yet | Rien ici pour l’instant | 23 vs 16 | 1.44× |
@@ -550,10 +575,12 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Only {r} rated items — at least 5 are needed | Seulement {r} articles évalués — au moins 5 sont nécessaires | 59 vs 43 | 1.37× |
 | Inline mode is great for "Send to Kindle". | Le mode en ligne convient bien à « Envoyer vers Kindle ». | 57 vs 42 | 1.36× |
 | Ollama is running. Installed models — click one to use it: | Ollama fonctionne. Modèles installés — cliquez sur l’un d’eux pour l’utiliser : | 79 vs 58 | 1.36× |
+| By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Par défaut, les sauvegardes excluent les clés API, les identifiants, les clés de licence et les identifiants d’installation. Gardez les fichiers exportés privés. | 161 vs 119 | 1.35× |
 | Paste works. It signs you in after the last digit. | Le collage fonctionne. Vous êtes connecté après le dernier chiffre. | 67 vs 50 | 1.34× |
 | Style for AI briefings and week & month recaps. | Style des briefings IA et des récapitulatifs hebdo et mensuels. | 63 vs 47 | 1.34× |
 | Press <b>Win + R</b>, type <code>cmd</code> and press Enter. | Appuyez sur <b>Win + R</b>, saisissez <code>cmd</code> puis appuyez sur Entrée. | 79 vs 60 | 1.32× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} anciens éléments ne sont pas dans ce récapitulatif (limite : {max} par récap). | 78 vs 59 | 1.32× |
+| Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh. | L’accès aux sites web est désactivé. Autorisez-le dans about:addons → cette extension → Autorisations (« Accéder à vos données pour tous les sites web »), puis actualisez. | 171 vs 131 | 1.31× |
 | Short pages get a few sentences, long reads get more. Never longer than half the article. | Les pages courtes reçoivent quelques phrases, les longues lectures davantage. Jamais plus de la moitié de l’article. | 116 vs 89 | 1.3× |
 
 ### hi
@@ -563,6 +590,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Edit | संपादित करें | 12 vs 4 | 3× |
 | Mark as… | इस रूप में चिह्नित करें… | 24 vs 8 | 3× |
 | vs {label} | {label} की तुलना में | 15 vs 5 | 3× |
+| Use {p} | {p} इस्तेमाल करें | 16 vs 6 | 2.67× |
 | Mute | म्यूट करें | 10 vs 4 | 2.5× |
 | Noisy | शोरगुल वाला | 11 vs 5 | 2.2× |
 | 🎓 Mark as paper | 🎓 शोध-पत्र के रूप में चिह्नित करें | 35 vs 16 | 2.19× |
@@ -571,6 +599,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Testing… | जाँच हो रही है… | 15 vs 8 | 1.88× |
 | Verify & Log In | सत्यापित करें और लॉग इन करें | 28 vs 15 | 1.87× |
+| over {s} | {s} से ज़्यादा | 13 vs 7 | 1.86× |
 | Copied as plain text. | सादे टेक्स्ट के रूप में कॉपी किया गया। | 38 vs 21 | 1.81× |
 | View & edit › | देखें और संपादित करें › | 23 vs 13 | 1.77× |
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
@@ -590,20 +619,27 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | View & Copy | देखें और कॉपी करें | 18 vs 11 | 1.64× |
 | View: Filtered | दृश्य: फ़िल्टर किया हुआ | 23 vs 14 | 1.64× |
 | waiting {s}s | प्रतीक्षा {s} सेकंड | 18 vs 11 | 1.64× |
+| Naming tags… {done} of {total} | टैग को नाम दे रहा है… {total} में से {done} | 34 vs 21 | 1.62× |
 | Loading... | लोड हो रहा है... | 16 vs 10 | 1.6× |
+| ✓ Named {n} of {total} tags. | ✓ {total} में से {n} टैग को नाम दिया गया। | 35 vs 22 | 1.59× |
 | Reading PDF… | PDF पढ़ी जा रही है… | 19 vs 12 | 1.58× |
 | Follows system | सिस्टम का पालन करता है | 22 vs 14 | 1.57× |
 | No devices added yet. | अभी कोई डिवाइस नहीं जोड़ा गया है। | 33 vs 21 | 1.57× |
 | Why it matters | यह क्यों मायने रखता है | 22 vs 14 | 1.57× |
 | Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
 | Checking... | जांच हो रही है... | 17 vs 11 | 1.55× |
+| No background run yet. | अभी तक कोई बैकग्राउंड रन नहीं हुआ। | 34 vs 22 | 1.55× |
 | Export settings | सेटिंग्स एक्सपोर्ट करें | 23 vs 15 | 1.53× |
 | What to export? | क्या एक्सपोर्ट करना है? | 23 vs 15 | 1.53× |
 | Export or restore all settings as a JSON file. | सारी सेटिंग्स को JSON फ़ाइल के रूप में एक्सपोर्ट या पुनर्स्थापित करें। | 70 vs 46 | 1.52× |
+| Tagging feed {a} of {b} | फ़ीड {a}/{b} को टैग किया जा रहा है | 32 vs 21 | 1.52× |
 | Searching Cloud... | क्लाउड में खोज हो रही है... | 27 vs 18 | 1.5× |
 | No password. We email you a short code. | पासवर्ड नहीं चाहिए। हम आपको ईमेल से एक छोटा कोड भेजते हैं। | 58 vs 39 | 1.49× |
+| Export history as Markdown (.zip) | इतिहास को Markdown के रूप में निर्यात करें (.zip) | 49 vs 33 | 1.48× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
+| Refresh feeds that post often and that you read first | उन फ़ीड को रिफ़्रेश करें जो अक्सर पोस्ट करते हैं और जिन्हें आप पहले पढ़ते हैं | 77 vs 53 | 1.45× |
 | Scan failed. Enter IP manually. | स्कैन विफल रहा। IP मैन्युअल रूप से दर्ज करें। | 45 vs 31 | 1.45× |
+| {n} tag lists to name | {n} टैग सूचियाँ नामित करनी हैं | 29 vs 20 | 1.45× |
 | Checking Ollama… | Ollama जाँचा जा रहा है… | 23 vs 16 | 1.44× |
 | Scored {a} of {b}… | {b} में से {a} स्कोर हुए… | 23 vs 16 | 1.44× |
 | Sent to Kindle! 📚 | Kindle पर भेज दिया गया! 📚 | 26 vs 18 | 1.44× |
@@ -653,6 +689,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Recap scope | Ambito del riepilogo | 20 vs 11 | 1.82× |
 | Not enough rated items yet | Non ci sono ancora abbastanza elementi valutati | 47 vs 26 | 1.81× |
 | Share failed: {message} | Condivisione non riuscita: {message} | 29 vs 16 | 1.81× |
+| ✨ Smart refresh order | ✨ Ordine di aggiornamento intelligente | 38 vs 21 | 1.81× |
 | Read aloud | Leggi ad alta voce | 18 vs 10 | 1.8× |
 | Keep feed items for | Conserva gli elementi dei feed per | 34 vs 19 | 1.79× |
 | Privacy policy | Informativa sulla privacy | 25 vs 14 | 1.79× |
@@ -703,6 +740,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No Kindle email set. | Nessuna email Kindle impostata. | 31 vs 20 | 1.55× |
 | Not a paper | Non è un articolo | 17 vs 11 | 1.55× |
 | Wrong email? Go back | Email sbagliata? Torna indietro | 31 vs 20 | 1.55× |
+| a run takes about {t} | un’esecuzione richiede circa {t} | 31 vs 20 | 1.55× |
 | waiting {s}s | in attesa da {s} s | 17 vs 11 | 1.55× |
 | Failed to export backup. | Esportazione del backup non riuscita. | 37 vs 24 | 1.54× |
 | Standup humor | Umorismo da stand-up | 20 vs 13 | 1.54× |
@@ -724,6 +762,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Creating day recaps… {a}/{b} | Creazione riepiloghi giornalieri… {a}/{b} | 39 vs 26 | 1.5× |
 | Model is writing | Il modello sta scrivendo | 24 vs 16 | 1.5× |
 | Next / previous card | Scheda successiva / precedente | 30 vs 20 | 1.5× |
+| No background run yet. | Nessuna esecuzione in background. | 33 vs 22 | 1.5× |
 | Page text · {n} words | Testo della pagina · {n} parole | 30 vs 20 | 1.5× |
 | Switch graph search to highlight mode | Passa la ricerca del grafo alla modalità evidenziazione | 55 vs 37 | 1.49× |
 | Not set up yet — add your Kindle in Settings | Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni | 65 vs 44 | 1.48× |
@@ -731,9 +770,12 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | not your active summary model | non è il tuo modello attivo per i riassunti | 43 vs 29 | 1.48× |
 | AI request failed | Richiesta IA non riuscita | 25 vs 17 | 1.47× |
 | Model is writing… | Il modello sta scrivendo… | 25 vs 17 | 1.47× |
+| {a} items rated · {b} day recaps written | {a} elementi valutati · {b} riepiloghi giornalieri scritti | 56 vs 38 | 1.47× |
 | Custom style (optional): | Stile personalizzato (facoltativo): | 35 vs 24 | 1.46× |
 | Use Native Chrome Side Panel | Usa il pannello laterale nativo di Chrome | 41 vs 28 | 1.46× |
 | Attach to side panel | Aggancia al pannello laterale | 29 vs 20 | 1.45× |
+| Your own mix of batch size, requests per run and interval. | La tua combinazione di dimensione del blocco, richieste per esecuzione e intervallo. | 84 vs 58 | 1.45× |
+| {n} tag lists to name | {n} elenchi di tag da nominare | 29 vs 20 | 1.45× |
 | (on iOS, hold to drag for 2 seconds) | (su iOS, tieni premuto per trascinare per 2 secondi) | 52 vs 36 | 1.44× |
 | Delete all data? | Eliminare tutti i dati? | 23 vs 16 | 1.44× |
 | No articles to graph yet. | Ancora nessun articolo per il grafo. | 36 vs 25 | 1.44× |
@@ -745,6 +787,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | AI ghost highlighting | Evidenziazione fantasma con IA | 30 vs 21 | 1.43× |
 | Error generating podcast: {msg} | Errore nella generazione del podcast: {msg} | 40 vs 28 | 1.43× |
 | Failed to load models | Impossibile caricare i modelli | 30 vs 21 | 1.43× |
+| Last background run: {time} · {result} | Ultima esecuzione in background: {time} · {result} | 40 vs 28 | 1.43× |
 | Summary length in words | Lunghezza del riassunto in parole | 33 vs 23 | 1.43× |
 | {n} older item is not in this recap. | {n} elemento più vecchio non è in questo riepilogo. | 50 vs 35 | 1.43× |
 | Allow browser extensions | Consenti le estensioni del browser | 34 vs 24 | 1.42× |
@@ -756,6 +799,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Found device at {ip} — click Add to save it ✓ | Dispositivo trovato su {ip}: clicca su Aggiungi per salvarlo ✓ | 60 vs 43 | 1.4× |
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | Tip: press {key} on any page to summarize it. | Suggerimento: premi {key} su qualsiasi pagina per riassumerla. | 59 vs 42 | 1.4× |
+| By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Per impostazione predefinita, i backup escludono chiavi API, dati di accesso, chiavi di licenza e identificativi di installazione. Mantieni privati i file esportati. | 165 vs 119 | 1.39× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 | This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Questo PDF non ha testo selezionabile (probabilmente una scansione). Il riconoscimento del testo non è ancora supportato. | 121 vs 89 | 1.36× |
 | {n} older item is not in this recap (limit: {max} per recap). | {n} elemento più vecchio non è in questo riepilogo (limite: {max} per riepilogo). | 77 vs 57 | 1.35× |
@@ -774,6 +818,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Cancelled | キャンセルしました | 18 vs 9 | 2× |
 | Design | 研究デザイン | 12 vs 6 | 2× |
 | Export | エクスポート | 12 vs 6 | 2× |
+| Name tags | タグに名前を付ける | 18 vs 9 | 2× |
 | No items yet | アイテムはまだありません | 24 vs 12 | 2× |
 | Scored {a} of {b}… | {b} 件中 {a} 件をスコアリング済み… | 32 vs 16 | 2× |
 | Unmute | ミュート解除 | 12 vs 6 | 2× |
@@ -797,6 +842,9 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Saved! ✓ | 保存しました ✓ | 14 vs 8 | 1.75× |
 | Tutorial | チュートリアル | 14 vs 8 | 1.75× |
 | Code expired. Please request a new one. | コードの有効期限が切れました。新しいコードをリクエストしてください。 | 68 vs 39 | 1.74× |
+| No background run yet. | バックグラウンド実行はまだありません。 | 38 vs 22 | 1.73× |
+| {n} feeds to tag | タグ付けするフィード: {n}件 | 26 vs 15 | 1.73× |
+| ✓ Named {n} of {total} tags. | ✓ {total}個中{n}個のタグに名前を付けました。 | 38 vs 22 | 1.73× |
 | Creative title | クリエイティブなタイトル | 24 vs 14 | 1.71× |
 | Sent to {model} | {model} に送信しました | 17 vs 10 | 1.7× |
 | Scan failed. Enter IP manually. | スキャンに失敗しました。IPを手動で入力してください。 | 52 vs 31 | 1.68× |
@@ -824,12 +872,14 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No matches found | 一致するものがありません | 24 vs 16 | 1.5× |
 | TTS returned no audio. | TTSから音声が返されませんでした。 | 33 vs 22 | 1.5× |
 | Without systemd, run Ollama in a foreground window: | systemd を使わない場合は、Ollama をフォアグラウンドのウィンドウで実行します: | 76 vs 51 | 1.49× |
+| Naming tags… {done} of {total} | タグに名前を付けています… {done}/{total} | 31 vs 21 | 1.48× |
 | No settings match “{query}”. | 「{query}」に一致する設定はありません。 | 34 vs 23 | 1.48× |
 | Please enter a valid email. | 有効なメールアドレスを入力してください。 | 40 vs 27 | 1.48× |
 | Add tag or DOI… | タグまたは DOI を追加… | 22 vs 15 | 1.47× |
 | Detach to popup | ポップアップに切り離す | 22 vs 15 | 1.47× |
 | Failed to send code | コードを送信できませんでした | 28 vs 19 | 1.47× |
 | Filter shortcuts… | ショートカットを絞り込む… | 25 vs 17 | 1.47× |
+| Very slow: use a smaller model | とても遅い: より小さいモデルを使ってください | 44 vs 30 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
 | No articles to graph yet. | グラフ化できる記事がまだありません。 | 36 vs 25 | 1.44× |
 | No password. We email you a short code. | パスワードは不要です。短いコードをメールでお送りします。 | 56 vs 39 | 1.44× |
@@ -850,6 +900,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | n/a | 해당 없음 | 9 vs 3 | 3× |
 | or consider | 또는 다음을 고려해 보세요: | 26 vs 11 | 2.36× |
 | Sent to {name} | {name}(으)로 전송했습니다 | 21 vs 10 | 2.1× |
+| Name tags | 태그 이름 붙이기 | 16 vs 9 | 1.78× |
 | No Kindle email set. | Kindle 이메일이 설정되지 않았어요. | 34 vs 20 | 1.7× |
 | No items yet | 아직 항목이 없습니다 | 20 vs 12 | 1.67× |
 | 4 digits, sent to {email} | 4자리 코드를 {email}(으)로 보냈습니다 | 32 vs 20 | 1.6× |
@@ -860,6 +911,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} unopened 30d+ | 30일 넘게 안 연 항목 {n}개 | 25 vs 16 | 1.56× |
 | No key facts found | 핵심 사실을 찾지 못했습니다 | 27 vs 18 | 1.5× |
 | For KOReader, prefer | KOReader에는 다음을 권장해요: | 29 vs 20 | 1.45× |
+| No background run yet. | 아직 백그라운드 실행이 없습니다. | 32 vs 22 | 1.45× |
 | Network error sending to Kindle. | Kindle로 보내는 중 네트워크 오류가 발생했어요. | 46 vs 32 | 1.44× |
 | No shortcuts match | 일치하는 단축키가 없습니다 | 26 vs 18 | 1.44× |
 | Scored {a} of {b}… | {b}개 중 {a}개 점수 매김… | 23 vs 16 | 1.44× |
@@ -881,6 +933,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | + Add | + Adicionar | 11 vs 5 | 2.2× |
 | Custom | Personalizado | 13 vs 6 | 2.17× |
 | Log Out | Terminar sessão | 15 vs 7 | 2.14× |
+| No background run yet. | Ainda não houve uma execução em segundo plano. | 46 vs 22 | 2.09× |
 | Export backup first | Exporte primeiro uma cópia de segurança | 39 vs 19 | 2.05× |
 | AI-rated | Avaliados por IA | 16 vs 8 | 2× |
 | Casual | Descontraído | 12 vs 6 | 2× |
@@ -901,6 +954,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Enter code | Introduza o código | 18 vs 10 | 1.8× |
 | Switch tab | Mudar de separador | 18 vs 10 | 1.8× |
 | — Feel free to | — Sinta-se à vontade para | 25 vs 14 | 1.79× |
+| Name tags | Nomear etiquetas | 16 vs 9 | 1.78× |
 | Text size | Tamanho do texto | 16 vs 9 | 1.78× |
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
 | Auto length bias | Ajuste automático do tamanho | 28 vs 16 | 1.75× |
@@ -920,6 +974,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add Kindle device | Adicionar dispositivo Kindle | 28 vs 17 | 1.65× |
 | No Kindle email set. | Nenhum e-mail do Kindle definido. | 33 vs 20 | 1.65× |
 | Updates & storage | Atualizações e armazenamento | 28 vs 17 | 1.65× |
+| {n} tag lists to name | {n} listas de etiquetas por nomear | 33 vs 20 | 1.65× |
 | Auto-Detect | Deteção automática | 18 vs 11 | 1.64× |
 | Customize text size, spacing, font, motion | Personalizar tamanho do texto, espaçamento, tipo de letra e movimento | 69 vs 42 | 1.64× |
 | Privacy policy | Política de privacidade | 23 vs 14 | 1.64× |
@@ -932,6 +987,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Feed refresh interval | Intervalo de atualização dos feeds | 34 vs 21 | 1.62× |
 | Reading speed | Velocidade de leitura | 21 vs 13 | 1.62× |
 | {n} files sent | {n} ficheiros enviados | 21 vs 13 | 1.62× |
+| ✨ Smart refresh order | ✨ Ordem de atualização inteligente | 34 vs 21 | 1.62× |
 | Custom prompt text | Texto do prompt personalizado | 29 vs 18 | 1.61× |
 | Magic code sent! ✨ Check your inbox. | Código mágico enviado! ✨ Verifique a sua caixa de entrada. | 58 vs 36 | 1.61× |
 | No key facts found | Nenhum facto-chave encontrado | 29 vs 18 | 1.61× |
@@ -944,6 +1000,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Instant read | Leitura instantânea | 19 vs 12 | 1.58× |
 | Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
 | {n} file sent | {n} ficheiro enviado | 19 vs 12 | 1.58× |
+| By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Por predefinição, as cópias de segurança não incluem chaves API, dados de início de sessão, chaves de licença nem identificadores de instalação. Mantenha os ficheiros exportados privados. | 187 vs 119 | 1.57× |
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
 | Account sync · sign in / log out | Sincronização da conta · iniciar / terminar sessão | 50 vs 32 | 1.56× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado em {ip} — clique em Adicionar para o guardar ✓ | 67 vs 43 | 1.56× |
@@ -953,6 +1010,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Logged out. | Sessão terminada. | 17 vs 11 | 1.55× |
 | No tags found. Add tags to your summaries! | Nenhuma etiqueta encontrada. Adicione etiquetas aos seus resumos! | 65 vs 42 | 1.55× |
 | Unsubscribe | Anular subscrição | 17 vs 11 | 1.55× |
+| a run takes about {t} | uma execução demora cerca de {t} | 31 vs 20 | 1.55× |
 | Not enough rated items yet | Ainda não há itens avaliados suficientes | 40 vs 26 | 1.54× |
 | Showing top tags (archive is large) | A mostrar as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
@@ -971,7 +1029,9 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
 | Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |
 | Queue a question… | Colocar pergunta em fila… | 25 vs 17 | 1.47× |
+| {n} feeds to tag | {n} feeds por etiquetar | 22 vs 15 | 1.47× |
 | ✨ {label} recap is ready | ✨ O resumo de {label} está pronto | 28 vs 19 | 1.47× |
+| Last background run: {time} · {result} | Última execução em segundo plano: {time} · {result} | 41 vs 28 | 1.46× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
 | Ghost Highlight Amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
 | Ghost highlight amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
@@ -997,6 +1057,7 @@ Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Not set up yet — add your Kindle in Settings | Ainda não configurado — adiciona o teu Kindle nas Definições | 60 vs 44 | 1.36× |
 | Not set up yet — add a receiver in Settings | Ainda não configurado — adiciona um recetor nas Definições | 58 vs 43 | 1.35× |
 | This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Este PDF não tem texto selecionável (provavelmente uma digitalização). O reconhecimento de texto ainda não é suportado. | 119 vs 89 | 1.34× |
+| Your own mix of batch size, requests per run and interval. | A tua própria combinação de tamanho de lote, pedidos por execução e intervalo. | 78 vs 58 | 1.34× |
 | 📚 Send to Kindle
 
 Free tier: 3 Kindle sends included.
@@ -1013,6 +1074,7 @@ Certifique-se de que kindle@byphil.eu está na lista de remetentes aprovados do 
 
 Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically. | Os feeds e caixas de entrada (feed do LinkedIn, página inicial do X, …) já são ignorados automaticamente. | 105 vs 79 | 1.33× |
+| Include API keys and sign-in details (anyone with the file can use them) | Incluir chaves API e dados de início de sessão (qualquer pessoa com o ficheiro pode utilizá-los) | 96 vs 72 | 1.33× |
 | The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | À noite, vovô Kowalsky vê o ímã cair no pé do pinguim queixoso. Os resumos usam este tamanho e espaçamento. | 107 vs 81 | 1.32× |
 | AI adds 2–3 sentences on top of the digest | A IA acrescenta 2–3 frases no início do resumo conjunto | 55 vs 42 | 1.31× |
 | Automatic light-blue quote highlights from summaries | Destaques de citações em azul-claro automáticos a partir dos resumos | 68 vs 52 | 1.31× |
@@ -1024,10 +1086,12 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | move | перемещение | 11 vs 4 | 2.75× |
 | Copy | Копировать | 10 vs 4 | 2.5× |
 | Sent | Отправлено | 10 vs 4 | 2.5× |
+| Use {p} | Использовать {p} | 15 vs 6 | 2.5× |
 | Casual | Непринуждённый | 14 vs 6 | 2.33× |
 | Saved | Сэкономлено | 11 vs 5 | 2.2× |
 | Sort: Mood | Сортировка: настроение | 22 vs 10 | 2.2× |
 | Sort: Unread | Сортировка: непрочитанные | 25 vs 12 | 2.08× |
+| Balanced | Сбалансированный | 16 vs 8 | 2× |
 | Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | Sort: Name | Сортировка: название | 20 vs 10 | 2× |
 | View & Copy | Просмотр и копирование | 22 vs 11 | 2× |
@@ -1080,6 +1144,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Mute / unmute reading | Выключить / включить звук чтения | 32 vs 21 | 1.52× |
 | Auto-summarize favorites | Автоматически резюмировать избранное | 36 vs 24 | 1.5× |
 | Backup · tags · delete | Резервная копия · теги · удаление | 33 vs 22 | 1.5× |
+| {n} tag lists to name | Списков тегов для названий: {n} | 30 vs 20 | 1.5× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |
 | Summarize this page | Кратко изложить эту страницу | 28 vs 19 | 1.47× |
 | Add LocalSend device | Добавить устройство LocalSend | 29 vs 20 | 1.45× |
@@ -1090,6 +1155,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Inline mode is great for "Send to Kindle". | Встроенный режим отлично подходит для "Отправить на Kindle". | 60 vs 42 | 1.43× |
 | Preferred Cloud Model | Предпочитаемая облачная модель | 30 vs 21 | 1.43× |
 | Preferred cloud model | Предпочитаемая облачная модель | 30 vs 21 | 1.43× |
+| Very slow: use a smaller model | Очень медленно: используйте модель поменьше | 43 vs 30 | 1.43× |
 | ✨ Write a short intro | ✨ Написать короткое вступление | 30 vs 21 | 1.43× |
 | Export backup first | Сначала экспортируйте копию | 27 vs 19 | 1.42× |
 | Scan failed. Enter IP manually. | Сканирование не удалось. Введите IP вручную. | 44 vs 31 | 1.42× |
@@ -1101,20 +1167,25 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Tip: press {key} on any page to summarize it. | Совет: нажмите {key} на любой странице, чтобы пересказать её. | 58 vs 42 | 1.38× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
 | Stopped. Starting again continues where it left off. | Остановлено. При новом запуске обработка продолжится с того же места. | 69 vs 52 | 1.33× |
+| By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | По умолчанию резервные копии не содержат API-ключи, данные для входа, лицензионные ключи и идентификаторы установки. Храните экспортированные файлы в тайне. | 156 vs 119 | 1.31× |
 | Uses your AI model · one extra call · in your app language | Использует вашу модель ИИ · один дополнительный запрос · на языке приложения | 76 vs 58 | 1.31× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |
+| Refresh feeds that post often and that you read first | Обновлять ленты, которые часто публикуют и которые вы читаете первыми | 69 vs 53 | 1.3× |
 
 ### zh_CN
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 时，建议优先使用 | 30 vs 20 | 1.5× |
+| ✓ Named {n} of {total} tags. | ✓ 已为 {total} 个标签中的 {n} 个命名。 | 32 vs 22 | 1.45× |
 
 ### zh_HK
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
+| ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
 
 ### zh_TW
 | English | Translation | width | ratio |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
+| ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
