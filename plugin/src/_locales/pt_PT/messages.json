@@ -4282,8 +4282,5 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Pedidos por execução automática"
-  },
-  "f_voice_it_follows_the_summary_55e3": {
-    "message": "Voz: {voice} · {lang}. Segue o idioma do resumo, incluindo o breve anúncio antes dele."
   }
 }

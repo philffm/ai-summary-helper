@@ -36,28 +36,6 @@ export function resolveLocale(code, browserLang) {
     return SUPPORTED_LOCALES.find(l => l.toLowerCase() === base) || 'en';
 }
 
-/**
- * The shipped locale folder for a language code of the summary language ('de', 'cn', 'pt', 'zh-HK' …), or '' when the
- * extension has no translation for it (Danish, Ukrainian …): resolveLocale() would answer 'en' there, which is not a match.
- */
-export function supportedLocaleFor(code) {
-    const c = String(code || '').trim().replace(/^cn$/i, 'zh-CN').replace(/^tw$/i, 'zh-TW').replace(/^jp$/i, 'ja').replace(/^kr$/i, 'ko');
-    if (!c) return '';
-    const r = resolveLocale(c, 'en');
-    return r.split('_')[0].toLowerCase() === c.replace('-', '_').split('_')[0].toLowerCase() ? r : '';
-}
-
-const dictionaries = new Map();
-/** The messages of one locale folder (cached). Unlike applyTranslations this does not touch the page. */
-export function loadDictionary(locale) {
-    if (!dictionaries.has(locale)) {
-        dictionaries.set(locale, (async () => {
-            try { const r = await fetch(`_locales/${locale}/messages.json`); return r.ok ? await r.json() : {}; } catch (e) { return {}; }
-        })());
-    }
-    return dictionaries.get(locale);
-}
-
 export async function applyTranslations(langCode) {
     const code = resolveLocale(langCode);
     try {

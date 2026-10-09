@@ -4282,8 +4282,5 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 每次自動執行的請求數"
-  },
-  "f_voice_it_follows_the_summary_55e3": {
-    "message": "語音：{voice} · {lang}。它跟隨摘要語言，包括摘要前的簡短播報。"
   }
 }
