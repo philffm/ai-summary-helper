@@ -4120,5 +4120,23 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "L’accès aux sites web est désactivé. Autorisez-le dans about:addons → cette extension → Autorisations (« Accéder à vos données pour tous les sites web »), puis actualisez."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Par défaut, les sauvegardes excluent les clés API, les identifiants, les clés de licence et les identifiants d’installation. Gardez les fichiers exportés privés."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Inclure les clés API et les identifiants (toute personne ayant le fichier peut les utiliser)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Cette sauvegarde contient des clés API, des identifiants ou des clés de licence. L’importation remplacera les secrets enregistrés correspondants. Continuer ?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Cette sauvegarde contiendra des clés API, des identifiants et des clés de licence. Toute personne ayant le fichier peut les utiliser. Continuer ?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Cette sauvegarde contient des clés API, des identifiants, des clés de licence ou un identifiant d’installation. L’importation remplacera les secrets enregistrés correspondants. Continuer ?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Cette sauvegarde contiendra des clés API, des identifiants, des clés de licence et un identifiant d’installation. Toute personne ayant le fichier pourra utiliser ses clés ou identifier cette installation. Continuer ?"
   }
 }

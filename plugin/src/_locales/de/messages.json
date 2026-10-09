@@ -4120,5 +4120,23 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "Der Zugriff auf Websites ist aus. Erlaube ihn unter about:addons → diese Erweiterung → Berechtigungen („Auf Ihre Daten für alle Websites zugreifen“) und aktualisiere dann."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Backups lassen API-Schlüssel, Anmeldedaten, Lizenzschlüssel und Installationskennungen standardmäßig aus. Bewahre exportierte Dateien vertraulich auf."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "API-Schlüssel und Anmeldedaten einschließen (jede Person mit der Datei kann sie verwenden)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Dieses Backup enthält API-Schlüssel, Anmeldedaten oder Lizenzschlüssel. Beim Import werden übereinstimmende gespeicherte Geheimnisse ersetzt. Fortfahren?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Dieses Backup enthält API-Schlüssel, Anmeldedaten und Lizenzschlüssel. Jede Person mit der Datei kann sie verwenden. Fortfahren?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Dieses Backup enthält API-Schlüssel, Anmeldedaten, Lizenzschlüssel oder eine Installationskennung. Beim Import werden übereinstimmende gespeicherte Geheimnisse ersetzt. Fortfahren?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Dieses Backup enthält API-Schlüssel, Anmeldedaten, Lizenzschlüssel und eine Installationskennung. Jede Person mit der Datei kann die Schlüssel verwenden oder diese Installation identifizieren. Fortfahren?"
   }
 }
