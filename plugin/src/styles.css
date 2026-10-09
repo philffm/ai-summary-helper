@@ -3893,3 +3893,9 @@ body[data-surface="sidebar"] { min-width: 0; }
 .composer-pill .page-chip .page-chip-ic { width: 14px; height: 14px; }
 .composer-pill .page-chip .page-chip-txt { gap: 6px; }
 .composer-pill .page-chip-x { padding: 0 4px; font-size: 11px; }
+
+/* Close button for the chip panels (language, length, mode, instant read); the model panel has its own in its header */
+.chip-panel:not(#panelModel) { padding-right: 36px; }
+.chip-panel-close { position: absolute; top: 6px; right: 6px; background: transparent; border: 0; color: var(--text-muted); font-size: 14px; line-height: 1; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+.chip-panel-close:hover { background: var(--accent-a15); color: var(--text-primary); }
+.chip-panel-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }

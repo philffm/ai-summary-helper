@@ -198,6 +198,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
+    // Close (✕) button + Esc on every chip panel except the model panel, which has its own in its header.
+    // The sound panel is re-rendered by instantRead.js (textContent = ''), so the button is re-added when it goes missing.
+    document.querySelectorAll('.chip-panel').forEach(panel => {
+        if (panel.id === 'panelModel') return;
+        const closePanel = () => {
+            panel.style.display = 'none';
+            const chip = document.querySelector('.chip[data-panel="' + panel.id.replace(/^panel/, '').toLowerCase() + '"]');
+            if (chip) { chip.classList.remove('active'); chip.focus && chip.focus(); }
+        };
+        const ensureClose = () => {
+            if (panel.querySelector(':scope > .chip-panel-close')) return;
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'chip-panel-close'; b.textContent = '✕';
+            b.setAttribute('aria-label', T('Close'));
+            b.addEventListener('click', closePanel);
+            panel.appendChild(b);
+        };
+        ensureClose();
+        new MutationObserver(ensureClose).observe(panel, { childList: true });
+        panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); closePanel(); } });
+    });
+
     // ── Language Tag Panel ──────────────────────────────────────────────
     const languageSelect = document.getElementById('languageSelect');
     const chipLanguageLabel = document.getElementById('chipLanguageLabel');
