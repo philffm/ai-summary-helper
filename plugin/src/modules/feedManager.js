@@ -1762,12 +1762,20 @@ async function scoreWithAi(list) {
     scoring = true;
     list.forEach(i => scoringIds.add(i.id));
     render();
+    const batches = Math.ceil(list.length / MAX_RECAP_ITEMS);
+    toast(uiRef, T('Scoring {n} items with AI in the background…', { n: list.length }));
+    let failed = 0;
     try {
         for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
             let res;
             try {
                 res = await scoreItems(chunk, aiTitleOf(sm), {});
+            } catch (e) {
+                // one unreadable reply must not stop the remaining batches
+                failed += chunk.length; error = e;
+                toast(uiRef, T('Batch {a}/{b} failed: {m}', { a: k / MAX_RECAP_ITEMS + 1, b: batches, m: e.message || T('AI scoring failed') }));
+                continue;
             } finally { chunk.forEach(i => scoringIds.delete(i.id)); }
             chunk.forEach((i, n) => {
                 // never overwrite an existing AI score or category
@@ -1776,6 +1784,7 @@ async function scoreWithAi(list) {
             });
             await persist();
             render();
+            if (batches > 1) toast(uiRef, T('Scored {a} of {b}…', { a: Math.min(k + chunk.length, list.length), b: list.length }));
         }
     } catch (e) {
         error = e;
@@ -1785,7 +1794,7 @@ async function scoreWithAi(list) {
         render();
     }
     const summary = done ? TN(done, 'Scored {n} item with AI', 'Scored {n} items with AI') + (all.length > list.length ? ' ' + T('({n} already done)', { n: all.length - list.length }) : '') : '';
-    if (error) toast(uiRef, (error.message || T('AI scoring failed')) + (summary ? ' — ' + summary : ''));
+    if (error) toast(uiRef, (failed ? T('{n} items could not be scored', { n: failed }) : (error.message || T('AI scoring failed'))) + (summary ? ' — ' + summary : ''));
     else toast(uiRef, summary || T('AI scoring failed'));
 }
 
