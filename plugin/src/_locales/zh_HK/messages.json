@@ -3919,5 +3919,8 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "移除限制並重新整理"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label}回顧已就緒"
   }
 }
