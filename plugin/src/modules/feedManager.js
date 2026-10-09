@@ -1001,7 +1001,12 @@ function renderCard(item, sm) {
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
     if (item.cat) { const c = el('span', 'feed-cat', item.cat); c.title = T('AI category'); meta.append(' · ', c); }
     if (item.audio) meta.append(el('span', 'feed-dur', ` · 🎧${item.dur ? ' ' + formatDuration(item.dur) : ''}`));
-    if (MOOD_EMOJI[mood]) {
+    if (scoringIds.has(item.id)) {
+        li.classList.add('is-scoring');
+        const s = el('span', 'feed-scoring', ' ⏳');
+        s.title = T('Scoring with AI…');
+        meta.append(s);
+    } else if (MOOD_EMOJI[mood]) {
         const m = el('span', 'feed-mood', ' ' + MOOD_EMOJI[mood]);
         m.title = mood === 'pos' ? T('AI-rated: positive news') : T('AI-rated: heavy news');
         meta.append(m);
@@ -1742,7 +1747,10 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
 // An item needs the AI only if it has no AI score or no category yet.
 const needsAi = (i) => !i.ai || !i.cat;
 let scoring = false;
+// Ids of items currently queued/being scored; their cards show a small indicator.
+const scoringIds = new Set();
 
+/** Runs in the background (no sheet): the cards being scored show ⏳ and fill in as each batch finishes. */
 async function scoreWithAi(list) {
     if (scoring) { toast(uiRef, T('Already scoring — one moment')); return; }
     const all = (list || []).filter(Boolean);
@@ -1750,23 +1758,17 @@ async function scoreWithAi(list) {
     if (!all.length) { toast(uiRef, T('Nothing to score')); return; }
     if (!list.length) { toast(uiRef, T('These items are already scored')); return; }
     const sm = subMap();
-    let done = 0, cancelled = false, error = null, st = null;
-    const body = el('div');
-    openSheet(T('Scoring with AI… {a}/{b}', { a: 0, b: list.length }), body);
+    let done = 0, error = null;
     scoring = true;
+    list.forEach(i => scoringIds.add(i.id));
+    render();
     try {
         for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
-            st = createRecapStatus({
-                title: T('Scoring with AI… {a}/{b}', { a: Math.min(k + chunk.length, list.length), b: list.length }),
-                detail: T('Sending {n} titles and short snippets to your AI connection.', { n: chunk.length }),
-                onCancel: () => { cancelled = true; },
-            });
-            body.replaceChildren(st.node);
             let res;
             try {
-                res = await scoreItems(chunk, aiTitleOf(sm), { onStage: st.onStage, signal: st.signal, onProgress: st.onProgress });
-            } finally { st.stop(); }
+                res = await scoreItems(chunk, aiTitleOf(sm), {});
+            } finally { chunk.forEach(i => scoringIds.delete(i.id)); }
             chunk.forEach((i, n) => {
                 // never overwrite an existing AI score or category
                 if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; done++; }
@@ -1776,14 +1778,15 @@ async function scoreWithAi(list) {
             render();
         }
     } catch (e) {
-        if (e.cancelled || cancelled) cancelled = true; else error = e;
-    } finally { scoring = false; }
+        error = e;
+    } finally {
+        scoring = false;
+        scoringIds.clear();
+        render();
+    }
     const summary = done ? TN(done, 'Scored {n} item with AI', 'Scored {n} items with AI') + (all.length > list.length ? ' ' + T('({n} already done)', { n: all.length - list.length }) : '') : '';
-    if (done) render();
-    if (cancelled) body.replaceChildren(el('p', 'feed-muted', summary ? T('Cancelled') + ' — ' + summary : T('Cancelled')));
-    else if (error) body.replaceChildren(el('p', 'feed-error', error.message || T('AI scoring failed')), ...(summary ? [el('p', 'feed-muted', summary)] : []),
-        btn('btn-sm', T('Try again'), () => scoreWithAi(list)));
-    else { body.replaceChildren(el('p', 'feed-muted', summary || T('AI scoring failed'))); if (done) { toast(uiRef, summary); closeSheet(); } }
+    if (error) toast(uiRef, (error.message || T('AI scoring failed')) + (summary ? ' — ' + summary : ''));
+    else toast(uiRef, summary || T('AI scoring failed'));
 }
 
 // ── Settings > Feeds panel ─────────────────────────────────────────────────

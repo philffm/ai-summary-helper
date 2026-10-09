@@ -2510,6 +2510,7 @@ text.graph-search-dim {
 .feed-day-label { flex: 1; font-size: var(--fs-sm); font-weight: 700; color: var(--text-secondary); }
 .feed-day-action { background: transparent; border: none; padding: 2px 4px; width: auto; font-size: var(--fs-sm); font-weight: 700; color: var(--accent); cursor: pointer; box-shadow: none; }
 .feed-mood { font-size: var(--fs-sm); }
+.feed-scoring { font-size: var(--fs-sm); animation: recapPulse 1.2s ease-in-out infinite; }
 .feed-muted { margin: 4px 0; font-size: var(--fs-sm); color: var(--text-muted); }
 .feed-list[hidden] { display: none; }
 .feed-emptycard { text-align: center; }
