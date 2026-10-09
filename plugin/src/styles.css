@@ -3625,7 +3625,6 @@ body[data-surface="sidebar"] { min-width: 0; }
 .sr-bar { display: flex; align-items: center; gap: 8px; padding: 6px 10px; margin: 0 0 8px; border: 1px solid var(--border, rgba(128,128,128,.3)); border-radius: 999px; background: var(--surface, transparent); font-size: 12px; user-select: none; }
 .sr-bar[hidden] { display: none; }
 .sr-bar .sr-t { flex: 1; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sr-bar .sr-ok { color: #2e9d57; font-weight: 700; }
 .sr-b { border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 12px; min-width: 28px; min-height: 28px; padding: 0 6px; border-radius: 999px; }
 .sr-b:hover, .sr-b:focus-visible { background: rgba(128,128,128,.18); }
 .sr-b.is-on { opacity: .6; }

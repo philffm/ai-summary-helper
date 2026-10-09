@@ -2,7 +2,7 @@
 // contents (headings found in the text). Shown only after ~2 screens and only while scrolling back up.
 import { T } from './feedI18n.js';
 import { getReader, speechUnits, qaUnits, pickVoice, detectLang } from './reader.js';
-import { ttsLang, langBase, LANGUAGES } from './languages.js';
+import { ttsLang, langBase } from './languages.js';
 
 let current = null;
 export function destroyReadingTools() { if (current) { current.destroy(); current = null; } }

@@ -12,7 +12,6 @@ import { generateRollup, recapSig } from './feedAi.js';
 import { createRecapStatus } from './recapStatus.js';
 import { T, TN, locale } from './feedI18n.js';
 
-const DAY_MS = 86400000;
 import { addDays, weekStart, monthStart, isoWeek } from './dateUtils.js';
 export { addDays, weekStart, monthStart, isoWeek };
 const monthEnd = (ts) => { const d = new Date(ts); return new Date(d.getFullYear(), d.getMonth() + 1, 0).getTime(); };

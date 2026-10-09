@@ -16,7 +16,7 @@ import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { normalizeDoi } from '../content/paper.js';
-import { paperState, paperChips, paperToggle, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
+import { paperState, paperChips, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
@@ -1634,7 +1634,6 @@ export async function showArticleDetail(article) {
     // Keep the images; .detail-original img caps their width so they don't break the popup layout
     const safeContent = detailDoc.body.innerHTML || escapeHtml(T('No content available.'));
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
-    const tags = article.tags || [];
     const modelInfo = article.modelId ? `<span class="detail-model">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
     const lengthInfo = article.summaryLength ? `<span class="detail-length">📏 ${escapeHtml(article.summaryLength)}w</span>` : '';
     

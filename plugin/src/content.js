@@ -1,6 +1,6 @@
 import { SK } from './modules/storageKeys.js';
-import { languageEnglishName, languageRule, ttsLang, langBase } from './modules/languages.js';
-import { paperIndexFields, detectPaperInText, applyScholarly, matchPagePaper } from './content/paper.js';
+import { languageEnglishName, languageRule } from './modules/languages.js';
+import { paperIndexFields, detectPaperInText, matchPagePaper } from './content/paper.js';
 import { finalizeSummary } from './content/finalize.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
@@ -13,7 +13,6 @@ import {
   truncateToTokenLimit,
   estimateTokens,
   ollamaNumCtx,
-  wasCutOff,
   needsChunking,
   splitForContext,
   modelContextFromShow,
@@ -56,10 +55,7 @@ import {
 
 import {
   getGhostHighlightConfig,
-  normalizeGhostQuotes,
-  ensureGeneralTag,
   saveToLocalStorage,
-  extractSummaryTitle,
   collectPageMeta
 } from './content/core.js';
 
@@ -983,8 +979,7 @@ import {
           try {
             await new Promise((res) => {
               chrome.runtime.sendMessage({ action: 'wakeup' }, () => {
-                // Ignore errors — this only serves to wake the worker.
-                if (chrome.runtime.lastError) {}
+                void chrome.runtime.lastError;   // read it so Chrome does not log it: this only wakes the worker
                 res();
               });
             });
