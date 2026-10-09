@@ -609,6 +609,13 @@ function initGeneralSettings(storageData) {
         });
     }
 
+    // ── Notify when the background queue finishes ──────────────────
+    const notifyToggle = document.getElementById('notifyWhenDoneToggle');
+    if (notifyToggle) {
+        notifyToggle.checked = storageData.notifyWhenDone !== false;
+        notifyToggle.addEventListener('change', () => autoSave('notifyWhenDone', notifyToggle.checked));
+    }
+
     // ── Highlighting Toggles (separate features) ───────────────────
     const highlightToggle = document.getElementById('highlightingToggle');
     const aiHighlightToggle = document.getElementById('aiHighlightingToggle');
