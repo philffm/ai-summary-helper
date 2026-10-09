@@ -3,7 +3,7 @@
 // `f_mark_read_<hash>` in _locales/<lang>/messages.json and falls back to the
 // English text itself. `scripts/feed-i18n.mjs` extracts every T()/TN()/TU()/N_()
 // literal, checks coverage per locale and flags over-long translations.
-import { t, resolveLocale } from './i18n.js';
+import { t, resolveLocale, supportedLocaleFor, loadDictionary } from './i18n.js';
 
 // FNV-1a, 4 hex chars: keeps keys unique even when two texts share a slug.
 export function keyOf(en) {
@@ -19,6 +19,18 @@ export function T(en, vars) {
     const k = keyOf(en);
     const got = t(k);
     return fill(got === k ? en : got, vars);
+}
+/**
+ * T() in another language than the app's (e.g. what the voice says in the SUMMARY language).
+ * Resolves with `{ text, locale }`; locale is '' when that language has no translation here, and the text is then the
+ * app-language one — the caller picks a matching voice language.
+ */
+export async function TIn(code, en, vars) {
+    const loc = supportedLocaleFor(code);
+    if (!loc) return { text: T(en, vars), locale: '' };
+    const dict = await loadDictionary(loc);
+    const m = dict[keyOf(en)];
+    return { text: fill((m && m.message) || en, vars), locale: loc };
 }
 // Count-dependent text: two English forms; locales without a plural split just give both keys the same text.
 export const TN = (n, one, other, vars) => T(n === 1 ? one : other, { n, ...vars });
