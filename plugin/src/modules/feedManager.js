@@ -2166,8 +2166,12 @@ async function executeLibrary({ auto = false } = {}) {
     try {
         out = await runLibrary(plan, n, {
             signal: ctl.signal, rateChunk: libraryRateChunk, recapDay: libraryRecapDay,
-            onStage: (st) => libraryUiLive()?.stage(st),
-            onProgress: (pr) => { libraryUiLive()?.progress(pr); if (pr.doneRequests !== lastRendered) { lastRendered = pr.doneRequests; render(); } }
+            onStage: (st) => {
+                // Remembered on the run itself, so a card re-created after leaving Settings can pick up where this one is.
+                if (st !== libraryRun.stage) { libraryRun.stage = st; libraryRun.stageSince = Date.now(); }
+                libraryUiLive()?.stage(st, libraryRun.stageSince);
+            },
+            onProgress: (pr) => { libraryRun.progress = pr; libraryUiLive()?.progress(pr); if (pr.doneRequests !== lastRendered) { lastRendered = pr.doneRequests; render(); } }
         });
     } finally {
         setRecapLimit(keepLimit); scoring = false; libraryRun = null; render(); renderRecapCard();
@@ -2227,6 +2231,7 @@ async function renderLibraryCard(card) {
     let stage = '', stageSince = 0, clock = null;
     const mmss = (ms) => { const t = Math.max(0, Math.round(ms / 1000)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
     const paintStage = () => {
+        if (!bar.isConnected) { stopClock(); stageLine.textContent = ''; return; }   // the card was replaced: let go of the timer
         if (!stage) { stageLine.textContent = ''; return; }
         stageLine.textContent = (STAGE_TEXT()[stage] || '') + ' ' + mmss(Date.now() - stageSince);
     };
@@ -2241,8 +2246,8 @@ async function renderLibraryCard(card) {
             if (on) { bar.value = 0; status.textContent = modelText; headLine.textContent = T('Starting…'); totalsLine.textContent = ''; stageLine.textContent = ''; }
             else stopClock();
         },
-        stage: (st) => {
-            if (st !== stage) { stage = st; stageSince = Date.now(); }
+        stage: (st, since) => {
+            if (st !== stage) { stage = st; stageSince = since || Date.now(); }
             if (!clock) clock = setInterval(paintStage, 1000);
             paintStage();
         },
@@ -2273,7 +2278,12 @@ async function renderLibraryCard(card) {
         toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches your feeds and processes what is new at the interval below, while the Feeds screen or side panel is open'), 'autoProcess'),
         selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]));
     card.querySelector('#feedSetLibBatch').addEventListener('change', () => refresh());
-    if (libraryRun) libraryUi.running(true); else refresh();
+    if (libraryRun) {
+        // Coming back to Settings mid-run: show the last known state at once instead of "Starting…" until the next update.
+        libraryUi.running(true);
+        if (libraryRun.progress) libraryUi.progress(libraryRun.progress);
+        if (libraryRun.stage) libraryUi.stage(libraryRun.stage, libraryRun.stageSince);
+    } else refresh();
 }
 
 function renderFeedPrefs() {
