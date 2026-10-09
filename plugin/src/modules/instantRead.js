@@ -5,7 +5,12 @@ import { getReader, streamText, speakable, detectLang, pickVoice } from './reade
 import { ttsLang, langBase } from './languages.js';
 
 const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
-const uiLang = () => { try { return ttsLang((typeof browser !== 'undefined' ? browser : chrome).i18n.getUILanguage()); } catch (_) { return ttsLang(document.documentElement.lang || 'en'); } };
+// The language of the extension's own texts (what T() returns) — NOT the browser's: with the browser in English and the extension in
+// German, the German announcement must be spoken by a German voice.
+const uiLang = () => {
+  try { const l = document.documentElement.lang; if (l) return ttsLang(l); } catch (_) { /* no document */ }
+  try { return ttsLang((typeof browser !== 'undefined' ? browser : chrome).i18n.getUILanguage()); } catch (_) { return 'en'; }
+};
 
 const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(/[*_`#>]+/g, '').replace(/\[(.*?)\]\([^)]*\)/g, '$1');
 

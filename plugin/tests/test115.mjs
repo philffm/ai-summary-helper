@@ -37,4 +37,9 @@ assert(de.every(i => !/word summary/.test(i.text)), 'no English sentence for the
 assert(de.filter(i => /example\.com|100/.test(i.text)).every(i => /^de/.test(i.lang)), 'spoken with the German voice: ' + JSON.stringify(de));
 const da = await intro('da');
 assert(da.some(i => /^From example\.com/.test(i.text)) && da.some(i => /100-word summary/.test(i.text)), 'untranslated language keeps the app-language announcement: ' + JSON.stringify(da));
+// Untranslated summary language: the announcement is in the extension's language and is spoken by that language's voice,
+// even when the browser itself is set to another one (getUILanguage() says 'en' here).
+d.documentElement.lang = 'de';
+const da2 = await intro('da');
+assert(da2.filter(i => /example\.com|100/.test(i.text)).every(i => /^de/.test(i.lang)), 'extension-language voice, not the browser language: ' + JSON.stringify(da2));
 console.log('TEST 115 OK'); process.exit(0);
