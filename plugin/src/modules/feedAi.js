@@ -142,8 +142,25 @@ export function parseRecap(text, n = 0) {
     return { overview: overview.join(' '), themes: themes.slice(0, 5), mood, labels, scores };
 }
 
-/** rate = also return a category label and a sentiment score for every item (one extra line, no extra request). */
-export async function generateRecap(list, subTitleFn, { rate = true, styleText, onStage, signal, onProgress } = {}) {
+/**
+ * Wraps onProgress so that labels/scores are handed to onRatings({ labels, scores }) while the reply is still streaming.
+ * Only complete entries count: an unfinished last entry ("3:0.") is cut off until its separator or newline arrives.
+ */
+function streamRatings(n, onProgress, onRatings) {
+    if (!onRatings) return onProgress;
+    return (m) => {
+        if (onProgress) onProgress(m);
+        if (!m || typeof m.text !== 'string' || !/(^|\n)\s*(LABELS|SCORES)\s*:/i.test(m.text)) return;
+        const lines = m.text.split('\n');
+        const last = lines.length - 1;
+        if (/^\s*(LABELS|SCORES)\s*:/i.test(lines[last])) lines[last] = lines[last].replace(/[^|;]*$/, '');
+        const r = parseRecap(lines.join('\n'), n);
+        if (r.labels || r.scores) onRatings({ labels: r.labels, scores: r.scores });
+    };
+}
+
+/** rate = also return a category label and a sentiment score for every item (one extra line, no extra request). onRatings = called with the ratings already complete while the reply streams in. */
+export async function generateRecap(list, subTitleFn, { rate = true, styleText, onStage, signal, onProgress, onRatings } = {}) {
     const lang = await languageName();
     const suffix = styleText !== undefined ? styleSuffix(styleText) : await feedStyle('briefing');
     const lr = await langRule();
@@ -159,7 +176,8 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
             : '')
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal, onProgress);
+    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal,
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings) });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
@@ -169,7 +187,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
  * Refresh an existing recap with ONLY the items that are new or were edited since it was written
  * (the previous recap text stands in for everything already covered, so no old headline is sent again).
  */
-export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false, onStage, signal, onProgress } = {}) {
+export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false, onStage, signal, onProgress, onRatings } = {}) {
     const lang = await languageName();
     const suffix = await feedStyle('briefing');
     const lr = await langRule();
@@ -186,7 +204,8 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
-    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`, onStage, signal, onProgress);
+    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`, onStage, signal,
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings) });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return { ...r, sent: chunk };
