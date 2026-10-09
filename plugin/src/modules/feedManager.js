@@ -34,6 +34,7 @@ import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
+import { PRESET_IDS, PRESETS, REFERENCE, REQUEST_STEPS, DEFAULT_REQUESTS, presetOf, presetSettings, projection, recommend, classOf, benchItems, BENCH_COUNT } from './libraryPresets.js';
 import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
@@ -67,6 +68,8 @@ export const FEED_DEFAULTS = {
     libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
     autoProcess: false,           // fetch + process new items on a timer (Ollama only)
     autoProcessMinutes: 30,
+    requestsPerTick: DEFAULT_REQUESTS,   // AI requests per automatic run (see libraryPresets.js)
+    libraryBench: null,                  // last benchmark of this machine: { at, model, cold, warm }
     autoProcessAt: 0,
     smartRefreshOrder: true
 };
@@ -2278,7 +2281,7 @@ const libraryUiLive = () => libraryUi && libraryUi.bar.isConnected ? libraryUi :
 
 /** One run of the whole-library pipeline. `auto` = started by the timer: newest days first, quiet. */
 async function executeLibrary({ auto = false } = {}) {
-    if (libraryRun || scoring) return null;
+    if (libraryRun || scoring || benchRunning) return null;
     const n = cleanBatchSize(settings.libraryBatch);
     await refreshTopicLang();
     const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length && !plan.tag.length && !plan.lex.length) return null;
@@ -2304,6 +2307,98 @@ async function executeLibrary({ auto = false } = {}) {
     }
     libraryUiLive()?.finished(out);
     return out;
+}
+
+let benchRunning = false;
+const fmtSec = (s) => s >= 90 ? Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0') + ' min' : (s < 10 ? s.toFixed(1) : String(Math.round(s))) + ' s';
+
+/**
+ * Performance profile (Gentle / Balanced / Powerful) + a benchmark of this machine: one fixed 20-headline rating batch,
+ * timed, then turned into "a run takes about X, Y items per hour" per profile. The comparison classes are rough
+ * reference ranges, not data from other users.
+ */
+function performanceBlock(setup, rerender) {
+    const refLabel = { power: T('GPU or Apple Silicon, 7–8B model'), balanced: T('Recent laptop, small (3–4B) model'), eco: T('CPU only or older machine'), slow: T('Very slow: use a smaller model') };
+    const names = { eco: T('Gentle'), balanced: T('Balanced'), power: T('Powerful'), custom: T('Custom') };
+    const box = el('div', 'library-perf');
+    const cur = presetOf(settings);
+
+    const row = el('div', 'setting-group flex justify-between align-center mb-3');
+    const lab = el('label', null, T('⚡ Performance profile')); lab.htmlFor = 'feedSetPreset'; lab.className = 'setting-label-grow';
+    const sel = el('select'); sel.id = 'feedSetPreset'; sel.className = 'setting-select';
+    [...PRESET_IDS, ...(cur === 'custom' ? ['custom'] : [])].forEach((id) => { const o = el('option', null, names[id]); o.value = id; if (id === cur) o.selected = true; sel.append(o); });
+    sel.addEventListener('change', async () => {
+        const v = presetSettings(sel.value); if (!v) return;
+        for (const [k, val] of Object.entries(v)) await setSetting(k, val);
+        rerender();
+    });
+    row.append(lab, sel);
+    box.append(row);
+
+    const b = settings.libraryBench;
+    const sentence = (id) => {
+        const p = PRESETS[id];
+        return T('{n} items per request · {r} requests per run · every {m} min', { n: p.batch, r: p.requests, m: p.minutes });
+    };
+    box.append(el('p', 'feed-muted', cur === 'custom' ? T('Your own mix of batch size, requests per run and interval.') : sentence(cur)));
+
+    const out = el('div', 'library-bench');
+    const paint = () => {
+        out.replaceChildren();
+        const r = settings.libraryBench;
+        if (!r || !(r.warm > 0)) { out.append(el('p', 'feed-muted', T('Not measured yet. The test sends two small rating batches to Ollama (about a minute on a slow machine) and nothing leaves your computer.'))); return; }
+        const cls = classOf(r.warm), rec = recommend(r.warm);
+        out.append(el('p', 'library-bench-main', T('{s} for {n} headlines', { s: fmtSec(r.warm), n: BENCH_COUNT })
+            + ' · ' + T('first request {s} (loads the model)', { s: fmtSec(r.cold) })
+            + (r.model ? ' · ' + r.model : '')));
+        const list = el('ul', 'library-bench-list');
+        REFERENCE.forEach((x) => {
+            const lo = REFERENCE[REFERENCE.indexOf(x) - 1];
+            const range = x.maxSec === Infinity ? T('over {s}', { s: fmtSec(lo.maxSec) }) : T('up to {s}', { s: fmtSec(x.maxSec) });
+            const li = el('li', x.id === cls ? 'is-you' : null, range + ' · ' + refLabel[x.id] + (x.id === cls ? '  ← ' + T('you') : ''));
+            list.append(li);
+        });
+        out.append(el('p', 'feed-muted', T('Typical setups for one batch (rough reference ranges):')), list);
+        const plist = el('ul', 'library-bench-list');
+        PRESET_IDS.forEach((id) => {
+            const pr = projection(r.warm, id);
+            plist.append(el('li', id === rec ? 'is-you' : null,
+                `${names[id]}: ` + T('a run takes about {t}', { t: fmtSec(pr.tickSec) }) + ' · ' + T('up to {n} items per hour', { n: pr.itemsPerHour }) + (id === rec ? '  ← ' + T('recommended') : '')));
+        });
+        out.append(el('p', 'feed-muted', T('What each profile would do on this machine:')), plist);
+        if (rec !== cur) {
+            const useBtn = btn('btn-sm', T('Use {p}', { p: names[rec] }), async () => {
+                const v = presetSettings(rec);
+                for (const [k, val] of Object.entries(v)) await setSetting(k, val);
+                rerender();
+            });
+            out.append(useBtn);
+        }
+    };
+    paint();
+
+    const status = el('p', 'feed-muted'); status.setAttribute('aria-live', 'polite');
+    const go = btn('btn-sm', b ? T('Measure again') : T('Measure this computer'), async () => {
+        if (libraryRun || scoring || benchRunning) { toast(uiRef, T('Already scoring — one moment')); return; }
+        benchRunning = true; go.disabled = true;
+        const ctl = new AbortController();
+        try {
+            status.textContent = T('Measuring… the first request also loads the model.');
+            const t0 = Date.now();
+            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama' });
+            const t1 = Date.now();
+            status.textContent = T('Measuring… second request.');
+            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama' });
+            const t2 = Date.now();
+            await setSetting('libraryBench', { at: Date.now(), model: setup.model || '', cold: (t1 - t0) / 1000, warm: (t2 - t1) / 1000 });
+            status.textContent = '';
+            rerender();
+        } catch (e) {
+            status.textContent = T('Measurement failed: {e}', { e: (e && e.message) || T('AI request failed') });
+        } finally { benchRunning = false; go.disabled = false; }
+    });
+    box.append(out, go, status);
+    return box;
 }
 
 async function renderLibraryCard(card) {
@@ -2394,11 +2489,13 @@ async function renderLibraryCard(card) {
     };
     const actions = el('div', 'feed-recap-actions'); actions.append(startBtn, stopBtn);
     card.append(
+        performanceBlock(setup, () => renderLibraryCard(card).catch(() => {})),
         selectRow('feedSetLibBatch', T('📦 Items per batch'), 'libraryBatch', BATCH_SIZES.map(v => [v, v === DEFAULT_BATCH ? T('{n} (recommended)', { n: v }) : String(v)])),
         lastRun, status, live, bar, actions,
         el('p', 'feed-muted', T('Runs on your own machine with Ollama and spends no tokens, even when another model is active for summaries. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
         toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
-        selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]));
+        selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]),
+        selectRow('feedSetRequests', T('🔢 Requests per automatic run'), 'requestsPerTick', REQUEST_STEPS.map(v => [v, v === DEFAULT_REQUESTS ? T('{n} (recommended)', { n: v }) : String(v)])));
     card.querySelector('#feedSetLibBatch').addEventListener('change', () => refresh());
     if (libraryRun) {
         // Coming back to Settings mid-run: show the last known state at once instead of "Starting…" until the next update.

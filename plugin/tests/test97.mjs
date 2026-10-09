@@ -47,5 +47,5 @@ const rc = store['feeds:recaps'] || Object.values(store).find(v => v && typeof v
 const rec = Object.entries(rc).find(([k]) => /\|all$/.test(k));
 assert(rec, 'day recap stored');
 assert.equal(Object.keys(rec[1].covered).length, 45, 'recap covers all 45 items');
-assert(/Everything in your library/.test(card.textContent) || card.querySelector('button').disabled, 'nothing left to do afterwards');
+assert(/Everything in your library/.test(card.textContent) || [...card.querySelectorAll('button')].find(b => /whole library/i.test(b.textContent)).disabled, 'nothing left to do afterwards');
 console.log('TEST 97 OK'); process.exit(0);
