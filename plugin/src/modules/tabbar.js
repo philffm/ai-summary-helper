@@ -68,6 +68,7 @@ export function syncTabbar(bar, { animate = true } = {}) {
     const ind = indicator(bar);
     const active = bar.querySelector('.tabbar-btn.on, .tabbar-btn.active');
     if (!active) { bar.classList.remove('tb-ready'); return; }
+    if (bar.scrollWidth > bar.clientWidth) { try { active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: animate ? 'smooth' : 'auto' }); } catch {} }
     const inset = active.offsetWidth > INSET * 3 ? INSET : 4;
     const x = active.offsetLeft + inset, w = active.offsetWidth - inset * 2;
     if (!(w > 0)) { watch(bar); return; }                   // hidden / detached: measured once it has a size
