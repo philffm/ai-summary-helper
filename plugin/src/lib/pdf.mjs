@@ -14334,14 +14334,6 @@ class FontFaceObject {
       (0,_shared_util_js__WEBPACK_IMPORTED_MODULE_0__.warn)(`getPathGenerator - ignoring character: "${ex}".`);
       return this.compiledGlyphs[character] = function (c, size) {};
     }
-    if (this.isEvalSupported && _shared_util_js__WEBPACK_IMPORTED_MODULE_0__.FeatureTest.isEvalSupported) {
-      const jsBuf = [];
-      for (const current of cmds) {
-        const args = current.args !== undefined ? current.args.join(",") : "";
-        jsBuf.push("c.", current.cmd, "(", args, ");\n");
-      }
-      return this.compiledGlyphs[character] = new Function("c", "size", jsBuf.join(""));
-    }
     return this.compiledGlyphs[character] = function (c, size) {
       for (const current of cmds) {
         if (current.cmd === "scale") {
@@ -17665,12 +17657,8 @@ function isLittleEndian() {
   return view32[0] === 1;
 }
 function isEvalSupported() {
-  try {
-    new Function("");
-    return true;
-  } catch {
-    return false;
-  }
+  // Dynamic code generation (the Function constructor) is disabled; pdf.js falls back to its interpreter.
+  return false;
 }
 class FeatureTest {
   static get isLittleEndian() {
