@@ -3933,3 +3933,16 @@ body[data-surface="sidebar"] { min-width: 0; }
 .delete-row input { flex: 0 0 auto; margin: 0; width: auto; accent-color: var(--accent); }
 .delete-name { flex: 1; }
 .delete-count { color: var(--text-muted); font-size: var(--fs-sm); white-space: nowrap; }
+
+/* Loading skeletons (modules/skeleton.js) */
+.skeleton-card { cursor: default; pointer-events: none; }
+.skeleton-line {
+  height: 12px; margin: 8px 0; border-radius: 6px;
+  background: linear-gradient(90deg, var(--outline) 25%, color-mix(in srgb, var(--outline) 45%, transparent) 50%, var(--outline) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.4s ease-in-out infinite;
+}
+.skeleton-title { height: 16px; width: 70%; }
+.skeleton-short { width: 45%; }
+@keyframes skeletonShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton-line { animation: none; } }
