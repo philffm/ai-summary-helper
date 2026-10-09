@@ -57,7 +57,10 @@ export function buildPrompt({ title, content, summary, turns = [], question, dra
         + `SUMMARY:\n${plain(summary)}\n\n`
         + (history ? `EARLIER QUESTIONS:\n${history}\n\n` : '')
         + (draft ? `THE READER ALREADY SEES THE FIRST PART OF YOUR ANSWER (it is being typed out on screen):\n${draft}\n`
-            + 'Continue directly after it: do NOT repeat or rephrase it, write only what follows (more depth, details, context) in the same language and style. '
+            + 'Continue directly after it, as if your next words were the very next sentence on screen. '
+            + 'Do NOT restate, summarize, rephrase or echo anything it already says, and do not open with an intro, a recap or a phrase like "In short" / "As mentioned". '
+            + 'Your first sentence must add something new: further detail, the reasoning behind it, context, examples, caveats or related points from the page. '
+            + 'Write only what follows, in the same language and style. '
             + 'Then the SOURCES and QUESTIONS lines as usual.\n\n' : '')
         + `QUESTION: ${question}`;
     return { system, user };
