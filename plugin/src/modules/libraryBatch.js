@@ -7,6 +7,8 @@
 // so stopping and starting again simply continues where it left off. Nothing here talks to the UI or the AI:
 // the caller passes the work functions in (rateChunk, recapDay), which keeps this testable.
 
+import { conceptId } from './topicConcepts.js';
+
 export const BATCH_SIZES = [10, 20, 40];
 export const DEFAULT_BATCH = 20;
 
@@ -27,8 +29,12 @@ export function categoryCounts(list, max = TOPIC_CATS) {
     return [...m].sort((a, b) => b[1] - a[1]).slice(0, max);
 }
 
-/** A feed needs topic tags when it has none yet, or they were written in another language than the UI's. */
-export const needsTopics = (sub, lang) => !(sub.topics && sub.topics.length) || sub.topicsLang !== lang;
+/**
+ * A feed needs topic tags when it has none yet, or they were written in another language than the UI's —
+ * unless every tag is a known topic, which is simply shown in the new language (no new request needed).
+ */
+export const needsTopics = (sub, lang) => !(sub.topics && sub.topics.length)
+    || (sub.topicsLang !== lang && !sub.topics.every((t) => conceptId(t)));
 
 export const cleanBatchSize = (n) => BATCH_SIZES.includes(Number(n)) ? Number(n) : DEFAULT_BATCH;
 

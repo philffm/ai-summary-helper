@@ -9,6 +9,7 @@
 import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
 import { resolveLocale } from './i18n.js';
+import { conceptKey, conceptList } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
@@ -120,7 +121,7 @@ export function parseTopicTags(text) {
     const seen = new Set(), out = [];
     String(text || '').split(/[,;|\n]/).forEach(part => {
         const v = cleanLabel(part.replace(/^\s*(?:tags?|topics?)\s*:\s*/i, '').replace(/^\s*(?:[-•*]|\d+[.):])\s*/, '').replace(/^#+/, ''));
-        if (v && !seen.has(v.toLowerCase())) { seen.add(v.toLowerCase()); out.push(v); }
+        if (v && !seen.has(conceptKey(v))) { seen.add(conceptKey(v)); out.push(v); }   // "News" and "Nachrichten" are one tag
     });
     return out.slice(0, 3);
 }
@@ -132,9 +133,11 @@ export function parseTopicTags(text) {
  */
 export async function generateFeedTopics(title, list, { cats = [], signal, onStage, onProgress, service } = {}) {
     const { code, name } = await uiLanguage();
+    const vocab = conceptList(code);   // the known topics in the UI language, so every feed uses the same word for the same topic
     const system = 'You assign topic tags to a news feed or blog from its name, a sample of its headlines and how its posts are distributed over categories. '
         + `Reply in the language ${name}. Give at most 3 tags, each one or two words, naming what the source mainly posts about `
-        + '(e.g. Tech, Politics, Climate, Football, Design); prefer topics that recur across the whole sample over one-off stories, and use fewer tags when the source is narrow. '
+        + (`Reuse these words when they fit (so the same topic always has the same tag): ${vocab.join(', ')}; otherwise choose your own, more specific tag. `)
+        + 'Prefer topics that recur across the whole sample over one-off stories, and use fewer tags when the source is narrow. '
         + 'Reply with ONLY the tags separated by commas, nothing else.';
     const dist = cats.length ? `\nCategory distribution of all its posts: ${cats.map(([c, n]) => `${c} ×${n}`).join(', ')}` : '';
     const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, 80)}`;

@@ -37,6 +37,7 @@ import { startOfDay } from './dateUtils.js';
 import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
+import { conceptKey, topicLabel } from './topicConcepts.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
@@ -147,7 +148,9 @@ function persistUi() { stickyRead.clear(); shown = PAGE_SIZE; return chrome.stor
 function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: settings }).catch(() => {}); }
 
 // ── Tags (a feed can have several) ─────────────────────────────────────────
-const tagKey = (t) => String(t || '').trim().toLowerCase();
+// A tag's identity is its topic, not its spelling: News = Nachrichten = Noticias, Wirtschaft = Economics (see topicConcepts.js).
+const tagKey = conceptKey;
+let topicLang = '';   // UI language code (locale folder): topic tags are written and shown in it
 function cleanTags(list) {
     const seen = new Set(), out = [];
     (Array.isArray(list) ? list : String(list || '').split(',')).forEach(t => {
@@ -156,7 +159,7 @@ function cleanTags(list) {
     });
     return out;
 }
-const allOf = (s) => cleanTags([...(s.tags || []), ...(s.topics || [])]);   // the user's tags + the AI's topic tags
+const allOf = (s) => cleanTags([...(s.tags || []), ...(s.topics || [])]).map(t => topicLabel(t, topicLang));   // the user's tags + the AI's topic tags, known topics in the UI language
 const hasTag = (s, t) => allOf(s).some(x => tagKey(x) === tagKey(t));
 function allTags() {
     const m = new Map();
@@ -2205,7 +2208,6 @@ async function ollamaSetup() {
         return { configured: active || saved, active, model };
     } catch (e) { return { configured: false, active: false, model: '' }; }
 }
-let topicLang = '';   // UI language code the topic tags are written in (filled by refreshTopicLang before a plan is made)
 async function refreshTopicLang() { try { topicLang = (await uiLanguage()).code; } catch (e) { /* keep the last one */ } }
 function libraryPlan() {
     const sm = subMap();
@@ -2439,6 +2441,7 @@ export async function onFeedsScreenShown(uiObj) {
 
 export function initFeedManager(uiObj) {
     uiRef = uiObj;
+    refreshTopicLang();
     els = {
         controls: document.getElementById('feedControls'),
         sourcePill: document.getElementById('feedSourcePill'),

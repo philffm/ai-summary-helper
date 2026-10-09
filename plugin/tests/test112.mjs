@@ -16,7 +16,7 @@ const startOfDay = (t) => Math.floor(t / 86400000) * 86400000;
 const now = Date.now();
 const mk = (id, feedId, k) => ({ id, feedId, title: 'T' + id, published: now - k * 1000, ai: true, cat: 'x' });
 const items = [mk('1', 'a', 1), mk('2', 'a', 2), mk('3', 'b', 3), mk('4', 'c', 4)];
-const subs = [{ id: 'a' }, { id: 'b', topics: ['Tech'], topicsLang: 'en' }, { id: 'c', topics: ['Tech'], topicsLang: 'de' }, { id: 'd' }];
+const subs = [{ id: 'a' }, { id: 'b', topics: ['Tech'], topicsLang: 'en' }, { id: 'c', topics: ['Bundesliga'], topicsLang: 'de' }, { id: 'd' }];
 const base = { items, recaps: {}, source: 'all', inSource: () => true, startOfDay, itemSig: (i) => i.id, today: startOfDay(now) };
 const plan = planLibrary({ ...base, subs, topicLang: 'en' });
 assert.deepEqual(plan.tag.map(e => e.id), ['a', 'c'], 'a: none yet, c: other language, b: done, d: no items');
@@ -40,5 +40,21 @@ const seen = [];
 const out = await runLibrary(plan, 20, { tagFeed: async (e) => { if (e.id === 'a') throw new Error('bad reply'); seen.push(e.id); } });
 assert.deepEqual(seen, ['c']);
 assert.equal(out.tagged, 1); assert.equal(out.failed, 1); assert.equal(out.doneRequests, 2);
+
+// Multilingual topics: the same topic in another language is the same tag.
+const { conceptKey, topicLabel, conceptList, CONCEPTS } = await imp('modules/topicConcepts.js');
+assert.equal(conceptKey('News'), conceptKey('Nachrichten')); assert.equal(conceptKey('Noticias'), conceptKey('новости'));
+assert.equal(conceptKey('Wirtschaft'), conceptKey('Economics')); assert.equal(conceptKey('Économie'), conceptKey('business'));
+assert.notEqual(conceptKey('News'), conceptKey('Politik'));
+assert.equal(conceptKey(' Fußball '), conceptKey('fußball'), 'unknown tags compare as text');
+assert.notEqual(conceptKey('Bundesliga'), conceptKey('News'));
+assert.equal(topicLabel('Economics', 'de'), 'Wirtschaft'); assert.equal(topicLabel('Nachrichten', 'en'), 'News'); assert.equal(topicLabel('Bundesliga', 'de'), 'Bundesliga');
+assert.equal(topicLabel('News', 'ja'), 'ニュース'); assert.equal(topicLabel('News', 'zh_HK'), '新聞');
+assert.equal(conceptList('de').length, Object.keys(CONCEPTS).length);
+for (const [id, byLocale] of Object.entries(CONCEPTS)) for (const l of ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar']) assert(byLocale[l] && byLocale[l].length, `${id} has a label for ${l}`);
+assert.deepEqual(parseTopicTags('News, Nachrichten, Wirtschaft, Economics, Sport'), ['News', 'Wirtschaft', 'Sport'], 'cross-language duplicates collapse');
+// A feed whose tags are all known topics is not re-tagged when the UI language changes (it is just shown in the new language).
+assert(!needsTopics({ topics: ['News', 'Wirtschaft'], topicsLang: 'de' }, 'en'));
+assert(needsTopics({ topics: ['News', 'Bundesliga'], topicsLang: 'de' }, 'en'));
 console.log('TEST 112 OK');
 process.exit(0);
