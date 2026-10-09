@@ -120,6 +120,14 @@ assert.equal(boundedLibraryPlan({ ...planL, lex: [[1], [2], [3]] }, 20, 3).lex.l
 const named = []; const outL = await runLibrary(planL, 20, { nameTags: async (b) => { named.push(b); } });
 assert.deepEqual(named, [['A1', 'A2']]); assert.equal(outL.doneRequests, 1);
 tc.setLexicon({});
+// After a UI-language switch: learned topics without a label in the new language are what is left to translate.
+{
+    tc.setLexicon({ football: { en: 'Football', de: 'Fußball' }, tennis: { en: 'Tennis', es: 'Tenis' } });
+    assert.deepEqual(tc.keysNeedingLabel(['Fußball', 'Fußball', 'Football', 'Tennis', 'Tenis'], 'es'), ['football'], 'tennis already has es; football does not');
+    assert.deepEqual(tc.keysNeedingLabel(['Fußball', 'Tennis', 'Tennis'], 'es', 200, 2), [], 'once-used football is left out with minCount 2');
+    assert.deepEqual(tc.keysNeedingLabel(['Nachrichten', 'Fußball'], 'es'), ['football'], 'built-in topics always have a label');
+    tc.setLexicon({});
+}
 console.log('TEST 112 OK');
 process.exit(0);
 

@@ -13,9 +13,9 @@ import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
-import { unknownTags } from './topicConcepts.js';
+import { unknownTags, keysNeedingLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
-import { learnTagNames } from './feedAi.js';
+import { learnTagNames, translateFeedTopics, uiLanguage } from './feedAi.js';
 import { escapeHtml } from './textUtils.js';
 import { T, TN } from './feedI18n.js';
 import { exportHistoryMarkdown } from './markdownArchive.js';
@@ -1124,17 +1124,26 @@ function initNameTags() {
             const articles = await StorageManager.getArticlesIndex({ includeArchived: true });
             const all = articles.flatMap(a => a.tags || []);
             // Most used first; a tag that appears only once in the archive is not worth a request (it neither groups nor shows up in charts).
-            const todo = unknownTags(all, Infinity, NAME_TAGS_MIN_USES);
-            if (!todo.length) { say(T('✓ Every frequently used tag already has a name — nothing to do.')); return; }
-            const blocks = []; for (let k = 0; k < todo.length; k += 40) blocks.push(todo.slice(k, k + 40));
-            let named = 0, failed = 0;
-            for (let b = 0; b < blocks.length; b++) {
-                say(T('Naming tags… {done} of {total}', { done: Math.min(b * 40, todo.length), total: todo.length }));
-                try { named += await learnTagNames(blocks[b]); await saveLexicon(); failed = 0; }
-                catch (e) { if (++failed >= 2) throw e; }   // one hiccup is skipped; two in a row stop the run
+            // Two kinds of work: tags nobody has named yet (English name + UI word), and tags already known in another
+            // language that lack a label in the CURRENT UI language (e.g. after switching English → Spanish).
+            const { code } = await uiLanguage();
+            const unnamed = unknownTags(all, Infinity, NAME_TAGS_MIN_USES);
+            const unlabeled = keysNeedingLabel(all, code, Infinity, NAME_TAGS_MIN_USES);
+            const total = unnamed.length + unlabeled.length;
+            if (!total) { say(T('✓ Every frequently used tag already has a name — nothing to do.')); return; }
+            const blocks = [];
+            for (let k = 0; k < unnamed.length; k += 40) blocks.push({ list: unnamed.slice(k, k + 40), run: (l) => learnTagNames(l) });
+            for (let k = 0; k < unlabeled.length; k += 40) blocks.push({ list: unlabeled.slice(k, k + 40), run: async (l) => { await translateFeedTopics(l); return l.length; } });
+            let named = 0, done = 0, failed = 0, lastError = null;
+            for (const b of blocks) {
+                say(T('Naming tags… {done} of {total}', { done, total }));
+                try { named += await b.run(b.list); await saveLexicon(); failed = 0; }
+                catch (e) { lastError = e; if (++failed >= 2) throw e; }   // one hiccup is skipped; two in a row stop the run
+                done += b.list.length;
             }
             document.dispatchEvent(new CustomEvent('aish:lexiconChanged'));
-            say(T('✓ Named {n} of {total} tags.', { n: named, total: todo.length }));
+            if (lastError && !named) throw lastError;   // nothing worked: say why instead of "Named 0"
+            say(T('✓ Named {n} of {total} tags.', { n: named, total }));
         } catch (err) {
             console.error('[AISH] Tag naming failed:', err);
             document.dispatchEvent(new CustomEvent('aish:lexiconChanged'));
