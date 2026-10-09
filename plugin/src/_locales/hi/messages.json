@@ -3919,5 +3919,68 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "सीमा हटाएँ और रीफ़्रेश करें"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "तब उपलब्ध जब Ollama आपका सक्रिय मॉडल हो। यह आपकी पूरी फ़ीड लाइब्रेरी को आपके अपने कंप्यूटर पर छोटे बैच में रेट, वर्गीकृत और रीकैप करता है। इसमें घंटों लग सकते हैं, पर कोई टोकन खर्च नहीं होता।"
+  },
+  "f_done_61ad": {
+    "message": "पूरा हुआ।"
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "आपकी लाइब्रेरी में सब कुछ रेट, वर्गीकृत और रीकैप हो चुका है।"
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "पूरी लाइब्रेरी प्रोसेस करें"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "रेटिंग और वर्गीकरण हो रहा है…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "यह आपके अपने कंप्यूटर पर Ollama के साथ चलता है और कोई टोकन खर्च नहीं करता। इस पैनल को खुला रखें: इसे बंद करने से रन रुक जाता है, और फिर शुरू करने पर वहीं से जारी रहता है। केवल अभी सहेजे गए आइटम प्रोसेस होते हैं (\"आइटम कितने समय रखें\" देखें)। आज का रीकैप खोलने पर लिखा जाता है।"
+  },
+  "f_stop_7705": {
+    "message": "रोकें"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "रुका। फिर से शुरू करने पर वहीं से जारी रहेगा।"
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "पूरी लाइब्रेरी · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "दैनिक रीकैप लिखे जा रहे हैं…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "लगभग {h} घं {m} मि"
+  },
+  "f_about_min_7cd9": {
+    "message": "लगभग {m} मि"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} आइटम रेट हुए · {b} दिन रीकैप हुए"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} आइटम रेट करने हैं · {b} दिन रीकैप करने हैं · {n} AI अनुरोध"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (अनुशंसित)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} विफल"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 प्रति बैच आइटम"
+  },
+  "f_6_hours_b222": {
+    "message": "6 घंटे"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "जब तक फ़ीड स्क्रीन या साइड पैनल खुला है, नीचे दिए अंतराल पर आपकी फ़ीड लाता है और नया प्रोसेस करता है"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ हर बार चलाएँ"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 नए आइटम अपने-आप प्रोसेस करें"
   }
 }

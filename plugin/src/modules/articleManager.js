@@ -1257,7 +1257,11 @@ function buildArticleCard(article) {
         if (host && pChips.length) {   // 🎓 paper badges share the status/tag row
             let row = host.querySelector('.card-tags');
             if (!row) { row = document.createElement('div'); row.className = 'card-tags'; const anchor = host.querySelector('.article-date'); if (anchor) anchor.after(row); else host.appendChild(row); }
-            pChips.slice().reverse().forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip paper paper-' + tone; b.textContent = text; row.prepend(b); });
+            // Order in the row: status (New / Read / Sent / Archived), then the type (research paper), then the tags.
+            const typeFrag = document.createDocumentFragment();
+            pChips.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip paper paper-' + tone; b.textContent = text; typeFrag.appendChild(b); });
+            const statusChips = row.querySelectorAll('.status-badge');
+            if (statusChips.length) statusChips[statusChips.length - 1].after(typeFrag); else row.prepend(typeFrag);
         }
         if (host && article.archived) {
             const r = document.createElement('button');
@@ -1476,7 +1480,7 @@ async function renderDetailQa(article, mount) {
 }
 
 /** 🎓 row in the detail view: badges, authors · journal · year, DOI link and the "Mark as paper / Not a paper" override. */
-/** Tag row of the detail view: 🎓 paper chips first (✕ = not a paper), then the tags (✕ removes), then "+ Tag" (also: mark as research paper). */
+/** Tag row of the detail view (status badges only exist on list cards, where they come before the type): 🎓 paper chips first (✕ = not a paper), then the tags (✕ removes), then "+ Tag" (also: mark as research paper). */
 function renderDetailTags(article, host) {
     if (!host) return;
     host.replaceChildren();

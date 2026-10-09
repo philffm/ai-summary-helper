@@ -3901,5 +3901,68 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "제한 해제 후 새로고침"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Ollama가 활성 모델일 때 사용할 수 있습니다. 피드 라이브러리 전체를 내 컴퓨터에서 작은 배치로 평가·분류·요약합니다. 몇 시간이 걸릴 수 있지만 토큰은 쓰지 않습니다."
+  },
+  "f_done_61ad": {
+    "message": "완료."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "라이브러리의 모든 항목이 평가·분류·요약되었습니다."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "전체 라이브러리 처리"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "평가 및 분류 중…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Ollama로 내 컴퓨터에서 실행되며 토큰을 쓰지 않습니다. 이 패널을 열어 두세요. 닫으면 실행이 일시 중지되고, 다시 시작하면 멈춘 곳부터 이어집니다. 아직 저장된 항목만 처리됩니다(「항목 보관 기간」 참조). 오늘의 요약은 열 때 작성됩니다."
+  },
+  "f_stop_7705": {
+    "message": "중지"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "중지됨. 다시 시작하면 이어서 진행합니다."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "전체 라이브러리 · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "일별 요약 작성 중…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "약 {h}시간 {m}분"
+  },
+  "f_about_min_7cd9": {
+    "message": "약 {m}분"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a}개 항목 평가 · {b}일 요약"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "평가할 항목 {a}개 · 요약할 날 {b}일 · AI 요청 {n}건"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (권장)"
+  },
+  "f_failed_50a8": {
+    "message": "{n}개 실패"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 배치당 항목 수"
+  },
+  "f_6_hours_b222": {
+    "message": "6시간"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "피드 화면이나 사이드 패널이 열려 있는 동안 아래 간격으로 피드를 가져와 새 항목을 처리합니다"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ 실행 간격"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 새 항목 자동 처리"
   }
 }

@@ -3919,5 +3919,68 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "取消限制并刷新"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "当 Ollama 是你的当前模型时可用。它会在你自己的电脑上分小批次为整个订阅库评分、分类并生成回顾。可能需要数小时，但不消耗任何 token。"
+  },
+  "f_done_61ad": {
+    "message": "完成。"
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "你的订阅库中的所有内容都已评分、分类并生成回顾。"
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "处理整个订阅库"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "正在评分和分类…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "使用 Ollama 在你自己的电脑上运行，不消耗 token。请保持此面板打开：关闭会暂停运行，重新开始会从中断处继续。只处理仍保存的条目（见“条目保留时间”）。今天的回顾在你打开时生成。"
+  },
+  "f_stop_7705": {
+    "message": "停止"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "已停止。重新开始会从中断处继续。"
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "整个订阅库 · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "正在生成每日回顾…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "约 {h} 小时 {m} 分钟"
+  },
+  "f_about_min_7cd9": {
+    "message": "约 {m} 分钟"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "已评分 {a} 个条目 · 已回顾 {b} 天"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "待评分 {a} 个条目 · 待回顾 {b} 天 · {n} 次 AI 请求"
+  },
+  "f_recommended_44c5": {
+    "message": "{n}（推荐）"
+  },
+  "f_failed_50a8": {
+    "message": "{n} 个失败"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 每批条目数"
+  },
+  "f_6_hours_b222": {
+    "message": "6 小时"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "在订阅界面或侧边栏打开期间，按下方间隔获取订阅并处理新内容"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ 运行间隔"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 自动处理新条目"
   }
 }

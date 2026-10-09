@@ -32,6 +32,7 @@ import { el } from './dom.js';
 import { createRecapStatus } from './recapStatus.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
+import { planLibrary, runLibrary, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
 
@@ -57,7 +58,11 @@ export const FEED_DEFAULTS = {
     backgroundPoll: false,
     refreshMinutes: 30,
     keepDays: 30,
-    recapLimit: 0
+    recapLimit: 0,
+    libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
+    autoProcess: false,           // fetch + process new items on a timer (Ollama only)
+    autoProcessMinutes: 30,
+    autoProcessAt: 0
 };
 
 let subs = [];
@@ -1822,6 +1827,10 @@ async function setSetting(key, value) {
     await persistSettings();
     if (key === 'backgroundPoll' || key === 'refreshMinutes') sendPollConfig();
     if (key === 'recapLimit') setRecapLimit(value);
+    if (key === 'autoProcess') {
+        if (value) { settings.autoProcessAt = 0; persistSettings(); startAutoProcess(); setTimeout(() => autoProcessTick().catch(() => {}), 500); }
+        else if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
     if (key === 'keepDays') { pruneItems(); await persist(); render(); }
 }
 
@@ -2041,6 +2050,149 @@ function renderFeedSettings() {
 }
 
 // Feed preferences: how feeds behave (its own Settings page), grouped by intent.
+// ── Whole library with a local model (Ollama only) ──────────────────────────
+// Rates, categorizes and recaps every stored item in small batches (20 by default: a local model that gets hundreds of
+// headlines at once loses the middle). It can take hours but costs only the user's own machine, so it is offered for
+// Ollama only. The plan is derived from what is stored, so stopping and starting again continues where it left off.
+let libraryRun = null;   // { ctl: AbortController } while a run is active
+
+async function isOllamaActive() {
+    try { const s = await chrome.storage.sync.get(['connectionMode', 'activeService']); return s.connectionMode === 'local' && s.activeService === 'ollama'; }
+    catch (e) { return false; }
+}
+function libraryPlan() {
+    const sm = subMap();
+    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig });
+}
+async function libraryRateChunk(chunk, signal) {
+    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal });
+    chunk.forEach((i, n) => {
+        if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; }   // never overwrite an existing rating or category
+        if (!i.cat && res.labels && res.labels[n]) i.cat = res.labels[n];
+    });
+    await persist();
+}
+/** Day recap in batches: the first batch writes it, every further batch extends it. Saved after each batch, so a stop loses at most one batch. */
+async function libraryRecapDay(entry, size, signal) {
+    const sm = subMap(), rate = settings.rateWithRecap !== false;
+    const key = `${entry.day}|all`;
+    const all = recapScope(entry.day, 'all');
+    const sigs = (arr) => Object.fromEntries(arr.map(x => [x.id, itemSig(x)]));
+    let cur = recaps[key] || null;
+    for (const chunk of chunksOf(entry.todo, size)) {
+        if (signal && signal.aborted) throw Object.assign(new Error(T('Cancelled')), { cancelled: true });
+        let rc;
+        if (!cur) {
+            const r = await generateRecap(chunk, aiTitleOf(sm), { rate, signal });
+            applyRatings(chunk, r, rate);
+            const { labels: _l, scores: _s, ...base } = r;
+            rc = { ...base, covered: sigs(chunk) };
+        } else {
+            const r = await generateRecapUpdate(cur, chunk, aiTitleOf(sm), { rate, signal, edited: (x) => x.id in cur.covered });
+            applyRatings(r.sent, r, rate);
+            const { labels: _l, scores: _s, sent: _t, ...base } = r;
+            rc = { ...base, covered: { ...cur.covered, ...sigs(chunk) } };
+        }
+        cur = recaps[key] = { ...rc, hash: idsHash(all), at: Date.now(), n: all.length, total: all.length };
+        await chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
+    }
+    renderRecapCard();
+}
+
+// Live controls of the card in Settings (null when the panel is not on screen). Both the button and the automatic run report here.
+let libraryUi = null;
+const libraryUiLive = () => libraryUi && libraryUi.bar.isConnected ? libraryUi : null;
+
+/** One run of the whole-library pipeline. `auto` = started by the timer: newest days first, quiet. */
+async function executeLibrary({ auto = false } = {}) {
+    if (libraryRun || scoring) return null;
+    const n = cleanBatchSize(settings.libraryBatch);
+    const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length) return null;
+    if (auto) plan.days.reverse();
+    const ctl = new AbortController(); libraryRun = { ctl };
+    const keepLimit = getRecapLimit(); setRecapLimit(0);   // a per-recap cap would silently drop items from a batch
+    scoring = true;
+    libraryUiLive()?.running(true);
+    let out = null;
+    try {
+        out = await runLibrary(plan, n, {
+            signal: ctl.signal, rateChunk: libraryRateChunk, recapDay: libraryRecapDay,
+            onProgress: (pr) => { libraryUiLive()?.progress(pr); render(); }
+        });
+    } finally {
+        setRecapLimit(keepLimit); scoring = false; libraryRun = null; render(); renderRecapCard();
+    }
+    libraryUiLive()?.finished(out);
+    return out;
+}
+
+// Automatic run: every N minutes (setting) while the Feeds screen or side panel is alive — fetch the feeds, then rate and recap what is new.
+// An extension can't run this with every page closed: feeds are parsed and stored by the extension page (the service worker has no DOM).
+let autoTimer = null;
+async function autoProcessTick() {
+    if (!settings.autoProcess || libraryRun || scoring || refreshing) return;
+    const every = Math.max(15, Number(settings.autoProcessMinutes) || 30) * 60000;
+    if (Date.now() - (settings.autoProcessAt || 0) < every) return;
+    if (!(await isOllamaActive())) return;
+    settings.autoProcessAt = Date.now(); persistSettings();
+    await refreshAll(uiRef, { force: true });
+    await executeLibrary({ auto: true });
+    libraryUiLive()?.refresh();
+}
+function startAutoProcess() {
+    if (autoTimer) return;
+    autoTimer = setInterval(() => { autoProcessTick().catch(() => {}); }, 60000);
+    setTimeout(() => { autoProcessTick().catch(() => {}); }, 4000);   // overdue when the panel opens
+}
+
+async function renderLibraryCard(card) {
+    card.replaceChildren();
+    if (!(await isOllamaActive())) {
+        card.append(el('p', 'feed-muted', T('Available when Ollama is your active model. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')));
+        return;
+    }
+    const status = el('p', 'feed-muted');
+    const bar = el('progress'); bar.max = 1; bar.value = 0; bar.hidden = true; bar.className = 'library-progress';
+    const startBtn = btn('btn-sm', '', async () => {
+        if (libraryRun || scoring) { toast(uiRef, T('Already scoring — one moment')); return; }
+        await executeLibrary();
+    });
+    const stopBtn = btn('btn-sm', T('Stop'), () => { if (libraryRun) libraryRun.ctl.abort(); });
+    stopBtn.hidden = true;
+    const summaryText = () => {
+        const p = libraryPlan(), n = countRequests(p, cleanBatchSize(settings.libraryBatch));
+        if (!p.rate.length && !p.days.length) return T('Everything in your library is rated, categorized and recapped.');
+        const eta = formatEta(n * 90000, T);   // rough: local models need about 1–2 minutes per batch
+        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (eta ? ' · ' + eta : '');
+    };
+    const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length; startBtn.textContent = T('Process the whole library'); };
+    libraryUi = {
+        bar, refresh,
+        running: (on) => { startBtn.hidden = on; stopBtn.hidden = !on; bar.hidden = !on; if (on) bar.value = 0; },
+        progress: (pr) => {
+            bar.value = pr.totalRequests ? pr.doneRequests / pr.totalRequests : 0;
+            const eta = formatEta(pr.etaMs, T);
+            status.textContent = (pr.phase === 'rate' ? T('Rating and categorizing…') : T('Writing day recaps…'))
+                + ` ${pr.doneRequests}/${pr.totalRequests}` + (eta ? ' · ' + eta : '') + (pr.failed ? ' · ' + T('{n} failed', { n: pr.failed }) : '');
+        },
+        finished: (out) => {
+            bar.hidden = true; stopBtn.hidden = true; startBtn.hidden = false;
+            refresh();
+            if (out) status.textContent = (out.stopped ? T('Stopped. Starting again continues where it left off.') + ' ' : T('Done.') + ' ')
+                + T('{a} items rated · {b} days recapped', { a: out.rated, b: out.recaps }) + (out.failed ? ' · ' + T('{n} failed', { n: out.failed }) : '');
+        }
+    };
+    const actions = el('div', 'feed-recap-actions'); actions.append(startBtn, stopBtn);
+    card.append(
+        selectRow('feedSetLibBatch', T('📦 Items per batch'), 'libraryBatch', BATCH_SIZES.map(v => [v, v === DEFAULT_BATCH ? T('{n} (recommended)', { n: v }) : String(v)])),
+        status, bar, actions,
+        el('p', 'feed-muted', T('Runs on your own machine with Ollama and spends no tokens. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
+        toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches your feeds and processes what is new at the interval below, while the Feeds screen or side panel is open'), 'autoProcess'),
+        selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]));
+    card.querySelector('#feedSetLibBatch').addEventListener('change', () => refresh());
+    if (libraryRun) { libraryUi.running(true); status.textContent = T('Rating and categorizing…'); } else refresh();
+}
+
 function renderFeedPrefs() {
     const root = document.getElementById('feedPrefsRoot');
     if (!root) return;
@@ -2057,6 +2209,8 @@ function renderFeedPrefs() {
         moodToggleRow(),
         selectRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
         toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
+    card('feedPrefsLibrary', TU('Whole library · Ollama'));
+    renderLibraryCard(root.querySelector('#feedPrefsLibrary')).catch(() => {});
     card('feedPrefsUpdates', TU('Updates & storage'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
         selectRow('feedSetRefresh', T('🔄 Refresh feeds every'), 'refreshMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')]]),
@@ -2156,5 +2310,5 @@ export function initFeedManager(uiObj) {
 
     // Warm the data so the Settings row subtitle is right, and make sure the
     // background poller matches the saved settings.
-    load().then(() => { updateSettingsSub(); sendPollConfig(); }).catch(() => {});
+    load().then(() => { updateSettingsSub(); sendPollConfig(); if (settings.autoProcess) startAutoProcess(); }).catch(() => {});
 }

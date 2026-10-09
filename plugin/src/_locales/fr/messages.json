@@ -3919,5 +3919,68 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "Retirer la limite et actualiser"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Disponible lorsque Ollama est votre modèle actif. Il évalue, catégorise et résume toute votre bibliothèque de flux par petits lots sur votre propre machine. Cela peut prendre des heures, mais ne dépense aucun jeton."
+  },
+  "f_done_61ad": {
+    "message": "Terminé."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Tout dans votre bibliothèque est évalué, catégorisé et résumé."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Traiter toute la bibliothèque"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "Évaluation et catégorisation…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Fonctionne sur votre propre machine avec Ollama et ne dépense aucun jeton. Gardez ce panneau ouvert : le fermer met l’exécution en pause, et la relancer reprend là où elle s’est arrêtée. Seuls les éléments encore stockés sont traités (voir « Conserver les éléments »). Le résumé du jour est écrit quand vous l’ouvrez."
+  },
+  "f_stop_7705": {
+    "message": "Arrêter"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Arrêté. Relancer reprend là où cela s’est arrêté."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Toute la bibliothèque · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "Rédaction des résumés quotidiens…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "environ {h} h {m} min"
+  },
+  "f_about_min_7cd9": {
+    "message": "environ {m} min"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} éléments évalués · {b} jours résumés"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} éléments à évaluer · {b} jours à résumer · {n} requêtes IA"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (recommandé)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} en échec"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Éléments par lot"
+  },
+  "f_6_hours_b222": {
+    "message": "6 heures"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Récupère vos flux et traite les nouveautés à l’intervalle ci-dessous, tant que l’écran Flux ou le panneau latéral est ouvert"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Exécuter toutes les"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Traiter automatiquement les nouveaux éléments"
   }
 }
