@@ -97,8 +97,9 @@
 
         <p>Si vous n'êtes pas d'accord avec l'un des termes de cette politique, veuillez ne pas installer ni utiliser l'extension.</p>
 
-        <h2>Aucun compte requis</h2>
-        <p>AI Summary Helper ne vous demande pas de créer un compte, de vous connecter ou de fournir des données personnelles pour utiliser ses fonctionnalités principales. Votre clé d'API (si vous utilisez la vôtre) et l'intégralité de votre historique d'articles sont stockés dans la mémoire locale de votre navigateur.</p>
+        <h2>Aucun compte requis pour les fonctionnalités essentielles</h2>
+        <p>AI Summary Helper ne vous demande pas de créer un compte, de vous connecter ou de fournir des données personnelles pour résumer des pages, surligner du texte, suivre des flux ou conserver vos archives. Votre clé API (si vous utilisez la vôtre) ainsi que l'ensemble de votre historique d'articles restent stockés localement dans votre navigateur.</p>
+        <p>Un compte n'est nécessaire que pour les services hébergés : byphil Cloud (résumés sans votre propre clé) et Send to Kindle. La connexion s'effectue via votre adresse e-mail et un code à usage unique. Nous conservons cette adresse e-mail, le statut de votre forfait ou licence ainsi que des compteurs d'utilisation basiques (par exemple le nombre de requêtes et d'envois Kindle) afin d'appliquer les limites de votre offre.</p>
 
         <h2>Quelles données nous traitons et où elles vont</h2>
 
@@ -139,11 +140,16 @@
         <h3>Flux RSS</h3>
         <p>Le lecteur de flux intégré stocke vos abonnements et les éléments de flux récupérés localement dans votre navigateur — sans jamais les synchroniser ni nous les transmettre. Lorsque vous ajoutez ou actualisez un flux, l'extension interroge directement l'adresse de ce flux auprès du serveur de l'éditeur, exactement comme le ferait votre navigateur en visitant le site ; l'éditeur peut donc voir la requête. Nous ne faisons transiter, n'enregistrons et ne voyons aucun de vos abonnements ni votre liste de lecture. L'importation OPML est traitée intégralement sur votre appareil. Si vous activez les vérifications en arrière-plan (désactivées par défaut), l'extension réinterroge vos flux selon l'intervalle de votre choix, uniquement pour afficher un compteur sur l'icône de la barre d'outils. Le résumé d'un élément de flux fonctionne comme celui de n'importe quelle autre page : son contenu est uniquement envoyé au fournisseur d'IA que vous avez choisi, et seulement lorsque vous déclenchez la génération d'un résumé. Le récapitulatif quotidien et l'analyse de tonalité par IA (facultatifs) fonctionnent de la même manière : uniquement lorsque vous cliquez dessus, l'extension transmet les titres des éléments, le nom des sources et de courts extraits (jamais les articles complets) au fournisseur d'IA sélectionné, et le récapitulatif obtenu est mis en cache sur votre appareil. Les épisodes de podcast d'un flux sont diffusés en streaming directement depuis le serveur de l'éditeur lorsque vous appuyez sur Lecture.</p>
 
-        <h3>Kindle, AirDrop et LocalSend</h3>
-        <p>Lorsque vous envoyez un article vers Kindle, AirDrop ou un appareil compatible LocalSend, le fichier formaté est envoyé directement depuis votre navigateur vers la destination choisie. Nous n'agissons pas en tant qu'intermédiaire et ne voyons ni ne stockons ce contenu.</p>
+        <h3>Envoi d'articles : Kindle, LocalSend et menu de partage</h3>
+        <p>Il existe deux modes de transmission distincts, et un seul transite par nos serveurs :</p>
+        <ul>
+          <li><strong>Send to Kindle transite par notre serveur.</strong> Amazon n'accepte les documents par e-mail que de la part d'expéditeurs autorisés. L'extension transmet donc l'article (titre, résumé, texte, surlignages et adresse source) au backend byphil, qui l'envoie par e-mail à l'adresse Kindle indiquée. Vous devez ajouter notre adresse d'expédition (kindle@byphil.eu) à votre liste d'expéditeurs approuvés sur votre compte Amazon. Le contenu est utilisé uniquement pour générer et envoyer cet e-mail. L'envoi vers Kindle nécessite d'être connecté ou de disposer d'une licence ; l'offre gratuite inclut 3 envois.</li>
+          <li><strong>LocalSend et le menu de partage du système (par exemple AirDrop) s'exécutent en direct.</strong> Le fichier est transféré directement de votre navigateur vers l'appareil sélectionné sur votre réseau local, ou vers l'application choisie dans le menu de partage du système. Nous n'intervenons pas et ne pouvons ni voir ni stocker ce contenu. LocalSend fonctionne avec les smartphones, tablettes, ordinateurs et liseuses exécutant une application compatible.</li>
+        </ul>
 
         <h2 id="analytics">Statistiques et cookies</h2>
         <p><strong>En résumé :</strong> ce site web ne dépose <strong>aucun cookie</strong> et n'utilise aucun traceur publicitaire ou intersite. Nous comptabilisons les visites de manière anonyme à l'aide d'une instance Matomo auto-hébergée, et vous pouvez désactiver ce suivi à tout moment.</p>
+        <p><strong>L'extension de navigateur elle-même ne contient aucun code d'analyse d'audience, de télémétrie ou de traçage.</strong> Ses seules requêtes réseau sont destinées au fournisseur d'IA configuré, aux flux auxquels vous êtes abonné, aux pages dont vous demandez l'extraction et (si vous les utilisez) au backend byphil pour byphil Cloud, l'authentification, la vérification des licences et Send to Kindle.</p>
         <h3>Ce que nous mesurons</h3>
         <p>Les pages vues, la langue de la page, le site référent, le pays approximatif/le navigateur/le type d'appareil, ainsi que les éléments du site avec lesquels vous interagissez (par exemple les clics sur « Ajouter à Chrome », le sélecteur de tarifs, les éléments de la FAQ, les sections que vous faites défiler et les étapes du générateur de bookmarklet). Les événements ne contiennent jamais d'adresse e-mail, de clé d'API, de code à usage unique, de contenu de page ou de données d'articles.</p>
         <h3>Comment cela est configuré</h3>
@@ -171,6 +177,8 @@
             <tr><td><code>tabs</code></td><td>Fermer l'onglet automatiquement après l'action « Résumer et fermer »</td></tr>
             <tr><td><code>sidePanel</code></td><td>Prendre en charge le panneau latéral natif de Chrome comme option d'affichage</td></tr>
             <tr><td><code>scripting</code></td><td>Injecter le script de contenu nécessaire à la lecture et au résumé d'une page</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Écouter des podcasts audio et la lecture vocale des résumés en arrière-plan lorsque la fenêtre contextuelle est fermée</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Conserver une archive locale volumineuse d'articles et de surlignages sans atteindre le quota de stockage par défaut</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Vous permettre de résumer n'importe quelle page visitée — le contenu n'est lu et transmis que lorsque vous déclenchez activement un résumé, jamais en arrière-plan de manière passive</td></tr>
           </tbody>
         </table>
@@ -180,7 +188,7 @@
         <ul>
           <li>Nous ne diffusons aucune publicité et nous ne vendons, ne louons ni n'échangeons vos données avec des annonceurs ou des courtiers en données (data brokers).</li>
           <li>Nous n'exigeons aucun compte ni aucune connexion pour utiliser les fonctionnalités principales.</li>
-          <li>Nous n'enregistrons et ne conservons pas le contenu des pages que vous résumez via votre propre clé d'API ou un modèle local.</li>
+          <li>Nous n'enregistrons ni ne conservons le contenu des pages résumées avec votre propre clé API ou un modèle local, et nous n'avons aucun accès à ce que vous envoyez via LocalSend ou le menu de partage.</li>
           <li>Nous n'avons aucun accès à votre historique d'articles, à vos surlignages ou à vos clés d'API stockés localement — ils ne quittent jamais votre appareil, sauf si vous décidez explicitement de les exporter.</li>
         </ul>
 
@@ -188,7 +196,8 @@
         <p>Selon la configuration que vous choisissez pour l'extension, le contenu de votre page peut être envoyé à :</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI ou DeepSeek — uniquement si vous avez renseigné votre propre clé d'API pour ce fournisseur, et exclusivement pour la page que vous résumez activement.</li>
-          <li>Notre backend byphil Cloud — uniquement si vous avez opté pour cette offre.</li>
+          <li>Notre backend byphil — uniquement si vous utilisez byphil Cloud ou Send to Kindle.</li>
+          <li>Amazon — si vous envoyez un article vers votre Kindle, Amazon assure la distribution selon ses propres règles de confidentialité.</li>
           <li>Votre propre instance locale Ollama — ce n'est pas un tiers ; tout reste localement sur votre machine.</li>
         </ul>
         <p>Nous ne sommes pas responsables des pratiques de confidentialité des fournisseurs d'IA tiers que vous choisissez de connecter. Nous vous invitons à consulter leurs politiques respectives avant de configurer vos accès.</p>

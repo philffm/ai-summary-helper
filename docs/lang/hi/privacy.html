@@ -97,8 +97,9 @@
 
         <p>यदि आप इस पॉलिसी के किसी भी हिस्से से असहमत हैं, तो कृपया एक्सटेंशन को इंस्टॉल या उपयोग न करें।</p>
 
-        <h2>अकाउंट की कोई ज़रूरत नहीं (No Account Required)</h2>
-        <p>AI Summary Helper के मुख्य फीचर्स इस्तेमाल करने के लिए आपको कोई अकाउंट बनाने, साइन इन करने या अपनी पर्सनल डिटेल्स देने की ज़रूरत नहीं है। आपकी API key (यदि आप अपनी खुद की इस्तेमाल करते हैं) और आपकी पूरी आर्टिकल हिस्ट्री आपके ब्राउज़र के local storage में ही रहती है।</p>
+        <h2>Core Features के लिए किसी Account की ज़रूरत नहीं है</h2>
+        <p>Pages summarize करने, highlight करने, feeds follow करने या अपना archive maintain करने के लिए AI Summary Helper में account बनाने, sign in करने या कोई personal information देने की ज़रूरत नहीं है। आपकी API key (अगर आप अपनी खुद की use करते हैं) और आपकी पूरी article history आपके browser के local storage में ही रहती है।</p>
+        <p>Account की ज़रूरत केवल hosted services के लिए होती है: byphil Cloud (बिना अपनी key के summaries) और Send to Kindle। Sign in करने के लिए आपका email address और एक one-time code इस्तेमाल होता है। हम वो email address, आपका plan या license status और basic usage counters (जैसे requests की संख्या और Kindle sends) store करते हैं ताकि plan limits लागू की जा सकें।</p>
 
         <h2>हम कौन सा डेटा हैंडल करते हैं और यह कहाँ जाता है</h2>
 
@@ -139,11 +140,16 @@
         <h3>RSS feeds</h3>
         <p>Built-in Feeds reader आपके subscriptions और fetched feed items को locally आपके browser में ही स्टोर करता है — यह कभी sync नहीं होता, न ही हमारे पास भेजा जाता है। जब आप कोई feed ऐड या refresh करते हैं, तो extension सीधे publisher के server से उस feed के address को request करता है, ठीक वैसे ही जैसे साइट विज़िट करते समय आपका browser करता है, ताकि publisher उस request को देख सके। हम आपके subscriptions या reading list को कभी proxy, log या view नहीं करते। OPML import पूरी तरह से आपके device पर ही प्रोसेस होता है। अगर आप background checks ऑन करते हैं (जो by default ऑफ रहता है), तो extension आपके चुने हुए interval पर feeds को re-request करता है, सिर्फ toolbar icon पर count दिखाने के लिए। किसी feed item को summarize करना किसी अन्य page को summarize करने जैसा ही है: इसका content सिर्फ आपके चुने हुए AI provider को भेजा जाता है, और वह भी सिर्फ तब जब आप summary trigger करते हैं। Optional AI day recap और AI tone scoring भी इसी तरह काम करते हैं: केवल तब जब आप उन पर क्लिक करते हैं, extension item titles, source names और छोटे snippets (पूरे articles नहीं) आपके चुने हुए AI provider को भेजता है, और बनने वाला recap आपके device पर cache हो जाता है। Feed में मौजूद Podcast episodes सीधे publisher के server से stream होते हैं जब आप Play पर क्लिक करते हैं।</p>
 
-        <h3>Kindle, AirDrop, और LocalSend</h3>
-        <p>जब आप किसी आर्टिकल को Kindle, AirDrop, या किसी LocalSend-कंपैटिबल डिवाइस पर भेजते हैं, तो फ़ॉर्मेट की गई फ़ाइल सीधे आपके ब्राउज़र से आपके चुने हुए डेस्टिनेशन पर भेजी जाती है। हम बीच में मध्यस्थ (intermediary) के रूप में कार्य नहीं करते हैं और इस कंटेंट को न देखते हैं और न ही स्टोर करते हैं।</p>
+        <h3>Articles भेजना: Kindle, LocalSend, और share sheet</h3>
+        <p>इसके दो अलग-अलग paths हैं, और उनमें से सिर्फ एक ही हमारे server से होकर गुज़रता है:</p>
+        <ul>
+          <li><strong>Send to Kindle हमारे server से होकर जाता है।</strong> Amazon केवल approved senders से ही email द्वारा documents स्वीकार करता है, इसलिए यह extension article (title, summary, text, highlights और source address) byphil backend को भेजता है, जो इसे आपके दर्ज किए गए Kindle address पर email कर देता है। आप अपने Amazon account की approved senders list में हमारा sender address (kindle@byphil.eu) add करते हैं। इस content का उपयोग केवल वह email create करके भेजने के लिए किया जाता है। Kindle delivery के लिए signed in होना या license होना आवश्यक है; free tier में 3 sends शामिल हैं।</li>
+          <li><strong>LocalSend और system share sheet (उदाहरण के लिए AirDrop) direct काम करते हैं।</strong> File आपके browser से सीधे आपके local network पर चुने गए device, या share sheet में चुनी गई app तक जाती है। इसमें हमारा कोई involvement नहीं होता और हम इस content को न तो देखते हैं और न ही store करते हैं। LocalSend compatible app चलाने वाले phones, tablets, computers और e-readers के साथ काम करता है।</li>
+        </ul>
 
         <h2 id="analytics">Analytics और cookies</h2>
         <p><strong>संक्षेप में:</strong> यह वेबसाइट सेट करती है <strong>कोई cookies नहीं</strong> और किसी भी विज्ञापन या cross-site trackers का उपयोग नहीं करती है। हम एक self-hosted Matomo instance के साथ anonymous विज़िट्स ट्रैक करते हैं, और आप इसे किसी भी समय बंद कर सकते हैं।</p>
+        <p><strong>Browser extension में खुद कोई analytics, telemetry या tracking code शामिल नहीं है।</strong> इसके एकमात्र network requests केवल आपके configured AI provider, आपके subscribed feeds, आपके द्वारा fetch करने के लिए कहे गए pages, और (यदि आप उपयोग करते हैं) byphil Cloud, sign-in, license checks और Send to Kindle के लिए byphil backend पर ही जाते हैं।</p>
         <h3>हम क्या मापते हैं</h3>
         <p>Page views, पेज की भाषा, referrer, अनुमानित देश/browser/device class, और आप साइट के किन हिस्सों के साथ interact करते हैं (उदाहरण के लिए "Add to Chrome" पर क्लिक, pricing toggle, FAQ आइटम्स, वे सेक्शन्स जहाँ आप scroll करते हैं, और bookmarklet generator के स्टेप्स)। इन Events में कभी भी ईमेल एड्रेस, API keys, one-time codes, page content या आर्टिकल डेटा शामिल नहीं होता है।</p>
         <h3>इसे कैसे कॉन्फ़िगर किया गया है</h3>
@@ -171,6 +177,8 @@
             <tr><td><code>tabs</code></td><td>"Summarize &amp; Close" के बाद टैब को ऑटोमैटिकली बंद करने के लिए</td></tr>
             <tr><td><code>sidePanel</code></td><td>व्यूइंग विकल्प के रूप में Chrome के नेटिव साइड पैनल को सपोर्ट करने के लिए</td></tr>
             <tr><td><code>scripting</code></td><td>किसी पेज को पढ़ने और समराइज़ करने के लिए आवश्यक कंटेंट स्क्रिप्ट को इंजेक्ट करने के लिए</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Popup बंद होने पर भी background में podcast audio play करें और summaries को बोलकर सुनें</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Default storage quota की चिंता किए बिना articles और highlights का एक बड़ा local archive सुरक्षित रखें</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>आपके द्वारा विज़िट किए जाने वाले किसी भी पेज को समराइज़ करने की अनुमति देने के लिए — कंटेंट केवल तभी पढ़ा और ट्रांसमिट किया जाता है जब आप एक्टिवली समरी ट्रिगर करते हैं, कभी भी पैसिवली नहीं</td></tr>
           </tbody>
         </table>
@@ -180,7 +188,7 @@
         <ul>
           <li>हम विज्ञापन नहीं चलाते या दिखाते हैं, और हम आपका डेटा विज्ञापनदाताओं या डेटा ब्रोकर्स को बेचते, किराए पर नहीं देते या ट्रेड नहीं करते हैं।</li>
           <li>हमें किसी भी कोर फ़ीचर के लिए अकाउंट या साइन-इन की आवश्यकता नहीं होती है।</li>
-          <li>हम आपकी अपनी API key या लोकल मॉडल के ज़रिए समराइज़ किए जाने वाले पेजों के कंटेंट को लॉग या रिटेन नहीं करते हैं।</li>
+          <li>हम आपकी अपनी API key या local model से summarize किए जाने वाले pages का content न तो log करते हैं और न ही retain करते हैं, और LocalSend या share sheet से आप जो कुछ भी भेजते हैं, हम उसे कभी नहीं देखते।</li>
           <li>हमारे पास आपकी लोकली स्टोर्ड आर्टिकल हिस्ट्री, हाइलाइट्स या API keys का कोई एक्सेस नहीं है — जब तक कि आप उन्हें स्पष्ट रूप से एक्सपोर्ट न करें, वे आपके डिवाइस से कभी बाहर नहीं जाते।</li>
         </ul>
 
@@ -188,7 +196,8 @@
         <p>आप एक्सटेंशन को कैसे कॉन्फ़िगर करते हैं, इसके आधार पर आपका पेज कंटेंट इन्हें भेजा जा सकता है:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI, या DeepSeek — केवल तभी जब आपने उस प्रोवाइडर के लिए अपनी खुद की API key दर्ज की हो, और केवल उसी पेज के लिए जिसे आप एक्टिवली समराइज़ करते हैं।</li>
-          <li>हमारा byphil Cloud बैकएंड — केवल तभी जब आपने वह टियर चुना हो।</li>
+          <li>हमारा byphil backend — केवल तभी जब आप byphil Cloud या Send to Kindle का उपयोग करते हैं।</li>
+          <li>Amazon — यदि आप अपने Kindle पर कोई article भेजते हैं, तो Amazon अपनी privacy terms के तहत उसे deliver करता है।</li>
           <li>आपका अपना लोकल Ollama इंस्टेंस — यह कोई थर्ड पार्टी नहीं है; यह आपकी मशीन पर ही रहता है।</li>
         </ul>
         <p>हम आपके द्वारा कनेक्ट किए जाने वाले थर्ड-पार्टी AI प्रोवाइडर्स के प्राइवेसी नियमों के लिए ज़िम्मेदार नहीं हैं। हम आपको किसी भी अकाउंट को कनेक्ट करने से पहले उनकी नीतियों की समीक्षा करने के लिए प्रोत्साहित करते हैं।</p>
