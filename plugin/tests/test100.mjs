@@ -14,6 +14,7 @@ globalThis.__ai = (m) => {
     heads.push($('.library-head')?.textContent || '');
     texts.push($('#feedPrefsLibrary')?.textContent || '');
     const n = (m.user.match(/^\[\d+\]/gm) || []).length, nums = Array.from({ length: n }, (_, k) => k + 1);
+    if (/topic tags/.test(m.system)) return { ok: true, text: 'Tech, News, Gadgets, Extra' };
     if (/rate the sentiment/.test(m.system)) return { ok: true, text: JSON.stringify({ scores: nums.map(() => 0.3), labels: nums.map(() => 'Tech') }) };
     return { ok: true, text: `SCORES: ${nums.map(k => k + ':1').join(' | ')}\nLABELS: ${nums.map(k => k + ':Tech').join(' | ')}\nOverview.\n- Story\nMOOD: mixed` };
 };
@@ -29,6 +30,9 @@ assert(services.length >= 6 && services.every(s => s === 'ollama'), 'every reque
 assert(heads.some(h => /Rating and categorizing: batch 1 of 3 · items 1–20 of 45/.test(h)), 'rating status names batch and items: ' + heads[0]);
 assert(heads.some(h => /Day recap 1 of 1 .*batch 2 of 3/.test(h)), 'recap status names day and batch: ' + heads.join(' | '));
 assert(texts.some(t => /Model: llama3\.2/.test(t) && /not your active summary model/.test(t)), 'names the model and that it is not the active one: ' + texts[0]);
-assert(texts.some(t => /Request \d+ of 6/.test(t) && /elapsed/.test(t)), 'totals line: ' + texts[0]);
+assert(texts.some(t => /Request \d+ of 7/.test(t) && /elapsed/.test(t)), 'totals line: ' + texts[0]);
+assert(heads.some(h => /Tagging feed 1 of 1/.test(h)), 'tagging status: ' + heads.join(' | '));
+assert.deepEqual(store['feeds:subs'][0].topics, ['Tech', 'News', 'Gadgets'], 'feed gets up to 3 topic tags');
+assert.equal(store['feeds:subs'][0].topicsLang, 'en');
 assert(store['feeds:items'].every(i => i.ai && i.cat === 'Tech'));
 console.log('TEST 100 OK'); process.exit(0);

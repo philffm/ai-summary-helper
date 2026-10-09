@@ -4162,5 +4162,11 @@
   },
   "f_related_66d8": {
     "message": "Связанное"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Теги для ленты {a} из {b}"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "Лент без тегов: {n}"
   }
 }

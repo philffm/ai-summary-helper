@@ -4350,5 +4350,13 @@
   },
   "f_related_66d8": {
     "message": "Related"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Tagging feed {a} of {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} feeds to tag",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

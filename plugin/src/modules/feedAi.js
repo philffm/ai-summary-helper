@@ -8,6 +8,7 @@
 
 import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
+import { resolveLocale } from './i18n.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
@@ -64,6 +65,21 @@ async function languageName() {
     } catch (e) { return 'en-US'; }
 }
 
+// English names of the UI locale folders: tags follow the UI language (`uiLanguage`), not the summary language.
+const UI_LANGUAGE_NAMES = {
+    en: 'English', de: 'German', es: 'Spanish', fr: 'French', it: 'Italian', pt_PT: 'Portuguese', ru: 'Russian', hi: 'Hindi',
+    ko: 'Korean', ja: 'Japanese', zh_CN: 'Simplified Chinese (简体中文)', zh_TW: 'Traditional Chinese (繁體中文, Taiwan)',
+    zh_HK: 'Traditional Chinese (繁體中文, Hong Kong)', ar: 'Arabic'
+};
+
+/** The UI language as { code, name }: code = locale folder (stored with the tags), name = what the model is told. */
+export async function uiLanguage() {
+    let saved = '';
+    try { saved = (await chrome.storage.sync.get('uiLanguage')).uiLanguage || ''; } catch (e) { /* default to the browser's language */ }
+    const code = resolveLocale(saved);
+    return { code, name: UI_LANGUAGE_NAMES[code] || 'English' };
+}
+
 /** The user's saved style preferences for 'briefing' or 'recap' as a system-prompt suffix ('' when none). */
 async function feedStyle(scope) {
     try {
@@ -97,6 +113,32 @@ export function itemsForPrompt(list, subTitleFn, mark) {
 export function cleanLabel(v) {
     const t = String(v || '').replace(/["'`*#]/g, '').replace(/\s+/g, ' ').trim().slice(0, 24);
     return t || null;
+}
+
+/** Reply of the topic prompt ("Climate, Energy, Policy") -> up to 3 distinct short tags. */
+export function parseTopicTags(text) {
+    const seen = new Set(), out = [];
+    String(text || '').split(/[,;|\n]/).forEach(part => {
+        const v = cleanLabel(part.replace(/^\s*(?:tags?|topics?)\s*:\s*/i, '').replace(/^\s*(?:[-•*]|\d+[.):])\s*/, '').replace(/^#+/, ''));
+        if (v && !seen.has(v.toLowerCase())) { seen.add(v.toLowerCase()); out.push(v); }
+    });
+    return out.slice(0, 3);
+}
+
+/**
+ * Up to 3 topic tags for ONE feed, written in the UI language from the feed's name and its newest headlines/snippets.
+ * Returns { tags, lang } (lang = UI locale code, stored so the tags are redone when the language changes).
+ */
+export async function generateFeedTopics(title, list, { signal, onStage, onProgress, service } = {}) {
+    const { code, name } = await uiLanguage();
+    const system = 'You assign topic tags to a news feed or blog from its name and recent headlines. '
+        + `Reply in the language ${name}. Give at most 3 tags, each one or two words, naming what the source mainly posts about `
+        + '(e.g. Tech, Politics, Climate, Football, Design); use fewer when the source is narrow. '
+        + 'Reply with ONLY the tags separated by commas, nothing else.';
+    const user = `Feed: ${clip(title, 60)}\nRecent items:\n${itemsForPrompt(list.slice(0, 15), () => '')}`;
+    const tags = parseTopicTags(await aiComplete(system, user, onStage, signal, onProgress, { service }));
+    if (!tags.length) throw new Error(T('The AI reply could not be read'));
+    return { tags, lang: code };
 }
 
 /** "1:Tech | 2:Politics" -> array aligned to n items (null where missing). */

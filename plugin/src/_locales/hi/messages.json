@@ -4162,5 +4162,11 @@
   },
   "f_related_66d8": {
     "message": "संबंधित"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "फ़ीड {a}/{b} को टैग किया जा रहा है"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} फ़ीड टैग करने हैं"
   }
 }

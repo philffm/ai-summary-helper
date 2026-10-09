@@ -28,7 +28,7 @@ import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
-import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
+import { generateRecap, generateRecapUpdate, generateFeedTopics, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
 import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
@@ -156,10 +156,11 @@ function cleanTags(list) {
     });
     return out;
 }
-const hasTag = (s, t) => (s.tags || []).some(x => tagKey(x) === tagKey(t));
+const allOf = (s) => cleanTags([...(s.tags || []), ...(s.topics || [])]);   // the user's tags + the AI's topic tags
+const hasTag = (s, t) => allOf(s).some(x => tagKey(x) === tagKey(t));
 function allTags() {
     const m = new Map();
-    subs.forEach(s => (s.tags || []).forEach(t => { if (!m.has(tagKey(t))) m.set(tagKey(t), t); }));
+    subs.forEach(s => allOf(s).forEach(t => { if (!m.has(tagKey(t))) m.set(tagKey(t), t); }));
     return [...m.values()].sort((a, b) => a.localeCompare(b));
 }
 
@@ -834,7 +835,7 @@ function toArticle(item, stamp, sm) {
     const s = sm.get(item.feedId);
     const tags = [];
     if (item.cat) tags.push(item.cat);
-    if (s) tags.push(subTitle(s), ...(s.tags || []));
+    if (s) tags.push(subTitle(s), ...allOf(s));
     if (item.audio) tags.push('🎧');
     return { timestamp: stamp, title: item.title, summary: item.snippet || '', description: '', tags, url: item.link, _item: item };
 }
@@ -1382,7 +1383,7 @@ function openSourcePicker() {
             });
             list.append(chips);
         }
-        const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || (s.tags || []).some(t => t.toLowerCase().includes(q));
+        const matching = (s) => !q || subTitle(s).toLowerCase().includes(q) || allOf(s).some(t => t.toLowerCase().includes(q));
         const shown = subs.filter(matching);
         if (shown.length) {
             if (tags.length) list.append(pickHead(TU('Feeds')));
@@ -1999,7 +2000,7 @@ function subRow(s) {
     const main = el('div', 'sd-main');
     main.append(el('div', 'sd-name', subTitle(s)));
     const meta = el('div', 'sd-tags');
-    (s.tags || []).forEach(t => meta.append(el('span', 'sd-tag', t)));
+    allOf(s).forEach(t => meta.append(el('span', 'sd-tag', t)));
     if (st.noisy) meta.append(el('span', 'sd-flag sd-flag-noisy', '⚠ ' + T('Noisy')));
     if (s.muted) meta.append(el('span', 'sd-flag', '🔕 ' + T('Muted')));
     if (s.error) meta.append(el('span', 'sd-flag sd-flag-err', '⚠ ' + s.error));
@@ -2204,9 +2205,18 @@ async function ollamaSetup() {
         return { configured: active || saved, active, model };
     } catch (e) { return { configured: false, active: false, model: '' }; }
 }
+let topicLang = '';   // UI language code the topic tags are written in (filled by refreshTopicLang before a plan is made)
+async function refreshTopicLang() { try { topicLang = (await uiLanguage()).code; } catch (e) { /* keep the last one */ } }
 function libraryPlan() {
     const sm = subMap();
-    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig });
+    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig, subs, topicLang });
+}
+/** Up to 3 topic tags for one feed in the UI language; kept apart from the user's own tags (s.tags) so those are never touched. */
+async function libraryTagFeed(entry, signal, ctx = {}) {
+    const s = subs.find(x => x.id === entry.id); if (!s) return;
+    const r = await generateFeedTopics(subTitle(s), entry.items, { signal, onStage: ctx.onStage, service: 'ollama' });
+    s.topics = cleanTags(r.tags).slice(0, 3); s.topicsLang = r.lang;
+    await persist();
 }
 async function libraryRateChunk(chunk, signal, ctx = {}) {
     const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal, onStage: ctx.onStage, service: 'ollama' });
@@ -2255,7 +2265,8 @@ const libraryUiLive = () => libraryUi && libraryUi.bar.isConnected ? libraryUi :
 async function executeLibrary({ auto = false } = {}) {
     if (libraryRun || scoring) return null;
     const n = cleanBatchSize(settings.libraryBatch);
-    const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length) return null;
+    await refreshTopicLang();
+    const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length && !(plan.tag && plan.tag.length)) return null;
     if (auto) plan.days.reverse();
     const ctl = new AbortController(); libraryRun = { ctl };
     const keepLimit = getRecapLimit(); setRecapLimit(0);   // a per-recap cap would silently drop items from a batch
@@ -2264,7 +2275,7 @@ async function executeLibrary({ auto = false } = {}) {
     let out = null, lastRendered = -1;
     try {
         out = await runLibrary(plan, n, {
-            signal: ctl.signal, rateChunk: libraryRateChunk, recapDay: libraryRecapDay,
+            signal: ctl.signal, rateChunk: libraryRateChunk, tagFeed: libraryTagFeed, recapDay: libraryRecapDay,
             onStage: (st) => {
                 if (!libraryRun) return;
                 // Remembered on the run itself, so a card re-created after leaving Settings can pick up where this one is.
@@ -2282,6 +2293,7 @@ async function executeLibrary({ auto = false } = {}) {
 
 async function renderLibraryCard(card) {
     card.replaceChildren();
+    await refreshTopicLang();
     const setup = await ollamaSetup();
     const lastRun = backgroundStatus && backgroundStatus.at
         ? el('p', 'feed-muted', T('Last background run: {time} · {result}', {
@@ -2313,11 +2325,11 @@ async function renderLibraryCard(card) {
     stopBtn.hidden = true;
     const summaryText = () => {
         const p = libraryPlan(), n = countRequests(p, cleanBatchSize(settings.libraryBatch));
-        if (!p.rate.length && !p.days.length) return T('Everything in your library is rated, categorized and recapped.');
+        if (!p.rate.length && !p.days.length && !p.tag.length) return T('Everything in your library is rated, categorized and recapped.');
         const eta = formatEta(n * 90000, T);   // rough: local models need about 1–2 minutes per batch
-        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (eta ? ' · ' + eta : '');
+        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (p.tag.length ? ' · ' + T('{n} feeds to tag', { n: p.tag.length }) : '') + (eta ? ' · ' + eta : '');
     };
-    const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length; startBtn.textContent = T('Process the whole library'); };
+    const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length && !p.tag.length; startBtn.textContent = T('Process the whole library'); };
 
     // Stage of the request in flight, with a ticking clock so a slow local model never looks frozen.
     const STAGE_TEXT = () => ({ send: T('Sending the batch to Ollama…'), wait: T('Waiting for the model…'), write: T('Model is writing…'), parse: T('Reading the answer…') });
@@ -2348,6 +2360,7 @@ async function renderLibraryCard(card) {
             bar.value = pr.totalRequests ? pr.doneRequests / pr.totalRequests : 0;
             const st = pr.step;
             if (st && st.phase === 'rate') headLine.textContent = T('Rating and categorizing: batch {a} of {b} · items {from}–{to} of {n}', { a: st.batch, b: st.batches, from: st.from, to: st.to, n: st.items });
+            else if (st && st.phase === 'tag') headLine.textContent = T('Tagging feed {a} of {b}', { a: st.feed, b: st.feeds });
             else if (st && st.phase === 'recap') headLine.textContent = T('Day recap {d} of {t} ({date}): batch {a} of {b} · {n} items', { d: st.dayIndex, t: st.days, date: dayText(st.day), a: st.batch, b: st.batches, n: st.count });
             const eta = formatEta(pr.etaMs, T);
             totalsLine.textContent = [T('Request {a} of {b}', { a: Math.min(pr.doneRequests + 1, pr.totalRequests), b: pr.totalRequests }),

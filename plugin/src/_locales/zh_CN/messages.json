@@ -4162,5 +4162,11 @@
   },
   "f_related_66d8": {
     "message": "相关"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "正在为订阅源添加标签:{a}/{b}"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} 个订阅源待添加标签"
   }
 }

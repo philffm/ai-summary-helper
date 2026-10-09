@@ -148,6 +148,8 @@ export function mergeWorkerItems(existing, incoming, keepDays = 30, now = Date.n
 
 export function boundedLibraryPlan(plan, batchSize, maxRequests = 3) {
     let slots = Math.max(0, Math.floor(maxRequests));
+    // Topic tags are one tiny request per feed (a few headlines in, a few words out): at most 2 per tick, on top of the batch slots.
+    const tag = (plan.tag || []).slice(0, 2);
     const rateCount = Math.min(plan.rate.length, slots * batchSize);
     slots -= Math.ceil(rateCount / batchSize);
     const days = [];
@@ -159,5 +161,5 @@ export function boundedLibraryPlan(plan, batchSize, maxRequests = 3) {
         days.push({ ...day, todo });
         slots -= Math.ceil(count / batchSize);
     }
-    return { rate: plan.rate.slice(0, rateCount), days };
+    return { rate: plan.rate.slice(0, rateCount), days, ...(plan.tag ? { tag } : {}) };
 }

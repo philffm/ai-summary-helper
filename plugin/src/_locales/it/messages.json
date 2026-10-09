@@ -4162,5 +4162,11 @@
   },
   "f_related_66d8": {
     "message": "Correlati"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Tag del feed {a} di {b}"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} feed da taggare"
   }
 }
