@@ -7,15 +7,17 @@ const start = src.indexOf("const FEED_ALARM = 'feedPoll';");
 const end = src.indexOf('// ── One-shot AI completion', start);
 assert(start >= 0 && end > start, 'background feed worker block found');
 const block = src.slice(start, end);
-const [{ parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan }, { planLibrary, runLibrary, chunksOf }, { startOfDay }] = await Promise.all([
+const [{ parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight }, { planLibrary, runLibrary, chunksOf }, { startOfDay }] = await Promise.all([
     imp('modules/feedWorker.js'), imp('modules/libraryBatch.js'), imp('modules/dateUtils.js')
 ]);
 let aiCalls = 0, fetchCalls = 0, notifications = 0;
+const fetchHeaders = [];
 const rss = `<rss><channel>${Array.from({ length: 35 }, (_, i) =>
     `<item><guid>guid-${i}</guid><title>Headline ${i}</title><link>https://example.test/${i}</link><pubDate>${new Date().toUTCString()}</pubDate></item>`
 ).join('')}</channel></rss>`;
 const worker = {
-    parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, planLibrary, runLibrary, chunksOf, startOfDay,
+    parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight,
+    planLibrary, runLibrary, chunksOf, startOfDay,
     itemSig: item => item.id, hash: value => value,
     scoreItems: async items => {
         aiCalls++;
@@ -55,9 +57,15 @@ function makeBackground(initial, localMode = true) {
 }
 
 const originalFetch = globalThis.fetch;
-globalThis.fetch = async url => {
+globalThis.fetch = async (url, options = {}) => {
     fetchCalls++;
-    return { ok: true, url, text: async () => rss };
+    fetchHeaders.push(options.headers || {});
+    const notModified = options.headers && options.headers['If-None-Match'] === '"bg-v1"';
+    return {
+        ok: !notModified, status: notModified ? 304 : 200, url,
+        headers: { get: name => name.toLowerCase() === 'etag' ? '"bg-v1"' : name.toLowerCase() === 'last-modified' ? 'Wed, 01 Jan 2025 00:00:00 GMT' : '' },
+        text: async () => rss
+    };
 };
 try {
     const sub = { id: 's1', url: 'https://example.test/feed', title: 'Example' };
@@ -69,8 +77,12 @@ try {
     assert.equal(aiCalls, 3, 'first alarm makes no more than three AI requests');
     assert.equal(bg.store['feeds:background'].items.length, 35, 'new items stored by the worker');
     assert.equal(Object.keys(bg.store['feeds:background'].ratings).length, 30, 'only the bounded work is processed this tick');
+    assert.equal(bg.store['feeds:subs'][0].etag, '"bg-v1"', 'background poll stores response validators');
     bg.store['feeds:background'].status.at = 0;
+    bg.store['feeds:subs'][0].lastFetched = 0;
     await bg.run.pollFeeds();
+    assert.equal(fetchHeaders[1]['If-None-Match'], '"bg-v1"', 'background poll sends validators');
+    assert.equal(bg.store['feeds:background'].items.length, 35, '304 does not parse or replace background items');
     assert.equal(aiCalls, 4, 'the next tick resumes from stored ratings');
     assert.equal(Object.keys(bg.store['feeds:background'].ratings).length, 35);
     assert(Object.keys(bg.store['feeds:background'].recaps).length > 0, 'same-day items receive a background recap');

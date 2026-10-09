@@ -7,7 +7,12 @@ const any = () => new Proxy(function () {}, { get: (t, k) => (k === 'then' ? und
 const chrome = new Proxy({}, { get: (t, k) => k === 'runtime' ? new Proxy({}, {
   get: (_, r) => r === 'id' ? 'ext-id' : r === 'getURL' ? (p) => 'chrome-extension://ext-id/' + p : r === 'onMessage' ? { addListener: (f) => { onMessage = f; } } : any()
 }) : any() });
-const sandbox = { chrome, console: { ...console, log() {}, warn() {} }, setTimeout, clearTimeout, setInterval() {}, fetch: async () => { throw new Error('no network in test'); }, AbortController, URL, crypto: globalThis.crypto };
+let fetchResult = null, fetchOptions = null;
+const sandbox = {
+  chrome, console: { ...console, log() {}, warn() {} }, setTimeout, clearTimeout, setInterval() {},
+  fetch: async (_url, options) => { fetchOptions = options; if (fetchResult) return fetchResult; throw new Error('no network in test'); },
+  AbortController, URL, crypto: globalThis.crypto
+};
 sandbox.globalThis = sandbox; sandbox.self = sandbox;
 vm.createContext(sandbox); vm.runInContext(src, sandbox);
 assert(onMessage, 'message listener registered');
@@ -26,6 +31,27 @@ for (const sender of [popup, sidebar, { id: 'ext-id' }]) {
   const r = await call({ action: 'fetchFeedText', url: 'https://a.example/feed' }, sender);
   assert(!(r && /Not allowed/.test(r.error || '')), 'extension page allowed: ' + JSON.stringify(sender) + ' → ' + JSON.stringify(r));
 }
+fetchResult = {
+  ok: false, status: 304, url: 'https://a.example/feed',
+  headers: { get: name => name.toLowerCase() === 'etag' ? '"v1"' : '' },
+  text: async () => { throw new Error('304 should not read a body'); }
+};
+const notModified = await call({
+  action: 'fetchFeedText', url: 'https://a.example/feed', etag: '"old"', lastModified: 'yesterday', timeoutMs: 3000
+}, popup);
+assert.equal(notModified.status, 304, '304 is returned as a successful conditional response');
+assert.equal(notModified.etag, '"v1"');
+assert.equal(fetchOptions.headers['If-None-Match'], '"old"');
+assert.equal(fetchOptions.headers['If-Modified-Since'], 'yesterday');
+assert.equal(fetchOptions.signal.aborted, false);
+fetchResult = {
+  ok: false, status: 429, url: 'https://a.example/feed',
+  headers: { get: name => name.toLowerCase() === 'retry-after' ? '120' : '' },
+  text: async () => ''
+};
+const limited = await call({ action: 'fetchFeedText', url: 'https://a.example/feed' }, popup);
+assert.equal(limited.ok, false);
+assert.equal(limited.retryAfter, '120', 'HTTP errors return retry metadata');
 // content-script actions keep working from pages
 const w = await call({ action: 'wakeup' }, page);
 assert.deepEqual(w, { status: 'awake' }, 'wakeup from a page');

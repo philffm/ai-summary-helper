@@ -33,9 +33,9 @@ export function setup(fixtures) {
         let res;
         if (msg.action === 'fetchFeedText') {
           const f = fixtures[msg.url];
-          res = f ? { ok: true, text: f, url: msg.url } : { ok: false, error: 'HTTP 404' };
+          res = typeof f === 'function' ? f(msg) : f ? { ok: true, status: 200, text: f, url: msg.url } : { ok: false, error: 'HTTP 404' };
         } else if (msg.action === 'aiComplete') { res = globalThis.__ai ? globalThis.__ai(msg) : { ok: false, error: 'no ai' }; } else res = { success: true, mode: 'extension' };
-        if (cb) setTimeout(() => cb(res), 0);
+        if (cb) Promise.resolve(res).then(value => setTimeout(() => cb(value), 0));
       }
     }
   };

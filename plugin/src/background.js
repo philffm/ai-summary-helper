@@ -368,14 +368,22 @@ function backgroundItemFav(item, articles) {
 
 async function fetchBackgroundFeed(sub) {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 15000);
+    const timer = setTimeout(() => ctrl.abort(), sub.slow || sub.errorCount ? 5000 : 15000);
     try {
         const res = await fetch(sub.url, {
             credentials: 'omit', redirect: 'follow', signal: ctrl.signal,
-            headers: { Accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, */*;q=0.5' }
+            headers: {
+                Accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, */*;q=0.5',
+                ...(sub.etag && (sub.validatorFailures || 0) < 10 ? { 'If-None-Match': sub.etag } : {}),
+                ...(sub.lastModified && (sub.validatorFailures || 0) < 10 ? { 'If-Modified-Since': sub.lastModified } : {})
+            }
         });
-        if (!res.ok) return null;
-        return { xml: (await res.text()).slice(0, 3 * 1024 * 1024), url: res.url || sub.url };
+        return {
+            status: res.status, ok: res.ok, url: res.url || sub.url,
+            etag: res.headers.get('etag') || '', lastModified: res.headers.get('last-modified') || '',
+            cacheControl: res.headers.get('cache-control') || '', retryAfter: res.headers.get('retry-after') || '',
+            xml: res.status === 304 || !res.ok ? '' : (await res.text()).slice(0, 3 * 1024 * 1024)
+        };
     } finally { clearTimeout(timer); }
 }
 
@@ -417,17 +425,69 @@ async function pollFeeds() {
         const knownLinks = new Set(existing.map(i => i.link));
         const seen = d.seen;
         let fresh = 0;
-        for (const sub of d.feedSubs) {
-            if (sub.muted) continue;
-            try {
-                const fetched = await fetchBackgroundFeed(sub);
-                if (!fetched) continue;
+        const now = Date.now();
+        const minimumInterval = Math.max(15, Number(d.feedSettings.refreshMinutes) || 30) * 60000;
+        const dueSubs = d.feedSubs.filter(sub => {
+            if (sub.muted || (Number(sub.nextFetchAt) || 0) > now) return false;
+            const interval = d.feedSettings.smartRefreshOrder === false ? minimumInterval
+                : FEED_WORKER.estimateFeedInterval(existing, sub.id, minimumInterval, now);
+            return !sub.lastFetched || now - sub.lastFetched >= interval;
+        });
+        const priorityItems = existing.map(item => ({
+            ...item,
+            favorite: item.favorite || backgroundItemFav(item, d.articles),
+            summarized: d.articles.some(article => !article.feedStub && !article.savedOnly &&
+                [article.url, article.feedUrl].some(url => url && url === item.link))
+        }));
+        const queue = d.feedSettings.smartRefreshOrder === false ? [...dueSubs] : dueSubs.sort((a, b) => {
+            const risk = sub => Math.max(Number(sub.errorCount) || 0, sub.slow ? 2 : 0);
+            return risk(a) - risk(b) ||
+                FEED_WORKER.feedPriority(b, priorityItems, FEED_WORKER.feedQualityWeight(priorityItems, b.id, now), now) -
+                FEED_WORKER.feedPriority(a, priorityItems, FEED_WORKER.feedQualityWeight(priorityItems, a.id, now), now) ||
+                (Number(a.lastFetched) || 0) - (Number(b.lastFetched) || 0);
+        });
+        let stateWrite = Promise.resolve();
+        const saveBackground = () => {
+            stateWrite = stateWrite.then(() => chrome.storage.local.set({ [SK.feedBackground]: state }));
+            return stateWrite;
+        };
+        const worker = async () => {
+            while (queue.length) {
+                const sub = queue.shift();
+                const started = Date.now();
+                try {
+                    const fetched = await fetchBackgroundFeed(sub);
+                    const fetchedAt = Date.now();
+                    sub.lastFetched = fetchedAt;
+                    sub.fetchDurationMs = fetchedAt - started;
+                    sub.slow = sub.fetchDurationMs >= 8000;
+                    if (fetched.etag) sub.etag = fetched.etag;
+                    if (fetched.lastModified) sub.lastModified = fetched.lastModified;
+                    const maxAge = Number((fetched.cacheControl.match(/(?:^|,)\s*max-age=(\d+)/i) || [])[1]) * 1000;
+                    const retrySeconds = Number(fetched.retryAfter);
+                    const retryDate = Date.parse(fetched.retryAfter);
+                    sub.nextFetchAt = maxAge ? fetchedAt + maxAge : 0;
+                    if (fetched.retryAfter && Number.isFinite(retrySeconds)) sub.nextFetchAt = fetchedAt + retrySeconds * 1000;
+                    else if (fetched.retryAfter && Number.isFinite(retryDate)) sub.nextFetchAt = Math.max(fetchedAt, retryDate);
+                    if (fetched.status === 304) {
+                        sub.validatorFailures = (sub.validatorFailures || 0) + 1;
+                        sub.error = ''; sub.errorCount = 0;
+                        console.debug('[feeds] background refresh', sub.id, `${sub.fetchDurationMs}ms`, 'newItems=0');
+                        continue;
+                    }
+                    if (!fetched.ok) throw Object.assign(new Error('HTTP ' + fetched.status), fetched);
+                    sub.validatorFailures = 0;
+                    sub.error = ''; sub.errorCount = 0;
                 const parsed = FEED_WORKER.parseWorkerFeed(fetched.xml, fetched.url, sub);
                 const links = parsed.map(i => i.link);
                 const prev = seen[sub.id];
                 if (prev) {
                     const prevSet = new Set(prev);
-                    fresh += links.filter(l => !prevSet.has(l) && !knownLinks.has(l)).length;
+                    const newLinks = links.filter(l => !prevSet.has(l) && !knownLinks.has(l));
+                    fresh += newLinks.length;
+                    console.debug('[feeds] background refresh', sub.id, `${sub.fetchDurationMs}ms`, `newItems=${newLinks.length}`);
+                } else {
+                    console.debug('[feeds] background refresh', sub.id, `${sub.fetchDurationMs}ms`, `newItems=${links.filter(l => !knownLinks.has(l)).length}`);
                 }
                 seen[sub.id] = [...new Set([...links, ...(prev || [])])].slice(0, 300);
                 if (configured) {
@@ -441,13 +501,39 @@ async function pollFeeds() {
                         state.items = FEED_WORKER.mergeWorkerItems(state.items, additions, d.feedSettings.keepDays, Date.now(), capacity)
                             .map(({ favorite: _favorite, ...item }) => item);
                         additions.forEach(i => { knownIds.add(i.id); knownLinks.add(i.link); });
-                        await chrome.storage.local.set({ [SK.feedBackground]: state });
+                        await saveBackground();
                     }
                 }
-            } catch (_) { /* skip this feed this round */ }
-        }
+                } catch (error) {
+                    const failedAt = Date.now();
+                    sub.lastFetched = failedAt;
+                    sub.error = error.message || 'Request failed';
+                    sub.errorCount = (sub.errorCount || 0) + 1;
+                    const retrySeconds = Number(error.retryAfter);
+                    const retryDate = Date.parse(error.retryAfter);
+                    const maxAge = Number((String(error.cacheControl || '').match(/(?:^|,)\s*max-age=(\d+)/i) || [])[1]) * 1000;
+                    sub.nextFetchAt = error.retryAfter && Number.isFinite(retrySeconds) ? failedAt + retrySeconds * 1000
+                        : error.retryAfter && Number.isFinite(retryDate) ? Math.max(failedAt, retryDate)
+                            : maxAge ? failedAt + maxAge
+                                : failedAt + Math.min(15 * 60 * 1000, 30000 * (2 ** Math.min(sub.errorCount - 1, 5)));
+                    console.debug('[feeds] background refresh', sub.id, `${sub.fetchDurationMs || failedAt - started}ms`, 'newItems=0', sub.error);
+                }
+            }
+        };
+        await Promise.all(Array.from({ length: Math.min(4, queue.length) }, worker));
         const pending = (d.feedPending || 0) + fresh;
-        await chrome.storage.local.set({ [SK.feedBgSeen]: seen, [SK.feedPending]: pending });
+        const latestSubs = (await localGet(SK.feedSubs))[SK.feedSubs] || [];
+        const fetchedById = new Map(d.feedSubs.map(sub => [sub.id, sub]));
+        const feedSubs = latestSubs.map(sub => {
+            const fetched = fetchedById.get(sub.id);
+            if (!fetched || fetched.url !== sub.url) return sub;
+            const updated = { ...sub };
+            for (const key of ['lastFetched', 'etag', 'lastModified', 'nextFetchAt', 'validatorFailures', 'error', 'errorCount', 'fetchDurationMs', 'slow']) {
+                if (key in fetched) updated[key] = fetched[key];
+            }
+            return updated;
+        });
+        await chrome.storage.local.set({ [SK.feedBgSeen]: seen, [SK.feedPending]: pending, [SK.feedSubs]: feedSubs });
         await sumJobsReady();
         await updateSumBadge();
         if (!configured) return;
@@ -1060,23 +1146,36 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     // popup parses it (DOMParser doesn't exist in this service worker).
     if (msg.action === 'fetchFeedText' && msg.url) {
         (async () => {
+            let timer = null;
             try {
                 if (!/^https?:\/\//i.test(msg.url)) throw new Error('Unsupported address');
                 const ctrl = new AbortController();
-                const timer = setTimeout(() => ctrl.abort(), 15000);
+                const timeoutMs = Math.max(1000, Math.min(15000, Number(msg.timeoutMs) || 15000));
+                timer = setTimeout(() => ctrl.abort(), timeoutMs);
                 const res = await fetch(msg.url, {
                     credentials: 'omit',
                     redirect: 'follow',
                     signal: ctrl.signal,
-                    headers: { 'Accept': 'application/rss+xml, application/atom+xml, application/xml, text/xml, text/html;q=0.8, */*;q=0.5' }
+                    headers: {
+                        'Accept': 'application/rss+xml, application/atom+xml, application/xml, text/xml, text/html;q=0.8, */*;q=0.5',
+                        ...(msg.etag ? { 'If-None-Match': msg.etag } : {}),
+                        ...(msg.lastModified ? { 'If-Modified-Since': msg.lastModified } : {})
+                    }
                 });
-                clearTimeout(timer);
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                const text = (await res.text()).slice(0, 3 * 1024 * 1024);
-                sendResponse({ ok: true, text, url: res.url || msg.url, contentType: res.headers.get('content-type') || '' });
+                const details = {
+                    status: res.status, url: res.url || msg.url, contentType: res.headers.get('content-type') || '',
+                    etag: res.headers.get('etag') || '', lastModified: res.headers.get('last-modified') || '',
+                    cacheControl: res.headers.get('cache-control') || '', retryAfter: res.headers.get('retry-after') || ''
+                };
+                if (!res.ok && res.status !== 304) {
+                    sendResponse({ ok: false, error: 'HTTP ' + res.status, ...details });
+                    return;
+                }
+                const text = res.status === 304 ? '' : (await res.text()).slice(0, 3 * 1024 * 1024);
+                sendResponse({ ok: true, text, ...details });
             } catch (e) {
                 sendResponse({ ok: false, error: e.name === 'AbortError' ? 'Timed out' : (e.message || 'Request failed') });
-            }
+            } finally { if (timer) clearTimeout(timer); }
         })();
         return true;
     }
