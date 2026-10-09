@@ -91,11 +91,11 @@ export function hasLabel(tag, locale) {
     return !!(learned && learned[locale]);
 }
 
-/** The tags of a list that are neither built-in nor learned yet (deduped, most frequent first) — what the AI still has to name. */
-export function unknownTags(list, max = 200) {
+/** The tags of a list that are neither built-in nor learned yet (deduped, most frequent first) — what the AI still has to name. `minCount` leaves out tags that occur fewer times. */
+export function unknownTags(list, max = 200, minCount = 1) {
     const n = new Map();
     for (const t of list) { const k = normalizeTopic(t); if (k && k.length <= 40 && !conceptId(t) && !lexKey(t)) { const e = n.get(k) || { tag: String(t).trim(), c: 0 }; e.c++; n.set(k, e); } }
-    return [...n.values()].sort((a, b) => b.c - a.c).slice(0, max).map((e) => e.tag);
+    return [...n.values()].filter((e) => e.c >= minCount).sort((a, b) => b.c - a.c).slice(0, max).map((e) => e.tag);
 }
 
 /** Labels of all known topics in `locale` — suggested vocabulary so the AI reuses the same words. */

@@ -13,6 +13,9 @@ import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
+import { unknownTags } from './topicConcepts.js';
+import { loadLexicon, saveLexicon } from './topicLexicon.js';
+import { learnTagNames } from './feedAi.js';
 import { escapeHtml } from './textUtils.js';
 import { T, TN } from './feedI18n.js';
 import { exportHistoryMarkdown } from './markdownArchive.js';
@@ -1044,6 +1047,7 @@ function initLocalIntelligence() {
         libBtn.textContent = T('Open') + ' →';
         libBtn.addEventListener('click', () => { import('./settingsNav.js').then(m => m.openSettingsPanel('feedprefs', 'feedPrefsLibrary')).catch(() => {}); });
     }
+    initNameTags();
     const btn = document.getElementById('cleanupTagsButton');
     const resultEl = document.getElementById('cleanupTagsResult');
     if (!btn) return;
@@ -1095,6 +1099,47 @@ function initLocalIntelligence() {
             btn.disabled = false;
             btn.textContent = originalLabel;
         }
+    });
+}
+
+/**
+ * One-off migration of the tags that already exist: every tag that is neither a built-in topic nor in the learned lexicon
+ * is named by the AI (English name + the UI-language word) in blocks of 40 and written to the lexicon only. The articles keep
+ * their tags; History, graph and charts then show them in the UI language and group the synonyms. Safe to repeat: a tag is
+ * asked once, and a stopped run continues with what is left.
+ */
+const NAME_TAGS_MIN_USES = 2;
+function initNameTags() {
+    const btn = document.getElementById('nameTagsButton');
+    if (!btn) return;
+    const title = document.getElementById('nameTagsTitle'), hint = document.getElementById('nameTagsHint'), out = document.getElementById('nameTagsResult');
+    title.textContent = T('Name tags in your language');
+    hint.textContent = T('Asks your AI connection once for the English name and the UI-language word of every tag that is not known yet and is used at least twice, most used first. Your articles keep their tags.');
+    btn.textContent = T('Name tags');
+    const say = (m) => { out.textContent = m; out.style.display = 'block'; };
+    btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        try {
+            await loadLexicon();
+            const articles = await StorageManager.getArticlesIndex({ includeArchived: true });
+            const all = articles.flatMap(a => a.tags || []);
+            // Most used first; a tag that appears only once in the archive is not worth a request (it neither groups nor shows up in charts).
+            const todo = unknownTags(all, Infinity, NAME_TAGS_MIN_USES);
+            if (!todo.length) { say(T('✓ Every frequently used tag already has a name — nothing to do.')); return; }
+            const blocks = []; for (let k = 0; k < todo.length; k += 40) blocks.push(todo.slice(k, k + 40));
+            let named = 0, failed = 0;
+            for (let b = 0; b < blocks.length; b++) {
+                say(T('Naming tags… {done} of {total}', { done: Math.min(b * 40, todo.length), total: todo.length }));
+                try { named += await learnTagNames(blocks[b]); await saveLexicon(); failed = 0; }
+                catch (e) { if (++failed >= 2) throw e; }   // one hiccup is skipped; two in a row stop the run
+            }
+            document.dispatchEvent(new CustomEvent('aish:lexiconChanged'));
+            say(T('✓ Named {n} of {total} tags.', { n: named, total: todo.length }));
+        } catch (err) {
+            console.error('[AISH] Tag naming failed:', err);
+            document.dispatchEvent(new CustomEvent('aish:lexiconChanged'));
+            say(T('Something went wrong — please try again.') + (err && err.message ? ' (' + err.message + ')' : ''));
+        } finally { btn.disabled = false; }
     });
 }
 
