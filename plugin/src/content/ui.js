@@ -1,4 +1,5 @@
 import { debug } from '../modules/log.js';
+import { newSidebarToken, SIDEBAR_HASH_KEY, SIDEBAR_TOKEN_FIELD } from '../modules/sidebarChannel.js';
 // content/ui.js
 // DOM/UI injection helpers for the content script. These create and manage
 // in-page UI (tooltips, menus, overlays, sidebar, placeholder, debug panel).
@@ -256,6 +257,14 @@ export function waitForSpeedReadingComplete(overlay, callback) {
 
 // ── Hybrid Sidebar (fallback when native sidePanel API is unavailable) ──
 
+// Token in the sidebar's #hash that the popup requires on every postMessage (modules/sidebarChannel.js).
+let sidebarToken = '';
+
+/** Wrap a message for the hybrid sidebar iframe, or null when no sidebar of ours was opened. */
+export function sidebarMessage(msg) {
+    return sidebarToken ? { ...msg, [SIDEBAR_TOKEN_FIELD]: sidebarToken } : null;
+}
+
 /** Open the in-page sidebar if it is not open yet (never closes it). Returns the iframe. */
 export function ensureHybridSidebar() {
     if (!document.getElementById('ai-summary-hybrid-sidebar')) toggleHybridSidebar();
@@ -272,9 +281,10 @@ export function toggleHybridSidebar() {
         return;
     }
 
+    sidebarToken = newSidebarToken();
     sidebar = document.createElement('iframe');
     sidebar.id = sidebarId;
-    sidebar.src = chrome.runtime.getURL('popup.html');
+    sidebar.src = chrome.runtime.getURL('popup.html') + '#' + SIDEBAR_HASH_KEY + '=' + sidebarToken;
     sidebar.style.cssText = `
         position: fixed;
         top: 12px;

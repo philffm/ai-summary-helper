@@ -16,6 +16,7 @@ import { createComposer, samePage, contextRows, statusLines, activeStep } from '
 import { answerPreview, newTurn, buildPrompt, parseAnswer, joinContinuation } from './conversation.js';
 import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
+import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -979,14 +980,13 @@ export function initMainScreen(ui) {
     // postMessages the same streaming events directly into our document
     // because runtime.sendMessage broadcasts can't reach a downgraded
     // iframe. Normalize those events and feed them through the same handler.
+    // popup.html is web-accessible, so any site can frame it and post to it: accept only events from the page
+    // that embeds us carrying the token our content script put in the #hash (sidebarChannel.js).
+    const sidebarToken = sidebarTokenFromHash(window.location.hash);
     window.addEventListener('message', (event) => {
-        // Accept messages from our own content script. We don't allowlist the
-        // source origin because the iframe's parent page origin is variable —
-        // but the payload shape must match our summary events exactly.
-        const data = event?.data;
-        if (data && typeof data === 'object' && data.action) {
-            handleStreamMessage(data);
-        }
+        if (!acceptSidebarMessage(event, sidebarToken, window.parent, window)) return;
+        const { [SIDEBAR_TOKEN_FIELD]: _token, ...data } = event.data;
+        handleStreamMessage(data);
     });
 
     // ── Fetch button ────────────────────────────────────────────────────

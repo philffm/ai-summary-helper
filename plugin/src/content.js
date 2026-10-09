@@ -30,6 +30,7 @@ import {
   waitForSpeedReadingComplete,
   toggleHybridSidebar,
   ensureHybridSidebar,
+  sidebarMessage,
   showPlaceholder,
   insertSummary,
   selectTargetElement,
@@ -507,8 +508,9 @@ import {
       // content script and the iframe's own document needs no extension
       // privileges, so this is the reliable return path in pop-out mode.
       const sidebar = document.getElementById('ai-summary-hybrid-sidebar');
-      if (sidebar && sidebar.contentWindow) {
-        try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) { /* sidebar frame may already be gone */ }
+      const wrapped = sidebarMessage(msg);
+      if (sidebar && sidebar.contentWindow && wrapped) {
+        try { sidebar.contentWindow.postMessage(wrapped, '*'); } catch (_) { /* sidebar frame may already be gone */ }
       }
     };
 
