@@ -599,7 +599,7 @@ async function untrackFeedTab(tabId, closeNow = false, delay = 0) {
 //   { id, kind: 'feed', url, title, msg }              → open a feed link (or reuse its tab), then summarize it
 const SUM_JOB_TIMEOUT = 10 * 60 * 1000;   // safety net if no completion message ever arrives
 const sumJobs = { running: null, queue: [], seq: 0, timer: null, ready: null };
-const sumJobInfo = (j) => j ? { id: j.id, url: j.url || '', title: j.title || '', kind: j.kind } : null;
+const sumJobInfo = (j) => j ? { id: j.id, url: j.url || '', title: j.title || '', kind: j.kind, tabId: j.tabId == null ? null : j.tabId } : null;
 function sumJobKey(u) {
     try {
         const x = new URL(u);

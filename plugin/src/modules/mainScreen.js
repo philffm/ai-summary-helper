@@ -7,6 +7,7 @@ import { debug } from './log.js';
 
 import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
+import { t } from './i18n.js';
 import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { modalOpen } from './shortcuts.js';
@@ -234,6 +235,7 @@ export function initMainScreen(ui) {
     let lastContext = null;          // summaryContext of the running/last summary
     let conversation = null;         // { url, title, content, summary, turns:[{q,a}] }
     let activeTabId = null;
+    let workingElsewhere = false;   // a summary runs in another tab: the button queues this page instead of stopping
     let liveBubbleEl = null;          // its card element
     const savedIds = {};              // url → id, when 'summarySaved' arrives before 'summaryComplete'
     let liveBubbleArticle = null;     // the article object behind the newest bubble
@@ -303,6 +305,7 @@ export function initMainScreen(ui) {
 
     const composer = createComposer(bar, {
         onChange: (next) => {
+            if (next !== 'working') workingElsewhere = false;
             additionalQuestionsInput.style.height = '';
             if (next === 'fetch') refreshFetchExtras(); else clearNote();
             if (next === 'followup') showConversationChip();
@@ -532,9 +535,32 @@ export function initMainScreen(ui) {
     buildAttachUi();
     refreshFetchExtras();
 
+    // While a summary runs in one tab, the button is "Stop" only on THAT tab. On any other tab it reads "Summarize" and
+    // puts the page in line (see the summary queue below), so a second summary can be started from a different tab.
+    const paintWorkingButton = () => {
+        if (!composer || composer.state !== 'working') { workingElsewhere = false; return; }
+        composer.refresh();
+        if (workingElsewhere) {
+            const w = t('navSummarize');
+            fetchSummaryButton.dataset.state = 'fetch';
+            fetchSummaryButton.textContent = '✨ ' + (w === 'navSummarize' ? 'Summarize' : w);
+        }
+    };
+    const syncWorkingButton = async () => {
+        if (!composer || composer.state !== 'working') { if (workingElsewhere) { workingElsewhere = false; } return; }
+        let tab = null, jobs = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        jobs = await bgSend({ action: 'summaryJobs' });
+        if (composer.state !== 'working') { workingElsewhere = false; return; }
+        const r = jobs && jobs.running;
+        const elsewhere = !!(tab && tab.id != null && r && r.tabId !== tab.id);
+        if (elsewhere !== workingElsewhere) { workingElsewhere = elsewhere; paintWorkingButton(); }
+    };
+
     // Different-page rule: when the active tab is another page than the conversation, offer a fresh summary.
     const checkPage = async () => {
-        if (!composer || composer.state === 'working') return;
+        if (composer && composer.state === 'working') { syncWorkingButton(); return; }
+        if (!composer) return;
         if (composer.state === 'fetch') { refreshFetchExtras(); resumeForPage(); return; }
         if (!conversation || conversation.detached) return;
         let tab = null;
@@ -916,6 +942,7 @@ export function initMainScreen(ui) {
             if (typeof msg.progress === 'number') updateStreamProgress(msg.progress);
         }
         if (msg.action === 'summaryContext') {
+            setTimeout(syncWorkingButton, 0);   // the job is registered by now: is it this tab's?
             lastContext = { ...msg, model: document.getElementById('chipModelLabel')?.textContent || '' };
             renderSteps(lastContext);
         }
@@ -1123,12 +1150,13 @@ export function initMainScreen(ui) {
         if (!msg || msg.action !== 'summaryQueue') return;
         const live = new Set((msg.queue || []).map(j => j.id));
         for (const [id, el] of queueNotes) if (!live.has(id)) { el.remove(); queueNotes.delete(id); }
+        syncWorkingButton();
     };
     chrome.runtime.onMessage.addListener(onQueueUpdate);
 
     // ── Fetch button ────────────────────────────────────────────────────
     fetchSummaryButton.addEventListener('click', async () => {
-        if (composer && composer.state === 'working') {      // Stop
+        if (composer && composer.state === 'working' && !workingElsewhere) {      // Stop
             if (activeTabId != null) sendMessageToTab(activeTabId, { action: 'stopSummary' }).catch(() => {});
             return;
         }
