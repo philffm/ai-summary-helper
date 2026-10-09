@@ -160,10 +160,15 @@
                 placeholder="Ask specific questions about this page…"
               ></textarea>
 
+              <div class="split-btn">
               <button id="fetchSummary" class="button-primary fillAvailable">
               ✨ Summarize
               <span id="spinner" class="spinner" style="display: none"></span>
             </button>
+            <button id="saveMenuBtn" type="button" class="button-primary save-split" aria-haspopup="menu" aria-expanded="false" title="More ways to save" aria-label="More ways to save">
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            </div>
             </div>
           </div>
         </div>
@@ -192,6 +197,7 @@
         </div>
         <div id="detailTopBar" class="topbar topbar--row" style="display:none;">
           <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;" data-i18n="f_back_to_history_9fd8">⬅ Back to History</button>
+          <button id="detailStarBtn" class="button-secondary action-btn detail-star" type="button" title="Favorite" aria-label="Favorite" aria-pressed="false"><span class="btn-icon" aria-hidden="true">☆</span></button>
           <button id="detailListenBtn" class="button-secondary action-btn" type="button" title="Read aloud" aria-label="Read aloud" hidden><span class="btn-icon" aria-hidden="true">🔊</span></button>
           <button id="detailMoreBtn" class="button-secondary action-btn" type="button" title="More" aria-label="More" aria-haspopup="menu" aria-expanded="false" data-i18n-title="f_more_d900"><span class="btn-icon" aria-hidden="true">⋯</span></button>
           <div id="detailMoreMenu" class="more-menu" role="menu" hidden>
@@ -621,7 +627,7 @@
           <p>
             <span data-i18n="f_open_source_software_by_0ec8">Open Source software by</span>
             <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.1.19</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
+            <br />AI Summary Helper v<span id="versionNumber">2.1.22</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank" data-i18n="f_contribute_on_github_5ab8">contribute on GitHub 💙</a>
           </p>
 </section>

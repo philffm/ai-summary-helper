@@ -3742,5 +3742,11 @@
   },
   "f_thinking_more_de1c": {
     "message": "더 생각하는 중…"
+  },
+  "f_dig_deeper_ab60": {
+    "message": "더 자세히"
+  },
+  "f_that_is_enough_6ac8": {
+    "message": "충분해요"
   }
 }

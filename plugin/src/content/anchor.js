@@ -13,10 +13,61 @@ const ANC_SKIP = [
 ].join(',');
 const ANC_BLOCK = 'p,div,li,ul,ol,h1,h2,h3,h4,h5,h6,blockquote,td,th,tr,section,article,pre,figcaption,dd,dt,br';
 
+// Names that mark overlays and page furniture rather than the story.
+const ANC_FURNITURE = /popup|modal|overlay|consent|cookie|login|signin|sign-in|sso|onetap|newsletter|banner|paywall/i;
+
+/** Length of the readable text under `el`: script/style/template source is not content (textContent counts it). */
+function ancTextLen(el) {
+  const w = el.ownerDocument.createTreeWalker(el, 4 /* SHOW_TEXT */);
+  let n = 0;
+  for (let t = w.nextNode(); t; t = w.nextNode()) {
+    if (t.parentElement && t.parentElement.closest('script,style,noscript,template')) continue;
+    n += t.nodeValue.trim().length;
+  }
+  return n;
+}
+
+/** Does the element, or an ancestor, look like an overlay or hidden furniture (class/id hint, hidden, display:none)? */
+function ancLooksLikeFurniture(el) {
+  for (let e = el; e && e.nodeType === 1; e = e.parentElement) {
+    if (e.hidden || e.getAttribute('aria-hidden') === 'true' || /display:\s*none/i.test(e.getAttribute('style') || '')) return true;
+    if (ANC_FURNITURE.test(String(e.id || '') + ' ' + String(e.getAttribute('class') || ''))) return true;
+  }
+  return false;
+}
+
+/**
+ * The element matching `selector` that holds the story. Same as `querySelector` (first in DOM order) in every
+ * ordinary case; it only deviates when that first match is probably not the story (a sign-in popup, cookie banner
+ * or teaser that precedes the real article). Layers, in order:
+ *   1. matches inside dialogs/modals are ignored;
+ *   2. the first match has an <h1>, or is the only match: keep it;
+ *   3. a later match has the <h1>: take the first of those;
+ *   4. no <h1> anywhere: keep the first unless it looks like furniture (overlay/hidden/consent-style class or id),
+ *      or another match has at least 4x its readable text (and 1500+ characters); then the match with most text.
+ * Returns null when nothing matches.
+ */
+export function ancLargestMatch(doc, selector) {
+  const all = [...doc.querySelectorAll(selector)]
+    .filter(el => !el.closest('[role="dialog"],[role="alertdialog"],[aria-modal="true"],dialog'));
+  const first = all[0] || null;
+  if (all.length < 2 || first.querySelector('h1')) return first;
+  const h1 = all.find(el => el.querySelector('h1'));
+  if (h1) return h1;
+  const len = new Map(all.map(el => [el, ancTextLen(el)]));
+  const biggest = all.reduce((m, el) => (len.get(el) > len.get(m) ? el : m), first);
+  const dominant = len.get(biggest) >= 1500 && len.get(biggest) >= 4 * len.get(first);
+  return (ancLooksLikeFurniture(first) || dominant) ? biggest : first;
+}
+
+/** Article, else [role=main], else main: first non-empty tier wins (a <main> wrapping the <article> must not beat it). */
+export function ancArticleRoot(doc) {
+  return ancLargestMatch(doc, 'article') || ancLargestMatch(doc, '[role="main"]') || ancLargestMatch(doc, 'main');
+}
+
 /** The article body: same candidates the extractor uses, falling back to <body>. */
 export function ancScopeRoot(doc = document) {
-  return doc.querySelector('#storytext') || doc.querySelector('article') || doc.querySelector('[role="main"]')
-    || doc.querySelector('main') || doc.body;
+  return doc.querySelector('#storytext') || ancArticleRoot(doc) || doc.body;
 }
 
 // One normalised character per source character (or none): curly quotes → straight,

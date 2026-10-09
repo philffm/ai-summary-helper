@@ -650,3 +650,16 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .post-figure img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border); background:var(--surface,transparent); }
 .post-figure--portrait img{ max-width:400px; margin:0 auto; }
 .post-figure figcaption{ margin-top:12px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
+
+/* ── Accessibility: buttons inside prose / CTA boxes keep their own label colour ── */
+.prose a.btn-primary, .post-cta a.btn-primary, a.btn-primary, a.btn-primary:visited{
+  color:#08101F; text-decoration:none; font-weight:700;
+}
+.prose a.btn-secondary, .post-cta a.btn-secondary, a.btn-secondary, a.btn-secondary:visited{
+  color:var(--paper); text-decoration:none;
+}
+.btn-primary:hover, .prose a.btn-primary:hover{ color:#000; text-decoration:none; filter:brightness(1.04); }
+.btn-primary:focus-visible, .btn-secondary:focus-visible, .btn-sign-in:focus-visible{
+  outline:3px solid var(--paper); outline-offset:3px; box-shadow:0 0 0 6px var(--signal); border-radius:12px;
+}
+@media (forced-colors:active){ .btn-primary, .btn-secondary{ border:2px solid ButtonText; } }

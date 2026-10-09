@@ -1,5 +1,5 @@
 import { modelEmoji } from './modelBadge.js';
-import { SK } from './storageKeys.js';
+import { SK, articleRecKey } from './storageKeys.js';
 import { escapeHtml } from './textUtils.js';
 import { debug } from './log.js';
 // mainScreen.js
@@ -17,6 +17,7 @@ import { answerPreview, newTurn, buildPrompt, parseAnswer, joinContinuation } fr
 import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
 import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
+import { attachCardMenu } from './cardMenu.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -79,8 +80,18 @@ export function initMainScreen(ui) {
                 }, 400);
             }
         });
+        // Menu + Ask / replies / Read again need the saved id. A card shown the moment a summary completes has none yet:
+        // decorate() runs again when the save is confirmed (see 'summarySaved').
+        bubble._decorate = () => {
+            if (bubble.dataset.decorated || !article.id || article.feedStub) return;
+            bubble.dataset.decorated = '1'; bubble.dataset.id = article.id;
+        // ⋯ actions (copy, share, LocalSend, Kindle, read aloud, delete …)
+        {
+            const hdr = bubble.querySelector('.summary-bubble-header');
+            if (hdr) attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() });
+        }
         // 💬 Ask: chat about this (older) summary — the thread opens right under the card.
-        if (article.id && !article.feedStub) {
+        {
             const row = document.createElement('div');
             row.className = 'ask-actions';
             const btn = document.createElement('button');
@@ -118,7 +129,10 @@ export function initMainScreen(ui) {
             }
             bubble.appendChild(row);
         }
+        };
+        bubble._decorate();
         feed.appendChild(bubble);
+        return bubble;
     };
 
     // Tracks the highest % shown so far in the current streaming session —
@@ -220,6 +234,8 @@ export function initMainScreen(ui) {
     let lastContext = null;          // summaryContext of the running/last summary
     let conversation = null;         // { url, title, content, summary, turns:[{q,a}] }
     let activeTabId = null;
+    let liveBubbleEl = null;          // its card element
+    const savedIds = {};              // url → id, when 'summarySaved' arrives before 'summaryComplete'
     let liveBubbleArticle = null;     // the article object behind the newest bubble
     const bar = document.querySelector('.controls-bar');
 
@@ -624,6 +640,14 @@ export function initMainScreen(ui) {
         return sug;
     }
 
+    /** Is the active connection a local Ollama model? (then the full answer is requested without asking) */
+    async function isOllamaActive() {
+        try {
+            const s = await chrome.storage.sync.get(['connectionMode', 'activeService']);
+            return s.connectionMode === 'local' && String(s.activeService || '').toLowerCase() === 'ollama';
+        } catch (_) { return false; }
+    }
+
     async function sendFollowUp(q) {
         if (!conversation || !q) return;
         feed.querySelector('.chat-suggest')?.remove();
@@ -643,6 +667,9 @@ export function initMainScreen(ui) {
         stopBtn.textContent = T('■ Stop');
         const ctrl = new AbortController();
         let stopped = false;
+        // Local Ollama models are slow but free: start the full answer straight away so it is (partly) ready when the short one is read.
+        // Paid / cloud models: the short answer stands, the user decides whether the full one is worth the tokens.
+        const auto = !quickText || await isOllamaActive();
         // Happy with the short answer? Stop keeps it (and what was already written) and cancels the request.
         stopBtn.addEventListener('click', () => { stopped = true; fullDone = true; ctrl.abort(); });
         const paint = () => {
@@ -656,11 +683,33 @@ export function initMainScreen(ui) {
             typing = true;
             ans.classList.add('chat-a--quick');
             ans.after(more);
+            more.hidden = !auto;
             scrollFeed();
             typer = typeText(quickText, (t) => { typed = t; paint(); try { instant && instant.chatText(t); } catch (_) { /* optional */ } }, { fast: () => fullDone, instant: reduce });   // read aloud as it is typed
             typer.done.then(() => { typing = false; paint(); try { instant && instant.chatText(joinContinuation(quickText, cont)); } catch (_) { /* optional */ } });
         }
         try {
+            if (!auto) {
+                await typer.done;
+                const dig = document.createElement('div');
+                dig.className = 'chat-dig';
+                dig.innerHTML = '<button type="button" class="chat-dig-go"></button><button type="button" class="chat-dig-skip"></button>';
+                dig.querySelector('.chat-dig-go').textContent = T('Dig deeper');
+                dig.querySelector('.chat-dig-skip').textContent = T('That is enough');
+                ans.after(dig);
+                scrollFeed();
+                fetchSummaryButton.disabled = false;
+                const deeper = await new Promise((res) => {
+                    dig.querySelector('.chat-dig-go').addEventListener('click', () => res(true));
+                    dig.querySelector('.chat-dig-skip').addEventListener('click', () => res(false));
+                });
+                dig.remove();
+                fetchSummaryButton.disabled = true;
+                if (!deeper) { stopped = true; throw Object.assign(new Error('Cancelled'), { name: 'AbortError' }); }
+                more.hidden = false;
+                more.classList.remove('is-writing');
+                ans.after(more);
+            }
             const { system, user } = buildPrompt({ ...conversation, question: q, draft: quickText });
             const raw = await aiComplete(system, user, null, quickText ? ctrl.signal : null, (m) => {
                 // Stream the continuation in as it is written (cleaned of HTML / code fences / the SOURCES line).
@@ -871,6 +920,11 @@ export function initMainScreen(ui) {
             renderSteps(lastContext);
         }
         if (msg.action === 'summarySaved') {
+            if (msg.url && msg.id) savedIds[msg.url] = msg.id;
+            if (liveBubbleArticle && msg.id && samePage(liveBubbleArticle.url, msg.url) && !liveBubbleArticle.id) {
+                liveBubbleArticle.id = msg.id;
+                try { liveBubbleEl && liveBubbleEl._decorate && liveBubbleEl._decorate(); } catch (_) { /* card gone */ }
+            }
             if (conversation && msg.id && samePage(conversation.url, msg.url)) {
                 conversation.id = msg.id;
                 if (liveBubbleArticle) liveBubbleArticle.id = msg.id;   // so opening it shows the saved conversation
@@ -898,8 +952,9 @@ export function initMainScreen(ui) {
                     meta: msg.meta || {},
                     content: msg.content || ''
                 };
-                addBubble(bubbleArticle);
-                liveBubbleArticle = bubbleArticle;
+                const liveBubble = addBubble(bubbleArticle);
+                liveBubbleArticle = bubbleArticle; liveBubbleEl = liveBubble;
+                if (savedIds[msg.url]) { bubbleArticle.id = savedIds[msg.url]; liveBubble._decorate(); }   // the save was confirmed before the card existed
                 const used = usedRow(lastContext);
                 if (used) {
                     const wrap = document.createElement('div');
@@ -988,6 +1043,66 @@ export function initMainScreen(ui) {
         const { [SIDEBAR_TOKEN_FIELD]: _token, ...data } = event.data;
         handleStreamMessage(data);
     });
+
+    // ── Save only (no AI) ───────────────────────────────────────────────
+    const saveMenuBtn = document.getElementById('saveMenuBtn');
+    const savePageOnly = async () => {
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        if (!tab || !tab.url || !isInjectableUrl(tab.url)) { if (ui && ui.showToast) ui.showToast(T('This page can\'t be saved.')); return; }
+        let res = null;
+        try { res = await sendMessageToTab(tab.id, { action: 'savePage' }); } catch (_) { /* handled below */ }
+        if (!res || !res.success) { if (ui && ui.showToast) ui.showToast(T('Could not save this page — try refreshing the tab.')); return; }
+        const { undoToast } = await import('./sendSheet.js');
+        const id = res.id;
+        undoToast(T('📥 Saved without AI'), async () => {
+            const { [SK.articlesIndex]: idx = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
+            await StorageManager.setLocal({ [SK.articlesIndex]: idx.filter(a => a.id !== id) });
+            try { await new Promise(r => chrome.storage.local.remove([articleRecKey(id)], r)); } catch (_) { /* ignore */ }
+        });
+    };
+    if (saveMenuBtn) {
+        let menu = null;
+        const closeMenu = () => { if (menu) { menu.remove(); menu = null; } saveMenuBtn.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', onOutside, true); document.removeEventListener('keydown', onKey, true); };
+        const onOutside = (e) => { if (menu && !menu.contains(e.target) && !saveMenuBtn.contains(e.target)) closeMenu(); };
+        const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeMenu(); saveMenuBtn.focus(); } };
+        const openMenu = () => {
+            menu = document.createElement('div');
+            menu.className = 'card-menu save-menu'; menu.setAttribute('role', 'menu'); menu.setAttribute('aria-label', T('Save options'));
+            const mk = (icon, label, hint, fn) => {
+                const b = document.createElement('button'); b.type = 'button'; b.className = 'card-menu-item'; b.setAttribute('role', 'menuitem');
+                const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = icon;
+                const tx = document.createElement('span'); tx.className = 'save-menu-txt'; tx.textContent = label;
+                const sm = document.createElement('small'); sm.textContent = hint; tx.append(sm);
+                b.append(ic, tx);
+                b.addEventListener('click', () => { closeMenu(); fn(); });
+                return b;
+            };
+            menu.append(
+                mk('✨', T('Summarize'), T('Read it with AI'), () => fetchSummaryButton.click()),
+                mk('📥', T('Save only'), T('Keep it in History, no AI, nothing sent'), savePageOnly)
+            );
+            document.body.append(menu);
+            const r = saveMenuBtn.getBoundingClientRect();
+            const mh = menu.offsetHeight, mw = menu.offsetWidth;
+            menu.style.left = Math.max(8, Math.min(window.innerWidth - mw - 8, r.right - mw)) + 'px';
+            menu.style.top = Math.max(8, r.top - mh - 8) + 'px';
+            saveMenuBtn.setAttribute('aria-expanded', 'true');
+            document.addEventListener('pointerdown', onOutside, true);
+            document.addEventListener('keydown', onKey, true);
+            const first = menu.querySelector('button'); if (first) first.focus();
+            menu.addEventListener('keydown', (e) => {
+                const items = [...menu.querySelectorAll('button')]; const i = items.indexOf(document.activeElement);
+                if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+                if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+            });
+        };
+        saveMenuBtn.addEventListener('click', () => { if (menu) closeMenu(); else openMenu(); });
+        // Alt/Option + Enter in the box = save only
+        additionalQuestionsInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.altKey && !e.isComposing && composer && composer.state === 'fetch') { e.preventDefault(); savePageOnly(); }
+        });
+    }
 
     // ── Fetch button ────────────────────────────────────────────────────
     fetchSummaryButton.addEventListener('click', async () => {

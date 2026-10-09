@@ -12,6 +12,7 @@ import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
+import { attachCardMenu } from './cardMenu.js';
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
@@ -90,6 +91,7 @@ function fmtDay(iso) { try { return new Date(iso).toLocaleDateString(locale(), {
 export function statusBadges(a) {
     if (!a || a.feedStub) return [];
     const out = [];
+    if (a.savedOnly && !(a.summary && String(a.summary).trim())) out.push(['saved', T('📥 Saved · no AI')]);
     if (a.archived) out.push(['arch', T('🗄️ Archived · {date}', { date: fmtDay(a.archivedAt || a.timestamp) })]);
     const latest = new Map();
     (isSent(a) ? a.sentTo : []).forEach(x => latest.set(x.kind + '|' + (x.label || ''), x));
@@ -251,7 +253,7 @@ async function buildArticleHtmlFile(article) {
 /**
  * Triggers the native OS share sheet
  */
-async function shareArticle(article) {
+export async function shareArticle(article) {
     if (!navigator.share) {
         if (uiManagerRef) uiManagerRef.showToast(T('Sharing is not supported in this browser/environment.'));
         else alert(T('Sharing is not supported in this browser/environment.'));
@@ -288,7 +290,7 @@ async function shareArticle(article) {
 /**
  * Generates and downloads a Markdown file with YAML Frontmatter
  */
-async function exportToMarkdown(article) {
+export async function exportToMarkdown(article) {
     // 1. Format date as YYYY-MM-DD for Obsidian frontmatter
     const createdDate = new Date(article.timestamp).toISOString().split('T')[0];
     
@@ -393,7 +395,7 @@ ${contentPlain.trim().replace(/\n{3,}/g, '\n\n')}
 /**
  * Copies summary and content to clipboard as formatted text (HTML) and plain text (Markdown-ish)
  */
-async function copyArticleToClipboard(article) {
+export async function copyArticleToClipboard(article) {
     article = await exportView(article);
     const title = article.title || 'AI Summary';
     const summary = article.summary || '';
@@ -458,7 +460,7 @@ async function copyArticleToClipboard(article) {
 /**
  * Sends article summary and content to a Kindle email via the proxy API
  */
-async function sendToKindle(article) {
+export async function sendToKindle(article) {
     article = await exportView(article);
     const config = await StorageManager.getAll();
     // Multiple Kindle devices can be configured; always send to the active
@@ -532,7 +534,7 @@ async function sendToKindle(article) {
     }
 }
 
-async function dispatchToLocalSend(article) {
+export async function dispatchToLocalSend(article) {
     const config = await StorageManager.getAll();
     // Multiple LocalSend receivers can be configured; always send to the
     // active one (last used, or the first configured if none has been used yet).
@@ -613,6 +615,35 @@ export async function deliverLocalSend(article, device) {
 }
 
 const wsActive = () => !!document.getElementById('historyScreen')?.classList.contains('ws-active');
+
+/** Keeps every star in sync (list card, detail bar, caches) after a favorite change. */
+function paintFavorite(id, on) {
+    const c = cachedArticles.find(a => a.id === id); if (c) c.favorite = on;
+    const ar = archivedCache.find(a => a.id === id); if (ar) ar.favorite = on;
+    if (currentDetailArticle && currentDetailArticle.id === id) currentDetailArticle.favorite = on;
+    const li = document.querySelector(`#articleList li[data-id="${CSS.escape(String(id))}"]`);
+    if (li) { li.classList.toggle('is-favorite', on); const b = li.querySelector('.star-button'); if (b) { b.textContent = on ? '★' : '☆'; b.setAttribute('aria-pressed', String(on)); } }
+    const d = document.getElementById('detailStarBtn');
+    if (d && currentDetailArticle && currentDetailArticle.id === id) paintDetailStar(on);
+}
+function paintDetailStar(on) {
+    const d = document.getElementById('detailStarBtn'); if (!d) return;
+    d.setAttribute('aria-pressed', String(!!on)); d.classList.toggle('is-on', !!on);
+    const ic = d.querySelector('.btn-icon'); if (ic) ic.textContent = on ? '★' : '☆';
+}
+
+/** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
+export async function removeArticle(article) {
+    if (!article || !article.id) return false;
+    if (!confirm(T('Are you sure you want to delete this article?'))) return false;
+    await StorageManager.deleteArticle(article.id);
+    cachedArticles = cachedArticles.filter(i => i.id !== article.id);
+    archivedCache = archivedCache.filter(i => i.id !== article.id);
+    invalidateSearchIndex();
+    if (document.getElementById('articleList')) renderTab();
+    if (uiManagerRef) uiManagerRef.showToast(T('Article deleted'));
+    return true;
+}
 
 export function initArticleManager(uiManager) {
     uiManagerRef = uiManager;
@@ -743,6 +774,17 @@ export function initArticleManager(uiManager) {
 
     if (detailDeleteBtn) {
         detailDeleteBtn.addEventListener('click', deleteCurrentDetailArticle);
+    }
+    {   // ★ favorite from the article view
+        const ds = document.getElementById('detailStarBtn');
+        if (ds) { ds.title = T('Favorite'); ds.setAttribute('aria-label', T('Favorite')); }
+        if (ds) ds.addEventListener('click', async () => {
+            const a = currentDetailArticle; if (!a || !a.id) return;
+            const next = await StorageManager.toggleFavorite(a.id);
+            if (next === null) return;
+            a.favorite = next; paintFavorite(a.id, next);
+            if (uiManagerRef) uiManagerRef.showToast(next ? T('Added to favorites') : T('Removed from favorites'));
+        });
     }
     {   // ⋯ menu in the detail top bar: Graph / Analytics / Delete
         const moreBtn = document.getElementById('detailMoreBtn');
@@ -1142,9 +1184,15 @@ function buildArticleCard(article) {
         </div>
     `;
     listItem.classList.toggle('is-favorite', !!article.favorite);
+    {   // ⋯ actions menu sits next to the star
+        const star = listItem.querySelector('.star-button');
+        const side = document.createElement('div'); side.className = 'card-side';
+        star.replaceWith(side); side.appendChild(star);
+        attachCardMenu(side, article);
+    }
 
     // Favorited from a feed but never summarized: one-click summarize.
-    if (article.feedStub && article.url) {
+    if ((article.feedStub || article.savedOnly) && article.url) {
         const sumBtn = document.createElement('button');
         sumBtn.type = 'button';
         sumBtn.className = 'button-primary btn-sm';
@@ -1166,7 +1214,7 @@ function buildArticleCard(article) {
                     tries++;
                     try {
                         const idx = await StorageManager.getArticlesIndex();
-                        const done = idx.some(a => !a.feedStub && a.url === article.url);
+                        const done = idx.some(a => !a.feedStub && !a.savedOnly && a.url === article.url);
                         if (done || tries > 40) {
                             clearInterval(poll);
                             if (done && document.getElementById('articleList')?.style.display !== 'none') loadHistory();
@@ -1182,15 +1230,10 @@ function buildArticleCard(article) {
 
     listItem.querySelector('.star-button').addEventListener('click', async (event) => {
         event.stopPropagation();
-        const btn = event.currentTarget;
         const next = await StorageManager.toggleFavorite(article.id);
         if (next === null) return;
         article.favorite = next;
-        const cached = cachedArticles.find(a => a.id === article.id);
-        if (cached) cached.favorite = next;
-        listItem.classList.toggle('is-favorite', next);
-        btn.textContent = next ? '★' : '☆';
-        btn.setAttribute('aria-pressed', String(next));
+        paintFavorite(article.id, next);
     });
 
     // Click on the card itself opens detail
@@ -1609,6 +1652,7 @@ export async function showArticleDetail(article) {
         } catch (_) { article = { ...article, conversation: [] }; }
     }
     currentDetailArticle = article;
+    {   const ds = document.getElementById('detailStarBtn'); if (ds) { ds.hidden = !article.id || !!article.feedStub; paintDetailStar(!!article.favorite); } }
     recordArticleOpened(article);
     if (article && article.id && !article.readAt && !article.feedStub) { article.readAt = new Date().toISOString(); applyStatus([article.id], { read: true }).catch(() => {}); }
     const articleList = document.getElementById('articleList');
@@ -1625,7 +1669,10 @@ export async function showArticleDetail(article) {
 
     const safeTitle = escapeHtml(article.title || (rawContentSource && rawContentSource.split('\n')[0]) || T('Article'));
     // Saved summary and page HTML come from arbitrary pages (and restored backups): parse inert, then clean.
-    const summaryDoc = new DOMParser().parseFromString(article.summaryBase !== undefined ? article.summaryBase : (article.summary || escapeHtml(T('No summary available'))), 'text/html');
+    const fallbackSummary = article.savedOnly
+        ? '<p><em>' + escapeHtml(T('Saved without an AI summary. Open the page and tap ✨ Summarize to add one.')) + '</em></p>'
+        : escapeHtml(T('No summary available'));
+    const summaryDoc = new DOMParser().parseFromString(article.summaryBase !== undefined ? article.summaryBase : (article.summary || fallbackSummary), 'text/html');
     summaryDoc.querySelectorAll('img').forEach(el => el.remove());
     const safeSummary = cleanUntrustedHtml(summaryDoc.body).innerHTML;
 
