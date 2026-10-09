@@ -7,6 +7,8 @@ import { setup, imp, tick, SRC } from './harness.mjs';
 const P = await imp('modules/panelDock.js');
 assert.equal(P.currentSurface('?surface=sidepanel'), 'sidepanel');
 assert.equal(P.currentSurface(''), 'popup'); assert.equal(P.currentSurface('?surface=x'), 'popup');
+assert.equal(P.currentSurface('', '#aish-sidebar=123e4567-e89b-42d3-a456-426614174000'), 'inpage', 'in-page sidebar iframe');
+assert.equal(P.currentSurface('', '#other'), 'popup');
 assert(!P.sidePanelAvailable(null) && !P.sidePanelAvailable({}) && !P.sidePanelAvailable({ sidePanel: { open() {} } }), 'needs open + setPanelBehavior');
 const fake = (opts = {}) => {
   const calls = [], sync = {};

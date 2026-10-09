@@ -4,9 +4,16 @@
 // The side panel loads popup.html?surface=sidepanel (platforms/chrome/manifest.json), which is how the page knows
 // where it runs. Firefox has its own sidebar and Safari no side panel API: there this module reports "unavailable".
 
-/** 'sidepanel' when this page is Chrome's side panel, otherwise 'popup'. */
-export function currentSurface(search = (typeof location !== 'undefined' ? location.search : '')) {
-    try { return new URLSearchParams(search).get('surface') === 'sidepanel' ? 'sidepanel' : 'popup'; } catch (_) { return 'popup'; }
+/**
+ * Where this page runs: 'sidepanel' (Chrome's side panel), 'inpage' (the sidebar iframe the content script puts
+ * into the page; its #hash carries the sidebarChannel token) or 'popup'.
+ */
+export function currentSurface(search = (typeof location !== 'undefined' ? location.search : ''), hash = (typeof location !== 'undefined' ? location.hash : '')) {
+    try {
+        if (new URLSearchParams(search).get('surface') === 'sidepanel') return 'sidepanel';
+        if (/(^|[#&])aish-sidebar=/.test(String(hash || ''))) return 'inpage';
+    } catch (_) { /* fall through */ }
+    return 'popup';
 }
 
 /** Can this browser attach to a native side panel at all? */

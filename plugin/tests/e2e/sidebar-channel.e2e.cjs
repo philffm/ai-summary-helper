@@ -68,7 +68,12 @@ const srv = http.createServer((q, r) => {
   const fromPopup = await popup.evaluate(() => new Promise(r => chrome.runtime.sendMessage({ action: 'fetchFeedText', url: 'http://localhost:8124/feed' }, r)));
   check('C popup may fetch feeds', fromPopup && fromPopup.ok === true, fromPopup);
 
-  await b.screenshot({ path: path.join(os.tmpdir(), 'aish-e2e-sidebar.png') });
+  // D: the in-page sidebar's header button closes it (it never offers to attach the native side panel)
+  await b.bringToFront(); await wait(300);   // step C opened another tab; closing targets the active tab
+  const btnLabel = await fb.getAttribute('#popoutButton', 'aria-label');
+  check('D in-page sidebar offers Close', btnLabel === 'Close', btnLabel);
+  await fb.click('#popoutButton'); await wait(1200);
+  check('D clicking it removes the sidebar from the page', !(await b.evaluate(() => !!document.getElementById('ai-summary-hybrid-sidebar'))));
   await ctx.close(); srv.close();
   console.log(ok ? '\nALL PASS' : '\nSOME FAILED'); process.exit(ok ? 0 : 1);
 })().catch((e) => { console.error(e); process.exit(1); });
