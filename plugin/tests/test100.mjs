@@ -5,7 +5,8 @@ const yday = new Date(); yday.setDate(yday.getDate() - 1); yday.setHours(12, 0, 
 const { store, w } = setup({});
 store['feeds:subs'] = [{ id: 'a', url: 'https://a.test/feed', title: 'A', tags: [], lastFetched: Date.now() }];
 store['feeds:items'] = Array.from({ length: 45 }, (_, i) => ({ id: 'x' + i, feedId: 'a', title: 'Post ' + i, link: 'https://a.test/' + i, published: yday.getTime() - i * 60000, read: false }));
-store.connectionMode = 'cloud'; store.activeService = 'openai';              // summaries use something else
+store.connectionMode = 'cloud'; store.activeService = 'openai';
+store['feeds:settings'] = { rateWithRecap: false };   // this test is about the separate rating batches              // summaries use something else
 store['config:services'] = { ollama: { endpoint: 'http://localhost:11434/v1/chat/completions', customModel: [{ id: 'llama3.2', provider: 'ollama' }], activeModelId: { id: 'llama3.2', provider: 'ollama' } } };
 const $ = (s) => w.document.querySelector(s);
 const services = [], heads = [], texts = [];

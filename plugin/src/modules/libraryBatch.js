@@ -41,8 +41,9 @@ export const cleanBatchSize = (n) => BATCH_SIZES.includes(Number(n)) ? Number(n)
 
 /**
  * What is left to do.
- * ctx = { items, recaps, source, inSource(item), startOfDay(ts), itemSig(item), today, includeToday?, subs?, topicLang?, articleTags? }
- * rate: items without AI score or category (newest first)
+ * ctx = { items, recaps, source, inSource(item), startOfDay(ts), itemSig(item), today, includeToday?, rateWithRecap?, subs?, topicLang?, articleTags? }
+ * rate: items without AI score or category (newest first). With rateWithRecap, items whose day is recapped in this plan are
+ *       left out: the recap request rates them in the same call, so a separate rating request would send them twice.
  * days: days with items the recap has not covered yet (today is skipped unless includeToday is true),
  *       oldest first, each { day, total, todo } where todo = items still to be covered (newest first).
  * tag:  (only when ctx.subs is given) feeds that still need topic tags in ctx.topicLang, each { id, items, all, keys? }:
@@ -52,7 +53,7 @@ export function planLibrary(ctx) {
     const { items, recaps, source, inSource, startOfDay, itemSig } = ctx;
     const today = ctx.today != null ? ctx.today : startOfDay(Date.now());
     const scoped = items.filter((i) => inSource(i));
-    const rate = scoped.filter(needsRating).sort((a, b) => b.published - a.published);
+    let rate = scoped.filter(needsRating).sort((a, b) => b.published - a.published), viaRecap = 0;
     const byDay = new Map();
     scoped.forEach((i) => {
         const d = startOfDay(i.published);
@@ -67,7 +68,14 @@ export function planLibrary(ctx) {
         const todo = rc ? (rc.covered ? all.filter((x) => rc.covered[x.id] !== itemSig(x)) : []) : all;
         if (todo.length) days.push({ day, total: all.length, todo, hasRecap: !!rc });
     });
-    const plan = { rate, days };
+    if (ctx.rateWithRecap) {
+        // The recap call rates what it covers (see generateRecap/generateRecapUpdate). Items left unrated by it come back in the next plan.
+        const inRecap = new Set(days.flatMap((d) => d.todo.map((i) => i.id)));
+        const before = rate.length;
+        rate = rate.filter((i) => !inRecap.has(i.id));
+        viaRecap = before - rate.length;
+    }
+    const plan = { rate, days, viaRecap };   // viaRecap = items that still count as "to rate", but the recap request does it
     if (ctx.subs) {
         plan.tag = ctx.subs.filter((s) => needsTopics(s, ctx.topicLang)).map((s) => {
             const all = items.filter((i) => i.feedId === s.id).sort((a, b) => b.published - a.published);

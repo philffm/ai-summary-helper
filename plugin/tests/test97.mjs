@@ -29,6 +29,7 @@ assert(/Ollama/.test($('#feedPrefsLibrary').textContent));
 
 // Ollama: plan text, batch size select, start
 store.connectionMode = 'local'; store.activeService = 'ollama';
+store['feeds:settings'] = { rateWithRecap: false };   // this test is about the separate rating batches
 const fm2 = await imp('modules/feedManager.js'); fm2.initFeedManager(ui); await tick(120); await open();
 const card = $('#feedPrefsLibrary');
 assert(card.querySelector('#feedSetLibBatch'), 'batch size select');

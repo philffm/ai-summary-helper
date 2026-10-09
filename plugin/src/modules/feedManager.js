@@ -2216,7 +2216,7 @@ async function refreshTopicLang() {
 }
 function libraryPlan() {
     const sm = subMap();
-    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig, subs, topicLang, articleTags });
+    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig, subs, topicLang, articleTags, rateWithRecap: settings.rateWithRecap !== false });
 }
 /** Up to 3 topic tags for one feed in the UI language; kept apart from the user's own tags (s.tags) so those are never touched. */
 async function libraryTagFeed(entry, signal, ctx = {}) {
@@ -2342,7 +2342,7 @@ async function renderLibraryCard(card) {
         const p = libraryPlan(), n = countRequests(p, cleanBatchSize(settings.libraryBatch));
         if (!p.rate.length && !p.days.length && !p.tag.length && !p.lex.length) return T('Everything in your library is rated, categorized and recapped.');
         const eta = formatEta(n * 90000, T);   // rough: local models need about 1–2 minutes per batch
-        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (p.tag.length ? ' · ' + T('{n} feeds to tag', { n: p.tag.length }) : '') + (p.lex.length ? ' · ' + T('{n} tag lists to name', { n: p.lex.length }) : '') + (eta ? ' · ' + eta : '');
+        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length + (p.viaRecap || 0), b: p.days.length, n }) + (p.tag.length ? ' · ' + T('{n} feeds to tag', { n: p.tag.length }) : '') + (p.lex.length ? ' · ' + T('{n} tag lists to name', { n: p.lex.length }) : '') + (eta ? ' · ' + eta : '');
     };
     const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length && !p.tag.length && !p.lex.length; startBtn.textContent = T('Process the whole library'); };
 

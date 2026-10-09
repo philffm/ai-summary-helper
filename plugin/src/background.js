@@ -565,7 +565,7 @@ async function pollFeeds() {
         await FEED_WORKER.loadLexicon();
         const plan = FEED_WORKER.planLibrary({
             items: mergedItems, recaps, source: 'all', inSource: () => true,
-            startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true,
+            startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true, rateWithRecap: d.feedSettings.rateWithRecap !== false,
             subs: d.feedSubs, topicLang, articleTags: d.articles.flatMap(a => a.tags || [])
         });
         const configuredBatch = [10, 20, 40].includes(Number(state.batchSize || d.feedSettings.libraryBatch))
