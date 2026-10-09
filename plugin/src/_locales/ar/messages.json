@@ -4150,5 +4150,17 @@
   },
   "f_this_backup_will_contain_api_a9f6": {
     "message": "ستتضمن هذه النسخة مفاتيح API وبيانات تسجيل الدخول ومفاتيح الترخيص ومعرّف التثبيت. يمكن لحامل الملف استخدام مفاتيحه أو معرفة هذا التثبيت. هل تريد المتابعة؟"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "تمييزات مقترحة بالذكاء الاصطناعي"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "تصدير السجل بصيغة Markdown ‏(.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "التمييزات والملاحظات"
+  },
+  "f_related_66d8": {
+    "message": "ذات صلة"
   }
 }

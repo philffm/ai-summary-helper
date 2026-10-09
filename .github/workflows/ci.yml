@@ -36,5 +36,8 @@ jobs:
       - name: i18n coverage of the extension UI
         run: node scripts/feed-i18n.mjs check
 
+      - name: Colour contrast of text tokens (WCAG AA)
+        run: node plugin/scripts/contrast-check.mjs
+
       - name: Tests (includes the privacy.md sync check)
         run: npm test

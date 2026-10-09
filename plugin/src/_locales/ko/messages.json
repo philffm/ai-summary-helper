@@ -4132,5 +4132,17 @@
   },
   "f_this_backup_will_contain_api_a9f6": {
     "message": "이 백업에는 API 키, 로그인 정보, 라이선스 키, 설치 식별자가 포함됩니다. 파일을 가진 사람은 키를 사용하거나 이 설치를 식별할 수 있습니다. 계속할까요?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI 추천 하이라이트"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "기록을 Markdown으로 내보내기 (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "하이라이트 및 메모"
+  },
+  "f_related_66d8": {
+    "message": "관련 글"
   }
 }
