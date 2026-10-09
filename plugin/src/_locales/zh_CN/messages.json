@@ -3772,5 +3772,8 @@
   },
   "f_detach_to_popup_c2f1": {
     "message": "分离为弹出窗口"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "在页面旁边打开扩展。与顶部的 📌 固定 / ↙️ 分离 相同。"
   }
 }

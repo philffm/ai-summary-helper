@@ -3754,5 +3754,8 @@
   },
   "f_detach_to_popup_c2f1": {
     "message": "팝업으로 분리"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "확장 프로그램을 페이지 옆에 엽니다. 헤더의 📌 고정 / ↙️ 분리와 같습니다."
   }
 }

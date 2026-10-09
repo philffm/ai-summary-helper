@@ -501,6 +501,16 @@
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsAppearance">Appearance &amp; Language</span></h2>
   </div>
+                <div class="a11y-block">
+                  <div class="setting-group flex justify-between align-center">
+                    <label class="setting-label-inline" for="nativeSidePanelToggle" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
+                    <label class="switch">
+                      <input type="checkbox" id="nativeSidePanelToggle" />
+                      <span class="slider-toggle"></span>
+                    </label>
+                  </div>
+                  <p class="a11y-hint" data-i18n="f_opens_the_extension_next_to__d369">Opens the extension next to the page. Same as 📌 Attach and ↙️ Detach in the header.</p>
+                </div>
                 <div class="a11y-status" id="a11yStatus" role="status"></div>
                 <div class="a11y-block">
                   <div class="setting-group flex justify-between align-center">
@@ -568,15 +578,6 @@
                     <p class="a11y-hint" id="motionHint"></p>
                   </div>
                 </details>
-                <div class="a11y-block">
-                  <div class="setting-group flex justify-between align-center">
-                    <label class="setting-label-inline" for="nativeSidePanelToggle" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
-                    <label class="switch">
-                      <input type="checkbox" id="nativeSidePanelToggle" />
-                      <span class="slider-toggle"></span>
-                    </label>
-                  </div>
-                </div>
 </section>
 <section class="settings-panel" id="settingsPanel-library" data-panel="library" hidden>
   <div class="settings-panel-head">

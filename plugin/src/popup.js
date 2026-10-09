@@ -82,8 +82,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ── Auto-open native side panel if enabled ──────────────────────────
     // Never from inside the side panel itself: opening it again and closing "this" window would close the panel.
     const surface = currentSurface();
-    if (surface === 'sidepanel') document.body.dataset.surface = 'sidepanel';
-    if (surface !== 'sidepanel') chrome.storage.sync.get('useNativeSidePanel', (data) => {
+    if (surface !== 'popup') document.body.dataset.surface = surface;
+    if (surface === 'popup') chrome.storage.sync.get('useNativeSidePanel', (data) => {
         if (data.useNativeSidePanel) {
             chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
                 if (response?.success) window.close();
@@ -102,13 +102,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Chrome: one button docks this page into the side panel, and in the side panel undocks it to a popup.
         // sidePanel.open needs the click's user gesture, so the window id is known before the click.
-        const docking = !inSidebar && sidePanelAvailable();
+        const docking = !inSidebar && surface !== 'inpage' && sidePanelAvailable();
         let windowId = null;
         if (docking) {
             try { chrome.windows.getCurrent((w) => { windowId = w && w.id; }); } catch (_) { /* no windows API: the background falls back */ }
             const label = surface === 'sidepanel' ? T('Detach to popup') : T('Attach to side panel');
             popoutBtn.textContent = surface === 'sidepanel' ? '↙️' : '📌';
             popoutBtn.title = label; popoutBtn.setAttribute('aria-label', label);
+            popoutBtn.removeAttribute('data-i18n-title');
+        } else if (surface === 'inpage') {
+            // The in-page sidebar: the button closes it (the click below toggles it off through the content script).
+            popoutBtn.textContent = '✕';
+            popoutBtn.title = T('Close'); popoutBtn.setAttribute('aria-label', T('Close'));
             popoutBtn.removeAttribute('data-i18n-title');
         }
 
@@ -123,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.warn('[sidePanel] attach/detach failed, using the in-page sidebar:', err && err.message);
                 }
             }
-            if (ffSidebar && typeof ffSidebar.open === 'function') {
+            if (surface !== 'inpage' && ffSidebar && typeof ffSidebar.open === 'function') {
                 try { await ffSidebar.open(); window.close(); return; } catch (err) { console.warn('[sidebar] open failed, using the in-page sidebar:', err && err.message); }
             }
             try {

@@ -3940,5 +3940,8 @@
   },
   "f_detach_to_popup_c2f1": {
     "message": "Detach to popup"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "Opens the extension next to the page. Same as 📌 Attach and ↙️ Detach in the header."
   }
 }
