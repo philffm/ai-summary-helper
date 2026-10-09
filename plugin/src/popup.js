@@ -1,4 +1,5 @@
 import { modelEmoji } from './modules/modelBadge.js';
+import { checkOllama } from './modules/ollamaCheck.js';
 import { applyA11y } from './modules/a11y.js';
 import { SK } from './modules/storageKeys.js';
 import { initMoodSetting } from './modules/moodSetting.js';
@@ -371,11 +372,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Always-visible source switch: byPhil Cloud | Your own model.
         // Keeps the same two buttons in place in both modes (only the
         // active state changes), so nothing "disappears" when switching.
+        // Three sources, two stored modes: byPhil Cloud = 'cloud'; Own key and Ollama are both 'local'
+        // and differ by activeService (Ollama is left out of the own-key provider list).
+        let lastOwnKeyService = '';
         const renderModeSeg = (mode) => {
             const grid = document.getElementById('modelModeGrid');
             if (!grid) return;
             grid.innerHTML = '';
-            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 ' + T('Own model / API key') }].forEach(m => {
+            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 ' + T('Own key') }, { id: 'ollama', label: '🦙 Ollama' }].forEach(m => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'pill pill--sm pill--soft' + (m.id === mode ? ' active' : '');
@@ -385,13 +389,20 @@ document.addEventListener("DOMContentLoaded", async () => {
                     e.preventDefault();
                     if (m.id === mode) return;
                     customModelInput.value = '';
-                    await chrome.storage.sync.set({ connectionMode: m.id });
-                    renderUI();
+                    await chrome.storage.sync.set({ connectionMode: m.id === 'cloud' ? 'cloud' : 'local' });
+                    if (m.id === 'cloud') { renderUI(); return; }
+                    const ownKey = (id) => id && id !== 'ollama' && !!modelSelect.querySelector(`option[value="${id}"]`);
+                    const target = m.id === 'ollama' ? 'ollama'
+                        : [lastOwnKeyService, ...Array.from(modelSelect.options).map(o => o.value)].find(ownKey);
+                    if (target && modelSelect.querySelector(`option[value="${target}"]`)) {
+                        modelSelect.value = target;
+                        modelSelect.dispatchEvent(new Event('change')); // stores activeService and re-renders
+                    } else renderUI();
                 });
                 grid.appendChild(btn);
             });
             const show = (id, on) => { const e = document.getElementById(id); if (e) e.style.display = on ? '' : 'none'; };
-            show('modelNote', mode === 'cloud'); show('providerLabel', mode !== 'cloud'); show('modelProviderGrid', mode !== 'cloud');
+            show('modelNote', mode === 'cloud'); show('providerLabel', mode === 'local'); show('modelProviderGrid', mode === 'local');
             const note = document.getElementById('modelNote');
             if (note) note.textContent = T('Included with your byPhil account — no API key needed.');
             const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? T('Recent models') : T('Model');
@@ -418,6 +429,40 @@ document.addEventListener("DOMContentLoaded", async () => {
             const d = document.querySelector('#modelStatus .model-dot'); if (d) d.dataset.state = state || '';
         };
 
+        // Ollama source: list what is actually installed (added to the model grid) or warn that it is not reachable.
+        let ollamaProbeSeq = 0;
+        const probeOllamaModels = async (endpoint, knownIds, svcId) => {
+            const seq = ++ollamaProbeSeq;
+            const result = await checkOllama(endpoint);
+            if (seq !== ollamaProbeSeq || modelSelect.value !== 'ollama') return; // a newer render took over
+            if (!result.ok) {
+                setModelStatus(result.reason === 'forbidden'
+                    ? T('Ollama refused the request (OLLAMA_ORIGINS) — see Settings')
+                    : T('Ollama is not reachable — set it up in Settings'), 'warn');
+                return;
+            }
+            setModelStatus(result.models.length ? T('Ollama · {n} installed', { n: result.models.length }) : T('Ollama is running, but no model is installed — run: ollama pull llama3.2'), result.models.length ? '' : 'warn');
+            const shown = new Set(Array.from(modelIdGrid.querySelectorAll('button')).map(b => b.dataset.modelId));
+            result.models.filter(id => !shown.has(id)).forEach(id => {
+                const btn = document.createElement('button');
+                btn.className = 'pill pill--sm pill--soft';
+                btn.dataset.modelId = id;
+                btn.title = id;
+                btn.textContent = id.length > 28 ? `${id.slice(0, 18)}…${id.slice(-8)}` : id;
+                btn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const entry = (await chrome.storage.local.get([SK.servicesConfig]))[SK.servicesConfig]?.[svcId] || {};
+                    const raw = Array.isArray(entry.customModel) ? entry.customModel : (entry.customModel ? [entry.customModel] : []);
+                    const list = raw.map(m => StorageManager.normalizeCustomModel(m, svcId));
+                    if (!list.some(m => m.id === id)) list.push({ id, provider: svcId });
+                    await StorageManager.updateService(svcId, { customModel: list, activeModelId: { id, provider: svcId } });
+                    await renderUI();
+                    applyAndClose();
+                });
+                modelIdGrid.appendChild(btn);
+            });
+        };
+
         const renderUI = () => {
             renderModelUI = renderUI; // expose for the model panel chip handler
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
@@ -428,7 +473,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const { preferredCloudModel } = { ...syncData, ...localData };
                 const connectionMode = syncData.connectionMode || 'cloud';
                 const servicesConfig = localData[SK.servicesConfig];
-                renderModeSeg(connectionMode === 'cloud' ? 'cloud' : 'local');
+                renderModeSeg(connectionMode === 'cloud' ? 'cloud' : (modelSelect.value === 'ollama' ? 'ollama' : 'local'));
                 if (connectionMode === 'cloud') {
                     // Update chip label
                     const activeCloudModel = preferredCloudModel || 'google/gemini-3.8-flash';
@@ -540,11 +585,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (meta?.apiKeyOptional) setModelStatus(T('{name} · local, no API key', { name: meta.name }), '');
                 else if (cfg.apiKey) setModelStatus(T('{name} · API key set', { name: meta?.name || curSvcId }), '');
                 else setModelStatus(T('{name} · API key missing — add it in Settings', { name: meta?.name || curSvcId }), 'warn');
+                if (curSvcId === 'ollama') probeOllamaModels(cfg.endpoint || meta?.endpointUrl, customIds, curSvcId);
 
                 // Provider tags
                 modelProviderGrid.innerHTML = '';
                 
-                Array.from(modelSelect.options).forEach(option => {
+                Array.from(modelSelect.options).filter(o => o.value !== 'ollama').forEach(option => {
                     const btn = document.createElement('button');
                     btn.className = 'pill pill--sm pill--soft';
                     btn.textContent = option.textContent;
@@ -568,6 +614,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const btn = document.createElement('button');
                     btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
+                    btn.dataset.modelId = modelId;
                     btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
@@ -605,6 +652,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         modelSelect.addEventListener('change', () => {
             const selected = modelSelect.options[modelSelect.selectedIndex];
             if (selected) {
+                if (modelSelect.value !== 'ollama') lastOwnKeyService = modelSelect.value;
                 chrome.storage.sync.set({ activeService: modelSelect.value });
             }
             renderUI();
