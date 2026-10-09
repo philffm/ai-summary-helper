@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "在頁面旁邊開啟擴充功能。與頂部的 📌 固定 / ↙️ 分離 相同。"
+  },
+  "f_added_to_favorites_0693": {
+    "message": "已加入收藏"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "文章已刪除"
+  },
+  "f_check_again_fccf": {
+    "message": "重新檢查"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "正在檢查 Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "無法儲存此頁面——請重新整理分頁。"
+  },
+  "f_installed_models_a979": {
+    "message": "已安裝的模型"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "保留在記錄中，不使用 AI，不傳送任何內容"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "無法連線到 Ollama——請在設定中進行設置"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama 正在執行，但尚未安裝任何模型。請在終端機中下載一個："
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama 正在執行，但未安裝任何模型——請執行：ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama 正在執行。已安裝的模型——點擊即可使用："
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama 拒絕了請求 (OLLAMA_ORIGINS)——請查看設定"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · 已安裝 {n} 個"
+  },
+  "f_open_account_settings_781f": {
+    "message": "開啟帳戶設定"
+  },
+  "f_open_model_settings_7865": {
+    "message": "開啟模型設定"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "已加入排隊——目前摘要完成後開始"
+  },
+  "f_queued_4ebe": {
+    "message": "已加入排隊：{title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "用 AI 閱讀"
+  },
+  "f_remove_901d": {
+    "message": "移除"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "已從收藏移除"
+  },
+  "f_save_only_82ca": {
+    "message": "只儲存"
+  },
+  "f_save_options_f4e6": {
+    "message": "儲存選項"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "已儲存，但沒有 AI 摘要。開啟頁面並點按 ✨ 摘要即可新增。"
+  },
+  "f_search_installed_models_959b": {
+    "message": "搜尋已安裝的模型…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "此操作需要你的帳戶。請在設定中登入或查看你的方案。"
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "無法儲存此頁面。"
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "正在等待目前的摘要——點擊可從隊列移除"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "你的 API 金鑰遺失或被拒絕。請在設定中檢查。"
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "目前摘要完成後開始"
+  },
+  "f_this_page_a108": {
+    "message": "此頁面"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ 已加入排隊"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 已儲存（無 AI）"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 已儲存 · 無 AI"
   }
 }

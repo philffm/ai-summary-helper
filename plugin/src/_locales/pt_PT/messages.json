@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "Abre a extensão ao lado da página. Igual a 📌 Fixar e ↙️ Separar no cabeçalho."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Adicionado aos favoritos"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Artigo eliminado"
+  },
+  "f_check_again_fccf": {
+    "message": "Verificar novamente"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "A verificar o Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Não foi possível guardar esta página — atualize o separador."
+  },
+  "f_installed_models_a979": {
+    "message": "Modelos instalados"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Mantenha no histórico, sem IA, nada é enviado"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "O Ollama não está acessível — configure-o nas Definições"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "O Ollama está a funcionar, mas ainda não há nenhum modelo instalado. Transfira um num terminal:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "O Ollama está a funcionar, mas não há nenhum modelo instalado — execute: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "O Ollama está a funcionar. Modelos instalados — clique num para o usar:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "O Ollama recusou o pedido (OLLAMA_ORIGINS) — consulte as Definições"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} instalados"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Abrir definições da conta"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Abrir definições de modelos"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "Em fila — começa quando o resumo atual terminar"
+  },
+  "f_queued_4ebe": {
+    "message": "Em fila: {title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "Ler com IA"
+  },
+  "f_remove_901d": {
+    "message": "Remover"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Removido dos favoritos"
+  },
+  "f_save_only_82ca": {
+    "message": "Só guardar"
+  },
+  "f_save_options_f4e6": {
+    "message": "Opções de gravação"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "Guardado sem resumo de IA. Abra a página e toque em ✨ Resumir para adicionar um."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Pesquisar modelos instalados…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "É necessária a sua conta. Inicie sessão ou verifique o seu plano nas definições."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "Não é possível guardar esta página."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "À espera do resumo em curso — clique para remover da fila"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "A sua chave de API está em falta ou foi recusada. Verifique-a nas definições."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "começa quando o resumo atual terminar"
+  },
+  "f_this_page_a108": {
+    "message": "esta página"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ Em fila"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 Guardado sem IA"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Guardado · sem IA"
   }
 }

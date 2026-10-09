@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "Открывает расширение рядом со страницей. То же, что 📌 Закрепить и ↙️ Открепить в заголовке."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Добавлено в избранное"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Статья удалена"
+  },
+  "f_check_again_fccf": {
+    "message": "Проверить снова"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Проверка Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Не удалось сохранить эту страницу — обновите вкладку."
+  },
+  "f_installed_models_a979": {
+    "message": "Установленные модели"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Оставить в истории, без ИИ, ничего не отправляется"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama недоступна — настройте её в Настройках"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama запущена, но ни одна модель ещё не установлена. Скачайте её в терминале:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama запущена, но модель не установлена — выполните: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama запущена. Установленные модели — нажмите на нужную:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama отклонила запрос (OLLAMA_ORIGINS) — см. Настройки"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · установлено: {n}"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Открыть настройки аккаунта"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Открыть настройки моделей"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "В очереди — начнётся после текущего пересказа"
+  },
+  "f_queued_4ebe": {
+    "message": "В очереди: {title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "Прочитать с ИИ"
+  },
+  "f_remove_901d": {
+    "message": "Убрать"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Удалено из избранного"
+  },
+  "f_save_only_82ca": {
+    "message": "Только сохранить"
+  },
+  "f_save_options_f4e6": {
+    "message": "Параметры сохранения"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "Сохранено без ИИ-пересказа. Откройте страницу и нажмите ✨ Пересказать, чтобы добавить."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Поиск по установленным моделям…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "Нужен ваш аккаунт. Войдите или проверьте тариф в настройках."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "Эту страницу нельзя сохранить."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "Ожидание текущего пересказа — нажмите, чтобы убрать из очереди"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "Ваш API-ключ отсутствует или отклонён. Проверьте его в настройках."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "начнётся после текущего пересказа"
+  },
+  "f_this_page_a108": {
+    "message": "эта страница"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ В очереди"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 Сохранено без ИИ"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Сохранено · без ИИ"
   }
 }

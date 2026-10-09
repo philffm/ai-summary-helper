@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "在页面旁边打开扩展。与顶部的 📌 固定 / ↙️ 分离 相同。"
+  },
+  "f_added_to_favorites_0693": {
+    "message": "已添加到收藏"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "文章已删除"
+  },
+  "f_check_again_fccf": {
+    "message": "重新检查"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "正在检查 Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "无法保存此页面——请刷新标签页。"
+  },
+  "f_installed_models_a979": {
+    "message": "已安装的模型"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "保留在历史记录中，不使用 AI，不发送任何内容"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "无法连接 Ollama——请在设置中配置"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama 正在运行，但尚未安装任何模型。请在终端中下载一个："
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama 正在运行，但未安装任何模型——请运行：ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama 正在运行。已安装的模型——点击即可使用："
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama 拒绝了请求 (OLLAMA_ORIGINS)——请查看设置"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · 已安装 {n} 个"
+  },
+  "f_open_account_settings_781f": {
+    "message": "打开账号设置"
+  },
+  "f_open_model_settings_7865": {
+    "message": "打开模型设置"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "已排队——当前摘要完成后开始"
+  },
+  "f_queued_4ebe": {
+    "message": "已排队：{title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "用 AI 阅读"
+  },
+  "f_remove_901d": {
+    "message": "移除"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "已从收藏中移除"
+  },
+  "f_save_only_82ca": {
+    "message": "仅保存"
+  },
+  "f_save_options_f4e6": {
+    "message": "保存选项"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "已保存，但没有 AI 摘要。打开页面并点按 ✨ 摘要即可添加。"
+  },
+  "f_search_installed_models_959b": {
+    "message": "搜索已安装的模型…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "此操作需要你的账号。请在设置中登录或查看你的套餐。"
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "无法保存此页面。"
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "正在等待当前摘要——点击可从队列中移除"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "你的 API 密钥缺失或被拒绝。请在设置中检查。"
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "当前摘要完成后开始"
+  },
+  "f_this_page_a108": {
+    "message": "此页面"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ 已排队"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 已保存（无 AI）"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 已保存 · 无 AI"
   }
 }

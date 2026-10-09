@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "يفتح الإضافة بجانب الصفحة. مثل 📌 إرفاق و↙️ فصل في الترويسة."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "تمت الإضافة إلى المفضلة"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "تم حذف المقال"
+  },
+  "f_check_again_fccf": {
+    "message": "تحقق مرة أخرى"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "جارٍ فحص Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "تعذّر حفظ هذه الصفحة — حدّث التبويب."
+  },
+  "f_installed_models_a979": {
+    "message": "النماذج المثبّتة"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "احتفظ به في السجل، بدون ذكاء اصطناعي، ولا يُرسل شيء"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "تعذّر الوصول إلى Ollama — أعدّه من الإعدادات"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama يعمل، لكن لم يُثبَّت أي نموذج بعد. نزّل واحدًا من الطرفية:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama يعمل، لكن لا يوجد نموذج مثبّت — نفّذ: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama يعمل. النماذج المثبّتة — انقر على واحد لاستخدامه:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "رفض Ollama الطلب (OLLAMA_ORIGINS) — راجع الإعدادات"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} مثبّت"
+  },
+  "f_open_account_settings_781f": {
+    "message": "فتح إعدادات الحساب"
+  },
+  "f_open_model_settings_7865": {
+    "message": "فتح إعدادات النماذج"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "في قائمة الانتظار — سيبدأ عند انتهاء الملخّص الحالي"
+  },
+  "f_queued_4ebe": {
+    "message": "في الانتظار: {title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "اقرأه بالذكاء الاصطناعي"
+  },
+  "f_remove_901d": {
+    "message": "إزالة"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "تمت الإزالة من المفضلة"
+  },
+  "f_save_only_82ca": {
+    "message": "حفظ فقط"
+  },
+  "f_save_options_f4e6": {
+    "message": "خيارات الحفظ"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "تم الحفظ بدون ملخّص ذكاء اصطناعي. افتح الصفحة واضغط ✨ لخّص لإضافة واحد."
+  },
+  "f_search_installed_models_959b": {
+    "message": "ابحث في النماذج المثبّتة…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "هذا يتطلب حسابك. سجّل الدخول أو تحقق من باقتك في الإعدادات."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "لا يمكن حفظ هذه الصفحة."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "بانتظار الملخّص الجاري — انقر للإزالة من قائمة الانتظار"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "مفتاح API مفقود أو مرفوض. تحقق منه في الإعدادات."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "يبدأ عند انتهاء الملخّص الحالي"
+  },
+  "f_this_page_a108": {
+    "message": "هذه الصفحة"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ في الانتظار"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 حُفظ بدون ذكاء اصطناعي"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 محفوظ · بدون ذكاء اصطناعي"
   }
 }

@@ -2,6 +2,10 @@
 
 Stand: v2.1.22, `main` @ 1c96a29. Ergänzt `plugin/PROJECT_AUDIT.md` (Code-Struktur) und `plugin/STYLE_AUDIT.md` (CSS). Dieser Audit schaut auf Produkt, UX, Vertrauen, Wachstum und Betrieb. Gemessen wurde am Code, nicht an Nutzerdaten, es gibt also keine Aussagen zu Conversion oder Retention.
 
+## 0. Umsetzungsstand (2026-10-09)
+
+Erledigt in diesem Branch: #35 (Tests grün, 33 Strings in 13 Sprachen übersetzt), #36 (Datenschutztext: eine Quelle `site-src/pages/privacy.html`, `privacy.md` und `plugin/src/privacy.md` werden generiert und per `test93` geprüft), #37 (Kindle läuft über den byPhil-Proxy, LocalSend und Share-Sheet sind direkt; README und Datenschutzseite beschreiben jetzt dasselbe), #38 (`LICENSE`, MIT), #43 (`ci.yml` auf Pull Requests und `main`), #44 (README-Abweichungen, `npm run build`-Skripte ergänzt). Alles andere ist offen.
+
 ## 1. Kurzfazit
 
 AISH ist für ein Ein-Personen-Projekt ungewöhnlich ausgereift: Eine Browser-Extension (Chrome, Firefox, Android, Safari) plus Bookmarklet, ein Feature-Set weit über „Seite zusammenfassen“ hinaus (RSS, Archiv, Graph, Highlights, Podcast, Kindle/LocalSend), eine echte Testsuite (92 jsdom-Tests, 2 E2E), ESLint ohne Befunde, 13 Sprachen und eine konsequente Privacy-Haltung (Bring-your-own-key, lokale Daten).

@@ -21,12 +21,13 @@ assert(hint, 'hint shown for Ollama 403');
 assert(/OLLAMA_ORIGINS/.test(hint.textContent));
 hint.querySelector('button').click(); await tick(20);
 assert.deepEqual(shown.slice(-1), ['settings'], 'opens settings');
-// other providers: no hint
+// other providers: a 403 is a key/plan problem, so the generic settings link may show, but never the Ollama advice
 d.querySelectorAll('.ollama-hint').forEach(e => e.remove());
 store.activeService = 'openai';
 send({ action: 'summaryContext', words: 500, host: 'a.example.com', highlights: 0, length: 200 });
 await tick(30);
 send({ action: 'summaryError', error: 'HTTP 403: Forbidden' });
 await tick(80);
-assert(!d.querySelector('.ollama-hint'), 'no hint for other providers');
+const other = d.querySelector('.ollama-hint');
+assert(!other || !/Ollama|OLLAMA_ORIGINS/.test(other.textContent), 'no Ollama advice for other providers');
 console.log('TEST 57 OK'); process.exit(0);
