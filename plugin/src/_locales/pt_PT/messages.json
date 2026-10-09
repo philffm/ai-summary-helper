@@ -3920,6 +3920,69 @@
   "f_remove_limit_and_refresh_afec": {
     "message": "Remover o limite e atualizar"
   },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Disponível quando o Ollama é o seu modelo ativo. Avalia, categoriza e resume toda a biblioteca de feeds em pequenos lotes no seu próprio computador. Pode demorar horas, mas não gasta tokens."
+  },
+  "f_done_61ad": {
+    "message": "Concluído."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Tudo na sua biblioteca está avaliado, categorizado e resumido."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Processar toda a biblioteca"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "A avaliar e categorizar…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Corre no seu próprio computador com o Ollama e não gasta tokens. Mantenha este painel aberto: fechá-lo pausa a execução e, ao iniciar de novo, continua onde parou. Só são processados os itens ainda guardados (ver «Manter itens durante»). O resumo de hoje é escrito quando o abrir."
+  },
+  "f_stop_7705": {
+    "message": "Parar"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Parado. Ao iniciar de novo continua onde ficou."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Toda a biblioteca · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "A escrever resumos diários…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "cerca de {h} h {m} min"
+  },
+  "f_about_min_7cd9": {
+    "message": "cerca de {m} min"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} itens avaliados · {b} dias resumidos"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} itens por avaliar · {b} dias por resumir · {n} pedidos de IA"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (recomendado)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} falharam"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Itens por lote"
+  },
+  "f_6_hours_b222": {
+    "message": "6 horas"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Obtém os seus feeds e processa as novidades no intervalo abaixo, enquanto o ecrã de Feeds ou o painel lateral estiver aberto"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Executar a cada"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Processar automaticamente os novos itens"
+  },
   "f_recap_is_ready_6da7": {
     "message": "✨ O resumo de {label} está pronto"
   }

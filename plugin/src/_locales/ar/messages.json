@@ -3920,6 +3920,69 @@
   "f_remove_limit_and_refresh_afec": {
     "message": "إزالة الحد والتحديث"
   },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "متاح عندما يكون Ollama نموذجك النشط. يقيّم مكتبة الخلاصات كلها ويصنّفها ويلخّصها على دفعات صغيرة على جهازك. قد يستغرق ساعات لكنه لا يستهلك أي رموز."
+  },
+  "f_done_61ad": {
+    "message": "تم."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "كل ما في مكتبتك مُقيَّم ومُصنَّف ومُلخَّص."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "معالجة المكتبة كلها"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "جارٍ التقييم والتصنيف…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "يعمل على جهازك مع Ollama ولا يستهلك رموزًا. أبقِ هذه اللوحة مفتوحة: إغلاقها يوقف التشغيل مؤقتًا، والبدء من جديد يكمل من حيث توقف. تُعالَج فقط العناصر المخزّنة حاليًا (انظر «الاحتفاظ بالعناصر لمدة»). يُكتب ملخّص اليوم عند فتحه."
+  },
+  "f_stop_7705": {
+    "message": "إيقاف"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "تم الإيقاف. البدء من جديد يكمل من حيث توقف."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "المكتبة كلها · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "جارٍ كتابة ملخّصات الأيام…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "نحو {h} ساعة {m} دقيقة"
+  },
+  "f_about_min_7cd9": {
+    "message": "نحو {m} دقيقة"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "تم تقييم {a} عنصرًا · تم تلخيص {b} يومًا"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} عنصرًا للتقييم · {b} يومًا للتلخيص · {n} طلب ذكاء اصطناعي"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (موصى به)"
+  },
+  "f_failed_50a8": {
+    "message": "فشل {n}"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 العناصر في كل دفعة"
+  },
+  "f_6_hours_b222": {
+    "message": "6 ساعات"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "يجلب خلاصاتك ويعالج الجديد بالفاصل الزمني أدناه ما دامت شاشة الخلاصات أو اللوحة الجانبية مفتوحة"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ التشغيل كل"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 معالجة العناصر الجديدة تلقائيًا"
+  },
   "f_recap_is_ready_6da7": {
     "message": "✨ ملخص {label} جاهز"
   }

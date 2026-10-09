@@ -3920,6 +3920,69 @@
   "f_remove_limit_and_refresh_afec": {
     "message": "Limit entfernen und aktualisieren"
   },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Verfügbar, wenn Ollama dein aktives Modell ist. Es bewertet, kategorisiert und fasst deine gesamte Feed-Bibliothek in kleinen Stapeln auf deinem eigenen Rechner zusammen. Das kann Stunden dauern, kostet aber keine Tokens."
+  },
+  "f_done_61ad": {
+    "message": "Fertig."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Alles in deiner Bibliothek ist bewertet, kategorisiert und zusammengefasst."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Ganze Bibliothek verarbeiten"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "Bewerte und kategorisiere…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Läuft auf deinem eigenen Rechner mit Ollama und kostet keine Tokens. Lass dieses Fenster offen: Schließt du es, pausiert der Lauf, und beim erneuten Start geht es dort weiter, wo er stehen blieb. Verarbeitet werden nur noch gespeicherte Einträge (siehe „Einträge behalten für“). Der Recap von heute entsteht, wenn du ihn öffnest."
+  },
+  "f_stop_7705": {
+    "message": "Stopp"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Gestoppt. Beim erneuten Start geht es dort weiter, wo es aufgehört hat."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Ganze Bibliothek · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "Schreibe Tages-Recaps…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "etwa {h} Std. {m} Min."
+  },
+  "f_about_min_7cd9": {
+    "message": "etwa {m} Min."
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} Einträge bewertet · {b} Tage zusammengefasst"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} Einträge zu bewerten · {b} Tage zu fassen · {n} KI-Anfragen"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (empfohlen)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} fehlgeschlagen"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Einträge pro Stapel"
+  },
+  "f_6_hours_b222": {
+    "message": "6 Stunden"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Ruft deine Feeds ab und verarbeitet Neues im Abstand unten, solange der Feed-Bildschirm oder das Seitenfenster offen ist"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Ausführen alle"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Neue Einträge automatisch verarbeiten"
+  },
   "f_recap_is_ready_6da7": {
     "message": "✨ Rückblick {label} ist fertig"
   }

@@ -3881,6 +3881,9 @@ body[data-surface="sidebar"] { min-width: 0; }
 .length-mode { margin: 0; }
 #lengthBiasGrid { margin-bottom: var(--spacing-s-2); }
 
+/* ── Whole-library batch run (Ollama) ──────────────────────────────────── */
+.library-progress { width: 100%; height: 8px; margin: var(--spacing-s-2) 0; accent-color: var(--accent); }
+
 /* Page chip lives INSIDE the composer pill, top-left above the text; the pill wraps so the chip gets its own row. */
 .composer-pill { flex-wrap: wrap; }
 .composer-pill .page-chip {

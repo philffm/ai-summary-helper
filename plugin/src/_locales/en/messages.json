@@ -4094,6 +4094,75 @@
     "message": "{n} items could not be scored",
     "description": "Placeholders: {n} (keep as is)"
   },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Available when Ollama is your active model. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens."
+  },
+  "f_done_61ad": {
+    "message": "Done."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Everything in your library is rated, categorized and recapped."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Process the whole library"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "Rating and categorizing…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Runs on your own machine with Ollama and spends no tokens. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see \"Keep items for\"). Today's recap is written when you open it."
+  },
+  "f_stop_7705": {
+    "message": "Stop"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Stopped. Starting again continues where it left off."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Whole library · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "Writing day recaps…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "about {h} h {m} min",
+    "description": "Placeholders: {h} {m} (keep as is)"
+  },
+  "f_about_min_7cd9": {
+    "message": "about {m} min",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} items rated · {b} days recapped",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} items to rate · {b} days to recap · {n} AI requests",
+    "description": "Placeholders: {a} {b} {n} (keep as is)"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (recommended)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} failed",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Items per batch"
+  },
+  "f_6_hours_b222": {
+    "message": "6 hours"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Fetches your feeds and processes what is new at the interval below, while the Feeds screen or side panel is open"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Run every"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Process new items automatically"
+  },
   "f_recap_is_ready_6da7": {
     "message": "✨ {label} recap is ready",
     "description": "Placeholders: {label} (keep as is)"

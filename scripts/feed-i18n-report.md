@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1155. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1133 | 0 | 0 | 36 |
-| de | 1133 | 0 | 0 | 172 |
-| es | 1133 | 0 | 0 | 127 |
-| fr | 1133 | 0 | 0 | 160 |
-| hi | 1133 | 0 | 0 | 56 |
-| it | 1133 | 0 | 0 | 135 |
-| ja | 1133 | 0 | 0 | 74 |
-| ko | 1133 | 0 | 0 | 16 |
-| pt_PT | 1133 | 0 | 0 | 126 |
-| ru | 1133 | 0 | 0 | 75 |
-| zh_CN | 1133 | 0 | 0 | 1 |
-| zh_HK | 1133 | 0 | 0 | 1 |
-| zh_TW | 1133 | 0 | 0 | 1 |
+| ar | 1155 | 0 | 0 | 36 |
+| de | 1155 | 0 | 0 | 174 |
+| es | 1155 | 0 | 0 | 131 |
+| fr | 1155 | 0 | 0 | 163 |
+| hi | 1155 | 0 | 0 | 57 |
+| it | 1155 | 0 | 0 | 138 |
+| ja | 1155 | 0 | 0 | 75 |
+| ko | 1155 | 0 | 0 | 16 |
+| pt_PT | 1155 | 0 | 0 | 128 |
+| ru | 1155 | 0 | 0 | 78 |
+| zh_CN | 1155 | 0 | 0 | 1 |
+| zh_HK | 1155 | 0 | 0 | 1 |
+| zh_TW | 1155 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -91,6 +91,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI language | Sprache der Oberfläche | 22 vs 11 | 2× |
 | What I used | Was ich verwendet habe | 22 vs 11 | 2× |
 | Sort: Mood | Sortieren: Stimmung | 19 vs 10 | 1.9× |
+| {n} failed | {n} fehlgeschlagen | 17 vs 9 | 1.89× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
 | API key | API-Schlüssel | 13 vs 7 | 1.86× |
 | Refresh | Aktualisieren | 13 vs 7 | 1.86× |
@@ -224,6 +225,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
 | This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload. | Das setzt alle Einstellungen, Prompts und API-Schlüssel auf diesem Gerät zurück. Deine Zusammenfassungen bleiben erhalten. Die Erweiterung wird neu geladen. | 156 vs 112 | 1.39× |
 | I want to use my own Custom API / Local Model | Ich möchte meine eigene Custom-API / ein lokales Modell nutzen | 62 vs 45 | 1.38× |
+| Stopped. Starting again continues where it left off. | Gestoppt. Beim erneuten Start geht es dort weiter, wo es aufgehört hat. | 71 vs 52 | 1.37× |
 | Free cloud models and your summaries on every device. Or skip this and use your own API key. | Kostenlose Cloud-Modelle und deine Zusammenfassungen auf jedem Gerät. Oder überspringen und den eigenen API-Schlüssel nutzen. | 125 vs 92 | 1.36× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
 | Ollama is not reachable — set it up in Settings | Ollama ist nicht erreichbar – richte es in den Einstellungen ein | 64 vs 47 | 1.36× |
@@ -313,6 +315,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Focus search | Enfocar la búsqueda | 19 vs 12 | 1.58× |
 | Instant read | Lectura instantánea | 19 vs 12 | 1.58× |
 | Recap failed | Error en el resumen | 19 vs 12 | 1.58× |
+| Writing day recaps… | Escribiendo resúmenes diarios… | 30 vs 19 | 1.58× |
 | 📈 Topics over time | 📈 Temas a lo largo del tiempo | 30 vs 19 | 1.58× |
 | Best match · {n} items | Mejor coincidencia · {n} elementos | 33 vs 21 | 1.57× |
 | Failed to load models | No se pudieron cargar los modelos | 33 vs 21 | 1.57× |
@@ -326,6 +329,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
 | Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
 | Magic code sent! ✨ Check your inbox. | ¡Código mágico enviado! ✨ Revisa tu bandeja de entrada. | 55 vs 36 | 1.53× |
+| ✨ {label} recap is ready | ✨ El resumen de {label} está listo | 29 vs 19 | 1.53× |
 | Mood over time per category | Ánimo a lo largo del tiempo por categoría | 41 vs 27 | 1.52× |
 | No active receiver found. | No se encontró ningún receptor activo. | 38 vs 25 | 1.52× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓ | 65 vs 43 | 1.51× |
@@ -358,11 +362,13 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No articles saved yet. | Aún no hay artículos guardados. | 31 vs 22 | 1.41× |
 | No password. We email you a short code. | Sin contraseña. Te enviamos un código corto por correo. | 55 vs 39 | 1.41× |
 | Use "{name}" as custom language code | Usar «{name}» como código de idioma personalizado | 45 vs 32 | 1.41× |
+| 🔁 Process new items automatically | 🔁 Procesar automáticamente los elementos nuevos | 48 vs 34 | 1.41× |
 | Automatic light-blue quote highlights from summaries | Citas resaltadas en azul claro automáticamente a partir de los resúmenes | 72 vs 52 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Valora el tono de los resúmenes y de los elementos del feed. Activa filtros de ánimo, gráficos y el balance de fuentes. Desactívalo para ocultar todas las funciones de ánimo. | 174 vs 128 | 1.36× |
 | Shown in the article and included in exports | Se muestra en el artículo y se incluye en las exportaciones | 59 vs 44 | 1.34× |
 | Style for AI briefings and week & month recaps. | Estilo para briefings con IA y resúmenes semanales y mensuales. | 63 vs 47 | 1.34× |
 | e.g. Prefer European news and keep it upbeat. | p. ej. Prefiere noticias europeas y mantén un tono positivo. | 60 vs 45 | 1.33× |
+| {a} items to rate · {b} days to recap · {n} AI requests | {a} elementos por puntuar · {b} días por resumir · {n} solicitudes de IA | 69 vs 52 | 1.33× |
 | Found your {n} highlights · using as focus | Se encontraron tus {n} destacados · usados como enfoque | 54 vs 41 | 1.32× |
 | Mood history is kept for 13 months, even after items are removed. | El historial de ánimo se conserva 13 meses, incluso después de eliminar los artículos. | 86 vs 65 | 1.32× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Haz clic derecho en el icono de Ollama de la bandeja (abajo a la derecha) y elige <b>Quit</b>. | 94 vs 71 | 1.32× |
@@ -398,6 +404,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI language | Langue de l’interface | 21 vs 11 | 1.91× |
 | Auto length bias | Ajustement de la longueur auto | 30 vs 16 | 1.88× |
 | No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
+| ⏱️ Run every | ⏱️ Exécuter toutes les | 22 vs 12 | 1.83× |
 | No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
 | Mute / unmute reading | Couper / rétablir le son de la lecture | 38 vs 21 | 1.81× |
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
@@ -405,6 +412,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
 | Saved! ✓ | Enregistré ! ✓ | 14 vs 8 | 1.75× |
 | Testing… | Test en cours… | 14 vs 8 | 1.75× |
+| Writing day recaps… | Rédaction des résumés quotidiens… | 33 vs 19 | 1.74× |
 | Motion & layout | Animations et mise en page | 26 vs 15 | 1.73× |
 | Open week › | Ouvrir la semaine › | 19 vs 11 | 1.73× |
 | What I used | Ce que j'ai utilisé | 19 vs 11 | 1.73× |
@@ -516,6 +524,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Keep it in History, no AI, nothing sent | Gardez-le dans l’historique, sans IA, rien n’est envoyé | 55 vs 39 | 1.41× |
 | Only {r} of {n} items are rated | Seulement {r} articles sur {n} sont évalués | 41 vs 29 | 1.41× |
 | Updates & storage | Mises à jour et stockage | 24 vs 17 | 1.41× |
+| 🔁 Process new items automatically | 🔁 Traiter automatiquement les nouveaux éléments | 48 vs 34 | 1.41× |
 | Not set up yet — add your Kindle in Settings | Pas encore configuré — ajoutez votre Kindle dans les Réglages | 61 vs 44 | 1.39× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Évalue le ton des résumés et des éléments du flux. Alimente les filtres d’humeur, les graphiques et le bilan des sources. Désactivez pour masquer toutes les fonctions d’humeur. | 176 vs 128 | 1.38× |
 | Run this command. It lets extensions, and only extensions, talk to Ollama: | Exécutez cette commande. Elle permet aux extensions, et seulement aux extensions, de parler à Ollama : | 102 vs 74 | 1.38× |
@@ -576,6 +585,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Export or restore all settings as a JSON file. | सारी सेटिंग्स को JSON फ़ाइल के रूप में एक्सपोर्ट या पुनर्स्थापित करें। | 70 vs 46 | 1.52× |
 | Searching Cloud... | क्लाउड में खोज हो रही है... | 27 vs 18 | 1.5× |
 | No password. We email you a short code. | पासवर्ड नहीं चाहिए। हम आपको ईमेल से एक छोटा कोड भेजते हैं। | 58 vs 39 | 1.49× |
+| Writing day recaps… | दैनिक रीकैप लिखे जा रहे हैं… | 28 vs 19 | 1.47× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
 | Scan failed. Enter IP manually. | स्कैन विफल रहा। IP मैन्युअल रूप से दर्ज करें। | 45 vs 31 | 1.45× |
 | Checking Ollama… | Ollama जाँचा जा रहा है… | 23 vs 16 | 1.44× |
@@ -610,6 +620,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Get Key | Ottieni chiave | 14 vs 7 | 2× |
 | Own key | Chiave propria | 14 vs 7 | 2× |
 | {n} day recap | {n} riepilogo giornaliero | 24 vs 12 | 2× |
+| Writing day recaps… | Scrittura dei riepiloghi giornalieri… | 37 vs 19 | 1.95× |
 | Add custom model | Aggiungi modello personalizzato | 31 vs 16 | 1.94× |
 | Easy-read font | Carattere di facile lettura | 27 vs 14 | 1.93× |
 | Import failed | Importazione non riuscita | 25 vs 13 | 1.92× |
@@ -642,6 +653,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Week & month recaps | Riepiloghi settimanali e mensili | 32 vs 19 | 1.68× |
 | Open in sidebar | Apri nella barra laterale | 25 vs 15 | 1.67× |
 | Verifying... | Verifica in corso... | 20 vs 12 | 1.67× |
+| {n} failed | {n} non riusciti | 15 vs 9 | 1.67× |
 | Scan failed. Enter IP manually. | Scansione non riuscita. Inserisci l'IP manualmente. | 51 vs 31 | 1.65× |
 | Copy failed | Copia non riuscita | 18 vs 11 | 1.64× |
 | Set as active send target | Imposta come destinazione di invio attiva | 41 vs 25 | 1.64× |
@@ -685,6 +697,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Queue a question… | Metti in coda una domanda… | 26 vs 17 | 1.53× |
 | Reading page... | Lettura della pagina... | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
+| ✨ {label} recap is ready | ✨ Il riepilogo di {label} è pronto | 29 vs 19 | 1.53× |
 | Customize text size, spacing, font, motion | Personalizza dimensione testo, spaziatura, carattere e movimento | 64 vs 42 | 1.52× |
 | Mute / unmute reading | Disattiva / attiva audio lettura | 32 vs 21 | 1.52× |
 | Keep it in History, no AI, nothing sent | Tienilo nella cronologia, senza IA, non viene inviato nulla | 59 vs 39 | 1.51× |
@@ -733,6 +746,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 ### ja
 | English | Translation | width | ratio |
 |---|---|---|---|
+| Done. | 完了しました。 | 14 vs 5 | 2.8× |
 | {n} file sent | {n}件のファイルを送信しました | 28 vs 12 | 2.33× |
 | or consider | または次をご検討ください: | 25 vs 11 | 2.27× |
 | {n} files sent | {n}件のファイルを送信しました | 28 vs 13 | 2.15× |
@@ -926,6 +940,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
 | Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |
 | Queue a question… | Colocar pergunta em fila… | 25 vs 17 | 1.47× |
+| ✨ {label} recap is ready | ✨ O resumo de {label} está pronto | 28 vs 19 | 1.47× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
 | Delete all settings? | Eliminar todas as definições? | 29 vs 20 | 1.45× |
 | Ghost Highlight Amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
@@ -943,6 +958,7 @@ Strings: 1133. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mood history is kept for 13 months, even after items are removed. | O histórico de humor é mantido durante 13 meses, mesmo depois de os artigos serem removidos. | 92 vs 65 | 1.42× |
 | Open model settings | Abrir definições de modelos | 27 vs 19 | 1.42× |
 | Preset and custom prompt | Prompt predefinido e personalizado | 34 vs 24 | 1.42× |
+| Writing day recaps… | A escrever resumos diários… | 27 vs 19 | 1.42× |
 | No articles saved yet. | Ainda não há artigos guardados. | 31 vs 22 | 1.41× |
 | Use "{name}" as custom language code | Usar "{name}" como código de idioma personalizado | 45 vs 32 | 1.41× |
 | Invalid backup file. Please select a valid AI Summary Helper export. | Ficheiro de cópia de segurança inválido. Selecione uma exportação válida do AI Summary Helper. | 94 vs 68 | 1.38× |
@@ -1015,6 +1031,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Sent to {name} | Отправлено на {name} | 16 vs 10 | 1.6× |
 | Queue a question… | Поставить вопрос в очередь… | 27 vs 17 | 1.59× |
 | No items yet | Пока нет материалов | 19 vs 12 | 1.58× |
+| ⏱️ Run every | ⏱️ Запускать каждые | 19 vs 12 | 1.58× |
 | Mark read when opened | Отмечать прочитанным при открытии | 33 vs 21 | 1.57× |
 | Share failed: {message} | Не удалось поделиться: {message} | 25 vs 16 | 1.56× |
 | Type {word} to confirm | Введите {word} для подтверждения | 28 vs 18 | 1.56× |
@@ -1043,11 +1060,13 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Export backup first | Сначала экспортируйте копию | 27 vs 19 | 1.42× |
 | Scan failed. Enter IP manually. | Сканирование не удалось. Введите IP вручную. | 44 vs 31 | 1.42× |
 | Week & month recaps | Недельные и месячные обзоры | 27 vs 19 | 1.42× |
+| Writing day recaps… | Составление дневных сводок… | 27 vs 19 | 1.42× |
 | Ghost Highlight Amount | Количество призрачных выделений | 31 vs 22 | 1.41× |
 | Ghost highlight amount | Количество призрачных выделений | 31 vs 22 | 1.41× |
 | 📈 Mood over time | 📈 Настроение во времени | 24 vs 17 | 1.41× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Пока ничего не оценено — составьте ✨ сводку, чтобы оценить материалы. | 69 vs 50 | 1.38× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
+| Stopped. Starting again continues where it left off. | Остановлено. При новом запуске обработка продолжится с того же места. | 69 vs 52 | 1.33× |
 | Uses your AI model · one extra call · in your app language | Использует вашу модель ИИ · один дополнительный запрос · на языке приложения | 76 vs 58 | 1.31× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |
 
