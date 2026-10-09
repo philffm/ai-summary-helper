@@ -591,8 +591,21 @@ async function untrackFeedTab(tabId, closeNow = false, delay = 0) {
     setTimeout(() => chrome.tabs.remove(tabId).catch(() => {}), closeNow ? 0 : delay);
 }
 
+// Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
+// on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
+const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P']);
+function fromExtensionPage(sender) {
+    if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
+    // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
+    return sender.url ? sender.url.startsWith(chrome.runtime.getURL('')) : !sender.tab;
+}
+
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg && EXTENSION_PAGE_ACTIONS.has(msg.action) && !fromExtensionPage(sender)) {
+        sendResponse({ ok: false, success: false, error: 'Not allowed from a web page' });
+        return false;
+    }
     if (msg && msg.action === 'ttsCmd') {
         if (!ttsEngine) { sendResponse({ ok: false, available: false }); return false; }
         ttsEngine.handle(msg).then(sendResponse).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
