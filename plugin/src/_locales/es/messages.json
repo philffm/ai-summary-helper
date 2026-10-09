@@ -4174,5 +4174,113 @@
   },
   "f_tag_lists_to_name_846e": {
     "message": "{n} listas de etiquetas por nombrar"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "Pregunta una vez a tu conexión de IA el nombre en inglés y la palabra en el idioma de la interfaz de cada etiqueta aún desconocida que se use al menos dos veces, las más usadas primero. Tus artículos conservan sus etiquetas."
+  },
+  "f_balanced_603d": {
+    "message": "Equilibrado"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "Solo CPU o equipo antiguo"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU o Apple Silicon, modelo de 7–8B"
+  },
+  "f_gentle_9fd8": {
+    "message": "Suave"
+  },
+  "f_measure_again_7f07": {
+    "message": "Medir de nuevo"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "Medir este ordenador"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "La medición falló: {e}"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "Midiendo… segunda solicitud."
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "Midiendo… la primera solicitud también carga el modelo."
+  },
+  "f_name_tags_4a5b": {
+    "message": "Nombrar etiquetas"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "Nombrar etiquetas en tu idioma"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "Nombrando etiquetas… {done} de {total}"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "Aún sin medir. La prueba envía dos lotes pequeños de valoración a Ollama (aprox. un minuto en un equipo lento) y nada sale de tu ordenador."
+  },
+  "f_powerful_0df9": {
+    "message": "Potente"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "Portátil reciente, modelo pequeño (3–4B)"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "Actualizar los feeds que publican a menudo y que lees primero"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "Configuraciones típicas para un lote (rangos orientativos):"
+  },
+  "f_use_b076": {
+    "message": "Usar {p}"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "Muy lento: usa un modelo más pequeño"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "Lo que haría cada perfil en este equipo:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "Tu propia combinación de tamaño de lote, solicitudes por ejecución e intervalo."
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "una ejecución tarda unos {t}"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "primera solicitud {s} (carga el modelo)"
+  },
+  "f_over_352a": {
+    "message": "más de {s}"
+  },
+  "f_recommended_a2ac": {
+    "message": "recomendado"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "hasta {n} elementos por hora"
+  },
+  "f_up_to_196c": {
+    "message": "hasta {s}"
+  },
+  "f_you_d09c": {
+    "message": "tú"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "{n} elementos por solicitud · {r} solicitudes por ejecución · cada {m} min"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{s} para {n} titulares"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ Perfil de rendimiento"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ Todas las etiquetas frecuentes ya tienen nombre — nada que hacer."
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ {n} de {total} etiquetas nombradas."
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ Orden de actualización inteligente"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 Solicitudes por ejecución automática"
   }
 }

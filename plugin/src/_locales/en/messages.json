@@ -4171,13 +4171,15 @@
     "message": "Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual."
   },
   "f_last_background_run_6ae5": {
-    "message": "Last background run: {time} · {result}"
+    "message": "Last background run: {time} · {result}",
+    "description": "Placeholders: {time} {result} (keep as is)"
   },
   "f_no_background_run_yet_fe7d": {
     "message": "No background run yet."
   },
   "f_items_rated_day_recaps_writt_ce24": {
-    "message": "{a} items rated · {b} day recaps written"
+    "message": "{a} items rated · {b} day recaps written",
+    "description": "Placeholders: {a} {b} (keep as is)"
   },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens."
@@ -4366,5 +4368,124 @@
   "f_tag_lists_to_name_846e": {
     "message": "{n} tag lists to name",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "Asks your AI connection once for the English name and the UI-language word of every tag that is not known yet and is used at least twice, most used first. Your articles keep their tags."
+  },
+  "f_balanced_603d": {
+    "message": "Balanced"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "CPU only or older machine"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU or Apple Silicon, 7–8B model"
+  },
+  "f_gentle_9fd8": {
+    "message": "Gentle"
+  },
+  "f_measure_again_7f07": {
+    "message": "Measure again"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "Measure this computer"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "Measurement failed: {e}",
+    "description": "Placeholders: {e} (keep as is)"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "Measuring… second request."
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "Measuring… the first request also loads the model."
+  },
+  "f_name_tags_4a5b": {
+    "message": "Name tags"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "Name tags in your language"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "Naming tags… {done} of {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "Not measured yet. The test sends two small rating batches to Ollama (about a minute on a slow machine) and nothing leaves your computer."
+  },
+  "f_powerful_0df9": {
+    "message": "Powerful"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "Recent laptop, small (3–4B) model"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "Refresh feeds that post often and that you read first"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "Typical setups for one batch (rough reference ranges):"
+  },
+  "f_use_b076": {
+    "message": "Use {p}",
+    "description": "Placeholders: {p} (keep as is)"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "Very slow: use a smaller model"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "What each profile would do on this machine:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "Your own mix of batch size, requests per run and interval."
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "a run takes about {t}",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "first request {s} (loads the model)",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_over_352a": {
+    "message": "over {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_recommended_a2ac": {
+    "message": "recommended"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "up to {n} items per hour",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_up_to_196c": {
+    "message": "up to {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_you_d09c": {
+    "message": "you"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "{n} items per request · {r} requests per run · every {m} min",
+    "description": "Placeholders: {n} {r} {m} (keep as is)"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{s} for {n} headlines",
+    "description": "Placeholders: {s} {n} (keep as is)"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ Performance profile"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ Every frequently used tag already has a name — nothing to do."
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ Named {n} of {total} tags.",
+    "description": "Placeholders: {n} {total} (keep as is)"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ Smart refresh order"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 Requests per automatic run"
   }
 }
