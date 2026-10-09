@@ -16,6 +16,7 @@ import { SK, articleRecKey } from './storageKeys.js';
 //   list         = day groups with a scoped "Mark read" and an undo bar
 //   Settings > Feeds = subscriptions (rename / tags / mute / remove), OPML, behavior
 
+import { showSkeleton, clearSkeleton } from './skeleton.js';
 import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
 import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
@@ -2411,7 +2412,8 @@ export async function onFeedsScreenShown(uiObj) {
     hideSuppressUntil = Date.now() + 1200;
     if (els.screen) els.screen.scrollTop = 0;
     if (els.controlsBar) els.controlsBar.classList.remove('scroll-hidden');
-    await load();
+    if (els.list) { els.list.hidden = false; showSkeleton(els.list, { cardClass: 'feed-item' }); }
+    try { await load(); } catch (e) { clearSkeleton(els.list); throw e; }
     try { await reconcileStubs(); } catch (e) { console.warn('[feeds] stub reconcile failed', e); }
     await loadHistoryMap();
     carryMoodToHistory();

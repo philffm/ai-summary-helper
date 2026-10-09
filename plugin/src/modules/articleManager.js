@@ -1,4 +1,5 @@
 import { mountReadingTools, destroyReadingTools } from './readingTools.js';
+import { showSkeleton, clearSkeleton } from './skeleton.js';
 import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
@@ -1059,6 +1060,7 @@ export function loadHistory() {
     if (historyTopBar) historyTopBar.style.display = 'flex';
     if (articleList) articleList.style.display = 'block';
     document.dispatchEvent(new Event('aish:ws-refresh'));
+    showSkeleton(articleList);
     import('./feedManager.js')
         .then(m => m.reconcileStubs())
         .catch(() => {})
@@ -1068,7 +1070,7 @@ export function loadHistory() {
             archivedCache = articles.filter(a => a.archived);
             invalidateSearchIndex();
             renderTab();
-        }).catch(() => {});
+        }).catch(() => clearSkeleton(articleList));
 }
 
 function renderResearchFilters(bar) {
