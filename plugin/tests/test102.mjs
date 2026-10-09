@@ -1,7 +1,9 @@
 // Onboarding: cloud, own key and Ollama are three equal choices; the no-account ones open the model settings with their tab selected. About links the privacy policy.
 import assert from 'assert';
+import fs from 'fs';
 import { setup, imp, tick } from './harness.mjs';
 const { w } = setup({}); const d = w.document;
+const css = fs.readFileSync(process.env.AISH_SRC + '/styles.css', 'utf8');
 globalThis.requestAnimationFrame = (f) => setTimeout(f, 0);
 chrome.runtime.getURL = (p) => 'chrome-extension://abc/' + p;
 chrome.tabs = { query: async () => [], sendMessage() {}, onActivated: { addListener() {} }, onUpdated: { addListener() {} } };
@@ -13,6 +15,7 @@ await tick(150);
 
 const box = d.getElementById('mainScreenOnboarding');
 assert.equal(box.style.display, 'flex', 'shown for a fresh install');
+assert(/\.onboarding-container\s*\{[^}]*padding-top:\s*calc\(var\(--header-h\)\s*\+\s*8px\)/s.test(css), 'onboarding content clears the fixed header');
 assert(/How should AI Summary Helper think/.test(d.getElementById('onboardingHeading').textContent));
 const cards = [...d.querySelectorAll('#onboardingOptions > .onboarding-option')];
 assert.equal(cards.length, 3, 'three options');

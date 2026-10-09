@@ -3907,7 +3907,7 @@ body[data-surface="sidebar"] { min-width: 0; }
 .chip-panel-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 /* ── Onboarding: three equal ways to start ─────────────────────────────── */
-.onboarding-container { overflow-y: auto; justify-content: flex-start; }
+.onboarding-container { overflow-y: auto; justify-content: flex-start; padding-top: calc(var(--header-h) + 8px); }
 .onboarding-container .onboarding-intro { margin-bottom: var(--spacing-s-4); }
 .onboarding-options { width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: var(--spacing-s-3); }
 .onboarding-option {
