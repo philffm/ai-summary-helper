@@ -49,7 +49,8 @@ function makeBackground(initial, localMode = true) {
         notifications: { create: async () => { notifications++; } }
     };
     const localGet = async keys => chrome.storage.local.get(keys);
-    const run = new Function('chrome', 'localGet', 'SK', 'FEED_WORKER', `${block}\nreturn { pollFeeds, applyFeedPollConfig };`)(chrome, localGet, SK, worker);
+    const run = new Function('chrome', 'localGet', 'SK', 'FEED_WORKER', 'sumJobsReady', 'updateSumBadge',
+        `${block}\nreturn { pollFeeds, applyFeedPollConfig };`)(chrome, localGet, SK, worker, async () => {}, async () => {});
     return { run, store, alarms };
 }
 

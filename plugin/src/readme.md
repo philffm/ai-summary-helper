@@ -103,7 +103,7 @@ Right-click on any page to access:
 - **Summary length**: default word count
 - **Highlighting**: enable/disable globally
 - **Side panel**: open as native side panel or injected iframe
-- **Backup & Restore**: export/import all settings + full article history (v2 format)
+- **Backup & Restore**: export/import settings and full article history; API keys and sign-in/license secrets are excluded by default and require an explicit, warned opt-in
 
 ## Keyboard Shortcuts
 

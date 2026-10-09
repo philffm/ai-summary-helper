@@ -4320,5 +4320,23 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "Website access is off. Allow it in about:addons → this extension → Permissions (\"Access your data for all websites\"), then refresh."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Include API keys and sign-in details (anyone with the file can use them)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "This backup contains API keys, sign-in details, or license keys. Importing will replace matching stored secrets. Continue?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "This backup will contain API keys, sign-in details, and license keys. Anyone with the file can use them. Continue?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "This backup contains API keys, sign-in details, license keys, or an install identifier. Importing will replace matching stored secrets. Continue?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "This backup will contain API keys, sign-in details, license keys, and an install identifier. Anyone with the file could use its keys or identify this install. Continue?"
   }
 }

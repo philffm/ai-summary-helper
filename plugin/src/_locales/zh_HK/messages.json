@@ -4132,5 +4132,23 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "網站存取已關閉。請在 about:addons → 此擴充功能 → 權限中允許「存取所有網站上的資料」，然後重新整理。"
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "備份預設不包含 API 金鑰、登入資料、授權金鑰和安裝識別碼。請妥善保管匯出的檔案。"
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "包含 API 金鑰和登入資料（任何持有檔案的人都可以使用）"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "此備份包含 API 金鑰、登入資料或授權金鑰。匯入會取代相符的已儲存密鑰。是否繼續？"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "此備份將包含 API 金鑰、登入資料和授權金鑰。任何持有檔案的人都可以使用。是否繼續？"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "此備份包含 API 金鑰、登入資料、授權金鑰或安裝識別碼。匯入會取代相符的已儲存密鑰。是否繼續？"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "此備份將包含 API 金鑰、登入資料、授權金鑰和安裝識別碼。持有檔案的人可以使用其中的金鑰或識別此安裝。是否繼續？"
   }
 }

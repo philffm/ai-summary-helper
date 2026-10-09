@@ -4132,5 +4132,23 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "El acceso a sitios web está desactivado. Actívalo en about:addons → esta extensión → Permisos («Acceder a tus datos de todos los sitios web») y luego actualiza."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "De forma predeterminada, las copias de seguridad omiten las claves API, los datos de inicio de sesión, las licencias y los identificadores de instalación. Mantén privados los archivos exportados."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Incluir claves API y datos de inicio de sesión (cualquiera con el archivo podrá usarlos)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Esta copia contiene claves API, datos de inicio de sesión o licencias. La importación reemplazará los secretos guardados que coincidan. ¿Continuar?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Esta copia incluirá claves API, datos de inicio de sesión y licencias. Cualquiera con el archivo podrá usarlos. ¿Continuar?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Esta copia contiene claves API, datos de inicio de sesión, licencias o un identificador de instalación. La importación reemplazará los secretos guardados que coincidan. ¿Continuar?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Esta copia incluirá claves API, datos de inicio de sesión, licencias y un identificador de instalación. Quien tenga el archivo podrá usar sus claves o identificar esta instalación. ¿Continuar?"
   }
 }

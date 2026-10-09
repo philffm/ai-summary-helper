@@ -29809,6 +29809,226 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "1bfb63c49458fe94b6f8a812ff534a3a4c012eb2f7dbcdf40e1b692f052037d8": {
+      "en": "You can export your data at any time via Settings → Library & Data → Backup & restore. In the same place, the Danger zone lets you delete, by category and with a count of what will go: summaries and archive, highlights, feeds, podcasts, API keys / sign-in / license, send targets (Kindle, LocalSend) and preferences.",
+      "translations": {
+        "de": {
+          "text": "Sie können Ihre Daten jederzeit über Einstellungen → Bibliothek & Daten → Sichern & Wiederherstellen exportieren. Am selben Ort ermöglicht Ihnen der Gefahrenbereich das gezielte Löschen nach Kategorien samt Angabe der betroffenen Anzahl: Zusammenfassungen und Archiv, Highlights, Feeds, Podcasts, API-Schlüssel / Anmeldung / Lizenz, Sendeziele (Kindle, LocalSend) sowie Einstellungen.",
+          "translatedAt": "2026-10-09T18:32:55.423Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vous pouvez exporter vos données à tout moment via Paramètres → Bibliothèque & données → Sauvegarde & restauration. Au même endroit, la Zone de danger vous permet de supprimer vos données par catégorie, avec le décompte précis des éléments concernés : résumés et archives, surlignages, flux, podcasts, clés d'API / connexion / licence, cibles d'envoi (Kindle, LocalSend) et préférences.",
+          "translatedAt": "2026-10-09T18:33:02.224Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Puedes exportar tus datos en cualquier momento desde Configuración → Biblioteca y datos → Copia de seguridad y restauración. En ese mismo lugar, la Zona de peligro te permite eliminar por categoría y con un recuento de los elementos afectados: resúmenes y archivo, destacados, feeds, podcasts, claves de API / inicio de sesión / licencia, destinos de envío (Kindle, LocalSend) y preferencias.",
+          "translatedAt": "2026-10-09T18:33:12.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "您可以随时通过 设置 → 媒体库与数据 → 备份与恢复 导出数据。在同一界面的“危险区域”中，您可以按分类删除数据并查看具体清理数量：摘要与归档、高亮标注、订阅源、播客、API keys / 登录信息 / 许可证、发送目标（Kindle、LocalSend）以及偏好设置。",
+          "translatedAt": "2026-10-09T18:33:21.466Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "您隨時可以透過「設定」→「資料庫與資料」→「備份與還原」匯出資料。在同一頁面的「危險區域」中，您也可以依類別檢視項目數量並進行刪除：摘要與封存、畫線重點、訂閱源、Podcast、API keys／登入資訊／授權憑證、傳送目標（Kindle、LocalSend）以及偏好設定。",
+          "translatedAt": "2026-10-09T18:33:29.145Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "データはいつでも「設定 → ライブラリとデータ → バックアップと復元」からエクスポートできます。また同じ場所にある「Danger zone」では、削除される項目数を確認しながら、カテゴリ別（要約とアーカイブ、ハイライト、フィード、ポッドキャスト、APIキー／サインイン／ライセンス、送信先（Kindle、LocalSend）、環境設定）にデータを削除できます。",
+          "translatedAt": "2026-10-09T18:33:35.069Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "언제든지 Settings → Library & Data → Backup & restore에서 데이터를 내보낼 수 있어요. 동일한 위치의 Danger zone에서는 요약 및 아카이브, 하이라이트, 피드, 팟캐스트, API 키 / 로그인 / 라이선스, 전송 대상(Kindle, LocalSend), 환경설정 등 삭제될 항목 수와 함께 카테고리별로 안전하게 삭제할 수 있습니다.",
+          "translatedAt": "2026-10-09T18:33:40.700Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Você pode exportar seus dados a qualquer momento em Configurações → Biblioteca e dados → Backup e restauração. No mesmo local, a Zona de perigo permite excluir, por categoria e com uma contagem do que será apagado: resumos e arquivo, destaques, feeds, podcasts, chaves de API / login / licença, destinos de envio (Kindle, LocalSend) e preferências.",
+          "translatedAt": "2026-10-09T18:33:46.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप कभी भी Settings → Library & Data → Backup & restore के ज़रिए अपना data export कर सकते हैं। उसी जगह, Danger zone आपको category के अनुसार और क्या-क्या हटेगा उसकी count के साथ delete करने की सुविधा देता है: summaries और archive, highlights, feeds, podcasts, API keys / sign-in / license, send targets (Kindle, LocalSend) और preferences।",
+          "translatedAt": "2026-10-09T18:33:53.440Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn có thể xuất dữ liệu của mình bất kỳ lúc nào qua Cài đặt → Thư viện & Dữ liệu → Sao lưu & khôi phục. Cũng tại vị trí này, Khu vực nguy hiểm cho phép bạn xóa dữ liệu theo từng danh mục kèm số lượng mục sẽ bị xóa: bản tóm tắt và lưu trữ, mục đánh dấu nổi bật, nguồn cấp dữ liệu (feeds), podcast, khóa API / thông tin đăng nhập / giấy phép, đích gửi (Kindle, LocalSend) và tùy chọn cá nhân.",
+          "translatedAt": "2026-10-09T18:34:01.908Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e3709be42ebe47a75b45cf6552b7db388132f2f303f9b873ae5a02d2d0f6c03b": {
+      "en": "removes everything the extension stores on the device and starts it fresh. Removing the extension also removes its data. These actions delete local data only: your account and subscription records on our server (see below) are not affected, so to have those deleted, contact us.",
+      "translations": {
+        "de": {
+          "text": "entfernt alles, was die Erweiterung lokal auf Ihrem Gerät speichert, und setzt sie vollständig zurück. Durch das Deinstallieren der Erweiterung werden deren Daten ebenfalls gelöscht. Diese Aktionen löschen ausschließlich lokale Daten: Ihre Konto- und Abonnementdaten auf unserem Server (siehe unten) bleiben davon unberührt. Um diese löschen zu lassen, kontaktieren Sie uns bitte.",
+          "translatedAt": "2026-10-09T18:32:55.423Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "supprime l'ensemble des données stockées par l'extension sur votre appareil et la réinitialise à zéro. La désinstallation de l'extension supprime également ses données. Ces actions effacent uniquement les données locales : les informations relatives à votre compte et à votre abonnement conservées sur notre serveur (voir ci-dessous) ne sont pas affectées. Pour demander leur suppression définitive, contactez-nous.",
+          "translatedAt": "2026-10-09T18:33:02.224Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "elimina todo lo que la extensión almacena en el dispositivo y la restablece desde cero. Al eliminar la extensión también se borran sus datos. Estas acciones solo eliminan los datos locales: los registros de tu cuenta y suscripción en nuestro servidor (ver más abajo) no se ven afectados, por lo que para eliminarlos, contáctanos.",
+          "translatedAt": "2026-10-09T18:33:12.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将清除此扩展在本地设备上存储的所有内容并恢复初始状态。卸载扩展程序同样会删除其本地数据。这些操作仅清理本地数据：我们服务器上的账户与订阅记录（详见下文）不会受影响；如需删除服务器端数据，请联系我们。",
+          "translatedAt": "2026-10-09T18:33:21.466Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "將清除擴充功能儲存在此裝置上的所有內容並恢復初始狀態。移除擴充功能時也會一併刪除其資料。這些操作僅會刪除本機資料：我們伺服器上的帳號與訂閱紀錄（請見下方說明）不受影響；若需刪除伺服器上的資料，請與我們聯絡。",
+          "translatedAt": "2026-10-09T18:33:29.145Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "拡張機能がデバイス上に保存しているすべてのデータを削除し、初期状態にリセットします。拡張機能自体をアンインストールした場合もデータは削除されます。なお、これらの操作で削除されるのはローカルデータのみです。サーバー上に保存されているアカウントやサブスクリプション情報（下記参照）は削除されませんので、それらの削除をご希望の場合はお問い合わせください。",
+          "translatedAt": "2026-10-09T18:33:35.069Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "기기에 확장 프로그램이 저장한 모든 데이터를 삭제하고 초기 상태로 재설정합니다. 확장 프로그램을 제거해도 관련 데이터가 함께 삭제됩니다. 이 작업은 로컬 데이터만 삭제하며, 서버에 보관된 계정 및 구독 기록(아래 내용 참조)에는 영향을 주지 않으므로 해당 데이터의 삭제를 원하시면 문의해 주세요.",
+          "translatedAt": "2026-10-09T18:33:40.700Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "remove tudo o que a extensão armazena no dispositivo e a reinicia do zero. Remover a extensão também apaga seus dados. Essas ações excluem apenas dados locais: os registros da sua conta e assinatura em nosso servidor (veja abaixo) não são afetados; portanto, para excluí-los, entre em contato conosco.",
+          "translatedAt": "2026-10-09T18:33:46.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "extension द्वारा device पर store किए गए सभी data को remove कर देता है और इसे fresh शुरू करता है। Extension को remove करने से उसका data भी remove हो जाता है। ये actions सिर्फ local data delete करते हैं: हमारे server पर आपके account और subscription records (नीचे देखें) प्रभावित नहीं होते हैं, इसलिए उन्हें delete कराने के लिए हमसे contact करें।",
+          "translatedAt": "2026-10-09T18:33:53.440Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "xóa toàn bộ dữ liệu mà tiện ích mở rộng lưu trên thiết bị và thiết lập lại từ đầu. Việc gỡ bỏ tiện ích cũng sẽ xóa sạch dữ liệu của nó. Các tác vụ này chỉ xóa dữ liệu cục bộ: thông tin tài khoản và gói đăng ký của bạn trên máy chủ (xem bên dưới) sẽ không bị ảnh hưởng; vui lòng liên hệ với chúng tôi để yêu cầu xóa các thông tin đó.",
+          "translatedAt": "2026-10-09T18:34:01.908Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a867ee684d9895c0dc1be0254d42bb1295b33002ceebc12869ccecb743c79f49": {
+      "en": "Delete all data",
+      "translations": {
+        "de": {
+          "text": "Alle Daten löschen",
+          "translatedAt": "2026-10-09T18:32:55.423Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Supprimer toutes les données",
+          "translatedAt": "2026-10-09T18:33:02.224Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Eliminar todos los datos",
+          "translatedAt": "2026-10-09T18:33:12.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "删除所有数据",
+          "translatedAt": "2026-10-09T18:33:21.466Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "刪除所有資料",
+          "translatedAt": "2026-10-09T18:33:29.145Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "すべてのデータを削除",
+          "translatedAt": "2026-10-09T18:33:35.069Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모든 데이터 삭제",
+          "translatedAt": "2026-10-09T18:33:40.700Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Excluir todos os dados",
+          "translatedAt": "2026-10-09T18:33:46.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सारा data delete करें",
+          "translatedAt": "2026-10-09T18:33:53.440Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xóa toàn bộ dữ liệu",
+          "translatedAt": "2026-10-09T18:34:01.908Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "74577b59a60a31e7ae737036cd48d70b2eab3be2782c60a0065a82977db72528": {
+      "en": "You can export your data at any time via Settings → Library & Data → Backup & restore. Backups omit API keys, sign-in details, license keys, and install identifiers by default; including them is an explicit opt-in with a warning because anyone with that file can use them. Keep exported files private, and remember that older backups may contain secrets. In the same place, the Danger zone lets you delete, by category and with a count of what will go: summaries and archive, highlights, feeds, podcasts, API keys / sign-in / license, send targets (Kindle, LocalSend) and preferences.",
+      "translations": {
+        "de": {
+          "text": "Sie können Ihre Daten jederzeit über Einstellungen → Bibliothek & Daten → Backup & Wiederherstellen exportieren. Backups schließen standardmäßig API-Schlüssel, Anmeldedaten, Lizenzschlüssel und Installations-IDs aus; das Einbeziehen ist ein ausdrückliches Opt-in mit Warnhinweis, da jeder mit Zugriff auf diese Datei diese Daten nutzen kann. Bewahren Sie exportierte Dateien vertraulich auf und beachten Sie, dass ältere Backups sensible Zugangsdaten enthalten können. Am selben Ort ermöglicht Ihnen der Gefahrenbereich das gezielte Löschen nach Kategorien – inklusive einer genauen Anzeige der betroffenen Elemente: Zusammenfassungen und Archiv, Highlights, Feeds, Podcasts, API-Schlüssel / Anmeldedaten / Lizenz, Sendeziele (Kindle, LocalSend) sowie Einstellungen.",
+          "translatedAt": "2026-10-09T19:50:33.201Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vous pouvez exporter vos données à tout moment via Paramètres → Bibliothèque & Données → Sauvegarde & Restauration. Par défaut, les sauvegardes excluent les clés d'API, les identifiants de connexion, les clés de licence et les identifiants d'installation ; leur inclusion nécessite une activation explicite avec avertissement, car toute personne disposant de ce fichier pourrait les utiliser. Veillez à conserver vos fichiers exportés en toute confidentialité et n'oubliez pas que les sauvegardes antérieures peuvent contenir des données sensibles. Au même endroit, la « Zone de danger » vous permet de supprimer vos éléments par catégorie, avec le décompte exact de ce qui sera effacé : résumés et archives, surlignages, flux, podcasts, clés d'API / connexion / licence, cibles d'envoi (Kindle, LocalSend) et préférences.",
+          "translatedAt": "2026-10-09T19:50:39.419Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Puedes exportar tus datos en cualquier momento desde Ajustes → Biblioteca y datos → Copia de seguridad y restauración. Por defecto, las copias de seguridad omiten claves de API, datos de inicio de sesión, claves de licencia e identificadores de instalación; incluirlos es una opción voluntaria explícita que incluye una advertencia, ya que cualquiera que tenga acceso al archivo podría usarlos. Mantén la privacidad de los archivos exportados y recuerda que las copias más antiguas pueden contener información confidencial. En esa misma sección, la Zona de peligro te permite eliminar datos por categoría, mostrando un recuento de lo que se borrará: resúmenes y archivo, destacados, feeds, podcasts, claves de API / inicio de sesión / licencia, destinos de envío (Kindle, LocalSend) y preferencias.",
+          "translatedAt": "2026-10-09T19:50:45.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "您可以随时通过“设置 → 资料库与数据 → 备份与恢复”（Settings → Library & Data → Backup & restore）导出数据。默认情况下，备份会自动排除 API keys、登录凭据、license keys 以及安装标识符；若要包含这些项，需由您明确主动开启并确认安全警告，因为任何获取该文件的人均可直接使用它们。请妥善保管导出的文件，并注意较旧的备份文件中可能仍含有敏感凭据。在同一页面中，危险区域（Danger zone）支持按类别清理数据，并会清晰列出各项即将删除的数量：摘要与归档、划线高亮、订阅源（feeds）、播客、API keys / 登录信息 / 许可证、发送目标（Kindle、LocalSend）以及偏好设置。",
+          "translatedAt": "2026-10-09T19:50:51.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "您可以隨時透過「設定 → 資料庫與資料 → 備份與還原」（Settings → Library & Data → Backup & restore）匯出資料。備份檔案預設會略過 API keys、登入資訊、授權金鑰與安裝識別碼；若要包含這些內容需手動確認啟用，系統亦會發出警告，因為任何取得該檔案的人都可以使用這些機密。請妥善保管匯出的檔案以確保隱私，並請留意較舊的備份檔案中可能包含機密資料。在相同位置的「危險區域」（Danger zone）可讓您依類別刪除資料，並會顯示即將清除的項目數量：摘要與封存、畫線醒目提示、訂閱來源 (feeds)、Podcast、API keys／登入資訊／授權、傳送目的地 (Kindle、LocalSend) 以及偏好設定。",
+          "translatedAt": "2026-10-09T19:50:58.283Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "データはいつでも「設定」→「ライブラリとデータ」→「バックアップと復元」からエクスポートできます。バックアップではデフォルトでAPIキー、サインイン情報、ライセンスキー、インストール識別子が除外されます。ファイルを入手した第三者がこれらを利用できてしまうため、含める場合は警告を伴う明示的なオプトインが必要です。エクスポートしたファイルは非公開で安全に管理し、過去のバックアップにも機密情報が含まれている可能性がある点にご留意ください。同じ画面にある「Danger zone」では、削除される項目数を確認しながら、カテゴリ別（要約とアーカイブ、ハイライト、フィード、ポッドキャスト、APIキー／サインイン／ライセンス、送信先（Kindle、LocalSend）、各種設定）にデータを削除できます。",
+          "translatedAt": "2026-10-09T19:51:05.133Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Settings → Library & Data → Backup & restore 메뉴에서 언제든지 데이터를 내보낼 수 있어요. 백업 시 API 키, 로그인 정보, 라이선스 키 및 설치 식별자는 기본적으로 제외됩니다. 해당 백업 파일이 있으면 누구나 이 정보를 사용할 수 있으므로, 포함하려면 경고 확인 후 직접 선택해야 해요. 내보낸 파일은 안전하게 비공개로 보관하시고, 이전 백업 파일에 민감한 정보가 포함되어 있을 수 있다는 점도 기억해 주세요. 같은 위치에 있는 Danger zone에서는 삭제될 항목 수와 함께 카테고리별로 데이터를 삭제할 수 있어요. 대상 항목은 요약 및 아카이브, 하이라이트, 피드, 팟캐스트, API 키 / 로그인 / 라이선스, 전송 대상(Kindle, LocalSend), 환경설정입니다.",
+          "translatedAt": "2026-10-09T19:51:10.087Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Você pode exportar seus dados a qualquer momento em Configurações → Biblioteca e dados → Backup e restauração. Por padrão, os backups omitem chaves de API, dados de login, chaves de licença e identificadores de instalação; incluí-los é uma opção explícita com aviso, pois qualquer pessoa de posse desse arquivo poderá usá-los. Mantenha os arquivos exportados em segurança e lembre-se de que backups mais antigos podem conter informações confidenciais. No mesmo local, a Zona de perigo permite excluir itens por categoria, exibindo a contagem do que será removido: resumos e arquivo, destaques, feeds, podcasts, chaves de API / login / licença, destinos de envio (Kindle, LocalSend) e preferências.",
+          "translatedAt": "2026-10-09T19:51:16.777Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप कभी भी Settings → Library & Data → Backup & restore के ज़रिए अपना data export कर सकते हैं। Backups में by default API keys, sign-in details, license keys और install identifiers शामिल नहीं होते हैं; इन्हें include करना एक explicit opt-in है जिसमें warning दी जाती है, क्योंकि उस file का access रखने वाला कोई भी व्यक्ति इन्हें use कर सकता है। Exported files को private रखें, और ध्यान रखें कि पुराने backups में secrets हो सकते हैं। इसी जगह Danger zone आपको category के अनुसार और क्या-क्या delete होगा उसके count के साथ डेटा हटाने की सुविधा देता है: summaries and archive, highlights, feeds, podcasts, API keys / sign-in / license, send targets (Kindle, LocalSend) और preferences।",
+          "translatedAt": "2026-10-09T19:51:23.774Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn có thể xuất dữ liệu của mình bất cứ lúc nào qua Cài đặt → Thư viện & Dữ liệu → Sao lưu & khôi phục. Theo mặc định, các bản sao lưu sẽ loại trừ khóa API, thông tin đăng nhập, khóa bản quyền và mã định danh cài đặt; việc đính kèm các thông tin này yêu cầu bạn chủ động xác nhận cùng với cảnh báo bảo mật, vì bất kỳ ai có tệp đó đều có thể sử dụng chúng. Hãy giữ tệp đã xuất an toàn ở chế độ riêng tư và lưu ý rằng các bản sao lưu cũ hơn có thể vẫn chứa các dữ liệu bảo mật này. Cũng tại vị trí này, mục Vùng nguy hiểm (Danger zone) cho phép bạn xóa dữ liệu theo từng danh mục kèm số lượng chi tiết sẽ bị xóa: tóm tắt và kho lưu trữ, đoạn đánh dấu (highlights), nguồn cấp dữ liệu (feeds), podcast, khóa API / đăng nhập / bản quyền, đích gửi (Kindle, LocalSend) và các tùy chọn cá nhân.",
+          "translatedAt": "2026-10-09T19:51:31.571Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

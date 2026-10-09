@@ -1,5 +1,5 @@
 import { applyA11y, clampScale, systemTheme, systemReducesMotion } from './a11y.js';
-import { SK, renameKeys } from './storageKeys.js';
+import { SK } from './storageKeys.js';
 import { supportsNativeSidePanel } from './extensionApi.js';
 // settingsManager.js
 // Settings screen initialization — UI is in popup.html (static accordion),
@@ -7,6 +7,7 @@ import { supportsNativeSidePanel } from './extensionApi.js';
 
 import { confirmDestructive } from './confirmDialog.js';
 import { deleteData, describeData } from './dataReset.js';
+import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from './backupUtils.js';
 import StorageManager from './storageManager.js';
 import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI } from './modelManager.js';
@@ -609,6 +610,13 @@ function initGeneralSettings(storageData) {
         });
     }
 
+    // ── Notify when the background queue finishes ──────────────────
+    const notifyToggle = document.getElementById('notifyWhenDoneToggle');
+    if (notifyToggle) {
+        notifyToggle.checked = storageData.notifyWhenDone !== false;
+        notifyToggle.addEventListener('change', () => autoSave('notifyWhenDone', notifyToggle.checked));
+    }
+
     // ── Highlighting Toggles (separate features) ───────────────────
     const highlightToggle = document.getElementById('highlightingToggle');
     const aiHighlightToggle = document.getElementById('aiHighlightingToggle');
@@ -1162,7 +1170,7 @@ export function initDangerZone() {
 }
 
 // ── Section: Backup & Restore ────────────────────────────────────────
-function initBackupRestore() {
+export function initBackupRestore() {
     const btnExport = document.getElementById('exportSettingsButton');
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
@@ -1177,6 +1185,8 @@ function initBackupRestore() {
             <p class="export-choice-title">${T('What to export?')}</p>
             <button type="button" id="exportSettingsOnly" class="button-secondary">⚙️ ${T('Settings only')}</button>
             <button type="button" id="exportFullBackup"   class="button-secondary">📚 ${T('Settings + Article History')}</button>
+            <label><input type="checkbox" id="includeBackupSecrets"> ${T('Include API keys and sign-in details (anyone with the file can use them)')}</label>
+            <p>${T('By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private.')}</p>
         `;
         btnExport.parentElement.insertAdjacentElement('afterend', choicePanel);
 
@@ -1189,11 +1199,16 @@ function initBackupRestore() {
             choicePanel.hidden = true;
             btnExport.textContent = '📤 ' + T('Export');
             try {
+                const includeSecrets = document.getElementById('includeBackupSecrets')?.checked === true;
+                if (includeSecrets && !window.confirm(T('This backup will contain API keys, sign-in details, license keys, and an install identifier. Anyone with the file could use its keys or identify this install. Continue?'))) return;
+
                 // Fetch cleanly separated sync and local data
                 const [syncData, localData] = await Promise.all([
                     new Promise(resolve => chrome.storage.sync.get(null, resolve)),
                     new Promise(resolve => chrome.storage.local.get(null, resolve))
                 ]);
+                const safeSyncData = filterBackupSecrets(syncData, includeSecrets);
+                const safeLocalData = filterBackupSecrets(localData, includeSecrets);
 
                 let backup, filename;
                 const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
@@ -1202,20 +1217,22 @@ function initBackupRestore() {
                     // articlesIndex is the post-migration shape; the articles
                     // fallback only matters if exporting mid-transition,
                     // before migration has run in this session.
-                    const count = (localData[SK.articlesIndex] || localData.articles || []).length;
+                    const count = (safeLocalData[SK.articlesIndex] || safeLocalData.articles || []).length;
                     backup = {
                         _backup_version: 3,   // 3 = registry key names (articles:index, feeds:*, account:* …); v2 (old names) still imports
                         _exported_at: new Date().toISOString(),
                         _article_count: count,
-                        settings: syncData,
-                        local: localData
+                        _contains_secrets: includeSecrets,
+                        settings: safeSyncData,
+                        local: safeLocalData
                     };
                     filename = `aish_backup_${date}_${count}articles.json`;
                 } else {
                     backup = {
                         _backup_version: 1,
                         _exported_at: new Date().toISOString(),
-                        ...syncData
+                        _contains_secrets: includeSecrets,
+                        ...safeSyncData
                     };
                     filename = `aish_settings_${date}.json`;
                 }
@@ -1265,12 +1282,17 @@ function initBackupRestore() {
                         throw new Error('Invalid format');
                     }
 
+                    const containsSecrets = hasBackupSecrets(importedData);
+                    if (containsSecrets && !window.confirm(T('This backup contains API keys, sign-in details, license keys, or an install identifier. Importing will replace matching stored secrets. Continue?'))) return;
+                    const currentData = await StorageManager.getAll();
+
                     if (importedData._backup_version === 2 || importedData._backup_version === 3) {
                         // FIX: Leverage the new StorageManager routing
                         const settings = importedData.settings;
                         // v2 backups use the pre-registry key names → translate (no-op for v3)
-                        const local = importedData.local ? renameKeys(importedData.local) : importedData.local;
-                        if (settings) await StorageManager.set(renameKeys(settings));
+                        const local = importedData.local ? prepareImportedData(importedData.local, currentData) : importedData.local;
+                        const preparedSettings = settings ? prepareImportedData(settings, currentData) : settings;
+                        if (preparedSettings) await StorageManager.set(preparedSettings);
 
                         if (local) {
                             if (Array.isArray(local.articles)) {
@@ -1303,7 +1325,7 @@ function initBackupRestore() {
                     } else {
                         // Legacy v1 backup — settings only
                         // Safe to use StorageManager.set() since it routes automatically
-                        await StorageManager.set(renameKeys(importedData));
+                        await StorageManager.set(prepareImportedData(importedData, currentData));
                         alert(T('Settings imported successfully! The extension will now reload.'));
                     }
 
