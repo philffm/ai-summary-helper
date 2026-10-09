@@ -4282,8 +4282,5 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 自動実行あたりのリクエスト数"
-  },
-  "f_voice_it_follows_the_summary_55e3": {
-    "message": "音声: {voice} · {lang}。要約の言語に合わせます。要約の前の短いアナウンスも同じです。"
   }
 }
