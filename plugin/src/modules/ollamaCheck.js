@@ -17,7 +17,7 @@ export async function checkOllama(endpoint) {
         if (res.status === 403) return { ok: false, reason: 'forbidden', status: 403 };
         if (!res.ok) return { ok: false, reason: 'http', status: res.status };
         const data = await res.json();
-        const models = (Array.isArray(data.models) ? data.models : []).map(m => m.name || m.model).filter(Boolean);
+        const models = [...new Set((Array.isArray(data.models) ? data.models : []).map(m => String(m.name || m.model || '').trim()).filter(Boolean))];
         return { ok: true, models };
     } catch (_) {
         return { ok: false, reason: 'unreachable' };

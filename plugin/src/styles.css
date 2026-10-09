@@ -3848,3 +3848,11 @@ body[data-surface="sidebar"] { min-width: 0; }
   margin-bottom: 10px;
   font-size: var(--fs-sm);
 }
+
+.ollama-status .model-id-list { max-width: 100%; }
+.ollama-status .model-id-tag {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -182,6 +182,7 @@ async function renderOllamaTutorial(serviceId, endpoint, onPickModel) {
                 b.type = 'button';
                 b.className = 'model-id-tag';
                 b.textContent = name;
+                b.title = name;
                 b.addEventListener('click', () => onPickModel && onPickModel(name));
                 list.appendChild(b);
             });
