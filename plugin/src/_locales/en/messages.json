@@ -4326,5 +4326,17 @@
   },
   "f_this_backup_will_contain_api_a9f6": {
     "message": "This backup will contain API keys, sign-in details, license keys, and an install identifier. Anyone with the file could use its keys or identify this install. Continue?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI Suggested Highlights"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Export history as Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Highlights & Notes"
+  },
+  "f_related_66d8": {
+    "message": "Related"
   }
 }
