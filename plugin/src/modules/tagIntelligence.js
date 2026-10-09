@@ -9,7 +9,7 @@
 
 import { levenshtein } from './textUtils.js';
 import { topTermsFor } from './localSearch.js';
-import { conceptId } from './topicConcepts.js';
+import { conceptKey, isKnownTopic } from './topicConcepts.js';
 
 // Small curated alias table for the abbreviations/variants that come up
 // constantly in tech/news reading archives. Extend freely — this is data,
@@ -43,8 +43,7 @@ function basicNormalize(tag) {
 export function normalizeTag(tag) {
     const base = basicNormalize(tag);
     if (!base) return '';
-    const topic = conceptId(tag);   // "News" / "Nachrichten" / "Noticias" → one key, whatever the language
-    if (topic) return 'c:' + topic;
+    if (isKnownTopic(tag)) return conceptKey(tag);   // "News" / "Nachrichten" / "Noticias" → one key, whatever the language
     if (CANONICAL_ALIASES[base]) return CANONICAL_ALIASES[base];
     return base;
 }

@@ -24,7 +24,8 @@ const worker = {
         return { scores: items.map(() => 0.5), labels: items.map(() => 'News') };
     },
     generateRecap: async () => ({}), generateRecapUpdate: async () => ({}),
-    uiLanguage: async () => ({ code: 'en', name: 'English' }),
+    uiLanguage: async () => ({ code: 'en', name: 'English' }), loadLexicon: async () => {}, saveLexicon: async () => {},
+    learnTagNames: async () => 0,
     generateFeedTopics: async () => { topicCalls++; return { tags: ['News', 'World'], lang: 'en' }; }
 };
 const SK = {

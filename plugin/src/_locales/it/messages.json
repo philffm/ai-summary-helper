@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "{n} feed da taggare"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "Nomi dei tag: gruppo {a} di {b}"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} elenchi di tag da nominare"
   }
 }

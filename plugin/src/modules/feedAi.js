@@ -9,7 +9,7 @@
 import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
 import { resolveLocale } from './i18n.js';
-import { conceptKey, conceptId, conceptList, topicLabel, normalizeTopic } from './topicConcepts.js';
+import { conceptKey, conceptList, topicLabel, hasLabel, lexiconLearn, normalizeTopic } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
@@ -151,8 +151,10 @@ export async function generateFeedTopics(title, list, { cats = [], signal, onSta
     const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, 80)}`;
     const pairs = parseTopicPairs(await aiComplete(system, user, onStage, signal, onProgress, { service }));
     if (!pairs.length) throw new Error(T('The AI reply could not be read'));
-    // keys = language-independent identity of each tag (its English name), stored next to the labels
-    return { tags: pairs.map(p => p.label), keys: pairs.map(p => normalizeTopic(p.en || (code === 'en' ? p.label : ''))), lang: code };
+    // keys = language-independent identity of each tag (its English name); the lexicon learns "Fußball" = "football" for every feed and article
+    const keys = pairs.map(p => normalizeTopic(p.en || (code === 'en' ? p.label : '')));
+    pairs.forEach((p, n) => { if (keys[n]) { lexiconLearn(keys[n], code, p.label); if (code !== 'en') lexiconLearn(keys[n], 'en', keys[n].replace(/^./, c => c.toUpperCase())); } });
+    return { tags: pairs.map(p => p.label), keys, lang: code };
 }
 
 /**
@@ -161,15 +163,53 @@ export async function generateFeedTopics(title, list, { cats = [], signal, onSta
  */
 export async function translateFeedTopics(keys, { signal, onStage, onProgress, service } = {}) {
     const { code, name } = await uiLanguage();
-    const tags = keys.map(k => (conceptId(k) ? topicLabel(k, code) : null));
+    const tags = keys.map(k => (hasLabel(k, code) ? topicLabel(k, code) : null));   // built-in or already learned in this language
     const todo = keys.filter((_, n) => tags[n] === null);
     if (todo.length) {
         const system = `Translate these topic names into ${name}. Each stays a short tag of one or two words. Reply with ONLY the translations, in the same order, separated by commas.`;
         const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service })).split(/[,;|\n]/).map(cleanLabel).filter(Boolean);
         if (parts.length !== todo.length) throw new Error(T('The AI reply could not be read'));
-        let k = 0; keys.forEach((_, n) => { if (tags[n] === null) tags[n] = parts[k++]; });
+        let k = 0; keys.forEach((_, n) => { if (tags[n] === null) { tags[n] = parts[k++]; lexiconLearn(keys[n], code, tags[n]); } });
     }
     return { tags, lang: code };
+}
+
+/** "1:Football = Fußball | 2:Economy" -> [{ en, ui }] aligned to n tags (null where missing). */
+export function parseTagNames(text, n) {
+    const out = new Array(n).fill(null);
+    String(text || '').split(/[|;\n]/).forEach(part => {
+        const m = part.match(/(\d+)\s*[:=]\s*([^=]+?)(?:\s*=\s*(.+))?\s*$/);
+        const k = m ? Number(m[1]) - 1 : -1;
+        if (k >= 0 && k < n && cleanLabel(m[2])) out[k] = { en: normalizeTopic(cleanLabel(m[2])), ui: m[3] ? cleanLabel(m[3]) : null };
+    });
+    return out;
+}
+
+/**
+ * Name tags that are neither built-in nor learned yet (e.g. the tags of saved articles, written in the summary language):
+ * the model gives each its English name and, when the UI is not English, the word in the UI language. The pairs go into the
+ * lexicon only — nothing is stored on the articles. A tag the model skips is marked as seen, so it is never asked twice.
+ * Returns how many tags were named.
+ */
+export async function learnTagNames(tags, { signal, onStage, onProgress, service } = {}) {
+    const { code, name } = await uiLanguage();
+    const system = 'You normalize topic tags of saved articles that are written in various languages. '
+        + 'For each numbered tag reply with its English name (one or two words, singular, e.g. Football, Climate, Economy)'
+        + (code === 'en' ? '' : ` followed by " = " and the same topic written in ${name}`)
+        + '. Format exactly, one line: 1:Football' + (code === 'en' ? '' : ' = Fußball') + ' | 2:Economy' + (code === 'en' ? '' : ' = Wirtschaft') + ' | … for EVERY tag, nothing else.';
+    const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(t, 40)}`).join('\n'), onStage, signal, onProgress, { service });
+    const names = parseTagNames(text, tags.length);
+    if (!names.some(Boolean)) throw new Error(T('The AI reply could not be read'));
+    let named = 0;
+    tags.forEach((t, k) => {
+        const r = names[k];
+        if (!r || !r.en) { lexiconLearn(normalizeTopic(t), null, t); return; }
+        lexiconLearn(r.en, null, t);
+        if (code === 'en') lexiconLearn(r.en, 'en', r.en.replace(/^./, c => c.toUpperCase()));
+        else { lexiconLearn(r.en, 'en', r.en.replace(/^./, c => c.toUpperCase())); if (r.ui) lexiconLearn(r.en, code, r.ui); }
+        named++;
+    });
+    return named;
 }
 
 /** "1:Tech | 2:Politics" -> array aligned to n items (null where missing). */

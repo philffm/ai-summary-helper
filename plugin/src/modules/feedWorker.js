@@ -161,5 +161,5 @@ export function boundedLibraryPlan(plan, batchSize, maxRequests = 3) {
         days.push({ ...day, todo });
         slots -= Math.ceil(count / batchSize);
     }
-    return { rate: plan.rate.slice(0, rateCount), days, ...(plan.tag ? { tag } : {}) };
+    return { rate: plan.rate.slice(0, rateCount), days, ...(plan.tag ? { tag } : {}), ...(plan.lex ? { lex: plan.lex.slice(0, 1) } : {}) };   // one lexicon batch per tick
 }

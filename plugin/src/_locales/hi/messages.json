@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "{n} फ़ीड टैग करने हैं"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "टैग के नाम तय हो रहे हैं: बैच {a}/{b}"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} टैग सूचियाँ नामित करनी हैं"
   }
 }

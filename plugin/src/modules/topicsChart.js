@@ -3,7 +3,7 @@
 
 import { moodEnabled } from './moodSetting.js';
 import { T, uiLocale } from './feedI18n.js';
-import { conceptId, labelOfKey } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, labelOfKey } from './topicConcepts.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const TOP_OPTIONS = [3, 5, 8];
@@ -12,7 +12,7 @@ const DAY = 86400000;
 // Known topics group across languages ('c:news' = News = Nachrichten); other tags by their lowercase text.
 const normTag = (tag) => {
     const t = String(tag).trim().replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
-    return conceptId(t) ? 'c:' + conceptId(t) : t.toLowerCase().replace(/\s+/g, ' ').trim();
+    return isKnownTopic(t) ? conceptKey(t) : t.toLowerCase().replace(/\s+/g, ' ').trim();
 };
 const titleCase = (k) => labelOfKey(k, uiLocale()) || k.replace(/\b\w/g, c => c.toUpperCase());
 

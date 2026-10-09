@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "{n} flux à étiqueter"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "Nom des étiquettes : lot {a} sur {b}"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} listes d’étiquettes à nommer"
   }
 }

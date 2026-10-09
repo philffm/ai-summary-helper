@@ -16,6 +16,7 @@ import { initSelection, registerCard, toggleCard, selectionActive, canSelect, st
 import { attachCardMenu } from './cardMenu.js';
 import { T, locale } from './feedI18n.js';
 import { tagMatches } from './topicConcepts.js';
+import { loadLexicon } from './topicLexicon.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { normalizeDoi } from '../content/paper.js';
@@ -648,6 +649,7 @@ export async function removeArticle(article) {
 }
 
 export function initArticleManager(uiManager) {
+    loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;
     initSelection({
         deliverKindle, deliverLocalSend,

@@ -37,6 +37,8 @@ export const SK = {
     feedBackground: 'feeds:background',
     feedBgSeen: 'feeds:bgSeen',
     feedPending: 'feeds:pending',
+    // learned topic names across languages (topicLexicon.js)
+    topicLexicon: 'topics:lexicon',
     // account / identity
     token: 'account:token',
     user: 'account:user',

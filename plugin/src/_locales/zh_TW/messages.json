@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "{n} 個訂閱源待加上標籤"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "正在命名標籤:第 {a}/{b} 批"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} 組標籤待命名"
   }
 }

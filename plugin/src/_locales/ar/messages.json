@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "{n} خلاصات بحاجة إلى وسوم"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "تسمية الوسوم: الدفعة {a} من {b}"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} قوائم وسوم بحاجة إلى تسمية"
   }
 }

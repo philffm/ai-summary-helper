@@ -42,7 +42,7 @@ assert.deepEqual(seen, ['c']);
 assert.equal(out.tagged, 1); assert.equal(out.failed, 1); assert.equal(out.doneRequests, 2);
 
 // Multilingual topics: the same topic in another language is the same tag.
-const { conceptKey, topicLabel, conceptList, CONCEPTS } = await imp('modules/topicConcepts.js');
+const { conceptKey, topicLabel, conceptList, CONCEPTS, setLexicon } = await import('../src/modules/topicConcepts.js');
 assert.equal(conceptKey('News'), conceptKey('Nachrichten')); assert.equal(conceptKey('Noticias'), conceptKey('новости'));
 assert.equal(conceptKey('Wirtschaft'), conceptKey('Economics')); assert.equal(conceptKey('Économie'), conceptKey('business'));
 assert.notEqual(conceptKey('News'), conceptKey('Politik'));
@@ -58,7 +58,7 @@ assert(!needsTopics({ topics: ['News', 'Wirtschaft'], topicsLang: 'de' }, 'en'))
 assert(needsTopics({ topics: ['News', 'Bundesliga'], topicsLang: 'de' }, 'en'));
 
 // AI-named topics: "tag = English name" pairs give every tag a language-independent key.
-const { parseTopicPairs, translateFeedTopics, setAiTransport } = await imp('modules/feedAi.js');
+const { parseTopicPairs, translateFeedTopics, setAiTransport, parseTagNames, learnTagNames } = await imp('modules/feedAi.js');
 assert.deepEqual(parseTopicPairs('Fußball = Football, Wirtschaft = Economy, Economics, Nachrichten = News, Politik'),
     [{ label: 'Fußball', en: 'football' }, { label: 'Wirtschaft', en: 'economy' }, { label: 'Nachrichten', en: 'news' }], 'pairs, max 3; Economics dedupes against Wirtschaft');
 assert.deepEqual(parseTopicPairs('Tech, Politics'), [{ label: 'Tech', en: '' }, { label: 'Politics', en: '' }], 'plain tags still work');
@@ -68,6 +68,7 @@ setAiTransport(async ({ system, user }) => { asked.push(user); return 'Fußball'
 const tr = await translateFeedTopics(['football', 'economy']);
 assert.deepEqual(asked, ['football'], 'only the unknown topic is sent');
 assert.equal(tr.tags.length, 2); assert.equal(tr.tags[1], 'Economy'); assert.equal(tr.tags[0], 'Fußball');
+setLexicon({});   // translateFeedTopics above learned labels
 const plan2 = planLibrary({ ...base, subs: [{ id: 'a', topics: ['Fußball'], topicKeys: ['football'], topicsLang: 'de' }, { id: 'b', topics: ['X'], topicsLang: 'de' }], topicLang: 'en' });
 assert.deepEqual(plan2.tag.map(e => [e.id, e.keys || null]), [['a', ['football']], ['b', null]], 'keys → translate only; no keys → look at the feed again');
 
@@ -77,7 +78,46 @@ assert.equal(normalizeTag('Nachrichten'), normalizeTag('News'));
 const arts = [{ tags: ['News', 'Wirtschaft'] }, { tags: ['Nachrichten', 'News'] }, { tags: ['Economics'] }];
 const cmap = buildCanonicalTagMap(arts);
 assert.deepEqual(applyCanonicalTags(['News', 'Nachrichten'], cmap), ['News'], 'merge tool folds languages');
-const { tagMatches } = await imp('modules/topicConcepts.js');
+const { tagMatches } = await import('../src/modules/topicConcepts.js');
 assert(tagMatches('News', 'nachrichten') && tagMatches('Tech news', 'news') && !tagMatches('Sport', 'nachrichten'));
+
+// Learned lexicon: separate from articles/feeds, shared by feeds, History, graph and charts; originals stay as they are.
+const tc = await import('../src/modules/topicConcepts.js');
+tc.setLexicon({});
+assert(tc.lexiconLearn('football', 'de', 'Fußball') && tc.lexiconLearn('football', 'en', 'Football') && tc.lexiconLearn('football', 'fr', 'Football (soccer)'.slice(0, 8)));
+assert.equal(tc.conceptKey('Fußball'), tc.conceptKey('Football'), 'learned synonyms are one topic');
+assert.equal(tc.topicLabel('Football', 'de'), 'Fußball', 'shown in the UI language'); assert.equal(tc.topicLabel('Fußball', 'en'), 'Football');
+assert.equal(tc.topicLabel('Fußball', 'ja'), 'Fußball', 'no label in that language yet: original stays');
+assert(tc.tagMatches('Fußball', 'football') && !tc.tagMatches('Tennis', 'football'));
+assert(tc.hasLabel('Fußball', 'de') && !tc.hasLabel('Fußball', 'ja') && tc.hasLabel('News', 'ja'));
+assert(!tc.lexiconLearn('football', 'de', 'Fußball'), 'learning the same thing twice changes nothing');
+assert.deepEqual(tc.unknownTags(['Fußball', 'Tennis', 'tennis', 'Nachrichten', 'Tennis', 'Golf']), ['Tennis', 'Golf'], 'only what is neither built-in nor learned, most frequent first');
+assert(tc.lexiconLearn('news', null, 'Nieuws') && !tc.lexiconLearn('news', 'de', 'Neuigkeiten'), 'extra spellings of a built-in topic are kept, its labels are not');
+assert.equal(tc.conceptKey('Nieuws'), 'c:news'); assert.equal(tc.topicLabel('Nieuws', 'de'), 'Nachrichten');
+// a feed whose labels exist in the new language is not re-tagged; one without is
+assert(!needsTopics({ topics: ['Fußball'], topicKeys: ['football'], topicsLang: 'de' }, 'en'));
+assert(needsTopics({ topics: ['Fußball'], topicKeys: ['football'], topicsLang: 'de' }, 'ja'));
+// History and graph group learned synonyms too
+assert.equal(normalizeTag('Fußball'), normalizeTag('football'));
+const { topicsData } = await imp('modules/topicsChart.js');
+const nowT = Date.now();
+const td = topicsData([{ timestamp: nowT, tags: ['Fußball'] }, { timestamp: nowT - 1000, tags: ['Football'] }], 'week', 3);
+assert.equal(td.keys.length, 1, 'one series for both spellings');
+// Tag naming: "1:Football = Fußball | 2:Economy" gets parsed; skipped tags are marked as seen
+assert.deepEqual(parseTagNames('1:Golf = Golf | 2:Economy = Wirtschaft | 4:x', 3), [{ en: 'golf', ui: 'Golf' }, { en: 'economy', ui: 'Wirtschaft' }, null]);
+tc.setLexicon({});
+setAiTransport(async () => '1:Tennis = Tennis | 2:Climate = Klima');
+const namedCount = await learnTagNames(['Tenis', 'Klimawandel', 'Skipped']);
+assert.equal(namedCount, 2);
+assert.equal(tc.conceptKey('Tenis'), tc.conceptKey('Tennis')); assert.equal(tc.conceptKey('Klimawandel'), 'c:climate');
+assert.deepEqual(tc.unknownTags(['Tenis', 'Klimawandel', 'Skipped']), [], 'skipped tag is marked as seen: never asked twice');
+// plan: unknown article tags come as batches; one request per batch
+tc.setLexicon({});
+const planL = planLibrary({ ...base, articleTags: ['A1', 'A2', 'News'] });
+assert.deepEqual(planL.lex, [['A1', 'A2']]); assert.equal(countRequests(planL, 20), 1);
+assert.equal(boundedLibraryPlan({ ...planL, lex: [[1], [2], [3]] }, 20, 3).lex.length, 1, 'one lexicon batch per background tick');
+const named = []; const outL = await runLibrary(planL, 20, { nameTags: async (b) => { named.push(b); } });
+assert.deepEqual(named, [['A1', 'A2']]); assert.equal(outL.doneRequests, 1);
+tc.setLexicon({});
 console.log('TEST 112 OK');
 process.exit(0);

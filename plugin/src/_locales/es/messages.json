@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "{n} feeds por etiquetar"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "Nombrando etiquetas: lote {a} de {b}"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} listas de etiquetas por nombrar"
   }
 }

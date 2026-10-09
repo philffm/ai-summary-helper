@@ -45,8 +45,8 @@ function topCategories(articles, topN = 10) {
         (a.tags || []).forEach(tag => {
             // Split camelCase (e.g. UXDesign → UX Design), then normalize to lowercase key
             const split = tag.trim().replace(/([a-z])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
-            const topic = conceptId(split);   // News = Nachrichten = Noticias: counted as one category
-            const key = topic ? 'c:' + topic : split.toLowerCase().replace(/\s+/g, ' ').trim();
+            // News = Nachrichten = Noticias (built-in or learned): counted as one category
+            const key = isKnownTopic(split) ? conceptKey(split) : split.toLowerCase().replace(/\s+/g, ' ').trim();
             if (key) freq[key] = (freq[key] || 0) + 1;
         });
     });
@@ -162,7 +162,7 @@ function defaultActivityView(articles) {
 }
 
 import { T, TN, locale, uiLocale } from './feedI18n.js';
-import { conceptId, labelOfKey } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, labelOfKey } from './topicConcepts.js';
 import { renderTopicsSection } from './topicsChart.js';
 import { moodSection } from './moodView.js';
 import { moodStoreFor, unscoredIn, scoreArticles } from './historyMood.js';

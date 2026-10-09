@@ -7,12 +7,13 @@
 // so stopping and starting again simply continues where it left off. Nothing here talks to the UI or the AI:
 // the caller passes the work functions in (rateChunk, recapDay), which keeps this testable.
 
-import { conceptId } from './topicConcepts.js';
+import { hasLabel, unknownTags } from './topicConcepts.js';
 
 export const BATCH_SIZES = [10, 20, 40];
 export const DEFAULT_BATCH = 20;
 
 const needsRating = (i) => !i.ai || !i.cat;
+export const LEXICON_BATCH = 40;   // article tags named per request
 export const TOPIC_SAMPLE = 30;   // headlines of a feed shown to the model when it picks the feed's topic tags (spread evenly over all stored items)
 export const TOPIC_CATS = 6;      // most frequent item categories of the feed that are passed along as a hint
 
@@ -34,13 +35,13 @@ export function categoryCounts(list, max = TOPIC_CATS) {
  * unless every tag is a known topic, which is simply shown in the new language (no new request needed).
  */
 export const needsTopics = (sub, lang) => !(sub.topics && sub.topics.length)
-    || (sub.topicsLang !== lang && !sub.topics.every((t) => conceptId(t)));
+    || (sub.topicsLang !== lang && !sub.topics.every((t) => hasLabel(t, lang)));
 
 export const cleanBatchSize = (n) => BATCH_SIZES.includes(Number(n)) ? Number(n) : DEFAULT_BATCH;
 
 /**
  * What is left to do.
- * ctx = { items, recaps, source, inSource(item), startOfDay(ts), itemSig(item), today, includeToday?, subs?, topicLang? }
+ * ctx = { items, recaps, source, inSource(item), startOfDay(ts), itemSig(item), today, includeToday?, subs?, topicLang?, articleTags? }
  * rate: items without AI score or category (newest first)
  * days: days with items the recap has not covered yet (today is skipped unless includeToday is true),
  *       oldest first, each { day, total, todo } where todo = items still to be covered (newest first).
@@ -75,6 +76,7 @@ export function planLibrary(ctx) {
             return { id: s.id, items: evenSample(all, TOPIC_SAMPLE), all, ...(keys ? { keys } : {}) };
         }).filter((e) => e.items.length || e.keys);
     }
+    if (ctx.articleTags) plan.lex = chunksOf(unknownTags(ctx.articleTags), LEXICON_BATCH);
     return plan;
 }
 
@@ -82,7 +84,7 @@ export const chunksOf = (list, n) => { const out = []; for (let k = 0; k < list.
 
 /** Number of AI requests the plan needs at this batch size (one per rating batch, one per recap batch, one per feed to tag). */
 export function countRequests(plan, batchSize) {
-    return Math.ceil(plan.rate.length / batchSize) + (plan.tag ? plan.tag.length : 0) + plan.days.reduce((s, d) => s + Math.ceil(d.todo.length / batchSize), 0);
+    return Math.ceil(plan.rate.length / batchSize) + (plan.tag ? plan.tag.length : 0) + (plan.lex ? plan.lex.length : 0) + plan.days.reduce((s, d) => s + Math.ceil(d.todo.length / batchSize), 0);
 }
 
 /** "about 2 h 10 min" style text from milliseconds (null when unknown). */
@@ -97,6 +99,7 @@ export function formatEta(ms, T) {
  * Run the plan. Hooks:
  *   rateChunk(chunk, signal, ctx)               rate + categorize one batch (throws on failure)
  *   tagFeed(entry, signal, ctx)                 give one feed up to 3 topic tags (throws on failure); entry = { id, items, all }
+ *   nameTags(batch, signal, ctx)                 name a batch of article tags for the lexicon (throws on failure)
  *   recapDay(entry, batchSize, signal, ctx)     write/extend the recap of one day, batch by batch, saving as it goes (throws on failure)
  *                                               ctx.step({ batch, batches, count }) before each batch, ctx.tick() after each batch
  *   ctx.onStage(stage)                          pass on to the AI call: 'send' | 'wait' | 'write' | 'parse'
@@ -107,13 +110,13 @@ export function formatEta(ms, T) {
  *   signal                                      AbortSignal: stops between and during requests; the work done so far stays saved
  * A failed batch is counted and skipped, so one unreadable reply does not end an overnight run.
  */
-export async function runLibrary(plan, batchSize, { rateChunk, tagFeed, recapDay, onProgress = () => {}, onStage = () => {}, signal } = {}) {
-    const total = countRequests(tagFeed ? plan : { ...plan, tag: undefined }, batchSize);
-    let done = 0, rated = 0, tagged = 0, recapDays = 0, failed = 0, step = null;
+export async function runLibrary(plan, batchSize, { rateChunk, tagFeed, nameTags, recapDay, onProgress = () => {}, onStage = () => {}, signal } = {}) {
+    const total = countRequests({ ...plan, tag: tagFeed ? plan.tag : undefined, lex: nameTags ? plan.lex : undefined }, batchSize);
+    let done = 0, rated = 0, tagged = 0, named = 0, recapDays = 0, failed = 0, step = null;
     const started = Date.now();
     const report = (phase) => {
         const per = done ? (Date.now() - started) / done : 0;
-        onProgress({ phase, doneRequests: done, totalRequests: total, rated, tagged, recaps: recapDays, failed, etaMs: per ? per * (total - done) : NaN, elapsedMs: Date.now() - started, step });
+        onProgress({ phase, doneRequests: done, totalRequests: total, rated, tagged, named, recaps: recapDays, failed, etaMs: per ? per * (total - done) : NaN, elapsedMs: Date.now() - started, step });
     };
     const stopped = () => !!(signal && signal.aborted);
     const ctx = { onStage };
@@ -137,6 +140,15 @@ export async function runLibrary(plan, batchSize, { rateChunk, tagFeed, recapDay
         catch (e) { if (stopped() || (e && e.cancelled)) break; failed++; }
         done++; report('tag');
     }
+    const lexBatches = nameTags ? plan.lex || [] : [];
+    for (let k = 0; k < lexBatches.length; k++) {
+        if (stopped()) break;
+        step = { phase: 'lexicon', batch: k + 1, batches: lexBatches.length };
+        report('lexicon');
+        try { await nameTags(lexBatches[k], signal, ctx); named += lexBatches[k].length; }
+        catch (e) { if (stopped() || (e && e.cancelled)) break; failed++; }
+        done++; report('lexicon');
+    }
     for (let d = 0; d < plan.days.length; d++) {
         const entry = plan.days[d];
         if (stopped()) break;
@@ -154,5 +166,5 @@ export async function runLibrary(plan, batchSize, { rateChunk, tagFeed, recapDay
         report('recap');
     }
     step = null;
-    return { rated, tagged, recaps: recapDays, failed, stopped: stopped(), doneRequests: done, totalRequests: total, elapsedMs: Date.now() - started };
+    return { rated, tagged, named, recaps: recapDays, failed, stopped: stopped(), doneRequests: done, totalRequests: total, elapsedMs: Date.now() - started };
 }

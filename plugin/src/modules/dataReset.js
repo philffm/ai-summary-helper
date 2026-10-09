@@ -27,7 +27,7 @@ export const CATEGORIES = {
     // preferences: everything in sync storage, plus the local UI state and the feed / podcast preferences
     prefs: {
         syncAll: true, localStorageToo: true,
-        keys: [SK.feedSettings, SK.feedUi, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
+        keys: [SK.feedSettings, SK.feedUi, SK.topicLexicon, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
             SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions],
     },
 };

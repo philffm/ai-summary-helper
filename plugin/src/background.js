@@ -36,6 +36,8 @@ const SK = {
     feedBackground: 'feeds:background',
     feedBgSeen: 'feeds:bgSeen',
     feedPending: 'feeds:pending',
+    // learned topic names across languages (topicLexicon.js)
+    topicLexicon: 'topics:lexicon',
     // account / identity
     token: 'account:token',
     user: 'account:user',
@@ -560,15 +562,16 @@ async function pollFeeds() {
             if (!recaps[key] || (Number(recap.at) || 0) >= (Number(recaps[key].at) || 0)) recaps[key] = recap;
         });
         const topicLang = (await FEED_WORKER.uiLanguage()).code;
+        await FEED_WORKER.loadLexicon();
         const plan = FEED_WORKER.planLibrary({
             items: mergedItems, recaps, source: 'all', inSource: () => true,
             startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true,
-            subs: d.feedSubs, topicLang
+            subs: d.feedSubs, topicLang, articleTags: d.articles.flatMap(a => a.tags || [])
         });
         const configuredBatch = [10, 20, 40].includes(Number(state.batchSize || d.feedSettings.libraryBatch))
             ? Number(state.batchSize || d.feedSettings.libraryBatch) : 20;
         const work = FEED_WORKER.boundedLibraryPlan(plan, configuredBatch, FEED_MAX_REQUESTS_PER_TICK);
-        if (!work.rate.length && !work.days.length && !(work.tag && work.tag.length)) return;
+        if (!work.rate.length && !work.days.length && !(work.tag && work.tag.length) && !(work.lex && work.lex.length)) return;
 
         const subscriptions = new Map(d.feedSubs.map(sub => [sub.id, sub]));
         let timedOut = false;
@@ -606,6 +609,12 @@ async function pollFeeds() {
             if (!target) return;
             target.topics = result.tags.slice(0, 3); target.topicKeys = result.keys; target.topicsLang = result.lang;
             await chrome.storage.local.set({ [SK.feedSubs]: stored });
+            await FEED_WORKER.saveLexicon();
+        };
+        // Tags of saved articles that are neither built-in nor learned: named once, kept only in the lexicon.
+        const nameTags = async (batch, signal) => {
+            await aiCall(aiSignal => FEED_WORKER.learnTagNames(batch, { signal: aiSignal, service: 'ollama' }), signal);
+            await FEED_WORKER.saveLexicon();
         };
         const recapDay = async (entry, size, signal, ctx = {}) => {
             const key = `${entry.day}|all`;
@@ -646,7 +655,7 @@ async function pollFeeds() {
                 if (ctx.tick) ctx.tick();
             }
         };
-        const result = await FEED_WORKER.runLibrary(work, configuredBatch, { rateChunk, tagFeed, recapDay, signal: runController.signal });
+        const result = await FEED_WORKER.runLibrary(work, configuredBatch, { rateChunk, tagFeed, nameTags, recapDay, signal: runController.signal });
         if (timedOut && configuredBatch > 10) state.batchSize = 10;
         state.status = { at: Date.now(), rated: result.rated, recaps: result.recaps, failed: result.failed };
         await chrome.storage.local.set({ [SK.feedBackground]: state });

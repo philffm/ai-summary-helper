@@ -37,7 +37,7 @@
 
 import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
-import { conceptId, topicLabel } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, topicLabel } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 
 let d3LoadPromise = null;
@@ -115,7 +115,7 @@ function mostSimilarIncluded(similarityIndex, article, allArticles, includedArti
  *        indexing pass. Pass null to skip reconnection entirely.
  */
 // One node per topic, not per spelling: News / Nachrichten / Noticias share a node, shown in the UI language.
-const tagIdOf = (tag) => { const c = conceptId(tag); return 'tag-' + (c ? 'c-' + c : tag.toLowerCase().replace(/\s+/g, '-')); };
+const tagIdOf = (tag) => 'tag-' + (isKnownTopic(tag) ? 'c-' + conceptKey(tag).replace(/^c:/, '') : tag.toLowerCase()).replace(/\s+/g, '-');
 const tagLabelOf = (tag) => topicLabel(tag, uiLocale());
 
 function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null) {

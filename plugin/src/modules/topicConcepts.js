@@ -2,7 +2,11 @@
 // "Wirtschaft" = "Economics" = "Business"). Common topics are listed per UI locale: the first entry is the label shown in
 // that language, the others are aliases (also matched). Anything not listed is compared as plain text.
 //
-// conceptKey(tag)          → 'c:news' for a known topic in any language, otherwise the normalized text
+// Beyond the built-in list there is a LEARNED lexicon: { englishKey: { locale: label } } ("football": { en: 'Football', de: 'Fußball' }).
+// It lives apart from articles and feeds (nothing is attached to an item, exports keep the original tag) and grows whenever
+// the AI names a new tag in another language; see topicLexicon.js for how it is stored and filled.
+//
+// conceptKey(tag)          → 'c:news' for a known topic in any language, then the learned English key, otherwise the normalized text
 // topicLabel(tag, locale)  → the known topic's label in that locale, otherwise the tag unchanged
 // conceptList(locale)      → the labels of all known topics in that locale (used as suggested vocabulary for the AI)
 
@@ -30,35 +34,84 @@ export const normalizeTopic = (t) => String(t || '').normalize('NFD').replace(/[
 const LOOKUP = new Map();
 Object.entries(CONCEPTS).forEach(([id, byLocale]) => Object.values(byLocale).forEach((names) => names.forEach((n) => { const k = normalizeTopic(n); if (!LOOKUP.has(k)) LOOKUP.set(k, id); })));
 
-/** Known topic id for a tag in any language (null when it is not a known topic). */
-export const conceptId = (tag) => LOOKUP.get(normalizeTopic(tag)) || null;
+// ── learned lexicon (in memory; topicLexicon.js loads and saves it) ──
+let LEX = {};                    // englishKey -> { locale: label }
+let LEX_REV = new Map();         // normalized label (any language) / englishKey -> englishKey
+const buildRev = () => {
+    LEX_REV = new Map();
+    for (const [key, labels] of Object.entries(LEX)) {
+        if (!LEX_REV.has(key)) LEX_REV.set(key, key);
+        Object.values(labels).flat().forEach((l) => { const n = normalizeTopic(l); if (n && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
+    }
+};
+export function setLexicon(obj) { LEX = obj && typeof obj === 'object' ? obj : {}; buildRev(); }
+export const getLexicon = () => LEX;
+/**
+ * Remember that `label` names the topic `en` (its English name). `locale` = the language the label is written in, or
+ * null when unknown (the spelling is then only used to recognise the tag, never shown). Returns true when the lexicon changed.
+ * A topic that names itself (en = label) marks a tag as seen, so it is not sent to the AI again.
+ */
+export function lexiconLearn(en, locale, label) {
+    const key = normalizeTopic(en), shown = String(label || '').replace(/\s+/g, ' ').trim();
+    if (!key || !shown || key.length > 40 || shown.length > 40) return false;
+    if (locale && LOOKUP.has(key)) return false;        // built-in topics have their labels; only extra spellings (locale = null) are worth keeping
+    const cur = LEX[key] || (LEX[key] = {});
+    if (locale) { if (cur[locale] === shown) return false; cur[locale] = shown; }
+    else { const v = cur['*'] || (cur['*'] = []); if (v.some((x) => normalizeTopic(x) === normalizeTopic(shown))) return false; if (v.length >= 12) v.shift(); v.push(shown); }
+    buildRev();
+    return true;
+}
+const lexKey = (tag) => LEX_REV.get(normalizeTopic(tag)) || null;
 
-/** Comparison key: same for all languages of a known topic, the normalized text otherwise. */
+/** Known topic id for a tag in any language (null when it is not a built-in topic). A learned tag whose English name is a built-in topic counts too. */
+export const conceptId = (tag) => LOOKUP.get(normalizeTopic(tag)) || LOOKUP.get(lexKey(tag)) || null;
+
+/** Built-in or learned topic (as opposed to free text)? */
+export const isKnownTopic = (tag) => !!(conceptId(tag) || lexKey(tag));
+
+/** Comparison key: same for all languages of a topic (built-in or learned), the normalized text otherwise. */
 export function conceptKey(tag) {
     const id = conceptId(tag);
-    return id ? 'c:' + id : normalizeTopic(tag);
+    return id ? 'c:' + id : lexKey(tag) || normalizeTopic(tag);
 }
 
-/** The tag as it should be shown in `locale` (a _locales folder code like 'de'): known topics are translated, other tags stay as they are. */
+/** The tag as it should be shown in `locale` (a _locales folder code like 'de'): known and learned topics are translated, other tags stay as they are. */
 export function topicLabel(tag, locale) {
     const id = conceptId(tag);
     const names = id && (CONCEPTS[id][locale] || CONCEPTS[id].en);
-    return names ? names[0] : tag;
+    if (names) return names[0];
+    const learned = LEX[lexKey(tag)];
+    return (learned && learned[locale]) || tag;
+}
+
+/** Does this tag have a label in `locale` without asking the AI (built-in topic, or learned in that language)? */
+export function hasLabel(tag, locale) {
+    if (conceptId(tag)) return true;
+    const learned = LEX[lexKey(tag)];
+    return !!(learned && learned[locale]);
+}
+
+/** The tags of a list that are neither built-in nor learned yet (deduped, most frequent first) — what the AI still has to name. */
+export function unknownTags(list, max = 200) {
+    const n = new Map();
+    for (const t of list) { const k = normalizeTopic(t); if (k && k.length <= 40 && !conceptId(t) && !lexKey(t)) { const e = n.get(k) || { tag: String(t).trim(), c: 0 }; e.c++; n.set(k, e); } }
+    return [...n.values()].sort((a, b) => b.c - a.c).slice(0, max).map((e) => e.tag);
 }
 
 /** Labels of all known topics in `locale` — suggested vocabulary so the AI reuses the same words. */
 export const conceptList = (locale) => Object.values(CONCEPTS).map((c) => (c[locale] || c.en)[0]);
 
-/** Label for a comparison key from conceptKey(): 'c:news' → the topic's label in `locale`; other keys → null. */
+/** Label for a comparison key from conceptKey(): 'c:news' → the topic's label in `locale`; a learned key → its label there; else null. */
 export function labelOfKey(key, locale) {
     const id = String(key).startsWith('c:') ? String(key).slice(2) : null;
     const names = id && CONCEPTS[id] && (CONCEPTS[id][locale] || CONCEPTS[id].en);
-    return names ? names[0] : null;
+    if (names) return names[0];
+    const learned = LEX[key];
+    return (learned && (learned[locale] || learned.en)) || null;
 }
 
 /** True when tag `t` matches the search text `q` (lowercase): plain substring, or both name the same known topic ("Nachrichten" finds "News"). */
 export function tagMatches(t, q) {
     if (String(t).toLowerCase().includes(q)) return true;
-    const id = conceptId(q);
-    return !!id && conceptId(t) === id;
+    return isKnownTopic(q) && conceptKey(t) === conceptKey(q);   // the same built-in or learned topic
 }

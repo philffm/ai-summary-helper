@@ -4168,5 +4168,11 @@
   },
   "f_feeds_to_tag_607b": {
     "message": "タグ付けするフィード: {n}件"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "タグ名を付与中:バッチ {a}/{b}"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "名前を付けるタグリスト: {n}件"
   }
 }

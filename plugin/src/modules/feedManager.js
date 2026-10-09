@@ -28,7 +28,7 @@ import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
-import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
+import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, learnTagNames, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
 import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
@@ -37,7 +37,8 @@ import { startOfDay } from './dateUtils.js';
 import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
-import { conceptKey, topicLabel, normalizeTopic } from './topicConcepts.js';
+import { conceptKey, topicLabel } from './topicConcepts.js';
+import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
@@ -149,16 +150,7 @@ function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: s
 
 // ── Tags (a feed can have several) ─────────────────────────────────────────
 // A tag's identity is its topic, not its spelling: News = Nachrichten = Noticias, Wirtschaft = Economics (see topicConcepts.js).
-// Tags the AI gave an English name (sub.topicKeys) are identified by it too: "Fußball" (de) = "Football" (en).
-let aliasSrc = null, aliasRev = -1, topicsRev = 0, aliasMap = new Map();
-function topicAliases() {
-    if (aliasSrc !== subs || aliasRev !== topicsRev) {
-        aliasSrc = subs; aliasRev = topicsRev; aliasMap = new Map();
-        (subs || []).forEach(s => (s.topics || []).forEach((t, n) => { const k = (s.topicKeys || [])[n]; if (k) aliasMap.set(normalizeTopic(t), conceptKey(k)); }));
-    }
-    return aliasMap;
-}
-const tagKey = (t) => topicAliases().get(normalizeTopic(t)) || conceptKey(t);
+const tagKey = conceptKey;
 let topicLang = '';   // UI language code (locale folder): topic tags are written and shown in it
 function cleanTags(list) {
     const seen = new Set(), out = [];
@@ -2217,10 +2209,14 @@ async function ollamaSetup() {
         return { configured: active || saved, active, model };
     } catch (e) { return { configured: false, active: false, model: '' }; }
 }
-async function refreshTopicLang() { try { topicLang = (await uiLanguage()).code; } catch (e) { /* keep the last one */ } }
+let articleTags = [];   // every tag of the saved articles: what the lexicon still has to learn comes from here
+async function refreshTopicLang() {
+    try { topicLang = (await uiLanguage()).code; } catch (e) { /* keep the last one */ }
+    try { await loadLexicon(); articleTags = (await StorageManager.getArticlesIndex({ includeArchived: true })).flatMap(a => a.tags || []); } catch (e) { /* no articles yet */ }
+}
 function libraryPlan() {
     const sm = subMap();
-    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig, subs, topicLang });
+    return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig, subs, topicLang, articleTags });
 }
 /** Up to 3 topic tags for one feed in the UI language; kept apart from the user's own tags (s.tags) so those are never touched. */
 async function libraryTagFeed(entry, signal, ctx = {}) {
@@ -2228,7 +2224,8 @@ async function libraryTagFeed(entry, signal, ctx = {}) {
     const r = entry.keys
         ? { ...(await translateFeedTopics(entry.keys, { signal, onStage: ctx.onStage, service: 'ollama' })), keys: entry.keys }
         : await generateFeedTopics(subTitle(s), entry.items, { cats: categoryCounts(entry.all), signal, onStage: ctx.onStage, service: 'ollama' });
-    s.topics = r.tags.slice(0, 3); s.topicKeys = r.keys; s.topicsLang = r.lang; topicsRev++;
+    s.topics = r.tags.slice(0, 3); s.topicKeys = r.keys; s.topicsLang = r.lang;
+    await saveLexicon();
     await persist();
 }
 async function libraryRateChunk(chunk, signal, ctx = {}) {
@@ -2238,6 +2235,11 @@ async function libraryRateChunk(chunk, signal, ctx = {}) {
         if (!i.cat && res.labels && res.labels[n]) i.cat = res.labels[n];
     });
     await persist();
+}
+/** Name a batch of article tags for the lexicon (nothing is stored on the articles). */
+async function libraryNameTags(batch, signal, ctx = {}) {
+    await learnTagNames(batch, { signal, onStage: ctx.onStage, service: 'ollama' });
+    await saveLexicon();
 }
 /** Day recap in batches: the first batch writes it, every further batch extends it. Saved after each batch, so a stop loses at most one batch. */
 async function libraryRecapDay(entry, size, signal, ctx = {}) {
@@ -2279,7 +2281,7 @@ async function executeLibrary({ auto = false } = {}) {
     if (libraryRun || scoring) return null;
     const n = cleanBatchSize(settings.libraryBatch);
     await refreshTopicLang();
-    const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length && !(plan.tag && plan.tag.length)) return null;
+    const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length && !plan.tag.length && !plan.lex.length) return null;
     if (auto) plan.days.reverse();
     const ctl = new AbortController(); libraryRun = { ctl };
     const keepLimit = getRecapLimit(); setRecapLimit(0);   // a per-recap cap would silently drop items from a batch
@@ -2288,7 +2290,7 @@ async function executeLibrary({ auto = false } = {}) {
     let out = null, lastRendered = -1;
     try {
         out = await runLibrary(plan, n, {
-            signal: ctl.signal, rateChunk: libraryRateChunk, tagFeed: libraryTagFeed, recapDay: libraryRecapDay,
+            signal: ctl.signal, rateChunk: libraryRateChunk, tagFeed: libraryTagFeed, nameTags: libraryNameTags, recapDay: libraryRecapDay,
             onStage: (st) => {
                 if (!libraryRun) return;
                 // Remembered on the run itself, so a card re-created after leaving Settings can pick up where this one is.
@@ -2338,11 +2340,11 @@ async function renderLibraryCard(card) {
     stopBtn.hidden = true;
     const summaryText = () => {
         const p = libraryPlan(), n = countRequests(p, cleanBatchSize(settings.libraryBatch));
-        if (!p.rate.length && !p.days.length && !p.tag.length) return T('Everything in your library is rated, categorized and recapped.');
+        if (!p.rate.length && !p.days.length && !p.tag.length && !p.lex.length) return T('Everything in your library is rated, categorized and recapped.');
         const eta = formatEta(n * 90000, T);   // rough: local models need about 1–2 minutes per batch
-        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (p.tag.length ? ' · ' + T('{n} feeds to tag', { n: p.tag.length }) : '') + (eta ? ' · ' + eta : '');
+        return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (p.tag.length ? ' · ' + T('{n} feeds to tag', { n: p.tag.length }) : '') + (p.lex.length ? ' · ' + T('{n} tag lists to name', { n: p.lex.length }) : '') + (eta ? ' · ' + eta : '');
     };
-    const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length && !p.tag.length; startBtn.textContent = T('Process the whole library'); };
+    const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length && !p.tag.length && !p.lex.length; startBtn.textContent = T('Process the whole library'); };
 
     // Stage of the request in flight, with a ticking clock so a slow local model never looks frozen.
     const STAGE_TEXT = () => ({ send: T('Sending the batch to Ollama…'), wait: T('Waiting for the model…'), write: T('Model is writing…'), parse: T('Reading the answer…') });
@@ -2373,6 +2375,7 @@ async function renderLibraryCard(card) {
             bar.value = pr.totalRequests ? pr.doneRequests / pr.totalRequests : 0;
             const st = pr.step;
             if (st && st.phase === 'rate') headLine.textContent = T('Rating and categorizing: batch {a} of {b} · items {from}–{to} of {n}', { a: st.batch, b: st.batches, from: st.from, to: st.to, n: st.items });
+            else if (st && st.phase === 'lexicon') headLine.textContent = T('Naming tags: batch {a} of {b}', { a: st.batch, b: st.batches });
             else if (st && st.phase === 'tag') headLine.textContent = T('Tagging feed {a} of {b}', { a: st.feed, b: st.feeds });
             else if (st && st.phase === 'recap') headLine.textContent = T('Day recap {d} of {t} ({date}): batch {a} of {b} · {n} items', { d: st.dayIndex, t: st.days, date: dayText(st.day), a: st.batch, b: st.batches, n: st.count });
             const eta = formatEta(pr.etaMs, T);
