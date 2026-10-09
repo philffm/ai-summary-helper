@@ -108,13 +108,16 @@ export function parseLabelLine(line, n) {
     return out;
 }
 
-/** "1:0.6 | 2:-0.4" -> sentiment array aligned to n items (null where missing), clamped to [-1, 1]. */
+/**
+ * "1:3 | 2:-2" -> sentiment array aligned to n items (null where missing), clamped to [-1, 1].
+ * Whole numbers are on the -5..5 scale the recap prompt asks for (fewer tokens); decimals are taken as -1..1 already.
+ */
 export function parseScoreLine(line, n) {
     const out = new Array(n).fill(null);
     String(line || '').split(/[|;]/).forEach(part => {
         const m = part.match(/(\d+)\s*[:=]\s*([+-]?\d*\.?\d+)/);
         if (!m) return;
-        const k = Number(m[1]) - 1, v = Number(m[2]);
+        const k = Number(m[1]) - 1, v = /\./.test(m[2]) ? Number(m[2]) : Number(m[2]) / 5;
         if (k >= 0 && k < n && Number.isFinite(v)) out[k] = Math.max(-1, Math.min(1, v));
     });
     return out;
@@ -166,14 +169,14 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
     const lr = await langRule();
     const system = 'You write brief news-digest recaps from headlines and snippets. '
         + `Reply in the language ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
-        + 'First, 2-3 sentences of overview.\n'
-        + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
-        + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
         + (rate
-            ? 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered item a category label of one or two words '
+            ? 'First one line: SCORES: 1:3 | 2:-2 | ... giving EVERY numbered item a whole-number sentiment from -5 (very negative news) through 0 (neutral) to 5 (very positive news), judged on the news content.\n'
+              + 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered item a category label of one or two words '
               + '(e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design). Reuse the same label for similar items; use at most 8 different labels.\n'
-              + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered item a sentiment number from -1 (very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content.\n'
             : '')
+        + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
+        + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
+        + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal,
@@ -194,13 +197,13 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
     const system = 'You maintain a brief news-digest recap. You get the CURRENT recap and a numbered list of NEW or EDITED items (edited ones are marked). '
         + `Update the recap so it covers the earlier points and the new items. Reply in the language ${lang}. Use ONLY the given text; do not invent facts. `
         + 'Keep still-relevant points, add new standout stories naming the source, and drop or correct anything an edited item contradicts. Format exactly:\n'
-        + 'First, 2-3 sentences of overview.\n'
-        + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
-        + 'Then one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of ALL the news).\n'
         + (rate
-            ? 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered NEW/EDITED item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design).\n'
-              + 'Finally one line: SCORES: 1:0.6 | 2:-0.4 | ... giving EVERY numbered NEW/EDITED item a sentiment number from -1 (very negative news) through 0 to 1 (very positive news).\n'
+            ? 'First one line: SCORES: 1:3 | 2:-2 | ... giving EVERY numbered NEW/EDITED item a whole-number sentiment from -5 (very negative news) through 0 to 5 (very positive news).\n'
+              + 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered NEW/EDITED item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design).\n'
             : '')
+        + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
+        + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
+        + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of ALL the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
@@ -244,15 +247,15 @@ export function parseLabelsJson(text, n) {
  */
 export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
-    const rule = 'For each numbered item return a number from -1 '
-        + '(very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content, not tone of voice. ';
+    const rule = (m) => `For each numbered item return a number from -${m} `
+        + `(very negative news) through 0 (neutral) to ${m} (very positive news), judged on the news content, not tone of voice. `;
     const system = labels
-        ? 'You rate the sentiment of news headlines. ' + rule
+        ? 'You rate the sentiment of news headlines. ' + rule(1)
             + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
             + 'reuse the same label for similar items, at most 8 different labels. '
             + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`
-        : 'You rate the sentiment of news headlines. ' + rule
-            + 'Reply with ONLY the item number and its score, one pair per item, one decimal, nothing else, like: 1:0.6 | 2:-0.4 | 3:0';
+        : 'You rate the sentiment of news headlines. ' + rule(5)
+            + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal, onProgress);
     const scores = parseScores(text, chunk.length) || (labels ? null : parseScoreLine(text, chunk.length));
     if (!scores) throw new Error(T('The AI reply could not be read'));
