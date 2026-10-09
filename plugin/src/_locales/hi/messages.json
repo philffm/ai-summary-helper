@@ -3982,5 +3982,8 @@
   },
   "f_process_new_items_automatica_f889": {
     "message": "🔁 नए आइटम अपने-आप प्रोसेस करें"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label} का रिकैप तैयार है"
   }
 }

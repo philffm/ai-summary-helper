@@ -30,6 +30,7 @@ import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoW
 import { generateRecap, generateRecapUpdate, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
 import { createRecapStatus } from './recapStatus.js';
+import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
 import { planLibrary, runLibrary, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
@@ -1652,6 +1653,8 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
     const list = recapCovered(all);
     const missing = all.slice(list.length);
     const key = `${dayStart}|${source}`;
+    const running = runningJob('d:' + key);
+    if (running) return openSheet(T('{label} recap', { label }), running);
     const body = el('div', 'feed-picker feed-recap');
     openSheet(T('{label} recap', { label }), body);
     if (!list.length) { body.append(el('p', 'feed-muted', T('No items to recap here.'))); return; }
@@ -1713,6 +1716,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
             }
             const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true) });
             body.replaceChildren(st.node);
+            const done = trackJob('d:' + key, body);
             try {
                 const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(fresh.slice(0, getRecapLimit()), rate) });
                 st.stop();
@@ -1721,8 +1725,11 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
                 recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, total: all.length, covered: { ...cached.covered, ...sigsOf(sentItems) } };
                 chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
                 renderRecapCard();
+                done();
                 draw(recaps[key], changedSince(recaps[key]).length > 0);
+                notifyReady(body, T('✨ {label} recap is ready', { label }), (m) => toast(uiRef, m));
             } catch (e) {
+                done();
                 st.stop();
                 if (e.cancelled) return;
                 body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
@@ -1732,6 +1739,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         }
         const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); } });
         body.replaceChildren(st.node);
+        const done = trackJob('d:' + key, body);
         try {
             const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(list, rate) });
             st.stop();
@@ -1740,8 +1748,11 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
             recaps[key] = { ...rc, hash: hsh, at: Date.now(), n: list.length, total: all.length, covered: sigsOf(list) };
             chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
             renderRecapCard();
+            done();
             draw(recaps[key], false);
+            notifyReady(body, T('✨ {label} recap is ready', { label }), (m) => toast(uiRef, m));
         } catch (e) {
+            done();
             st.stop();
             if (e.cancelled) return;
             body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),

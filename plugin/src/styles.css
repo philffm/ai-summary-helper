@@ -90,7 +90,7 @@
   /* floating shell layout */
   --header-h: 62px;   /* 12 + 36 (icon buttons) + 8 — keep in sync with .header padding */
   --bottom-nav-height: 60px;
-  --controls-bottom-gap: 8px;
+  --controls-bottom-gap: 16px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
   --controls-overlay-height: 250px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
@@ -550,6 +550,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   width: 100%;
   height: 100dvh; /* the header overlays the top; screens pad their content below it and scroll underneath its fade */
   overflow: hidden;
+  overflow: clip;   /* unlike hidden, clip can't be scrolled by focus()/scrollIntoView() on the off-screen settings screen (that pulled it half into view) */
 }
 
 /* ── Screens ───────────────────────────────────────────────────────────── */
@@ -593,7 +594,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   overflow-y: auto;
   /* no horizontal padding: the parent .screen already insets the content */
   /* the header overlays the screen: start below it so the first (or only) card is never hidden under it */
-  padding: calc(var(--header-h) + 8px) 0 calc(var(--floating-stack-height) + var(--spacing-s-4));
+  padding: calc(var(--header-h) + 8px) 0 calc(var(--floating-stack-height) + var(--spacing-s-8));
   display: flex;
   flex-direction: column;
   scrollbar-gutter: stable;
@@ -3353,7 +3354,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
   left: 50%; width: 100vw; transform: translateX(-50%);
-  top: -72px; bottom: calc(-1 * (var(--bottom-nav-height) + var(--controls-bottom-gap)));
+  top: -40px; bottom: calc(-1 * (var(--bottom-nav-height) + var(--controls-bottom-gap)));
   background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--bg-page) 78%, transparent) 40px, var(--bg-page) 72px);
 }
 /* Larger, easier targets */
@@ -3882,3 +3883,23 @@ body[data-surface="sidebar"] { min-width: 0; }
 
 /* ── Whole-library batch run (Ollama) ──────────────────────────────────── */
 .library-progress { width: 100%; height: 8px; margin: var(--spacing-s-2) 0; accent-color: var(--accent); }
+
+/* Page chip lives INSIDE the composer pill, top-left above the text; the pill wraps so the chip gets its own row. */
+.composer-pill { flex-wrap: wrap; }
+.composer-pill .page-chip {
+  order: 0; flex: 0 0 auto; align-self: flex-start; max-width: calc(100% - 8px);
+  margin: 4px 100% -4px -8px; /* right margin forces the textarea + button onto the next row */ padding: 2px 8px 2px 6px; gap: 6px;
+  border: 0; border-radius: 10px; background: var(--accent-a10, var(--glass-input));
+}
+
+.composer-pill .page-chip .page-chip-title { font-size: 11px; }
+.composer-pill .page-chip .page-chip-meta { font-size: 10px; }
+.composer-pill .page-chip .page-chip-ic { width: 14px; height: 14px; }
+.composer-pill .page-chip .page-chip-txt { gap: 6px; }
+.composer-pill .page-chip-x { padding: 0 4px; font-size: 11px; }
+
+/* Close button for the chip panels (language, length, mode, instant read); the model panel has its own in its header */
+.chip-panel:not(#panelModel) { padding-right: 36px; }
+.chip-panel-close { position: absolute; top: 6px; right: 6px; background: transparent; border: 0; color: var(--text-muted); font-size: 14px; line-height: 1; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+.chip-panel-close:hover { background: var(--accent-a15); color: var(--text-primary); }
+.chip-panel-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }

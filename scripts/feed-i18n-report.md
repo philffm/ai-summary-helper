@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1154. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1155. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1154 | 0 | 0 | 36 |
-| de | 1154 | 0 | 0 | 174 |
-| es | 1154 | 0 | 0 | 130 |
-| fr | 1154 | 0 | 0 | 163 |
-| hi | 1154 | 0 | 0 | 57 |
-| it | 1154 | 0 | 0 | 137 |
-| ja | 1154 | 0 | 0 | 75 |
-| ko | 1154 | 0 | 0 | 16 |
-| pt_PT | 1154 | 0 | 0 | 127 |
-| ru | 1154 | 0 | 0 | 78 |
-| zh_CN | 1154 | 0 | 0 | 1 |
-| zh_HK | 1154 | 0 | 0 | 1 |
-| zh_TW | 1154 | 0 | 0 | 1 |
+| ar | 1155 | 0 | 0 | 36 |
+| de | 1155 | 0 | 0 | 174 |
+| es | 1155 | 0 | 0 | 131 |
+| fr | 1155 | 0 | 0 | 163 |
+| hi | 1155 | 0 | 0 | 57 |
+| it | 1155 | 0 | 0 | 138 |
+| ja | 1155 | 0 | 0 | 75 |
+| ko | 1155 | 0 | 0 | 16 |
+| pt_PT | 1155 | 0 | 0 | 128 |
+| ru | 1155 | 0 | 0 | 78 |
+| zh_CN | 1155 | 0 | 0 | 1 |
+| zh_HK | 1155 | 0 | 0 | 1 |
+| zh_TW | 1155 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -329,6 +329,7 @@ Strings: 1154. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
 | Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
 | Magic code sent! ✨ Check your inbox. | ¡Código mágico enviado! ✨ Revisa tu bandeja de entrada. | 55 vs 36 | 1.53× |
+| ✨ {label} recap is ready | ✨ El resumen de {label} está listo | 29 vs 19 | 1.53× |
 | Mood over time per category | Ánimo a lo largo del tiempo por categoría | 41 vs 27 | 1.52× |
 | No active receiver found. | No se encontró ningún receptor activo. | 38 vs 25 | 1.52× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado en {ip}: haz clic en Añadir para guardarlo ✓ | 65 vs 43 | 1.51× |
@@ -696,6 +697,7 @@ Strings: 1154. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Queue a question… | Metti in coda una domanda… | 26 vs 17 | 1.53× |
 | Reading page... | Lettura della pagina... | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
+| ✨ {label} recap is ready | ✨ Il riepilogo di {label} è pronto | 29 vs 19 | 1.53× |
 | Customize text size, spacing, font, motion | Personalizza dimensione testo, spaziatura, carattere e movimento | 64 vs 42 | 1.52× |
 | Mute / unmute reading | Disattiva / attiva audio lettura | 32 vs 21 | 1.52× |
 | Keep it in History, no AI, nothing sent | Tienilo nella cronologia, senza IA, non viene inviato nulla | 59 vs 39 | 1.51× |
@@ -938,6 +940,7 @@ Strings: 1154. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
 | Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |
 | Queue a question… | Colocar pergunta em fila… | 25 vs 17 | 1.47× |
+| ✨ {label} recap is ready | ✨ O resumo de {label} está pronto | 28 vs 19 | 1.47× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
 | Delete all settings? | Eliminar todas as definições? | 29 vs 20 | 1.45× |
 | Ghost Highlight Amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |

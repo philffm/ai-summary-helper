@@ -275,10 +275,34 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     container.style.overflow = 'hidden';
 
     return loadD3()
+        .then(() => waitForLayout(container))
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
         .catch(() => {
             container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         });
+}
+
+/**
+ * Resolves once `container` has a non-zero size (or after `maxMs`, so a
+ * genuinely hidden container can't hang the render). When the extension
+ * loads already in split mode, the graph can be rendered before the split
+ * layout has settled: clientWidth/Height read 0 (or the pre-split size), the
+ * SVG is built against the 400x400 fallback and nothing shows until a
+ * resize triggers a re-measure. Waiting a few frames for real dimensions
+ * avoids that.
+ */
+function waitForLayout(container, maxMs = 1000) {
+    return new Promise(resolve => {
+        const start = performance.now();
+        const check = () => {
+            if ((container.clientWidth > 0 && container.clientHeight > 0) || performance.now() - start > maxMs) {
+                resolve();
+            } else {
+                requestAnimationFrame(check);
+            }
+        };
+        check();
+    });
 }
 
 /**

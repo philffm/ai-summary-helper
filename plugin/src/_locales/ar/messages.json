@@ -3982,5 +3982,8 @@
   },
   "f_process_new_items_automatica_f889": {
     "message": "🔁 معالجة العناصر الجديدة تلقائيًا"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ ملخص {label} جاهز"
   }
 }

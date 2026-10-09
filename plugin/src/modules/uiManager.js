@@ -11,6 +11,14 @@ class UIManager {
             feeds: document.getElementById('feedsScreen'),
             podcast: document.getElementById('podcastScreen')
         };
+
+        // Safety net: if anything still scrolls the screen container sideways (focus/scrollIntoView on an
+        // off-screen screen), snap it back so a neighbouring screen never stays half in view.
+        const container = document.querySelector('.screen-container');
+        if (container) {
+            const reset = () => { if (container.scrollLeft) container.scrollLeft = 0; if (container.scrollTop) container.scrollTop = 0; };
+            container.addEventListener('scroll', reset, { passive: true });
+        }
     }
 
     positionNavBlob(screenName) {
