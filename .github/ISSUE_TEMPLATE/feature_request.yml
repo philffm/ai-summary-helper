@@ -1,0 +1,26 @@
+name: Feature request
+description: An idea or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: "As a … I want … so that …"
+    validations:
+      required: true
+  - type: textarea
+    id: now
+    attributes:
+      label: What happens today?
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like instead?
+      description: Rough idea is enough. Mockups welcome.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: This does not need to send data to a new service (or says clearly what it sends)

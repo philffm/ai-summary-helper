@@ -29,27 +29,40 @@
       <div class="main-screen-layout">
         <!-- Onboarding / Empty State (shown when not authed & no API key & no articles) -->
         <div id="mainScreenOnboarding" class="onboarding-container" style="display:none">
-          <h2 id="onboardingTitle">Sign in to AI Summary Helper</h2>
-          <p id="onboardingLead">Free cloud models and your summaries on every device. Or skip this and use your own API key.</p>
+          <h2 id="onboardingHeading"></h2>
+          <p id="onboardingIntro" class="onboarding-intro"></p>
 
-          <div class="onboarding-auth-box auth-form">
-            <div id="onboardingEmailStage">
-              <input type="email" id="onboardingEmail" placeholder="name@example.com" autocomplete="email" />
-              <button type="button" id="onboardingSendCodeBtn" class="button-primary">Send me a code</button>
-            </div>
+          <div class="onboarding-options" role="group" id="onboardingOptions">
+            <!-- 1 · Free cloud models (email + 4-digit code) -->
+            <section class="onboarding-option" id="onboardingOptCloud">
+              <h3 id="onboardingTitle">Sign in to AI Summary Helper</h3>
+              <p id="onboardingLead">Free cloud models and your summaries on every device. Or skip this and use your own API key.</p>
+              <div class="onboarding-auth-box auth-form">
+                <div id="onboardingEmailStage">
+                  <input type="email" id="onboardingEmail" placeholder="name@example.com" autocomplete="email" />
+                  <button type="button" id="onboardingSendCodeBtn" class="button-primary">Send me a code</button>
+                </div>
 
-            <div id="onboardingOtpStep" style="display:none">
-              <p class="input-caption">4 digits, sent to your email.</p>
-              <div class="otp-boxes"><input type="text" id="onboardingOtpCode" class="otp-input" placeholder="Enter code" maxlength="4" inputmode="numeric" aria-label="Enter code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" data-i18n-placeholder="f_enter_code_6556"><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span></div>
-              <button type="button" id="onboardingVerifyBtn" class="button-primary" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
-              <button type="button" class="btn-link auth-back" id="onboardingBackBtn" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
-            </div>
-            <div id="onboardingAuthMessage" class="auth-message"></div>
+                <div id="onboardingOtpStep" style="display:none">
+                  <p class="input-caption">4 digits, sent to your email.</p>
+                  <div class="otp-boxes"><input type="text" id="onboardingOtpCode" class="otp-input" placeholder="Enter code" maxlength="4" inputmode="numeric" aria-label="Enter code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" data-i18n-placeholder="f_enter_code_6556"><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span></div>
+                  <button type="button" id="onboardingVerifyBtn" class="button-primary" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
+                  <button type="button" class="btn-link auth-back" id="onboardingBackBtn" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
+                </div>
+                <div id="onboardingAuthMessage" class="auth-message"></div>
+              </div>
+            </section>
+
+            <!-- 2 · Own API key · 3 · Ollama: no account, straight to the model settings -->
+            <button type="button" class="onboarding-option onboarding-option--action" id="onboardingCustomApiBtn">
+              <strong id="onboardingOwnKeyTitle"></strong><span id="onboardingOwnKeyHint"></span>
+            </button>
+            <button type="button" class="onboarding-option onboarding-option--action" id="onboardingOllamaBtn">
+              <strong id="onboardingOllamaTitle"></strong><span id="onboardingOllamaHint"></span>
+            </button>
           </div>
 
-          <button id="onboardingCustomApiBtn" class="button-tertiary" data-i18n="f_i_want_to_use_my_own_custom__1b02">
-            I want to use my own Custom API / Local Model
-          </button>
+          <p id="onboardingTip" class="onboarding-tip"></p>
         </div>
 
         <!-- Scrollable feed area (top) -->
@@ -645,9 +658,14 @@
         </p>
           <p>
             <span data-i18n="f_open_source_software_by_0ec8">Open Source software by</span>
-            <a href="https://link.philwornath.com/?ref=aish" target="_b0lank">Phil Wornath</a>
+            <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
             <br />AI Summary Helper v<span id="versionNumber">2.2.1</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank" data-i18n="f_contribute_on_github_5ab8">contribute on GitHub 💙</a>
+          </p>
+          <p class="about-links">
+            <a href="https://ai-summary-helper.byphil.eu/privacy.html" target="_blank" rel="noopener" id="aboutPrivacyLink" data-i18n="f_privacy_policy_16ff">Privacy policy</a> ·
+            <a href="https://github.com/philffm/ai-summary-helper/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-i18n="f_changelog_8779">Changelog</a> ·
+            <a href="https://github.com/philffm/ai-summary-helper/blob/main/SECURITY.md" target="_blank" rel="noopener" data-i18n="f_security_policy_699b">Security policy</a>
           </p>
 </section>
         </form>

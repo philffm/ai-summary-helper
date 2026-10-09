@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "आपके सभी फ़ीड आइटम को आपके अपने कंप्यूटर पर छोटे बैच में रेट, वर्गीकृत और रीकैप करता है। कोई टोकन खर्च नहीं।"
+  },
+  "f_changelog_8779": {
+    "message": "बदलावों की सूची"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "AI Summary Helper को किससे सोचना चाहिए?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "लोकल मॉडल। कोई खाता नहीं, कोई कुंजी नहीं, आपकी मशीन से कुछ बाहर नहीं जाता।"
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "मेरी अपनी API कुंजी"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "इस कंप्यूटर पर Ollama"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek और अन्य। कोई खाता नहीं, कुंजी इसी डिवाइस पर रहती है।"
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "एक चुनें। आप इसे मॉडल सेटिंग्स में कभी भी बदल सकते हैं, और पेज का सारांश बनाने तक कुछ भी भेजा नहीं जाता।"
+  },
+  "f_privacy_policy_16ff": {
+    "message": "गोपनीयता नीति"
+  },
+  "f_security_policy_699b": {
+    "message": "सुरक्षा नीति"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "अपने ईमेल से साइन इन करें, API कुंजी की ज़रूरत नहीं। आपके सारांश हर डिवाइस पर आपके साथ रहते हैं।"
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "सुझाव: किसी भी पेज का सारांश बनाने के लिए {key} दबाएँ।"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ मुफ़्त क्लाउड मॉडल"
   }
 }

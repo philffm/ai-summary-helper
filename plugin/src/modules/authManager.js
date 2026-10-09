@@ -50,6 +50,8 @@ function buildView(ids = {}) {
         messageEl: $(ids.messageEl),
         codeCaption: codeStage ? codeStage.querySelector('.input-caption') : null,
         onAuthed: typeof ids.onAuthed === 'function' ? ids.onAuthed : null,
+        heroTitle: typeof ids.heroTitle === 'function' ? ids.heroTitle : null,   // optional per-view wording (the onboarding card says "Free cloud models")
+        heroLead: typeof ids.heroLead === 'function' ? ids.heroLead : null,
     };
 }
 
@@ -297,9 +299,9 @@ async function refreshAuthState(forceData = null) {
 }
 
 function applyHero(view, stateName) {
-    if (view.titleEl) view.titleEl.textContent = stateName === 'otpPending' ? T('Enter your code') : T('Sign in to AI Summary Helper');
+    if (view.titleEl) view.titleEl.textContent = stateName === 'otpPending' ? T('Enter your code') : (view.heroTitle ? view.heroTitle() : T('Sign in to AI Summary Helper'));
     if (view.leadEl) {
-        view.leadEl.textContent = T('Free cloud models and your summaries on every device. Or skip this and use your own API key.');
+        view.leadEl.textContent = view.heroLead ? view.heroLead() : T('Free cloud models and your summaries on every device. Or skip this and use your own API key.');
         view.leadEl.style.display = stateName === 'otpPending' ? 'none' : '';
     }
 }
@@ -639,6 +641,8 @@ export async function initAuthManager(uiManager) {
         messageEl: 'onboardingAuthMessage',
         titleEl: 'onboardingTitle',
         leadEl: 'onboardingLead',
+        heroTitle: () => T('☁️ Free cloud models'),
+        heroLead: () => T('Sign in with your email, no API key needed. Your summaries follow you to every device.'),
     });
 
     if (!views.length) return;

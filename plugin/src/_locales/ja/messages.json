@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "すべてのフィードアイテムを、あなた自身のマシン上で小さなバッチに分けて評価・分類・要約します。トークンは消費しません。"
+  },
+  "f_changelog_8779": {
+    "message": "変更履歴"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "AI Summary Helper に何で考えさせますか？"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "ローカルモデル。アカウントもキーも不要で、データはマシンの外に出ません。"
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "自分の API キー"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "このコンピューターの Ollama"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI、Gemini、Mistral、DeepSeek など。アカウント不要で、キーはこのデバイスに残ります。"
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "1 つ選んでください。モデル設定でいつでも変更でき、ページを要約するまで何も送信されません。"
+  },
+  "f_privacy_policy_16ff": {
+    "message": "プライバシーポリシー"
+  },
+  "f_security_policy_699b": {
+    "message": "セキュリティポリシー"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "メールアドレスでサインイン。API キーは不要で、要約はすべてのデバイスで使えます。"
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "ヒント：どのページでも {key} を押すと要約できます。"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ 無料のクラウドモデル"
   }
 }

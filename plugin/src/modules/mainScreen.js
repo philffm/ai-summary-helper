@@ -847,7 +847,10 @@ export function initMainScreen(ui) {
         } else {
             if (recentEntry) recentEntry.style.display = 'flex';
             if (recentTitle) recentTitle.textContent = T('No recent summaries');
-            if (recentMeta) recentMeta.textContent = T('Summarize a page to see it here');
+            if (recentMeta) {
+                const mac = /Mac|iPhone|iPad/i.test((navigator.platform || '') + ' ' + (navigator.userAgent || ''));
+                recentMeta.textContent = T('Summarize a page to see it here') + ' · ' + (mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E');
+            }
         }
     };
 
@@ -1382,19 +1385,38 @@ export function initMainScreen(ui) {
 // authManager module (see initAuthManager in popup.js / settingsManager.js)
 // — it drives both the onboarding mask's inputs and the Settings screen's
 // "Account Sync" panel from one implementation. All that's left for
-// mainScreen.js to wire up here is the onboarding-only "use my own API"
-// fallback button.
+// mainScreen.js to wire up here is the onboarding wording and the two
+// no-account choices (own API key, Ollama), which open the model settings
+// with the matching tab selected.
 function setupOnboardingExtras(ui) {
-    const customApiBtn = document.getElementById('onboardingCustomApiBtn');
-    if (customApiBtn && !customApiBtn.dataset.bound) {
-        customApiBtn.dataset.bound = 'true';
-        customApiBtn.addEventListener('click', () => {
-            if (ui && typeof ui.showScreen === 'function') {
-                ui.showScreen('settings');
-                import('./settingsNav.js').then(m => m.openSettingsPanel('models')).catch(() => {});
-            }
-        });
-    }
+    const set = (id, text) => { const n = document.getElementById(id); if (n) n.textContent = text; };
+    set('onboardingHeading', T('How should AI Summary Helper think?'));
+    set('onboardingIntro', T('Pick one. You can change it any time in the model settings, and nothing is sent anywhere until you summarize a page.'));
+    set('onboardingOwnKeyTitle', '🔑 ' + T('My own API key'));
+    set('onboardingOwnKeyHint', T('OpenAI, Gemini, Mistral, DeepSeek and more. No account, the key stays on this device.'));
+    set('onboardingOllamaTitle', '🦙 ' + T('Ollama on this computer'));
+    set('onboardingOllamaHint', T('Local models. No account, no key, nothing leaves your machine.'));
+    const mac = /Mac|iPhone|iPad/i.test((navigator.platform || '') + ' ' + (navigator.userAgent || ''));
+    set('onboardingTip', T('Tip: press {key} on any page to summarize it.', { key: mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E' }));
+
+    // Own key / Ollama: open the model settings with the matching tab already selected.
+    const openModels = (radioId) => {
+        if (!(ui && typeof ui.showScreen === 'function')) return;
+        ui.showScreen('settings');
+        import('./settingsNav.js').then((m) => {
+            m.openSettingsPanel('models');
+            setTimeout(() => {
+                const r = document.getElementById(radioId);
+                if (r && !r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+            }, 60);
+        }).catch(() => {});
+    };
+    const bind = (id, radioId) => {
+        const btn = document.getElementById(id);
+        if (btn && !btn.dataset.bound) { btn.dataset.bound = 'true'; btn.addEventListener('click', () => openModels(radioId)); }
+    };
+    bind('onboardingCustomApiBtn', 'modeLocal');
+    bind('onboardingOllamaBtn', 'modeOllama');
 }
 
 // Helper to check if tab URL supports content scripts

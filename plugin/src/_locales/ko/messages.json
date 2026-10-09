@@ -4012,5 +4012,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "모든 피드 항목을 내 컴퓨터에서 작은 배치로 평가·분류·요약합니다. 토큰을 쓰지 않습니다."
+  },
+  "f_changelog_8779": {
+    "message": "변경 내역"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "AI Summary Helper가 무엇으로 생각하게 할까요?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "로컬 모델. 계정도 키도 필요 없고, 데이터가 내 컴퓨터를 떠나지 않습니다."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "내 API 키"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "이 컴퓨터의 Ollama"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek 등. 계정 없이, 키는 이 기기에만 보관됩니다."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "하나를 고르세요. 모델 설정에서 언제든 바꿀 수 있고, 페이지를 요약하기 전에는 아무것도 전송되지 않습니다."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "개인정보 처리방침"
+  },
+  "f_security_policy_699b": {
+    "message": "보안 정책"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "이메일로 로그인하세요. API 키가 필요 없고 요약이 모든 기기에서 따라옵니다."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "팁: 아무 페이지에서나 {key}를 누르면 요약합니다."
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ 무료 클라우드 모델"
   }
 }

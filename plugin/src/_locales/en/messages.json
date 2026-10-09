@@ -4217,5 +4217,42 @@
   "f_elapsed_a2f5": {
     "message": "{t} elapsed",
     "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_changelog_8779": {
+    "message": "Changelog"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "How should AI Summary Helper think?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Local models. No account, no key, nothing leaves your machine."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "My own API key"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama on this computer"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek and more. No account, the key stays on this device."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Pick one. You can change it any time in the model settings, and nothing is sent anywhere until you summarize a page."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Privacy policy"
+  },
+  "f_security_policy_699b": {
+    "message": "Security policy"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Sign in with your email, no API key needed. Your summaries follow you to every device."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Tip: press {key} on any page to summarize it.",
+    "description": "Placeholders: {key} (keep as is)"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Free cloud models"
   }
 }

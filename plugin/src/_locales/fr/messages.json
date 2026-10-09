@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "Évalue, catégorise et résume tous vos éléments de flux par petits lots sur votre propre machine. Aucun jeton dépensé."
+  },
+  "f_changelog_8779": {
+    "message": "Journal des modifications"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "Avec quoi AI Summary Helper doit-il réfléchir ?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Modèles locaux. Pas de compte, pas de clé, rien ne quitte votre machine."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "Ma propre clé API"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama sur cet ordinateur"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek et plus. Pas de compte, la clé reste sur cet appareil."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Choisissez-en un. Vous pouvez le changer à tout moment dans les réglages du modèle, et rien n’est envoyé avant que vous ne résumiez une page."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Politique de confidentialité"
+  },
+  "f_security_policy_699b": {
+    "message": "Politique de sécurité"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Connectez-vous avec votre e-mail, sans clé API. Vos résumés vous suivent sur tous vos appareils."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Astuce : appuyez sur {key} sur n’importe quelle page pour la résumer."
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Modèles cloud gratuits"
   }
 }

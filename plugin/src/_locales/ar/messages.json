@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "يقيّم كل عناصر خلاصاتك ويصنّفها ويلخّصها على دفعات صغيرة على جهازك. دون استهلاك رموز."
+  },
+  "f_changelog_8779": {
+    "message": "سجل التغييرات"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "بماذا يجب أن يفكّر AI Summary Helper؟"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "نماذج محلية. بلا حساب وبلا مفتاح، ولا شيء يغادر جهازك."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "مفتاح API الخاص بي"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama على هذا الكمبيوتر"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI وGemini وMistral وDeepSeek وغيرها. بلا حساب، ويبقى المفتاح على هذا الجهاز."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "اختر واحدًا. يمكنك تغييره في أي وقت من إعدادات النموذج، ولا يُرسل شيء حتى تلخّص صفحة."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "سياسة الخصوصية"
+  },
+  "f_security_policy_699b": {
+    "message": "سياسة الأمان"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "سجّل الدخول ببريدك الإلكتروني دون مفتاح API. تتبعك ملخّصاتك إلى كل أجهزتك."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "نصيحة: اضغط {key} في أي صفحة لتلخيصها."
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ نماذج سحابية مجانية"
   }
 }
