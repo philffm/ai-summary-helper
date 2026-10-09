@@ -60,35 +60,54 @@ export function formatEta(ms, T) {
 
 /**
  * Run the plan. Hooks:
- *   rateChunk(chunk, signal)            rate + categorize one batch (throws on failure)
- *   recapDay(entry, batchSize, signal)  write/extend the recap of one day, batch by batch, saving as it goes (throws on failure)
- *   onProgress({ phase, doneRequests, totalRequests, rated, recaps, failed, etaMs })
- *   signal                              AbortSignal: stops between and during requests; the work done so far stays saved
+ *   rateChunk(chunk, signal, ctx)               rate + categorize one batch (throws on failure)
+ *   recapDay(entry, batchSize, signal, ctx)     write/extend the recap of one day, batch by batch, saving as it goes (throws on failure)
+ *                                               ctx.step({ batch, batches, count }) before each batch, ctx.tick() after each batch
+ *   ctx.onStage(stage)                          pass on to the AI call: 'send' | 'wait' | 'write' | 'parse'
+ *   onProgress(info)                            every change; info = { phase, doneRequests, totalRequests, rated, recaps, failed, etaMs, elapsedMs, step }
+ *                                               step = what is happening now: { phase: 'rate', batch, batches, from, to, items }
+ *                                                                          or { phase: 'recap', day, dayIndex, days, batch, batches, count }
+ *   onStage(stage)                              the stage of the request in flight
+ *   signal                                      AbortSignal: stops between and during requests; the work done so far stays saved
  * A failed batch is counted and skipped, so one unreadable reply does not end an overnight run.
  */
-export async function runLibrary(plan, batchSize, { rateChunk, recapDay, onProgress = () => {}, signal } = {}) {
+export async function runLibrary(plan, batchSize, { rateChunk, recapDay, onProgress = () => {}, onStage = () => {}, signal } = {}) {
     const total = countRequests(plan, batchSize);
-    let done = 0, rated = 0, recapDays = 0, failed = 0;
+    let done = 0, rated = 0, recapDays = 0, failed = 0, step = null;
     const started = Date.now();
     const report = (phase) => {
         const per = done ? (Date.now() - started) / done : 0;
-        onProgress({ phase, doneRequests: done, totalRequests: total, rated, recaps: recapDays, failed, etaMs: per ? per * (total - done) : NaN });
+        onProgress({ phase, doneRequests: done, totalRequests: total, rated, recaps: recapDays, failed, etaMs: per ? per * (total - done) : NaN, elapsedMs: Date.now() - started, step });
     };
     const stopped = () => !!(signal && signal.aborted);
+    const ctx = { onStage };
     report('rate');
-    for (const chunk of chunksOf(plan.rate, batchSize)) {
+    const rateChunks = chunksOf(plan.rate, batchSize);
+    for (let k = 0; k < rateChunks.length; k++) {
         if (stopped()) break;
-        try { await rateChunk(chunk, signal); rated += chunk.length; }
+        const chunk = rateChunks[k];
+        step = { phase: 'rate', batch: k + 1, batches: rateChunks.length, from: k * batchSize + 1, to: k * batchSize + chunk.length, items: plan.rate.length };
+        report('rate');
+        try { await rateChunk(chunk, signal, ctx); rated += chunk.length; }
         catch (e) { if (stopped() || (e && e.cancelled)) break; failed += chunk.length; }
         done++; report('rate');
     }
-    for (const entry of plan.days) {
+    for (let d = 0; d < plan.days.length; d++) {
+        const entry = plan.days[d];
         if (stopped()) break;
+        const batches = Math.ceil(entry.todo.length / batchSize), base = done;
+        step = { phase: 'recap', day: entry.day, dayIndex: d + 1, days: plan.days.length, batch: 1, batches, count: Math.min(batchSize, entry.todo.length) };
         report('recap');
-        try { await recapDay(entry, batchSize, signal); recapDays++; }
+        const dayCtx = {
+            onStage,
+            step: (b) => { step = { ...step, ...b }; report('recap'); },
+            tick: () => { done = Math.min(base + batches, done + 1); report('recap'); }
+        };
+        try { await recapDay(entry, batchSize, signal, dayCtx); recapDays++; }
         catch (e) { if (stopped() || (e && e.cancelled)) break; failed++; }
-        done += Math.ceil(entry.todo.length / batchSize);
+        done = base + batches;
         report('recap');
     }
-    return { rated, recaps: recapDays, failed, stopped: stopped(), doneRequests: done, totalRequests: total };
+    step = null;
+    return { rated, recaps: recapDays, failed, stopped: stopped(), doneRequests: done, totalRequests: total, elapsedMs: Date.now() - started };
 }

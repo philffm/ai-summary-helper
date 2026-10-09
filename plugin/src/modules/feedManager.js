@@ -2067,16 +2067,30 @@ function renderFeedSettings() {
 // Ollama only. The plan is derived from what is stored, so stopping and starting again continues where it left off.
 let libraryRun = null;   // { ctl: AbortController } while a run is active
 
-async function isOllamaActive() {
-    try { const s = await chrome.storage.sync.get(['connectionMode', 'activeService']); return s.connectionMode === 'local' && s.activeService === 'ollama'; }
-    catch (e) { return false; }
+/**
+ * Ollama counts as configured when it is the active model OR the user saved anything for it (endpoint or models).
+ * The whole-library run talks to Ollama directly (service: 'ollama'), so the model used for summaries can be something else.
+ */
+async function ollamaSetup() {
+    try {
+        const sync = await chrome.storage.sync.get(['connectionMode', 'activeService']);
+        const active = sync.connectionMode === 'local' && sync.activeService === 'ollama';
+        const cfg = ((await chrome.storage.local.get(SK.servicesConfig))[SK.servicesConfig] || {}).ollama || {};
+        const saved = !!(cfg.endpoint || cfg.endpointUrl || cfg.activeModelId || (Array.isArray(cfg.customModel) ? cfg.customModel.length : cfg.customModel));
+        let model = '';
+        const idOf = (m) => !m ? '' : typeof m === 'string' ? m : (m.id || '');
+        model = idOf(cfg.activeModelId) || (Array.isArray(cfg.customModel) ? idOf(cfg.customModel[0]) : idOf(cfg.customModel));
+        if (!model && (active || saved)) { try { const m = await StorageManager.getActiveModel('ollama'); model = m && m.id ? m.id : ''; } catch (e) { /* the model name is only a label */ } }
+        return { configured: active || saved, active, model };
+    } catch (e) { return { configured: false, active: false, model: '' }; }
 }
+const isOllamaConfigured = async () => (await ollamaSetup()).configured;
 function libraryPlan() {
     const sm = subMap();
     return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig });
 }
-async function libraryRateChunk(chunk, signal) {
-    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal });
+async function libraryRateChunk(chunk, signal, ctx = {}) {
+    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal, onStage: ctx.onStage, service: 'ollama' });
     chunk.forEach((i, n) => {
         if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; }   // never overwrite an existing rating or category
         if (!i.cat && res.labels && res.labels[n]) i.cat = res.labels[n];
@@ -2084,28 +2098,32 @@ async function libraryRateChunk(chunk, signal) {
     await persist();
 }
 /** Day recap in batches: the first batch writes it, every further batch extends it. Saved after each batch, so a stop loses at most one batch. */
-async function libraryRecapDay(entry, size, signal) {
+async function libraryRecapDay(entry, size, signal, ctx = {}) {
     const sm = subMap(), rate = settings.rateWithRecap !== false;
     const key = `${entry.day}|all`;
     const all = recapScope(entry.day, 'all');
     const sigs = (arr) => Object.fromEntries(arr.map(x => [x.id, itemSig(x)]));
     let cur = recaps[key] || null;
-    for (const chunk of chunksOf(entry.todo, size)) {
+    const chunks = chunksOf(entry.todo, size);
+    for (let k = 0; k < chunks.length; k++) {
+        const chunk = chunks[k];
         if (signal && signal.aborted) throw Object.assign(new Error(T('Cancelled')), { cancelled: true });
+        if (ctx.step) ctx.step({ batch: k + 1, batches: chunks.length, count: chunk.length });
         let rc;
         if (!cur) {
-            const r = await generateRecap(chunk, aiTitleOf(sm), { rate, signal });
+            const r = await generateRecap(chunk, aiTitleOf(sm), { rate, signal, onStage: ctx.onStage, service: 'ollama' });
             applyRatings(chunk, r, rate);
             const { labels: _l, scores: _s, ...base } = r;
             rc = { ...base, covered: sigs(chunk) };
         } else {
-            const r = await generateRecapUpdate(cur, chunk, aiTitleOf(sm), { rate, signal, edited: (x) => x.id in cur.covered });
+            const r = await generateRecapUpdate(cur, chunk, aiTitleOf(sm), { rate, signal, edited: (x) => x.id in cur.covered, onStage: ctx.onStage, service: 'ollama' });
             applyRatings(r.sent, r, rate);
             const { labels: _l, scores: _s, sent: _t, ...base } = r;
             rc = { ...base, covered: { ...cur.covered, ...sigs(chunk) } };
         }
         cur = recaps[key] = { ...rc, hash: idsHash(all), at: Date.now(), n: all.length, total: all.length };
         await chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
+        if (ctx.tick) ctx.tick();
     }
     renderRecapCard();
 }
@@ -2124,11 +2142,12 @@ async function executeLibrary({ auto = false } = {}) {
     const keepLimit = getRecapLimit(); setRecapLimit(0);   // a per-recap cap would silently drop items from a batch
     scoring = true;
     libraryUiLive()?.running(true);
-    let out = null;
+    let out = null, lastRendered = -1;
     try {
         out = await runLibrary(plan, n, {
             signal: ctl.signal, rateChunk: libraryRateChunk, recapDay: libraryRecapDay,
-            onProgress: (pr) => { libraryUiLive()?.progress(pr); render(); }
+            onStage: (st) => libraryUiLive()?.stage(st),
+            onProgress: (pr) => { libraryUiLive()?.progress(pr); if (pr.doneRequests !== lastRendered) { lastRendered = pr.doneRequests; render(); } }
         });
     } finally {
         setRecapLimit(keepLimit); scoring = false; libraryRun = null; render(); renderRecapCard();
@@ -2144,7 +2163,7 @@ async function autoProcessTick() {
     if (!settings.autoProcess || libraryRun || scoring || refreshing) return;
     const every = Math.max(15, Number(settings.autoProcessMinutes) || 30) * 60000;
     if (Date.now() - (settings.autoProcessAt || 0) < every) return;
-    if (!(await isOllamaActive())) return;
+    if (!(await isOllamaConfigured())) return;
     settings.autoProcessAt = Date.now(); persistSettings();
     await refreshAll(uiRef, { force: true });
     await executeLibrary({ auto: true });
@@ -2158,11 +2177,16 @@ function startAutoProcess() {
 
 async function renderLibraryCard(card) {
     card.replaceChildren();
-    if (!(await isOllamaActive())) {
-        card.append(el('p', 'feed-muted', T('Available when Ollama is your active model. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')));
+    const setup = await ollamaSetup();
+    if (!setup.configured) {
+        card.append(el('p', 'feed-muted', T('Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')));
         return;
     }
     const status = el('p', 'feed-muted');
+    // While a run is active: what is being done right now (head), the state of the request (stage), and the totals.
+    const live = el('div', 'library-live'); live.hidden = true;
+    const headLine = el('p', 'library-head'), stageLine = el('p', 'feed-muted library-stage'), totalsLine = el('p', 'feed-muted library-totals');
+    live.append(headLine, stageLine, totalsLine);
     const bar = el('progress'); bar.max = 1; bar.value = 0; bar.hidden = true; bar.className = 'library-progress';
     const startBtn = btn('btn-sm', '', async () => {
         if (libraryRun || scoring) { toast(uiRef, T('Already scoring — one moment')); return; }
@@ -2177,31 +2201,59 @@ async function renderLibraryCard(card) {
         return T('{a} items to rate · {b} days to recap · {n} AI requests', { a: p.rate.length, b: p.days.length, n }) + (eta ? ' · ' + eta : '');
     };
     const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length; startBtn.textContent = T('Process the whole library'); };
+
+    // Stage of the request in flight, with a ticking clock so a slow local model never looks frozen.
+    const STAGE_TEXT = () => ({ send: T('Sending the batch to Ollama…'), wait: T('Waiting for the model…'), write: T('Model is writing…'), parse: T('Reading the answer…') });
+    let stage = '', stageSince = 0, clock = null;
+    const mmss = (ms) => { const t = Math.max(0, Math.round(ms / 1000)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+    const paintStage = () => {
+        if (!stage) { stageLine.textContent = ''; return; }
+        stageLine.textContent = (STAGE_TEXT()[stage] || '') + ' ' + mmss(Date.now() - stageSince);
+    };
+    const stopClock = () => { if (clock) { clearInterval(clock); clock = null; } stage = ''; };
+    const dayText = (ts) => new Date(ts).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short' });
+    const modelText = setup.model ? T('Model: {m}', { m: setup.model }) + (setup.active ? '' : ' · ' + T('not your active summary model')) : '';
+
     libraryUi = {
         bar, refresh,
-        running: (on) => { startBtn.hidden = on; stopBtn.hidden = !on; bar.hidden = !on; if (on) bar.value = 0; },
+        running: (on) => {
+            startBtn.hidden = on; stopBtn.hidden = !on; bar.hidden = !on; live.hidden = !on;
+            if (on) { bar.value = 0; status.textContent = modelText; headLine.textContent = T('Starting…'); totalsLine.textContent = ''; stageLine.textContent = ''; }
+            else stopClock();
+        },
+        stage: (st) => {
+            if (st !== stage) { stage = st; stageSince = Date.now(); }
+            if (!clock) clock = setInterval(paintStage, 1000);
+            paintStage();
+        },
         progress: (pr) => {
             bar.value = pr.totalRequests ? pr.doneRequests / pr.totalRequests : 0;
+            const st = pr.step;
+            if (st && st.phase === 'rate') headLine.textContent = T('Rating and categorizing: batch {a} of {b} · items {from}–{to} of {n}', { a: st.batch, b: st.batches, from: st.from, to: st.to, n: st.items });
+            else if (st && st.phase === 'recap') headLine.textContent = T('Day recap {d} of {t} ({date}): batch {a} of {b} · {n} items', { d: st.dayIndex, t: st.days, date: dayText(st.day), a: st.batch, b: st.batches, n: st.count });
             const eta = formatEta(pr.etaMs, T);
-            status.textContent = (pr.phase === 'rate' ? T('Rating and categorizing…') : T('Writing day recaps…'))
-                + ` ${pr.doneRequests}/${pr.totalRequests}` + (eta ? ' · ' + eta : '') + (pr.failed ? ' · ' + T('{n} failed', { n: pr.failed }) : '');
+            totalsLine.textContent = [T('Request {a} of {b}', { a: Math.min(pr.doneRequests + 1, pr.totalRequests), b: pr.totalRequests }),
+                T('{a} items rated · {b} days recapped', { a: pr.rated, b: pr.recaps }),
+                pr.failed ? T('{n} failed', { n: pr.failed }) : '',
+                T('{t} elapsed', { t: mmss(pr.elapsedMs) }), eta ? T('{eta} left', { eta }) : ''].filter(Boolean).join(' · ');
         },
         finished: (out) => {
-            bar.hidden = true; stopBtn.hidden = true; startBtn.hidden = false;
+            stopClock(); live.hidden = true; bar.hidden = true; stopBtn.hidden = true; startBtn.hidden = false;
             refresh();
             if (out) status.textContent = (out.stopped ? T('Stopped. Starting again continues where it left off.') + ' ' : T('Done.') + ' ')
-                + T('{a} items rated · {b} days recapped', { a: out.rated, b: out.recaps }) + (out.failed ? ' · ' + T('{n} failed', { n: out.failed }) : '');
+                + T('{a} items rated · {b} days recapped', { a: out.rated, b: out.recaps }) + (out.failed ? ' · ' + T('{n} failed', { n: out.failed }) : '')
+                + (out.elapsedMs ? ' · ' + T('{t} elapsed', { t: mmss(out.elapsedMs) }) : '');
         }
     };
     const actions = el('div', 'feed-recap-actions'); actions.append(startBtn, stopBtn);
     card.append(
         selectRow('feedSetLibBatch', T('📦 Items per batch'), 'libraryBatch', BATCH_SIZES.map(v => [v, v === DEFAULT_BATCH ? T('{n} (recommended)', { n: v }) : String(v)])),
-        status, bar, actions,
-        el('p', 'feed-muted', T('Runs on your own machine with Ollama and spends no tokens. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
+        status, live, bar, actions,
+        el('p', 'feed-muted', T('Runs on your own machine with Ollama and spends no tokens, even when another model is active for summaries. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
         toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches your feeds and processes what is new at the interval below, while the Feeds screen or side panel is open'), 'autoProcess'),
         selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]));
     card.querySelector('#feedSetLibBatch').addEventListener('change', () => refresh());
-    if (libraryRun) { libraryUi.running(true); status.textContent = T('Rating and categorizing…'); } else refresh();
+    if (libraryRun) libraryUi.running(true); else refresh();
 }
 
 function renderFeedPrefs() {

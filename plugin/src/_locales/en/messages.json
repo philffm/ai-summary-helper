@@ -4166,5 +4166,56 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label} recap is ready",
     "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Day recap {d} of {t} ({date}): batch {a} of {b} · {n} items",
+    "description": "Placeholders: {d} {t} {date} {a} {b} {n} (keep as is)"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Model is writing…"
+  },
+  "f_model_a2bb": {
+    "message": "Model: {m}",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Process the Feed library with Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Process the whole Feed library (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Rates, categorizes and recaps all your feed items in small batches on your own machine. No tokens spent."
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Rating and categorizing: batch {a} of {b} · items {from}–{to} of {n}",
+    "description": "Placeholders: {a} {b} {from} {to} {n} (keep as is)"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Reading the answer…"
+  },
+  "f_request_of_866e": {
+    "message": "Request {a} of {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Runs on your own machine with Ollama and spends no tokens, even when another model is active for summaries. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see \"Keep items for\"). Today's recap is written when you open it."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Sending the batch to Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "not your active summary model"
+  },
+  "f_left_db92": {
+    "message": "{eta} left",
+    "description": "Placeholders: {eta} (keep as is)"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} elapsed",
+    "description": "Placeholders: {t} (keep as is)"
   }
 }

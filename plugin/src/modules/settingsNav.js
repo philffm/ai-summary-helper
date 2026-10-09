@@ -23,6 +23,8 @@ const INDEX = [
     ['feeds', N_('Import / export OPML'), 'feedOpmlActions', 'opml import export rss subscriptions backup reader'],
     ['feedprefs', N_('Mark read when opened'), 'feedSetMarkRead', 'feed read unread open'],
     ['feedprefs', N_('Mood on/off (tone analysis)'), 'feedSetMood', 'mood sentiment tone positive negative disable hide analysis diet'],
+    ['feedprefs', N_('Process the whole Feed library (Ollama)'), 'feedPrefsLibrary', 'ollama batch whole library recap rate categorize local on-device automatic background'],
+    ['library', N_('Process the whole Feed library (Ollama)'), 'libraryToolButton', 'ollama batch whole library recap rate categorize local on-device'],
     ['feedprefs', N_('Rate items with the recap'), 'feedSetRate', 'feed ai recap rate score sentiment mood category label automatic'],
     ['feedprefs', N_('Auto-summarize favorites'), 'feedSetAutoSum', 'feed favorite star summarize automatic background'],
     ['feedprefs', N_('Check feeds in the background'), 'feedSetPoll', 'feed badge notification new items poll background'],

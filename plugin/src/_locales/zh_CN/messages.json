@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}回顾已就绪"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "设置好 Ollama 后可用。它会在你自己的电脑上分小批次为整个订阅库评分、分类并生成回顾。可能需要数小时，但不消耗任何 token。"
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "每日回顾 {d}/{t}（{date}）：第 {a}/{b} 批 · {n} 个条目"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "模型正在写作…"
+  },
+  "f_model_a2bb": {
+    "message": "模型：{m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "评分和分类：第 {a}/{b} 批 · 条目 {from}–{to} / {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "正在读取回答…"
+  },
+  "f_request_of_866e": {
+    "message": "请求 {a}/{b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "使用 Ollama 在你自己的电脑上运行，不消耗 token，即使摘要当前使用的是其他模型。请保持此面板打开：关闭会暂停运行，重新开始会从中断处继续。只处理仍保存的条目（见“条目保留时间”）。今天的回顾在你打开时生成。"
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "正在将这一批发送给 Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "不是你当前的摘要模型"
+  },
+  "f_left_db92": {
+    "message": "还剩 {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "已用 {t}"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "用 Ollama 处理订阅库"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "处理整个订阅库（Ollama）"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "在你自己的电脑上分小批次为所有订阅条目评分、分类并生成回顾。不消耗 token。"
   }
 }

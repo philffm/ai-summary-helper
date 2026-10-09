@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ O resumo de {label} está pronto"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Disponível quando o Ollama está configurado. Avalia, categoriza e resume toda a biblioteca de feeds em pequenos lotes no seu próprio computador. Pode demorar horas, mas não gasta tokens."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Resumo do dia {d} de {t} ({date}): lote {a} de {b} · {n} itens"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "O modelo está a escrever…"
+  },
+  "f_model_a2bb": {
+    "message": "Modelo: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "A avaliar e categorizar: lote {a} de {b} · itens {from}–{to} de {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "A ler a resposta…"
+  },
+  "f_request_of_866e": {
+    "message": "Pedido {a} de {b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Corre no seu próprio computador com o Ollama e não gasta tokens, mesmo que outro modelo esteja ativo para os resumos. Mantenha este painel aberto: fechá-lo pausa a execução e, ao iniciar de novo, continua onde parou. Só são processados os itens ainda guardados (ver «Manter itens durante»). O resumo de hoje é escrito quando o abrir."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "A enviar o lote para o Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "não é o seu modelo ativo para resumos"
+  },
+  "f_left_db92": {
+    "message": "faltam {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} decorridos"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Processar a biblioteca de feeds com o Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Processar toda a biblioteca de feeds (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Avalia, categoriza e resume todos os itens dos feeds em pequenos lotes no seu próprio computador. Sem gastar tokens."
   }
 }

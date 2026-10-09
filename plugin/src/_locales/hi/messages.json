@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ {label} का रिकैप तैयार है"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Ollama सेट होने पर उपलब्ध। यह आपकी पूरी फ़ीड लाइब्रेरी को आपके अपने कंप्यूटर पर छोटे बैच में रेट, वर्गीकृत और रीकैप करता है। इसमें घंटों लग सकते हैं, पर कोई टोकन खर्च नहीं होता।"
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "दैनिक रीकैप {d}/{t} ({date}): बैच {a}/{b} · {n} आइटम"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "मॉडल लिख रहा है…"
+  },
+  "f_model_a2bb": {
+    "message": "मॉडल: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "रेटिंग और वर्गीकरण: बैच {a}/{b} · आइटम {from}–{to}, कुल {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "उत्तर पढ़ा जा रहा है…"
+  },
+  "f_request_of_866e": {
+    "message": "अनुरोध {a}/{b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "यह आपके अपने कंप्यूटर पर Ollama के साथ चलता है और कोई टोकन खर्च नहीं करता, भले ही सारांश के लिए कोई और मॉडल सक्रिय हो। इस पैनल को खुला रखें: इसे बंद करने से रन रुक जाता है, और फिर शुरू करने पर वहीं से जारी रहता है। केवल अभी सहेजे गए आइटम प्रोसेस होते हैं (\"आइटम कितने समय रखें\" देखें)। आज का रीकैप खोलने पर लिखा जाता है।"
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "बैच Ollama को भेजा जा रहा है…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "आपका सक्रिय सारांश मॉडल नहीं"
+  },
+  "f_left_db92": {
+    "message": "{eta} बाकी"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} बीते"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Ollama से फ़ीड लाइब्रेरी प्रोसेस करें"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "पूरी फ़ीड लाइब्रेरी प्रोसेस करें (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "आपके सभी फ़ीड आइटम को आपके अपने कंप्यूटर पर छोटे बैच में रेट, वर्गीकृत और रीकैप करता है। कोई टोकन खर्च नहीं।"
   }
 }

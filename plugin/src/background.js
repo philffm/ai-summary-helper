@@ -424,11 +424,13 @@ function aiDelta(line) {
 }
 
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
-async function aiComplete({ system, user, id, partial }) {
+async function aiComplete({ system, user, id, partial, service: forcedService }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     const local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
-    const connectionMode = sync.connectionMode || 'cloud';
-    let service = sync.activeService || 'openai';
+    // `forcedService` (only 'ollama') lets the whole-library run use the local model whatever is active for summaries.
+    const forced = forcedService === 'ollama' ? 'ollama' : '';
+    const connectionMode = forced ? 'local' : (sync.connectionMode || 'cloud');
+    let service = forced || sync.activeService || 'openai';
     const cfg = (local[SK.servicesConfig] || {})[service] || {};
     const modelId = (m) => (!m ? '' : typeof m === 'string' ? m : (m.id || ''));
 
@@ -774,7 +776,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
     if (msg.action === 'aiComplete' && msg.user) {
-        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial })
+        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial, service: msg.service })
             .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;

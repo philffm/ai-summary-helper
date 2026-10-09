@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ El resumen de {label} está listo"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Disponible cuando Ollama está configurado. Puntúa, categoriza y resume toda tu biblioteca de Feeds en lotes pequeños en tu propio equipo. Puede tardar horas, pero no gasta tokens."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Resumen del día {d} de {t} ({date}): lote {a} de {b} · {n} elementos"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "El modelo está escribiendo…"
+  },
+  "f_model_a2bb": {
+    "message": "Modelo: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Puntuando y categorizando: lote {a} de {b} · elementos {from}–{to} de {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Leyendo la respuesta…"
+  },
+  "f_request_of_866e": {
+    "message": "Solicitud {a} de {b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Se ejecuta en tu propio equipo con Ollama y no gasta tokens, aunque haya otro modelo activo para los resúmenes. Mantén este panel abierto: si lo cierras, la ejecución se pausa y, al empezar de nuevo, continúa donde se quedó. Solo se procesan los elementos aún guardados (consulta «Conservar elementos durante»). El resumen de hoy se escribe cuando lo abres."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Enviando el lote a Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "no es tu modelo activo para resúmenes"
+  },
+  "f_left_db92": {
+    "message": "quedan {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} transcurridos"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Procesar la biblioteca de Feeds con Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Procesar toda la biblioteca de Feeds (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Puntúa, categoriza y resume todos tus elementos de feed en lotes pequeños en tu propio equipo. Sin gastar tokens."
   }
 }

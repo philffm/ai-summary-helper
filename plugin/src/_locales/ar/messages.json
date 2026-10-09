@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ ملخص {label} جاهز"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "متاح عند إعداد Ollama. يقيّم مكتبة الخلاصات كلها ويصنّفها ويلخّصها على دفعات صغيرة على جهازك. قد يستغرق ساعات لكنه لا يستهلك أي رموز."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "ملخّص اليوم {d} من {t} ({date}): الدفعة {a} من {b} · {n} عنصرًا"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "النموذج يكتب…"
+  },
+  "f_model_a2bb": {
+    "message": "النموذج: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "التقييم والتصنيف: الدفعة {a} من {b} · العناصر {from}–{to} من {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "جارٍ قراءة الإجابة…"
+  },
+  "f_request_of_866e": {
+    "message": "الطلب {a} من {b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "يعمل على جهازك مع Ollama ولا يستهلك رموزًا، حتى لو كان نموذج آخر نشطًا للملخّصات. أبقِ هذه اللوحة مفتوحة: إغلاقها يوقف التشغيل مؤقتًا، والبدء من جديد يكمل من حيث توقف. تُعالَج فقط العناصر المخزّنة حاليًا (انظر «الاحتفاظ بالعناصر لمدة»). يُكتب ملخّص اليوم عند فتحه."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "جارٍ إرسال الدفعة إلى Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "ليس نموذج الملخّصات النشط لديك"
+  },
+  "f_left_db92": {
+    "message": "متبقٍ {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "انقضى {t}"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "معالجة مكتبة الخلاصات باستخدام Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "معالجة مكتبة الخلاصات كلها (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "يقيّم كل عناصر خلاصاتك ويصنّفها ويلخّصها على دفعات صغيرة على جهازك. دون استهلاك رموز."
   }
 }

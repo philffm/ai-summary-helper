@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ Le récap de {label} est prêt"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Disponible lorsque Ollama est configuré. Il évalue, catégorise et résume toute votre bibliothèque de flux par petits lots sur votre propre machine. Cela peut prendre des heures, mais ne dépense aucun jeton."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Résumé du jour {d} sur {t} ({date}) : lot {a} sur {b} · {n} éléments"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Le modèle écrit…"
+  },
+  "f_model_a2bb": {
+    "message": "Modèle : {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Évaluation et catégorisation : lot {a} sur {b} · éléments {from}–{to} sur {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Lecture de la réponse…"
+  },
+  "f_request_of_866e": {
+    "message": "Requête {a} sur {b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Fonctionne sur votre propre machine avec Ollama et ne dépense aucun jeton, même si un autre modèle est actif pour les résumés. Gardez ce panneau ouvert : le fermer met l’exécution en pause, et la relancer reprend là où elle s’est arrêtée. Seuls les éléments encore stockés sont traités (voir « Conserver les éléments »). Le résumé du jour est écrit quand vous l’ouvrez."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Envoi du lot à Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "pas votre modèle de résumé actif"
+  },
+  "f_left_db92": {
+    "message": "reste {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} écoulées"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Traiter la bibliothèque de flux avec Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Traiter toute la bibliothèque de flux (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Évalue, catégorise et résume tous vos éléments de flux par petits lots sur votre propre machine. Aucun jeton dépensé."
   }
 }

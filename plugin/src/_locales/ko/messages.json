@@ -3967,5 +3967,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ {label} 요약이 준비되었습니다"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Ollama가 설정되어 있을 때 사용할 수 있습니다. 피드 라이브러리 전체를 내 컴퓨터에서 작은 배치로 평가·분류·요약합니다. 몇 시간이 걸릴 수 있지만 토큰은 쓰지 않습니다."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "일별 요약 {d}/{t} ({date}): 배치 {a}/{b} · 항목 {n}개"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "모델이 작성 중…"
+  },
+  "f_model_a2bb": {
+    "message": "모델: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "평가 및 분류: 배치 {a}/{b} · 항목 {from}–{to} / {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "답변 읽는 중…"
+  },
+  "f_request_of_866e": {
+    "message": "요청 {a}/{b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "요약에 다른 모델이 활성화되어 있어도 Ollama로 내 컴퓨터에서 실행되며 토큰을 쓰지 않습니다. 이 패널을 열어 두세요. 닫으면 실행이 일시 중지되고, 다시 시작하면 멈춘 곳부터 이어집니다. 아직 저장된 항목만 처리됩니다(「항목 보관 기간」 참조). 오늘의 요약은 열 때 작성됩니다."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "배치를 Ollama로 보내는 중…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "현재 요약 모델이 아님"
+  },
+  "f_left_db92": {
+    "message": "{eta} 남음"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} 경과"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Ollama로 피드 라이브러리 처리"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "전체 피드 라이브러리 처리 (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "모든 피드 항목을 내 컴퓨터에서 작은 배치로 평가·분류·요약합니다. 토큰을 쓰지 않습니다."
   }
 }
