@@ -28709,6 +28709,1106 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "954fe56cdea4b27d856aec85ee10ed1774f006d9af23991d487aae2d51e5df83": {
+      "en": "No Account Required for Core Features",
+      "translations": {
+        "de": {
+          "text": "Kein Konto für Kernfunktionen erforderlich",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Aucun compte requis pour les fonctionnalités essentielles",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "No se requiere cuenta para las funciones principales",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "核心功能无需注册账号",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "核心功能無需註冊帳號",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "主要機能のアカウント登録は不要",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "핵심 기능은 계정 없이도 바로 사용할 수 있어요",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Nenhuma conta necessária para os recursos principais",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Core Features के लिए किसी Account की ज़रूरत नहीं है",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không cần tài khoản cho các tính năng cốt lõi",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d61fb84055ddfe9fcf5ce3d8baec08b87b155642c844b27a6c6c4fcac20ba5df": {
+      "en": "AI Summary Helper does not require you to create an account, sign in, or provide any personal information to summarize pages, highlight, follow feeds, or keep your archive. Your API key (if you use your own) and your entire article history live in your browser's local storage.",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper erfordert weder ein Konto, eine Anmeldung noch persönliche Angaben, um Webseiten zusammenzufassen, Textstellen hervorzuheben, Feeds zu abonnieren oder Ihr Archiv zu pflegen. Ihr API-Schlüssel (sofern Sie einen eigenen nutzen) und Ihr gesamter Artikelverlauf verbleiben vollständig im lokalen Speicher Ihres Browsers.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "AI Summary Helper ne vous demande pas de créer un compte, de vous connecter ou de fournir des données personnelles pour résumer des pages, surligner du texte, suivre des flux ou conserver vos archives. Votre clé API (si vous utilisez la vôtre) ainsi que l'ensemble de votre historique d'articles restent stockés localement dans votre navigateur.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "AI Summary Helper no requiere que crees una cuenta, inicies sesión ni proporciones datos personales para resumir páginas, resaltar texto, seguir feeds o mantener tu archivo. Tu clave API (si usas la tuya) y todo tu historial de artículos se guardan en el almacenamiento local de tu navegador.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "使用 AI Summary Helper 进行网页总结、高亮标注、订阅 Feed 或保存归档时，均无需注册账号、登录或提供任何个人信息。您的 API key（如使用自有密钥）以及全部文章历史记录均仅保存在浏览器的本地存储中。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "使用 AI Summary Helper 進行網頁摘要、重點標記、訂閱 Feed 或保存封存記錄時，完全不需要註冊帳號、登入或提供任何個人資訊。您的 API Key（若使用自有金鑰）以及所有文章歷史記錄，皆妥善儲存於瀏覽器的本機儲存空間中。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AI Summary Helper では、Webページの要約、ハイライト、フィードの購読、アーカイブの保存などの機能を利用する際に、アカウントの作成やログイン、個人情報の提供は一切不要です。ご自身のAPIキー（使用する場合）や記事の履歴全体は、すべてお使いのブラウザのローカルストレージにのみ保存されます。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI Summary Helper는 웹페이지 요약, 하이라이트 표시, 피드 구독, 아카이브 보관 등의 기능을 사용할 때 계정 생성이나 로그인, 어떠한 개인정보도 요구하지 않아요. 직접 등록한 API 키(사용하는 경우)와 전체 아티클 기록은 모두 브라우저의 로컬 스토리지에 안전하게 보관됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O AI Summary Helper não exige que você crie uma conta, faça login ou forneça dados pessoais para resumir páginas, destacar textos, acompanhar feeds ou manter seu arquivo. Sua chave de API (caso utilize a sua própria) e todo o seu histórico de artigos ficam salvos localmente no armazenamento do seu navegador.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Pages summarize करने, highlight करने, feeds follow करने या अपना archive maintain करने के लिए AI Summary Helper में account बनाने, sign in करने या कोई personal information देने की ज़रूरत नहीं है। आपकी API key (अगर आप अपनी खुद की use करते हैं) और आपकी पूरी article history आपके browser के local storage में ही रहती है।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI Summary Helper không yêu cầu bạn tạo tài khoản, đăng nhập hay cung cấp bất kỳ thông tin cá nhân nào để tóm tắt trang web, đánh dấu (highlight), theo dõi nguồn cấp dữ liệu hoặc lưu trữ bài viết. Khóa API (nếu bạn dùng khóa riêng) và toàn bộ lịch sử bài viết đều được lưu cục bộ ngay trong trình duyệt của bạn.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b472563402f6fbc0057eeeb9872bdd2f840f5c5194181a9f9a2be216bab5105c": {
+      "en": "An account is only needed for the hosted services: byphil Cloud (summaries without your own key) and Send to Kindle. Signing in works with your email address and a one-time code. We store that email address, your plan or license status and basic usage counters (for example the number of requests and Kindle sends) so we can apply plan limits.",
+      "translations": {
+        "de": {
+          "text": "Ein Konto wird ausschließlich für die gehosteten Dienste benötigt: byphil Cloud (Zusammenfassungen ohne eigenen API-Schlüssel) und Send to Kindle. Die Anmeldung erfolgt über Ihre E-Mail-Adresse und einen Einmalcode. Wir speichern diese E-Mail-Adresse, Ihren Tarif- oder Lizenzstatus sowie grundlegende Nutzungszähler (z. B. die Anzahl der Anfragen und Kindle-Übertragungen), um Tariflimits zu verwalten.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un compte n'est nécessaire que pour les services hébergés : byphil Cloud (résumés sans votre propre clé) et Send to Kindle. La connexion s'effectue via votre adresse e-mail et un code à usage unique. Nous conservons cette adresse e-mail, le statut de votre forfait ou licence ainsi que des compteurs d'utilisation basiques (par exemple le nombre de requêtes et d'envois Kindle) afin d'appliquer les limites de votre offre.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Solo se necesita una cuenta para los servicios alojados: byphil Cloud (resúmenes sin tu propia clave) y Send to Kindle. El inicio de sesión funciona con tu correo electrónico y un código de un solo uso. Guardamos esa dirección de correo electrónico, el estado de tu plan o licencia y contadores básicos de uso (por ejemplo, la cantidad de solicitudes y envíos a Kindle) para poder aplicar los límites de cada plan.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "仅在使用托管服务时才需要账号，包括：byphil Cloud（无需自有密钥即可生成摘要）和 Send to Kindle。您可以使用邮箱地址和一次性验证码登录。我们会保存该邮箱地址、您的订阅方案或许可证状态以及基础用量计数（例如请求次数和 Kindle 发送次数），以便执行方案配额限制。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "只有在使用託管服務時才需要帳號：包含 byphil Cloud（無需自有金鑰即可產生摘要）與 Send to Kindle。登入時只需輸入電子郵件地址及一次性驗證碼。我們會儲存該 Email 地址、您的方案或授權狀態，以及基本用量計數（例如請求次數與 Kindle 發送次數），以便套用方案限制。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アカウントが必要となるのは、独自のキー不要で要約できる byphil Cloud や Send to Kindle などのホスト型サービスをご利用いただく場合のみです。ログインはメールアドレスとワンタイムコードで行われます。プランの上限を適用するため、メールアドレス、プランやライセンスのステータス、基本的な利用状況カウンター（リクエスト数や Kindle 送信数など）のみを保存します。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "계정은 자체 호스팅 서비스인 byphil Cloud(개인 키 없이 요약) 및 Send to Kindle 기능을 이용할 때만 필요해요. 이메일 주소와 일회용 코드로 간편하게 로그인할 수 있습니다. 요금제 한도를 적용하기 위해 해당 이메일 주소, 플랜 또는 라이선스 상태, 기본 사용량 통계(예: 요청 횟수 및 Kindle 전송 횟수)만 저장됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Uma conta só é necessária para os serviços na nuvem: byphil Cloud (resumos sem precisar de uma chave própria) e Send to Kindle. O login é feito com seu e-mail e um código de acesso único. Armazenamos apenas esse e-mail, o status do seu plano ou licença e contadores básicos de uso (como o número de requisições e envios para o Kindle) para gerenciar os limites do plano.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Account की ज़रूरत केवल hosted services के लिए होती है: byphil Cloud (बिना अपनी key के summaries) और Send to Kindle। Sign in करने के लिए आपका email address और एक one-time code इस्तेमाल होता है। हम वो email address, आपका plan या license status और basic usage counters (जैसे requests की संख्या और Kindle sends) store करते हैं ताकि plan limits लागू की जा सकें।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tài khoản chỉ cần thiết khi sử dụng các dịch vụ đám mây: byphil Cloud (tóm tắt không cần khóa API riêng) và Send to Kindle. Quá trình đăng nhập sử dụng địa chỉ email và mã xác thực một lần (OTP). Chúng tôi chỉ lưu địa chỉ email đó, trạng thái gói dịch vụ/giấy phép và bộ đếm sử dụng cơ bản (ví dụ: số lượt yêu cầu và số lần gửi đến Kindle) để áp dụng hạn mức của gói.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9cee06365c9db26fd11f6bccca20fc5a6f60b702a85480b7240db0c292c88c7e": {
+      "en": "Sending articles: Kindle, LocalSend, and the share sheet",
+      "translations": {
+        "de": {
+          "text": "Artikel versenden: Kindle, LocalSend und Share-Sheet",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoi d'articles : Kindle, LocalSend et menu de partage",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Envío de artículos: Kindle, LocalSend y el menú de compartir",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "发送文章：Kindle、LocalSend 和系统分享面板",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "傳送文章：Kindle、LocalSend 與系統分享面板",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "記事の送信：Kindle、LocalSend、共有シート",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "아티클 전송: Kindle, LocalSend 및 공유 시트",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Envio de artigos: Kindle, LocalSend e menu de compartilhamento",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Articles भेजना: Kindle, LocalSend, और share sheet",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi bài viết: Kindle, LocalSend và bảng chia sẻ hệ thống",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c1b1b6ad709df709307e0dbec66a729c7576e4559def330ded04b58af8909091": {
+      "en": "There are two different paths, and only one of them touches our server:",
+      "translations": {
+        "de": {
+          "text": "Es gibt zwei verschiedene Übertragungswege – und nur einer davon nutzt unseren Server:",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Il existe deux modes de transmission distincts, et un seul transite par nos serveurs :",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Hay dos vías distintas, y solo una de ellas pasa por nuestro servidor:",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "传输途径分为两种，其中只有一种会经过我们的服务器：",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "共有兩種傳送途徑，其中只有一種會經過我們的伺服器：",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "送信経路は2種類あり、当社のサーバーを経由するのはそのうちの1つだけです：",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "전송 방식은 두 가지 경로로 나뉘며, 그중 하나만 당사 서버를 거칩니다:",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Existem dois caminhos distintos, e apenas um deles passa pelo nosso servidor:",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसके दो अलग-अलग paths हैं, और उनमें से सिर्फ एक ही हमारे server से होकर गुज़रता है:",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Có hai phương thức truyền dữ liệu riêng biệt, và chỉ một trong hai phương thức này đi qua máy chủ của chúng tôi:",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "83df9800b44ac7ca4d4e85a01213018b4dd76062674fc5754fd677c78878fa9c": {
+      "en": "Amazon only accepts documents by email from approved senders, so the extension sends the article (title, summary, text, highlights and source address) to the byphil backend, which emails it to the Kindle address you entered. You add our sender address (kindle@byphil.eu) to your approved senders list in your Amazon account. The content is used only to create and send that email. Kindle delivery requires being signed in or having a license; the free tier includes 3 sends.",
+      "translations": {
+        "de": {
+          "text": "Amazon akzeptiert Dokumente per E-Mail nur von freigegebenen Absendern. Daher überträgt die Erweiterung den Artikel (Titel, Zusammenfassung, Text, Hervorhebungen und Quelladresse) an das byphil-Backend, welches ihn an Ihre hinterlegte Kindle-Adresse mailt. Dazu fügen Sie unsere Absenderadresse (kindle@byphil.eu) zur Liste zugelassener E-Mail-Adressen in Ihrem Amazon-Konto hinzu. Die Inhalte werden ausschließlich zur Erstellung und Zustellung dieser E-Mail verwendet. Der Kindle-Versand setzt eine Anmeldung oder eine Lizenz voraus; der kostenlose Tarif enthält 3 Übertragungen.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Amazon n'accepte les documents par e-mail que de la part d'expéditeurs autorisés. L'extension transmet donc l'article (titre, résumé, texte, surlignages et adresse source) au backend byphil, qui l'envoie par e-mail à l'adresse Kindle indiquée. Vous devez ajouter notre adresse d'expédition (kindle@byphil.eu) à votre liste d'expéditeurs approuvés sur votre compte Amazon. Le contenu est utilisé uniquement pour générer et envoyer cet e-mail. L'envoi vers Kindle nécessite d'être connecté ou de disposer d'une licence ; l'offre gratuite inclut 3 envois.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Amazon solo acepta documentos por correo electrónico de remitentes autorizados, por lo que la extensión envía el artículo (título, resumen, texto, resaltados y dirección de origen) al backend de byphil, que lo envía por correo a la dirección de Kindle que hayas ingresado. Debes añadir nuestra dirección de remitente (kindle@byphil.eu) a tu lista de remitentes autorizados en tu cuenta de Amazon. El contenido se utiliza únicamente para generar y enviar ese correo. El envío a Kindle requiere haber iniciado sesión o tener una licencia; el plan gratuito incluye 3 envíos.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "由于 Amazon 仅接收来自已获批准发件人邮箱的文档，插件会将文章（标题、摘要、正文、高亮及源地址）发送至 byphil 后端，再由后端通过邮件推送至您填写的 Kindle 邮箱。您需在 Amazon 账户中将我们的发件地址（kindle@byphil.eu）添加到已认可的发件人列表。文章内容仅用于生成并发送该邮件。Kindle 推送需要登录账号或拥有许可证；免费方案包含 3 次推送配额。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Amazon 僅接受來自已核准寄件者的電子郵件文件，因此擴充功能會將文章（標題、摘要、內文、重點標記與來源網址）傳送至 byphil 後端，再由後端將郵件寄送至您設定的 Kindle 電子郵件地址。您只需在 Amazon 帳號中將我們的寄件地址（kindle@byphil.eu）加入已核准的寄件者清單。文章內容僅用於產生並發送該封郵件。Kindle 傳送功能需要登入或具備授權；免費方案包含 3 次傳送額度。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Amazon は承認された送信者からのメールでのみドキュメントを受け付けるため、本拡張機能は記事データ（タイトル、要約、本文、ハイライト、元記事のURL）を byphil バックエンドへ送信し、そこからご登録の Kindle メールアドレスへ送信します。お客様の Amazon アカウントで、当社の送信元アドレス（kindle@byphil.eu）を承認済み送信者リストに追加していただく必要があります。記事データはメールの作成と送信にのみ使用されます。Kindle への送信にはログインまたはライセンスが必要で、無料プランには3回分の送信が含まれます。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Amazon은 승인된 발신자의 이메일로만 문서를 수신하므로, 확장 프로그램이 아티클(제목, 요약본, 본문, 하이라이트 및 출처 주소)을 byphil 백엔드로 전송한 후 입력하신 Kindle 주소로 이메일을 발송합니다. Amazon 계정의 승인된 발신자 목록에 발신용 이메일(kindle@byphil.eu)을 추가해 주셔야 해요. 전송된 콘텐츠는 이메일 생성 및 발송 목적으로만 사용됩니다. Kindle 전송 기능은 로그인 또는 라이선스가 필요하며, 무료 티어에서는 3회까지 전송할 수 있습니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A Amazon só aceita documentos por e-mail de remetentes autorizados. Por isso, a extensão envia o artigo (título, resumo, texto, destaques e link de origem) para o backend do byphil, que o encaminha para o e-mail do seu Kindle. Basta adicionar nosso endereço (kindle@byphil.eu) à lista de remetentes aprovados na sua conta da Amazon. O conteúdo é usado exclusivamente para gerar e enviar esse e-mail. O envio para o Kindle requer login ou uma licença ativa; o plano gratuito inclui 3 envios.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Amazon केवल approved senders से ही email द्वारा documents स्वीकार करता है, इसलिए यह extension article (title, summary, text, highlights और source address) byphil backend को भेजता है, जो इसे आपके दर्ज किए गए Kindle address पर email कर देता है। आप अपने Amazon account की approved senders list में हमारा sender address (kindle@byphil.eu) add करते हैं। इस content का उपयोग केवल वह email create करके भेजने के लिए किया जाता है। Kindle delivery के लिए signed in होना या license होना आवश्यक है; free tier में 3 sends शामिल हैं।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Amazon chỉ chấp nhận tài liệu gửi qua email từ các địa chỉ đã được phê duyệt, do đó tiện ích mở rộng sẽ gửi bài viết (tiêu đề, bản tóm tắt, nội dung, đoạn đánh dấu và liên kết nguồn) tới backend của byphil để chuyển tiếp bằng email đến địa chỉ Kindle của bạn. Bạn chỉ cần thêm địa chỉ người gửi của chúng tôi (kindle@byphil.eu) vào danh sách gửi được phê duyệt trong tài khoản Amazon. Nội dung này chỉ được dùng duy nhất để tạo và gửi email đó. Tính năng gửi đến Kindle yêu cầu đăng nhập hoặc có giấy phép; gói miễn phí bao gồm 3 lượt gửi.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8b91ddbf6920765b82155880bc51ff8d201ded753913aa11a6869cbdcedd3062": {
+      "en": "Send to Kindle goes through our server.",
+      "translations": {
+        "de": {
+          "text": "Send to Kindle wird über unseren Server abgewickelt.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Send to Kindle transite par notre serveur.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Send to Kindle pasa por nuestro servidor.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Send to Kindle 会经过我们的服务器。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Send to Kindle 會經過我們的伺服器。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Send to Kindle は当社のサーバーを経由します。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Send to Kindle은 당사 서버를 거쳐 전송됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O Send to Kindle passa pelo nosso servidor.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Send to Kindle हमारे server से होकर जाता है।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tính năng Send to Kindle hoạt động thông qua máy chủ của chúng tôi.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e3ff795b154bcc0763a06ede1f997422ea9202e0dca6eb12f21af129580c98db": {
+      "en": "The file goes from your browser straight to the device you picked on your local network, or to the app you chose in the share sheet. We are not involved and do not see or store this content. LocalSend works with phones, tablets, computers and e-readers that run a compatible app.",
+      "translations": {
+        "de": {
+          "text": "Die Datei wird direkt von Ihrem Browser an das ausgewählte Gerät im lokalen Netzwerk oder an die gewünschte App im Teilen-Menü übertragen. Wir sind daran nicht beteiligt und können diese Inhalte weder einsehen noch speichern. LocalSend funktioniert mit Smartphones, Tablets, Computern und E-Readern, auf denen eine kompatible App installiert ist.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le fichier est transféré directement de votre navigateur vers l'appareil sélectionné sur votre réseau local, ou vers l'application choisie dans le menu de partage du système. Nous n'intervenons pas et ne pouvons ni voir ni stocker ce contenu. LocalSend fonctionne avec les smartphones, tablettes, ordinateurs et liseuses exécutant une application compatible.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El archivo va directamente desde tu navegador al dispositivo que elijas en tu red local o a la app seleccionada en el menú de compartir. Nosotros no intervenimos, ni vemos ni almacenamos este contenido. LocalSend funciona con teléfonos, tablets, computadoras y lectores electrónicos que ejecuten una app compatible.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "文件会直接从您的浏览器传输至局域网中选定的设备，或传送至系统分享面板中选择的应用。我们不会介入，也无法查看或存储这些内容。LocalSend 支持运行兼容应用的手机、平板、电脑及电子书阅读器。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "檔案會直接從您的瀏覽器傳輸到區域網路中選取的裝置，或是傳送至您在系統分享面板中選擇的 App。我們不會介入此過程，也無法查看或儲存這些內容。LocalSend 支援安裝了相容 App 的手機、平板、電腦以及電子書閱讀器。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ファイルはお使いのブラウザからローカルネットワーク上の指定デバイス、または共有シートで選択したアプリへ直接送信されます。当社が関与することはなく、コンテンツの閲覧や保存も一切行いません。LocalSend は対応アプリがインストールされたスマートフォン、タブレット、PC、電子書籍リーダーでご利用いただけます。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "파일은 브라우저에서 로컬 네트워크상의 지정한 기기나 공유 시트에서 선택한 앱으로 직접 전송돼요. 당사는 이 과정에 전혀 관여하지 않으며 콘텐츠를 확인하거나 저장하지 않습니다. LocalSend는 호환 앱이 설치된 스마트폰, 태블릿, PC 및 전자책 리더기에서 원활하게 작동합니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O arquivo vai diretamente do seu navegador para o dispositivo escolhido na sua rede local ou para o app selecionado no menu de compartilhamento. Não temos qualquer intermediação, visualização ou armazenamento desse conteúdo. O LocalSend funciona em celulares, tablets, computadores e e-readers com o app instalado.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "File आपके browser से सीधे आपके local network पर चुने गए device, या share sheet में चुनी गई app तक जाती है। इसमें हमारा कोई involvement नहीं होता और हम इस content को न तो देखते हैं और न ही store करते हैं। LocalSend compatible app चलाने वाले phones, tablets, computers और e-readers के साथ काम करता है।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tệp tin được chuyển trực tiếp từ trình duyệt đến thiết bị bạn chọn trong mạng nội bộ, hoặc đến ứng dụng được chọn qua bảng chia sẻ. Chúng tôi hoàn toàn không can thiệp, không xem và không lưu trữ nội dung này. LocalSend hoạt động mượt mà với điện thoại, máy tính bảng, máy tính và máy đọc sách có cài ứng dụng tương thích.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4971e94aef0b80733ce081c4cb5422567f0adb0f58f6211c624d30c20edd57f3": {
+      "en": "LocalSend and the system share sheet (for example AirDrop) are direct.",
+      "translations": {
+        "de": {
+          "text": "LocalSend und das systemweite Teilen-Menü (z. B. AirDrop) erfolgen direkt lokal.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "LocalSend et le menu de partage du système (par exemple AirDrop) s'exécutent en direct.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "LocalSend y el menú de compartir del sistema (por ejemplo, AirDrop) son directos.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "LocalSend 与系统分享面板（例如 AirDrop）均为点对点直连。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "LocalSend 與系統分享面板（例如 AirDrop）為點對點直接傳輸。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "LocalSend やシステムの共有シート（AirDrop など）は直接送信されます。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "LocalSend 및 시스템 공유 시트(예: AirDrop)는 기기간 직접 전송됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O LocalSend e o menu de compartilhamento do sistema (como o AirDrop) são diretos.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "LocalSend और system share sheet (उदाहरण के लिए AirDrop) direct काम करते हैं।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "LocalSend và bảng chia sẻ hệ thống (ví dụ: AirDrop) truyền dữ liệu trực tiếp.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2ef2b59059497423bebb3472fb8626442d6767a8572ba15862d64c3a2dc991f2": {
+      "en": "Its only network requests go to the AI provider you configured, the feeds you subscribed to, the pages you ask it to fetch, and (if you use them) the byphil backend for byphil Cloud, sign-in, license checks and Send to Kindle.",
+      "translations": {
+        "de": {
+          "text": "Netzwerkanfragen erfolgen ausschließlich an den von Ihnen konfigurierten KI-Anbieter, die von Ihnen abonnierten Feeds, die aufgerufenen Seiten sowie (falls genutzt) an das byphil-Backend für byphil Cloud, Anmeldung, Lizenzprüfungen und Send to Kindle.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ses seules requêtes réseau sont destinées au fournisseur d'IA configuré, aux flux auxquels vous êtes abonné, aux pages dont vous demandez l'extraction et (si vous les utilisez) au backend byphil pour byphil Cloud, l'authentification, la vérification des licences et Send to Kindle.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sus únicas solicitudes de red se dirigen al proveedor de IA que hayas configurado, a los feeds a los que te suscribas, a las páginas que le pidas consultar y (si los utilizas) al backend de byphil para byphil Cloud, inicio de sesión, validación de licencias y Send to Kindle.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "插件发起的网络请求仅会发送至您配置的 AI 服务商、您订阅的 Feed、您要求抓取的网页，以及在您使用时连接至 byphil 后端（用于 byphil Cloud、登录、许可证验证和 Send to Kindle）。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "它發出的網路請求僅限於：您設定的 AI 提供商、您訂閱的 Feed、您要求擷取的網頁，以及（若有使用）處理 byphil Cloud、登入、授權檢查與 Send to Kindle 的 byphil 後端。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "発生するネットワーク通信は、設定したAIプロバイダー、購読中のフィード、取得を指示したWebページへのアクセスのほか、（利用時のみ）byphil Cloud、ログイン、ライセンス確認、Send to Kindle 用の byphil バックエンドへの接続のみです。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "확장 프로그램의 네트워크 요청은 오직 사용자가 설정한 AI 제공자, 구독한 피드, 가져오도록 요청한 웹페이지, 그리고 (해당 기능을 이용할 경우) byphil Cloud, 로그인, 라이선스 확인 및 Send to Kindle을 위한 byphil 백엔드로만 전송됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "As únicas conexões de rede realizadas são direcionadas ao provedor de IA configurado por você, aos feeds assinados, às páginas que você solicita carregar e (se utilizados) ao backend do byphil para o byphil Cloud, login, validação de licença e Send to Kindle.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसके एकमात्र network requests केवल आपके configured AI provider, आपके subscribed feeds, आपके द्वारा fetch करने के लिए कहे गए pages, और (यदि आप उपयोग करते हैं) byphil Cloud, sign-in, license checks और Send to Kindle के लिए byphil backend पर ही जाते हैं।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các yêu cầu mạng duy nhất phát sinh chỉ gửi đến nhà cung cấp AI do bạn thiết lập, các nguồn cấp dữ liệu (feed) bạn đăng ký, các trang web bạn yêu cầu tải và (nếu bạn sử dụng) hệ thống backend của byphil cho byphil Cloud, đăng nhập, kiểm tra giấy phép và Send to Kindle.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1873100c9d4991724bf5c2e80dfb586ebf622ff18a55935afbc9889765d6aebc": {
+      "en": "The browser extension itself contains no analytics, telemetry or tracking code.",
+      "translations": {
+        "de": {
+          "text": "Die Browser-Erweiterung selbst enthält keinerlei Analyse-, Telemetrie- oder Tracking-Code.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'extension de navigateur elle-même ne contient aucun code d'analyse d'audience, de télémétrie ou de traçage.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La extensión de navegador no contiene ningún código de analítica, telemetría ni rastreo.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "浏览器插件本身不包含任何数据分析、遥测或行为追踪代码。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "瀏覽器擴充功能本身不包含任何數據分析、遙測（Telemetry）或追蹤代碼。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザ拡張機能自体には、アナリティクス、テレメトリ、トラッキング用のコードは一切含まれていません。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저 확장 프로그램 자체에는 어떠한 분석 도구, 텔레메트리 또는 추적 코드도 포함되어 있지 않아요.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A extensão para navegador não contém nenhum código de análise (analytics), telemetria ou rastreamento.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Browser extension में खुद कोई analytics, telemetry या tracking code शामिल नहीं है।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bản thân tiện ích mở rộng trình duyệt hoàn toàn không chứa mã phân tích, đo lường từ xa (telemetry) hay theo dõi người dùng.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7": {
+      "en": ",",
+      "translations": {
+        "de": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "、",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "、",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "、",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ",",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "44b609c229d8616058298ffe7f150ffdde046eed677fa5d436738cd3bee6f01a": {
+      "en": "offscreen",
+      "translations": {
+        "de": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "offscreen",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "317e938a489b10da179b9cc1110357cb16d988856bb3ad7908862f9c2828c88c": {
+      "en": "tts",
+      "translations": {
+        "de": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "tts",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "561362551c0f4d9cf8d36be971af3cd65e9a09ea37fb794c4f11dea8a4ae3300": {
+      "en": "Play podcast audio and read summaries aloud in the background while the popup is closed",
+      "translations": {
+        "de": {
+          "text": "Podcast-Audio wiedergeben und Zusammenfassungen im Hintergrund vorlesen, auch wenn das Popup geschlossen ist",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Écouter des podcasts audio et la lecture vocale des résumés en arrière-plan lorsque la fenêtre contextuelle est fermée",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir el audio de podcasts y leer resúmenes en voz alta en segundo plano mientras la ventana emergente está cerrada",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在弹窗关闭后，继续在后台播放播客音频并朗读摘要内容",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在彈出視窗關閉時，仍可在背景播放 Podcast 音訊與朗讀摘要內容",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ポップアップを閉じた状態でも、バックグラウンドでポッドキャストの音声を再生したり要約を読み上げたりします",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "팝업 창이 닫혀 있어도 백그라운드에서 팟캐스트 오디오를 재생하고 요약본을 음성으로 읽어줍니다",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir áudios de podcasts e ler resumos em voz alta em segundo plano com o popup fechado",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Popup बंद होने पर भी background में podcast audio play करें और summaries को बोलकर सुनें",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát âm thanh podcast và đọc to bản tóm tắt dưới nền ngay cả khi cửa sổ popup đã đóng",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9bec90bc98ff837706cd377e4be400b1bb791fc34c055a1add2f1f727f3881e5": {
+      "en": "unlimitedStorage",
+      "translations": {
+        "de": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "unlimitedStorage",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7d7fd246101076d5860e2972140c6d99e80d2ae692d1ce7589ce23d9a58ac2c5": {
+      "en": "Keep a large local archive of articles and highlights without hitting the default storage quota",
+      "translations": {
+        "de": {
+          "text": "Ein umfangreiches lokales Archiv für Artikel und Markierungen ohne Speicherplatzbegrenzung anlegen",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Conserver une archive locale volumineuse d'articles et de surlignages sans atteindre le quota de stockage par défaut",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Mantener un amplio archivo local de artículos y resaltados sin alcanzar el límite de almacenamiento predeterminado",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "保存海量本地文章与高亮归档，无需担心触及默认存储配额上限",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在本地端保存大量文章與重點標記封存，不受預設儲存空間配額限制",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "デフォルトのストレージ容量制限を気にせず、記事やハイライトの大規模なローカルアーカイブを保持します",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "기본 저장 용량 제한 없이 대용량의 아티클 및 하이라이트 아카이브를 로컬에 보관합니다",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Manter um grande arquivo local de artigos e destaques sem atingir o limite padrão de armazenamento",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Default storage quota की चिंता किए बिना articles और highlights का एक बड़ा local archive सुरक्षित रखें",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Lưu trữ cục bộ lượng lớn bài viết và đoạn đánh dấu mà không bị giới hạn dung lượng lưu trữ mặc định",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f042a392300fd2c0c081a24451cba82b4f56c72b5966920c0fe7103d0980b3fc": {
+      "en": "We don't log or retain the content of pages you summarize via your own API key or a local model, and we never see what you send over LocalSend or the share sheet.",
+      "translations": {
+        "de": {
+          "text": "Wir protokollieren oder speichern zu keinem Zeitpunkt Inhalte von Seiten, die Sie über Ihren eigenen API-Schlüssel oder ein lokales Modell zusammenfassen, und haben keinerlei Einblick in Daten, die Sie über LocalSend oder das Teilen-Menü übertragen.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Nous n'enregistrons ni ne conservons le contenu des pages résumées avec votre propre clé API ou un modèle local, et nous n'avons aucun accès à ce que vous envoyez via LocalSend ou le menu de partage.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "No registramos ni conservamos el contenido de las páginas que resumes mediante tu propia clave API o un modelo local, y nunca vemos lo que envías a través de LocalSend o el menú de compartir.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "对于您通过自有 API key 或本地模型总结的网页内容，我们不会记录或保留；通过 LocalSend 或系统分享面板发送的内容，我们也绝不会接触或查看。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "我們不會記錄或保留您透過自訂 API Key 或本地模型摘要的網頁內容，也絕不會看到您透過 LocalSend 或分享面板傳送的任何內容。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "独自のAPIキーやローカルモデルを使用して要約したWebページのコンテンツを当社が記録・保持することはなく、LocalSend や共有シート経由で送信された内容を閲覧することも決してありません。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인 API 키나 로컬 모델을 통해 요약한 웹페이지 내용은 기록하거나 보관하지 않으며, LocalSend나 공유 시트로 전송하는 데이터 역시 절대 열람하지 않습니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Não registramos nem retemos o conteúdo das páginas que você resume usando sua própria chave de API ou um modelo local (como Ollama), e nunca temos acesso ao que você envia via LocalSend ou menu de compartilhamento.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हम आपकी अपनी API key या local model से summarize किए जाने वाले pages का content न तो log करते हैं और न ही retain करते हैं, और LocalSend या share sheet से आप जो कुछ भी भेजते हैं, हम उसे कभी नहीं देखते।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chúng tôi không ghi nhật ký hay lưu trữ nội dung các trang bạn tóm tắt qua khóa API riêng hoặc mô hình AI cục bộ, đồng thời không bao giờ tiếp cận nội dung bạn gửi qua LocalSend hay bảng chia sẻ.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c37d71d2cf1604fedc36373c46447c621a7ff4805ccaaf4d27046e65a9ae5198": {
+      "en": "Our byphil backend — only if you use byphil Cloud or Send to Kindle.",
+      "translations": {
+        "de": {
+          "text": "Unser byphil-Backend – ausschließlich bei Nutzung von byphil Cloud oder Send to Kindle.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Notre backend byphil — uniquement si vous utilisez byphil Cloud ou Send to Kindle.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Nuestro backend de byphil: solo si utilizas byphil Cloud o Send to Kindle.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "我们的 byphil 后端 —— 仅在您使用 byphil Cloud 或 Send to Kindle 时涉及。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "我們的 byphil 後端 —— 僅限於您使用 byphil Cloud 或 Send to Kindle 時。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphil バックエンド — byphil Cloud または Send to Kindle を利用する場合にのみ通信します。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byphil 백엔드 — byphil Cloud 또는 Send to Kindle을 이용하는 경우에만 해당됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Nosso backend byphil — apenas se você utilizar o byphil Cloud ou o Send to Kindle.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हमारा byphil backend — केवल तभी जब आप byphil Cloud या Send to Kindle का उपयोग करते हैं।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hệ thống backend byphil của chúng tôi — chỉ khi bạn sử dụng byphil Cloud hoặc Send to Kindle.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e9302c97525b899e1e921fe9203037fbc30ebd62f02f2b8d293303bcaeaac1f8": {
+      "en": "Amazon — if you send an article to your Kindle, Amazon delivers it under its own privacy terms.",
+      "translations": {
+        "de": {
+          "text": "Amazon – wenn Sie einen Artikel an Ihren Kindle senden, stellt Amazon diesen gemäß den eigenen Datenschutzbestimmungen zu.",
+          "translatedAt": "2026-10-09T13:13:30.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Amazon — si vous envoyez un article vers votre Kindle, Amazon assure la distribution selon ses propres règles de confidentialité.",
+          "translatedAt": "2026-10-09T13:13:41.573Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Amazon: si envías un artículo a tu Kindle, Amazon lo entrega conforme a sus propias políticas de privacidad.",
+          "translatedAt": "2026-10-09T13:13:54.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Amazon —— 若您向 Kindle 发送文章，Amazon 将依据其自身的隐私条款提供投递服务。",
+          "translatedAt": "2026-10-09T13:14:05.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Amazon —— 若您傳送文章至 Kindle，Amazon 將依據其隱私權條款傳送內容。",
+          "translatedAt": "2026-10-09T13:14:19.596Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Amazon — 記事を Kindle に送信する場合、Amazon 独自のプライバシー規約に基づいて配信されます。",
+          "translatedAt": "2026-10-09T13:14:35.010Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Amazon — 아티클을 Kindle로 전송하는 경우, Amazon의 개인정보 처리방침에 따라 전송 및 전달됩니다.",
+          "translatedAt": "2026-10-09T13:14:52.333Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Amazon — se você enviar um artigo para o seu Kindle, a entrega é realizada sob as políticas de privacidade da própria Amazon.",
+          "translatedAt": "2026-10-09T13:15:06.502Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Amazon — यदि आप अपने Kindle पर कोई article भेजते हैं, तो Amazon अपनी privacy terms के तहत उसे deliver करता है।",
+          "translatedAt": "2026-10-09T13:15:19.750Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Amazon — nếu bạn gửi bài viết đến thiết bị Kindle, Amazon sẽ xử lý việc gửi nhận theo các điều khoản bảo mật của riêng họ.",
+          "translatedAt": "2026-10-09T13:15:32.080Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

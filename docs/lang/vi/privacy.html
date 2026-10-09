@@ -97,8 +97,9 @@
 
         <p>Nếu bạn không đồng ý với bất kỳ phần nào trong chính sách này, vui lòng không cài đặt hoặc sử dụng tiện ích mở rộng.</p>
 
-        <h2>Không yêu cầu tài khoản</h2>
-        <p>AI Summary Helper không yêu cầu bạn tạo tài khoản, đăng nhập hoặc cung cấp bất kỳ thông tin cá nhân nào để sử dụng các tính năng chính. API key (nếu bạn dùng key riêng) và toàn bộ lịch sử bài viết của bạn được lưu hoàn toàn trong bộ nhớ cục bộ (local storage) của trình duyệt.</p>
+        <h2>Không cần tài khoản cho các tính năng cốt lõi</h2>
+        <p>AI Summary Helper không yêu cầu bạn tạo tài khoản, đăng nhập hay cung cấp bất kỳ thông tin cá nhân nào để tóm tắt trang web, đánh dấu (highlight), theo dõi nguồn cấp dữ liệu hoặc lưu trữ bài viết. Khóa API (nếu bạn dùng khóa riêng) và toàn bộ lịch sử bài viết đều được lưu cục bộ ngay trong trình duyệt của bạn.</p>
+        <p>Tài khoản chỉ cần thiết khi sử dụng các dịch vụ đám mây: byphil Cloud (tóm tắt không cần khóa API riêng) và Send to Kindle. Quá trình đăng nhập sử dụng địa chỉ email và mã xác thực một lần (OTP). Chúng tôi chỉ lưu địa chỉ email đó, trạng thái gói dịch vụ/giấy phép và bộ đếm sử dụng cơ bản (ví dụ: số lượt yêu cầu và số lần gửi đến Kindle) để áp dụng hạn mức của gói.</p>
 
         <h2>Dữ liệu chúng tôi xử lý và nơi lưu trữ</h2>
 
@@ -139,11 +140,16 @@
         <h3>Nguồn cấp RSS</h3>
         <p>Trình đọc Feeds tích hợp sẵn lưu trữ các đăng ký và các mục tin đã tải về cục bộ ngay trong trình duyệt của bạn — tuyệt đối không đồng bộ, không bao giờ gửi về chúng tôi. Khi bạn thêm hoặc làm mới một nguồn cấp, tiện ích mở rộng sẽ gửi yêu cầu trực tiếp đến địa chỉ của nguồn cấp đó từ máy chủ của nhà xuất bản, tương tự như cách trình duyệt của bạn truy cập trang web, do đó nhà xuất bản có thể thấy yêu cầu này. Chúng tôi không chuyển tiếp qua proxy, không ghi nhật ký hay xem danh sách đăng ký cũng như danh sách đọc của bạn. Thao tác nhập tệp OPML được xử lý hoàn toàn trên thiết bị của bạn. Nếu bạn bật tính năng kiểm tra trong nền (mặc định tắt), tiện ích mở rộng sẽ gửi lại yêu cầu đến các nguồn cấp theo khoảng thời gian bạn chọn, chỉ nhằm mục đích hiển thị số lượng trên biểu tượng thanh công cụ. Việc tóm tắt một mục tin hoạt động tương tự như tóm tắt bất kỳ trang nào khác: nội dung chỉ được gửi đến nhà cung cấp AI do bạn chọn và chỉ khi bạn kích hoạt lệnh tóm tắt. Các tính năng tùy chọn như tổng kết ngày bằng AI và chấm điểm sắc thái bằng AI cũng hoạt động tương tự: chỉ khi bạn nhấp chọn, tiện ích mở rộng mới gửi tiêu đề mục tin, tên nguồn và đoạn trích ngắn (không phải toàn bộ bài viết) đến nhà cung cấp AI bạn đã chọn, và bản tổng kết kết quả sẽ được lưu tạm trên thiết bị của bạn. Các tập podcast trong nguồn cấp được phát trực tiếp từ máy chủ của nhà xuất bản khi bạn nhấn Phát.</p>
 
-        <h3>Kindle, AirDrop và LocalSend</h3>
-        <p>Khi bạn gửi bài viết sang Kindle, AirDrop hoặc thiết bị tương thích LocalSend, tệp định dạng sẽ được gửi trực tiếp từ trình duyệt đến đích bạn đã chọn. Chúng tôi không đóng vai trò trung gian, không xem hoặc lưu trữ nội dung này.</p>
+        <h3>Gửi bài viết: Kindle, LocalSend và bảng chia sẻ hệ thống</h3>
+        <p>Có hai phương thức truyền dữ liệu riêng biệt, và chỉ một trong hai phương thức này đi qua máy chủ của chúng tôi:</p>
+        <ul>
+          <li><strong>Tính năng Send to Kindle hoạt động thông qua máy chủ của chúng tôi.</strong> Amazon chỉ chấp nhận tài liệu gửi qua email từ các địa chỉ đã được phê duyệt, do đó tiện ích mở rộng sẽ gửi bài viết (tiêu đề, bản tóm tắt, nội dung, đoạn đánh dấu và liên kết nguồn) tới backend của byphil để chuyển tiếp bằng email đến địa chỉ Kindle của bạn. Bạn chỉ cần thêm địa chỉ người gửi của chúng tôi (kindle@byphil.eu) vào danh sách gửi được phê duyệt trong tài khoản Amazon. Nội dung này chỉ được dùng duy nhất để tạo và gửi email đó. Tính năng gửi đến Kindle yêu cầu đăng nhập hoặc có giấy phép; gói miễn phí bao gồm 3 lượt gửi.</li>
+          <li><strong>LocalSend và bảng chia sẻ hệ thống (ví dụ: AirDrop) truyền dữ liệu trực tiếp.</strong> Tệp tin được chuyển trực tiếp từ trình duyệt đến thiết bị bạn chọn trong mạng nội bộ, hoặc đến ứng dụng được chọn qua bảng chia sẻ. Chúng tôi hoàn toàn không can thiệp, không xem và không lưu trữ nội dung này. LocalSend hoạt động mượt mà với điện thoại, máy tính bảng, máy tính và máy đọc sách có cài ứng dụng tương thích.</li>
+        </ul>
 
         <h2 id="analytics">Phân tích &amp; cookie</h2>
         <p><strong>Tóm tắt ngắn gọn:</strong> trang web này <strong>không dùng cookie</strong> và không sử dụng bất kỳ trình theo dõi liên trang web hay quảng cáo nào. Chúng tôi đo lường lượt truy cập ẩn danh bằng phiên bản Matomo tự lưu trữ (self-hosted), và bạn có thể tắt tính năng này bất cứ lúc nào.</p>
+        <p><strong>Bản thân tiện ích mở rộng trình duyệt hoàn toàn không chứa mã phân tích, đo lường từ xa (telemetry) hay theo dõi người dùng.</strong> Các yêu cầu mạng duy nhất phát sinh chỉ gửi đến nhà cung cấp AI do bạn thiết lập, các nguồn cấp dữ liệu (feed) bạn đăng ký, các trang web bạn yêu cầu tải và (nếu bạn sử dụng) hệ thống backend của byphil cho byphil Cloud, đăng nhập, kiểm tra giấy phép và Send to Kindle.</p>
         <h3>Những gì chúng tôi đo lường</h3>
         <p>Lượt xem trang, ngôn ngữ trang, trang giới thiệu (referrer), quốc gia/trình duyệt/loại thiết bị ước tính, và các phần trên trang web mà bạn tương tác (ví dụ: các lượt nhấp vào "Add to Chrome", nút chuyển đổi bảng giá, các mục FAQ, các phần bạn cuộn tới và các bước tạo bookmarklet). Các sự kiện thu thập tuyệt đối không chứa địa chỉ email, khóa API, mã dùng một lần, nội dung trang hoặc dữ liệu bài viết.</p>
         <h3>Cách cấu hình hệ thống</h3>
@@ -171,6 +177,8 @@
             <tr><td><code>tabs</code></td><td>Tự động đóng tab sau khi thực hiện lệnh "Tóm tắt &amp; Đóng"</td></tr>
             <tr><td><code>sidePanel</code></td><td>Hỗ trợ khung bảng điều khiển bên (side panel) mặc định của Chrome làm tùy chọn xem</td></tr>
             <tr><td><code>scripting</code></td><td>Chèn tập lệnh (content script) cần thiết để đọc và tóm tắt nội dung trang web</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Phát âm thanh podcast và đọc to bản tóm tắt dưới nền ngay cả khi cửa sổ popup đã đóng</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Lưu trữ cục bộ lượng lớn bài viết và đoạn đánh dấu mà không bị giới hạn dung lượng lưu trữ mặc định</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Cho phép bạn tóm tắt bất kỳ trang web nào bạn truy cập — nội dung chỉ được đọc và truyền đi khi bạn chủ động kích hoạt tóm tắt, hoàn toàn không chạy ngầm thụ động</td></tr>
           </tbody>
         </table>
@@ -180,7 +188,7 @@
         <ul>
           <li>Chúng tôi không chạy quảng cáo và không bán, cho thuê hoặc trao đổi dữ liệu của bạn cho các nhà quảng cáo hay bên môi giới dữ liệu.</li>
           <li>Chúng tôi không yêu cầu tài khoản hay đăng nhập đối với bất kỳ tính năng cốt lõi nào.</li>
-          <li>Chúng tôi không ghi nhật ký hay giữ lại nội dung các trang bạn tóm tắt qua API key riêng hoặc mô hình AI cục bộ.</li>
+          <li>Chúng tôi không ghi nhật ký hay lưu trữ nội dung các trang bạn tóm tắt qua khóa API riêng hoặc mô hình AI cục bộ, đồng thời không bao giờ tiếp cận nội dung bạn gửi qua LocalSend hay bảng chia sẻ.</li>
           <li>Chúng tôi không có quyền truy cập vào lịch sử bài viết, các đoạn highlight hoặc API key lưu trên máy bạn — chúng không bao giờ rời khỏi thiết bị trừ khi bạn chủ động xuất ra.</li>
         </ul>
 
@@ -188,7 +196,8 @@
         <p>Tùy thuộc vào cấu hình tiện ích của bạn, nội dung trang web có thể được gửi tới:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI, hoặc DeepSeek — chỉ khi bạn đã nhập API key riêng của nhà cung cấp đó, và chỉ đối với trang bạn chủ động tóm tắt.</li>
-          <li>Backend byphil Cloud của chúng tôi — chỉ khi bạn chọn đăng ký gói này.</li>
+          <li>Hệ thống backend byphil của chúng tôi — chỉ khi bạn sử dụng byphil Cloud hoặc Send to Kindle.</li>
+          <li>Amazon — nếu bạn gửi bài viết đến thiết bị Kindle, Amazon sẽ xử lý việc gửi nhận theo các điều khoản bảo mật của riêng họ.</li>
           <li>Ứng dụng Ollama cục bộ của bạn — không phải bên thứ ba; dữ liệu hoàn toàn ở lại trên máy tính của bạn.</li>
         </ul>
         <p>Chúng tôi không chịu trách nhiệm về chính sách quyền riêng tư của các nhà cung cấp AI bên thứ ba mà bạn chọn kết nối. Chúng tôi khuyến khích bạn xem lại chính sách của họ trước khi kết nối tài khoản.</p>

@@ -97,8 +97,9 @@
 
         <p>Se você discordar de qualquer parte desta política, por favor, não instale nem utilize a extensão.</p>
 
-        <h2>Nenhuma Conta Necessária</h2>
-        <p>O AI Summary Helper não exige criação de conta, login ou envio de informações pessoais para o uso dos seus recursos principais. Sua chave de API (caso utilize sua própria chave) e todo o seu histórico de artigos ficam salvos diretamente no armazenamento local do seu navegador.</p>
+        <h2>Nenhuma conta necessária para os recursos principais</h2>
+        <p>O AI Summary Helper não exige que você crie uma conta, faça login ou forneça dados pessoais para resumir páginas, destacar textos, acompanhar feeds ou manter seu arquivo. Sua chave de API (caso utilize a sua própria) e todo o seu histórico de artigos ficam salvos localmente no armazenamento do seu navegador.</p>
+        <p>Uma conta só é necessária para os serviços na nuvem: byphil Cloud (resumos sem precisar de uma chave própria) e Send to Kindle. O login é feito com seu e-mail e um código de acesso único. Armazenamos apenas esse e-mail, o status do seu plano ou licença e contadores básicos de uso (como o número de requisições e envios para o Kindle) para gerenciar os limites do plano.</p>
 
         <h2>Quais Dados Processamos e Para Onde Eles Vão</h2>
 
@@ -139,11 +140,16 @@
         <h3>Feeds RSS</h3>
         <p>O leitor de Feeds integrado armazena suas inscrições e os itens de feed obtidos localmente no seu navegador — nunca sincronizados, nunca enviados para nós. Quando você adiciona ou atualiza um feed, a extensão solicita o endereço desse feed diretamente ao servidor do publicador, assim como seu navegador faria ao acessar o site, permitindo que o publicador veja a solicitação. Nós não intermediamos via proxy, não registramos em log nem visualizamos suas inscrições ou lista de leitura. A importação de OPML é processada inteiramente no seu dispositivo. Se você ativar as verificações em segundo plano (desativadas por padrão), a extensão solicitará novamente seus feeds no intervalo que você escolher, apenas para exibir a contagem no ícone da barra de ferramentas. Resumir um item de feed funciona como resumir qualquer outra página: seu conteúdo só é enviado ao provedor de IA que você escolheu e apenas quando você solicita um resumo. O resumo diário por IA e a análise de tom por IA opcionais funcionam da mesma forma: somente quando você clica neles, a extensão envia títulos de itens, nomes das fontes e pequenos trechos (e não os artigos completos) para o provedor de IA escolhido, e o resumo resultante fica em cache no seu dispositivo. Os episódios de podcast em um feed são transmitidos via streaming diretamente do servidor do publicador quando você clica em Play.</p>
 
-        <h3>Kindle, AirDrop e LocalSend</h3>
-        <p>Quando você envia um artigo para o Kindle, AirDrop ou um dispositivo compatível com LocalSend, o arquivo formatado é enviado diretamente do seu navegador para o destino escolhido. Não atuamos como intermediários, não vemos nem armazenamos esse conteúdo.</p>
+        <h3>Envio de artigos: Kindle, LocalSend e menu de compartilhamento</h3>
+        <p>Existem dois caminhos distintos, e apenas um deles passa pelo nosso servidor:</p>
+        <ul>
+          <li><strong>O Send to Kindle passa pelo nosso servidor.</strong> A Amazon só aceita documentos por e-mail de remetentes autorizados. Por isso, a extensão envia o artigo (título, resumo, texto, destaques e link de origem) para o backend do byphil, que o encaminha para o e-mail do seu Kindle. Basta adicionar nosso endereço (kindle@byphil.eu) à lista de remetentes aprovados na sua conta da Amazon. O conteúdo é usado exclusivamente para gerar e enviar esse e-mail. O envio para o Kindle requer login ou uma licença ativa; o plano gratuito inclui 3 envios.</li>
+          <li><strong>O LocalSend e o menu de compartilhamento do sistema (como o AirDrop) são diretos.</strong> O arquivo vai diretamente do seu navegador para o dispositivo escolhido na sua rede local ou para o app selecionado no menu de compartilhamento. Não temos qualquer intermediação, visualização ou armazenamento desse conteúdo. O LocalSend funciona em celulares, tablets, computadores e e-readers com o app instalado.</li>
+        </ul>
 
         <h2 id="analytics">Métricas e cookies</h2>
         <p><strong>Resumo:</strong> este site não armazena <strong>nenhum cookie</strong> e não usa rastreadores de anúncios ou entre sites. Contabilizamos visitas anônimas com uma instância própria do Matomo, e você pode desativar isso a qualquer momento.</p>
+        <p><strong>A extensão para navegador não contém nenhum código de análise (analytics), telemetria ou rastreamento.</strong> As únicas conexões de rede realizadas são direcionadas ao provedor de IA configurado por você, aos feeds assinados, às páginas que você solicita carregar e (se utilizados) ao backend do byphil para o byphil Cloud, login, validação de licença e Send to Kindle.</p>
         <h3>O que medimos</h3>
         <p>Visualizações de página, idioma da página, origem do tráfego (referrer), país aproximado/navegador/tipo de dispositivo e com quais partes do site você interage (por exemplo, cliques em "Adicionar ao Chrome", alternador de preços, itens do FAQ, seções pelas quais você navega e etapas do gerador de bookmarklet). Os eventos nunca contêm endereços de e-mail, chaves de API, códigos de uso único, conteúdo de páginas ou dados de artigos.</p>
         <h3>Como é configurado</h3>
@@ -171,6 +177,8 @@
             <tr><td><code>tabs</code></td><td>Fechar a aba automaticamente após usar "Resumir e Fechar"</td></tr>
             <tr><td><code>sidePanel</code></td><td>Suportar o painel lateral nativo do Chrome como opção de visualização</td></tr>
             <tr><td><code>scripting</code></td><td>Injetar o script de conteúdo necessário para ler e resumir uma página</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Reproduzir áudios de podcasts e ler resumos em voz alta em segundo plano com o popup fechado</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Manter um grande arquivo local de artigos e destaques sem atingir o limite padrão de armazenamento</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Permitir que você resuma qualquer página que visitar — o conteúdo só é lido e transmitido quando você aciona ativamente um resumo, nunca de forma passiva</td></tr>
           </tbody>
         </table>
@@ -180,7 +188,7 @@
         <ul>
           <li>Não exibimos anúncios e não vendemos, alugamos nem repassamos seus dados para anunciantes ou corretores de dados.</li>
           <li>Não exigimos cadastro ou login para nenhum recurso essencial.</li>
-          <li>Não registramos nem mantemos o conteúdo das páginas que você resume usando sua própria chave de API ou um modelo local.</li>
+          <li>Não registramos nem retemos o conteúdo das páginas que você resume usando sua própria chave de API ou um modelo local (como Ollama), e nunca temos acesso ao que você envia via LocalSend ou menu de compartilhamento.</li>
           <li>Não temos acesso ao seu histórico de artigos, destaques ou chaves de API salvos localmente — eles nunca saem do seu dispositivo, a menos que você os exporte explicitamente.</li>
         </ul>
 
@@ -188,7 +196,8 @@
         <p>Dependendo de como você configurar a extensão, o conteúdo da página pode ser enviado para:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI ou DeepSeek — apenas se você tiver inserido sua própria chave de API desse provedor, e somente para a página que você ativamente solicitar o resumo.</li>
-          <li>Nosso backend byphil Cloud — apenas se você tiver optado por esse plano.</li>
+          <li>Nosso backend byphil — apenas se você utilizar o byphil Cloud ou o Send to Kindle.</li>
+          <li>Amazon — se você enviar um artigo para o seu Kindle, a entrega é realizada sob as políticas de privacidade da própria Amazon.</li>
           <li>Sua própria instância local do Ollama — não é um terceiro; processando no dispositivo e ficando na sua máquina.</li>
         </ul>
         <p>Não nos responsabilizamos pelas práticas de privacidade de provedores de IA de terceiros que você decidir conectar. Recomendamos que você revise as políticas deles antes de conectar sua chave.</p>

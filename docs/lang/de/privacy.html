@@ -97,8 +97,9 @@
 
         <p>Wenn Sie Teilen dieser Datenschutzerklärung nicht zustimmen, installieren oder nutzen Sie die Erweiterung bitte nicht.</p>
 
-        <h2>Kein Benutzerkonto erforderlich</h2>
-        <p>AI Summary Helper erfordert weder eine Registrierung noch ein Benutzerkonto oder die Angabe persönlicher Daten, um die Kernfunktionen zu nutzen. Ihr API-Schlüssel (sofern Sie einen eigenen verwenden) und Ihr gesamter Artikelverlauf verbleiben im lokalen Speicher Ihres Browsers.</p>
+        <h2>Kein Konto für Kernfunktionen erforderlich</h2>
+        <p>AI Summary Helper erfordert weder ein Konto, eine Anmeldung noch persönliche Angaben, um Webseiten zusammenzufassen, Textstellen hervorzuheben, Feeds zu abonnieren oder Ihr Archiv zu pflegen. Ihr API-Schlüssel (sofern Sie einen eigenen nutzen) und Ihr gesamter Artikelverlauf verbleiben vollständig im lokalen Speicher Ihres Browsers.</p>
+        <p>Ein Konto wird ausschließlich für die gehosteten Dienste benötigt: byphil Cloud (Zusammenfassungen ohne eigenen API-Schlüssel) und Send to Kindle. Die Anmeldung erfolgt über Ihre E-Mail-Adresse und einen Einmalcode. Wir speichern diese E-Mail-Adresse, Ihren Tarif- oder Lizenzstatus sowie grundlegende Nutzungszähler (z. B. die Anzahl der Anfragen und Kindle-Übertragungen), um Tariflimits zu verwalten.</p>
 
         <h2>Welche Daten wir verarbeiten und wohin sie übertragen werden</h2>
 
@@ -139,11 +140,16 @@
         <h3>RSS-Feeds</h3>
         <p>Der integrierte Feeds-Reader speichert Ihre Abonnements und die abgerufenen Feed-Einträge lokal in Ihrem Browser – sie werden niemals synchronisiert und niemals an uns übertragen. Wenn Sie einen Feed hinzufügen oder aktualisieren, ruft die Erweiterung die Feed-Adresse direkt vom Server des Herausgebers ab, genau wie Ihr Browser beim direkten Besuch der Website – der Herausgeber kann die Anfrage somit sehen. Wir leiten Ihre Abonnements oder Leselisten nicht über Proxys weiter, protokollieren sie nicht und haben keinerlei Einblick darin. Der OPML-Import wird vollständig lokal auf Ihrem Gerät verarbeitet. Wenn Sie die Hintergrundprüfung aktivieren (standardmäßig deaktiviert), ruft die Erweiterung Ihre Feeds im gewählten Intervall erneut ab, ausschließlich um einen Zähler im Symbolleistensymbol anzuzeigen. Das Zusammenfassen eines Feed-Eintrags funktioniert wie bei jeder anderen Seite: Der Inhalt wird nur an den von Ihnen gewählten KI-Anbieter gesendet, und auch nur dann, wenn Sie eine Zusammenfassung aktiv anfordern. Der optionale KI-Tagesrückblick und die KI-Tonalitätsbewertung funktionieren genauso: Nur bei Klick sendet die Erweiterung Beitragstitel, Quellennamen und kurze Textausschnitte (keine vollständigen Artikel) an den von Ihnen gewählten KI-Anbieter; der erstellte Rückblick wird auf Ihrem Gerät zwischengespeichert. Podcast-Episoden in einem Feed werden direkt vom Server des Herausgebers gestreamt, sobald Sie auf Play drücken.</p>
 
-        <h3>Kindle, AirDrop und LocalSend</h3>
-        <p>Wenn Sie einen Artikel an Kindle, AirDrop oder ein mit LocalSend kompatibles Gerät senden, wird die formatierte Datei direkt aus Ihrem Browser an das gewählte Ziel übermittelt. Wir agieren nicht als Zwischeninstanz und können diese Inhalte weder einsehen noch speichern.</p>
+        <h3>Artikel versenden: Kindle, LocalSend und Share-Sheet</h3>
+        <p>Es gibt zwei verschiedene Übertragungswege – und nur einer davon nutzt unseren Server:</p>
+        <ul>
+          <li><strong>Send to Kindle wird über unseren Server abgewickelt.</strong> Amazon akzeptiert Dokumente per E-Mail nur von freigegebenen Absendern. Daher überträgt die Erweiterung den Artikel (Titel, Zusammenfassung, Text, Hervorhebungen und Quelladresse) an das byphil-Backend, welches ihn an Ihre hinterlegte Kindle-Adresse mailt. Dazu fügen Sie unsere Absenderadresse (kindle@byphil.eu) zur Liste zugelassener E-Mail-Adressen in Ihrem Amazon-Konto hinzu. Die Inhalte werden ausschließlich zur Erstellung und Zustellung dieser E-Mail verwendet. Der Kindle-Versand setzt eine Anmeldung oder eine Lizenz voraus; der kostenlose Tarif enthält 3 Übertragungen.</li>
+          <li><strong>LocalSend und das systemweite Teilen-Menü (z. B. AirDrop) erfolgen direkt lokal.</strong> Die Datei wird direkt von Ihrem Browser an das ausgewählte Gerät im lokalen Netzwerk oder an die gewünschte App im Teilen-Menü übertragen. Wir sind daran nicht beteiligt und können diese Inhalte weder einsehen noch speichern. LocalSend funktioniert mit Smartphones, Tablets, Computern und E-Readern, auf denen eine kompatible App installiert ist.</li>
+        </ul>
 
         <h2 id="analytics">Analytics &amp; Cookies</h2>
         <p><strong>Kurzfassung:</strong> setzt diese Website <strong>keine Cookies</strong> und nutzt keinerlei Werbe- oder Cross-Site-Tracker. Wir erfassen anonyme Seitenaufrufe mit einer selbst gehosteten Matomo-Instanz, die Sie jederzeit deaktivieren können.</p>
+        <p><strong>Die Browser-Erweiterung selbst enthält keinerlei Analyse-, Telemetrie- oder Tracking-Code.</strong> Netzwerkanfragen erfolgen ausschließlich an den von Ihnen konfigurierten KI-Anbieter, die von Ihnen abonnierten Feeds, die aufgerufenen Seiten sowie (falls genutzt) an das byphil-Backend für byphil Cloud, Anmeldung, Lizenzprüfungen und Send to Kindle.</p>
         <h3>Was wir erfassen</h3>
         <p>Seitenaufrufe, die Seitensprache, den Referrer, das ungefähre Land bzw. die Browser- und Geräteklasse sowie die Bereiche der Website, mit denen Sie interagieren (beispielsweise Klicks auf „Zu Chrome hinzufügen“, die Preisumschaltung, FAQ-Einträge, gescrollte Abschnitte und Schritte des Bookmarklet-Generators). Ereignisse enthalten zu keinem Zeitpunkt E-Mail-Adressen, API-Schlüssel, Einmalcodes, Seiteninhalte oder Artikeldaten.</p>
         <h3>Wie es konfiguriert ist</h3>
@@ -171,6 +177,8 @@
             <tr><td><code>tabs</code></td><td>Automatisches Schließen des Tabs nach Ausführung von „Zusammenfassen &amp; Schließen“</td></tr>
             <tr><td><code>sidePanel</code></td><td>Unterstützung der nativen Chrome-Seitenleiste als Anzeigeoption</td></tr>
             <tr><td><code>scripting</code></td><td>Einfügen des Content-Skripts, das zum Lesen und Zusammenfassen einer Seite erforderlich ist</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Podcast-Audio wiedergeben und Zusammenfassungen im Hintergrund vorlesen, auch wenn das Popup geschlossen ist</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Ein umfangreiches lokales Archiv für Artikel und Markierungen ohne Speicherplatzbegrenzung anlegen</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Ermöglicht das Zusammenfassen beliebiger besuchter Seiten – Inhalte werden nur dann ausgelesen und übertragen, wenn Sie eine Zusammenfassung aktiv anfordern, niemals passiv</td></tr>
           </tbody>
         </table>
@@ -180,7 +188,7 @@
         <ul>
           <li>Wir schalten keine Werbung und verkaufen, vermieten oder handeln Ihre Daten nicht an Werbetreibende oder Datenhändler.</li>
           <li>Wir verlangen für keine Kernfunktion ein Benutzerkonto oder eine Anmeldung.</li>
-          <li>Wir protokollieren oder speichern keine Inhalte von Seiten, die Sie über Ihren eigenen API-Schlüssel oder ein lokales Modell zusammenfassen.</li>
+          <li>Wir protokollieren oder speichern zu keinem Zeitpunkt Inhalte von Seiten, die Sie über Ihren eigenen API-Schlüssel oder ein lokales Modell zusammenfassen, und haben keinerlei Einblick in Daten, die Sie über LocalSend oder das Teilen-Menü übertragen.</li>
           <li>Wir haben keinen Zugriff auf Ihren lokal gespeicherten Artikelverlauf, Ihre Markierungen oder Ihre API-Schlüssel – diese verlassen Ihr Gerät nur, wenn Sie sie explizit exportieren.</li>
         </ul>
 
@@ -188,7 +196,8 @@
         <p>Je nach Konfiguration der Erweiterung können Seiteninhalte übertragen werden an:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI oder DeepSeek – ausschließlich, wenn Sie Ihren eigenen API-Schlüssel für den jeweiligen Anbieter hinterlegt haben, und nur für die Seite, die Sie aktiv zusammenfassen.</li>
-          <li>Unser byphil Cloud-Backend – ausschließlich dann, wenn Sie diesen Dienst gewählt haben.</li>
+          <li>Unser byphil-Backend – ausschließlich bei Nutzung von byphil Cloud oder Send to Kindle.</li>
+          <li>Amazon – wenn Sie einen Artikel an Ihren Kindle senden, stellt Amazon diesen gemäß den eigenen Datenschutzbestimmungen zu.</li>
           <li>Ihre eigene lokale Ollama-Instanz – kein Drittanbieter; die Daten verbleiben vollständig auf Ihrem Rechner.</li>
         </ul>
         <p>Wir sind nicht für die Datenschutzpraktiken der von Ihnen angebundenen KI-Drittanbieter verantwortlich. Wir empfehlen Ihnen, deren Richtlinien vor der Anbindung zu prüfen.</p>
