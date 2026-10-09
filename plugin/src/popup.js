@@ -11,6 +11,7 @@ import { languageMatches } from './modules/languages.js';
 // import { initPodcastManager } from './modules/podcastManager.js';
 // Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
+import { currentSurface, sidePanelAvailable, attachToSidePanel, detachToPopup } from './modules/panelDock.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
@@ -79,7 +80,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────
-    chrome.storage.sync.get('useNativeSidePanel', (data) => {
+    // Never from inside the side panel itself: opening it again and closing "this" window would close the panel.
+    const surface = currentSurface();
+    if (surface === 'sidepanel') document.body.dataset.surface = 'sidepanel';
+    if (surface !== 'sidepanel') chrome.storage.sync.get('useNativeSidePanel', (data) => {
         if (data.useNativeSidePanel) {
             chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
                 if (response?.success) window.close();
@@ -95,27 +99,38 @@ document.addEventListener("DOMContentLoaded", async () => {
         let inSidebar = false;
         try { inSidebar = !!(ffSidebar && (typeof browser !== 'undefined' ? browser : chrome).extension?.getViews?.({ type: 'sidebar' })?.includes(window)); } catch (_) { /* not Firefox */ }
         if (inSidebar) { popoutBtn.hidden = true; document.body.dataset.surface = 'sidebar'; }
+
+        // Chrome: one button docks this page into the side panel, and in the side panel undocks it to a popup.
+        // sidePanel.open needs the click's user gesture, so the window id is known before the click.
+        const docking = !inSidebar && sidePanelAvailable();
+        let windowId = null;
+        if (docking) {
+            try { chrome.windows.getCurrent((w) => { windowId = w && w.id; }); } catch (_) { /* no windows API: the background falls back */ }
+            const label = surface === 'sidepanel' ? T('Detach to popup') : T('Attach to side panel');
+            popoutBtn.textContent = surface === 'sidepanel' ? '↙️' : '📌';
+            popoutBtn.title = label; popoutBtn.setAttribute('aria-label', label);
+            popoutBtn.removeAttribute('data-i18n-title');
+        }
+
         popoutBtn.addEventListener('click', async () => {
+            if (docking) {
+                try {
+                    if (surface === 'sidepanel') { await detachToPopup(windowId); return; }
+                    await attachToSidePanel(windowId);
+                    window.close();
+                    return;
+                } catch (err) {
+                    console.warn('[sidePanel] attach/detach failed, using the in-page sidebar:', err && err.message);
+                }
+            }
             if (ffSidebar && typeof ffSidebar.open === 'function') {
                 try { await ffSidebar.open(); window.close(); return; } catch (err) { console.warn('[sidebar] open failed, using the in-page sidebar:', err && err.message); }
             }
             try {
                 const mod = await import('./modules/mainScreen.js').catch(() => null);
                 const activeTab = mod?.getActiveTab ? await mod.getActiveTab() : null;
-                const { useNativeSidePanel } = await chrome.storage.sync.get('useNativeSidePanel').catch(() => ({}));
 
-                // Native side panel (Chrome-only, opt-in). On Firefox/Safari/iOS
-                // `chrome.sidePanel` is undefined, so we always fall through to
-                // the hybrid injected iframe sidebar.
-                const nativeAvailable = !!(chrome.sidePanel && chrome.sidePanel.setPanelBehavior);
-                if (useNativeSidePanel && nativeAvailable) {
-                    chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
-                        if (response?.success) window.close();
-                    });
-                    return;
-                }
-
-                // Default: hybrid injected iframe (works on every platform)
+                // No native side panel here (Safari/iOS, or attaching failed): the in-page sidebar iframe
                 if (activeTab && mod?.ensureContentScript) {
                     // Safari opt-in model: request site access within this
                     // click gesture so the native prompt is honored.

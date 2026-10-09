@@ -157,6 +157,7 @@ flowchart LR
 - **`content.js` (on demand).** Extracts the readable text (HTML, PDFs), paints highlights, shows the selection tooltip, and drives a summary run. It is injected by the background (`ensureContent`) when a highlight, a selection, the context menu, a shortcut, or the popup needs it, and is guarded against double injection.
 - **Background worker.** Streams model output (`handleStreamFetch`, idle timeout only after the first chunk, so slow local models are fine), runs one-shot completions (`aiComplete` / `aiCancel`), polls feeds, hosts audio, and finishes a run whose page went away (`finalize.js` is bundled as a classic script for the worker).
 - **Popup / side panel.** Plain HTML plus native ES modules. The main screen and its core modules load first; Feeds, History and Settings load right after the first paint.
+- **Attach / detach.** On Chrome the header button docks the popup into the side panel (📌) and, inside the panel, undocks it back to a popup (↙️). It is the same `useNativeSidePanel` setting as Settings › Appearance; the panel loads `popup.html?surface=sidepanel` so the page knows where it runs (`modules/panelDock.js`). Firefox uses its own sidebar; Safari keeps the in-page sidebar.
 
 ### A summary, end to end
 
@@ -284,6 +285,7 @@ ai-summary-helper/
 | `authManager.js` | byphil Cloud sign-in (shared form for onboarding and Account, code boxes, plan card) |
 | `storageManager.js`, `storageKeys.js`, `pageKey.js` | Storage abstraction, key registry, page keys for highlights |
 | `sidebarChannel.js` | Token check for `postMessage` from the content script into the in-page sidebar |
+| `panelDock.js` | Attach the popup to Chrome's side panel and detach it back |
 | `localIntelligence.js`, `localSearch.js`, `tagIntelligence.js`, `duplicateDetector.js`, `textMetrics.js`, `textUtils.js`, `dateUtils.js`, `dom.js`, `log.js` | On-device search, tags, duplicates and shared helpers |
 | `audioManager.js`, `podcastManager.js`, `readingTools.js`, `reader.js`, `instantRead.js`, `citation.js`, `paperInfo.js`, `sendSheet.js`, `localSendClient.js` | Read aloud, podcasts, reader, citations, send to devices |
 | `i18n.js`, `feedI18n.js`, `languages.js`, `a11y.js`, `extensionApi.js` | Translations, language data, accessibility settings, browser API shim |

@@ -3766,5 +3766,11 @@
   },
   "f_that_is_enough_6ac8": {
     "message": "够了"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "固定到侧边栏"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "分离为弹出窗口"
   }
 }

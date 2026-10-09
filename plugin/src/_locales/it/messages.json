@@ -3766,5 +3766,11 @@
   },
   "f_that_is_enough_6ac8": {
     "message": "Può bastare"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "Aggancia al pannello laterale"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "Stacca in un popup"
   }
 }
