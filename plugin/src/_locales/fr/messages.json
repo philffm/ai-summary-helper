@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ Modèles cloud gratuits"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "Clés API, connexion et licence"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Supprimer toutes les données"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Supprimer toutes les données ?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Supprimer toutes les données…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Supprimer l’historique ?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Supprimer les réglages ?"
+  },
+  "f_deleted_0f77": {
+    "message": "Supprimé ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Surlignages"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Destinations Kindle et LocalSend"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Supprime définitivement vos résumés, l’archive et vos surlignages de cet appareil. Les réglages et les flux restent, sauf si vous les cochez. Action irréversible."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Supprime définitivement vos résumés, l’archive et vos surlignages. Les réglages et les flux restent. Faites d’abord une sauvegarde."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Préférences et prompts"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Supprime tout ce que cette extension stocke sur cet appareil et repart de zéro. Action irréversible. Votre compte sur notre serveur n’est pas concerné : pour le faire supprimer, contactez-nous (voir la politique de confidentialité)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Supprime tout ce que cette extension stocke sur cet appareil : résumés, surlignages, flux, clés et réglages. Faites d’abord une sauvegarde."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Réinitialise les préférences, prompts, clés API, connexion et destinations d’envoi sur cet appareil. Les résumés, surlignages et flux restent, sauf si vous les cochez. L’extension sera rechargée."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Réinitialise les préférences, prompts, clés API, connexion et destinations d’envoi sur cet appareil. Les résumés, surlignages et flux restent."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Résumés et archive"
   }
 }

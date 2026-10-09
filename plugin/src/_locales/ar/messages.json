@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ نماذج سحابية مجانية"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "مفاتيح API وتسجيل الدخول والترخيص"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "حذف كل البيانات"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "حذف كل البيانات؟"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "حذف كل البيانات…"
+  },
+  "f_delete_history_02ab": {
+    "message": "حذف السجل؟"
+  },
+  "f_delete_settings_275c": {
+    "message": "حذف الإعدادات؟"
+  },
+  "f_deleted_0f77": {
+    "message": "تم الحذف ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "التظليلات"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "وجهات Kindle وLocalSend"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "يزيل ملخّصاتك والأرشيف وتظليلاتك نهائيًا من هذا الجهاز. تبقى الإعدادات والخلاصات ما لم تحدّدها. لا يمكن التراجع عن ذلك."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "يزيل ملخّصاتك والأرشيف وتظليلاتك نهائيًا. تبقى الإعدادات والخلاصات. أنشئ نسخة احتياطية أولًا."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "التفضيلات والموجّهات"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "يزيل كل ما تخزّنه هذه الإضافة على هذا الجهاز ويبدأ من جديد. لا يمكن التراجع عن ذلك. حسابك على خادمنا لا يتأثر: لحذفه تواصل معنا (راجع سياسة الخصوصية)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "يزيل كل ما تخزّنه هذه الإضافة على هذا الجهاز: الملخّصات والتظليلات والخلاصات والمفاتيح والإعدادات. أنشئ نسخة احتياطية أولًا."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "يعيد ضبط التفضيلات والموجّهات ومفاتيح API وتسجيل الدخول ووجهات الإرسال على هذا الجهاز. تبقى الملخّصات والتظليلات والخلاصات ما لم تحدّدها. ستُعاد تحميل الإضافة."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "يعيد ضبط التفضيلات والموجّهات ومفاتيح API وتسجيل الدخول ووجهات الإرسال على هذا الجهاز. تبقى الملخّصات والتظليلات والخلاصات."
+  },
+  "f_summaries_archive_b387": {
+    "message": "الملخّصات والأرشيف"
   }
 }

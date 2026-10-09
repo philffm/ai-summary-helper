@@ -2,7 +2,7 @@ import { T } from './feedI18n.js';
 // confirmDialog.js — type-to-confirm dialog for destructive actions (replaces window.confirm/alert).
 // Resolves true only when the user typed the confirmation word and pressed the red button.
 
-export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE', extraLabel, onExtra }) {
+export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE', extraLabel, onExtra, content, canConfirm }) {
     return new Promise((resolve) => {
         const prevFocus = document.activeElement;
         const layer = document.createElement('div');
@@ -12,6 +12,7 @@ export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE',
           <div class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="cdTitle" aria-describedby="cdBody">
             <h3 id="cdTitle"></h3>
             <p id="cdBody"></p>
+            <div class="confirm-content"></div>
             <input type="text" class="confirm-input" autocomplete="off" spellcheck="false" />
             <div class="confirm-actions">
               <button type="button" class="button-secondary btn-sm confirm-extra" hidden></button>
@@ -23,6 +24,7 @@ export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE',
         const q = (s) => layer.querySelector(s);
         q('#cdTitle').textContent = title;
         q('#cdBody').textContent = body;
+        if (content) q('.confirm-content').appendChild(content); else q('.confirm-content').remove();
         const input = q('.confirm-input'), ok = q('.confirm-ok'), cancel = q('.confirm-cancel'), extra = q('.confirm-extra');
         input.placeholder = T('Type {word} to confirm', { word });
         ok.textContent = confirmLabel;
@@ -39,7 +41,11 @@ export function confirmDestructive({ title, body, confirmLabel, word = 'DELETE',
                 f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
             }
         };
-        input.addEventListener('input', () => { ok.disabled = input.value.trim() !== word; });
+        // `canConfirm()` (optional) lets the caller block the red button, e.g. when nothing is ticked; it is re-checked when anything in `content` changes.
+        const ready = () => input.value.trim() === word && (!canConfirm || canConfirm());
+        const recheck = () => { ok.disabled = !ready(); };
+        input.addEventListener('input', recheck);
+        if (content) content.addEventListener('change', recheck);
         input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !ok.disabled) close(true); });
         ok.addEventListener('click', () => close(true));
         cancel.addEventListener('click', () => close(false));

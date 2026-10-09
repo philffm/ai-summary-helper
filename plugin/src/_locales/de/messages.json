@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ Kostenlose Cloud-Modelle"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API-Schlüssel, Anmeldung & Lizenz"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Alle Daten löschen"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Alle Daten löschen?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Alle Daten löschen…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Verlauf löschen?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Einstellungen löschen?"
+  },
+  "f_deleted_0f77": {
+    "message": "Gelöscht ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Markierungen"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle- & LocalSend-Ziele"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Entfernt deine Zusammenfassungen, das Archiv und deine Markierungen endgültig von diesem Gerät. Einstellungen und Feeds bleiben, außer du wählst sie aus. Das lässt sich nicht rückgängig machen."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Entfernt deine Zusammenfassungen, das Archiv und deine Markierungen endgültig. Einstellungen und Feeds bleiben. Sichere vorher ein Backup."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Einstellungen & Prompts"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Entfernt alles, was diese Erweiterung auf diesem Gerät speichert, und startet neu. Das lässt sich nicht rückgängig machen. Dein Konto auf unserem Server bleibt unberührt: Wenn du es löschen lassen willst, kontaktiere uns (siehe Datenschutzerklärung)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Entfernt alles, was diese Erweiterung auf diesem Gerät speichert: Zusammenfassungen, Markierungen, Feeds, Schlüssel und Einstellungen. Sichere vorher ein Backup."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Setzt Einstellungen, Prompts, API-Schlüssel, Anmeldung und Sendeziele auf diesem Gerät zurück. Zusammenfassungen, Markierungen und Feeds bleiben, außer du wählst sie aus. Die Erweiterung wird neu geladen."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Setzt Einstellungen, Prompts, API-Schlüssel, Anmeldung und Sendeziele auf diesem Gerät zurück. Zusammenfassungen, Markierungen und Feeds bleiben."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Zusammenfassungen & Archiv"
   }
 }
