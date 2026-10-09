@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "Öffnet die Erweiterung neben der Seite. Wie 📌 Anheften und ↙️ Lösen oben in der Kopfzeile."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Zu Favoriten hinzugefügt"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Artikel gelöscht"
+  },
+  "f_check_again_fccf": {
+    "message": "Erneut prüfen"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Ollama wird geprüft…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Diese Seite konnte nicht gespeichert werden – lade den Tab neu."
+  },
+  "f_installed_models_a979": {
+    "message": "Installierte Modelle"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Im Verlauf behalten, ohne KI, nichts wird gesendet"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama ist nicht erreichbar – richte es in den Einstellungen ein"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama läuft, aber es ist noch kein Modell installiert. Lade eines im Terminal herunter:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama läuft, aber es ist kein Modell installiert – führe aus: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama läuft. Installierte Modelle – klicke eines zum Verwenden:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama hat die Anfrage abgelehnt (OLLAMA_ORIGINS) – siehe Einstellungen"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} installiert"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Kontoeinstellungen öffnen"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Modelleinstellungen öffnen"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "In der Warteschlange – startet, sobald die aktuelle Zusammenfassung fertig ist"
+  },
+  "f_queued_4ebe": {
+    "message": "In der Warteschlange: {title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "Mit KI lesen"
+  },
+  "f_remove_901d": {
+    "message": "Entfernen"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Aus Favoriten entfernt"
+  },
+  "f_save_only_82ca": {
+    "message": "Nur speichern"
+  },
+  "f_save_options_f4e6": {
+    "message": "Speicheroptionen"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "Ohne KI-Zusammenfassung gespeichert. Öffne die Seite und tippe auf ✨ Zusammenfassen, um eine hinzuzufügen."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Installierte Modelle durchsuchen…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "Dafür brauchst du dein Konto. Melde dich an oder prüfe deinen Tarif in den Einstellungen."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "Diese Seite kann nicht gespeichert werden."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "Wartet auf die laufende Zusammenfassung – klicken, um sie aus der Warteschlange zu entfernen"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "Dein API-Schlüssel fehlt oder wurde abgelehnt. Prüfe ihn in den Einstellungen."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "startet, sobald die aktuelle Zusammenfassung fertig ist"
+  },
+  "f_this_page_a108": {
+    "message": "diese Seite"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ In Warteschlange"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 Ohne KI gespeichert"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Gespeichert · ohne KI"
   }
 }

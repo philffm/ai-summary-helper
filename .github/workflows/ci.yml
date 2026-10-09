@@ -1,0 +1,40 @@
+name: CI
+
+# Lint, tests and the i18n check on every pull request and on main, so a broken
+# main is noticed before a release (release.yml runs the same lint and tests).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint (errors only)
+        run: npm run lint -- --quiet
+
+      - name: i18n coverage of the extension UI
+        run: node scripts/feed-i18n.mjs check
+
+      - name: Tests (includes the privacy.md sync check)
+        run: npm test

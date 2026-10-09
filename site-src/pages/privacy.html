@@ -54,8 +54,9 @@
 
         <p>If you disagree with any part of this policy, please do not install or use the extension.</p>
 
-        <h2>No Account Required</h2>
-        <p>AI Summary Helper does not require you to create an account, sign in, or provide any personal information to use its core features. Your API key (if you use your own) and your entire article history live in your browser's local storage.</p>
+        <h2>No Account Required for Core Features</h2>
+        <p>AI Summary Helper does not require you to create an account, sign in, or provide any personal information to summarize pages, highlight, follow feeds, or keep your archive. Your API key (if you use your own) and your entire article history live in your browser's local storage.</p>
+        <p>An account is only needed for the hosted services: byphil Cloud (summaries without your own key) and Send to Kindle. Signing in works with your email address and a one-time code. We store that email address, your plan or license status and basic usage counters (for example the number of requests and Kindle sends) so we can apply plan limits.</p>
 
         <h2>What Data We Handle, and Where It Goes</h2>
 
@@ -96,11 +97,16 @@
         <h3>RSS feeds</h3>
         <p>The built-in Feeds reader stores your subscriptions and the fetched feed items locally in your browser — never synced, never sent to us. When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. OPML import is processed entirely on your device. If you turn on background checks (off by default), the extension re-requests your feeds on the interval you choose, only to show a count on the toolbar icon. Summarizing a feed item works like summarizing any other page: its content is only sent to the AI provider you chose, and only when you trigger a summary. The optional AI day recap and AI tone scoring work the same way: only when you click them, the extension sends item titles, source names and short snippets (not full articles) to the AI provider you chose, and the resulting recap is cached on your device. Podcast episodes in a feed are streamed directly from the publisher's server when you press Play.</p>
 
-        <h3>Kindle, AirDrop, and LocalSend</h3>
-        <p>When you send an article to Kindle, AirDrop, or a LocalSend-compatible device, the formatted file is sent directly from your browser to the destination you chose. We do not act as an intermediary and do not see or store this content.</p>
+        <h3>Sending articles: Kindle, LocalSend, and the share sheet</h3>
+        <p>There are two different paths, and only one of them touches our server:</p>
+        <ul>
+          <li><strong>Send to Kindle goes through our server.</strong> Amazon only accepts documents by email from approved senders, so the extension sends the article (title, summary, text, highlights and source address) to the byphil backend, which emails it to the Kindle address you entered. You add our sender address (kindle@byphil.eu) to your approved senders list in your Amazon account. The content is used only to create and send that email. Kindle delivery requires being signed in or having a license; the free tier includes 3 sends.</li>
+          <li><strong>LocalSend and the system share sheet (for example AirDrop) are direct.</strong> The file goes from your browser straight to the device you picked on your local network, or to the app you chose in the share sheet. We are not involved and do not see or store this content. LocalSend works with phones, tablets, computers and e-readers that run a compatible app.</li>
+        </ul>
 
         <h2 id="analytics">Analytics &amp; cookies</h2>
         <p><strong>Short version:</strong> this website sets <strong>no cookies</strong> and uses no advertising or cross-site trackers. We count anonymous visits with a self-hosted Matomo instance, and you can switch that off at any time.</p>
+        <p><strong>The browser extension itself contains no analytics, telemetry or tracking code.</strong> Its only network requests go to the AI provider you configured, the feeds you subscribed to, the pages you ask it to fetch, and (if you use them) the byphil backend for byphil Cloud, sign-in, license checks and Send to Kindle.</p>
         <h3>What we measure</h3>
         <p>Page views, the page language, referrer, approximate country/browser/device class, and which parts of the site you interact with (for example clicks on "Add to Chrome", the pricing toggle, FAQ items, sections you scroll to, and steps of the bookmarklet generator). Events never contain e-mail addresses, API keys, one-time codes, page content or article data.</p>
         <h3>How it is configured</h3>
@@ -128,6 +134,8 @@
             <tr><td><code>tabs</code></td><td>Close the tab automatically after "Summarize &amp; Close"</td></tr>
             <tr><td><code>sidePanel</code></td><td>Support Chrome's native side panel as a viewing option</td></tr>
             <tr><td><code>scripting</code></td><td>Inject the content script needed to read and summarize a page</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Play podcast audio and read summaries aloud in the background while the popup is closed</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Keep a large local archive of articles and highlights without hitting the default storage quota</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively</td></tr>
           </tbody>
         </table>
@@ -137,7 +145,7 @@
         <ul>
           <li>We don't run or serve ads, and we don't sell, rent, or trade your data to advertisers or data brokers.</li>
           <li>We don't require an account or sign-in for any core feature.</li>
-          <li>We don't log or retain the content of pages you summarize via your own API key or a local model.</li>
+          <li>We don't log or retain the content of pages you summarize via your own API key or a local model, and we never see what you send over LocalSend or the share sheet.</li>
           <li>We don't have access to your locally stored article history, highlights, or API keys — they never leave your device unless you explicitly export them.</li>
         </ul>
 
@@ -145,7 +153,8 @@
         <p>Depending on how you configure the extension, your page content may be sent to:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI, or DeepSeek — only if you've entered your own API key for that provider, and only for the page you actively summarize.</li>
-          <li>Our byphil Cloud backend — only if you've opted into that tier.</li>
+          <li>Our byphil backend — only if you use byphil Cloud or Send to Kindle.</li>
+          <li>Amazon — if you send an article to your Kindle, Amazon delivers it under its own privacy terms.</li>
           <li>Your own local Ollama instance — not a third party; stays on your machine.</li>
         </ul>
         <p>We are not responsible for the privacy practices of third-party AI providers you choose to connect. We encourage you to review their policies before connecting an account.</p>

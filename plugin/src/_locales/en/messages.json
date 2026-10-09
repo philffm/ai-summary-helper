@@ -3943,5 +3943,106 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "Opens the extension next to the page. Same as 📌 Attach and ↙️ Detach in the header."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Added to favorites"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Article deleted"
+  },
+  "f_check_again_fccf": {
+    "message": "Check again"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Checking Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Could not save this page — try refreshing the tab."
+  },
+  "f_installed_models_a979": {
+    "message": "Installed models"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Keep it in History, no AI, nothing sent"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama is not reachable — set it up in Settings"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama is running, but no model is installed yet. Download one in a terminal:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama is running, but no model is installed — run: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama is running. Installed models — click one to use it:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama refused the request (OLLAMA_ORIGINS) — see Settings"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} installed",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Open account settings"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Open model settings"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "Queued — it will start when the current summary is done"
+  },
+  "f_queued_4ebe": {
+    "message": "Queued: {title}",
+    "description": "Placeholders: {title} (keep as is)"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "Read it with AI"
+  },
+  "f_remove_901d": {
+    "message": "Remove"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Removed from favorites"
+  },
+  "f_save_only_82ca": {
+    "message": "Save only"
+  },
+  "f_save_options_f4e6": {
+    "message": "Save options"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "Saved without an AI summary. Open the page and tap ✨ Summarize to add one."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Search installed models…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "This needs your account. Log in or check your plan in the settings."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "This page can't be saved."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "Waiting for the running summary — click to remove from the queue"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "Your API key is missing or was rejected. Check it in the settings."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "starts when the current summary is done"
+  },
+  "f_this_page_a108": {
+    "message": "this page"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ Queued"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 Saved without AI"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Saved · no AI"
   }
 }

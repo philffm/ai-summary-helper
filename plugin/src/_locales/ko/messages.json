@@ -3757,5 +3757,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "확장 프로그램을 페이지 옆에 엽니다. 헤더의 📌 고정 / ↙️ 분리와 같습니다."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "즐겨찾기에 추가됨"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "글이 삭제됨"
+  },
+  "f_check_again_fccf": {
+    "message": "다시 확인"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Ollama 확인 중…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "이 페이지를 저장할 수 없습니다. 탭을 새로고침해 보세요."
+  },
+  "f_installed_models_a979": {
+    "message": "설치된 모델"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "기록에 보관, AI 없음, 아무것도 전송되지 않음"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama에 연결할 수 없습니다. 설정에서 구성하세요"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama가 실행 중이지만 아직 설치된 모델이 없습니다. 터미널에서 다운로드하세요:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama가 실행 중이지만 설치된 모델이 없습니다. 실행: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama가 실행 중입니다. 설치된 모델 — 클릭해서 사용:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama가 요청을 거부했습니다(OLLAMA_ORIGINS) — 설정을 확인하세요"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n}개 설치됨"
+  },
+  "f_open_account_settings_781f": {
+    "message": "계정 설정 열기"
+  },
+  "f_open_model_settings_7865": {
+    "message": "모델 설정 열기"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "대기 중 — 현재 요약이 끝나면 시작됩니다"
+  },
+  "f_queued_4ebe": {
+    "message": "대기 중: {title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "AI로 읽기"
+  },
+  "f_remove_901d": {
+    "message": "제거"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "즐겨찾기에서 제거됨"
+  },
+  "f_save_only_82ca": {
+    "message": "저장만"
+  },
+  "f_save_options_f4e6": {
+    "message": "저장 옵션"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "AI 요약 없이 저장했습니다. 페이지를 열고 ✨ 요약을 눌러 추가하세요."
+  },
+  "f_search_installed_models_959b": {
+    "message": "설치된 모델 검색…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "계정이 필요합니다. 설정에서 로그인하거나 요금제를 확인하세요."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "이 페이지는 저장할 수 없습니다."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "진행 중인 요약을 기다리는 중 — 클릭하면 대기열에서 제거"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "API 키가 없거나 거부되었습니다. 설정에서 확인하세요."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "현재 요약이 끝나면 시작"
+  },
+  "f_this_page_a108": {
+    "message": "이 페이지"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ 대기 중"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 AI 없이 저장됨"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 저장됨 · AI 없음"
   }
 }

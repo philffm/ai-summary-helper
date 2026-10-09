@@ -3775,5 +3775,104 @@
   },
   "f_opens_the_extension_next_to__d369": {
     "message": "拡張機能をページの横に開きます。ヘッダーの 📌 固定 / ↙️ 切り離し と同じです。"
+  },
+  "f_added_to_favorites_0693": {
+    "message": "お気に入りに追加しました"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "記事を削除しました"
+  },
+  "f_check_again_fccf": {
+    "message": "再確認"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Ollama を確認中…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "このページを保存できませんでした。タブを再読み込みしてください。"
+  },
+  "f_installed_models_a979": {
+    "message": "インストール済みモデル"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "履歴に残します。AI なし、何も送信されません"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama に接続できません。設定でセットアップしてください"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama は動作していますが、モデルがまだインストールされていません。ターミナルでダウンロードしてください:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama は動作していますが、モデルがインストールされていません。実行: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama は動作中です。インストール済みモデル（クリックで使用）:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama がリクエストを拒否しました (OLLAMA_ORIGINS)。設定を確認してください"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} 件インストール済み"
+  },
+  "f_open_account_settings_781f": {
+    "message": "アカウント設定を開く"
+  },
+  "f_open_model_settings_7865": {
+    "message": "モデル設定を開く"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "待機中。現在の要約が終わると開始します"
+  },
+  "f_queued_4ebe": {
+    "message": "待機中: {title}"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "AI で読む"
+  },
+  "f_remove_901d": {
+    "message": "削除"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "お気に入りから削除しました"
+  },
+  "f_save_only_82ca": {
+    "message": "保存のみ"
+  },
+  "f_save_options_f4e6": {
+    "message": "保存オプション"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "AI 要約なしで保存しました。ページを開いて ✨ 要約 をタップすると追加できます。"
+  },
+  "f_search_installed_models_959b": {
+    "message": "インストール済みモデルを検索…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "アカウントが必要です。設定でログインするかプランを確認してください。"
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "このページは保存できません。"
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "実行中の要約を待っています。クリックで待機から削除"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "API キーがないか、拒否されました。設定で確認してください。"
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "現在の要約が終わると開始"
+  },
+  "f_this_page_a108": {
+    "message": "このページ"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ 待機中"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 AI なしで保存"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 保存済み · AI なし"
   }
 }

@@ -49,7 +49,7 @@
 - **Read it later, on purpose.** "Summarize & Close" saves a tab with a reminder; the digest sends a varied selection to Kindle or LocalSend.
 - **Your language.** 40+ summary languages (including Traditional and Simplified Chinese) and a localized interface.
 
-> **Kindle sending limit:** The free tier includes 3 Kindle sends; unlimited Kindle & LocalSend sends require the [Support Pass](https://byphil.eu/#pass).
+> **How sending works.** *Send to Kindle* goes through the byPhil backend, because Amazon only accepts documents by email from approved senders: add `kindle@byphil.eu` to your approved senders in your Amazon account. The free tier includes 3 Kindle sends; unlimited Kindle sends require the [Support Pass](https://byphil.eu/#pass). *LocalSend* (and the system share sheet, e.g. AirDrop) is direct: the file goes from your browser to the device you pick, works with any device running a LocalSend-compatible app, and never touches our server. See the [privacy policy](privacy.md).
 
 <a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI Summary Helper on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
@@ -86,7 +86,11 @@ cd ai-summary-helper
 npm ci
 npm run build          # syncs plugin/src → plugin/dev/aish-extension-<platform>
 npm test               # jsdom test suite (run `npm test -- 12 37` for single tests)
+npm run lint           # eslint plugin/src
+node scripts/feed-i18n.mjs check   # every UI string translated in every locale
 ```
+
+Pull requests run lint, tests and the i18n check in CI. The privacy policy lives in `site-src/pages/privacy.html`; after editing it run `npm run privacy:build` to refresh the Markdown copies. Product and code audits: [`plugin/PRODUCT_AUDIT.md`](plugin/PRODUCT_AUDIT.md), [`plugin/PROJECT_AUDIT.md`](plugin/PROJECT_AUDIT.md), [`plugin/STYLE_AUDIT.md`](plugin/STYLE_AUDIT.md).
 
 Load `plugin/dev/aish-extension-chrome/` via `chrome://extensions` → **Developer mode** → **Load unpacked**. The extension is vanilla ES modules, no framework and no bundler. The marketing site is plain HTML assembled by `npm run site:build` from `site-src/`.
 
@@ -121,7 +125,7 @@ Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/ai-
 
 The bookmarklet generator lives on its own page: [ai-summary-helper.byphil.eu/bookmarklet.html](https://ai-summary-helper.byphil.eu/bookmarklet.html) (the landing page only teases it). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
 
-The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). GitHub Pages serves from `docs/`.
+The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). The HTML pages are assembled from `site-src/` into `docs/` by `npm run site:build`, and GitHub Pages serves `docs/`. Do not edit the generated `docs/*.html` or `docs/lang/` by hand; the `translate.yml` workflow rebuilds them on every push to `main` that touches `site-src/`.
 
 ## Architecture
 
@@ -240,6 +244,7 @@ ai-summary-helper/
 │   ├── dev/                      # Generated unpacked builds (git-ignored)
 │   │   ├── aish-extension-chrome/
 │   │   ├── aish-extension-android/
+│   │   ├── aish-extension-ios/
 │   │   └── aish-extension-firefox/
 │   │
 │   └── prod/                     # Generated release zips (git-ignored)
@@ -247,9 +252,12 @@ ai-summary-helper/
 │       ├── aish-extension-android-<ver>.zip
 │       └── aish-extension-firefox-<ver>.zip
 │
-├── docs/                         # Marketing website (GitHub Pages publish folder)
-│   ├── index.html                # Landing page (hero switch teases the bookmarklet)
-│   ├── bookmarklet.html          # Bookmarklet generator page
+├── site-src/                     # Website source: pages/ (English templates) + partials/ (nav, footer)
+│   └── pages/privacy.html        # Single source of truth for the privacy policy (see scripts/privacy-md.mjs)
+│
+├── docs/                         # Marketing website (GitHub Pages publish folder, built from site-src/)
+│   ├── index.html                # Landing page (generated; hero switch teases the bookmarklet)
+│   ├── bookmarklet.html          # Bookmarklet generator page (generated)
 │   ├── sitemap.xml               # SEO sitemap
 │   ├── CNAME                     # Custom domain (ai-summary-helper.byphil.eu)
 │   ├── assets/                   # Site JS/CSS + icons (main.js, styles.css, icon.svg, createBookmarklet.svg)
@@ -261,14 +269,21 @@ ai-summary-helper/
 ├── assets/                       # Repo-root marketing images (aish.png, demo.gif, createBookmarklet.svg)
 │
 ├── scripts/
-│   └── translate.mjs             # Website translation pipeline (docs/ → docs/lang/)
+│   ├── build-site.mjs            # Assembles docs/*.html from site-src/ pages + partials
+│   ├── seo.mjs                   # Canonical/hreflang tags and sitemap
+│   ├── translate.mjs             # Website translation pipeline (docs/ → docs/lang/)
+│   ├── feed-i18n.mjs             # Extension UI strings: extract | merge <dir> | check
+│   └── privacy-md.mjs            # Generates privacy.md and plugin/src/privacy.md from site-src/pages/privacy.html
 │
 ├── current_version.json          # Single source of truth for version + language list
 ├── package.json                  # npm scripts (build, build:chrome, build:firefox, …)
 ├── readme.md                     # This overview (also feeds compatible-tools.json)
+├── privacy.md                    # Generated copy of the privacy policy (also bundled in the extension)
+├── LICENSE                       # MIT
 │
 └── .github/workflows/
     ├── release.yml               # Tag-triggered: build + version bump + GitHub release
+    ├── ci.yml                    # Pull requests and main: lint, tests, i18n check
     └── translate.yml             # Auto-translates docs/ content → docs/lang/
 ```
 
