@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "Bewertet, kategorisiert und fasst alle deine Feed-Einträge in kleinen Stapeln auf deinem eigenen Rechner zusammen. Keine Tokens verbraucht."
+  },
+  "f_changelog_8779": {
+    "message": "Änderungsprotokoll"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "Womit soll AI Summary Helper denken?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Lokale Modelle. Kein Konto, kein Schlüssel, nichts verlässt deinen Rechner."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "Mein eigener API-Schlüssel"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama auf diesem Computer"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek und mehr. Kein Konto, der Schlüssel bleibt auf diesem Gerät."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Wähle eins. Du kannst es jederzeit in den Modelleinstellungen ändern, und es wird nichts gesendet, bis du eine Seite zusammenfasst."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Datenschutzerklärung"
+  },
+  "f_security_policy_699b": {
+    "message": "Sicherheitsrichtlinie"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Melde dich mit deiner E-Mail an, kein API-Schlüssel nötig. Deine Zusammenfassungen folgen dir auf jedes Gerät."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Tipp: Drücke {key} auf einer beliebigen Seite, um sie zusammenzufassen."
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Kostenlose Cloud-Modelle"
   }
 }

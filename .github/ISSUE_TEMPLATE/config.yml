@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/philffm/ai-summary-helper/security/advisories/new
+    about: Please report security problems privately, not as a public issue.
+  - name: Question or support
+    url: https://ai-summary-helper.byphil.eu/
+    about: Check the website and the README first.

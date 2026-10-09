@@ -90,7 +90,7 @@ npm run lint           # eslint plugin/src
 node scripts/feed-i18n.mjs check   # every UI string translated in every locale
 ```
 
-Pull requests run lint, tests and the i18n check in CI. The privacy policy lives in `site-src/pages/privacy.html`; after editing it run `npm run privacy:build` to refresh the Markdown copies. Product and code audits: [`plugin/PRODUCT_AUDIT.md`](plugin/PRODUCT_AUDIT.md), [`plugin/PROJECT_AUDIT.md`](plugin/PROJECT_AUDIT.md), [`plugin/STYLE_AUDIT.md`](plugin/STYLE_AUDIT.md).
+Pull requests run lint, tests and the i18n check in CI; see [CONTRIBUTING.md](CONTRIBUTING.md) for conventions and [SECURITY.md](SECURITY.md) to report vulnerabilities. The privacy policy lives in `site-src/pages/privacy.html`; after editing it run `npm run privacy:build` to refresh the Markdown copies. Product and code audits: [`plugin/PRODUCT_AUDIT.md`](plugin/PRODUCT_AUDIT.md), [`plugin/PROJECT_AUDIT.md`](plugin/PROJECT_AUDIT.md), [`plugin/STYLE_AUDIT.md`](plugin/STYLE_AUDIT.md).
 
 Load `plugin/dev/aish-extension-chrome/` via `chrome://extensions` → **Developer mode** → **Load unpacked**. The extension is vanilla ES modules, no framework and no bundler. The marketing site is plain HTML assembled by `npm run site:build` from `site-src/`.
 

@@ -1,0 +1,33 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser and platform
+      options: [Chrome, Edge, Firefox, Safari (macOS), Safari (iOS), Android (Firefox / Kiwi), Bookmarklet, Other]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Extension version
+      description: Settings › About & Tools
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Model source
+      options: [byPhil Cloud, Own key (OpenAI), Own key (Gemini), Own key (Mistral), Own key (DeepSeek), Own key (other), Ollama, Not relevant]
+  - type: textarea
+    id: extra
+    attributes:
+      label: Page address, error text, console output
+      description: Do not paste API keys. Remove anything private.

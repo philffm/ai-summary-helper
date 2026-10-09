@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "Avalia, categoriza e resume todos os itens dos feeds em pequenos lotes no seu próprio computador. Sem gastar tokens."
+  },
+  "f_changelog_8779": {
+    "message": "Registo de alterações"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "Com o que deve o AI Summary Helper pensar?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Modelos locais. Sem conta, sem chave, nada sai do seu computador."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "A minha própria chave de API"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama neste computador"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek e mais. Sem conta, a chave fica neste dispositivo."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Escolha um. Pode mudá-lo a qualquer momento nas definições do modelo e nada é enviado até resumir uma página."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Política de privacidade"
+  },
+  "f_security_policy_699b": {
+    "message": "Política de segurança"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Inicie sessão com o seu email, sem chave de API. Os seus resumos acompanham-no em todos os dispositivos."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Dica: prima {key} em qualquer página para a resumir."
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Modelos na nuvem gratuitos"
   }
 }

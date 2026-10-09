@@ -4030,5 +4030,41 @@
   },
   "f_rates_categorizes_and_recaps_889d": {
     "message": "Оценивает, раскладывает по категориям и пересказывает все элементы лент небольшими пакетами на вашем компьютере. Токены не тратятся."
+  },
+  "f_changelog_8779": {
+    "message": "Список изменений"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "На чём должен «думать» AI Summary Helper?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Локальные модели. Без аккаунта и ключа, ничего не покидает ваш компьютер."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "Мой собственный API-ключ"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama на этом компьютере"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek и другие. Без аккаунта, ключ остаётся на этом устройстве."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Выберите один вариант. Его можно изменить в любой момент в настройках модели, и ничего не отправляется, пока вы не перескажете страницу."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Политика конфиденциальности"
+  },
+  "f_security_policy_699b": {
+    "message": "Политика безопасности"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Войдите по электронной почте, API-ключ не нужен. Ваши пересказы доступны на всех устройствах."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Совет: нажмите {key} на любой странице, чтобы пересказать её."
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Бесплатные облачные модели"
   }
 }

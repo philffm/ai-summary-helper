@@ -48,6 +48,7 @@ const INDEX = [
     ['library', N_('Delete settings'), 'deleteSettingsButton', 'danger reset erase remove'],
     ['about', N_('Feedback · contact · donate'), 'settingsPanel-about', 'bug support feedback contact donation help'],
     ['about', N_('Version & GitHub'), 'versionNumber', 'version contribute open source github'],
+    ['about', N_('Privacy policy'), 'aboutPrivacyLink', 'privacy data gdpr policy security changelog'],
 ];
 
 const PANEL_TITLES = {
