@@ -286,7 +286,8 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
     const system = 'You write brief news-digest recaps from headlines and snippets. '
         + `Reply in the language ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
         + (rate
-            ? 'First one line: SCORES: 1:3 | 2:-2 | ... giving EVERY numbered item a whole-number sentiment from -5 (very negative news) through 0 (neutral) to 5 (very positive news), judged on the news content.\n'
+            ? 'First one line: SCORES: 1:3 | 2:-2 | ... giving EVERY numbered item a whole-number sentiment from -5 (very negative news) through 0 (neutral) to 5 (very positive news).'
+              + ' Judge the real-world event or impact described, not the wording: disasters, earthquakes, tsunami warnings, attacks, war, deaths, crime and other harm are negative even when the text is calm or factual; only clearly good news is positive.\n'
               + 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered item a category label of one or two words '
               + '(e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design). Reuse the same label for similar items; use at most 8 different labels.\n'
             : '')
@@ -314,7 +315,8 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
         + `Update the recap so it covers the earlier points and the new items. Reply in the language ${lang}. Use ONLY the given text; do not invent facts. `
         + 'Keep still-relevant points, add new standout stories naming the source, and drop or correct anything an edited item contradicts. Format exactly:\n'
         + (rate
-            ? 'First one line: SCORES: 1:3 | 2:-2 | ... giving EVERY numbered NEW/EDITED item a whole-number sentiment from -5 (very negative news) through 0 to 5 (very positive news).\n'
+            ? 'First one line: SCORES: 1:3 | 2:-2 | ... giving EVERY numbered NEW/EDITED item a whole-number sentiment from -5 (very negative news) through 0 to 5 (very positive news).'
+              + ' Judge the real-world event or impact described, not the wording: disasters, earthquakes, tsunami warnings, attacks, war, deaths, crime and other harm are negative even when the text is calm or factual; only clearly good news is positive.\n'
               + 'Then one line: LABELS: 1:Tech | 2:Politics | ... giving EVERY numbered NEW/EDITED item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design).\n'
             : '')
         + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
@@ -364,7 +366,7 @@ export function parseLabelsJson(text, n) {
 export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress, service } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const rule = (m) => `For each numbered item return a number from -${m} `
-        + `(very negative news) through 0 (neutral) to ${m} (very positive news), judged on the news content, not tone of voice. `;
+        + `(very negative news) through 0 (neutral) to ${m} (very positive news), judged on the real-world event or impact, not the wording or tone: disasters, earthquakes, tsunami warnings, attacks, war, deaths, crime and other harm are negative even when the text is calm or factual. `;
     const system = labels
         ? 'You rate the sentiment of news headlines. ' + rule(1)
             + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
