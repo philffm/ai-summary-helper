@@ -593,7 +593,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   overflow-y: auto;
   /* no horizontal padding: the parent .screen already insets the content */
   /* the header overlays the screen: start below it so the first (or only) card is never hidden under it */
-  padding: calc(var(--header-h) + 8px) 0 calc(var(--floating-stack-height) + var(--spacing-s-4));
+  padding: calc(var(--header-h) + 8px) 0 calc(var(--floating-stack-height) + var(--spacing-s-8));
   display: flex;
   flex-direction: column;
   scrollbar-gutter: stable;
