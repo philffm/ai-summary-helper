@@ -4093,5 +4093,9 @@
   "f_items_could_not_be_scored_31d6": {
     "message": "{n} items could not be scored",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label} recap is ready",
+    "description": "Placeholders: {label} (keep as is)"
   }
 }

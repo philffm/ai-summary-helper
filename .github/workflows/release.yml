@@ -29,7 +29,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq zip gawk
 
-      - name: Run tests
+      # Tags are cut from main, which ci.yml already linted and tested on push — don't run it a second time.
+      # A manual run can start from any ref, so that one still checks.
+      - name: Run tests (manual runs only)
+        if: github.event_name == 'workflow_dispatch'
         run: |
           npm ci --no-audit --no-fund
           npm run lint -- --quiet   # errors only (undefined identifiers etc.)

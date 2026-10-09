@@ -3919,5 +3919,8 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "Quitar el límite y actualizar"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ El resumen de {label} está listo"
   }
 }

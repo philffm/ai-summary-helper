@@ -10,6 +10,7 @@
 
 import { generateRollup, recapSig } from './feedAi.js';
 import { createRecapStatus } from './recapStatus.js';
+import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { T, TN, locale } from './feedI18n.js';
 
 import { addDays, weekStart, monthStart, isoWeek } from './dateUtils.js';
@@ -107,6 +108,8 @@ export function openRollup(scope, anchor, ctx) {
     const label = scope === 'week'
         ? T('Week {n}', { n: isoWeek(start) })
         : new Date(start).toLocaleDateString(locale(), { month: 'long', year: 'numeric' });
+    const running = runningJob(key);
+    if (running) return ctx.openSheet(T('{label} recap', { label }), running);
     const body = el('div', 'feed-picker feed-recap feed-rollup');
     ctx.openSheet(T('{label} recap', { label }), body);
 
@@ -190,6 +193,7 @@ export function openRollup(scope, anchor, ctx) {
     };
 
     const run = async (createMissing) => {
+        const done = trackJob(key, body);
         try {
             let P = parts();
             if (createMissing && P.missing.length) {
@@ -213,8 +217,11 @@ export function openRollup(scope, anchor, ctx) {
             const rc = { ...r, at: Date.now(), n: P.total, scope, covered: fresh ? { ...cached.covered, ...sigsOf(send) } : sigsOf(P.parts) };
             ctx.getRecaps()[key] = rc;
             ctx.saveRecaps();
+            done();
             drawResult(rc, P);
-        } catch (e) { if (e.cancelled) return; fail(e, () => run(createMissing)); }
+            notifyReady(body, T('✨ {label} recap is ready', { label }), ctx.toast);
+        } catch (e) { done(); if (e.cancelled) return; fail(e, () => run(createMissing)); }
+        finally { done(); }
     };
 
     const refreshFromScratch = () => {

@@ -3901,5 +3901,8 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "제한 해제 후 새로고침"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label} 요약이 준비되었습니다"
   }
 }

@@ -3919,5 +3919,8 @@
   },
   "f_remove_limit_and_refresh_afec": {
     "message": "सीमा हटाएँ और रीफ़्रेश करें"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label} का रिकैप तैयार है"
   }
 }
