@@ -147,3 +147,25 @@ export function escapeHtml(str) {
 export function countWords(html) {
     return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
 }
+
+// Elements that never belong in a saved article or summary shown inside the extension.
+const UNSAFE_TAGS = 'script, style, link, meta, base, iframe, frame, frameset, object, embed, applet, form, input, button, textarea, select, template, noscript';
+
+/**
+ * Clean stored page/summary HTML in place before it is shown in the popup: drops active or page-restyling elements,
+ * on* handlers, inline styles and non-http(s) links. Saved content comes from arbitrary pages and from restored
+ * backups, so it is treated as untrusted even though the extension's CSP already blocks scripts.
+ * @param {Element} root  parsed (inert, DOMParser) container
+ */
+export function cleanUntrustedHtml(root) {
+    root.querySelectorAll(UNSAFE_TAGS).forEach(n => n.remove());
+    root.querySelectorAll('*').forEach(el => {
+        for (const { name, value } of [...el.attributes]) {
+            const n = name.toLowerCase();
+            if (n.startsWith('on') || n === 'style' || n === 'srcdoc' || n === 'formaction') el.removeAttribute(name);
+            else if ((n === 'href' || n === 'src' || n === 'xlink:href' || n === 'action') && !/^(https?:|data:image\/|#|$)/i.test(value.trim())) el.removeAttribute(name);
+        }
+        if (el.tagName === 'A') { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener noreferrer'); }
+    });
+    return root;
+}

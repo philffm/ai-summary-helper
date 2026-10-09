@@ -1,7 +1,7 @@
 import { mountReadingTools, destroyReadingTools } from './readingTools.js';
 import { modelEmoji } from './modelBadge.js';
 import { SK } from './storageKeys.js';
-import { escapeHtml } from './textUtils.js';
+import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
 // Article Manager
 // Handles article rendering, expand/collapse, search, etc.
 
@@ -1119,22 +1119,20 @@ function buildArticleCard(article) {
     }
     const tags = article.tags || [];
     const tagsHtml = tags.length ? `<div class="card-tags">${tags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}</div>` : '';
-    const modelBadge = article.modelId ? `<span style="font-size:10px;opacity:0.5;display:inline-block;margin-top:4px;">${modelEmoji(article)} ${article.modelId}</span>` : '';
+    const modelBadge = article.modelId ? `<span class="card-model">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
 
     // Decision metadata (timeframe + reason)
     const decisionHtml = article.isDecision ? `
-      <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(148,163,184,0.1);">
-        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-          ${article.decisionTimeframe ? `<span style="font-size:11px;background:rgba(59,130,246,0.15);color:#3b82f6;padding:3px 8px;border-radius:12px;font-weight:600;">🔖 ${article.decisionTimeframe}</span>` : ''}
-          ${article.decisionReason ? `<span style="font-size:11px;color:#94a3b8;font-style:italic;">"${article.decisionReason}"</span>` : ''}
-        </div>
+      <div class="card-decision">
+        ${article.decisionTimeframe ? `<span class="decision-chip">🔖 ${escapeHtml(article.decisionTimeframe)}</span>` : ''}
+        ${article.decisionReason ? `<span class="decision-reason">"${escapeHtml(article.decisionReason)}"</span>` : ''}
       </div>
     ` : '';
 
     listItem.innerHTML = `
         <div class="article-header">
           <div>
-            <h4>${articleHeader}</h4>
+            <h4>${escapeHtml(articleHeader)}</h4>
             <p class="article-date">💾 ${formattedDate} ${article.url ? `${T('from')} <a href="${escAttr(article.url)}" target="_blank" rel="noopener">${escapeHtml(articleDomain)}</a> ↗` : ''}</p>
             ${tagsHtml}
             ${modelBadge}
@@ -1625,66 +1623,61 @@ export async function showArticleDetail(article) {
     // Choose the highest fidelity data field available instantly
     const rawContentSource = article.content || article.html || article.text || '';
 
-    const safeTitle = article.title || (rawContentSource && rawContentSource.split('\n')[0]) || T('Article');
-    const safeSummary = (article.summaryBase !== undefined ? article.summaryBase : (article.summary || T('No summary available'))).replace(/<img[^>]*>/gi, '');
+    const safeTitle = escapeHtml(article.title || (rawContentSource && rawContentSource.split('\n')[0]) || T('Article'));
+    // Saved summary and page HTML come from arbitrary pages (and restored backups): parse inert, then clean.
+    const summaryDoc = new DOMParser().parseFromString(article.summaryBase !== undefined ? article.summaryBase : (article.summary || escapeHtml(T('No summary available'))), 'text/html');
+    summaryDoc.querySelectorAll('img').forEach(el => el.remove());
+    const safeSummary = cleanUntrustedHtml(summaryDoc.body).innerHTML;
 
-    // Safely extract pristine plain text via an isolated DOM Parser
-    const detailParser = new DOMParser();
-    const detailDoc = detailParser.parseFromString(rawContentSource, 'text/html');
-
-    // 🔥 NEW: Keep the images, but enforce max-width so they don't break the popup layout
-    const detailImages = detailDoc.querySelectorAll('img');
-    detailImages.forEach(el => {
-        el.style.cssText = 'max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);';
-    });
-
-    // Strip remaining tags cleanly, preserving line breaks
-    const safeContent = detailDoc.body.innerHTML || T('No content available.');
+    const detailDoc = new DOMParser().parseFromString(rawContentSource, 'text/html');
+    cleanUntrustedHtml(detailDoc.body);
+    // Keep the images; .detail-original img caps their width so they don't break the popup layout
+    const safeContent = detailDoc.body.innerHTML || escapeHtml(T('No content available.'));
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
     const tags = article.tags || [];
-    const modelInfo = article.modelId ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;margin-right:12px;">${modelEmoji(article)} ${article.modelId}</span>` : '';
-    const lengthInfo = article.summaryLength ? `<span style="font-size:11px;color:var(--text-muted);display:inline-block;">📏 ${article.summaryLength}w</span>` : '';
+    const modelInfo = article.modelId ? `<span class="detail-model">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
+    const lengthInfo = article.summaryLength ? `<span class="detail-length">📏 ${escapeHtml(article.summaryLength)}w</span>` : '';
     
     // Decision metadata
     const decisionBadge = article.isDecision ? `
-      <div style="background:rgba(59,130,246,0.1);border-left:3px solid #3b82f6;padding:12px;margin-bottom:12px;border-radius:6px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:14px;">🔖</span>
-          <span style="font-size:13px;font-weight:600;color:#3b82f6;">${T('Saved for Later')}</span>
-          ${article.decisionTimeframe ? `<span style="font-size:11px;background:#3b82f6;color:#fff;padding:2px 8px;border-radius:4px;">${article.decisionTimeframe}</span>` : ''}
+      <div class="detail-decision">
+        <div class="detail-decision-head">
+          <span aria-hidden="true">🔖</span>
+          <span class="detail-decision-title">${T('Saved for Later')}</span>
+          ${article.decisionTimeframe ? `<span class="decision-chip">${escapeHtml(article.decisionTimeframe)}</span>` : ''}
         </div>
-        ${article.decisionReason ? `<p style="margin:0;font-size:12px;color:var(--text-secondary);">${escapeHtml(article.decisionReason)}</p>` : ''}
+        ${article.decisionReason ? `<p class="detail-decision-reason">${escapeHtml(article.decisionReason)}</p>` : ''}
       </div>
     ` : '';
 
     articleDetailContent.innerHTML = `
       <div class="article-detail-card">
-        <h3 style="margin-bottom:8px;"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>
+        <h3 class="detail-title"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>
         <p class="detail-desc" hidden></p>
-        <p class="detail-meta" style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
+        <p class="detail-meta">
           ${article.url ? `<a href="${escAttr(article.url)}" target="_blank" rel="noopener">${escapeHtml(domain)} ↗</a> · ` : ''}
           ${new Date(article.timestamp).toLocaleDateString()}${(modelInfo || lengthInfo) ? ' · ' : ''}${modelInfo}${lengthInfo}
         </p>
         <div class="detail-tags"></div>
         ${decisionBadge}
         <div class="paper-row" hidden></div>
-        <div class="action-bar" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <div class="action-bar detail-actions">
           <button class="button-secondary open-button">${T('Read 👓')}</button>
           <button class="button-secondary copy-button">${T('Copy 📋')}</button>
           <button class="button-secondary md-button">${T('.MD 💾')}</button>
           <button class="button-secondary share-button">${T('Share 🔗')}</button>
           <button class="button-secondary kindle-button">${T('Kindle 📚')}</button>
-          <button class="button-secondary localsend-button" style="background:#0284c7;color:#fff;border:none;">${T('LocalSend 📱')}</button>
+          <button class="button-secondary localsend-button">${T('LocalSend 📱')}</button>
         </div>
-        <div class="summary-box" style="background:rgba(0,0,0,0.05);padding:12px;border-left:4px solid var(--accent-glow);margin-bottom:12px;">
-          <strong style="display:block;margin-bottom:8px;">${T('🧙 AI Summary')}</strong>
+        <div class="summary-box">
+          <strong class="summary-box-title">${T('🧙 AI Summary')}</strong>
           <div>${safeSummary}</div>
-          <div id="qaMount" style="margin-top:12px;"></div>
+          <div id="qaMount" class="detail-qa"></div>
         </div>
-        <div id="localInsights" style="margin-bottom:16px;"></div>
-        <details style="margin-top:8px;">
-          <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">${T('📄 Original Content')}</summary>
-          <div style="font-size:13px;opacity:0.85;margin-top:8px;">${safeContent}</div>
+        <div id="localInsights" class="detail-insights"></div>
+        <details class="detail-original">
+          <summary>${T('📄 Original Content')}</summary>
+          <div class="detail-original-body">${safeContent}</div>
         </details>
       </div>
     `;
