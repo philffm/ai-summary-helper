@@ -90,7 +90,7 @@
   /* floating shell layout */
   --header-h: 62px;   /* 12 + 36 (icon buttons) + 8 — keep in sync with .header padding */
   --bottom-nav-height: 60px;
-  --controls-bottom-gap: 8px;
+  --controls-bottom-gap: 16px;
   --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4)); /* room a scroll area keeps free so content never ends up under the floating bottom nav */
   --controls-overlay-height: 250px;
   --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
@@ -3353,7 +3353,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
   left: 50%; width: 100vw; transform: translateX(-50%);
-  top: -72px; bottom: calc(-1 * (var(--bottom-nav-height) + var(--controls-bottom-gap)));
+  top: -40px; bottom: calc(-1 * (var(--bottom-nav-height) + var(--controls-bottom-gap)));
   background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--bg-page) 78%, transparent) 40px, var(--bg-page) 72px);
 }
 /* Larger, easier targets */
