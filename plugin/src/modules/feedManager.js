@@ -544,16 +544,20 @@ function hideUndo() {
 // Summaries started from a feed card report progress through the same relay as the Summarize screen
 // (summaryProgress / summaryComplete / summaryError). The card's button shows it as a ring.
 const sumBusy = new Map();   // item.id -> { pct, key, timer }
-const sumQueue = [];         // items waiting for the running summary to finish (one at a time)
 function paintSum(id) {
     const st = sumBusy.get(id);
-    const queued = !st && sumQueue.some(x => x.id === id);
+    const queued = !!(st && st.queued);
     document.querySelectorAll('.feed-sum-btn').forEach(b => {
         if (b.dataset.id !== id) return;
-        b.classList.toggle('busy', !!st || queued);
-        b.disabled = !!st || queued;
+        b.classList.toggle('busy', !!st);
+        b.disabled = !!st && !queued;   // a queued card can be clicked to take it out of the queue again
         b.setAttribute('aria-busy', st ? 'true' : 'false');
-        if (queued) { b.style.removeProperty('--p'); b.textContent = T('⏳ Queued'); return; }
+        if (queued) {
+            b.style.removeProperty('--p'); b.removeAttribute('aria-valuenow'); b.removeAttribute('role');
+            b.textContent = T('⏳ Queued'); b.title = T('Waiting for the running summary — click to remove from the queue');
+            return;
+        }
+        b.removeAttribute('title');
         if (st) {
             b.style.setProperty('--p', String(st.pct));
             b.textContent = T('⏳ {n}%', { n: Math.round(st.pct) });
@@ -564,23 +568,40 @@ function paintSum(id) {
 function startSumProgress(item) {
     const prev = sumBusy.get(item.id); if (prev) clearTimeout(prev.timer);
     const timer = setTimeout(() => endSumProgress(item.id), 5 * 60 * 1000);   // safety net
-    sumBusy.set(item.id, { pct: 5, key: normalizeUrl(item.link), timer });
+    sumBusy.set(item.id, { pct: 5, key: normalizeUrl(item.link), timer, queued: false, jobId: null });
     paintSum(item.id);
+}
+function rearmSum(id, ms) {   // a queued card may wait much longer than a running one
+    const st = sumBusy.get(id); if (!st) return;
+    clearTimeout(st.timer); st.timer = setTimeout(() => endSumProgress(id), ms);
 }
 function endSumProgress(id) {
     const st = sumBusy.get(id); if (!st) return;
     clearTimeout(st.timer); sumBusy.delete(id); paintSum(id);
-    const next = sumQueue.shift();
-    if (next) { paintSum(next.id); openItem(next, true); }
 }
 function sumTargetFor(msg, sender) {
     if (!sumBusy.size) return null;
     const urls = [sender && sender.tab && sender.tab.url, msg && msg.url].filter(Boolean).map(u => normalizeUrl(u));
-    for (const [id, st] of sumBusy) if (urls.includes(st.key)) return id;
+    for (const [id, st] of sumBusy) if (!st.queued && urls.includes(st.key)) return id;
     // redirected pages: a single running summary from a tab is almost certainly ours
-    return sumBusy.size === 1 && sender && sender.tab ? [...sumBusy.keys()][0] : null;
+    const live = [...sumBusy].filter(([, st]) => !st.queued);
+    return live.length === 1 && sender && sender.tab ? live[0][0] : null;
+}
+// The background runs one summary at a time (see "Summary job queue" in background.js) and broadcasts the line.
+function onQueueUpdate(msg) {
+    const waiting = new Map((msg.queue || []).map(j => [j.id, j]));
+    for (const [id, st] of [...sumBusy]) {
+        if (st.jobId == null) continue;
+        if (waiting.has(st.jobId)) { if (!st.queued) { st.queued = true; rearmSum(id, 60 * 60 * 1000); paintSum(id); } }
+        else if (st.queued) {
+            const running = msg.running && msg.running.id === st.jobId;
+            st.queued = false; st.pct = 5; rearmSum(id, 15 * 60 * 1000);
+            if (running) paintSum(id); else endSumProgress(id);   // removed from the line without ever running
+        }
+    }
 }
 function onSummaryMessage(msg, sender) {
+    if (msg && msg.action === 'summaryQueue') return onQueueUpdate(msg);
     if (!msg || !['summaryProgress', 'summaryComplete', 'summaryError'].includes(msg.action)) return;
     const id = sumTargetFor(msg, sender); if (!id) return;
     const st = sumBusy.get(id);
@@ -604,28 +625,26 @@ function onSummaryMessage(msg, sender) {
 }
 
 async function onSummarizeClick(item) {
+    const q = sumBusy.get(item.id);
+    if (q && q.queued) {   // waiting in line: take it out again
+        chrome.runtime.sendMessage({ action: 'cancelQueuedSummary', id: q.jobId }, () => { void chrome.runtime.lastError; });
+        endSumProgress(item.id); return;
+    }
     const art = await findSummarizedArticle(item.link);
     if (art) return viewSummary(item, art);
     openItem(item, true);
 }
 
 function openItem(item, summarize) {
-    // Only one summary runs at a time: further requests wait their turn (progress is matched per URL).
-    if (summarize && sumBusy.size && !sumBusy.has(item.id)) {
-        if (!sumQueue.some(x => x.id === item.id)) {
-            sumQueue.push(item); paintSum(item.id);
-            toast(uiRef, T('Queued — it will start when the current summary is done'));
-        }
-        return;
-    }
     if (settings.markReadOnOpen) setRead([item], true, { silent: true, keep: true });
     if (summarize) startSumProgress(item);
-    chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize }, (res) => {
+    chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, title: item.title, summarize }, (res) => {
         if (chrome.runtime.lastError || !res || !res.success || (summarize && res.mode !== 'extension')) { if (summarize) endSumProgress(item.id); if (chrome.runtime.lastError) return; }
         if (summarize && res && res.mode === 'extension') {
-            toast(uiRef, res.reused
-                ? T('Summarizing the open tab — it will show up under Summarize and History')
-                : T('Summarizing in the background — it will show up under Summarize and History'));
+            const st = sumBusy.get(item.id);
+            if (st) { st.jobId = res.id == null ? null : res.id; st.queued = !!res.queued; if (st.queued) rearmSum(item.id, 60 * 60 * 1000); paintSum(item.id); }
+            if (res.queued) toast(uiRef, T('Queued — it will start when the current summary is done'));
+            else toast(uiRef, T('Summarizing in the background — it will show up under Summarize and History'));
         }
     });
 }
@@ -1005,7 +1024,7 @@ function renderCard(item, sm) {
     const actions = el('div', 'feed-actions');
     const sum = btn('button-primary btn-sm feed-sum-btn', hist.summarized ? T('📄 View summary') : T('✨ Summarize'), (e) => { e.stopPropagation(); onSummarizeClick(item); });
     sum.dataset.id = item.id;
-    if (sumBusy.has(item.id) || sumQueue.some(x => x.id === item.id)) queueMicrotask(() => paintSum(item.id));
+    if (sumBusy.has(item.id)) queueMicrotask(() => paintSum(item.id));
     const open = btn('button-secondary btn-sm', T('Open ↗'), (e) => { e.stopPropagation(); openItem(item, false); });
     const read = btn('button-secondary btn-sm', item.read ? T('Mark unread') : T('Mark read'), (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true, keep: true }); });
     if (item.audio) {

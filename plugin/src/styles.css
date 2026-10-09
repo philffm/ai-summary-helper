@@ -3557,6 +3557,8 @@ body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="d
 
 .sc-cut { margin: 0 0 8px; padding: 10px 12px; border: 1px solid var(--warn, #e4a83e); border-radius: var(--radius-md); background: color-mix(in srgb, var(--warn, #e4a83e) 12%, transparent); color: var(--text-primary); font-size: var(--fs-sm); line-height: 1.45; }
 .sc-cut strong { font-weight: 600; }
+.queue-note { display: flex; align-items: center; gap: 8px; margin: 8px 0; padding: 8px 12px; border: 1px dashed var(--border, #8884); border-radius: var(--radius-md); color: var(--text-secondary, inherit); font-size: var(--fs-sm); line-height: 1.4; }
+.queue-note span { flex: 1; min-width: 0; }
 
 /* Interface chrome is not text: dragging across buttons, tabs, badges, counters, list cards or the header should
    not paint a selection over them. Summaries, chat answers, article text, inputs and code stay selectable. */
