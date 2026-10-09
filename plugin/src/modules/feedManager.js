@@ -544,13 +544,16 @@ function hideUndo() {
 // Summaries started from a feed card report progress through the same relay as the Summarize screen
 // (summaryProgress / summaryComplete / summaryError). The card's button shows it as a ring.
 const sumBusy = new Map();   // item.id -> { pct, key, timer }
+const sumQueue = [];         // items waiting for the running summary to finish (one at a time)
 function paintSum(id) {
     const st = sumBusy.get(id);
+    const queued = !st && sumQueue.some(x => x.id === id);
     document.querySelectorAll('.feed-sum-btn').forEach(b => {
         if (b.dataset.id !== id) return;
-        b.classList.toggle('busy', !!st);
-        b.disabled = !!st;
+        b.classList.toggle('busy', !!st || queued);
+        b.disabled = !!st || queued;
         b.setAttribute('aria-busy', st ? 'true' : 'false');
+        if (queued) { b.style.removeProperty('--p'); b.textContent = T('⏳ Queued'); return; }
         if (st) {
             b.style.setProperty('--p', String(st.pct));
             b.textContent = T('⏳ {n}%', { n: Math.round(st.pct) });
@@ -567,6 +570,8 @@ function startSumProgress(item) {
 function endSumProgress(id) {
     const st = sumBusy.get(id); if (!st) return;
     clearTimeout(st.timer); sumBusy.delete(id); paintSum(id);
+    const next = sumQueue.shift();
+    if (next) { paintSum(next.id); openItem(next, true); }
 }
 function sumTargetFor(msg, sender) {
     if (!sumBusy.size) return null;
@@ -605,6 +610,14 @@ async function onSummarizeClick(item) {
 }
 
 function openItem(item, summarize) {
+    // Only one summary runs at a time: further requests wait their turn (progress is matched per URL).
+    if (summarize && sumBusy.size && !sumBusy.has(item.id)) {
+        if (!sumQueue.some(x => x.id === item.id)) {
+            sumQueue.push(item); paintSum(item.id);
+            toast(uiRef, T('Queued — it will start when the current summary is done'));
+        }
+        return;
+    }
     if (settings.markReadOnOpen) setRead([item], true, { silent: true, keep: true });
     if (summarize) startSumProgress(item);
     chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize }, (res) => {
@@ -992,7 +1005,7 @@ function renderCard(item, sm) {
     const actions = el('div', 'feed-actions');
     const sum = btn('button-primary btn-sm feed-sum-btn', hist.summarized ? T('📄 View summary') : T('✨ Summarize'), (e) => { e.stopPropagation(); onSummarizeClick(item); });
     sum.dataset.id = item.id;
-    if (sumBusy.has(item.id)) queueMicrotask(() => paintSum(item.id));
+    if (sumBusy.has(item.id) || sumQueue.some(x => x.id === item.id)) queueMicrotask(() => paintSum(item.id));
     const open = btn('button-secondary btn-sm', T('Open ↗'), (e) => { e.stopPropagation(); openItem(item, false); });
     const read = btn('button-secondary btn-sm', item.read ? T('Mark unread') : T('Mark read'), (e) => { e.stopPropagation(); setRead([item], !item.read, { silent: true, keep: true }); });
     if (item.audio) {
