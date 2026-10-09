@@ -344,6 +344,9 @@
                         
                         <input type="radio" id="modeLocal" name="connectionMode" value="local">
                         <label for="modeLocal" data-i18n="f_bring_your_own_key_9713">💻 Bring your own key</label>
+
+                        <input type="radio" id="modeOllama" name="connectionMode" value="ollama">
+                        <label for="modeOllama">🦙 Ollama</label>
                     </div>
                 </div>
                 <div id="cloudModeContainer" class="flex column gap-3" style="display:none">
@@ -355,7 +358,7 @@
                     </div>
                 </div>
                 <div id="developerModeContainer" class="flex column gap-3" style="display:none">
-                  <label for="model"><span data-i18n="f_provider_88dc">Provider</span> <span class="fw-normal" id="apiKeyLink"></span></label>
+                  <label for="model" id="providerLabel"><span data-i18n="f_provider_88dc">Provider</span> <span class="fw-normal" id="apiKeyLink"></span></label>
                   <select id="model"></select>
                   <div id="modelIdentifierContainer">
                     <label id="modelIdentifierLabel" for="modelIdentifier">Model Identifier: (default)</label>

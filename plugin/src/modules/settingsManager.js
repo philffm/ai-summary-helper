@@ -260,6 +260,7 @@ async function initModelSettings(storageData) {
     // High-Level Connection Mode Toggles
     const modeCloudRadio = document.getElementById('modeCloud');
     const modeLocalRadio = document.getElementById('modeLocal');
+    const modeOllamaRadio = document.getElementById('modeOllama');
     
     // Cloud Mode Elements
     const cloudModelSelect = document.getElementById('cloudModelSelect');
@@ -275,11 +276,21 @@ async function initModelSettings(storageData) {
     if (!modelSelect || !cloudModeContainer || !developerModeContainer) return;
 
     // ── 1. Restore & Bind Connection Mode Toggles ───────────────────
+    // Three tabs, two stored modes: byPhil Cloud = 'cloud'; Own key and Ollama are both 'local'
+    // and differ only by activeService (Ollama is not listed among the own-key providers).
+    const tabOf = (mode, service) => mode === 'cloud' ? 'cloud' : (service === 'ollama' ? 'ollama' : 'local');
     const currentMode = storageData.connectionMode || 'cloud';
-    if (currentMode === 'cloud' && modeCloudRadio) modeCloudRadio.checked = true;
-    if (currentMode === 'local' && modeLocalRadio) modeLocalRadio.checked = true;
+    const currentTab = tabOf(currentMode, storageData.activeService);
+    if (currentTab === 'cloud' && modeCloudRadio) modeCloudRadio.checked = true;
+    if (currentTab === 'local' && modeLocalRadio) modeLocalRadio.checked = true;
+    if (currentTab === 'ollama' && modeOllamaRadio) modeOllamaRadio.checked = true;
+    let lastOwnKeyService = storageData.activeService && storageData.activeService !== 'ollama' ? storageData.activeService : '';
 
     const toggleConnectionContainers = (mode) => {
+        const providerLabel = document.getElementById('providerLabel');
+        const ollamaTab = mode === 'ollama';
+        if (providerLabel) providerLabel.style.display = ollamaTab ? 'none' : '';
+        modelSelect.style.display = ollamaTab ? 'none' : '';
         if (mode === 'cloud') {
             cloudModeContainer.style.display = 'block';
             developerModeContainer.style.display = 'none';
@@ -288,28 +299,31 @@ async function initModelSettings(storageData) {
             developerModeContainer.style.display = 'block';
         }
     };
-    toggleConnectionContainers(currentMode);
+    toggleConnectionContainers(currentTab);
 
     const handleModeChange = async (e) => {
-        const targetMode = e.target.value;
-        await autoSave('connectionMode', targetMode);
-        toggleConnectionContainers(targetMode);
+        const tab = e.target.value; // cloud | local | ollama
+        await autoSave('connectionMode', tab === 'cloud' ? 'cloud' : 'local');
+        toggleConnectionContainers(tab);
+        if (tab === 'cloud') return;
 
-        // When entering BYOK (local) mode, restore and reflect the last-set
-        // provider from storage so the developer panel doesn't fall back to
-        // a stale default selection.
-        if (targetMode === 'local') {
-            const latest = await StorageManager.getAll();
-            let saved = latest.activeService || modelSelect?.value || 'openai';
-            if (modelSelect && Array.from(modelSelect.options).some(o => o.value === saved)) {
-                modelSelect.value = saved;
-            }
-            await updateFields(saved);
+        // Restore the provider that belongs to this tab so the panel doesn't fall back to a stale selection.
+        const latest = await StorageManager.getAll();
+        let target = 'ollama';
+        if (tab === 'local') {
+            const ownKey = (id) => id && id !== 'ollama' && Array.from(modelSelect.options).some(o => o.value === id);
+            target = [lastOwnKeyService, latest.activeService, modelSelect.value, 'openai'].find(ownKey) || modelSelect.options[0]?.value;
+            modelSelect.value = target;
+        }
+        if (target) {
+            await autoSave('activeService', target);
+            await updateFields(target);
         }
     };
 
     if (modeCloudRadio) modeCloudRadio.addEventListener('change', handleModeChange);
     if (modeLocalRadio) modeLocalRadio.addEventListener('change', handleModeChange);
+    if (modeOllamaRadio) modeOllamaRadio.addEventListener('change', handleModeChange);
 
     // ── 2. Initialize Cloud Settings State ──────────────────────────
     if (cloudModelSelect) {
@@ -405,7 +419,7 @@ async function initModelSettings(storageData) {
 
     // ── 3. Initialize Developer Mode Settings (Legacy Elements) ─────
     modelSelect.innerHTML = '';
-    services.forEach(service => {
+    services.filter(service => service.id !== 'ollama').forEach(service => {
         const option = document.createElement('option');
         option.value = service.id;
         option.textContent = service.name;
@@ -417,7 +431,7 @@ async function initModelSettings(storageData) {
         activeService = services[0]?.id;
         if (activeService) await StorageManager.set({ activeService });
     }
-    modelSelect.value = activeService;
+    if (activeService !== 'ollama') modelSelect.value = activeService;
 
     const updateFields = async (serviceId) => {
         const service = services.find(s => s.id === serviceId);
@@ -458,6 +472,7 @@ async function initModelSettings(storageData) {
 
     modelSelect.addEventListener('change', async () => {
         const selectedId = modelSelect.value;
+        lastOwnKeyService = selectedId;
         await autoSave('activeService', selectedId);
         await updateFields(selectedId);
     });
