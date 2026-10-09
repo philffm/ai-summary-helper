@@ -114,7 +114,7 @@ export function parseLabelLine(line, n) {
  */
 export function parseScoreLine(line, n) {
     const out = new Array(n).fill(null);
-    String(line || '').split(/[|;]/).forEach(part => {
+    String(line || '').split(/[|;\n]/).forEach(part => {
         const m = part.match(/(\d+)\s*[:=]\s*([+-]?\d*\.?\d+)/);
         if (!m) return;
         const k = Number(m[1]) - 1, v = /\./.test(m[2]) ? Number(m[2]) : Number(m[2]) / 5;
@@ -256,10 +256,21 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
             + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`
         : 'You rate the sentiment of news headlines. ' + rule(5)
             + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal, onProgress);
-    const scores = parseScores(text, chunk.length) || (labels ? null : parseScoreLine(text, chunk.length));
-    if (!scores) throw new Error(T('The AI reply could not be read'));
-    return { scores, labels: labels ? parseLabelsJson(text, chunk.length) : new Array(chunk.length).fill(null) };
+    const user = `Items:\n${itemsForPrompt(chunk, subTitleFn)}`;
+    const usable = (a) => a && a.some(v => v !== null);
+    const text = await aiComplete(system, user, onStage, signal, onProgress);
+    // Small local models often ignore the JSON format: fall back to "1:3 | 2:-2" pairs, then retry once with the simplest prompt.
+    let scores = parseScores(text, chunk.length);
+    if (!usable(scores)) scores = parseScoreLine(text, chunk.length);
+    if (usable(scores)) return { scores, labels: labels ? parseLabelsJson(text, chunk.length) : new Array(chunk.length).fill(null) };
+    if (labels) {
+        const simple = 'You rate the sentiment of news headlines. ' + rule(5)
+            + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
+        const text2 = await aiComplete(simple, user, onStage, signal, onProgress);
+        const s2 = parseScoreLine(text2, chunk.length);
+        if (usable(s2)) return { scores: s2, labels: new Array(chunk.length).fill(null) };
+    }
+    throw new Error(T('The AI reply could not be read'));
 }
 
 const INTRO_STYLES = {

@@ -935,7 +935,14 @@ function renderInsightsView() {
         moodStore: moodDaily,
         feedIds: new Set(subs.filter(s => inSource({ feedId: s.id }, sm)).map(s => s.id)),
         unscored: (from, to) => items.filter(i => inSource(i, sm) && !i.ai && i.published >= from && i.published < startOfDay(to) + DAY_MS),
-        onScore: (list) => scoreWithAi(list),
+        onScore: async (list) => {
+            // Keep going while batches succeed: the mood view caps its list, so pick up what is still unscored.
+            for (let guard = 0; guard < 50 && list.length; guard++) {
+                const ok = await scoreWithAi(list);
+                if (!ok) break;
+                list = items.filter(i => inSource(i, subMap()) && !i.ai).sort((a, b) => b.published - a.published).slice(0, 120);
+            }
+        },
         hasRecap: (sc, st) => !!recaps[sc === 'day' ? `${st}|${ui.source}` : rollKey(sc, st, ui.source)],
         onOpen: (sc, st) => openPeriod(sc, st),
         onRecap: (sc, st) => { openPeriod(sc, st); if (sc === 'day') openRecap(st, dayLabel(st)); else openRollup(sc, st, rollCtx()); },
@@ -1752,22 +1759,30 @@ const scoringIds = new Set();
 
 /** Runs in the background (no sheet): the cards being scored show ⏳ and fill in as each batch finishes. */
 async function scoreWithAi(list) {
-    if (scoring) { toast(uiRef, T('Already scoring — one moment')); return; }
+    if (scoring) { toast(uiRef, T('Already scoring — one moment')); return false; }
     const all = (list || []).filter(Boolean);
     list = all.filter(needsAi);
-    if (!all.length) { toast(uiRef, T('Nothing to score')); return; }
-    if (!list.length) { toast(uiRef, T('These items are already scored')); return; }
+    if (!all.length) { toast(uiRef, T('Nothing to score')); return false; }
+    if (!list.length) { toast(uiRef, T('These items are already scored')); return false; }
     const sm = subMap();
     let done = 0, error = null;
     scoring = true;
     list.forEach(i => scoringIds.add(i.id));
     render();
+    const batches = Math.ceil(list.length / MAX_RECAP_ITEMS);
+    toast(uiRef, T('Scoring {n} items with AI in the background…', { n: list.length }));
+    let failed = 0;
     try {
         for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
             let res;
             try {
                 res = await scoreItems(chunk, aiTitleOf(sm), {});
+            } catch (e) {
+                // one unreadable reply must not stop the remaining batches
+                failed += chunk.length; error = e;
+                toast(uiRef, T('Batch {a}/{b} failed: {m}', { a: k / MAX_RECAP_ITEMS + 1, b: batches, m: e.message || T('AI scoring failed') }));
+                continue;
             } finally { chunk.forEach(i => scoringIds.delete(i.id)); }
             chunk.forEach((i, n) => {
                 // never overwrite an existing AI score or category
@@ -1776,6 +1791,7 @@ async function scoreWithAi(list) {
             });
             await persist();
             render();
+            if (batches > 1) toast(uiRef, T('Scored {a} of {b}…', { a: Math.min(k + chunk.length, list.length), b: list.length }));
         }
     } catch (e) {
         error = e;
@@ -1785,8 +1801,9 @@ async function scoreWithAi(list) {
         render();
     }
     const summary = done ? TN(done, 'Scored {n} item with AI', 'Scored {n} items with AI') + (all.length > list.length ? ' ' + T('({n} already done)', { n: all.length - list.length }) : '') : '';
-    if (error) toast(uiRef, (error.message || T('AI scoring failed')) + (summary ? ' — ' + summary : ''));
+    if (error) toast(uiRef, (failed ? T('{n} items could not be scored', { n: failed }) : (error.message || T('AI scoring failed'))) + (summary ? ' — ' + summary : ''));
     else toast(uiRef, summary || T('AI scoring failed'));
+    return !error && done > 0;
 }
 
 // ── Settings > Feeds panel ─────────────────────────────────────────────────
