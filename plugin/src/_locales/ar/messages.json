@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ ملخص {label} جاهز"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "يجلب العناصر الجديدة ويعالجها في الخلفية باستخدام Ollama أثناء تشغيل المتصفح. تظل النماذج السحابية وBYOK يدوية."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "آخر تشغيل في الخلفية: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "لم يحدث تشغيل في الخلفية بعد."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "تم تقييم {a} عنصرًا · كُتبت ملخصات {b} يومًا"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "متاح عند إعداد Ollama. يقيّم مكتبة الخلاصات كلها ويصنّفها ويلخّصها على دفعات صغيرة على جهازك. قد يستغرق ساعات لكنه لا يستهلك أي رموز."
   },

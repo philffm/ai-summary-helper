@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ Rückblick {label} ist fertig"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Ruft neue Einträge ab und verarbeitet sie im Hintergrund mit Ollama, solange dein Browser läuft. Cloud- und BYOK-Modelle bleiben manuell."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Letzter Hintergrundlauf: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Noch kein Hintergrundlauf."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} Einträge bewertet · {b} Tagesrückblicke erstellt"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Verfügbar, sobald Ollama eingerichtet ist. Es bewertet, kategorisiert und fasst deine gesamte Feed-Bibliothek in kleinen Stapeln auf deinem eigenen Rechner zusammen. Das kann Stunden dauern, kostet aber keine Tokens."
   },

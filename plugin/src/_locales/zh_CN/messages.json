@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}回顾已就绪"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "浏览器运行时，Ollama 会在后台获取并处理新条目。云端和 BYOK 模型仍需手动运行。"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "上次后台运行：{time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "尚无后台运行记录。"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "已评价 {a} 个条目 · 已撰写 {b} 份每日回顾"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "设置好 Ollama 后可用。它会在你自己的电脑上分小批次为整个订阅库评分、分类并生成回顾。可能需要数小时，但不消耗任何 token。"
   },

@@ -10,7 +10,9 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } catch (_) { /* listed in the manifest instead */ }
 // Finishes a summary whose page went away while the model was still writing (same parsing + saving as the page does).
 try { if (typeof importScripts === 'function') importScripts('finalize.js'); } catch (_) { /* listed in the manifest instead */ }
+try { if (typeof importScripts === 'function') importScripts('feed-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 const FIN = globalThis.AISH_FINALIZE || null;
+const FEED_WORKER = globalThis.AISH_FEED_WORKER || null;
 const ttsEngine = globalThis.AISH_TTS ? globalThis.AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
 
@@ -31,6 +33,7 @@ const SK = {
     feedUi: 'feeds:ui',
     feedMood: 'feeds:mood',
     feedAudioPos: 'feeds:audioPos',
+    feedBackground: 'feeds:background',
     feedBgSeen: 'feeds:bgSeen',
     feedPending: 'feeds:pending',
     // account / identity
@@ -278,19 +281,53 @@ async function findDecisionArticle(timestamp) {
     return articles.find(a => a.timestamp === timestamp && a.isDecision) || null;
 }
 
-// ── Feeds: background polling + toolbar badge ────────────────────────────────
-// Opt-in (Settings > Feeds > "Check in the background"). The service worker has
-// no DOMParser, so it only extracts item links with a small regex pass and
-// compares them with what the popup already stored. The first poll of a feed
-// just records a baseline, so subscribing never produces a burst of "new".
+// ── Feeds: background polling + Ollama processing ────────────────────────────
 const FEED_ALARM = 'feedPoll';
+
+async function pruneBackgroundFeedData(settings) {
+    const raw = await localGet({ [SK.feedBackground]: {}, [SK.feedItems]: [], [SK.articlesIndex]: [] });
+    const state = raw[SK.feedBackground];
+    if (!state || !Object.keys(state).length) return;
+    const items = raw[SK.feedItems] || [];
+    const articles = raw[SK.articlesIndex] || [];
+    const cutoff = Date.now() - Math.max(1, Number(settings && settings.keepDays) || 30) * 86400000;
+    const mainIds = new Set(items.map(item => item.id));
+    const mainNonFav = items.filter(item => item.published >= cutoff && !backgroundItemFav(item, articles)).length;
+    const retained = (state.items || []).map(item => ({ ...item, favorite: backgroundItemFav(item, articles) }))
+        .filter(item => !mainIds.has(item.id) && (item.published >= cutoff || item.favorite));
+    const keptItems = FEED_WORKER
+        ? FEED_WORKER.mergeWorkerItems([], retained, settings && settings.keepDays, Date.now(), Math.max(0, FEED_MAX_ITEMS_TOTAL - mainNonFav))
+        : retained;
+    const storedItems = keptItems.map(({ favorite: _favorite, ...item }) => item);
+    const ids = new Set([...mainIds, ...storedItems.map(item => item.id)]);
+    const ratings = Object.fromEntries(Object.entries(state.ratings || {}).filter(([id]) => ids.has(id)));
+    const firstDay = FEED_WORKER ? FEED_WORKER.startOfDay(cutoff) : new Date(cutoff).setHours(0, 0, 0, 0);
+    const recaps = Object.fromEntries(Object.entries(state.recaps || {}).filter(([key]) => {
+        const day = Number(String(key).split('|')[0]);
+        return !Number.isFinite(day) || day >= firstDay;
+    }));
+    if (storedItems.length !== (state.items || []).length || Object.keys(ratings).length !== Object.keys(state.ratings || {}).length
+        || Object.keys(recaps).length !== Object.keys(state.recaps || {}).length) {
+        state.items = storedItems;
+        state.ratings = ratings;
+        state.recaps = recaps;
+        await chrome.storage.local.set({ [SK.feedBackground]: state });
+    }
+}
 
 async function applyFeedPollConfig() {
     if (!chrome.alarms) return;
     const { [SK.feedSettings]: feedSettings } = await localGet(SK.feedSettings);
+    await pruneBackgroundFeedData(feedSettings || {});
+    if (!feedSettings || !feedSettings.autoProcess) {
+        if (feedRunController) feedRunController.abort();
+    }
     await chrome.alarms.clear(FEED_ALARM);
-    if (feedSettings && feedSettings.backgroundPoll) {
-        chrome.alarms.create(FEED_ALARM, { delayInMinutes: 1, periodInMinutes: Math.max(15, feedSettings.refreshMinutes || 30) });
+    if (feedSettings && (feedSettings.backgroundPoll || feedSettings.autoProcess)) {
+        const intervals = [];
+        if (feedSettings.backgroundPoll) intervals.push(Number(feedSettings.refreshMinutes) || 30);
+        if (feedSettings.autoProcess) intervals.push(Number(feedSettings.autoProcessMinutes) || 30);
+        chrome.alarms.create(FEED_ALARM, { delayInMinutes: 1, periodInMinutes: Math.max(15, Math.min(...intervals)) });
     } else {
         await clearFeedBadge();
     }
@@ -301,61 +338,229 @@ async function clearFeedBadge() {
     await updateSumBadge();
 }
 
-function extractFeedLinks(xml) {
-    const links = [];
-    const re = /<(item|entry)[\s>][\s\S]*?<\/\1>/gi;
-    let m;
-    while ((m = re.exec(xml)) && links.length < 100) {
-        const blk = m[0];
-        let link = '';
-        const tags = blk.match(/<link\b[^>]*>/gi) || [];
-        for (const t of tags) {
-            const rel = (t.match(/\brel=["']([^"']+)["']/i) || [])[1];
-            const href = (t.match(/\bhref=["']([^"']+)["']/i) || [])[1];
-            if (href && (!rel || rel === 'alternate')) { link = href; break; }
-        }
-        if (!link) {
-            const inner = blk.match(/<link[^>]*>([\s\S]*?)<\/link>/i);
-            if (inner) link = inner[1].replace(/<!\[CDATA\[|\]\]>/g, '').trim();
-        }
-        link = link.replace(/&amp;/g, '&');
-        if (/^https?:\/\//i.test(link)) links.push(link);
+let feedPollRunning = false;
+let feedRunController = null;
+const FEED_MAX_REQUESTS_PER_TICK = 3;
+const FEED_AI_TIMEOUT_MS = 4 * 60 * 1000;
+const FEED_MAX_ITEMS_TOTAL = 6000;
+
+async function backgroundOllamaConfigured() {
+    try {
+        const sync = await chrome.storage.sync.get(['connectionMode', 'activeService']);
+        const cfg = ((await localGet(SK.servicesConfig))[SK.servicesConfig] || {}).ollama || {};
+        const active = sync.connectionMode === 'local' && sync.activeService === 'ollama';
+        const saved = !!(cfg.endpoint || cfg.endpointUrl || cfg.activeModelId || (Array.isArray(cfg.customModel) ? cfg.customModel.length : cfg.customModel));
+        return active || saved;
+    } catch (_) { return false; }
+}
+
+function backgroundItemFav(item, articles) {
+    const key = (value) => {
+        try {
+            const u = new URL(value);
+            for (const name of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid', 'ref', 'source']) u.searchParams.delete(name);
+            return `${u.hostname.replace(/^www\./, '')}${u.pathname.replace(/\/+$/, '')}${u.search}`.toLowerCase();
+        } catch (_) { return String(value || '').toLowerCase().trim(); }
+    };
+    const url = key(item.link);
+    return articles.some(article => article.favorite && [article.url, article.feedUrl].some(candidate => candidate && key(candidate) === url));
+}
+
+async function fetchBackgroundFeed(sub) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 15000);
+    try {
+        const res = await fetch(sub.url, {
+            credentials: 'omit', redirect: 'follow', signal: ctrl.signal,
+            headers: { Accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, */*;q=0.5' }
+        });
+        if (!res.ok) return null;
+        return { xml: (await res.text()).slice(0, 3 * 1024 * 1024), url: res.url || sub.url };
+    } finally { clearTimeout(timer); }
+}
+
+function withFeedAiTimeout(signal) {
+    const controller = new AbortController();
+    let expired = false;
+    const abort = () => controller.abort();
+    if (signal) {
+        if (signal.aborted) controller.abort();
+        else signal.addEventListener('abort', abort, { once: true });
     }
-    return links;
+    const timer = setTimeout(() => { expired = true; controller.abort(); }, FEED_AI_TIMEOUT_MS);
+    return {
+        signal: controller.signal,
+        close() { clearTimeout(timer); if (signal) signal.removeEventListener('abort', abort); },
+        timedOut() { return expired; }
+    };
 }
 
 async function pollFeeds() {
+    if (feedPollRunning || !FEED_WORKER) return;
+    feedPollRunning = true;
     try {
-        const raw = await localGet({ [SK.feedSubs]: [], [SK.feedItems]: [], [SK.feedBgSeen]: {}, [SK.feedPending]: 0, [SK.feedSettings]: {} });
-        const d = { feedSubs: raw[SK.feedSubs], feedItems: raw[SK.feedItems], feedBgSeen: raw[SK.feedBgSeen], feedPending: raw[SK.feedPending], feedSettings: raw[SK.feedSettings] };
-        if (!d.feedSettings.backgroundPoll) return;
-        const known = new Set(d.feedItems.map(i => i.link));
-        const seen = d.feedBgSeen || {};
+        const raw = await localGet({ [SK.feedSubs]: [], [SK.feedItems]: [], [SK.feedRecaps]: {}, [SK.feedBackground]: {}, [SK.feedBgSeen]: {}, [SK.feedPending]: 0, [SK.feedSettings]: {}, [SK.articlesIndex]: [] });
+        const d = {
+            feedSubs: raw[SK.feedSubs] || [], feedItems: raw[SK.feedItems] || [], feedRecaps: raw[SK.feedRecaps] || {},
+            background: raw[SK.feedBackground] || {}, seen: raw[SK.feedBgSeen] || {},
+            feedPending: raw[SK.feedPending] || 0, feedSettings: raw[SK.feedSettings] || {}, articles: raw[SK.articlesIndex] || []
+        };
+        await pruneBackgroundFeedData(d.feedSettings);
+        d.background = (await localGet(SK.feedBackground))[SK.feedBackground] || d.background;
+        const configured = d.feedSettings.autoProcess && await backgroundOllamaConfigured();
+        if (!d.feedSettings.backgroundPoll && !configured) return;
+        const state = { items: [], ratings: {}, recaps: {}, ...(d.background || {}) };
+        state.items = Array.isArray(state.items) ? state.items : [];
+        state.ratings = state.ratings || {}; state.recaps = state.recaps || {};
+        const existing = [...d.feedItems, ...state.items];
+        const knownIds = new Set(existing.map(i => i.id));
+        const knownLinks = new Set(existing.map(i => i.link));
+        const seen = d.seen;
         let fresh = 0;
         for (const sub of d.feedSubs) {
             if (sub.muted) continue;
             try {
-                const ctrl = new AbortController();
-                const timer = setTimeout(() => ctrl.abort(), 15000);
-                const res = await fetch(sub.url, { credentials: 'omit', redirect: 'follow', signal: ctrl.signal });
-                clearTimeout(timer);
-                if (!res.ok) continue;
-                const links = extractFeedLinks((await res.text()).slice(0, 3 * 1024 * 1024));
+                const fetched = await fetchBackgroundFeed(sub);
+                if (!fetched) continue;
+                const parsed = FEED_WORKER.parseWorkerFeed(fetched.xml, fetched.url, sub);
+                const links = parsed.map(i => i.link);
                 const prev = seen[sub.id];
                 if (prev) {
                     const prevSet = new Set(prev);
-                    fresh += links.filter(l => !prevSet.has(l) && !known.has(l)).length;
+                    fresh += links.filter(l => !prevSet.has(l) && !knownLinks.has(l)).length;
                 }
                 seen[sub.id] = [...new Set([...links, ...(prev || [])])].slice(0, 300);
+                if (configured) {
+                    const additions = parsed.filter(i => !knownIds.has(i.id)).map(item => ({
+                        ...item, favorite: backgroundItemFav(item, d.articles)
+                    }));
+                    if (additions.length) {
+                        const cutoff = Date.now() - Math.max(1, Number(d.feedSettings.keepDays) || 30) * 86400000;
+                        const mainNonFav = d.feedItems.filter(item => item.published >= cutoff && !backgroundItemFav(item, d.articles)).length;
+                        const capacity = Math.max(0, FEED_MAX_ITEMS_TOTAL - mainNonFav);
+                        state.items = FEED_WORKER.mergeWorkerItems(state.items, additions, d.feedSettings.keepDays, Date.now(), capacity)
+                            .map(({ favorite: _favorite, ...item }) => item);
+                        additions.forEach(i => { knownIds.add(i.id); knownLinks.add(i.link); });
+                        await chrome.storage.local.set({ [SK.feedBackground]: state });
+                    }
+                }
             } catch (_) { /* skip this feed this round */ }
         }
         const pending = (d.feedPending || 0) + fresh;
         await chrome.storage.local.set({ [SK.feedBgSeen]: seen, [SK.feedPending]: pending });
         await sumJobsReady();
         await updateSumBadge();
+        if (!configured) return;
+
+        const latestSettings = (await localGet(SK.feedSettings))[SK.feedSettings] || {};
+        if (!latestSettings.autoProcess || !(await backgroundOllamaConfigured())) return;
+        d.feedSettings = latestSettings;
+        const interval = Math.max(15, Number(d.feedSettings.autoProcessMinutes) || 30) * 60000;
+        if (Date.now() - Math.max(Number(d.feedSettings.autoProcessAt) || 0, Number(state.status && state.status.at) || 0) < interval) return;
+        const runController = new AbortController();
+        feedRunController = runController;
+        const articleFavs = d.articles;
+        const favoriteItems = list => list.map(item => ({ ...item, favorite: backgroundItemFav(item, articleFavs) }));
+        const mergedItems = FEED_WORKER.mergeWorkerItems(
+            favoriteItems(d.feedItems), favoriteItems(state.items), d.feedSettings.keepDays, Date.now(), FEED_MAX_ITEMS_TOTAL
+        )
+            .map(item => {
+                const rating = state.ratings[item.id];
+                return { ...item, ...(rating || {}), favorite: backgroundItemFav(item, articleFavs) };
+            })
+            .filter(item => item.published >= Date.now() - (Math.max(1, Number(d.feedSettings.keepDays) || 30) * 86400000) || item.favorite);
+        const recaps = { ...d.feedRecaps };
+        Object.entries(state.recaps).forEach(([key, recap]) => {
+            if (!recaps[key] || (Number(recap.at) || 0) >= (Number(recaps[key].at) || 0)) recaps[key] = recap;
+        });
+        const plan = FEED_WORKER.planLibrary({
+            items: mergedItems, recaps, source: 'all', inSource: () => true,
+            startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true
+        });
+        const configuredBatch = [10, 20, 40].includes(Number(state.batchSize || d.feedSettings.libraryBatch))
+            ? Number(state.batchSize || d.feedSettings.libraryBatch) : 20;
+        const work = FEED_WORKER.boundedLibraryPlan(plan, configuredBatch, FEED_MAX_REQUESTS_PER_TICK);
+        if (!work.rate.length && !work.days.length) return;
+
+        const subscriptions = new Map(d.feedSubs.map(sub => [sub.id, sub]));
+        let timedOut = false;
+        const saveRatings = (items) => {
+            for (const item of items) {
+                const { ai, sent, cat } = item;
+                if (ai || sent !== undefined || cat) state.ratings[item.id] = { ...(ai ? { ai } : {}), ...(sent !== undefined ? { sent } : {}), ...(cat ? { cat } : {}) };
+            }
+        };
+        const aiCall = async (fn, signal) => {
+            const timeout = withFeedAiTimeout(signal);
+            try { return await fn(timeout.signal); }
+            catch (e) {
+                if (timeout.timedOut()) { timedOut = true; throw Object.assign(new Error('Ollama request timed out'), { timeout: true }); }
+                throw e;
+            } finally { timeout.close(); }
+        };
+        const rateChunk = async (chunk, signal) => {
+            const result = await aiCall(aiSignal => FEED_WORKER.scoreItems(chunk, i => (subscriptions.get(i.feedId) || {}).customTitle || (subscriptions.get(i.feedId) || {}).title || '', { signal: aiSignal, service: 'ollama' }), signal);
+            chunk.forEach((item, index) => {
+                if (!item.ai && result.scores[index] !== null) { item.sent = result.scores[index]; item.ai = true; }
+                if (!item.cat && result.labels && result.labels[index]) item.cat = result.labels[index];
+            });
+            saveRatings(chunk);
+            await chrome.storage.local.set({ [SK.feedBackground]: state });
+        };
+        const recapDay = async (entry, size, signal, ctx = {}) => {
+            const key = `${entry.day}|all`;
+            const dayItems = mergedItems.filter(i => FEED_WORKER.startOfDay(i.published) === entry.day).sort((a, b) => b.published - a.published);
+            const sigs = list => Object.fromEntries(list.map(item => [item.id, FEED_WORKER.itemSig(item)]));
+            const chunks = FEED_WORKER.chunksOf(entry.todo, size);
+            let current = recaps[key] || null;
+            for (let index = 0; index < chunks.length; index++) {
+                const chunk = chunks[index];
+                if (signal && signal.aborted) throw Object.assign(new Error('Cancelled'), { cancelled: true });
+                if (ctx.step) ctx.step({ batch: index + 1, batches: chunks.length, count: chunk.length });
+                let recap;
+                if (!current) {
+                    recap = await aiCall(aiSignal => FEED_WORKER.generateRecap(chunk, i => (subscriptions.get(i.feedId) || {}).customTitle || (subscriptions.get(i.feedId) || {}).title || '', {
+                        rate: d.feedSettings.rateWithRecap !== false, signal: aiSignal, service: 'ollama'
+                    }), signal);
+                    if (d.feedSettings.rateWithRecap !== false) chunk.forEach((item, n) => {
+                        if (!item.ai && recap.scores && recap.scores[n] != null) { item.sent = recap.scores[n]; item.ai = true; }
+                        if (!item.cat && recap.labels && recap.labels[n]) item.cat = recap.labels[n];
+                    });
+                    const { labels: _labels, scores: _scores, ...base } = recap;
+                    recap = { ...base, covered: sigs(chunk) };
+                } else {
+                    recap = await aiCall(aiSignal => FEED_WORKER.generateRecapUpdate(current, chunk, i => (subscriptions.get(i.feedId) || {}).customTitle || (subscriptions.get(i.feedId) || {}).title || '', {
+                        rate: d.feedSettings.rateWithRecap !== false, edited: item => item.id in current.covered, signal: aiSignal, service: 'ollama'
+                    }), signal);
+                    if (d.feedSettings.rateWithRecap !== false && recap.sent) recap.sent.forEach((item, n) => {
+                        if (!item.ai && recap.scores && recap.scores[n] != null) { item.sent = recap.scores[n]; item.ai = true; }
+                        if (!item.cat && recap.labels && recap.labels[n]) item.cat = recap.labels[n];
+                    });
+                    const { labels: _labels, scores: _scores, sent: _sent, ...base } = recap;
+                    recap = { ...base, covered: { ...current.covered, ...sigs(chunk) } };
+                }
+                current = state.recaps[key] = { ...recap, hash: FEED_WORKER.hash(dayItems.map(i => i.id).sort().join(',')), at: Date.now(), n: dayItems.length, total: dayItems.length };
+                recaps[key] = current;
+                saveRatings(chunk);
+                await chrome.storage.local.set({ [SK.feedBackground]: state });
+                if (ctx.tick) ctx.tick();
+            }
+        };
+        const result = await FEED_WORKER.runLibrary(work, configuredBatch, { rateChunk, recapDay, signal: runController.signal });
+        if (timedOut && configuredBatch > 10) state.batchSize = 10;
+        state.status = { at: Date.now(), rated: result.rated, recaps: result.recaps, failed: result.failed };
+        await chrome.storage.local.set({ [SK.feedBackground]: state });
+        if (result.rated || result.recaps) {
+            const message = `${result.rated} new items rated · ${result.recaps} day recaps written`;
+            try {
+                await chrome.notifications.create(`feed-background-${state.status.at}`, {
+                    type: 'basic', iconUrl: 'icons/icon48.png', title: 'Feed processing finished', message
+                });
+            } catch (_) { /* notification support varies by browser */ }
+        }
     } catch (e) {
         console.warn('[feeds] poll failed', e);
-    }
+    } finally { feedRunController = null; feedPollRunning = false; }
 }
 
 // ── One-shot AI completion (feed recaps, tone scoring) ──────────────────────
@@ -422,7 +627,7 @@ function aiDelta(line) {
 }
 
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
-async function aiComplete({ system, user, id, partial, service: forcedService }) {
+async function aiComplete({ system, user, id, partial, service: forcedService, signal }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     const local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
     // `forcedService` (only 'ollama') lets the whole-library run use the local model whatever is active for summaries.
@@ -475,6 +680,11 @@ async function aiComplete({ system, user, id, partial, service: forcedService })
 
     // No timeout: local models can take minutes. The user cancels from the recap status card instead.
     const ctrl = new AbortController();
+    const abort = () => ctrl.abort();
+    if (signal) {
+        if (signal.aborted) ctrl.abort();
+        else signal.addEventListener('abort', abort, { once: true });
+    }
     if (id) aiJobs.set(id, ctrl);
     const progress = (p) => { if (id) { try { chrome.runtime.sendMessage({ action: 'aiProgress', id, ...p }, () => void chrome.runtime.lastError); } catch (_) { /* popup closed */ } } };
     try {
@@ -512,14 +722,20 @@ async function aiComplete({ system, user, id, partial, service: forcedService })
         throw e;
     } finally {
         if (id) aiJobs.delete(id);
+        if (signal) signal.removeEventListener('abort', abort);
     }
 }
 
-chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); });
-chrome.runtime.onInstalled.addListener(() => { applyFeedPollConfig(); });
+if (typeof FEED_WORKER !== 'undefined' && FEED_WORKER) {
+    FEED_WORKER.setAiTransport(({ system, user, signal, partial, service }) =>
+        aiComplete({ system, user, signal, partial, service }).then(result => result.text));
+}
+
+chrome.runtime.onStartup.addListener(() => applyFeedPollConfig());
+chrome.runtime.onInstalled.addListener(() => applyFeedPollConfig());
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
-    if (alarm.name === FEED_ALARM) { pollFeeds(); return; }
+    if (alarm.name === FEED_ALARM) { await pollFeeds(); return; }
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));

@@ -34,6 +34,7 @@ export const SK = {
     feedUi: 'feeds:ui',
     feedMood: 'feeds:mood',
     feedAudioPos: 'feeds:audioPos',
+    feedBackground: 'feeds:background',
     feedBgSeen: 'feeds:bgSeen',
     feedPending: 'feeds:pending',
     // account / identity

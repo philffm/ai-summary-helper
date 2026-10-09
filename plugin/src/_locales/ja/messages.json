@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}のまとめができました"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "ブラウザーの実行中に、Ollamaで新しい項目をバックグラウンドで取得・処理します。クラウドモデルとBYOKは手動のままです。"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "前回のバックグラウンド実行: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "バックグラウンド実行はまだありません。"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} 件を評価 · {b} 日分の要約を作成"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Ollama が設定済みのときに使えます。フィードライブラリ全体を、あなた自身のマシン上で小さなバッチに分けて評価・分類・要約します。数時間かかることもありますが、トークンは消費しません。"
   },

@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}回顧已就緒"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "瀏覽器執行時，Ollama 會在背景取得並處理新項目。雲端和 BYOK 模型仍需手動執行。"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "上次背景執行：{time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "尚無背景執行記錄。"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "已評分 {a} 個項目 · 已撰寫 {b} 份每日摘要"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "設定好 Ollama 後可用。它會在你自己的電腦上分小批次為整個訂閱庫評分、分類並產生回顧。可能需要數小時，但不消耗任何 token。"
   },
