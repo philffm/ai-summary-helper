@@ -550,6 +550,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   width: 100%;
   height: 100dvh; /* the header overlays the top; screens pad their content below it and scroll underneath its fade */
   overflow: hidden;
+  overflow: clip;   /* unlike hidden, clip can't be scrolled by focus()/scrollIntoView() on the off-screen settings screen (that pulled it half into view) */
 }
 
 /* ── Screens ───────────────────────────────────────────────────────────── */
