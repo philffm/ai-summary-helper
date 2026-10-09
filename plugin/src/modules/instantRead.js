@@ -1,6 +1,6 @@
 // Instant read: speak the summary while the model is still writing it. Title and site are announced as soon as Fetch
 // starts; then every finished sentence of the stream is queued for the voice (never half a sentence).
-import { T } from './feedI18n.js';
+import { T, TIn } from './feedI18n.js';
 import { getReader, streamText, speakable, detectLang, pickVoice } from './reader.js';
 import { ttsLang, langBase } from './languages.js';
 
@@ -86,7 +86,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     const rates = mk('div', 'rt-rates');
     [0.8, 1, 1.25, 1.5].forEach((r) => { const x = mk('button', 'rt-rate-b' + ((prefs.rate || 1) === r ? ' is-on' : ''), r + '×'); x.type = 'button'; x.addEventListener('click', async () => { await reader.setRate(r); paintPanel(); }); rates.append(x); });
     panel.append(rates);
-    panel.append(mk('p', 'sr-note', v ? T('Voice: {voice} · {lang}. It follows the summary language; title and site are announced in the app language.', { voice: v.name, lang: name }) : T('No voice for {lang} is installed on this device.', { lang: name })));
+    panel.append(mk('p', 'sr-note', v ? T('Voice: {voice} · {lang}. It follows the summary language, including the short announcement before the summary.', { voice: v.name, lang: name }) : T('No voice for {lang} is installed on this device.', { lang: name })));
   }
 
   const ready_ = reader.ready.then(async (ok) => {
@@ -113,8 +113,12 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     const host = ctx.host || ((document.getElementById('pageCard') || {}).dataset || {}).host || '';
     const units = [];
     if (title) units.push({ text: title.replace(/\s*[|–—-]\s*[^|–—-]{0,40}$/, '') || title, lang: ttsLang(titleLang) });
-    if (host) units.push({ text: T('From {site}.', { site: host.replace(/^www\./, '') }), lang: ui });
-    units.push({ text: T('Writing a {n}-word summary…', { n: Number(ctx.length) || 200 }), lang: ui });
+    // The announcements follow the summary language when the extension is translated into it (the voice then speaks one
+    // language from start to finish); otherwise they stay in the app language with the app-language voice.
+    const sayCode = (await chrome.storage.sync.get('selectedLanguage').catch(() => ({}))).selectedLanguage || 'en';
+    const say = async (en, vars) => { const r = await TIn(sayCode, en, vars); return { text: r.text, lang: r.locale ? sumLang : ui }; };
+    if (host) units.push(await say('From {site}.', { site: host.replace(/^www\./, '') }));
+    units.push(await say('Writing a {n}-word summary…', { n: Number(ctx.length) || 200 }));
     if (!active) return;   // cancelled while we were preparing
     await reader.start(units, ui, { open: true, meta: { tool: 'instant', lang: sumLang } });
   }
