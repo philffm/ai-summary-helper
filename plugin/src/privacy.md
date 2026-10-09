@@ -51,7 +51,7 @@ Everything you save is stored locally in your browser, using Chrome's built-in s
 
 Items marked "Sync" use Chrome's own built-in sync tied to your Google account — this data passes through Google's infrastructure, not ours, exactly like your bookmarks would. We have no separate access to it.
 
-You can export or delete your full local history at any time via Settings → Backup & Restore, or by removing the extension.
+You can export your data at any time via Settings → Library & Data → Backup & restore. In the same place, the Danger zone lets you delete, by category and with a count of what will go: summaries and archive, highlights, feeds, podcasts, API keys / sign-in / license, send targets (Kindle, LocalSend) and preferences. _Delete all data_ removes everything the extension stores on the device and starts it fresh. Removing the extension also removes its data. These actions delete local data only: your account and subscription records on our server (see below) are not affected, so to have those deleted, contact us.
 
 ### RSS feeds
 

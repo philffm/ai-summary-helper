@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ Modelos en la nube gratuitos"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "Claves de API, inicio de sesión y licencia"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Eliminar todos los datos"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "¿Eliminar todos los datos?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Eliminar todos los datos…"
+  },
+  "f_delete_history_02ab": {
+    "message": "¿Eliminar el historial?"
+  },
+  "f_delete_settings_275c": {
+    "message": "¿Eliminar los ajustes?"
+  },
+  "f_deleted_0f77": {
+    "message": "Eliminado ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Resaltados"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Destinos de Kindle y LocalSend"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Elimina de forma permanente tus resúmenes, el archivo y tus resaltados de este dispositivo. Los ajustes y los feeds se conservan salvo que los marques. No se puede deshacer."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Elimina de forma permanente tus resúmenes, el archivo y tus resaltados. Los ajustes y los feeds se conservan. Haz antes una copia de seguridad."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Preferencias y prompts"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Elimina todo lo que esta extensión guarda en este dispositivo y empieza de cero. No se puede deshacer. Tu cuenta en nuestro servidor no se ve afectada: para eliminarla, contáctanos (consulta la política de privacidad)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Elimina todo lo que esta extensión guarda en este dispositivo: resúmenes, resaltados, feeds, claves y ajustes. Haz antes una copia de seguridad."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Restablece preferencias, prompts, claves de API, inicio de sesión y destinos de envío en este dispositivo. Los resúmenes, resaltados y feeds se conservan salvo que los marques. La extensión se recargará."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Restablece preferencias, prompts, claves de API, inicio de sesión y destinos de envío en este dispositivo. Los resúmenes, resaltados y feeds se conservan."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Resúmenes y archivo"
   }
 }

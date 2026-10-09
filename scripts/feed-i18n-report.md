@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1186. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1177 | 0 | 0 | 36 |
-| de | 1177 | 0 | 0 | 178 |
-| es | 1177 | 0 | 0 | 136 |
-| fr | 1177 | 0 | 0 | 165 |
-| hi | 1177 | 0 | 0 | 57 |
-| it | 1177 | 0 | 0 | 142 |
-| ja | 1177 | 0 | 0 | 75 |
-| ko | 1177 | 0 | 0 | 16 |
-| pt_PT | 1177 | 0 | 0 | 131 |
-| ru | 1177 | 0 | 0 | 82 |
-| zh_CN | 1177 | 0 | 0 | 1 |
-| zh_HK | 1177 | 0 | 0 | 1 |
-| zh_TW | 1177 | 0 | 0 | 1 |
+| ar | 1186 | 0 | 0 | 36 |
+| de | 1186 | 0 | 0 | 175 |
+| es | 1186 | 0 | 0 | 141 |
+| fr | 1186 | 0 | 0 | 168 |
+| hi | 1186 | 0 | 0 | 57 |
+| it | 1186 | 0 | 0 | 143 |
+| ja | 1186 | 0 | 0 | 76 |
+| ko | 1186 | 0 | 0 | 17 |
+| pt_PT | 1186 | 0 | 0 | 135 |
+| ru | 1186 | 0 | 0 | 82 |
+| zh_CN | 1186 | 0 | 0 | 1 |
+| zh_HK | 1186 | 0 | 0 | 1 |
+| zh_TW | 1186 | 0 | 0 | 1 |
 
 ## Over-long translations (check these in the UI)
 
@@ -128,7 +128,6 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Select summaries | Zusammenfassungen auswählen | 27 vs 16 | 1.69× |
 | Summary Language | Sprache der Zusammenfassung | 27 vs 16 | 1.69× |
 | View & edit › | Ansehen & bearbeiten › | 22 vs 13 | 1.69× |
-| all summaries | alle Zusammenfassungen | 22 vs 13 | 1.69× |
 | This page can't be saved. | Diese Seite kann nicht gespeichert werden. | 42 vs 25 | 1.68× |
 | Export settings | Einstellungen exportieren | 25 vs 15 | 1.67× |
 | Import settings | Einstellungen importieren | 25 vs 15 | 1.67× |
@@ -227,7 +226,6 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | not your active summary model | nicht dein aktives Zusammenfassungsmodell | 41 vs 29 | 1.41× |
 | starts when the current summary is done | startet, sobald die aktuelle Zusammenfassung fertig ist | 55 vs 39 | 1.41× |
 | {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
-| This resets every preference, prompt and API key on this device. Your summaries stay. The extension will reload. | Das setzt alle Einstellungen, Prompts und API-Schlüssel auf diesem Gerät zurück. Deine Zusammenfassungen bleiben erhalten. Die Erweiterung wird neu geladen. | 156 vs 112 | 1.39× |
 | Stopped. Starting again continues where it left off. | Gestoppt. Beim erneuten Start geht es dort weiter, wo es aufgehört hat. | 71 vs 52 | 1.37× |
 | Free cloud models and your summaries on every device. Or skip this and use your own API key. | Kostenlose Cloud-Modelle und deine Zusammenfassungen auf jedem Gerät. Oder überspringen und den eigenen API-Schlüssel nutzen. | 125 vs 92 | 1.36× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
@@ -235,7 +233,6 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Please set your LocalSend IP in Settings first. | Bitte hinterlege zuerst deine LocalSend-IP in den Einstellungen. | 64 vs 47 | 1.36× |
 | e.g. Prefer European news and keep it upbeat. | z. B. Bevorzuge europäische Nachrichten und halte es positiv. | 61 vs 45 | 1.36× |
 | Rates, categorizes and recaps all your feed items in small batches on your own machine. No tokens spent. | Bewertet, kategorisiert und fasst alle deine Feed-Einträge in kleinen Stapeln auf deinem eigenen Rechner zusammen. Keine Tokens verbraucht. | 139 vs 104 | 1.34× |
-| Resets all preferences, prompts and keys on this device. Your history stays. | Setzt alle Einstellungen, Prompts und Schlüssel auf diesem Gerät zurück. Dein Verlauf bleibt erhalten. | 102 vs 76 | 1.34× |
 | Inline mode is great for "Send to Kindle". | Der Inline-Modus eignet sich gut für „An Kindle senden“. | 56 vs 42 | 1.33× |
 | This needs your account. Log in or check your plan in the settings. | Dafür brauchst du dein Konto. Melde dich an oder prüfe deinen Tarif in den Einstellungen. | 89 vs 67 | 1.33× |
 | Paste works. It signs you in after the last digit. | Einfügen funktioniert. Nach der letzten Ziffer bist du angemeldet. | 66 vs 50 | 1.32× |
@@ -304,6 +301,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Showing top tags (archive is large) | Mostrando las etiquetas principales (el archivo es grande) | 58 vs 35 | 1.66× |
 | Check again | Comprobar de nuevo | 18 vs 11 | 1.64× |
 | Marked {n} read | {n} marcados como leídos | 23 vs 14 | 1.64× |
+| Delete all data? | ¿Eliminar todos los datos? | 26 vs 16 | 1.63× |
 | Marked {n} unread | {n} marcados como no leídos | 26 vs 16 | 1.63× |
 | Model is writing | El modelo está escribiendo | 26 vs 16 | 1.63× |
 | Week & month recaps | Resúmenes semanales y mensuales | 31 vs 19 | 1.63× |
@@ -312,6 +310,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Not enough rated items yet | Aún no hay suficientes elementos valorados | 42 vs 26 | 1.62× |
 | (on iOS, hold to drag for 2 seconds) | (en iOS, mantén pulsado para arrastrar durante 2 segundos) | 58 vs 36 | 1.61× |
 | No key facts found | No se encontraron datos clave | 29 vs 18 | 1.61× |
+| Delete all data | Eliminar todos los datos | 24 vs 15 | 1.6× |
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Page text · {n} words | Texto de la página · {n} palabras | 32 vs 20 | 1.6× |
 | Read aloud | Leer en voz alta | 16 vs 10 | 1.6× |
@@ -329,6 +328,8 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No devices added yet. | Aún no hay dispositivos añadidos. | 33 vs 21 | 1.57× |
 | Podcast player | Reproductor de podcast | 22 vs 14 | 1.57× |
 | Privacy policy | Política de privacidad | 22 vs 14 | 1.57× |
+| API keys, sign-in & license | Claves de API, inicio de sesión y licencia | 42 vs 27 | 1.56× |
+| Delete all data… | Eliminar todos los datos… | 25 vs 16 | 1.56× |
 | Set as active send target | Establecer como destino de envío activo | 39 vs 25 | 1.56× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
 | Not a paper | No es un artículo | 17 vs 11 | 1.55× |
@@ -336,6 +337,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Reading speed | Velocidad de lectura | 20 vs 13 | 1.54× |
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
+| Delete history? | ¿Eliminar el historial? | 23 vs 15 | 1.53× |
 | Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
 | Magic code sent! ✨ Check your inbox. | ¡Código mágico enviado! ✨ Revisa tu bandeja de entrada. | 55 vs 36 | 1.53× |
 | ✨ {label} recap is ready | ✨ El resumen de {label} está listo | 29 vs 19 | 1.53× |
@@ -350,7 +352,6 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Scan failed. Enter IP manually. | Falló el escaneo. Introduce la IP manualmente. | 46 vs 31 | 1.48× |
 | Add Kindle device | Añadir dispositivo Kindle | 25 vs 17 | 1.47× |
 | Add tag or DOI… | Añadir etiqueta o DOI… | 22 vs 15 | 1.47× |
-| Delete all history? | ¿Eliminar todo el historial? | 28 vs 19 | 1.47× |
 | Open Command Prompt | Abrir el símbolo del sistema | 28 vs 19 | 1.47× |
 | Queue a question… | Pon una pregunta en cola… | 25 vs 17 | 1.47× |
 | Writing a {n}-word summary… | Escribiendo un resumen de {n} palabras… | 38 vs 26 | 1.46× |
@@ -380,6 +381,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {a} items to rate · {b} days to recap · {n} AI requests | {a} elementos por puntuar · {b} días por resumir · {n} solicitudes de IA | 69 vs 52 | 1.33× |
 | Found your {n} highlights · using as focus | Se encontraron tus {n} destacados · usados como enfoque | 54 vs 41 | 1.32× |
 | Mood history is kept for 13 months, even after items are removed. | El historial de ánimo se conserva 13 meses, incluso después de eliminar los artículos. | 86 vs 65 | 1.32× |
+| Resets preferences, prompts, API keys, sign-in and send targets on this device. Summaries, highlights and feeds stay. | Restablece preferencias, prompts, claves de API, inicio de sesión y destinos de envío en este dispositivo. Los resúmenes, resaltados y feeds se conservan. | 154 vs 117 | 1.32× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Haz clic derecho en el icono de Ollama de la bandeja (abajo a la derecha) y elige <b>Quit</b>. | 94 vs 71 | 1.32× |
 
 ### fr
@@ -414,9 +416,12 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI Language | Langue de l’interface | 21 vs 11 | 1.91× |
 | UI language | Langue de l’interface | 21 vs 11 | 1.91× |
 | Auto length bias | Ajustement de la longueur auto | 30 vs 16 | 1.88× |
+| Delete all data? | Supprimer toutes les données ? | 30 vs 16 | 1.88× |
+| Delete all data | Supprimer toutes les données | 28 vs 15 | 1.87× |
 | No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
 | ⏱️ Run every | ⏱️ Exécuter toutes les | 22 vs 12 | 1.83× |
 | No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
+| Delete all data… | Supprimer toutes les données… | 29 vs 16 | 1.81× |
 | Mute / unmute reading | Couper / rétablir le son de la lecture | 38 vs 21 | 1.81× |
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
 | No devices added yet. | Aucun appareil ajouté pour l’instant. | 37 vs 21 | 1.76× |
@@ -455,6 +460,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
 | No shortcuts match | Aucun raccourci ne correspond | 29 vs 18 | 1.61× |
 | Browser Default | Par défaut du navigateur | 24 vs 15 | 1.6× |
+| Delete history? | Supprimer l’historique ? | 24 vs 15 | 1.6× |
 | No articles to graph yet. | Aucun article à afficher dans le graphe. | 40 vs 25 | 1.6× |
 | Open day › | Ouvrir le jour › | 16 vs 10 | 1.6× |
 | Open in History | Ouvrir dans l’historique | 24 vs 15 | 1.6× |
@@ -478,10 +484,10 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Use Native Chrome Side Panel | Utiliser le panneau latéral natif de Chrome | 43 vs 28 | 1.54× |
 | {n} day recaps | {n} récaps quotidiens | 20 vs 13 | 1.54× |
 | Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
-| Delete all history? | Supprimer tout l’historique ? | 29 vs 19 | 1.53× |
 | Delete history… | Supprimer l’historique… | 23 vs 15 | 1.53× |
 | 💾 Backup & restore | 💾 Sauvegarde et restauration | 29 vs 19 | 1.53× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
+| Delete settings? | Supprimer les réglages ? | 24 vs 16 | 1.5× |
 | Error generating podcast: {msg} | Erreur lors de la création du podcast : {msg} | 42 vs 28 | 1.5× |
 | No receiver address set. | Aucune adresse de récepteur définie. | 36 vs 24 | 1.5× |
 | Only in the conversation log | Uniquement dans le journal de conversation | 42 vs 28 | 1.5× |
@@ -508,7 +514,6 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add LocalSend device | Ajouter un appareil LocalSend | 29 vs 20 | 1.45× |
 | Add model ID, e.g. gemma4:e2b | Ajouter un ID de modèle, p. ex. gemma4:e2b | 42 vs 29 | 1.45× |
 | Customize text size, spacing, font, motion | Personnaliser taille du texte, interligne, police, animations | 61 vs 42 | 1.45× |
-| Delete all settings? | Supprimer tous les réglages ? | 29 vs 20 | 1.45× |
 | Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
 | Add custom model | Ajouter un modèle perso | 23 vs 16 | 1.44× |
 | Delete settings… | Supprimer les réglages… | 23 vs 16 | 1.44× |
@@ -672,16 +677,16 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary Length | Lunghezza del riassunto | 23 vs 14 | 1.64× |
 | Thinking more… | Ci sto pensando ancora… | 23 vs 14 | 1.64× |
 | Unsubscribe | Annulla iscrizione | 18 vs 11 | 1.64× |
+| Delete settings? | Eliminare le impostazioni? | 26 vs 16 | 1.63× |
 | Model identifier | Identificatore del modello | 26 vs 16 | 1.63× |
 | Custom style: | Stile personalizzato: | 21 vs 13 | 1.62× |
-| Delete all settings? | Eliminare tutte le impostazioni? | 32 vs 20 | 1.6× |
+| Delete history? | Eliminare la cronologia? | 24 vs 15 | 1.6× |
 | Key quotes | Citazioni chiave | 16 vs 10 | 1.6× |
 | Pick a day | Scegli un giorno | 16 vs 10 | 1.6× |
 | AI scoring failed | Valutazione IA non riuscita | 27 vs 17 | 1.59× |
 | Add Kindle device | Aggiungi dispositivo Kindle | 27 vs 17 | 1.59× |
 | Ghost Highlight Amount | Quantità di evidenziazione fantasma | 35 vs 22 | 1.59× |
 | Ghost highlight amount | Quantità di evidenziazione fantasma | 35 vs 22 | 1.59× |
-| Delete all history? | Eliminare tutta la cronologia? | 30 vs 19 | 1.58× |
 | Dismiss graph stats | Nascondi statistiche del grafo | 30 vs 19 | 1.58× |
 | Model source | Origine del modello | 19 vs 12 | 1.58× |
 | Next day with items | Giorno successivo con articoli | 30 vs 19 | 1.58× |
@@ -730,6 +735,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Use Native Chrome Side Panel | Usa il pannello laterale nativo di Chrome | 41 vs 28 | 1.46× |
 | Attach to side panel | Aggancia al pannello laterale | 29 vs 20 | 1.45× |
 | (on iOS, hold to drag for 2 seconds) | (su iOS, tieni premuto per trascinare per 2 secondi) | 52 vs 36 | 1.44× |
+| Delete all data? | Eliminare tutti i dati? | 23 vs 16 | 1.44× |
 | No articles to graph yet. | Ancora nessun articolo per il grafo. | 36 vs 25 | 1.44× |
 | No key facts found | Nessun dato chiave trovato | 26 vs 18 | 1.44× |
 | No password. We email you a short code. | Nessuna password. Ti inviamo un breve codice via e-mail. | 56 vs 39 | 1.44× |
@@ -772,6 +778,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Scored {a} of {b}… | {b} 件中 {a} 件をスコアリング済み… | 32 vs 16 | 2× |
 | Unmute | ミュート解除 | 12 vs 6 | 2× |
 | No shortcuts match | 一致するショートカットはありません | 34 vs 18 | 1.89× |
+| Delete all data? | すべてのデータを削除しますか？ | 30 vs 16 | 1.88× |
 | 🗄️ {n} archived | 🗄️ {n}件をアーカイブしました | 28 vs 15 | 1.87× |
 | For KOReader, prefer | KOReaderには、こちらをおすすめします: | 37 vs 20 | 1.85× |
 | Standup humor | スタンドアップ風ユーモア | 24 vs 13 | 1.85× |
@@ -848,6 +855,7 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 4 digits, sent to {email} | 4자리 코드를 {email}(으)로 보냈습니다 | 32 vs 20 | 1.6× |
 | No answer. | 답변이 없습니다. | 16 vs 10 | 1.6× |
 | TTS returned no audio. | TTS에서 오디오가 반환되지 않았어요. | 35 vs 22 | 1.59× |
+| Delete all data? | 모든 데이터를 삭제할까요? | 25 vs 16 | 1.56× |
 | No password. We email you a short code. | 비밀번호가 필요 없습니다. 짧은 코드를 이메일로 보내 드립니다. | 61 vs 39 | 1.56× |
 | {n} unopened 30d+ | 30일 넘게 안 연 항목 {n}개 | 25 vs 16 | 1.56× |
 | No key facts found | 핵심 사실을 찾지 못했습니다 | 27 vs 18 | 1.5× |
@@ -948,9 +956,13 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Not enough rated items yet | Ainda não há itens avaliados suficientes | 40 vs 26 | 1.54× |
 | Showing top tags (archive is large) | A mostrar as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
+| Delete all data | Eliminar todos os dados | 23 vs 15 | 1.53× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
+| API keys, sign-in & license | Chaves de API, início de sessão e licença | 41 vs 27 | 1.52× |
 | No password. We email you a short code. | Sem palavra-passe. Enviamos-lhe um código curto por e-mail. | 59 vs 39 | 1.51× |
+| Delete all data? | Eliminar todos os dados? | 24 vs 16 | 1.5× |
+| Delete all data… | Eliminar todos os dados… | 24 vs 16 | 1.5× |
 | Model is writing | O modelo está a escrever | 24 vs 16 | 1.5× |
 | No receiver address set. | Nenhum endereço de recetor definido. | 36 vs 24 | 1.5× |
 | ↩ Restore to Inbox | ↩ Repor na caixa de entrada | 27 vs 18 | 1.5× |
@@ -961,13 +973,13 @@ Strings: 1177. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Queue a question… | Colocar pergunta em fila… | 25 vs 17 | 1.47× |
 | ✨ {label} recap is ready | ✨ O resumo de {label} está pronto | 28 vs 19 | 1.47× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
-| Delete all settings? | Eliminar todas as definições? | 29 vs 20 | 1.45× |
 | Ghost Highlight Amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
 | Ghost highlight amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
 | Page text · {n} words | Texto da página · {n} palavras | 29 vs 20 | 1.45× |
 | Scan failed. Enter IP manually. | Falha na procura. Introduza o IP manualmente. | 45 vs 31 | 1.45× |
 | ☁️ Free cloud models | ☁️ Modelos na nuvem gratuitos | 29 vs 20 | 1.45× |
 | Could not add feed | Não foi possível adicionar | 26 vs 18 | 1.44× |
+| Delete settings? | Eliminar as definições? | 23 vs 16 | 1.44× |
 | Flesch reading ease: {ease}/100 | Facilidade de leitura de Flesch: {ease}/100 | 39 vs 27 | 1.44× |
 | Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
 | Mood on/off (tone analysis) | Humor ligado/desligado (análise de tom) | 39 vs 27 | 1.44× |

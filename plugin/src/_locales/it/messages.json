@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ Modelli cloud gratuiti"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "Chiavi API, accesso e licenza"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Elimina tutti i dati"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Eliminare tutti i dati?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Elimina tutti i dati…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Eliminare la cronologia?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Eliminare le impostazioni?"
+  },
+  "f_deleted_0f77": {
+    "message": "Eliminato ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Evidenziazioni"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Destinazioni Kindle e LocalSend"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Rimuove definitivamente i tuoi riassunti, l’archivio e le tue evidenziazioni da questo dispositivo. Impostazioni e feed restano, a meno che tu non li selezioni. Non si può annullare."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Rimuove definitivamente i tuoi riassunti, l’archivio e le tue evidenziazioni. Impostazioni e feed restano. Fai prima un backup."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Preferenze e prompt"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Rimuove tutto ciò che questa estensione salva su questo dispositivo e riparte da zero. Non si può annullare. Il tuo account sul nostro server non viene toccato: per farlo eliminare, contattaci (vedi l’informativa sulla privacy)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Rimuove tutto ciò che questa estensione salva su questo dispositivo: riassunti, evidenziazioni, feed, chiavi e impostazioni. Fai prima un backup."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Reimposta preferenze, prompt, chiavi API, accesso e destinazioni di invio su questo dispositivo. Riassunti, evidenziazioni e feed restano, a meno che tu non li selezioni. L’estensione verrà ricaricata."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Reimposta preferenze, prompt, chiavi API, accesso e destinazioni di invio su questo dispositivo. Riassunti, evidenziazioni e feed restano."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Riassunti e archivio"
   }
 }

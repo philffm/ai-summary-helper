@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ 無料のクラウドモデル"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API キー、サインイン、ライセンス"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "すべてのデータを削除"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "すべてのデータを削除しますか？"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "すべてのデータを削除…"
+  },
+  "f_delete_history_02ab": {
+    "message": "履歴を削除しますか？"
+  },
+  "f_delete_settings_275c": {
+    "message": "設定を削除しますか？"
+  },
+  "f_deleted_0f77": {
+    "message": "削除しました ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "ハイライト"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle・LocalSend の送信先"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "このデバイスから要約、アーカイブ、ハイライトを完全に削除します。設定とフィードは、選択しない限り残ります。元に戻せません。"
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "要約、アーカイブ、ハイライトを完全に削除します。設定とフィードは残ります。先にバックアップを書き出してください。"
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "設定とプロンプト"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "この拡張機能がこのデバイスに保存しているものをすべて削除し、初期状態から始めます。元に戻せません。当社サーバー上のアカウントは影響を受けません。削除を希望する場合はお問い合わせください（プライバシーポリシー参照）。"
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "この拡張機能がこのデバイスに保存しているものをすべて削除します（要約、ハイライト、フィード、キー、設定）。先にバックアップを書き出してください。"
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "このデバイスの設定、プロンプト、API キー、サインイン、送信先をリセットします。要約、ハイライト、フィードは、選択しない限り残ります。拡張機能が再読み込みされます。"
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "このデバイスの設定、プロンプト、API キー、サインイン、送信先をリセットします。要約、ハイライト、フィードは残ります。"
+  },
+  "f_summaries_archive_b387": {
+    "message": "要約とアーカイブ"
   }
 }

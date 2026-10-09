@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ 免费云端模型"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API 密钥、登录和许可证"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "删除所有数据"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "删除所有数据？"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "删除所有数据…"
+  },
+  "f_delete_history_02ab": {
+    "message": "删除历史记录？"
+  },
+  "f_delete_settings_275c": {
+    "message": "删除设置？"
+  },
+  "f_deleted_0f77": {
+    "message": "已删除 ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "高亮"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle 和 LocalSend 目标"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "从此设备永久删除你的摘要、归档和高亮。设置和订阅会保留，除非你勾选它们。此操作无法撤销。"
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "永久删除你的摘要、归档和高亮。设置和订阅会保留。请先导出备份。"
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "偏好设置和提示词"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "删除此扩展在此设备上存储的所有内容，并从头开始。此操作无法撤销。你在我们服务器上的账号不受影响：如需删除，请联系我们（见隐私政策）。"
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "删除此扩展在此设备上存储的所有内容：摘要、高亮、订阅、密钥和设置。请先导出备份。"
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "重置此设备上的偏好设置、提示词、API 密钥、登录信息和发送目标。摘要、高亮和订阅会保留，除非你勾选它们。扩展将重新加载。"
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "重置此设备上的偏好设置、提示词、API 密钥、登录信息和发送目标。摘要、高亮和订阅会保留。"
+  },
+  "f_summaries_archive_b387": {
+    "message": "摘要和归档"
   }
 }

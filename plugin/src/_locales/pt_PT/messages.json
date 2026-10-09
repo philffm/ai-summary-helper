@@ -4066,5 +4066,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ Modelos na nuvem gratuitos"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "Chaves de API, início de sessão e licença"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Eliminar todos os dados"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Eliminar todos os dados?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Eliminar todos os dados…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Eliminar o histórico?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Eliminar as definições?"
+  },
+  "f_deleted_0f77": {
+    "message": "Eliminado ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Destaques"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Destinos Kindle e LocalSend"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Remove definitivamente os seus resumos, o arquivo e os seus destaques deste dispositivo. As definições e os feeds ficam, a menos que os selecione. Não pode ser anulado."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Remove definitivamente os seus resumos, o arquivo e os seus destaques. As definições e os feeds ficam. Faça antes uma cópia de segurança."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Preferências e prompts"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Remove tudo o que esta extensão guarda neste dispositivo e recomeça do zero. Não pode ser anulado. A sua conta no nosso servidor não é afetada: para a eliminar, contacte-nos (veja a política de privacidade)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Remove tudo o que esta extensão guarda neste dispositivo: resumos, destaques, feeds, chaves e definições. Faça antes uma cópia de segurança."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Repõe preferências, prompts, chaves de API, início de sessão e destinos de envio neste dispositivo. Os resumos, destaques e feeds ficam, a menos que os selecione. A extensão será recarregada."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Repõe preferências, prompts, chaves de API, início de sessão e destinos de envio neste dispositivo. Os resumos, destaques e feeds ficam."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Resumos e arquivo"
   }
 }

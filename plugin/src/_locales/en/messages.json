@@ -4254,5 +4254,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ Free cloud models"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API keys, sign-in & license"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Delete all data"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Delete all data?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Delete all data…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Delete history?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Delete settings?"
+  },
+  "f_deleted_0f77": {
+    "message": "Deleted ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Highlights"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle & LocalSend targets"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Permanently removes your summaries, the archive and your highlights from this device. Settings and feeds stay unless you tick them. This cannot be undone."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Permanently removes your summaries, the archive and your highlights. Settings and feeds stay. Export a backup first."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Preferences & prompts"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Removes everything this extension stores on this device and starts it fresh. This cannot be undone. Your account on our server is not affected: to have it deleted, contact us (see the privacy policy)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Removes everything this extension stores on this device: summaries, highlights, feeds, keys and settings. Export a backup first."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Resets preferences, prompts, API keys, sign-in and send targets on this device. Summaries, highlights and feeds stay unless you tick them. The extension will reload."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Resets preferences, prompts, API keys, sign-in and send targets on this device. Summaries, highlights and feeds stay."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Summaries & archive"
   }
 }

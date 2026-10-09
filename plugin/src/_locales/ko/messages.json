@@ -4048,5 +4048,56 @@
   },
   "f_free_cloud_models_3602": {
     "message": "☁️ 무료 클라우드 모델"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API 키, 로그인, 라이선스"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "모든 데이터 삭제"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "모든 데이터를 삭제할까요?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "모든 데이터 삭제…"
+  },
+  "f_delete_history_02ab": {
+    "message": "기록을 삭제할까요?"
+  },
+  "f_delete_settings_275c": {
+    "message": "설정을 삭제할까요?"
+  },
+  "f_deleted_0f77": {
+    "message": "삭제됨 ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "하이라이트"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle 및 LocalSend 대상"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "이 기기에서 요약, 아카이브, 하이라이트를 영구 삭제합니다. 설정과 피드는 선택하지 않으면 유지됩니다. 되돌릴 수 없습니다."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "요약, 아카이브, 하이라이트를 영구 삭제합니다. 설정과 피드는 유지됩니다. 먼저 백업을 내보내세요."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "환경설정 및 프롬프트"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "이 확장 프로그램이 이 기기에 저장한 모든 것을 삭제하고 처음 상태로 시작합니다. 되돌릴 수 없습니다. 당사 서버의 계정은 영향을 받지 않으며, 삭제하려면 문의해 주세요(개인정보 처리방침 참조)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "이 확장 프로그램이 이 기기에 저장한 모든 것(요약, 하이라이트, 피드, 키, 설정)을 삭제합니다. 먼저 백업을 내보내세요."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "이 기기의 환경설정, 프롬프트, API 키, 로그인, 전송 대상을 초기화합니다. 요약, 하이라이트, 피드는 선택하지 않으면 유지됩니다. 확장 프로그램이 다시 로드됩니다."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "이 기기의 환경설정, 프롬프트, API 키, 로그인, 전송 대상을 초기화합니다. 요약, 하이라이트, 피드는 유지됩니다."
+  },
+  "f_summaries_archive_b387": {
+    "message": "요약 및 아카이브"
   }
 }
