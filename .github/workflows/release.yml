@@ -36,7 +36,7 @@ jobs:
         run: |
           npm ci --no-audit --no-fund
           npm run lint -- --quiet   # errors only (undefined identifiers etc.)
-          npm test
+          npm run test:release   # all tests, the audits and the translation check
 
       - name: Always use the latest version file from main
         run: |

@@ -1,4 +1,4 @@
-// i18n coverage: every T()/TN()/data-i18n string the extractor finds has a translation in every locale (with the same {placeholders}).
+// i18n coverage (@audit): every T()/TN()/data-i18n string the extractor finds has a translation in every locale (with the same {placeholders}).
 import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
