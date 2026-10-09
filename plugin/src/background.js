@@ -591,9 +591,157 @@ async function untrackFeedTab(tabId, closeNow = false, delay = 0) {
     setTimeout(() => chrome.tabs.remove(tabId).catch(() => {}), closeNow ? 0 : delay);
 }
 
+// ── Summary job queue ───────────────────────────────────────────────────────
+// Summaries that stream into the panel ('extension' mode) run one at a time, whatever started them (the Summarize
+// button on any tab, a Feeds card, History). A request made while one is running waits here and starts by itself.
+// Jobs are plain data so the queue survives a restarted service worker (kept in storage.session when available).
+//   { id, kind: 'tab', tabId, url, title, message }   → summarize an already open tab
+//   { id, kind: 'feed', url, title, msg }              → open a feed link (or reuse its tab), then summarize it
+const SUM_JOB_TIMEOUT = 10 * 60 * 1000;   // safety net if no completion message ever arrives
+const sumJobs = { running: null, queue: [], seq: 0, timer: null, ready: null };
+const sumJobInfo = (j) => j ? { id: j.id, url: j.url || '', title: j.title || '', kind: j.kind } : null;
+function sumJobKey(u) {
+    try {
+        const x = new URL(u);
+        ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','ref','source'].forEach(k => x.searchParams.delete(k));
+        const qs = x.searchParams.toString();
+        return (x.hostname.replace(/^www\./, '') + x.pathname.replace(/\/+$/, '') + (qs ? '?' + qs : '')).toLowerCase();
+    } catch (_) { return String(u || '').toLowerCase().trim(); }
+}
+function publishSumJobs() {
+    const snap = { running: sumJobs.running, queue: sumJobs.queue, seq: sumJobs.seq };
+    try { if (chrome.storage.session) chrome.storage.session.set({ sumJobs: snap }).catch(() => {}); } catch (_) { /* in-memory only */ }
+    chrome.runtime.sendMessage({ action: 'summaryQueue', running: sumJobInfo(sumJobs.running), queue: sumJobs.queue.map(sumJobInfo) }).catch(() => {});
+}
+function sumJobsReady() {
+    if (!sumJobs.ready) {
+        sumJobs.ready = (async () => {
+            try {
+                if (!chrome.storage.session) return;
+                const d = await chrome.storage.session.get({ sumJobs: null });
+                const s = d.sumJobs;
+                if (s && !sumJobs.running && !sumJobs.queue.length) {
+                    sumJobs.seq = s.seq || 0; sumJobs.queue = s.queue || [];
+                    if (s.running) { sumJobs.running = s.running; armSumJobTimer(s.running.id); }
+                }
+            } catch (_) { /* nothing to restore */ }
+        })();
+    }
+    return sumJobs.ready;
+}
+function armSumJobTimer(id) {
+    clearTimeout(sumJobs.timer);
+    sumJobs.timer = setTimeout(() => sumJobDone(id), SUM_JOB_TIMEOUT);
+}
+function sumJobStart(job) {
+    sumJobs.running = job; armSumJobTimer(job.id); publishSumJobs();
+    Promise.resolve().then(() => runSumJob(job)).catch(() => sumJobDone(job.id));
+}
+function sumJobDone(id) {
+    if (!sumJobs.running || sumJobs.running.id !== id) return;
+    clearTimeout(sumJobs.timer); sumJobs.running = null;
+    const next = sumJobs.queue.shift();
+    if (next) sumJobStart(next); else publishSumJobs();
+}
+/** Add a job; it starts right away when nothing is running. */
+async function enqueueSumJob(job) {
+    await sumJobsReady();
+    const key = sumJobKey(job.url);
+    const dup = [sumJobs.running, ...sumJobs.queue].find(j => j && sumJobKey(j.url) === key);
+    if (dup) return { ok: true, queued: dup !== sumJobs.running, duplicate: true, id: dup.id };
+    job.id = ++sumJobs.seq;
+    if (!sumJobs.running) { sumJobStart(job); return { ok: true, queued: false, id: job.id }; }
+    sumJobs.queue.push(job); publishSumJobs();
+    return { ok: true, queued: true, position: sumJobs.queue.length, id: job.id };
+}
+async function cancelSumJob(id) {
+    await sumJobsReady();
+    const i = sumJobs.queue.findIndex(j => j.id === id);
+    if (i < 0) return false;
+    sumJobs.queue.splice(i, 1); publishSumJobs(); return true;
+}
+/** A summary in tab `tabId` finished, failed or was stopped. */
+function sumJobTabFinished(tabId) {
+    const r = sumJobs.running;
+    if (r && r.tabId === tabId) sumJobDone(r.id);
+}
+function runSumJob(job) {
+    if (job.kind === 'tab') {
+        return chrome.tabs.sendMessage(job.tabId, job.message).catch(() => sumJobDone(job.id));
+    }
+    return openFeedItem(job.msg, job);
+}
+chrome.tabs.onRemoved.addListener((tabId) => { sumJobsReady().then(() => sumJobTabFinished(tabId)); });
+
+/** Open a feed link (reusing its tab when already open) and, with `job`, run the summary in it. Resolves once started. */
+async function openFeedItem(msg, job) {
+    // Without a job a summarize request is inline mode (the page shows the summary itself); with one it streams to the panel.
+    const mode = (msg.summarize && !job) ? 'inline' : 'extension';
+    let summaryLength = 200;
+    if (msg.summarize) {
+        const d = await localGet([SK.summaryLength]).catch(() => ({}));
+        summaryLength = d[SK.summaryLength] || 200;
+    }
+    const doSummary = !!msg.summarize;
+    const background = doSummary && mode === 'extension';
+    const fail = (tabId, track) => { if (track && tabId != null) untrackFeedTab(tabId, true); if (job) sumJobDone(job.id); };
+    // Is the page already open somewhere? Then reuse that tab.
+    let existing = null;
+    try {
+        const want = sumJobKey(msg.url);
+        const all = await chrome.tabs.query({});
+        existing = all.find(tb => tb.url && sumJobKey(tb.url) === want) || null;
+    } catch (_) { /* tab list unavailable → fall back to opening a new tab */ }
+
+    const startSummary = (tabId, track) => {
+        const start = async (attempt = 0) => {
+            try {
+                await chrome.tabs.sendMessage(tabId, { action: 'ping' });
+            } catch (e) {
+                if (attempt === 1) {   // pages run only loader.js until the full script is injected
+                    try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); } catch (_) { /* restricted page cannot be scripted; the retry loop handles it */ }
+                }
+                if (attempt < 6) return setTimeout(() => start(attempt + 1), 800);
+                return fail(tabId, track);
+            }
+            chrome.tabs.sendMessage(tabId, { action: 'fetchSummary', summaryMode: mode, summaryLength, feedUrl: msg.url }).catch(() => fail(tabId, track));
+        };
+        return start;
+    };
+
+    if (existing) {
+        // Already open: never open it again; never close it afterwards (it's the user's tab).
+        if (job) { job.tabId = existing.id; publishSumJobs(); }
+        if (!doSummary || mode === 'inline') {
+            try { await chrome.tabs.update(existing.id, { active: true }); await chrome.windows.update(existing.windowId, { focused: true }); } catch (_) { /* focusing the existing tab is best-effort */ }
+        }
+        if (doSummary) startSummary(existing.id, false)();
+        return;
+    }
+
+    await new Promise((resolve) => {
+        chrome.tabs.create({ url: msg.url, active: !background }, (tab) => {
+            resolve();
+            if (!doSummary || !tab) { if (!tab) fail(null, false); return; }
+            const tabId = tab.id;
+            if (job) { job.tabId = tabId; if (sumJobs.running && sumJobs.running.id === job.id) sumJobs.running.tabId = tabId; publishSumJobs(); }
+            if (background) trackFeedTab(tabId);
+            const start = startSummary(tabId, background);
+            const onUpdated = (id, info) => {
+                if (id !== tabId || info.status !== 'complete') return;
+                chrome.tabs.onUpdated.removeListener(onUpdated);
+                start();
+            };
+            chrome.tabs.onUpdated.addListener(onUpdated);
+            // Safety: stop listening if the tab never finishes loading.
+            setTimeout(() => chrome.tabs.onUpdated.removeListener(onUpdated), 60000);
+        });
+    });
+}
+
 // Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
 // on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P']);
+const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs']);
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
@@ -679,73 +827,23 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.action === 'openFeedItem' && msg.url) {
         if (!/^https?:\/\//i.test(msg.url)) { sendResponse({ success: false }); return false; }
         (async () => {
-            let mode = 'extension';
-            let summaryLength = 200;
-            if (msg.summarize) {
-                const d = await localGet([SK.summaryMode, SK.summaryLength]).catch(() => ({}));
-                mode = (d[SK.summaryMode] === 'inline' && !msg.forceExtension) ? 'inline' : 'extension';
-                summaryLength = d[SK.summaryLength] || 200;
-            }
-            const background = !!msg.summarize && mode === 'extension';
-            const normKey = (u) => {
-                try {
-                    const x = new URL(u);
-                    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','ref','source'].forEach(k => x.searchParams.delete(k));
-                    const qs = x.searchParams.toString();
-                    return (x.hostname.replace(/^www\./, '') + x.pathname.replace(/\/+$/, '') + (qs ? '?' + qs : '')).toLowerCase();
-                } catch (_) { return String(u || '').toLowerCase().trim(); }
-            };
-            // Is the page already open somewhere? Then reuse that tab.
-            let existing = null;
-            try {
-                const want = normKey(msg.url);
-                const all = await chrome.tabs.query({});
-                existing = all.find(tb => tb.url && normKey(tb.url) === want) || null;
-            } catch (_) { /* tab list unavailable → fall back to opening a new tab */ }
-
-            const startSummary = (tabId, track) => {
-                const start = async (attempt = 0) => {
-                    try {
-                        await chrome.tabs.sendMessage(tabId, { action: 'ping' });
-                    } catch (e) {
-                        if (attempt === 1) {   // pages run only loader.js until the full script is injected
-                            try { await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }); } catch (_) { /* restricted page cannot be scripted; the retry loop handles it */ }
-                        }
-                        if (attempt < 6) return setTimeout(() => start(attempt + 1), 800);
-                        if (track) untrackFeedTab(tabId, true);
-                        return;
-                    }
-                    chrome.tabs.sendMessage(tabId, { action: 'fetchSummary', summaryMode: mode, summaryLength, feedUrl: msg.url }).catch(() => {});
-                };
-                return start;
-            };
-
-            if (existing) {
-                // Already open: never open it again; never close it afterwards (it's the user's tab).
-                if (!msg.summarize || mode === 'inline') {
-                    try { await chrome.tabs.update(existing.id, { active: true }); await chrome.windows.update(existing.windowId, { focused: true }); } catch (_) { /* focusing the existing tab is best-effort */ }
-                }
-                if (msg.summarize) startSummary(existing.id, false)();
-                sendResponse({ success: true, mode: msg.summarize ? mode : null, reused: true });
-                return;
-            }
-
-            chrome.tabs.create({ url: msg.url, active: !background }, (tab) => {
-                if (!msg.summarize || !tab) return;
-                const tabId = tab.id;
-                if (background) trackFeedTab(tabId);
-                const start = startSummary(tabId, background);
-                const onUpdated = (id, info) => {
-                    if (id !== tabId || info.status !== 'complete') return;
-                    chrome.tabs.onUpdated.removeListener(onUpdated);
-                    start();
-                };
-                chrome.tabs.onUpdated.addListener(onUpdated);
-                // Safety: stop listening if the tab never finishes loading.
-                setTimeout(() => chrome.tabs.onUpdated.removeListener(onUpdated), 60000);
-            });
-            sendResponse({ success: true, mode: msg.summarize ? mode : null });
+            if (!msg.summarize) { await openFeedItem(msg, null); sendResponse({ success: true, mode: null }); return; }
+            const d = await localGet([SK.summaryMode]).catch(() => ({}));
+            const mode = (d[SK.summaryMode] === 'inline' && !msg.forceExtension) ? 'inline' : 'extension';
+            if (mode === 'inline') { await openFeedItem(msg, null); sendResponse({ success: true, mode }); return; }
+            const r = await enqueueSumJob({ kind: 'feed', url: msg.url, title: msg.title || '', msg });
+            sendResponse({ success: true, mode, queued: !!r.queued, position: r.position || 0, id: r.id });
         })();
+        return true;
+    }
+    if (msg.action === 'queueSummary' && msg.tabId != null && msg.message) {
+        enqueueSumJob({ kind: 'tab', tabId: msg.tabId, url: msg.url || '', title: msg.title || '', message: msg.message })
+            .then(sendResponse);
+        return true;
+    }
+    if (msg.action === 'cancelQueuedSummary') { cancelSumJob(msg.id).then(ok => sendResponse({ ok })); return true; }
+    if (msg.action === 'summaryJobs') {
+        sumJobsReady().then(() => sendResponse({ ok: true, running: sumJobInfo(sumJobs.running), queue: sumJobs.queue.map(sumJobInfo) }));
         return true;
     }
 
@@ -753,6 +851,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     // after (the content script saves the article right after relaying).
     if ((msg.action === 'summaryComplete' || msg.action === 'summaryError') && sender.tab) {
         untrackFeedTab(sender.tab.id, false, msg.action === 'summaryComplete' ? 6000 : 8000);
+    }
+    if ((msg.action === 'summaryComplete' || msg.action === 'summaryError' || msg.action === 'summaryCancelled') && sender.tab) {
+        sumJobsReady().then(() => sumJobTabFinished(sender.tab.id));
     }
 
     // ── Tab proxy handlers ──────────────────────────────────────────────

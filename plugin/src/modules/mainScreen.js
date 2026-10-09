@@ -1104,6 +1104,28 @@ export function initMainScreen(ui) {
         });
     }
 
+    // ── Summary queue ───────────────────────────────────────────────────
+    // The background keeps one summary running at a time; asking for another one (on this or another tab, or from
+    // Feeds) puts it in line. The note below stays until that job starts or is removed.
+    const bgSend = (m) => new Promise((resolve) => { try { chrome.runtime.sendMessage(m, (r) => { void chrome.runtime.lastError; resolve(r || null); }); } catch (_) { resolve(null); } });
+    const queueNotes = new Map();   // job id -> element
+    const showQueuedNote = (id, title, position) => {
+        queueNotes.get(id)?.remove();
+        const el = document.createElement('div');
+        el.className = 'queue-note'; el.setAttribute('role', 'status');
+        const txt = document.createElement('span');
+        txt.textContent = '⏳ ' + T('Queued: {title}', { title: clip(title || T('this page'), 60) }) + (position > 1 ? ' · #' + position : '') + ' — ' + T('starts when the current summary is done');
+        const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'button-secondary btn-sm'; rm.textContent = T('Remove');
+        rm.addEventListener('click', () => { bgSend({ action: 'cancelQueuedSummary', id }); el.remove(); queueNotes.delete(id); });
+        el.append(txt, rm); feed.appendChild(el); queueNotes.set(id, el); scrollFeed();
+    };
+    const onQueueUpdate = (msg) => {
+        if (!msg || msg.action !== 'summaryQueue') return;
+        const live = new Set((msg.queue || []).map(j => j.id));
+        for (const [id, el] of queueNotes) if (!live.has(id)) { el.remove(); queueNotes.delete(id); }
+    };
+    chrome.runtime.onMessage.addListener(onQueueUpdate);
+
     // ── Fetch button ────────────────────────────────────────────────────
     fetchSummaryButton.addEventListener('click', async () => {
         if (composer && composer.state === 'working') {      // Stop
@@ -1128,6 +1150,36 @@ export function initMainScreen(ui) {
             if (attaching) return;                                          // still reading the file
             const attachment = attached ? { name: attached.name, html: attached.html, text: attached.text } : null;
             const mode = attachment ? 'extension' : (summaryMode || 'extension');   // an attached PDF is always shown in the panel
+            const buildMessage = async () => {
+                const { connectionMode = 'cloud', preferredCloudModel = 'google/gemini-3.8-flash' } = await chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']);
+                return {
+                    action: 'fetchSummary',
+                    additionalQuestions,
+                    selectedLanguage,
+                    prompt: promptToUse,
+                    summaryMode: mode,
+                    summaryLength: await chrome.storage.local.get(SK.summaryLength).then(d => d[SK.summaryLength] || 200),
+                    connectionMode,
+                    preferredCloudModel,
+                    ...(attachment ? { attachment } : {}),
+                };
+            };
+
+            // Another summary is running → line this one up instead of starting a second stream.
+            if (mode === 'extension' && !attachment) {
+                const jobs = await bgSend({ action: 'summaryJobs' });
+                if (jobs && jobs.running) {
+                    try {
+                        const tab = await getActiveTab();
+                        if (tab && tab.id != null && (await hasSiteAccess(tab.url))) {
+                            await ensureContentScript(tab.id, tab.url);
+                            const r = await bgSend({ action: 'queueSummary', tabId: tab.id, url: tab.url, title: pageInfo && pageInfo.title || tab.title || '', message: await buildMessage() });
+                            if (r && r.queued) { additionalQuestionsInput.value = ''; showQueuedNote(r.id, pageInfo && pageInfo.title || tab.title, r.position); return; }
+                            if (r && r.ok) { return; }   // the other summary ended meanwhile: it started right away
+                        }
+                    } catch (_) { /* fall through to the normal path */ }
+                }
+            }
 
             if (mode === 'extension' && composer) {
                 composer.set('working');
@@ -1191,25 +1243,23 @@ export function initMainScreen(ui) {
                     }
                 }
 
-                const {
-                    connectionMode = 'cloud',
-                    preferredCloudModel = 'google/gemini-3.8-flash'
-                } = await chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']);
-
-                const message = {
-                    action: 'fetchSummary',
-                    additionalQuestions,
-                    selectedLanguage,
-                    prompt: promptToUse,
-                    summaryMode: mode,
-                    summaryLength: await chrome.storage.local.get(SK.summaryLength).then(d => d[SK.summaryLength] || 200),
-                    connectionMode,
-                    preferredCloudModel,
-                    ...(attachment ? { attachment } : {}),
-                };
+                const message = await buildMessage();
 
                 try {
-                    await sendMessageToTab(activeTab.id, message);
+                    if (mode === 'extension' && !attachment) {
+                        // Through the job queue, so a second request (other tab, Feeds) waits for this one.
+                        const r = await bgSend({ action: 'queueSummary', tabId: activeTab.id, url: activeTab.url, title: pageInfo && pageInfo.title || activeTab.title || '', message });
+                        if (r && r.queued) {   // another summary started in the meantime: undo the progress UI and wait in line
+                            removeStreamBubble();
+                            feed.querySelectorAll('.chat-turn, .chat-turn-group').forEach(n => n.remove());
+                            resetToFetch();
+                            showQueuedNote(r.id, pageInfo && pageInfo.title || activeTab.title, r.position);
+                            return;
+                        }
+                        if (!r || !r.ok) await sendMessageToTab(activeTab.id, message);   // background unreachable: start directly
+                    } else {
+                        await sendMessageToTab(activeTab.id, message);
+                    }
                     if (attachment) { attached = null; attachError = ''; }
                 } catch (err) {
                     console.warn("Popup communication error:", err);
