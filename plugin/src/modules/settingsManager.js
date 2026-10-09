@@ -1109,6 +1109,7 @@ function initLocalIntelligence() {
  * asked once, and a stopped run continues with what is left.
  */
 const NAME_TAGS_MIN_USES = 2;
+const NAME_TAGS_TIMEOUT_MS = 3 * 60 * 1000;   // per request of 40 tags
 function initNameTags() {
     const btn = document.getElementById('nameTagsButton');
     if (!btn) return;
@@ -1132,15 +1133,25 @@ function initNameTags() {
             const total = unnamed.length + unlabeled.length;
             if (!total) { say(T('✓ Every frequently used tag already has a name — nothing to do.')); return; }
             const blocks = [];
-            for (let k = 0; k < unnamed.length; k += 40) blocks.push({ list: unnamed.slice(k, k + 40), run: (l) => learnTagNames(l) });
-            for (let k = 0; k < unlabeled.length; k += 40) blocks.push({ list: unlabeled.slice(k, k + 40), run: async (l) => { await translateFeedTopics(l); return l.length; } });
+            for (let k = 0; k < unnamed.length; k += 40) blocks.push({ list: unnamed.slice(k, k + 40), run: (l, signal) => learnTagNames(l, { signal }) });
+            for (let k = 0; k < unlabeled.length; k += 40) blocks.push({ list: unlabeled.slice(k, k + 40), run: async (l, signal) => { await translateFeedTopics(l, { signal }); return l.length; } });
             let named = 0, done = 0, failed = 0, lastError = null;
-            for (const b of blocks) {
-                say(T('Naming tags… {done} of {total}', { done, total }));
-                try { named += await b.run(b.list); await saveLexicon(); failed = 0; }
-                catch (e) { lastError = e; if (++failed >= 2) throw e; }   // one hiccup is skipped; two in a row stop the run
-                done += b.list.length;
-            }
+            // A model that never answers must not look like a frozen button: a clock ticks next to the count and a request
+            // gives up after NAME_TAGS_TIMEOUT_MS.
+            let line = '', since = 0;
+            const tick = setInterval(() => { const t = Math.round((Date.now() - since) / 1000); say(line + ' · ' + Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0')); }, 1000);
+            try {
+                for (const b of blocks) {
+                    line = T('Naming tags… {done} of {total}', { done, total }); since = Date.now(); say(line);
+                    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), NAME_TAGS_TIMEOUT_MS);
+                    try { named += await b.run(b.list, ctl.signal); await saveLexicon(); failed = 0; }
+                    catch (e) {
+                        lastError = ctl.signal.aborted ? new Error(T('AI request failed') + ' (timeout)') : e;
+                        if (++failed >= 2) throw lastError;   // one hiccup is skipped; two in a row stop the run
+                    } finally { clearTimeout(timer); }
+                    done += b.list.length;
+                }
+            } finally { clearInterval(tick); }
             document.dispatchEvent(new CustomEvent('aish:lexiconChanged'));
             if (lastError && !named) throw lastError;   // nothing worked: say why instead of "Named 0"
             say(T('✓ Named {n} of {total} tags.', { n: named, total }));
