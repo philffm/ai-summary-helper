@@ -16,9 +16,9 @@ export const cleanBatchSize = (n) => BATCH_SIZES.includes(Number(n)) ? Number(n)
 
 /**
  * What is left to do.
- * ctx = { items, recaps, source, inSource(item), startOfDay(ts), itemSig(item), today }
+ * ctx = { items, recaps, source, inSource(item), startOfDay(ts), itemSig(item), today, includeToday? }
  * rate: items without AI score or category (newest first)
- * days: past days (never today, its recap is made when it is opened) that have items the day's recap has not covered yet,
+ * days: days with items the recap has not covered yet (today is skipped unless includeToday is true),
  *       oldest first, each { day, total, todo } where todo = items still to be covered (newest first).
  */
 export function planLibrary(ctx) {
@@ -29,7 +29,7 @@ export function planLibrary(ctx) {
     const byDay = new Map();
     scoped.forEach((i) => {
         const d = startOfDay(i.published);
-        if (d >= today) return;
+        if (d > today || (d === today && !ctx.includeToday)) return;
         if (!byDay.has(d)) byDay.set(d, []);
         byDay.get(d).push(i);
     });

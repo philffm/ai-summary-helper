@@ -7,16 +7,21 @@ import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY } from './stora
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
 
+export const SECRET_KEYS = [
+    SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail,
+    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey
+];
+
 export const CATEGORIES = {
     // the summaries and everything attached to them
     articles: { keys: [SK.articlesIndex, SK.articlesSchema], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY], extra: ['articles', 'articleHistory'] },
     // yellow highlights and AI ghost highlights, all pages
     highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
-    // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background-poll state
-    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBgSeen, SK.feedPending] },
+    // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
+    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending] },
     podcasts: { keys: [SK.podcasts] },
     // API keys and endpoints, sign-in, license
-    keys: { keys: [SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail, SK.otpExpiresAt, SK.otpRequestedAt, SK.licenseKey], extra: ['servicesConfig'] },
+    keys: { keys: SECRET_KEYS, extra: ['servicesConfig'] },
     // Kindle addresses, LocalSend targets
     send: { keys: [SK.devices, SK.activeDevices, SK.localSendIp, SK.devicesMigrated] },
     // preferences: everything in sync storage, plus the local UI state and the feed / podcast preferences
@@ -28,7 +33,7 @@ export const CATEGORIES = {
 };
 
 /** Bookkeeping keys: removed only together with everything (a partial delete must not break the migrations). */
-export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installId, SK.installedAt];
+export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt];
 
 // old (pre-registry) names of a set of keys
 const legacyNames = (keys) => Object.entries(SK_LEGACY).filter(([, nu]) => keys.includes(nu)).map(([old]) => old);

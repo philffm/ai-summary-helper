@@ -69,6 +69,7 @@ export const FEED_DEFAULTS = {
 let subs = [];
 let items = [];
 let recaps = {};
+let backgroundStatus = null;
 let moodDaily = {};
 let settings = { ...FEED_DEFAULTS };
 // UI filter state (persisted so the screen reopens the way you left it)
@@ -92,13 +93,15 @@ let historyByUrl = new Map();
 // ── Storage ────────────────────────────────────────────────────────────────
 async function load() {
     const data = await chrome.storage.local.get({
-        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null, [RECAPS_KEY]: {}, [MOOD_KEY]: {}
+        [SUBS_KEY]: [], [ITEMS_KEY]: [], [UI_KEY]: null, [SETTINGS_KEY]: null, [RECAPS_KEY]: {}, [MOOD_KEY]: {}, [SK.feedBackground]: {}
     });
     moodDaily = data[MOOD_KEY] || {};
-    recaps = data[RECAPS_KEY] || {};
+    const background = data[SK.feedBackground] || {};
+    recaps = { ...(data[RECAPS_KEY] || {}) };
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
+    mergeBackground(background);
     setRecapLimit(settings.recapLimit);
     if (data[UI_KEY]) ui = { ...ui, ...data[UI_KEY] };
     // Folders became tags: each feed's folder turns into its first tag.
@@ -112,6 +115,20 @@ async function load() {
     // A filter pointing at a source that no longer exists falls back to "all".
     if (!sourceExists(ui.source)) ui.source = 'all';
     syncMood();
+}
+
+function mergeBackground(background = {}) {
+    backgroundStatus = background.status || null;
+    const byId = new Map(items.map(item => [item.id, item]));
+    (background.items || []).forEach(item => { if (!byId.has(item.id)) byId.set(item.id, item); });
+    Object.entries(background.ratings || {}).forEach(([id, rating]) => {
+        const item = byId.get(id);
+        if (item) byId.set(id, { ...item, ...rating });
+    });
+    items = [...byId.values()];
+    Object.entries(background.recaps || {}).forEach(([key, recap]) => {
+        if (!recaps[key] || (Number(recap.at) || 0) >= (Number(recaps[key].at) || 0)) recaps[key] = recap;
+    });
 }
 
 // Count the current items' moods into the long-lived daily store (older days survive item pruning).
@@ -1856,12 +1873,9 @@ function sendPollConfig() {
 async function setSetting(key, value) {
     settings[key] = value;
     await persistSettings();
-    if (key === 'backgroundPoll' || key === 'refreshMinutes') sendPollConfig();
+    if (key === 'backgroundPoll' || key === 'refreshMinutes' || key === 'autoProcess' || key === 'autoProcessMinutes' || key === 'keepDays') sendPollConfig();
     if (key === 'recapLimit') setRecapLimit(value);
-    if (key === 'autoProcess') {
-        if (value) { settings.autoProcessAt = 0; persistSettings(); startAutoProcess(); setTimeout(() => autoProcessTick().catch(() => {}), 500); }
-        else if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-    }
+    if (key === 'autoProcess' && value) { settings.autoProcessAt = 0; await persistSettings(); }
     if (key === 'keepDays') { pruneItems(); await persist(); render(); }
 }
 
@@ -2104,7 +2118,6 @@ async function ollamaSetup() {
         return { configured: active || saved, active, model };
     } catch (e) { return { configured: false, active: false, model: '' }; }
 }
-const isOllamaConfigured = async () => (await ollamaSetup()).configured;
 function libraryPlan() {
     const sm = subMap();
     return planLibrary({ items, recaps, source: 'all', inSource: (i) => inSource(i, sm, 'all'), startOfDay, itemSig });
@@ -2167,6 +2180,7 @@ async function executeLibrary({ auto = false } = {}) {
         out = await runLibrary(plan, n, {
             signal: ctl.signal, rateChunk: libraryRateChunk, recapDay: libraryRecapDay,
             onStage: (st) => {
+                if (!libraryRun) return;
                 // Remembered on the run itself, so a card re-created after leaving Settings can pick up where this one is.
                 if (st !== libraryRun.stage) { libraryRun.stage = st; libraryRun.stageSince = Date.now(); }
                 libraryUiLive()?.stage(st, libraryRun.stageSince);
@@ -2180,30 +2194,23 @@ async function executeLibrary({ auto = false } = {}) {
     return out;
 }
 
-// Automatic run: every N minutes (setting) while the Feeds screen or side panel is alive — fetch the feeds, then rate and recap what is new.
-// An extension can't run this with every page closed: feeds are parsed and stored by the extension page (the service worker has no DOM).
-let autoTimer = null;
-async function autoProcessTick() {
-    if (!settings.autoProcess || libraryRun || scoring || refreshing) return;
-    const every = Math.max(15, Number(settings.autoProcessMinutes) || 30) * 60000;
-    if (Date.now() - (settings.autoProcessAt || 0) < every) return;
-    if (!(await isOllamaConfigured())) return;
-    settings.autoProcessAt = Date.now(); persistSettings();
-    await refreshAll(uiRef, { force: true });
-    await executeLibrary({ auto: true });
-    libraryUiLive()?.refresh();
-}
-function startAutoProcess() {
-    if (autoTimer) return;
-    autoTimer = setInterval(() => { autoProcessTick().catch(() => {}); }, 60000);
-    setTimeout(() => { autoProcessTick().catch(() => {}); }, 4000);   // overdue when the panel opens
-}
-
 async function renderLibraryCard(card) {
     card.replaceChildren();
     const setup = await ollamaSetup();
+    const lastRun = backgroundStatus && backgroundStatus.at
+        ? el('p', 'feed-muted', T('Last background run: {time} · {result}', {
+            time: new Date(backgroundStatus.at).toLocaleString(locale()),
+            result: T('{a} items rated · {b} day recaps written', { a: backgroundStatus.rated || 0, b: backgroundStatus.recaps || 0 })
+                + (backgroundStatus.failed ? ' · ' + T('{n} failed', { n: backgroundStatus.failed }) : '')
+        }))
+        : el('p', 'feed-muted', T('No background run yet.'));
     if (!setup.configured) {
-        card.append(el('p', 'feed-muted', T('Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')));
+        card.append(
+            lastRun,
+            el('p', 'feed-muted', T('Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')),
+            toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
+            selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]])
+        );
         return;
     }
     const status = el('p', 'feed-muted');
@@ -2273,9 +2280,9 @@ async function renderLibraryCard(card) {
     const actions = el('div', 'feed-recap-actions'); actions.append(startBtn, stopBtn);
     card.append(
         selectRow('feedSetLibBatch', T('📦 Items per batch'), 'libraryBatch', BATCH_SIZES.map(v => [v, v === DEFAULT_BATCH ? T('{n} (recommended)', { n: v }) : String(v)])),
-        status, live, bar, actions,
+        lastRun, status, live, bar, actions,
         el('p', 'feed-muted', T('Runs on your own machine with Ollama and spends no tokens, even when another model is active for summaries. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
-        toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches your feeds and processes what is new at the interval below, while the Feeds screen or side panel is open'), 'autoProcess'),
+        toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
         selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]));
     card.querySelector('#feedSetLibBatch').addEventListener('change', () => refresh());
     if (libraryRun) {
@@ -2370,6 +2377,16 @@ export function initFeedManager(uiObj) {
     if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
         let histTimer = null;
         chrome.storage.onChanged.addListener((ch) => {
+            if (ch && ch[SK.feedBackground]) {
+                clearTimeout(histTimer);
+                histTimer = setTimeout(async () => {
+                    const data = await chrome.storage.local.get({ [SK.feedBackground]: {} });
+                    mergeBackground(data[SK.feedBackground] || {});
+                    syncMood();
+                    if (els && els.list) render();
+                    if (document.getElementById('feedSettingsRoot')) renderFeedSettings();
+                }, 250);
+            }
             if (!ch || !ch[SK.articlesIndex]) return;
             clearTimeout(histTimer);
             histTimer = setTimeout(async () => { await loadHistoryMap(); await carryMoodToHistory(); if (els && els.list) render(); }, 250);
@@ -2403,5 +2420,5 @@ export function initFeedManager(uiObj) {
 
     // Warm the data so the Settings row subtitle is right, and make sure the
     // background poller matches the saved settings.
-    load().then(() => { updateSettingsSub(); sendPollConfig(); if (settings.autoProcess) startAutoProcess(); }).catch(() => {});
+    load().then(() => { updateSettingsSub(); sendPollConfig(); }).catch(() => {});
 }

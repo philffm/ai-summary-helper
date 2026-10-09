@@ -16,8 +16,11 @@ export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n ===
 const SNIPPET_MAX = 160;
 
 let aiSeq = 0;
+let aiTransport = null;
+export function setAiTransport(transport) { aiTransport = typeof transport === 'function' ? transport : null; }
 /** `signal` (AbortSignal) cancels the request in the background worker too — there is no timeout, slow local models may take minutes. */
 export function aiComplete(system, user, onStage, signal, onProgress, { partial = false, service = '' } = {}) {
+    if (aiTransport) return aiTransport({ system, user, signal, partial, service, onStage, onProgress });
     return new Promise((resolve, reject) => {
         const id = `ai${Date.now()}_${++aiSeq}`;
         let settled = false;

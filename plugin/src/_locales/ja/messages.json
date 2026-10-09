@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}のまとめができました"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "ブラウザーの実行中に、Ollamaで新しい項目をバックグラウンドで取得・処理します。クラウドモデルとBYOKは手動のままです。"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "前回のバックグラウンド実行: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "バックグラウンド実行はまだありません。"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} 件を評価 · {b} 日分の要約を作成"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Ollama が設定済みのときに使えます。フィードライブラリ全体を、あなた自身のマシン上で小さなバッチに分けて評価・分類・要約します。数時間かかることもありますが、トークンは消費しません。"
   },
@@ -4120,5 +4132,35 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "ウェブサイトへのアクセスがオフです。about:addons → この拡張機能 → 権限（「すべてのウェブサイトのデータにアクセス」）で許可してから、更新してください。"
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "バックアップには既定で API キー、サインイン情報、ライセンスキー、インストール ID は含まれません。エクスポートしたファイルは非公開にしてください。"
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "APIキーとサインイン情報を含める（ファイルを持つ人は誰でも使用できます）"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "このバックアップには API キー、サインイン情報、またはライセンスキーが含まれています。インポートすると一致する保存済みの秘密情報が置き換わります。続行しますか？"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "このバックアップには API キー、サインイン情報、ライセンスキーが含まれます。ファイルを持つ人は誰でも使用できます。続行しますか？"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "このバックアップには API キー、サインイン情報、ライセンスキー、またはインストール ID が含まれています。インポートすると一致する保存済みの秘密情報が置き換わります。続行しますか？"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "このバックアップには API キー、サインイン情報、ライセンスキー、インストール ID が含まれます。ファイルを持つ人はキーを使ったり、このインストールを特定したりできます。続行しますか？"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI のおすすめハイライト"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "履歴を Markdown でエクスポート (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "ハイライトとメモ"
+  },
+  "f_related_66d8": {
+    "message": "関連"
   }
 }

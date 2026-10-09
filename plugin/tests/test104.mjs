@@ -40,7 +40,7 @@ const none = (o, ...keys) => keys.every((k) => !(k in o));
 { const w = world(); await deleteData(['prefs', 'keys', 'send'], w.env);
   assert(none(w.local, SK.servicesConfig, SK.token, SK.user, SK.licenseKey, SK.otpEmail, 'pb_token', SK.devices, SK.activeDevices, SK.localSendIp, SK.summaryLength, SK.summaryMode, SK.workspace, SK.feedSettings, SK.feedUi, SK.podcastName, SK.podcastLength), 'keys, account, send targets and ui state are gone: ' + Object.keys(w.local));
   assert.deepEqual(Object.keys(w.sync), [], 'sync cleared (preferences, old copies of keys)');
-  assert(has(w.local, SK.articlesIndex, 'articles:rec:a1', SK.annotations, SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.podcasts, SK.installId, 'unrelated:key'), 'summaries, highlights, feeds, podcasts stay');
+  assert(has(w.local, SK.articlesIndex, 'articles:rec:a1', SK.annotations, SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.podcasts, 'unrelated:key'), 'summaries, highlights, feeds, podcasts stay');
   assert(w.ls.cleared, 'popup localStorage cleared'); assert(!w.calls.length, 'no alarm / badge reset for a partial delete'); }
 
 // "Delete history": summaries + records + highlights — NOT settings, keys, feeds
@@ -66,5 +66,5 @@ const none = (o, ...keys) => keys.every((k) => !(k in o));
 
 // nothing chosen → nothing happens
 { const w = world(); const before = JSON.stringify(w.local); const r = await deleteData([], w.env); assert.equal(r.removed, 0); assert.equal(JSON.stringify(w.local), before); }
-assert(META_KEYS.includes(SK.migrationVersion));
+assert(META_KEYS.includes(SK.migrationVersion)); assert(!META_KEYS.includes(SK.installId));
 console.log('TEST 104 OK'); process.exit(0);

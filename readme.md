@@ -85,12 +85,12 @@ git clone https://github.com/philffm/ai-summary-helper.git
 cd ai-summary-helper
 npm ci
 npm run build          # syncs plugin/src → plugin/dev/aish-extension-<platform>
-npm test               # jsdom test suite (run `npm test -- 12 37` for single tests)
+npm test               # the jsdom tests a change can reach (quiet); `npm test -- 12 37` runs single tests, `npm run test:release` runs everything
 npm run lint           # eslint plugin/src
 node scripts/feed-i18n.mjs check   # every UI string translated in every locale
 ```
 
-Pull requests run lint, tests and the i18n check in CI; see [CONTRIBUTING.md](CONTRIBUTING.md) for conventions and [SECURITY.md](SECURITY.md) to report vulnerabilities. The privacy policy lives in `site-src/pages/privacy.html`; after editing it run `npm run privacy:build` to refresh the Markdown copies. Product and code audits: [`plugin/PRODUCT_AUDIT.md`](plugin/PRODUCT_AUDIT.md), [`plugin/PROJECT_AUDIT.md`](plugin/PROJECT_AUDIT.md), [`plugin/STYLE_AUDIT.md`](plugin/STYLE_AUDIT.md).
+Pull requests run lint and the affected tests in CI (`main`, tags and a nightly run everything incl. the translation check); see [CONTRIBUTING.md](CONTRIBUTING.md) for conventions and [SECURITY.md](SECURITY.md) to report vulnerabilities. The privacy policy lives in `site-src/pages/privacy.html`; after editing it run `npm run privacy:build` to refresh the Markdown copies. Product and code audits: [`plugin/PRODUCT_AUDIT.md`](plugin/PRODUCT_AUDIT.md), [`plugin/PROJECT_AUDIT.md`](plugin/PROJECT_AUDIT.md), [`plugin/STYLE_AUDIT.md`](plugin/STYLE_AUDIT.md).
 
 Load `plugin/dev/aish-extension-chrome/` via `chrome://extensions` → **Developer mode** → **Load unpacked**. The extension is vanilla ES modules, no framework and no bundler. The marketing site is plain HTML assembled by `npm run site:build` from `site-src/`.
 
@@ -197,7 +197,7 @@ Reads are targeted (`StorageManager.get([keys])` routes each key to sync or loca
 
 ### Tests
 
-`npm test` runs the jsdom suite in `plugin/tests` (storage, popup flows, finalize, i18n coverage, loader). `plugin/tests/e2e/*.e2e.cjs` drive real Chromium with the built extension and need Playwright: `node plugin/scripts/build.js chrome` first, then run the script.
+`npm test` runs the jsdom tests in `plugin/tests` that a change can reach (see `plugin/tests/affected.mjs`); `npm run test:release` runs all of them plus the audits (storage, popup flows, finalize, i18n coverage, loader). `plugin/tests/e2e/*.e2e.cjs` drive real Chromium with the built extension and need Playwright: `node plugin/scripts/build.js chrome` first, then run the script.
 
 ## Under the hood
 
@@ -283,7 +283,7 @@ ai-summary-helper/
 │
 └── .github/workflows/
     ├── release.yml               # Tag-triggered: build + version bump + GitHub release
-    ├── ci.yml                    # Pull requests and main: lint, tests, i18n check
+    ├── ci.yml                    # Pull requests: lint + affected tests. main / nightly / tags: all tests, audits, i18n
     └── translate.yml             # Auto-translates docs/ content → docs/lang/
 ```
 
@@ -340,7 +340,7 @@ Bookmarklet generator generally ships faster since it is faster to iterate on.
 - [x] **Save for Later** — right-click any tab → "Summarize & Close": generates summary, saves with timeframe reminder (tomorrow / weekend / week / research session), closes the tab, shows in history with metadata
 - [x] **RSVP Speed-reading overlay** — while summarizing on close, the AI output streams word-by-word as a speed-reading display; adjustable speed (slow/medium/fast) saved between sessions
 - [x] **Timed reminders** — Chrome notifications remind you to revisit saved articles at your chosen timeframe
-- [x] Backup & Restore (v2 format: settings + full article history)
+- [x] Backup & Restore (settings + full article history; API keys and sign-in/license secrets excluded by default, with warned opt-in)
 - [x] Inline mode ("Send to Kindle" friendly)
 - [x] Native side panel support
 - [x] Graph view of article archive (D3.js, keyword-based)
@@ -483,4 +483,3 @@ Name | Description | URL
 Reabble Send to Kindle | Send your summarized articles to Kindle. | https://send.reabble.com/
 Web Clipper | Clip your summarized web pages to different places (e.g. OneNote, Notion, GitHub etc.) | https://clipper.website/
 Inoreader | RSS Feed Reader | https://www.inoreader.com/
-

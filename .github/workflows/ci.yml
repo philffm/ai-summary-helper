@@ -1,12 +1,14 @@
 name: CI
 
-# Lint, tests and the i18n check on every pull request and on main, so a broken
-# main is noticed before a release (release.yml runs the same lint and tests).
+# Pull requests: lint + the tests a change can reach (import graph, `npm test -- --deep`). Missing translations do not fail a pull request.
+# main, tags and a nightly run: every test, the audits and the translation check (`npm run test:release`), the gate before a release.
 
 on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 3 * * *'
 
 permissions:
   contents: read
@@ -15,26 +17,40 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  AISH_TEST_SPEED: '4'   # timer speed-up for the tests (see plugin/tests/env.mjs); gentler than locally because CI runners are small
+
 jobs:
-  check:
+  pull-request:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0     # the runner compares with origin/main to find the affected tests
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
+      - run: npm ci --no-audit --no-fund
       - name: Lint (errors only)
         run: npm run lint -- --quiet
+      - name: Tests the change can reach
+        run: npm test -- --deep
 
-      - name: i18n coverage of the extension UI
-        run: node scripts/feed-i18n.mjs check
-
-      - name: Tests (includes the privacy.md sync check)
-        run: npm test
+  release-gate:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - name: Lint (errors only)
+        run: npm run lint -- --quiet
+      - name: Every test, the audits and the translation check
+        run: npm run test:release

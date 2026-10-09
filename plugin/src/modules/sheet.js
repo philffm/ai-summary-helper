@@ -1,6 +1,6 @@
 // sheet.js — shared dialog behaviour for bottom sheets and modals:
 // focus moves into the dialog, Tab/Shift+Tab stay inside it, and focus returns to the opener on close.
-// (Escape stays with each owner: they already close their own layer.)
+// Escape: pass `onEscape` to close on Esc (owners that already handle Esc themselves can omit it).
 const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
 export function focusableIn(root) {
@@ -11,7 +11,7 @@ export function focusableIn(root) {
  * Trap focus in `root` (the dialog element). Returns { release(restore = true) }.
  * Initial focus: [autofocus], else the first focusable, else the dialog itself.
  */
-export function trapFocus(root, { label } = {}) {
+export function trapFocus(root, { label, onEscape } = {}) {
     if (!root) return { release() {} };
     if (label) root.setAttribute('aria-label', label);
     if (!root.hasAttribute('role')) root.setAttribute('role', 'dialog');
@@ -19,6 +19,7 @@ export function trapFocus(root, { label } = {}) {
     const opener = document.activeElement;
     if (!root.hasAttribute('tabindex')) root.tabIndex = -1;
     const onKey = (e) => {
+        if (e.key === 'Escape' && onEscape && !e.defaultPrevented && root.isConnected) { e.preventDefault(); e.stopPropagation(); onEscape(); return; }
         if (e.key !== 'Tab') return;
         const f = focusableIn(root);
         if (!f.length) { e.preventDefault(); root.focus(); return; }

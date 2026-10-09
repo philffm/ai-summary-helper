@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ El resumen de {label} está listo"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Obtiene y procesa nuevos elementos en segundo plano con Ollama mientras el navegador está abierto. Los modelos en la nube y BYOK siguen siendo manuales."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Última ejecución en segundo plano: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Aún no hay ejecuciones en segundo plano."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} elementos valorados · {b} resúmenes diarios escritos"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Disponible cuando Ollama está configurado. Puntúa, categoriza y resume toda tu biblioteca de Feeds en lotes pequeños en tu propio equipo. Puede tardar horas, pero no gasta tokens."
   },
@@ -4120,5 +4132,35 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "El acceso a sitios web está desactivado. Actívalo en about:addons → esta extensión → Permisos («Acceder a tus datos de todos los sitios web») y luego actualiza."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "De forma predeterminada, las copias de seguridad omiten las claves API, los datos de inicio de sesión, las licencias y los identificadores de instalación. Mantén privados los archivos exportados."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Incluir claves API y datos de inicio de sesión (cualquiera con el archivo podrá usarlos)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Esta copia contiene claves API, datos de inicio de sesión o licencias. La importación reemplazará los secretos guardados que coincidan. ¿Continuar?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Esta copia incluirá claves API, datos de inicio de sesión y licencias. Cualquiera con el archivo podrá usarlos. ¿Continuar?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Esta copia contiene claves API, datos de inicio de sesión, licencias o un identificador de instalación. La importación reemplazará los secretos guardados que coincidan. ¿Continuar?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Esta copia incluirá claves API, datos de inicio de sesión, licencias y un identificador de instalación. Quien tenga el archivo podrá usar sus claves o identificar esta instalación. ¿Continuar?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "Destacados sugeridos por la IA"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Exportar historial como Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Destacados y notas"
+  },
+  "f_related_66d8": {
+    "message": "Relacionado"
   }
 }

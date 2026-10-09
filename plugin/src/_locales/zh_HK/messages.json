@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}回顧已就緒"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "瀏覽器執行時，Ollama 會在背景取得並處理新項目。雲端和 BYOK 模型仍需手動執行。"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "上次背景執行：{time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "尚無背景執行記錄。"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "已評分 {a} 個項目 · 已撰寫 {b} 份每日摘要"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "設定好 Ollama 後可用。它會在你自己的電腦上分小批次為整個訂閱庫評分、分類並產生回顧。可能需要數小時，但不消耗任何 token。"
   },
@@ -4120,5 +4132,35 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "網站存取已關閉。請在 about:addons → 此擴充功能 → 權限中允許「存取所有網站上的資料」，然後重新整理。"
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "備份預設不包含 API 金鑰、登入資料、授權金鑰和安裝識別碼。請妥善保管匯出的檔案。"
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "包含 API 金鑰和登入資料（任何持有檔案的人都可以使用）"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "此備份包含 API 金鑰、登入資料或授權金鑰。匯入會取代相符的已儲存密鑰。是否繼續？"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "此備份將包含 API 金鑰、登入資料和授權金鑰。任何持有檔案的人都可以使用。是否繼續？"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "此備份包含 API 金鑰、登入資料、授權金鑰或安裝識別碼。匯入會取代相符的已儲存密鑰。是否繼續？"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "此備份將包含 API 金鑰、登入資料、授權金鑰和安裝識別碼。持有檔案的人可以使用其中的金鑰或識別此安裝。是否繼續？"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI 建議的標示"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "將記錄匯出為 Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "標示與筆記"
+  },
+  "f_related_66d8": {
+    "message": "相關"
   }
 }

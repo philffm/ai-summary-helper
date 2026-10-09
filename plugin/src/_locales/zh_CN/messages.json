@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}回顾已就绪"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "浏览器运行时，Ollama 会在后台获取并处理新条目。云端和 BYOK 模型仍需手动运行。"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "上次后台运行：{time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "尚无后台运行记录。"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "已评价 {a} 个条目 · 已撰写 {b} 份每日回顾"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "设置好 Ollama 后可用。它会在你自己的电脑上分小批次为整个订阅库评分、分类并生成回顾。可能需要数小时，但不消耗任何 token。"
   },
@@ -4120,5 +4132,35 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "网站访问已关闭。请在 about:addons → 此扩展 → 权限中允许“访问所有网站上的数据”，然后刷新。"
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "备份默认不包含 API 密钥、登录信息、许可证密钥和安装标识符。请妥善保管导出的文件。"
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "包含 API 密钥和登录信息（任何持有文件的人都可以使用）"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "此备份包含 API 密钥、登录信息或许可证密钥。导入将替换匹配的已存储密钥。是否继续？"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "此备份将包含 API 密钥、登录信息和许可证密钥。任何持有文件的人都可以使用。是否继续？"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "此备份包含 API 密钥、登录信息、许可证密钥或安装标识符。导入将替换匹配的已存储密钥。是否继续？"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "此备份将包含 API 密钥、登录信息、许可证密钥和安装标识符。持有文件的人可以使用其中的密钥或识别此安装。是否继续？"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI 建议的高亮"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "将历史导出为 Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "高亮和笔记"
+  },
+  "f_related_66d8": {
+    "message": "相关"
   }
 }
