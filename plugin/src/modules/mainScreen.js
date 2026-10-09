@@ -1037,6 +1037,32 @@ export function initMainScreen(ui) {
                     if (fetchSummaryButton) resetToFetch();
                     return;
                 }
+                // Setup problems (missing/invalid API key, not logged in, plan limit): keep the bubble and link to the right settings panel.
+                const panel = /API key|invalid.*key|incorrect.*key|HTTP 40[13]\b|unauthori[sz]ed/i.test(errText) ? 'models'
+                    : /log ?in|sign ?in|token|licen[sc]e|daily limit|upgrade|HTTP (402|429)\b/i.test(errText) ? 'account' : '';
+                if (panel) {
+                    const bubble = document.getElementById('streamBubble');
+                    if (bubble && !bubble.querySelector('.ollama-hint')) {
+                        const hint = document.createElement('div');
+                        hint.className = 'ollama-hint';
+                        hint.setAttribute('role', 'alert');
+                        hint.innerHTML = '<div class="ollama-hint-text"></div><button type="button" class="button-secondary ollama-hint-btn"></button>';
+                        hint.querySelector('.ollama-hint-text').textContent = panel === 'models'
+                            ? T('Your API key is missing or was rejected. Check it in the settings.')
+                            : T('This needs your account. Log in or check your plan in the settings.');
+                        const btn = hint.querySelector('.ollama-hint-btn');
+                        btn.textContent = (panel === 'models' ? T('Open model settings') : T('Open account settings')) + ' →';
+                        btn.addEventListener('click', () => {
+                            if (ui && typeof ui.showScreen === 'function') {
+                                ui.showScreen('settings');
+                                import('./settingsNav.js').then(m => m.openSettingsPanel(panel === 'models' ? 'models' : 'account')).catch(() => {});
+                            }
+                        });
+                        bubble.appendChild(hint);
+                    }
+                    if (fetchSummaryButton) resetToFetch();
+                    return;
+                }
                 if (fetchSummaryButton) {
                     setTimeout(() => {
                         resetToFetch();
