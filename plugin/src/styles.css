@@ -3839,3 +3839,12 @@ body[data-surface="sidebar"] { min-width: 0; }
 .remove-recent:hover, .remove-tag:hover { opacity: 1; }
 .model-grid-note { padding: 4px 0; font-size: var(--fs-xs); color: var(--text-muted); }
 .model-grid-note.is-error { color: var(--danger); }
+
+.ollama-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: var(--fs-sm);
+}

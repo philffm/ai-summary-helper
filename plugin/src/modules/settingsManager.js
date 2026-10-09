@@ -13,6 +13,7 @@ import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { escapeHtml } from './textUtils.js';
 import { T, TN } from './feedI18n.js';
+import { checkOllama } from './ollamaCheck.js';
 
 export async function initSettingsManager(ui) {
     const storageData = await StorageManager.getAll();
@@ -146,7 +147,9 @@ function detectOS() {
     return 'linux';
 }
 
-function renderOllamaTutorial(serviceId) {
+// Probes Ollama first: reachable → list installed models (click to use one);
+// not reachable / refused / no models → prompt the user with the matching setup steps.
+async function renderOllamaTutorial(serviceId, endpoint, onPickModel) {
     const container = document.getElementById('ollamaTutorialContainer');
     if (!container) return;
     const isOllama = (serviceId || '').toLowerCase() === 'ollama';
@@ -155,6 +158,60 @@ function renderOllamaTutorial(serviceId) {
 
     if (!isOllama) return;
 
+    const status = document.createElement('div');
+    status.className = 'ollama-status';
+    status.setAttribute('role', 'status');
+    status.textContent = T('Checking Ollama…');
+    container.appendChild(status);
+    const guide = document.createElement('div');
+    container.appendChild(guide);
+
+    const run = async () => {
+        status.textContent = T('Checking Ollama…');
+        const result = await checkOllama(endpoint);
+        if (!container.isConnected) return;
+        status.innerHTML = '';
+        const line = document.createElement('div');
+        status.appendChild(line);
+        if (result.ok && result.models.length) {
+            line.textContent = '✓ ' + T('Ollama is running. Installed models — click one to use it:');
+            const list = document.createElement('div');
+            list.className = 'model-id-list';
+            result.models.forEach(name => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'model-id-tag';
+                b.textContent = name;
+                b.addEventListener('click', () => onPickModel && onPickModel(name));
+                list.appendChild(b);
+            });
+            status.appendChild(list);
+            guide.innerHTML = '';
+        } else {
+            if (result.ok) {
+                line.textContent = '⚠️ ' + T('Ollama is running, but no model is installed yet. Download one in a terminal:');
+                const pre = document.createElement('pre');
+                pre.className = 'ollama-code';
+                pre.textContent = 'ollama pull llama3.2';
+                status.appendChild(pre);
+            } else {
+                line.textContent = '⚠️ ' + (result.reason === 'forbidden'
+                    ? T('Ollama refused the request. A 403 usually means it must be told to accept requests from this extension (OLLAMA_ORIGINS).')
+                    : T('Could not reach Ollama. Make sure it is running and the endpoint is correct.'));
+            }
+            renderGuide(guide);
+        }
+        const again = document.createElement('button');
+        again.type = 'button';
+        again.className = 'button-secondary';
+        again.textContent = '↻ ' + T('Check again');
+        again.addEventListener('click', run);
+        status.appendChild(again);
+    };
+    run();
+}
+
+function renderGuide(container) {
     const platform = detectOS();
     const t = ollamaTutorials()[platform] || ollamaTutorials().macos;
 
@@ -381,7 +438,15 @@ async function initModelSettings(storageData) {
             customEndpointContainer.style.display = service?.allowCustomEndpoint ? 'block' : 'none';
         }
 
-        renderOllamaTutorial(serviceId);
+        renderOllamaTutorial(serviceId, endpointInput?.value || service?.endpointUrl, async (name) => {
+            const entry = (await StorageManager.getAll())[SK.servicesConfig]?.[serviceId] || {};
+            const list = (Array.isArray(entry.customModel) ? entry.customModel : (entry.customModel ? [entry.customModel] : []))
+                .map(m => StorageManager.normalizeCustomModel(m, serviceId));
+            if (!list.some(m => m.id === name)) list.push({ id: name, provider: serviceId });
+            await StorageManager.updateService(serviceId, { customModel: list, activeModelId: { id: name, provider: serviceId } });
+            updateModelIdentifierUI(serviceId, services, await StorageManager.getAll());
+            flashSaveIndicator();
+        });
 
         if (apiKeyInput) apiKeyInput.value = cfg.apiKey || '';
         if (endpointInput) endpointInput.value = cfg.endpoint || service?.endpointUrl || '';
