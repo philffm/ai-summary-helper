@@ -144,43 +144,33 @@ function renderStep2(container) {
     container.appendChild(label);
 
     const list = document.createElement("div");
-    list.style.display = "flex";
-    list.style.overflowX = "auto";
-    list.style.gap = "1rem";
-    list.style.padding = "0.5rem 0";
+    list.className = "podcast-pick-list";
     container.appendChild(list);
 
     podcastWizardState.allArticles.forEach(article => {
         const id = article._id; // stable ID
         const isSelected = podcastWizardState.selectedArticles.has(id);
 
-        const card = document.createElement("div");
-        card.className = "article-card";
-        card.style.minWidth = "220px";
-        card.style.cursor = "pointer";
-        card.style.border = isSelected ? "2px solid #0084ff" : "1px solid #ccc";
-        card.style.borderRadius = "8px";
-        card.style.padding = "1rem";
-        card.style.background = isSelected ? "#e8f3ff" : "#fff";
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "podcast-pick";
+        card.setAttribute("aria-pressed", String(isSelected));
 
         card.onclick = () => toggleArticle(id, card);
 
         const title = document.createElement("div");
+        title.className = "podcast-pick-title";
         title.textContent = article.title || T('Untitled');
-        title.style.fontWeight = "bold";
-        title.style.marginBottom = "0.5rem";
 
         const summary = document.createElement("div");
         if (article.summary) {
+            summary.className = "podcast-pick-summary";
             summary.textContent = article.summary.replace(/<[^>]+>/g, "").slice(0, 100) + "…";
-            summary.style.fontSize = "0.9em";
-            summary.style.marginBottom = "0.5rem";
         }
 
         const date = document.createElement("div");
+        date.className = "podcast-pick-date";
         date.textContent = new Date(article.timestamp).toLocaleDateString();
-        date.style.fontSize = "0.8em";
-        date.style.color = "#888";
 
         card.appendChild(title);
         if (article.summary) card.appendChild(summary);
@@ -209,9 +199,7 @@ function toggleArticle(id, card) {
     }
 
     // Update card UI
-    const selected = podcastWizardState.selectedArticles.has(id);
-    card.style.border = selected ? "2px solid #0084ff" : "1px solid #ccc";
-    card.style.background = selected ? "#e8f3ff" : "#fff";
+    card.setAttribute("aria-pressed", String(podcastWizardState.selectedArticles.has(id)));
 
     updateNextButtonState();
 }
@@ -240,17 +228,12 @@ function renderStep3(container) {
 
     // Create a wrapper for slider and label
     const sliderWrapper = document.createElement("div");
-    sliderWrapper.style.position = "relative";
-    sliderWrapper.style.width = "100%";
+    sliderWrapper.className = "podcast-length";
     sliderWrapper.appendChild(slider);
 
     const value = document.createElement("span");
+    value.className = "podcast-length-value";
     value.textContent = T('{n} min', { n: slider.value });
-    value.style.position = "absolute";
-    value.style.top = "48px";
-    value.style.left = "0";
-    value.style.transform = "translateX(-12px)";
-    value.style.whiteSpace = "nowrap";
 
     // Function to update label position under slider thumb
     function updateValuePosition() {
@@ -301,7 +284,7 @@ function renderStep3(container) {
     // Podcast style chips
     const styleLabel = document.createElement("label");
     styleLabel.textContent = T('Podcast style:');
-    styleLabel.style.marginTop = "1em";
+    styleLabel.className = "podcast-field-label";
     container.appendChild(styleLabel);
 
     const styles = [
@@ -319,9 +302,7 @@ function renderStep3(container) {
     };
     const chipsContainer = document.createElement("div");
     chipsContainer.className = "podcast-style-chips";
-    chipsContainer.style.display = "flex";
-    chipsContainer.style.gap = "0.5em";
-    chipsContainer.style.flexWrap = "wrap";
+    const markStyle = () => Array.from(chipsContainer.children).forEach(c => c.setAttribute("aria-pressed", String(c.dataset.style === podcastWizardState.style)));
 
     // Load saved style from local storage
     import('./storageManager.js').then(({ default: StorageManager }) => {
@@ -329,29 +310,20 @@ function renderStep3(container) {
             if (data[SK.podcastStyle]) {
                 podcastWizardState.style = data[SK.podcastStyle];
             }
-            Array.from(chipsContainer.children).forEach(c => {
-                if (c.dataset.style === podcastWizardState.style) {
-                    c.style.background = "#cce6ff";
-                }
-            });
+            markStyle();
         });
     });
 
     styles.forEach(style => {
         const chip = document.createElement("button");
         chip.type = "button";
-        chip.className = "chip";
+        chip.className = "podcast-style-chip";
         chip.textContent = styleLabels[style] ? styleLabels[style]() : style;
         chip.dataset.style = style;
-        chip.style.padding = "0.3em 0.8em";
-        chip.style.borderRadius = "16px";
-        chip.style.border = "1px solid #0084ff";
-        chip.style.background = "#f4f8ff";
-        chip.style.cursor = "pointer";
+        chip.setAttribute("aria-pressed", String(style === podcastWizardState.style));
         chip.onclick = () => {
             podcastWizardState.style = style;
-            Array.from(chipsContainer.children).forEach(c => c.style.background = "#f4f8ff");
-            chip.style.background = "#cce6ff";
+            markStyle();
             // Save style in local storage
             import('./storageManager.js').then(({ default: StorageManager }) => {
                 StorageManager.setLocal({ [SK.podcastStyle]: style });
@@ -364,13 +336,13 @@ function renderStep3(container) {
     // Custom style input
     const customStyleLabel = document.createElement("label");
     customStyleLabel.textContent = T('Custom style (optional):');
-    customStyleLabel.style.marginTop = "1em";
+    customStyleLabel.className = "podcast-field-label";
     container.appendChild(customStyleLabel);
 
     const customStyleInput = document.createElement("input");
     customStyleInput.type = "text";
     customStyleInput.placeholder = T('Describe your podcast style');
-    customStyleInput.style.marginBottom = "0.5em";
+    customStyleInput.className = "podcast-custom-style";
     // Load saved custom style from local storage
     import('./storageManager.js').then(({ default: StorageManager }) => {
         StorageManager.getLocal({ [SK.podcastCustomStyle]: "" }).then(data => {
@@ -408,11 +380,11 @@ function renderStep4(container) {
 
     container.innerHTML = `
         <p>${esc(T("You're ready to generate your podcast!"))} 🎙️</p>
-        <p><strong>${esc(T('Name:'))}</strong> ${podcastWizardState.name}</p>
-        <p><strong>${esc(T('Articles:'))}</strong> ${titles.join(", ")}</p>
+        <p><strong>${esc(T('Name:'))}</strong> ${esc(podcastWizardState.name)}</p>
+        <p><strong>${esc(T('Articles:'))}</strong> ${esc(titles.join(", "))}</p>
         <p><strong>${esc(T('Length:'))}</strong> ${esc(T('{n} min', { n: podcastWizardState.length }))}</p>
-        <p><strong>${esc(T('Style:'))}</strong> ${style ? style : "-"}</p>
-        <p><strong>${esc(T('Custom style:'))}</strong> ${customStyle ? customStyle : "-"}</p>
+        <p><strong>${esc(T('Style:'))}</strong> ${style ? esc(style) : "-"}</p>
+        <p><strong>${esc(T('Custom style:'))}</strong> ${customStyle ? esc(customStyle) : "-"}</p>
         <p>${esc(T('Click “Generate 🎙️” to create your episode.'))}</p>
     `;
 }
@@ -549,7 +521,7 @@ function renderCreatedPodcasts(container) {
 
             card.innerHTML = `
                 <h3>${esc(p.name)}</h3>
-                ${p.audio ? `<audio controls src="${p.audio}"></audio>` : `<em>${esc(T('No audio'))}</em>`}
+                ${p.audio ? `<audio controls src="${esc(p.audio)}"></audio>` : `<em>${esc(T('No audio'))}</em>`}
                 <button class="delete-podcast-button">${esc(T('Delete'))}</button>
             `;
 

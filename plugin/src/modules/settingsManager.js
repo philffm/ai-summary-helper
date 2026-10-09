@@ -295,13 +295,7 @@ async function initModelSettings(storageData) {
     const refreshLicenseUIStatus = (status, isValid = false) => {
         if (!licenseStatusLabel) return;
         licenseStatusLabel.textContent = status;
-        if (isValid) {
-            licenseStatusLabel.style.color = '#fff';
-            licenseStatusLabel.style.background = 'var(--success, #2ecc40)';
-        } else {
-            licenseStatusLabel.style.color = 'var(--text-muted, #889999)';
-            licenseStatusLabel.style.background = 'rgba(0,0,0,0.2)';
-        }
+        licenseStatusLabel.classList.toggle('signed-in', !!isValid);
     };
 
     // Initialize display state of active token if it exists
@@ -729,19 +723,19 @@ function initLocalSendSettings(storageData) {
     const renderDeviceList = (type, container) => {
         const list = devices.filter(d => d.type === type);
         if (list.length === 0) {
-            container.innerHTML = `<div style="font-size:11px;color:var(--text-muted);">${T('No devices added yet.')}</div>`;
+            container.innerHTML = `<div class="device-empty">${T('No devices added yet.')}</div>`;
             return;
         }
         container.innerHTML = list.map(d => {
             const isActive = activeDeviceIds[type] === d.id || (!activeDeviceIds[type] && list[0].id === d.id);
             return `
-                <div class="device-row" data-id="${d.id}" style="display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--outline);border-radius:6px;background:var(--glass-input);">
-                    <button type="button" class="device-active-btn" data-type="${type}" title="${escapeHtml(isActive ? T('Active send target') : T('Set as active send target'))}" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0;line-height:1;color:${isActive ? '#f5b301' : 'var(--text-muted)'};">${isActive ? '★' : '☆'}</button>
-                    <div style="flex:1;min-width:0;">
-                        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.label || (type === 'kindle' ? 'Kindle' : T('Device'))}</div>
-                        <div style="font-size:11px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${addressLabel(d)}</div>
+                <div class="device-row${isActive ? ' is-active' : ''}" data-id="${escapeHtml(d.id)}">
+                    <button type="button" class="device-active-btn" data-type="${escapeHtml(type)}" title="${escapeHtml(isActive ? T('Active send target') : T('Set as active send target'))}" aria-pressed="${isActive}">${isActive ? '★' : '☆'}</button>
+                    <div class="device-text">
+                        <div class="device-label">${escapeHtml(d.label || (type === 'kindle' ? 'Kindle' : T('Device')))}</div>
+                        <div class="device-address">${escapeHtml(addressLabel(d))}</div>
                     </div>
-                    <button type="button" class="device-delete-btn" title="${escapeHtml(T('Remove device'))}" style="background:none;border:none;cursor:pointer;font-size:13px;opacity:0.6;padding:0;line-height:1;">🗑</button>
+                    <button type="button" class="device-delete-btn" title="${escapeHtml(T('Remove device'))}" aria-label="${escapeHtml(T('Remove device'))}">🗑</button>
                 </div>`;
         }).join('');
 
@@ -834,7 +828,7 @@ function initLocalSendSettings(storageData) {
 
             if (statusLabel) {
                 statusLabel.textContent = T('Searching LAN for LocalSend receiver...');
-                statusLabel.style.color = 'var(--text-muted)';
+                statusLabel.dataset.tone = '';
             }
 
             try {
@@ -843,17 +837,17 @@ function initLocalSendSettings(storageData) {
                     if (newLocalSendIp) newLocalSendIp.value = foundIp;
                     if (statusLabel) {
                         statusLabel.textContent = T('Found device at {ip} — click Add to save it ✓', { ip: foundIp });
-                        statusLabel.style.color = '#2ecc40';
+                        statusLabel.dataset.tone = 'ok';
                     }
                 } else if (statusLabel) {
                     statusLabel.textContent = T('No active receiver found.');
-                    statusLabel.style.color = 'var(--text-muted)';
+                    statusLabel.dataset.tone = '';
                 }
             } catch (err) {
                 console.error('LocalSend scan failed:', err);
                 if (statusLabel) {
                     statusLabel.textContent = T('Scan failed. Enter IP manually.');
-                    statusLabel.style.color = 'var(--danger, #dc2626)';
+                    statusLabel.dataset.tone = 'error';
                 }
             } finally {
                 scanBtn.disabled = false;
@@ -1074,27 +1068,22 @@ function initBackupRestore() {
     if (btnExport) {
         // Build a small choice panel, hidden by default
         const choicePanel = document.createElement('div');
-        choicePanel.style.cssText = `
-            display:none; flex-direction:column; gap:6px;
-            margin-top:8px; padding:10px;
-            background:var(--glass-card); border:1px solid var(--glass-border);
-            border-radius:var(--radius-md);
-        `;
+        choicePanel.className = 'export-choice';
+        choicePanel.hidden = true;
         choicePanel.innerHTML = `
-            <p style="font-size:11px;font-weight:600;color:var(--text-secondary);margin:0 0 4px;">${T('What to export?')}</p>
-            <button type="button" id="exportSettingsOnly" class="button-secondary" style="font-size:12px;justify-content:flex-start;">⚙️ ${T('Settings only')}</button>
-            <button type="button" id="exportFullBackup"   class="button-secondary" style="font-size:12px;justify-content:flex-start;">📚 ${T('Settings + Article History')}</button>
+            <p class="export-choice-title">${T('What to export?')}</p>
+            <button type="button" id="exportSettingsOnly" class="button-secondary">⚙️ ${T('Settings only')}</button>
+            <button type="button" id="exportFullBackup"   class="button-secondary">📚 ${T('Settings + Article History')}</button>
         `;
         btnExport.parentElement.insertAdjacentElement('afterend', choicePanel);
 
         btnExport.addEventListener('click', () => {
-            const isOpen = choicePanel.style.display === 'flex';
-            choicePanel.style.display = isOpen ? 'none' : 'flex';
-            btnExport.textContent = isOpen ? '📤 ' + T('Export') : '📤 ' + T('Export') + ' ▲';
+            choicePanel.hidden = !choicePanel.hidden;
+            btnExport.textContent = choicePanel.hidden ? '📤 ' + T('Export') : '📤 ' + T('Export') + ' ▲';
         });
 
         const doExport = async (includeContent) => {
-            choicePanel.style.display = 'none';
+            choicePanel.hidden = true;
             btnExport.textContent = '📤 ' + T('Export');
             try {
                 // Fetch cleanly separated sync and local data

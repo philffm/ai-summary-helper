@@ -211,8 +211,6 @@ function setStatusBadge(label, isPro) {
     label.hidden = false;
     label.textContent = isPro ? T('Pro Active ✓') : T('Free Tier');
     label.classList.toggle('signed-in', !!isPro);
-    label.style.background = '';
-    label.style.color = '';
 }
 
 function setLoggedInOnlySectionsVisible(isLoggedIn) {
@@ -319,8 +317,7 @@ function applyStateToView(view, stateName, data, user) {
         if (view.authStatusLabel) {
             view.authStatusLabel.hidden = false;
             view.authStatusLabel.textContent = T('Checking...');
-            view.authStatusLabel.style.background = '';
-            view.authStatusLabel.style.color = '';
+            view.authStatusLabel.classList.remove('signed-in');
         }
     } else if (stateName === 'otpPending') {
         show(view.emailStage, false);
@@ -679,8 +676,7 @@ export async function refreshAuthStateFromSettings() {
                     const licenseStatusLabel = document.getElementById('licenseStatusLabel');
                     if (licenseStatusLabel) {
                         licenseStatusLabel.textContent = T('Pro Active ✓');
-                        licenseStatusLabel.style.color = '#fff';
-                        licenseStatusLabel.style.background = 'var(--success, #2ecc40)';
+                        licenseStatusLabel.classList.add('signed-in');
                     }
                 }
             }

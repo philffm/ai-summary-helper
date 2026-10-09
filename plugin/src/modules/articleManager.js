@@ -862,7 +862,7 @@ export function initArticleManager(uiManager) {
                         mod.initArchiveGraph(graphContainer, articles, currentDetailArticle?.timestamp, buildIndex(articles));
                     });
                 } else {
-                    graphContainer.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('No articles to graph yet.')}</div>`;
+                    graphContainer.innerHTML = `<div class="graph-empty">${T('No articles to graph yet.')}</div>`;
                 }
             });
         }
@@ -1406,23 +1406,23 @@ async function renderLocalInsights(article, container) {
 
         const badges = [];
         if (metrics.readingLevel) {
-            badges.push(`<span class="tag-chip" style="font-size:11px;" title="${escAttr(T('Flesch reading ease: {ease}/100', { ease: metrics.readingLevel.ease }))}">📖 ${T('{label} · grade {grade}', { label: metrics.readingLevel.label, grade: metrics.readingLevel.grade })}</span>`);
+            badges.push(`<span class="tag-chip insight-chip" title="${escAttr(T('Flesch reading ease: {ease}/100', { ease: metrics.readingLevel.ease }))}">📖 ${T('{label} · grade {grade}', { label: metrics.readingLevel.label, grade: metrics.readingLevel.grade })}</span>`);
         }
         if (metrics.sentiment && metrics.sentiment.matches > 0) {
             const moodEmoji = metrics.sentiment.label === 'Positive' ? '🙂' : metrics.sentiment.label === 'Negative' ? '🙁' : '😐';
-            badges.push(`<span class="tag-chip" style="font-size:11px;">${moodEmoji} ${metrics.sentiment.label === 'Positive' ? T('Positive tone') : metrics.sentiment.label === 'Negative' ? T('Negative tone') : metrics.sentiment.label === 'Neutral' ? T('Neutral tone') : T('{label} tone', { label: metrics.sentiment.label })}</span>`);
+            badges.push(`<span class="tag-chip insight-chip">${moodEmoji} ${metrics.sentiment.label === 'Positive' ? T('Positive tone') : metrics.sentiment.label === 'Negative' ? T('Negative tone') : metrics.sentiment.label === 'Neutral' ? T('Neutral tone') : T('{label} tone', { label: metrics.sentiment.label })}</span>`);
         }
         if (metrics.estimatedMinutes) {
-            badges.push(`<span class="tag-chip" style="font-size:11px;">⏱️ ${T('~{n} min read', { n: metrics.estimatedMinutes })}</span>`);
+            badges.push(`<span class="tag-chip insight-chip">⏱️ ${T('~{n} min read', { n: metrics.estimatedMinutes })}</span>`);
         }
 
         const relatedHtml = related.length ? `
-          <div style="margin-top:10px;">
-            <strong style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">${T('🔗 Similar in your archive')}</strong>
-            ${related.map(r => `<div class="related-article-link" data-ts="${r.article.timestamp}" style="font-size:12px;padding:6px 0;border-top:1px solid rgba(148,163,184,0.15);cursor:pointer;">${escapeHtml(r.article.title || T('Untitled'))} <span style="color:var(--text-muted);">(${T('{n}% similar', { n: Math.round(r.score * 100) })})</span></div>`).join('')}
+          <div class="related-articles">
+            <strong class="related-articles-title">${T('🔗 Similar in your archive')}</strong>
+            ${related.map(r => `<div class="related-article-link" data-ts="${escAttr(r.article.timestamp)}">${escapeHtml(r.article.title || T('Untitled'))} <span class="related-article-score">(${T('{n}% similar', { n: Math.round(r.score * 100) })})</span></div>`).join('')}
           </div>` : '';
 
-        container.innerHTML = `${badges.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;">${badges.join('')}</div>` : ''}${relatedHtml}`;
+        container.innerHTML = `${badges.length ? `<div class="insight-chips">${badges.join('')}</div>` : ''}${relatedHtml}`;
 
         container.querySelectorAll('.related-article-link').forEach(el => {
             el.addEventListener('click', () => {

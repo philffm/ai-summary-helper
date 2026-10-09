@@ -47,7 +47,7 @@ export function initMainScreen(ui) {
 
         const tags = article.tags || [];
         const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${escapeHtml(t)}</span>`).join('')}</div>` : '';
-        const modelHtml = article.modelId ? `<span style="font-size:10px;opacity:0.5;margin-top:4px;display:block;">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
+        const modelHtml = article.modelId ? `<span class="card-model card-model--block">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         if (article.id) bubble.dataset.id = article.id;

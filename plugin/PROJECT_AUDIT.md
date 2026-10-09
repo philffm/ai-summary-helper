@@ -6,7 +6,7 @@ Measured on `plugin/src` (20k lines JS/CSS/HTML), `scripts/`, build and repo lay
 Sections 1–7 below are the original audit, kept as written. What has changed since:
 
 **Done**
-- Tests live in `plugin/tests/` (85 jsdom tests + 2 Playwright checks in `tests/e2e/`), run by `npm test`, and `release.yml` runs lint + tests before packaging. No known-failing tests.
+- Tests live in `plugin/tests/` (91 jsdom tests + 2 Playwright checks in `tests/e2e/`), run by `npm test`, and `release.yml` runs lint + tests before packaging. No known-failing tests.
 - `content.js.bak` and the root `compatible-tools.json` / `translations.json` copies are gone; so are `fix-paths.mjs` (unused, pointed at a `./lang` folder that does not exist) and the root `CNAME` (Pages serves `docs/`, which has its own).
 - `log.js` wrapper; no `console.log` and no silent `catch {}` left in shipped code. `eslint plugin/src` reports 0 problems.
 - Shared helpers: `dom.js`, `textUtils.js` (`escapeHtml`, `countWords`, `cleanUntrustedHtml`), `dateUtils.js`, `sheet.js`.
@@ -19,7 +19,14 @@ Sections 1–7 below are the original audit, kept as written. What has changed s
 
 **Still open**
 - Module size (section 2): `feedManager.js` 2092 lines, `articleManager.js` 1757, `mainScreen.js` 1341, `settingsManager.js` 1230, `archiveGraph.js` 1054, `styles.css` 3698. The proposed splits still apply.
-- Inline styles (section 4): about 400 in JS and 84 in `popup.html`. History cards, the detail view and the graph legend/preview card are converted; `content/ui.js` (in-page UI, must not depend on page CSS), `podcastManager.js`, `settingsManager.js` and `uiManager.js` remain.
+- Inline styles (section 4): what remains is deliberate.
+  - `popup.html`: 28, all JS-toggled `display:none`.
+  - Data-driven values: bar heights and widths, word-cloud sizes, progress, menu and slider positions.
+  - Show/hide toggles: `.style.display` in JS.
+  - Standalone exports: `annotationExporter.js`, `digestBuilder.js`, the article export in `articleManager.js`.
+  - Bookmarklet code: runs on other sites.
+  - In-page UI in `content/ui.js` and `highlighter.js`: page CSS can't be relied on there.
+  - Fixed styling with hard-coded colours has moved to theme-aware classes: History, detail, graph, podcast wizard, Settings (devices, licence badge, LocalSend status, export panel), model lists, feed settings rows.
 - About 86 `innerHTML` assignments remain; new code should build DOM or use `escapeHtml` for anything that is not a literal.
 - Sections 5 and 6 (accessibility pass, lazy pdf.js, i18n check in CI) are unchanged.
 

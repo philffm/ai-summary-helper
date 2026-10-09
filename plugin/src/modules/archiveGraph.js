@@ -277,7 +277,7 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     return loadD3()
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
         .catch(() => {
-            container.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('D3 library failed to load.')}</div>`;
+            container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         });
 }
 
@@ -452,7 +452,7 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     if (typeof d3 === 'undefined') {
-        container.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('D3 library failed to load.')}</div>`;
+        container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         return;
     }
 

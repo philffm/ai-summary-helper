@@ -28,7 +28,7 @@
       <div id="mainScreen" class="screen">
       <div class="main-screen-layout">
         <!-- Onboarding / Empty State (shown when not authed & no API key & no articles) -->
-        <div id="mainScreenOnboarding" class="onboarding-container" style="display: none;">
+        <div id="mainScreenOnboarding" class="onboarding-container" style="display:none">
           <h2 id="onboardingTitle">Sign in to AI Summary Helper</h2>
           <p id="onboardingLead">Free cloud models and your summaries on every device. Or skip this and use your own API key.</p>
 
@@ -38,7 +38,7 @@
               <button type="button" id="onboardingSendCodeBtn" class="button-primary">Send me a code</button>
             </div>
 
-            <div id="onboardingOtpStep" style="display: none;">
+            <div id="onboardingOtpStep" style="display:none">
               <p class="input-caption">4 digits, sent to your email.</p>
               <div class="otp-boxes"><input type="text" id="onboardingOtpCode" class="otp-input" placeholder="Enter code" maxlength="4" inputmode="numeric" aria-label="Enter code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" data-i18n-placeholder="f_enter_code_6556"><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span></div>
               <button type="button" id="onboardingVerifyBtn" class="button-primary" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
@@ -110,16 +110,16 @@
                 <p class="mode-tip" data-i18n="f_inline_mode_is_great_for_sen_8641">Inline mode is great for "Send to Kindle".</p>
               </div>
               <div id="panelModel" class="chip-panel popup-panel" style="display:none">
-                <div class="model-panel-head"><label class="chip-panel-label" style="margin:0;" data-i18n="f_ai_model_1862">AI Model</label><button type="button" id="modelPanelClose" class="model-panel-close" aria-label="Close" data-i18n-aria="f_close_acc3">✕</button></div>
-                <div id="modelModeGrid" class="tag-grid model-mode" role="group" aria-label="Model source" style="margin-bottom:8px;" data-i18n-aria="f_model_source_5863"></div>
+                <div class="model-panel-head"><label class="chip-panel-label label-flush" data-i18n="f_ai_model_1862">AI Model</label><button type="button" id="modelPanelClose" class="model-panel-close" aria-label="Close" data-i18n-aria="f_close_acc3">✕</button></div>
+                <div id="modelModeGrid" class="tag-grid model-mode mb-8" role="group" aria-label="Model source" data-i18n-aria="f_model_source_5863"></div>
                 <p id="modelNote" class="model-note"></p>
                 <div id="providerLabel" class="model-sublabel" data-i18n="f_provider_88dc">Provider</div>
-                <div id="modelProviderGrid" class="tag-grid" style="margin-bottom:8px;"></div>
+                <div id="modelProviderGrid" class="tag-grid mb-8"></div>
                 <div id="modelIdLabel" class="model-sublabel">Model</div>
-                <div id="modelIdGrid" class="tag-grid" style="margin-bottom:8px;"></div>
-                <div style="display:flex;gap:6px;">
-                  <input type="text" id="customModelInput" class="chip-panel-search" placeholder="Add custom model ID…" style="margin-bottom:0;" />
-                  <button id="setCustomModelBtn" class="button-secondary" data-i18n-aria="f_add_custom_model_336a" aria-label="Add custom model" style="flex-shrink:0;font-size:11px;"><span data-i18n="f_add_59dd">+ Add</span></button>
+                <div id="modelIdGrid" class="tag-grid mb-8"></div>
+                <div class="model-custom-row">
+                  <input type="text" id="customModelInput" class="chip-panel-search model-custom-input" placeholder="Add custom model ID…" />
+                  <button id="setCustomModelBtn" class="button-secondary model-custom-add" data-i18n-aria="f_add_custom_model_336a" aria-label="Add custom model"><span data-i18n="f_add_59dd">+ Add</span></button>
                 </div>
                 <div class="model-foot">
                   <span id="modelStatus" class="model-status"><span class="model-dot" aria-hidden="true"></span><span id="modelStatusText"></span></span>
@@ -163,7 +163,7 @@
               <div class="split-btn">
               <button id="fetchSummary" class="button-primary fillAvailable">
               ✨ Summarize
-              <span id="spinner" class="spinner" style="display: none"></span>
+              <span id="spinner" class="spinner" style="display:none"></span>
             </button>
             <button id="saveMenuBtn" type="button" class="button-primary save-split" aria-haspopup="menu" aria-expanded="false" title="More ways to save" aria-label="More ways to save">
               <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -177,17 +177,17 @@
 
       <!-- HISTORY SCREEN -->
       <div id="historyScreen" class="screen has-topbar">
-        <div id="historyTopBar" class="topbar topbar--stack" style="display:flex;">
+        <div id="historyTopBar" class="topbar topbar--stack" style="display:flex">
         <div id="historyTopRow" class="topbar-row">
-          <div id="searchInputWrap" style="position:relative;flex:1;">
-            <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" style="margin-bottom:0;width:100%;" />
-            <div id="searchInputActions" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px;">
-              <button id="searchClearBtn" type="button" hidden title="Clear search" aria-label="Clear search" style="width:24px;height:24px;padding:0;border:none;background:transparent;color:var(--text-muted);cursor:pointer;font-size:14px;line-height:1;border-radius:6px;" data-i18n-title="f_clear_search_e946">✕</button>
+          <div class="search-wrap" id="searchInputWrap">
+            <input type="text" id="searchInput" placeholder="Search articles... (⌘ + F)" data-i18n-placeholder="searchArticles" />
+            <div class="search-actions" id="searchInputActions">
+              <button class="search-clear" id="searchClearBtn" type="button" hidden title="Clear search" aria-label="Clear search" data-i18n-title="f_clear_search_e946">✕</button>
               <!-- Only shown while the graph view is open (see articleManager.js) —
                    toggles whether the search box filters the graph's node set down
                    to matches ("View: Filtered") or keeps every node and just
                    highlights matches ("View: Highlighted"). -->
-              <button id="graphScopeInlineToggle" type="button" title="Filtering graph to matches only" aria-label="Switch graph search to highlight mode" style="display:none;padding:4px 9px;border:1px solid var(--outline);border-radius:999px;background:var(--glass-card);color:var(--text-secondary);cursor:pointer;font-size:10px;font-weight:600;white-space:nowrap;">View: Filtered</button>
+              <button class="graph-scope-toggle" id="graphScopeInlineToggle" type="button" title="Filtering graph to matches only" aria-label="Switch graph search to highlight mode" style="display:none">View: Filtered</button>
             </div>
           </div>
           <button id="selectModeBtn" class="button-secondary action-btn" type="button" aria-pressed="false" title="Select summaries to send"><span class="btn-icon" aria-hidden="true">☑️</span><span class="btn-label">Select</span></button>
@@ -195,8 +195,8 @@
           <button id="reportToggleBtn" class="button-secondary action-btn" type="button" title="View analytics report" aria-label="View analytics report" data-i18n-title="viewAnalytics"><span class="btn-icon" aria-hidden="true">📊</span><span class="btn-label" data-i18n="historyReport">Analytics</span></button>
         </div>
         </div>
-        <div id="detailTopBar" class="topbar topbar--row" style="display:none;">
-          <button id="detailBackButton" class="button-secondary" style="flex:1;height:44px;justify-content:flex-start;" data-i18n="f_back_to_history_9fd8">⬅ Back to History</button>
+        <div id="detailTopBar" class="topbar topbar--row" style="display:none">
+          <button id="detailBackButton" class="button-secondary detail-back" data-i18n="f_back_to_history_9fd8">⬅ Back to History</button>
           <button id="detailStarBtn" class="button-secondary action-btn detail-star" type="button" title="Favorite" aria-label="Favorite" aria-pressed="false"><span class="btn-icon" aria-hidden="true">☆</span></button>
           <button id="detailListenBtn" class="button-secondary action-btn" type="button" title="Read aloud" aria-label="Read aloud" hidden><span class="btn-icon" aria-hidden="true">🔊</span></button>
           <button id="detailMoreBtn" class="button-secondary action-btn" type="button" title="More" aria-label="More" aria-haspopup="menu" aria-expanded="false" data-i18n-title="f_more_d900"><span class="btn-icon" aria-hidden="true">⋯</span></button>
@@ -207,12 +207,12 @@
           </div>
         </div>
         <ul id="articleList"></ul>
-        <div id="graphContainer" style="display:none;"></div>
-        <div id="reportContainer" style="display:none;"></div>
-        <div id="articleDetail" style="display:none;">
+        <div id="graphContainer" style="display:none"></div>
+        <div id="reportContainer" style="display:none"></div>
+        <div id="articleDetail" style="display:none">
           <div id="articleDetailContent"></div>
         </div>
-        <div id="podcastScreen" style="display: none"></div>
+        <div id="podcastScreen" style="display:none"></div>
       </div>
 
       <!-- SETTINGS SCREEN -->
@@ -297,14 +297,14 @@
                             <button type="button" id="otpRequestBtn" class="button-primary">Send me a code</button>
                         </div>
 
-                        <div id="otpCodeStage" style="display: none;">
+                        <div id="otpCodeStage" style="display:none">
                           <p class="input-caption">4 digits, sent to your email.</p>
                           <div class="otp-boxes"><input type="text" id="otpCode" class="otp-input" placeholder="Enter code" maxlength="4" inputmode="numeric" aria-label="Enter code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" data-i18n-placeholder="f_enter_code_6556"><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span><span class="otp-box"></span></div>
                             <button type="button" id="otpVerifyBtn" class="button-primary" data-i18n="f_verify_log_in_6f6f">Verify & Log In</button>
                             <button type="button" class="btn-link auth-back" id="otpBackBtn" data-i18n="f_wrong_email_go_back_ba6a">Wrong email? Go back</button>
                         </div>
 
-                        <div id="loggedInStage" style="display: none;">
+                        <div id="loggedInStage" style="display:none">
                             <div class="account-id">
                                 <span class="account-avatar" id="accountAvatar" aria-hidden="true"></span>
                                 <div class="account-who">
@@ -325,7 +325,7 @@
                         </div>
                         <div class="input-with-button">
                             <input type="password" id="licenseKey" placeholder="aish_live_...">
-                            <button type="button" id="verifyLicenseButton" class="button-secondary" style="width: auto; padding: 0 16px;" data-i18n="f_activate_0190">Activate</button>
+                            <button type="button" id="verifyLicenseButton" class="button-secondary btn-inline" data-i18n="f_activate_0190">Activate</button>
                         </div>
                         <p class="input-caption"><span data-i18n="f_don_t_have_a_key_a26a">Don't have a key?</span> <a href="https://apps.byphil.eu/" target="_blank"><span data-i18n="f_upgrade_to_pro_pass_b708">Upgrade to Pro Pass</span></a> <span data-i18n="f_for_unlimited_zero_config_su_82c0">for unlimited, zero-config summaries.</span></p>
                     </div>
@@ -336,7 +336,7 @@
     <h2><span data-i18n="settingsModels">Models &amp; API</span></h2>
   </div>
                 <p data-i18n="modelDesc">Choose the LLM model to generate your summaries.</p>
-                <div class="setting-group" style="margin-bottom: var(--spacing-s-4);">
+                <div class="setting-group mb-4">
                     <label class="type-badge" data-i18n="f_connection_path_790c">Connection Path</label>
                     <div class="segmented-control">
                         <input type="radio" id="modeCloud" name="connectionMode" value="cloud">
@@ -346,7 +346,7 @@
                         <label for="modeLocal" data-i18n="f_bring_your_own_key_9713">💻 Bring your own key</label>
                     </div>
                 </div>
-                <div id="cloudModeContainer" class="flex column gap-3" style="display: none;">
+                <div id="cloudModeContainer" class="flex column gap-3" style="display:none">
                     <div class="setting-group">
                         <label for="cloudModelSelect" data-i18n="f_preferred_cloud_model_5f82">Preferred Cloud Model</label>
                         <select id="cloudModelSelect">
@@ -354,8 +354,8 @@
                         </select>
                     </div>
                 </div>
-                <div id="developerModeContainer" class="flex column gap-3" style="display: none;">
-                  <label for="model"><span data-i18n="f_provider_88dc">Provider</span> <span id="apiKeyLink" style="font-weight: normal"></span></label>
+                <div id="developerModeContainer" class="flex column gap-3" style="display:none">
+                  <label for="model"><span data-i18n="f_provider_88dc">Provider</span> <span class="fw-normal" id="apiKeyLink"></span></label>
                   <select id="model"></select>
                   <div id="modelIdentifierContainer">
                     <label id="modelIdentifierLabel" for="modelIdentifier">Model Identifier: (default)</label>
@@ -366,11 +366,11 @@
                     <input type="password" id="apiKey" name="apiKey" placeholder="sk-..." />
                     <label class="light" data-i18n="f_stored_locally_in_your_brows_3133">🔒 Stored locally in your browser.</label>
                   </div>
-                  <div id="customEndpointContainer" style="display: none">
+                  <div id="customEndpointContainer" style="display:none">
                     <label for="customEndpoint" data-i18n="f_endpoint_url_d4b5">Endpoint URL:</label>
                     <input type="text" id="customEndpoint" placeholder="http://localhost:11434/api/chat" />
                   </div>
-                  <div id="ollamaTutorialContainer" class="ollama-tutorial" style="display: none;"></div>
+                  <div id="ollamaTutorialContainer" class="ollama-tutorial" style="display:none"></div>
                 </div>
 </section>
 <section class="settings-panel" id="settingsPanel-prompts" data-panel="prompts" hidden>
@@ -400,21 +400,21 @@
     <h2><span data-i18n="settingsReading">Reading &amp; Highlighting</span></h2>
   </div>
                 <div class="setting-group flex justify-between align-center mb-3">
-                  <div style="flex:1;min-width:0;">
-                    <label for="highlightingToggle" style="display:block;margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_page_highlighting_6dce">✏️ Page Highlighting</label>
-                    <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;" data-i18n="f_manual_yellow_highlights_48aa">Manual yellow highlights</p>
+                  <div class="setting-text">
+                    <label class="setting-label" for="highlightingToggle" data-i18n="f_page_highlighting_6dce">✏️ Page Highlighting</label>
+                    <p class="setting-desc" data-i18n="f_manual_yellow_highlights_48aa">Manual yellow highlights</p>
                   </div>
-                  <label class="switch" style="flex-shrink:0;margin-left:12px;">
+                  <label class="switch setting-switch">
                     <input type="checkbox" id="highlightingToggle" />
                     <span class="slider-toggle"></span>
                   </label>
                 </div>
                 <div class="setting-group flex justify-between align-center mb-3">
-                  <div style="flex:1;min-width:0;">
-                    <label for="aiHighlightingToggle" style="display:block;margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_ai_ghost_highlighting_6c00">✨ AI Ghost Highlighting</label>
-                    <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;" data-i18n="f_automatic_light_blue_quote_h_419c">Automatic light-blue quote highlights from summaries</p>
+                  <div class="setting-text">
+                    <label class="setting-label" for="aiHighlightingToggle" data-i18n="f_ai_ghost_highlighting_6c00">✨ AI Ghost Highlighting</label>
+                    <p class="setting-desc" data-i18n="f_automatic_light_blue_quote_h_419c">Automatic light-blue quote highlights from summaries</p>
                   </div>
-                  <label class="switch" style="flex-shrink:0;margin-left:12px;">
+                  <label class="switch setting-switch">
                     <input type="checkbox" id="aiHighlightingToggle" />
                     <span class="slider-toggle"></span>
                   </label>
@@ -430,7 +430,7 @@
                 <div class="setting-group mb-3">
                   <label for="highlightExcludedSites" data-i18n="f_hide_the_highlights_panel_on_21d1">Hide the highlights panel on these sites</label>
                   <textarea id="highlightExcludedSites" rows="3" spellcheck="false" placeholder="one site per line, e.g. linkedin.com" data-i18n-placeholder="f_one_site_per_line_e_g_linked_ac34"></textarea>
-                  <p class="hint" style="margin:4px 0 0;font-size:11.5px;opacity:.75;" data-i18n="f_feeds_and_inboxes_linkedin_f_aa24">Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically.</p>
+                  <p class="hint hint-sub" data-i18n="f_feeds_and_inboxes_linkedin_f_aa24">Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically.</p>
                 </div>
 </section>
 <section class="settings-panel" id="settingsPanel-send" data-panel="send" hidden>
@@ -439,16 +439,16 @@
     <h2><span data-i18n="settingsSend">Send &amp; Share</span></h2>
   </div>
                 <div class="setting-group mb-3" >
-                  <h4 style="margin:0 0 6px;font-size:13px;" data-i18n="f_koreader_localsend_a1c0">📱 KOReader / LocalSend</h4>
-                  <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.4;" data-i18n="f_choose_one_delivery_method_f_1ac4">
+                  <h4 class="setting-subhead" data-i18n="f_koreader_localsend_a1c0">📱 KOReader / LocalSend</h4>
+                  <p class="setting-note" data-i18n="f_choose_one_delivery_method_f_1ac4">
                     Choose one delivery method for article detail actions.
                   </p>
-                  <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.4;">
+                  <p class="setting-note">
                     <span data-i18n="f_koreader_plugin_566b">KOReader plugin:</span> <a href="https://github.com/kaikozlov/localsend.koplugin" target="_blank" rel="noopener noreferrer">kaikozlov/localsend.koplugin</a><br />
                     <span data-i18n="f_for_koreader_prefer_60bb">For KOReader, prefer</span> <strong>HTTP</strong> (<code>http://IP</code>) <span data-i18n="f_instead_of_https_which_can_b_69d5">instead of HTTPS, which can be buggy.</span>
                   </p>
-                  <div class="setting-group flex justify-between align-center" style="margin-bottom:8px;">
-                    <label for="deliveryPreference" style="margin:0;" data-i18n="f_delivery_method_6dc6">Delivery Method</label>
+                  <div class="setting-group flex justify-between align-center mb-8">
+                    <label class="label-flush" for="deliveryPreference" data-i18n="f_delivery_method_6dc6">Delivery Method</label>
                     <select id="deliveryPreference">
                       <option value="kindle">Kindle</option>
                       <option value="localsend">LocalSend</option>
@@ -458,41 +458,41 @@
                   <!-- Multiple devices can be configured per delivery method; the
                        ★ button on a row marks it the active send target (see
                        settingsManager.js / StorageManager.getActiveDevice). -->
-                  <div id="kindleDeliveryConfig" style="margin-top:6px;">
-                    <div id="kindleDeviceList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;"></div>
-                    <div style="display:flex;gap:8px;align-items:center;">
-                      <input type="text" id="newKindleLabel" placeholder="Label"
-                        style="width:80px;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" / data-i18n-placeholder="f_label_f29d">
-                      <input type="email" id="newKindleEmail" placeholder="yourname@kindle.com"
-                        style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" />
-                      <button type="button" id="addKindleDeviceButton" class="button-secondary" style="white-space:nowrap;" aria-label="Add Kindle device" data-i18n-aria="f_add_kindle_device_dc01"><span data-i18n="f_add_aa14">Add</span></button>
+                  <div class="delivery-config" id="kindleDeliveryConfig">
+                    <div class="device-list" id="kindleDeviceList"></div>
+                    <div class="device-add-row">
+                      <input class="device-input device-input--label" type="text" id="newKindleLabel" placeholder="Label"
+                        / data-i18n-placeholder="f_label_f29d">
+                      <input class="device-input" type="email" id="newKindleEmail" placeholder="yourname@kindle.com"
+                        />
+                      <button type="button" id="addKindleDeviceButton" class="button-secondary nowrap" aria-label="Add Kindle device" data-i18n-aria="f_add_kindle_device_dc01"><span data-i18n="f_add_aa14">Add</span></button>
                     </div>
-                    <div style="font-size:11px;margin-top:6px;color:var(--text-muted);"><span data-i18n="f_used_for_send_to_kindle_deli_25f4">Used for Send to Kindle delivery. Add</span> <strong>kindle@byphil.eu</strong> <span data-i18n="f_to_your_kindle_s_approved_se_5305">to your Kindle's approved senders first —</span> <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener"><span data-i18n="f_amazon_s_guide_135b">Amazon's guide</span></a>.</div>
+                    <div class="device-help"><span data-i18n="f_used_for_send_to_kindle_deli_25f4">Used for Send to Kindle delivery. Add</span> <strong>kindle@byphil.eu</strong> <span data-i18n="f_to_your_kindle_s_approved_se_5305">to your Kindle's approved senders first —</span> <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener"><span data-i18n="f_amazon_s_guide_135b">Amazon's guide</span></a>.</div>
                   </div>
 
-                  <div id="localSendDeliveryConfig" style="margin-top:6px;">
-                    <div id="localSendDeviceList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;"></div>
-                    <div style="display:flex;gap:8px;align-items:center;">
-                      <input type="text" id="newLocalSendLabel" placeholder="Label"
-                        style="width:80px;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" / data-i18n-placeholder="f_label_f29d">
-                      <input type="text" id="newLocalSendIp" placeholder="e.g. 192.168.1.142"
-                        style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--outline);background:var(--glass-input);color:inherit;" / data-i18n-placeholder="f_e_g_192_168_1_142_a9e2">
-                      <button type="button" id="scanLocalSendButton" class="button-secondary" style="white-space:nowrap;" data-i18n="f_auto_detect_0006">Auto-Detect</button>
-                      <button type="button" id="addLocalSendDeviceButton" class="button-secondary" style="white-space:nowrap;" aria-label="Add LocalSend device" data-i18n-aria="f_add_localsend_device_6e29"><span data-i18n="f_add_aa14">Add</span></button>
+                  <div class="delivery-config" id="localSendDeliveryConfig">
+                    <div class="device-list" id="localSendDeviceList"></div>
+                    <div class="device-add-row">
+                      <input class="device-input device-input--label" type="text" id="newLocalSendLabel" placeholder="Label"
+                        / data-i18n-placeholder="f_label_f29d">
+                      <input class="device-input" type="text" id="newLocalSendIp" placeholder="e.g. 192.168.1.142"
+                        / data-i18n-placeholder="f_e_g_192_168_1_142_a9e2">
+                      <button type="button" id="scanLocalSendButton" class="button-secondary nowrap" data-i18n="f_auto_detect_0006">Auto-Detect</button>
+                      <button type="button" id="addLocalSendDeviceButton" class="button-secondary nowrap" aria-label="Add LocalSend device" data-i18n-aria="f_add_localsend_device_6e29"><span data-i18n="f_add_aa14">Add</span></button>
                     </div>
-                    <div id="localSendStatus" style="font-size:11px;margin-top:6px;min-height:14px;color:var(--text-muted);"></div>
+                    <div class="device-status" id="localSendStatus"></div>
                   </div>
                 </div>
-                <div class="setting-group mb-3" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--outline);">
-                  <h4 style="margin:0 0 6px;font-size:13px;" data-i18n="f_bookmarklet_generator_23fa">🔖 Bookmarklet Generator</h4>
-                  <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.4;" data-i18n="f_generate_a_bookmarklet_that__081e">
+                <div class="setting-group mb-3 setting-divided">
+                  <h4 class="setting-subhead" data-i18n="f_bookmarklet_generator_23fa">🔖 Bookmarklet Generator</h4>
+                  <p class="setting-note" data-i18n="f_generate_a_bookmarklet_that__081e">
                     Generate a bookmarklet that summarizes any page in any browser — including iOS/Android where the extension can't run. It uses your byphil Cloud login.
                   </p>
-                  <button type="button" id="generateBookmarkletBtn" class="button-secondary" style="width:100%;" data-i18n="f_generate_bookmarklet_280f">🪄 Generate Bookmarklet</button>
-                  <div id="bookmarkletResultContainer" style="display:none;margin-top:10px;">
-                    <p style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:0 0 6px;"><span data-i18n="f_drag_this_link_to_your_bookm_d09a">Drag this link to your bookmarks bar 🔖</span> <span style="font-weight:400;" data-i18n="f_on_ios_hold_to_drag_for_2_se_7fba">(on iOS, hold to drag for 2 seconds)</span></p>
-                    <a id="bookmarkletDragLink" href="#" draggable="true" style="display:inline-block;padding:8px 12px;background:var(--accent,#7c5cff);color:#fff;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;">✨ AI Summary</a>
-                    <p style="font-size:11px;color:var(--danger,#e74c3c);margin:8px 0 0;line-height:1.4;" data-i18n="f_keep_this_private_this_bookm_3463">🔒 Keep this private: This bookmarklet contains your personal cloud token. Do not share it with others. If your token expires, simply come back here to generate a new one.</p>
+                  <button type="button" id="generateBookmarkletBtn" class="button-secondary w-full" data-i18n="f_generate_bookmarklet_280f">🪄 Generate Bookmarklet</button>
+                  <div class="bookmarklet-result" id="bookmarkletResultContainer" style="display:none">
+                    <p class="bookmarklet-drag-hint"><span data-i18n="f_drag_this_link_to_your_bookm_d09a">Drag this link to your bookmarks bar 🔖</span> <span class="fw-normal" data-i18n="f_on_ios_hold_to_drag_for_2_se_7fba">(on iOS, hold to drag for 2 seconds)</span></p>
+                    <a class="bookmarklet-link" id="bookmarkletDragLink" href="#" draggable="true">✨ AI Summary</a>
+                    <p class="bookmarklet-warning" data-i18n="f_keep_this_private_this_bookm_3463">🔒 Keep this private: This bookmarklet contains your personal cloud token. Do not share it with others. If your token expires, simply come back here to generate a new one.</p>
                   </div>
                 </div>
 </section>
@@ -544,8 +544,8 @@
                   <summary data-i18n="f_customize_text_size_spacing__1b1e">Customize text size, spacing, font, motion</summary>
                   <div class="a11y-block">
                     <h3 data-i18n="f_text_2d5e">Text</h3>
-                    <label for="textScaleRange" style="margin:0;"><span data-i18n="f_text_size_1143">Text size</span> · <span id="textScaleValue">100%</span></label>
-                    <div class="a11y-slider"><span aria-hidden="true" style="font-size:11px;">A</span><input type="range" id="textScaleRange" min="85" max="150" step="5" value="100" /><span aria-hidden="true" style="font-size:18px;">A</span></div>
+                    <label class="label-flush" for="textScaleRange"><span data-i18n="f_text_size_1143">Text size</span> · <span id="textScaleValue">100%</span></label>
+                    <div class="a11y-slider"><span class="a11y-a-small" aria-hidden="true">A</span><input type="range" id="textScaleRange" min="85" max="150" step="5" value="100" /><span class="a11y-a-large" aria-hidden="true">A</span></div>
                     <span class="a11y-label" id="lineLabel" data-i18n="f_line_spacing_d3de">Line spacing</span>
                     <div class="a11y-seg" id="lineSeg" role="radiogroup" aria-labelledby="lineLabel">
                       <button type="button" role="radio" data-value="compact" data-i18n="f_compact_ad86">Compact</button>
@@ -553,7 +553,7 @@
                       <button type="button" role="radio" data-value="relaxed" data-i18n="f_relaxed_38bc">Relaxed</button>
                     </div>
                     <div class="setting-group flex justify-between align-center">
-                      <label for="readableFontToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_easy_read_font_b69f">Easy-read font</label>
+                      <label class="setting-label-inline" for="readableFontToggle" data-i18n="f_easy_read_font_b69f">Easy-read font</label>
                       <label class="switch"><input type="checkbox" id="readableFontToggle" /><span class="slider-toggle"></span></label>
                     </div>
                     <p class="a11y-hint" data-i18n="f_atkinson_hyperlegible_design_954e">Atkinson Hyperlegible, designed for low vision. Latin scripts only.</p>
@@ -562,7 +562,7 @@
                   <div class="a11y-block">
                     <h3 data-i18n="f_motion_layout_e4f1">Motion & layout</h3>
                     <div class="setting-group flex justify-between align-center">
-                      <label for="reduceMotionToggle" style="margin:0;font-weight:normal;cursor:pointer;" data-i18n="f_reduce_motion_ecc7">Reduce motion</label>
+                      <label class="setting-label-inline" for="reduceMotionToggle" data-i18n="f_reduce_motion_ecc7">Reduce motion</label>
                       <label class="switch"><input type="checkbox" id="reduceMotionToggle" /><span class="slider-toggle"></span></label>
                     </div>
                     <p class="a11y-hint" id="motionHint"></p>
@@ -570,7 +570,7 @@
                 </details>
                 <div class="a11y-block">
                   <div class="setting-group flex justify-between align-center">
-                    <label for="nativeSidePanelToggle" style="margin: 0; font-weight: normal; cursor: pointer;" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
+                    <label class="setting-label-inline" for="nativeSidePanelToggle" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
                     <label class="switch">
                       <input type="checkbox" id="nativeSidePanelToggle" />
                       <span class="slider-toggle"></span>
@@ -588,7 +588,7 @@
     <div class="settings-btn-row">
       <button type="button" id="exportSettingsButton" class="button-secondary btn-sm" data-i18n="f_export_6eba">📤 Export</button>
       <button type="button" id="importSettingsButton" class="button-secondary btn-sm" data-i18n="f_import_d884">📥 Import</button>
-      <input type="file" id="importSettingsFile" accept=".json" style="display: none;" />
+      <input type="file" id="importSettingsFile" accept=".json" style="display:none" />
     </div>
   </div>
   <div class="settings-card local-intelligence">
@@ -597,7 +597,7 @@
       <div class="settings-action-text"><strong data-i18n="f_clean_up_merge_tags_096e">Clean up & merge tags</strong><span data-i18n="f_merges_near_duplicate_tags_s_343f">Merges near-duplicate tags such as “ML” and “Machine Learning” across your archive.</span></div>
       <button type="button" id="cleanupTagsButton" class="button-secondary btn-sm" data-i18n="f_clean_up_4346">🧹 Clean up</button>
     </div>
-    <p id="cleanupTagsResult" class="settings-card-note" style="display:none;"></p>
+    <p id="cleanupTagsResult" class="settings-card-note" style="display:none"></p>
   </div>
   <div class="settings-card settings-card--danger danger-zone">
     <div class="settings-card-head"><h3 data-i18n="f_danger_zone_01e3">⚠️ Danger zone</h3></div>
@@ -668,7 +668,7 @@
         <ul id="feedItemList" class="feed-list"></ul>
         <div id="feedGraph" class="feed-graph" hidden></div>
         <div id="feedInsights" class="feed-insights" hidden></div>
-        <div id="feedEmpty" class="explanatory-card" style="display:none;"></div>
+        <div id="feedEmpty" class="explanatory-card" style="display:none"></div>
         <input type="file" id="feedOpmlInput" accept=".opml,.xml,text/xml,application/xml" hidden />
       </div>
     </div>
@@ -676,7 +676,7 @@
     <!-- Floating Save Button — lives OUTSIDE the .screen-container so
          position:fixed isn't broken by the screens' transform/backdrop-filter.
          Visibility is toggled by uiManager when the settings screen is active. -->
-    <button type="submit" form="settingsForm" class="button-primary settings-save-fab" id="settingsSaveFab" data-i18n="save" style="display:none;">Save 💾</button>
+    <button type="submit" form="settingsForm" class="button-primary settings-save-fab" id="settingsSaveFab" data-i18n="save" style="display:none">Save 💾</button>
 
     <!-- Feeds: bottom sheet (source picker, filters, add, briefing) + undo bar.
          Outside .screen-container for the same reason as the FAB above. -->

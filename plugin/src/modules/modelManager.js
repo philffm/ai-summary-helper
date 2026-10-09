@@ -25,18 +25,17 @@ import StorageManager from './storageManager.js';
                 allModels.push({ id: defaultModel, provider: serviceId });
             }
             modelIdentifierContainer.innerHTML = `
-                <label style="display:block;margin-bottom:6px;">${T('Model Identifiers')}</label>
-                <div id="modelTagList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">
+                <label class="model-ids-label">${T('Model Identifiers')}</label>
+                <div id="modelTagList" class="model-id-list">
                   ${allModels.map(m => {
                     const isDefault = m.id === defaultModel && !modelIds.includes(m.id);
-                    const safeId = m.id.replace(/"/g, '&quot;');
-                    return `<span class="model-id-tag" data-model="${safeId}" data-provider="${m.provider}">${m.id}${isDefault ? ` ${T('(default)')}` : ''} ${!isDefault ? '<span class="remove-model-tag" style="cursor:pointer;opacity:0.6;">✕</span>' : ''}</span>`;
+                    return `<span class="model-id-tag" data-model="${esc(m.id)}" data-provider="${esc(m.provider)}">${esc(m.id)}${isDefault ? ` ${T('(default)')}` : ''} ${!isDefault ? '<span class="remove-model-tag">✕</span>' : ''}</span>`;
                   }).join('')}
                 </div>
                 </div>
-                <div style="display:flex;gap:6px;">
-                  <input type="text" id="addModelInput" placeholder="${esc(T('e.g. gpt-5-mini'))}" style="flex:1;padding:8px 10px;" />
-                  <button id="addModelBtn" class="button-secondary" style="flex-shrink:0;">${T('+ Add')}</button>
+                <div class="model-add-row">
+                  <input type="text" id="addModelInput" placeholder="${esc(T('e.g. gpt-5-mini'))}" />
+                  <button id="addModelBtn" class="button-secondary">${T('+ Add')}</button>
                 </div>
             `;
 

@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (filter && languageTagGrid.children.length === 0) {
                 const customBtn = document.createElement('button');
                 customBtn.className = 'pill pill--sm pill--soft';
-                customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${escapeHtml(filter)}"`;
+                customBtn.innerHTML = `<span class="lang-custom-ic">✏️</span> "${escapeHtml(filter)}"`;
                 customBtn.title = T('Use "{name}" as custom language code', { name: filter });
                 customBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -429,8 +429,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                             btn.className = 'pill pill--sm pill--soft';
                             const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
                             btn.innerHTML = modelId === activeCloudModel
-                                ? `${shortName} <span aria-hidden="true">✓</span>`
-                                : `${shortName} <span class="remove-recent" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>`;
+                                ? `${escapeHtml(shortName)} <span aria-hidden="true">✓</span>`
+                                : `${escapeHtml(shortName)} <span class="remove-recent">✕</span>`;
                             if (modelId === activeCloudModel) btn.classList.add('active');
                             
                             btn.addEventListener('click', async (e) => {
@@ -451,7 +451,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         return;
                     }
 
-                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">🔍 ' + T('Searching Cloud...') + '</span>';
+                    modelIdGrid.innerHTML = '<span class="model-grid-note">🔍 ' + T('Searching Cloud...') + '</span>';
                     try {
                         const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`);
                         const data = await response.json();
@@ -462,7 +462,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             );
                             
                             if (searchResults.length === 0) {
-                                modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">' + T('No matches found') + '</span>';
+                                modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No matches found') + '</span>';
                                 return;
                             }
 
@@ -488,7 +488,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             });
                         }
                     } catch (err) {
-                        modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--danger);padding:4px 0;">' + T('Failed to load models') + '</span>';
+                        modelIdGrid.innerHTML = '<span class="model-grid-note is-error">' + T('Failed to load models') + '</span>';
                     }
                     return;
                 }
@@ -540,7 +540,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Model ID tags for selected provider
                 modelIdGrid.innerHTML = '';
                 if (deduped.length === 0) {
-                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">' + T('No models configured') + '</span>';
+                    modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No models configured') + '</span>';
                     return;
                 }
                 deduped.forEach((modelObj) => {
@@ -548,7 +548,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const btn = document.createElement('button');
                     btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
-                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
+                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
                     btn.addEventListener('click', (e) => {
