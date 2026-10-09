@@ -43,34 +43,8 @@ cp -f compatible-tools.json src/
 VERSION=$(jq -r '.version' ../current_version.json)
 NEW_VERSION=$(echo "$VERSION" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
 
-# Portable in-place sed helper for macOS (BSD sed) and Linux (GNU sed)
-inplace_sed() {
-  local expr="$1"
-  local file="$2"
-  if [[ "$(uname)" == "Darwin" ]]; then
-    sed -i '' "$expr" "$file"
-  else
-    sed -i "$expr" "$file"
-  fi
-}
-
-# Update Chrome manifest — always set the version from current_version.json,
-# regardless of whatever value the manifest currently holds. Using a wildcard
-# pattern (instead of matching the old $VERSION exactly) guarantees the bump
-# applies even if a manifest was previously edited out of sync.
-inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/chrome/manifest.json
-# Update Android manifest
-inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/android/manifest.json
-# Update Firefox manifest
-inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/firefox/manifest.json
-# Update iOS manifest
-inplace_sed "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" platforms/ios/manifest.json
-
-# Update current_version.json
-jq ".version = \"$NEW_VERSION\"" ../current_version.json > ../current_version.json.tmp && mv ../current_version.json.tmp ../current_version.json
-
-# inject version into popup.html
-inplace_sed "s|<span id=\"versionNumber\">[^<]*</span>|<span id=\"versionNumber\">$NEW_VERSION</span>|" src/popup.html
+# Stamp it into the platform manifests, current_version.json and popup.html.
+"$SCRIPT_DIR/scripts/set-version.sh" "$NEW_VERSION"
 
 
 # ==========================================
