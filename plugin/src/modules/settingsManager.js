@@ -181,7 +181,8 @@ async function renderOllamaTutorial(serviceId, endpoint, onPickModel) {
                 const b = document.createElement('button');
                 b.type = 'button';
                 b.className = 'model-id-tag';
-                b.textContent = name;
+                // Long names (e.g. llamacpp:<sha256>) keep their start and end so they stay recognisable.
+                b.textContent = name.length > 28 ? `${name.slice(0, 18)}…${name.slice(-8)}` : name;
                 b.title = name;
                 b.addEventListener('click', () => onPickModel && onPickModel(name));
                 list.appendChild(b);
