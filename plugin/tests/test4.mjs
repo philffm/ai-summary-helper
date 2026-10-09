@@ -1,4 +1,4 @@
-// Feeds: reopening uses the cache, new items show a stale hint, scoring with AI from the recap sheet.
+// Feeds: reopening uses the cache, new items show a stale hint, scoring with AI from the recap sheet. // @realtime
 import { setup, imp, tick } from './harness.mjs';
 import assert from 'assert';
 const now = Date.now();
