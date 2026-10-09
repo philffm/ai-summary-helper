@@ -1,15 +1,10 @@
 // feedUtil.js — stateless helpers for the Feeds feature (moved out of feedManager.js).
 import { T, locale } from './feedI18n.js';
+export { hash } from './feedHash.js';
 
 export function subTitle(s) { return (s && (s.customTitle || s.title || s.url)) || ''; }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
-export function hash(str) {
-    let h = 5381;
-    for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
-    return (h >>> 0).toString(36);
-}
-
 export function safeHttpUrl(value, base) {
     try {
         const u = new URL(value, base);

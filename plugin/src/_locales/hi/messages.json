@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ {label} का रिकैप तैयार है"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "ब्राउज़र चालू रहने पर Ollama नए आइटम को बैकग्राउंड में लाता और प्रोसेस करता है। क्लाउड और BYOK मॉडल मैन्युअल ही रहेंगे।"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "पिछला बैकग्राउंड रन: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "अभी तक कोई बैकग्राउंड रन नहीं हुआ।"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} आइटम रेट किए · {b} दिन के रिकैप लिखे"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Ollama सेट होने पर उपलब्ध। यह आपकी पूरी फ़ीड लाइब्रेरी को आपके अपने कंप्यूटर पर छोटे बैच में रेट, वर्गीकृत और रीकैप करता है। इसमें घंटों लग सकते हैं, पर कोई टोकन खर्च नहीं होता।"
   },

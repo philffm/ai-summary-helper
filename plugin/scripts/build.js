@@ -149,6 +149,50 @@ ${body}
 `;
 }
 
+function bundleModuleGraph(entryPath, globalName) {
+    const modules = new Map();
+    const idOf = (file) => path.relative(SRC, file).replace(/\\/g, '/');
+    function resolve(absPath) {
+        const id = idOf(absPath);
+        if (modules.has(id)) return;
+        let src = fs.readFileSync(absPath, 'utf8');
+        const deps = [];
+        const importRe = /^import\s+\{([\s\S]*?)\}\s+from\s+['"]([^'"]+)['"]\s*;?\s*$/gm;
+        let match;
+        while ((match = importRe.exec(src))) {
+            const names = match[1].split(',').map((s) => s.trim()).filter(Boolean).map((s) => {
+                const [imported, local] = s.split(/\s+as\s+/);
+                return `${imported}${local ? `: ${local}` : ''}`;
+            }).join(', ');
+            const dep = path.resolve(path.dirname(absPath), match[2]);
+            resolve(dep);
+            deps.push({ start: match.index, end: importRe.lastIndex, code: `const { ${names} } = __require(${JSON.stringify(idOf(dep))});` });
+        }
+        for (const dep of deps.reverse()) src = src.slice(0, dep.start) + dep.code + src.slice(dep.end);
+        const exports = [...src.matchAll(/^export\s+(?:async\s+)?(?:function|const|let|class)\s+(\w+)/gm)].map((m) => m[1]);
+        src = src.replace(/^export\s+/gm, '');
+        modules.set(id, { src, exports });
+    }
+    resolve(entryPath);
+    const factories = [...modules].map(([id, module]) =>
+        `${JSON.stringify(id)}: (__require) => { ${module.src}\nreturn { ${module.exports.join(', ')} }; }`
+    ).join(',\n');
+    const entryId = idOf(entryPath);
+    return `// AI Summary Helper — bundled background modules
+(function () {
+    const __factories = { ${factories} };
+    const __cache = {};
+    function __require(id) {
+        if (__cache[id]) return __cache[id];
+        const out = __cache[id] = {};
+        Object.assign(out, __factories[id](__require));
+        return out;
+    }
+    self.${globalName} = __require(${JSON.stringify(entryId)}).API;
+})();
+`;
+}
+
 /** finalize.js: the "after the model finished" logic as a classic script, so the background worker can finish a run whose page went away. */
 function writeFinalize(outDir, name) {
     const entry = path.join(SRC, 'content', 'finalize.js');
@@ -156,6 +200,14 @@ function writeFinalize(outDir, name) {
     const code = bundleContentScript(entry, { expose: { global: 'AISH_FINALIZE', names: ['createStreamParser', 'finishDetached'] } });
     fs.writeFileSync(path.join(outDir, 'finalize.js'), code);
     console.log(`  ✓ ${name || 'bundle'}: bundled finalize.js (${code.length} bytes)`);
+}
+
+function writeFeedWorker(outDir, name) {
+    const entry = path.join(SRC, 'modules', 'feedBackgroundBundle.js');
+    if (!fs.existsSync(entry)) return;
+    const code = bundleModuleGraph(entry, 'AISH_FEED_WORKER');
+    fs.writeFileSync(path.join(outDir, 'feed-worker.js'), code);
+    console.log(`  ✓ ${name || 'bundle'}: bundled feed-worker.js (${code.length} bytes)`);
 }
 
 /**
@@ -176,6 +228,7 @@ function buildPlatform(name, manifestPath) {
     }
 
     writeFinalize(outDir, name);
+    writeFeedWorker(outDir, name);
 
     if (manifestPath && fs.existsSync(manifestPath)) {
         fs.copyFileSync(manifestPath, path.join(outDir, 'manifest.json'));
@@ -213,6 +266,7 @@ function main() {
             fs.writeFileSync(path.join(targetDir, 'content.js'), bundled);
             console.log(`  ✓ bundled content.js (${bundled.length} bytes)`);
             writeFinalize(targetDir);
+            writeFeedWorker(targetDir);
         } catch (err) {
             console.error(`✗ ${err.message}`);
             process.exit(1);

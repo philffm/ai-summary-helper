@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ Le récap de {label} est prêt"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Récupère et traite les nouveaux éléments en arrière-plan avec Ollama tant que le navigateur est ouvert. Les modèles cloud et BYOK restent manuels."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Dernière exécution en arrière-plan : {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Aucune exécution en arrière-plan pour le moment."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} éléments évalués · {b} récapitulatifs quotidiens rédigés"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Disponible lorsque Ollama est configuré. Il évalue, catégorise et résume toute votre bibliothèque de flux par petits lots sur votre propre machine. Cela peut prendre des heures, mais ne dépense aucun jeton."
   },

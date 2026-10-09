@@ -4167,6 +4167,18 @@
     "message": "✨ {label} recap is ready",
     "description": "Placeholders: {label} (keep as is)"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Last background run: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "No background run yet."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} items rated · {b} day recaps written"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens."
   },

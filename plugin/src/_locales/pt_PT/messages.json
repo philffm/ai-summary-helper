@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ O resumo de {label} está pronto"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Obtém e processa novos itens em segundo plano com o Ollama enquanto o navegador estiver aberto. Os modelos na nuvem e BYOK continuam manuais."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Última execução em segundo plano: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Ainda não houve uma execução em segundo plano."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} itens avaliados · {b} resumos diários escritos"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Disponível quando o Ollama está configurado. Avalia, categoriza e resume toda a biblioteca de feeds em pequenos lotes no seu próprio computador. Pode demorar horas, mas não gasta tokens."
   },

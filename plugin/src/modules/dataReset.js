@@ -12,8 +12,8 @@ export const CATEGORIES = {
     articles: { keys: [SK.articlesIndex, SK.articlesSchema], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY], extra: ['articles', 'articleHistory'] },
     // yellow highlights and AI ghost highlights, all pages
     highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
-    // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background-poll state
-    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBgSeen, SK.feedPending] },
+    // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
+    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending] },
     podcasts: { keys: [SK.podcasts] },
     // API keys and endpoints, sign-in, license
     keys: { keys: [SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail, SK.otpExpiresAt, SK.otpRequestedAt, SK.licenseKey], extra: ['servicesConfig'] },

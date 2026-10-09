@@ -22,6 +22,7 @@
       "audioEngine.js",
       "ttsEngine.js",
       "finalize.js",
+      "feed-worker.js",
       "background.js"
     ]
   },

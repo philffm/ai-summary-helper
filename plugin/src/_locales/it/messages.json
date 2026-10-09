@@ -3986,6 +3986,18 @@
   "f_recap_is_ready_6da7": {
     "message": "✨ Il riepilogo di {label} è pronto"
   },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Recupera ed elabora nuovi elementi in background con Ollama mentre il browser è in esecuzione. I modelli cloud e BYOK restano manuali."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Ultima esecuzione in background: {time} · {result}"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Nessuna esecuzione in background."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} elementi valutati · {b} riepiloghi giornalieri scritti"
+  },
   "f_available_when_ollama_is_set_53ce": {
     "message": "Disponibile quando Ollama è configurato. Valuta, categorizza e riassume l’intera libreria dei feed a piccoli lotti sul tuo computer. Può richiedere ore, ma non consuma token."
   },
