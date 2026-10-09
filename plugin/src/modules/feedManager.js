@@ -1440,14 +1440,19 @@ function idsHash(list) { return hash(list.map(i => i.id).sort().join(',')); }
 function aiTitleOf(sm) { return i => subTitle(sm.get(i.feedId)); }
 
 // Rate/categorize in the same request as a recap. Existing ratings and categories are never overwritten.
-function applyRatings(arr, r, rate) {
+// Also called while the reply streams in (live = true): only re-renders when something changed, saves at the end.
+function applyRatings(arr, r, rate, live = false) {
     if (!rate || !(r.labels || r.scores)) return;
+    let changed = false;
     arr.forEach((x, n) => {
-        if (r.labels && !x.cat && r.labels[n]) x.cat = r.labels[n];
-        if (r.scores && !x.ai && r.scores[n] != null) { x.sent = r.scores[n]; x.ai = true; }
+        if (r.labels && !x.cat && r.labels[n]) { x.cat = r.labels[n]; changed = true; }
+        if (r.scores && !x.ai && r.scores[n] != null) { x.sent = r.scores[n]; x.ai = true; changed = true; }
     });
-    persist(); render();
+    if (live && !changed) return;
+    if (!live) persist();
+    render();
 }
+const liveRatings = (arr, rate) => (r) => applyRatings(arr, r, rate, true);
 
 /** Write (and store) a day recap without opening its sheet — used by week/month recaps for days that have none yet. */
 async function buildDayRecap(dayStart, source) {
@@ -1455,7 +1460,7 @@ async function buildDayRecap(dayStart, source) {
     const list = recapCovered(all);
     if (!list.length) return null;
     const rate = settings.rateWithRecap !== false;
-    const r = await generateRecap(list, aiTitleOf(subMap()), { rate });
+    const r = await generateRecap(list, aiTitleOf(subMap()), { rate, onRatings: liveRatings(list, rate) });
     applyRatings(list, r, rate);
     const { labels: _l, scores: _s, ...rc } = r;
     const key = `${dayStart}|${source}`;
@@ -1697,7 +1702,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
             const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true) });
             body.replaceChildren(st.node);
             try {
-                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress });
+                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(fresh.slice(0, getRecapLimit()), rate) });
                 st.stop();
                 applyRatings(r.sent, r, rate);
                 const { labels: _l, scores: _s, sent: sentItems, ...rc } = r;
@@ -1716,7 +1721,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); } });
         body.replaceChildren(st.node);
         try {
-            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress });
+            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(list, rate) });
             st.stop();
             applyRatings(list, r, rate);
             const { labels: _l, scores: _s, ...rc } = r;
