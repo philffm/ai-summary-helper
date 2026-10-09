@@ -38,7 +38,7 @@ export async function scoreArticles(list, onProgress) {
     for (let k = 0; k < todo.length; k += MAX_RECAP_ITEMS) {
         const chunk = todo.slice(k, k + MAX_RECAP_ITEMS);
         if (onProgress) onProgress(Math.min(k + chunk.length, todo.length), todo.length);
-        const { scores } = await scoreItems(chunk.map(articleAsItem), (i) => host(i.url));
+        const { scores } = await scoreItems(chunk.map(articleAsItem), (i) => host(i.url), { labels: false });
         chunk.forEach((a, n) => { if (scores[n] !== null && scores[n] !== undefined) done[a.id] = scores[n]; });
         await StorageManager.setArticleMoods(done);
     }

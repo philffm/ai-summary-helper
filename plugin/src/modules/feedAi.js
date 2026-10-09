@@ -239,17 +239,24 @@ export function parseLabelsJson(text, n) {
     return out;
 }
 
-export async function scoreItems(list, subTitleFn, { onStage, signal, onProgress } = {}) {
+/**
+ * labels = false asks for the cheapest possible reply: only "id:score" pairs (e.g. "1:0.6 | 2:-0.4"), no labels, no JSON.
+ */
+export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
-    const system = 'You rate the sentiment of news headlines. For each numbered item return a number from -1 '
-        + '(very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content, not tone of voice. '
-        + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
-        + 'reuse the same label for similar items, at most 8 different labels. '
-        + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`;
+    const rule = 'For each numbered item return a number from -1 '
+        + '(very negative news) through 0 (neutral) to 1 (very positive news), judged on the news content, not tone of voice. ';
+    const system = labels
+        ? 'You rate the sentiment of news headlines. ' + rule
+            + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
+            + 'reuse the same label for similar items, at most 8 different labels. '
+            + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`
+        : 'You rate the sentiment of news headlines. ' + rule
+            + 'Reply with ONLY the item number and its score, one pair per item, one decimal, nothing else, like: 1:0.6 | 2:-0.4 | 3:0';
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal, onProgress);
-    const scores = parseScores(text, chunk.length);
+    const scores = parseScores(text, chunk.length) || (labels ? null : parseScoreLine(text, chunk.length));
     if (!scores) throw new Error(T('The AI reply could not be read'));
-    return { scores, labels: parseLabelsJson(text, chunk.length) };
+    return { scores, labels: labels ? parseLabelsJson(text, chunk.length) : new Array(chunk.length).fill(null) };
 }
 
 const INTRO_STYLES = {
