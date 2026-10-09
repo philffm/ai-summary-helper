@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "Résumés et archive"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "L’accès aux sites web est désactivé. Autorisez-le dans about:addons → cette extension → Autorisations (« Accéder à vos données pour tous les sites web »), puis actualisez."
   }
 }

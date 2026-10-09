@@ -4305,5 +4305,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "Summaries & archive"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "Website access is off. Allow it in about:addons → this extension → Permissions (\"Access your data for all websites\"), then refresh."
   }
 }

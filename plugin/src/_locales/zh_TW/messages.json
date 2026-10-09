@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "摘要與封存"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "網站存取已關閉。請在 about:addons → 此擴充功能 → 權限中允許「存取所有網站上的資料」，然後重新整理。"
   }
 }
