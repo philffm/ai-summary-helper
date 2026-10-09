@@ -34,7 +34,7 @@ import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
-import { planLibrary, runLibrary, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
+import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
@@ -2214,7 +2214,7 @@ function libraryPlan() {
 /** Up to 3 topic tags for one feed in the UI language; kept apart from the user's own tags (s.tags) so those are never touched. */
 async function libraryTagFeed(entry, signal, ctx = {}) {
     const s = subs.find(x => x.id === entry.id); if (!s) return;
-    const r = await generateFeedTopics(subTitle(s), entry.items, { signal, onStage: ctx.onStage, service: 'ollama' });
+    const r = await generateFeedTopics(subTitle(s), entry.items, { cats: categoryCounts(entry.all), signal, onStage: ctx.onStage, service: 'ollama' });
     s.topics = cleanTags(r.tags).slice(0, 3); s.topicsLang = r.lang;
     await persist();
 }

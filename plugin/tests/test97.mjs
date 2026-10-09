@@ -8,6 +8,7 @@ store['feeds:subs'] = [{ id: 'a', url: 'https://a.test/feed', title: 'A', tags: 
 store['feeds:items'] = Array.from({ length: 45 }, (_, i) => ({ id: 'x' + i, feedId: 'a', title: 'Post ' + i, link: 'https://a.test/' + i, published: yday.getTime() - i * 60000, read: false }));
 const sizes = [];
 globalThis.__ai = (m) => {
+    if (/topic tags/.test(m.system)) return { ok: true, text: 'Tech, News' };   // feed tagging: one request with a sample, not a rating batch
     const n = (m.user.match(/^\[\d+\]/gm) || []).length;
     sizes.push(n);
     const nums = Array.from({ length: n }, (_, k) => k + 1);

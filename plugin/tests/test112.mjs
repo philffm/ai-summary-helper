@@ -1,7 +1,7 @@
 // Local feed processing gives every feed up to 3 topic tags (UI language), planned and run next to rating and recaps.
 import assert from 'assert';
 import { imp } from './harness.mjs';
-const [{ planLibrary, runLibrary, countRequests, needsTopics }, { boundedLibraryPlan }, { parseTopicTags }] = await Promise.all([
+const [{ planLibrary, runLibrary, countRequests, needsTopics, evenSample, categoryCounts, TOPIC_SAMPLE }, { boundedLibraryPlan }, { parseTopicTags }] = await Promise.all([
     imp('modules/libraryBatch.js'), imp('modules/feedWorker.js'), imp('modules/feedAi.js')
 ]);
 
@@ -21,6 +21,15 @@ const base = { items, recaps: {}, source: 'all', inSource: () => true, startOfDa
 const plan = planLibrary({ ...base, subs, topicLang: 'en' });
 assert.deepEqual(plan.tag.map(e => e.id), ['a', 'c'], 'a: none yet, c: other language, b: done, d: no items');
 assert.deepEqual(plan.tag[0].items.map(i => i.id), ['1', '2'], 'newest first');
+assert.equal(plan.tag[0].all.length, 2, 'all stored items of the feed travel along');
+
+// Sample: spread evenly over ALL items (first and last kept), not just the newest.
+const long = Array.from({ length: 100 }, (_, k) => k);
+const sample = evenSample(long, TOPIC_SAMPLE);
+assert.equal(sample.length, TOPIC_SAMPLE); assert.equal(sample[0], 0); assert.equal(sample.at(-1), 99);
+assert.equal(new Set(sample).size, TOPIC_SAMPLE, 'no duplicates');
+assert.deepEqual(evenSample([1, 2, 3], 30), [1, 2, 3]);
+assert.deepEqual(categoryCounts([{ cat: 'Tech' }, { cat: 'Politics' }, { cat: 'Tech' }, {}]), [['Tech', 2], ['Politics', 1]]);
 assert.equal(planLibrary(base).tag, undefined, 'no feeds given: no tag step');
 assert(!needsTopics({ topics: ['x'], topicsLang: 'en' }, 'en') && needsTopics({ topics: [], topicsLang: 'en' }, 'en'));
 assert.equal(countRequests(plan, 20), 2, 'one request per feed to tag');

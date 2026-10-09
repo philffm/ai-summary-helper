@@ -598,7 +598,7 @@ async function pollFeeds() {
         // Up to 3 topic tags per feed in the UI language, stored as `topics` (the user's own `tags` are never touched).
         const tagFeed = async (entry, signal) => {
             const sub = subscriptions.get(entry.id) || {};
-            const result = await aiCall(aiSignal => FEED_WORKER.generateFeedTopics(sub.customTitle || sub.title || '', entry.items, { signal: aiSignal, service: 'ollama' }), signal);
+            const result = await aiCall(aiSignal => FEED_WORKER.generateFeedTopics(sub.customTitle || sub.title || '', entry.items, { cats: FEED_WORKER.categoryCounts(entry.all), signal: aiSignal, service: 'ollama' }), signal);
             const stored = (await localGet(SK.feedSubs))[SK.feedSubs] || [];
             const target = stored.find(x => x.id === entry.id);
             if (!target) return;

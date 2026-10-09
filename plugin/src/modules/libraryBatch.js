@@ -11,7 +11,21 @@ export const BATCH_SIZES = [10, 20, 40];
 export const DEFAULT_BATCH = 20;
 
 const needsRating = (i) => !i.ai || !i.cat;
-export const TOPIC_ITEMS = 15;   // newest headlines of a feed shown to the model when it picks the feed's topic tags
+export const TOPIC_SAMPLE = 30;   // headlines of a feed shown to the model when it picks the feed's topic tags (spread evenly over all stored items)
+export const TOPIC_CATS = 6;      // most frequent item categories of the feed that are passed along as a hint
+
+/** n entries spread evenly over the list (keeps first and last), so old and new posts are both represented. */
+export function evenSample(list, n) {
+    if (list.length <= n) return list.slice();
+    return Array.from({ length: n }, (_, k) => list[Math.round(k * (list.length - 1) / (n - 1))]);
+}
+
+/** [[category, count], …] of a feed's items, most frequent first. Read when the feed is tagged, so categories from the rating step of the same run count. */
+export function categoryCounts(list, max = TOPIC_CATS) {
+    const m = new Map();
+    list.forEach((i) => { if (i.cat) m.set(i.cat, (m.get(i.cat) || 0) + 1); });
+    return [...m].sort((a, b) => b[1] - a[1]).slice(0, max);
+}
 
 /** A feed needs topic tags when it has none yet, or they were written in another language than the UI's. */
 export const needsTopics = (sub, lang) => !(sub.topics && sub.topics.length) || sub.topicsLang !== lang;
@@ -24,8 +38,8 @@ export const cleanBatchSize = (n) => BATCH_SIZES.includes(Number(n)) ? Number(n)
  * rate: items without AI score or category (newest first)
  * days: days with items the recap has not covered yet (today is skipped unless includeToday is true),
  *       oldest first, each { day, total, todo } where todo = items still to be covered (newest first).
- * tag:  (only when ctx.subs is given) feeds that still need topic tags in ctx.topicLang, each { id, items } with the
- *       feed's newest headlines. Feeds without any stored item are left out: there is nothing to base tags on.
+ * tag:  (only when ctx.subs is given) feeds that still need topic tags in ctx.topicLang, each { id, items, all }:
+ *       items = an even sample (TOPIC_SAMPLE) over all the feed's stored items, all = every stored item of the feed. Feeds without any stored item are left out: there is nothing to base tags on.
  */
 export function planLibrary(ctx) {
     const { items, recaps, source, inSource, startOfDay, itemSig } = ctx;
@@ -48,10 +62,10 @@ export function planLibrary(ctx) {
     });
     const plan = { rate, days };
     if (ctx.subs) {
-        plan.tag = ctx.subs.filter((s) => needsTopics(s, ctx.topicLang)).map((s) => ({
-            id: s.id,
-            items: items.filter((i) => i.feedId === s.id).sort((a, b) => b.published - a.published).slice(0, TOPIC_ITEMS)
-        })).filter((e) => e.items.length);
+        plan.tag = ctx.subs.filter((s) => needsTopics(s, ctx.topicLang)).map((s) => {
+            const all = items.filter((i) => i.feedId === s.id).sort((a, b) => b.published - a.published);
+            return { id: s.id, items: evenSample(all, TOPIC_SAMPLE), all };
+        }).filter((e) => e.items.length);
     }
     return plan;
 }
@@ -74,7 +88,7 @@ export function formatEta(ms, T) {
 /**
  * Run the plan. Hooks:
  *   rateChunk(chunk, signal, ctx)               rate + categorize one batch (throws on failure)
- *   tagFeed(entry, signal, ctx)                 give one feed up to 3 topic tags (throws on failure); entry = { id, items }
+ *   tagFeed(entry, signal, ctx)                 give one feed up to 3 topic tags (throws on failure); entry = { id, items, all }
  *   recapDay(entry, batchSize, signal, ctx)     write/extend the recap of one day, batch by batch, saving as it goes (throws on failure)
  *                                               ctx.step({ batch, batches, count }) before each batch, ctx.tick() after each batch
  *   ctx.onStage(stage)                          pass on to the AI call: 'send' | 'wait' | 'write' | 'parse'

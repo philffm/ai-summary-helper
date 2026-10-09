@@ -101,10 +101,10 @@ export function itemSig(i) {
     return (h >>> 0).toString(36);
 }
 
-export function itemsForPrompt(list, subTitleFn, mark) {
+export function itemsForPrompt(list, subTitleFn, mark, snippetMax = SNIPPET_MAX) {
     return list.map((i, k) => {
         const parts = [`[${k + 1}] ${clip(subTitleFn(i), 40)} — ${clip(i.title, 140)}${mark ? mark(i) : ''}`];
-        const sn = clip(i.snippet, SNIPPET_MAX);
+        const sn = clip(i.snippet, snippetMax);
         if (sn) parts.push(sn);
         return parts.join(' — ');
     }).join('\n');
@@ -126,16 +126,18 @@ export function parseTopicTags(text) {
 }
 
 /**
- * Up to 3 topic tags for ONE feed, written in the UI language from the feed's name and its newest headlines/snippets.
+ * Up to 3 topic tags for ONE feed, written in the UI language. The model sees an even sample of the feed's headlines
+ * (short snippets) plus, as a hint for the whole feed, how often its items fall into each category (cats = [[label, n], …]).
  * Returns { tags, lang } (lang = UI locale code, stored so the tags are redone when the language changes).
  */
-export async function generateFeedTopics(title, list, { signal, onStage, onProgress, service } = {}) {
+export async function generateFeedTopics(title, list, { cats = [], signal, onStage, onProgress, service } = {}) {
     const { code, name } = await uiLanguage();
-    const system = 'You assign topic tags to a news feed or blog from its name and recent headlines. '
+    const system = 'You assign topic tags to a news feed or blog from its name, a sample of its headlines and how its posts are distributed over categories. '
         + `Reply in the language ${name}. Give at most 3 tags, each one or two words, naming what the source mainly posts about `
-        + '(e.g. Tech, Politics, Climate, Football, Design); use fewer when the source is narrow. '
+        + '(e.g. Tech, Politics, Climate, Football, Design); prefer topics that recur across the whole sample over one-off stories, and use fewer tags when the source is narrow. '
         + 'Reply with ONLY the tags separated by commas, nothing else.';
-    const user = `Feed: ${clip(title, 60)}\nRecent items:\n${itemsForPrompt(list.slice(0, 15), () => '')}`;
+    const dist = cats.length ? `\nCategory distribution of all its posts: ${cats.map(([c, n]) => `${c} ×${n}`).join(', ')}` : '';
+    const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, 80)}`;
     const tags = parseTopicTags(await aiComplete(system, user, onStage, signal, onProgress, { service }));
     if (!tags.length) throw new Error(T('The AI reply could not be read'));
     return { tags, lang: code };

@@ -7,7 +7,7 @@ const start = src.indexOf("const FEED_ALARM = 'feedPoll';");
 const end = src.indexOf('// ── One-shot AI completion', start);
 assert(start >= 0 && end > start, 'background feed worker block found');
 const block = src.slice(start, end);
-const [{ parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight }, { planLibrary, runLibrary, chunksOf }, { startOfDay }] = await Promise.all([
+const [{ parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight }, { planLibrary, runLibrary, categoryCounts, chunksOf }, { startOfDay }] = await Promise.all([
     imp('modules/feedWorker.js'), imp('modules/libraryBatch.js'), imp('modules/dateUtils.js')
 ]);
 let aiCalls = 0, topicCalls = 0, fetchCalls = 0, notifications = 0;
@@ -17,7 +17,7 @@ const rss = `<rss><channel>${Array.from({ length: 35 }, (_, i) =>
 ).join('')}</channel></rss>`;
 const worker = {
     parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight,
-    planLibrary, runLibrary, chunksOf, startOfDay,
+    planLibrary, runLibrary, categoryCounts, chunksOf, startOfDay,
     itemSig: item => item.id, hash: value => value,
     scoreItems: async items => {
         aiCalls++;
