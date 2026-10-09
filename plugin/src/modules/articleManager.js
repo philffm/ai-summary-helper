@@ -11,7 +11,7 @@ import { syncTabbarLater } from './tabbar.js';
 import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
-import { initSelection, registerCard, toggleCard, selectionActive } from './sendSheet.js';
+import { initSelection, registerCard, toggleCard, selectionActive, canSelect, startSelectionWith } from './sendSheet.js';
 import { attachCardMenu } from './cardMenu.js';
 import { T, locale } from './feedI18n.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
@@ -1274,7 +1274,23 @@ function buildArticleCard(article) {
         if (selectionActive()) { toggleCard(article); return; }
         showArticleDetail(article);
     });
+    // Long-press a card → enter selection mode with it ticked (same as the Select button / ⋯ menu).
+    let pressTimer = null, pressed = false, pressX = 0, pressY = 0;
+    const cancelPress = () => { clearTimeout(pressTimer); pressTimer = null; };
+    listItem.addEventListener('pointerdown', (event) => {
+        if (event.button > 0 || event.target.closest('button') || event.target.closest('a')) return;
+        pressed = false; pressX = event.clientX; pressY = event.clientY;
+        if (selectionActive() || !canSelect(article)) return;
+        cancelPress();
+        pressTimer = setTimeout(() => { pressTimer = null; pressed = true; startSelectionWith(article); }, 500);
+    });
+    listItem.addEventListener('pointermove', (event) => {
+        if (pressTimer && Math.hypot(event.clientX - pressX, event.clientY - pressY) > 10) cancelPress();
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => listItem.addEventListener(ev, cancelPress));
+    listItem.addEventListener('contextmenu', (event) => { if (pressed) event.preventDefault(); });
     listItem.addEventListener('click', (event) => {
+        if (pressed) { pressed = false; return; }   // the click that ends a long-press must not toggle it back off
         if (event.target.closest('button') || event.target.closest('a')) return;
         if (selectionActive()) { toggleCard(article); return; }
         showArticleDetail(article);
