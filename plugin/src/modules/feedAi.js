@@ -10,9 +10,9 @@ import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
-let recapLimit = MAX_RECAP_ITEMS;     // items per recap request (user setting)
+let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
 export const getRecapLimit = () => recapLimit;
-export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n >= 10 ? Math.min(n, 400) : MAX_RECAP_ITEMS; }
+export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n === 0 || n === Infinity ? Infinity : n >= 10 ? n : Infinity; }
 const SNIPPET_MAX = 160;
 
 let aiSeq = 0;

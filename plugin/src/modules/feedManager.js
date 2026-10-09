@@ -57,7 +57,7 @@ export const FEED_DEFAULTS = {
     backgroundPoll: false,
     refreshMinutes: 30,
     keepDays: 30,
-    recapLimit: 40
+    recapLimit: 0
 };
 
 let subs = [];
@@ -1665,12 +1665,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         if (missing.length) {
             const box = el('div', 'feed-recap-missing');
             box.append(el('p', 'feed-recap-stale', TN(missing.length, '{n} older item is not in this recap (limit: {max} per recap).', '{n} older items are not in this recap (limit: {max} per recap).', { max: list.length })));
-            const nxt = Math.min(Math.max(all.length, 10), 400);
-            if (nxt > list.length) {
-                box.append(btn('btn-sm', T('Raise limit to {n} and refresh', { n: nxt }), async () => { await setSetting('recapLimit', nxt); closeSheet(); openRecap(dayStart, label, source, true); }));
-            } else {
-                box.append(el('p', 'feed-muted', T('That is the maximum per recap. Use the Week or Month recap for a bigger picture, or filter by feed.')));
-            }
+            box.append(btn('btn-sm', T('Remove limit and refresh'), async () => { await setSetting('recapLimit', 0); closeSheet(); openRecap(dayStart, label, source, true); }));
             const det = el('details', 'feed-recap-missing-list');
             det.append(el('summary', null, T('Show them — open one by one')));
             missing.forEach(x => { const a = el('a', null, x.title || x.link); a.href = x.link; a.target = '_blank'; a.rel = 'noopener'; det.append(a); });
@@ -2060,7 +2055,7 @@ function renderFeedPrefs() {
         el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.')));
     card('feedPrefsAi', TU('AI analysis'),
         moodToggleRow(),
-        selectRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[20, '20'], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
+        selectRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
         toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
     card('feedPrefsUpdates', TU('Updates & storage'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),
