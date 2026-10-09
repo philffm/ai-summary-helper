@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ Il riepilogo di {label} è pronto"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Disponibile quando Ollama è configurato. Valuta, categorizza e riassume l’intera libreria dei feed a piccoli lotti sul tuo computer. Può richiedere ore, ma non consuma token."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Riepilogo del giorno {d} di {t} ({date}): lotto {a} di {b} · {n} elementi"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Il modello sta scrivendo…"
+  },
+  "f_model_a2bb": {
+    "message": "Modello: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Valutazione e categorizzazione: lotto {a} di {b} · elementi {from}–{to} di {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Lettura della risposta…"
+  },
+  "f_request_of_866e": {
+    "message": "Richiesta {a} di {b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Funziona sul tuo computer con Ollama e non consuma token, anche se per i riassunti è attivo un altro modello. Tieni aperto questo pannello: chiuderlo mette in pausa l’elaborazione e riavviandola riprende da dove si era fermata. Vengono elaborati solo gli elementi ancora salvati (vedi «Conserva gli elementi per»). Il riepilogo di oggi viene scritto quando lo apri."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Invio del lotto a Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "non è il tuo modello attivo per i riassunti"
+  },
+  "f_left_db92": {
+    "message": "mancano {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} trascorsi"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Elabora la libreria dei feed con Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Elabora l’intera libreria dei feed (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Valuta, categorizza e riassume tutti gli elementi dei feed a piccoli lotti sul tuo computer. Nessun token consumato."
   }
 }

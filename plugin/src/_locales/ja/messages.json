@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ {label}のまとめができました"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Ollama が設定済みのときに使えます。フィードライブラリ全体を、あなた自身のマシン上で小さなバッチに分けて評価・分類・要約します。数時間かかることもありますが、トークンは消費しません。"
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "日別の要約 {d}/{t}（{date}）：バッチ {a}/{b} · {n} 件"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "モデルが書き込み中…"
+  },
+  "f_model_a2bb": {
+    "message": "モデル：{m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "評価と分類：バッチ {a}/{b} · {n} 件中 {from}–{to} 件目"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "回答を読み取り中…"
+  },
+  "f_request_of_866e": {
+    "message": "リクエスト {a}/{b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "要約用に別のモデルが有効でも、Ollama を使ってあなた自身のマシンで動作し、トークンを消費しません。このパネルは開いたままにしてください。閉じると処理が一時停止し、再開すると中断したところから続きます。処理されるのは保存されているアイテムのみです（「アイテムの保存期間」を参照）。今日の要約は開いたときに作成されます。"
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "バッチを Ollama に送信中…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "有効な要約モデルではありません"
+  },
+  "f_left_db92": {
+    "message": "残り {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "経過 {t}"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Ollama でフィードライブラリを処理"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "フィードライブラリ全体を処理（Ollama）"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "すべてのフィードアイテムを、あなた自身のマシン上で小さなバッチに分けて評価・分類・要約します。トークンは消費しません。"
   }
 }

@@ -17,7 +17,7 @@ const SNIPPET_MAX = 160;
 
 let aiSeq = 0;
 /** `signal` (AbortSignal) cancels the request in the background worker too — there is no timeout, slow local models may take minutes. */
-export function aiComplete(system, user, onStage, signal, onProgress, { partial = false } = {}) {
+export function aiComplete(system, user, onStage, signal, onProgress, { partial = false, service = '' } = {}) {
     return new Promise((resolve, reject) => {
         const id = `ai${Date.now()}_${++aiSeq}`;
         let settled = false;
@@ -33,7 +33,7 @@ export function aiComplete(system, user, onStage, signal, onProgress, { partial 
         const done = () => { try { chrome.runtime.onMessage.removeListener(onMsg); } catch (e) { /* no listener API */ } };
         try { chrome.runtime.onMessage.addListener(onMsg); } catch (e) { /* tests */ }
         if (onStage) { onStage('send'); setTimeout(() => onStage('wait'), 350); }
-        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial }, (res) => {
+        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial, ...(service ? { service } : {}) }, (res) => {
             if (settled) { void chrome.runtime.lastError; return; }
             settled = true; done();
             if (onStage) onStage('parse');
@@ -163,7 +163,7 @@ function streamRatings(n, onProgress, onRatings) {
 }
 
 /** rate = also return a category label and a sentiment score for every item (one extra line, no extra request). onRatings = called with the ratings already complete while the reply streams in. */
-export async function generateRecap(list, subTitleFn, { rate = true, styleText, onStage, signal, onProgress, onRatings } = {}) {
+export async function generateRecap(list, subTitleFn, { rate = true, styleText, onStage, signal, onProgress, onRatings, service } = {}) {
     const lang = await languageName();
     const suffix = styleText !== undefined ? styleSuffix(styleText) : await feedStyle('briefing');
     const lr = await langRule();
@@ -180,7 +180,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal,
-        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings) });
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings), service });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
@@ -190,7 +190,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
  * Refresh an existing recap with ONLY the items that are new or were edited since it was written
  * (the previous recap text stands in for everything already covered, so no old headline is sent again).
  */
-export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false, onStage, signal, onProgress, onRatings } = {}) {
+export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true, edited = () => false, onStage, signal, onProgress, onRatings, service } = {}) {
     const lang = await languageName();
     const suffix = await feedStyle('briefing');
     const lr = await langRule();
@@ -208,7 +208,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
     const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`, onStage, signal,
-        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings) });
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings), service });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return { ...r, sent: chunk };
@@ -245,7 +245,7 @@ export function parseLabelsJson(text, n) {
 /**
  * labels = false asks for the cheapest possible reply: only "id:score" pairs (e.g. "1:0.6 | 2:-0.4"), no labels, no JSON.
  */
-export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress } = {}) {
+export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress, service } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const rule = (m) => `For each numbered item return a number from -${m} `
         + `(very negative news) through 0 (neutral) to ${m} (very positive news), judged on the news content, not tone of voice. `;
@@ -258,7 +258,7 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
             + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
     const user = `Items:\n${itemsForPrompt(chunk, subTitleFn)}`;
     const usable = (a) => a && a.some(v => v !== null);
-    const text = await aiComplete(system, user, onStage, signal, onProgress);
+    const text = await aiComplete(system, user, onStage, signal, onProgress, { service });
     // Small local models often ignore the JSON format: fall back to "1:3 | 2:-2" pairs, then retry once with the simplest prompt.
     let scores = parseScores(text, chunk.length);
     if (!usable(scores)) scores = parseScoreLine(text, chunk.length);
@@ -266,7 +266,7 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
     if (labels) {
         const simple = 'You rate the sentiment of news headlines. ' + rule(5)
             + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
-        const text2 = await aiComplete(simple, user, onStage, signal, onProgress);
+        const text2 = await aiComplete(simple, user, onStage, signal, onProgress, { service });
         const s2 = parseScoreLine(text2, chunk.length);
         if (usable(s2)) return { scores: s2, labels: new Array(chunk.length).fill(null) };
     }

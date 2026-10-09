@@ -1026,6 +1026,14 @@ function getLocalSubnetIp() {
 // "ML" vs "Machine Learning") needs the full tag vocabulary, so it runs
 // as an explicit, on-demand maintenance pass rather than on every save.
 function initLocalIntelligence() {
+    // Link to the Feed library run (Ollama): it belongs with the other tools that run on this machine.
+    const libBtn = document.getElementById('libraryToolButton');
+    if (libBtn) {
+        document.getElementById('libraryToolTitle').textContent = T('Process the Feed library with Ollama');
+        document.getElementById('libraryToolHint').textContent = T('Rates, categorizes and recaps all your feed items in small batches on your own machine. No tokens spent.');
+        libBtn.textContent = T('Open') + ' →';
+        libBtn.addEventListener('click', () => { import('./settingsNav.js').then(m => m.openSettingsPanel('feedprefs', 'feedPrefsLibrary')).catch(() => {}); });
+    }
     const btn = document.getElementById('cleanupTagsButton');
     const resultEl = document.getElementById('cleanupTagsResult');
     if (!btn) return;

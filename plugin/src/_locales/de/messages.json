@@ -3985,5 +3985,50 @@
   },
   "f_recap_is_ready_6da7": {
     "message": "✨ Rückblick {label} ist fertig"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Verfügbar, sobald Ollama eingerichtet ist. Es bewertet, kategorisiert und fasst deine gesamte Feed-Bibliothek in kleinen Stapeln auf deinem eigenen Rechner zusammen. Das kann Stunden dauern, kostet aber keine Tokens."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Tages-Recap {d} von {t} ({date}): Stapel {a} von {b} · {n} Einträge"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Das Modell schreibt…"
+  },
+  "f_model_a2bb": {
+    "message": "Modell: {m}"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Bewerte und kategorisiere: Stapel {a} von {b} · Einträge {from}–{to} von {n}"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Antwort wird gelesen…"
+  },
+  "f_request_of_866e": {
+    "message": "Anfrage {a} von {b}"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Läuft auf deinem eigenen Rechner mit Ollama und kostet keine Tokens, auch wenn für Zusammenfassungen ein anderes Modell aktiv ist. Lass dieses Fenster offen: Schließt du es, pausiert der Lauf, und beim erneuten Start geht es dort weiter, wo er stehen blieb. Verarbeitet werden nur noch gespeicherte Einträge (siehe „Einträge behalten für“). Der Recap von heute entsteht, wenn du ihn öffnest."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Sende den Stapel an Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "nicht dein aktives Zusammenfassungsmodell"
+  },
+  "f_left_db92": {
+    "message": "noch {eta}"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} vergangen"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Feed-Bibliothek mit Ollama verarbeiten"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Ganze Feed-Bibliothek verarbeiten (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Bewertet, kategorisiert und fasst alle deine Feed-Einträge in kleinen Stapeln auf deinem eigenen Rechner zusammen. Keine Tokens verbraucht."
   }
 }
