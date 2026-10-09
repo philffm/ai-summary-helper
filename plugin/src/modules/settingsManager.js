@@ -433,7 +433,9 @@ async function initModelSettings(storageData) {
     }
     if (activeService !== 'ollama') modelSelect.value = activeService;
 
+    let shownService = activeService; // provider whose fields are on screen (the select is hidden on the Ollama tab)
     const updateFields = async (serviceId) => {
+        shownService = serviceId;
         const service = services.find(s => s.id === serviceId);
         const latest = await StorageManager.getAll();
         const cfg = latest[SK.servicesConfig]?.[serviceId] || {};
@@ -454,7 +456,7 @@ async function initModelSettings(storageData) {
             customEndpointContainer.style.display = service?.allowCustomEndpoint ? 'block' : 'none';
         }
 
-        renderOllamaTutorial(serviceId, endpointInput?.value || service?.endpointUrl, async (name) => {
+        renderOllamaTutorial(serviceId, cfg.endpoint || service?.endpointUrl, async (name) => {
             const entry = (await StorageManager.getAll())[SK.servicesConfig]?.[serviceId] || {};
             const list = (Array.isArray(entry.customModel) ? entry.customModel : (entry.customModel ? [entry.customModel] : []))
                 .map(m => StorageManager.normalizeCustomModel(m, serviceId));
@@ -479,13 +481,13 @@ async function initModelSettings(storageData) {
 
     if (apiKeyInput) {
         apiKeyInput.addEventListener('change', () => {
-            StorageManager.updateService(modelSelect.value, { apiKey: apiKeyInput.value });
+            StorageManager.updateService(shownService, { apiKey: apiKeyInput.value });
         });
     }
 
     if (endpointInput) {
         endpointInput.addEventListener('change', () => {
-            StorageManager.updateService(modelSelect.value, { endpoint: endpointInput.value });
+            StorageManager.updateService(shownService, { endpoint: endpointInput.value }).then(() => updateFields(shownService));
         });
     }
 
