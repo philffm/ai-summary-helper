@@ -98,6 +98,21 @@ export function unknownTags(list, max = 200, minCount = 1) {
     return [...n.values()].filter((e) => e.c >= minCount).sort((a, b) => b.c - a.c).slice(0, max).map((e) => e.tag);
 }
 
+/**
+ * Learned topics (English keys) that are used in `list` at least `minCount` times but have no label in `locale` yet —
+ * what is left to translate after the UI language was switched. Built-in topics always have one; unknown tags are
+ * unknownTags()' business. Most used first.
+ */
+export function keysNeedingLabel(list, locale, max = 200, minCount = 1) {
+    const n = new Map();
+    for (const t of list) {
+        if (conceptId(t)) continue;
+        const k = lexKey(t); if (!k || (LEX[k] && LEX[k][locale])) continue;
+        n.set(k, (n.get(k) || 0) + 1);
+    }
+    return [...n].filter(([, c]) => c >= minCount).sort((a, b) => b[1] - a[1]).slice(0, max).map(([k]) => k);
+}
+
 /** Labels of all known topics in `locale` — suggested vocabulary so the AI reuses the same words. */
 export const conceptList = (locale) => Object.values(CONCEPTS).map((c) => (c[locale] || c.en)[0]);
 
