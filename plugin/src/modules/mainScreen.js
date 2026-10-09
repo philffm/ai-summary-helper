@@ -1,4 +1,5 @@
-import { modelEmoji } from './modelBadge.js';
+import { modelIcon } from './modelBadge.js';
+import { icon, iconEl, setIconLabel } from './icons.js';
 import { SK, articleRecKey } from './storageKeys.js';
 import { escapeHtml } from './textUtils.js';
 import { debug } from './log.js';
@@ -49,7 +50,7 @@ export function initMainScreen(ui) {
 
         const tags = article.tags || [];
         const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${escapeHtml(t)}</span>`).join('')}</div>` : '';
-        const modelHtml = article.modelId ? `<span class="card-model card-model--block">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
+        const modelHtml = article.modelId ? `<span class="card-model card-model--block">${modelIcon(article)} ${escapeHtml(article.modelId)}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         if (article.id) bubble.dataset.id = article.id;
@@ -154,7 +155,7 @@ export function initMainScreen(ui) {
         streamPhase = 0; lastPhaseTitle = '';
         stepsStart = Date.now(); lastStepPhase = 0;
 
-        const emoji = modelEmoji({ connectionMode: mode, modelId: modelName });
+        const modelBadge = modelIcon({ connectionMode: mode, modelId: modelName });
         const bubble = document.createElement('div');
         bubble.className = 'stream-bubble';
         bubble.id = 'streamBubble';
@@ -166,7 +167,7 @@ export function initMainScreen(ui) {
             <span id="streamTimer" class="sc-timer"></span>
           </div>
           <ul id="streamSteps" class="sc-steps" aria-live="polite"></ul>
-          <div id="streamModel" class="sc-model">${emoji} ${modelName}</div>
+          <div id="streamModel" class="sc-model">${modelBadge} ${modelName}</div>
           <div id="streamProgressWrap" class="sc-progress" style="display:none;">
             <div class="sc-progress-track"><div id="streamProgressBar" class="sc-progress-bar" style="width:0%;"></div></div>
           </div>
@@ -346,7 +347,7 @@ export function initMainScreen(ui) {
     });
     const resetToFetch = () => {
         if (composer) { composer.set('fetch'); composer.refresh(); }
-        else { fetchSummaryButton.disabled = false; fetchSummaryButton.textContent = '✨ Summarize'; }
+        else { fetchSummaryButton.disabled = false; setIconLabel(fetchSummaryButton, 'sparkles', 'Summarize'); }
     };
 
     // Fetch state extras: the page in the active tab as a chip INSIDE the input card (it flies into the thread on Fetch).
@@ -409,7 +410,7 @@ export function initMainScreen(ui) {
         const b = document.createElement('button');
         b.type = 'button'; b.id = 'chipAttach'; b.className = 'chip chip-attach';
         b.title = T('Attach a PDF to summarize'); b.setAttribute('aria-label', T('Attach a PDF to summarize'));
-        const ic = document.createElement('span'); ic.className = 'chip-icon'; ic.textContent = '📎';
+        const ic = document.createElement('span'); ic.className = 'chip-icon'; ic.append(iconEl('paperclip'));
         const lb = document.createElement('span'); lb.textContent = 'PDF';
         b.append(ic, lb);
         b.addEventListener('click', () => input.click());
@@ -577,7 +578,7 @@ export function initMainScreen(ui) {
         if (workingElsewhere) {
             const w = t('navSummarize');
             fetchSummaryButton.dataset.state = 'fetch';
-            fetchSummaryButton.textContent = '✨ ' + (w === 'navSummarize' ? 'Summarize' : w);
+            setIconLabel(fetchSummaryButton, 'sparkles', w === 'navSummarize' ? 'Summarize' : w);
         }
     };
     const syncWorkingButton = async () => {
@@ -1166,9 +1167,9 @@ export function initMainScreen(ui) {
         const openMenu = () => {
             menu = document.createElement('div');
             menu.className = 'card-menu save-menu'; menu.setAttribute('role', 'menu'); menu.setAttribute('aria-label', T('Save options'));
-            const mk = (icon, label, hint, fn) => {
+            const mk = (iconName, label, hint, fn) => {
                 const b = document.createElement('button'); b.type = 'button'; b.className = 'card-menu-item'; b.setAttribute('role', 'menuitem');
-                const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = icon;
+                const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.append(iconEl(iconName));
                 const tx = document.createElement('span'); tx.className = 'save-menu-txt'; tx.textContent = label;
                 const sm = document.createElement('small'); sm.textContent = hint; tx.append(sm);
                 b.append(ic, tx);
@@ -1176,8 +1177,8 @@ export function initMainScreen(ui) {
                 return b;
             };
             menu.append(
-                mk('✨', T('Summarize'), T('Read it with AI'), () => fetchSummaryButton.click()),
-                mk('📥', T('Save only'), T('Keep it in History, no AI, nothing sent'), savePageOnly)
+                mk('sparkles', T('Summarize'), T('Read it with AI'), () => fetchSummaryButton.click()),
+                mk('download', T('Save only'), T('Keep it in History, no AI, nothing sent'), savePageOnly)
             );
             document.body.append(menu);
             const r = saveMenuBtn.getBoundingClientRect();
@@ -1305,7 +1306,7 @@ export function initMainScreen(ui) {
                 if (recentEntry) recentEntry.style.display = 'none';
                 const modelLabel = document.getElementById('chipModelLabel');
                 const chipIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
-                const isCloud = chipIcon?.textContent === '☁️' || ((await chrome.storage.sync.get('connectionMode')).connectionMode || 'cloud') === 'cloud';
+                const isCloud = chipIcon?.dataset.icon === 'cloud' || ((await chrome.storage.sync.get('connectionMode')).connectionMode || 'cloud') === 'cloud';
                 
                 addFirstBubble(pageInfo, additionalQuestions, chipRect);
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');

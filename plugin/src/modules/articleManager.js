@@ -1,6 +1,7 @@
 import { mountReadingTools, destroyReadingTools } from './readingTools.js';
 import { showSkeleton, clearSkeleton } from './skeleton.js';
-import { modelEmoji } from './modelBadge.js';
+import { modelIcon } from './modelBadge.js';
+import { icon, iconEl, setIconLabel, stripEmoji } from './icons.js';
 import { SK } from './storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
 // Article Manager
@@ -28,6 +29,8 @@ import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPl
 
 // Escapes translated text for use inside double-quoted HTML attributes.
 const escAttr = escapeHtml;
+/** Translated label whose translations still carry the old emoji, text only (the control gets an SVG icon). */
+const lbl = (key) => escapeHtml(stripEmoji(T(key)));
 
 let uiManagerRef = null;
 let currentDetailArticle = null;
@@ -626,14 +629,14 @@ function paintFavorite(id, on) {
     const ar = archivedCache.find(a => a.id === id); if (ar) ar.favorite = on;
     if (currentDetailArticle && currentDetailArticle.id === id) currentDetailArticle.favorite = on;
     const li = document.querySelector(`#articleList li[data-id="${CSS.escape(String(id))}"]`);
-    if (li) { li.classList.toggle('is-favorite', on); const b = li.querySelector('.star-button'); if (b) { b.textContent = on ? '★' : '☆'; b.setAttribute('aria-pressed', String(on)); } }
+    if (li) { li.classList.toggle('is-favorite', on); const b = li.querySelector('.star-button'); if (b) { b.setAttribute('aria-pressed', String(on)); } }
     const d = document.getElementById('detailStarBtn');
     if (d && currentDetailArticle && currentDetailArticle.id === id) paintDetailStar(on);
 }
 function paintDetailStar(on) {
     const d = document.getElementById('detailStarBtn'); if (!d) return;
     d.setAttribute('aria-pressed', String(!!on)); d.classList.toggle('is-on', !!on);
-    const ic = d.querySelector('.btn-icon'); if (ic) ic.textContent = on ? '★' : '☆';
+    // the star icon is filled by CSS from aria-pressed / .is-on
 }
 
 /** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
@@ -1171,7 +1174,7 @@ function buildArticleCard(article) {
     // known and learned topics are shown in the UI language (the stored tag keeps its original); two tags that read the same collapse to one chip
     const shownTags = [...new Set(tags.map(t => topicLabel(t, uiLocale())))];
     const tagsHtml = shownTags.length ? `<div class="card-tags">${shownTags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}</div>` : '';
-    const modelBadge = article.modelId ? `<span class="card-model">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
+    const modelBadge = article.modelId ? `<span class="card-model">${modelIcon(article)} ${escapeHtml(article.modelId)}</span>` : '';
 
     // Decision metadata (timeframe + reason)
     const decisionHtml = article.isDecision ? `
@@ -1190,7 +1193,7 @@ function buildArticleCard(article) {
             ${modelBadge}
             ${decisionHtml}
           </div>
-          <button class="star-button" title="${escAttr(T('Favorite'))}" aria-label="${escAttr(T('Favorite'))}" aria-pressed="${article.favorite ? 'true' : 'false'}">${article.favorite ? '★' : '☆'}</button>
+          <button class="star-button" title="${escAttr(T('Favorite'))}" aria-label="${escAttr(T('Favorite'))}" aria-pressed="${article.favorite ? 'true' : 'false'}">${icon('star', 'icon--lg')}</button>
         </div>
     `;
     listItem.classList.toggle('is-favorite', !!article.favorite);
@@ -1207,15 +1210,15 @@ function buildArticleCard(article) {
         sumBtn.type = 'button';
         sumBtn.className = 'button-primary btn-sm';
         sumBtn.style.marginTop = '8px';
-        sumBtn.textContent = T('✨ Summarize');
+        setIconLabel(sumBtn, 'sparkles', T('✨ Summarize'));
         sumBtn.addEventListener('click', (event) => {
             event.stopPropagation();
             sumBtn.disabled = true;
-            sumBtn.textContent = T('⏳ Summarizing…');
+            setIconLabel(sumBtn, 'loader', T('⏳ Summarizing…'));
             chrome.runtime.sendMessage({ action: 'openFeedItem', url: article.url, summarize: true }, (res) => {
                 if (chrome.runtime.lastError || !res || !res.success) {
                     sumBtn.disabled = false;
-                    sumBtn.textContent = T('✨ Summarize');
+                    setIconLabel(sumBtn, 'sparkles', T('✨ Summarize'));
                     return;
                 }
                 // Re-check shortly; the summary replaces this placeholder when saved.
@@ -1228,7 +1231,7 @@ function buildArticleCard(article) {
                         if (done || tries > 40) {
                             clearInterval(poll);
                             if (done && document.getElementById('articleList')?.style.display !== 'none') loadHistory();
-                            else { sumBtn.disabled = false; sumBtn.textContent = T('✨ Summarize'); }
+                            else { sumBtn.disabled = false; setIconLabel(sumBtn, 'sparkles', T('✨ Summarize')); }
                         }
                     } catch (_) { clearInterval(poll); }
                 }, 3000);
@@ -1496,7 +1499,7 @@ function renderDetailTags(article, host) {
     host.replaceChildren();
     const mk = (cls, text) => { const c = document.createElement('span'); c.className = cls; c.textContent = text; return c; };
     const xBtn = (label, onClick) => {
-        const x = document.createElement('button'); x.type = 'button'; x.className = 'tag-x'; x.textContent = '✕'; x.title = label; x.setAttribute('aria-label', label);
+        const x = document.createElement('button'); x.type = 'button'; x.className = 'tag-x'; x.append(iconEl('x', 'icon--sm')); x.title = label; x.setAttribute('aria-label', label);
         x.addEventListener('click', (e) => { e.stopPropagation(); onClick(); });
         return x;
     };
@@ -1713,7 +1716,7 @@ export async function showArticleDetail(article) {
     // Keep the images; .detail-original img caps their width so they don't break the popup layout
     const safeContent = detailDoc.body.innerHTML || escapeHtml(T('No content available.'));
     const domain = article.url ? (() => { try { return new URL(article.url).hostname; } catch { return ''; } })() : '';
-    const modelInfo = article.modelId ? `<span class="detail-model">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
+    const modelInfo = article.modelId ? `<span class="detail-model">${modelIcon(article)} ${escapeHtml(article.modelId)}</span>` : '';
     const lengthInfo = article.summaryLength ? `<span class="detail-length">📏 ${escapeHtml(article.summaryLength)}w</span>` : '';
     
     // Decision metadata
@@ -1740,12 +1743,12 @@ export async function showArticleDetail(article) {
         ${decisionBadge}
         <div class="paper-row" hidden></div>
         <div class="action-bar detail-actions">
-          <button class="button-secondary open-button">${T('Read 👓')}</button>
-          <button class="button-secondary copy-button">${T('Copy 📋')}</button>
-          <button class="button-secondary md-button">${T('.MD 💾')}</button>
-          <button class="button-secondary share-button">${T('Share 🔗')}</button>
-          <button class="button-secondary kindle-button">${T('Kindle 📚')}</button>
-          <button class="button-secondary localsend-button">${T('LocalSend 📱')}</button>
+          <button class="button-secondary open-button">${icon('book-open')} ${lbl('Read 👓')}</button>
+          <button class="button-secondary copy-button">${icon('copy')} ${lbl('Copy 📋')}</button>
+          <button class="button-secondary md-button">${icon('download')} ${lbl('.MD 💾')}</button>
+          <button class="button-secondary share-button">${icon('link')} ${lbl('Share 🔗')}</button>
+          <button class="button-secondary kindle-button">${icon('book-open')} ${lbl('Kindle 📚')}</button>
+          <button class="button-secondary localsend-button">${icon('smartphone')} ${lbl('LocalSend 📱')}</button>
         </div>
         <div class="summary-box">
           <strong class="summary-box-title">${T('🧙 AI Summary')}</strong>

@@ -41,6 +41,7 @@ import { parseFeed, opmlXml } from './feedParse.js';
 import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
+import { icon, setLabel } from './icons.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
@@ -698,13 +699,13 @@ function paintSum(id) {
         b.setAttribute('aria-busy', st ? 'true' : 'false');
         if (queued) {
             b.style.removeProperty('--p'); b.removeAttribute('aria-valuenow'); b.removeAttribute('role');
-            b.textContent = T('⏳ Queued'); b.title = T('Waiting for the running summary — click to remove from the queue');
+            setLabel(b, T('⏳ Queued')); b.title = T('Waiting for the running summary — click to remove from the queue');
             return;
         }
         b.removeAttribute('title');
         if (st) {
             b.style.setProperty('--p', String(st.pct));
-            b.textContent = T('⏳ {n}%', { n: Math.round(st.pct) });
+            setLabel(b, T('⏳ {n}%', { n: Math.round(st.pct) }));
             b.setAttribute('role', 'progressbar'); b.setAttribute('aria-valuenow', String(Math.round(st.pct)));
         } else { b.style.removeProperty('--p'); b.removeAttribute('aria-valuenow'); b.removeAttribute('role'); }
     });
@@ -909,7 +910,8 @@ function setRefreshState(on) {
 }
 
 function btn(className, text, onClick, title) {
-    const b = el('button', className, text);
+    const b = el('button', className);
+    setLabel(b, text);   // a leading emoji in `text` becomes an SVG icon
     b.type = 'button';
     if (title) { b.title = title; b.setAttribute('aria-label', title); }
     if (onClick) b.addEventListener('click', onClick);
@@ -928,7 +930,7 @@ function renderControls() {
     const hasSubs = subs.length > 0;
     if (els.controls) els.controls.hidden = !hasSubs;
     if (!hasSubs) return;
-    els.sourceLabel.textContent = sourceLabel();
+    setLabel(els.sourceLabel, sourceLabel());
     const [kind, val] = splitSource(ui.source);
     const scoped = i => {
         const s = sm.get(i.feedId);
@@ -952,7 +954,7 @@ function renderControls() {
         els.moodChip.setAttribute('aria-pressed', String(on));
         els.moodChip.title = els.moodChip.ariaLabel = T('Good mood only');
     }
-    els.filterChip.textContent = filterChipLabel();
+    setLabel(els.filterChip, filterChipLabel());
     els.filterChip.classList.toggle('active', filtersActive());
 }
 
@@ -1171,7 +1173,8 @@ function renderCard(item, sm) {
         badge.title = T('You have a saved summary of this page');
         headText.append(badge);
     }
-    const star = btn('star-button', hist.fav ? '★' : '☆', (e) => { e.stopPropagation(); toggleFavorite(item); }, T('Favorite'));
+    const star = btn('star-button', '', (e) => { e.stopPropagation(); toggleFavorite(item); }, T('Favorite'));
+    star.insertAdjacentHTML('afterbegin', icon('star', 'icon--lg'));
     star.setAttribute('aria-pressed', String(hist.fav));
     head.append(headText, star);
     li.appendChild(head);
@@ -1210,7 +1213,7 @@ function syncPlayButtons(st) {
     document.querySelectorAll('.feed-play-btn').forEach(b => {
         const on = isPlaying(b.dataset.id);
         b.classList.toggle('is-playing', on);
-        b.textContent = on ? T('⏸ Pause') : T('▶ Play');
+        setLabel(b, on ? T('⏸ Pause') : T('▶ Play'));
     });
 }
 

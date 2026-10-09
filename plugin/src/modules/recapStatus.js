@@ -2,7 +2,6 @@
  * recapStatus.js — live status card for recap generation (same idea as the summarize-mode status bubble).
  * Stages: collect → send → wait (elapsed timer) → write/parse → done. Driven by feedAi's `onStage` callback.
  */
-import { modelEmoji } from './modelBadge.js';
 import { el } from './dom.js';
 import { T } from './feedI18n.js';
 import StorageManager from './storageManager.js';
@@ -12,7 +11,7 @@ export async function activeModelLabel() {
         const s = await chrome.storage.sync.get(['connectionMode', 'activeService']);
         if (s.connectionMode !== 'local') return T('AISH cloud');
         const m = await StorageManager.getActiveModel(s.activeService);
-        return `${modelEmoji({ connectionMode: 'local', service: s.activeService })} ${m && m.id ? m.id : s.activeService}`;
+        return m && m.id ? m.id : s.activeService;
     } catch (e) { return ''; }
 }
 

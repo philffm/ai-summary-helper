@@ -5,12 +5,13 @@ License texts below are reproduced verbatim from each project's own license
 file.
 
 Full license text for the Apache-2.0 libraries is reproduced once (the text
-is identical for pdf.js and AFINN-111); the D3 ISC text follows.
+is identical for pdf.js and AFINN-111); the D3 and Lucide ISC texts follow.
 
 | Library | Version | License | Source |
 | --- | --- | --- | --- |
 | pdf.js | 4.0.379 | Apache-2.0 | https://github.com/mozilla/pdf.js |
 | D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
+| Lucide (inline icon sprite in popup.html, subset) | 0.468.0 | ISC | https://github.com/lucide-icons/lucide |
 | AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
 
 > **Version note (manual vendoring):** these libraries are vendored by hand
@@ -257,3 +258,20 @@ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
 OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
 TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
 THIS SOFTWARE.
+
+---
+
+## ISC License — Lucide (icon sprite)
+
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

@@ -1,4 +1,5 @@
-import { modelEmoji } from './modules/modelBadge.js';
+import { modelIconName } from './modules/modelBadge.js';
+import { icon, iconEl, setIcon, setLabel } from './modules/icons.js';
 import { checkOllama } from './modules/ollamaCheck.js';
 import { applyA11y } from './modules/a11y.js';
 import { SK } from './modules/storageKeys.js';
@@ -110,12 +111,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (docking) {
             try { chrome.windows.getCurrent((w) => { windowId = w && w.id; }); } catch (_) { /* no windows API: the background falls back */ }
             const label = surface === 'sidepanel' ? T('Detach to popup') : T('Attach to side panel');
-            popoutBtn.textContent = surface === 'sidepanel' ? '↙️' : '📌';
+            setIcon(popoutBtn, surface === 'sidepanel' ? 'arrow-down-left' : 'pin', 'icon--lg');
             popoutBtn.title = label; popoutBtn.setAttribute('aria-label', label);
             popoutBtn.removeAttribute('data-i18n-title');
         } else if (surface === 'inpage') {
             // The in-page sidebar: the button closes it (the click below toggles it off through the content script).
-            popoutBtn.textContent = '✕';
+            setIcon(popoutBtn, 'x', 'icon--lg');
             popoutBtn.title = T('Close'); popoutBtn.setAttribute('aria-label', T('Close'));
             popoutBtn.removeAttribute('data-i18n-title');
         }
@@ -210,7 +211,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const ensureClose = () => {
             if (panel.querySelector(':scope > .chip-panel-close')) return;
             const b = document.createElement('button');
-            b.type = 'button'; b.className = 'chip-panel-close'; b.textContent = '✕';
+            b.type = 'button'; b.className = 'chip-panel-close'; b.append(iconEl('x'));
             b.setAttribute('aria-label', T('Close'));
             b.addEventListener('click', closePanel);
             panel.appendChild(b);
@@ -223,7 +224,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ── Language Tag Panel ──────────────────────────────────────────────
     const languageSelect = document.getElementById('languageSelect');
     const chipLanguageLabel = document.getElementById('chipLanguageLabel');
-    const chipLanguageIcon = document.querySelector('.chip[data-panel="language"] .chip-icon');
     const languageTagGrid = document.getElementById('languageTagGrid');
     const languageSearch = document.getElementById('languageSearch');
 
@@ -256,14 +256,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (filter && languageTagGrid.children.length === 0) {
                 const customBtn = document.createElement('button');
                 customBtn.className = 'pill pill--sm pill--soft';
-                customBtn.innerHTML = `<span class="lang-custom-ic">✏️</span> "${escapeHtml(filter)}"`;
+                customBtn.innerHTML = `<span class="lang-custom-ic">${icon('pencil', 'icon--sm')}</span> "${escapeHtml(filter)}"`;
                 customBtn.title = T('Use "{name}" as custom language code', { name: filter });
                 customBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     // Add a temporary option for this custom code
                     const opt = document.createElement('option');
                     opt.value = filter;
-                    opt.textContent = `✏️ ${filter.toUpperCase()}`;
+                    opt.textContent = filter.toUpperCase();
                     languageSelect.add(opt);
                     languageSelect.value = filter;
                     languageSelect.dispatchEvent(new Event('change'));
@@ -285,10 +285,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const code = languageSelect.value || 'EN';
             const shortCode = code.split('-')[0].toUpperCase();
             chipLanguageLabel.textContent = shortCode;
-            const selectedOption = languageSelect.options[languageSelect.selectedIndex];
-            if (chipLanguageIcon && selectedOption) {
-                chipLanguageIcon.textContent = selectedOption.textContent.trim().split(/\s/)[0] || '🌐';
-            }
             renderTags(languageSearch?.value || '');
         });
     }
@@ -302,11 +298,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const customModelInput = document.getElementById('customModelInput');
     const setCustomModelBtn = document.getElementById('setCustomModelBtn');
 
-    // Chip icon follows the model: ☁️ cloud, 🦙 Ollama, 💻 other own model/API (see modelBadge.js).
+    // Chip icon follows the model: cloud, server (Ollama), laptop (other own model/API) — see modelBadge.js.
     const chipModelIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
-    const setModelChip = (label, emoji) => {
+    const setModelChip = (label, iconName) => {
         if (chipModelLabel) chipModelLabel.textContent = label;
-        if (chipModelIcon && emoji) chipModelIcon.textContent = emoji;
+        if (chipModelIcon && iconName) { setIcon(chipModelIcon, iconName); chipModelIcon.dataset.icon = iconName; }
     };
 
     let servicesMetaCache = [];
@@ -330,7 +326,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const active = preferredCloudModel || 'google/gemini-3.8-flash';
             // Just take the model name part (after /) for the chip if it's long
             const label = active.includes('/') ? active.split('/').pop() : active;
-            setModelChip(label, modelEmoji({ connectionMode: 'cloud' }));
+            setModelChip(label, modelIconName({ connectionMode: 'cloud' }));
             return;
         }
 
@@ -342,7 +338,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Normalize custom models (legacy strings or { id, provider } objects)
         const customIds = custom.map(m => typeof m === 'string' ? m : m?.id);
         const activeId = (typeof cfg.activeModelId === 'string' ? cfg.activeModelId : cfg.activeModelId?.id) || customIds[0] || def;
-        setModelChip(activeId || svcId, modelEmoji({ connectionMode, service: svcId, modelId: activeId }));
+        setModelChip(activeId || svcId, modelIconName({ connectionMode, service: svcId, modelId: activeId }));
     };
 
     if (modelSettingsLink) {
@@ -392,7 +388,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'pill pill--sm pill--soft' + (m.id === mode ? ' active' : '');
-                btn.textContent = m.label;
+                setLabel(btn, m.label);
                 btn.setAttribute('aria-pressed', m.id === mode ? 'true' : 'false');
                 btn.addEventListener('click', async (e) => {
                     e.preventDefault();
@@ -490,7 +486,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // Update chip label
                     const activeCloudModel = preferredCloudModel || 'google/gemini-3.8-flash';
                     const chipLabel = activeCloudModel.includes('/') ? activeCloudModel.split('/').pop() : activeCloudModel;
-                    setModelChip(chipLabel, modelEmoji({ connectionMode: 'cloud' }));
+                    setModelChip(chipLabel, modelIconName({ connectionMode: 'cloud' }));
 
                     modelProviderGrid.innerHTML = '';
                     setModelStatus('byPhil Cloud', '');
@@ -506,8 +502,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                             btn.className = 'pill pill--sm pill--soft';
                             const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
                             btn.innerHTML = modelId === activeCloudModel
-                                ? `${escapeHtml(shortName)} <span aria-hidden="true">✓</span>`
-                                : `${escapeHtml(shortName)} <span class="remove-recent">✕</span>`;
+                                ? `${escapeHtml(shortName)} ${icon('check', 'icon--sm')}`
+                                : `${escapeHtml(shortName)} <span class="remove-recent">${icon('x', 'icon--sm')}</span>`;
                             if (modelId === activeCloudModel) btn.classList.add('active');
                             
                             btn.addEventListener('click', async (e) => {
@@ -528,7 +524,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         return;
                     }
 
-                    modelIdGrid.innerHTML = '<span class="model-grid-note">🔍 ' + T('Searching Cloud...') + '</span>';
+                    modelIdGrid.innerHTML = '<span class="model-grid-note">' + icon('search', 'icon--sm') + ' ' + T('Searching Cloud...') + '</span>';
                     try {
                         const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`);
                         const data = await response.json();
@@ -595,7 +591,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     .filter(m => !searchTerm || m.id.toLowerCase().includes(searchTerm));
 
                 // Update chip label to show only the active model ID
-                setModelChip(activeModel, modelEmoji({ connectionMode: 'local', service: curSvcId, modelId: activeModel }));
+                setModelChip(activeModel, modelIconName({ connectionMode: 'local', service: curSvcId, modelId: activeModel }));
                 if (meta?.apiKeyOptional) setModelStatus(T('{name} · local, no API key', { name: meta.name }), '');
                 else if (cfg.apiKey) setModelStatus(T('{name} · API key set', { name: meta?.name || curSvcId }), '');
                 else setModelStatus(T('{name} · API key missing — add it in Settings', { name: meta?.name || curSvcId }), 'warn');
@@ -629,7 +625,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
                     btn.dataset.modelId = modelId;
-                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag">✕</span>` : ''}`;
+                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag">${icon('x', 'icon--sm')}</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
                     btn.addEventListener('click', (e) => {
