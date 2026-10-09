@@ -1199,23 +1199,34 @@ export function initMainScreen(ui) {
     // Feeds) puts it in line. The note below stays until that job starts or is removed.
     const bgSend = (m) => new Promise((resolve) => { try { chrome.runtime.sendMessage(m, (r) => { void chrome.runtime.lastError; resolve(r || null); }); } catch (_) { resolve(null); } });
     const queueNotes = new Map();   // job id -> element
-    const showQueuedNote = (id, title, position) => {
-        queueNotes.get(id)?.remove();
+    const showQueuedNote = (id, title, position, scroll = true) => {
+        const text = '⏳ ' + T('Queued: {title}', { title: clip(title || T('this page'), 60) }) + (position > 1 ? ' · #' + position : '') + ' — ' + T('starts when the current summary is done');
+        const existing = queueNotes.get(id);
+        if (existing) { existing.querySelector('span').textContent = text; return; }
         const el = document.createElement('div');
         el.className = 'queue-note'; el.setAttribute('role', 'status');
         const txt = document.createElement('span');
-        txt.textContent = '⏳ ' + T('Queued: {title}', { title: clip(title || T('this page'), 60) }) + (position > 1 ? ' · #' + position : '') + ' — ' + T('starts when the current summary is done');
+        txt.textContent = text;
         const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'button-secondary btn-sm'; rm.textContent = T('Remove');
         rm.addEventListener('click', () => { bgSend({ action: 'cancelQueuedSummary', id }); el.remove(); queueNotes.delete(id); });
-        el.append(txt, rm); feed.appendChild(el); queueNotes.set(id, el); scrollFeed();
+        el.append(txt, rm); feed.appendChild(el); queueNotes.set(id, el);
+        if (scroll) scrollFeed();
+    };
+    const syncQueueNotes = (jobs) => {
+        const queue = Array.isArray(jobs && jobs.queue) ? jobs.queue : [];
+        const live = new Set(queue.map(j => j.id));
+        for (const [id, el] of queueNotes) if (!live.has(id)) { el.remove(); queueNotes.delete(id); }
+        queue.forEach((job, i) => {
+            if (job && job.id != null) showQueuedNote(job.id, job.title, i + 1, false);
+        });
+        syncWorkingButton();
     };
     const onQueueUpdate = (msg) => {
         if (!msg || msg.action !== 'summaryQueue') return;
-        const live = new Set((msg.queue || []).map(j => j.id));
-        for (const [id, el] of queueNotes) if (!live.has(id)) { el.remove(); queueNotes.delete(id); }
-        syncWorkingButton();
+        syncQueueNotes(msg);
     };
     chrome.runtime.onMessage.addListener(onQueueUpdate);
+    bgSend({ action: 'summaryJobs' }).then(syncQueueNotes);
 
     // ── Fetch button ────────────────────────────────────────────────────
     fetchSummaryButton.addEventListener('click', async () => {
