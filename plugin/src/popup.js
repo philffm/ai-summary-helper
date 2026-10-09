@@ -405,10 +405,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             show('modelNote', mode === 'cloud'); show('providerLabel', mode === 'local'); show('modelProviderGrid', mode === 'local');
             const note = document.getElementById('modelNote');
             if (note) note.textContent = T('Included with your byPhil account — no API key needed.');
-            const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? T('Recent models') : T('Model');
-            customModelInput.placeholder = mode === 'cloud' ? T('Search cloud models…') : T('Add model ID, e.g. gemma4:e2b');
+            const ml = document.getElementById('modelIdLabel'); if (ml) ml.textContent = mode === 'cloud' ? T('Recent models') : mode === 'ollama' ? T('Installed models') : T('Model');
+            customModelInput.placeholder = mode === 'cloud' ? T('Search cloud models…') : mode === 'ollama' ? T('Search installed models…') : T('Add model ID, e.g. gemma4:e2b');
             customModelInput.setAttribute('aria-label', customModelInput.placeholder);
-            if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'cloud' ? 'none' : '';
+            if (setCustomModelBtn) setCustomModelBtn.style.display = mode === 'local' ? '' : 'none'; // cloud and Ollama: the input is a search, nothing to add
         };
 
         // Close the model panel (used by the ✕ button, Esc and after a model was picked).
@@ -443,7 +443,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
             setModelStatus(result.models.length ? T('Ollama · {n} installed', { n: result.models.length }) : T('Ollama is running, but no model is installed — run: ollama pull llama3.2'), result.models.length ? '' : 'warn');
             const shown = new Set(Array.from(modelIdGrid.querySelectorAll('button')).map(b => b.dataset.modelId));
-            result.models.filter(id => !shown.has(id)).forEach(id => {
+            const term = customModelInput.value.toLowerCase().trim();
+            const matches = result.models.filter(id => !shown.has(id) && (!term || id.toLowerCase().includes(term)));
+            if (term && !matches.length && !shown.size) modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No matches found') + '</span>';
+            matches.forEach(id => {
                 const btn = document.createElement('button');
                 btn.className = 'pill pill--sm pill--soft';
                 btn.dataset.modelId = id;
@@ -578,7 +581,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     ...(activeModel !== defModel && !customIds.includes(defModel) && defModel ? [{ id: defModel, provider: curSvcId }] : [])
                 ];
                 // Remove exact duplicates while preserving order
-                const deduped = allModels.filter((m, i, a) => a.findIndex(x => x.id === m.id) === i);
+                const searchTerm = curSvcId === 'ollama' ? customModelInput.value.toLowerCase().trim() : '';
+                const deduped = allModels.filter((m, i, a) => a.findIndex(x => x.id === m.id) === i)
+                    .filter(m => !searchTerm || m.id.toLowerCase().includes(searchTerm));
 
                 // Update chip label to show only the active model ID
                 setModelChip(activeModel, modelEmoji({ connectionMode: 'local', service: curSvcId, modelId: activeModel }));
@@ -606,7 +611,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Model ID tags for selected provider
                 modelIdGrid.innerHTML = '';
                 if (deduped.length === 0) {
-                    modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No models configured') + '</span>';
+                    modelIdGrid.innerHTML = curSvcId === 'ollama' ? '' : '<span class="model-grid-note">' + T('No models configured') + '</span>'; // Ollama: the probe fills the grid
                     return;
                 }
                 deduped.forEach((modelObj) => {
@@ -673,7 +678,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const val = customModelInput.value.trim();
             if (!val) return;
             const { connectionMode: cm, activeService } = await chrome.storage.sync.get(['connectionMode', 'activeService']);
-            if ((cm || 'cloud') === 'cloud') return; // cloud input is a search filter
+            if ((cm || 'cloud') === 'cloud' || activeService === 'ollama') return; // cloud / Ollama input is a search filter
             committing = true;
             // The stored active provider is the source of truth (the hidden select can lag behind it).
             const svcId = activeService || modelSelect.value || 'openai';
