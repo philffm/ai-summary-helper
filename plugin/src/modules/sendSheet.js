@@ -14,7 +14,7 @@ import { createRecapStatus } from './recapStatus.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
 import { el } from './dom.js';
 import { paperState, paperDoi } from './paperInfo.js';
-import { CITE_STYLES, getCiteStyle, loadCiteStyle, setCiteStyle, ensureCsl, formatList, citeFileName, copyText, downloadText } from './citation.js';
+import { CITE_STYLES, loadCiteStyle, setCiteStyle, ensureCsl, formatList, citeFileName, copyText, downloadText } from './citation.js';
 
 let deps = null;
 const sel = new Set();                 // selected article ids

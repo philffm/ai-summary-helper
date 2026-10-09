@@ -277,7 +277,7 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     return loadD3()
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
         .catch(() => {
-            container.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('D3 library failed to load.')}</div>`;
+            container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         });
 }
 
@@ -452,7 +452,7 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     if (typeof d3 === 'undefined') {
-        container.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);">${T('D3 library failed to load.')}</div>`;
+        container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         return;
     }
 
@@ -934,39 +934,14 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     // ── Bottom-right: link-kind legend ────────────────────────────────────
     const rightBar = document.createElement('div');
     rightBar.className = 'graph-controls-bottom-right';
-    rightBar.style.cssText = `
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 6px;
-        z-index: 5;
-        max-width: 70%;
-    `;
 
     // The dashed/thin similarity links vs solid/arrowed tag links carry
     // real meaning; make it visible instead of only documented in code.
     const legendRow = document.createElement('div');
-    legendRow.style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 10px;
-        color: var(--text-muted);
-        background: var(--glass-base, #fff);
-        border: 1px solid var(--outline, #ddd);
-        border-radius: 8px;
-        padding: 4px 8px;
-    `;
+    legendRow.className = 'graph-legend';
     legendRow.innerHTML = `
-        <span style="display:inline-flex;align-items:center;gap:4px;">
-            <span style="display:inline-block;width:14px;height:0;border-top:2px solid var(--outline);"></span> ${T('shared tag')}
-        </span>
-        <span style="display:inline-flex;align-items:center;gap:4px;">
-            <span style="display:inline-block;width:14px;height:0;border-top:1px dashed var(--text-muted);"></span> ${T('similar content')}
-        </span>
+        <span class="graph-legend-item"><span class="graph-legend-line graph-legend-line--tag"></span> ${T('shared tag')}</span>
+        <span class="graph-legend-item"><span class="graph-legend-line graph-legend-line--similar"></span> ${T('similar content')}</span>
     `;
     rightBar.appendChild(legendRow);
 
@@ -1001,19 +976,18 @@ async function renderPreviewHighlights(card, article) {
     const userItems = list.filter(a => a.type !== 'ghost');
     const ghostItems = list.filter(a => a.type === 'ghost');
 
-    const itemsHtml = items => items.map(a => `
-        <li style="margin-bottom:6px;line-height:1.4;">"${escapeHtml(a.text)}"</li>`).join('');
+    const itemsHtml = items => items.map(a => `<li>"${escapeHtml(a.text)}"</li>`).join('');
 
     const parts = [];
     if (userItems.length) {
         parts.push(`
-            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">${T('📝 Your highlights')}</div>
-            <ul style="margin:0;padding-left:16px;font-size:12px;">${itemsHtml(userItems)}</ul>`);
+            <div class="graph-preview-label">${T('📝 Your highlights')}</div>
+            <ul>${itemsHtml(userItems)}</ul>`);
     }
     if (ghostItems.length) {
         parts.push(`
-            <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin:10px 0 4px;">${T('🤖 AI-suggested highlights')}</div>
-            <ul style="margin:0;padding-left:16px;font-size:12px;">${itemsHtml(ghostItems)}</ul>`);
+            <div class="graph-preview-label">${T('🤖 AI-suggested highlights')}</div>
+            <ul>${itemsHtml(ghostItems)}</ul>`);
     }
     if (!parts.length) return;
 
@@ -1027,61 +1001,35 @@ async function renderPreviewHighlights(card, article) {
  * Shows a floating preview card for an article inside the graph container.
  * Card can be dismissed by clicking its close button or clicking outside it.
  */
+export const __test_showPreviewCard = (container, article) => showPreviewCard(container, article);
 function showPreviewCard(container, article) {
     const containerEl = container;
     // Remove any existing preview card
     const existing = containerEl.querySelector('.graph-preview-card');
     if (existing) existing.remove();
 
-    const safeTitle = article.title || (article.content && article.content.split('\n')[0]) || T('Untitled');
-    const summaryPlain = (article.summary || '')
-        .replace(/<[^>]+>/g, '').trim()
-        .slice(0, 200);
+    const title = article.title || (article.content && article.content.split('\n')[0]) || T('Untitled');
+    const summaryPlain = (new DOMParser().parseFromString(article.summary || '', 'text/html').body.textContent || '').trim();
     const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
-    const tags = (article.tags || []).map(t => `<span class="tag-chip" style="font-size:10px;">${escapeHtml(t)}</span>`).join('');
+    const tags = (article.tags || []).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
+    const clip = (str, n) => str.length > n ? str.slice(0, n) + '…' : str;
 
     const card = document.createElement('div');
     card.className = 'graph-preview-card';
-    // Flush to the bottom edge of the graph view (no outer border/margin),
-    // and split into a scrollable content area + a pinned action row so the
-    // "Open in History" button stays reachable without scrolling no matter
-    // how long the summary/tag list is.
-    card.style.cssText = `
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: var(--glass-base, #fff);
-        border-radius: 12px 12px 0 0;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-        z-index: 10;
-        max-height: 70%;
-        display: flex;
-        flex-direction: column;
-        font-size: 13px;
-        line-height: 1.4;
-    `;
+    // Flush to the bottom edge of the graph view: a scrollable content area + a pinned action row so
+    // "Open in History" stays reachable however long the summary/tag list is (styles.css: .graph-preview-card).
     card.innerHTML = `
-        <div style="display:flex;align-items:flex-start;gap:8px;padding:14px 14px 0;flex-shrink:0;">
-            <strong style="flex:1;">${safeTitle.length > 60 ? safeTitle.slice(0, 60) + '…' : safeTitle}</strong>
-            <div class="graph-preview-card-close" style="
-                background: none;
-                border: none;
-                font-size: 18px;
-                cursor: pointer;
-                opacity: 0.5;
-                padding: 0 4px;
-                line-height: 1;
-                flex-shrink: 0;
-            ">✕</div>
+        <div class="graph-preview-head">
+            <strong>${escapeHtml(clip(title, 60))}</strong>
+            <button type="button" class="graph-preview-card-close" aria-label="${escapeHtml(T('Close'))}">✕</button>
         </div>
-        <div class="graph-preview-card-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:6px 14px 8px;">
-            <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">${date}</div>
-            <div style="font-size:12px;margin-bottom:6px;">${summaryPlain}${summaryPlain.length >= 200 ? '…' : ''}</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px;">${tags}</div>
+        <div class="graph-preview-card-scroll">
+            <div class="graph-preview-date">${escapeHtml(date)}</div>
+            <div class="graph-preview-summary">${escapeHtml(clip(summaryPlain, 200))}</div>
+            <div class="graph-preview-tags">${tags}</div>
         </div>
-        <div style="padding:8px 14px 14px;flex-shrink:0;">
-            <button class="graph-preview-open" style="width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent,#007bff);color:#fff;font-size:11px;cursor:pointer;">${T('Open in History')}</button>
+        <div class="graph-preview-foot">
+            <button type="button" class="graph-preview-open">${T('Open in History')}</button>
         </div>
     `;
 

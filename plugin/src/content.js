@@ -1,6 +1,6 @@
 import { SK } from './modules/storageKeys.js';
-import { languageEnglishName, languageRule, ttsLang, langBase } from './modules/languages.js';
-import { paperIndexFields, detectPaperInText, applyScholarly, matchPagePaper } from './content/paper.js';
+import { languageEnglishName, languageRule } from './modules/languages.js';
+import { paperIndexFields, detectPaperInText, matchPagePaper } from './content/paper.js';
 import { finalizeSummary } from './content/finalize.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
@@ -13,7 +13,6 @@ import {
   truncateToTokenLimit,
   estimateTokens,
   ollamaNumCtx,
-  wasCutOff,
   needsChunking,
   splitForContext,
   modelContextFromShow,
@@ -30,6 +29,7 @@ import {
   waitForSpeedReadingComplete,
   toggleHybridSidebar,
   ensureHybridSidebar,
+  sidebarMessage,
   showPlaceholder,
   insertSummary,
   selectTargetElement,
@@ -55,10 +55,7 @@ import {
 
 import {
   getGhostHighlightConfig,
-  normalizeGhostQuotes,
-  ensureGeneralTag,
   saveToLocalStorage,
-  extractSummaryTitle,
   collectPageMeta
 } from './content/core.js';
 
@@ -530,8 +527,9 @@ import {
       // content script and the iframe's own document needs no extension
       // privileges, so this is the reliable return path in pop-out mode.
       const sidebar = document.getElementById('ai-summary-hybrid-sidebar');
-      if (sidebar && sidebar.contentWindow) {
-        try { sidebar.contentWindow.postMessage(msg, '*'); } catch (_) { /* sidebar frame may already be gone */ }
+      const wrapped = sidebarMessage(msg);
+      if (sidebar && sidebar.contentWindow && wrapped) {
+        try { sidebar.contentWindow.postMessage(wrapped, '*'); } catch (_) { /* sidebar frame may already be gone */ }
       }
     };
 
@@ -1004,8 +1002,7 @@ import {
           try {
             await new Promise((res) => {
               chrome.runtime.sendMessage({ action: 'wakeup' }, () => {
-                // Ignore errors — this only serves to wake the worker.
-                if (chrome.runtime.lastError) {}
+                void chrome.runtime.lastError;   // read it so Chrome does not log it: this only wakes the worker
                 res();
               });
             });

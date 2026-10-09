@@ -3934,5 +3934,11 @@
   },
   "f_that_is_enough_6ac8": {
     "message": "That is enough"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "Attach to side panel"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "Detach to popup"
   }
 }

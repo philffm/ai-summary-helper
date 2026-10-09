@@ -11,6 +11,7 @@ import { languageMatches } from './modules/languages.js';
 // import { initPodcastManager } from './modules/podcastManager.js';
 // Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
+import { currentSurface, sidePanelAvailable, attachToSidePanel, detachToPopup } from './modules/panelDock.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
@@ -79,7 +80,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────
-    chrome.storage.sync.get('useNativeSidePanel', (data) => {
+    // Never from inside the side panel itself: opening it again and closing "this" window would close the panel.
+    const surface = currentSurface();
+    if (surface === 'sidepanel') document.body.dataset.surface = 'sidepanel';
+    if (surface !== 'sidepanel') chrome.storage.sync.get('useNativeSidePanel', (data) => {
         if (data.useNativeSidePanel) {
             chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
                 if (response?.success) window.close();
@@ -95,27 +99,38 @@ document.addEventListener("DOMContentLoaded", async () => {
         let inSidebar = false;
         try { inSidebar = !!(ffSidebar && (typeof browser !== 'undefined' ? browser : chrome).extension?.getViews?.({ type: 'sidebar' })?.includes(window)); } catch (_) { /* not Firefox */ }
         if (inSidebar) { popoutBtn.hidden = true; document.body.dataset.surface = 'sidebar'; }
+
+        // Chrome: one button docks this page into the side panel, and in the side panel undocks it to a popup.
+        // sidePanel.open needs the click's user gesture, so the window id is known before the click.
+        const docking = !inSidebar && sidePanelAvailable();
+        let windowId = null;
+        if (docking) {
+            try { chrome.windows.getCurrent((w) => { windowId = w && w.id; }); } catch (_) { /* no windows API: the background falls back */ }
+            const label = surface === 'sidepanel' ? T('Detach to popup') : T('Attach to side panel');
+            popoutBtn.textContent = surface === 'sidepanel' ? '↙️' : '📌';
+            popoutBtn.title = label; popoutBtn.setAttribute('aria-label', label);
+            popoutBtn.removeAttribute('data-i18n-title');
+        }
+
         popoutBtn.addEventListener('click', async () => {
+            if (docking) {
+                try {
+                    if (surface === 'sidepanel') { await detachToPopup(windowId); return; }
+                    await attachToSidePanel(windowId);
+                    window.close();
+                    return;
+                } catch (err) {
+                    console.warn('[sidePanel] attach/detach failed, using the in-page sidebar:', err && err.message);
+                }
+            }
             if (ffSidebar && typeof ffSidebar.open === 'function') {
                 try { await ffSidebar.open(); window.close(); return; } catch (err) { console.warn('[sidebar] open failed, using the in-page sidebar:', err && err.message); }
             }
             try {
                 const mod = await import('./modules/mainScreen.js').catch(() => null);
                 const activeTab = mod?.getActiveTab ? await mod.getActiveTab() : null;
-                const { useNativeSidePanel } = await chrome.storage.sync.get('useNativeSidePanel').catch(() => ({}));
 
-                // Native side panel (Chrome-only, opt-in). On Firefox/Safari/iOS
-                // `chrome.sidePanel` is undefined, so we always fall through to
-                // the hybrid injected iframe sidebar.
-                const nativeAvailable = !!(chrome.sidePanel && chrome.sidePanel.setPanelBehavior);
-                if (useNativeSidePanel && nativeAvailable) {
-                    chrome.runtime.sendMessage({ action: 'openNativeSidePanel' }, (response) => {
-                        if (response?.success) window.close();
-                    });
-                    return;
-                }
-
-                // Default: hybrid injected iframe (works on every platform)
+                // No native side panel here (Safari/iOS, or attaching failed): the in-page sidebar iframe
                 if (activeTab && mod?.ensureContentScript) {
                     // Safari opt-in model: request site access within this
                     // click gesture so the native prompt is honored.
@@ -226,7 +241,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (filter && languageTagGrid.children.length === 0) {
                 const customBtn = document.createElement('button');
                 customBtn.className = 'pill pill--sm pill--soft';
-                customBtn.innerHTML = `<span style="font-size:14px;">✏️</span> "${escapeHtml(filter)}"`;
+                customBtn.innerHTML = `<span class="lang-custom-ic">✏️</span> "${escapeHtml(filter)}"`;
                 customBtn.title = T('Use "{name}" as custom language code', { name: filter });
                 customBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -429,8 +444,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                             btn.className = 'pill pill--sm pill--soft';
                             const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
                             btn.innerHTML = modelId === activeCloudModel
-                                ? `${shortName} <span aria-hidden="true">✓</span>`
-                                : `${shortName} <span class="remove-recent" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>`;
+                                ? `${escapeHtml(shortName)} <span aria-hidden="true">✓</span>`
+                                : `${escapeHtml(shortName)} <span class="remove-recent">✕</span>`;
                             if (modelId === activeCloudModel) btn.classList.add('active');
                             
                             btn.addEventListener('click', async (e) => {
@@ -451,7 +466,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         return;
                     }
 
-                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">🔍 ' + T('Searching Cloud...') + '</span>';
+                    modelIdGrid.innerHTML = '<span class="model-grid-note">🔍 ' + T('Searching Cloud...') + '</span>';
                     try {
                         const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`);
                         const data = await response.json();
@@ -462,7 +477,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             );
                             
                             if (searchResults.length === 0) {
-                                modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">' + T('No matches found') + '</span>';
+                                modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No matches found') + '</span>';
                                 return;
                             }
 
@@ -488,7 +503,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             });
                         }
                     } catch (err) {
-                        modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--danger);padding:4px 0;">' + T('Failed to load models') + '</span>';
+                        modelIdGrid.innerHTML = '<span class="model-grid-note is-error">' + T('Failed to load models') + '</span>';
                     }
                     return;
                 }
@@ -540,7 +555,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Model ID tags for selected provider
                 modelIdGrid.innerHTML = '';
                 if (deduped.length === 0) {
-                    modelIdGrid.innerHTML = '<span style="font-size:11px;color:var(--text-muted);padding:4px 0;">' + T('No models configured') + '</span>';
+                    modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No models configured') + '</span>';
                     return;
                 }
                 deduped.forEach((modelObj) => {
@@ -548,7 +563,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const btn = document.createElement('button');
                     btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
-                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag" style="margin-left:4px;opacity:0.5;cursor:pointer;">✕</span>` : ''}`;
+                    btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag">✕</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
                     btn.addEventListener('click', (e) => {

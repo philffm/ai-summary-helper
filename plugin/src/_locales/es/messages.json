@@ -3766,5 +3766,11 @@
   },
   "f_that_is_enough_6ac8": {
     "message": "Es suficiente"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "Anclar al panel lateral"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "Separar en ventana emergente"
   }
 }

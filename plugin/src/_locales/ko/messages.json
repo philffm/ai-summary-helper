@@ -3748,5 +3748,11 @@
   },
   "f_that_is_enough_6ac8": {
     "message": "충분해요"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "사이드 패널에 고정"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "팝업으로 분리"
   }
 }

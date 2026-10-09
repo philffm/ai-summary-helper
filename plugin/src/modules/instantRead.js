@@ -11,7 +11,7 @@ const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(
 
 export function initInstantRead({ chip, panel, barHost, button, fallback }) {
   const reader = getReader();
-  let chain = Promise.resolve(), on = false, dismissed = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null, done = false;
+  let chain = Promise.resolve(), on = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null;
 
   const paintChip = () => {
     if (!chip) return;
@@ -54,24 +54,16 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     paintButton();
     const st = reader.state, mine = st.meta && st.meta.tool === 'instant';
     const running = mine && ['playing', 'paused', 'waiting'].includes(st.state);
-    if (running) { wasReading = true; dismissed = false; }
-    // "Finished" is derived from what is true now, not from having seen the right transition: nothing is playing, the run
-    // is over and there is text to read again.
-    done = false;   // finished state lives in the permanent button next to the composer button
-    if (!running && !done) { if (bar) bar.hidden = true; return; }
+    if (running) wasReading = true;
+    // The bar shows only while reading; "finished / read again" lives in the summary card's Read again button.
+    if (!running) { if (bar) bar.hidden = true; return; }
     if (!bar || !bar.isConnected) { bar = mk('div', 'sr-bar'); bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', T('Instant read')); if (!barHost) return; barHost.prepend(bar); }
     bar.hidden = false; bar.textContent = '';
     const b = (cls, txt, label, fn) => { const x = mk('button', 'sr-b ' + cls, txt); x.type = 'button'; x.title = label; x.setAttribute('aria-label', label); x.addEventListener('click', fn); return x; };
-    if (running) {
-      bar.append(b('sr-pp', st.state === 'paused' ? '▶' : '❚❚', st.state === 'paused' ? T('Play') : T('Pause'), () => reader.toggle()),
+    bar.append(b('sr-pp', st.state === 'paused' ? '▶' : '❚❚', st.state === 'paused' ? T('Play') : T('Pause'), () => reader.toggle()),
         mk('span', 'sr-t', T('Reading · sentence {n}', { n: Math.min(st.index + 1, st.total || 1) })),
         b('sr-mute' + (st.muted ? ' is-on' : ''), st.muted ? '🔇' : '🔊', st.muted ? T('Unmute') : T('Mute'), () => reader.mute()),
         b('sr-rate', String(st.rate || 1) + '×', T('Reading speed'), async () => { const steps = [1, 1.25, 1.5, 0.8]; await reader.setRate(steps[(steps.indexOf(st.rate || 1) + 1) % steps.length]); }));
-    } else {
-      bar.append(mk('span', 'sr-ok', '✓'), mk('span', 'sr-t', T('Finished reading')),
-        b('sr-again', '▶ ' + T('Read again'), T('Read again'), () => { dismissed = false; wasReading = true; reader.start(lastUnits, sumLang, { meta: { tool: 'instant', lang: sumLang } }); }),
-        b('sr-x', '✕', T('Close'), () => { dismissed = true; paintBar(); }));
-    }
   };
   reader.onState(() => { paintChip(); paintBar(); });
 
@@ -113,7 +105,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
 
   async function begin(ctx) {
     if (!on || !ready || active) return;
-    active = true; spoken = 0; done = false; dismissed = false; lastUnits = [];
+    active = true; spoken = 0; lastUnits = [];
     try { sumLang = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { sumLang = 'en'; }
     const title = ((document.getElementById('pageCard') || {}).dataset || {}).title || '';
     const ui = uiLang();
@@ -144,7 +136,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     reader.finish();
     paintBar();
   }
-  function abort() { if (!active && !wasReading) return; active = false; wasReading = false; done = false; lastUnits = []; reader.stop(); paintBar(); }
+  function abort() { if (!active && !wasReading) return; active = false; wasReading = false; lastUnits = []; reader.stop(); paintBar(); }
 
   return {
     ready: ready_,
@@ -155,7 +147,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
       sumLang = ttsLang(code);
       const units = speakable(streamText(html), true).map(text => ({ text, lang: sumLang }));
       if (!units.length) return false;
-      active = false; lastUnits = units; dismissed = false;
+      active = false; lastUnits = units;
       await reader.start(units, sumLang, { meta: { tool: 'instant', lang: sumLang, id } });
       return true;
     },
@@ -170,7 +162,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
         if (!active && !lastUnits.length && msg.summary) {   // completed without a stream we followed (finished in the background, or very fast): keep it readable
           try { sumLang = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* keep */ }
           lastUnits = speakable(streamText(msg.summary), true).map(text => ({ text, lang: sumLang }));
-          dismissed = false; paintBar(); return;
+          paintBar(); return;
         }
         complete(msg.summary);
       }).catch(() => {});
@@ -180,7 +172,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     /** Follow-up answers: same stream, no title announcement. */
     async startChat(question) {
       if (!on || !ready || active) return;
-      active = true; spoken = 0; done = false; dismissed = false; lastUnits = [];
+      active = true; spoken = 0; lastUnits = [];
       let base = 'en'; try { base = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* default */ }
       sumLang = question ? (ttsLang((await detectLang(question)) || '') || base) : base;
       if (!active) return;

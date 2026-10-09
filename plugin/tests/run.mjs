@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 const here = path.dirname(fileURLToPath(import.meta.url));
-const KNOWN_FAILING = new Set(['test18.mjs']);   // pre-existing failure, tracked: remove from here once fixed
+const KNOWN_FAILING = new Set([]);   // tests with a tracked pre-existing failure; keep empty
 const only = process.argv.slice(2);
 const files = fs.readdirSync(here).filter(f => /^test\d+\.mjs$/.test(f))
   .filter(f => !only.length || only.includes(f.match(/\d+/)[0]))

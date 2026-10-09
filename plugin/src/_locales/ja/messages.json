@@ -3766,5 +3766,11 @@
   },
   "f_that_is_enough_6ac8": {
     "message": "これで十分"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "サイドパネルに固定"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "ポップアップに切り離す"
   }
 }

@@ -275,7 +275,7 @@ export function initAnalyticsReport(container, articles) {
     const catsHtml = cats.length
         ? cats.map(([tag, count]) => {
             const pct = Math.round((count / cats[0][1]) * 100);
-            return `<div class="ar-cat-row" data-tag="${escapeHtml(tag)}" title="${escapeHtml(T('Search “{term}”', { term: tag }))}" style="cursor:pointer;">
+            return `<div class="ar-cat-row" data-tag="${escapeHtml(tag)}" title="${escapeHtml(T('Search “{term}”', { term: tag }))}">
               <span class="ar-cat-label">${escapeHtml(tag)}</span>
               <div class="ar-cat-bar-track"><div class="ar-cat-bar" style="width:${pct}%"></div></div>
               <span class="ar-cat-count">${count}</span>

@@ -9,6 +9,11 @@ on:
 permissions:
   contents: write
 
+# One release at a time: two runs would both read the same version and both try to bump it.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   build-release:
     runs-on: ubuntu-latest
@@ -42,26 +47,27 @@ jobs:
           cd plugin
           ./build.sh
 
-      - name: Commit version bump back to repo
+      # The bump is re-applied onto the newest main rather than rebased: it only sets the version in files whose
+      # version line nobody else edits, so there is nothing to resolve and nothing to overwrite. If main moves
+      # between fetch and push, fetch and stamp again; after 5 tries the job fails instead of forcing anything.
+      - name: Commit version bump to main
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-
-          # Stage the changed files
-          git add plugin/platforms/chrome/manifest.json plugin/platforms/android/manifest.json plugin/platforms/firefox/manifest.json plugin/platforms/ios/manifest.json current_version.json plugin/src/popup.html
-
-          # Commit the changes (if any exist)
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore: bump version [skip ci]"
-
-          # Ensure we have the latest remote main branch
-          git fetch origin main
-
-          # Rebase our new commit on top of the latest main.
-          # -X theirs tells Git: "If there is a conflict, always keep the Action's version bump"
-          git pull --rebase -X theirs origin main
-
-          # Push successfully to main
-          git push origin HEAD:main
+          VERSION=$(jq -r '.version' current_version.json)
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout --force -B release-bump origin/main
+            plugin/scripts/set-version.sh "$VERSION"
+            git add plugin/platforms/*/manifest.json current_version.json plugin/src/popup.html
+            if git diff --staged --quiet; then echo "main already at $VERSION"; exit 0; fi
+            git commit -m "chore: bump version to $VERSION [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "main moved during the push (attempt $attempt), retrying"
+            sleep $((attempt * 5))
+          done
+          echo "could not push the version bump to main" >&2
+          exit 1
 
       - name: Extract version for release tag
         id: get_version

@@ -52,7 +52,7 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "side_panel": {
-    "default_path": "popup.html"
+    "default_path": "popup.html?surface=sidepanel"
   },
   "commands": {
     "toggle-popup": {

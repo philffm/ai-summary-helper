@@ -1855,11 +1855,11 @@ function subRow(s) {
 
 function toggleRow(id, title, hint, key) {
     const row = el('div', 'setting-group flex justify-between align-center mb-3');
-    const left = el('div'); left.style.cssText = 'flex:1;min-width:0;';
-    const lab = el('label', null, title); lab.htmlFor = id; lab.style.cssText = 'display:block;margin:0;font-weight:normal;cursor:pointer;';
-    const p = el('p', null, hint); p.style.cssText = 'font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;';
+    const left = el('div', 'setting-text');
+    const lab = el('label', null, title); lab.htmlFor = id; lab.className = 'setting-label';
+    const p = el('p', 'setting-desc', hint);
     left.append(lab, p);
-    const sw = el('label', 'switch'); sw.style.cssText = 'flex-shrink:0;margin-left:12px;';
+    const sw = el('label', 'switch setting-switch');
     const cb = el('input'); cb.type = 'checkbox'; cb.id = id; cb.checked = !!settings[key];
     cb.addEventListener('change', () => setSetting(key, cb.checked));
     sw.append(cb, el('span', 'slider-toggle'));
@@ -1869,11 +1869,11 @@ function toggleRow(id, title, hint, key) {
 
 function moodToggleRow() {
     const row = el('div', 'setting-group flex justify-between align-center mb-3');
-    const left = el('div'); left.style.cssText = 'flex:1;min-width:0;';
-    const lab = el('label', null, T('😊 Mood')); lab.htmlFor = 'feedSetMood'; lab.style.cssText = 'display:block;margin:0;font-weight:normal;cursor:pointer;';
-    const p = el('p', null, T('Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features.')); p.style.cssText = 'font-size:11px;color:var(--text-muted);margin:2px 0 0;line-height:1.3;';
+    const left = el('div', 'setting-text');
+    const lab = el('label', null, T('😊 Mood')); lab.htmlFor = 'feedSetMood'; lab.className = 'setting-label';
+    const p = el('p', null, T('Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features.')); p.className = 'setting-desc';
     left.append(lab, p);
-    const sw = el('label', 'switch'); sw.style.cssText = 'flex-shrink:0;margin-left:12px;';
+    const sw = el('label', 'switch setting-switch');
     const cb = el('input'); cb.type = 'checkbox'; cb.id = 'feedSetMood'; cb.checked = moodEnabled();
     cb.addEventListener('change', async () => {
         await setMoodEnabled(cb.checked);
@@ -1888,8 +1888,8 @@ function moodToggleRow() {
 
 function selectRow(id, title, key, opts) {
     const row = el('div', 'setting-group flex justify-between align-center mb-3');
-    const lab = el('label', null, title); lab.htmlFor = id; lab.style.cssText = 'margin:0;font-weight:normal;flex:1;';
-    const sel = el('select'); sel.id = id; sel.style.cssText = 'width:auto;min-width:120px;margin:0;';
+    const lab = el('label', null, title); lab.htmlFor = id; lab.className = 'setting-label-grow';
+    const sel = el('select'); sel.id = id; sel.className = 'setting-select';
     opts.forEach(([v, t]) => { const o = el('option', null, t); o.value = String(v); if (Number(settings[key]) === v) o.selected = true; sel.append(o); });
     sel.addEventListener('change', () => setSetting(key, Number(sel.value)));
     row.append(lab, sel);
