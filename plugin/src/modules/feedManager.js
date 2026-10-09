@@ -1750,24 +1750,40 @@ async function scoreWithAi(list) {
     if (!all.length) { toast(uiRef, T('Nothing to score')); return; }
     if (!list.length) { toast(uiRef, T('These items are already scored')); return; }
     const sm = subMap();
-    let done = 0;
+    let done = 0, cancelled = false, error = null, st = null;
+    const body = el('div');
+    openSheet(T('Scoring with AI… {a}/{b}', { a: 0, b: list.length }), body);
     scoring = true;
     try {
         for (let k = 0; k < list.length; k += MAX_RECAP_ITEMS) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
-            toast(uiRef, T('Scoring with AI… {a}/{b}', { a: Math.min(k + chunk.length, list.length), b: list.length }));
-            const { scores, labels } = await scoreItems(chunk, aiTitleOf(sm));
+            st = createRecapStatus({
+                title: T('Scoring with AI… {a}/{b}', { a: Math.min(k + chunk.length, list.length), b: list.length }),
+                detail: T('Sending {n} titles and short snippets to your AI connection.', { n: chunk.length }),
+                onCancel: () => { cancelled = true; },
+            });
+            body.replaceChildren(st.node);
+            let res;
+            try {
+                res = await scoreItems(chunk, aiTitleOf(sm), { onStage: st.onStage, signal: st.signal, onProgress: st.onProgress });
+            } finally { st.stop(); }
             chunk.forEach((i, n) => {
                 // never overwrite an existing AI score or category
-                if (!i.ai && scores[n] !== null) { i.sent = scores[n]; i.ai = true; done++; }
-                if (!i.cat && labels && labels[n]) { i.cat = labels[n]; done = Math.max(done, 1); }
+                if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; done++; }
+                if (!i.cat && res.labels && res.labels[n]) { i.cat = res.labels[n]; done = Math.max(done, 1); }
             });
             await persist();
+            render();
         }
     } catch (e) {
-        toast(uiRef, e.message || T('AI scoring failed'));
+        if (e.cancelled || cancelled) cancelled = true; else error = e;
     } finally { scoring = false; }
-    if (done) { render(); toast(uiRef, TN(list.length, 'Scored {n} item with AI', 'Scored {n} items with AI') + (all.length > list.length ? ' ' + T('({n} already done)', { n: all.length - list.length }) : '')); }
+    const summary = done ? TN(done, 'Scored {n} item with AI', 'Scored {n} items with AI') + (all.length > list.length ? ' ' + T('({n} already done)', { n: all.length - list.length }) : '') : '';
+    if (done) render();
+    if (cancelled) body.replaceChildren(el('p', 'feed-muted', summary ? T('Cancelled') + ' — ' + summary : T('Cancelled')));
+    else if (error) body.replaceChildren(el('p', 'feed-error', error.message || T('AI scoring failed')), ...(summary ? [el('p', 'feed-muted', summary)] : []),
+        btn('btn-sm', T('Try again'), () => scoreWithAi(list)));
+    else { body.replaceChildren(el('p', 'feed-muted', summary || T('AI scoring failed'))); if (done) { toast(uiRef, summary); closeSheet(); } }
 }
 
 // ── Settings > Feeds panel ─────────────────────────────────────────────────
