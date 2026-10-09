@@ -559,14 +559,16 @@ async function pollFeeds() {
         Object.entries(state.recaps).forEach(([key, recap]) => {
             if (!recaps[key] || (Number(recap.at) || 0) >= (Number(recaps[key].at) || 0)) recaps[key] = recap;
         });
+        const topicLang = (await FEED_WORKER.uiLanguage()).code;
         const plan = FEED_WORKER.planLibrary({
             items: mergedItems, recaps, source: 'all', inSource: () => true,
-            startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true
+            startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true,
+            subs: d.feedSubs, topicLang
         });
         const configuredBatch = [10, 20, 40].includes(Number(state.batchSize || d.feedSettings.libraryBatch))
             ? Number(state.batchSize || d.feedSettings.libraryBatch) : 20;
         const work = FEED_WORKER.boundedLibraryPlan(plan, configuredBatch, FEED_MAX_REQUESTS_PER_TICK);
-        if (!work.rate.length && !work.days.length) return;
+        if (!work.rate.length && !work.days.length && !(work.tag && work.tag.length)) return;
 
         const subscriptions = new Map(d.feedSubs.map(sub => [sub.id, sub]));
         let timedOut = false;
@@ -592,6 +594,16 @@ async function pollFeeds() {
             });
             saveRatings(chunk);
             await chrome.storage.local.set({ [SK.feedBackground]: state });
+        };
+        // Up to 3 topic tags per feed in the UI language, stored as `topics` (the user's own `tags` are never touched).
+        const tagFeed = async (entry, signal) => {
+            const sub = subscriptions.get(entry.id) || {};
+            const result = await aiCall(aiSignal => FEED_WORKER.generateFeedTopics(sub.customTitle || sub.title || '', entry.items, { signal: aiSignal, service: 'ollama' }), signal);
+            const stored = (await localGet(SK.feedSubs))[SK.feedSubs] || [];
+            const target = stored.find(x => x.id === entry.id);
+            if (!target) return;
+            target.topics = result.tags.slice(0, 3); target.topicsLang = result.lang;
+            await chrome.storage.local.set({ [SK.feedSubs]: stored });
         };
         const recapDay = async (entry, size, signal, ctx = {}) => {
             const key = `${entry.day}|all`;
@@ -632,7 +644,7 @@ async function pollFeeds() {
                 if (ctx.tick) ctx.tick();
             }
         };
-        const result = await FEED_WORKER.runLibrary(work, configuredBatch, { rateChunk, recapDay, signal: runController.signal });
+        const result = await FEED_WORKER.runLibrary(work, configuredBatch, { rateChunk, tagFeed, recapDay, signal: runController.signal });
         if (timedOut && configuredBatch > 10) state.batchSize = 10;
         state.status = { at: Date.now(), rated: result.rated, recaps: result.recaps, failed: result.failed };
         await chrome.storage.local.set({ [SK.feedBackground]: state });

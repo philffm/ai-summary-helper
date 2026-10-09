@@ -4162,5 +4162,11 @@
   },
   "f_related_66d8": {
     "message": "相關"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "正在為訂閱源加上標籤:{a}/{b}"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} 個訂閱源待加上標籤"
   }
 }

@@ -4162,5 +4162,11 @@
   },
   "f_related_66d8": {
     "message": "Associés"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Étiquetage du flux {a} sur {b}"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} flux à étiqueter"
   }
 }

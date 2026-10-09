@@ -10,7 +10,7 @@ const block = src.slice(start, end);
 const [{ parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight }, { planLibrary, runLibrary, chunksOf }, { startOfDay }] = await Promise.all([
     imp('modules/feedWorker.js'), imp('modules/libraryBatch.js'), imp('modules/dateUtils.js')
 ]);
-let aiCalls = 0, fetchCalls = 0, notifications = 0;
+let aiCalls = 0, topicCalls = 0, fetchCalls = 0, notifications = 0;
 const fetchHeaders = [];
 const rss = `<rss><channel>${Array.from({ length: 35 }, (_, i) =>
     `<item><guid>guid-${i}</guid><title>Headline ${i}</title><link>https://example.test/${i}</link><pubDate>${new Date().toUTCString()}</pubDate></item>`
@@ -23,7 +23,9 @@ const worker = {
         aiCalls++;
         return { scores: items.map(() => 0.5), labels: items.map(() => 'News') };
     },
-    generateRecap: async () => ({}), generateRecapUpdate: async () => ({})
+    generateRecap: async () => ({}), generateRecapUpdate: async () => ({}),
+    uiLanguage: async () => ({ code: 'en', name: 'English' }),
+    generateFeedTopics: async () => { topicCalls++; return { tags: ['News', 'World'], lang: 'en' }; }
 };
 const SK = {
     feedSubs: 'feeds:subs', feedItems: 'feeds:items', feedRecaps: 'feeds:recaps', feedBackground: 'feeds:background',

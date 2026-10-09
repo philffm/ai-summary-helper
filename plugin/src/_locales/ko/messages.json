@@ -4144,5 +4144,11 @@
   },
   "f_related_66d8": {
     "message": "관련 글"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "피드 태그 지정 중: {a}/{b}"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "태그할 피드 {n}개"
   }
 }
