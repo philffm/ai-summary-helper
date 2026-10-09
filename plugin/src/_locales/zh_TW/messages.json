@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 已儲存 · 無 AI"
+  },
+  "f_auto_efb6": {
+    "message": "自動"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "自動長度偏好"
+  },
+  "f_batch_failed_f281": {
+    "message": "第 {a}/{b} 批失敗：{m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "長度模式"
+  },
+  "f_longer_8170": {
+    "message": "更長"
+  },
+  "f_scored_of_53f5": {
+    "message": "已評分 {a}/{b}…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "正在用 AI 評分…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "正在背景用 AI 為 {n} 個項目評分…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "短頁面只給幾句，長文給得更多。絕不超過文章的一半。"
+  },
+  "f_shorter_67e6": {
+    "message": "更短"
+  },
+  "f_standard_ab68": {
+    "message": "標準"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "摘要長度（字數）"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n} 個項目無法評分"
   }
 }

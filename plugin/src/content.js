@@ -1,4 +1,5 @@
 import { SK } from './modules/storageKeys.js';
+import { lengthSpec, readLengthSetting, resolveSummaryLength } from './modules/summaryLength.js';
 import { languageEnglishName, languageRule } from './modules/languages.js';
 import { paperIndexFields, detectPaperInText, matchPagePaper } from './content/paper.js';
 import { finalizeSummary } from './content/finalize.js';
@@ -380,7 +381,7 @@ import {
         if (summaryMode === 'extension') {
           chrome.storage.sync.get(['debugEnabled', 'prompt'], (data) => {
             const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
-            const length = msgSummaryLength || 200;
+            const length = msgSummaryLength || 'stored';   // shortcut / context menu send no length: use the saved setting
             if (!document.body) {
               sendResponse({ success: false, error: 'Cannot summarize this page type.' });
               return;
@@ -406,7 +407,7 @@ import {
         if (targetElement) {
           chrome.storage.sync.get(['debugEnabled', 'prompt'], (data) => {
             const promptToUse = popupPrompt || data.prompt || 'Summarize the following content:';
-            const length = msgSummaryLength || 200;
+            const length = msgSummaryLength || 'stored';   // shortcut / context menu send no length: use the saved setting
             fetchSummary(
               popupQuestions,
               selectedLanguage,
@@ -481,14 +482,14 @@ import {
     await new Promise((r) => setTimeout(r, 500));
     const [sync, local] = await Promise.all([
       chrome.storage.sync.get(['selectedLanguage', 'prompt', 'debugEnabled']),
-      chrome.storage.local.get(SK.summaryLength)
+      chrome.storage.local.get([SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias])
     ]);
     pendingFeedUrl = '';
     const hiddenTarget = document.createElement('div');
     hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
     document.body.appendChild(hiddenTarget);
     await fetchSummary('', sync.selectedLanguage || 'English', sync.prompt || 'Summarize the following content:',
-      local[SK.summaryLength] || 200, hiddenTarget, sync.debugEnabled || false, 'extension');
+      lengthSpec(readLengthSetting(local, SK)), hiddenTarget, sync.debugEnabled || false, 'extension');
   }
   setPageSummarizeHandler(startSummaryFromPage);
 
@@ -566,6 +567,12 @@ import {
       contentText = scraped.text;
     }
     const truncatedContent = truncateToTokenLimit(contentText, tokenLimit);
+    // "Auto" (or a custom number from the popup) becomes a word count now that the article length is known.
+    if (summaryLength === 'stored') {
+      summaryLength = lengthSpec(readLengthSetting(await chrome.storage.local.get([SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias]), SK));
+    }
+    const lengthWasAuto = typeof summaryLength === 'string' && summaryLength.startsWith('auto');
+    summaryLength = resolveSummaryLength(summaryLength, (contentText.match(/\S+/g) || []).length);
 
     // Tell the popup what this summary is built from (shown as "What I used"). Only things that are
     // really sent to the model: page text, the user's highlights, the focus question, the feed source.
@@ -580,7 +587,8 @@ import {
         focus: !!(additionalQuestions || '').trim(),
         source: pendingFeedUrl ? hostOf(pendingFeedUrl) : '',
         language: selectedLanguage || '',
-        length: Number(summaryLength) || 200
+        length: Number(summaryLength) || 200,
+        lengthAuto: lengthWasAuto
       });
     }
 

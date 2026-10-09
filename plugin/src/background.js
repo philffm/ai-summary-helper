@@ -56,6 +56,8 @@ const SK = {
     // ui state
     summaryMode: 'ui:summaryMode',
     summaryLength: 'ui:summaryLength',
+    summaryLengthMode: 'ui:summaryLengthMode',   // 'auto' | 'custom' (absent = auto for new installs, custom when a number was saved earlier)
+    summaryLengthBias: 'ui:summaryLengthBias',   // 'short' | 'standard' | 'long' (scales the automatic length)
     activityView: 'ui:activityView',
     workspace: 'ui:workspace',
     reviewPrompt: 'ui:reviewPrompt',
@@ -677,10 +679,13 @@ chrome.tabs.onRemoved.addListener((tabId) => { sumJobsReady().then(() => sumJobT
 async function openFeedItem(msg, job) {
     // Without a job a summarize request is inline mode (the page shows the summary itself); with one it streams to the panel.
     const mode = (msg.summarize && !job) ? 'inline' : 'extension';
-    let summaryLength = 200;
+    let summaryLength = 'auto';   // resolved from the article's length in the content script
     if (msg.summarize) {
-        const d = await localGet([SK.summaryLength]).catch(() => ({}));
-        summaryLength = d[SK.summaryLength] || 200;
+        const d = await localGet([SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias]).catch(() => ({}));
+        const stored = d[SK.summaryLengthMode];
+        const mode = stored === 'auto' || stored === 'custom' ? stored : (d[SK.summaryLength] ? 'custom' : 'auto');
+        const bias = d[SK.summaryLengthBias];
+        summaryLength = mode === 'custom' ? (Number(d[SK.summaryLength]) || 200) : (bias === 'short' || bias === 'long' ? 'auto:' + bias : 'auto');
     }
     const doSummary = !!msg.summarize;
     const background = doSummary && mode === 'extension';

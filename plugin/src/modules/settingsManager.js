@@ -25,7 +25,6 @@ export async function initSettingsManager(ui) {
     initDangerZone();
     initBackupRestore();
     initLocalIntelligence();
-    initSummaryLengthSlider();
     initBookmarkletGenerator();
 
     // Initialize Auth Manager (drives both the Settings panel and the
@@ -742,28 +741,6 @@ function initBookmarkletGenerator() {
 
         dragLink.href = bookmarkletUrl;
         resultContainer.style.display = 'block';
-    });
-}
-
-// ── Section: Summary Length Slider ───────────────────────────────────
-function initSummaryLengthSlider() {
-    const slider = document.getElementById('summaryLength');
-    const valueDisplay = document.getElementById('summaryLengthValue');
-    const chipLabel = document.getElementById('chipLengthLabel');
-    if (!slider || !valueDisplay) return;
-
-    chrome.storage.local.get([SK.summaryLength], (data) => {
-        const length = data[SK.summaryLength] || 200;
-        slider.value = length;
-        valueDisplay.textContent = length;
-        slider.dispatchEvent(new Event('input'));
-    });
-
-    slider.addEventListener('input', () => {
-        const newLength = slider.value;
-        valueDisplay.textContent = newLength;
-        if (chipLabel) chipLabel.textContent = newLength + 'w';
-        chrome.storage.local.set({ [SK.summaryLength]: Number(newLength) });
     });
 }
 

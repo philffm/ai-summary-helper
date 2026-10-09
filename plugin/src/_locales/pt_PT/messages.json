@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 Guardado · sem IA"
+  },
+  "f_auto_efb6": {
+    "message": "Auto"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Ajuste automático do tamanho"
+  },
+  "f_batch_failed_f281": {
+    "message": "O lote {a}/{b} falhou: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "Modo de tamanho"
+  },
+  "f_longer_8170": {
+    "message": "Mais longo"
+  },
+  "f_scored_of_53f5": {
+    "message": "{a} de {b} avaliados…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "A avaliar com IA…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "A avaliar {n} itens com IA em segundo plano…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Páginas curtas recebem poucas frases, leituras longas mais. Nunca mais do que metade do artigo."
+  },
+  "f_shorter_67e6": {
+    "message": "Mais curto"
+  },
+  "f_standard_ab68": {
+    "message": "Padrão"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Tamanho do resumo em palavras"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "Não foi possível avaliar {n} itens"
   }
 }

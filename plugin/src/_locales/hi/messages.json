@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 सहेजा · बिना AI"
+  },
+  "f_auto_efb6": {
+    "message": "ऑटो"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "ऑटो लंबाई का झुकाव"
+  },
+  "f_batch_failed_f281": {
+    "message": "बैच {a}/{b} विफल: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "लंबाई मोड"
+  },
+  "f_longer_8170": {
+    "message": "लंबा"
+  },
+  "f_scored_of_53f5": {
+    "message": "{b} में से {a} स्कोर हुए…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "AI से स्कोर किया जा रहा है…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "{n} आइटम पृष्ठभूमि में AI से स्कोर हो रहे हैं…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "छोटे पेज को कुछ वाक्य मिलते हैं, लंबे लेख को ज़्यादा। लेख के आधे से कभी लंबा नहीं।"
+  },
+  "f_shorter_67e6": {
+    "message": "छोटा"
+  },
+  "f_standard_ab68": {
+    "message": "मानक"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "सारांश की लंबाई (शब्दों में)"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n} आइटम स्कोर नहीं हो सके"
   }
 }

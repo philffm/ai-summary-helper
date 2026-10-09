@@ -3857,3 +3857,25 @@ body[data-surface="sidebar"] { min-width: 0; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ── Summary length: Auto | Custom, slider + number field ─────────────── */
+.length-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s-2);
+}
+.length-row input[type="range"] { flex: 1; min-width: 0; }
+.length-input {
+  width: 64px;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-input);
+  color: var(--text-primary);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-align: center;
+}
+.length-unit { font-size: var(--fs-2xs); color: var(--text-muted); }
+.length-mode { margin: 0; }
+#lengthBiasGrid { margin-bottom: var(--spacing-s-2); }

@@ -2,6 +2,8 @@ import { modelEmoji } from './modules/modelBadge.js';
 import { checkOllama } from './modules/ollamaCheck.js';
 import { applyA11y } from './modules/a11y.js';
 import { SK } from './modules/storageKeys.js';
+import { initLengthControl } from './modules/lengthControl.js';
+import { warn } from './modules/log.js';
 import { initMoodSetting } from './modules/moodSetting.js';
 import UIManager from './modules/uiManager.js';
 import StorageManager from './modules/storageManager.js';
@@ -162,23 +164,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // ── Slider fill track ───────────────────────────────────────────────
-    const summarySlider = document.getElementById('summaryLength');
-    const summaryLengthValue = document.getElementById('summaryLengthValue');
-    const chipLengthLabel = document.getElementById('chipLengthLabel');
-    if (summarySlider) {
-        const updateSliderFill = () => {
-            const min = summarySlider.min || 100;
-            const max = summarySlider.max || 500;
-            const val = parseInt(summarySlider.value);
-            const pct = ((val - min) / (max - min)) * 100;
-            summarySlider.style.setProperty('--range-progress', pct + '%');
-            if (summaryLengthValue) summaryLengthValue.textContent = val;
-            if (chipLengthLabel) chipLengthLabel.textContent = val + 'w';
-        };
-        summarySlider.addEventListener('input', updateSliderFill);
-        updateSliderFill();
-    }
+    // ── Summary length (Auto | Custom, slider + number field) ───────────
+    initLengthControl().catch((e) => warn('length control failed:', e && e.message));
 
     // ── Chip toggles (length / mode) ────────────────────────────────────
     const chips = document.querySelectorAll('.chip[data-panel]');

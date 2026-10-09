@@ -59,6 +59,8 @@ export const SK = {
     // ui state
     summaryMode: 'ui:summaryMode',
     summaryLength: 'ui:summaryLength',
+    summaryLengthMode: 'ui:summaryLengthMode',   // 'auto' | 'custom' (absent = auto for new installs, custom when a number was saved earlier)
+    summaryLengthBias: 'ui:summaryLengthBias',   // 'short' | 'standard' | 'long' (scales the automatic length)
     activityView: 'ui:activityView',
     workspace: 'ui:workspace',
     reviewPrompt: 'ui:reviewPrompt',

@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 保存済み · AI なし"
+  },
+  "f_auto_efb6": {
+    "message": "自動"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "自動の長さの調整"
+  },
+  "f_batch_failed_f281": {
+    "message": "バッチ {a}/{b} が失敗しました: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "長さモード"
+  },
+  "f_longer_8170": {
+    "message": "長め"
+  },
+  "f_scored_of_53f5": {
+    "message": "{b} 件中 {a} 件をスコアリング済み…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "AI でスコアリング中…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "{n} 件をバックグラウンドで AI スコアリング中…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "短いページには数文、長い記事にはより多く。記事の半分を超えることはありません。"
+  },
+  "f_shorter_67e6": {
+    "message": "短め"
+  },
+  "f_standard_ab68": {
+    "message": "標準"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "要約の長さ（語数）"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n} 件をスコアリングできませんでした"
   }
 }

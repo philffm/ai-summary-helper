@@ -4044,5 +4044,48 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 Saved · no AI"
+  },
+  "f_auto_efb6": {
+    "message": "Auto"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Auto length bias"
+  },
+  "f_batch_failed_f281": {
+    "message": "Batch {a}/{b} failed: {m}",
+    "description": "Placeholders: {a} {b} {m} (keep as is)"
+  },
+  "f_length_mode_0c88": {
+    "message": "Length mode"
+  },
+  "f_longer_8170": {
+    "message": "Longer"
+  },
+  "f_scored_of_53f5": {
+    "message": "Scored {a} of {b}…",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "Scoring with AI…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "Scoring {n} items with AI in the background…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Short pages get a few sentences, long reads get more. Never longer than half the article."
+  },
+  "f_shorter_67e6": {
+    "message": "Shorter"
+  },
+  "f_standard_ab68": {
+    "message": "Standard"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Summary length in words"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n} items could not be scored",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

@@ -3856,5 +3856,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 저장됨 · AI 없음"
+  },
+  "f_auto_efb6": {
+    "message": "자동"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "자동 길이 조정"
+  },
+  "f_batch_failed_f281": {
+    "message": "배치 {a}/{b} 실패: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "길이 모드"
+  },
+  "f_longer_8170": {
+    "message": "더 길게"
+  },
+  "f_scored_of_53f5": {
+    "message": "{b}개 중 {a}개 점수 매김…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "AI로 점수 매기는 중…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "{n}개 항목을 백그라운드에서 AI로 점수 매기는 중…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "짧은 페이지는 몇 문장, 긴 글은 더 많이. 기사 길이의 절반을 넘지 않습니다."
+  },
+  "f_shorter_67e6": {
+    "message": "더 짧게"
+  },
+  "f_standard_ab68": {
+    "message": "표준"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "요약 길이(단어 수)"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n}개 항목의 점수를 매기지 못했습니다"
   }
 }

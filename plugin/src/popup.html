@@ -87,12 +87,22 @@
               <div id="panelLength" class="chip-panel popup-panel" style="display:none">
                 <div class="chip-panel-header">
                   <label for="summaryLength" class="chip-panel-label" data-i18n="f_summary_length_2b31">Summary Length</label>
-                  <span id="summaryLengthValue" class="chip-panel-badge">200</span>
+                  <div id="lengthModeGrid" class="tag-grid length-mode"></div>
                 </div>
-                <input type="range" id="summaryLength" min="100" max="500" value="200" step="50" />
-                <div class="range-labels">
-                  <span>100</span>
-                  <span>500</span>
+                <div id="lengthAutoBox">
+                  <div id="lengthBiasGrid" class="tag-grid"></div>
+                  <p id="lengthAutoHint" class="mode-tip"></p>
+                </div>
+                <div id="lengthCustomBox" style="display:none">
+                  <div class="length-row">
+                    <input type="range" id="summaryLength" min="50" max="1000" value="200" step="10" />
+                    <input type="number" id="summaryLengthInput" class="length-input" min="20" max="2000" step="1" value="200" inputmode="numeric" />
+                    <span class="length-unit" id="lengthUnit"></span>
+                  </div>
+                  <div class="range-labels">
+                    <span>50</span>
+                    <span>1000</span>
+                  </div>
                 </div>
               </div>
               <div id="panelMode" class="chip-panel popup-panel" style="display:none">
@@ -136,7 +146,7 @@
               </button>
               <button class="chip" data-panel="length">
                 <span class="chip-icon">📏</span>
-                <span id="chipLengthLabel">200w</span>
+                <span id="chipLengthLabel">Auto</span>
               </button>
               <button class="chip" data-panel="mode">
                 <span class="chip-icon">📋</span>

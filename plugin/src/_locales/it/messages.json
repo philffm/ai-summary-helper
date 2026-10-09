@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 Salvato · senza IA"
+  },
+  "f_auto_efb6": {
+    "message": "Auto"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Regolazione automatica della lunghezza"
+  },
+  "f_batch_failed_f281": {
+    "message": "Lotto {a}/{b} non riuscito: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "Modalità di lunghezza"
+  },
+  "f_longer_8170": {
+    "message": "Più lungo"
+  },
+  "f_scored_of_53f5": {
+    "message": "{a} di {b} valutati…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "Valutazione con IA…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "Valutazione di {n} elementi con IA in background…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Le pagine brevi ricevono poche frasi, le letture lunghe di più. Mai più della metà dell’articolo."
+  },
+  "f_shorter_67e6": {
+    "message": "Più breve"
+  },
+  "f_standard_ab68": {
+    "message": "Standard"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Lunghezza del riassunto in parole"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "Impossibile valutare {n} elementi"
   }
 }

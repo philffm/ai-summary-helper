@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 Сохранено · без ИИ"
+  },
+  "f_auto_efb6": {
+    "message": "Авто"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Смещение авто-длины"
+  },
+  "f_batch_failed_f281": {
+    "message": "Пакет {a}/{b} не удался: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "Режим длины"
+  },
+  "f_longer_8170": {
+    "message": "Длиннее"
+  },
+  "f_scored_of_53f5": {
+    "message": "Оценено {a} из {b}…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "Оценка с помощью ИИ…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "Оценка {n} элементов с помощью ИИ в фоне…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Короткие страницы получают несколько предложений, длинные тексты — больше. Никогда не длиннее половины статьи."
+  },
+  "f_shorter_67e6": {
+    "message": "Короче"
+  },
+  "f_standard_ab68": {
+    "message": "Стандарт"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Длина пересказа в словах"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "Не удалось оценить элементов: {n}"
   }
 }

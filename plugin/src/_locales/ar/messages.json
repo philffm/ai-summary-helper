@@ -3874,5 +3874,44 @@
   },
   "f_saved_no_ai_f236": {
     "message": "📥 محفوظ · بدون ذكاء اصطناعي"
+  },
+  "f_auto_efb6": {
+    "message": "تلقائي"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "ضبط الطول التلقائي"
+  },
+  "f_batch_failed_f281": {
+    "message": "فشلت الدفعة {a}/{b}: {m}"
+  },
+  "f_length_mode_0c88": {
+    "message": "وضع الطول"
+  },
+  "f_longer_8170": {
+    "message": "أطول"
+  },
+  "f_scored_of_53f5": {
+    "message": "تم تقييم {a} من {b}…"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "جارٍ التقييم بالذكاء الاصطناعي…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "جارٍ تقييم {n} عنصرًا بالذكاء الاصطناعي في الخلفية…"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "الصفحات القصيرة تحصل على بضع جمل، والقراءات الطويلة على أكثر. لا يزيد أبدًا عن نصف المقال."
+  },
+  "f_shorter_67e6": {
+    "message": "أقصر"
+  },
+  "f_standard_ab68": {
+    "message": "قياسي"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "طول الملخّص بالكلمات"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "تعذّر تقييم {n} عنصرًا"
   }
 }

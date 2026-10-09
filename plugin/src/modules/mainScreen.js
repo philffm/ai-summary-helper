@@ -19,6 +19,7 @@ import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
 import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
 import { attachCardMenu } from './cardMenu.js';
+import { currentLengthSpec } from './summaryLength.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -1212,7 +1213,7 @@ export function initMainScreen(ui) {
                     selectedLanguage,
                     prompt: promptToUse,
                     summaryMode: mode,
-                    summaryLength: await chrome.storage.local.get(SK.summaryLength).then(d => d[SK.summaryLength] || 200),
+                    summaryLength: await currentLengthSpec(SK),
                     connectionMode,
                     preferredCloudModel,
                     ...(attachment ? { attachment } : {}),
