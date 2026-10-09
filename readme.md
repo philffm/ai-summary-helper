@@ -340,7 +340,7 @@ Bookmarklet generator generally ships faster since it is faster to iterate on.
 - [x] **Save for Later** — right-click any tab → "Summarize & Close": generates summary, saves with timeframe reminder (tomorrow / weekend / week / research session), closes the tab, shows in history with metadata
 - [x] **RSVP Speed-reading overlay** — while summarizing on close, the AI output streams word-by-word as a speed-reading display; adjustable speed (slow/medium/fast) saved between sessions
 - [x] **Timed reminders** — Chrome notifications remind you to revisit saved articles at your chosen timeframe
-- [x] Backup & Restore (v2 format: settings + full article history)
+- [x] Backup & Restore (settings + full article history; API keys and sign-in/license secrets excluded by default, with warned opt-in)
 - [x] Inline mode ("Send to Kindle" friendly)
 - [x] Native side panel support
 - [x] Graph view of article archive (D3.js, keyword-based)
@@ -483,4 +483,3 @@ Name | Description | URL
 Reabble Send to Kindle | Send your summarized articles to Kindle. | https://send.reabble.com/
 Web Clipper | Clip your summarized web pages to different places (e.g. OneNote, Notion, GitHub etc.) | https://clipper.website/
 Inoreader | RSS Feed Reader | https://www.inoreader.com/
-
