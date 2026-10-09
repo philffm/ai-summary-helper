@@ -4120,5 +4120,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "वेबसाइट एक्सेस बंद है। about:addons → यह एक्सटेंशन → अनुमतियाँ (\"सभी वेबसाइटों के लिए आपके डेटा तक पहुँचें\") में इसे अनुमति दें, फिर रीफ़्रेश करें।"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI द्वारा सुझाए गए हाइलाइट"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "इतिहास को Markdown के रूप में निर्यात करें (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "हाइलाइट और नोट्स"
+  },
+  "f_related_66d8": {
+    "message": "संबंधित"
   }
 }

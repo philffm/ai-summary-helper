@@ -4120,5 +4120,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "El acceso a sitios web está desactivado. Actívalo en about:addons → esta extensión → Permisos («Acceder a tus datos de todos los sitios web») y luego actualiza."
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "Destacados sugeridos por la IA"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Exportar historial como Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Destacados y notas"
+  },
+  "f_related_66d8": {
+    "message": "Relacionado"
   }
 }

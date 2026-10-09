@@ -4120,5 +4120,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "Der Zugriff auf Websites ist aus. Erlaube ihn unter about:addons → diese Erweiterung → Berechtigungen („Auf Ihre Daten für alle Websites zugreifen“) und aktualisiere dann."
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "KI-vorgeschlagene Markierungen"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Verlauf als Markdown exportieren (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Markierungen & Notizen"
+  },
+  "f_related_66d8": {
+    "message": "Verwandt"
   }
 }

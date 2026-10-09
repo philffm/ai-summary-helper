@@ -4120,5 +4120,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "L’accesso ai siti web è disattivato. Consentilo in about:addons → questa estensione → Autorizzazioni («Accedere ai tuoi dati per tutti i siti web»), poi aggiorna."
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "Evidenziazioni suggerite dall'IA"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Esporta la cronologia come Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Evidenziazioni e note"
+  },
+  "f_related_66d8": {
+    "message": "Correlati"
   }
 }

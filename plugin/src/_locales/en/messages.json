@@ -4308,5 +4308,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "Website access is off. Allow it in about:addons → this extension → Permissions (\"Access your data for all websites\"), then refresh."
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI Suggested Highlights"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Export history as Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Highlights & Notes"
+  },
+  "f_related_66d8": {
+    "message": "Related"
   }
 }

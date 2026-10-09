@@ -14,6 +14,7 @@ import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { escapeHtml } from './textUtils.js';
 import { T, TN } from './feedI18n.js';
+import { exportHistoryMarkdown } from './markdownArchive.js';
 import { checkOllama } from './ollamaCheck.js';
 
 export async function initSettingsManager(ui) {
@@ -1166,6 +1167,24 @@ function initBackupRestore() {
     const btnExport = document.getElementById('exportSettingsButton');
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
+    const btnMd = document.getElementById('exportMarkdownButton');
+
+    // ── Export history as Markdown (Obsidian / Logseq friendly .zip) ──
+    if (btnMd) {
+        const mdLabel = '📝 ' + T('Export history as Markdown (.zip)');
+        btnMd.textContent = mdLabel;
+        btnMd.addEventListener('click', async () => {
+            btnMd.disabled = true;
+            try {
+                const n = await exportHistoryMarkdown({ onProgress: (i, total) => { btnMd.textContent = `⏳ ${i}/${total}`; } });
+                btnMd.textContent = T('Exported! ✓ ({n} articles)', { n });
+            } catch (err) {
+                console.error('Markdown export failed:', err);
+                btnMd.textContent = T('Failed to export backup.');
+            }
+            setTimeout(() => { btnMd.textContent = mdLabel; btnMd.disabled = false; }, 2500);
+        });
+    }
 
     // ── Export — settings-only or full backup ──
     if (btnExport) {

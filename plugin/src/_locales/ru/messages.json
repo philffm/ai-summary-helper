@@ -4120,5 +4120,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "Доступ к сайтам отключён. Разрешите его в about:addons → это расширение → Разрешения («Доступ к вашим данным на всех сайтах»), затем обновите."
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "Выделения, предложенные ИИ"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Экспорт истории в Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Выделения и заметки"
+  },
+  "f_related_66d8": {
+    "message": "Связанное"
   }
 }

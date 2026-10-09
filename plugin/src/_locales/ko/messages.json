@@ -4102,5 +4102,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "웹사이트 접근이 꺼져 있습니다. about:addons → 이 확장 프로그램 → 권한(\"모든 웹사이트의 데이터에 접근\")에서 허용한 뒤 새로 고침하세요."
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI 추천 하이라이트"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "기록을 Markdown으로 내보내기 (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "하이라이트 및 메모"
+  },
+  "f_related_66d8": {
+    "message": "관련 글"
   }
 }

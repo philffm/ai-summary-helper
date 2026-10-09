@@ -4120,5 +4120,17 @@
   },
   "f_website_access_is_off_allow__f6c7": {
     "message": "网站访问已关闭。请在 about:addons → 此扩展 → 权限中允许“访问所有网站上的数据”，然后刷新。"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI 建议的高亮"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "将历史导出为 Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "高亮和笔记"
+  },
+  "f_related_66d8": {
+    "message": "相关"
   }
 }
