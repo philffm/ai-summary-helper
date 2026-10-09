@@ -3946,3 +3946,10 @@ body[data-surface="sidebar"] { min-width: 0; }
 .skeleton-short { width: 45%; }
 @keyframes skeletonShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { .skeleton-line { animation: none; } }
+
+/* Library performance profile + benchmark (Settings → Feed preferences → Whole library) */
+.library-perf { margin-bottom: 12px; }
+.library-bench { margin: 8px 0; }
+.library-bench-main { font-weight: 600; margin: 4px 0; }
+.library-bench-list { margin: 4px 0 8px; padding-left: 18px; font-size: var(--fs-sm); color: var(--text-muted); }
+.library-bench-list li.is-you { color: var(--text-primary); font-weight: 600; }

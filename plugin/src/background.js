@@ -568,9 +568,12 @@ async function pollFeeds() {
             startOfDay: FEED_WORKER.startOfDay, itemSig: FEED_WORKER.itemSig, includeToday: true, rateWithRecap: d.feedSettings.rateWithRecap !== false,
             subs: d.feedSubs, topicLang, articleTags: d.articles.flatMap(a => a.tags || [])
         });
-        const configuredBatch = [10, 20, 40].includes(Number(state.batchSize || d.feedSettings.libraryBatch))
-            ? Number(state.batchSize || d.feedSettings.libraryBatch) : 20;
-        const work = FEED_WORKER.boundedLibraryPlan(plan, configuredBatch, FEED_MAX_REQUESTS_PER_TICK);
+        // A timeout lowers the batch size for this machine (state.batchSize); a new batch size in the settings (e.g. another profile) wins again.
+        const settingBatch = [10, 20, 40].includes(Number(d.feedSettings.libraryBatch)) ? Number(d.feedSettings.libraryBatch) : 20;
+        const fallbackBatch = state.batchSize && state.batchBase === settingBatch ? Number(state.batchSize) : 0;
+        const configuredBatch = [10, 20, 40].includes(fallbackBatch) ? fallbackBatch : settingBatch;
+        const requestsPerTick = [1, 2, 3, 4, 6, 8].includes(Number(d.feedSettings.requestsPerTick)) ? Number(d.feedSettings.requestsPerTick) : FEED_MAX_REQUESTS_PER_TICK;
+        const work = FEED_WORKER.boundedLibraryPlan(plan, configuredBatch, requestsPerTick);
         if (!work.rate.length && !work.days.length && !(work.tag && work.tag.length) && !(work.lex && work.lex.length)) return;
 
         const subscriptions = new Map(d.feedSubs.map(sub => [sub.id, sub]));
@@ -656,7 +659,7 @@ async function pollFeeds() {
             }
         };
         const result = await FEED_WORKER.runLibrary(work, configuredBatch, { rateChunk, tagFeed, nameTags, recapDay, signal: runController.signal });
-        if (timedOut && configuredBatch > 10) state.batchSize = 10;
+        if (timedOut && configuredBatch > 10) { state.batchSize = 10; state.batchBase = settingBatch; }
         state.status = { at: Date.now(), rated: result.rated, recaps: result.recaps, failed: result.failed };
         await chrome.storage.local.set({ [SK.feedBackground]: state });
         if (result.rated || result.recaps) {
