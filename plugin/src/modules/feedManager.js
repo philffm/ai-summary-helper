@@ -278,7 +278,7 @@ function toast(ui, msg) {
 }
 
 // ── Network (via background) ───────────────────────────────────────────────
-function fetchText(url) {
+function sendFetch(url) {
     return new Promise((resolve, reject) => {
         chrome.runtime.sendMessage({ action: 'fetchFeedText', url }, (res) => {
             if (chrome.runtime.lastError) {
@@ -293,6 +293,26 @@ function fetchText(url) {
             resolve(res);
         });
     });
+}
+
+const ALL_SITES = { origins: ['<all_urls>'] };
+const permCall = (fn, arg) => new Promise((resolve) => {
+    try { fn.call(chrome.permissions, arg, (r) => resolve(chrome.runtime.lastError ? null : !!r)); }
+    catch (_) { resolve(null); }
+});
+
+// Firefox MV3 doesn't grant <all_urls> at install; without it the background
+// fetch is subject to CORS and fails with "NetworkError". Detect that, ask for
+// access (works when called from a click), and retry once.
+async function fetchText(url) {
+    try {
+        return await sendFetch(url);
+    } catch (e) {
+        if (!/NetworkError|Failed to fetch|Load failed|CORS/i.test(e.message || '') || typeof chrome.permissions?.contains !== 'function') throw e;
+        if (await permCall(chrome.permissions.contains, ALL_SITES) !== false) throw e;
+        if (await permCall(chrome.permissions.request, ALL_SITES)) return sendFetch(url);
+        throw new Error(T('Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh.'));
+    }
 }
 
 /** Given a site or feed URL, find an actual feed. */

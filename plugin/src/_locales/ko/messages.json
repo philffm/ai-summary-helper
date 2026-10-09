@@ -4099,5 +4099,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "요약 및 아카이브"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "웹사이트 접근이 꺼져 있습니다. about:addons → 이 확장 프로그램 → 권한(\"모든 웹사이트의 데이터에 접근\")에서 허용한 뒤 새로 고침하세요."
   }
 }

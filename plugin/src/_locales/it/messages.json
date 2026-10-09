@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "Riassunti e archivio"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "L’accesso ai siti web è disattivato. Consentilo in about:addons → questa estensione → Autorizzazioni («Accedere ai tuoi dati per tutti i siti web»), poi aggiorna."
   }
 }

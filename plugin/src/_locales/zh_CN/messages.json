@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "摘要和归档"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "网站访问已关闭。请在 about:addons → 此扩展 → 权限中允许“访问所有网站上的数据”，然后刷新。"
   }
 }

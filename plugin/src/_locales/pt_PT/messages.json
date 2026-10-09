@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "Resumos e arquivo"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "O acesso a sites está desativado. Permita-o em about:addons → esta extensão → Permissões («Aceder aos seus dados em todos os sites») e atualize."
   }
 }

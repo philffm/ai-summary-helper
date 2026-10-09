@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "要約とアーカイブ"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "ウェブサイトへのアクセスがオフです。about:addons → この拡張機能 → 権限（「すべてのウェブサイトのデータにアクセス」）で許可してから、更新してください。"
   }
 }

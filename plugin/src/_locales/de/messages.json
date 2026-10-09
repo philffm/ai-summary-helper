@@ -4117,5 +4117,8 @@
   },
   "f_summaries_archive_b387": {
     "message": "Zusammenfassungen & Archiv"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "Der Zugriff auf Websites ist aus. Erlaube ihn unter about:addons → diese Erweiterung → Berechtigungen („Auf Ihre Daten für alle Websites zugreifen“) und aktualisiere dann."
   }
 }
