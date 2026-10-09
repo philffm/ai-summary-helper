@@ -4264,5 +4264,8 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 자동 실행당 요청 수"
+  },
+  "f_voice_it_follows_the_summary_55e3": {
+    "message": "음성: {voice} · {lang}. 요약 언어를 따르며, 요약 앞의 짧은 안내도 마찬가지입니다."
   }
 }

@@ -4282,5 +4282,8 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 प्रति स्वचालित रन अनुरोध"
+  },
+  "f_voice_it_follows_the_summary_55e3": {
+    "message": "आवाज़: {voice} · {lang}. यह सारांश की भाषा का पालन करती है, सारांश से पहले की छोटी घोषणा सहित।"
   }
 }

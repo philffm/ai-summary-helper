@@ -4487,5 +4487,9 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Requests per automatic run"
+  },
+  "f_voice_it_follows_the_summary_55e3": {
+    "message": "Voice: {voice} · {lang}. It follows the summary language, including the short announcement before the summary.",
+    "description": "Placeholders: {voice} {lang} (keep as is)"
   }
 }

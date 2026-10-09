@@ -4282,5 +4282,8 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 الطلبات لكل تشغيل تلقائي"
+  },
+  "f_voice_it_follows_the_summary_55e3": {
+    "message": "الصوت: {voice} · {lang}. يتبع لغة الملخص، بما في ذلك الإعلان القصير الذي يسبقه."
   }
 }

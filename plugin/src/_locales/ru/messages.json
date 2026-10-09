@@ -4282,5 +4282,8 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Запросов за автоматический запуск"
+  },
+  "f_voice_it_follows_the_summary_55e3": {
+    "message": "Голос: {voice} · {lang}. Он следует языку сводки, включая короткое объявление перед ней."
   }
 }

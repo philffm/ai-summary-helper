@@ -4282,5 +4282,8 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Anfragen pro automatischem Lauf"
+  },
+  "f_voice_it_follows_the_summary_55e3": {
+    "message": "Stimme: {voice} · {lang}. Sie folgt der Sprache der Zusammenfassung, auch bei der kurzen Ansage davor."
   }
 }
