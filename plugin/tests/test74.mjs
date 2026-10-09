@@ -31,3 +31,7 @@ assert(c.contextRows({ words: 1, pageTokens: 9000 }).find(r => r.key === 'read')
 const sl = c.statusLines({ words: 5, length: 100, model: 'M', pageTokens: 25000 });
 assert(sl.some(l => l.includes('25,000') && /minute/.test(l)) && !c.statusLines({ words: 5, pageTokens: 4000 }).some(l => /minute/.test(l)));
 console.log('TEST 74 OK'); process.exit(0);
+// Estimate is high for real text: 5,487 read of an estimated 7,912 in a 16k window is a full read, not a cut-off.
+assert(!c.contextRows({ words: 1, pageTokens: 7912, seenTokens: 5487, numCtx: 16384 }).some(r => r.key === 'cut'));
+// Ollama cut the prompt at the window we asked for.
+assert(c.contextRows({ words: 1, pageTokens: 9000, seenTokens: 4090, numCtx: 4096 }).some(r => r.key === 'cut' && r.warn));

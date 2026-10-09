@@ -30,7 +30,10 @@ export function contextRows(ctx = {}) {
     if (ctx.parts > 1) rows.push({ key: 'parts', text: T('Read in {n} parts, because the model\'s context window ({w} tokens) is too small for the whole page.', { n: ctx.parts, w: (ctx.window || 0).toLocaleString('en-US') }) });
     if (ctx.seenTokens > 0 && ctx.pageTokens > 0) {
         const a = ctx.seenTokens.toLocaleString('en-US'), b = ctx.pageTokens.toLocaleString('en-US');
-        if (ctx.seenTokens < ctx.pageTokens * 0.7) rows.push({ key: 'cut', warn: true, text: T('The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.', { a, b }) });
+        // pageTokens is only an estimate (3 chars/token, high for real text), so compare with the window we asked for:
+        // when Ollama cuts the prompt, the tokens it read land right at num_ctx.
+        const cut = ctx.numCtx > 0 ? (ctx.seenTokens >= ctx.numCtx * 0.9 && ctx.pageTokens > ctx.numCtx * 0.9) : ctx.seenTokens < ctx.pageTokens * 0.5;
+        if (cut) rows.push({ key: 'cut', warn: true, text: T('The model only read about {a} of {b} tokens. Ollama cut off the rest because its context window is too small.', { a, b }) });
         else rows.push({ key: 'read', text: T('The model read {a} of {b} tokens.', { a, b }) });
     } else if (ctx.pageTokens > 0) rows.push({ key: 'read', text: T('Sent ~{n} tokens to the model.', { n: ctx.pageTokens.toLocaleString('en-US') }) });
     if (ctx.highlights > 0) rows.push({ key: 'highlights', text: T('Your highlights · {n}', { n: ctx.highlights }) });
