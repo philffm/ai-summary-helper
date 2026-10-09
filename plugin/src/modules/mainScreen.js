@@ -413,43 +413,66 @@ export function initMainScreen(ui) {
             screen.addEventListener('drop', (e) => { screen.classList.remove('drop-pdf'); const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) { e.preventDefault(); attachPdf(f); } });
         }
     };
+    // The tab title is often empty, still "Loading…", or just the URL/host. Fall back to the page's own
+    // og:title / twitter:title / h1 / <title> (read through scripting; restricted pages just keep the host).
+    const weakTitle = (t, tab) => {
+        t = String(t || '').trim();
+        return !t || /^(loading|untitled|new tab)\b/i.test(t) || t === tab.url || t === hostOf(tab.url) || t.replace(/^https?:\/\//, '') === tab.url.replace(/^https?:\/\//, '');
+    };
+    const resolvePageTitle = async (tab) => {
+        if (!weakTitle(tab.title, tab)) return tab.title;
+        try {
+            if (tab.id == null || !chrome.scripting?.executeScript) return tab.title || '';
+            const [res] = await chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                func: () => {
+                    const m = (sel) => (document.querySelector(sel)?.getAttribute('content') || '').trim();
+                    const h1 = (document.querySelector('h1')?.textContent || '').replace(/\s+/g, ' ').trim();
+                    return m('meta[property="og:title"]') || m('meta[name="twitter:title"]') || h1 || (document.title || '').trim();
+                }
+            });
+            return (res && res.result) || tab.title || '';
+        } catch (_) { return tab.title || ''; }
+    };
     const refreshFetchExtras = async () => {
         clearNote();
         const token = extrasToken;
         if (!composer || composer.state !== 'fetch' || !bar) return;
         if (attached || attaching || attachError) {
-            const card = bar.querySelector('.input-card');
-            if (card) card.insertBefore(attachmentChip(), card.querySelector('.chip-row'));
+            const pill = bar.querySelector('.composer-pill');
+            if (pill) pill.insertBefore(attachmentChip(), pill.firstChild);
             return;
         }
         let tab = null;
         try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
         if (token !== extrasToken || composer.state !== 'fetch') return;
-        const inputCard = bar.querySelector('.input-card');
+        const inputCard = bar.querySelector('.composer-pill');
         if (tab && tab.url && isInjectableUrl(tab.url) && inputCard) {
+            const pageTitle = await resolvePageTitle(tab);
+            if (token !== extrasToken || composer.state !== 'fetch') return;
             const different = !!conversation && !samePage(conversation.url, tab.url);
             const chip = document.createElement('div');
             chip.id = 'pageCard';
             chip.className = 'page-chip' + (different ? ' page-chip--different' : '');
-            chip.dataset.title = tab.title || ''; chip.dataset.host = hostOf(tab.url);
+            chip.dataset.title = pageTitle || ''; chip.dataset.host = hostOf(tab.url);
             if (tab.favIconUrl && /^https?:|^data:/.test(tab.favIconUrl)) {
                 const ic = document.createElement('img'); ic.className = 'page-chip-ic'; ic.alt = ''; ic.src = tab.favIconUrl;
                 ic.addEventListener('error', () => ic.remove());
                 chip.appendChild(ic);
             }
             const txt = document.createElement('div'); txt.className = 'page-chip-txt';
-            const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(tab.title || chip.dataset.host, 80);
+            const title = document.createElement('div'); title.className = 'page-chip-title'; title.textContent = clip(pageTitle || chip.dataset.host, 80);
             const meta = document.createElement('div'); meta.className = 'page-chip-meta';
             meta.textContent = (different ? T('different page') + ' · ' : '') + chip.dataset.host;
             txt.append(title, meta);
             chip.appendChild(txt);
-            inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
+            inputCard.insertBefore(chip, inputCard.firstChild);
         }
     };
 
     /** Follow-up state: the page the conversation is about, inside the input card (also for a resumed old summary). */
     const showConversationChip = () => {
-        const inputCard = bar && bar.querySelector('.input-card');
+        const inputCard = bar && bar.querySelector('.composer-pill');
         if (!conversation || !inputCard || document.getElementById('convChip')) return;
         const chip = document.createElement('div');
         chip.id = 'convChip';
@@ -471,7 +494,7 @@ export function initMainScreen(ui) {
         back.title = T('Back to this page') + ' (⌘N)'; back.setAttribute('aria-label', T('Back to this page'));
         back.addEventListener('click', () => startNew());
         chip.insertBefore(back, chip.firstChild);
-        inputCard.insertBefore(chip, inputCard.querySelector('.chip-row'));
+        inputCard.insertBefore(chip, inputCard.firstChild);
     };
 
     /** The page chip leaves the input card and lands as the first bubble of the thread (FLIP). */

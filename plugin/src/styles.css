@@ -3880,17 +3880,16 @@ body[data-surface="sidebar"] { min-width: 0; }
 .length-mode { margin: 0; }
 #lengthBiasGrid { margin-bottom: var(--spacing-s-2); }
 
-/* Page chip as a small tab attached to the top-left of the composer pill (closer to what the user types).
-   The settings line moves above it; the chip sits flush on the pill's top edge. */
-.controls-bar .chip-row { order: 1; }
-.controls-bar .page-chip {
-  order: 2; align-self: flex-start; max-width: calc(100% - 56px);
-  margin: 0 0 -8px 28px; /* -8px cancels the flex gap so the tab touches the pill */
-  padding: 3px 10px 3px 8px; gap: 6px;
-  border-radius: 12px 12px 0 0; border-bottom: 0;
+/* Page chip lives INSIDE the composer pill, top-left above the text; the pill wraps so the chip gets its own row. */
+.composer-pill { flex-wrap: wrap; }
+.composer-pill .page-chip {
+  order: 0; flex: 0 0 auto; align-self: flex-start; max-width: calc(100% - 8px);
+  margin: 4px 100% -4px -8px; /* right margin forces the textarea + button onto the next row */ padding: 2px 8px 2px 6px; gap: 6px;
+  border: 0; border-radius: 10px; background: var(--accent-a10, var(--glass-input));
 }
-.controls-bar .page-chip .page-chip-title { font-size: 11px; }
-.controls-bar .page-chip .page-chip-meta { font-size: 10px; }
-.controls-bar .page-chip .page-chip-ic { width: 14px; height: 14px; }
-.controls-bar .page-chip .page-chip-txt { gap: 6px; }
-.controls-bar .page-chip-x { padding: 0 4px; font-size: 11px; }
+
+.composer-pill .page-chip .page-chip-title { font-size: 11px; }
+.composer-pill .page-chip .page-chip-meta { font-size: 10px; }
+.composer-pill .page-chip .page-chip-ic { width: 14px; height: 14px; }
+.composer-pill .page-chip .page-chip-txt { gap: 6px; }
+.composer-pill .page-chip-x { padding: 0 4px; font-size: 11px; }
