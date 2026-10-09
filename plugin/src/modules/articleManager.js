@@ -14,7 +14,8 @@ import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive, canSelect, startSelectionWith } from './sendSheet.js';
 import { attachCardMenu } from './cardMenu.js';
-import { T, locale } from './feedI18n.js';
+import { T, locale, uiLocale } from './feedI18n.js';
+import { topicLabel } from './topicConcepts.js';
 import { tagMatches } from './topicConcepts.js';
 import { loadLexicon } from './topicLexicon.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
@@ -651,6 +652,8 @@ export async function removeArticle(article) {
 export function initArticleManager(uiManager) {
     loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;
+    // The lexicon grew (tag naming in Settings or a background run): tag chips change language, so redraw the list.
+    document.addEventListener('aish:lexiconChanged', () => { try { if (document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     initSelection({
         deliverKindle, deliverLocalSend,
         applyStatus, currentTab: () => historyTab,
@@ -1165,7 +1168,9 @@ function buildArticleCard(article) {
         articleDomain = new URL(article.url).hostname;
     }
     const tags = article.tags || [];
-    const tagsHtml = tags.length ? `<div class="card-tags">${tags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}</div>` : '';
+    // known and learned topics are shown in the UI language (the stored tag keeps its original); two tags that read the same collapse to one chip
+    const shownTags = [...new Set(tags.map(t => topicLabel(t, uiLocale())))];
+    const tagsHtml = shownTags.length ? `<div class="card-tags">${shownTags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}</div>` : '';
     const modelBadge = article.modelId ? `<span class="card-model">${modelEmoji(article)} ${escapeHtml(article.modelId)}</span>` : '';
 
     // Decision metadata (timeframe + reason)
@@ -1510,7 +1515,9 @@ function renderDetailTags(article, host) {
         refresh();
     };
     (article.tags || []).forEach((t) => {
-        const c = mk('tag-chip', t);
+        const shown = topicLabel(t, uiLocale());
+        const c = mk('tag-chip', shown);
+        if (shown !== t) c.title = t;   // the stored (original) spelling
         if (article.id) c.appendChild(xBtn(T('Remove tag'), () => saveTags((article.tags || []).filter(x => x !== t))));
         host.appendChild(c);
     });

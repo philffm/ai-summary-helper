@@ -92,6 +92,7 @@ assert(tc.tagMatches('Fußball', 'football') && !tc.tagMatches('Tennis', 'footba
 assert(tc.hasLabel('Fußball', 'de') && !tc.hasLabel('Fußball', 'ja') && tc.hasLabel('News', 'ja'));
 assert(!tc.lexiconLearn('football', 'de', 'Fußball'), 'learning the same thing twice changes nothing');
 assert.deepEqual(tc.unknownTags(['Fußball', 'Tennis', 'tennis', 'Nachrichten', 'Tennis', 'Golf']), ['Tennis', 'Golf'], 'only what is neither built-in nor learned, most frequent first');
+assert.deepEqual(tc.unknownTags(['Fußball', 'Tennis', 'tennis', 'Nachrichten', 'Tennis', 'Golf'], 200, 2), ['Tennis'], 'minCount leaves out tags used only once');
 assert(tc.lexiconLearn('news', null, 'Nieuws') && !tc.lexiconLearn('news', 'de', 'Neuigkeiten'), 'extra spellings of a built-in topic are kept, its labels are not');
 assert.equal(tc.conceptKey('Nieuws'), 'c:news'); assert.equal(tc.topicLabel('Nieuws', 'de'), 'Nachrichten');
 // a feed whose labels exist in the new language is not re-tagged; one without is
