@@ -4121,6 +4121,24 @@
   "f_website_access_is_off_allow__f6c7": {
     "message": "L’accesso ai siti web è disattivato. Consentilo in about:addons → questa estensione → Autorizzazioni («Accedere ai tuoi dati per tutti i siti web»), poi aggiorna."
   },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Per impostazione predefinita, i backup escludono chiavi API, dati di accesso, chiavi di licenza e identificativi di installazione. Mantieni privati i file esportati."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Includi chiavi API e dati di accesso (chiunque abbia il file può usarli)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Questo backup contiene chiavi API, dati di accesso o chiavi di licenza. L’importazione sostituirà i segreti memorizzati corrispondenti. Continuare?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Questo backup conterrà chiavi API, dati di accesso e chiavi di licenza. Chiunque abbia il file può usarli. Continuare?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Questo backup contiene chiavi API, dati di accesso, chiavi di licenza o un identificativo di installazione. L’importazione sostituirà i segreti memorizzati corrispondenti. Continuare?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Questo backup conterrà chiavi API, dati di accesso, chiavi di licenza e un identificativo di installazione. Chiunque abbia il file può usare le chiavi o identificare questa installazione. Continuare?"
+  },
   "f_ai_suggested_highlights_53c5": {
     "message": "Evidenziazioni suggerite dall'IA"
   },

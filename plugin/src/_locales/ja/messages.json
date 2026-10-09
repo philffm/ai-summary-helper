@@ -4121,6 +4121,24 @@
   "f_website_access_is_off_allow__f6c7": {
     "message": "ウェブサイトへのアクセスがオフです。about:addons → この拡張機能 → 権限（「すべてのウェブサイトのデータにアクセス」）で許可してから、更新してください。"
   },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "バックアップには既定で API キー、サインイン情報、ライセンスキー、インストール ID は含まれません。エクスポートしたファイルは非公開にしてください。"
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "APIキーとサインイン情報を含める（ファイルを持つ人は誰でも使用できます）"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "このバックアップには API キー、サインイン情報、またはライセンスキーが含まれています。インポートすると一致する保存済みの秘密情報が置き換わります。続行しますか？"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "このバックアップには API キー、サインイン情報、ライセンスキーが含まれます。ファイルを持つ人は誰でも使用できます。続行しますか？"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "このバックアップには API キー、サインイン情報、ライセンスキー、またはインストール ID が含まれています。インポートすると一致する保存済みの秘密情報が置き換わります。続行しますか？"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "このバックアップには API キー、サインイン情報、ライセンスキー、インストール ID が含まれます。ファイルを持つ人はキーを使ったり、このインストールを特定したりできます。続行しますか？"
+  },
   "f_ai_suggested_highlights_53c5": {
     "message": "AI のおすすめハイライト"
   },

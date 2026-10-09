@@ -298,7 +298,7 @@ async function applyFeedPollConfig() {
 
 async function clearFeedBadge() {
     await chrome.storage.local.set({ [SK.feedPending]: 0 });
-    try { await chrome.action.setBadgeText({ text: '' }); } catch (_) { /* badge reset is cosmetic */ }
+    await updateSumBadge();
 }
 
 function extractFeedLinks(xml) {
@@ -351,10 +351,8 @@ async function pollFeeds() {
         }
         const pending = (d.feedPending || 0) + fresh;
         await chrome.storage.local.set({ [SK.feedBgSeen]: seen, [SK.feedPending]: pending });
-        if (pending > 0) {
-            await chrome.action.setBadgeBackgroundColor({ color: '#2563eb' });
-            await chrome.action.setBadgeText({ text: pending > 99 ? '99+' : String(pending) });
-        }
+        await sumJobsReady();
+        await updateSumBadge();
     } catch (e) {
         console.warn('[feeds] poll failed', e);
     }
@@ -615,8 +613,47 @@ function sumJobKey(u) {
 function publishSumJobs() {
     const snap = { running: sumJobs.running, queue: sumJobs.queue, seq: sumJobs.seq };
     try { if (chrome.storage.session) chrome.storage.session.set({ sumJobs: snap }).catch(() => {}); } catch (_) { /* in-memory only */ }
+    updateSumBadge();
     chrome.runtime.sendMessage({ action: 'summaryQueue', running: sumJobInfo(sumJobs.running), queue: sumJobs.queue.map(sumJobInfo) }).catch(() => {});
 }
+/** Toolbar badge: jobs running + waiting ("…" while only the running one is left); falls back to the Feeds count when idle. */
+async function updateSumBadge() {
+    try {
+        const n = (sumJobs.running ? 1 : 0) + sumJobs.queue.length;
+        if (n > 0) {
+            await chrome.action.setBadgeBackgroundColor({ color: '#d97706' });
+            await chrome.action.setBadgeText({ text: n > 1 ? (n > 99 ? '99+' : String(n)) : '…' });
+            return;
+        }
+        const d = await localGet(SK.feedPending);
+        const pending = d[SK.feedPending] || 0;
+        if (pending > 0) await chrome.action.setBadgeBackgroundColor({ color: '#2563eb' });
+        await chrome.action.setBadgeText({ text: pending > 0 ? (pending > 99 ? '99+' : String(pending)) : '' });
+    } catch (_) { /* badge is cosmetic */ }
+}
+/** "Done" notification once the whole queue has drained; click focuses the tab the summary ran in. */
+async function notifySumDone(job) {
+    try {
+        const { notifyWhenDone } = await chrome.storage.sync.get({ notifyWhenDone: true });
+        if (notifyWhenDone === false || !chrome.notifications) return;
+        chrome.notifications.create(`sumdone_${job.tabId == null ? 'x' : job.tabId}_${Date.now()}`, {
+            type: 'basic',
+            iconUrl: 'icons/icon48.png',
+            title: 'AI Summary Helper',
+            message: job.title ? `Summary ready: ${job.title}` : 'Your summary is ready'
+        });
+    } catch (_) { /* notifications unavailable */ }
+}
+chrome.notifications.onClicked.addListener(async (notifId) => {
+    if (!notifId.startsWith('sumdone_')) return;
+    const tabId = parseInt(notifId.split('_')[1], 10);
+    chrome.notifications.clear(notifId);
+    try {
+        const tab = await chrome.tabs.get(tabId);
+        await chrome.tabs.update(tabId, { active: true });
+        await chrome.windows.update(tab.windowId, { focused: true });
+    } catch (_) { /* tab is gone or none recorded */ }
+});
 function sumJobsReady() {
     if (!sumJobs.ready) {
         sumJobs.ready = (async () => {
@@ -627,6 +664,7 @@ function sumJobsReady() {
                 if (s && !sumJobs.running && !sumJobs.queue.length) {
                     sumJobs.seq = s.seq || 0; sumJobs.queue = s.queue || [];
                     if (s.running) { sumJobs.running = s.running; armSumJobTimer(s.running.id); }
+                    updateSumBadge();
                 }
             } catch (_) { /* nothing to restore */ }
         })();
@@ -641,11 +679,12 @@ function sumJobStart(job) {
     sumJobs.running = job; armSumJobTimer(job.id); publishSumJobs();
     Promise.resolve().then(() => runSumJob(job)).catch(() => sumJobDone(job.id));
 }
-function sumJobDone(id) {
+function sumJobDone(id, ok) {
     if (!sumJobs.running || sumJobs.running.id !== id) return;
+    const finished = sumJobs.running;
     clearTimeout(sumJobs.timer); sumJobs.running = null;
     const next = sumJobs.queue.shift();
-    if (next) sumJobStart(next); else publishSumJobs();
+    if (next) sumJobStart(next); else { publishSumJobs(); if (ok) notifySumDone(finished); }
 }
 /** Add a job; it starts right away when nothing is running. */
 async function enqueueSumJob(job) {
@@ -665,9 +704,9 @@ async function cancelSumJob(id) {
     sumJobs.queue.splice(i, 1); publishSumJobs(); return true;
 }
 /** A summary in tab `tabId` finished, failed or was stopped. */
-function sumJobTabFinished(tabId) {
+function sumJobTabFinished(tabId, ok) {
     const r = sumJobs.running;
-    if (r && r.tabId === tabId) sumJobDone(r.id);
+    if (r && r.tabId === tabId) sumJobDone(r.id, ok);
 }
 function runSumJob(job) {
     if (job.kind === 'tab') {
@@ -860,7 +899,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         untrackFeedTab(sender.tab.id, false, msg.action === 'summaryComplete' ? 6000 : 8000);
     }
     if ((msg.action === 'summaryComplete' || msg.action === 'summaryError' || msg.action === 'summaryCancelled') && sender.tab) {
-        sumJobsReady().then(() => sumJobTabFinished(sender.tab.id));
+        sumJobsReady().then(() => sumJobTabFinished(sender.tab.id, msg.action === 'summaryComplete'));
     }
 
     // ── Tab proxy handlers ──────────────────────────────────────────────

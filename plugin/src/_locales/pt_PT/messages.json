@@ -4121,6 +4121,24 @@
   "f_website_access_is_off_allow__f6c7": {
     "message": "O acesso a sites está desativado. Permita-o em about:addons → esta extensão → Permissões («Aceder aos seus dados em todos os sites») e atualize."
   },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Por predefinição, as cópias de segurança não incluem chaves API, dados de início de sessão, chaves de licença nem identificadores de instalação. Mantenha os ficheiros exportados privados."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Incluir chaves API e dados de início de sessão (qualquer pessoa com o ficheiro pode utilizá-los)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Esta cópia contém chaves API, dados de início de sessão ou chaves de licença. A importação substituirá os segredos guardados correspondentes. Continuar?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Esta cópia de segurança incluirá chaves API, dados de início de sessão e chaves de licença. Qualquer pessoa com o ficheiro pode utilizá-los. Continuar?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Esta cópia contém chaves API, dados de início de sessão, chaves de licença ou um identificador de instalação. A importação substituirá os segredos guardados correspondentes. Continuar?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Esta cópia incluirá chaves API, dados de início de sessão, chaves de licença e um identificador de instalação. Quem tiver o ficheiro poderá usar as chaves ou identificar esta instalação. Continuar?"
+  },
   "f_ai_suggested_highlights_53c5": {
     "message": "Destaques sugeridos pela IA"
   },
