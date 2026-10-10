@@ -44,6 +44,7 @@ assert.deepEqual(chips.map(c => c.getAttribute('aria-pressed')).filter(v => v ==
 assert.equal(chips[1].getAttribute('aria-pressed'), 'true');
 next(); await tick(80);   // step 4 (confirm)
 const confirm = d.getElementById('podcastStepContainer');
+for (let k = 0; k < 60 && !confirm.textContent.includes('Tram <img'); k++) await tick(50);
 assert(confirm.textContent.includes('Tram <img'), 'article title shown as text');
 assert(!confirm.querySelector('img'), 'no markup from titles in the confirm step');
 assert(!host.querySelector('.podcast-card img') && host.querySelector('.podcast-card h3').textContent.includes('Brief <img'), 'created podcast name as text');

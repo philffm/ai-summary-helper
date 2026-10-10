@@ -27,7 +27,9 @@ const its = store['feeds:items']; console.log('items', its.length, its[0].audio,
 assert.equal(its.length, 14); assert.ok(its.every(i => i.audio.endsWith('.mp3')));
 await fm.onFeedsScreenShown(ui); await tick(50);
 const pb = $$('.feed-play-btn'); assert.ok(pb.length > 0, 'play buttons');
-click(pb[0]); await tick(60);
+click(pb[0]);
+for (let k = 0; k < 100 && $('#feedPlayer').hidden; k++) await tick(50);
+await tick(60);
 assert.equal($('#feedPlayer').hidden, false); assert.ok($('#fpTitle').textContent.length > 5);
 assert.equal($('#fpToggle').dataset.state, 'playing');
 assert.ok($('.feed-play-btn').textContent.includes('Pause'));

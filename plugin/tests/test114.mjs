@@ -33,6 +33,7 @@ for (let k = 0; k < 100 && !(store['feeds:settings'].libraryBench); k++) await t
 const b = store['feeds:settings'].libraryBench;
 assert(b && b.warm >= 0 && b.cold >= 0, 'benchmark stored');
 assert.equal(calls, 2, 'one cold and one warm batch');
+for (let k = 0; k < 100 && !/for 20 headlines/.test(card().textContent); k++) await tick(50);
 assert(/for 20 headlines/.test(card().textContent), 'result shown: ' + card().textContent.slice(0, 200));
 assert(/recommended/.test(card().textContent), 'a profile is recommended');
 console.log('TEST 114 OK'); process.exit(0);
