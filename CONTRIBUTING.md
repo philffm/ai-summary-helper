@@ -11,6 +11,7 @@ npm ci
 npm run build        # plugin/src → plugin/dev/aish-extension-chrome (also build:firefox, build:android, build:ios)
 npm test             # only the tests your change can reach (import graph), quiet: failures + one summary line
 npm run lint         # eslint plugin/src
+npm run size         # where the package bytes go (see plugin/SIZE_AUDIT.md for the optimisation backlog)
 ```
 
 **Which test command when**

@@ -15,6 +15,7 @@
     "site:build": "node scripts/privacy-md.mjs && node scripts/build-site.mjs && node scripts/seo.mjs",
     "translate": "npm run site:build && node scripts/translate.mjs && node scripts/seo.mjs",
     "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
+    "size": "node plugin/scripts/size-report.mjs",
     "test": "node plugin/tests/run.mjs",
     "test:all": "node plugin/tests/run.mjs --all",
     "test:release": "node plugin/tests/run.mjs --release && node scripts/feed-i18n.mjs check",
