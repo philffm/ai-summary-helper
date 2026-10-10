@@ -62,7 +62,10 @@ jobs:
             git fetch origin main
             git checkout --force -B release-bump origin/main
             plugin/scripts/set-version.sh "$VERSION"
-            git add plugin/platforms/*/manifest.json current_version.json plugin/src/popup.html
+            # Changelog from the commit messages since the previous v* tag (not from issues): into CHANGELOG.md and the release body.
+            node scripts/changelog.mjs --version "$VERSION" --write --notes "$RUNNER_TEMP/release-notes.md"
+            echo "NOTES_FILE=$RUNNER_TEMP/release-notes.md" >> "$GITHUB_ENV"
+            git add plugin/platforms/*/manifest.json current_version.json plugin/src/popup.html CHANGELOG.md
             if git diff --staged --quiet; then echo "main already at $VERSION"; exit 0; fi
             git commit -m "chore: bump version to $VERSION [skip ci]"
             if git push origin HEAD:main; then exit 0; fi
@@ -84,7 +87,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG_NAME }} # Force it to use the new version as the tag
-          generate_release_notes: true
+          body_path: ${{ env.NOTES_FILE }}   # commit-based notes from scripts/changelog.mjs
+          generate_release_notes: true       # GitHub's list of pull requests and new contributors is appended below
           files: |
             plugin/prod/aish-extension-chrome-*.zip
             plugin/prod/aish-extension-android-*.zip

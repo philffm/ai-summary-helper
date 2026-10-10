@@ -28,6 +28,21 @@ Tests wait in real time less than they used to: `plugin/tests/env.mjs` divides t
 
 Load `plugin/dev/aish-extension-chrome/` via `chrome://extensions` › *Developer mode* › *Load unpacked*. Pull requests run lint and the affected tests in CI; `main`, tags and a nightly run everything.
 
+## Commit messages and the changelog
+
+Release notes are generated from the commit messages between two versions (`scripts/changelog.mjs`, run by `release.yml`; it also adds the release to `CHANGELOG.md`). Write commits so they read well as a changelog line:
+
+```
+Scope: what changed for the user, in one line
+
+- optional detail, one point per line
+- a wrapped line continues the bullet above if it is indented
+```
+
+- The subject becomes the entry. `Tests:`, `CI:`, `Docs:`, `Build:`, `Size:`, `Chore:` and `Refactor:` go under *Developer experience*; subjects starting with `Add` / `Fix` go under *Added* / *Fixed*; everything else is *Changed*.
+- Merge commits, the bot's version bumps and non-descriptive subjects (`up`, `wip`) are left out; the notes say how many were.
+- Preview: `node scripts/changelog.mjs --version 2.2.4` (prints; add `--from <tag>` to pick the start). Highlights that need a sentence of explanation can still go into `## Unreleased` in `CHANGELOG.md`; the release keeps that text and adds the commit log below it.
+
 ## Conventions
 
 - **No framework.** Build DOM with `modules/dom.js` (`el(...)`); anything page-, feed- or model-derived that reaches `innerHTML` goes through `escapeHtml` / `cleanUntrustedHtml` (`modules/textUtils.js`). Prefer `textContent`.
