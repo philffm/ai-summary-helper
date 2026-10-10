@@ -4487,5 +4487,22 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Requests per automatic run"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} similar item",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} similar items",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "Not the same story"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "Stack similar items"
+  },
+  "f_stacking_f819": {
+    "message": "Stacking"
   }
 }

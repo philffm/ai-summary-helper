@@ -4264,5 +4264,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 자동 실행당 요청 수"
+  },
+  "f_similar_item_612e": {
+    "message": "비슷한 항목 +{n}개"
+  },
+  "f_similar_items_4567": {
+    "message": "비슷한 항목 +{n}개"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "같은 소식이 아님"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "비슷한 항목 묶기"
+  },
+  "f_stacking_f819": {
+    "message": "묶어보기"
   }
 }

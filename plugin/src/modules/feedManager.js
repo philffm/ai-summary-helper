@@ -38,6 +38,7 @@ import { PRESET_IDS, PRESETS, REFERENCE, REQUEST_STEPS, DEFAULT_REQUESTS, preset
 import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
+import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
@@ -68,6 +69,7 @@ export const FEED_DEFAULTS = {
     libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
     autoProcess: false,           // fetch + process new items on a timer (Ollama only)
     autoProcessMinutes: 30,
+    stackExclude: [],                    // ids of items the user marked "not the same story" (never stacked)
     requestsPerTick: DEFAULT_REQUESTS,   // AI requests per automatic run (see libraryPresets.js)
     libraryBench: null,                  // last benchmark of this machine: { at, model, cold, warm }
     autoProcessAt: 0,
@@ -81,7 +83,7 @@ let backgroundStatus = null;
 let moodDaily = {};
 let settings = { ...FEED_DEFAULTS };
 // UI filter state (persisted so the screen reopens the way you left it)
-let ui = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new' };
+let ui = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', stack: false };
 const DEFAULT_STATUS = 'all';
 let refreshing = false;
 let els = {};
@@ -91,6 +93,9 @@ let shown = PAGE_SIZE;
 // Items read by opening/tapping stay in the Unread view (dimmed) until the view changes,
 // so the list doesn't jump under your finger.
 const stickyRead = new Set();
+// Stacking of near-identical items (see feedStacks.js): lead id -> the items stacked under it, filled by renderList().
+let stackMembers = new Map();
+const openStacks = new Set();   // lead ids whose stack is expanded
 let searchQuery = '';          // free-text search over the items (TF-IDF, same engine as History)
 let view = 'list';             // 'list' | 'graph' | 'insights'
 const splitExtra = new Set();  // extra panes shown beside the list in the split workspace ('graph' | 'insights')
@@ -647,6 +652,8 @@ function exportOpml() {
 
 // ── Read state (with undo) ─────────────────────────────────────────────────
 async function setRead(list, read, { silent = false, label = '', keep = false } = {}) {
+    // A stack is one story: reading or un-reading its lead does the same for the items stacked under it.
+    if (stackMembers.size) { const seen = new Set(); list = list.flatMap(i => [i, ...(stackMembers.get(i.id) || [])]).filter(i => !seen.has(i.id) && seen.add(i.id)); }
     const prev = new Map();
     list.forEach(i => { if (i.read !== read) { prev.set(i.id, i.read); i.read = read; } if (keep && read) stickyRead.add(i.id); else stickyRead.delete(i.id); });
     if (!prev.size) return;
@@ -1232,6 +1239,33 @@ document.addEventListener('aish:ws-view', (e) => {
     if (!d.open) { if (v === 'graph' && els.graph) els.graph.hidden = true; if (v === 'insights' && els.insights) els.insights.hidden = true; }
     else render();
 });
+/** The "+N similar items" row under a stack's lead card; expands the other items inline. */
+function renderStack(lead, others, sm) {
+    const li = el('li', 'feed-stack');
+    const names = [...new Set(others.map(o => subTitle(sm.get(o.feedId))))];
+    const label = TN(others.length, '+{n} similar item', '+{n} similar items') + ' · ' + names.slice(0, 3).join(', ') + (names.length > 3 ? '…' : '');
+    const open = openStacks.has(lead.id);
+    const toggle = btn('feed-stack-toggle', label, () => {
+        const on = !openStacks.has(lead.id);
+        if (on) openStacks.add(lead.id); else openStacks.delete(lead.id);
+        toggle.setAttribute('aria-expanded', String(on)); rows.hidden = !on;
+    });
+    toggle.setAttribute('aria-expanded', String(open));
+    const rows = el('div', 'feed-stack-rows'); rows.hidden = !open;
+    others.forEach(o => {
+        const row = btn('feed-stack-row' + (o.read ? ' is-read' : ''), '', (e) => { e.stopPropagation(); openItem(o, false); });
+        row.append(el('span', 'feed-stack-title', o.title), el('span', 'feed-stack-meta', `${subTitle(sm.get(o.feedId))} · ${timeAgo(o.published)}`));
+        rows.append(row);
+    });
+    rows.append(btn('feed-stack-split', T('Not the same story'), async () => {
+        const ids = [lead.id, ...others.map(o => o.id)];
+        settings.stackExclude = [...new Set([...(settings.stackExclude || []), ...ids])].slice(-300);
+        await persistSettings(); render();
+    }));
+    li.append(toggle, rows);
+    return li;
+}
+
 function renderList() {
     if (!els.list) return;
     renderControls();
@@ -1248,7 +1282,19 @@ function renderList() {
     if (view !== 'list') { renderAltView(); return; }
     if (effScope() === 'month') { renderMonthWeeks(); return; }
     if (!all.length) { renderEmptyFiltered(items.length > 0); return; }
-    const visible = all.slice(0, shown);
+    // Stacking applies to the plain newest-first list only (not to search results or the mood ranking).
+    stackMembers = new Map();
+    const stackDay = new Map();   // lead id -> day of the stack's newest item: the stack sits there even when its lead is an older item
+    let flat = all;
+    if (ui.stack && ui.sort !== 'mood' && !searchQuery.trim()) {
+        const stacks = stackItems(all, { exclude: new Set(settings.stackExclude || []), prefer: (i) => { const h = histOf(i); return (h.fav ? 2 : 0) + (h.summarized ? 1 : 0); } });
+        flat = stacks.map(st => {
+            if (st.others.length) { stackMembers.set(st.lead.id, st.others); stackDay.set(st.lead.id, startOfDay(Math.max(st.lead.published, ...st.others.map(o => o.published)))); }
+            return st.lead;
+        });
+    }
+    const dayKeyOf = (i) => stackDay.get(i.id) ?? startOfDay(i.published);
+    const visible = flat.slice(0, shown);
     els.empty.style.display = 'none';
 
     let lastKey = null;
@@ -1257,9 +1303,9 @@ function renderList() {
         if (!group.length) return;
         const unread = group.filter(i => !i.read);
         const header = el('li', 'feed-day');
-        const groupDay = startOfDay(group[0].published);
+        const groupDay = dayKeyOf(group[0]);
         header.dataset.day = String(groupDay);
-        const labelText = `${dayLabel(group[0].published)} · ${TN(group.length, '{n} item', '{n} items')}`;
+        const labelText = `${dayLabel(groupDay)} · ${TN(group.length, '{n} item', '{n} items')}`;
         if (isOneDay(ui.date)) {
             // single-day view: ‹ › step between days that have items
             const stops = dayStops();
@@ -1277,8 +1323,8 @@ function renderList() {
             header.append(lab);
         }
         if (ui.sort !== 'mood') {
-            const dayStart = startOfDay(group[0].published);
-            const dayName = dayLabel(group[0].published);
+            const dayStart = groupDay;
+            const dayName = dayLabel(groupDay);
             header.append(btn('feed-day-action feed-day-ai', T('✨ Recap') + (recaps[`${dayStart}|${ui.source}`] ? ' ✓' : ''), () => openRecap(dayStart, dayName), T('AI recap of this day')));
         }
         if (unread.length) {
@@ -1286,7 +1332,11 @@ function renderList() {
             header.append(btn('feed-day-action', T('Mark read'), () => setRead(snapshot, true, { label: T('Marked {n} read', { n: snapshot.length }) }), T('Mark {n} read', { n: snapshot.length })));
         }
         els.list.appendChild(header);
-        group.forEach(i => els.list.appendChild(renderCard(i, sm)));
+        group.forEach(i => {
+            els.list.appendChild(renderCard(i, sm));
+            const others = stackMembers.get(i.id);
+            if (others) els.list.appendChild(renderStack(i, others, sm));
+        });
         group = [];
     };
     if (ui.sort === 'mood' || searchQuery.trim()) {
@@ -1296,15 +1346,15 @@ function renderList() {
         visible.forEach(i => els.list.appendChild(renderCard(i, sm)));
     } else {
         for (const i of visible) {
-            const key = startOfDay(i.published);
+            const key = dayKeyOf(i);
             if (key !== lastKey) { flush(); lastKey = key; }
             group.push(i);
         }
         flush();
     }
-    if (all.length > visible.length) {
+    if (flat.length > visible.length) {
         const more = el('li', 'feed-more');
-        more.append(btn('button-secondary feed-wide-btn', T('Show {n} more · {m} older', { n: Math.min(PAGE_SIZE, all.length - visible.length), m: all.length - visible.length }), () => { shown += PAGE_SIZE; render(); }));
+        more.append(btn('button-secondary feed-wide-btn', T('Show {n} more · {m} older', { n: Math.min(PAGE_SIZE, flat.length - visible.length), m: flat.length - visible.length }), () => { shown += PAGE_SIZE; render(); }));
         els.list.appendChild(more);
     }
 }
@@ -1436,6 +1486,7 @@ function openFilterSheet(opts = {}) {
         body.append(pick);
         if (moodEnabled()) section(TU('Mood'), 'mood', [['any', T('Any mood')], ['pos', T('😊  Positive only')], ['nonneg', T('Hide negative')]]);
         if (moodEnabled()) section(TU('Sort'), 'sort', [['new', T('Newest first')], ['mood', T('Most positive first')]]);
+        section(TU('Stacking'), 'stack', [[false, T('Off')], [true, T('Stack similar items')]]);
         body.append(el('div', 'feed-pick-label', TU('More')));
         body.append(btn('feed-manage-link', T('✓  Mark everything in this view read'), () => {
             const list = visibleItems().filter(i => !i.read);

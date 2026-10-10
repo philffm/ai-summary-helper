@@ -4282,5 +4282,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 الطلبات لكل تشغيل تلقائي"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} عنصر مشابه"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} عناصر مشابهة"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "ليست القصة نفسها"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "تجميع العناصر المتشابهة"
+  },
+  "f_stacking_f819": {
+    "message": "التجميع"
   }
 }

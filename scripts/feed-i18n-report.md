@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1238 | 0 | 0 | 39 |
-| de | 1238 | 0 | 0 | 180 |
-| es | 1238 | 0 | 0 | 151 |
-| fr | 1238 | 0 | 0 | 177 |
-| hi | 1238 | 0 | 0 | 66 |
-| it | 1238 | 0 | 0 | 151 |
-| ja | 1238 | 0 | 0 | 82 |
-| ko | 1238 | 0 | 0 | 19 |
-| pt_PT | 1238 | 0 | 0 | 145 |
-| ru | 1238 | 0 | 0 | 88 |
-| zh_CN | 1238 | 0 | 0 | 2 |
-| zh_HK | 1238 | 0 | 0 | 2 |
-| zh_TW | 1238 | 0 | 0 | 2 |
+| ar | 1243 | 0 | 0 | 39 |
+| de | 1243 | 0 | 0 | 180 |
+| es | 1243 | 0 | 0 | 152 |
+| fr | 1243 | 0 | 0 | 178 |
+| hi | 1243 | 0 | 0 | 67 |
+| it | 1243 | 0 | 0 | 152 |
+| ja | 1243 | 0 | 0 | 82 |
+| ko | 1243 | 0 | 0 | 19 |
+| pt_PT | 1243 | 0 | 0 | 145 |
+| ru | 1243 | 0 | 0 | 89 |
+| zh_CN | 1243 | 0 | 0 | 2 |
+| zh_HK | 1243 | 0 | 0 | 2 |
+| zh_TW | 1243 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -383,6 +383,7 @@ Strings: 1238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Failed to send code | No se pudo enviar el código | 27 vs 19 | 1.42× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
+| Stack similar items | Agrupar elementos similares | 27 vs 19 | 1.42× |
 | {a} items rated · {b} day recaps written | {a} elementos valorados · {b} resúmenes diarios escritos | 54 vs 38 | 1.42× |
 | AI request failed | Error de la solicitud IA | 24 vs 17 | 1.41× |
 | No articles saved yet. | Aún no hay artículos guardados. | 31 vs 22 | 1.41× |
@@ -447,6 +448,7 @@ Strings: 1238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
 | Saved! ✓ | Enregistré ! ✓ | 14 vs 8 | 1.75× |
 | Testing… | Test en cours… | 14 vs 8 | 1.75× |
+| Stack similar items | Regrouper les éléments similaires | 33 vs 19 | 1.74× |
 | Motion & layout | Animations et mise en page | 26 vs 15 | 1.73× |
 | Open week › | Ouvrir la semaine › | 19 vs 11 | 1.73× |
 | What I used | Ce que j'ai utilisé | 19 vs 11 | 1.73× |
@@ -636,6 +638,7 @@ Strings: 1238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Searching Cloud... | क्लाउड में खोज हो रही है... | 27 vs 18 | 1.5× |
 | No password. We email you a short code. | पासवर्ड नहीं चाहिए। हम आपको ईमेल से एक छोटा कोड भेजते हैं। | 58 vs 39 | 1.49× |
 | Export history as Markdown (.zip) | इतिहास को Markdown के रूप में निर्यात करें (.zip) | 49 vs 33 | 1.48× |
+| Stack similar items | मिलते-जुलते आइटम एक साथ रखें | 28 vs 19 | 1.47× |
 | 🗄️ Archived · {date} | 🗄️ आर्काइव किया गया · {date} | 25 vs 17 | 1.47× |
 | Refresh feeds that post often and that you read first | उन फ़ीड को रिफ़्रेश करें जो अक्सर पोस्ट करते हैं और जिन्हें आप पहले पढ़ते हैं | 77 vs 53 | 1.45× |
 | Scan failed. Enter IP manually. | स्कैन विफल रहा। IP मैन्युअल रूप से दर्ज करें। | 45 vs 31 | 1.45× |
@@ -695,6 +698,7 @@ Strings: 1238. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Privacy policy | Informativa sulla privacy | 25 vs 14 | 1.79× |
 | Motion on | Movimento attivo | 16 vs 9 | 1.78× |
 | No receiver address set. | Nessun indirizzo del ricevitore impostato. | 42 vs 24 | 1.75× |
+| Stacking | Raggruppamento | 14 vs 8 | 1.75× |
 | No settings match “{query}”. | Nessuna impostazione corrisponde a «{query}». | 40 vs 23 | 1.74× |
 | Free Trial Mode | Modalità di prova gratuita | 26 vs 15 | 1.73× |
 | Custom prompt text | Testo del prompt personalizzato | 31 vs 18 | 1.72× |
@@ -1128,6 +1132,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Sent to {name} | Отправлено на {name} | 16 vs 10 | 1.6× |
 | Queue a question… | Поставить вопрос в очередь… | 27 vs 17 | 1.59× |
 | No items yet | Пока нет материалов | 19 vs 12 | 1.58× |
+| Stack similar items | Группировать похожие материалы | 30 vs 19 | 1.58× |
 | ⏱️ Run every | ⏱️ Запускать каждые | 19 vs 12 | 1.58× |
 | Mark read when opened | Отмечать прочитанным при открытии | 33 vs 21 | 1.57× |
 | Share failed: {message} | Не удалось поделиться: {message} | 25 vs 16 | 1.56× |

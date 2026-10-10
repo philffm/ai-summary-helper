@@ -4282,5 +4282,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Requêtes par exécution automatique"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} élément similaire"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} éléments similaires"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "Pas la même histoire"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "Regrouper les éléments similaires"
+  },
+  "f_stacking_f819": {
+    "message": "Regroupement"
   }
 }
