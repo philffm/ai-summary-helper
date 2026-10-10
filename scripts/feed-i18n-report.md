@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1235. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1236. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1235 | 0 | 0 | 38 |
-| de | 1235 | 0 | 0 | 182 |
-| es | 1235 | 0 | 0 | 152 |
-| fr | 1235 | 0 | 0 | 178 |
-| hi | 1235 | 0 | 0 | 68 |
-| it | 1235 | 0 | 0 | 155 |
-| ja | 1235 | 0 | 0 | 81 |
-| ko | 1235 | 0 | 0 | 19 |
-| pt_PT | 1235 | 0 | 0 | 144 |
-| ru | 1235 | 0 | 0 | 89 |
-| zh_CN | 1235 | 0 | 0 | 2 |
-| zh_HK | 1235 | 0 | 0 | 2 |
-| zh_TW | 1235 | 0 | 0 | 2 |
+| ar | 1236 | 0 | 0 | 39 |
+| de | 1236 | 0 | 0 | 182 |
+| es | 1236 | 0 | 0 | 152 |
+| fr | 1236 | 0 | 0 | 178 |
+| hi | 1236 | 0 | 0 | 68 |
+| it | 1236 | 0 | 0 | 155 |
+| ja | 1236 | 0 | 0 | 81 |
+| ko | 1236 | 0 | 0 | 19 |
+| pt_PT | 1236 | 0 | 0 | 144 |
+| ru | 1236 | 0 | 0 | 89 |
+| zh_CN | 1236 | 0 | 0 | 2 |
+| zh_HK | 1236 | 0 | 0 | 2 |
+| zh_TW | 1236 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -48,6 +48,7 @@ Strings: 1235. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Words Read | الكلمات المقروءة | 16 vs 10 | 1.6× |
 | {n} feeds to tag | {n} خلاصات بحاجة إلى وسوم | 24 vs 15 | 1.6× |
 | {n} unopened 30d+ | {n} لم تُفتح منذ 30+ يومًا | 25 vs 16 | 1.56× |
+| Back to top | العودة إلى الأعلى | 17 vs 11 | 1.55× |
 | Resend code | إعادة إرسال الرمز | 17 vs 11 | 1.55× |
 | ✅ Sent · {date} | ✅ تم الإرسال · {date} | 17 vs 11 | 1.55× |
 | Keep feed items for | الاحتفاظ بعناصر الخلاصات لمدة | 29 vs 19 | 1.53× |

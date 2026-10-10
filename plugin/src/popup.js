@@ -20,6 +20,7 @@ import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
+import { initBackToTop } from './modules/backToTop.js';
 import { T } from './modules/feedI18n.js';
 import { escapeHtml } from './modules/textUtils.js';
 
@@ -68,6 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initMoodSetting();
     initWorkspace();
     initAccordion(ui);
+    initBackToTop();
 
     ui.showScreen("main");
 

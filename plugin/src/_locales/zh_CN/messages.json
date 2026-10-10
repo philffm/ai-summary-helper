@@ -4345,5 +4345,8 @@
   },
   "f_pick_a_way_to_run_your_summa_5c59": {
     "message": "选择运行摘要的方式。之后可随时在设置中更改。"
+  },
+  "f_back_to_top_bd70": {
+    "message": "回到顶部"
   }
 }

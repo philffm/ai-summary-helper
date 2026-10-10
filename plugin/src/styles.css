@@ -3591,6 +3591,16 @@ body:not([data-screen="history"]) .reading-tools { display: none; }
 .rt-row:hover { background: var(--accent-a05); }
 .rt-row.is-cur { background: var(--accent-a10, var(--accent-a05)); color: var(--accent); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .reading-tools { transition: none; transform: none; } }
+/* Back to top: Feeds and History lists. Same glass pill look as the reading tools; lifts above the podcast player and the selection bar. */
+.back-to-top { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--outline); background: var(--glass-base); color: var(--accent); cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+.back-to-top.is-on { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+.back-to-top-ic { font-size: 20px; font-weight: 700; line-height: 1; }
+.back-to-top:hover { border-color: var(--accent); }
+.back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+body.has-player .back-to-top { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px + 104px); }
+body:has(#historyScreen.selecting) .back-to-top { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px + 64px); }
+body:not([data-screen="feeds"]):not([data-screen="history"]) .back-to-top { display: none; }
+@media (prefers-reduced-motion: reduce) { .back-to-top { transition: none; transform: none; } }
 #articleDetail h1, #articleDetail h2, #articleDetail h3, #articleDetail h4 { scroll-margin-top: calc(var(--header-h) + 64px); }
 
 /* Firefox sidebar (sidebar_action): the same page, any width the user drags the sidebar to. */

@@ -4327,5 +4327,8 @@
   },
   "f_pick_a_way_to_run_your_summa_5c59": {
     "message": "요약을 실행할 방법을 고르세요. 설정에서 언제든 바꿀 수 있습니다."
+  },
+  "f_back_to_top_bd70": {
+    "message": "맨 위로"
   }
 }
