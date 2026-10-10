@@ -20,7 +20,7 @@ const unq = (q, body) => { try { return new Function('return ' + q + body + q)()
 export function extract() {
     const out = new Set();
     const lit = String.raw`('(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|` + '`(?:[^`\\\\]|\\\\.)*`)';
-    const re1 = new RegExp(String.raw`\b(?:T|TU|N_)\(\s*` + lit, 'g');                       // T('x') TU('x') N_('x')
+    const re1 = new RegExp(String.raw`\b(?:T|TU|N_|lbl)\(\s*` + lit, 'g');                  // T('x') TU('x') N_('x') lbl('x') (lbl = T without its emoji)
     const reN = new RegExp(String.raw`\bTN\([^,]+?,\s*` + lit + String.raw`\s*,\s*` + lit, 'g'); // TN(n, 'one', 'other')
     const val = (s) => unq(s[0], s.slice(1, -1));
     for (const f of FILES) {

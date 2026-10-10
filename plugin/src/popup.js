@@ -35,7 +35,7 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 document.addEventListener("DOMContentLoaded", async () => {
     // Load theme and beta toggle preferences
     // Only the appearance keys: getAll() would read the whole library (every article record) just to paint the theme.
-    const storageData = await StorageManager.get(['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion']);
+    const storageData = await StorageManager.get(['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion', 'iconStyle']);
     applyA11y({ ...storageData, theme: storageData.theme === 'system' ? '' : storageData.theme });
     
     const ui = new UIManager();

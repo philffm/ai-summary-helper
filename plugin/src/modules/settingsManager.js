@@ -502,8 +502,8 @@ async function initModelSettings(storageData) {
 // ── Section: General Settings ────────────────────────────────────────
 function initGeneralSettings(storageData) {
     // ── Theme + display & reading preferences (profiles + customize) ──
-    const A11Y_KEYS = ['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion'];
-    const a11yState = { theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing === 'compact' || storageData.lineSpacing === 'relaxed' ? storageData.lineSpacing : 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
+    const A11Y_KEYS = ['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion', 'iconStyle'];
+    const a11yState = { iconStyle: storageData.iconStyle === 'icons' ? 'icons' : 'emoji', theme: storageData.theme || 'system', textScale: clampScale(storageData.textScale || 100), lineSpacing: storageData.lineSpacing === 'compact' || storageData.lineSpacing === 'relaxed' ? storageData.lineSpacing : 'normal', readableFont: !!storageData.readableFont, reduceMotion: !!storageData.reduceMotion };
     // Every profile states all the values it controls, so switching profiles never keeps a leftover
     // (e.g. High contrast theme or Reduce motion from the previous profile).
     const leaveContrast = () => (a11yState.theme === 'contrast' ? 'system' : a11yState.theme);
@@ -526,7 +526,7 @@ function initGeneralSettings(storageData) {
     const themeName = () => ({ light: T('Light Mode'), dark: T('Dark Mode'), contrast: T('High contrast') }[a11yState.theme] || (systemTheme() === 'dark' ? T('Dark Mode') : T('Light Mode')));
     const paintSeg = (id, v) => { const el = $id(id); if (!el) return; el.querySelectorAll('[role=radio]').forEach(b => { const on = b.dataset.value === v; b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; }); };
     const syncUi = () => {
-        paintSeg('themeSeg', a11yState.theme); paintSeg('lineSeg', a11yState.lineSpacing);
+        paintSeg('themeSeg', a11yState.theme); paintSeg('lineSeg', a11yState.lineSpacing); paintSeg('iconSeg', a11yState.iconStyle);
         const th = $id('themeHint'); if (th) th.textContent = a11yState.theme === 'system' ? T('Currently following your system: {theme}').replace('{theme}', themeName()) : '';
         const sr = $id('textScaleRange'); if (sr) sr.value = String(a11yState.textScale);
         const sv = $id('textScaleValue'); if (sv) sv.textContent = a11yState.textScale + '%';
@@ -564,6 +564,7 @@ function initGeneralSettings(storageData) {
     };
     seg('themeSeg', (v) => setA11y({ theme: v }));
     seg('lineSeg', (v) => setA11y({ lineSpacing: v }));
+    seg('iconSeg', (v) => setA11y({ iconStyle: v === 'icons' ? 'icons' : 'emoji' }));
     document.querySelectorAll('#profileList [role=radio]').forEach(b => b.addEventListener('click', () => setA11y((PROFILES[b.dataset.profile] || (() => ({})))())));
     const scaleRange = $id('textScaleRange');
     if (scaleRange) {

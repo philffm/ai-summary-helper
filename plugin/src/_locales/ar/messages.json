@@ -4297,5 +4297,17 @@
   },
   "f_stacking_f819": {
     "message": "التجميع"
+  },
+  "f_emoji_bcdd": {
+    "message": "الإيموجي"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "تظهر الإيموجي بشكل مختلف على كل جهاز، أما الأيقونات فتظهر بالشكل نفسه في كل مكان."
+  },
+  "f_icons_2cd9": {
+    "message": "الأيقونات"
+  },
+  "f_symbol_style_e034": {
+    "message": "نمط الرموز"
   }
 }

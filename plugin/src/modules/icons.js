@@ -1,16 +1,42 @@
-// icons.js — inline SVG icons (Lucide, ISC). The sprite lives in popup.html (scripts/build-icons.mjs);
-// every icon is a <use> of it, so there is no extra request and it inherits currentColor.
+// icons.js — icons in two looks: inline SVG (Lucide, ISC) or emoji, chosen in Settings → Appearance. The sprite lives in
+// popup.html (scripts/build-icons.mjs); every SVG is a <use> of it, so there is no extra request and it inherits currentColor.
 // Size comes from the --icon-* tokens (.icon--sm / .icon--lg); decorative by default — the control carries the label.
 
 const NS = 'http://www.w3.org/2000/svg';
 
-/** Icon as an HTML string, for innerHTML templates. `cls` adds modifier classes (e.g. 'icon--lg'). */
+// What each icon looks like as an emoji (the "Emoji" symbol style, the default). Same keys as ICONS in scripts/build-icons.mjs
+// (test119 keeps them in step). A pair is [off, on]: the star is ☆ until it is pressed / starred, then ★ (CSS picks one).
+export const ICON_EMOJI = {
+    archive: '🗄️', 'arrow-down-left': '↙️', 'arrow-left': '⬅', 'arrow-up-right': '↗️', 'bell-off': '🔕', 'book-open': '📚', bookmark: '🔖', bot: '🤖',
+    brain: '🧠', calendar: '📅', 'chart-column': '📊', check: '✓', 'chevron-down': '▾', 'chevron-right': '›', 'circle-alert': '⚠️',
+    'circle-x': '❌', clipboard: '📋', 'clipboard-list': '📋', clock: '🕐', cloud: '☁️', copy: '📋', download: '📥', ellipsis: '⋯',
+    eraser: '🧹', 'external-link': '↗', 'file-text': '📄', folders: '🗂️', globe: '🌐', headphones: '🎧', heart: '💙', info: '💠',
+    laptop: '💻', layers: '📦', lightbulb: '💡', link: '🔗', loader: '⏳', lock: '🔒', 'message-square': '💬', network: '🕸️',
+    newspaper: '📰', palette: '🎨', paperclip: '📎', pause: '⏸', pencil: '✏️', pin: '📌', play: '▶', plus: '＋', 'refresh-cw': '↻',
+    ruler: '📏', save: '💾', search: '🔍', send: '📤', server: '🦙', settings: '⚙️', 'share-2': '🔗', 'sliders-horizontal': '🎚️',
+    smartphone: '📱', smile: '😊', sparkles: '✨', 'square-check-big': '☑️', star: ['☆', '★'], tag: '🏷️', 'trash-2': '🗑️',
+    'undo-2': '↩', upload: '📤', user: '👤', 'volume-2': '🔊', 'volume-x': '🔇', x: '✕'
+};
+
+const emojiHtml = (name) => {
+    const e = ICON_EMOJI[name];
+    if (Array.isArray(e)) return `<span class="ic-e ic-e-pair" aria-hidden="true"><span class="e-off">${e[0]}</span><span class="e-on">${e[1]}</span></span>`;
+    return `<span class="ic-e" aria-hidden="true">${e || ''}</span>`;
+};
+
+/**
+ * Icon as an HTML string, for innerHTML templates. It always carries BOTH looks — the SVG and the emoji — and the symbol
+ * style (html[data-icon-style], see a11y.js) decides in CSS which one shows, so switching needs no re-render.
+ * `cls` adds modifier classes to the SVG (e.g. 'icon--lg').
+ */
 export function icon(name, cls = '') {
-    return `<svg class="icon icon-${name}${cls ? ' ' + cls : ''}" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`;
+    return `<span class="ic"><svg class="icon icon-${name}${cls ? ' ' + cls : ''}" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>${emojiHtml(name)}</span>`;
 }
 
-/** Icon as a DOM element. */
+/** Icon as a DOM element (a span.ic holding the SVG and the emoji). */
 export function iconEl(name, cls = '') {
+    const wrap = document.createElement('span');
+    wrap.className = 'ic';
     const svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('class', `icon icon-${name}${cls ? ' ' + cls : ''}`);
     svg.setAttribute('aria-hidden', 'true');
@@ -18,7 +44,9 @@ export function iconEl(name, cls = '') {
     const use = document.createElementNS(NS, 'use');
     use.setAttribute('href', `#i-${name}`);
     svg.appendChild(use);
-    return svg;
+    wrap.appendChild(svg);
+    wrap.insertAdjacentHTML('beforeend', emojiHtml(name));
+    return wrap;
 }
 
 // Leading pictographs/arrows/flags (+ variation selectors, ZWJ, spaces) that translated labels still carry.

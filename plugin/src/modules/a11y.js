@@ -17,6 +17,8 @@ export function applyA11y(cfg = {}, root = document.documentElement) {
     if (scale === 100) root.style.removeProperty('--text-scale'); else root.style.setProperty('--text-scale', String(scale / 100));
     if (cfg.lineSpacing === 'compact' || cfg.lineSpacing === 'relaxed') root.setAttribute('data-line', cfg.lineSpacing); else root.removeAttribute('data-line');
     if (cfg.readableFont) root.setAttribute('data-font', 'readable'); else root.removeAttribute('data-font');
+    // Symbol style: emoji (default) or the SVG icon set; every icon carries both, CSS shows one (see modules/icons.js).
+    root.setAttribute('data-icon-style', cfg.iconStyle === 'icons' ? 'icons' : 'emoji');
     if (cfg.reduceMotion) root.setAttribute('data-motion', 'reduce'); else root.removeAttribute('data-motion');
 }
 

@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1231. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1243 | 0 | 0 | 39 |
-| de | 1243 | 0 | 0 | 180 |
-| es | 1243 | 0 | 0 | 152 |
-| fr | 1243 | 0 | 0 | 178 |
-| hi | 1243 | 0 | 0 | 67 |
-| it | 1243 | 0 | 0 | 152 |
-| ja | 1243 | 0 | 0 | 82 |
-| ko | 1243 | 0 | 0 | 19 |
-| pt_PT | 1243 | 0 | 0 | 145 |
-| ru | 1243 | 0 | 0 | 89 |
-| zh_CN | 1243 | 0 | 0 | 2 |
-| zh_HK | 1243 | 0 | 0 | 2 |
-| zh_TW | 1243 | 0 | 0 | 2 |
+| ar | 1231 | 0 | 0 | 38 |
+| de | 1231 | 0 | 0 | 179 |
+| es | 1231 | 0 | 0 | 151 |
+| fr | 1231 | 0 | 0 | 177 |
+| hi | 1231 | 0 | 0 | 67 |
+| it | 1231 | 0 | 0 | 151 |
+| ja | 1231 | 0 | 0 | 81 |
+| ko | 1231 | 0 | 0 | 19 |
+| pt_PT | 1231 | 0 | 0 | 144 |
+| ru | 1231 | 0 | 0 | 88 |
+| zh_CN | 1231 | 0 | 0 | 2 |
+| zh_HK | 1231 | 0 | 0 | 2 |
+| zh_TW | 1231 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -54,7 +54,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Read it with AI | اقرأه بالذكاء الاصطناعي | 23 vs 15 | 1.53× |
 | AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
 | 🎓 Mark as paper | 🎓 وضع علامة كورقة بحثية | 24 vs 16 | 1.5× |
-| ✨ AI Ghost Highlighting | ✨ التمييز الشبحي بالذكاء الاصطناعي | 34 vs 23 | 1.48× |
 | GPU or Apple Silicon, 7–8B model | وحدة معالجة رسومات أو Apple Silicon، نموذج 7–8B | 47 vs 32 | 1.47× |
 | {n} tag lists to name | {n} قوائم وسوم بحاجة إلى تسمية | 29 vs 20 | 1.45× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
@@ -187,7 +186,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
 | Found device at {ip} — click Add to save it ✓ | Gerät unter {ip} gefunden – zum Speichern auf „Hinzufügen“ klicken ✓ | 66 vs 43 | 1.53× |
-| 💾 Backup & restore | 💾 Backup & Wiederherstellung | 29 vs 19 | 1.53× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
 | Clean up & merge tags | Tags bereinigen & zusammenführen | 32 vs 21 | 1.52× |
 | Edit feeds & tags in Settings | Feeds & Tags in den Einstellungen bearbeiten | 44 vs 29 | 1.52× |
@@ -283,7 +281,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Get Key | Obtener clave | 13 vs 7 | 1.86× |
 | Log Out | Cerrar sesión | 13 vs 7 | 1.86× |
 | About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
-| 🧠 On-device tools | 🧠 Herramientas en el dispositivo | 33 vs 18 | 1.83× |
 | Auto-Detect | Detección automática | 20 vs 11 | 1.82× |
 | No background run yet. | Aún no hay ejecuciones en segundo plano. | 40 vs 22 | 1.82× |
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
@@ -511,7 +508,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
 | Delete history… | Supprimer l’historique… | 23 vs 15 | 1.53× |
 | {a} items rated · {b} day recaps written | {a} éléments évalués · {b} récapitulatifs quotidiens rédigés | 58 vs 38 | 1.53× |
-| 💾 Backup & restore | 💾 Sauvegarde et restauration | 29 vs 19 | 1.53× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
 | Delete settings? | Supprimer les réglages ? | 24 vs 16 | 1.5× |
 | Error generating podcast: {msg} | Erreur lors de la création du podcast : {msg} | 42 vs 28 | 1.5× |
@@ -739,7 +735,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Active send target | Destinazione di invio attiva | 28 vs 18 | 1.56× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clicca con il tasto destro sull'icona di Ollama nell'area di notifica (in basso a destra) e scegli <b>Quit</b>. | 111 vs 71 | 1.56× |
 | {name} · API key set | {name} · chiave API impostata | 25 vs 16 | 1.56× |
-| 🧠 On-device tools | 🧠 Strumenti sul dispositivo | 28 vs 18 | 1.56× |
 | Invalid Key | Chiave non valida | 17 vs 11 | 1.55× |
 | No Kindle email set. | Nessuna email Kindle impostata. | 31 vs 20 | 1.55× |
 | Not a paper | Non è un articolo | 17 vs 11 | 1.55× |
@@ -854,7 +849,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Scan failed. Enter IP manually. | スキャンに失敗しました。IPを手動で入力してください。 | 52 vs 31 | 1.68× |
 | Neutral tone | ニュートラルなトーン | 20 vs 12 | 1.67× |
 | No title available | 利用できるタイトルがありません | 30 vs 18 | 1.67× |
-| 📤 Export | 📤 エクスポート | 15 vs 9 | 1.67× |
 | {done} of {total} sent. {error} | {total}件中{done}件を送信しました。{error} | 28 vs 17 | 1.65× |
 | Network error sending to Kindle. | Kindleへの送信中にネットワークエラーが発生しました。 | 52 vs 32 | 1.63× |
 | Copied as plain text. | プレーンテキストでコピーしました。 | 34 vs 21 | 1.62× |
@@ -970,7 +964,6 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI language | Idioma da interface | 19 vs 11 | 1.73× |
 | Verify & Log In | Verificar e iniciar sessão | 26 vs 15 | 1.73× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
-| 💾 Backup & restore | 💾 Cópia de segurança e restauro | 32 vs 19 | 1.68× |
 | Browser Default | Predefinição do navegador | 25 vs 15 | 1.67× |
 | Motion on | Movimento ativo | 15 vs 9 | 1.67× |
 | ☁️ Top terms | ☁️ Termos principais | 20 vs 12 | 1.67× |
@@ -996,13 +989,13 @@ Strings: 1243. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Magic code sent! ✨ Check your inbox. | Código mágico enviado! ✨ Verifique a sua caixa de entrada. | 58 vs 36 | 1.61× |
 | No key facts found | Nenhum facto-chave encontrado | 29 vs 18 | 1.61× |
 | No settings match “{query}”. | Nenhuma definição corresponde a “{query}”. | 37 vs 23 | 1.61× |
-| 🧠 On-device tools | 🧠 Ferramentas no dispositivo | 29 vs 18 | 1.61× |
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Hard facts | Factos concretos | 16 vs 10 | 1.6× |
 | Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
 | Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
 | Instant read | Leitura instantânea | 19 vs 12 | 1.58× |
 | Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
+| Symbol style | Estilo dos símbolos | 19 vs 12 | 1.58× |
 | {n} file sent | {n} ficheiro enviado | 19 vs 12 | 1.58× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Por predefinição, as cópias de segurança não incluem chaves API, dados de início de sessão, chaves de licença nem identificadores de instalação. Mantenha os ficheiros exportados privados. | 187 vs 119 | 1.57× |
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
@@ -1137,7 +1130,6 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Mark read when opened | Отмечать прочитанным при открытии | 33 vs 21 | 1.57× |
 | Share failed: {message} | Не удалось поделиться: {message} | 25 vs 16 | 1.56× |
 | Type {word} to confirm | Введите {word} для подтверждения | 28 vs 18 | 1.56× |
-| 🧠 On-device tools | 🧠 Инструменты на устройстве | 28 vs 18 | 1.56× |
 | Exported! ✓ | Экспортировано! ✓ | 17 vs 11 | 1.55× |
 | For KOReader, prefer | Для KOReader лучше использовать | 31 vs 20 | 1.55× |
 | Next / previous card | Следующая / предыдущая карточка | 31 vs 20 | 1.55× |

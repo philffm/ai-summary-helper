@@ -4297,5 +4297,17 @@
   },
   "f_stacking_f819": {
     "message": "Bündeln"
+  },
+  "f_emoji_bcdd": {
+    "message": "Emoji"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "Emoji sehen auf jedem Gerät anders aus. Icons sehen überall gleich aus."
+  },
+  "f_icons_2cd9": {
+    "message": "Icons"
+  },
+  "f_symbol_style_e034": {
+    "message": "Symbolstil"
   }
 }

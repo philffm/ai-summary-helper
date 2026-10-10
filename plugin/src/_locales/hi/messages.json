@@ -4297,5 +4297,17 @@
   },
   "f_stacking_f819": {
     "message": "समूहीकरण"
+  },
+  "f_emoji_bcdd": {
+    "message": "इमोजी"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "इमोजी हर डिवाइस पर अलग दिखते हैं। आइकन हर जगह एक जैसे दिखते हैं।"
+  },
+  "f_icons_2cd9": {
+    "message": "आइकन"
+  },
+  "f_symbol_style_e034": {
+    "message": "प्रतीक शैली"
   }
 }

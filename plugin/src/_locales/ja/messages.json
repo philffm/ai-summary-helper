@@ -4297,5 +4297,17 @@
   },
   "f_stacking_f819": {
     "message": "まとめ表示"
+  },
+  "f_emoji_bcdd": {
+    "message": "絵文字"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "絵文字は端末によって見た目が異なります。アイコンはどこでも同じ見た目です。"
+  },
+  "f_icons_2cd9": {
+    "message": "アイコン"
+  },
+  "f_symbol_style_e034": {
+    "message": "シンボルのスタイル"
   }
 }

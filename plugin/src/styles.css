@@ -3979,3 +3979,13 @@ body[data-surface="sidebar"] { min-width: 0; }
 .chip-icon .icon, .btn-icon .icon, .nav-icon .icon, .settings-row-icon .icon { vertical-align: middle; }
 .card-menu-ic .icon { width: var(--icon-md); height: var(--icon-md); }
 .feed-source-label .icon, .settings-card-head .icon, .setting-subhead .icon { vertical-align: -0.15em; }
+
+/* ── Symbol style: every icon carries an SVG and an emoji, the setting picks one ──────────────── */
+.ic { display: inline-flex; align-items: center; justify-content: center; flex: none; vertical-align: -0.2em; }
+.ic-e { line-height: 1; font-style: normal; font-family: inherit; }
+html:not([data-icon-style='icons']) .ic > .icon { display: none; }                 /* emoji (default) */
+html[data-icon-style='icons'] .ic > .ic-e { display: none; }                      /* SVG icons */
+html:not([data-icon-style='icons']) .ic { vertical-align: baseline; }
+.ic-e-pair .e-on { display: none; }
+[aria-pressed='true'] .ic-e-pair .e-off, .is-on .ic-e-pair .e-off { display: none; }
+[aria-pressed='true'] .ic-e-pair .e-on, .is-on .ic-e-pair .e-on { display: inline; }
