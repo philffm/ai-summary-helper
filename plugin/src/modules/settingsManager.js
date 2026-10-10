@@ -361,7 +361,15 @@ async function initModelSettings(storageData) {
             });
 
         // Retain auto-save trigger on user selection change
-        cloudModelSelect.addEventListener('change', () => {
+        cloudModelSelect.addEventListener('change', async () => {
+            const { [SK.token]: token } = await chrome.storage.local.get([SK.token]);
+            if (!token) {
+                // Browsing the roster is fine; choosing needs an account.
+                const { preferredCloudModel } = await chrome.storage.sync.get('preferredCloudModel');
+                cloudModelSelect.value = preferredCloudModel || 'google/gemini-3.8-flash';
+                import('./settingsNav.js').then(m => m.openSettingsPanel('account', 'otpEmail')).catch(() => {});
+                return;
+            }
             autoSave('preferredCloudModel', cloudModelSelect.value);
         });
     }

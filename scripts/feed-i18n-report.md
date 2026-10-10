@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1233. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1233 | 0 | 0 | 38 |
-| de | 1233 | 0 | 0 | 179 |
-| es | 1233 | 0 | 0 | 151 |
-| fr | 1233 | 0 | 0 | 177 |
-| hi | 1233 | 0 | 0 | 67 |
-| it | 1233 | 0 | 0 | 152 |
-| ja | 1233 | 0 | 0 | 81 |
-| ko | 1233 | 0 | 0 | 19 |
-| pt_PT | 1233 | 0 | 0 | 144 |
-| ru | 1233 | 0 | 0 | 89 |
-| zh_CN | 1233 | 0 | 0 | 2 |
-| zh_HK | 1233 | 0 | 0 | 2 |
-| zh_TW | 1233 | 0 | 0 | 2 |
+| ar | 1234 | 0 | 0 | 38 |
+| de | 1234 | 0 | 0 | 180 |
+| es | 1234 | 0 | 0 | 152 |
+| fr | 1234 | 0 | 0 | 178 |
+| hi | 1234 | 0 | 0 | 67 |
+| it | 1234 | 0 | 0 | 152 |
+| ja | 1234 | 0 | 0 | 81 |
+| ko | 1234 | 0 | 0 | 19 |
+| pt_PT | 1234 | 0 | 0 | 144 |
+| ru | 1234 | 0 | 0 | 89 |
+| zh_CN | 1234 | 0 | 0 | 2 |
+| zh_HK | 1234 | 0 | 0 | 2 |
+| zh_TW | 1234 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -228,6 +228,7 @@ Strings: 1233. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Digest of {n} summaries | Digest aus {n} Zusammenfassungen | 31 vs 22 | 1.41× |
 | No articles saved yet. | Noch keine Artikel gespeichert. | 31 vs 22 | 1.41× |
 | No sources match. | Keine passenden Quellen. | 24 vs 17 | 1.41× |
+| Sign in to use byPhil Cloud models | Melde dich an, um byPhil-Cloud-Modelle zu nutzen | 48 vs 34 | 1.41× |
 | not your active summary model | nicht dein aktives Zusammenfassungsmodell | 41 vs 29 | 1.41× |
 | starts when the current summary is done | startet, sobald die aktuelle Zusammenfassung fertig ist | 55 vs 39 | 1.41× |
 | {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
@@ -358,6 +359,7 @@ Strings: 1233. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Last background run: {time} · {result} | Última ejecución en segundo plano: {time} · {result} | 42 vs 28 | 1.5× |
 | Model identifier | Identificador del modelo | 24 vs 16 | 1.5× |
 | No summary returned. | No se devolvió ningún resumen. | 30 vs 20 | 1.5× |
+| Sign in to use byPhil Cloud models | Inicia sesión para usar los modelos de byPhil Cloud | 51 vs 34 | 1.5× |
 | Copied as plain text. | Copiado como texto sin formato. | 31 vs 21 | 1.48× |
 | No tags found. Add tags to your summaries! | No se encontraron etiquetas. ¡Añade etiquetas a tus resúmenes! | 62 vs 42 | 1.48× |
 | Scan failed. Enter IP manually. | Falló el escaneo. Introduce la IP manualmente. | 46 vs 31 | 1.48× |
@@ -515,6 +517,7 @@ Strings: 1233. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Only in the conversation log | Uniquement dans le journal de conversation | 42 vs 28 | 1.5× |
 | Pick a name for your show: | Choisissez un nom pour votre émission : | 39 vs 26 | 1.5× |
 | Select summaries | Sélectionner des résumés | 24 vs 16 | 1.5× |
+| Sign in to use byPhil Cloud models | Connecte-toi pour utiliser les modèles byPhil Cloud | 51 vs 34 | 1.5× |
 | Type {word} to confirm | Saisissez {word} pour confirmer | 27 vs 18 | 1.5× |
 | 🎓 Mark as paper | 🎓 Marquer comme article | 24 vs 16 | 1.5× |
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |

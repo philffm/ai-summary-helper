@@ -341,6 +341,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         setModelChip(activeId || svcId, modelIconName({ connectionMode, service: svcId, modelId: activeId }));
     };
 
+    // byPhil Cloud needs an account: the model list stays browsable, but choosing one sends signed-out users to sign-in.
+    const requireCloudSignIn = async () => {
+        const { [SK.token]: token } = await chrome.storage.local.get([SK.token]);
+        if (token) return true;
+        document.getElementById('panelModel').style.display = 'none';
+        document.querySelector('.chip[data-panel="model"]')?.classList.remove('active');
+        ui.showScreen('settings');
+        openSettingsPanel('account', 'otpEmail');
+        ui.showToast(T('Sign in to use byPhil Cloud models'));
+        return false;
+    };
+
     if (modelSettingsLink) {
         modelSettingsLink.addEventListener('click', () => {
             document.getElementById('panelModel').style.display = 'none';
@@ -515,6 +527,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     renderUI();
                                     return;
                                 }
+                                if (!(await requireCloudSignIn())) return;
                                 await chrome.storage.sync.set({ preferredCloudModel: modelId });
                                 await renderUI();
                                 applyAndClose();
@@ -546,6 +559,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 if (model.id === activeCloudModel) btn.classList.add('active');
                                 btn.addEventListener('click', async (e) => {
                                     e.preventDefault();
+                                    if (!(await requireCloudSignIn())) return;
                                     await chrome.storage.sync.set({ preferredCloudModel: model.id });
                                     
                                     // Add to recent list (limit to 10)

@@ -4297,5 +4297,8 @@
   },
   "f_profile_text_size_motion_83ac": {
     "message": "프로필 · 글자 크기 · 모션"
+  },
+  "f_sign_in_to_use_byphil_cloud__e62e": {
+    "message": "byPhil Cloud 모델을 쓰려면 로그인하세요"
   }
 }
