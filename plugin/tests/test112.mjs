@@ -128,6 +128,11 @@ tc.setLexicon({});
     assert.deepEqual(tc.keysNeedingLabel(['Nachrichten', 'Fußball'], 'es'), ['football'], 'built-in topics always have a label');
     tc.setLexicon({});
 }
+// Category counts as shown in the UI language: merged per topic, the most frequent spelling is kept for searching.
+{
+    const g = tc.groupedLabels([['Business', 5], ['Economy', 2], ['Technology', 4], ['General', 3]], 'es');
+    assert.deepEqual(g.map(x => [x[0], x[1], x[2]]), [['Economía', 7, 'Business'], ['Tecnología', 4, 'Technology'], ['General', 3, 'General']], JSON.stringify(g));
+}
 console.log('TEST 112 OK');
 process.exit(0);
 

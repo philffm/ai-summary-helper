@@ -28,10 +28,10 @@ assert.equal(titles().length, 4);
 click($('#feedInsightsBtn')); await tick(50);
 assert.ok(!$('#feedInsights').hidden && $('#feedItemList').hidden, 'insights shown');
 const txt = $('#feedInsights').textContent; console.log(txt.replace(/\s+/g, ' ').slice(0, 300));
-assert.ok(/Items/.test(txt) && /Mood/.test(txt) && /Wirtschaft/.test(txt) && /Podcasts/.test(txt), 'sections');
+assert.ok(/Items/.test(txt) && /Mood/.test(txt) && /Economy/.test(txt) && /Podcasts/.test(txt), 'sections');   // category 'Wirtschaft' is shown in the UI language
 assert.ok($$('#feedInsights .ar-cat-row').some(r => /Alpha/.test(r.textContent)), 'top sources');
 // click category → search + list
-click($$('#feedInsights .ar-cat-row').find(r => /Wirtschaft/.test(r.textContent))); await tick(50);
+click($$('#feedInsights .ar-cat-row').find(r => /Economy/.test(r.textContent))); await tick(50);   // searches the stored spelling
 assert.ok($('#feedItemList').hidden === false && $('#feedInsights').hidden, 'back to list'); assert.equal($('#feedSearch').value, 'Wirtschaft');
 console.log('after category click →', titles()); assert.deepEqual(titles(), ['Börse steigt kräftig']);
 // toggling graph button flips view (graph lib can't load in jsdom → no crash)

@@ -21,7 +21,7 @@ import StorageManager from './storageManager.js';
 import { normalizeUrl } from './textUtils.js';
 import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
-import { T, TN, TU, N_, locale } from './feedI18n.js';
+import { T, TN, TU, N_, locale, uiLocale } from './feedI18n.js';
 import { syncTabbar } from './tabbar.js';
 import { trapFocus } from './sheet.js';
 import { buildIndex, search as indexSearch } from './localSearch.js';
@@ -1150,7 +1150,7 @@ function renderCard(item, sm) {
         li.style.setProperty('--mood-bar', `hsla(${Math.round(hue)}, 70%, 46%, ${(0.55 + 0.35 * a).toFixed(2)})`);
     }
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
-    if (item.cat) { const c = el('span', 'feed-cat', item.cat); c.title = T('AI category'); meta.append(' · ', c); }
+    if (item.cat) { const c = el('span', 'feed-cat', topicLabel(item.cat, topicLang || uiLocale())); c.title = T('AI category'); meta.append(' · ', c); }
     if (item.audio) meta.append(el('span', 'feed-dur', ` · 🎧${item.dur ? ' ' + formatDuration(item.dur) : ''}`));
     if (scoringIds.has(item.id)) {
         li.classList.add('is-scoring');

@@ -1,6 +1,7 @@
 // moodView.js — "Mood over time" card shared by Feeds insights and History analytics.
 // ctx: { moodStore, feedIds?, subTitle?, unscored?(from,to), onScore?(list), onOpen?, onRecap?, hasRecap? }
-import { T, TN, locale } from './feedI18n.js';
+import { T, TN, locale, uiLocale } from './feedI18n.js';
+import { topicLabel } from './topicConcepts.js';
 import { isoWeek, moodBar } from './feedRollup.js';
 import { buildBuckets, movers, pct } from './feedMood.js';
 import { el as h, arSection as section } from './dom.js';
@@ -105,7 +106,7 @@ export function moodSection(ctx) {
             };
             const head2 = h('div', 'feed-mt-whatmoved', T('What moved') + ' · ' + T('{a} vs {b}', { a: shortLabel(mScope, cur.start), b: shortLabel(mScope, prev.start) }));
             if (mv.cats.length || mv.srcs.length) body.append(head2);
-            rows(T('Categories'), mv.cats, (k) => k);
+            rows(T('Categories'), mv.cats, (k) => topicLabel(k, uiLocale()));   // AI category labels are English or free text: known topics are shown in the UI language
             if (ctx.subTitle) rows(T('Sources'), mv.srcs, (k) => ctx.subTitle(k));
         }
         const all = bs.reduce((a, b) => ({ t: a.t + b.t, r: a.r + b.rated }), { t: 0, r: 0 });

@@ -11,7 +11,8 @@
 import { generateRollup, recapSig } from './feedAi.js';
 import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
-import { T, TN, locale } from './feedI18n.js';
+import { T, TN, locale, uiLocale } from './feedI18n.js';
+import { groupedLabels } from './topicConcepts.js';
 
 import { addDays, weekStart, monthStart, isoWeek } from './dateUtils.js';
 export { addDays, weekStart, monthStart, isoWeek };
@@ -168,7 +169,7 @@ export function openRollup(scope, anchor, ctx) {
         const tl = tally(ctx.getItems(), ctx, P.from, P.last, ctx.itemMood);
         if (tl.rated) {
             body.append(moodBar(el, tl));
-            if (tl.cats.length) body.append(el('p', 'feed-roll-mood', tl.cats.map(([c, n]) => `${c} ${n}`).join(' · ')));
+            if (tl.cats.length) body.append(el('p', 'feed-roll-mood', groupedLabels(tl.cats, uiLocale()).map(([c, n]) => `${c} ${n}`).join(' · ')));
         }
         if (stale) body.append(el('p', 'feed-recap-stale', T('A source recap changed since this one was written — Refresh to include it.')));
         const row = el('div', 'feed-recap-actions');

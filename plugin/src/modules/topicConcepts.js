@@ -125,6 +125,20 @@ export function labelOfKey(key, locale) {
     return (learned && (learned[locale] || learned.en)) || null;
 }
 
+/**
+ * Category counts as shown in `locale`: [[raw, n], …] → [[label, total, raw], …], merged per topic ("Business" and "Economy"
+ * are one row) and sorted by count. `raw` is the most frequent original spelling, so a click still searches what is stored.
+ */
+export function groupedLabels(entries, locale) {
+    const g = new Map();
+    for (const [raw, n] of entries) {
+        const k = conceptKey(raw), e = g.get(k) || { n: 0, best: raw, bestN: 0 };
+        e.n += n; if (n > e.bestN) { e.best = raw; e.bestN = n; }
+        g.set(k, e);
+    }
+    return [...g.values()].map((e) => [topicLabel(e.best, locale), e.n, e.best]).sort((a, b) => b[1] - a[1]);
+}
+
 /** True when tag `t` matches the search text `q` (lowercase): plain substring, or both name the same known topic ("Nachrichten" finds "News"). */
 export function tagMatches(t, q) {
     if (String(t).toLowerCase().includes(q)) return true;

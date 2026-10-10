@@ -1,7 +1,8 @@
 // feedInsights.js — analytics for the Feeds view (scope = the source you are looking at).
 // Reuses the chart renderers + .ar-* styles of the History report so both look alike.
 import { articlesByDay, articlesByWeek, renderBarChart, renderWeekChart, chartTips } from './analyticsManager.js';
-import { T, TN } from './feedI18n.js';
+import { T, TN, uiLocale } from './feedI18n.js';
+import { groupedLabels } from './topicConcepts.js';
 import { moodSection } from './moodView.js';
 import { el as h, arSection as section } from './dom.js';
 import { renderTopicsSection } from './topicsChart.js';
@@ -100,7 +101,7 @@ export function renderInsights(container, ctx) {
     items.forEach(i => { if (i.cat) cats.set(i.cat, (cats.get(i.cat) || 0) + 1); });
     if (cats.size) {
         const m = section(T('🏷️ Categories'));
-        m.append(barRows([...cats].sort((a, b) => b[1] - a[1]).slice(0, 8), onSearch, (l) => T('Search “{term}”', { term: l })));
+        m.append(barRows(groupedLabels([...cats], uiLocale()).slice(0, 8), onSearch, (l) => T('Search “{term}”', { term: l })));
         root.append(m);
     }
 
