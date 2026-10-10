@@ -225,6 +225,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 });
 
 chrome.runtime.onInstalled.addListener(() => {
+    if (!chrome.contextMenus) return;   // iOS Safari has no context menus
     chrome.contextMenus.removeAll(() => {
         chrome.contextMenus.create({ id: 'aish-highlight',        title: '✏️ Highlight selection',    contexts: ['selection'] });
         chrome.contextMenus.create({ id: 'aish-clear-highlights', title: '🧹 Remove all highlights',  contexts: ['page', 'selection'] });
@@ -242,7 +243,7 @@ async function ensureContent(tabId) {
 }
 async function sendToTab(tabId, message) { await ensureContent(tabId); return chrome.tabs.sendMessage(tabId, message); }
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus?.onClicked?.addListener((info, tab) => {
     if (!tab?.id) return;
     if (info.menuItemId === 'aish-highlight') {
         sendToTab(tab.id, { action: 'contextMenuHighlight', text: info.selectionText }).catch(() => {});
@@ -846,13 +847,13 @@ if (typeof FEED_WORKER !== 'undefined' && FEED_WORKER) {
 chrome.runtime.onStartup.addListener(() => applyFeedPollConfig());
 chrome.runtime.onInstalled.addListener(() => applyFeedPollConfig());
 
-chrome.alarms.onAlarm.addListener(async (alarm) => {
+chrome.alarms?.onAlarm?.addListener(async (alarm) => {
     if (alarm.name === FEED_ALARM) { await pollFeeds(); return; }
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));
     if (!article) return;
-    chrome.notifications.create(`decision_notif_${timestamp}`, {
+    chrome.notifications?.create(`decision_notif_${timestamp}`, {
         type: 'basic',
         iconUrl: 'icons/icon48.png',
         title: '🔖 Ready to review?',
@@ -863,7 +864,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     });
 });
 
-chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
+chrome.notifications?.onButtonClicked?.addListener(async (notifId, btnIdx) => {
     if (!notifId.startsWith('decision_notif_')) return;
     const timestamp = notifId.replace('decision_notif_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));
@@ -972,7 +973,7 @@ async function notifySumDone(job) {
         });
     } catch (_) { /* notifications unavailable */ }
 }
-chrome.notifications.onClicked.addListener(async (notifId) => {
+chrome.notifications?.onClicked?.addListener(async (notifId) => {
     if (!notifId.startsWith('sumdone_')) return;
     const tabId = parseInt(notifId.split('_')[1], 10);
     chrome.notifications.clear(notifId);
@@ -1371,7 +1372,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         const delayMins = decisionAlarmDelayMinutes(timeframe);
         if (delayMins) {
             // Use encoded timestamp as alarm name to uniquely identify the article
-            chrome.alarms.create(`decision_${encodeURIComponent(msg.article.timestamp)}`, { delayInMinutes: delayMins });
+            chrome.alarms?.create(`decision_${encodeURIComponent(msg.article.timestamp)}`, { delayInMinutes: delayMins });
         }
         return true;
     }
@@ -1476,7 +1477,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 });
 
-chrome.commands.onCommand.addListener((command) => {
+chrome.commands?.onCommand?.addListener((command) => {
     if (command === 'toggle-popup') {
         chrome.action.openPopup();
     } else if (command === 'fetch-summary') {

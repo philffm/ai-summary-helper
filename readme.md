@@ -121,6 +121,28 @@ Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/ai-
    ```
 3. In Xcode, ensure the extension target bundle ID starts with the parent app's bundle ID (e.g. `eu.byphil.aisummaryhelper.extension`), select the same signing team for both targets, and run on a concrete device/simulator (not "Any iOS Device").
 
+> `npm run build:ios` runs `plugin/build.sh`, which also bumps the version in `current_version.json`, `plugin/src/popup.html` and the platform manifests. Revert those files before committing if you only built to test.
+
+#### Testing in Safari
+
+There is no automated Safari run: the Node tests use jsdom, so Safari behaviour has to be checked by hand.
+
+1. **macOS Safari first (fastest loop).** Run the macOS target in Xcode, then Safari → Settings → Advanced → *Show features for web developers*, Develop → *Allow Unsigned Extensions* (needed again after every Safari restart), Settings → Extensions → enable the extension and allow it on all websites. Debug via Develop → *Web Extension Background Content*.
+2. **iOS Simulator.** Run the iOS scheme, open Safari → `aA` menu → *Manage Extensions*, enable it and allow website access. Inspect from the Mac's Safari under Develop → *Simulator*.
+3. **A real iPhone.** Set the signing team on both targets, enable Developer Mode on the phone and Settings → Safari → Advanced → *Web Inspector*. iOS suspends background pages more aggressively than the simulator, so the checks below only count on a device.
+
+Checklist (what is known to differ on Safari / iOS):
+
+- [ ] Popup opens, summary streams and is saved; the in-page sidebar shows instead of a side panel.
+- [ ] First use on a site asks for access and works after allowing it.
+- [ ] Highlights: select text, highlight appears, survives a reload.
+- [ ] Background wake-up: leave Safari idle for a few minutes, then summarize again.
+- [ ] Feeds: add a feed, items load. Background polling (`alarms`) and notifications are best-effort on iOS.
+- [ ] Podcast mini player: playback and whether it continues after closing the popup.
+- [ ] Read aloud (`speechSynthesis`) starts, pauses and stops.
+- [ ] Missing on iOS by design: context menu, keyboard shortcuts, native notifications. These must not break anything else (the background script guards them).
+- [ ] Ollama: `localhost` is not reachable from an iPhone; use the Mac's LAN IP with `OLLAMA_ORIGINS` including `safari-web-extension://*`.
+
 ### Bookmarklet Generator
 
 The bookmarklet generator lives on its own page: [ai-summary-helper.byphil.eu/bookmarklet.html](https://ai-summary-helper.byphil.eu/bookmarklet.html) (the landing page only teases it). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
