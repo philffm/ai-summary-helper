@@ -672,6 +672,9 @@ import {
               }
             } catch (e) { /* services metadata is optional; defaults apply */ }
           }
+          if (!modelIdentifier && connectionMode !== 'cloud' && String(activeService || '').toLowerCase() === 'ollama') {
+            throw new Error('No Ollama model selected. Install one (e.g. "ollama pull llama3.2") and pick it in the model panel.');
+          }
 
           if (!apiUrl) throw new Error('Model endpoint is not configured.');
           try { new URL(apiUrl); } catch (urlErr) { throw new Error(`Configured endpoint is not a valid URL: ${apiUrl}`); }

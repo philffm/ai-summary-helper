@@ -773,7 +773,10 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
                 model = model || meta.defaultModel;
             }
         } catch (_) { /* services.json unavailable */ }
-        if (service === 'ollama') keyOptional = true;
+        if (service === 'ollama') {
+            keyOptional = true;
+            if (!model) throw new Error('No Ollama model selected. Install one (e.g. "ollama pull llama3.2") and pick it in the model panel.');
+        }
     }
     if (!apiKey && !keyOptional) throw new Error('Set your API key under Settings \u203a Models & API first.');
     if (!url && service !== 'gemini') throw new Error('Model endpoint is not configured.');
