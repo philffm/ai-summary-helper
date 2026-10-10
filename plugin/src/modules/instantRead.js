@@ -16,7 +16,7 @@ const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(
 
 export function initInstantRead({ chip, panel, barHost, button, fallback }) {
   const reader = getReader();
-  let chain = Promise.resolve(), on = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null;
+  let chatReady = Promise.resolve(), chain = Promise.resolve(), on = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null;
 
   const paintChip = () => {
     if (!chip) return;
@@ -177,15 +177,20 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     },
     abort,
     /** Follow-up answers: same stream, no title announcement. */
-    async startChat(question) {
-      if (!on || !ready || active) return;
+    startChat(question) {
+      if (!on || !ready || active) return Promise.resolve();
       active = true; spoken = 0; lastUnits = [];
-      let base = 'en'; try { base = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* default */ }
-      sumLang = question ? (ttsLang((await detectLang(question)) || '') || base) : base;
-      if (!active) return;
-      await reader.start([], sumLang, { open: true, meta: { tool: 'instant', lang: sumLang } });
+      // Text that arrives while the voice is still being prepared (language detection, opening the reading session) waits for it
+      // instead of racing it: chatText()/chatDone() run after this promise.
+      chatReady = (async () => {
+        let base = 'en'; try { base = ttsLang((await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'); } catch (_) { /* default */ }
+        sumLang = question ? (ttsLang((await detectLang(question)) || '') || base) : base;
+        if (!active) return;
+        await reader.start([], sumLang, { open: true, meta: { tool: 'instant', lang: sumLang } });
+      })().catch(() => {});
+      return chatReady;
     },
-    chatText(text) { feed(plain(text)); },
-    chatDone(text) { complete(plain(text)); }
+    chatText(text) { const p = plain(text); chatReady = chatReady.then(() => feed(p)); },
+    chatDone(text) { const p = plain(text); chatReady = chatReady.then(() => complete(p)); }
   };
 }
