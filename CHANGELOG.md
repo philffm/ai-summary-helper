@@ -5,6 +5,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.4 (2026-10-10)
+
 ### Added
 - **Auto summary length.** The default length now adapts to the article (about 4 × √words, never more than half the source) with a Shorter / Standard / Longer bias. Custom mode has a slider plus an exact number field (20–2000 words).
 - **Process the whole Feed library with Ollama.** Rates, categorizes and recaps every stored feed item in batches (10 / 20 / 40, default 20), resumable, with live status. Works whenever Ollama is set up, even if another model is active for summaries. Optional automatic run every 15 min – 6 h while the Feeds screen or side panel is open. Linked under Settings › Library & Data › On-device tools.
@@ -21,6 +23,25 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - Settings › About links the privacy policy, the changelog and the security policy; fixed a broken link target there.
 - History cards: status chips (New / Read / Sent / Archived) come before the type (research paper) and the tags.
 - Privacy policy: one source (`site-src/pages/privacy.html`); Kindle delivery goes through the byPhil backend, LocalSend and the share sheet are direct.
+
+### Commit log
+
+#### Changed
+
+- Feeds/History: back to top button
+  - One floating button for both lists; appears after about a screen of scrolling and scrolls that list to the top
+  - Same glass look as the reading tools, lifts above the podcast player and the selection bar
+  - Stays out of the History detail view, which has its own reading tools
+  - Translated in all locales; backToTop.js added to the i18n extraction list
+
+#### Developer experience
+
+- Release: changelog and release notes generated from commit messages
+  - scripts/changelog.mjs reads the commits since the previous v* tag, groups them (Added, Changed, Fixed, Developer experience) and nests body bullets under their commit
+  - release.yml writes the section into CHANGELOG.md with the version bump and uses it as the release body
+  - A hand-written Unreleased section is kept; the commit log is added below it
+  - Commit message convention documented in CONTRIBUTING.md
+- Size: npm run size report and SIZE_AUDIT.md with the optimisation backlog
 
 ## 2.2.x (October 2026)
 - Summary job queue in the background: one summary at a time across tabs and Feeds.
