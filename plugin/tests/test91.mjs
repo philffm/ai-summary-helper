@@ -18,8 +18,8 @@ const noStyle = (root, sel, where) => { for (const el of root.querySelectorAll(s
 
 // 1. podcast wizard
 store['articles:index'] = [
-  { id: 'a1', title: 'Tram ' + X, summary: '<p>x</p>', timestamp: new Date().toISOString(), tags: [] },
-  { id: 'a2', title: 'Second', summary: '<p>y</p>', timestamp: new Date().toISOString(), tags: [] }];
+  { id: 'a1', title: 'Tram ' + X, summary: '<p>x</p>', timestamp: '2026-01-02T10:00:00.000Z', tags: [] },
+  { id: 'a2', title: 'Second', summary: '<p>y</p>', timestamp: '2026-01-01T10:00:00.000Z', tags: [] }];
 store['podcasts:list'] = [{ name: 'Brief ' + X, audio: '" onerror="window.__pwned=1' }];
 const pm = await imp('modules/podcastManager.js');
 const host = d.createElement('div'); d.body.appendChild(host);

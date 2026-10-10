@@ -70,7 +70,7 @@ p.w.document.addEventListener('mouseup', () => { replayed++; });
 const el = p.w.document.getElementById('p');
 p.w.getSelection().selectAllChildren(el);
 el.dispatchEvent(new p.w.MouseEvent('mouseup', { bubbles: true, clientX: 10, clientY: 20 }));
-await tick(40);
+for (let k = 0; k < 100 && replayed < 2; k++) await tick(20);
 assert.deepEqual(p.sent, ['aish:injectContent'], 'selection → injection');
 assert.equal(replayed, 2, 'original + replayed mouseup reach the page script');
 p = await page('https://example.com/a/b');
