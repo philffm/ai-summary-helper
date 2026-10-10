@@ -713,10 +713,17 @@ export function initMainScreen(ui) {
         feed.querySelector('.chat-suggest')?.remove();
         additionalQuestionsInput.value = '';
         fetchSummaryButton.disabled = true;
-        try { instant && instant.startChat(q); } catch (_) { /* optional */ }
         const qEl = addTurn('chat-q', q);
         // A suggested question comes with a short answer: type it out like a person while the full answer is requested.
         const quickText = (conversation.quick && conversation.quick[q]) || '';
+        try {
+            if (instant) {
+                instant.startChat(q);
+                // The short answer is already known: hand all of it to the voice at once. It must not wait for the typewriter,
+                // which only releases a sentence after it has typed it out (seconds of silence before the first word).
+                if (quickText) instant.chatText(quickText);
+            }
+        } catch (_) { /* optional */ }
         const ans = addTurn('chat-a chat-a--pending', quickText ? '' : T('Thinking…'));
         // The model continues the short answer (it is told what is on screen): nothing is wiped, the text just grows.
         let typer = null, typing = false, typed = '', cont = '', fullDone = false, failed = false;
@@ -745,7 +752,7 @@ export function initMainScreen(ui) {
             ans.after(more);
             more.hidden = !auto;
             scrollFeed();
-            typer = typeText(quickText, (t) => { typed = t; paint(); try { instant && instant.chatText(t); } catch (_) { /* optional */ } }, { fast: () => fullDone, instant: reduce });   // read aloud as it is typed
+            typer = typeText(quickText, (t) => { typed = t; paint(); }, { fast: () => fullDone, instant: reduce });   // display only: the voice already has the whole short answer
             typer.done.then(() => { typing = false; paint(); try { instant && instant.chatText(joinContinuation(quickText, cont)); } catch (_) { /* optional */ } });
         }
         try {
