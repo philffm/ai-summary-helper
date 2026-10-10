@@ -103,7 +103,6 @@
       <div class="main-screen-layout">
         <!-- Onboarding / Empty State (shown when not authed & no API key & no articles) -->
         <div id="mainScreenOnboarding" class="onboarding-container" style="display:none">
-          <h2 id="onboardingHeading"></h2>
           <p id="onboardingIntro" class="onboarding-intro"></p>
 
           <div class="onboarding-options" role="group" id="onboardingOptions">
@@ -137,6 +136,7 @@
           </div>
 
           <p id="onboardingTip" class="onboarding-tip"></p>
+          <button type="button" id="onboardingSkipBtn" class="button-primary onboarding-skip" disabled>Continue</button>
         </div>
 
         <!-- Scrollable feed area (top) -->

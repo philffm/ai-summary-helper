@@ -4300,5 +4300,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "byPhil Cloud 모델을 쓰려면 로그인하세요"
+  },
+  "f_skip_for_now_3101": {
+    "message": "나중에 하기"
+  },
+  "f_continue_d664": {
+    "message": "계속"
+  },
+  "f_set_up_6abc": {
+    "message": "설정됨"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "로컬 모델. 계정도 키도 필요 없음."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "계정 없이 사용. 키는 이 기기에만 남습니다."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "하나를 고르세요. 페이지를 요약하기 전에는 아무것도 전송되지 않습니다."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "이메일로 로그인하세요. API 키는 필요 없습니다."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "간편함: 이메일만 있으면 API 키가 필요 없습니다. 독립 개발자인 저를 응원하는 일이기도 합니다."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "요약을 실행할 방법을 고르세요. 설정에서 언제든 바꿀 수 있습니다."
   }
 }

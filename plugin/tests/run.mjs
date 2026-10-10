@@ -1,7 +1,7 @@
 // Test runner: every tests/test*.mjs in its own process (they mutate globals), in parallel, quiet by default.
 //
 //   npm test                   only the tests a change can reach (import graph, see affected.mjs), failures + one summary line
-//   npm test -- 12 37          only test12 and test37
+//   npm test -- 12 41          only test12 and test41
 //   npm test -- --deep         follow every import (popup.js loads the whole app, so most tests are reached); CI pull requests use this
 //   npm test -- --all          every feature test (no audits)
 //   npm run test:release       everything, including the audits (files whose first lines say `@audit`: project-wide checks such as

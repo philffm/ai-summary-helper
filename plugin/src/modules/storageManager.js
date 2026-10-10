@@ -666,7 +666,7 @@ class StorageManager {
         for (const service of services) {
             servicesConfig[service.id] = {
                 apiKey: '',
-                model: service.defaultModel,
+                model: service.defaultModel || '',
                 customModel: '',
                 endpoint: service.endpointUrl
             };
@@ -733,7 +733,7 @@ class StorageManager {
                 // Missing whole service entry -> create with defaults
                 cfg[service.id] = {
                     apiKey: '',
-                    model: service.defaultModel,
+                    model: service.defaultModel || '',
                     customModel: [],
                     endpoint: service.endpointUrl
                 };
@@ -743,7 +743,7 @@ class StorageManager {
                 const entry = cfg[service.id] || {};
                 const updatedEntry = { ...entry };
                 if (updatedEntry.apiKey === undefined) updatedEntry.apiKey = '';
-                if (updatedEntry.model === undefined || updatedEntry.model === null || updatedEntry.model === '') updatedEntry.model = service.defaultModel;
+                if (updatedEntry.model === undefined || updatedEntry.model === null || updatedEntry.model === '') updatedEntry.model = service.defaultModel || '';
                 if (updatedEntry.customModel === undefined) updatedEntry.customModel = [];
                 // Migrate old string customModel → array
                 if (typeof updatedEntry.customModel === 'string') {

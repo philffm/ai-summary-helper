@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "Войдите, чтобы использовать модели byPhil Cloud"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Пропустить"
+  },
+  "f_continue_d664": {
+    "message": "Продолжить"
+  },
+  "f_set_up_6abc": {
+    "message": "Настроено"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Локальные модели. Без аккаунта и ключа."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Без аккаунта. Ваш ключ остаётся на этом устройстве."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Выберите вариант. Ничего не отправляется, пока вы не сократите страницу."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Войдите по email. Ключ API не нужен."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Удобно: только email, без ключа API. Это ещё и поддержка независимого разработчика."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Выберите, как создавать сводки. Это можно изменить в настройках в любой момент."
   }
 }

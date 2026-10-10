@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ];
                 // Remove exact duplicates while preserving order
                 const searchTerm = curSvcId === 'ollama' ? customModelInput.value.toLowerCase().trim() : '';
-                const deduped = allModels.filter((m, i, a) => a.findIndex(x => x.id === m.id) === i)
+                const deduped = allModels.filter(m => m.id).filter((m, i, a) => a.findIndex(x => x.id === m.id) === i)
                     .filter(m => !searchTerm || m.id.toLowerCase().includes(searchTerm));
 
                 // Update chip label to show only the active model ID

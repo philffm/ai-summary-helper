@@ -642,7 +642,7 @@ export async function initAuthManager(uiManager) {
         titleEl: 'onboardingTitle',
         leadEl: 'onboardingLead',
         heroTitle: () => T('☁️ Free cloud models'),
-        heroLead: () => T('Sign in with your email, no API key needed. Your summaries follow you to every device.'),
+        heroLead: () => T('Convenient: just your email, no API key. Also supports me, an independent developer.'),
     });
 
     if (!views.length) return;

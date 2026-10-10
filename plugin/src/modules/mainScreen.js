@@ -883,15 +883,13 @@ export function initMainScreen(ui) {
 
     const evaluateOnboarding = async () => {
         const data = await StorageManager.get([SK.articlesIndex, SK.token, SK.servicesConfig, 'activeService', 'connectionMode']);
+        // "Continue" in the mask was clicked once something was set up: stay out of the way from now on (prefs live in sync storage).
+        let dismissed = false;
+        try { dismissed = !!(await chrome.storage.sync.get('onboardingDismissed')).onboardingDismissed; } catch (e) { /* treat as not dismissed */ }
         const hasArticles = Array.isArray(data[SK.articlesIndex]) && data[SK.articlesIndex].length > 0;
-        const isCloudAuthed = !!data[SK.token];
-        // Keyless providers (e.g. Ollama) count as configured without an API key.
-        let keyOptional = false;
-        try { keyOptional = !!(await StorageManager.getServices()).find(s => s.id === data.activeService)?.apiKeyOptional; } catch (e) { /* services.json unreachable → treat the key as required */ }
-        const hasCustomApi = data.connectionMode === 'local'
-            && (keyOptional || !!data[SK.servicesConfig]?.[data.activeService]?.apiKey);
-
-        const showOnboarding = !hasArticles && !isCloudAuthed && !hasCustomApi;
+        // Every choice that already works gets its own green card (byPhil login, any own API key, an Ollama model).
+        const configured = await configuredKinds();
+        const showOnboarding = !dismissed && !hasArticles;
 
         if (onboardingContainer) onboardingContainer.style.display = showOnboarding ? 'flex' : 'none';
         if (feedScroll) feedScroll.style.display = showOnboarding ? 'none' : 'flex';
@@ -907,6 +905,7 @@ export function initMainScreen(ui) {
 
         if (showOnboarding) {
             setupOnboardingExtras(ui);
+            markConfiguredOption(configured);
         }
     };
 
@@ -918,6 +917,13 @@ export function initMainScreen(ui) {
     // re-evaluate whether the onboarding mask should still be shown, so we
     // can swap over to the summary feed without reloading the popup.
     document.addEventListener('aish:authStateChanged', evaluateOnboarding);
+    // Saving a key, picking Ollama or finishing a summary elsewhere also counts as "configured": drop the mask without a reload.
+    try {
+        chrome.storage.onChanged.addListener((changes) => {
+            const watched = [SK.token, SK.servicesConfig, SK.articlesIndex, 'activeService', 'connectionMode', 'onboardingDismissed'];
+            if (watched.some((k) => k in changes)) evaluateOnboarding();
+        });
+    } catch (e) { /* storage events unavailable */ }
 
     /** The "Summarize this page" bubble that opens a thread (page info + optional focus), animated from the page chip. */
     const addFirstBubble = (pageInfo, focus, chipRect) => {
@@ -1409,12 +1415,11 @@ export function initMainScreen(ui) {
 // with the matching tab selected.
 function setupOnboardingExtras(ui) {
     const set = (id, text) => { const n = document.getElementById(id); if (n) n.textContent = text; };
-    set('onboardingHeading', T('How should AI Summary Helper think?'));
-    set('onboardingIntro', T('Pick one. You can change it any time in the model settings, and nothing is sent anywhere until you summarize a page.'));
+    set('onboardingIntro', T('Pick a way to run your summaries. Change it any time in settings.'));
     set('onboardingOwnKeyTitle', '🔑 ' + T('My own API key'));
-    set('onboardingOwnKeyHint', T('OpenAI, Gemini, Mistral, DeepSeek and more. No account, the key stays on this device.'));
+    set('onboardingOwnKeyHint', T('No account. Your key stays on this device.'));
     set('onboardingOllamaTitle', '🦙 ' + T('Ollama on this computer'));
-    set('onboardingOllamaHint', T('Local models. No account, no key, nothing leaves your machine.'));
+    set('onboardingOllamaHint', T('Local models. No account, no key.'));
     const mac = /Mac|iPhone|iPad/i.test((navigator.platform || '') + ' ' + (navigator.userAgent || ''));
     set('onboardingTip', T('Tip: press {key} on any page to summarize it.', { key: mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E' }));
 
@@ -1434,8 +1439,65 @@ function setupOnboardingExtras(ui) {
         const btn = document.getElementById(id);
         if (btn && !btn.dataset.bound) { btn.dataset.bound = 'true'; btn.addEventListener('click', () => openModels(radioId)); }
     };
+    set('onboardingSkipBtn', T('Continue'));
+    const skip = document.getElementById('onboardingSkipBtn');
+    if (skip && !skip.dataset.bound) {
+        skip.dataset.bound = 'true';
+        skip.addEventListener('click', async () => { if (skip.disabled) return; await activateConfigured(); chrome.storage.sync.set({ onboardingDismissed: true }); });
+    }
     bind('onboardingCustomApiBtn', 'modeLocal');
     bind('onboardingOllamaBtn', 'modeOllama');
+}
+
+/** Which onboarding choices already work: { cloud, own, ollama, ownService }. Several can be true at once. */
+async function configuredKinds() {
+    const data = await StorageManager.get([SK.token, SK.servicesConfig, 'activeService', 'connectionMode']);
+    const cfgs = data[SK.servicesConfig] || {};
+    const oll = cfgs.ollama || {};
+    const ownService = Object.keys(cfgs).find((id) => id !== 'ollama' && !!(cfgs[id] && cfgs[id].apiKey)) || '';
+    const chosenOllama = !!(oll.activeModelId || (Array.isArray(oll.customModel) ? oll.customModel.length : oll.customModel));
+    return {
+        cloud: !!data[SK.token],
+        own: !!ownService,
+        ollama: chosenOllama || (data.connectionMode === 'local' && data.activeService === 'ollama'),
+        ownService,
+        activeMode: data.connectionMode || 'cloud',
+        activeService: data.activeService || ''
+    };
+}
+
+/** Continue: make sure the provider in use is one that is set up (a stored key must not sit behind an unusable cloud default). */
+async function activateConfigured() {
+    const k = await configuredKinds();
+    const usable = k.activeMode === 'cloud' ? k.cloud
+        : (k.activeService === 'ollama' ? k.ollama : k.own && k.activeService === k.ownService);
+    if (usable) return;
+    if (k.cloud) await chrome.storage.sync.set({ connectionMode: 'cloud' });
+    else if (k.ollama) await chrome.storage.sync.set({ connectionMode: 'local', activeService: 'ollama' });
+    else if (k.own) await chrome.storage.sync.set({ connectionMode: 'local', activeService: k.ownService });
+}
+
+// Highlights every onboarding card that is already set up (green, "✓ Set up") and enables "Continue".
+function markConfiguredOption(kinds) {
+    const cards = { cloud: 'onboardingOptCloud', own: 'onboardingCustomApiBtn', ollama: 'onboardingOllamaBtn' };
+    for (const [k, id] of Object.entries(cards)) {
+        const card = document.getElementById(id);
+        if (!card) continue;
+        const on = !!kinds[k];
+        card.classList.toggle('is-configured', on);
+        let tag = card.querySelector(':scope > .onboarding-done');
+        if (on && !tag) {
+            tag = document.createElement('span');
+            tag.className = 'onboarding-done';
+            card.prepend(tag);
+        }
+        if (tag) { tag.textContent = '✓ ' + T('Set up'); tag.hidden = !on; }
+    }
+    const btn = document.getElementById('onboardingSkipBtn');
+    if (btn) {
+        // Nothing set up yet: Continue stays inactive, so the mask can only be left once a provider works.
+        btn.disabled = !(kinds.cloud || kinds.own || kinds.ollama);
+    }
 }
 
 // Helper to check if tab URL supports content scripts

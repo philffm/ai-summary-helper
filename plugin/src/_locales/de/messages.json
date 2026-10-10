@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "Melde dich an, um byPhil-Cloud-Modelle zu nutzen"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Jetzt überspringen"
+  },
+  "f_continue_d664": {
+    "message": "Weiter"
+  },
+  "f_set_up_6abc": {
+    "message": "Eingerichtet"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Lokale Modelle. Kein Konto, kein Schlüssel."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Kein Konto. Dein Schlüssel bleibt auf diesem Gerät."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Wähle eine Option. Es wird nichts gesendet, bis du eine Seite zusammenfasst."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Melde dich mit deiner E-Mail an. Kein API-Schlüssel nötig."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Bequem: nur deine E-Mail, kein API-Schlüssel. Unterstützt außerdem mich als unabhängigen Entwickler."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Wähle, wie deine Zusammenfassungen laufen sollen. Jederzeit in den Einstellungen änderbar."
   }
 }

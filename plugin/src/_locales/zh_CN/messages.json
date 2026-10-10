@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "登录后即可使用 byPhil Cloud 模型"
+  },
+  "f_skip_for_now_3101": {
+    "message": "暂时跳过"
+  },
+  "f_continue_d664": {
+    "message": "继续"
+  },
+  "f_set_up_6abc": {
+    "message": "已设置"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "本地模型。无需账号，无需密钥。"
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "无需账号。密钥只保存在此设备上。"
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "请选择一种。在你总结页面之前不会发送任何内容。"
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "用邮箱登录，无需 API 密钥。"
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "省心：只需邮箱，无需 API 密钥。同时也是在支持独立开发者。"
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "选择运行摘要的方式。之后可随时在设置中更改。"
   }
 }

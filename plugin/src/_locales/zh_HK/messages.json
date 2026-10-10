@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "登入後即可使用 byPhil Cloud 模型"
+  },
+  "f_skip_for_now_3101": {
+    "message": "暫時略過"
+  },
+  "f_continue_d664": {
+    "message": "繼續"
+  },
+  "f_set_up_6abc": {
+    "message": "已設定"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "本機模型。毋須帳戶，毋須金鑰。"
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "毋須帳戶。金鑰只保存在此裝置上。"
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "請選擇一種。在你摘要頁面之前不會傳送任何內容。"
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "用電郵登入，毋須 API 金鑰。"
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "省事：只需電郵，毋須 API 金鑰。同時也是支持獨立開發者。"
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "選擇執行摘要的方式。之後可隨時在設定中更改。"
   }
 }

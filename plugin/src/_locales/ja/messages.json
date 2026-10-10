@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "byPhil Cloudのモデルを使うにはサインイン"
+  },
+  "f_skip_for_now_3101": {
+    "message": "今はスキップ"
+  },
+  "f_continue_d664": {
+    "message": "次へ"
+  },
+  "f_set_up_6abc": {
+    "message": "設定済み"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "ローカルモデル。アカウントもキーも不要。"
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "アカウント不要。キーはこの端末に残ります。"
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "1つ選んでください。ページを要約するまで何も送信されません。"
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "メールでサインイン。APIキーは不要です。"
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "手軽：メールだけでAPIキーは不要。個人開発者の支援にもなります。"
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "要約の実行方法を選んでください。設定でいつでも変更できます。"
   }
 }

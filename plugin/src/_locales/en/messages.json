@@ -4525,5 +4525,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "Sign in to use byPhil Cloud models"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Skip for now"
+  },
+  "f_continue_d664": {
+    "message": "Continue"
+  },
+  "f_set_up_6abc": {
+    "message": "Set up"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Local models. No account, no key."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "No account. Your key stays on this device."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Pick one. Nothing is sent until you summarize a page."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Sign in with your email. No API key needed."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Convenient: just your email, no API key. Also supports me, an independent developer."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Pick a way to run your summaries. Change it any time in settings."
   }
 }

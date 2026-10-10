@@ -31,7 +31,6 @@
         "name": "Ollama",
         "apiKeyDocumentationUrl": "https://ollama.com/",
         "endpointUrl": "http://localhost:11434/api/chat",
-        "defaultModel": "llama3.2",
         "allowCustomEndpoint": true,
         "apiKeyOptional": true,
         "responseStructure": "result.message?.content"
