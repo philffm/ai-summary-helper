@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 export const ICONS = [
-  'archive', 'arrow-down-left', 'arrow-left', 'arrow-up-right', 'bell-off', 'book-open', 'bookmark', 'bot', 'brain', 'calendar', 'chart-column',
+  'accessibility', 'archive', 'arrow-down-left', 'arrow-left', 'arrow-up-right', 'bell-off', 'book-open', 'bookmark', 'bot', 'brain', 'calendar', 'chart-column',
   'check', 'chevron-down', 'chevron-right', 'circle-alert', 'circle-x', 'clipboard', 'clipboard-list', 'clock', 'cloud', 'copy',
   'download', 'ellipsis', 'eraser', 'external-link', 'file-text', 'folders', 'globe', 'headphones', 'heart', 'info', 'laptop',
   'layers', 'lightbulb', 'link', 'lock', 'loader', 'message-square', 'network', 'newspaper', 'palette', 'paperclip', 'pause', 'pencil', 'pin',

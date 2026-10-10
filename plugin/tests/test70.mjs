@@ -2,7 +2,8 @@
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});
 const html = fs.readFileSync(new URL('../src/popup.html', import.meta.url), 'utf8');
-const a = html.indexOf('id="settingsPanel-appearance"'); const sec = html.slice(html.lastIndexOf('<section', a), html.indexOf('</section>', a) + 10);
+const panel = (id) => { const a = html.indexOf(`id="settingsPanel-${id}"`); return html.slice(html.lastIndexOf('<section', a), html.indexOf('</section>', a) + 10); };
+const sec = panel('appearance') + panel('accessibility');   // profiles, text size and motion live in their own Accessibility panel
 w.document.body.innerHTML = sec;
 globalThis.document = w.document; globalThis.window = w;
 w.matchMedia = w.matchMedia || (() => ({ matches: false }));

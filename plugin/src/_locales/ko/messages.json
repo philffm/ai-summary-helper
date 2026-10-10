@@ -4291,5 +4291,11 @@
   },
   "f_symbol_style_e034": {
     "message": "기호 스타일"
+  },
+  "f_accessibility_d09f": {
+    "message": "접근성"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "프로필 · 글자 크기 · 모션"
   }
 }

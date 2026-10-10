@@ -4309,5 +4309,11 @@
   },
   "f_symbol_style_e034": {
     "message": "Estilo dos símbolos"
+  },
+  "f_accessibility_d09f": {
+    "message": "Acessibilidade"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "Perfil · tamanho do texto · movimento"
   }
 }

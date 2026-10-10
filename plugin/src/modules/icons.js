@@ -7,7 +7,7 @@ const NS = 'http://www.w3.org/2000/svg';
 // What each icon looks like as an emoji (the "Emoji" symbol style, the default). Same keys as ICONS in scripts/build-icons.mjs
 // (test119 keeps them in step). A pair is [off, on]: the star is ☆ until it is pressed / starred, then ★ (CSS picks one).
 export const ICON_EMOJI = {
-    archive: '🗄️', 'arrow-down-left': '↙️', 'arrow-left': '⬅', 'arrow-up-right': '↗️', 'bell-off': '🔕', 'book-open': '📚', bookmark: '🔖', bot: '🤖',
+    accessibility: '♿', archive: '🗄️', 'arrow-down-left': '↙️', 'arrow-left': '⬅', 'arrow-up-right': '↗️', 'bell-off': '🔕', 'book-open': '📚', bookmark: '🔖', bot: '🤖',
     brain: '🧠', calendar: '📅', 'chart-column': '📊', check: '✓', 'chevron-down': '▾', 'chevron-right': '›', 'circle-alert': '⚠️',
     'circle-x': '❌', clipboard: '📋', 'clipboard-list': '📋', clock: '🕐', cloud: '☁️', copy: '📋', download: '📥', ellipsis: '⋯',
     eraser: '🧹', 'external-link': '↗', 'file-text': '📄', folders: '🗂️', globe: '🌐', headphones: '🎧', heart: '💙', info: '💠',
