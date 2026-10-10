@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1231. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1233. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1231 | 0 | 0 | 38 |
-| de | 1231 | 0 | 0 | 179 |
-| es | 1231 | 0 | 0 | 151 |
-| fr | 1231 | 0 | 0 | 177 |
-| hi | 1231 | 0 | 0 | 67 |
-| it | 1231 | 0 | 0 | 151 |
-| ja | 1231 | 0 | 0 | 81 |
-| ko | 1231 | 0 | 0 | 19 |
-| pt_PT | 1231 | 0 | 0 | 144 |
-| ru | 1231 | 0 | 0 | 88 |
-| zh_CN | 1231 | 0 | 0 | 2 |
-| zh_HK | 1231 | 0 | 0 | 2 |
-| zh_TW | 1231 | 0 | 0 | 2 |
+| ar | 1233 | 0 | 0 | 38 |
+| de | 1233 | 0 | 0 | 179 |
+| es | 1233 | 0 | 0 | 151 |
+| fr | 1233 | 0 | 0 | 177 |
+| hi | 1233 | 0 | 0 | 67 |
+| it | 1233 | 0 | 0 | 152 |
+| ja | 1233 | 0 | 0 | 81 |
+| ko | 1233 | 0 | 0 | 19 |
+| pt_PT | 1233 | 0 | 0 | 144 |
+| ru | 1233 | 0 | 0 | 89 |
+| zh_CN | 1233 | 0 | 0 | 2 |
+| zh_HK | 1233 | 0 | 0 | 2 |
+| zh_TW | 1233 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -763,6 +763,7 @@ Strings: 1231. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Next / previous card | Scheda successiva / precedente | 30 vs 20 | 1.5× |
 | No background run yet. | Nessuna esecuzione in background. | 33 vs 22 | 1.5× |
 | Page text · {n} words | Testo della pagina · {n} parole | 30 vs 20 | 1.5× |
+| Profile · text size · motion | Profilo · dimensione del testo · movimento | 42 vs 28 | 1.5× |
 | Switch graph search to highlight mode | Passa la ricerca del grafo alla modalità evidenziazione | 55 vs 37 | 1.49× |
 | Not set up yet — add your Kindle in Settings | Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni | 65 vs 44 | 1.48× |
 | This page can't be saved. | Questa pagina non può essere salvata. | 37 vs 25 | 1.48× |
@@ -1110,6 +1111,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Changelog | Список изменений | 16 vs 9 | 1.78× |
 | Free Tier | Бесплатный тариф | 16 vs 9 | 1.78× |
 | Save only | Только сохранить | 16 vs 9 | 1.78× |
+| Accessibility | Специальные возможности | 23 vs 13 | 1.77× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |
 | My own API key | Мой собственный API-ключ | 24 vs 14 | 1.71× |
 | Mood index | Индекс настроения | 17 vs 10 | 1.7× |

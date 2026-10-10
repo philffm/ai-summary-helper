@@ -4309,5 +4309,11 @@
   },
   "f_symbol_style_e034": {
     "message": "符号样式"
+  },
+  "f_accessibility_d09f": {
+    "message": "无障碍"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "配置 · 文字大小 · 动画"
   }
 }

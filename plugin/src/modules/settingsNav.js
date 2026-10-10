@@ -39,7 +39,11 @@ const INDEX = [
     ['send', N_('Bookmarklet generator'), 'generateBookmarkletBtn', 'bookmarklet ios android mobile safari'],
     ['appearance', N_('Theme'), 'themeSeg', 'dark light mode appearance system contrast'],
     ['appearance', N_('UI language'), 'uiLangSelect', 'language translation locale interface'],
-    ['appearance', N_('Line spacing'), 'lineSeg', 'text size font dyslexia reading spacing'],
+    ['accessibility', N_('Accessibility profile'), 'profileList', 'accessibility a11y profile large text high contrast calm barrierefreiheit'],
+    ['accessibility', N_('Text size'), 'textScaleRange', 'text size font zoom larger bigger smaller'],
+    ['accessibility', N_('Line spacing'), 'lineSeg', 'text size font dyslexia reading spacing'],
+    ['accessibility', N_('Easy-read font'), 'readableFontToggle', 'dyslexia font atkinson readable low vision'],
+    ['accessibility', N_('Reduce motion'), 'reduceMotionToggle', 'animation motion vestibular calm'],
     ['appearance', N_('Native Chrome side panel'), 'nativeSidePanelToggle', 'sidebar side panel popup window'],
     ['library', N_('Export settings'), 'exportSettingsButton', 'backup export download json'],
     ['library', N_('Import settings'), 'importSettingsButton', 'restore import backup json'],
@@ -54,7 +58,7 @@ const INDEX = [
 
 const PANEL_TITLES = {
     account: N_('Account & Plan'), models: N_('Models & API'), prompts: N_('Prompts'), feeds: N_('Sources'), feedprefs: N_('Feed preferences'), reading: N_('Reading & Highlighting'),
-    send: N_('Send & Share'), appearance: N_('Appearance & Language'), library: N_('Library & Data'), about: N_('About & Tools')
+    send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), about: N_('About & Tools')
 };
 
 let screenEl = null;
@@ -115,6 +119,8 @@ async function refreshSubtitles() {
     set('send', delivery ? T('Delivery: {name}', { name: delivery }) : T('Kindle · LocalSend · bookmarklet'));
     const theme = selectedText('themeSeg'); const lang = selectedText('uiLangSelect');
     set('appearance', [theme, lang].filter(Boolean).join(' · ') || T('Theme · language · side panel'));
+    const sizeEl = $('textScaleValue'), motionEl = $('reduceMotionToggle');
+    if (sizeEl && motionEl) set('accessibility', [sizeEl.textContent.trim(), motionEl.checked ? T('Motion reduced') : T('Motion on')].join(' · '));
     const v = $('versionNumber');
     set('about', T('Feedback · contact · donate') + (v ? ' · v' + v.textContent.trim() : ''));
 }
