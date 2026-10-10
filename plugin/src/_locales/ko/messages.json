@@ -4279,5 +4279,17 @@
   },
   "f_stacking_f819": {
     "message": "묶어보기"
+  },
+  "f_emoji_bcdd": {
+    "message": "이모지"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "이모지는 기기마다 모양이 다릅니다. 아이콘은 어디서나 같게 보입니다."
+  },
+  "f_icons_2cd9": {
+    "message": "아이콘"
+  },
+  "f_symbol_style_e034": {
+    "message": "기호 스타일"
   }
 }

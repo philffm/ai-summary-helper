@@ -2,6 +2,7 @@
 // One popover at a time, mounted on <body> (never clipped by a card), keyboard friendly.
 // The heavy work (copy, share, LocalSend, Kindle, Markdown, delete) lives in articleManager.js and is
 // loaded only when an action is picked, so the first paint does not pay for it.
+import { iconEl } from './icons.js';
 import { T } from './feedI18n.js';
 import { getReader, streamText, speakable } from './reader.js';
 import { ttsLang } from './languages.js';
@@ -32,19 +33,19 @@ export function menuItems(a, { onRemoved } = {}) {
   const hasSummary = !!(a.summary && String(a.summary).trim()) && !a.feedStub;
   const st = activeReading(a);
   const items = [];
-  if (a.url) items.push({ icon: '🔗', label: T('Open original'), run: () => window.open(a.url, '_blank', 'noopener') });
+  if (a.url) items.push({ icon: 'link', label: T('Open original'), run: () => window.open(a.url, '_blank', 'noopener') });
   if (hasSummary) {
-    items.push({ icon: st === 'paused' ? '▶' : st ? '❚❚' : '🔊', label: st === 'paused' ? T('Play') : st ? T('Pause') : T('Read aloud'), run: () => readAloud(a), needsSpeech: true });
-    items.push({ icon: '📋', label: T('Copy'), run: async () => (await am()).copyArticleToClipboard(a) });
-    if (navigator.share) items.push({ icon: '↗', label: T('Share'), run: async () => (await am()).shareArticle(a) });
-    items.push({ icon: '📡', label: T('Send via LocalSend'), run: async () => (await am()).dispatchToLocalSend(a), sep: true });
-    items.push({ icon: '📚', label: T('Send to Kindle'), run: async () => (await am()).sendToKindle(a) });
-    items.push({ icon: '⬇', label: T('Export as Markdown'), run: async () => (await am()).exportToMarkdown(a) });
+    items.push({ icon: st === 'paused' ? 'play' : st ? 'pause' : 'volume-2', label: st === 'paused' ? T('Play') : st ? T('Pause') : T('Read aloud'), run: () => readAloud(a), needsSpeech: true });
+    items.push({ icon: 'copy', label: T('Copy'), run: async () => (await am()).copyArticleToClipboard(a) });
+    if (navigator.share) items.push({ icon: 'external-link', label: T('Share'), run: async () => (await am()).shareArticle(a) });
+    items.push({ icon: 'send', label: T('Send via LocalSend'), run: async () => (await am()).dispatchToLocalSend(a), sep: true });
+    items.push({ icon: 'book-open', label: T('Send to Kindle'), run: async () => (await am()).sendToKindle(a) });
+    items.push({ icon: 'download', label: T('Export as Markdown'), run: async () => (await am()).exportToMarkdown(a) });
   }
-  if (a.id && canSelect(a)) items.push({ icon: '☑', label: T('Select'), run: () => startSelectionWith(a), sep: true });
+  if (a.id && canSelect(a)) items.push({ icon: 'square-check-big', label: T('Select'), run: () => startSelectionWith(a), sep: true });
   if (a.id) {
-    if (!a.feedStub) items.push({ icon: a.archived ? '↩' : '🗄', label: a.archived ? T('Restore to Inbox') : T('Archive'), run: async () => (await am()).applyStatus([a.id], { archived: !a.archived }), sep: true });
-    items.push({ icon: '🗑', label: T('Delete'), danger: true, sep: !hasSummary || a.feedStub, run: async () => { const ok = await (await am()).removeArticle(a); if (ok && onRemoved) onRemoved(a); } });
+    if (!a.feedStub) items.push({ icon: a.archived ? 'undo-2' : 'archive', label: a.archived ? T('Restore to Inbox') : T('Archive'), run: async () => (await am()).applyStatus([a.id], { archived: !a.archived }), sep: true });
+    items.push({ icon: 'trash-2', label: T('Delete'), danger: true, sep: !hasSummary || a.feedStub, run: async () => { const ok = await (await am()).removeArticle(a); if (ok && onRemoved) onRemoved(a); } });
   }
   return items;
 }
@@ -61,7 +62,7 @@ function openMenu(btn, a, opts) {
     const b = document.createElement('button');
     b.type = 'button'; b.setAttribute('role', 'menuitem');
     b.className = 'card-menu-item' + (it.danger ? ' is-danger' : '');
-    const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = it.icon;
+    const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.append(iconEl(it.icon));
     const tx = document.createElement('span'); tx.textContent = it.label;
     b.append(ic, tx);
     if (it.needsSpeech) { b.hidden = true; speech.ready.then((ok) => { b.hidden = !ok; }); }
@@ -96,11 +97,11 @@ function openMenu(btn, a, opts) {
   const f = enabled()[0]; if (f) f.focus({ preventScroll: true });
 }
 
-/** Adds the ⋯ button to `host` and wires the menu. Returns the button. */
+/** Adds the ellipsis button to `host` and wires the menu. Returns the button. */
 export function attachCardMenu(host, article, opts = {}) {
   const btn = document.createElement('button');
   btn.type = 'button'; btn.className = 'card-menu-btn';
-  btn.textContent = '⋯';
+  btn.append(iconEl('ellipsis'));
   btn.title = T('More actions'); btn.setAttribute('aria-label', T('More actions'));
   btn.setAttribute('aria-haspopup', 'menu'); btn.setAttribute('aria-expanded', 'false');
   btn.addEventListener('click', (e) => { e.stopPropagation(); if (current && btn.getAttribute('aria-expanded') === 'true') { closeMenu(); return; } openMenu(btn, article, opts); });

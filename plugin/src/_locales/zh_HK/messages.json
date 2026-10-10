@@ -4297,5 +4297,17 @@
   },
   "f_stacking_f819": {
     "message": "合併"
+  },
+  "f_emoji_bcdd": {
+    "message": "表情符號"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "表情符號在每台裝置上外觀不同，圖示在任何地方都一樣。"
+  },
+  "f_icons_2cd9": {
+    "message": "圖示"
+  },
+  "f_symbol_style_e034": {
+    "message": "符號樣式"
   }
 }

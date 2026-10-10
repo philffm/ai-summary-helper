@@ -1,6 +1,8 @@
 // i18n.js
 // Translation loader — fetches messages.json and applies data-i18n attributes
 
+import { iconEl, stripEmoji, setLabel } from './icons.js';
+
 let currentDictionary = {};
 let fallbackDictionary = {};
 
@@ -51,7 +53,10 @@ export async function applyTranslations(langCode) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const msg = currentDictionary[key]?.message || fallbackDictionary[key]?.message;
-        if (msg) el.textContent = msg;
+        if (!msg) return;
+        // data-icon: the control's icon is an SVG; translations may still start with the old emoji, so drop it.
+        if (el.dataset.icon) el.replaceChildren(iconEl(el.dataset.icon), document.createTextNode(' ' + stripEmoji(msg)));
+        else setLabel(el, msg);   // a leading/trailing emoji becomes the matching SVG icon
     });
 
     // 2. NEW: Handle placeholder translations

@@ -76,6 +76,7 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+  --icon-sm: 14px; --icon-md: 16px; --icon-lg: 20px; --icon-xl: 24px;
   --radius-xl: 24px;
   --radius-full: 9999px;
 
@@ -3965,3 +3966,26 @@ body[data-surface="sidebar"] { min-width: 0; }
 .feed-stack-title { font-size: var(--fs-md); font-weight: 600; line-height: 1.3; }
 .feed-stack-meta { font-size: var(--fs-xs); color: var(--text-muted); }
 .feed-stack-split { align-self: flex-start; background: transparent; border: 0; padding: 4px 8px; color: var(--text-muted); font-size: var(--fs-xs); cursor: pointer; text-decoration: underline; }
+
+/* ── Icons (Lucide sprite, see modules/icons.js) ───────────────────────── */
+.icon { width: var(--icon-md); height: var(--icon-md); flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.2em; pointer-events: none; }
+.icon--sm { width: var(--icon-sm); height: var(--icon-sm); }
+.icon--lg { width: var(--icon-lg); height: var(--icon-lg); }
+.icon--xl { width: var(--icon-xl); height: var(--icon-xl); }
+.icon-star { fill: none; }
+[aria-pressed='true'] > .icon-star, .is-on > .icon-star, [aria-pressed='true'] .icon-star, .is-on .icon-star { fill: currentColor; }
+.search-clear, .model-panel-close, .chip-panel-close, .tag-x, .card-menu-btn, .star-button, .fp-close, .nav-icon, .chip-icon, .settings-row-chev, .card-menu-ic, .lang-custom-ic { display: inline-flex; align-items: center; justify-content: center; }
+.nav-item .nav-icon, .chip-icon, .settings-row-icon, .btn-icon { line-height: 0; }
+.chip-icon .icon, .btn-icon .icon, .nav-icon .icon, .settings-row-icon .icon { vertical-align: middle; }
+.card-menu-ic .icon { width: var(--icon-md); height: var(--icon-md); }
+.feed-source-label .icon, .settings-card-head .icon, .setting-subhead .icon { vertical-align: -0.15em; }
+
+/* ── Symbol style: every icon carries an SVG and an emoji, the setting picks one ──────────────── */
+.ic { display: inline-flex; align-items: center; justify-content: center; flex: none; vertical-align: -0.2em; }
+.ic-e { line-height: 1; font-style: normal; font-family: inherit; }
+html:not([data-icon-style='icons']) .ic > .icon { display: none; }                 /* emoji (default) */
+html[data-icon-style='icons'] .ic > .ic-e { display: none; }                      /* SVG icons */
+html:not([data-icon-style='icons']) .ic { vertical-align: baseline; }
+.ic-e-pair .e-on { display: none; }
+[aria-pressed='true'] .ic-e-pair .e-off, .is-on .ic-e-pair .e-off { display: none; }
+[aria-pressed='true'] .ic-e-pair .e-on, .is-on .ic-e-pair .e-on { display: inline; }

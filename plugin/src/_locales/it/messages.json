@@ -4297,5 +4297,17 @@
   },
   "f_stacking_f819": {
     "message": "Raggruppamento"
+  },
+  "f_emoji_bcdd": {
+    "message": "Emoji"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "Le emoji appaiono diverse su ogni dispositivo. Le icone sono uguali ovunque."
+  },
+  "f_icons_2cd9": {
+    "message": "Icone"
+  },
+  "f_symbol_style_e034": {
+    "message": "Stile dei simboli"
   }
 }

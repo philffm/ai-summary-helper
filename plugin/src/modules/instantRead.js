@@ -1,6 +1,7 @@
 // Instant read: speak the summary while the model is still writing it. Title and site are announced as soon as Fetch
 // starts; then every finished sentence of the stream is queued for the voice (never half a sentence).
 import { T } from './feedI18n.js';
+import { setIcon } from './icons.js';
 import { getReader, streamText, speakable, detectLang, pickVoice } from './reader.js';
 import { ttsLang, langBase } from './languages.js';
 
@@ -23,7 +24,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     const st = reader.state;
     chip.classList.toggle('is-on', on);
     chip.classList.toggle('is-speaking', on && st.meta && st.meta.tool === 'instant' && ['playing', 'waiting'].includes(st.state));
-    const ic = chip.querySelector('.chip-icon'); if (ic) ic.textContent = on ? '🔊' : '🔇';
+    const ic = chip.querySelector('.chip-icon'); if (ic) setIcon(ic, on ? 'volume-2' : 'volume-x');
     chip.title = T('Instant read'); chip.setAttribute('aria-label', T('Instant read') + ': ' + (on ? T('On') : T('Off')));
   };
 
