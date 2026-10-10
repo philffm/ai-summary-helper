@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "Connecte-toi pour utiliser les modèles byPhil Cloud"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Passer pour l’instant"
+  },
+  "f_continue_d664": {
+    "message": "Continuer"
+  },
+  "f_set_up_6abc": {
+    "message": "Configuré"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Modèles locaux. Pas de compte, pas de clé."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Pas de compte. Ta clé reste sur cet appareil."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Choisis-en une. Rien n’est envoyé avant que tu résumes une page."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Connecte-toi avec ton e-mail. Aucune clé API nécessaire."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Pratique : juste ton e-mail, sans clé API. Tu soutiens aussi un développeur indépendant."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Choisis comment générer tes résumés. Modifiable à tout moment dans les réglages."
   }
 }

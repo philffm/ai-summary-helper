@@ -16,7 +16,10 @@ await tick(150);
 const box = d.getElementById('mainScreenOnboarding');
 assert.equal(box.style.display, 'flex', 'shown for a fresh install');
 assert(/\.onboarding-container\s*\{[^}]*padding-top:\s*calc\(var\(--header-h\)\s*\+\s*8px\)/s.test(css), 'onboarding content clears the fixed header');
-assert(/How should AI Summary Helper think/.test(d.getElementById('onboardingHeading').textContent));
+assert(/\.onboarding-container\s*\{[^}]*padding-bottom:\s*calc\(var\(--nav-clearance\)/s.test(css), 'last button clears the bottom nav');
+assert(/\.onboarding-auth-box\s+\.auth-message:empty\s*\{\s*display:\s*none/.test(css), 'empty login message takes no room');
+assert(!d.getElementById('onboardingHeading'), 'no heading, the short intro is enough');
+assert(d.getElementById('onboardingIntro').textContent.length < 70, 'short intro');
 const cards = [...d.querySelectorAll('#onboardingOptions > .onboarding-option')];
 assert.equal(cards.length, 3, 'three options');
 assert(/Free cloud models/.test(d.getElementById('onboardingTitle').textContent) || d.getElementById('onboardingTitle'), 'cloud card keeps its sign-in form');
@@ -26,11 +29,13 @@ assert(/Ollama/.test(cards[2].textContent) && /No account/.test(cards[2].textCon
 assert(/Ctrl \+ Shift \+ E|⌘ \+ Shift \+ E/.test(d.getElementById('onboardingTip').textContent), 'shortcut tip');
 
 // Ollama card → settings, Ollama tab selected
-d.getElementById('onboardingOllamaBtn').click(); await tick(250);
+d.getElementById('onboardingOllamaBtn').click();
+for (let k = 0; k < 60 && !d.getElementById('modeOllama').checked; k++) await tick(50);
 assert.deepEqual(shown.slice(-1), ['settings']);
 assert.equal(d.getElementById('modeOllama').checked, true, 'Ollama tab selected');
 // Own key card → Own key tab
-d.getElementById('onboardingCustomApiBtn').click(); await tick(250);
+d.getElementById('onboardingCustomApiBtn').click();
+for (let k = 0; k < 60 && !d.getElementById('modeLocal').checked; k++) await tick(50);
 assert.equal(d.getElementById('modeLocal').checked, true, 'Own key tab selected');
 
 // About: privacy policy, changelog, security policy

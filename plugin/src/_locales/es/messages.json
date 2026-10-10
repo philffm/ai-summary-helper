@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "Inicia sesión para usar los modelos de byPhil Cloud"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Omitir por ahora"
+  },
+  "f_continue_d664": {
+    "message": "Continuar"
+  },
+  "f_set_up_6abc": {
+    "message": "Configurado"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Modelos locales. Sin cuenta, sin clave."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Sin cuenta. Tu clave se queda en este dispositivo."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Elige una. No se envía nada hasta que resumas una página."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Inicia sesión con tu correo. No hace falta clave de API."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Cómodo: solo tu correo, sin clave de API. Además me apoyas como desarrollador independiente."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Elige cómo generar tus resúmenes. Puedes cambiarlo cuando quieras en los ajustes."
   }
 }

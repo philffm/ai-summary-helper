@@ -3908,7 +3908,7 @@ body[data-surface="sidebar"] { min-width: 0; }
 .chip-panel-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 /* ── Onboarding: three equal ways to start ─────────────────────────────── */
-.onboarding-container { overflow-y: auto; justify-content: flex-start; padding-top: calc(var(--header-h) + 8px); }
+.onboarding-container { overflow-y: auto; justify-content: flex-start; padding-top: calc(var(--header-h) + 8px); padding-bottom: calc(var(--nav-clearance) + 48px); }   /* last card clears the floating bottom nav and the floating Continue pill */
 .onboarding-container .onboarding-intro { margin-bottom: var(--spacing-s-4); }
 .onboarding-options { width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: var(--spacing-s-3); }
 .onboarding-option {
@@ -3925,6 +3925,19 @@ body[data-surface="sidebar"] { min-width: 0; }
 .onboarding-option--action span { font-size: var(--fs-sm); color: var(--text-secondary); }
 .onboarding-option--action:hover { border-color: var(--accent); }
 .onboarding-option--action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.onboarding-skip {
+  position: fixed; right: var(--spacing-s-4); bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-3)); z-index: 5;
+  width: auto; margin: 0; padding: 8px 16px; border-radius: var(--radius-full);
+  background: var(--glass-card); border: 1px solid var(--glass-border); box-shadow: var(--glass-inner-glow), 0 4px 14px rgba(0,0,0,0.18);
+}
+.onboarding-option.is-configured { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--glass-card)); }
+.onboarding-done { font-size: var(--fs-xs); font-weight: 600; color: var(--ok); }
+.onboarding-option.is-configured .onboarding-auth-box { display: none; }
+.onboarding-option .onboarding-auth-box .auth-message { min-height: 0; margin-top: 0; }
+.onboarding-option .onboarding-auth-box .auth-message:empty { display: none; }
+.onboarding-container .onboarding-option .onboarding-auth-box p:last-child { margin-bottom: 0; }
+.onboarding-skip.button-primary { width: auto; max-width: none; background: var(--accent); border-color: transparent; color: #fff; }
+.onboarding-skip:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
 .onboarding-container .onboarding-tip { margin: var(--spacing-s-4) 0 0; font-size: var(--fs-xs); color: var(--text-muted); }
 
 /* ── Delete dialog: checklist of what goes ─────────────────────────────── */

@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "سجّل الدخول لاستخدام نماذج byPhil Cloud"
+  },
+  "f_skip_for_now_3101": {
+    "message": "تخطَّ الآن"
+  },
+  "f_continue_d664": {
+    "message": "متابعة"
+  },
+  "f_set_up_6abc": {
+    "message": "تم الإعداد"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "نماذج محلية. بلا حساب وبلا مفتاح."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "بلا حساب. يبقى مفتاحك على هذا الجهاز."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "اختر خيارًا. لا يُرسَل شيء حتى تلخّص صفحة."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "سجّل الدخول ببريدك الإلكتروني. لا حاجة إلى مفتاح API."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "مريح: بريدك الإلكتروني فقط ودون مفتاح API. وهو دعم لمطوّر مستقل أيضًا."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "اختر طريقة تشغيل ملخصاتك. يمكنك تغييرها في أي وقت من الإعدادات."
   }
 }

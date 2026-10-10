@@ -4318,5 +4318,32 @@
   },
   "f_sign_in_to_use_byphil_cloud__e62e": {
     "message": "byPhil Cloud मॉडल के लिए साइन इन करें"
+  },
+  "f_skip_for_now_3101": {
+    "message": "अभी छोड़ें"
+  },
+  "f_continue_d664": {
+    "message": "आगे बढ़ें"
+  },
+  "f_set_up_6abc": {
+    "message": "सेट अप हो गया"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "लोकल मॉडल। न खाता, न कुंजी।"
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "खाता नहीं चाहिए। आपकी कुंजी इसी डिवाइस पर रहती है।"
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "एक चुनें। जब तक आप कोई पेज सारांशित नहीं करते, कुछ नहीं भेजा जाता।"
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "अपने ईमेल से साइन इन करें। API कुंजी की ज़रूरत नहीं।"
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "आसान: बस आपका ईमेल, API कुंजी नहीं। साथ ही एक स्वतंत्र डेवलपर का समर्थन भी।"
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "चुनें कि आपके सारांश कैसे चलें। सेटिंग्स में कभी भी बदल सकते हैं।"
   }
 }

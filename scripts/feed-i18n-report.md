@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1235. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1234 | 0 | 0 | 38 |
-| de | 1234 | 0 | 0 | 180 |
-| es | 1234 | 0 | 0 | 152 |
-| fr | 1234 | 0 | 0 | 178 |
-| hi | 1234 | 0 | 0 | 67 |
-| it | 1234 | 0 | 0 | 152 |
-| ja | 1234 | 0 | 0 | 81 |
-| ko | 1234 | 0 | 0 | 19 |
-| pt_PT | 1234 | 0 | 0 | 144 |
-| ru | 1234 | 0 | 0 | 89 |
-| zh_CN | 1234 | 0 | 0 | 2 |
-| zh_HK | 1234 | 0 | 0 | 2 |
-| zh_TW | 1234 | 0 | 0 | 2 |
+| ar | 1235 | 0 | 0 | 38 |
+| de | 1235 | 0 | 0 | 182 |
+| es | 1235 | 0 | 0 | 152 |
+| fr | 1235 | 0 | 0 | 178 |
+| hi | 1235 | 0 | 0 | 68 |
+| it | 1235 | 0 | 0 | 155 |
+| ja | 1235 | 0 | 0 | 81 |
+| ko | 1235 | 0 | 0 | 19 |
+| pt_PT | 1235 | 0 | 0 | 144 |
+| ru | 1235 | 0 | 0 | 89 |
+| zh_CN | 1235 | 0 | 0 | 2 |
+| zh_HK | 1235 | 0 | 0 | 2 |
+| zh_TW | 1235 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -90,6 +90,7 @@ Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Hide ⌃ | Ausblenden ⌃ | 12 vs 6 | 2× |
 | Mark {n} read | {n} als gelesen markieren | 24 vs 12 | 2× |
 | Recap failed | Rückblick fehlgeschlagen | 24 vs 12 | 2× |
+| Set up | Eingerichtet | 12 vs 6 | 2× |
 | UI Language | Sprache der Oberfläche | 22 vs 11 | 2× |
 | UI language | Sprache der Oberfläche | 22 vs 11 | 2× |
 | Use {p} | {p} verwenden | 12 vs 6 | 2× |
@@ -232,6 +233,7 @@ Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | not your active summary model | nicht dein aktives Zusammenfassungsmodell | 41 vs 29 | 1.41× |
 | starts when the current summary is done | startet, sobald die aktuelle Zusammenfassung fertig ist | 55 vs 39 | 1.41× |
 | {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
+| Pick a way to run your summaries. Change it any time in settings. | Wähle, wie deine Zusammenfassungen laufen sollen. Jederzeit in den Einstellungen änderbar. | 90 vs 65 | 1.38× |
 | Stopped. Starting again continues where it left off. | Gestoppt. Beim erneuten Start geht es dort weiter, wo es aufgehört hat. | 71 vs 52 | 1.37× |
 | Free cloud models and your summaries on every device. Or skip this and use your own API key. | Kostenlose Cloud-Modelle und deine Zusammenfassungen auf jedem Gerät. Oder überspringen und den eigenen API-Schlüssel nutzen. | 125 vs 92 | 1.36× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
@@ -596,6 +598,7 @@ Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Noisy | शोरगुल वाला | 11 vs 5 | 2.2× |
 | 🎓 Mark as paper | 🎓 शोध-पत्र के रूप में चिह्नित करें | 35 vs 16 | 2.19× |
 | What I used | मैंने क्या इस्तेमाल किया | 24 vs 11 | 2.18× |
+| Set up | सेट अप हो गया | 13 vs 6 | 2.17× |
 | Archived | आर्काइव किया गया | 16 vs 8 | 2× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Testing… | जाँच हो रही है… | 15 vs 8 | 1.88× |
@@ -794,6 +797,7 @@ Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary length in words | Lunghezza del riassunto in parole | 33 vs 23 | 1.43× |
 | {n} older item is not in this recap. | {n} elemento più vecchio non è in questo riepilogo. | 50 vs 35 | 1.43× |
 | Allow browser extensions | Consenti le estensioni del browser | 34 vs 24 | 1.42× |
+| Local models. No account, no key. | Modelli locali. Nessun account, nessuna chiave. | 47 vs 33 | 1.42× |
 | Native Chrome side panel | Pannello laterale nativo di Chrome | 34 vs 24 | 1.42× |
 | TTS returned no audio. | Il TTS non ha restituito audio. | 31 vs 22 | 1.41× |
 | {name} · local, no API key | {name} · locale, nessuna chiave API | 31 vs 22 | 1.41× |
@@ -803,12 +807,14 @@ Strings: 1234. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | Tip: press {key} on any page to summarize it. | Suggerimento: premi {key} su qualsiasi pagina per riassumerla. | 59 vs 42 | 1.4× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Per impostazione predefinita, i backup escludono chiavi API, dati di accesso, chiavi di licenza e identificativi di installazione. Mantieni privati i file esportati. | 165 vs 119 | 1.39× |
+| No account. Your key stays on this device. | Nessun account. La tua chiave resta su questo dispositivo. | 58 vs 42 | 1.38× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 | This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Questo PDF non ha testo selezionabile (probabilmente una scansione). Il riconoscimento del testo non è ancora supportato. | 121 vs 89 | 1.36× |
 | {n} older item is not in this recap (limit: {max} per recap). | {n} elemento più vecchio non è in questo riepilogo (limite: {max} per riepilogo). | 77 vs 57 | 1.35× |
 | {name} · API key missing — add it in Settings | {name} · chiave API mancante: aggiungila nelle Impostazioni | 55 vs 41 | 1.34× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} elementi più vecchi non sono in questo riepilogo (limite: {max} per riepilogo). | 79 vs 59 | 1.34× |
 | Choose one delivery method for article detail actions. | Scegli un metodo di consegna per le azioni nel dettaglio dell'articolo. | 71 vs 54 | 1.31× |
+| Pick a way to run your summaries. Change it any time in settings. | Scegli come generare i tuoi riassunti. Puoi cambiarlo quando vuoi nelle impostazioni. | 85 vs 65 | 1.31× |
 | e.g. Prefer European news and keep it upbeat. | es. Preferisci notizie europee e mantieni un tono positivo. | 59 vs 45 | 1.31× |
 
 ### ja
