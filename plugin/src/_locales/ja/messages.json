@@ -4282,5 +4282,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 自動実行あたりのリクエスト数"
+  },
+  "f_similar_item_612e": {
+    "message": "似た記事 +{n}件"
+  },
+  "f_similar_items_4567": {
+    "message": "似た記事 +{n}件"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "同じ話題ではない"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "似た記事をまとめる"
+  },
+  "f_stacking_f819": {
+    "message": "まとめ表示"
   }
 }

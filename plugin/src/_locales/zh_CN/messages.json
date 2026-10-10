@@ -4282,5 +4282,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 每次自动运行的请求数"
+  },
+  "f_similar_item_612e": {
+    "message": "另有 {n} 条相似内容"
+  },
+  "f_similar_items_4567": {
+    "message": "另有 {n} 条相似内容"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "不是同一条新闻"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "合并相似内容"
+  },
+  "f_stacking_f819": {
+    "message": "合并"
   }
 }

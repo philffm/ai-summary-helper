@@ -4282,5 +4282,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 प्रति स्वचालित रन अनुरोध"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} मिलता-जुलता आइटम"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} मिलते-जुलते आइटम"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "यह वही ख़बर नहीं है"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "मिलते-जुलते आइटम एक साथ रखें"
+  },
+  "f_stacking_f819": {
+    "message": "समूहीकरण"
   }
 }

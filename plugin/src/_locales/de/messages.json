@@ -4282,5 +4282,20 @@
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Anfragen pro automatischem Lauf"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} ähnlicher Beitrag"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} ähnliche Beiträge"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "Nicht dieselbe Geschichte"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "Ähnliche Beiträge bündeln"
+  },
+  "f_stacking_f819": {
+    "message": "Bündeln"
   }
 }

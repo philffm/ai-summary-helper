@@ -3953,3 +3953,15 @@ body[data-surface="sidebar"] { min-width: 0; }
 .library-bench-main { font-weight: 600; margin: 4px 0; }
 .library-bench-list { margin: 4px 0 8px; padding-left: 18px; font-size: var(--fs-sm); color: var(--text-muted); }
 .library-bench-list li.is-you { color: var(--text-primary); font-weight: 600; }
+
+/* Stacked similar feed items (feedStacks.js) */
+.feed-stack { list-style: none; margin: -6px 0 10px; padding: 0 4px; }
+.feed-stack-toggle { background: transparent; border: 0; padding: 4px 8px; color: var(--accent); font-size: var(--fs-sm); font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); }
+.feed-stack-toggle[aria-expanded='true'] { background: var(--accent-a12); }
+.feed-stack-rows { display: flex; flex-direction: column; gap: 2px; margin: 4px 0 0 8px; padding-left: 8px; border-left: 2px solid var(--outline); }
+.feed-stack-row { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 1px; padding: 6px 8px; background: transparent; border: 0; border-radius: var(--radius-sm); color: var(--text-primary); cursor: pointer; }
+.feed-stack-row:hover { background: var(--accent-a08); }
+.feed-stack-row.is-read .feed-stack-title { color: var(--text-muted); }
+.feed-stack-title { font-size: var(--fs-md); font-weight: 600; line-height: 1.3; }
+.feed-stack-meta { font-size: var(--fs-xs); color: var(--text-muted); }
+.feed-stack-split { align-self: flex-start; background: transparent; border: 0; padding: 4px 8px; color: var(--text-muted); font-size: var(--fs-xs); cursor: pointer; text-decoration: underline; }
