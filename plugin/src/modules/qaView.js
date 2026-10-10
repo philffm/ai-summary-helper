@@ -9,16 +9,19 @@ const TABLE_SEP = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/;
 const LIST_ITEM = /^\s*([-*\u2022]|\d+[.)])\s+/;
 const cells = (line) => line.trim().replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map(c => c.trim());
 
+/** **bold**, *italic* and `code` inside one line, as DOM nodes (also used for single recap bullets). */
+export function renderInline(parent, line) {
+    String(line || '').split(/(\*\*[^*]+\*\*|`[^`]+`|(?<![*\w])\*[^*\s][^*]*\*(?![*\w]))/).forEach((part) => {
+        if (/^\*\*[^*]+\*\*$/.test(part)) { const b = document.createElement('strong'); b.textContent = part.slice(2, -2); parent.appendChild(b); }
+        else if (/^`[^`]+`$/.test(part)) { const c = document.createElement('code'); c.textContent = part.slice(1, -1); parent.appendChild(c); }
+        else if (/^\*[^*]+\*$/.test(part)) { const i = document.createElement('em'); i.textContent = part.slice(1, -1); parent.appendChild(i); }
+        else if (part) parent.appendChild(document.createTextNode(part));
+    });
+}
+
 export function renderAnswer(target, text) {
     target.replaceChildren();
-    const inline = (parent, line) => {
-        line.split(/(\*\*[^*]+\*\*|`[^`]+`|(?<![*\w])\*[^*\s][^*]*\*(?![*\w]))/).forEach((part) => {
-            if (/^\*\*[^*]+\*\*$/.test(part)) { const b = document.createElement('strong'); b.textContent = part.slice(2, -2); parent.appendChild(b); }
-            else if (/^`[^`]+`$/.test(part)) { const c = document.createElement('code'); c.textContent = part.slice(1, -1); parent.appendChild(c); }
-            else if (/^\*[^*]+\*$/.test(part)) { const i = document.createElement('em'); i.textContent = part.slice(1, -1); parent.appendChild(i); }
-            else if (part) parent.appendChild(document.createTextNode(part));
-        });
-    };
+    const inline = renderInline;
     const lines = String(text || '').split('\n');
     let para = [], items = [], ordered = false;
     const flushPara = () => {

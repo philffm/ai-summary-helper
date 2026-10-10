@@ -2597,6 +2597,14 @@ text.graph-search-dim {
 .feed-recap-overview { font-size: var(--fs-base); line-height: 1.5; margin: 0 0 8px; }
 .feed-recap-themes { margin: 0 0 10px; padding-left: 18px; font-size: var(--fs-md); line-height: 1.45; }
 .feed-recap-themes li { margin-bottom: 4px; }
+/* Recap text is rendered markdown (headings, bold, lists) in the card and in the sheets. */
+.feed-recap-overview.md-body p { margin: 0 0 6px; }
+.feed-recap-overview.md-body .md-h { margin: 12px 0 4px; font-size: var(--fs-base); font-weight: 600; color: var(--text-primary); }
+.feed-recap-overview.md-body ul, .feed-recap-overview.md-body ol { margin: 0 0 8px; padding-left: 18px; }
+.feed-recap-overview.md-body li { margin-bottom: 3px; }
+.feed-rc-sum.md-body p, .feed-rc-sum.md-body ul, .feed-rc-sum.md-body ol { margin: 0; }
+.feed-rc-sum.md-body ul, .feed-rc-sum.md-body ol { padding-left: 16px; }
+.feed-rc-sum.md-body .md-h { margin: 0; font-size: inherit; font-weight: 600; }
 .feed-recap-stale { font-size: var(--fs-sm); color: var(--mood-warn-text); margin: 0 0 8px; }
 .feed-recap-actions { display: flex; gap: 8px; margin: 6px 0 10px; }
 .feed-recap-loading { font-size: var(--fs-base); margin: 6px 0; }

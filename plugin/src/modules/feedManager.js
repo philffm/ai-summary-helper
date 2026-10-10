@@ -30,6 +30,7 @@ import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
 import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, learnTagNames, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
 import { el } from './dom.js';
+import { renderAnswer, renderInline } from './qaView.js';
 import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
@@ -1781,7 +1782,7 @@ function renderRecapCard() {
     let stale = false;
     if (rec && sc === 'day') stale = !!(rec.covered && recapCovered(recapScope(ps, ui.source)).some(x => rec.covered[x.id] !== itemSig(x)));
     else if (rec) stale = isStale(sc, a, ctx);
-    if (rec && rec.overview) box.append(el('p', 'feed-rc-sum', rec.overview));
+    if (rec && rec.overview) { const sum = el('div', 'feed-rc-sum md-body'); renderAnswer(sum, rec.overview); box.append(sum); }
     if (rec && sc === 'day' && rec.total > rec.n) box.append(el('p', 'feed-muted', TN(rec.total - rec.n, '{n} older item is not in this recap.', '{n} older items are not in this recap.')));
     if (rec) {
         const tl = tally(items, ctx, ps, Math.min(addDaysTs(pe, -1), startOfDay(Date.now())), itemMood);
@@ -1849,10 +1850,10 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         body.replaceChildren();
         const chip = { pos: T('😊 Mostly positive'), neu: T('😐 Mixed'), neg: T('😟 Mostly heavy') }[r.mood] || T('😐 Mixed');
         body.append(el('span', 'feed-recap-mood', chip));
-        if (r.overview) body.append(el('p', 'feed-recap-overview', r.overview));
+        if (r.overview) { const ov = el('div', 'feed-recap-overview md-body'); renderAnswer(ov, r.overview); body.append(ov); }
         if (r.themes.length) {
             const ul = el('ul', 'feed-recap-themes');
-            r.themes.forEach(t => ul.append(el('li', null, t)));
+            r.themes.forEach(t => { const li = el('li'); renderInline(li, t); ul.append(li); });
             body.append(ul);
         }
         if (missing.length) {

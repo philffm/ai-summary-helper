@@ -240,12 +240,20 @@ export function parseScoreLine(line, n) {
 }
 
 export function parseRecap(text, n = 0) {
-    const lines = String(text || '').split('\n').map(l => l.trim()).filter(Boolean);
+    // Some models wrap the whole answer in a ```markdown fence: drop the fence lines, keep what is inside.
+    // Headings glued into one line ("… themes: ### Economy ### Politics --- …") are broken up again, and horizontal rules ("---") dropped.
+    const lines = String(text || '').split('\n')
+        .flatMap(l => l.split(/\s+(?=#{2,6}\s+\S)|\s+-{3,}\s+/))
+        .map(l => l.replace(/\s+-{3,}\s*$/, '').trim())
+        .filter(l => l && !/^```[\w-]*$/.test(l) && !/^([-*_])\1{2,}$/.test(l));
     let mood = 'neu';
     const overview = [];
     const themes = [];
     let labels = null;
     let scores = null;
+    // A model that answers with headings ("### Economy") has written a structured briefing: keep it whole so the
+    // bullets stay under their heading instead of being pulled out into one flat, capped theme list.
+    const structured = lines.some(l => /^#{1,6}\s+\S/.test(l));
     for (const l of lines) {
         const lm = l.match(/^LABELS\s*:\s*(.*)$/i);
         if (lm) { labels = parseLabelLine(lm[1], n); continue; }
@@ -255,10 +263,11 @@ export function parseRecap(text, n = 0) {
         if (m) {
             const v = m[1].toLowerCase();
             mood = v === 'positive' ? 'pos' : v === 'negative' ? 'neg' : 'neu';
-        } else if (/^[-•*]\s+/.test(l)) themes.push(l.replace(/^[-•*]\s+/, ''));
+        } else if (!structured && /^[-•*]\s+/.test(l)) themes.push(l.replace(/^[-•*]\s+/, ''));
         else overview.push(l);
     }
-    return { overview: overview.join(' '), themes: themes.slice(0, 5), mood, labels, scores };
+    // Lines stay separate (the view renders markdown); the old single-line form is what a plain-text model gave anyway.
+    return { overview: overview.join(structured ? '\n' : ' '), themes: themes.slice(0, 5), mood, labels, scores };
 }
 
 /**
