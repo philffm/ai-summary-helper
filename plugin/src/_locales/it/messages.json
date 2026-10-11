@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "Ambito del briefing"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Esporta questi articoli (e il briefing, se generato) come .zip di file Markdown"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Mostra solo articoli scientifici"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Ricerca"
   }
 }

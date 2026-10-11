@@ -40,6 +40,7 @@ import { T, TN, uiLocale } from './feedI18n.js';
 import { conceptKey, isKnownTopic, topicLabel } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel } from './icons.js';
+import { paperState } from './paperInfo.js';
 
 let d3LoadPromise = null;
 
@@ -542,7 +543,12 @@ export function destroyArchiveGraph(container) {
     }
 }
 
-function renderGraph(container, articles, highlightTimestamp, minTagDegree, similarityIndex) {
+function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex) {
+    // "🎓 Research" filter: only papers (detected or marked by the user). Offered only when the archive has any.
+    const paperCount = allArticles.reduce((n, a) => n + (paperState(a) ? 1 : 0), 0);
+    if (!paperCount) container.__graphResearchOnly = false;
+    const researchOnly = !!container.__graphResearchOnly;
+    const articles = researchOnly ? allArticles.filter(a => paperState(a)) : allArticles;
     const raw = buildGraphData(articles, minTagDegree, similarityIndex);
     const { nodes, links, nodeById, capped } = capGraphData(raw);
     const { hiddenTagCount, stillOrphanCount } = raw;
@@ -849,6 +855,12 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     // status text. (The filtered/highlight scope switch lives in the
     // archive search box itself now, not here — see articleManager.js.)
     renderGraphList(container, nodes, links, findGaps(articles));
+    if (paperCount) renderResearchChip(container, paperCount, researchOnly, () => {
+        container.__graphResearchOnly = !researchOnly;
+        simulation.stop();
+        renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex);
+        const again = container.querySelector('.graph-research-chip'); if (again) again.focus();
+    });
     renderTimeRange(container, nodes, links, articles);
     import('./graphBrief.js').then((m) => {
         if (container.__archiveGraphSelections?.node !== node) return;   // re-rendered meanwhile
@@ -872,11 +884,29 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
         onToggleDegree: () => {
             const nextMinDegree = minTagDegree > 1 ? 1 : MIN_TAG_DEGREE_DEFAULT;
             simulation.stop();
-            renderGraph(container, articles, highlightTimestamp, nextMinDegree, similarityIndex);
+            renderGraph(container, allArticles, highlightTimestamp, nextMinDegree, similarityIndex);
         },
     });
 }
 
+
+/** Row (top-left, under the Graph|List switch) that holds the filter chips side by side. */
+function filterBar(container) {
+    let bar = container.querySelector(':scope > .graph-filterbar');
+    if (!bar) { bar = document.createElement('div'); bar.className = 'graph-filterbar'; container.append(bar); }
+    return bar;
+}
+
+/** "🎓 Research" toggle chip: show only papers in the graph. */
+function renderResearchChip(container, count, on, onToggle) {
+    const chip = document.createElement('button');
+    chip.type = 'button'; chip.className = 'graph-research-chip' + (on ? ' on' : '');
+    chip.setAttribute('aria-pressed', String(on));
+    chip.textContent = T('🎓 Research') + ' · ' + count;
+    chip.title = T('Show only research papers');
+    chip.addEventListener('click', onToggle);
+    filterBar(container).append(chip);
+}
 
 /** "🕐 Time" chip (top-left, under the Graph|List switch) that opens a from/to month window over the graph. */
 function renderTimeRange(container, nodes, links, articles) {
@@ -938,7 +968,7 @@ function renderTimeRange(container, nodes, links, articles) {
     chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); });
     panel.append(text, track, ends, reset);
     wrap.append(chip, panel);
-    container.append(wrap);
+    filterBar(container).append(wrap);
     paint();
 }
 

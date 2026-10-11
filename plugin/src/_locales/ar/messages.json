@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "نطاق الملخص"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "تصدير هذه المقالات (والملخص الموجز إن أنشأته) كملف .zip من ملفات Markdown"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "عرض الأوراق البحثية فقط"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 أبحاث"
   }
 }

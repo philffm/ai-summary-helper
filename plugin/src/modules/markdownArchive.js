@@ -95,7 +95,28 @@ export async function buildZip(files, { onProgress } = {}) {
 }
 
 /** Reads the whole history and returns the [{name,text}] list (files placed under `ai-summary-helper/`). */
-export async function buildArchiveFiles({ onProgress, ids = null } = {}) {
+/**
+ * The generated briefing(s) as one note: [n] citations become [[wikilinks]] to the exported article notes.
+ * `results` = [{ text, articles, question? }, …] as returned by askCluster.
+ */
+export function briefingToMarkdown({ title, results, nameOf }) {
+    const link = (a) => (a && nameOf(a)) ? `[[${nameOf(a)}]]` : (a && a.title) || '';
+    const lines = [`# ${title}`, '', `*${new Date().toISOString().split('T')[0]} · AI Summary Helper*`, ''];
+    results.forEach((r, k) => {
+        const arts = r.articles || [];
+        if (r.question) lines.push(`## ${r.question}`, '');
+        else if (results.length > 1) lines.push(`## Briefing ${k + 1}`, '');
+        lines.push(String(r.text || '').replace(/\[(\d+)\]/g, (m, n) => arts[n - 1] ? link(arts[n - 1]) : m).trim(), '');
+        if (arts.length) {
+            lines.push('### Sources', '');
+            arts.forEach((a, i) => lines.push(`${i + 1}. ${link(a)}${a.url ? ' — ' + a.url : ''}`));
+            lines.push('');
+        }
+    });
+    return lines.join('\n');
+}
+
+export async function buildArchiveFiles({ onProgress, ids = null, briefing = null } = {}) {
     const get = (k) => new Promise(resolve => chrome.storage.local.get(k, resolve));
     const { [SK.articlesIndex]: index = [], [SK.annotations]: annotations = [] } = await get({ [SK.articlesIndex]: [], [SK.annotations]: [] });
     const everything = index.filter(a => a && a.id && !a.feedStub && !a.savedOnly);
@@ -134,18 +155,24 @@ export async function buildArchiveFiles({ onProgress, ids = null } = {}) {
         if (onProgress) onProgress(Math.min(i + BATCH, list.length), list.length);
         await yieldUi();
     }
+    const res = briefing && Array.isArray(briefing.results) ? briefing.results.filter(r => r && r.text) : [];
+    if (res.length) {
+        const title = briefing.title || 'Briefing';
+        files.unshift({ name: `ai-summary-helper/Briefing – ${safeFileName(title)}.md`, text: briefingToMarkdown({ title, results: res, nameOf: (a) => names.get(a.id) }), briefing: true });
+    }
     return files;
 }
 
 /** Builds the zip and triggers the download. Resolves with the number of exported articles. */
-export async function exportHistoryMarkdown({ onProgress, ids = null, name = 'history' } = {}) {
-    const files = await buildArchiveFiles({ onProgress, ids });
+export async function exportHistoryMarkdown({ onProgress, ids = null, name = 'history', briefing = null } = {}) {
+    const files = await buildArchiveFiles({ onProgress, ids, briefing });
+    const count = files.filter(f => !f.briefing).length;
     const blob = await buildZip(files);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `aish_${safeFileName(name).replace(/\s+/g, '_').toLowerCase()}_${new Date().toISOString().split('T')[0].replace(/-/g, '')}_${files.length}articles.zip`;
+    a.download = `aish_${safeFileName(name).replace(/\s+/g, '_').toLowerCase()}_${new Date().toISOString().split('T')[0].replace(/-/g, '')}_${count}articles.zip`;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    return files.length;
+    return count;
 }

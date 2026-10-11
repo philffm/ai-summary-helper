@@ -125,6 +125,9 @@ export async function fillAnswer(out, r, openArticle) {
     const { renderAnswer } = await import('./qaView.js');
     out.className = 'graph-cluster-answer md-body';
     out.textContent = '';
+    // Everything generated on this page, so the Markdown export can carry the briefing itself.
+    out.__results = out.__results || [];
+    if (!out.__results.includes(r)) out.__results.push(r);
     const body = el('div', 'graph-cluster-answer-body'); out.append(body);
     renderAnswer(body, r.text);
     linkCitations(body, r.articles, openArticle);
@@ -185,6 +188,7 @@ export function openClusterPage(container, { label, articles }) {
             const { askCluster } = await import('./feedAi.js');
             const r = await askCluster(question ? list : focusNow(), { topic: label, question }, { signal: mine.signal, onPart: ({ done, total }) => { if (mine === ctl && out.classList.contains('is-busy')) out.textContent = T('Reading {n} summaries · step {a} of {b}…', { n: readN, a: Math.min(done + 1, total), b: total }); } });
             if (!page.isConnected || mine !== ctl) return;
+            r.question = question || '';
             await fillAnswer(out, r, openArticle);
         } catch (e) {
             if (!page.isConnected || mine !== ctl || (e && e.cancelled)) return;
@@ -214,12 +218,12 @@ export function openClusterPage(container, { label, articles }) {
     actions.append(show);
     if (st.exportable) {
         const exp = el('button', 'button-secondary graph-cluster-md'); setIconLabel(exp, 'download', T('⬇ Markdown'));
-        exp.type = 'button'; exp.title = T('Export these articles as a .zip of Markdown files');
+        exp.type = 'button'; exp.title = T('Export these articles (and the briefing, if you made one) as a .zip of Markdown files');
         exp.addEventListener('click', async (e) => {
             e.stopPropagation(); exp.disabled = true;
             try {
                 const m = await import('./markdownArchive.js');
-                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label });
+                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] } });
             } finally { exp.disabled = false; }
         });
         actions.append(exp);

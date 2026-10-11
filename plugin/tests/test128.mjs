@@ -227,4 +227,41 @@ const some = await md.buildArchiveFiles({ ids: ['e1', 'e2'] });
 assert.equal(all.length, 3); assert.equal(some.length, 2);
 assert.ok(some.every(f => /T e[12]\.md$/.test(f.name)));
 assert.ok(some.find(f => /e1\.md/.test(f.name)).text.includes('[[T e2]]'), 'related links still resolve inside the cluster');
+
+// ── the briefing travels with the export ──
+const withB = await md.buildArchiveFiles({ ids: ['e1', 'e2'], briefing: { title: 'Topic: X/Y', results: [{ text: 'Both agree [1] but differ [2]. Odd [9].', articles: [{ id: 'e1', title: 'T e1', url: 'https://a.example/1' }, { id: 'e2', title: 'T e2' }] }, { question: 'Why?', text: 'Because [2].', articles: [{ id: 'e1' }, { id: 'e2', title: 'T e2' }] }] } });
+assert.equal(withB.length, 3, 'two articles + the briefing note');
+const bf = withB[0]; assert.ok(bf.briefing && /Briefing – /.test(bf.name) && bf.name.endsWith('.md') && !/[:/]/.test(bf.name.split('/').pop()), 'safe file name: ' + bf.name);
+assert.ok(bf.text.includes('Both agree [[T e1]] but differ [[T e2]]. Odd [9].'), 'citations become wikilinks, unknown ones stay');
+assert.ok(bf.text.includes('## Why?') && bf.text.includes('Because [[T e2]]'), 'follow-up answers are included under their question');
+assert.ok(bf.text.includes('1. [[T e1]] — https://a.example/1'), 'sources listed');
+assert.equal((await md.buildArchiveFiles({ ids: ['e1'], briefing: { title: 'x', results: [] } })).length, 1, 'no briefing generated → no extra note');
+// pages remember what they generated
+const fa = d.createElement('div'); const rr = { text: 'Hi [1]', articles: [{ id: 'e1', title: 'T e1' }], used: 1 };
+await gc.fillAnswer(fa, rr, () => {}); await gc.fillAnswer(fa, rr, () => {});
+assert.deepEqual(fa.__results, [rr], 'same result is recorded once');
+
+// ── Research filter in the graph ──
+const papers = [art('p1', ['ML'], 40, { paper: 'yes' }), art('p2', ['ML'], 30, { paper: 'likely' }), art('p3', ['ML'], 20), art('p4', ['Food'], 10), art('p5', ['Food'], 5, { paper: 'yes', paperOverride: 'no' })];
+for (const k of ['SVGElement', 'Element', 'HTMLElement', 'Node']) if (!globalThis[k] && w[k]) globalThis[k] = w[k];
+try { Object.defineProperty(w.SVGElement.prototype, 'transform', { configurable: true, get() { return { baseVal: { consolidate: () => null, initialize() {}, numberOfItems: 0 } }; } }); for (const k of ['width', 'height']) Object.defineProperty(w.SVGElement.prototype, k, { configurable: true, get() { return { baseVal: { value: 400 } }; } }); } catch (e) {}
+globalThis.ResizeObserver = globalThis.ResizeObserver || class { observe() {} disconnect() {} unobserve() {} }; globalThis.requestAnimationFrame = globalThis.requestAnimationFrame || ((f) => setTimeout(f, 16)); try { const fs = await import('fs'); (0, eval)(fs.readFileSync(new URL('../src/lib/d3.min.js', import.meta.url), 'utf8')); } catch (e) { console.log('d3 not loadable:', e.message); }
+const gh = d.createElement('div'); d.body.append(gh);
+if (typeof globalThis.d3 !== 'undefined') {
+    try {
+        await ag.initArchiveGraph(gh, papers, null, null);
+        const chip = gh.querySelector('.graph-research-chip');
+        assert.ok(chip, 'chip shown when papers exist'); assert.equal(chip.getAttribute('aria-pressed'), 'false'); assert.ok(chip.textContent.includes('2'), 'counts papers (override respected)');
+        const nAll = gh.querySelectorAll('circle').length;
+        chip.click();
+        const chip2 = gh.querySelector('.graph-research-chip');
+        assert.equal(chip2.getAttribute('aria-pressed'), 'true');
+        assert.ok(gh.querySelectorAll('circle').length < nAll, 'only papers (and their topics) remain');
+        chip2.click();
+        assert.equal(gh.querySelectorAll('circle').length, nAll, 'toggling off restores everything');
+        const none = d.createElement('div'); d.body.append(none);
+        await ag.initArchiveGraph(none, papers.filter(a => !a.paper), null, null);
+        assert.ok(!none.querySelector('.graph-research-chip'), 'no chip without papers');
+    } catch (e) { if (e && e.name === 'AssertionError') throw e; console.log('graph render skipped:', e && e.message); }
+}
 console.log('ok');

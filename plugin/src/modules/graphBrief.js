@@ -74,6 +74,7 @@ export function openBriefPage(container, { heading, subtitle, articles, layout =
             const { askCluster } = await import('./feedAi.js');
             const r = await askCluster(articles, { topic: heading, question, layout: question ? '' : lay }, { signal: mine.signal, onPart: ({ done, total }) => { if (mine === ctl && out.classList.contains('is-busy')) out.textContent = T('Reading {n} summaries · step {a} of {b}…', { n: readN, a: Math.min(done + 1, total), b: total }); } });
             if (!page.isConnected || mine !== ctl) return;
+            r.question = question || '';
             if (!question) cache[lay] = r;
             await fillAnswer(out, r, openArticle);
         } catch (e) {
@@ -90,7 +91,17 @@ export function openBriefPage(container, { heading, subtitle, articles, layout =
     });
     const paint = () => Object.entries(btns).forEach(([id, b]) => { b.setAttribute('aria-pressed', String(id === current)); b.classList.toggle('on', id === current); });
     paint();
-    scroll.append(seg, out);
+    const exp = el('button', 'button-secondary graph-cluster-md'); setIconLabel(exp, 'download', T('⬇ Markdown'));
+    exp.type = 'button'; exp.title = T('Export these articles (and the briefing, if you made one) as a .zip of Markdown files');
+    exp.addEventListener('click', async () => {
+        exp.disabled = true;
+        try {
+            const m = await import('./markdownArchive.js');
+            await m.exportHistoryMarkdown({ ids: articles.filter(a => a.id && !a.feedStub).map(a => a.id), name: heading, briefing: { title: heading, results: out.__results || [] } });
+        } finally { exp.disabled = false; }
+    });
+    const actions = el('div', 'graph-cluster-actions'); actions.append(exp);
+    scroll.append(seg, actions, out);
     const ask = el('form', 'graph-cluster-ask');
     const input = el('input'); input.type = 'text'; input.maxLength = 300;
     input.placeholder = T('Ask about this briefing…'); input.setAttribute('aria-label', input.placeholder);

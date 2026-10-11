@@ -4710,5 +4710,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "Briefing scope"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Export these articles (and the briefing, if you made one) as a .zip of Markdown files"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Show only research papers"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Research"
   }
 }

@@ -4468,5 +4468,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "브리핑 범위"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "이 글들(브리핑을 만들었다면 포함)을 Markdown 파일 .zip으로 내보내기"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "연구 논문만 표시"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 연구"
   }
 }

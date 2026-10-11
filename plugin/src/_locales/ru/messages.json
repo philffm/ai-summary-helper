@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "Охват сводки"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Экспортировать эти статьи (и сводку, если она создана) в .zip из Markdown-файлов"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Показывать только научные работы"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Исследования"
   }
 }

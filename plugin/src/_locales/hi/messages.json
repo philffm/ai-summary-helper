@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "ब्रीफिंग का दायरा"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "इन लेखों (और बनाया गया ब्रीफ़िंग, यदि हो) को Markdown फ़ाइलों की .zip के रूप में निर्यात करें"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "केवल शोध पत्र दिखाएँ"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 शोध"
   }
 }

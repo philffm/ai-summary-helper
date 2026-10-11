@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "Âmbito do resumo"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Exportar estes artigos (e o resumo, se o gerou) como um .zip de ficheiros Markdown"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Mostrar apenas artigos científicos"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Investigação"
   }
 }

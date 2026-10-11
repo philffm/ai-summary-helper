@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "Briefing-Umfang"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Diese Artikel (und das Briefing, falls erstellt) als .zip aus Markdown-Dateien exportieren"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Nur Forschungsarbeiten anzeigen"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Forschung"
   }
 }

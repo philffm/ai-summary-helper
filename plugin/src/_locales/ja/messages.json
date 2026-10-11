@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "ブリーフィングの範囲"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "これらの記事(作成済みならブリーフィングも)をMarkdownファイルの.zipとして書き出す"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "研究論文のみ表示"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 研究"
   }
 }

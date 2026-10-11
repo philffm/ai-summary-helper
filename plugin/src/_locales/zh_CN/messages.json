@@ -4486,5 +4486,14 @@
   },
   "f_briefing_scope_9991": {
     "message": "简报范围"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "将这些文章(以及已生成的简报)导出为 Markdown 文件的 .zip"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "仅显示研究论文"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 研究"
   }
 }
