@@ -64,8 +64,6 @@ function setActive(on) {
     active = on;
     const s = screenEl();
     if (s) s.classList.toggle('selecting', on);
-    const b = document.getElementById('selectModeBtn');
-    if (b) b.setAttribute('aria-pressed', String(on));
     if (!on) { sel.clear(); reg.forEach(r => r.li.classList.remove('sel-on')); }
     if (on) buildBar(); else if (bar) { bar.remove(); bar = null; }
     paintBar();
@@ -491,15 +489,11 @@ function finish(ok, r) {
  */
 export function initSelection(d) {
     deps = d;
-    const b = document.getElementById('selectModeBtn');
-    const label = () => { const lab = b && b.querySelector('.btn-label'); if (lab) lab.textContent = T('Select'); if (b) { b.title = T('Select summaries to send'); b.setAttribute('aria-label', T('Select summaries to send')); } };
-    if (b) { label(); b.addEventListener('click', () => setActive(!active)); }
     document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
         if (sheet && !sheet.dataset.busy) closeSheet(); else if (active && !sheet) setActive(false);
     });
     document.addEventListener('aish:translationsApplied', () => {
-        label();
         if (bar) { bar.remove(); bar = null; buildBar(); paintBar(); }
     });
 }

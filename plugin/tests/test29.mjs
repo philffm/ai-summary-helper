@@ -1,5 +1,5 @@
 // History selection and send: separate files via LocalSend, a digest is one send.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import { setup, imp, tick, enterSelection } from './harness.mjs'; import assert from 'assert';
 const { store, w, sent } = setup({});
 const now = new Date().toISOString();
 store['articles:index'] = [
@@ -16,11 +16,11 @@ const am = await imp('modules/articleManager.js'); const ui = { showToast() {}, 
 am.initArticleManager(ui);
 am.renderArticles(store['articles:index']); await tick(80);
 const d = w.document; const hs = d.getElementById('historyScreen');
-assert(d.getElementById('selectModeBtn'), 'select btn');
-d.getElementById('selectModeBtn').click(); assert(hs.classList.contains('selecting'));
-const cards = [...d.querySelectorAll('#articleList .article-card')]; assert.equal(cards.length, 3);
+assert(!d.getElementById('selectModeBtn'), 'no separate Select button: the ⋯ menu and a long-press start selecting');
+const first = await enterSelection(d); assert(hs.classList.contains('selecting'));
+const cards = [...d.querySelectorAll('#articleList .article-card')]; assert.equal(cards.length, 3); assert.equal(first, cards[0]);
 assert(cards[2].classList.contains('not-selectable'));
-cards[0].click(); cards[2].click(); cards[1].click();
+cards[2].click(); cards[1].click();   // cards[0] is ticked already
 assert(cards[0].classList.contains('sel-on') && cards[1].classList.contains('sel-on') && !cards[2].classList.contains('sel-on'));
 assert.equal(d.querySelector('.sel-send').textContent.includes('2'), true);
 d.querySelector('.sel-send').click(); await tick(50);
@@ -36,8 +36,8 @@ assert(d.querySelector('.sendsheet-done'), 'done view');
 [...d.querySelectorAll('.sendsheet button')].find(b => b.className.includes('primary')).click();
 assert(!d.querySelector('.sendsheet') && !hs.classList.contains('selecting') && !d.querySelector('.sel-bar'), 'closed');
 // separate files via localsend path (deliver stub through sendToLocalSend → runtime message)
-d.getElementById('selectModeBtn').click();
-const c2 = [...d.querySelectorAll('#articleList .article-card')]; c2[0].click(); c2[1].click();
+await enterSelection(d);
+const c2 = [...d.querySelectorAll('#articleList .article-card')]; c2[1].click();
 d.querySelector('.sel-send').click(); await tick(50);
 [...d.querySelectorAll('.sendsheet-seg-btn')][1].click();
 [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')][1].click(); await tick(50);

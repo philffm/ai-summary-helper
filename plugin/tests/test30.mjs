@@ -1,5 +1,5 @@
 // History: open detail, archive tab, bulk send to Kindle marks sent.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import { setup, imp, tick, enterSelection } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const iso = (d) => new Date(Date.now() - d).toISOString();
 store['articles:index'] = [
@@ -31,8 +31,8 @@ assert(!store['articles:index'][2].archived, 'restored');
 d.querySelector('[data-tab=inbox]').click(); await tick(30);
 assert.equal(d.querySelectorAll('#articleList .article-card').length, 3);
 // bulk send kindle -> sent + archive toggle
-d.getElementById('selectModeBtn').click();
-[...d.querySelectorAll('#articleList .article-card')].slice(0, 2).forEach(c => c.click());
+{ const first = await enterSelection(d);
+[...d.querySelectorAll('#articleList .article-card')].slice(0, 2).filter(c => c !== first).forEach(c => c.click()); }
 d.querySelector('.sel-send').click(); await tick(50);
 [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')][0].click(); await tick(60);
 [...d.querySelectorAll('.sendsheet button')].find(b => b.className.includes('primary') && b.textContent.includes('Kindle')).click(); await tick(300);
@@ -45,8 +45,7 @@ assert(d.querySelector('.undo-toast'), 'undo toast');
 d.querySelector('.undo-toast-btn').click(); await tick(100);
 assert.equal(store['articles:index'].filter(a => a.archived).length, 0, 'undo');
 // mark as… sheet
-d.getElementById('selectModeBtn').click();
-[...d.querySelectorAll('#articleList .article-card')].slice(0, 1).forEach(c => c.click());
+await enterSelection(d);
 d.querySelector('.sel-more').click(); await tick(30);
 const opts = [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')]; assert.equal(opts.length, 4);
 opts[1].click(); await tick(100);   // Unread

@@ -1,5 +1,5 @@
 // Annotation export: highlights are marked inline across tags, also in the full digest.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import { setup, imp, tick, enterSelection } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const ex = await imp('modules/annotationExporter.js');
 const ann = [{ text: 'agents lose context between sessions', type: 'ghost', url: 'https://x.com/1' }, { text: 'queryable memory', type: 'user', url: 'https://x.com/1' }];
@@ -22,8 +22,8 @@ const am = await imp('modules/articleManager.js'); am.initArticleManager({ showT
 am.loadHistory(); await tick(150);
 const d = w.document;
 const run = async (full) => {
-  d.getElementById('selectModeBtn').click();
-  [...d.querySelectorAll('#articleList .article-card')].forEach(c => c.click());
+  const first = await enterSelection(d);
+  [...d.querySelectorAll('#articleList .article-card')].filter(c => c !== first).forEach(c => c.click());
   d.querySelector('.sel-send').click(); await tick(60);
   if (full) [...d.querySelectorAll('.sendsheet-seg-btn')].find(b => b.textContent.includes('full')).click();
   [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')][0].click(); await tick(60);

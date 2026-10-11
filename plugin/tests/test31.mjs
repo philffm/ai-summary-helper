@@ -1,5 +1,5 @@
 // Send sheet: AI intro failure still sends, intro toggle keeps its state, quotes are stripped.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import { setup, imp, tick, enterSelection } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const now = new Date().toISOString();
 store['articles:index'] = [
@@ -14,8 +14,8 @@ globalThis.MutationObserver = w.MutationObserver;
 const am = await imp('modules/articleManager.js'); am.initArticleManager({ showToast() {}, showScreen() {} });
 am.loadHistory(); await tick(150);
 const d = w.document;
-d.getElementById('selectModeBtn').click();
-[...d.querySelectorAll('#articleList .article-card')].forEach(c => c.click());
+{ const first = await enterSelection(d);
+[...d.querySelectorAll('#articleList .article-card')].filter(c => c !== first).forEach(c => c.click()); }
 d.querySelector('.sel-send').click(); await tick(60);
 const tg = d.querySelector('.sendsheet-intro .sendsheet-toggle'); assert(tg, 'toggle visible for digest');
 assert(!d.querySelector('.sendsheet-intro .sendsheet-seg'), 'chips hidden while off');
@@ -34,8 +34,8 @@ assert(!calls[0].content.includes('"Two'), 'quotes stripped');
 // AI failure -> sent without intro
 globalThis.__ai = () => ({ ok: false, error: 'no ai' });
 [...d.querySelectorAll('.sendsheet button')].find(b => b.textContent === 'Done').click(); await tick(50);
-d.getElementById('selectModeBtn').click();
-[...d.querySelectorAll('#articleList .article-card')].forEach(c => c.click());
+{ const first = await enterSelection(d);
+[...d.querySelectorAll('#articleList .article-card')].filter(c => c !== first).forEach(c => c.click()); }
 d.querySelector('.sel-send').click(); await tick(60);
 d.querySelector('.sendsheet-intro .sendsheet-toggle') && 0;
 [...d.querySelectorAll('.sendsheet-row')].find(r => r.textContent.includes('Kindle')).click(); await tick(60);

@@ -43,3 +43,18 @@ export function setup(fixtures) {
 }
 export const imp = (rel) => import(pathToFileURL(path.join(SRC, rel)).href + '?t=' + Math.random());
 export const tick = (ms = 20) => new Promise(r => setTimeout(r, ms));
+
+/**
+ * Enters History's selection mode the way users do: the ⋯ menu of the first card that offers "Select" (the card ends up
+ * ticked, like after a long-press). Returns that card.
+ */
+export async function enterSelection(d) {
+  for (const card of d.querySelectorAll('#articleList .article-card')) {
+    const btn = card.querySelector('.card-menu-btn'); if (!btn) continue;
+    btn.click(); await tick(15);
+    const item = [...d.querySelectorAll('.card-menu-item')].find(b => !b.hidden && /Select\s*$/.test(b.textContent));
+    if (item) { item.click(); await tick(15); return card; }
+    btn.click(); await tick(10);   // this card has no Select entry (not sendable): close its menu, try the next
+  }
+  throw new Error('no card offers Select');
+}

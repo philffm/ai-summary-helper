@@ -1,5 +1,5 @@
 // Research phase 3 UI: Cite block in the detail view, reference list in the send sheet.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import { setup, imp, tick, enterSelection } from './harness.mjs'; import assert from 'assert';
 const { store, w } = setup({});
 const iso = (d) => new Date(Date.now() - d).toISOString();
 const wire = { type: 'article-journal', title: 'Sleep and memory', author: [{ family: 'Smith', given: 'Jane' }], container: 'Nature', volume: '1', issue: '2', page: '3-4', DOI: '10.1038/s41562-026-0000-0', year: '2026' };
@@ -70,8 +70,8 @@ await am.showArticleDetail({ ...store['articles:index'][2] }); await tick(100);
 assert(/no DOI found/.test(d.querySelector('.cite-block').textContent) && !d.querySelector('.cite-text'));
 // send sheet: reference list for the selected papers (a1 cached; a3 has no DOI → skipped)
 am.loadHistory(); await tick(150);
-d.getElementById('selectModeBtn').click(); await tick(20);
-const cards = [...d.querySelectorAll('#articleList .article-card')]; cards[0].click(); cards[2].click(); await tick(20);
+const first = await enterSelection(d);
+const cards = [...d.querySelectorAll('#articleList .article-card')]; [cards[0], cards[2]].filter(c => c !== first).forEach(c => c.click()); await tick(20);
 const bar = d.querySelector('.sel-bar');
 assert(bar, 'selection bar');
 bar.querySelector('.sel-send').click(); await tick(150);
