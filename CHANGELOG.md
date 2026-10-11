@@ -5,6 +5,72 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.5 (2026-10-11)
+
+### Commit log
+
+#### Added
+
+- Add connection map to exported digests (Kindle, LocalSend)
+
+#### Changed
+
+- i18n: translate the 5 new strings in all locales; missing translations only warn (UI falls back to English), broken placeholders still fail
+- i18n: update translations for changed content
+- chore(android): Gradle wrapper pinned to 9.6.0
+- site: phone companion section with APK download
+- ci(android): build and test the companion on changes; attach aish-companion.apk to every release
+- feat(android): companion screen redesign (edge-to-edge, setup steps, paste on demand); version and release signing from the workflow
+- feat(inbox): Save only for phone links (keep the page in History without the AI)
+- feat(inbox): links stay on the server until summarized or dismissed (per-item delete with retry queue)
+  - Polling no longer acknowledges (and so deletes) items; the server keeps them until the user summarizes or dismisses the link, so a lost profile or a second device can collect them again. New DELETE .../items/{itemId}; /ack is deprecated.
+  - A failed delete stays queued in the state (toDelete) and is retried on every poll.
+  - Unreadable and duplicate items are deleted right away; items summarized while the popup was closed are reconciled against History when the list renders.
+  - Reference server and contract: per-item delete, 30-day item TTL.
+- feat(inbox): clients call the renamed collection aish_inboxes (items: aish_inbox_items); restore the reader-page test as test136
+- chore(android): keep the Studio-generated launcher icon, drop my duplicate adaptive-icon resources
+- feat(android): companion follows the AISH look (design-token theme, light/dark) and gets the AISH launcher icon
+- feat(inbox): phone links summarize like a feed card (progress ring, queue, leaves the list on completion, error shown)
+- feat(ui): one clear (✕) button for every search box
+- feat(inbox): phone inbox, collect links shared from a phone and summarize them with one tap
+  - inboxCrypto / inboxManager / inboxView, inbox-worker.js bundle for the classic background script (built like feed-worker.js, listed in Firefox/iOS manifests)
+  - qrcode-generator 1.4.4 (MIT) in src/lib
+  - plugin/inbox-api: OpenAPI contract and a zero-dependency reference server
+  - mobile/android: Kotlin/Compose share-target app (not yet built in Android Studio)
+  - tests 129-131, shared wire-format vector (plugin/tests/fixtures/inbox-vector.json)
+- feat(read): Read button opens a reader page (typography, themes, highlights, contents); stored HTML is sanitized
+- Graph: Research-only filter chip; Markdown export includes the generated briefing
+  - 🎓 Research chip (aria-pressed) next to Time in a shared filter bar; filters the graph to papers
+  - Cluster/briefing pages remember generated answers; the .zip gets a Briefing note with [n] -> [[wikilinks]] and sources
+  - Markdown button on the multi-topic/time briefing page
+- a11y(graph): cluster and briefing pages use the shared sheet behaviour (dialog, focus trap, Escape, inert background); bar gets Escape, region label, live announcement
+- feat(graph): brief several topics and/or a time window — selection on the graph, floating action bar, By topic / By time result
+- feat(graph): cluster briefing drops duplicate URLs and summarizes >15 articles in groups, then merges the parts
+- feat(graph): include opened articles in the cluster briefing via switch in the Opened group
+- feat(graph): tap on a topic opens the cluster page directly (no peek bar), smaller mini map
+- feat(graph): cluster peek bar → full cluster page (mini map, brief, never-opened list, docked ask, numbered sources)
+- feat(graph): time window as histogram range (articles per month, overlaid From/To inputs, live count and chip label)
+- Feeds: recap briefings render as markdown
+  - Recap text is shown as formatted markdown (headings, bold, lists) in the day card, the recap sheet and the week/month roll-ups instead of raw ### and **
+  - parseRecap keeps the line structure when a model answers with headings, so bullets stay under their heading
+  - Headings glued into one line, "---" rules and a surrounding ```markdown fence are cleaned up
+  - Single theme bullets support bold, italic and code through the shared inline renderer
+
+#### Fixed
+
+- fix(inbox): pairing QR no longer shows twice (settings panel renders off-screen, latest render wins)
+- fix(summary): local models never need an API key (Ollama by any spelling, or a loopback / LAN endpoint); the error names the service and mode
+- fix(ui): icons lead the label everywhere (Save button, trailing-emoji translations, flash/restore keep the icon)
+  - labelNodes(): a mapped emoji at the end of a label (older translations: "Copy 📋", "Save 💾") now renders as a leading icon too; unmapped arrows such as ↗ stay trailing text.
+  - Settings Save button: icon first in popup.html; the "Saved! ✓" flash and the Export "Exported! ✓" confirmation restore the button's nodes instead of its text, which used to drop the icon after the first flash.
+- fix(feeds): graph topic page keeps its Brief button; graph stays put while a refresh runs
+  - The preview-button relabel ("Open ↗") matched the cluster page's "Brief me" button, which shares the .graph-preview-open class; scope it to the article preview card's footer.
+  - A refresh re-rendered the whole graph after every feed. Renders driven by the refresh are skipped while a graph is on screen (filters, search and view changes still go through); the final render updates it once.
+
+#### Developer experience
+
+- test: give cluster test more time for async briefing
+
 ## 2.2.4 (2026-10-10)
 
 ### Added
