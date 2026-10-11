@@ -1,5 +1,6 @@
 import { T } from './feedI18n.js';
 import { trapFocus } from './sheet.js';
+import { attachSearchClear } from './searchField.js';
 // Keyboard shortcuts (one place, cross-platform).
 //   ⌘F / Ctrl+F   focus the search box of the current screen (Feeds, History, Settings)
 //   /             same, when you are not typing somewhere
@@ -110,6 +111,7 @@ export function openHelp(doc = document) {
         empty.hidden = rows.some(r => !r.row.hidden);
     });
     panel.append(mk('div', 'sendsheet-grab'), title, filter, body, empty, mk('div', 'kbd-tip', T('Press ? anywhere outside a text field')));
+    attachSearchClear(filter);
     root.append(scrim, panel);
     root.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeHelp(); } });
     scrim.addEventListener('click', closeHelp);

@@ -15,6 +15,7 @@ import { languageMatches } from './modules/languages.js';
 // import { initPodcastManager } from './modules/podcastManager.js';
 // Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
+import { initSearchFields } from './modules/searchField.js';
 import { currentSurface, sidePanelAvailable, attachToSidePanel, detachToPopup } from './modules/panelDock.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.initPodcastManager(ui);
     }
     initShortcuts(ui);
+    initSearchFields();
     initMainScreen(ui);
     initReviewPrompt();
     initMoodSetting();
