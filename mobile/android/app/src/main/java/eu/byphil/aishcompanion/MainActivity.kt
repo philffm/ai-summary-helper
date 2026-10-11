@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val store = Store(this)
         setContent {
-            MaterialTheme {
+            AishTheme {
                 Surface(Modifier.fillMaxSize()) {
                     Screen(store, onScan = { onResult -> scan(onResult) })
                 }

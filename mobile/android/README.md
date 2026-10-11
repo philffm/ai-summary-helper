@@ -18,4 +18,4 @@ Extension → Settings → Phone inbox → **Pair a phone** shows a QR code; the
 * Wire format and API: `plugin/inbox-api/openapi.yaml`.
 * Only http(s) links are sent; the first one in the shared text.
 * Offline or server busy: WorkManager retries with backoff. A rejected pairing shows an error in the app.
-* Launcher icon is the platform default placeholder.
+* Launcher icons are rendered from `plugin/src/icons/icon.svg` (adaptive icon: gradient background + artwork in the safe zone, legacy PNGs for every density, and `ic_launcher-playstore.png` (512 px) for the Play listing).
