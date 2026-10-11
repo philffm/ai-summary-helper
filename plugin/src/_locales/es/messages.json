@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 Investigación"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "No se puede conectar con byPhil Cloud ahora mismo."
+  },
+  "f_check_now_0677": {
+    "message": "Comprobar ahora"
+  },
+  "f_checking_dad5": {
+    "message": "Comprobando…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Haz clic otra vez para desvincular"
+  },
+  "f_from_phone_850d": {
+    "message": "Desde el teléfono"
+  },
+  "f_hide_code_5876": {
+    "message": "Ocultar código"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Instala la app complementaria de AISH en tu teléfono, escanea el código una vez y comparte cualquier enlace con ella. Los enlaces llegan cifrados de extremo a extremo y esperan aquí tu toque."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Enlaces compartidos desde tu teléfono"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Los enlaces que esperan aquí se eliminan y el teléfono ya no puede enviar."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Vincular un teléfono"
+  },
+  "f_paired_b228": {
+    "message": "Vinculado"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Vinculado · última comprobación {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Vinculado · aún sin comprobar"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Vinculado · {n} en espera"
+  },
+  "f_pairing_code_057c": {
+    "message": "Código de vinculación"
+  },
+  "f_pairing_9d4b": {
+    "message": "Vinculando…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Bandeja del teléfono"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Escanea este código con la app complementaria de AISH. Quien lo escanee puede enviarte enlaces, así que mantenlo privado."
+  },
+  "f_show_code_0cc1": {
+    "message": "Mostrar código"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Algo salió mal."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Esta vinculación ya no es válida. Desvincula y vuelve a vincular."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Demasiadas solicitudes. Inténtalo más tarde."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Desvincular y eliminar la bandeja"
   }
 }

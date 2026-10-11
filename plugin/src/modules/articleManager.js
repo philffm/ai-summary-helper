@@ -828,24 +828,7 @@ export function initArticleManager(uiManager) {
     if (searchInput) {
         searchInput.addEventListener('input', filterArticles);
         searchInput.addEventListener('input', updateGraphScopeToggleVisibility);
-
-        // Show/hide clear button as user types
-        const clearBtn = document.getElementById('searchClearBtn');
-        if (clearBtn) {
-            searchInput.addEventListener('input', () => {
-                const hasText = searchInput.value.length > 0;
-                clearBtn.hidden = !hasText;
-                searchInput.classList.toggle('has-clear', hasText);
-            });
-            clearBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                clearBtn.hidden = true;
-                searchInput.classList.remove('has-clear');
-                filterArticles();
-                updateGraphScopeToggleVisibility();
-                searchInput.focus();
-            });
-        }
+        // The ✕ clear button is wired by searchField.js (initSearchFields).
     }
 
     // ⌘F / Ctrl+F and / are handled centrally in shortcuts.js

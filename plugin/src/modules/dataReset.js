@@ -9,7 +9,7 @@ export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'key
 
 export const SECRET_KEYS = [
     SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail,
-    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey
+    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig
 ];
 
 export const CATEGORIES = {
@@ -22,8 +22,8 @@ export const CATEGORIES = {
     podcasts: { keys: [SK.podcasts] },
     // API keys and endpoints, sign-in, license
     keys: { keys: SECRET_KEYS, extra: ['servicesConfig'] },
-    // Kindle addresses, LocalSend targets
-    send: { keys: [SK.devices, SK.activeDevices, SK.localSendIp, SK.devicesMigrated] },
+    // Kindle addresses, LocalSend targets, links waiting from the phone inbox
+    send: { keys: [SK.devices, SK.activeDevices, SK.localSendIp, SK.devicesMigrated, SK.inboxPending, SK.inboxState] },
     // preferences: everything in sync storage, plus the local UI state and the feed / podcast preferences
     prefs: {
         syncAll: true, localStorageToo: true,

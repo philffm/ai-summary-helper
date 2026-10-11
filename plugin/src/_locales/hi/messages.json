@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 शोध"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "अभी byPhil Cloud से संपर्क नहीं हो पा रहा है।"
+  },
+  "f_check_now_0677": {
+    "message": "अभी जाँचें"
+  },
+  "f_checking_dad5": {
+    "message": "जाँच हो रही है…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "अनपेयर करने के लिए फिर क्लिक करें"
+  },
+  "f_from_phone_850d": {
+    "message": "फ़ोन से"
+  },
+  "f_hide_code_5876": {
+    "message": "कोड छिपाएँ"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "अपने फ़ोन पर AISH कम्पैनियन ऐप इंस्टॉल करें, कोड को एक बार स्कैन करें, फिर कोई भी लिंक उसे शेयर करें। लिंक एंड-टू-एंड एन्क्रिप्टेड पहुँचते हैं और आपके टैप का यहाँ इंतज़ार करते हैं।"
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "आपके फ़ोन से साझा किए गए लिंक"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "यहाँ प्रतीक्षा कर रहे लिंक हटा दिए जाएँगे और फ़ोन अब कुछ नहीं भेज सकेगा।"
+  },
+  "f_pair_a_phone_2792": {
+    "message": "फ़ोन पेयर करें"
+  },
+  "f_paired_b228": {
+    "message": "पेयर किया गया"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "पेयर किया गया · आख़िरी जाँच {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "पेयर किया गया · अभी जाँच नहीं हुई"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "पेयर किया गया · {n} प्रतीक्षा में"
+  },
+  "f_pairing_code_057c": {
+    "message": "पेयरिंग कोड"
+  },
+  "f_pairing_9d4b": {
+    "message": "पेयर हो रहा है…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "फ़ोन इनबॉक्स"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "इस कोड को AISH कम्पैनियन ऐप से स्कैन करें। जो भी इसे स्कैन करेगा वह आपको लिंक भेज सकता है, इसलिए इसे निजी रखें।"
+  },
+  "f_show_code_0cc1": {
+    "message": "कोड दिखाएँ"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "कुछ गलत हो गया।"
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "यह पेयरिंग अब मान्य नहीं है। अनपेयर करके दोबारा पेयर करें।"
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "बहुत अधिक अनुरोध। बाद में पुनः प्रयास करें।"
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "अनपेयर करें और इनबॉक्स हटाएँ"
   }
 }

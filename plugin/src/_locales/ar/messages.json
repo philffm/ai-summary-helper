@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 أبحاث"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "يتعذّر الوصول إلى byPhil Cloud حاليًا."
+  },
+  "f_check_now_0677": {
+    "message": "افحص الآن"
+  },
+  "f_checking_dad5": {
+    "message": "جارٍ الفحص…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "انقر مرة أخرى لإلغاء الإقران"
+  },
+  "f_from_phone_850d": {
+    "message": "من الهاتف"
+  },
+  "f_hide_code_5876": {
+    "message": "إخفاء الرمز"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "ثبّت تطبيق AISH المرافق على هاتفك، وامسح الرمز مرة واحدة، ثم شارك أي رابط معه. تصل الروابط مشفّرة من طرف إلى طرف وتنتظر هنا نقرتك."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "روابط تمت مشاركتها من هاتفك"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "ستُحذف الروابط المنتظرة هنا ولن يتمكن الهاتف من الإرسال بعد الآن."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "إقران هاتف"
+  },
+  "f_paired_b228": {
+    "message": "تم الإقران"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "تم الإقران · آخر فحص {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "تم الإقران · لم يُفحص بعد"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "تم الإقران · {n} في الانتظار"
+  },
+  "f_pairing_code_057c": {
+    "message": "رمز الإقران"
+  },
+  "f_pairing_9d4b": {
+    "message": "جارٍ الإقران…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "صندوق وارد الهاتف"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "امسح هذا الرمز بتطبيق AISH المرافق. يمكن لأي شخص يمسحه أن يرسل إليك روابط، فاحتفظ به سريًا."
+  },
+  "f_show_code_0cc1": {
+    "message": "إظهار الرمز"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "حدث خطأ ما."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "لم يعد هذا الإقران صالحًا. ألغِ الإقران ثم أقرن من جديد."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "طلبات كثيرة جدًا. حاول مرة أخرى لاحقًا."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "إلغاء الإقران وحذف الصندوق"
   }
 }

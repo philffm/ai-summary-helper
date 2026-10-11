@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: AISH phone inbox
+  version: "1"
+  description: |
+    A tiny end-to-end encrypted inbox. A phone appends encrypted links; the AISH extension collects and acknowledges them.
+    The server stores only SHA-256 hex hashes of two bearer tokens and opaque envelopes. Messages are AES-256-GCM
+    (12-byte random nonce, additionalData = inbox id as UTF-8); envelope = { v: 1, data: base64url(nonce || ciphertext || tag) }.
+    Never log request bodies. Reference implementation: reference-server.mjs.
+servers:
+  - url: https://api.byphil.eu/v1/projects/ai_summary_helper
+paths:
+  /inboxes:
+    post:
+      summary: Create an inbox (extension)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id, writeHash, readHash]
+              properties:
+                id: { type: string, pattern: '^[A-Za-z0-9_-]{22}$', description: 16 random bytes, base64url }
+                writeHash: { type: string, pattern: '^[0-9a-f]{64}$', description: SHA-256 hex of the write token }
+                readHash: { type: string, pattern: '^[0-9a-f]{64}$', description: SHA-256 hex of the read token }
+      responses:
+        "201": { description: Created }
+        "400": { description: Malformed }
+        "409": { description: Id already exists }
+        "429": { description: Too many creations from this address (Retry-After) }
+  /inboxes/{id}:
+    delete:
+      summary: Delete the inbox and everything in it (read token)
+      security: [{ readToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      responses:
+        "204": { description: Deleted }
+        "401": { description: No token }
+        "403": { description: Wrong token }
+        "404": { description: Unknown inbox }
+  /inboxes/{id}/items:
+    post:
+      summary: Append an encrypted item (phone, write token)
+      security: [{ writeToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [v, data]
+              properties:
+                v: { type: integer, enum: [1] }
+                data: { type: string, description: base64url(nonce || ciphertext || tag) }
+      responses:
+        "202": { description: Accepted }
+        "400": { description: Malformed }
+        "401": { description: No token }
+        "403": { description: Wrong token }
+        "404": { description: Unknown inbox }
+        "413": { description: Body over 4 KB }
+        "429": { description: Inbox full (200 waiting) or over about 60 posts per hour (Retry-After) }
+    get:
+      summary: List items after a cursor (extension, read token)
+      security: [{ readToken: [] }]
+      parameters:
+        - { $ref: '#/components/parameters/id' }
+        - { name: after, in: query, schema: { type: string }, description: Opaque cursor of the last item already stored; omit for the beginning }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 50 } }
+      responses:
+        "200":
+          description: Items in order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasMore: { type: boolean }
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        cursor: { type: string, description: Opaque, strictly increasing }
+                        receivedAt: { type: integer, description: ms since epoch }
+                        v: { type: integer }
+                        data: { type: string }
+        "401": { description: No token }
+        "403": { description: Wrong token }
+        "404": { description: Unknown inbox }
+  /inboxes/{id}/ack:
+    post:
+      summary: Delete every item up to and including a cursor (extension, read token)
+      security: [{ readToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [upTo]
+              properties:
+                upTo: { type: string }
+      responses:
+        "200": { description: Acknowledged }
+        "400": { description: Malformed }
+        "403": { description: Wrong token }
+        "404": { description: Unknown inbox }
+components:
+  parameters:
+    id: { name: id, in: path, required: true, schema: { type: string } }
+  securitySchemes:
+    writeToken: { type: http, scheme: bearer }
+    readToken: { type: http, scheme: bearer }
+x-limits:
+  maxItemBytes: 4096
+  maxWaitingItems: 200
+  postsPerHourPerInbox: 60
+  unclaimedItemTtl: 7 days
+  idleInboxTtl: 30 days
+  inboxCreatesPerHourPerIp: 20

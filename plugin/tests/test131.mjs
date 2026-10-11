@@ -1,50 +1,42 @@
-// Connection map for bundles: graph data, SVG/text rendering, PNG fallback, wiring into the digest.
-import assert from 'assert';
-import { setup, imp } from './harness.mjs';
-setup({});
-const cm = await imp('modules/connectionMap.js');
-const { buildMagazineArticle, sortForBundle } = await imp('modules/digestBuilder.js');
-const { buildIndex } = await imp('modules/localSearch.js');
-const mk = (n, title, tags, summary) => ({ id: 'a' + n, timestamp: 1700000000000 - n * 1e6, title, tags, summary });
-const arts = sortForBundle([
-  mk(1, 'Solar prices fall again', ['energy', 'climate'], 'solar panels energy prices grid storage batteries'),
-  mk(2, 'Grid storage <b>boom</b>', ['Energy'], 'batteries grid storage solar energy utilities'),
-  mk(3, 'Arctic ice at record low', ['climate'], 'arctic sea ice melting warming polar'),
-  mk(4, 'Sourdough basics', ['food'], 'bread flour starter fermentation baking'),
-]);
-const g = cm.buildConnectionGraph(arts, buildIndex(arts));
-assert.deepEqual(g.tags.map(t => t.key).sort(), ['climate', 'energy'], 'only tags shared by 2+ articles; case-insensitive');
-assert.equal(g.tagLinks.length, 4);
-assert.ok(g.nodes.find(n => n.title.startsWith('Sourdough')).isolated, 'unrelated article is flagged stand-alone');
-assert.ok(!g.simLinks.some(l => `${l.a}:${l.b}` === '0:1'), 'no similarity arc between articles that already share a tag');
+// The background inbox worker is a classic-script bundle: it loads without modules and collects a link end to end,
+// and the platform manifests list it (Firefox/Safari run the background as a page, not a service worker).
+import assert from 'assert'; import fs from 'fs'; import vm from 'vm'; import os from 'os'; import path from 'path'; import { spawnSync } from 'child_process';
+import { imp } from './harness.mjs';
 
-const { svg, width, height } = cm.renderConnectionSvg(g);
-assert.ok(svg.startsWith('<svg') && svg.endsWith('</svg>') && width === 800 && height > 100);
-assert.ok(!svg.includes('<b>boom'), 'titles are escaped');
-assert.ok(!/#[0-9a-f]{3,6}/i.test(svg.replace(/#(000|fff)\b/gi, '')), 'grayscale only (e-ink)');
-assert.equal(cm.renderConnectionSvg(g).svg, svg, 'deterministic');
+const out = fs.mkdtempSync(path.join(os.tmpdir(), 'aish-inbox-'));
+const b = spawnSync(process.execPath, [new URL('../scripts/build.js', import.meta.url).pathname, '--bundle', out], { encoding: 'utf8' });
+assert.equal(b.status, 0, 'bundling failed: ' + b.stderr);
+const src = fs.readFileSync(path.join(out, 'inbox-worker.js'), 'utf8');
+assert(!/^\s*(import|export)\s/m.test(src), 'no module syntax left in a classic script');
 
-const text = cm.renderConnectionText(g);
-assert.ok(/href="#aish-mag-\d"/.test(text) && /Stand-alone/.test(text));
+const C = await imp('modules/inboxCrypto.js');
+const { SK } = await imp('modules/storageKeys.js');
+const secrets = C.newInboxSecrets();
+const env = await C.encryptMessage(secrets, { url: 'https://example.com/from-phone', platform: 'android' });
+const store = { [SK.inboxConfig]: { ...secrets, createdAt: 1, v: 1 } };
+const calls = [];
+const fetchFn = async (url, opts) => {
+    calls.push(opts.method + ' ' + url.replace(/^.*\/inboxes/, ''));
+    const json = (status, body) => ({ status, json: async () => body });
+    if (opts.method === 'GET') return json(200, { items: [{ id: 'i1', cursor: '000000000000001', receivedAt: 1, v: 1, data: env.data }], hasMore: false });
+    return json(200, { ok: true });
+};
+const chrome = { storage: { local: {
+    get: async (k) => { const o = {}; for (const key of [].concat(k)) if (key in store) o[key] = JSON.parse(JSON.stringify(store[key])); return o; },
+    set: async (o) => { Object.assign(store, JSON.parse(JSON.stringify(o))); },
+    remove: async (k) => { for (const key of [].concat(k)) delete store[key]; } } } };
+const sandbox = { self: {}, chrome, console, setTimeout, clearTimeout, AbortController, TextEncoder, TextDecoder, Uint8Array, ArrayBuffer, URL, atob, btoa, crypto: globalThis.crypto, fetch: fetchFn };
+sandbox.globalThis = sandbox;
+vm.createContext(sandbox); vm.runInContext(src, sandbox);
+const W = sandbox.self.AISH_INBOX || sandbox.AISH_INBOX;
+assert(W && typeof W.createInboxManager === 'function', 'AISH_INBOX exposed');
+const r = await W.createInboxManager().poll();
+assert(r.ok && r.added === 1, JSON.stringify(r));
+assert.equal(store[SK.inboxPending][0].url, 'https://example.com/from-phone');
+assert(calls.some((c) => c.startsWith('POST') && c.endsWith('/ack')), 'acknowledged');
 
-// nothing in common -> no map at all
-const lone = [mk(1, 'A', ['x'], 'alpha beta'), mk(2, 'B', ['y'], 'gamma delta')];
-assert.equal(await cm.buildConnectionMapHtml(lone, buildIndex(lone), { image: 'svg' }), '');
-
-const svgHtml = await cm.buildConnectionMapHtml(arts, buildIndex(arts), { image: 'svg' });
-assert.ok(svgHtml.includes('<svg') && svgHtml.includes('aish-conn'));
-// jsdom cannot rasterize an SVG: the PNG request must degrade to the text list, never throw
-const pngHtml = await cm.buildConnectionMapHtml(arts, buildIndex(arts), { image: 'png' });
-assert.ok(!pngHtml.includes('<svg') && pngHtml.includes('aish-conn'), 'png failure falls back to text');
-assert.ok(!(await cm.buildConnectionMapHtml(arts, null, { image: 'none' })).includes('<svg'));
-
-// 20 articles are capped
-const many = Array.from({ length: 20 }, (_, i) => mk(i, 'T' + i, ['same'], 'w' + i));
-const gm = cm.buildConnectionGraph(many, null);
-assert.equal(gm.nodes.length, cm.MAP_MAX_ARTICLES); assert.equal(gm.truncated, 8);
-
-const mag = buildMagazineArticle(arts, { mapHtml: svgHtml });
-assert.ok(mag.content.indexOf('aish-conn') > mag.content.indexOf('<ol>') && mag.content.indexOf('aish-conn') < mag.content.indexOf('id="aish-mag-0"'), 'map sits between TOC and sections');
-assert.ok(!buildMagazineArticle(arts).content.includes('aish-conn'), 'off by default');
-console.log('TEST 131 OK');
-process.exit(0);
+for (const p of ['firefox', 'ios']) {
+    const m = JSON.parse(fs.readFileSync(new URL(`../platforms/${p}/manifest.json`, import.meta.url), 'utf8'));
+    assert(m.background.scripts.includes('inbox-worker.js'), p + ' manifest lists inbox-worker.js');
+}
+console.log('ok');

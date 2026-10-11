@@ -53,6 +53,10 @@ export const SK = {
     devices: 'send:devices',
     activeDevices: 'send:active',
     localSendIp: 'send:localIp',
+    // phone inbox: links shared from the phone arrive through the byPhil inbox (inboxManager.js)
+    inboxConfig: 'inbox:config',     // inbox id, encryption key, write and read tokens — secret, never backed up
+    inboxPending: 'inbox:pending',   // links from the phone that wait for the user (Summarize / Dismiss)
+    inboxState: 'inbox:state',       // cursor, acknowledged cursor, handled item ids, last poll time and error
     // podcasts
     podcasts: 'podcasts:list',
     podcastName: 'podcasts:lastName',

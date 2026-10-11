@@ -1,4 +1,5 @@
 import { SK, articleRecKey } from './storageKeys.js';
+import { attachSearchClear } from './searchField.js';
 // feedManager.js
 // Small RSS/Atom reader built for fast triage. Feeds + items live in their own
 // chrome.storage.local keys (feedSubs / feedItems) and are deliberately NOT mixed
@@ -88,6 +89,7 @@ let settings = { ...FEED_DEFAULTS };
 let ui = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', stack: false };
 const DEFAULT_STATUS = 'all';
 let refreshing = false;
+let refreshPaint = false;       // true only while a render is driven by a running refresh (the graph skips those)
 let els = {};
 let uiRef = null;
 let undoTimer = null;
@@ -531,7 +533,8 @@ async function refreshAll(uiObj, { force = false } = {}) {
                 pruneItems();
                 if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
                 await persist();
-                render();
+                refreshPaint = true;
+                try { render(); } finally { refreshPaint = false; }
             });
             return writeQueue;
         };
@@ -1051,6 +1054,10 @@ function renderAltView() {
 
 async function renderGraphView() {
     const box = els.graph; if (!box) return;
+    // A refresh saves and re-renders after every feed: keep the graph on screen as it is (re-laying it out under the
+    // reader's finger is disruptive) and let the final render, once the refresh is done, update it once.
+    // Filters, search and view changes by the reader still go through.
+    if (refreshPaint && box.querySelector('svg')) return;
     const all = visibleItems();
     const sig = [items.length, all.length, all[0] && all[0].id, ui.source, ui.status, JSON.stringify(ui.date), ui.mood, searchQuery].join('|');
     if (sig === graphSig && box.childElementCount) return;
@@ -1115,7 +1122,8 @@ function initSearchAndViews() {
         els.graph.addEventListener('filter-by-tag', (e) => { if (e.detail && e.detail.tag) setSearch(e.detail.tag, 'list'); });
         els.graph.addEventListener('open-article', (e) => { const it = e.detail && e.detail._item; if (it) openItem(it, false); });
         if (typeof MutationObserver !== 'undefined') new MutationObserver(() => {
-            const b = els.graph.querySelector('.graph-preview-open');
+            // Only the article preview card's footer button: the cluster page's "Brief me" button shares the class.
+            const b = els.graph.querySelector('.graph-preview-foot .graph-preview-open:not(.graph-cluster-brief)');
             if (b && !b.dataset.feed) { b.dataset.feed = '1'; b.textContent = T('Open ↗'); }
         }).observe(els.graph, { childList: true, subtree: true });
     }
@@ -1422,6 +1430,7 @@ function openSourcePicker() {
     const body = el('div', 'feed-picker');
     const search = el('input');
     search.type = 'search'; search.placeholder = T('Search sources…'); search.autocomplete = 'off'; search.spellcheck = false;
+    search.setAttribute('aria-label', search.placeholder);
     const list = el('div', 'feed-picker-list');
     const choose = (src) => { ui.source = src; persistUi(); closeSheet(); render(); };
     const draw = () => {
@@ -1456,6 +1465,7 @@ function openSourcePicker() {
     };
     search.addEventListener('input', draw);
     body.append(search, list, btn('feed-manage-link', T('⚙️  Manage feeds & tags in Settings  ›'), openFeedSettings));
+    attachSearchClear(search);   // after it is in `body`: the field gets wrapped next to its ✕
     openSheet(T('Sources'), body);
     draw();
 }

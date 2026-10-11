@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 Исследования"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "Сейчас не удаётся подключиться к byPhil Cloud."
+  },
+  "f_check_now_0677": {
+    "message": "Проверить сейчас"
+  },
+  "f_checking_dad5": {
+    "message": "Проверка…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Нажмите ещё раз, чтобы отключить"
+  },
+  "f_from_phone_850d": {
+    "message": "С телефона"
+  },
+  "f_hide_code_5876": {
+    "message": "Скрыть код"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Установите приложение-компаньон AISH на телефон, один раз отсканируйте код и делитесь с ним любыми ссылками. Ссылки приходят со сквозным шифрованием и ждут здесь вашего нажатия."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Ссылки, отправленные с телефона"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Ожидающие здесь ссылки будут удалены, и телефон больше не сможет отправлять."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Подключить телефон"
+  },
+  "f_paired_b228": {
+    "message": "Подключено"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Подключено · последняя проверка {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Подключено · ещё не проверялось"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Подключено · ожидает: {n}"
+  },
+  "f_pairing_code_057c": {
+    "message": "Код сопряжения"
+  },
+  "f_pairing_9d4b": {
+    "message": "Сопряжение…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Входящие с телефона"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Отсканируйте этот код в приложении-компаньоне AISH. Любой, кто его отсканирует, сможет присылать вам ссылки, поэтому храните его в тайне."
+  },
+  "f_show_code_0cc1": {
+    "message": "Показать код"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Что-то пошло не так."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Это сопряжение больше недействительно. Отключите его и выполните сопряжение заново."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Слишком много запросов. Повторите попытку позже."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Отключить и удалить входящие"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "_about": "Shared test vector for the phone inbox wire format v1. Extension, iOS and Android must all decrypt `envelope` to `message` using encKey and inboxId (AES-256-GCM, 12-byte nonce first, 16-byte tag last, additional data = the inboxId as UTF-8 text).",
+  "inboxId": "oKGio6SlpqeoqaqrrK2urw",
+  "encKey": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+  "writeToken": "QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl8",
+  "readToken": "YGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn8",
+  "nonceHex": "202122232425262728292a2b",
+  "plaintext": "{\"v\":1,\"url\":\"https://example.com/a?b=1\",\"sentAt\":1760000000000,\"platform\":\"ios\"}",
+  "envelope": {
+    "v": 1,
+    "data": "ICEiIyQlJicoKSorqRjQUlapNixvDi7s-zqcjaQ5n6aorwaWDZscfiykPWYYoYQ77BgE-DjfHfc2fV68wBDduawMHVH-Uk8tfII68fpWoWri8Yrk5kjTBdIySkOoM-ENcXAKKmOytNJpL5a4GA"
+  },
+  "message": {
+    "url": "https://example.com/a?b=1",
+    "sentAt": 1760000000000,
+    "platform": "ios"
+  },
+  "writeHash": "f45dc82a7523d14974cea050e3028e8bf06a8ee855a9d63034ebb4fb9ecc2305",
+  "readHash": "128a42f0efc787b4710881a27873ead95dfcf13a9dfbdf9ca1f2f0600ecb9407",
+  "pairing": "aish-inbox://v1?i=oKGio6SlpqeoqaqrrK2urw&k=AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8&w=QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl8"
+}

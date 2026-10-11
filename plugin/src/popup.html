@@ -303,6 +303,7 @@
             <button id="detailDeleteBtn" class="button-secondary delete-top-button" type="button" role="menuitem" title="Delete Article" aria-label="Delete Article" data-i18n-title="f_delete_article_14d4"><span class="btn-icon" aria-hidden="true"><span class="ic"><svg class="icon icon-trash-2" aria-hidden="true" focusable="false"><use href="#i-trash-2"/></svg><span class="ic-e" aria-hidden="true">🗑️</span></span></span><span class="btn-label" data-i18n="f_delete_ea6a">Delete</span></button>
           </div>
         </div>
+        <div id="phoneInbox" class="phone-inbox" hidden></div>
         <ul id="articleList"></ul>
         <div id="graphContainer" style="display:none"></div>
         <div id="reportContainer" style="display:none"></div>
@@ -359,6 +360,11 @@
 <button type="button" class="settings-row" data-panel="send">
   <span class="settings-row-icon"><span class="ic"><svg class="icon icon-send icon--lg" aria-hidden="true" focusable="false"><use href="#i-send"/></svg><span class="ic-e" aria-hidden="true">📤</span></span></span>
   <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsSend">Send &amp; Share</span><span class="settings-row-sub" data-sub="send">Kindle · LocalSend · bookmarklet</span></span>
+  <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
+</button>
+<button type="button" class="settings-row" data-panel="phoneinbox">
+  <span class="settings-row-icon"><span class="ic"><svg class="icon icon-smartphone icon--lg" aria-hidden="true" focusable="false"><use href="#i-smartphone"/></svg><span class="ic-e" aria-hidden="true">📱</span></span></span>
+  <span class="settings-row-text"><span class="settings-row-title" data-i18n="f_phone_inbox_69e3">Phone inbox</span><span class="settings-row-sub" data-sub="phoneinbox" data-i18n="f_links_shared_from_your_phone_74f8">Links shared from your phone</span></span>
   <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
 </button>
 <p class="settings-caption" data-i18n="settingsCapApp">APP</p>
@@ -600,6 +606,13 @@
                     <p class="bookmarklet-warning" data-i18n="f_keep_this_private_this_bookm_3463"><span class="ic"><svg class="icon icon-lock" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg><span class="ic-e" aria-hidden="true">🔒</span></span> Keep this private: This bookmarklet contains your personal cloud token. Do not share it with others. If your token expires, simply come back here to generate a new one.</p>
                   </div>
                 </div>
+</section>
+<section class="settings-panel" id="settingsPanel-phoneinbox" data-panel="phoneinbox" hidden>
+  <div class="settings-panel-head">
+    <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
+    <h2><span data-i18n="f_phone_inbox_69e3">Phone inbox</span></h2>
+  </div>
+  <div id="phoneInboxSettings" class="setting-group mb-3"></div>
 </section>
 <section class="settings-panel" id="settingsPanel-appearance" data-panel="appearance" hidden>
   <div class="settings-panel-head">

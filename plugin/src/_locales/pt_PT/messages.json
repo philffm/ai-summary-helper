@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 Investigação"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "Não é possível contactar o byPhil Cloud neste momento."
+  },
+  "f_check_now_0677": {
+    "message": "Verificar agora"
+  },
+  "f_checking_dad5": {
+    "message": "A verificar…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Clique novamente para desemparelhar"
+  },
+  "f_from_phone_850d": {
+    "message": "Do telemóvel"
+  },
+  "f_hide_code_5876": {
+    "message": "Ocultar código"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Instale a aplicação complementar do AISH no seu telemóvel, leia o código uma vez e partilhe qualquer ligação com ela. As ligações chegam cifradas de ponta a ponta e aguardam aqui o seu toque."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Ligações partilhadas do seu telemóvel"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "As ligações ainda em espera aqui são eliminadas e o telemóvel deixa de poder enviar."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Emparelhar um telemóvel"
+  },
+  "f_paired_b228": {
+    "message": "Emparelhado"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Emparelhado · última verificação {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Emparelhado · ainda não verificado"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Emparelhado · {n} em espera"
+  },
+  "f_pairing_code_057c": {
+    "message": "Código de emparelhamento"
+  },
+  "f_pairing_9d4b": {
+    "message": "A emparelhar…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Caixa de entrada do telemóvel"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Leia este código com a aplicação complementar do AISH. Quem o ler pode enviar-lhe ligações, por isso mantenha-o privado."
+  },
+  "f_show_code_0cc1": {
+    "message": "Mostrar código"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Algo correu mal."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Este emparelhamento já não é válido. Desemparelhe e emparelhe novamente."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Demasiados pedidos. Tente novamente mais tarde."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Desemparelhar e eliminar a caixa de entrada"
   }
 }

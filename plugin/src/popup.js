@@ -15,6 +15,7 @@ import { languageMatches } from './modules/languages.js';
 // import { initPodcastManager } from './modules/podcastManager.js';
 // Use window.initPodcastManager if needed
 import { initShortcuts } from './modules/shortcuts.js';
+import { initSearchFields } from './modules/searchField.js';
 import { currentSurface, sidePanelAvailable, attachToSidePanel, detachToPopup } from './modules/panelDock.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.initPodcastManager(ui);
     }
     initShortcuts(ui);
+    initSearchFields();
     initMainScreen(ui);
     initReviewPrompt();
     initMoodSetting();
@@ -79,10 +81,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         import('./modules/settingsManager.js'),
         import('./modules/feedManager.js'),
         import('./modules/articleManager.js'),
-    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }]) => {
+        import('./modules/inboxView.js'),
+    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }]) => {
         initSettingsManager(ui);
         initFeedManager(ui);
         initArticleManager(ui);
+        initInboxView();
     }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────

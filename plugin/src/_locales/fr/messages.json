@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 Recherche"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "Impossible de joindre byPhil Cloud pour le moment."
+  },
+  "f_check_now_0677": {
+    "message": "Vérifier maintenant"
+  },
+  "f_checking_dad5": {
+    "message": "Vérification…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Cliquez à nouveau pour dissocier"
+  },
+  "f_from_phone_850d": {
+    "message": "Depuis le téléphone"
+  },
+  "f_hide_code_5876": {
+    "message": "Masquer le code"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Installez l'application compagnon AISH sur votre téléphone, scannez le code une fois, puis partagez n'importe quel lien vers elle. Les liens arrivent chiffrés de bout en bout et attendent ici votre appui."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Liens partagés depuis votre téléphone"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Les liens en attente ici sont supprimés et le téléphone ne peut plus envoyer."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Jumeler un téléphone"
+  },
+  "f_paired_b228": {
+    "message": "Jumelé"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Jumelé · dernière vérification {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Jumelé · pas encore vérifié"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Jumelé · {n} en attente"
+  },
+  "f_pairing_code_057c": {
+    "message": "Code de jumelage"
+  },
+  "f_pairing_9d4b": {
+    "message": "Jumelage…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Boîte de réception mobile"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Scannez ce code avec l'application compagnon AISH. Toute personne qui le scanne peut vous envoyer des liens : gardez-le privé."
+  },
+  "f_show_code_0cc1": {
+    "message": "Afficher le code"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Une erreur s'est produite."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Ce jumelage n'est plus valide. Dissociez puis jumelez à nouveau."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Trop de requêtes. Réessayez plus tard."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Dissocier et supprimer la boîte"
   }
 }

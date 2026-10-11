@@ -202,6 +202,14 @@ function writeFinalize(outDir, name) {
     console.log(`  ✓ ${name || 'bundle'}: bundled finalize.js (${code.length} bytes)`);
 }
 
+function writeInboxWorker(outDir, name) {
+    const entry = path.join(SRC, 'modules', 'inboxBackgroundBundle.js');
+    if (!fs.existsSync(entry)) return;
+    const code = bundleModuleGraph(entry, 'AISH_INBOX');
+    fs.writeFileSync(path.join(outDir, 'inbox-worker.js'), code);
+    console.log(`  ✓ ${name || 'bundle'}: bundled inbox-worker.js (${code.length} bytes)`);
+}
+
 function writeFeedWorker(outDir, name) {
     const entry = path.join(SRC, 'modules', 'feedBackgroundBundle.js');
     if (!fs.existsSync(entry)) return;
@@ -229,6 +237,7 @@ function buildPlatform(name, manifestPath) {
 
     writeFinalize(outDir, name);
     writeFeedWorker(outDir, name);
+    writeInboxWorker(outDir, name);
 
     if (manifestPath && fs.existsSync(manifestPath)) {
         fs.copyFileSync(manifestPath, path.join(outDir, 'manifest.json'));
@@ -267,6 +276,7 @@ function main() {
             console.log(`  ✓ bundled content.js (${bundled.length} bytes)`);
             writeFinalize(targetDir);
             writeFeedWorker(targetDir);
+            writeInboxWorker(targetDir);
         } catch (err) {
             console.error(`✗ ${err.message}`);
             process.exit(1);

@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 Ricerca"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "Impossibile raggiungere byPhil Cloud al momento."
+  },
+  "f_check_now_0677": {
+    "message": "Controlla ora"
+  },
+  "f_checking_dad5": {
+    "message": "Controllo…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Clicca di nuovo per scollegare"
+  },
+  "f_from_phone_850d": {
+    "message": "Dal telefono"
+  },
+  "f_hide_code_5876": {
+    "message": "Nascondi codice"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Installa l'app companion di AISH sul telefono, inquadra il codice una volta e poi condividi qualsiasi link con essa. I link arrivano cifrati end-to-end e aspettano qui il tuo tocco."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Link condivisi dal tuo telefono"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "I link ancora in attesa qui vengono eliminati e il telefono non può più inviare."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Abbina un telefono"
+  },
+  "f_paired_b228": {
+    "message": "Abbinato"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Abbinato · ultimo controllo {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Abbinato · non ancora controllato"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Abbinato · {n} in attesa"
+  },
+  "f_pairing_code_057c": {
+    "message": "Codice di abbinamento"
+  },
+  "f_pairing_9d4b": {
+    "message": "Abbinamento…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Posta in arrivo dal telefono"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Inquadra questo codice con l'app companion di AISH. Chiunque lo inquadri può inviarti link, quindi tienilo privato."
+  },
+  "f_show_code_0cc1": {
+    "message": "Mostra codice"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Qualcosa è andato storto."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Questo abbinamento non è più valido. Scollega e abbina di nuovo."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Troppe richieste. Riprova più tardi."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Scollega ed elimina la posta in arrivo"
   }
 }
