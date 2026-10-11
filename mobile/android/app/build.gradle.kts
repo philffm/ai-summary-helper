@@ -12,12 +12,26 @@ android {
         applicationId = "eu.byphil.aishcompanion"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        // The release workflow passes the extension's version (-PversionName=2.2.19 -PversionCode=20219).
+        versionCode = (project.findProperty("versionCode") as String?)?.toInt() ?: 1
+        versionName = (project.findProperty("versionName") as String?) ?: "0.1.0"
+    }
+    // Release signing only when the workflow provides a keystore; local and CI builds without one stay debug-signed.
+    val keystorePath = System.getenv("ANDROID_KEYSTORE_FILE")
+    signingConfigs {
+        if (keystorePath != null) {
+            create("release") {
+                storeFile = file(keystorePath)
+                storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("ANDROID_KEY_ALIAS")
+                keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+            }
+        }
     }
     buildTypes {
         release {
-            isMinifyEnabled = true
+            if (keystorePath != null) signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false   // no shrinking until a release build has been tried on a device
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
         }
     }
