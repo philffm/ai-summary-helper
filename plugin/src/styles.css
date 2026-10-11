@@ -4147,6 +4147,8 @@ circle.graph-sel { stroke: var(--accent) !important; stroke-width: 4px !importan
 .phone-inbox-head { margin: 0 0 8px; font-size: 12px; opacity: .8; }
 .phone-inbox-item { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 6px 0; }
 .phone-inbox-link { flex: 1 1 140px; min-width: 0; display: flex; flex-direction: column; font-size: 13px; }
+a.phone-inbox-link { color: inherit; text-decoration: none; }
+a.phone-inbox-link:hover strong { text-decoration: underline; }
 .phone-inbox-link span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .7; font-size: 12px; }
 .phone-inbox-qr { width: 220px; max-width: 100%; margin: 12px auto; padding: 8px; background: #fff; border-radius: 8px; }
 .phone-inbox-qr svg { display: block; width: 100%; height: auto; }

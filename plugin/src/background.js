@@ -1169,19 +1169,26 @@ async function saveFeedItem(url) {
                 chrome.tabs.get(tab.id).then(t => { if (t && t.status === 'complete') done(); }).catch(() => {});
             });
         }
-        // Pages run only loader.js until the full script is injected (same dance as the summary start).
-        for (let attempt = 0; attempt < 7; attempt++) {
-            try {
-                await chrome.tabs.sendMessage(tab.id, { action: 'ping' });
-                break;
-            } catch (_) {
-                if (attempt === 1) { try { await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['content.js'] }); } catch (__) { /* restricted page */ } }
-                if (attempt === 6) return { success: false, error: 'unreachable' };
-                await new Promise(r => setTimeout(r, 800));
+        // Let late-rendering pages settle, then make sure the full content script is there (pages run only loader.js).
+        if (opened) await new Promise(r => setTimeout(r, 1500));
+        let reachable = false;
+        for (let attempt = 0; attempt < 6 && !reachable; attempt++) {
+            if (await ensureContent(tab.id)) {
+                try { const r = await chrome.tabs.sendMessage(tab.id, { action: 'ping' }); reachable = !!(r && r.status === 'pong'); } catch (_) { /* still starting */ }
             }
+            if (!reachable) await new Promise(r => setTimeout(r, 900));
         }
-        const res = await chrome.tabs.sendMessage(tab.id, { action: 'savePage', feedUrl: url });
-        return res && res.success ? res : { success: false, error: (res && res.error) || 'failed' };
+        if (!reachable) { console.debug('[inbox] save only: page did not answer', url); return { success: false, error: 'unreachable' }; }
+        let res = null, lastErr = '';
+        for (let attempt = 0; attempt < 3 && !(res && res.success); attempt++) {
+            try { res = await chrome.tabs.sendMessage(tab.id, { action: 'savePage', feedUrl: url }); }
+            catch (e) { lastErr = String((e && e.message) || e); res = null; }
+            if (res && (res.success || res.error === 'empty')) break;   // 'empty' will not change by asking again
+            await new Promise(r => setTimeout(r, 1200));
+        }
+        if (res && res.success) return res;
+        console.debug('[inbox] save only failed', url, (res && res.error) || lastErr);
+        return { success: false, error: (res && res.error) || lastErr || 'failed' };
     } catch (e) {
         return { success: false, error: String((e && e.message) || e) };
     } finally {

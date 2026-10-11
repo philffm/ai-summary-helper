@@ -184,7 +184,10 @@ async function saveOnly(entry) {
     try { res = await chrome.runtime.sendMessage({ action: 'saveFeedItem', url: entry.url }); } catch (_) { /* background asleep */ }
     saving.delete(entry.id);
     if (res && res.success) { await manager.resolve(entry.id); await renderList(); return; }
-    sumErrors.set(entry.id, res && res.error === 'empty' ? T("This page has no text to save.") : T("Couldn't save this page. Open it once and try again."));
+    const why = res && res.error;
+    sumErrors.set(entry.id, why === 'empty' ? T("This page has no text to save.")
+        : why === 'unreachable' ? T("The page didn't respond (blocked, or it needs a login). Open it and try again.")
+        : T("Couldn't save this page. Open it once and try again."));
     await renderList();
 }
 function paintSaving(id) {
@@ -233,6 +236,12 @@ function onSummaryMessage(msg, sender) {
     }
 }
 
+// Open the link in a new tab (it stays in the list: you may still want to summarize or save it afterwards).
+function openLink(entry) {
+    if (!/^https?:\/\//i.test(entry.url)) return;
+    try { if (chrome.tabs && chrome.tabs.create) { chrome.tabs.create({ url: entry.url }); return; } } catch (_) { /* fall back below */ }
+    window.open(entry.url, '_blank', 'noopener');
+}
 async function dismiss(entry) { await manager.resolve(entry.id); await renderList(); }
 
 // A summary can finish while the popup is closed (it runs in the background): any waiting link that has an article in
@@ -272,15 +281,17 @@ async function renderList() {
     for (const entry of list) {
         const { host, path } = shortLink(entry.url);
         const row = document.createElement('div'); row.className = 'phone-inbox-item';
-        const text = document.createElement('div'); text.className = 'phone-inbox-link';
+        const text = document.createElement('a'); text.className = 'phone-inbox-link';
+        if (/^https?:\/\//i.test(entry.url)) { text.href = entry.url; text.target = '_blank'; text.rel = 'noopener noreferrer'; }
         const h = document.createElement('strong'); h.textContent = host;
         const p = document.createElement('span'); p.textContent = path.length > 60 ? path.slice(0, 59) + '…' : path;
         text.append(h, p); text.title = entry.url;
         const sum = button('', 'button-primary btn-sm feed-sum-btn', () => summarize(entry));
         sum.dataset.id = entry.id; setLabel(sum, T('✨ Summarize'));
+        const open = button(T('Open ↗'), 'button-secondary btn-sm phone-inbox-open', () => openLink(entry));
         const save = button('', 'button-secondary btn-sm phone-inbox-save', () => saveOnly(entry));
         save.dataset.id = entry.id; save.title = T('Keep it in History, no AI, nothing sent'); setIconLabel(save, 'download', T('Save only'));
-        row.append(text, sum, save, button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
+        row.append(text, open, sum, save, button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
         root.append(row);
         if (sumErrors.has(entry.id)) {
             const err = para(sumErrors.get(entry.id), 'phone-inbox-error'); err.dataset.id = entry.id; err.setAttribute('role', 'alert');
