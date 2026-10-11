@@ -119,7 +119,7 @@ const sumErrors = new Map(); // entry.id -> last error text (shown under the lin
 function paintSum(id) {
     const st = sumBusy.get(id);
     const queued = !!(st && st.queued);
-    document.querySelectorAll('#phoneInbox .feed-sum-btn').forEach((b) => {
+    document.querySelectorAll('.phone-card .feed-sum-btn').forEach((b) => {
         if (b.dataset.id !== id) return;
         b.classList.toggle('busy', !!st);
         b.disabled = !!st && !queued;   // a queued one can be clicked to leave the queue again
@@ -160,8 +160,7 @@ async function summarize(entry) {
     sumBusy.set(entry.id, { pct: 5, key: normalizeUrl(entry.url), queued: false, jobId: null, timer: null });
     armSum(entry.id, 5 * 60 * 1000);
     paintSum(entry.id);
-    const hide = () => $('phoneInbox') && $('phoneInbox').querySelectorAll('.phone-inbox-error').forEach(e => { if (e.dataset.id === entry.id) e.remove(); });
-    hide();
+    document.querySelectorAll('.phone-card .phone-inbox-error').forEach(e => { if (e.dataset.id === entry.id) e.remove(); });
     let res = null;
     try { res = await chrome.runtime.sendMessage({ action: 'openFeedItem', url: entry.url, title: host, summarize: true }); } catch (_) { /* background asleep: the link stays in the list */ }
     if (!res || !res.success) { endSum(entry.id); return; }
@@ -191,13 +190,13 @@ async function saveOnly(entry) {
     await renderList();
 }
 function paintSaving(id) {
-    document.querySelectorAll('#phoneInbox .phone-inbox-save').forEach((b) => {
+    document.querySelectorAll('.phone-card .phone-inbox-save').forEach((b) => {
         if (b.dataset.id !== id) return;
         const on = saving.has(id);
         b.disabled = on; b.setAttribute('aria-busy', on ? 'true' : 'false');
         setIconLabel(b, on ? 'loader' : 'download', on ? T('Saving…') : T('Save only'));
     });
-    document.querySelectorAll('#phoneInbox .feed-sum-btn').forEach((b) => { if (b.dataset.id === id && !sumBusy.has(id)) b.disabled = saving.has(id); });
+    document.querySelectorAll('.phone-card .feed-sum-btn').forEach((b) => { if (b.dataset.id === id && !sumBusy.has(id)) b.disabled = saving.has(id); });
 }
 
 function sumTargetFor(msg, sender) {
@@ -268,37 +267,75 @@ async function resolveSummarized() {
     }
 }
 
-async function renderList() {
-    const root = $('phoneInbox');
-    if (!root) return;
+// ── The waiting links as cards at the top of History's Inbox tab ──
+let phoneEntries = [];   // what is waiting right now (kept fresh by loadPhoneEntries / renderList)
+
+/** Reads what is waiting; links whose summary reached History meanwhile are taken off first. */
+export async function loadPhoneEntries() {
     try { await resolveSummarized(); } catch (_) { /* the list still renders */ }
-    const list = await manager.listPending();
-    root.hidden = !list.length;
-    root.textContent = '';
-    if (!list.length) return;
-    const head = document.createElement('h4'); head.className = 'phone-inbox-head'; head.textContent = T('From phone') + ' · ' + list.length;
-    root.append(head);
-    for (const entry of list) {
-        const { host, path } = shortLink(entry.url);
-        const row = document.createElement('div'); row.className = 'phone-inbox-item';
-        const text = document.createElement('a'); text.className = 'phone-inbox-link';
-        if (/^https?:\/\//i.test(entry.url)) { text.href = entry.url; text.target = '_blank'; text.rel = 'noopener noreferrer'; }
-        const h = document.createElement('strong'); h.textContent = host;
-        const p = document.createElement('span'); p.textContent = path.length > 60 ? path.slice(0, 59) + '…' : path;
-        text.append(h, p); text.title = entry.url;
-        const sum = button('', 'button-primary btn-sm feed-sum-btn', () => summarize(entry));
-        sum.dataset.id = entry.id; setLabel(sum, T('✨ Summarize'));
-        const open = button(T('Open ↗'), 'button-secondary btn-sm phone-inbox-open', () => openLink(entry));
-        const save = button('', 'button-secondary btn-sm phone-inbox-save', () => saveOnly(entry));
-        save.dataset.id = entry.id; save.title = T('Keep it in History, no AI, nothing sent'); setIconLabel(save, 'download', T('Save only'));
-        row.append(text, open, sum, save, button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
-        root.append(row);
-        if (sumErrors.has(entry.id)) {
-            const err = para(sumErrors.get(entry.id), 'phone-inbox-error'); err.dataset.id = entry.id; err.setAttribute('role', 'alert');
-            root.append(err);
-        }
-        paintSum(entry.id); paintSaving(entry.id);
+    phoneEntries = await manager.listPending();
+    return phoneEntries;
+}
+/** The list changed (poll, resolve, another popup): History re-renders and calls mountPhoneCards again. */
+async function renderList() {
+    await loadPhoneEntries();
+    document.dispatchEvent(new CustomEvent('aish:phone-inbox', { detail: { count: phoneEntries.length } }));
+}
+
+function phoneCard(entry) {
+    const { host, path } = shortLink(entry.url);
+    const li = document.createElement('li');
+    li.className = 'article-card phone-card';
+    li.dataset.phoneId = entry.id;
+    li.dataset.ts = String(entry.receivedAt || 0);
+    const when = new Date(entry.receivedAt || Date.now()).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    const head = document.createElement('div'); head.className = 'article-header';
+    const col = document.createElement('div');
+    const h4 = document.createElement('h4'); h4.textContent = host + (path.length > 1 ? path.slice(0, 70) + (path.length > 70 ? '…' : '') : ''); h4.title = entry.url;
+    const date = document.createElement('p'); date.className = 'article-date';
+    date.append(document.createTextNode('📱 ' + when + ' '));
+    if (/^https?:\/\//i.test(entry.url)) {
+        date.append(document.createTextNode(T('from') + ' '));
+        const a = document.createElement('a'); a.href = entry.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = host;
+        date.append(a, document.createTextNode(' ↗'));
     }
+    const chips = document.createElement('div'); chips.className = 'card-tags';
+    const chip = document.createElement('span'); chip.className = 'tag-chip status-badge new'; chip.textContent = T('From phone');
+    chips.append(chip);
+    col.append(h4, date, chips);
+    head.append(col);
+
+    const actions = document.createElement('div'); actions.className = 'phone-card-actions';
+    const sum = button('', 'button-primary btn-sm feed-sum-btn', (e) => { e.stopPropagation(); summarize(entry); });
+    sum.dataset.id = entry.id; setLabel(sum, T('✨ Summarize'));
+    const save = button('', 'button-secondary btn-sm phone-inbox-save', (e) => { e.stopPropagation(); saveOnly(entry); });
+    save.dataset.id = entry.id; save.title = T('Keep it in History, no AI, nothing sent'); setIconLabel(save, 'download', T('Save only'));
+    const open = button(T('Open ↗'), 'button-secondary btn-sm phone-inbox-open', (e) => { e.stopPropagation(); openLink(entry); });
+    const dismiss_ = button(T('Dismiss'), 'button-tertiary btn-sm', (e) => { e.stopPropagation(); dismiss(entry); });
+    actions.append(sum, save, open, dismiss_);
+    li.append(head, actions);
+    if (sumErrors.has(entry.id)) {
+        const err = para(sumErrors.get(entry.id), 'phone-inbox-error'); err.dataset.id = entry.id; err.setAttribute('role', 'alert');
+        li.append(err);
+    }
+    return li;
+}
+
+/**
+ * Puts a card for every waiting link at the top of History's list (call after the list was cleared). A search narrows
+ * them to matching links. Returns how many were added.
+ */
+export function mountPhoneCards(ul) {
+    if (!ul) return 0;
+    ul.querySelectorAll('.phone-card').forEach(n => n.remove());
+    const q = (($('searchInput') || {}).value || '').trim().toLowerCase();
+    const list = phoneEntries.filter(e => !q || String(e.url).toLowerCase().includes(q));
+    if (!list.length) return 0;
+    const frag = document.createDocumentFragment();
+    for (const entry of list) frag.append(phoneCard(entry));
+    ul.prepend(frag);
+    list.forEach(e => { paintSum(e.id); paintSaving(e.id); });
+    return list.length;
 }
 
 export async function initInboxView() {

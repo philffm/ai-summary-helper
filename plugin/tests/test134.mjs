@@ -12,8 +12,12 @@ let reply = { success: true, mode: 'extension', id: 7, queued: false };
 chrome.runtime.sendMessage = (msg, cb) => { sent.push(msg); if (cb) { cb({}); return; } return Promise.resolve(msg.action === 'openFeedItem' ? reply : {}); };
 const view = await imp('../src/modules/inboxView.js');
 await view.initInboxView(); await tick(50);
+// History re-mounts the cards on every change (articleManager does this in the real popup)
+const list = w.document.getElementById('articleList');
+const remount = () => view.mountPhoneCards(list);
+w.document.addEventListener('aish:phone-inbox', remount); remount();
 const d = w.document;
-const btn = (id) => d.querySelector(`#phoneInbox .feed-sum-btn[data-id="${id}"]`);
+const btn = (id) => d.querySelector(`#articleList .feed-sum-btn[data-id="${id}"]`);
 assert(btn('m1') && btn('m2'), 'both links have the feed-style Summarize button');
 const fire = (msg, tabUrl) => (globalThis.__msgL || []).forEach(f => f(msg, { tab: { url: tabUrl } }));
 
@@ -34,7 +38,7 @@ assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['m2'], 'completed link 
 btn('m2').click(); await tick(30);
 fire({ action: 'summaryError', error: 'Model is not reachable' }, 'https://example.org/b'); await tick(60);
 assert(btn('m2') && !btn('m2').classList.contains('busy') && !btn('m2').disabled);
-assert(/not reachable/.test(d.querySelector('#phoneInbox .phone-inbox-error').textContent));
+assert(/not reachable/.test(d.querySelector('#articleList .phone-inbox-error').textContent));
 assert.equal(store[SK.inboxPending].length, 1, 'kept after an error');
 
 // queued: label says so, a click takes it out of the line again

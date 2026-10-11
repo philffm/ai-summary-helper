@@ -24,6 +24,7 @@ import { qaSection } from './qaView.js';
 import { normalizeDoi } from '../content/paper.js';
 import { paperState, paperChips, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
+import { mountPhoneCards, loadPhoneEntries } from './inboxView.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
@@ -656,6 +657,7 @@ export function initArticleManager(uiManager) {
     loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;
     // The lexicon grew (tag naming in Settings or a background run): tag chips change language, so redraw the list.
+    document.addEventListener('aish:phone-inbox', () => { try { if (historyTab === 'inbox' && document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     document.addEventListener('aish:lexiconChanged', () => { try { if (document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     initSelection({
         deliverKindle, deliverLocalSend,
@@ -1061,7 +1063,7 @@ export function loadHistory() {
             cachedArticles = articles.filter(a => !a.archived);
             archivedCache = articles.filter(a => a.archived);
             invalidateSearchIndex();
-            renderTab();
+            return loadPhoneEntries().catch(() => {}).then(() => renderTab());
         }).catch(() => clearSkeleton(articleList));
 }
 
@@ -1088,7 +1090,10 @@ export function renderArticles(articles) {
     const tabsNav = buildTabs();
     if (tabsBar && tabsNav.parentNode !== tabsBar) tabsBar.appendChild(tabsNav);
     renderResearchFilters(tabsBar);
+    // Links shared from the phone wait as cards at the top of the Inbox tab (inboxView.js).
+    const phoneCards = historyTab === 'inbox' ? mountPhoneCards(articleList) : 0;
     if (!articles || articles.length === 0) {
+        if (phoneCards) return;
         const emptyMessage = document.createElement('div');
         emptyMessage.id = 'emptyMessage';
         const p = document.createElement('p');
