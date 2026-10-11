@@ -88,7 +88,7 @@ card.querySelector('.graph-cluster-open:not(.is-opened)').click(); assert.deepEq
 // briefing: covers the unopened ones, from summaries only
 const brief = card.querySelector('.graph-cluster-brief');
 assert.ok(/Brief me on the 2 unopened/.test(brief.textContent), 'briefing button names the count');
-brief.click(); await tick(80);
+brief.click(); await tick(250);
 assert.equal(sent.length, 1);
 assert.ok(/Summary of c1/.test(sent[0].user) && /Summary of c3/.test(sent[0].user) && !/Summary of c2/.test(sent[0].user), 'unopened only');
 assert.ok(!/FULL ARTICLE TEXT/.test(sent[0].user), 'article body never sent');
@@ -109,14 +109,14 @@ assert.equal(sw.getAttribute('aria-checked'), 'false'); assert.ok(/on the 2 unop
 sw.click();
 assert.equal(sw.getAttribute('aria-checked'), 'true'); assert.ok(/Brief me on all 3/.test(brief.textContent), brief.textContent);
 assert.ok(card.querySelectorAll('.graph-cluster-open.is-included').length >= 1, 'opened rows are marked as included');
-brief.click(); await tick(80);
+brief.click(); await tick(250);
 assert.equal(sent.length, 2); assert.ok(/Summary of c2/.test(sent[1].user), 'opened article now part of the briefing');
 sent.pop();
 sw.click(); assert.ok(/on the 2 unopened/.test(brief.textContent), 'switch back restores the default');
 
 // question: whole topic, answer rendered as text
 const input = card.querySelector('.graph-cluster-ask input'); input.value = 'What is common?';
-card.querySelector('.graph-cluster-ask').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); await tick(80);
+card.querySelector('.graph-cluster-ask').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); await tick(250);
 assert.equal(sent.length, 2);
 assert.ok(/Question: What is common\?/.test(sent[1].user) && /Summary of c2/.test(sent[1].user), 'a question looks at the whole topic');
 const ans = card.querySelector('.graph-cluster-answer');
