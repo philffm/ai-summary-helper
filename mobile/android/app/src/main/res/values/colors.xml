@@ -1,4 +1,0 @@
-<resources>
-    <!-- Edge colour of the AISH mark, so the masked icon reads as one shape on every launcher. -->
-    <color name="ic_launcher_background">#539CF6</color>
-</resources>
