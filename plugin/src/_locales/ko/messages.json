@@ -4396,5 +4396,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "기간 내 기사 {a} / {b}개"
+  },
+  "f_never_opened_5256": {
+    "message": "열어보지 않음"
+  },
+  "f_opened_0e03": {
+    "message": "열어봄 ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "사용한 출처"
   }
 }

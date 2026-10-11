@@ -4414,5 +4414,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "期間内の記事: {a} / {b} 件"
+  },
+  "f_never_opened_5256": {
+    "message": "未開封"
+  },
+  "f_opened_0e03": {
+    "message": "開封済み ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "使用した出典"
   }
 }

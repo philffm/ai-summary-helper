@@ -4414,5 +4414,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "{a} из {b} статей в периоде"
+  },
+  "f_never_opened_5256": {
+    "message": "Ни разу не открывались"
+  },
+  "f_opened_0e03": {
+    "message": "Открытые ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "Использованные источники"
   }
 }

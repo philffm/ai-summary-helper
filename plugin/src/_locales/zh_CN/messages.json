@@ -4414,5 +4414,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "时间范围内 {a} / {b} 篇文章"
+  },
+  "f_never_opened_5256": {
+    "message": "从未打开"
+  },
+  "f_opened_0e03": {
+    "message": "已打开 ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "所用来源"
   }
 }

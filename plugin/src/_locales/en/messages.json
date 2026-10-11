@@ -4628,5 +4628,15 @@
   "f_of_articles_in_window_a381": {
     "message": "{a} of {b} articles in window",
     "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_never_opened_5256": {
+    "message": "Never opened"
+  },
+  "f_opened_0e03": {
+    "message": "Opened ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_used_0e42": {
+    "message": "Sources used"
   }
 }

@@ -4414,5 +4414,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "時間範圍內 {a} / {b} 篇文章"
+  },
+  "f_never_opened_5256": {
+    "message": "從未開啟"
+  },
+  "f_opened_0e03": {
+    "message": "已開啟 ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "所用來源"
   }
 }

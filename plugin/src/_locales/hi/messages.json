@@ -4414,5 +4414,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "{b} में से {a} लेख इस अवधि में"
+  },
+  "f_never_opened_5256": {
+    "message": "कभी नहीं खोले गए"
+  },
+  "f_opened_0e03": {
+    "message": "खोले गए ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "उपयोग किए गए स्रोत"
   }
 }

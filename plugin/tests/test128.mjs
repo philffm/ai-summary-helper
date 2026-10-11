@@ -72,16 +72,25 @@ assert.deepEqual(stats, { total: 3, unopened: 2, withSummary: 3, exportable: 3 }
 const area = d.createElement('div'); d.body.append(area);
 const filtered = []; area.addEventListener('filter-by-tag', (e) => filtered.push(e.detail.tag));
 const opened = []; area.addEventListener('open-article', (e) => opened.push(e.detail.id));
-const card = gc.showClusterCard(area, { label: 'Topic <b>', articles: cluster });
-assert.ok(/3 articles/.test(card.textContent) && /2 never opened/.test(card.textContent), card.textContent);
-assert.equal(card.querySelector('strong').textContent, 'Topic <b>'); assert.ok(!card.querySelector('strong b'), 'label is text');
-const openers = [...card.querySelectorAll('.graph-cluster-open')];
+const peek = gc.showClusterCard(area, { label: 'Topic <b>', articles: cluster });
+assert.ok(/3 articles/.test(peek.textContent) && /2 never opened/.test(peek.textContent), peek.textContent);
+assert.equal(peek.querySelector('strong').textContent, 'Topic <b>'); assert.ok(!peek.querySelector('strong b'), 'label is text');
+assert.ok(!area.querySelector('.graph-cluster-page'), 'a tap only shows the peek bar');
+peek.querySelector('.graph-cluster-peek-open').click();
+const card = area.querySelector('.graph-cluster-page');
+assert.ok(card && !area.querySelector('.graph-cluster-peek'), 'Open swaps the peek bar for the page');
+assert.equal(card.querySelector('.graph-cluster-title').textContent, 'Topic <b>');
+assert.ok(card.querySelector('.graph-cluster-map'), 'mini map');
+assert.ok(card.querySelectorAll('.gcm-dot.is-new').length === 2 && card.querySelectorAll('.gcm-dot').length === 3, 'map: one dot per article, unopened accented');
+const openers = [...card.querySelectorAll('.graph-cluster-list:not(.x) .graph-cluster-open:not(.is-opened) .graph-cluster-open-t')];
 assert.deepEqual(openers.map(b => b.textContent), ['T c1', 'T c3'], 'only unopened, oldest first');
-openers[0].click(); assert.deepEqual(opened, ['c1']);
+assert.ok(/Never opened/.test(card.textContent) && /Opened \(1\)/.test(card.querySelector('details summary').textContent), 'unopened list + collapsed opened group');
+assert.ok(!card.querySelector('details').open, 'opened group is collapsed');
+card.querySelector('.graph-cluster-open:not(.is-opened)').click(); assert.deepEqual(opened, ['c1']);
 
 // briefing: covers the unopened ones, from summaries only
-const brief = [...card.querySelectorAll('.graph-preview-foot button')].find(b => /Brief me on the 2 unopened/.test(b.textContent));
-assert.ok(brief, 'briefing button names the count');
+const brief = card.querySelector('.graph-cluster-brief');
+assert.ok(/Brief me on the 2 unopened/.test(brief.textContent), 'briefing button names the count');
 brief.click(); await tick(80);
 assert.equal(sent.length, 1);
 assert.ok(/Summary of c1/.test(sent[0].user) && /Summary of c3/.test(sent[0].user) && !/Summary of c2/.test(sent[0].user), 'unopened only');
@@ -92,6 +101,9 @@ const pills = [...card.querySelectorAll('.graph-cluster-answer .graph-cite')];
 assert.deepEqual(pills.map(p => p.textContent), ['1 · T c1', '2 · T c3', '1 · T c1', '2 · T c3'], 'numbers follow the order sent to the model (unopened first)');
 assert.ok(/\[9\]/.test(card.querySelector('.graph-cluster-answer').textContent), 'out-of-range reference stays text');
 opened.length = 0; pills[1].click(); assert.deepEqual(opened, ['c3'], 'pill opens its article');
+const srcs = [...card.querySelectorAll('.graph-cluster-sources .graph-cluster-src')];
+assert.deepEqual(srcs.map(b => b.textContent), ['1T c1', '2T c3'], 'numbered source list mirrors the pills');
+opened.length = 0; srcs[1].click(); assert.deepEqual(opened, ['c3'], 'a source row opens its article');
 
 // question: whole topic, answer rendered as text
 const input = card.querySelector('.graph-cluster-ask input'); input.value = 'What is common?';
@@ -103,12 +115,13 @@ assert.ok(!ans.querySelector('img') && ans.textContent.includes('<img'), 'AI out
 assert.equal(w.__pwned, undefined);
 
 // list = the old one-tap filter
-[...card.querySelectorAll('.graph-preview-foot button')].find(b => b.textContent === 'Show list').click();
-assert.deepEqual(filtered, ['Topic <b>']); assert.ok(!area.querySelector('.graph-cluster-card'), 'card closes');
+card.querySelector('.graph-cluster-show').click();
+assert.deepEqual(filtered, ['Topic <b>']); assert.ok(!area.querySelector('.graph-cluster-page'), 'page closes');
 
 // feed items without a stored summary cannot be exported, but can be briefed from their snippets
-const feedCard = gc.showClusterCard(area, { label: 'News', articles: [{ title: 'F1', snippet: 'snip one' }, { title: 'F2', snippet: 'snip two' }] });
-const labels = [...feedCard.querySelectorAll('.graph-preview-foot button')].map(b => b.textContent);
+gc.showClusterCard(area, { label: 'News', articles: [{ title: 'F1', snippet: 'snip one' }, { title: 'F2', snippet: 'snip two' }] }).querySelector('.graph-cluster-peek-open').click();
+const feedCard = area.querySelector('.graph-cluster-page');
+const labels = [...feedCard.querySelectorAll('button')].map(b => b.textContent);
 assert.ok(labels.some(l => /Brief me/.test(l)) && !labels.some(l => /Markdown/.test(l)), labels.join('|'));
 
 // ── export of just one cluster ──

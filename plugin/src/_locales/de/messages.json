@@ -4414,5 +4414,14 @@
   },
   "f_of_articles_in_window_a381": {
     "message": "{a} von {b} Artikeln im Zeitraum"
+  },
+  "f_never_opened_5256": {
+    "message": "Nie geöffnet"
+  },
+  "f_opened_0e03": {
+    "message": "Geöffnet ({n})"
+  },
+  "f_sources_used_0e42": {
+    "message": "Verwendete Quellen"
   }
 }
