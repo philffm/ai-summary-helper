@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "Scollega ed elimina la posta in arrivo"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Impossibile salvare questa pagina. Aprila una volta e riprova."
+  },
+  "f_saving_9e7f": {
+    "message": "Salvataggio…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Mostra quali articoli condividono argomenti, come immagine e come elenco"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Questa pagina non contiene testo da salvare."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Aggiungi una mappa dei collegamenti"
   }
 }

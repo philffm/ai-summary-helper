@@ -4546,5 +4546,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "페어링 해제 및 받은 편지함 삭제"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "이 페이지를 저장하지 못했습니다. 한 번 열어 본 뒤 다시 시도하세요."
+  },
+  "f_saving_9e7f": {
+    "message": "저장 중…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "어떤 기사가 주제를 공유하는지 그림과 목록으로 보여 줍니다"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "이 페이지에는 저장할 텍스트가 없습니다."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ 연결 지도 추가"
   }
 }

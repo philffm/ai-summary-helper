@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "Desvincular y eliminar la bandeja"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "No se pudo guardar esta página. Ábrela una vez e inténtalo de nuevo."
+  },
+  "f_saving_9e7f": {
+    "message": "Guardando…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Muestra qué artículos comparten temas, como imagen y como lista"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Esta página no tiene texto que guardar."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Añadir un mapa de conexiones"
   }
 }

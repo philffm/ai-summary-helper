@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "Dissocier et supprimer la boîte"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Impossible d'enregistrer cette page. Ouvrez-la une fois puis réessayez."
+  },
+  "f_saving_9e7f": {
+    "message": "Enregistrement…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Montre quels articles partagent des sujets, en image et en liste"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Cette page ne contient aucun texte à enregistrer."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Ajouter une carte des liens"
   }
 }

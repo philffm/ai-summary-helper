@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "إلغاء الإقران وحذف الصندوق"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "تعذّر حفظ هذه الصفحة. افتحها مرة واحدة ثم حاول مجددًا."
+  },
+  "f_saving_9e7f": {
+    "message": "جارٍ الحفظ…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "يعرض المقالات التي تشترك في المواضيع — كصورة وكقائمة"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "لا يوجد نص في هذه الصفحة لحفظه."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ إضافة خريطة اتصالات"
   }
 }

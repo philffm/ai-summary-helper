@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "Отключить и удалить входящие"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Не удалось сохранить эту страницу. Откройте её один раз и повторите попытку."
+  },
+  "f_saving_9e7f": {
+    "message": "Сохранение…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Показывает, какие статьи имеют общие темы — в виде схемы и списка"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "На этой странице нет текста для сохранения."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Добавить карту связей"
   }
 }

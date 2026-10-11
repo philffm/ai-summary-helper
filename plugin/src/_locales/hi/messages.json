@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "अनपेयर करें और इनबॉक्स हटाएँ"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "यह पेज सहेजा नहीं जा सका। इसे एक बार खोलें और फिर कोशिश करें।"
+  },
+  "f_saving_9e7f": {
+    "message": "सहेजा जा रहा है…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "दिखाता है कि कौन-से लेख विषय साझा करते हैं — चित्र और सूची के रूप में"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "इस पेज पर सहेजने के लिए कोई टेक्स्ट नहीं है।"
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ कनेक्शन मैप जोड़ें"
   }
 }

@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "Trennen und Posteingang löschen"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Diese Seite konnte nicht gespeichert werden. Öffne sie einmal und versuche es erneut."
+  },
+  "f_saving_9e7f": {
+    "message": "Speichern…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Zeigt, welche Artikel Themen teilen – als Grafik und als Liste"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Diese Seite enthält keinen Text zum Speichern."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Verbindungskarte hinzufügen"
   }
 }

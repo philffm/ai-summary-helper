@@ -4564,5 +4564,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "取消配對並刪除收件匣"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "無法儲存此頁面。請先開啟一次再重試。"
+  },
+  "f_saving_9e7f": {
+    "message": "儲存中…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "以圖像和清單顯示哪些文章共用主題"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "此頁面沒有可儲存的文字。"
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ 新增關聯圖"
   }
 }

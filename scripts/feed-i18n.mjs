@@ -80,7 +80,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         for (const s of strings) { const hint = [...new Set(s.match(/\{[a-z]+\}/g) || [])]; en[keyOf(s)] = hint.length ? { message: s, description: 'Placeholders: ' + hint.join(' ') + ' (keep as is)' } : { message: s }; }
         fs.writeFileSync(pe, JSON.stringify(en, null, 2) + '\n');
     } else if (cmd === 'check') {
-        const strings = extract(); const lines = []; let bad = 0;
+        const strings = extract(); const lines = []; let bad = 0, missingTotal = 0;   // bad = broken placeholders (fails); missing = falls back to English (reported only)
         const en = readJson(path.join(LOC, 'en/messages.json'));
         const missingEn = strings.filter(s => !en[keyOf(s)]); if (missingEn.length) lines.push(`en is missing ${missingEn.length} strings (run merge)`);
         const summary = []; const flagged = [];
@@ -96,7 +96,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
                 if (w > lim) long.push({ en: s, tr: v, w, en_w: width(s), ratio: +(w / width(s)).toFixed(2) });
             }
             summary.push({ l, have: strings.length - miss.length, miss: miss.length, phBad: phBad.length, long: long.length });
-            bad += miss.length + phBad.length;
+            bad += phBad.length; missingTotal += miss.length;
             if (miss.length) lines.push(`### ${l}: ${miss.length} missing\n` + miss.map(s => '- ' + s).join('\n'));
             if (phBad.length) lines.push(`### ${l}: placeholder mismatch\n` + phBad.map(s => '- ' + s).join('\n'));
             flagged.push({ l, long });
@@ -107,6 +107,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         for (const { l, long } of flagged) { if (!long.length) continue; md += `\n### ${l}\n| English | Translation | width | ratio |\n|---|---|---|---|\n`; for (const x of long.sort((a, b) => b.ratio - a.ratio)) md += `| ${x.en.replace(/\|/g, '\\|')} | ${x.tr.replace(/\|/g, '\\|')} | ${x.w} vs ${x.en_w} | ${x.ratio}× |\n`; }
         if (lines.length) md += '\n## Problems\n\n' + lines.join('\n\n') + '\n';
         fs.writeFileSync(path.join(ROOT, 'scripts/feed-i18n-report.md'), md);
-        console.table(summary); console.log('report → scripts/feed-i18n-report.md'); process.exitCode = bad ? 1 : 0;
+        console.table(summary); console.log('report → scripts/feed-i18n-report.md');
+        if (missingTotal) {   // not a failure: the UI falls back to English. A reminder for the next translation run.
+            const some = [...new Set(summary.filter(x => x.miss).flatMap(x => strings.filter(s2 => !readJson(path.join(LOC, x.l, 'messages.json'))[keyOf(s2)])))];
+            console.log(`WARNING: ${missingTotal} missing translations (${some.length} strings), shown in English until translated:\n` + some.slice(0, 20).map(x => '  - ' + x).join('\n'));
+            if (process.env.GITHUB_ACTIONS) console.log(`::warning title=Missing translations::${some.length} string(s) have no translation in some locales and fall back to English. Run \`node scripts/feed-i18n.mjs extract\`, translate, then \`merge\`. First: ${some.slice(0, 3).join(' | ')}`);
+        }
+        if (bad) console.log(`ERROR: ${bad} translation(s) with different {placeholders} than the English text`);
+        process.exitCode = bad ? 1 : 0;
     } else console.log('usage: feed-i18n.mjs extract|merge <dir>|check');
 }

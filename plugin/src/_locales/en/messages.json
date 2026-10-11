@@ -4790,5 +4790,20 @@
   },
   "f_unpair_and_delete_inbox_84be": {
     "message": "Unpair and delete inbox"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Couldn't save this page. Open it once and try again."
+  },
+  "f_saving_9e7f": {
+    "message": "Saving…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Shows which articles share topics — as a picture and a list"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "This page has no text to save."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Add a connection map"
   }
 }
