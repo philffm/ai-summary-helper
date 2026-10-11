@@ -4348,5 +4348,71 @@
   },
   "f_back_to_top_bd70": {
     "message": "Наверх"
+  },
+  "f_all_time_702d": {
+    "message": "Всё время"
+  },
+  "f_ask_61b2": {
+    "message": "Спросить"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "Задайте вопрос по этим статьям…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "Экспортировать эти статьи как .zip с файлами Markdown"
+  },
+  "f_from_3595": {
+    "message": "С"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "По {n} резюме; больше ничего не отправлялось"
+  },
+  "f_gaps_6714": {
+    "message": "Пробелы"
+  },
+  "f_reading_summaries_782f": {
+    "message": "Читаю резюме: {n}…"
+  },
+  "f_show_list_245c": {
+    "message": "Показать список"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "Начато и не продолжено"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "У этих статей ещё нет резюме"
+  },
+  "f_to_9644": {
+    "message": "По"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "Темы с одной-двумя сохранёнными статьями, которые вы не открывали 30 дней. Список для чтения того, что вы начали."
+  },
+  "f_last_opened_99c0": {
+    "message": "последний раз открыто {d}"
+  },
+  "f_never_opened_c436": {
+    "message": "ни разу не открыто"
+  },
+  "f_never_opened_bf12": {
+    "message": "Не открыто ни разу: {n}"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "Тем начато и не продолжено: {n}"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ Обзор непрочитанных ({n})"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ Обзор по этой теме"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 Время"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a} из {b} статей в периоде"
   }
 }

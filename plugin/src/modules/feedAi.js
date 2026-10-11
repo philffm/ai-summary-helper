@@ -421,6 +421,29 @@ export async function generateDigestIntro(list, style = 'briefing', { onStage, s
     return text;
 }
 
+/**
+ * One request over a cluster of saved articles (a topic in the graph), written ONLY from their summaries:
+ * a short briefing when there is no question, otherwise an answer to it. Items are cited as [n].
+ * Returns { text, used, articles } — `used` = how many articles went in (capped at CLUSTER_MAX); articles[n-1] is item [n].
+ */
+export const CLUSTER_MAX = 15;
+export async function askCluster(list, { topic = '', question = '' } = {}, { onStage, signal, onProgress } = {}) {
+    const lang = await languageName();
+    const plain = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ');
+    const q = String(question || '').trim();
+    const items = list.map(a => ({ a, body: clip(plain(a.summary || a.snippet || ''), 500) })).filter(x => x.body).slice(0, CLUSTER_MAX);
+    if (!items.length) throw new Error(T('These articles have no summaries yet'));
+    const system = `You work from a reader's own saved article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
+        + 'Use ONLY the numbered summaries: no outside facts. Refer to items as [n]. If they do not contain the answer, say so. '
+        + (q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
+            : 'Write a short briefing: what they say together, where they differ or add to each other, and which one to read first. At most 8 bullet lines, no headings.');
+    const user = items.map((x, i) => `[${i + 1}] ${clip(x.a.title, 140)} — ${x.body}`).join('\n') + (q ? `\n\nQuestion: ${clip(q, 400)}` : '');
+    const raw = await aiComplete(system, user, onStage, signal, onProgress, { partial: true });
+    const text = String(raw || '').replace(/^```\w*\n?|```$/gm, '').trim();
+    if (!text) throw new Error(T('The AI reply could not be read'));
+    return { text, used: items.length, articles: items.map(x => x.a) };   // articles[n-1] is what the text cites as [n]
+}
+
 /** Stable fingerprint of a recap (what a week/month recap was built from) — changes when a day/week recap is regenerated. */
 export function recapSig(r) {
     const t = [r.overview, (r.themes || []).join('|'), r.mood].join('¦');

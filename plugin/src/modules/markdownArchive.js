@@ -95,22 +95,25 @@ export async function buildZip(files, { onProgress } = {}) {
 }
 
 /** Reads the whole history and returns the [{name,text}] list (files placed under `ai-summary-helper/`). */
-export async function buildArchiveFiles({ onProgress } = {}) {
+export async function buildArchiveFiles({ onProgress, ids = null } = {}) {
     const get = (k) => new Promise(resolve => chrome.storage.local.get(k, resolve));
     const { [SK.articlesIndex]: index = [], [SK.annotations]: annotations = [] } = await get({ [SK.articlesIndex]: [], [SK.annotations]: [] });
-    const list = index.filter(a => a && a.id && !a.feedStub && !a.savedOnly);
+    const everything = index.filter(a => a && a.id && !a.feedStub && !a.savedOnly);
+    // `ids` = export only these articles (a graph cluster); names and [[related]] links still come from the whole archive.
+    const want = ids ? new Set(ids) : null;
+    const list = want ? everything.filter(a => want.has(a.id)) : everything;
     const hlByUrl = new Map();
     for (const h of annotations) { if (h && h.url && !h.dismissed) { if (!hlByUrl.has(h.url)) hlByUrl.set(h.url, []); hlByUrl.get(h.url).push(h); } }
 
     const used = new Set();
     const names = new Map();
-    for (const a of list) {
+    for (const a of everything) {
         let base = safeFileName(a.title), n = 2;
         while (used.has(base.toLowerCase())) base = `${safeFileName(a.title)} (${n++})`;
         used.add(base.toLowerCase()); names.set(a.id, base);
     }
     const byTag = new Map();
-    for (const a of list) for (const t of new Set((a.tags || []).map(x => String(x).toLowerCase()))) { if (!byTag.has(t)) byTag.set(t, []); byTag.get(t).push(a.id); }
+    for (const a of everything) for (const t of new Set((a.tags || []).map(x => String(x).toLowerCase()))) { if (!byTag.has(t)) byTag.set(t, []); byTag.get(t).push(a.id); }
 
     const files = [];
     for (let i = 0; i < list.length; i += BATCH) {
@@ -135,13 +138,13 @@ export async function buildArchiveFiles({ onProgress } = {}) {
 }
 
 /** Builds the zip and triggers the download. Resolves with the number of exported articles. */
-export async function exportHistoryMarkdown({ onProgress } = {}) {
-    const files = await buildArchiveFiles({ onProgress });
+export async function exportHistoryMarkdown({ onProgress, ids = null, name = 'history' } = {}) {
+    const files = await buildArchiveFiles({ onProgress, ids });
     const blob = await buildZip(files);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `aish_history_${new Date().toISOString().split('T')[0].replace(/-/g, '')}_${files.length}articles.zip`;
+    a.download = `aish_${safeFileName(name).replace(/\s+/g, '_').toLowerCase()}_${new Date().toISOString().split('T')[0].replace(/-/g, '')}_${files.length}articles.zip`;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     return files.length;

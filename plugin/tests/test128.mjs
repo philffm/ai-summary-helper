@@ -1,0 +1,123 @@
+// Graph view uses: topic cluster card (unopened list, briefing, question, export), "Gaps" reading list, time window.
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+const { store, w } = setup({});
+const d = w.document;
+globalThis.document = d; globalThis.window = w;
+const DAY = 86400000, now = Date.now();
+const art = (id, tags, daysAgo, extra = {}) => ({ id, title: 'T ' + id, tags, timestamp: new Date(now - daysAgo * DAY).toISOString(), summary: `<p>Summary of ${id}</p>`, ...extra });
+
+const ag = await imp('modules/archiveGraph.js');
+const gc = await imp('modules/graphClusters.js');
+
+// ── gaps: topics with ≤2 articles that nobody opened for 30 days ──
+const arts = [
+    art('a1', ['Solo'], 90),                                   // one article, never opened → gap
+    art('a2', ['Pair'], 100, { lastOpened: new Date(now - 80 * DAY).toISOString() }), art('a3', ['Pair'], 95),   // two, last touched 80d ago → gap
+    art('a4', ['Fresh'], 100, { lastOpened: new Date(now - 2 * DAY).toISOString() }),   // opened recently → no gap
+    art('b1', ['Big'], 60), art('b2', ['Big'], 50), art('b3', ['Big'], 40),             // three articles: a real topic, not a gap
+    art('n1', ['Recent'], 3)                                    // too new to call forgotten
+];
+const gaps = ag.findGaps(arts, { now });
+assert.deepEqual(gaps.map(g => g.label), ['Solo', 'Pair'], 'never-opened first, then longest untouched');
+assert.equal(gaps[0].never, true); assert.equal(gaps[1].never, false);
+assert.deepEqual(gaps[1].articles.map(a => a.id).sort(), ['a2', 'a3']);
+
+// ── cluster membership via tag links only ──
+const nodes = [
+    { id: 'tag-x', group: 'tag', label: 'X' }, { id: 'article-1', group: 'article', data: arts[0] },
+    { id: 'article-2', group: 'article', data: arts[1] }, { id: 'article-3', group: 'article', data: arts[2] }
+];
+const links = [{ source: 'article-1', target: 'tag-x' }, { source: 'article-2', target: 'tag-x' }, { source: 'article-3', target: 'article-1', kind: 'similarity' }];
+assert.deepEqual(ag.articlesOfTag(nodes, links, 'tag-x').map(a => a.id), ['a1', 'a2'], 'similarity links do not join a topic');
+
+// ── time window ──
+const span = ag.monthsOf(arts);
+assert.ok(span && span.max > span.min, 'archive spans several months');
+const hist = ag.monthHistogram(arts, span);
+assert.equal(hist.length, span.max - span.min + 1, 'one bar per month');
+assert.equal(hist.reduce((a, b) => a + b, 0), arts.length, 'every article lands in exactly one bar');
+assert.deepEqual(ag.monthHistogram([], null), [], 'no span, no bars');
+const lo = ag.monthIndex(now - 10 * DAY), hi = span.max;
+const vis = ag.visibleInRange(nodes.map(n => n.group === 'article' ? { ...n, data: { ...n.data, timestamp: n.id === 'article-1' ? new Date(now - 200 * DAY).toISOString() : new Date(now - 2 * DAY).toISOString() } } : n), links, lo, hi);
+assert.ok(!vis.has('article-1') && vis.has('article-2'), 'old article fades, recent stays');
+assert.ok(vis.has('tag-x'), 'a topic with one visible article stays');
+const visNone = ag.visibleInRange([{ id: 'article-1', group: 'article', data: { timestamp: new Date(now - 200 * DAY).toISOString() } }, nodes[0]], [links[0]], lo, hi);
+assert.ok(!visNone.has('tag-x'), 'a topic with nothing in the window fades');
+
+// ── Graph | List | Gaps switch ──
+const host = d.createElement('div'); d.body.append(host);
+const openedFromGaps = []; host.addEventListener('open-article', (e) => openedFromGaps.push(e.detail.id));
+ag.renderGraphList(host, nodes, links, gaps);
+const segs = [...host.querySelectorAll('.graph-view-toggle button')].map(b => b.textContent);
+assert.deepEqual(segs, ['Graph', 'List', 'Gaps 2']);
+assert.ok(host.querySelector('.graph-gaps').hidden, 'gaps hidden at first');
+host.querySelectorAll('.graph-view-toggle button')[2].click();
+assert.equal(host.dataset.graphMode, 'gaps'); assert.ok(!host.querySelector('.graph-gaps').hidden);
+assert.ok(host.querySelector('.graph-list:not(.graph-gaps)').hidden);
+host.querySelector('.graph-gaps .graph-list-item').click();
+assert.deepEqual(openedFromGaps, ['a1'], 'a gap article opens like a node');
+const noGaps = d.createElement('div'); d.body.append(noGaps); ag.renderGraphList(noGaps, nodes, links, []);
+assert.deepEqual([...noGaps.querySelectorAll('.graph-view-toggle button')].map(b => b.textContent), ['Graph', 'List'], 'no Gaps segment without gaps');
+
+// ── cluster card ──
+const sent = [];
+globalThis.__ai = (m) => { sent.push(m); return { ok: true, text: /Question:/.test(m.user) ? 'Answer [1] <img src=x onerror=window.__pwned=1>' : '- point one [1] and [2]\n- point two [1, 2] and [9]' }; };
+const cluster = [
+    art('c1', ['Topic'], 40, { content: 'FULL ARTICLE TEXT SHOULD NOT LEAVE' }),
+    art('c2', ['Topic'], 20, { lastOpened: new Date(now - DAY).toISOString() }),
+    art('c3', ['Topic'], 10)
+];
+const stats = gc.clusterStats(cluster);
+assert.deepEqual(stats, { total: 3, unopened: 2, withSummary: 3, exportable: 3 });
+const area = d.createElement('div'); d.body.append(area);
+const filtered = []; area.addEventListener('filter-by-tag', (e) => filtered.push(e.detail.tag));
+const opened = []; area.addEventListener('open-article', (e) => opened.push(e.detail.id));
+const card = gc.showClusterCard(area, { label: 'Topic <b>', articles: cluster });
+assert.ok(/3 articles/.test(card.textContent) && /2 never opened/.test(card.textContent), card.textContent);
+assert.equal(card.querySelector('strong').textContent, 'Topic <b>'); assert.ok(!card.querySelector('strong b'), 'label is text');
+const openers = [...card.querySelectorAll('.graph-cluster-open')];
+assert.deepEqual(openers.map(b => b.textContent), ['T c1', 'T c3'], 'only unopened, oldest first');
+openers[0].click(); assert.deepEqual(opened, ['c1']);
+
+// briefing: covers the unopened ones, from summaries only
+const brief = [...card.querySelectorAll('.graph-preview-foot button')].find(b => /Brief me on the 2 unopened/.test(b.textContent));
+assert.ok(brief, 'briefing button names the count');
+brief.click(); await tick(80);
+assert.equal(sent.length, 1);
+assert.ok(/Summary of c1/.test(sent[0].user) && /Summary of c3/.test(sent[0].user) && !/Summary of c2/.test(sent[0].user), 'unopened only');
+assert.ok(!/FULL ARTICLE TEXT/.test(sent[0].user), 'article body never sent');
+assert.ok(card.querySelector('.graph-cluster-answer').textContent.includes('point one'));
+// [n] becomes a pill with the article's name that opens it; unknown numbers stay text
+const pills = [...card.querySelectorAll('.graph-cluster-answer .graph-cite')];
+assert.deepEqual(pills.map(p => p.textContent), ['1 · T c1', '2 · T c3', '1 · T c1', '2 · T c3'], 'numbers follow the order sent to the model (unopened first)');
+assert.ok(/\[9\]/.test(card.querySelector('.graph-cluster-answer').textContent), 'out-of-range reference stays text');
+opened.length = 0; pills[1].click(); assert.deepEqual(opened, ['c3'], 'pill opens its article');
+
+// question: whole topic, answer rendered as text
+const input = card.querySelector('.graph-cluster-ask input'); input.value = 'What is common?';
+card.querySelector('.graph-cluster-ask').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); await tick(80);
+assert.equal(sent.length, 2);
+assert.ok(/Question: What is common\?/.test(sent[1].user) && /Summary of c2/.test(sent[1].user), 'a question looks at the whole topic');
+const ans = card.querySelector('.graph-cluster-answer');
+assert.ok(!ans.querySelector('img') && ans.textContent.includes('<img'), 'AI output is text, not markup');
+assert.equal(w.__pwned, undefined);
+
+// list = the old one-tap filter
+[...card.querySelectorAll('.graph-preview-foot button')].find(b => b.textContent === 'Show list').click();
+assert.deepEqual(filtered, ['Topic <b>']); assert.ok(!area.querySelector('.graph-cluster-card'), 'card closes');
+
+// feed items without a stored summary cannot be exported, but can be briefed from their snippets
+const feedCard = gc.showClusterCard(area, { label: 'News', articles: [{ title: 'F1', snippet: 'snip one' }, { title: 'F2', snippet: 'snip two' }] });
+const labels = [...feedCard.querySelectorAll('.graph-preview-foot button')].map(b => b.textContent);
+assert.ok(labels.some(l => /Brief me/.test(l)) && !labels.some(l => /Markdown/.test(l)), labels.join('|'));
+
+// ── export of just one cluster ──
+const { SK } = await imp('modules/storageKeys.js');
+store[SK.articlesIndex] = [art('e1', ['T'], 5), art('e2', ['T'], 4), art('e3', ['U'], 3)];
+const md = await imp('modules/markdownArchive.js');
+const all = await md.buildArchiveFiles({});
+const some = await md.buildArchiveFiles({ ids: ['e1', 'e2'] });
+assert.equal(all.length, 3); assert.equal(some.length, 2);
+assert.ok(some.every(f => /T e[12]\.md$/.test(f.name)));
+assert.ok(some.find(f => /e1\.md/.test(f.name)).text.includes('[[T e2]]'), 'related links still resolve inside the cluster');
+console.log('ok');

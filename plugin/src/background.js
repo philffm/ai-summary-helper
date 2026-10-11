@@ -581,8 +581,8 @@ async function pollFeeds() {
         let timedOut = false;
         const saveRatings = (items) => {
             for (const item of items) {
-                const { ai, sent, cat } = item;
-                if (ai || sent !== undefined || cat) state.ratings[item.id] = { ...(ai ? { ai } : {}), ...(sent !== undefined ? { sent } : {}), ...(cat ? { cat } : {}) };
+                const { ai, sent, cat, catTried } = item;
+                if (ai || sent !== undefined || cat) state.ratings[item.id] = { ...(ai ? { ai } : {}), ...(sent !== undefined ? { sent } : {}), ...(cat ? { cat } : {}), ...(catTried && !cat ? { catTried } : {}) };
             }
         };
         const aiCall = async (fn, signal) => {
@@ -598,6 +598,7 @@ async function pollFeeds() {
             chunk.forEach((item, index) => {
                 if (!item.ai && result.scores[index] !== null) { item.sent = result.scores[index]; item.ai = true; }
                 if (!item.cat && result.labels && result.labels[index]) item.cat = result.labels[index];
+                if (item.ai && !item.cat) item.catTried = true;
             });
             saveRatings(chunk);
             await chrome.storage.local.set({ [SK.feedBackground]: state });
@@ -638,6 +639,7 @@ async function pollFeeds() {
                     if (d.feedSettings.rateWithRecap !== false) chunk.forEach((item, n) => {
                         if (!item.ai && recap.scores && recap.scores[n] != null) { item.sent = recap.scores[n]; item.ai = true; }
                         if (!item.cat && recap.labels && recap.labels[n]) item.cat = recap.labels[n];
+                        if (item.ai && !item.cat) item.catTried = true;
                     });
                     const { labels: _labels, scores: _scores, ...base } = recap;
                     recap = { ...base, covered: sigs(chunk) };
@@ -648,6 +650,7 @@ async function pollFeeds() {
                     if (d.feedSettings.rateWithRecap !== false && recap.sent) recap.sent.forEach((item, n) => {
                         if (!item.ai && recap.scores && recap.scores[n] != null) { item.sent = recap.scores[n]; item.ai = true; }
                         if (!item.cat && recap.labels && recap.labels[n]) item.cat = recap.labels[n];
+                        if (item.ai && !item.cat) item.catTried = true;
                     });
                     const { labels: _labels, scores: _scores, sent: _sent, ...base } = recap;
                     recap = { ...base, covered: { ...current.covered, ...sigs(chunk) } };

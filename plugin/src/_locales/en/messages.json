@@ -4555,5 +4555,78 @@
   },
   "f_back_to_top_bd70": {
     "message": "Back to top"
+  },
+  "f_all_time_702d": {
+    "message": "All time"
+  },
+  "f_ask_61b2": {
+    "message": "Ask"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "Ask about these articles…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "Export these articles as a .zip of Markdown files"
+  },
+  "f_from_3595": {
+    "message": "From"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "From {n} summaries — nothing else was sent",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_gaps_6714": {
+    "message": "Gaps"
+  },
+  "f_reading_summaries_782f": {
+    "message": "Reading {n} summaries…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_list_245c": {
+    "message": "Show list"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "Started, never followed up"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "These articles have no summaries yet"
+  },
+  "f_to_9644": {
+    "message": "To"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "Topics with one or two saved articles that you have not opened for 30 days. A reading list for what you started."
+  },
+  "f_last_opened_99c0": {
+    "message": "last opened {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_never_opened_c436": {
+    "message": "never opened"
+  },
+  "f_never_opened_bf12": {
+    "message": "{n} never opened",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "{n} topics started and never followed up",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ Brief me on the {n} unopened",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ Brief me on this topic"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 Time"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a} of {b} articles in window",
+    "description": "Placeholders: {a} {b} (keep as is)"
   }
 }

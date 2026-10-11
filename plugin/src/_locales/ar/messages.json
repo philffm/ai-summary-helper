@@ -4348,5 +4348,71 @@
   },
   "f_back_to_top_bd70": {
     "message": "العودة إلى الأعلى"
+  },
+  "f_all_time_702d": {
+    "message": "كل الفترة"
+  },
+  "f_ask_61b2": {
+    "message": "اسأل"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "اسأل عن هذه المقالات…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "تصدير هذه المقالات كملف .zip من ملفات Markdown"
+  },
+  "f_from_3595": {
+    "message": "من"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "من {n} ملخصات؛ ولم يُرسل أي شيء آخر"
+  },
+  "f_gaps_6714": {
+    "message": "فجوات"
+  },
+  "f_reading_summaries_782f": {
+    "message": "جارٍ قراءة {n} ملخصات…"
+  },
+  "f_show_list_245c": {
+    "message": "عرض القائمة"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "بدأتها ولم تتابعها"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "ليس لهذه المقالات ملخصات بعد"
+  },
+  "f_to_9644": {
+    "message": "إلى"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "مواضيع فيها مقالة أو مقالتان محفوظتان لم تفتحهما منذ 30 يومًا. قائمة قراءة لما بدأته."
+  },
+  "f_last_opened_99c0": {
+    "message": "آخر فتح {d}"
+  },
+  "f_never_opened_c436": {
+    "message": "لم تُفتح أبدًا"
+  },
+  "f_never_opened_bf12": {
+    "message": "{n} لم تُفتح أبدًا"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "{n} مواضيع بدأتها ولم تتابعها"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ ملخص للمقالات غير المفتوحة ({n})"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ ملخص لهذا الموضوع"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 الوقت"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a} من {b} مقالات ضمن الفترة"
   }
 }

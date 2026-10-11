@@ -1308,6 +1308,8 @@ text.graph-search-dim {
 .graph-link.graph-search-dim {
   opacity: 0.05;
 }
+circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
+.graph-link.graph-time-dim { opacity: 0.03; }
 
 /* ── Bottom Navigation ─────────────────────────────────────────────────── */
 
@@ -3261,6 +3263,8 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-a-foot { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; white-space: normal; }
 .chat-src, .chat-pin { border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-secondary); border-radius: var(--radius-full); padding: 2px 8px; font-size: var(--fs-2xs); cursor: pointer; text-align: left; }
 .chat-src--open { white-space: normal; }
+.graph-cite { display: inline; margin: 0 1px; padding: 1px 7px; vertical-align: baseline; line-height: 1.6; color: var(--accent); border-color: var(--accent); }
+.graph-cite:hover, .graph-cite:focus-visible { background: var(--accent); color: #fff; }
 .chat-pin { margin-left: auto; }
 .chat-pin[aria-pressed="true"] { background: var(--accent-a12); border-color: var(--accent-a30); color: var(--accent); }
 .qa-section { display: flex; flex-direction: column; gap: 10px; }
@@ -3726,6 +3730,46 @@ body[data-surface="sidebar"] { min-width: 0; }
 .graph-preview-label { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); margin: 10px 0 4px; }
 .graph-preview-highlights ul { margin: 0; padding-left: 16px; font-size: var(--fs-sm); }
 .graph-preview-highlights li { margin-bottom: 6px; line-height: 1.4; }
+.graph-cluster-list { margin: 0 0 6px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.graph-cluster-open { width: 100%; text-align: left; padding: 6px 8px; border: 1px solid var(--outline); border-radius: var(--radius-sm); background: transparent; color: var(--text-primary); font: inherit; font-size: var(--fs-sm); cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.graph-cluster-open:hover, .graph-cluster-open:focus-visible { border-color: var(--accent); }
+.graph-cluster-ask { display: flex; gap: 6px; margin: 8px 0; }
+.graph-cluster-ask input { flex: 1; min-width: 0; padding: 6px 8px; border: 1px solid var(--outline); border-radius: var(--radius-sm); background: var(--bg-page); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); }
+.graph-cluster-answer { font-size: var(--fs-sm); margin-top: 6px; overflow-wrap: anywhere; }
+.graph-cluster-answer:empty { display: none; }
+.graph-cluster-answer.is-busy { color: var(--text-muted); }
+.graph-cluster-answer.is-error { color: var(--danger); }
+.graph-cluster-foot { display: flex; gap: 6px; flex-wrap: wrap; }
+.graph-cluster-foot > button { flex: 1 1 auto; width: auto; padding: 8px 10px; font-size: var(--fs-xs); }
+.graph-time { position: absolute; top: 48px; left: 10px; z-index: 6; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; max-width: calc(100% - 20px); }
+.graph-time-chip, .graph-time-reset { padding: 4px 10px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
+.graph-time-chip.on { border-color: var(--accent); color: var(--accent); }
+.graph-time-panel { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-base); min-width: 220px; }
+.graph-time-panel[hidden] { display: none; }
+.graph-time-label { font-size: var(--fs-xs); color: var(--text-muted); }
+/* histogram range: bars per month, two range inputs overlaid (still real inputs → keyboard + screen readers) */
+.graph-time-panel { min-width: 260px; }
+.graph-time-track { position: relative; height: 72px; margin: 2px 0 0; --lo: 0%; --hi: 100%; }
+.graph-time-bars { position: absolute; inset: 0 8px 14px; display: flex; align-items: flex-end; gap: 2px; }
+.graph-time-bars span { flex: 1; min-width: 2px; border-radius: 3px 3px 0 0; background: var(--outline); transition: background .15s; }
+.graph-time-bars span.in { background: var(--accent); }
+.graph-time-bars span.is-empty { opacity: .5; }
+.graph-time-track input[type=range] { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 22px; margin: 0; background: transparent; pointer-events: none; -webkit-appearance: none; appearance: none; accent-color: var(--accent); }
+.graph-time-track input[type=range]::-webkit-slider-runnable-track { height: 4px; background: var(--outline); border-radius: 2px; }
+.graph-time-track input[type=range]::-moz-range-track { height: 4px; background: var(--outline); border-radius: 2px; }
+.graph-time-track input[type=range]:last-of-type::-webkit-slider-runnable-track { background: transparent; }
+.graph-time-track input[type=range]:last-of-type::-moz-range-track { background: transparent; }
+.graph-time-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 18px; height: 18px; margin-top: -7px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); cursor: grab; }
+.graph-time-track input[type=range]::-moz-range-thumb { pointer-events: auto; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); cursor: grab; }
+.graph-time-track input[type=range]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.graph-time-track input[type=range]:focus-visible::-moz-range-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.graph-time-ends { display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--text-muted); margin-top: -2px; }
+.graph-time-reset { align-self: flex-end; }
+#graphContainer[data-graph-mode="list"] .graph-time, #graphContainer[data-graph-mode="gaps"] .graph-time,
+.feed-graph[data-graph-mode="list"] .graph-time, .feed-graph[data-graph-mode="gaps"] .graph-time { display: none; }
+.graph-gaps-note { font-size: var(--fs-sm); color: var(--text-muted); }
+.graph-gap { display: flex; flex-direction: column; gap: 4px; padding: 8px 0; border-bottom: 1px solid var(--outline); }
+.graph-gap .graph-list-item { padding: 6px 10px; }
 
 /* ── Card ⋯ actions menu ─────────────────────────────────────────────── */
 .card-side { display: flex; align-items: flex-start; gap: 2px; flex: none; align-self: flex-start; }

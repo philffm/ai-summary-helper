@@ -4348,5 +4348,71 @@
   },
   "f_back_to_top_bd70": {
     "message": "Voltar ao topo"
+  },
+  "f_all_time_702d": {
+    "message": "Todo o período"
+  },
+  "f_ask_61b2": {
+    "message": "Perguntar"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "Pergunte sobre estes artigos…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "Exportar estes artigos como .zip de ficheiros Markdown"
+  },
+  "f_from_3595": {
+    "message": "De"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "A partir de {n} resumos; nada mais foi enviado"
+  },
+  "f_gaps_6714": {
+    "message": "Lacunas"
+  },
+  "f_reading_summaries_782f": {
+    "message": "A ler {n} resumos…"
+  },
+  "f_show_list_245c": {
+    "message": "Mostrar lista"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "Começado, nunca retomado"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "Estes artigos ainda não têm resumo"
+  },
+  "f_to_9644": {
+    "message": "Até"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "Temas com um ou dois artigos guardados que não abre há 30 dias. Uma lista de leitura do que começou."
+  },
+  "f_last_opened_99c0": {
+    "message": "aberto pela última vez {d}"
+  },
+  "f_never_opened_c436": {
+    "message": "nunca aberto"
+  },
+  "f_never_opened_bf12": {
+    "message": "{n} nunca abertos"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "{n} temas começados e nunca retomados"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ Resumo dos {n} por abrir"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ Resumo deste tema"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 Período"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a} de {b} artigos no período"
   }
 }

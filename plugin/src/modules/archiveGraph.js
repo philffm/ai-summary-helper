@@ -39,6 +39,7 @@ import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
 import { conceptKey, isKnownTopic, topicLabel } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
+import { setIconLabel } from './icons.js';
 
 let d3LoadPromise = null;
 
@@ -117,6 +118,82 @@ function mostSimilarIncluded(similarityIndex, article, allArticles, includedArti
 // One node per topic, not per spelling: News / Nachrichten / Noticias share a node, shown in the UI language.
 const tagIdOf = (tag) => 'tag-' + (isKnownTopic(tag) ? 'c-' + conceptKey(tag).replace(/^c:/, '') : tag.toLowerCase()).replace(/\s+/g, '-');
 const tagLabelOf = (tag) => topicLabel(tag, uiLocale());
+
+// "Started, never deepened": topics with at most GAP_MAX_ARTICLES saved articles where nothing was opened for GAP_DAYS.
+const GAP_DAYS = 30;
+const GAP_MAX_ARTICLES = 2;
+const GAP_CAP = 25;
+const stamp = (a) => { const t = new Date(a.lastOpened || a.timestamp).getTime(); return Number.isFinite(t) ? t : 0; };
+
+/**
+ * Topics that were started and never followed up: { id, label, articles, last, never } — never-opened topics first,
+ * then the longest untouched. Counted over ALL articles (rarely-used tags are hidden in the graph, so this is
+ * the one place they show up).
+ */
+export function findGaps(articles, { now = Date.now(), days = GAP_DAYS, maxArticles = GAP_MAX_ARTICLES, cap = GAP_CAP } = {}) {
+    const byTag = new Map();
+    (articles || []).forEach(a => (a.tags || []).forEach(tag => {
+        const id = tagIdOf(tag);
+        let e = byTag.get(id);
+        if (!e) byTag.set(id, e = { id, label: tagLabelOf(tag), articles: [] });
+        if (!e.articles.includes(a)) e.articles.push(a);
+    }));
+    const out = [];
+    byTag.forEach(e => {
+        if (e.articles.length > maxArticles) return;
+        const last = Math.max(...e.articles.map(stamp));
+        if ((now - last) / 86400000 < days) return;
+        out.push({ ...e, last, never: e.articles.every(a => !a.lastOpened) });
+    });
+    return out.sort((a, b) => (b.never - a.never) || (a.last - b.last)).slice(0, cap);
+}
+
+/** The articles connected to one tag node (tag links only; similarity links do not make an article part of a topic). */
+export function articlesOfTag(nodes, links, tagId) {
+    const byId = new Map(nodes.map(n => [n.id, n]));
+    const id = (x) => (typeof x === 'object' ? x.id : x);
+    const out = new Map();
+    links.forEach(l => {
+        if (l.kind === 'similarity') return;
+        const a = byId.get(id(l.source)), b = byId.get(id(l.target));
+        if (!a || !b) return;
+        const art = a.group === 'article' && b.id === tagId ? a : b.group === 'article' && a.id === tagId ? b : null;
+        if (art && art.data) out.set(art.id, art.data);
+    });
+    return [...out.values()];
+}
+
+// Time window over the graph: article nodes outside [from, to] (whole months) fade, topics with nothing inside fade too.
+const TIME_DIM_CLASS = 'graph-time-dim';
+export function monthIndex(ts) { const d = new Date(ts); return d.getFullYear() * 12 + d.getMonth(); }
+export function monthsOf(articles) {
+    const idx = (articles || []).map(a => new Date(a.timestamp).getTime()).filter(Number.isFinite).map(monthIndex);
+    return idx.length ? { min: Math.min(...idx), max: Math.max(...idx) } : null;
+}
+/** Articles per month from span.min..span.max (array index 0 = span.min). Pure. */
+export function monthHistogram(articles, span) {
+    if (!span) return [];
+    const out = new Array(span.max - span.min + 1).fill(0);
+    (articles || []).forEach((a) => { const t = new Date(a.timestamp).getTime(); if (Number.isFinite(t)) { const i = monthIndex(t) - span.min; if (i >= 0 && i < out.length) out[i]++; } });
+    return out;
+}
+const monthLabel = (i) => new Date(Math.floor(i / 12), i % 12, 1).toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+/** Which node ids stay visible in [fromIdx, toIdx] (month indexes). Pure. */
+export function visibleInRange(nodes, links, fromIdx, toIdx) {
+    const id = (x) => (typeof x === 'object' ? x.id : x);
+    const visible = new Set();
+    nodes.forEach(n => {
+        if (n.group !== 'article') return;
+        const t = new Date(n.data && n.data.timestamp).getTime();
+        if (!Number.isFinite(t)) { visible.add(n.id); return; }
+        const m = monthIndex(t);
+        if (m >= fromIdx && m <= toIdx) visible.add(n.id);
+    });
+    const tagsOn = new Set();
+    links.forEach(l => { const s = id(l.source), t = id(l.target); if (visible.has(s)) tagsOn.add(t); if (visible.has(t)) tagsOn.add(s); });
+    nodes.forEach(n => { if (n.group === 'tag' && tagsOn.has(n.id)) visible.add(n.id); });
+    return visible;
+}
 
 function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null) {
     // 1. Count tag degree first, so we can filter before building nodes/links.
@@ -714,12 +791,10 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
             event.stopPropagation();
             showPreviewCard(container, d.data);
         } else if (d.group === 'tag') {
+            // A tap opens the topic's card (briefing / question / export / "Show list" = the old one-tap filter).
             event.stopPropagation();
-            container.dispatchEvent(new CustomEvent('filter-by-tag', {
-                detail: { tag: d.label },
-                bubbles: true,
-                composed: true
-            }));
+            const members = articlesOfTag(nodes, links, d.id);
+            import('./graphClusters.js').then(m => m.showClusterCard(container, { label: d.label, articles: members }));
         }
     });
 
@@ -759,7 +834,8 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     // well-connected/all-tags toggle is primary navigation, not optional
     // status text. (The filtered/highlight scope switch lives in the
     // archive search box itself now, not here — see articleManager.js.)
-    renderGraphList(container, nodes, links);
+    renderGraphList(container, nodes, links, findGaps(articles));
+    renderTimeRange(container, nodes, links, articles);
     renderGraphControls(container, {
         hiddenTagCount,
         capped,
@@ -775,13 +851,77 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
 }
 
 
+/** "🕐 Time" chip (top-left, under the Graph|List switch) that opens a from/to month window over the graph. */
+function renderTimeRange(container, nodes, links, articles) {
+    const span = monthsOf(articles);
+    if (!span || span.max - span.min < 1 || !container.__archiveGraphSelections) return;
+    const sel = container.__archiveGraphSelections;
+    const wrap = document.createElement('div');
+    wrap.className = 'graph-time';
+    const chip = document.createElement('button');
+    chip.type = 'button'; chip.className = 'graph-time-chip'; chip.setAttribute('aria-expanded', 'false');
+    setIconLabel(chip, 'clock', T('🕐 Time'));
+    const panel = document.createElement('div');
+    panel.className = 'graph-time-panel'; panel.hidden = true;
+    const text = document.createElement('div'); text.className = 'graph-time-label';
+    const counts = monthHistogram(articles, span);
+    const peak = Math.max(1, ...counts);
+    const total = counts.reduce((a, b) => a + b, 0);
+    const mkRange = (label, value) => {
+        const r = document.createElement('input');
+        r.type = 'range'; r.min = String(span.min); r.max = String(span.max); r.step = '1'; r.value = String(value);
+        r.setAttribute('aria-label', label);
+        return r;
+    };
+    // Histogram of articles per month; the two range inputs sit on top of it (keyboard and screen readers keep working).
+    const track = document.createElement('div'); track.className = 'graph-time-track';
+    const bars = document.createElement('div'); bars.className = 'graph-time-bars'; bars.setAttribute('aria-hidden', 'true');
+    const barEls = counts.map((n) => { const b = document.createElement('span'); b.style.height = Math.max(8, Math.round(n / peak * 100)) + '%'; if (!n) b.classList.add('is-empty'); bars.append(b); return b; });
+    const from = mkRange(T('From'), span.min), to = mkRange(T('To'), span.max);
+    track.append(bars, from, to);
+    const ends = document.createElement('div'); ends.className = 'graph-time-ends'; ends.setAttribute('aria-hidden', 'true');
+    const e1 = document.createElement('span'); e1.textContent = monthLabel(span.min);
+    const e2 = document.createElement('span'); e2.textContent = monthLabel(span.max);
+    ends.append(e1, e2);
+    const reset = document.createElement('button');
+    reset.type = 'button'; reset.className = 'graph-time-reset'; reset.textContent = T('Reset');
+    const paint = () => {
+        let lo = Number(from.value), hi = Number(to.value);
+        if (lo > hi) { if (document.activeElement === from) { hi = lo; to.value = String(hi); } else { lo = hi; from.value = String(lo); } }
+        const full = lo === span.min && hi === span.max;
+        const inWin = counts.reduce((a, n, i) => a + ((span.min + i >= lo && span.min + i <= hi) ? n : 0), 0);
+        barEls.forEach((b, i) => b.classList.toggle('in', span.min + i >= lo && span.min + i <= hi));
+        track.style.setProperty('--lo', ((lo - span.min) / Math.max(1, span.max - span.min) * 100) + '%');
+        track.style.setProperty('--hi', ((hi - span.min) / Math.max(1, span.max - span.min) * 100) + '%');
+        text.textContent = full ? T('All time') + ' · ' + TN(total, '{n} article', '{n} articles') : T('{a} of {b} articles in window', { a: inWin, b: total });
+        setIconLabel(chip, 'clock', full ? T('🕐 Time') : '🕐 ' + monthLabel(lo) + ' – ' + monthLabel(hi));
+        const vis = full ? null : visibleInRange(nodes, links, lo, hi);
+        const dim = (d) => !!vis && !vis.has(d.id);
+        sel.node.each(function (d) { this.classList.toggle(TIME_DIM_CLASS, dim(d)); });
+        sel.label.each(function (d) { this.classList.toggle(TIME_DIM_CLASS, dim(d)); });
+        sel.link.each(function (l) {
+            const s = typeof l.source === 'object' ? l.source.id : l.source, t = typeof l.target === 'object' ? l.target.id : l.target;
+            this.classList.toggle(TIME_DIM_CLASS, !!vis && !(vis.has(s) && vis.has(t)));
+        });
+        chip.classList.toggle('on', !full);
+        container.dispatchEvent(new CustomEvent('graph-time-range', { detail: { from: lo, to: hi, full }, bubbles: true }));
+    };
+    from.addEventListener('input', paint); to.addEventListener('input', paint);
+    reset.addEventListener('click', () => { from.value = String(span.min); to.value = String(span.max); paint(); });
+    chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); });
+    panel.append(text, track, ends, reset);
+    wrap.append(chip, panel);
+    container.append(wrap);
+    paint();
+}
+
 /**
  * Text twin of the graph for screen readers and keyboard users: a "Graph | List" switch (top-left) and a list of the tags
  * (most connected first) with article counts and neighbours. Enter on a tag filters the archive by it, like clicking the node.
  * A polite live region says what the view contains and announces every switch.
  */
-export function renderGraphList(container, nodes, links) {
-    container.querySelectorAll('.graph-view-toggle, .graph-list, .graph-live').forEach(el => el.remove());
+export function renderGraphList(container, nodes, links, gaps = []) {
+    container.querySelectorAll('.graph-view-toggle, .graph-list, .graph-live, .graph-gaps').forEach(el => el.remove());
     const id = (x) => (typeof x === 'object' ? x.id : x);
     const byId = new Map(nodes.map(n => [n.id, n]));
     const tags = nodes.filter(n => n.group === 'tag');
@@ -822,30 +962,59 @@ export function renderGraphList(container, nodes, links) {
         li.append(btn); list.append(li);
     });
 
+    // Third view: topics you started and never followed up (see findGaps). Each article opens like a node would.
+    const gapList = document.createElement('ul');
+    gapList.className = 'graph-list graph-gaps'; gapList.hidden = true; gapList.setAttribute('aria-label', T('Started, never followed up'));
+    const gapNote = document.createElement('li');
+    gapNote.className = 'graph-gaps-note';
+    gapNote.textContent = T('Topics with one or two saved articles that you have not opened for 30 days. A reading list for what you started.');
+    gapList.append(gapNote);
+    (gaps || []).forEach((g) => {
+        const li = document.createElement('li'); li.className = 'graph-gap';
+        const head = document.createElement('div'); head.className = 'graph-list-t'; head.textContent = g.label;
+        const sub = document.createElement('div'); sub.className = 'graph-list-s';
+        sub.textContent = g.never ? T('never opened') : T('last opened {d}', { d: new Date(g.last).toLocaleDateString() });
+        li.append(head, sub);
+        g.articles.forEach((a) => {
+            const b = document.createElement('button'); b.type = 'button'; b.className = 'graph-list-item';
+            b.textContent = a.title || (a.content && String(a.content).split('\n')[0]) || T('Untitled');
+            b.addEventListener('click', () => container.dispatchEvent(new CustomEvent('open-article', { detail: a, bubbles: true, composed: true })));
+            li.append(b);
+        });
+        gapList.append(li);
+    });
+
     const toggle = document.createElement('div');
     toggle.className = 'segmented-control segmented-control-buttons graph-view-toggle'; toggle.setAttribute('role', 'group'); toggle.setAttribute('aria-label', T('Graph view'));
     const mk = (label) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; return b; };
     const gBtn = mk(T('Graph')), lBtn = mk(T('List'));
-    const set = (listMode, announce = true) => {
-        list.hidden = !listMode;
-        if (svgEl) svgEl.style.visibility = listMode ? 'hidden' : '';
-        gBtn.classList.toggle('active', !listMode); lBtn.classList.toggle('active', listMode);
-        gBtn.setAttribute('aria-pressed', String(!listMode)); lBtn.setAttribute('aria-pressed', String(listMode));
-        if (announce) live.textContent = listMode ? T('List view: {tags} tags. Press Tab to browse, Enter to filter.', { tags: tags.length }) : T('Graph view');
-        if (listMode) { const f = list.querySelector('button'); if (f) f.focus({ preventScroll: true }); }
+    const pBtn = (gaps && gaps.length) ? mk(T('Gaps') + ' ' + gaps.length) : null;
+    const btns = { graph: gBtn, list: lBtn, ...(pBtn ? { gaps: pBtn } : {}) };
+    let mode = 'graph';
+    const set = (next, announce = true) => {
+        mode = next === 'list' || (next === 'gaps' && pBtn) ? next : 'graph';
+        list.hidden = mode !== 'list'; gapList.hidden = mode !== 'gaps';
+        container.dataset.graphMode = mode;
+        if (svgEl) svgEl.style.visibility = mode === 'graph' ? '' : 'hidden';
+        Object.entries(btns).forEach(([k, b]) => { b.classList.toggle('active', k === mode); b.setAttribute('aria-pressed', String(k === mode)); });
+        if (announce) live.textContent = mode === 'list' ? T('List view: {tags} tags. Press Tab to browse, Enter to filter.', { tags: tags.length })
+            : mode === 'gaps' ? T('{n} topics started and never followed up', { n: gaps.length }) : T('Graph view');
+        const shown = mode === 'list' ? list : mode === 'gaps' ? gapList : null;
+        if (shown && announce) { const f = shown.querySelector('button'); if (f) f.focus({ preventScroll: true }); }
     };
-    gBtn.addEventListener('click', () => set(false)); lBtn.addEventListener('click', () => set(true));
+    gBtn.addEventListener('click', () => set('graph')); lBtn.addEventListener('click', () => set('list'));
+    if (pBtn) pBtn.addEventListener('click', () => set('gaps'));
     // "L" switches the view while this graph is on screen (one document listener per container, replaced on re-render).
     if (container.__graphKeyDoc) document.removeEventListener('keydown', container.__graphKeyDoc);
     container.__graphKeyDoc = (e) => {
         if (!container.isConnected || container.style.display === 'none' || container.getClientRects().length === 0) return;
         if (e.metaKey || e.ctrlKey || e.altKey || e.key.toLowerCase() !== 'l' || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
-        set(list.hidden);
+        set(mode === 'list' ? 'graph' : 'list');
     };
     document.addEventListener('keydown', container.__graphKeyDoc);
-    toggle.append(gBtn, lBtn);
-    set(false, false);
-    container.append(toggle, list, live);
+    toggle.append(gBtn, lBtn, ...(pBtn ? [pBtn] : []));
+    set('graph', false);
+    container.append(toggle, list, gapList, live);
 }
 
 /**

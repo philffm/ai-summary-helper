@@ -1651,6 +1651,7 @@ function applyRatings(arr, r, rate, live = false) {
     arr.forEach((x, n) => {
         if (r.labels && !x.cat && r.labels[n]) { x.cat = r.labels[n]; changed = true; }
         if (r.scores && !x.ai && r.scores[n] != null) { x.sent = r.scores[n]; x.ai = true; changed = true; }
+        if (x.ai && !x.cat && !x.catTried) { x.catTried = true; changed = true; }   // asked once, no label came back
     });
     if (live && !changed) return;
     if (!live) persist();
@@ -1949,7 +1950,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
 }
 
 // An item needs the AI only if it has no AI score or no category yet.
-const needsAi = (i) => !i.ai || !i.cat;
+const needsAi = (i) => !i.ai || (!i.cat && !i.catTried);
 let scoring = false;
 // Ids of items currently queued/being scored; their cards show a small indicator.
 const scoringIds = new Set();
@@ -1985,6 +1986,7 @@ async function scoreWithAi(list) {
                 // never overwrite an existing AI score or category
                 if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; done++; }
                 if (!i.cat && res.labels && res.labels[n]) { i.cat = res.labels[n]; done = Math.max(done, 1); }
+                if (i.ai && !i.cat) i.catTried = true;
             });
             await persist();
             render();
@@ -2291,6 +2293,7 @@ async function libraryRateChunk(chunk, signal, ctx = {}) {
     chunk.forEach((i, n) => {
         if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; }   // never overwrite an existing rating or category
         if (!i.cat && res.labels && res.labels[n]) i.cat = res.labels[n];
+        if (i.ai && !i.cat) i.catTried = true;   // asked once: do not send this item again just for a category
     });
     await persist();
 }

@@ -12,7 +12,9 @@ import { hasLabel, unknownTags } from './topicConcepts.js';
 export const BATCH_SIZES = [10, 20, 40];
 export const DEFAULT_BATCH = 20;
 
-const needsRating = (i) => !i.ai || !i.cat;
+// catTried: a rating request already came back without a category for this item (small models often return scores only).
+// Without it the item would be sent again on every run and the count would never go down.
+const needsRating = (i) => !i.ai || (!i.cat && !i.catTried);
 export const LEXICON_BATCH = 40;   // article tags named per request
 export const TOPIC_SAMPLE = 30;   // headlines of a feed shown to the model when it picks the feed's topic tags (spread evenly over all stored items)
 export const TOPIC_CATS = 6;      // most frequent item categories of the feed that are passed along as a hint
