@@ -1,4 +1,5 @@
 import { hash } from './feedHash.js';
+import { normalizeUrl } from './textUtils.js';
 
 const AUDIO_EXT = /\.(mp3|m4a|aac|ogg|oga|opus|wav|flac)(\?|#|$)/i;
 const MAX_FEED_ITEMS = 100;
@@ -33,6 +34,59 @@ export function feedPriority(sub, items, qualityWeight = 1, now = Date.now()) {
 }
 
 export const feedItemId = (sub, item) => hash(sub.id + '|' + (item.guid || item.link));
+
+// ── Stable item identity ───────────────────────────────────────────────────
+// An item is identified by what it IS, never by where it sits in the feed. The id it got when first seen never changes:
+// later fetches are matched back to it by (1) the id the old formula gives (guid, else raw link), then, for items whose
+// guid or link was rewritten by the publisher, (2) the same page (link without tracking parameters) and (3) the same
+// title and publish time. Podcast episodes often share one link, so (2) and (3) only match items with the same audio
+// file and never when the link appears more than once in the fetch.
+const linkKey = (u) => (u ? normalizeUrl(u) : '');
+const fingerprint = (it) => (it.title && Number(it.published) > 0 ? String(it.title).trim().toLowerCase() + '|' + Math.round(Number(it.published) / 1000) : '');
+const sameAudio = (a, b) => String(a.audio || '') === String(b.audio || '');
+
+/**
+ * Gives every incoming item of one feed its identity: sets `item.id` and returns the items without duplicates (order kept).
+ * `existing` are the stored items of that feed.
+ */
+export function reconcileItemIds(sub, incoming, existing = []) {
+    const byId = new Map(), byLink = new Map(), byFp = new Map();
+    for (const e of existing) {
+        if (!e || !e.id) continue;
+        byId.set(e.id, e);
+        const lk = linkKey(e.link), fp = fingerprint(e);
+        if (lk && !byLink.has(lk)) byLink.set(lk, e);
+        if (fp && !byFp.has(fp)) byFp.set(fp, e);
+    }
+    const linkCount = new Map();
+    for (const it of incoming) { const lk = linkKey(it.link); if (lk) linkCount.set(lk, (linkCount.get(lk) || 0) + 1); }
+    const claimed = new Set(), assigned = new Map();   // existing id → taken; incoming item → existing it matches
+    // pass 1: the id the item already had (guid, else link)
+    for (const it of incoming) {
+        const prev = byId.get(feedItemId(sub, it));
+        if (prev && !claimed.has(prev.id)) { claimed.add(prev.id); assigned.set(it, prev); }
+    }
+    // pass 2: items whose guid / link was rewritten
+    for (const it of incoming) {
+        if (assigned.has(it)) continue;
+        const lk = linkKey(it.link);
+        let prev = lk && linkCount.get(lk) === 1 ? byLink.get(lk) : null;
+        if (!prev || claimed.has(prev.id) || !sameAudio(prev, it)) {
+            const fp = fingerprint(it);
+            prev = fp ? byFp.get(fp) : null;
+            if (prev && (claimed.has(prev.id) || !sameAudio(prev, it))) prev = null;
+        }
+        if (prev) { claimed.add(prev.id); assigned.set(it, prev); }
+    }
+    const seen = new Set(), out = [];
+    for (const it of incoming) {
+        const prev = assigned.get(it);
+        const id = prev ? prev.id : hash(sub.id + '|' + (it.guid || linkKey(it.link) || it.link));
+        if (seen.has(id)) continue;   // the feed lists the same item twice
+        seen.add(id); it.id = id; out.push(it);
+    }
+    return out;
+}
 
 function decodeXml(text) {
     return String(text || '').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
@@ -135,6 +189,13 @@ export function parseWorkerFeed(xml, feedUrl, sub, now = Date.now()) {
 }
 
 export function mergeWorkerItems(existing, incoming, keepDays = 30, now = Date.now(), maxItems = 6000) {
+    // identity first: a rewritten guid / link must land on the item it already is, not create a second one
+    const perFeed = new Map();
+    for (const item of incoming) { const k = item.feedId; if (!perFeed.has(k)) perFeed.set(k, []); perFeed.get(k).push(item); }
+    incoming = [];
+    for (const [feedId, list] of perFeed) {
+        incoming.push(...(feedId == null ? list : reconcileItemIds({ id: feedId }, list, existing.filter(e => e.feedId === feedId))));
+    }
     const byId = new Map(existing.map(item => [item.id, item]));
     for (const item of incoming) {
         const old = byId.get(item.id);

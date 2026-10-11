@@ -44,7 +44,7 @@ import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { icon, setLabel } from './icons.js';
-import { estimateFeedInterval, feedPriority, feedQualityWeight } from './feedWorker.js';
+import { estimateFeedInterval, feedPriority, feedQualityWeight, reconcileItemIds } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
 const ITEMS_KEY = SK.feedItems;
@@ -389,10 +389,11 @@ async function resolveFeed(inputUrl) {
 function mergeItems(sub, parsedItems) {
     const existing = new Map(items.filter(i => i.feedId === sub.id).map(i => [i.id, i]));
     const merged = [];
-    for (const p of parsedItems) {
-        if (!p.title || (!p.link && !p.audio)) continue;
-        if (!p.link) p.link = p.audio;
-        const id = hash(sub.id + '|' + (p.guid || p.link));
+    const usable = parsedItems.filter(p => p.title && (p.link || p.audio));
+    usable.forEach(p => { if (!p.link) p.link = p.audio; });
+    // identity first (feedWorker.js): the id an item got when first seen survives a rewritten guid or tracking parameters
+    for (const p of reconcileItemIds(sub, usable, [...existing.values()])) {
+        const id = p.id;
         const prev = existing.get(id);
         merged.push({
             id,
