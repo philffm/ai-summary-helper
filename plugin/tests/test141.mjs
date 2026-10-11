@@ -33,4 +33,13 @@ await view.loadPhoneEntries();
 w.document.dispatchEvent(new w.CustomEvent('aish:phone-inbox'));
 await tick(60);
 assert.equal(list.querySelectorAll('.phone-card').length, 0, 'later changes still update the list');
+// A summary lands in the archive while History is open (from a background tab): the list picks it up by itself
+store['articles:index'] = [
+  { id: 'a2', url: 'https://example.org/from-phone', title: 'Brand new summary', timestamp: new Date().toISOString(), summary: '<p>y</p>', tags: [] },
+  ...store['articles:index']
+];
+(globalThis.__chL || []).forEach(f => f({ 'articles:index': {} }, 'local'));
+await tick(600);
+assert(/Brand new summary/.test(list.textContent), 'the new article shows without reopening History');
+assert.equal(list.querySelectorAll('li.article-card').length, 2);
 console.log('TEST 141 OK');

@@ -662,6 +662,30 @@ export function initArticleManager(uiManager) {
     // Waiting phone links changed. Before the first load the archive is empty here: painting now would show the phone
     // cards alone and the rest a moment later. loadHistory() mounts both together, so wait for it.
     document.addEventListener('aish:phone-inbox', () => { try { if (historyLoaded && historyTab === 'inbox' && document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
+    // The archive changed behind the list's back (a summary finished in a background tab, a phone link was saved, another
+    // popup wrote): re-read it and redraw, so a new article shows up without reopening History.
+    let indexTimer = null;
+    try {
+        chrome.storage.onChanged.addListener((changes, area) => {
+            if (area !== 'local' || !changes[SK.articlesIndex]) return;
+            clearTimeout(indexTimer);
+            indexTimer = setTimeout(async () => {
+                if (!historyLoaded) return;   // the first load reads it anyway
+                try {
+                    const all = await StorageManager.getArticlesIndex({ includeArchived: true });
+                    cachedArticles = all.filter(a => !a.archived);
+                    archivedCache = all.filter(a => a.archived);
+                    invalidateSearchIndex();
+                    const list = document.getElementById('articleList');
+                    if (list && list.style.display !== 'none') {
+                        renderTab();
+                        const f = document.getElementById('searchInput');
+                        if (f && f.value.trim()) filterArticles();
+                    } else pendingRender = true;
+                } catch (e) { /* the next change or loadHistory() will catch up */ }
+            }, 250);
+        });
+    } catch (e) { /* no storage events in this context */ }
     document.addEventListener('aish:lexiconChanged', () => { try { if (document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     initSelection({
         deliverKindle, deliverLocalSend,
