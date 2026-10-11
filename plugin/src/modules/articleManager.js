@@ -1804,17 +1804,9 @@ export async function showArticleDetail(article) {
     if (localSendBtn) localSendBtn.addEventListener('click', (e) => { e.stopPropagation(); dispatchToLocalSend(article); });
     if (mdBtn) mdBtn.addEventListener('click', (e) => { e.stopPropagation(); exportToMarkdown(article); });
     if (openBtn) {
-        openBtn.addEventListener('click', async (e) => {
+        openBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const readerArticle = await exportView(article);
-            const newTab = window.open();
-            newTab.document.write(`
-                <html><head><title>${safeTitle}</title>
-                <style>body{font-family:Georgia,serif;padding:20px;max-width:800px;margin:auto;background:#f4f4f4;color:#333;line-height:1.6;}
-                h2{color:#444;}img{max-width:100%;height:auto;}</style></head>
-                <body><h2>Summary</h2><div>${readerArticle.summary}</div><h2>Content</h2><div>${article.content}</div></body></html>
-            `);
-            newTab.document.close();
+            openReadMode(article);
         });
     }
     // Show detail, hide list and graph
@@ -1827,6 +1819,25 @@ export async function showArticleDetail(article) {
     // Keyboard: focus moves to "Back" (so Esc / Enter returns); the card that opened this stays remembered.
     const back = document.getElementById('detailBackButton');
     if (back) back.focus({ preventScroll: true });
+}
+
+/** Read mode: the article in its own tab (reader page: typography, themes, highlights). Falls back to a plain tab. */
+async function openReadMode(article) {
+    if (article.id) {
+        try {
+            const url = chrome.runtime.getURL('readerPage.html') + '#id=' + encodeURIComponent(article.id);
+            if (chrome.tabs && chrome.tabs.create) { await chrome.tabs.create({ url }); return; }
+            if (window.open(url, '_blank', 'noopener')) return;
+        } catch (_) { /* fall through to the plain tab */ }
+    }
+    const readerArticle = await exportView(article);
+    const clean = (html) => cleanUntrustedHtml(new DOMParser().parseFromString(String(html || ''), 'text/html').body).innerHTML;
+    const title = escapeHtml(article.title || T('Article'));
+    const doc = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title>
+<style>body{font-family:Georgia,serif;padding:20px;max-width:800px;margin:auto;background:#f4f4f4;color:#333;line-height:1.6;}h2{color:#444;}img{max-width:100%;height:auto;}</style></head>
+<body><h1>${title}</h1><h2>${escapeHtml(T('🧙 AI Summary'))}</h2><div>${clean(readerArticle.summary)}</div><h2>${escapeHtml(T('📄 Original Content'))}</h2><div>${clean(article.content || article.html || article.text)}</div></body></html>`;
+    const url = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
+    window.open(url, '_blank', 'noopener');
 }
 
 /** After "Back": focus the card that was open (or its neighbour when it is gone) and keep it in view. */

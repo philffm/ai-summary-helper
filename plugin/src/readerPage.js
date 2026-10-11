@@ -1,0 +1,148 @@
+// Read mode page: opened in its own tab from an article's "Read" button (reader.html#id=<article id>).
+// Shows the summary (with pinned questions) and the saved text with highlights, in a calm layout: text size, font,
+// theme and width are the reader's choice and are remembered. Stored page HTML is untrusted — cleaned before display.
+import { applyTranslations } from './modules/i18n.js';
+import { T } from './modules/feedI18n.js';
+import { escapeHtml, cleanUntrustedHtml, countWords } from './modules/textUtils.js';
+import { withQuestions } from './modules/conversation.js';
+import { fetchAnnotationsForArticle, markHighlights } from './modules/annotationExporter.js';
+import StorageManager from './modules/storageManager.js';
+import { SK } from './modules/storageKeys.js';
+
+const PREFS_KEY = 'reader:prefs';
+const SIZES = [15, 17, 19, 21, 24, 28];
+const DEFAULTS = { size: 2, font: 'serif', theme: 'auto', view: 'both' };
+const root = document.documentElement;
+const $ = (id) => document.getElementById(id);
+let prefs = { ...DEFAULTS };
+
+const clean = (html) => {
+  const doc = new DOMParser().parseFromString(String(html || ''), 'text/html');
+  doc.querySelectorAll('img').forEach(el => { if (!el.getAttribute('src')) el.remove(); });
+  return cleanUntrustedHtml(doc.body).innerHTML;
+};
+
+function applyPrefs() {
+  prefs.size = Math.min(SIZES.length - 1, Math.max(0, Number(prefs.size) || 0));
+  root.style.setProperty('--rp-size', SIZES[prefs.size] + 'px');
+  root.style.setProperty('--rp-width', prefs.size >= 4 ? '46rem' : '40rem');
+  root.dataset.rpFont = prefs.font; root.dataset.rpTheme = prefs.theme; root.dataset.rpView = prefs.view;
+  document.querySelectorAll('[data-font]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.font === prefs.font)));
+  document.querySelectorAll('[data-theme]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === prefs.theme)));
+  document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === prefs.view)));
+  $('rpSmaller').disabled = prefs.size === 0; $('rpLarger').disabled = prefs.size === SIZES.length - 1;
+}
+const setPref = (patch) => { prefs = { ...prefs, ...patch }; applyPrefs(); try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } };
+
+function labelControls() {
+  $('rpSmaller').setAttribute('aria-label', T('Smaller text')); $('rpLarger').setAttribute('aria-label', T('Larger text'));
+  $('rpFontGroup').setAttribute('aria-label', T('Font')); $('rpThemeGroup').setAttribute('aria-label', T('Theme')); $('rpViewGroup').setAttribute('aria-label', T('Show'));
+  const names = { serif: T('Serif font'), sans: T('Sans-serif font') };
+  document.querySelectorAll('[data-font]').forEach(b => b.setAttribute('aria-label', names[b.dataset.font]));
+  const th = { auto: T('Auto'), light: T('Light'), sepia: T('Sepia'), dark: T('Dark') };
+  document.querySelectorAll('[data-theme]').forEach(b => { b.textContent = th[b.dataset.theme]; });
+  const vw = { both: T('Both'), summary: T('Summary'), content: T('Full text') };
+  document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
+  $('rpPrint').textContent = T('Print');
+}
+
+function wireControls() {
+  $('rpSmaller').addEventListener('click', () => setPref({ size: prefs.size - 1 }));
+  $('rpLarger').addEventListener('click', () => setPref({ size: prefs.size + 1 }));
+  $('rpPrint').addEventListener('click', () => window.print());
+  document.querySelectorAll('[data-font]').forEach(b => b.addEventListener('click', () => setPref({ font: b.dataset.font })));
+  document.querySelectorAll('[data-theme]').forEach(b => b.addEventListener('click', () => setPref({ theme: b.dataset.theme })));
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setPref({ view: b.dataset.view })));
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.key === '+' || e.key === '=') setPref({ size: prefs.size + 1 });
+    else if (e.key === '-') setPref({ size: prefs.size - 1 });
+  });
+  const bar = $('rpProgress').firstElementChild;
+  const onScroll = () => {
+    const max = root.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+}
+
+function buildToc(page) {
+  const heads = [...page.querySelectorAll('.rp-content h1, .rp-content h2:not(.rp-sec), .rp-content h3, .rp-content h4')]
+    .filter(h => h.textContent.trim()).slice(0, 60);
+  if (heads.length < 3) return null;
+  const det = document.createElement('details'); det.className = 'rp-toc';
+  const sum = document.createElement('summary'); sum.textContent = T('Contents'); det.append(sum);
+  const ul = document.createElement('ul');
+  heads.forEach((h, i) => {
+    h.id = h.id || 'rp-h' + i;
+    const li = document.createElement('li'); li.dataset.l = String(Math.min(4, Math.max(2, Number(h.tagName[1]))));
+    const a = document.createElement('a'); a.href = '#' + h.id;
+    // keep #id=<article> in the address bar: jump by script instead of changing the hash
+    a.addEventListener('click', (e) => { e.preventDefault(); h.scrollIntoView(); });
+    a.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+    li.append(a); ul.append(li);
+  });
+  det.append(ul);
+  return det;
+}
+
+async function loadArticle(id) {
+  const article = await StorageManager.getArticleFull(id);
+  if (!article || (!article.content && !article.summary && !article.html && !article.text)) return null;
+  const turns = await StorageManager.getConversation(id);
+  if (turns.length) {
+    let all = false;
+    try { all = !!(await StorageManager.getLocal({ [SK.exportAllQuestions]: false }))[SK.exportAllQuestions]; } catch (_) { /* default */ }
+    const base = article.summaryBase !== undefined ? article.summaryBase : article.summary;
+    article.summary = withQuestions(base, turns, { all });
+  }
+  return article;
+}
+
+async function render() {
+  const page = $('rpPage');
+  const id = new URLSearchParams(window.location.hash.slice(1)).get('id');
+  const article = id ? await loadArticle(id) : null;
+  if (!article) { page.innerHTML = `<p class="rp-empty">${escapeHtml(T('This article is no longer available.'))}</p>`; return; }
+
+  const annotations = await fetchAnnotationsForArticle(article);
+  const placed = new Set();
+  const contentRaw = article.content || article.html || article.text || '';
+  const contentHtml = markHighlights(clean(contentRaw), annotations, placed);
+  const summaryHtml = markHighlights(clean(article.summary), annotations, placed);
+
+  const title = article.title || T('Article');
+  document.title = title;
+  let domain = '';
+  try { domain = new URL(article.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }
+  const minutes = Math.max(1, Math.round(countWords(contentHtml || summaryHtml) / 220));
+  const meta = (article.meta || {});
+  const bits = [];
+  if (domain && /^https?:/i.test(article.url)) bits.push(`<a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(domain)} ↗</a>`);
+  if (article.timestamp) bits.push(`<span>${escapeHtml(new Date(article.timestamp).toLocaleDateString(document.documentElement.lang || undefined))}</span>`);
+  bits.push(`<span>${escapeHtml(T('~{n} min read', { n: minutes }))}</span>`);
+
+  page.innerHTML = `
+    <article>
+      <h1 class="rp-title">${escapeHtml(title)}</h1>
+      <p class="rp-meta">${bits.join('')}</p>
+      ${meta.description ? `<p class="rp-desc">${escapeHtml(meta.description)}</p>` : ''}
+      ${summaryHtml ? `<section class="rp-summary" aria-labelledby="rpSumH"><h2 id="rpSumH">${escapeHtml(T('🧙 AI Summary'))}</h2>${summaryHtml}</section>` : ''}
+      <section class="rp-content">${contentHtml ? `<h2 class="rp-sec">${escapeHtml(T('📄 Original Content'))}</h2>${contentHtml}` : `<p class="rp-empty">${escapeHtml(T('No content available.'))}</p>`}</section>
+    </article>`;
+  const toc = buildToc(page);
+  if (toc) page.querySelector('.rp-meta').after(toc);
+  if (!summaryHtml || !contentHtml) { prefs.view = 'both'; root.dataset.rpView = 'both'; $('rpViewGroup').hidden = true; }
+}
+
+async function init() {
+  let cfg = {};
+  let lang = 'en';
+  try { cfg = await chrome.storage.local.get(PREFS_KEY); } catch (_) { /* defaults */ }
+  try { lang = (await chrome.storage.sync.get('uiLanguage')).uiLanguage || 'en'; } catch (_) { /* English */ }
+  prefs = { ...DEFAULTS, ...(cfg[PREFS_KEY] || {}) };
+  try { await applyTranslations(lang); } catch (_) { /* English */ }
+  labelControls(); wireControls(); applyPrefs();
+  await render();
+}
+init();

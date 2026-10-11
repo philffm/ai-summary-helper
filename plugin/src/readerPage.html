@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Read</title>
+  <link rel="stylesheet" href="readerPage.css">
+</head>
+<body>
+  <div class="rp-progress" id="rpProgress" role="progressbar" aria-hidden="true"><span></span></div>
+  <header class="rp-bar" id="rpBar">
+    <div class="rp-bar-in">
+      <div class="rp-group" role="group" id="rpSizeGroup">
+        <button type="button" id="rpSmaller" aria-label="Smaller text">A−</button>
+        <button type="button" id="rpLarger" aria-label="Larger text">A+</button>
+      </div>
+      <div class="rp-group" role="group" id="rpFontGroup">
+        <button type="button" data-font="serif" class="rp-serif">Aa</button>
+        <button type="button" data-font="sans" class="rp-sans">Aa</button>
+      </div>
+      <div class="rp-group" role="group" id="rpThemeGroup">
+        <button type="button" data-theme="auto">Auto</button>
+        <button type="button" data-theme="light">Light</button>
+        <button type="button" data-theme="sepia">Sepia</button>
+        <button type="button" data-theme="dark">Dark</button>
+      </div>
+      <div class="rp-group" role="group" id="rpViewGroup">
+        <button type="button" data-view="both">Both</button>
+        <button type="button" data-view="summary">Summary</button>
+        <button type="button" data-view="content">Full text</button>
+      </div>
+      <button type="button" id="rpPrint" class="rp-plain">Print</button>
+    </div>
+  </header>
+  <main class="rp-page" id="rpPage">
+    <p class="rp-loading" id="rpLoading">Loading…</p>
+  </main>
+  <script type="module" src="readerPage.js"></script>
+</body>
+</html>
