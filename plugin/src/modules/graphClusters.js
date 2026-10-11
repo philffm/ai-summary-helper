@@ -1,4 +1,4 @@
-// graphClusters.js — what you can DO with a topic in the graph: tap a tag node → a peek bar → "Open" gives a full cluster page
+// graphClusters.js — what you can DO with a topic in the graph: tap a tag node → the cluster page
 // (mini map, one-tap briefing, never-opened list, docked question box; briefing and questions use only the saved summaries)
 // and a Markdown export of just that cluster. Everything shown is set as text; AI output goes through the safe renderer.
 import { T, TN } from './feedI18n.js';
@@ -75,38 +75,25 @@ const SVGNS = 'http://www.w3.org/2000/svg';
 const svg = (name, attrs = {}) => { const n = document.createElementNS(SVGNS, name); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, String(v))); return n; };
 /** Tiny static map of the topic: the tag in the middle, one dot per article (accent = never opened). */
 function miniMap(label, list) {
-    const W = 360, H = 112, cx = W / 2, cy = 46;
+    const W = 360, H = 76, cx = W / 2, cy = 30;
     const s = svg('svg', { class: 'graph-cluster-map', viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', focusable: 'false' });
     const shown = list.slice(0, 12);
     shown.forEach((a, i) => {
         const ang = (i / Math.max(1, shown.length)) * Math.PI * 2 - Math.PI / 2;
-        const x = cx + Math.cos(ang) * (95 + (i % 2) * 28), y = cy + Math.sin(ang) * (28 + (i % 2) * 6);
+        const x = cx + Math.cos(ang) * (100 + (i % 2) * 30), y = cy + Math.sin(ang) * (17 + (i % 2) * 5);
         s.append(svg('line', { x1: cx, y1: cy, x2: x, y2: y, class: 'gcm-link' }));
-        s.append(svg('circle', { cx: x, cy: y, r: 5, class: 'gcm-dot' + (isOpened(a) ? '' : ' is-new') }));
+        s.append(svg('circle', { cx: x, cy: y, r: 4.5, class: 'gcm-dot' + (isOpened(a) ? '' : ' is-new') }));
     });
-    s.append(svg('circle', { cx, cy, r: 16, class: 'gcm-tag' }));
-    const t = svg('text', { x: cx, y: H - 8, 'text-anchor': 'middle', class: 'gcm-label' }); t.textContent = clip(label, 28);
+    s.append(svg('circle', { cx, cy, r: 12, class: 'gcm-tag' }));
+    const t = svg('text', { x: cx, y: H - 6, 'text-anchor': 'middle', class: 'gcm-label' }); t.textContent = clip(label, 28);
     s.append(t);
     return s;
 }
 
-/** Step 1: a peek bar at the bottom of the graph — the graph stays fully visible, "Open" goes to the full page. */
-export function showClusterCard(container, { label, articles }) {
-    container.querySelectorAll('.graph-preview-card, .graph-cluster-page').forEach(c => c.remove());
-    const st = clusterStats(articles || []);
-    const bar = el('div', 'graph-preview-card graph-cluster-peek');
-    const txt = el('div', 'graph-cluster-peek-txt');
-    txt.append(el('strong', null, label), el('div', 'graph-preview-date', TN(st.total, '{n} article', '{n} articles') + ' · ' + T('{n} never opened', { n: st.unopened })));
-    const open = el('button', 'graph-preview-open graph-cluster-peek-open', T('Open')); open.type = 'button';
-    const close = el('button', 'graph-preview-card-close', '✕'); close.type = 'button'; close.setAttribute('aria-label', T('Close'));
-    close.addEventListener('click', (e) => { e.stopPropagation(); bar.remove(); });
-    open.addEventListener('click', (e) => { e.stopPropagation(); bar.remove(); openClusterPage(container, { label, articles }); });
-    bar.append(txt, open, close);
-    container.appendChild(bar);
-    return bar;
-}
+/** Tapping a topic node opens the cluster page directly (brief button, never-opened list, ask box). */
+export function showClusterCard(container, opts) { return openClusterPage(container, opts); }
 
-/** Step 2: the cluster page. */
+/** The cluster page. */
 export function openClusterPage(container, { label, articles }) {
     container.querySelectorAll('.graph-preview-card, .graph-cluster-page').forEach(c => c.remove());
     const list = (articles || []).slice().sort((a, b) => new Date(a.lastOpened || a.timestamp) - new Date(b.lastOpened || b.timestamp));

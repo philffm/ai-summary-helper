@@ -72,13 +72,10 @@ assert.deepEqual(stats, { total: 3, unopened: 2, withSummary: 3, exportable: 3 }
 const area = d.createElement('div'); d.body.append(area);
 const filtered = []; area.addEventListener('filter-by-tag', (e) => filtered.push(e.detail.tag));
 const opened = []; area.addEventListener('open-article', (e) => opened.push(e.detail.id));
-const peek = gc.showClusterCard(area, { label: 'Topic <b>', articles: cluster });
-assert.ok(/3 articles/.test(peek.textContent) && /2 never opened/.test(peek.textContent), peek.textContent);
-assert.equal(peek.querySelector('strong').textContent, 'Topic <b>'); assert.ok(!peek.querySelector('strong b'), 'label is text');
-assert.ok(!area.querySelector('.graph-cluster-page'), 'a tap only shows the peek bar');
-peek.querySelector('.graph-cluster-peek-open').click();
-const card = area.querySelector('.graph-cluster-page');
-assert.ok(card && !area.querySelector('.graph-cluster-peek'), 'Open swaps the peek bar for the page');
+const card = gc.showClusterCard(area, { label: 'Topic <b>', articles: cluster });
+assert.ok(card === area.querySelector('.graph-cluster-page'), 'a tap opens the cluster page directly');
+assert.ok(/3 articles/.test(card.textContent) && /2 never opened/.test(card.textContent), card.textContent);
+assert.ok(!card.querySelector('.graph-cluster-title b'), 'label is text');
 assert.equal(card.querySelector('.graph-cluster-title').textContent, 'Topic <b>');
 assert.ok(card.querySelector('.graph-cluster-map'), 'mini map');
 assert.ok(card.querySelectorAll('.gcm-dot.is-new').length === 2 && card.querySelectorAll('.gcm-dot').length === 3, 'map: one dot per article, unopened accented');
@@ -119,8 +116,7 @@ card.querySelector('.graph-cluster-show').click();
 assert.deepEqual(filtered, ['Topic <b>']); assert.ok(!area.querySelector('.graph-cluster-page'), 'page closes');
 
 // feed items without a stored summary cannot be exported, but can be briefed from their snippets
-gc.showClusterCard(area, { label: 'News', articles: [{ title: 'F1', snippet: 'snip one' }, { title: 'F2', snippet: 'snip two' }] }).querySelector('.graph-cluster-peek-open').click();
-const feedCard = area.querySelector('.graph-cluster-page');
+const feedCard = gc.showClusterCard(area, { label: 'News', articles: [{ title: 'F1', snippet: 'snip one' }, { title: 'F2', snippet: 'snip two' }] });
 const labels = [...feedCard.querySelectorAll('button')].map(b => b.textContent);
 assert.ok(labels.some(l => /Brief me/.test(l)) && !labels.some(l => /Markdown/.test(l)), labels.join('|'));
 
