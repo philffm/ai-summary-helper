@@ -11,7 +11,9 @@ try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } 
 // Finishes a summary whose page went away while the model was still writing (same parsing + saving as the page does).
 try { if (typeof importScripts === 'function') importScripts('finalize.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('feed-worker.js'); } catch (_) { /* listed in the manifest instead */ }
+try { if (typeof importScripts === 'function') importScripts('inbox-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 const FIN = globalThis.AISH_FINALIZE || null;
+const INBOX = globalThis.AISH_INBOX || null;
 const FEED_WORKER = globalThis.AISH_FEED_WORKER || null;
 const ttsEngine = globalThis.AISH_TTS ? globalThis.AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
@@ -52,6 +54,10 @@ const SK = {
     devices: 'send:devices',
     activeDevices: 'send:active',
     localSendIp: 'send:localIp',
+    // phone inbox: links shared from the phone arrive through the byPhil inbox (inboxManager.js)
+    inboxConfig: 'inbox:config',     // inbox id, encryption key, write and read tokens — secret, never backed up
+    inboxPending: 'inbox:pending',   // links from the phone that wait for the user (Summarize / Dismiss)
+    inboxState: 'inbox:state',       // cursor, acknowledged cursor, handled item ids, last poll time and error
     // podcasts
     podcasts: 'podcasts:list',
     podcastName: 'podcasts:lastName',
@@ -850,11 +856,30 @@ if (typeof FEED_WORKER !== 'undefined' && FEED_WORKER) {
         aiComplete({ system, user, signal, partial, service }).then(result => result.text));
 }
 
-chrome.runtime.onStartup.addListener(() => applyFeedPollConfig());
-chrome.runtime.onInstalled.addListener(() => applyFeedPollConfig());
+// ── Phone inbox: while a phone is paired, collect the links it shared every 15 minutes (see modules/inboxManager.js) ──
+const INBOX_ALARM = 'inboxPoll';
+
+async function applyInboxPollConfig() {
+    if (!chrome.alarms) return;
+    const d = await localGet(SK.inboxConfig);
+    if (d[SK.inboxConfig]) {
+        if (!(await chrome.alarms.get(INBOX_ALARM))) chrome.alarms.create(INBOX_ALARM, { delayInMinutes: 1, periodInMinutes: 15 });
+    } else {
+        await chrome.alarms.clear(INBOX_ALARM);
+    }
+}
+
+async function pollInbox() {
+    if (!INBOX) return;
+    try { await INBOX.createInboxManager().poll(); } catch (e) { console.warn('[Inbox] poll failed:', e && e.message); }
+}
+
+chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); applyInboxPollConfig(); });
+chrome.runtime.onInstalled.addListener(() => { applyFeedPollConfig(); applyInboxPollConfig(); });
 
 chrome.alarms?.onAlarm?.addListener(async (alarm) => {
     if (alarm.name === FEED_ALARM) { await pollFeeds(); return; }
+    if (alarm.name === INBOX_ALARM) { await pollInbox(); return; }
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));
@@ -898,6 +923,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     if (namespace === 'sync' && changes.useNativeSidePanel) {
         updateSidePanelBehavior(changes.useNativeSidePanel.newValue);
     }
+    if (namespace === 'local' && changes[SK.inboxConfig]) applyInboxPollConfig();
 });
 
 

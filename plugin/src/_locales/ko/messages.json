@@ -4477,5 +4477,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 연구"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "지금은 byPhil Cloud에 연결할 수 없습니다."
+  },
+  "f_check_now_0677": {
+    "message": "지금 확인"
+  },
+  "f_checking_dad5": {
+    "message": "확인 중…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "다시 클릭하면 페어링 해제"
+  },
+  "f_from_phone_850d": {
+    "message": "휴대폰에서"
+  },
+  "f_hide_code_5876": {
+    "message": "코드 숨기기"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "휴대폰에 AISH 컴패니언 앱을 설치하고 코드를 한 번 스캔한 뒤, 원하는 링크를 공유하세요. 링크는 종단 간 암호화되어 도착하고 여기서 탭을 기다립니다."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "휴대폰에서 공유한 링크"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "여기서 대기 중인 링크는 삭제되며 휴대폰은 더 이상 보낼 수 없습니다."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "휴대폰 페어링"
+  },
+  "f_paired_b228": {
+    "message": "페어링됨"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "페어링됨 · 마지막 확인 {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "페어링됨 · 아직 확인 안 됨"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "페어링됨 · {n}개 대기 중"
+  },
+  "f_pairing_code_057c": {
+    "message": "페어링 코드"
+  },
+  "f_pairing_9d4b": {
+    "message": "페어링 중…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "휴대폰 받은 편지함"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "AISH 컴패니언 앱으로 이 코드를 스캔하세요. 코드를 스캔한 사람은 누구나 링크를 보낼 수 있으니 비공개로 유지하세요."
+  },
+  "f_show_code_0cc1": {
+    "message": "코드 표시"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "문제가 발생했습니다."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "이 페어링은 더 이상 유효하지 않습니다. 페어링을 해제한 뒤 다시 페어링하세요."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "요청이 너무 많습니다. 나중에 다시 시도하세요."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "페어링 해제 및 받은 편지함 삭제"
   }
 }

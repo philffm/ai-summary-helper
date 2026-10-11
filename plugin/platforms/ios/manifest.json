@@ -23,6 +23,7 @@
       "ttsEngine.js",
       "finalize.js",
       "feed-worker.js",
+      "inbox-worker.js",
       "background.js"
     ]
   },

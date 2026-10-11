@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 研究"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "現在 byPhil Cloud に接続できません。"
+  },
+  "f_check_now_0677": {
+    "message": "今すぐ確認"
+  },
+  "f_checking_dad5": {
+    "message": "確認中…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "もう一度クリックで解除"
+  },
+  "f_from_phone_850d": {
+    "message": "スマホから"
+  },
+  "f_hide_code_5876": {
+    "message": "コードを隠す"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "スマホに AISH コンパニオンアプリをインストールし、コードを一度スキャンしてから、好きなリンクを共有してください。リンクはエンドツーエンドで暗号化されて届き、ここでタップを待ちます。"
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "スマホから共有されたリンク"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "ここで待機中のリンクは削除され、スマホからは送信できなくなります。"
+  },
+  "f_pair_a_phone_2792": {
+    "message": "スマホをペア設定"
+  },
+  "f_paired_b228": {
+    "message": "ペア設定済み"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "ペア設定済み · 最終確認 {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "ペア設定済み · 未確認"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "ペア設定済み · {n} 件待機中"
+  },
+  "f_pairing_code_057c": {
+    "message": "ペア設定コード"
+  },
+  "f_pairing_9d4b": {
+    "message": "ペア設定中…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "スマホ受信箱"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "AISH コンパニオンアプリでこのコードをスキャンしてください。スキャンした人は誰でもリンクを送れるため、他人には見せないでください。"
+  },
+  "f_show_code_0cc1": {
+    "message": "コードを表示"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "問題が発生しました。"
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "このペア設定は無効になりました。解除してもう一度ペア設定してください。"
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "リクエストが多すぎます。しばらくしてからもう一度お試しください。"
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "解除して受信箱を削除"
   }
 }

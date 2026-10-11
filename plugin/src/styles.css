@@ -4135,3 +4135,14 @@ circle.graph-sel { stroke: var(--accent) !important; stroke-width: 4px !importan
 @media (forced-colors: active) { .graph-brief-bar, .graph-brief-chip { border: 1px solid CanvasText; } }
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Phone inbox (modules/inboxView.js) */
+.phone-inbox { margin: 0 0 12px; padding: 10px 12px; border: 1px solid var(--border, rgba(127,127,127,.3)); border-radius: 10px; }
+.phone-inbox-head { margin: 0 0 8px; font-size: 12px; opacity: .8; }
+.phone-inbox-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+.phone-inbox-link { flex: 1; min-width: 0; display: flex; flex-direction: column; font-size: 13px; }
+.phone-inbox-link span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .7; font-size: 12px; }
+.phone-inbox-qr { width: 220px; max-width: 100%; margin: 12px auto; padding: 8px; background: #fff; border-radius: 8px; }
+.phone-inbox-qr svg { display: block; width: 100%; height: auto; }
+.phone-inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.phone-inbox-error { color: var(--danger, #c0392b); }

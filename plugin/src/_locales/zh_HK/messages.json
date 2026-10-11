@@ -4495,5 +4495,74 @@
   },
   "f_research_fd8d": {
     "message": "🎓 研究"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "目前無法連線到 byPhil Cloud。"
+  },
+  "f_check_now_0677": {
+    "message": "立即檢查"
+  },
+  "f_checking_dad5": {
+    "message": "檢查中…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "再按一次以取消配對"
+  },
+  "f_from_phone_850d": {
+    "message": "來自手機"
+  },
+  "f_hide_code_5876": {
+    "message": "隱藏配對碼"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "在手機上安裝 AISH 隨附應用程式，掃描一次配對碼，然後將任何連結分享給它。連結以端對端加密方式送達，並在此等待你點一下。"
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "從手機分享的連結"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "此處等待中的連結將被刪除，手機也無法再傳送。"
+  },
+  "f_pair_a_phone_2792": {
+    "message": "配對手機"
+  },
+  "f_paired_b228": {
+    "message": "已配對"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "已配對 · 上次檢查 {when}"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "已配對 · 尚未檢查"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "已配對 · {n} 個待處理"
+  },
+  "f_pairing_code_057c": {
+    "message": "配對碼"
+  },
+  "f_pairing_9d4b": {
+    "message": "配對中…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "手機收件匣"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "請用 AISH 隨附應用程式掃描此碼。任何掃描它的人都能傳送連結給你，請妥善保密。"
+  },
+  "f_show_code_0cc1": {
+    "message": "顯示配對碼"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "發生錯誤。"
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "此配對已失效。請取消配對後重新配對。"
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "要求過多，請稍後再試。"
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "取消配對並刪除收件匣"
   }
 }

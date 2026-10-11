@@ -4719,5 +4719,76 @@
   },
   "f_research_fd8d": {
     "message": "🎓 Research"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "Can't reach byPhil Cloud right now."
+  },
+  "f_check_now_0677": {
+    "message": "Check now"
+  },
+  "f_checking_dad5": {
+    "message": "Checking…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Click again to unpair"
+  },
+  "f_from_phone_850d": {
+    "message": "From phone"
+  },
+  "f_hide_code_5876": {
+    "message": "Hide code"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Install the AISH companion on your phone, scan the code once, then share any link to it. Links arrive end-to-end encrypted and wait here for your tap."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Links shared from your phone"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Links still waiting here are deleted and the phone can no longer send."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Pair a phone"
+  },
+  "f_paired_b228": {
+    "message": "Paired"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Paired · last checked {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Paired · not checked yet"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Paired · {n} waiting",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_pairing_code_057c": {
+    "message": "Pairing code"
+  },
+  "f_pairing_9d4b": {
+    "message": "Pairing…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Phone inbox"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Scan this code with the AISH companion app. Anyone who scans it can send links to you, so keep it private."
+  },
+  "f_show_code_0cc1": {
+    "message": "Show code"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Something went wrong."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "This pairing is no longer valid. Unpair and pair again."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Too many requests. Try again later."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Unpair and delete inbox"
   }
 }
