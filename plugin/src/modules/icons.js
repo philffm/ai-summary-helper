@@ -96,7 +96,7 @@ export function labelNodes(text, cls = '') {
     const s = String(text == null ? '' : text), name = leadingIconName(s);
     if (name) return [iconEl(name, cls), document.createTextNode(' ' + stripEmoji(s))];
     const tm = TRAIL_MAPPED.exec(s), tn = tm && BY_EMOJI[tm[1]];   // "Copy 📋": the emoji came last in older labels
-    if (tn) return [document.createTextNode(stripEmoji(s) + ' '), iconEl(tn, cls)];
+    if (tn) return [iconEl(tn, cls), document.createTextNode(' ' + stripEmoji(s))];   // icons always lead, whatever the translation did
     return [document.createTextNode(s)];
 }
 

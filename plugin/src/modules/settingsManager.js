@@ -18,6 +18,7 @@ import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { learnTagNames, translateFeedTopics, uiLanguage } from './feedAi.js';
 import { escapeHtml } from './textUtils.js';
 import { T, TN } from './feedI18n.js';
+import { setLabel } from './icons.js';
 import { exportHistoryMarkdown } from './markdownArchive.js';
 import { checkOllama } from './ollamaCheck.js';
 
@@ -77,14 +78,14 @@ export async function initSettingsManager(ui) {
 function flashSaveIndicator() {
     const saveButton = document.querySelector('button[form="settingsForm"]');
     if (!saveButton) return;
-    const origText = saveButton.dataset.origText || saveButton.textContent;
-    saveButton.dataset.origText = origText;
+    // Keep the button's own nodes (icon + label), not its text: restoring text would drop the icon.
+    if (!saveButton._origNodes) saveButton._origNodes = [...saveButton.childNodes].map(n => n.cloneNode(true));
     clearTimeout(saveButton._flashTimer);
-    saveButton.textContent = T('Saved! ✓');
+    setLabel(saveButton, T('Saved! ✓'));
     saveButton.classList.add('is-saved');   // green + green glow, see .settings-save-fab.is-saved
     saveButton.disabled = true;
     saveButton._flashTimer = setTimeout(() => {
-        saveButton.textContent = origText;
+        saveButton.replaceChildren(...saveButton._origNodes.map(n => n.cloneNode(true)));
         saveButton.classList.remove('is-saved');
         saveButton.disabled = false;
     }, 1500);
@@ -1340,11 +1341,11 @@ export function initBackupRestore() {
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
 
-                const origText = btnExport.textContent;
-                btnExport.textContent = includeContent
+                const origNodes = [...btnExport.childNodes].map(n => n.cloneNode(true));   // nodes, not text: keeps the icon
+                setLabel(btnExport, includeContent
                     ? T('Exported! ✓ ({n} articles)', { n: backup._article_count })
-                    : T('Exported! ✓');
-                setTimeout(() => btnExport.textContent = origText, 2500);
+                    : T('Exported! ✓'));
+                setTimeout(() => btnExport.replaceChildren(...origNodes), 2500);
             } catch (err) {
                 console.error('Export failed:', err);
                 alert(T('Failed to export backup.'));
