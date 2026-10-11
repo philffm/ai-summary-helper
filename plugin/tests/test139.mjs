@@ -27,7 +27,8 @@ const cards = [...list.querySelectorAll('li.article-card')];
 assert.equal(cards.length, 3);
 assert(cards[0].classList.contains('phone-card') && cards[1].classList.contains('phone-card') && !cards[2].classList.contains('phone-card'));
 assert(/From phone/.test(cards[0].textContent));
-assert(cards[0].querySelector('.feed-sum-btn') && cards[0].querySelector('.phone-inbox-save') && cards[0].querySelector('.phone-inbox-open'));
+assert(cards[0].querySelector('.feed-sum-btn') && cards[0].querySelector('.phone-inbox-save'));
+assert(!cards[0].querySelector('.phone-inbox-open'), 'the card itself opens the page; no extra Open button');
 
 // a search narrows them
 d.getElementById('searchInput').value = 'news.example';

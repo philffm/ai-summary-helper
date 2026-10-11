@@ -30,11 +30,17 @@ assert(save('s1') && save('s2'), 'every waiting link has a Save only button');
 assert(/Save only/.test(save('s1').textContent));
 assert(!save('s1').classList.contains('feed-sum-btn'), 'separate from Summarize');
 
-// Open: new tab with the link, the entry stays in the list
-const openBtn = d.querySelector('#articleList .phone-inbox-open');
-assert(openBtn, 'Open button on every row');
-openBtn.click(); await tick(30);
+// Open: clicking the card opens the page in a new tab (like other cards open theirs); the entry stays in the list
+assert(!d.querySelector('#articleList .phone-inbox-open'), 'no separate Open button');
+const card = d.querySelector('#articleList .phone-card');
+assert(card && card.tabIndex === 0 && card.getAttribute('role') === 'button', 'focusable like the other cards');
+card.click(); await tick(30);
 assert.deepEqual(openedTabs, ['https://example.com/save-me']);
+const hostLink = card.querySelector('.article-date a'); hostLink.addEventListener('click', (e) => e.preventDefault());
+hostLink.click(); await tick(10);
+assert.equal(openedTabs.length, 1, 'a click on the host link does not also open the page twice');
+card.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); await tick(10);
+assert.equal(openedTabs.length, 2, 'Enter opens it');
 assert.equal(store[SK.inboxPending].length, 2, 'opening does not remove the link');
 const anchor = d.querySelector('#articleList .phone-card .article-date a');
 assert(anchor && anchor.getAttribute('href') === 'https://example.com/save-me' && anchor.target === '_blank', 'the card shows the host as a real link');
@@ -55,4 +61,14 @@ const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'ut
 assert(/EXTENSION_PAGE_ACTIONS = new Set\([^)]*'saveFeedItem'/.test(bg), 'only extension pages may ask for it');
 assert(d.querySelector('#articleList li.article-card.phone-card .article-header h4'), 'a native History card');
 assert(!d.getElementById('phoneInbox'), 'no separate From-phone box any more');
+// Dismiss: asks first, nothing is removed on "Cancel"
+const dismissBtn = (id) => [...d.querySelectorAll(`#articleList .phone-card[data-phone-id="${id}"] button`)].find(b => /Dismiss/.test(b.textContent));
+let asked = 0, answer = false;
+w.confirm = () => { asked++; return answer; };
+dismissBtn('s2').click(); await tick(60);
+assert.equal(asked, 1, 'asks before removing');
+assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['s2'], 'cancelled: still there');
+answer = true;
+dismissBtn('s2').click(); await tick(80);
+assert.deepEqual(store[SK.inboxPending], [], 'confirmed: gone');
 console.log('TEST 138 OK');

@@ -241,7 +241,11 @@ function openLink(entry) {
     try { if (chrome.tabs && chrome.tabs.create) { chrome.tabs.create({ url: entry.url }); return; } } catch (_) { /* fall back below */ }
     window.open(entry.url, '_blank', 'noopener');
 }
-async function dismiss(entry) { await manager.resolve(entry.id); await renderList(); }
+async function dismiss(entry) {
+    // Removing a link deletes it from the inbox for good (it cannot be restored), so ask first, like Delete on an article.
+    if (!window.confirm(T('Remove this link from your inbox? It is deleted and cannot be restored.'))) return;
+    await manager.resolve(entry.id); await renderList();
+}
 
 // A summary can finish while the popup is closed (it runs in the background): any waiting link that has an article in
 // History saved after the link arrived counts as summarized and is taken off the list (and deleted on the server).
@@ -310,10 +314,16 @@ function phoneCard(entry) {
     sum.dataset.id = entry.id; setLabel(sum, T('✨ Summarize'));
     const save = button('', 'button-secondary btn-sm phone-inbox-save', (e) => { e.stopPropagation(); saveOnly(entry); });
     save.dataset.id = entry.id; save.title = T('Keep it in History, no AI, nothing sent'); setIconLabel(save, 'download', T('Save only'));
-    const open = button(T('Open ↗'), 'button-secondary btn-sm phone-inbox-open', (e) => { e.stopPropagation(); openLink(entry); });
     const dismiss_ = button(T('Dismiss'), 'button-tertiary btn-sm', (e) => { e.stopPropagation(); dismiss(entry); });
-    actions.append(sum, save, open, dismiss_);
+    actions.append(sum, save, dismiss_);
     li.append(head, actions);
+    // Like every other card: clicking the card opens it (here: the page itself; there is no summary to show yet).
+    li.tabIndex = 0; li.setAttribute('role', 'button');
+    li.addEventListener('click', (e) => { if (e.target.closest('button') || e.target.closest('a')) return; openLink(entry); });
+    li.addEventListener('keydown', (e) => {
+        if (e.target !== li || (e.key !== 'Enter' && e.key !== ' ')) return;
+        e.preventDefault(); openLink(entry);
+    });
     if (sumErrors.has(entry.id)) {
         const err = para(sumErrors.get(entry.id), 'phone-inbox-error'); err.dataset.id = entry.id; err.setAttribute('role', 'alert');
         li.append(err);
