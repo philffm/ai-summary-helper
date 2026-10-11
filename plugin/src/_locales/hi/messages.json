@@ -4429,5 +4429,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ सभी {n} का सार दें"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "{n} सारांश पढ़े जा रहे हैं · चरण {a}/{b}…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n} और छोड़े गए (प्रति ब्रीफिंग सीमा)"
   }
 }

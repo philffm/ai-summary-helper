@@ -8,6 +8,7 @@
 
 import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
+import { dedupeArticles } from './textUtils.js';
 import { resolveLocale } from './i18n.js';
 import { conceptKey, conceptList, topicLabel, hasLabel, lexiconLearn, normalizeTopic } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
@@ -426,22 +427,47 @@ export async function generateDigestIntro(list, style = 'briefing', { onStage, s
  * a short briefing when there is no question, otherwise an answer to it. Items are cited as [n].
  * Returns { text, used, articles } — `used` = how many articles went in (capped at CLUSTER_MAX); articles[n-1] is item [n].
  */
-export const CLUSTER_MAX = 15;
-export async function askCluster(list, { topic = '', question = '' } = {}, { onStage, signal, onProgress } = {}) {
+export const CLUSTER_MAX = 15;          // summaries per request
+export const CLUSTER_RUNS = 4;          // max requests → at most 60 summaries, then one more request merges the parts
+export async function askCluster(list, { topic = '', question = '' } = {}, { onStage, signal, onProgress, onPart } = {}) {
     const lang = await languageName();
     const plain = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ');
     const q = String(question || '').trim();
-    const items = list.map(a => ({ a, body: clip(plain(a.summary || a.snippet || ''), 500) })).filter(x => x.body).slice(0, CLUSTER_MAX);
+    const unique = dedupeArticles(list);   // the same page saved twice (or reached by two feeds) counts once
+    const all = unique.map(a => ({ a, body: clip(plain(a.summary || a.snippet || ''), 500) })).filter(x => x.body);
+    const items = all.slice(0, CLUSTER_MAX * CLUSTER_RUNS);
     if (!items.length) throw new Error(T('These articles have no summaries yet'));
-    const system = `You work from a reader's own saved article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
-        + 'Use ONLY the numbered summaries: no outside facts. Refer to items as [n]. If they do not contain the answer, say so. '
-        + (q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
+    const base = `You work from a reader's own saved article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
+        + 'Use ONLY the numbered summaries: no outside facts. Refer to items as [n]. If they do not contain the answer, say so. ';
+    const lines = (arr, from) => arr.map((x, i) => `[${from + i + 1}] ${clip(x.a.title, 140)} — ${x.body}`).join('\n');
+    const clean = (raw) => String(raw || '').replace(/^```\w*\n?|```$/gm, '').trim();
+    const chunks = [];
+    for (let i = 0; i < items.length; i += CLUSTER_MAX) chunks.push(items.slice(i, i + CLUSTER_MAX));
+    let text;
+    if (chunks.length === 1) {
+        const system = base + (q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
             : 'Write a short briefing: what they say together, where they differ or add to each other, and which one to read first. At most 8 bullet lines, no headings.');
-    const user = items.map((x, i) => `[${i + 1}] ${clip(x.a.title, 140)} — ${x.body}`).join('\n') + (q ? `\n\nQuestion: ${clip(q, 400)}` : '');
-    const raw = await aiComplete(system, user, onStage, signal, onProgress, { partial: true });
-    const text = String(raw || '').replace(/^```\w*\n?|```$/gm, '').trim();
+        text = clean(await aiComplete(system, lines(items, 0) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));
+    } else {
+        // Too many for one request: one pass per group of CLUSTER_MAX (numbers stay global), then merge the partial answers.
+        const partSys = base + (q ? 'Answer the question from these summaries only, in at most 4 bullet lines. If they do not contain the answer, say so in one line.'
+            : 'Write 4 to 6 bullet lines: the main points of these summaries, each with its [n] references. No headings.');
+        const parts = [];
+        for (let k = 0; k < chunks.length; k++) {
+            if (signal && signal.aborted) throw Object.assign(new Error(T('Cancelled')), { name: 'AbortError', cancelled: true });
+            if (onPart) onPart({ done: k, total: chunks.length + 1 });
+            const from = k * CLUSTER_MAX;
+            parts.push(clean(await aiComplete(partSys, lines(chunks[k], from) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, {})));
+        }
+        if (onPart) onPart({ done: chunks.length, total: chunks.length + 1 });
+        const mergeSys = `You combine partial notes that were each written from different numbered article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
+            + 'Use ONLY the notes. Keep the [n] references exactly as they are. '
+            + (q ? 'Give one answer to the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
+                : 'Write one briefing: what the articles say together, where they differ or add to each other, and which to read first. At most 10 bullet lines, no headings.');
+        text = clean(await aiComplete(mergeSys, parts.map((p, k) => `Notes ${k + 1} (items ${k * CLUSTER_MAX + 1}-${Math.min(items.length, (k + 1) * CLUSTER_MAX)}):\n${p}`).join('\n\n') + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));
+    }
     if (!text) throw new Error(T('The AI reply could not be read'));
-    return { text, used: items.length, articles: items.map(x => x.a) };   // articles[n-1] is what the text cites as [n]
+    return { text, used: items.length, runs: chunks.length > 1 ? chunks.length + 1 : 1, skipped: all.length - items.length, duplicates: (list || []).length - unique.length, articles: items.map(x => x.a) };   // articles[n-1] is what the text cites as [n]
 }
 
 /** Stable fingerprint of a recap (what a week/month recap was built from) — changes when a day/week recap is regenerated. */

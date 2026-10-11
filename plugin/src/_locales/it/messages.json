@@ -4429,5 +4429,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ Riassumi tutti e {n}"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "Lettura di {n} riassunti · passo {a} di {b}…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n} esclusi (limite per briefing)"
   }
 }

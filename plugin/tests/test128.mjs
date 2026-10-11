@@ -132,6 +132,32 @@ const feedCard = gc.showClusterCard(area, { label: 'News', articles: [{ title: '
 const labels = [...feedCard.querySelectorAll('button')].map(b => b.textContent);
 assert.ok(labels.some(l => /Brief me/.test(l)) && !labels.some(l => /Markdown/.test(l)), labels.join('|'));
 
+// ── many articles: duplicates dropped, groups of 15, partial notes merged ──
+const { askCluster, CLUSTER_MAX } = await imp('modules/feedAi.js');
+const { dedupeArticles } = await imp('modules/textUtils.js');
+assert.equal(CLUSTER_MAX, 15);
+const many = Array.from({ length: 41 }, (_, i) => art('m' + i, ['Big'], 30 + i, { url: 'https://site.example/p' + i }));
+const dups = [...many, art('dupA', ['Big'], 5, { url: 'https://www.site.example/p3/?utm_source=x' }), art('dupB', ['Big'], 4, { url: 'https://site.example/p7', lastOpened: new Date(now).toISOString() })];
+assert.equal(dedupeArticles(dups).length, 41, 'same URL (tracking params, www, slash) counts once');
+assert.equal(dedupeArticles(dups).find(a => /p7$/.test(a.url)).id, 'dupB', 'the already-opened copy is kept');
+assert.equal(dedupeArticles([{ title: 'Same  Title' }, { title: 'same title' }, { title: 'other' }]).length, 2, 'no URL: same title counts once');
+sent.length = 0;
+const parts = [];
+globalThis.__ai = (m) => { sent.push(m); return { ok: true, text: /combine partial/.test(m.system) ? 'Merged [1] and [41]' : 'note ' + (sent.length) + ' [' + (/\[(\d+)\]/.exec(m.user) || [])[1] + ']' }; };
+const big = await askCluster(dups, { topic: 'Big' }, { onPart: (p) => parts.push(p.done + '/' + p.total) });
+assert.equal(sent.length, 4, '41 unique → 3 groups + 1 merge: ' + sent.length);
+assert.ok(/\[1\] /.test(sent[0].user) && /\[15\] /.test(sent[0].user) && !/\[16\] /.test(sent[0].user), 'first group is 1–15');
+assert.ok(/\[16\] /.test(sent[1].user) && /\[30\] /.test(sent[1].user) && !/\[1\] /.test(sent[1].user), 'numbers stay global in the second group');
+assert.ok(/\[31\] /.test(sent[2].user) && /\[41\] /.test(sent[2].user) && !/\[42\] /.test(sent[2].user), 'last group 31–41, no duplicates');
+assert.ok(/combine partial/.test(sent[3].system) && /note 1/.test(sent[3].user) && /note 3/.test(sent[3].user), 'merge sees every partial answer');
+assert.equal(big.used, 41); assert.equal(big.runs, 4); assert.equal(big.duplicates, 2); assert.equal(big.articles.length, 41);
+assert.deepEqual(parts, ['0/4', '1/4', '2/4', '3/4'], 'progress is reported per step');
+sent.length = 0;
+const huge = await askCluster(Array.from({ length: 70 }, (_, i) => art('h' + i, ['H'], i, { url: 'https://h.example/' + i })), {}, {});
+assert.equal(huge.used, 60); assert.equal(huge.skipped, 10); assert.equal(sent.length, 5, '4 groups + merge');
+sent.length = 0; globalThis.__ai = (m) => { sent.push(m); return { ok: true, text: 'ok' }; };
+await askCluster(many.slice(0, 15), {}, {}); assert.equal(sent.length, 1, '15 or fewer: single request, no merge');
+
 // ── export of just one cluster ──
 const { SK } = await imp('modules/storageKeys.js');
 store[SK.articlesIndex] = [art('e1', ['T'], 5), art('e2', ['T'], 4), art('e3', ['U'], 3)];

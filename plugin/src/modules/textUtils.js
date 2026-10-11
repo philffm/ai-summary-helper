@@ -87,6 +87,29 @@ export function normalizeUrl(url) {
     }
 }
 
+/**
+ * Drops duplicate articles (same URL after tracking params/www/trailing slash, else same title), keeping the copy that is
+ * most useful: one with a stored summary first, then one the reader has already opened. Order of first appearance is kept.
+ */
+export function dedupeArticles(list) {
+    const score = (a) => (String((a && (a.summary || a.snippet)) || '').trim() ? 2 : 0) + (a && a.lastOpened ? 1 : 0);
+    const keyOf = (a) => {
+        const u = a && (a.url || a.link);
+        if (u) return 'u:' + normalizeUrl(u);
+        const t = String((a && a.title) || '').toLowerCase().replace(/\s+/g, ' ').trim();
+        return t ? 't:' + t : '';
+    };
+    const seen = new Map(), out = [];
+    (list || []).forEach((a) => {
+        const k = keyOf(a);
+        if (!k) { out.push(a); return; }
+        if (!seen.has(k)) { seen.set(k, out.length); out.push(a); return; }
+        const i = seen.get(k);
+        if (score(a) > score(out[i])) out[i] = a;
+    });
+    return out;
+}
+
 /** Dice coefficient over word sets — cheap, good for short strings like titles. */
 export function diceCoefficient(aWords, bWords) {
     const a = new Set(aWords);

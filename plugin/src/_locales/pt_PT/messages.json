@@ -4429,5 +4429,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ Resumir todos os {n}"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "A ler {n} resumos · passo {a} de {b}…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "Mais {n} ficaram de fora (limite por resumo)"
   }
 }

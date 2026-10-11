@@ -4429,5 +4429,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ Сводка по всем {n}"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "Читаю {n} сводок · шаг {a} из {b}…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "Ещё {n} не вошли (лимит на одну сводку)"
   }
 }

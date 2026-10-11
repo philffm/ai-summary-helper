@@ -4429,5 +4429,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ لخّص لي الكل ({n})"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "جارٍ قراءة {n} ملخصات · الخطوة {a} من {b}…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "تم استبعاد {n} أخرى (حد كل ملخص)"
   }
 }

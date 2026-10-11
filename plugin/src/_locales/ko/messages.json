@@ -4411,5 +4411,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ 전체 {n}개 브리핑"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "요약 {n}개 읽는 중 · {a}/{b} 단계…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n}개는 제외됨(브리핑당 한도)"
   }
 }

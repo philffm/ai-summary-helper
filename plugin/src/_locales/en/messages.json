@@ -4645,5 +4645,13 @@
   "f_brief_me_on_all_f0c7": {
     "message": "✨ Brief me on all {n}",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "Reading {n} summaries · step {a} of {b}…",
+    "description": "Placeholders: {n} {a} {b} (keep as is)"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n} more were left out (limit per briefing)",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

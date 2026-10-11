@@ -4,6 +4,7 @@
 import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
 import { setIconLabel } from './icons.js';
+import { dedupeArticles } from './textUtils.js';
 
 const title = (a) => a.title || (a.content && String(a.content).split('\n')[0]) || T('Untitled');
 const isOpened = (a) => !!a.lastOpened;
@@ -96,7 +97,7 @@ export function showClusterCard(container, opts) { return openClusterPage(contai
 /** The cluster page. */
 export function openClusterPage(container, { label, articles }) {
     container.querySelectorAll('.graph-preview-card, .graph-cluster-page').forEach(c => c.remove());
-    const list = (articles || []).slice().sort((a, b) => new Date(a.lastOpened || a.timestamp) - new Date(b.lastOpened || b.timestamp));
+    const list = dedupeArticles(articles || []).sort((a, b) => new Date(a.lastOpened || a.timestamp) - new Date(b.lastOpened || b.timestamp));
     const st = clusterStats(list);
     const unopened = list.filter(a => !isOpened(a));
     const opened = list.filter(isOpened);
@@ -122,12 +123,13 @@ export function openClusterPage(container, { label, articles }) {
         ctl = new AbortController();
         const mine = ctl;
         out.className = 'graph-cluster-answer is-busy';
-        out.textContent = T('Reading {n} summaries…', { n: Math.min((question ? list : focusNow()).filter(hasText).length, 15) });
+        const readN = (question ? list : focusNow()).filter(hasText).length;
+        out.textContent = T('Reading {n} summaries…', { n: readN });
         if (trigger) trigger.disabled = true;
         try {
             const { askCluster } = await import('./feedAi.js');
             const { renderAnswer } = await import('./qaView.js');
-            const r = await askCluster(question ? list : focusNow(), { topic: label, question }, { signal: mine.signal });
+            const r = await askCluster(question ? list : focusNow(), { topic: label, question }, { signal: mine.signal, onPart: ({ done, total }) => { if (mine === ctl && out.classList.contains('is-busy')) out.textContent = T('Reading {n} summaries · step {a} of {b}…', { n: readN, a: Math.min(done + 1, total), b: total }); } });
             if (!page.isConnected || mine !== ctl) return;
             out.className = 'graph-cluster-answer md-body';
             out.textContent = '';
@@ -135,8 +137,12 @@ export function openClusterPage(container, { label, articles }) {
             renderAnswer(body, r.text);
             linkCitations(body, r.articles, openArticle);
             out.append(el('div', 'graph-preview-date', T('From {n} summaries — nothing else was sent', { n: r.used })));
+            if (r.skipped > 0) out.append(el('div', 'graph-preview-date', T('{n} more were left out (limit per briefing)', { n: r.skipped })));
             if (r.articles && r.articles.length) {
-                out.append(el('div', 'graph-cluster-h', T('Sources used')));
+                const many = r.articles.length > 8;
+                const srcHost = many ? el('details', 'graph-cluster-srcs') : out;
+                const h = many ? el('summary', 'graph-cluster-h', T('Sources used') + ' (' + r.articles.length + ')') : el('div', 'graph-cluster-h', T('Sources used'));
+                srcHost.append(h);
                 const ol = el('ol', 'graph-cluster-sources');
                 r.articles.forEach((a, i) => {
                     const li = el('li'); const b = el('button', 'graph-cluster-src'); b.type = 'button'; b.title = title(a);
@@ -144,7 +150,8 @@ export function openClusterPage(container, { label, articles }) {
                     b.addEventListener('click', (e) => { e.stopPropagation(); openArticle(a); });
                     li.append(b); ol.append(li);
                 });
-                out.append(ol);
+                srcHost.append(ol);
+                if (many) out.append(srcHost);
             }
             out.scrollIntoView && out.scrollIntoView({ block: 'nearest' });
         } catch (e) {

@@ -4429,5 +4429,11 @@
   },
   "f_brief_me_on_all_f0c7": {
     "message": "✨ Briefing zu allen {n}"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "Lese {n} Zusammenfassungen · Schritt {a} von {b}…"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n} weitere ausgelassen (Limit pro Briefing)"
   }
 }
