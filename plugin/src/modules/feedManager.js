@@ -89,6 +89,7 @@ let ui = { source: 'all', status: 'all', date: 'any', mood: 'any', sort: 'new', 
 const DEFAULT_STATUS = 'all';
 let refreshing = false;
 let els = {};
+let refreshPaint = false;       // true only while a render is driven by a running refresh (the graph skips those)
 let uiRef = null;
 let undoTimer = null;
 let shown = PAGE_SIZE;
@@ -531,7 +532,8 @@ async function refreshAll(uiObj, { force = false } = {}) {
                 pruneItems();
                 if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
                 await persist();
-                render();
+                refreshPaint = true;
+                try { render(); } finally { refreshPaint = false; }
             });
             return writeQueue;
         };
@@ -1052,6 +1054,10 @@ function renderAltView() {
 async function renderGraphView() {
     const box = els.graph; if (!box) return;
     const all = visibleItems();
+    // A refresh saves and re-renders after every feed: keep the graph on screen as it is (re-laying it out under the
+    // reader's finger is disruptive) and let the final render, once the refresh is done, update it once.
+    // Filters, search and view changes by the reader still go through.
+    if (refreshPaint && box.querySelector('svg')) return;
     const sig = [items.length, all.length, all[0] && all[0].id, ui.source, ui.status, JSON.stringify(ui.date), ui.mood, searchQuery].join('|');
     if (sig === graphSig && box.childElementCount) return;
     graphSig = sig;
@@ -1115,7 +1121,8 @@ function initSearchAndViews() {
         els.graph.addEventListener('filter-by-tag', (e) => { if (e.detail && e.detail.tag) setSearch(e.detail.tag, 'list'); });
         els.graph.addEventListener('open-article', (e) => { const it = e.detail && e.detail._item; if (it) openItem(it, false); });
         if (typeof MutationObserver !== 'undefined') new MutationObserver(() => {
-            const b = els.graph.querySelector('.graph-preview-open');
+            // Only the article preview card's footer button: the cluster page's "Brief me" button shares the class.
+            const b = els.graph.querySelector('.graph-preview-foot .graph-preview-open:not(.graph-cluster-brief)');
             if (b && !b.dataset.feed) { b.dataset.feed = '1'; b.textContent = T('Open ↗'); }
         }).observe(els.graph, { childList: true, subtree: true });
     }
