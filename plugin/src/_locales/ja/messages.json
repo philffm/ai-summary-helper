@@ -4423,5 +4423,11 @@
   },
   "f_sources_used_0e42": {
     "message": "使用した出典"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "ブリーフィングに含める"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ すべて({n}件)を要約"
   }
 }

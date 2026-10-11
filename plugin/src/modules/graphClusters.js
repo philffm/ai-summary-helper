@@ -100,7 +100,8 @@ export function openClusterPage(container, { label, articles }) {
     const st = clusterStats(list);
     const unopened = list.filter(a => !isOpened(a));
     const opened = list.filter(isOpened);
-    const focus = unopened.length ? unopened : list;   // the briefing covers what was never opened, else the whole topic
+    let includeOpened = false;                          // "Include in briefing" switch in the Opened group
+    const focusNow = () => (includeOpened || !unopened.length ? list : unopened);   // default: what was never opened; else the whole topic
     const openArticle = (a) => container.dispatchEvent(new CustomEvent('open-article', { detail: a, bubbles: true, composed: true }));
 
     const page = el('div', 'graph-cluster-page'); page.setAttribute('role', 'region'); page.setAttribute('aria-label', label);
@@ -121,12 +122,12 @@ export function openClusterPage(container, { label, articles }) {
         ctl = new AbortController();
         const mine = ctl;
         out.className = 'graph-cluster-answer is-busy';
-        out.textContent = T('Reading {n} summaries…', { n: Math.min((question ? list : focus).filter(hasText).length, 15) });
+        out.textContent = T('Reading {n} summaries…', { n: Math.min((question ? list : focusNow()).filter(hasText).length, 15) });
         if (trigger) trigger.disabled = true;
         try {
             const { askCluster } = await import('./feedAi.js');
             const { renderAnswer } = await import('./qaView.js');
-            const r = await askCluster(question ? list : focus, { topic: label, question }, { signal: mine.signal });
+            const r = await askCluster(question ? list : focusNow(), { topic: label, question }, { signal: mine.signal });
             if (!page.isConnected || mine !== ctl) return;
             out.className = 'graph-cluster-answer md-body';
             out.textContent = '';
@@ -153,9 +154,14 @@ export function openClusterPage(container, { label, articles }) {
         } finally { if (trigger) trigger.disabled = false; }
     };
 
+    let brief = null;
+    const paintBrief = () => {
+        if (!brief) return;
+        setIconLabel(brief, 'sparkles', !unopened.length ? T('✨ Brief me on this topic') : includeOpened ? T('✨ Brief me on all {n}', { n: list.length }) : T('✨ Brief me on the {n} unopened', { n: unopened.length }));
+        page.querySelectorAll('.graph-cluster-open').forEach(b => b.classList.toggle('is-included', includeOpened && !!b.dataset.sel));
+    };
     if (st.withSummary) {
-        const brief = el('button', 'graph-preview-open graph-cluster-brief');
-        setIconLabel(brief, 'sparkles', unopened.length ? T('✨ Brief me on the {n} unopened', { n: unopened.length }) : T('✨ Brief me on this topic'));
+        brief = el('button', 'graph-preview-open graph-cluster-brief');
         brief.type = 'button';
         brief.addEventListener('click', (e) => { e.stopPropagation(); run('', brief); });
         scroll.append(brief);
@@ -183,7 +189,7 @@ export function openClusterPage(container, { label, articles }) {
 
     const row = (a, dim) => {
         const li = el('li');
-        const b = el('button', 'graph-cluster-open' + (dim ? ' is-opened' : '')); b.type = 'button';
+        const b = el('button', 'graph-cluster-open' + (dim ? ' is-opened' : '')); b.type = 'button'; b.dataset.sel = '1';
         b.append(el('span', 'graph-cluster-open-t', title(a)));
         const meta = metaOf(a); if (meta) b.append(el('span', 'graph-cluster-open-m', meta));
         b.addEventListener('click', (e) => { e.stopPropagation(); openArticle(a); });
@@ -198,7 +204,18 @@ export function openClusterPage(container, { label, articles }) {
     }
     if (opened.length) {
         const det = el('details', 'graph-cluster-opened');
-        det.append(el('summary', null, T('Opened ({n})', { n: opened.length })));
+        const sum = el('summary', null, T('Opened ({n})', { n: opened.length }));
+        if (unopened.length && st.withSummary) {
+            const sw = el('button', 'graph-cluster-switch'); sw.type = 'button'; sw.setAttribute('role', 'switch'); sw.setAttribute('aria-checked', 'false');
+            sw.append(el('span', 'graph-cluster-switch-l', T('Include in briefing')), el('span', 'graph-cluster-switch-k'));
+            sw.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                includeOpened = !includeOpened; sw.setAttribute('aria-checked', String(includeOpened));
+                page.classList.toggle('is-including', includeOpened); paintBrief();
+            });
+            sum.append(sw);
+        }
+        det.append(sum);
         const ul = el('ul', 'graph-cluster-list'); opened.slice(0, 20).forEach(a => ul.append(row(a, true))); det.append(ul);
         scroll.append(det);
     }
@@ -210,6 +227,7 @@ export function openClusterPage(container, { label, articles }) {
     ask.append(input, go);
     ask.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) { run(q, go); input.value = ''; } });
 
+    paintBrief();
     page.append(bar, scroll);
     if (st.withSummary) page.append(ask);
     container.appendChild(page);

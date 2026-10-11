@@ -4638,5 +4638,12 @@
   },
   "f_sources_used_0e42": {
     "message": "Sources used"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "Include in briefing"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Brief me on all {n}",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

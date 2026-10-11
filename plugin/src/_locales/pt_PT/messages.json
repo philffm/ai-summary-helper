@@ -4423,5 +4423,11 @@
   },
   "f_sources_used_0e42": {
     "message": "Fontes utilizadas"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "Incluir no resumo"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Resumir todos os {n}"
   }
 }

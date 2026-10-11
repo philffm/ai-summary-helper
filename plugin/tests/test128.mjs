@@ -102,6 +102,18 @@ const srcs = [...card.querySelectorAll('.graph-cluster-sources .graph-cluster-sr
 assert.deepEqual(srcs.map(b => b.textContent), ['1T c1', '2T c3'], 'numbered source list mirrors the pills');
 opened.length = 0; srcs[1].click(); assert.deepEqual(opened, ['c3'], 'a source row opens its article');
 
+// "Include in briefing": the Opened group's switch widens the briefing to every article
+card.querySelector('details').open = true;
+const sw = card.querySelector('.graph-cluster-switch');
+assert.equal(sw.getAttribute('aria-checked'), 'false'); assert.ok(/on the 2 unopened/.test(brief.textContent));
+sw.click();
+assert.equal(sw.getAttribute('aria-checked'), 'true'); assert.ok(/Brief me on all 3/.test(brief.textContent), brief.textContent);
+assert.ok(card.querySelectorAll('.graph-cluster-open.is-included').length >= 1, 'opened rows are marked as included');
+brief.click(); await tick(80);
+assert.equal(sent.length, 2); assert.ok(/Summary of c2/.test(sent[1].user), 'opened article now part of the briefing');
+sent.pop();
+sw.click(); assert.ok(/on the 2 unopened/.test(brief.textContent), 'switch back restores the default');
+
 // question: whole topic, answer rendered as text
 const input = card.querySelector('.graph-cluster-ask input'); input.value = 'What is common?';
 card.querySelector('.graph-cluster-ask').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); await tick(80);

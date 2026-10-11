@@ -4423,5 +4423,11 @@
   },
   "f_sources_used_0e42": {
     "message": "Использованные источники"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "Включить в сводку"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Сводка по всем {n}"
   }
 }

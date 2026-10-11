@@ -4423,5 +4423,11 @@
   },
   "f_sources_used_0e42": {
     "message": "所用来源"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "纳入简报"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ 简要概述全部 {n} 篇"
   }
 }

@@ -4405,5 +4405,11 @@
   },
   "f_sources_used_0e42": {
     "message": "사용한 출처"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "브리핑에 포함"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ 전체 {n}개 브리핑"
   }
 }

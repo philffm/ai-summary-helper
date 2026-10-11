@@ -4423,5 +4423,11 @@
   },
   "f_sources_used_0e42": {
     "message": "Verwendete Quellen"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "In Briefing einbeziehen"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Briefing zu allen {n}"
   }
 }
