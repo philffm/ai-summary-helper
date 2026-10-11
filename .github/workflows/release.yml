@@ -75,6 +75,40 @@ jobs:
           echo "could not push the version bump to main" >&2
           exit 1
 
+      # The phone companion (mobile/android). Signed with the release keystore when the secrets exist (ANDROID_KEYSTORE_BASE64,
+      # ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD); otherwise it is built debug-signed, which installs the same.
+      # Always published under the same file name so the website can link releases/latest/download/aish-companion.apk.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build Android companion APK
+        working-directory: mobile/android
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          VERSION=$(jq -r '.version' ../../current_version.json)
+          # versionCode grows with the version: 2.2.19 -> 20219
+          CODE=$(echo "$VERSION" | awk -F. '{ printf "%d", $1*10000 + $2*100 + $3 }')
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+            export ANDROID_KEYSTORE_FILE="$RUNNER_TEMP/release.keystore"
+            gradle --no-daemon -PversionName="$VERSION" -PversionCode="$CODE" assembleRelease
+            cp app/build/outputs/apk/release/*.apk "$GITHUB_WORKSPACE/aish-companion.apk"
+          else
+            echo "No release keystore configured: building a debug-signed APK."
+            gradle --no-daemon -PversionName="$VERSION" -PversionCode="$CODE" assembleDebug
+            cp app/build/outputs/apk/debug/*.apk "$GITHUB_WORKSPACE/aish-companion.apk"
+          fi
+
       - name: Extract version for release tag
         id: get_version
         run: |
@@ -93,5 +127,6 @@ jobs:
             plugin/prod/aish-extension-chrome-*.zip
             plugin/prod/aish-extension-android-*.zip
             plugin/prod/aish-extension-firefox-*.zip
+            aish-companion.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

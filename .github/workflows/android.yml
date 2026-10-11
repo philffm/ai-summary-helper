@@ -1,0 +1,48 @@
+name: Android
+
+# The phone companion in mobile/android: unit tests (crypto against the shared vector) and a debug build.
+# Runs only when the app, its shared test vector or this workflow changes.
+
+on:
+  pull_request:
+    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', '.github/workflows/android.yml']
+  push:
+    branches: [main]
+    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', '.github/workflows/android.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: The Android test vector matches the extension's
+        run: cmp plugin/tests/fixtures/inbox-vector.json mobile/android/app/src/test/resources/inbox-vector.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # No Gradle wrapper is checked in: this action installs Gradle itself.
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Unit tests and debug build
+        working-directory: mobile/android
+        run: gradle --no-daemon test assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aish-companion-debug-apk
+          path: mobile/android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
