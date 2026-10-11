@@ -347,7 +347,11 @@ import {
           if (!String(text || '').trim()) { sendResponse({ success: false, error: 'empty' }); return; }
           let meta = {};
           try { meta = collectPageMeta(); } catch (_) { /* optional */ }
-          try { html = await inlineAndCompressImages(html); } catch (_) { /* keep original html */ }
+          // Images are inlined for offline reading, but a page with many or slow ones must not hold the save hostage.
+          if (!request.noImages) {
+            const capped = new Promise((r) => setTimeout(() => r(html), 25000));
+            try { html = await Promise.race([inlineAndCompressImages(html), capped]); } catch (_) { /* keep original html */ }
+          }
           const title = (meta.title || document.title || window.location.hostname || 'Untitled').toString().slice(0, 200);
           const feedUrl = request.feedUrl && request.feedUrl !== window.location.href ? { feedUrl: request.feedUrl } : {};
           const saved = await saveToLocalStorage(html, '', window.location.href, title, '', [], '', 0, undefined,

@@ -1153,6 +1153,7 @@ async function openFeedItem(msg, job) {
  */
 async function saveFeedItem(url) {
     let tab = null, opened = false;
+    const keepAlive = setInterval(() => { try { chrome.runtime.getPlatformInfo(() => { void chrome.runtime.lastError; }); } catch (_) { /* optional */ } }, 20000);
     try {
         const want = sumJobKey(url);
         tab = (await chrome.tabs.query({})).find(tb => tb.url && sumJobKey(tb.url) === want) || null;
@@ -1179,19 +1180,25 @@ async function saveFeedItem(url) {
             if (!reachable) await new Promise(r => setTimeout(r, 900));
         }
         if (!reachable) { console.debug('[inbox] save only: page did not answer', url); return { success: false, error: 'unreachable' }; }
+        // Heavy pages (many images) can take a while: keep the worker alive, cap every try, and fall back to no images.
         let res = null, lastErr = '';
+        const asked = (noImages) => Promise.race([
+            chrome.tabs.sendMessage(tab.id, { action: 'savePage', feedUrl: url, noImages }),
+            new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 70000))
+        ]);
         for (let attempt = 0; attempt < 3 && !(res && res.success); attempt++) {
-            try { res = await chrome.tabs.sendMessage(tab.id, { action: 'savePage', feedUrl: url }); }
+            try { res = await asked(attempt > 0); }   // first try with images, the retries without
             catch (e) { lastErr = String((e && e.message) || e); res = null; }
             if (res && (res.success || res.error === 'empty')) break;   // 'empty' will not change by asking again
-            await new Promise(r => setTimeout(r, 1200));
+            await new Promise(r => setTimeout(r, 1000));
         }
         if (res && res.success) return res;
         console.debug('[inbox] save only failed', url, (res && res.error) || lastErr);
-        return { success: false, error: (res && res.error) || lastErr || 'failed' };
+        return { success: false, error: (res && res.error) || (lastErr === 'timeout' ? 'timeout' : 'failed'), detail: String((res && res.error) || lastErr || '').slice(0, 160) };
     } catch (e) {
         return { success: false, error: String((e && e.message) || e) };
     } finally {
+        clearInterval(keepAlive);
         if (opened && tab && tab.id != null) { try { await chrome.tabs.remove(tab.id); } catch (_) { /* already closed */ } }
     }
 }
@@ -1305,6 +1312,18 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             sendResponse({ success: true, mode, queued: !!r.queued, position: r.position || 0, id: r.id });
         })();
         return true;
+    }
+    // A page that is open in a tab and also waits in the phone inbox reports its real title / description (from the loader).
+    if (msg.action === 'inboxMeta' && sender.tab && typeof msg.url === 'string' && INBOX && INBOX.applyLinkMeta) {
+        (async () => {
+            try {
+                const d = await localGet([SK.inboxPending]);
+                const list = Array.isArray(d[SK.inboxPending]) ? d[SK.inboxPending] : [];
+                if (INBOX.applyLinkMeta(list, sender.tab.url || '', msg)) await new Promise(r => chrome.storage.local.set({ [SK.inboxPending]: list }, r));
+            } catch (_) { /* cosmetic */ }
+        })();
+        sendResponse({ ok: true });
+        return false;
     }
     if (msg.action === 'saveFeedItem' && msg.url) {
         if (!/^https?:\/\//i.test(msg.url)) { sendResponse({ success: false, error: 'bad-url' }); return false; }

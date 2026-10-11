@@ -186,7 +186,8 @@ async function saveOnly(entry) {
     const why = res && res.error;
     sumErrors.set(entry.id, why === 'empty' ? T("This page has no text to save.")
         : why === 'unreachable' ? T("The page didn't respond (blocked, or it needs a login). Open it and try again.")
-        : T("Couldn't save this page. Open it once and try again."));
+        : why === 'timeout' ? T('Saving took too long (a very heavy page). Try again, or open it and summarize instead.')
+        : T("Couldn't save this page. Open it once and try again.") + (res && res.detail ? ' (' + String(res.detail).slice(0, 80) + ')' : ''));
     await renderList();
 }
 function paintSaving(id) {
@@ -295,7 +296,8 @@ function phoneCard(entry) {
     const when = new Date(entry.receivedAt || Date.now()).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     const head = document.createElement('div'); head.className = 'article-header';
     const col = document.createElement('div');
-    const h4 = document.createElement('h4'); h4.textContent = host + (path.length > 1 ? path.slice(0, 70) + (path.length > 70 ? '…' : '') : ''); h4.title = entry.url;
+    const h4 = document.createElement('h4');
+    h4.textContent = entry.title || (host + (path.length > 1 ? path.slice(0, 70) + (path.length > 70 ? '…' : '') : '')); h4.title = entry.url;
     const date = document.createElement('p'); date.className = 'article-date';
     date.append(document.createTextNode('📱 ' + when + ' '));
     if (/^https?:\/\//i.test(entry.url)) {
@@ -306,7 +308,9 @@ function phoneCard(entry) {
     const chips = document.createElement('div'); chips.className = 'card-tags';
     const chip = document.createElement('span'); chip.className = 'tag-chip status-badge new'; chip.textContent = T('From phone');
     chips.append(chip);
-    col.append(h4, date, chips);
+    col.append(h4, date);
+    if (entry.description) { const desc = document.createElement('p'); desc.className = 'phone-card-desc'; desc.textContent = entry.description.length > 160 ? entry.description.slice(0, 159) + '…' : entry.description; col.append(desc); }
+    col.append(chips);
     head.append(col);
 
     const actions = document.createElement('div'); actions.className = 'phone-card-actions';

@@ -4152,6 +4152,7 @@ a.phone-inbox-link:hover strong { text-decoration: underline; }
 .phone-inbox-link span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .7; font-size: 12px; }
 .phone-inbox-qr { width: 220px; max-width: 100%; margin: 12px auto; padding: 8px; background: #fff; border-radius: 8px; }
 .phone-inbox-qr svg { display: block; width: 100%; height: auto; }
+.phone-card-desc { margin: 4px 0 0; font-size: 12px; opacity: .75; }
 .phone-card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .phone-card .phone-inbox-error { margin: 8px 0 0; font-size: 12px; }
 .phone-inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }

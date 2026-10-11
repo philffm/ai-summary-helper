@@ -101,6 +101,27 @@
   try { if (window.navigation) window.navigation.addEventListener('navigatesuccess', onNav); } catch (_) { /* optional API */ }
   try { api.storage.onChanged.addListener(onStorage); } catch (_) { /* gone */ }
 
+  // A link waiting in the phone inbox: once its page is open, tell the extension the real title and description.
+  const INBOX = 'inbox:pending';              // keep in sync with SK.inboxPending (modules/storageKeys.js)
+  const reportInboxMeta = () => {
+    try {
+      api.storage.local.get([INBOX], (res) => {
+        void (api.runtime.lastError);
+        const list = res && res[INBOX];
+        if (!Array.isArray(list) || !list.length) return;
+        const key = keyFor(location.href);
+        if (!list.some(e => e && typeof e.url === 'string' && keyFor(e.url) === key)) return;
+        const content = (sel) => { const el = document.querySelector(sel); return el ? String(el.getAttribute('content') || '').trim() : ''; };
+        const title = (content('meta[property="og:title"]') || document.title || '').slice(0, 200);
+        const description = (content('meta[property="og:description"]') || content('meta[name="description"]')).slice(0, 300);
+        if (!title && !description) return;
+        const p = api.runtime.sendMessage({ action: 'inboxMeta', url: location.href, title, description });
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      });
+    } catch (_) { /* context gone */ }
+  };
+  reportInboxMeta();
+
   try {
     api.storage.sync.get(['userHighlightingEnabled', 'aiHighlightingEnabled', 'highlightingEnabled'], (r) => {
       void (api.runtime.lastError);

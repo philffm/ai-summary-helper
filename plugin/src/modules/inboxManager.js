@@ -26,6 +26,29 @@ export const PENDING_MAX = 200;    // links waiting for the user; when full, pol
 const EMPTY_STATE = () => ({ cursor: '', ackedCursor: '', seen: [], toDelete: [], lastPollAt: 0, lastError: '' });
 export const TODELETE_MAX = 500;
 
+const pageKey = (u) => { try { const x = new URL(u); return x.origin + x.pathname; } catch (_) { return String(u).split('#')[0].split('?')[0]; } };
+const clipText = (v, n) => String(v || '').replace(/\s+/g, ' ').trim().slice(0, n);
+
+/**
+ * A page that is open in a tab and also waits in the inbox reports its own title and description (loader.js). Applies it
+ * to the waiting link(s) for that same page; a page may only describe itself (`meta.url` must be the tab's own URL).
+ * Mutates `list`; returns true when something changed.
+ */
+export function applyLinkMeta(list, tabUrl, meta) {
+    if (!Array.isArray(list) || !meta || typeof meta.url !== 'string' || typeof tabUrl !== 'string') return false;
+    const here = pageKey(meta.url);
+    if (pageKey(tabUrl) !== here) return false;
+    const title = clipText(meta.title, 200), description = clipText(meta.description, 300);
+    if (!title && !description) return false;
+    let changed = false;
+    for (const e of list) {
+        if (!e || typeof e.url !== 'string' || pageKey(e.url) !== here) continue;
+        if (title && e.title !== title) { e.title = title; changed = true; }
+        if (description && e.description !== description) { e.description = description; changed = true; }
+    }
+    return changed;
+}
+
 /** HTTP status → short reason code the UI can translate. */
 export function classify(status) {
     if (status === 0 || status >= 500) return 'unreachable';
