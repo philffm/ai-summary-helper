@@ -2918,6 +2918,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .tag-chip.status-badge.sent, .status-badge.sent { background: var(--tone-sent-bg); color: var(--tone-sent-fg); }
 .tag-chip.status-badge.new, .status-badge.new { background: var(--tone-new-bg); color: var(--tone-new-fg); }
 .tag-chip.status-badge.arch, .status-badge.arch { background: var(--tone-arch-bg); color: var(--tone-arch-fg); }
+.tag-chip.status-badge.phone, .status-badge.phone { background: var(--tone-new-bg); color: var(--tone-new-fg); }   /* came in through the phone inbox */
 /* 🎓 Research mode: paper badges on cards, bubbles and in the detail view */
 .tag-chip.paper, .bubble-tag.paper { font-weight: 600; }
 .paper-ok { color: var(--ok); }

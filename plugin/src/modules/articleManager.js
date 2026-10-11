@@ -100,6 +100,7 @@ export function statusBadges(a) {
     if (!a || a.feedStub) return [];
     const out = [];
     if (a.savedOnly && !(a.summary && String(a.summary).trim())) out.push(['saved', T('📥 Saved · no AI')]);
+    if (a.fromPhone) out.push(['phone', '📱 ' + T('From phone')]);   // it came in through the phone inbox; stays after it was summarized or saved
     if (a.archived) out.push(['arch', T('🗄️ Archived · {date}', { date: fmtDay(a.archivedAt || a.timestamp) })]);
     const latest = new Map();
     (isSent(a) ? a.sentTo : []).forEach(x => latest.set(x.kind + '|' + (x.label || ''), x));

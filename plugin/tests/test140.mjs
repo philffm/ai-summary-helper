@@ -47,4 +47,5 @@ const ul = w.document.getElementById('articleList');
 view.mountPhoneCards(ul);
 assert.equal(ul.querySelector('.phone-card h4').textContent, 'The real headline');
 assert.equal(ul.querySelector('.phone-card .phone-card-desc').textContent, 'Plain description');
+assert(/From phone/.test(ul.querySelector('.phone-card .status-badge').textContent), 'the From phone chip stays when the title arrives');
 console.log('TEST 140 OK');

@@ -182,7 +182,10 @@ async function saveOnly(entry) {
     let res = null;
     try { res = await chrome.runtime.sendMessage({ action: 'saveFeedItem', url: entry.url }); } catch (_) { /* background asleep */ }
     saving.delete(entry.id);
-    if (res && res.success) { await manager.resolve(entry.id); await renderList(); return; }
+    if (res && res.success) {
+        if (res.id) await markFromPhone(entry, [res.id]);
+        await manager.resolve(entry.id); await renderList(); return;
+    }
     const why = res && res.error;
     sumErrors.set(entry.id, why === 'empty' ? T("This page has no text to save.")
         : why === 'unreachable' ? T("The page didn't respond (blocked, or it needs a login). Open it and try again.")
@@ -228,7 +231,12 @@ function onSummaryMessage(msg, sender) {
         if (typeof msg.progress === 'number' && msg.progress > st.pct) { st.pct = Math.min(99, msg.progress); paintSum(id); }
     } else if (msg.action === 'summaryComplete') {
         st.pct = 100; paintSum(id);
-        setTimeout(async () => { endSum(id); await manager.resolve(id); await renderList(); }, 400);   // it now lives in History
+        const waiting = phoneEntries.find(e => e.id === id);
+        setTimeout(async () => {
+            endSum(id);
+            await manager.resolve(id); await renderList();   // it now lives in History
+            if (waiting) markWhenSaved(waiting).catch(() => {});   // ...and keeps where it came from (the article may land a moment later)
+        }, 400);
     } else {
         endSum(id);
         sumErrors.set(id, msg.error || T('Failed'));
@@ -246,6 +254,34 @@ async function dismiss(entry) {
     // Removing a link deletes it from the inbox for good (it cannot be restored), so ask first, like Delete on an article.
     if (!window.confirm(T('Remove this link from your inbox? It is deleted and cannot be restored.'))) return;
     await manager.resolve(entry.id); await renderList();
+}
+
+/**
+ * The article a phone link became (summary or saved copy) keeps its origin: `fromPhone` on its index entry, shown as the
+ * "From phone" chip. `ids` limits it to known articles; otherwise it matches by URL (also the page it was opened from),
+ * saved after the link arrived. Returns how many were marked.
+ */
+export async function markFromPhone(entry, ids = null) {
+    let index = [];
+    try { index = (await chrome.storage.local.get(SK.articlesIndex))[SK.articlesIndex] || []; } catch (_) { return 0; }
+    const key = normalizeUrl(entry.url);
+    let n = 0;
+    for (const a of index) {
+        if (!a || a.fromPhone || a.feedStub) continue;
+        const hit = ids ? ids.includes(a.id)
+            : (Date.parse(a.timestamp) || 0) >= (entry.receivedAt || 0) && [a.url, a.feedUrl].some(u => u && normalizeUrl(u) === key);
+        if (hit) { a.fromPhone = true; n++; }
+    }
+    if (n) { try { await chrome.storage.local.set({ [SK.articlesIndex]: index }); } catch (_) { n = 0; } }
+    return n;
+}
+/** The article is written to History right around the completion message: look for it for a few seconds. */
+async function markWhenSaved(entry) {
+    for (let i = 0; i < 6; i++) {
+        if (await markFromPhone(entry)) return true;
+        await new Promise(r => setTimeout(r, 500));
+    }
+    return false;
 }
 
 // A summary can finish while the popup is closed (it runs in the background): any waiting link that has an article in
@@ -268,7 +304,7 @@ async function resolveSummarized() {
     for (const e of waiting) {
         if (sumBusy.has(e.id)) continue;   // its own completion handler deals with it
         const t = saved.get(normalizeUrl(e.url));
-        if (t && t >= (e.receivedAt || 0)) await manager.resolve(e.id);
+        if (t && t >= (e.receivedAt || 0)) { await markFromPhone(e); await manager.resolve(e.id); }
     }
 }
 
@@ -306,7 +342,7 @@ function phoneCard(entry) {
         date.append(a, document.createTextNode(' ↗'));
     }
     const chips = document.createElement('div'); chips.className = 'card-tags';
-    const chip = document.createElement('span'); chip.className = 'tag-chip status-badge new'; chip.textContent = T('From phone');
+    const chip = document.createElement('span'); chip.className = 'tag-chip status-badge phone'; chip.textContent = '📱 ' + T('From phone');
     chips.append(chip);
     col.append(h4, date);
     if (entry.description) { const desc = document.createElement('p'); desc.className = 'phone-card-desc'; desc.textContent = entry.description.length > 160 ? entry.description.slice(0, 159) + '…' : entry.description; col.append(desc); }

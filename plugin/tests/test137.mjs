@@ -22,4 +22,10 @@ const view = await imp('../src/modules/inboxView.js');
 await view.initInboxView(); await tick(150);
 assert.deepEqual(store[SK.inboxPending].map(p => p.id).sort(), ['none', 'old'], 'only the link summarized after it arrived is resolved');
 assert(calls.some(c => /^DELETE \/[^/]+\/items\/new$/.test(c)), 'deleted on the server: ' + calls.join(', '));
+// the article it became keeps where it came from; the one summarized before the link arrived is not claimed
+const idx = store[SK.articlesIndex];
+assert.equal(idx.find(a => a.id === 'a1').fromPhone, true, 'summarized article carries fromPhone');
+assert(!idx.find(a => a.id === 'a2').fromPhone, 'older article untouched');
+const { statusBadges } = await imp('../src/modules/articleManager.js');
+assert(statusBadges({ id: 'a1', fromPhone: true, timestamp: new Date().toISOString() }).some(([tone, text]) => tone === 'phone' && /From phone/.test(text)), 'History shows the From phone chip');
 console.log('TEST 137 OK');

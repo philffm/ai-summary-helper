@@ -5,6 +5,7 @@ const { store, w } = setup({});
 const { SK } = await imp('../src/modules/storageKeys.js');
 const { newInboxSecrets } = await imp('../src/modules/inboxCrypto.js');
 store[SK.inboxConfig] = { ...newInboxSecrets(), createdAt: 1, v: 1 };
+store[SK.articlesIndex] = [{ id: 'art1', url: 'https://example.com/other-old', timestamp: new Date(0).toISOString(), savedOnly: true }];   // the copy Save only creates (id from the background reply)
 store[SK.inboxPending] = [
   { id: 's1', url: 'https://example.com/save-me', receivedAt: 1 },
   { id: 's2', url: 'https://example.org/broken', receivedAt: 2 }
@@ -49,6 +50,7 @@ save('s1').click(); await tick(120);
 assert(sent.some(m => m.action === 'saveFeedItem' && m.url === 'https://example.com/save-me'));
 assert(!sent.some(m => m.action === 'openFeedItem'), 'no AI summary was started');
 assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['s2'], 'saved link leaves the list');
+assert.equal(store[SK.articlesIndex][0].fromPhone, true, 'the saved copy remembers it came from the phone');
 assert(calls.some(c => /^DELETE \/[^/]+\/items\/s1$/.test(c)), 'and is deleted on the server');
 
 save('s2').click(); await tick(120);
