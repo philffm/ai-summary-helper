@@ -1146,9 +1146,52 @@ async function openFeedItem(msg, job) {
     });
 }
 
+/**
+ * "Save only" for a link that is not open anywhere (the phone inbox): load the page in a background tab, let its content
+ * script store it in History without the AI, close the tab again. A tab the user already has open is used as is and never
+ * closed. Resolves { success, id?, title?, error? }.
+ */
+async function saveFeedItem(url) {
+    let tab = null, opened = false;
+    try {
+        const want = sumJobKey(url);
+        tab = (await chrome.tabs.query({})).find(tb => tb.url && sumJobKey(tb.url) === want) || null;
+    } catch (_) { /* tab list unavailable → open a new one */ }
+    try {
+        if (!tab) {
+            tab = await chrome.tabs.create({ url, active: false });
+            opened = true;
+            await new Promise((resolve) => {
+                const done = () => { chrome.tabs.onUpdated.removeListener(onUpdated); clearTimeout(timer); resolve(); };
+                const onUpdated = (id, info) => { if (id === tab.id && info.status === 'complete') done(); };
+                const timer = setTimeout(done, 45000);
+                chrome.tabs.onUpdated.addListener(onUpdated);
+                chrome.tabs.get(tab.id).then(t => { if (t && t.status === 'complete') done(); }).catch(() => {});
+            });
+        }
+        // Pages run only loader.js until the full script is injected (same dance as the summary start).
+        for (let attempt = 0; attempt < 7; attempt++) {
+            try {
+                await chrome.tabs.sendMessage(tab.id, { action: 'ping' });
+                break;
+            } catch (_) {
+                if (attempt === 1) { try { await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['content.js'] }); } catch (__) { /* restricted page */ } }
+                if (attempt === 6) return { success: false, error: 'unreachable' };
+                await new Promise(r => setTimeout(r, 800));
+            }
+        }
+        const res = await chrome.tabs.sendMessage(tab.id, { action: 'savePage', feedUrl: url });
+        return res && res.success ? res : { success: false, error: (res && res.error) || 'failed' };
+    } catch (e) {
+        return { success: false, error: String((e && e.message) || e) };
+    } finally {
+        if (opened && tab && tab.id != null) { try { await chrome.tabs.remove(tab.id); } catch (_) { /* already closed */ } }
+    }
+}
+
 // Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
 // on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs']);
+const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs']);
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
@@ -1254,6 +1297,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             const r = await enqueueSumJob({ kind: 'feed', url: msg.url, title: msg.title || '', msg });
             sendResponse({ success: true, mode, queued: !!r.queued, position: r.position || 0, id: r.id });
         })();
+        return true;
+    }
+    if (msg.action === 'saveFeedItem' && msg.url) {
+        if (!/^https?:\/\//i.test(msg.url)) { sendResponse({ success: false, error: 'bad-url' }); return false; }
+        saveFeedItem(msg.url).then(sendResponse, () => sendResponse({ success: false, error: 'failed' }));
         return true;
     }
     if (msg.action === 'queueSummary' && msg.tabId != null && msg.message) {

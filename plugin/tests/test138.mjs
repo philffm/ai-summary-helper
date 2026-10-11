@@ -1,0 +1,41 @@
+// Phone inbox "Save only": asks the background to save the page without AI; success resolves the link (deleted on the
+// server), failure keeps it and says so. The background action is extension-page only.
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
+const { store, w } = setup({});
+const { SK } = await imp('../src/modules/storageKeys.js');
+const { newInboxSecrets } = await imp('../src/modules/inboxCrypto.js');
+store[SK.inboxConfig] = { ...newInboxSecrets(), createdAt: 1, v: 1 };
+store[SK.inboxPending] = [
+  { id: 's1', url: 'https://example.com/save-me', receivedAt: 1 },
+  { id: 's2', url: 'https://example.org/broken', receivedAt: 2 }
+];
+const calls = [];
+globalThis.fetch = async (url, opts) => { calls.push((opts && opts.method || 'GET') + ' ' + String(url).replace(/^.*aish_inboxes/, '')); return { status: 204, json: async () => ({}) }; };
+const sent = [];
+chrome.runtime.sendMessage = (m, cb) => {
+  sent.push(m);
+  const r = m.action === 'saveFeedItem' ? (m.url.includes('broken') ? { success: false, error: 'unreachable' } : { success: true, id: 'art1', title: 'T' }) : {};
+  if (cb) { cb(r); return; } return Promise.resolve(r);
+};
+const view = await imp('../src/modules/inboxView.js');
+await view.initInboxView(); await tick(80);
+const d = w.document;
+const save = (id) => d.querySelector(`#phoneInbox .phone-inbox-save[data-id="${id}"]`);
+assert(save('s1') && save('s2'), 'every waiting link has a Save only button');
+assert(/Save only/.test(save('s1').textContent));
+assert(!save('s1').classList.contains('feed-sum-btn'), 'separate from Summarize');
+
+save('s1').click(); await tick(120);
+assert(sent.some(m => m.action === 'saveFeedItem' && m.url === 'https://example.com/save-me'));
+assert(!sent.some(m => m.action === 'openFeedItem'), 'no AI summary was started');
+assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['s2'], 'saved link leaves the list');
+assert(calls.some(c => /^DELETE \/[^/]+\/items\/s1$/.test(c)), 'and is deleted on the server');
+
+save('s2').click(); await tick(120);
+assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['s2'], 'a failed save keeps the link');
+assert(d.querySelector('#phoneInbox .phone-inbox-error'), 'says why');
+assert(!save('s2').disabled, 'can be tried again');
+
+const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'utf8');
+assert(/EXTENSION_PAGE_ACTIONS = new Set\([^)]*'saveFeedItem'/.test(bg), 'only extension pages may ask for it');
+console.log('TEST 138 OK');

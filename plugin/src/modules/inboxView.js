@@ -5,7 +5,7 @@ import qrcode from '../lib/qrcode.js';
 import { T } from './feedI18n.js';
 import { SK } from './storageKeys.js';
 import { createInboxManager } from './inboxManager.js';
-import { setLabel } from './icons.js';
+import { setLabel, setIconLabel } from './icons.js';
 import { normalizeUrl } from './textUtils.js';
 
 const $ = (id) => document.getElementById(id);
@@ -174,6 +174,29 @@ async function summarize(entry) {
     if (st) { st.jobId = res.id == null ? null : res.id; st.queued = !!res.queued; if (st.queued) armSum(entry.id, 60 * 60 * 1000); paintSum(entry.id); }
 }
 
+// Save only: keep the page in History without the AI (same as the Summarize screen's "Save only"), then the link is done.
+const saving = new Set();
+async function saveOnly(entry) {
+    if (saving.has(entry.id) || sumBusy.has(entry.id)) return;
+    saving.add(entry.id); sumErrors.delete(entry.id);
+    paintSaving(entry.id);
+    let res = null;
+    try { res = await chrome.runtime.sendMessage({ action: 'saveFeedItem', url: entry.url }); } catch (_) { /* background asleep */ }
+    saving.delete(entry.id);
+    if (res && res.success) { await manager.resolve(entry.id); await renderList(); return; }
+    sumErrors.set(entry.id, res && res.error === 'empty' ? T("This page has no text to save.") : T("Couldn't save this page. Open it once and try again."));
+    await renderList();
+}
+function paintSaving(id) {
+    document.querySelectorAll('#phoneInbox .phone-inbox-save').forEach((b) => {
+        if (b.dataset.id !== id) return;
+        const on = saving.has(id);
+        b.disabled = on; b.setAttribute('aria-busy', on ? 'true' : 'false');
+        setIconLabel(b, on ? 'loader' : 'download', on ? T('Saving…') : T('Save only'));
+    });
+    document.querySelectorAll('#phoneInbox .feed-sum-btn').forEach((b) => { if (b.dataset.id === id && !sumBusy.has(id)) b.disabled = saving.has(id); });
+}
+
 function sumTargetFor(msg, sender) {
     if (!sumBusy.size) return null;
     const urls = [sender && sender.tab && sender.tab.url, msg && msg.url].filter(Boolean).map(u => normalizeUrl(u));
@@ -222,8 +245,12 @@ async function resolveSummarized() {
     const saved = new Map();
     for (const a of index) {
         if (!a || !a.url) continue;
-        const k = normalizeUrl(a.url), t = Date.parse(a.timestamp) || 0;
-        if (t > (saved.get(k) || 0)) saved.set(k, t);
+        const t = Date.parse(a.timestamp) || 0;
+        for (const u of [a.url, a.feedUrl]) {   // feedUrl: the link the page was opened from (it may have redirected)
+            if (!u) continue;
+            const k = normalizeUrl(u);
+            if (t > (saved.get(k) || 0)) saved.set(k, t);
+        }
     }
     for (const e of waiting) {
         if (sumBusy.has(e.id)) continue;   // its own completion handler deals with it
@@ -251,13 +278,15 @@ async function renderList() {
         text.append(h, p); text.title = entry.url;
         const sum = button('', 'button-primary btn-sm feed-sum-btn', () => summarize(entry));
         sum.dataset.id = entry.id; setLabel(sum, T('✨ Summarize'));
-        row.append(text, sum, button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
+        const save = button('', 'button-secondary btn-sm phone-inbox-save', () => saveOnly(entry));
+        save.dataset.id = entry.id; save.title = T('Keep it in History, no AI, nothing sent'); setIconLabel(save, 'download', T('Save only'));
+        row.append(text, sum, save, button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
         root.append(row);
         if (sumErrors.has(entry.id)) {
             const err = para(sumErrors.get(entry.id), 'phone-inbox-error'); err.dataset.id = entry.id; err.setAttribute('role', 'alert');
             root.append(err);
         }
-        paintSum(entry.id);
+        paintSum(entry.id); paintSaving(entry.id);
     }
 }
 
