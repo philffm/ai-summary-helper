@@ -48,4 +48,14 @@ view.mountPhoneCards(ul);
 assert.equal(ul.querySelector('.phone-card h4').textContent, 'The real headline');
 assert.equal(ul.querySelector('.phone-card .phone-card-desc').textContent, 'Plain description');
 assert(/From phone/.test(ul.querySelector('.phone-card .status-badge').textContent), 'the From phone chip stays when the title arrives');
+// 4. the toolbar badge counts the waiting phone links with the unread Feeds items
+assert.deepEqual(M.badgeFor(0, 0), { text: '', color: '', inbox: 0 }, 'nothing: no badge');
+assert.deepEqual(M.badgeFor(3, 0), { text: '3', color: '#2563eb', inbox: 0 }, 'feeds only: blue as before');
+assert.deepEqual(M.badgeFor(0, 2), { text: '2', color: '#7c3aed', inbox: 2 }, 'phone links: violet');
+assert.equal(M.badgeFor(40, 70).text, '99+', 'capped');
+const bgSrc = fs.readFileSync(path.join(SRC, 'background.js'), 'utf8');
+assert(/changes\[SK\.inboxPending\]\) updateSumBadge\(\)/.test(bgSrc), 'badge follows the waiting list');
+assert(/INBOX\.badgeFor\(feed, inbox\)/.test(bgSrc), 'used by the idle badge');
+assert(bgSrc.indexOf('updateSumBadge();   // the number is gone') > bgSrc.indexOf('const sumJobs = '), 'painted at worker start, after sumJobs exists (a call above it hits the temporal dead zone)');
+assert(/badgeFor/.test(fs.readFileSync(path.join(SRC, 'modules/inboxBackgroundBundle.js'), 'utf8')));
 console.log('TEST 140 OK');

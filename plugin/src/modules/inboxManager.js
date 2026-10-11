@@ -49,6 +49,17 @@ export function applyLinkMeta(list, tabUrl, meta) {
     return changed;
 }
 
+/**
+ * The idle toolbar badge: unread Feeds items plus links waiting from the phone. The phone links are not cleared by opening
+ * the popup (only by summarizing, saving or dismissing them); violet marks that some of the number is the phone.
+ */
+export function badgeFor(feedPending, inboxCount) {
+    const feed = Math.max(0, Number(feedPending) || 0), inbox = Math.max(0, Number(inboxCount) || 0);
+    const total = feed + inbox;
+    if (total <= 0) return { text: '', color: '', inbox: 0 };
+    return { text: total > 99 ? '99+' : String(total), color: inbox > 0 ? '#7c3aed' : '#2563eb', inbox };
+}
+
 /** HTTP status → short reason code the UI can translate. */
 export function classify(status) {
     if (status === 0 || status >= 500) return 'unreachable';

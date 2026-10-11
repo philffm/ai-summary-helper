@@ -924,6 +924,8 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
         updateSidePanelBehavior(changes.useNativeSidePanel.newValue);
     }
     if (namespace === 'local' && changes[SK.inboxConfig]) applyInboxPollConfig();
+    // links from the phone arrived, or were summarized / saved / dismissed: the toolbar number follows
+    if (namespace === 'local' && changes[SK.inboxPending]) updateSumBadge();
 });
 
 
@@ -986,12 +988,23 @@ async function updateSumBadge() {
             await chrome.action.setBadgeText({ text: n > 1 ? (n > 99 ? '99+' : String(n)) : '…' });
             return;
         }
-        const d = await localGet(SK.feedPending);
-        const pending = d[SK.feedPending] || 0;
-        if (pending > 0) await chrome.action.setBadgeBackgroundColor({ color: '#2563eb' });
-        await chrome.action.setBadgeText({ text: pending > 0 ? (pending > 99 ? '99+' : String(pending)) : '' });
+        // idle: unread Feeds items + links waiting from the phone
+        const d = await localGet([SK.feedPending, SK.inboxPending]);
+        const feed = d[SK.feedPending] || 0;
+        const inbox = Array.isArray(d[SK.inboxPending]) ? d[SK.inboxPending].length : 0;
+        const b = (INBOX && INBOX.badgeFor) ? INBOX.badgeFor(feed, inbox)
+            : { text: feed > 0 ? (feed > 99 ? '99+' : String(feed)) : '', color: '#2563eb', inbox: 0 };
+        if (b.text) await chrome.action.setBadgeBackgroundColor({ color: b.color });
+        await chrome.action.setBadgeText({ text: b.text });
+        // the tooltip says what the number is made of
+        try {
+            const name = (chrome.i18n && chrome.i18n.getMessage('extensionName')) || 'AI Summary Helper';
+            await chrome.action.setTitle({ title: b.inbox > 0 ? `${name} · ${b.inbox} link${b.inbox === 1 ? '' : 's'} from your phone` : name });
+        } catch (_) { /* tooltip is cosmetic */ }
     } catch (_) { /* badge is cosmetic */ }
 }
+updateSumBadge();   // the number is gone after a browser restart: repaint it when the worker wakes up
+
 /** "Done" notification once the whole queue has drained; click focuses the tab the summary ran in. */
 async function notifySumDone(job) {
     try {
