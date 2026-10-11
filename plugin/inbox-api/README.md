@@ -9,5 +9,5 @@ Run locally: `node inbox-api/reference-server.mjs 8787`, then point `createInbox
 Collections: inboxes are stored in `aish_inboxes`, their items in `aish_inbox_items` (the path segment is the collection).
 
 Porting checklist (production): persistent store with the same semantics; constant-time token-hash comparison; the limits in
-`x-limits`; purge jobs (7-day unclaimed items, 30-day idle inboxes); per-IP rate limits behind the proxy; no logging of bodies,
+`x-limits`; per-item delete (`DELETE …/items/{itemId}`, sent only after the user summarized or dismissed the link; `/ack` is deprecated); purge jobs (30-day items, 30-day idle inboxes); per-IP rate limits behind the proxy; no logging of bodies,
 tokens or links; TLS only.

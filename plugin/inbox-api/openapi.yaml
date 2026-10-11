@@ -91,9 +91,21 @@ paths:
         "401": { description: No token }
         "403": { description: Wrong token }
         "404": { description: Unknown inbox }
+  /aish_inboxes/{id}/items/{itemId}:
+    delete:
+      summary: Delete one item (extension, read token). Sent once the user summarized or dismissed the link, so an item is never removed before that.
+      security: [{ readToken: [] }]
+      parameters:
+        - { $ref: '#/components/parameters/id' }
+        - { name: itemId, in: path, required: true, schema: { type: string } }
+      responses:
+        "204": { description: Deleted }
+        "403": { description: Wrong token }
+        "404": { description: Unknown inbox or item (treated as already deleted) }
   /aish_inboxes/{id}/ack:
     post:
-      summary: Delete every item up to and including a cursor (extension, read token)
+      deprecated: true
+      summary: Delete every item up to and including a cursor (read token). No longer used by the clients.
       security: [{ readToken: [] }]
       parameters: [{ $ref: '#/components/parameters/id' }]
       requestBody:
@@ -120,6 +132,6 @@ x-limits:
   maxItemBytes: 4096
   maxWaitingItems: 200
   postsPerHourPerInbox: 60
-  unclaimedItemTtl: 7 days
+  itemTtl: 30 days   # items stay until the user summarizes or dismisses them
   idleInboxTtl: 30 days
   inboxCreatesPerHourPerIp: 20

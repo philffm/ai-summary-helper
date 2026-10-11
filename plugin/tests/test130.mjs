@@ -1,4 +1,4 @@
-// Phone inbox manager against the reference server: pair, receive, dedupe, ack, retry, errors, unpair.
+// Phone inbox manager against the reference server: pair, receive, dedupe, keep until summarized, per-item delete + retry, errors, unpair.
 import assert from 'assert';
 import { imp } from './harness.mjs';
 import { createInboxServer } from '../inbox-api/reference-server.mjs';
@@ -51,7 +51,7 @@ try {
     let r = await m.poll();
     assert(r.ok && r.added === 2 && r.duplicates === 1, JSON.stringify(r));
     assert.deepEqual((await m.listPending()).map((p) => p.url), ['https://example.com/a', 'https://example.com/b']);
-    assert.equal(waiting(id), 0, 'acknowledged items are gone from the server');
+    assert.equal(waiting(id), 2, 'links stay on the server until the user summarizes or dismisses them (the duplicate is removed)');
     r = await m.poll(); assert(r.ok && r.added === 0);
 
     // an unreadable item (wrong key) is dropped and cleared, and does not block the next one
@@ -60,12 +60,14 @@ try {
     await fetch(`${api}/${id}/items`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + C.parsePairingPayload(pr.payload).writeToken }, body: JSON.stringify(bad) });
     await phoneShare(pr.payload, 'https://example.com/c');
     r = await m.poll(); assert(r.added === 1 && r.rejected === 1, JSON.stringify(r));
-    assert.equal(waiting(id), 0);
+    assert.equal(waiting(id), 3, 'the unreadable item is removed, the three links are kept');
 
-    // resolve (Summarize / Dismiss)
+    // resolve (Summarize / Dismiss): off the list at once, deleted on the server
     const first = (await m.listPending())[0];
     assert.equal((await m.resolve(first.id)).url, 'https://example.com/a');
     assert.equal(await m.resolve('nope'), null);
+    await m.flushDeletes();
+    assert.equal(waiting(id), 2, 'the resolved link is gone from the server');
     assert.equal((await m.listPending()).length, 2);
 
     // a phone with a wrong write token is refused
@@ -73,27 +75,30 @@ try {
     const forged = await fetch(`${api}/${id}/items`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + p.readToken }, body: JSON.stringify(await C.encryptMessage(p, { url: 'https://x.example/' })) });
     assert.equal(forged.status, 403, 'read token cannot post');
 
-    // offline: unreachable, nothing lost; the acknowledge failing is repaired on the next poll without duplicates
+    // the server delete fails (offline): the link is off the list, stays queued and is deleted on the next poll
+    const second = (await m.listPending())[0];
+    const noDelete = M.createInboxManager({ storage, api, fetchFn: (u, o) => (o && o.method === 'DELETE' ? Promise.reject(new Error('cut')) : fetch(u, o)) });
+    assert.equal((await noDelete.resolve(second.id)).id, second.id);
+    await noDelete.flushDeletes();
+    assert.equal(waiting(id), 2, 'delete failed: still on the server');
+    assert(storage.d[SK.inboxState].toDelete.includes(second.id), 'queued for retry');
+    r = await m.poll(); assert(r.ok && r.added === 0, JSON.stringify(r));
+    assert.equal(waiting(id), 1, 'queued delete went through');
+    assert.deepEqual(storage.d[SK.inboxState].toDelete, []);
+
+    // offline: unreachable, nothing lost
     await phoneShare(pr.payload, 'https://example.com/d');
     const down = M.createInboxManager({ storage, api, fetchFn: async () => { throw new Error('offline'); } });
     r = await down.poll(); assert(!r.ok && r.error === 'unreachable');
-    assert.equal(waiting(id), 1);
-    const flaky = M.createInboxManager({ storage, api, fetchFn: (u, o) => (u.endsWith('/ack') ? Promise.reject(new Error('cut')) : fetch(u, o)) });
-    r = await flaky.poll(); assert(r.ok && r.added === 1);
-    assert.equal(waiting(id), 1, 'ack failed: still on the server');
-    r = await m.poll(); assert(r.ok && r.added === 0 && r.duplicates === 0, JSON.stringify(r));
-    assert.equal(waiting(id), 0, 'ack retried');
-    assert.equal((await m.listPending()).length, 3);
+    assert.equal(waiting(id), 2);
+    r = await m.poll(); assert(r.ok && r.added === 1 && r.duplicates === 0, JSON.stringify(r));
+    assert.equal(waiting(id), 2, 'collected, but kept on the server until summarized');
+    assert.equal((await m.listPending()).length, 2);
 
-    // a crash after saving but before the ack loses the cursor update: the repeat is dropped by the handled list
-    const st = { ...storage.d[SK.inboxState] }; 
-    await phoneShare(pr.payload, 'https://example.com/e');
-    const before = { ...storage.d[SK.inboxState], cursor: st.cursor, ackedCursor: st.ackedCursor };
-    await m.poll();
-    storage.d[SK.inboxState] = { ...storage.d[SK.inboxState], cursor: before.cursor, ackedCursor: before.ackedCursor };
-    await phoneShare(pr.payload, 'https://example.com/e2');   // something new to fetch alongside nothing old (old was acked)
-    r = await m.poll(); assert(r.ok && r.added === 1);
-    assert.equal((await m.listPending()).filter((x) => x.url === 'https://example.com/e').length, 1);
+    // browser profile lost (no local list, no state): everything not summarized yet is collected again
+    storage.d[SK.inboxPending] = []; storage.d[SK.inboxState] = {};
+    r = await m.poll(); assert(r.ok && r.added === 2, JSON.stringify(r));
+    assert.deepEqual((await m.listPending()).map((x) => x.url).sort(), ['https://example.com/c', 'https://example.com/d']);
 
     // pending full: polling pauses, the server keeps the rest
     const small = memStorage();

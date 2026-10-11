@@ -212,9 +212,30 @@ function onSummaryMessage(msg, sender) {
 
 async function dismiss(entry) { await manager.resolve(entry.id); await renderList(); }
 
+// A summary can finish while the popup is closed (it runs in the background): any waiting link that has an article in
+// History saved after the link arrived counts as summarized and is taken off the list (and deleted on the server).
+async function resolveSummarized() {
+    const waiting = await manager.listPending();
+    if (!waiting.length) return;
+    let index = [];
+    try { index = (await chrome.storage.local.get(SK.articlesIndex))[SK.articlesIndex] || []; } catch (_) { return; }
+    const saved = new Map();
+    for (const a of index) {
+        if (!a || !a.url) continue;
+        const k = normalizeUrl(a.url), t = Date.parse(a.timestamp) || 0;
+        if (t > (saved.get(k) || 0)) saved.set(k, t);
+    }
+    for (const e of waiting) {
+        if (sumBusy.has(e.id)) continue;   // its own completion handler deals with it
+        const t = saved.get(normalizeUrl(e.url));
+        if (t && t >= (e.receivedAt || 0)) await manager.resolve(e.id);
+    }
+}
+
 async function renderList() {
     const root = $('phoneInbox');
     if (!root) return;
+    try { await resolveSummarized(); } catch (_) { /* the list still renders */ }
     const list = await manager.listPending();
     root.hidden = !list.length;
     root.textContent = '';

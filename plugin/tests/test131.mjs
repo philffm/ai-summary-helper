@@ -33,7 +33,7 @@ assert(W && typeof W.createInboxManager === 'function', 'AISH_INBOX exposed');
 const r = await W.createInboxManager().poll();
 assert(r.ok && r.added === 1, JSON.stringify(r));
 assert.equal(store[SK.inboxPending][0].url, 'https://example.com/from-phone');
-assert(calls.some((c) => c.startsWith('POST') && c.endsWith('/ack')), 'acknowledged');
+assert(!calls.some((c) => c.endsWith('/ack')), 'nothing is acknowledged on fetch: items stay until the user deals with them');
 
 for (const p of ['firefox', 'ios']) {
     const m = JSON.parse(fs.readFileSync(new URL(`../platforms/${p}/manifest.json`, import.meta.url), 'utf8'));

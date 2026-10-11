@@ -21,7 +21,10 @@ export const MAX_PAGES = 4;        // per poll; the rest is collected on the nex
 export const SEEN_MAX = 500;       // handled item ids remembered
 export const PENDING_MAX = 200;    // links waiting for the user; when full, polling pauses and the server keeps the rest
 
-const EMPTY_STATE = () => ({ cursor: '', ackedCursor: '', seen: [], lastPollAt: 0, lastError: '' });
+// cursor: where the next fetch continues. toDelete: items the user dealt with (or that were unusable) whose delete on the
+// server has not gone through yet; they are retried on every poll. ackedCursor is unused (kept so old state still loads).
+const EMPTY_STATE = () => ({ cursor: '', ackedCursor: '', seen: [], toDelete: [], lastPollAt: 0, lastError: '' });
+export const TODELETE_MAX = 500;
 
 /** HTTP status → short reason code the UI can translate. */
 export function classify(status) {
@@ -80,6 +83,49 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         return inFlight;
     }
 
+    /** Read-modify-write of the state record, so polls and resolves running at once do not overwrite each other. */
+    async function mutateState(fn) {
+        const st = await getState();
+        fn(st);
+        await store().set({ [SK.inboxState]: st });
+        return st;
+    }
+    /** Adds fetched links to the stored list without dropping what a resolve removed or added meanwhile. */
+    async function appendPending(entries) {
+        const list = await getPending();
+        const ids = new Set(list.map((p) => p.id)), urls = new Set(list.map((p) => p.url));
+        for (const e of entries) if (!ids.has(e.id) && !urls.has(e.url)) { list.push(e); ids.add(e.id); urls.add(e.url); }
+        await store().set({ [SK.inboxPending]: list });
+        return list;
+    }
+
+    let flushing = null;
+    /**
+     * Deletes the queued items on the server (one request each). An item stays on the server until this succeeds, so a
+     * link the user has not summarized yet survives a lost browser profile or a second device. 404 = already gone.
+     */
+    function flushDeletes() {
+        if (!flushing) flushing = runFlush().finally(() => { flushing = null; });
+        return flushing;
+    }
+    async function runFlush() {
+        const cfg = await getConfig();
+        if (!cfg) return { ok: false, error: 'not-paired', deleted: 0 };
+        const queue = (await getState()).toDelete || [];
+        if (!queue.length) return { ok: true, deleted: 0 };
+        const base = `${api}/${encodeURIComponent(cfg.inboxId)}`;
+        const gone = [];
+        let error = '';
+        for (const id of queue) {
+            const res = await call('DELETE', `${base}/items/${encodeURIComponent(id)}`, null, cfg.readToken);
+            if ((res.status >= 200 && res.status < 300) || res.status === 404) { gone.push(id); continue; }
+            error = classify(res.status);
+            if (error === 'pairing-invalid' || error === 'unreachable') break;   // nothing else will work either; retry next time
+        }
+        if (gone.length) await mutateState((st) => { const g = new Set(gone); st.toDelete = (st.toDelete || []).filter((x) => !g.has(x)); });
+        return { ok: !error, error, deleted: gone.length };
+    }
+
     async function runPoll() {
         const cfg = await getConfig();
         if (!cfg) return { ok: false, error: 'not-paired' };
@@ -87,60 +133,75 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         const pending = await getPending();
         const seen = new Set(state.seen);
         const urls = new Set(pending.map((p) => p.url));
+        const waitingIds = new Set(pending.map((p) => p.id));
         const out = { ok: true, added: 0, duplicates: 0, rejected: 0, full: false };
         const base = `${api}/${encodeURIComponent(cfg.inboxId)}`;
+        let cursor = state.cursor;
         const fail = async (error) => {
-            await store().set({ [SK.inboxState]: { ...state, lastPollAt: now(), lastError: error } });
-            return { ...out, ok: false, error, pending: pending.length };
+            await mutateState((st) => { st.lastPollAt = now(); st.lastError = error; });
+            return { ...out, ok: false, error, pending: (await getPending()).length };
         };
 
-        // an earlier acknowledge may have failed: retry it first (items up to ackedCursor are already stored locally)
-        if (state.cursor && state.cursor !== state.ackedCursor) {
-            const ack = await call('POST', `${base}/ack`, { upTo: state.cursor }, cfg.readToken);
-            if (ack.status >= 200 && ack.status < 300) state.ackedCursor = state.cursor;
-            else if (classify(ack.status) === 'pairing-invalid') return fail('pairing-invalid');
-        }
+        // deletes that did not go through earlier
+        const flushed = await flushDeletes();
+        if (!flushed.ok && flushed.error === 'pairing-invalid') return fail('pairing-invalid');
 
         for (let page = 0; page < MAX_PAGES; page++) {
             if (pending.length >= PENDING_MAX) { out.full = true; break; }
-            const q = `limit=${PAGE_SIZE}` + (state.cursor ? `&after=${encodeURIComponent(state.cursor)}` : '');
+            const q = `limit=${PAGE_SIZE}` + (cursor ? `&after=${encodeURIComponent(cursor)}` : '');
             const res = await call('GET', `${base}/items?${q}`, null, cfg.readToken);
             if (res.status !== 200 || !res.json || !Array.isArray(res.json.items)) return fail(classify(res.status));
             const items = res.json.items.filter((it) => it && typeof it.id === 'string' && typeof it.cursor === 'string');
             if (!items.length) break;
 
+            const added = [], drop = [];
             for (const it of items) {
-                if (seen.has(it.id)) { out.duplicates++; continue; }
+                if (seen.has(it.id)) {   // handled before: still on the server only if its delete is pending or was lost
+                    out.duplicates++;
+                    if (!waitingIds.has(it.id)) drop.push(it.id);
+                    continue;
+                }
                 seen.add(it.id); state.seen.push(it.id);
                 let msg;
-                try { msg = await decryptMessage(cfg, { v: it.v, data: it.data }); } catch (_) { out.rejected++; continue; }   // unreadable or hostile: dropped, but acknowledged below so it cannot block the inbox
-                if (urls.has(msg.url)) { out.duplicates++; continue; }
-                urls.add(msg.url);
-                pending.push({ id: it.id, url: msg.url, sentAt: msg.sentAt, platform: msg.platform, receivedAt: now() });
+                try { msg = await decryptMessage(cfg, { v: it.v, data: it.data }); } catch (_) { out.rejected++; drop.push(it.id); continue; }   // unreadable or hostile: never shown, removed from the server
+                if (urls.has(msg.url)) { out.duplicates++; drop.push(it.id); continue; }                                                       // the same link is already waiting
+                urls.add(msg.url); waitingIds.add(it.id);
+                const entry = { id: it.id, url: msg.url, sentAt: msg.sentAt, platform: msg.platform, receivedAt: now() };
+                pending.push(entry); added.push(entry);
                 out.added++;
             }
             if (state.seen.length > SEEN_MAX) state.seen.splice(0, state.seen.length - SEEN_MAX);
-            state.cursor = items[items.length - 1].cursor;
-            // store first, acknowledge second
-            await store().set({ [SK.inboxPending]: pending, [SK.inboxState]: { ...state, lastPollAt: now(), lastError: '' } });
-            const ack = await call('POST', `${base}/ack`, { upTo: state.cursor }, cfg.readToken);
-            if (ack.status >= 200 && ack.status < 300) state.ackedCursor = state.cursor;
+            cursor = items[items.length - 1].cursor;
+            // Items are NOT deleted here: they stay on the server until the user summarizes or dismisses them.
+            if (added.length) await appendPending(added);
+            await mutateState((st) => {
+                st.cursor = cursor; st.seen = state.seen.slice(); st.lastPollAt = now(); st.lastError = '';
+                for (const id of drop) if (!st.toDelete.includes(id)) st.toDelete.push(id);
+                if (st.toDelete.length > TODELETE_MAX) st.toDelete.splice(0, st.toDelete.length - TODELETE_MAX);
+            });
             if (!res.json.hasMore) break;
         }
-        await store().set({ [SK.inboxState]: { ...state, lastPollAt: now(), lastError: '' } });
-        return { ...out, pending: pending.length };
+        await flushDeletes();   // the unusable ones found just now
+        await mutateState((st) => { st.lastPollAt = now(); st.lastError = ''; });
+        return { ...out, pending: (await getPending()).length };
     }
 
     /** Links waiting for the user, oldest first. */
     const listPending = getPending;
 
-    /** Removes one waiting link (after Summarize was started, or on Dismiss). Returns the removed entry or null. */
+    /**
+     * Takes one link off the list (its summary was started and completed, or the user dismissed it) and queues its delete
+     * on the server. Returns the removed entry or null. The server delete is attempted right away without making the
+     * caller wait; if it fails it is retried on the next poll.
+     */
     async function resolve(id) {
         const pending = await getPending();
         const i = pending.findIndex((p) => p.id === id);
         if (i < 0) return null;
         const [gone] = pending.splice(i, 1);
         await store().set({ [SK.inboxPending]: pending });
+        await mutateState((st) => { if (!st.toDelete.includes(id)) st.toDelete.push(id); });
+        flushDeletes().catch(() => { /* retried on the next poll */ });
         return gone;
     }
 
@@ -162,5 +223,5 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         return { ok: true, serverDeleted };
     }
 
-    return { pair, pairingCode, poll, listPending, resolve, status, unpair };
+    return { pair, pairingCode, poll, listPending, resolve, flushDeletes, status, unpair };
 }

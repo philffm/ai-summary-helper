@@ -14,7 +14,7 @@ export const LIMITS = {
     maxWaiting: 200,             // unclaimed items per inbox
     postsPerHour: 60,            // per inbox
     createsPerHourPerIp: 20,
-    itemTtlMs: 7 * 24 * 3600e3,  // unclaimed items are purged
+    itemTtlMs: 30 * 24 * 3600e3, // items nobody summarized or dismissed are purged (they stay until the user deals with them)
     idleTtlMs: 30 * 24 * 3600e3, // inboxes nobody touched are purged
     maxPageSize: 100,
 };
@@ -126,7 +126,14 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
                 const all = box.items.filter((it) => it.cursor > after);
                 return send(res, 200, { items: all.slice(0, limit), hasMore: all.length > limit });
             }
-            // POST /aish_inboxes/{id}/ack   (extension)
+            // DELETE /aish_inboxes/{id}/items/{itemId}   (extension, once the user summarized or dismissed the link)
+            if (rest.length === 3 && rest[1] === 'items' && method === 'DELETE') {
+                const box = auth(req, res, id, 'read'); if (!box) return;
+                const before = box.items.length;
+                box.items = box.items.filter((it) => it.id !== rest[2]);
+                return send(res, before === box.items.length ? 404 : 204);
+            }
+            // POST /aish_inboxes/{id}/ack   (deprecated: the clients delete per item now)
             if (rest.length === 2 && rest[1] === 'ack' && method === 'POST') {
                 const box = auth(req, res, id, 'read'); if (!box) return;
                 const b = await readBody(req, L.maxBody);
