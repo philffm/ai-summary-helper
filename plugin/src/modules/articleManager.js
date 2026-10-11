@@ -39,6 +39,7 @@ let cachedArticles = [];          // not archived: graph, search and the Inbox/R
 let archivedCache = [];           // archived entries (Archive tab)
 let historyTab = 'inbox';         // 'inbox' | 'read' | 'sent' | 'archive'
 let pendingRender = false;
+let historyLoaded = false;        // the archive has been read once: before that a phone-inbox event must not paint a half list
 
 const isSent = (a) => Array.isArray(a.sentTo) && a.sentTo.length > 0;
 const TAB_DEFS = [['inbox', () => T('Inbox')], ['read', () => T('Read')], ['sent', () => T('Sent')], ['research', () => T('Research')], ['archive', () => T('Archive')]];
@@ -658,7 +659,9 @@ export function initArticleManager(uiManager) {
     loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;
     // The lexicon grew (tag naming in Settings or a background run): tag chips change language, so redraw the list.
-    document.addEventListener('aish:phone-inbox', () => { try { if (historyTab === 'inbox' && document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
+    // Waiting phone links changed. Before the first load the archive is empty here: painting now would show the phone
+    // cards alone and the rest a moment later. loadHistory() mounts both together, so wait for it.
+    document.addEventListener('aish:phone-inbox', () => { try { if (historyLoaded && historyTab === 'inbox' && document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     document.addEventListener('aish:lexiconChanged', () => { try { if (document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     initSelection({
         deliverKindle, deliverLocalSend,
@@ -1064,7 +1067,8 @@ export function loadHistory() {
             cachedArticles = articles.filter(a => !a.archived);
             archivedCache = articles.filter(a => a.archived);
             invalidateSearchIndex();
-            return loadPhoneEntries().catch(() => {}).then(() => renderTab());
+            // the phone links are read before the first paint, so they appear together with the archive
+            return loadPhoneEntries().catch(() => {}).then(() => { historyLoaded = true; renderTab(); });
         }).catch(() => clearSkeleton(articleList));
 }
 
