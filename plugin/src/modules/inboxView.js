@@ -388,6 +388,22 @@ export function mountPhoneCards(ul) {
     return list.length;
 }
 
+/**
+ * Collects what the phone shared since the last check. Called when History opens (and at popup start), on top of the
+ * 15-minute background poll. Skipped when nothing is paired or a check ran moments ago, so hopping between screens
+ * does not hit the server each time. Never throws.
+ */
+export async function pollInbox({ minGapMs = 20000 } = {}) {
+    try {
+        const st = await manager.status();
+        if (!st.paired) return { skipped: 'not-paired' };
+        if (Date.now() - (st.lastPollAt || 0) < minGapMs) return { skipped: 'recent' };
+        const r = await manager.poll();
+        await Promise.all([renderList(), renderSettings()]);
+        return r;
+    } catch (_) { return { ok: false, error: 'error' }; }
+}
+
 export async function initInboxView() {
     try { if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage); } catch (_) { /* no runtime */ }
     await Promise.all([renderSettings(), renderList()]);
@@ -396,6 +412,6 @@ export async function initInboxView() {
         if (changes[SK.inboxPending]) renderList();
         if (changes[SK.inboxPending] || changes[SK.inboxState] || changes[SK.inboxConfig]) renderSettings();
     });
-    // collect whatever the phone shared since the popup was last open
+    // collect whatever the phone shared since the popup was last open (always: a fresh popup, whatever the last check)
     manager.poll().then(() => { renderList(); renderSettings(); }).catch(() => {});
 }

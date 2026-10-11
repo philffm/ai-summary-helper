@@ -24,7 +24,7 @@ import { qaSection } from './qaView.js';
 import { normalizeDoi } from '../content/paper.js';
 import { paperState, paperChips, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
-import { mountPhoneCards, loadPhoneEntries } from './inboxView.js';
+import { mountPhoneCards, loadPhoneEntries, pollInbox } from './inboxView.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
@@ -1092,7 +1092,11 @@ export function loadHistory() {
             archivedCache = articles.filter(a => a.archived);
             invalidateSearchIndex();
             // the phone links are read before the first paint, so they appear together with the archive
-            return loadPhoneEntries().catch(() => {}).then(() => { historyLoaded = true; renderTab(); });
+            return loadPhoneEntries().catch(() => {}).then(() => {
+                historyLoaded = true; renderTab();
+                // Opening History checks the phone inbox too (new links join the list by themselves when they arrive).
+                pollInbox().catch(() => {});
+            });
         }).catch(() => clearSkeleton(articleList));
 }
 
