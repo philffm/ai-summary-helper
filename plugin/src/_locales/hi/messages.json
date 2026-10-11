@@ -4579,5 +4579,20 @@
   },
   "f_add_a_connection_map_a941": {
     "message": "🕸️ कनेक्शन मैप जोड़ें"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "लगभग समाप्त — तब तक सारांश हल्के मॉडल का उपयोग करेंगे।"
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "मासिक AI कोटा"
+  },
+  "f_resets_055b": {
+    "message": "{date} को रीसेट होगा"
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "कोटा समाप्त — लोकल मॉडल अब भी काम करते हैं।"
+  },
+  "f_used_8faf": {
+    "message": "{n}% उपयोग हुआ"
   }
 }

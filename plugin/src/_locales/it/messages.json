@@ -4579,5 +4579,20 @@
   },
   "f_add_a_connection_map_a941": {
     "message": "🕸️ Aggiungi una mappa dei collegamenti"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "Quasi esaurita: fino ad allora i riassunti usano un modello più leggero."
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "Quota mensile di IA"
+  },
+  "f_resets_055b": {
+    "message": "Si azzera il {date}"
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "Esaurita: i modelli locali funzionano ancora."
+  },
+  "f_used_8faf": {
+    "message": "{n}% usato"
   }
 }

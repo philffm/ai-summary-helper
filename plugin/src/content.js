@@ -117,6 +117,9 @@ import {
    */
   function friendlyLimitError(error) {
     const e = String(error || '');
+    if (/quota_exceeded/.test(e)) return 'Your monthly AI allowance is used up. It resets on the 1st \u2014 local models still work.';
+    if (/rate_limited/.test(e)) return 'Too many AI requests in a short time. Please wait a few minutes.';
+    if (/too_large/.test(e)) return 'That is too much text for one request. Try fewer items.';
     // The byphil API returns a 402 with "Free trial exhausted (N requests
     // per day)" when the free-tier daily cap is hit. Match on the trial /
     // exhausted / per-day phrasing (plus the status code) rather than

@@ -4805,5 +4805,31 @@
   },
   "f_add_a_connection_map_a941": {
     "message": "🕸️ Add a connection map"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "Almost used up — summaries now use a lighter model until then."
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "Monthly AI allowance"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Remove this link from your inbox? It is deleted and cannot be restored."
+  },
+  "f_resets_055b": {
+    "message": "Resets {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "Saving took too long (a very heavy page). Try again, or open it and summarize instead."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "The page didn't respond (blocked, or it needs a login). Open it and try again."
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "Used up — local models still work."
+  },
+  "f_used_8faf": {
+    "message": "{n}% used",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

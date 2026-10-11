@@ -1090,7 +1090,7 @@ export function initMainScreen(ui) {
                 }
                 // Setup problems (missing/invalid API key, not logged in, plan limit): keep the bubble and link to the right settings panel.
                 const panel = /API key|invalid.*key|incorrect.*key|HTTP 40[13]\b|unauthori[sz]ed/i.test(errText) ? 'models'
-                    : /log ?in|sign ?in|token|licen[sc]e|daily limit|upgrade|HTTP (402|429)\b/i.test(errText) ? 'account' : '';
+                    : /log ?in|sign ?in|token|licen[sc]e|daily limit|allowance|upgrade|HTTP (402|429)\b/i.test(errText) ? 'account' : '';
                 if (panel) {
                     const bubble = document.getElementById('streamBubble');
                     if (bubble && !bubble.querySelector('.ollama-hint')) {

@@ -694,6 +694,10 @@ const AISH_API_BASE = 'https://api.byphil.eu';
 
 function aiFriendlyError(status, body) {
     const e = `${status} ${body || ''}`;
+    // Server-side cost budget (byphilapi): specific codes before the generic "limit" wording below.
+    if (/quota_exceeded/.test(e)) return 'Your monthly AI allowance is used up. It resets on the 1st \u2014 local models still work.';
+    if (/rate_limited/.test(e)) return 'Too many AI requests in a short time. Please wait a few minutes.';
+    if (/too_large/.test(e)) return 'That is too much text for one request. Try fewer items.';
     if (/402|429|trial exhausted|requests per day|requests per week|quota|too many|rate/i.test(e)) {
         return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.';
     }

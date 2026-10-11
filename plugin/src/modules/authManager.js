@@ -184,12 +184,39 @@ const refreshUsageAnalytics = async (view, token) => {
 
         const isPro = result?.account?.subscription_status === 'active';
         setStatusBadge(view.authStatusLabel, isPro);
+        renderQuota(view.authStatusLabel, result?.quota);
     } catch (error) {
         show({ trial: '-', done: '-', model: '-', status: T('Unavailable') });
         setStatusBadge(view.authStatusLabel, false);
         console.error('Usage analytics refresh failed:', error.message);
     }
 };
+
+/** Monthly AI allowance of a paying account (percent only, no money amounts): thin bar under the plan badge. */
+export function renderQuota(anchor, quota) {
+    if (!anchor || !anchor.parentElement) return;
+    const doc = anchor.ownerDocument;
+    let box = anchor.parentElement.querySelector(':scope > .ai-quota');
+    if (!quota || !Number.isFinite(quota.percent)) { if (box) box.remove(); return; }
+    if (!box) {
+        box = doc.createElement('div'); box.className = 'ai-quota'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', T('Monthly AI allowance'));
+        box.innerHTML = '<div class="ai-quota-row"><span class="ai-quota-title"></span><span class="ai-quota-pct"></span></div><div class="ai-quota-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span></span></div><div class="ai-quota-note"></div>';
+        anchor.insertAdjacentElement('afterend', box);
+    }
+    const pct = Math.max(0, Math.min(100, Math.round(quota.percent)));
+    const bar = box.querySelector('.ai-quota-bar');
+    box.querySelector('.ai-quota-title').textContent = T('Monthly AI allowance');
+    box.querySelector('.ai-quota-pct').textContent = T('{n}% used', { n: pct });
+    bar.setAttribute('aria-valuenow', String(pct)); bar.setAttribute('aria-label', T('Monthly AI allowance'));
+    bar.firstElementChild.style.width = pct + '%';
+    box.classList.toggle('warn', pct >= 80 && pct < 100); box.classList.toggle('full', pct >= 100);
+    let when = '';
+    try { when = new Date(quota.reset_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (_) { /* keep empty */ }
+    const note = box.querySelector('.ai-quota-note');
+    const reset = when ? T('Resets {date}', { date: when }) : '';
+    note.textContent = pct >= 100 ? T('Used up — local models still work.') + (reset ? ' · ' + reset : '')
+        : pct >= 80 ? T('Almost used up — summaries now use a lighter model until then.') + (reset ? ' · ' + reset : '') : reset;
+}
 
 // Four digit boxes drawn over the real (transparent) input: keeps paste, autofill (one-time-code) and keyboards working.
 function renderOtpBoxes(input) {

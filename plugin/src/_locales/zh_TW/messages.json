@@ -4579,5 +4579,20 @@
   },
   "f_add_a_connection_map_a941": {
     "message": "🕸️ 新增關聯圖"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "額度即將用完 — 在此之前摘要將使用較輕量的模型。"
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "每月 AI 額度"
+  },
+  "f_resets_055b": {
+    "message": "將於 {date} 重設"
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "額度已用完 — 本機模型仍可使用。"
+  },
+  "f_used_8faf": {
+    "message": "已使用 {n}%"
   }
 }

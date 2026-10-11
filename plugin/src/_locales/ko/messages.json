@@ -4561,5 +4561,20 @@
   },
   "f_add_a_connection_map_a941": {
     "message": "🕸️ 연결 지도 추가"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "거의 소진 — 그때까지 요약은 더 가벼운 모델을 사용합니다."
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "월간 AI 사용량"
+  },
+  "f_resets_055b": {
+    "message": "{date}에 초기화"
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "모두 사용됨 — 로컬 모델은 계속 사용할 수 있습니다."
+  },
+  "f_used_8faf": {
+    "message": "{n}% 사용됨"
   }
 }

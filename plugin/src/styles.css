@@ -4158,3 +4158,11 @@ a.phone-inbox-link:hover strong { text-decoration: underline; }
 .phone-card .phone-inbox-error { margin: 8px 0 0; font-size: 12px; }
 .phone-inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .phone-inbox-error { color: var(--danger, #c0392b); }
+
+/* Monthly AI allowance (account settings) */
+.ai-quota { margin: 8px 0 4px; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-xs); color: var(--text-muted); }
+.ai-quota-row { display: flex; justify-content: space-between; gap: 8px; color: var(--text-primary); }
+.ai-quota-bar { height: 6px; border-radius: 999px; background: var(--glass-base); border: 1px solid var(--outline); overflow: hidden; }
+.ai-quota-bar > span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.ai-quota.warn .ai-quota-bar > span { background: var(--warning, #e0a030); }
+.ai-quota.full .ai-quota-bar > span { background: var(--danger, #d9534f); }
