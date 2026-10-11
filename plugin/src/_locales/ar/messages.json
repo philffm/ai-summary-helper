@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "تم استبعاد {n} أخرى (حد كل ملخص)"
+  },
+  "f_all_topics_e150": {
+    "message": "كل المواضيع"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "اسأل عن هذا الملخص…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "بنية الملخص"
+  },
+  "f_by_time_ff3d": {
+    "message": "حسب الوقت"
+  },
+  "f_by_topic_4c93": {
+    "message": "حسب الموضوع"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "مسح التحديد"
+  },
+  "f_opened_too_faf2": {
+    "message": "مع المفتوحة أيضًا"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "عند تجاوز {n} مقالًا تُستخدم أحدث {n} فقط؛ ضيّق المواضيع أو الفترة للتغطية الكاملة."
+  },
+  "f_unopened_7213": {
+    "message": "غير المفتوحة"
+  },
+  "f_which_articles_c8ed": {
+    "message": "أي المقالات"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "تم تخطي {n} مكررة"
+  },
+  "f_shown_8b3a": {
+    "message": "عرض {n}"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} خطوات ثم الدمج"
+  },
+  "f_topic_7b60": {
+    "message": "{n} موضوع"
+  },
+  "f_topics_bee9": {
+    "message": "{n} مواضيع"
+  },
+  "f_brief_a94f": {
+    "message": "✨ لخّص"
   }
 }

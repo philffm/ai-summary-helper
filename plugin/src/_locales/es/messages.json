@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "{n} más quedaron fuera (límite por resumen)"
+  },
+  "f_all_topics_e150": {
+    "message": "Todos los temas"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Pregunta sobre este resumen…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Estructura del resumen"
+  },
+  "f_by_time_ff3d": {
+    "message": "Por fecha"
+  },
+  "f_by_topic_4c93": {
+    "message": "Por tema"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Borrar selección"
+  },
+  "f_opened_too_faf2": {
+    "message": "También abiertos"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "Con más de {n} artículos solo se usan los {n} más recientes; acota temas o periodo para cubrirlo todo."
+  },
+  "f_unopened_7213": {
+    "message": "Sin abrir"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Qué artículos"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "{n} duplicados omitidos"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} mostrados"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} pasos y luego se unifican"
+  },
+  "f_topic_7b60": {
+    "message": "{n} tema"
+  },
+  "f_topics_bee9": {
+    "message": "{n} temas"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Resumir"
   }
 }

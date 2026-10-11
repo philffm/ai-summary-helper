@@ -94,6 +94,34 @@ function miniMap(label, list) {
 /** Tapping a topic node opens the cluster page directly (brief button, never-opened list, ask box). */
 export function showClusterCard(container, opts) { return openClusterPage(container, opts); }
 
+/** Renders an askCluster result into `out`: answer text with citation pills, footnote, optional "left out" note, numbered sources. */
+export async function fillAnswer(out, r, openArticle) {
+    const { renderAnswer } = await import('./qaView.js');
+    out.className = 'graph-cluster-answer md-body';
+    out.textContent = '';
+    const body = el('div', 'graph-cluster-answer-body'); out.append(body);
+    renderAnswer(body, r.text);
+    linkCitations(body, r.articles, openArticle);
+    out.append(el('div', 'graph-preview-date', T('From {n} summaries — nothing else was sent', { n: r.used })));
+    if (r.skipped > 0) out.append(el('div', 'graph-preview-date', T('{n} more were left out (limit per briefing)', { n: r.skipped })));
+    if (r.articles && r.articles.length) {
+        const many = r.articles.length > 8;
+        const srcHost = many ? el('details', 'graph-cluster-srcs') : out;
+        const h = many ? el('summary', 'graph-cluster-h', T('Sources used') + ' (' + r.articles.length + ')') : el('div', 'graph-cluster-h', T('Sources used'));
+        srcHost.append(h);
+        const ol = el('ol', 'graph-cluster-sources');
+        r.articles.forEach((a, i) => {
+            const li = el('li'); const b = el('button', 'graph-cluster-src'); b.type = 'button'; b.title = title(a);
+            b.append(el('span', 'graph-cluster-num', String(i + 1)), el('span', 'graph-cluster-src-t', title(a)));
+            b.addEventListener('click', (e) => { e.stopPropagation(); openArticle(a); });
+            li.append(b); ol.append(li);
+        });
+        srcHost.append(ol);
+        if (many) out.append(srcHost);
+    }
+    out.scrollIntoView && out.scrollIntoView({ block: 'nearest' });
+}
+
 /** The cluster page. */
 export function openClusterPage(container, { label, articles }) {
     container.querySelectorAll('.graph-preview-card, .graph-cluster-page').forEach(c => c.remove());
@@ -128,32 +156,9 @@ export function openClusterPage(container, { label, articles }) {
         if (trigger) trigger.disabled = true;
         try {
             const { askCluster } = await import('./feedAi.js');
-            const { renderAnswer } = await import('./qaView.js');
             const r = await askCluster(question ? list : focusNow(), { topic: label, question }, { signal: mine.signal, onPart: ({ done, total }) => { if (mine === ctl && out.classList.contains('is-busy')) out.textContent = T('Reading {n} summaries · step {a} of {b}…', { n: readN, a: Math.min(done + 1, total), b: total }); } });
             if (!page.isConnected || mine !== ctl) return;
-            out.className = 'graph-cluster-answer md-body';
-            out.textContent = '';
-            const body = el('div', 'graph-cluster-answer-body'); out.append(body);
-            renderAnswer(body, r.text);
-            linkCitations(body, r.articles, openArticle);
-            out.append(el('div', 'graph-preview-date', T('From {n} summaries — nothing else was sent', { n: r.used })));
-            if (r.skipped > 0) out.append(el('div', 'graph-preview-date', T('{n} more were left out (limit per briefing)', { n: r.skipped })));
-            if (r.articles && r.articles.length) {
-                const many = r.articles.length > 8;
-                const srcHost = many ? el('details', 'graph-cluster-srcs') : out;
-                const h = many ? el('summary', 'graph-cluster-h', T('Sources used') + ' (' + r.articles.length + ')') : el('div', 'graph-cluster-h', T('Sources used'));
-                srcHost.append(h);
-                const ol = el('ol', 'graph-cluster-sources');
-                r.articles.forEach((a, i) => {
-                    const li = el('li'); const b = el('button', 'graph-cluster-src'); b.type = 'button'; b.title = title(a);
-                    b.append(el('span', 'graph-cluster-num', String(i + 1)), el('span', 'graph-cluster-src-t', title(a)));
-                    b.addEventListener('click', (e) => { e.stopPropagation(); openArticle(a); });
-                    li.append(b); ol.append(li);
-                });
-                srcHost.append(ol);
-                if (many) out.append(srcHost);
-            }
-            out.scrollIntoView && out.scrollIntoView({ block: 'nearest' });
+            await fillAnswer(out, r, openArticle);
         } catch (e) {
             if (!page.isConnected || mine !== ctl || (e && e.cancelled)) return;
             out.className = 'graph-cluster-answer is-error';

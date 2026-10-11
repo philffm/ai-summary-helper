@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "另有 {n} 篇未纳入(单次简报上限)"
+  },
+  "f_all_topics_e150": {
+    "message": "所有主题"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "就此简报提问…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "简报结构"
+  },
+  "f_by_time_ff3d": {
+    "message": "按时间"
+  },
+  "f_by_topic_4c93": {
+    "message": "按主题"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "清除选择"
+  },
+  "f_opened_too_faf2": {
+    "message": "包含已打开"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "超过 {n} 篇时仅使用最新的 {n} 篇；缩小主题或时间范围可完整覆盖。"
+  },
+  "f_unopened_7213": {
+    "message": "未打开"
+  },
+  "f_which_articles_c8ed": {
+    "message": "哪些文章"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "已跳过 {n} 篇重复"
+  },
+  "f_shown_8b3a": {
+    "message": "显示 {n} 个"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} 步后合并"
+  },
+  "f_topic_7b60": {
+    "message": "{n} 个主题"
+  },
+  "f_topics_bee9": {
+    "message": "{n} 个主题"
+  },
+  "f_brief_a94f": {
+    "message": "✨ 简报"
   }
 }

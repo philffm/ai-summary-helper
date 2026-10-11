@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1257. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1281. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1257 | 0 | 0 | 39 |
-| de | 1257 | 0 | 0 | 184 |
-| es | 1257 | 0 | 0 | 155 |
-| fr | 1257 | 0 | 0 | 182 |
-| hi | 1257 | 0 | 0 | 69 |
-| it | 1257 | 0 | 0 | 157 |
-| ja | 1257 | 0 | 0 | 81 |
-| ko | 1257 | 0 | 0 | 21 |
-| pt_PT | 1257 | 0 | 0 | 147 |
-| ru | 1257 | 0 | 0 | 92 |
-| zh_CN | 1257 | 0 | 0 | 2 |
-| zh_HK | 1257 | 0 | 0 | 2 |
-| zh_TW | 1257 | 0 | 0 | 2 |
+| ar | 1265 | 16 | 0 | 39 |
+| de | 1265 | 16 | 0 | 184 |
+| es | 1265 | 16 | 0 | 155 |
+| fr | 1265 | 16 | 0 | 182 |
+| hi | 1265 | 16 | 0 | 69 |
+| it | 1265 | 16 | 0 | 157 |
+| ja | 1265 | 16 | 0 | 81 |
+| ko | 1265 | 16 | 0 | 21 |
+| pt_PT | 1265 | 16 | 0 | 147 |
+| ru | 1265 | 16 | 0 | 94 |
+| zh_CN | 1265 | 16 | 0 | 2 |
+| zh_HK | 1265 | 16 | 0 | 2 |
+| zh_TW | 1265 | 16 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -1119,6 +1119,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Balanced | Сбалансированный | 16 vs 8 | 2× |
 | Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | Sort: Name | Сортировка: название | 20 vs 10 | 2× |
+| Sources used | Использованные источники | 24 vs 12 | 2× |
 | View & Copy | Просмотр и копирование | 22 vs 11 | 2× |
 | reused | использована | 12 vs 6 | 2× |
 | Detach to popup | Открепить во всплывающее окно | 29 vs 15 | 1.93× |
@@ -1133,6 +1134,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Get Key | Получить ключ | 13 vs 7 | 1.86× |
 | Stacked | С накоплением | 13 vs 7 | 1.86× |
 | Account Sync | Синхронизация аккаунта | 22 vs 12 | 1.83× |
+| Never opened | Ни разу не открывались | 22 vs 12 | 1.83× |
 | Sort: Read share | Сортировка: доля прочитанного | 29 vs 16 | 1.81× |
 | Good mood only | Только хорошее настроение | 25 vs 14 | 1.79× |
 | Changelog | Список изменений | 16 vs 9 | 1.78× |
@@ -1218,3 +1220,241 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
 | ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
+
+## Problems
+
+en is missing 16 strings (run merge)
+
+### ar: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### de: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### es: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### fr: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### hi: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### it: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### ja: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### ko: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### pt_PT: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### ru: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### zh_CN: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### zh_HK: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief
+
+### zh_TW: 16 missing
+- All topics
+- Ask about this briefing…
+- Briefing layout
+- By time
+- By topic
+- Clear selection
+- Opened too
+- Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.
+- Unopened
+- Which articles
+- {n} duplicates skipped
+- {n} shown
+- {n} steps, then merged
+- {n} topic
+- {n} topics
+- ✨ Brief

@@ -4107,3 +4107,26 @@ html:not([data-icon-style='icons']) .ic { vertical-align: baseline; }
 .ic-e-pair .e-on { display: none; }
 [aria-pressed='true'] .ic-e-pair .e-off, .is-on .ic-e-pair .e-off { display: none; }
 [aria-pressed='true'] .ic-e-pair .e-on, .is-on .ic-e-pair .e-on { display: inline; }
+
+/* bar briefings: select topics + time window → floating bar (Figma "C / C′") */
+circle.graph-sel { stroke: var(--accent) !important; stroke-width: 4px !important; }
+.graph-brief-bar { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 8; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; border: 1px solid var(--accent); border-radius: 18px; background: var(--glass-base); box-shadow: 0 -4px 20px rgba(0,0,0,.15); }
+.graph-brief-bar[hidden] { display: none; }
+.graph-brief-row { display: flex; align-items: center; gap: 8px; }
+.graph-brief-head { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 2px 0; border: none; background: none; color: var(--text-primary); font: inherit; text-align: left; cursor: pointer; }
+.graph-brief-head strong { font-size: var(--fs-md); }
+.graph-brief-head .graph-preview-date { margin: 0; }
+.graph-brief-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.graph-brief-go { width: auto; padding: 8px 18px; border-radius: 999px; font-weight: 600; font-size: var(--fs-sm); }
+.graph-brief-go:disabled { opacity: .5; }
+.graph-brief-panel { display: flex; flex-direction: column; gap: 8px; max-height: 45vh; overflow-y: auto; }
+.graph-brief-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.graph-brief-chip { padding: 4px 10px; border: 1px solid var(--outline); border-radius: 999px; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
+.graph-brief-chip.on { border-color: var(--accent); color: var(--accent); }
+.graph-brief-seg { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-card, transparent); }
+.graph-brief-seg > button { flex: 1; padding: 6px 10px; border: none; border-radius: 999px; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
+.graph-brief-seg > button.on { background: var(--accent); color: #fff; }
+.graph-brief-seg > button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.graph-brief-info { font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-brief-page .graph-brief-seg { flex-shrink: 0; }
+@media (forced-colors: active) { .graph-brief-bar, .graph-brief-chip { border: 1px solid CanvasText; } }

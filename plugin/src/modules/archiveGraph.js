@@ -535,6 +535,7 @@ export function destroyArchiveGraph(container) {
     if (container.__archiveGraphSelections) {
         container.__archiveGraphSelections = null;
     }
+    if (container.__graphBrief) { container.__graphBrief.destroy(); container.__graphBrief = null; }
     if (container.__archiveGraphDimRaf) {
         cancelAnimationFrame(container.__archiveGraphDimRaf);
         container.__archiveGraphDimRaf = null;
@@ -786,13 +787,26 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     // Click handler for article nodes — show a preview card. Tag nodes
     // dispatch a `filter-by-tag` event so the archive list can filter to
     // that tag, turning the graph into a navigation surface.
+    // Topic selection for bar-briefings (graphBrief.js): long-press, or ⇧ / Ctrl / ⌘ + tap, adds a topic; once something is selected a plain tap toggles too.
+    let lpTimer = null, lpFired = false, lpStart = null;
+    const lpCancel = () => { clearTimeout(lpTimer); lpTimer = null; };
+    node.on('pointerdown.lp', (event, d) => {
+        if (d.group !== 'tag' || !container.__graphBrief) return;
+        lpFired = false; lpStart = [event.clientX, event.clientY]; lpCancel();
+        lpTimer = setTimeout(() => { lpFired = true; if (container.__graphBrief) container.__graphBrief.toggle(d.id); }, 500);
+    });
+    node.on('pointermove.lp', (event) => { if (lpTimer && lpStart && Math.hypot(event.clientX - lpStart[0], event.clientY - lpStart[1]) > 8) lpCancel(); });
+    node.on('pointerup.lp pointerleave.lp pointercancel.lp', lpCancel);
     node.on('click', (event, d) => {
         if (d.group === 'article' && d.data) {
             event.stopPropagation();
             showPreviewCard(container, d.data);
         } else if (d.group === 'tag') {
-            // A tap opens the topic's card (briefing / question / export / "Show list" = the old one-tap filter).
             event.stopPropagation();
+            if (lpFired) { lpFired = false; return; }
+            const gb = container.__graphBrief;
+            if (gb && (event.shiftKey || event.ctrlKey || event.metaKey || gb.size > 0)) { gb.toggle(d.id); return; }
+            // A plain tap opens the topic's page (briefing / question / export / "Show list" = the old one-tap filter).
             const members = articlesOfTag(nodes, links, d.id);
             import('./graphClusters.js').then(m => m.showClusterCard(container, { label: d.label, articles: members }));
         }
@@ -836,6 +850,19 @@ function renderGraph(container, articles, highlightTimestamp, minTagDegree, simi
     // archive search box itself now, not here — see articleManager.js.)
     renderGraphList(container, nodes, links, findGaps(articles));
     renderTimeRange(container, nodes, links, articles);
+    import('./graphBrief.js').then((m) => {
+        if (container.__archiveGraphSelections?.node !== node) return;   // re-rendered meanwhile
+        if (container.__graphBrief) container.__graphBrief.destroy();
+        const topics = nodes.filter(n => n.group === 'tag').map(n => ({ id: n.id, label: n.label }));
+        const gb = m.createGraphBrief(container, {
+            topics, membersOf: (id) => articlesOfTag(nodes, links, id), monthIndex,
+            onSelection: (set) => node.classed('graph-sel', (d) => set.has(d.id))
+        });
+        container.__graphBrief = gb;
+        if (container.__graphBriefRange) container.removeEventListener('graph-time-range', container.__graphBriefRange);
+        container.__graphBriefRange = (e) => gb.setRange(e.detail);
+        container.addEventListener('graph-time-range', container.__graphBriefRange);
+    });
     renderGraphControls(container, {
         hiddenTagCount,
         capped,

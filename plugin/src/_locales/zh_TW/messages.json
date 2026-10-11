@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "另有 {n} 篇未納入(單次簡報上限)"
+  },
+  "f_all_topics_e150": {
+    "message": "所有主題"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "針對此簡報提問…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "簡報結構"
+  },
+  "f_by_time_ff3d": {
+    "message": "依時間"
+  },
+  "f_by_topic_4c93": {
+    "message": "依主題"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "清除選取"
+  },
+  "f_opened_too_faf2": {
+    "message": "包含已開啟"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "超過 {n} 篇時只使用最新的 {n} 篇；縮小主題或時間範圍可完整涵蓋。"
+  },
+  "f_unopened_7213": {
+    "message": "未開啟"
+  },
+  "f_which_articles_c8ed": {
+    "message": "哪些文章"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "已略過 {n} 篇重複"
+  },
+  "f_shown_8b3a": {
+    "message": "顯示 {n} 個"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} 步後合併"
+  },
+  "f_topic_7b60": {
+    "message": "{n} 個主題"
+  },
+  "f_topics_bee9": {
+    "message": "{n} 個主題"
+  },
+  "f_brief_a94f": {
+    "message": "✨ 簡報"
   }
 }

@@ -4653,5 +4653,59 @@
   "f_more_were_left_out_limit_per_f12d": {
     "message": "{n} more were left out (limit per briefing)",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_all_topics_e150": {
+    "message": "All topics"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Ask about this briefing…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Briefing layout"
+  },
+  "f_by_time_ff3d": {
+    "message": "By time"
+  },
+  "f_by_topic_4c93": {
+    "message": "By topic"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Clear selection"
+  },
+  "f_opened_too_faf2": {
+    "message": "Opened too"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "Over {n} articles only the {n} newest are used; narrow topics or period for full coverage.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_7213": {
+    "message": "Unopened"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Which articles"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "{n} duplicates skipped",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} shown",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} steps, then merged",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topic_7b60": {
+    "message": "{n} topic",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_bee9": {
+    "message": "{n} topics",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Brief"
   }
 }

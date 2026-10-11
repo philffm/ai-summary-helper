@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "{n} autres laissés de côté (limite par briefing)"
+  },
+  "f_all_topics_e150": {
+    "message": "Tous les sujets"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Poser une question sur ce briefing…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Structure du briefing"
+  },
+  "f_by_time_ff3d": {
+    "message": "Par période"
+  },
+  "f_by_topic_4c93": {
+    "message": "Par sujet"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Effacer la sélection"
+  },
+  "f_opened_too_faf2": {
+    "message": "Aussi les ouverts"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "Au-delà de {n} articles, seuls les {n} plus récents sont utilisés ; restreignez sujets ou période pour tout couvrir."
+  },
+  "f_unopened_7213": {
+    "message": "Non ouverts"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Quels articles"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "{n} doublons ignorés"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} affichés"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} étapes, puis fusion"
+  },
+  "f_topic_7b60": {
+    "message": "{n} sujet"
+  },
+  "f_topics_bee9": {
+    "message": "{n} sujets"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Briefing"
   }
 }

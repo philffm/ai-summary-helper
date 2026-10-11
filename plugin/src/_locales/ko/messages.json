@@ -4417,5 +4417,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "{n}개는 제외됨(브리핑당 한도)"
+  },
+  "f_all_topics_e150": {
+    "message": "모든 주제"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "이 브리핑에 대해 질문…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "브리핑 구성"
+  },
+  "f_by_time_ff3d": {
+    "message": "시간별"
+  },
+  "f_by_topic_4c93": {
+    "message": "주제별"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "선택 해제"
+  },
+  "f_opened_too_faf2": {
+    "message": "열어본 것도"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "{n}개를 넘으면 최신 {n}개만 사용합니다. 전체를 보려면 주제나 기간을 좁히세요."
+  },
+  "f_unopened_7213": {
+    "message": "열어보지 않음"
+  },
+  "f_which_articles_c8ed": {
+    "message": "대상 기사"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "중복 {n}개 건너뜀"
+  },
+  "f_shown_8b3a": {
+    "message": "{n}개 표시"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n}단계 후 병합"
+  },
+  "f_topic_7b60": {
+    "message": "주제 {n}개"
+  },
+  "f_topics_bee9": {
+    "message": "주제 {n}개"
+  },
+  "f_brief_a94f": {
+    "message": "✨ 브리핑"
   }
 }

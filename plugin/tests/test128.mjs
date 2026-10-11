@@ -158,6 +158,48 @@ assert.equal(huge.used, 60); assert.equal(huge.skipped, 10); assert.equal(sent.l
 sent.length = 0; globalThis.__ai = (m) => { sent.push(m); return { ok: true, text: 'ok' }; };
 await askCluster(many.slice(0, 15), {}, {}); assert.equal(sent.length, 1, '15 or fewer: single request, no merge');
 
+// ── bar briefings: several topics and/or a time window ──
+const gb = await imp('modules/graphBrief.js');
+assert.deepEqual([1, 15, 16, 41, 60, 90].map(gb.briefSteps), [1, 1, 3, 4, 5, 5], 'steps: groups of 15 + one merge, capped at 60');
+const T1 = [art('x1', ['Sec'], 200, { url: 'https://s.example/1' }), art('x2', ['Sec'], 40, { url: 'https://s.example/2', lastOpened: new Date(now).toISOString() }), art('x3', ['Sec', 'Priv'], 30, { url: 'https://s.example/3' })];
+const T2 = [T1[2], art('y1', ['Priv'], 20, { url: 'https://s.example/3?utm_source=feed' }), art('y2', ['Priv'], 10, { url: 'https://p.example/2' })];
+const members = { s: T1, p: T2 };
+const topicsAll = [{ id: 's', label: 'Sec' }, { id: 'p', label: 'Priv' }];
+const mi = ag.monthIndex;
+const scopeAll = gb.scopeArticles({ topics: topicsAll, membersOf: (id) => members[id], selected: new Set(), range: null, monthIndex: mi });
+assert.deepEqual(scopeAll.articles.map(a => a.id).sort(), ['x1', 'x2', 'x3', 'y2'], 'union of all topics, same page (utm) once: ' + scopeAll.articles.map(a => a.id));
+assert.equal(scopeAll.duplicates, 1); assert.deepEqual(scopeAll.topics.map(t => t.n), [3, 3]);
+const win = gb.scopeArticles({ topics: topicsAll, membersOf: (id) => members[id], selected: new Set(), range: { from: mi(now - 60 * DAY), to: mi(now), full: false }, monthIndex: mi });
+assert.ok(!win.articles.some(a => a.id === 'x1'), 'article older than the window is out');
+const onlyNew = gb.scopeArticles({ topics: topicsAll, membersOf: (id) => members[id], selected: new Set(['s']), range: null, monthIndex: mi, includeOpened: false });
+assert.deepEqual(onlyNew.articles.map(a => a.id).sort(), ['x1', 'x3'], 'selected topic only, unopened only');
+assert.equal(onlyNew.articles[0].timestamp >= onlyNew.articles[1].timestamp, true, 'newest first');
+
+const host2 = d.createElement('div'); d.body.append(host2);
+const picked = [];
+const bar = gb.createGraphBrief(host2, { topics: topicsAll, membersOf: (id) => members[id], monthIndex: mi, onSelection: (set) => picked.push([...set].join()) });
+assert.ok(host2.querySelector('.graph-brief-bar').hidden, 'no selection and no window: no bar');
+bar.toggle('s');
+const bb = host2.querySelector('.graph-brief-bar');
+assert.ok(!bb.hidden && /1 topic/.test(bb.textContent) && /3 articles/.test(bb.textContent), bb.textContent);
+bar.toggle('s'); assert.ok(host2.querySelector('.graph-brief-bar').hidden, 'deselecting hides it again');
+bar.setRange({ from: mi(now - 60 * DAY), to: mi(now), full: false });
+assert.ok(!host2.querySelector('.graph-brief-bar').hidden && /All topics/.test(host2.querySelector('.graph-brief-bar').textContent), 'a time window alone shows the bar as "All topics"');
+host2.querySelector('.graph-brief-head').click();
+const chips = [...host2.querySelectorAll('.graph-brief-chip')];
+assert.ok(chips.length >= 1 && chips.every(c => c.classList.contains('on')), 'all topics start checked');
+sent.length = 0; globalThis.__ai = (m) => { sent.push(m); return { ok: true, text: '## Mar\n- found [1]' }; };
+host2.querySelector('.graph-brief-go').click(); await tick(250);
+const pg = host2.querySelector('.graph-brief-page');
+assert.ok(pg, 'Brief opens the result page'); assert.equal(sent.length, 1);
+assert.ok(/\(20\d\d-\d\d\)/.test(sent[0].user) && /## <period>/.test(sent[0].system), 'window-only brief defaults to By time');
+assert.ok(pg.querySelector('.graph-cite'), 'citations are pills');
+pg.querySelectorAll('.graph-brief-seg button')[0].click(); await tick(250);
+assert.equal(sent.length, 2); assert.ok(/## <topic>/.test(sent[1].system) && /\(Sec|\(Priv/.test(sent[1].user), 'By topic runs a second layout');
+pg.querySelectorAll('.graph-brief-seg button')[1].click(); await tick(100);
+assert.equal(sent.length, 2, 'switching back uses the cached answer');
+pg.querySelector('.graph-cluster-back').click(); assert.ok(!host2.querySelector('.graph-brief-page'));
+
 // ── export of just one cluster ──
 const { SK } = await imp('modules/storageKeys.js');
 store[SK.articlesIndex] = [art('e1', ['T'], 5), art('e2', ['T'], 4), art('e3', ['U'], 3)];

@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "Ещё {n} не вошли (лимит на одну сводку)"
+  },
+  "f_all_topics_e150": {
+    "message": "Все темы"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Спросить об этой сводке…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Структура сводки"
+  },
+  "f_by_time_ff3d": {
+    "message": "По времени"
+  },
+  "f_by_topic_4c93": {
+    "message": "По темам"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Снять выбор"
+  },
+  "f_opened_too_faf2": {
+    "message": "И открытые"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "При более чем {n} статьях используются только {n} новейших; сузьте темы или период для полного охвата."
+  },
+  "f_unopened_7213": {
+    "message": "Не открытые"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Какие статьи"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "Пропущено дубликатов: {n}"
+  },
+  "f_shown_8b3a": {
+    "message": "Показано: {n}"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} шагов, затем объединение"
+  },
+  "f_topic_7b60": {
+    "message": "{n} тема"
+  },
+  "f_topics_bee9": {
+    "message": "{n} тем"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Сводка"
   }
 }

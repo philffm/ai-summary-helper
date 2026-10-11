@@ -4435,5 +4435,53 @@
   },
   "f_more_were_left_out_limit_per_f12d": {
     "message": "{n} और छोड़े गए (प्रति ब्रीफिंग सीमा)"
+  },
+  "f_all_topics_e150": {
+    "message": "सभी विषय"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "इस ब्रीफिंग के बारे में पूछें…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "ब्रीफिंग की संरचना"
+  },
+  "f_by_time_ff3d": {
+    "message": "समय के अनुसार"
+  },
+  "f_by_topic_4c93": {
+    "message": "विषय के अनुसार"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "चयन हटाएँ"
+  },
+  "f_opened_too_faf2": {
+    "message": "खोले हुए भी"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "{n} से अधिक लेखों में केवल सबसे नए {n} उपयोग होते हैं; पूरा कवर करने के लिए विषय या अवधि सीमित करें।"
+  },
+  "f_unopened_7213": {
+    "message": "बिना खोले"
+  },
+  "f_which_articles_c8ed": {
+    "message": "कौन से लेख"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "{n} डुप्लिकेट छोड़े गए"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} दिखाए गए"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} चरण, फिर विलय"
+  },
+  "f_topic_7b60": {
+    "message": "{n} विषय"
+  },
+  "f_topics_bee9": {
+    "message": "{n} विषय"
+  },
+  "f_brief_a94f": {
+    "message": "✨ ब्रीफिंग"
   }
 }

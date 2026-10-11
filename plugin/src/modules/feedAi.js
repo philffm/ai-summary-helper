@@ -429,7 +429,7 @@ export async function generateDigestIntro(list, style = 'briefing', { onStage, s
  */
 export const CLUSTER_MAX = 15;          // summaries per request
 export const CLUSTER_RUNS = 4;          // max requests → at most 60 summaries, then one more request merges the parts
-export async function askCluster(list, { topic = '', question = '' } = {}, { onStage, signal, onProgress, onPart } = {}) {
+export async function askCluster(list, { topic = '', question = '', layout = '' } = {}, { onStage, signal, onProgress, onPart } = {}) {
     const lang = await languageName();
     const plain = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ');
     const q = String(question || '').trim();
@@ -439,19 +439,24 @@ export async function askCluster(list, { topic = '', question = '' } = {}, { onS
     if (!items.length) throw new Error(T('These articles have no summaries yet'));
     const base = `You work from a reader's own saved article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
         + 'Use ONLY the numbered summaries: no outside facts. Refer to items as [n]. If they do not contain the answer, say so. ';
-    const lines = (arr, from) => arr.map((x, i) => `[${from + i + 1}] ${clip(x.a.title, 140)} — ${x.body}`).join('\n');
+    // layout: 'time' → sections per period, 'topic' → sections per topic; the items then carry their month / tags.
+    const meta = (a) => layout === 'time' ? ` (${String(a.timestamp || '').slice(0, 7)})` : layout === 'topic' && Array.isArray(a.tags) && a.tags.length ? ` (${a.tags.slice(0, 4).join(', ')})` : '';
+    const sections = layout === 'time' ? ' Group it into at most 5 sections by period (use the item dates): each section starts with a heading line "## <period>" followed by 2 to 3 short bullet lines.'
+        : layout === 'topic' ? ' Group it into at most 6 sections by topic (use the item tags): each section starts with a heading line "## <topic>" followed by 2 to 3 short bullet lines.' : '';
+    const lines = (arr, from) => arr.map((x, i) => `[${from + i + 1}] ${clip(x.a.title, 140)}${meta(x.a)} — ${x.body}`).join('\n');
     const clean = (raw) => String(raw || '').replace(/^```\w*\n?|```$/gm, '').trim();
     const chunks = [];
     for (let i = 0; i < items.length; i += CLUSTER_MAX) chunks.push(items.slice(i, i + CLUSTER_MAX));
     let text;
     if (chunks.length === 1) {
         const system = base + (q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
+            : layout ? 'Write a short overview paragraph first (2 sentences), then the sections.' + sections
             : 'Write a short briefing: what they say together, where they differ or add to each other, and which one to read first. At most 8 bullet lines, no headings.');
         text = clean(await aiComplete(system, lines(items, 0) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));
     } else {
         // Too many for one request: one pass per group of CLUSTER_MAX (numbers stay global), then merge the partial answers.
         const partSys = base + (q ? 'Answer the question from these summaries only, in at most 4 bullet lines. If they do not contain the answer, say so in one line.'
-            : 'Write 4 to 6 bullet lines: the main points of these summaries, each with its [n] references. No headings.');
+            : 'Write 4 to 6 bullet lines: the main points of these summaries, each with its [n] references.' + (layout ? ` Start each line with its ${layout === 'time' ? 'month' : 'topic'}.` : '') + ' No headings.');
         const parts = [];
         for (let k = 0; k < chunks.length; k++) {
             if (signal && signal.aborted) throw Object.assign(new Error(T('Cancelled')), { name: 'AbortError', cancelled: true });
@@ -463,6 +468,7 @@ export async function askCluster(list, { topic = '', question = '' } = {}, { onS
         const mergeSys = `You combine partial notes that were each written from different numbered article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
             + 'Use ONLY the notes. Keep the [n] references exactly as they are. '
             + (q ? 'Give one answer to the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
+                : layout ? 'Write a short overview paragraph first (2 sentences), then the sections.' + sections
                 : 'Write one briefing: what the articles say together, where they differ or add to each other, and which to read first. At most 10 bullet lines, no headings.');
         text = clean(await aiComplete(mergeSys, parts.map((p, k) => `Notes ${k + 1} (items ${k * CLUSTER_MAX + 1}-${Math.min(items.length, (k + 1) * CLUSTER_MAX)}):\n${p}`).join('\n\n') + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));
     }
