@@ -5,6 +5,8 @@ import qrcode from '../lib/qrcode.js';
 import { T } from './feedI18n.js';
 import { SK } from './storageKeys.js';
 import { createInboxManager } from './inboxManager.js';
+import { setLabel } from './icons.js';
+import { normalizeUrl } from './textUtils.js';
 
 const $ = (id) => document.getElementById(id);
 const manager = createInboxManager();
@@ -103,12 +105,105 @@ function shortLink(url) {
     try { const u = new URL(url); return { host: u.hostname.replace(/^www\./, ''), path: (u.pathname + u.search).replace(/\/$/, '') }; } catch (_) { return { host: url, path: '' }; }
 }
 
-async function summarize(entry) {
-    const { host } = shortLink(entry.url);
-    try { await chrome.runtime.sendMessage({ action: 'openFeedItem', url: entry.url, title: host, summarize: true }); } catch (_) { /* background asleep: the link stays in the list */ return; }
-    await manager.resolve(entry.id);
-    await renderList();
+// Summarize: same behaviour as a feed card (feedManager.js): the button turns into a progress ring, waits in the
+// summary queue when another one is running, and the link leaves the list once its summary exists.
+const sumBusy = new Map();   // entry.id -> { pct, key, queued, jobId, timer }
+const sumErrors = new Map(); // entry.id -> last error text (shown under the link until the next try)
+
+function paintSum(id) {
+    const st = sumBusy.get(id);
+    const queued = !!(st && st.queued);
+    document.querySelectorAll('#phoneInbox .feed-sum-btn').forEach((b) => {
+        if (b.dataset.id !== id) return;
+        b.classList.toggle('busy', !!st);
+        b.disabled = !!st && !queued;   // a queued one can be clicked to leave the queue again
+        b.setAttribute('aria-busy', st ? 'true' : 'false');
+        if (queued) {
+            b.style.removeProperty('--p'); b.removeAttribute('aria-valuenow'); b.removeAttribute('role');
+            setLabel(b, T('⏳ Queued')); b.title = T('Waiting for the running summary — click to remove from the queue');
+            return;
+        }
+        b.removeAttribute('title');
+        if (st) {
+            b.style.setProperty('--p', String(st.pct));
+            setLabel(b, T('⏳ {n}%', { n: Math.round(st.pct) }));
+            b.setAttribute('role', 'progressbar'); b.setAttribute('aria-valuenow', String(Math.round(st.pct)));
+        } else {
+            b.style.removeProperty('--p'); b.removeAttribute('aria-valuenow'); b.removeAttribute('role');
+            setLabel(b, T('✨ Summarize'));
+        }
+    });
 }
+function endSum(id) {
+    const st = sumBusy.get(id); if (!st) return;
+    clearTimeout(st.timer); sumBusy.delete(id); paintSum(id);
+}
+function armSum(id, ms) {
+    const st = sumBusy.get(id); if (!st) return;
+    clearTimeout(st.timer); st.timer = setTimeout(() => endSum(id), ms);   // safety net
+}
+
+async function summarize(entry) {
+    const q = sumBusy.get(entry.id);
+    if (q && q.queued) {   // waiting in line: take it out again
+        chrome.runtime.sendMessage({ action: 'cancelQueuedSummary', id: q.jobId }, () => { void chrome.runtime.lastError; });
+        endSum(entry.id); return;
+    }
+    const { host } = shortLink(entry.url);
+    sumErrors.delete(entry.id);
+    sumBusy.set(entry.id, { pct: 5, key: normalizeUrl(entry.url), queued: false, jobId: null, timer: null });
+    armSum(entry.id, 5 * 60 * 1000);
+    paintSum(entry.id);
+    const hide = () => $('phoneInbox') && $('phoneInbox').querySelectorAll('.phone-inbox-error').forEach(e => { if (e.dataset.id === entry.id) e.remove(); });
+    hide();
+    let res = null;
+    try { res = await chrome.runtime.sendMessage({ action: 'openFeedItem', url: entry.url, title: host, summarize: true }); } catch (_) { /* background asleep: the link stays in the list */ }
+    if (!res || !res.success) { endSum(entry.id); return; }
+    if (res.mode !== 'extension') {   // inline mode: the page shows the summary itself, nothing to track here
+        endSum(entry.id);
+        await manager.resolve(entry.id); await renderList();
+        return;
+    }
+    const st = sumBusy.get(entry.id);
+    if (st) { st.jobId = res.id == null ? null : res.id; st.queued = !!res.queued; if (st.queued) armSum(entry.id, 60 * 60 * 1000); paintSum(entry.id); }
+}
+
+function sumTargetFor(msg, sender) {
+    if (!sumBusy.size) return null;
+    const urls = [sender && sender.tab && sender.tab.url, msg && msg.url].filter(Boolean).map(u => normalizeUrl(u));
+    for (const [id, st] of sumBusy) if (!st.queued && urls.includes(st.key)) return id;
+    const live = [...sumBusy].filter(([, st]) => !st.queued);
+    return live.length === 1 && sender && sender.tab ? live[0][0] : null;   // redirected page: a single running one is ours
+}
+function onQueueUpdate(msg) {
+    const waiting = new Map((msg.queue || []).map(j => [j.id, j]));
+    for (const [id, st] of [...sumBusy]) {
+        if (st.jobId == null) continue;
+        if (waiting.has(st.jobId)) { if (!st.queued) { st.queued = true; armSum(id, 60 * 60 * 1000); paintSum(id); } }
+        else if (st.queued) {
+            const running = msg.running && msg.running.id === st.jobId;
+            st.queued = false; st.pct = 5; armSum(id, 15 * 60 * 1000);
+            if (running) paintSum(id); else endSum(id);
+        }
+    }
+}
+function onSummaryMessage(msg, sender) {
+    if (msg && msg.action === 'summaryQueue') return onQueueUpdate(msg);
+    if (!msg || !['summaryProgress', 'summaryComplete', 'summaryError'].includes(msg.action)) return;
+    const id = sumTargetFor(msg, sender); if (!id) return;
+    const st = sumBusy.get(id); if (!st) return;
+    if (msg.action === 'summaryProgress') {
+        if (typeof msg.progress === 'number' && msg.progress > st.pct) { st.pct = Math.min(99, msg.progress); paintSum(id); }
+    } else if (msg.action === 'summaryComplete') {
+        st.pct = 100; paintSum(id);
+        setTimeout(async () => { endSum(id); await manager.resolve(id); await renderList(); }, 400);   // it now lives in History
+    } else {
+        endSum(id);
+        sumErrors.set(id, msg.error || T('Failed'));
+        renderList();
+    }
+}
+
 async function dismiss(entry) { await manager.resolve(entry.id); await renderList(); }
 
 async function renderList() {
@@ -127,12 +222,20 @@ async function renderList() {
         const h = document.createElement('strong'); h.textContent = host;
         const p = document.createElement('span'); p.textContent = path.length > 60 ? path.slice(0, 59) + '…' : path;
         text.append(h, p); text.title = entry.url;
-        row.append(text, button(T('Summarize'), 'button-primary btn-sm', () => summarize(entry)), button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
+        const sum = button('', 'button-primary btn-sm feed-sum-btn', () => summarize(entry));
+        sum.dataset.id = entry.id; setLabel(sum, T('✨ Summarize'));
+        row.append(text, sum, button(T('Dismiss'), 'button-tertiary btn-sm', () => dismiss(entry)));
         root.append(row);
+        if (sumErrors.has(entry.id)) {
+            const err = para(sumErrors.get(entry.id), 'phone-inbox-error'); err.dataset.id = entry.id; err.setAttribute('role', 'alert');
+            root.append(err);
+        }
+        paintSum(entry.id);
     }
 }
 
 export async function initInboxView() {
+    try { if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage); } catch (_) { /* no runtime */ }
     await Promise.all([renderSettings(), renderList()]);
     chrome.storage.onChanged.addListener((changes, ns) => {
         if (ns !== 'local') return;
