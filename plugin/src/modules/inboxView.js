@@ -44,24 +44,28 @@ function qrBox(payload) {
     return box;
 }
 
+let settingsToken = 0;
 async function renderSettings() {
     const root = $('phoneInboxSettings');
     if (!root) return;
+    // Several things ask for a render at once (the click, storage.onChanged, the poll). Build the panel off-screen and
+    // swap it in only if no newer render started meanwhile; clearing early and appending after an await doubled the QR.
+    const token = ++settingsToken;
     const st = await manager.status();
-    root.textContent = '';
-    root.append(para(T('Install the AISH companion on your phone, scan the code once, then share any link to it. Links arrive end-to-end encrypted and wait here for your tap.')));
+    const frag = document.createDocumentFragment();
+    frag.append(para(T('Install the AISH companion on your phone, scan the code once, then share any link to it. Links arrive end-to-end encrypted and wait here for your tap.')));
 
     if (!st.paired) {
-        root.append(button(busy === 'pair' ? T('Pairing…') : T('Pair a phone'), 'button-primary w-full', pair, !!busy));
+        frag.append(button(busy === 'pair' ? T('Pairing…') : T('Pair a phone'), 'button-primary w-full', pair, !!busy));
     } else {
         const when = st.lastPollAt ? new Date(st.lastPollAt).toLocaleString() : '';
-        root.append(para(when ? T('Paired · last checked {when}', { when }) : T('Paired · not checked yet'), 'setting-note phone-inbox-status'));
-        if (st.lastError) root.append(para(errorText(st.lastError), 'setting-note phone-inbox-error'));
+        frag.append(para(when ? T('Paired · last checked {when}', { when }) : T('Paired · not checked yet'), 'setting-note phone-inbox-status'));
+        if (st.lastError) frag.append(para(errorText(st.lastError), 'setting-note phone-inbox-error'));
         if (showCode) {
             const payload = await manager.pairingCode();
             if (payload) {
-                root.append(qrBox(payload));
-                root.append(para(T('Scan this code with the AISH companion app. Anyone who scans it can send links to you, so keep it private.')));
+                frag.append(qrBox(payload));
+                frag.append(para(T('Scan this code with the AISH companion app. Anyone who scans it can send links to you, so keep it private.')));
             }
         }
         const row = document.createElement('div');
@@ -71,10 +75,12 @@ async function renderSettings() {
             button(busy === 'poll' ? T('Checking…') : T('Check now'), 'button-secondary', checkNow, !!busy),
             button(confirmUnpair ? T('Click again to unpair') : T('Unpair and delete inbox'), 'button-danger btn-sm', unpair, !!busy),
         );
-        root.append(row);
-        if (confirmUnpair) root.append(para(T('Links still waiting here are deleted and the phone can no longer send.')));
+        frag.append(row);
+        if (confirmUnpair) frag.append(para(T('Links still waiting here are deleted and the phone can no longer send.')));
     }
-    if (message) root.append(para(message, 'setting-note phone-inbox-error'));
+    if (message) frag.append(para(message, 'setting-note phone-inbox-error'));
+    if (token !== settingsToken) return;   // a newer render is on its way; it will replace the panel
+    root.replaceChildren(frag);
     const sub = document.querySelector('.settings-row-sub[data-sub="phoneinbox"]');
     if (sub && st.paired) sub.textContent = st.pending ? T('Paired · {n} waiting', { n: st.pending }) : T('Paired');
 }
