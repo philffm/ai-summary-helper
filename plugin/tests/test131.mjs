@@ -16,7 +16,7 @@ const env = await C.encryptMessage(secrets, { url: 'https://example.com/from-pho
 const store = { [SK.inboxConfig]: { ...secrets, createdAt: 1, v: 1 } };
 const calls = [];
 const fetchFn = async (url, opts) => {
-    calls.push(opts.method + ' ' + url.replace(/^.*\/inboxes/, ''));
+    calls.push(opts.method + ' ' + url.replace(/^.*\/aish_inboxes/, ''));
     const json = (status, body) => ({ status, json: async () => body });
     if (opts.method === 'GET') return json(200, { items: [{ id: 'i1', cursor: '000000000000001', receivedAt: 1, v: 1, data: env.data }], hasMore: false });
     return json(200, { ok: true });

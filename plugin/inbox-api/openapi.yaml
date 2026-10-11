@@ -10,7 +10,7 @@ info:
 servers:
   - url: https://api.byphil.eu/v1/projects/ai_summary_helper
 paths:
-  /inboxes:
+  /aish_inboxes:
     post:
       summary: Create an inbox (extension)
       requestBody:
@@ -29,7 +29,7 @@ paths:
         "400": { description: Malformed }
         "409": { description: Id already exists }
         "429": { description: Too many creations from this address (Retry-After) }
-  /inboxes/{id}:
+  /aish_inboxes/{id}:
     delete:
       summary: Delete the inbox and everything in it (read token)
       security: [{ readToken: [] }]
@@ -39,7 +39,7 @@ paths:
         "401": { description: No token }
         "403": { description: Wrong token }
         "404": { description: Unknown inbox }
-  /inboxes/{id}/items:
+  /aish_inboxes/{id}/items:
     post:
       summary: Append an encrypted item (phone, write token)
       security: [{ writeToken: [] }]
@@ -91,7 +91,7 @@ paths:
         "401": { description: No token }
         "403": { description: Wrong token }
         "404": { description: Unknown inbox }
-  /inboxes/{id}/ack:
+  /aish_inboxes/{id}/ack:
     post:
       summary: Delete every item up to and including a cursor (extension, read token)
       security: [{ readToken: [] }]

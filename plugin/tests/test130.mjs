@@ -9,7 +9,7 @@ const { SK } = await imp('modules/storageKeys.js');
 
 const server = createInboxServer();
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const api = `http://127.0.0.1:${server.address().port}/v1/projects/ai_summary_helper/inboxes`;
+const api = `http://127.0.0.1:${server.address().port}/v1/projects/ai_summary_helper/aish_inboxes`;
 
 function memStorage() {
     const d = {};
@@ -120,7 +120,7 @@ try {
     // pairing refused / server error classification
     assert.equal(M.classify(0), 'unreachable'); assert.equal(M.classify(503), 'unreachable');
     assert.equal(M.classify(429), 'rate-limited'); assert.equal(M.classify(403), 'pairing-invalid'); assert.equal(M.classify(400), 'error');
-    const m3 = M.createInboxManager({ storage: memStorage(), api: api.replace(/inboxes$/, 'nope') });
+    const m3 = M.createInboxManager({ storage: memStorage(), api: api.replace(/aish_inboxes$/, 'nope') });
     assert.deepEqual(await m3.pair(), { ok: false, error: 'pairing-invalid' });
 } finally {
     server.close();

@@ -14,7 +14,8 @@
 import { SK } from './storageKeys.js';
 import { newInboxSecrets, tokenHash, pairingPayload, decryptMessage } from './inboxCrypto.js';
 
-export const INBOX_API = 'https://api.byphil.eu/v1/projects/ai_summary_helper/inboxes';
+// The first segment after the project is the collection name in the byPhil database: aish_inboxes (its items: aish_inbox_items).
+export const INBOX_API = 'https://api.byphil.eu/v1/projects/ai_summary_helper/aish_inboxes';
 export const PAGE_SIZE = 50;
 export const MAX_PAGES = 4;        // per poll; the rest is collected on the next one
 export const SEEN_MAX = 500;       // handled item ids remembered

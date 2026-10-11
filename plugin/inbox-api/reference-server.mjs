@@ -18,7 +18,10 @@ export const LIMITS = {
     idleTtlMs: 30 * 24 * 3600e3, // inboxes nobody touched are purged
     maxPageSize: 100,
 };
-const BASE = '/v1/projects/ai_summary_helper/inboxes';
+// Collection names in the byPhil database. The first path segment is the collection (`aish_inboxes`); the items live in
+// `aish_inbox_items` and are reached through /{id}/items.
+const COLLECTIONS = { inboxes: 'aish_inboxes', items: 'aish_inbox_items' };
+const BASE = `/v1/projects/ai_summary_helper/${COLLECTIONS.inboxes}`;
 const ID_RE = /^[A-Za-z0-9_-]{22}$/;
 const HASH_RE = /^[0-9a-f]{64}$/;
 const B64U_RE = /^[A-Za-z0-9_-]+$/;
@@ -79,7 +82,7 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
             const rest = url.pathname.slice(BASE.length).split('/').filter(Boolean);
             const method = req.method;
 
-            // POST /inboxes
+            // POST /aish_inboxes
             if (rest.length === 0 && method === 'POST') {
                 const ip = req.socket.remoteAddress || '?';
                 const list = recent(creates.get(ip) || [], 3600e3); creates.set(ip, list);
@@ -95,13 +98,13 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
             }
 
             const id = rest[0];
-            // DELETE /inboxes/{id}
+            // DELETE /aish_inboxes/{id}
             if (rest.length === 1 && method === 'DELETE') {
                 if (!auth(req, res, id, 'read')) return;
                 inboxes.delete(id);
                 return send(res, 204);
             }
-            // POST /inboxes/{id}/items   (phone)
+            // POST /aish_inboxes/{id}/items   (phone)
             if (rest.length === 2 && rest[1] === 'items' && method === 'POST') {
                 const box = auth(req, res, id, 'write'); if (!box) return;
                 const b = await readBody(req, L.maxBody);
@@ -115,7 +118,7 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
                 box.items.push(item);
                 return send(res, 202, { id: item.id });
             }
-            // GET /inboxes/{id}/items?after=&limit=   (extension)
+            // GET /aish_inboxes/{id}/items?after=&limit=   (extension)
             if (rest.length === 2 && rest[1] === 'items' && method === 'GET') {
                 const box = auth(req, res, id, 'read'); if (!box) return;
                 const after = url.searchParams.get('after') || '';
@@ -123,7 +126,7 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
                 const all = box.items.filter((it) => it.cursor > after);
                 return send(res, 200, { items: all.slice(0, limit), hasMore: all.length > limit });
             }
-            // POST /inboxes/{id}/ack   (extension)
+            // POST /aish_inboxes/{id}/ack   (extension)
             if (rest.length === 2 && rest[1] === 'ack' && method === 'POST') {
                 const box = auth(req, res, id, 'read'); if (!box) return;
                 const b = await readBody(req, L.maxBody);

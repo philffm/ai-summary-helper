@@ -15,7 +15,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.TimeUnit
 
-const val INBOX_API = "https://api.byphil.eu/v1/projects/ai_summary_helper/inboxes"
+// The collection name in the byPhil database: aish_inboxes (its items: aish_inbox_items).
+const val INBOX_API = "https://api.byphil.eu/v1/projects/ai_summary_helper/aish_inboxes"
 
 /** Encrypts one link and appends it to the inbox. Retries while offline or the server is busy; gives up (and says why) on a pairing problem. */
 class SendWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
