@@ -651,12 +651,21 @@ import {
           apiKeyOptional = true;
         }
 
-        if (activeService === 'ollama') apiKeyOptional = true;
+        // Local models need no key: Ollama by name (any spelling), or any endpoint on this machine / the home network.
+        const isLocalEndpoint = (u) => {
+          try {
+            const h = new URL(u).hostname.toLowerCase();
+            return h === 'localhost' || h === '::1' || h === '[::1]' || h.endsWith('.local') || /^127\./.test(h) || /^10\./.test(h) || /^192\.168\./.test(h) || /^172\.(1[6-9]|2\d|3[01])\./.test(h);
+          } catch (_) { return false; }
+        };
+        if (String(activeService || '').trim().toLowerCase() === 'ollama' || (connectionMode !== 'cloud' && isLocalEndpoint(apiUrl))) apiKeyOptional = true;
 
         if (!apiKey && !apiKeyOptional) {
+          // The service and mode are in the message so a wrong stored provider is obvious from the popup.
+          const why = `API key not set (service: ${activeService || 'none'}, mode: ${connectionMode})`;
           alert('Please set your API key in the extension popup.');
-          relay('summaryError', { error: 'API key not set' });
-          reject(new Error('API key not set'));
+          relay('summaryError', { error: why });
+          reject(new Error(why));
           return;
         }
 
