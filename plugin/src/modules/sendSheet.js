@@ -7,7 +7,9 @@ import { trapFocus } from './sheet.js';
 // Delivery itself is injected (deliverKindle / deliverLocalSend from articleManager), so this module
 // has no knowledge of the Kindle API or the LocalSend protocol.
 import StorageManager from './storageManager.js';
-import { buildMagazineArticle } from './digestBuilder.js';
+import { buildMagazineArticle, sortForBundle } from './digestBuilder.js';
+import { buildConnectionMapHtml } from './connectionMap.js';
+import { buildIndex } from './localSearch.js';
 import { T, TN } from './feedI18n.js';
 import { generateDigestIntro } from './feedAi.js';
 import { createRecapStatus } from './recapStatus.js';
@@ -107,7 +109,7 @@ function paintBar() {
 
 // ───────────────────────────── sheet ─────────────────────────────
 
-const state = { format: 'digest', include: 'summary', intro: 'off', introStyle: 'briefing', refStyle: 'apa', refSummaries: false };
+const state = { format: 'digest', include: 'summary', map: 'on', intro: 'off', introStyle: 'briefing', refStyle: 'apa', refSummaries: false };
 
 let sheetTrap = null;
 function closeSheet() { if (sheetTrap) { sheetTrap.release(); sheetTrap = null; } if (sheet) { sheet.remove(); sheet = null; } }
@@ -282,6 +284,15 @@ function introBlock() {
     const paint = () => {
         wrap.textContent = '';
         if (state.format !== 'digest' || selected().length < 2) return;
+        const mapOn = state.map === 'on';
+        const mg = el('button', 'sendsheet-row sendsheet-toggle' + (mapOn ? ' on' : ''));
+        mg.type = 'button'; mg.setAttribute('role', 'switch'); mg.setAttribute('aria-checked', String(mapOn));
+        const mt = el('span', 'sendsheet-row-tx');
+        mt.append(el('span', 'sendsheet-row-t', T('🕸️ Add a connection map')),
+            el('span', 'sendsheet-row-s sendsheet-wrap', T('Shows which articles share topics — as a picture and a list')));
+        const ms = el('span', 'sendsheet-switch'); ms.append(el('span', 'sendsheet-knob'));
+        mg.append(mt, ms);
+        mg.addEventListener('click', () => { state.map = mapOn ? 'off' : 'on'; paint(); });
         const on = state.intro === 'on';
         const tg = el('button', 'sendsheet-row sendsheet-toggle' + (on ? ' on' : ''));
         tg.type = 'button'; tg.setAttribute('role', 'switch'); tg.setAttribute('aria-checked', String(on));
@@ -303,6 +314,7 @@ function introBlock() {
             const hint = { short: T('One sentence'), briefing: T('2–3 sentences'), personal: T('A friendly note to yourself') }[state.introStyle];
             wrap.append(chips, el('div', 'sendsheet-row-s sendsheet-hint', hint));
         }
+        wrap.append(mg);
     };
     wrap.paint = paint;
     paint();
@@ -343,7 +355,7 @@ function viewMark() {
 }
 
 /** Jobs to run: one digest, or one file per article. */
-async function buildJobs(intro = '') {
+async function buildJobs(intro = '', kind = 'localsend') {
     const list = selected();
     const full = state.include === 'full';
     const load = async (a) => {
@@ -356,7 +368,13 @@ async function buildJobs(intro = '') {
     const items = [];
     for (const a of list) items.push(await load(a));
     if (state.format === 'digest' && list.length > 1) {
-        return [{ label: T('Digest of {n} summaries', { n: list.length }), ids: list.map(a => a.id), article: buildMagazineArticle(items, { includeContent: full, intro }) }];
+        // The map is an extra: any failure just means the digest goes out without it.
+        let mapHtml = '';
+        if (state.map === 'on') {
+            try { mapHtml = await buildConnectionMapHtml(sortForBundle(items), buildIndex(items), { image: kind === 'kindle' ? 'png' : 'svg' }); }
+            catch (_) { mapHtml = ''; }
+        }
+        return [{ label: T('Digest of {n} summaries', { n: list.length }), ids: list.map(a => a.id), article: buildMagazineArticle(items, { includeContent: full, intro, mapHtml }) }];
     }
     return items.map(a => ({ label: a.title || T('Untitled'), ids: [a.id], article: a }));
 }
@@ -395,7 +413,7 @@ async function run(kind, device) {
         const il = el('div', 'sendsheet-step', introFailed ? (introSkipped ? T('Intro skipped — the digest goes out without it') : T('⚠️ Intro skipped — the digest goes out without it')) : T('✨ Intro written'));
         st.node.replaceWith(il);
     }
-    const jobs = await buildJobs(intro);
+    const jobs = await buildJobs(intro, kind);
     const lines = jobs.map(j => { const d = el('div', 'sendsheet-step', '○ ' + j.label); steps.append(d); return d; });
     let cancelled = false;
     body.append(btn(T('Cancel'), false, () => { cancelled = true; }));

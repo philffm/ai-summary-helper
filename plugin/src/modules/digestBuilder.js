@@ -23,8 +23,10 @@ import { escapeHtml } from './textUtils.js';
  * bundle of full text would be huge and mostly redundant with just
  * reading each article individually.
  */
-export function buildMagazineArticle(articles, { title, includeContent = false, intro = '' } = {}) {
-    const ordered = [...articles].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+export const sortForBundle = (articles) => [...articles].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+export function buildMagazineArticle(articles, { title, includeContent = false, intro = '', mapHtml = '' } = {}) {
+    const ordered = sortForBundle(articles);
     const magazineTitle = title || T('Reading bundle — {date} ({count})', { date: new Date().toLocaleDateString(), count: TN(ordered.length, '{n} article', '{n} articles') });
 
     const toc = ordered.map((a, i) =>
@@ -50,6 +52,7 @@ export function buildMagazineArticle(articles, { title, includeContent = false, 
         ${intro ? `<blockquote class="aish-intro" style="border-left:4px solid #c9a227;margin:14px 0;padding:2px 0 2px 12px;font-style:italic;">${escapeHtml(intro)}</blockquote>` : ''}
         <ol>${toc}</ol>
         <hr />
+        ${mapHtml}
         ${sections}
       </div>
     `;
