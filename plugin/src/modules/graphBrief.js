@@ -5,7 +5,7 @@ import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
 import { setIconLabel } from './icons.js';
 import { dedupeArticles } from './textUtils.js';
-import { fillAnswer } from './graphClusters.js';
+import { fillAnswer, mountGraphPage } from './graphClusters.js';
 
 export const BRIEF_CAP = 60;     // = CLUSTER_MAX * CLUSTER_RUNS in feedAi.js
 export const BRIEF_CHUNK = 15;
@@ -47,13 +47,14 @@ export function scopeArticles({ topics, membersOf, selected, range, monthIndex, 
 
 /** The result page: "By topic | By time" toggle, answer with citation pills, docked question box. */
 export function openBriefPage(container, { heading, subtitle, articles, layout = 'time' }) {
-    container.querySelectorAll('.graph-preview-card, .graph-cluster-page').forEach(c => c.remove());
+    container.querySelectorAll('.graph-preview-card').forEach(c => c.remove());
     const openArticle = (a) => container.dispatchEvent(new CustomEvent('open-article', { detail: a, bubbles: true, composed: true }));
-    const page = el('div', 'graph-cluster-page graph-brief-page'); page.setAttribute('role', 'region'); page.setAttribute('aria-label', heading);
+    let close = () => {};
+    const page = el('div', 'graph-cluster-page graph-brief-page');
     let ctl = null;
     const bar = el('div', 'graph-cluster-bar');
     const back = el('button', 'graph-cluster-back', '←'); back.type = 'button'; back.setAttribute('aria-label', T('Back'));
-    back.addEventListener('click', (e) => { e.stopPropagation(); if (ctl) ctl.abort(); page.remove(); });
+    back.addEventListener('click', (e) => { e.stopPropagation(); close(); });
     const ttl = el('div', 'graph-cluster-ttl');
     ttl.append(el('strong', 'graph-cluster-title', heading), el('div', 'graph-preview-date', subtitle));
     bar.append(back, ttl);
@@ -97,7 +98,7 @@ export function openBriefPage(container, { heading, subtitle, articles, layout =
     ask.append(input, go);
     ask.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) { run(current, q); input.value = ''; } });
     page.append(bar, scroll, ask);
-    container.appendChild(page);
+    close = mountGraphPage(container, page, heading, () => { if (ctl) ctl.abort(); });
     run(current);
     return page;
 }
@@ -110,7 +111,16 @@ export function createGraphBrief(container, ctx) {
     const sel = new Set();
     let range = null, includeOpened = true, expanded = false;
     const bar = el('div', 'graph-brief-bar'); bar.hidden = true;
-    container.appendChild(bar);
+    bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', T('Briefing scope'));
+    // Polite announcement of what the scope is (the bar itself is rebuilt on every change, so it cannot be the live region).
+    const live = el('div', 'sr-only'); live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite');
+    container.append(bar, live);
+    // Escape: close the options first, then clear the topic selection.
+    bar.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || e.defaultPrevented) return;
+        if (expanded) { e.preventDefault(); e.stopPropagation(); expanded = false; render(); const h = bar.querySelector('.graph-brief-head'); if (h) h.focus(); }
+        else if (sel.size) { e.preventDefault(); e.stopPropagation(); api.clear(); }
+    });
     const windowLabel = () => (range && !range.full ? monthLabel(range.from) + ' – ' + monthLabel(range.to) : '');
     const scope = () => scopeArticles({ topics: ctx.topics, membersOf: ctx.membersOf, selected: sel, range, monthIndex: ctx.monthIndex, includeOpened });
     const active = () => sel.size > 0 || !!(range && !range.full);
@@ -184,7 +194,10 @@ export function createGraphBrief(container, ctx) {
             panel.append(info);
             kids.push(panel);
         }
+        const hadFocus = bar.contains(document.activeElement) ? (document.activeElement.className || '') : '';
         bar.replaceChildren(...kids);
+        if (hadFocus) { const again = hadFocus.split(' ').filter(Boolean).map(c => bar.querySelector('.' + c)).find(Boolean); if (again && again !== document.activeElement) again.focus({ preventScroll: true }); }
+        live.textContent = strong.textContent + (win ? ', ' + win : '');
     }
 
     const api = {
@@ -194,7 +207,7 @@ export function createGraphBrief(container, ctx) {
         clear() { sel.clear(); ctx.onSelection && ctx.onSelection(sel); render(); },
         setRange(r) { range = r && !r.full ? r : null; render(); },
         scope, render,
-        destroy() { bar.remove(); }
+        destroy() { bar.remove(); live.remove(); }
     };
     return api;
 }

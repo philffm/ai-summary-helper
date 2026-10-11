@@ -5,6 +5,7 @@ import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
 import { setIconLabel } from './icons.js';
 import { dedupeArticles } from './textUtils.js';
+import { trapFocus } from './sheet.js';
 
 const title = (a) => a.title || (a.content && String(a.content).split('\n')[0]) || T('Untitled');
 const isOpened = (a) => !!a.lastOpened;
@@ -94,6 +95,31 @@ function miniMap(label, list) {
 /** Tapping a topic node opens the cluster page directly (brief button, never-opened list, ask box). */
 export function showClusterCard(container, opts) { return openClusterPage(container, opts); }
 
+/**
+ * Mounts a full-cover page over the graph with the shared sheet behaviour (sheet.js): role=dialog + aria-modal, focus moves in and is
+ * trapped, Escape closes, focus returns to the opener. Replaces any page already open. Returns close().
+ */
+export function mountGraphPage(container, page, label, onClose) {
+    if (container.__graphPageClose) container.__graphPageClose();
+    let done = false, trap = null, restoreBehind = () => {};
+    const close = () => {
+        if (done) return; done = true;
+        if (container.__graphPageClose === close) container.__graphPageClose = null;
+        if (onClose) onClose();
+        restoreBehind();
+        if (trap) trap.release();
+        page.remove();
+    };
+    container.appendChild(page);
+    // everything behind the page is out of reach (keyboard and screen readers) while it is open
+    const behind = [...container.children].filter(c => c !== page && !c.inert);
+    behind.forEach(c => { c.inert = true; });
+    restoreBehind = () => behind.forEach(c => { c.inert = false; });
+    trap = trapFocus(page, { label, onEscape: close });
+    container.__graphPageClose = close;
+    return close;
+}
+
 /** Renders an askCluster result into `out`: answer text with citation pills, footnote, optional "left out" note, numbered sources. */
 export async function fillAnswer(out, r, openArticle) {
     const { renderAnswer } = await import('./qaView.js');
@@ -124,7 +150,7 @@ export async function fillAnswer(out, r, openArticle) {
 
 /** The cluster page. */
 export function openClusterPage(container, { label, articles }) {
-    container.querySelectorAll('.graph-preview-card, .graph-cluster-page').forEach(c => c.remove());
+    container.querySelectorAll('.graph-preview-card').forEach(c => c.remove());
     const list = dedupeArticles(articles || []).sort((a, b) => new Date(a.lastOpened || a.timestamp) - new Date(b.lastOpened || b.timestamp));
     const st = clusterStats(list);
     const unopened = list.filter(a => !isOpened(a));
@@ -133,10 +159,11 @@ export function openClusterPage(container, { label, articles }) {
     const focusNow = () => (includeOpened || !unopened.length ? list : unopened);   // default: what was never opened; else the whole topic
     const openArticle = (a) => container.dispatchEvent(new CustomEvent('open-article', { detail: a, bubbles: true, composed: true }));
 
-    const page = el('div', 'graph-cluster-page'); page.setAttribute('role', 'region'); page.setAttribute('aria-label', label);
+    let close = () => {};
+    const page = el('div', 'graph-cluster-page');
     const bar = el('div', 'graph-cluster-bar');
     const back = el('button', 'graph-cluster-back', '←'); back.type = 'button'; back.setAttribute('aria-label', T('Back'));
-    back.addEventListener('click', (e) => { e.stopPropagation(); if (ctl) ctl.abort(); page.remove(); });
+    back.addEventListener('click', (e) => { e.stopPropagation(); close(); });
     const ttl = el('div', 'graph-cluster-ttl');
     ttl.append(el('strong', 'graph-cluster-title', label), el('div', 'graph-preview-date', TN(st.total, '{n} article', '{n} articles') + ' · ' + T('{n} never opened', { n: st.unopened })));
     bar.append(back, ttl);
@@ -181,7 +208,7 @@ export function openClusterPage(container, { label, articles }) {
     const actions = el('div', 'graph-cluster-actions');
     const show = el('button', 'button-secondary graph-cluster-show', T('Show list')); show.type = 'button';
     show.addEventListener('click', (e) => {
-        e.stopPropagation(); if (ctl) ctl.abort(); page.remove();
+        e.stopPropagation(); close();
         container.dispatchEvent(new CustomEvent('filter-by-tag', { detail: { tag: label }, bubbles: true, composed: true }));
     });
     actions.append(show);
@@ -242,6 +269,6 @@ export function openClusterPage(container, { label, articles }) {
     paintBrief();
     page.append(bar, scroll);
     if (st.withSummary) page.append(ask);
-    container.appendChild(page);
+    close = mountGraphPage(container, page, label, () => { if (ctl) ctl.abort(); });
     return page;
 }

@@ -131,6 +131,7 @@ assert.deepEqual(filtered, ['Topic <b>']); assert.ok(!area.querySelector('.graph
 const feedCard = gc.showClusterCard(area, { label: 'News', articles: [{ title: 'F1', snippet: 'snip one' }, { title: 'F2', snippet: 'snip two' }] });
 const labels = [...feedCard.querySelectorAll('button')].map(b => b.textContent);
 assert.ok(labels.some(l => /Brief me/.test(l)) && !labels.some(l => /Markdown/.test(l)), labels.join('|'));
+d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));   // close it: every open page traps focus
 
 // ── many articles: duplicates dropped, groups of 15, partial notes merged ──
 const { askCluster, CLUSTER_MAX } = await imp('modules/feedAi.js');
@@ -198,7 +199,24 @@ pg.querySelectorAll('.graph-brief-seg button')[0].click(); await tick(250);
 assert.equal(sent.length, 2); assert.ok(/## <topic>/.test(sent[1].system) && /\(Sec|\(Priv/.test(sent[1].user), 'By topic runs a second layout');
 pg.querySelectorAll('.graph-brief-seg button')[1].click(); await tick(100);
 assert.equal(sent.length, 2, 'switching back uses the cached answer');
-pg.querySelector('.graph-cluster-back').click(); assert.ok(!host2.querySelector('.graph-brief-page'));
+// shared sheet behaviour: dialog semantics, focus inside, everything behind is inert, Escape closes and restores
+assert.equal(pg.getAttribute('role'), 'dialog'); assert.equal(pg.getAttribute('aria-modal'), 'true'); assert.equal(pg.getAttribute('aria-label'), 'All topics · ' + pg.querySelector('.graph-cluster-title').textContent.split(' · ').slice(1).join(' · ') || 'All topics');
+assert.ok(pg.contains(d.activeElement), 'focus moved into the page');
+assert.ok(host2.querySelector('.graph-brief-bar').inert, 'the bar behind the page is inert');
+d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+assert.ok(!host2.querySelector('.graph-brief-page'), 'Escape closes the page'); assert.ok(!host2.querySelector('.graph-brief-bar').inert, 'bar is reachable again');
+// Escape on the bar: closes the options first, then clears the selection
+bar.toggle('s'); if (!host2.querySelector('.graph-brief-panel')) host2.querySelector('.graph-brief-head').click();
+assert.ok(host2.querySelector('.graph-brief-panel'));
+host2.querySelector('.graph-brief-head').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+assert.ok(!host2.querySelector('.graph-brief-panel') && bar.size === 1, 'first Escape collapses the options');
+host2.querySelector('.graph-brief-head').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+assert.equal(bar.size, 0, 'second Escape clears the selection');
+// cluster page: same behaviour, and opening a second page releases the first
+const cp = gc.showClusterCard(area, { label: 'Topic', articles: cluster });
+assert.equal(cp.getAttribute('aria-modal'), 'true'); assert.equal(cp.getAttribute('aria-label'), 'Topic');
+d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+assert.ok(!area.querySelector('.graph-cluster-page'), 'Escape closes the cluster page');
 
 // ── export of just one cluster ──
 const { SK } = await imp('modules/storageKeys.js');
