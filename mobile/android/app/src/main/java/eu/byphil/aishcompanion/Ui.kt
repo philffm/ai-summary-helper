@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -21,6 +22,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -228,14 +230,7 @@ object Handed {
 }
 
 /** One round button of an [ActionBar]. */
-class BarAction(
-    val icon: androidx.compose.ui.graphics.vector.ImageVector, val desc: String, val enabled: Boolean = true,
-    /** Work in progress: a ring around the icon, filling up when [progress] is known (0..1), spinning when null. */
-    val busy: Boolean = false, val progress: Float? = null,
-    /** Finished: a green check instead of the icon. */
-    val done: Boolean = false,
-    val onClick: () -> Unit,
-)
+class BarAction(val icon: androidx.compose.ui.graphics.vector.ImageVector, val desc: String, val enabled: Boolean = true, val onClick: () -> Unit)
 
 /**
  * The bottom bar of a screen: round icon buttons, the primary action at the thumb's edge (right-handed: far right, left-handed: far left)
@@ -256,21 +251,7 @@ fun ActionBar(primary: BarAction?, secondary: List<BarAction>) {
                 }
             }
             val first: @Composable () -> Unit = {
-                if (primary != null) androidx.compose.material3.FilledIconButton(
-                    onClick = primary.onClick, enabled = primary.enabled || primary.busy, modifier = Modifier.size(56.dp),
-                    colors = if (primary.done) androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(containerColor = androidx.compose.ui.graphics.Color(0xFF2E7D32), contentColor = androidx.compose.ui.graphics.Color.White) else androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(),
-                ) {
-                    when {
-                        primary.done -> Icon(androidx.compose.material.icons.Icons.Filled.Check, contentDescription = primary.desc)
-                        primary.busy -> Box(contentAlignment = Alignment.Center) {
-                            val p = primary.progress
-                            if (p != null) androidx.compose.material3.CircularProgressIndicator(progress = { p.coerceIn(0.05f, 1f) }, modifier = Modifier.size(32.dp), strokeWidth = 3.dp, color = androidx.compose.material3.LocalContentColor.current)
-                            else androidx.compose.material3.CircularProgressIndicator(modifier = Modifier.size(32.dp), strokeWidth = 3.dp, color = androidx.compose.material3.LocalContentColor.current)
-                            Icon(primary.icon, contentDescription = primary.desc, modifier = Modifier.size(16.dp))
-                        }
-                        else -> Icon(primary.icon, contentDescription = primary.desc)
-                    }
-                }
+                if (primary != null) androidx.compose.material3.FilledIconButton(onClick = primary.onClick, enabled = primary.enabled, modifier = Modifier.size(56.dp)) { Icon(primary.icon, contentDescription = primary.desc) }
             }
             if (left) { first(); second() } else { second(); first() }
         }
