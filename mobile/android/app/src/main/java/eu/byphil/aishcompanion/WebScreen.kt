@@ -11,6 +11,24 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -41,13 +59,37 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
     var shown by remember { mutableStateOf(url) }
     var canGoBack by remember { mutableStateOf(false) }
     var web by remember { mutableStateOf<WebView?>(null) }
+    var summary by remember { mutableStateOf<String?>(null) }
+    var status by remember { mutableStateOf("") }      // progress or error text while/after summarizing
+    var busy by remember { mutableStateOf(false) }
+    var sent by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
+
+    fun summarize() {
+        val view = web ?: return
+        if (busy) return
+        if (!LocalLlm.installed(context)) { status = "Download the on-device model in Settings first."; return }
+        busy = true; status = "Reading the page…"; summary = null
+        view.evaluateJavascript(PageExtract.SCRIPT) { raw ->
+            val page = PageExtract.parse(raw)
+            if (page == null || !PageSummary.enough(page)) { status = "This page has no readable text to summarize."; busy = false; return@evaluateJavascript }
+            scope.launch {
+                val result = withContext(Dispatchers.Default) {
+                    PageSummary.summarize(context, page) { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" }
+                }
+                summary = result
+                status = if (result == null) "The model could not summarize this page." else ""
+                busy = false
+            }
+        }
+    }
 
     BackHandler { if (canGoBack) web?.goBack() else onClose() }
 
@@ -55,9 +97,32 @@ fun WebScreen(url: String, onClose: () -> Unit) {
         TopAppBar(
             title = { Text(title.ifBlank { Uri.parse(shown).host ?: shown }, maxLines = 1, overflow = TextOverflow.Ellipsis) },
             navigationIcon = { IconButton(onClick = onClose) { Icon(Icons.Filled.Close, contentDescription = "Close") } },
-            actions = { IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") } },
+            actions = {
+                IconButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, contentDescription = "Summarize on this phone") }
+                if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
+                    Icon(Icons.AutoMirrored.Filled.Send, contentDescription = if (sent) "Sent to the browser" else "Send to the AISH browser extension", tint = if (sent) MaterialTheme.colorScheme.primary else LocalContentColor.current)
+                }
+                IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") }
+            },
         )
         if (progress in 0.01f..0.99f) LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
+        if (busy || status.isNotEmpty()) {
+            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                if (busy) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp)
+                Text(status, Modifier.padding(start = if (busy) 12.dp else 0.dp), style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        summary?.let { text ->
+            Surface(tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Summary (on this phone)", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
+                        IconButton(onClick = { summary = null }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
+                    }
+                    Text(text, Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState()), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+        }
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
