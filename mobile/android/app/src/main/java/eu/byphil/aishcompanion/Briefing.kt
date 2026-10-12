@@ -11,27 +11,29 @@ data class BriefingItem(val source: String, val title: String, val snippet: Stri
  * No AI is involved; it is built from what the feeds say about themselves, so it works offline and can never fail at alarm time.
  * Pure JVM (no Android classes besides org.json), so it is unit-tested.
  */
-data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "") {
+data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "", val extra: String = "", val goodNewsOnly: Boolean = false) {
 
     /** Lines for the screen. */
     fun lines(): List<String> = items.map { "${it.source}: ${it.title}" }
 
     /** What the voice says, one part per sentence group, so reading can be stopped between parts. [hour] is the local hour (0–23). */
     fun spokenParts(hour: Int): List<String> {
-        if (narration.isNotBlank()) return BriefingPrompt.chunks(narration)
+        if (narration.isNotBlank()) return BriefingPrompt.chunks(narration) + BriefingPrompt.chunks(extra)
         val greeting = when { hour < 5 -> "Hello."; hour < 12 -> "Good morning."; hour < 18 -> "Good afternoon."; else -> "Good evening." }
         val parts = ArrayList<String>()
-        parts += if (items.isEmpty()) "$greeting Nothing new in your feeds." else "$greeting " + (if (items.size == 1) "One new story from your feeds." else "${items.size} new stories from your feeds.")
+        val tail = BriefingPrompt.chunks(extra)
+        parts += if (items.isEmpty()) "$greeting " + (if (goodNewsOnly) "No good news in your feeds this morning." else "Nothing new in your feeds.") else "$greeting " + (if (items.size == 1) "One new story from your feeds." else "${items.size} new stories from your feeds.")
         items.forEachIndexed { i, it ->
             val head = "${i + 1}. ${it.source}: ${endSentence(it.title)}"
             parts += if (it.snippet.isBlank()) head else "$head ${endSentence(it.snippet)}"
         }
         if (readingUnread > 0) parts += "You also have $readingUnread unread " + (if (readingUnread == 1) "article" else "articles") + " in your reading list."
+        parts += tail
         return parts
     }
 
     fun toJson(): String = JSONObject()
-        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration)
+        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration).put("x", extra).put("g", goodNewsOnly)
         .put("items", JSONArray(items.map { JSONObject().put("s", it.source).put("t", it.title).put("n", it.snippet).put("l", it.link) }))
         .toString()
 
@@ -41,7 +43,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
             val a = o.getJSONArray("items")
             Briefing(
                 (0 until a.length()).map { a.getJSONObject(it) }.map { BriefingItem(it.optString("s"), it.optString("t"), it.optString("n"), it.optString("l")) },
-                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"),
+                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"), o.optString("x"), o.optBoolean("g"),
             )
         }.getOrNull()
 
@@ -63,8 +65,9 @@ object BriefingBuilder {
      * Unread stories, newest first, at most [perFeed] per feed and [limit] in all. Takes stories from the last 36 hours;
      * if there are none, from the last 7 days, so a quiet weekend still gives something. Stories without a date are skipped.
      */
-    fun pick(entries: List<FeedEntryRef>, now: Long, limit: Int = MAX_ITEMS, perFeed: Int = PER_FEED): List<BriefingItem> {
+    fun pick(entries: List<FeedEntryRef>, now: Long, limit: Int = MAX_ITEMS, perFeed: Int = PER_FEED, goodNewsOnly: Boolean = false): List<BriefingItem> {
         val unread = entries.filter { !it.stored.read && it.stored.item.title.isNotBlank() && it.stored.item.published > 0 }
+            .filter { !goodNewsOnly || !GoodNews.heavy(it.stored.item.title + " " + snippet(it.stored.item)) }
             .sortedByDescending { it.stored.item.published }
         fun take(maxAge: Long): List<BriefingItem> {
             val perCount = HashMap<String, Int>()
@@ -83,7 +86,8 @@ object BriefingBuilder {
         return take(FRESH_MS).ifEmpty { take(FALLBACK_MS) }
     }
 
-    fun build(entries: List<FeedEntryRef>, readingUnread: Int, now: Long): Briefing = Briefing(pick(entries, now), readingUnread, now)
+    fun build(entries: List<FeedEntryRef>, readingUnread: Int, now: Long, goodNewsOnly: Boolean = false): Briefing =
+        Briefing(pick(entries, now, goodNewsOnly = goodNewsOnly), readingUnread, now, goodNewsOnly = goodNewsOnly)
 
     private fun oneLine(s: String): String = s.replace(Regex("\\s+"), " ").trim()
 
@@ -114,7 +118,7 @@ object BriefingPrompt {
     const val MIN_REPLY = 40
     const val MAX_REPLY = 1800
 
-    fun user(items: List<BriefingItem>, readingUnread: Int, hour: Int): String {
+    fun user(items: List<BriefingItem>, readingUnread: Int, hour: Int, goodNewsOnly: Boolean = false): String {
         val time = when { hour < 12 -> "morning"; hour < 18 -> "afternoon"; else -> "evening" }
         val sb = StringBuilder("Time of day: $time. Begin with a short greeting that fits it.\nStories:\n")
         items.forEachIndexed { i, it ->
@@ -122,6 +126,7 @@ object BriefingPrompt {
             if (it.snippet.isNotBlank()) sb.append(" - ").append(it.snippet.take(MAX_SNIPPET))
             sb.append('\n')
         }
+        if (goodNewsOnly) sb.append("Good news only: mention only positive, constructive or simply interesting stories. Leave out anything about war, violence, crime, disasters, accidents, illness or death, even if it is listed.\n")
         if (readingUnread > 0) sb.append("End by saying that $readingUnread unread ").append(if (readingUnread == 1) "article is" else "articles are").append(" waiting in the reading list.\n")
         return sb.toString()
     }

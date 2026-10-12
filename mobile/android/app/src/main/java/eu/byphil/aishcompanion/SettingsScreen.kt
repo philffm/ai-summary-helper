@@ -120,6 +120,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                     }
                     AlarmCard(model)
                     ModelCard(model)
+                    ExtrasCard(model)
                     error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
                 }
             }

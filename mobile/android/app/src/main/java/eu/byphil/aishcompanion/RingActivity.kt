@@ -61,6 +61,7 @@ class RingActivity : ComponentActivity() {
                 Surface(Modifier.fillMaxSize()) {
                     RingScreen(
                         lines = briefing.lines(),
+                        extra = briefing.extra,
                         snoozeMinutes = settings.snoozeMinutes,
                         onStop = { AlarmService.stop(this); if (settings.readAloud) readOut(parts) },
                         onSnooze = { AlarmService.stop(this); AlarmScheduler.ringIn(this, settings.snoozeMinutes * 60L); finish() },
@@ -85,7 +86,7 @@ class RingActivity : ComponentActivity() {
 }
 
 @Composable
-private fun RingScreen(lines: List<String>, snoozeMinutes: Int, onStop: () -> Unit, onSnooze: () -> Unit, onRead: () -> Unit, onSilence: () -> Unit, onClose: () -> Unit) {
+private fun RingScreen(lines: List<String>, extra: String, snoozeMinutes: Int, onStop: () -> Unit, onSnooze: () -> Unit, onRead: () -> Unit, onSilence: () -> Unit, onClose: () -> Unit) {
     var stopped by remember { mutableStateOf(false) }
     val time = remember { LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) }
     BackHandler(enabled = !stopped) { /* the alarm is stopped with its buttons, not by accident */ }
@@ -103,6 +104,7 @@ private fun RingScreen(lines: List<String>, snoozeMinutes: Int, onStop: () -> Un
             Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 if (lines.isEmpty()) Text("Nothing new in your feeds.", style = MaterialTheme.typography.bodyLarge)
                 lines.forEachIndexed { i, l -> Text("${i + 1}. $l", style = MaterialTheme.typography.bodyLarge) }
+                if (extra.isNotBlank()) Text(extra, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.primary)
             }
             Button(onClick = onRead, Modifier.fillMaxWidth()) { Text("Read aloud again") }
             OutlinedButton(onClick = onSilence, Modifier.fillMaxWidth()) { Text("Stop reading") }

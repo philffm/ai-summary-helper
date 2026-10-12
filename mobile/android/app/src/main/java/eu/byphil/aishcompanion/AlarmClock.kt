@@ -43,6 +43,11 @@ data class AlarmSettings(
     val snoozeMinutes: Int = 10,
     /** Let the on-device model write the briefing (when it is downloaded). */
     val useAi: Boolean = false,
+    /** Leave out stories about war, crime, disasters and death. */
+    val goodNewsOnly: Boolean = false,
+    /** Ask the cloud AI for one extra item (a fun fact, or [extraPrompt]); only that prompt is sent, never your feeds. */
+    val extraOn: Boolean = false,
+    val extraPrompt: String = "",
 ) {
     companion object { const val ALL_DAYS = 0b1111111 }
 }
@@ -191,7 +196,7 @@ fun buildBriefingNow(context: Context, now: Long = System.currentTimeMillis()): 
     val app = context.applicationContext
     val articles = ArticleStore(app)
     val unread = articles.list().count { !articles.isRead(it.id) }
-    return BriefingBuilder.build(FeedStore(File(app.filesDir, "feeds")).everything(), unread, now)
+    return BriefingBuilder.build(FeedStore(File(app.filesDir, "feeds")).everything(), unread, now, Store(app).alarm.goodNewsOnly)
 }
 
 /** The prepared briefing if it is recent (the job ran before the alarm), else one built right now. Never throws. */
@@ -207,9 +212,15 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
         val store = Store(applicationContext)
         val plain = runCatching { buildBriefingNow(applicationContext) }.getOrNull() ?: return Result.success()
         store.briefingJson = plain.toJson()   // saved first: the alarm has a briefing even if the model is slow or fails
-        if (store.alarm.useAi && LocalLlm.installed(applicationContext)) {
-            val text = withContext(Dispatchers.Default) { LocalLlm.narrate(applicationContext, plain.items, plain.readingUnread, java.time.LocalTime.now().hour) }
-            if (text != null) store.briefingJson = plain.copy(narration = text, builtAt = System.currentTimeMillis()).toJson()
+        var current = plain
+        val settings = store.alarm
+        if (settings.extraOn) {
+            val extra = withContext(Dispatchers.IO) { CloudExtra.fetch(store.license, settings.extraPrompt) }
+            if (extra != null) { current = current.copy(extra = extra); store.briefingJson = current.toJson() }
+        }
+        if (settings.useAi && LocalLlm.installed(applicationContext)) {
+            val text = withContext(Dispatchers.Default) { LocalLlm.narrate(applicationContext, plain.items, plain.readingUnread, java.time.LocalTime.now().hour, settings.goodNewsOnly) }
+            if (text != null) store.briefingJson = current.copy(narration = text, builtAt = System.currentTimeMillis()).toJson()
         }
         return Result.success()
     }

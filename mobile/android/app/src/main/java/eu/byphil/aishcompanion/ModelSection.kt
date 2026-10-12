@@ -86,7 +86,7 @@ fun ModelCard(model: AppModel) {
                             scope.launch {
                                 val text = withContext(Dispatchers.Default) {
                                     val plain = buildBriefingNow(context)
-                                    LocalLlm.narrate(context, plain.items, plain.readingUnread, LocalTime.now().hour)
+                                    LocalLlm.narrate(context, plain.items, plain.readingUnread, LocalTime.now().hour, a.goodNewsOnly)
                                 }
                                 result = text ?: "The model could not write a briefing now. There may be nothing new in your feeds, or the phone is low on memory."
                                 trying = false

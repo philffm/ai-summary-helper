@@ -25,6 +25,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -33,6 +34,11 @@ import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -91,6 +97,13 @@ fun AlarmCard(model: AppModel) {
                     Text("Read the briefing aloud after Stop", Modifier.weight(1f))
                     Switch(checked = a.readAloud, onCheckedChange = { update(a.copy(readAloud = it)) })
                 }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text("Good news only")
+                        Text("Leaves out war, crime, disasters and death. Works best with the on-device AI.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Switch(checked = a.goodNewsOnly, onCheckedChange = { update(a.copy(goodNewsOnly = it)) })
+                }
                 val next = AlarmScheduler.nextRing(context)
                 Text(
                     if (next == null) "Pick at least one day." else "Next alarm: " + java.time.format.DateTimeFormatter.ofPattern("EEE d MMM, HH:mm", Locale.getDefault()).format(Instant.ofEpochMilli(next).atZone(ZoneId.systemDefault())) +
@@ -142,3 +155,45 @@ fun AlarmCard(model: AppModel) {
 
 private fun formatTime(hour: Int, minute: Int, is24: Boolean): String =
     if (is24) "%02d:%02d".format(hour, minute) else "%d:%02d %s".format(if (hour % 12 == 0) 12 else hour % 12, minute, if (hour < 12) "AM" else "PM")
+
+/** Settings card for the cloud extra: a fun fact of the day or your own prompt, added to the end of the briefing. */
+@Composable
+fun ExtrasCard(model: AppModel) {
+    val a = model.alarm
+    val scope = rememberCoroutineScope()
+    var license by remember { mutableStateOf(model.store.license) }
+    var prompt by remember { mutableStateOf(a.extraPrompt) }
+    var busy by remember { mutableStateOf(false) }
+    var result by remember { mutableStateOf<String?>(null) }
+
+    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text("Extra from the cloud AI", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                    Text("A fun fact of the day, or anything you ask for, added to the end of your briefing.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Switch(checked = a.extraOn, onCheckedChange = { model.changeAlarm(a.copy(extraOn = it)) })
+            }
+            if (a.extraOn) {
+                Text("Only the prompt below, today's date and your language are sent, with your Pro license key, to api.byphil.eu. Your feeds and reading list never leave the phone. The cloud AI cannot look things up, so ask for facts and stories, not live data.", style = MaterialTheme.typography.bodySmall)
+                OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+                OutlinedTextField(prompt, { prompt = it.take(CloudExtra.MAX_PROMPT) }, Modifier.fillMaxWidth(), label = { Text("What should it say? (empty: a fun fact)") }, maxLines = 3)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Button(onClick = { model.store.license = license; model.changeAlarm(a.copy(extraPrompt = prompt.trim())) }) { Text("Save") }
+                    OutlinedButton(enabled = !busy && license.isNotBlank(), onClick = {
+                        busy = true; model.store.license = license
+                        scope.launch {
+                            val text = withContext(Dispatchers.IO) { CloudExtra.fetch(license, prompt) }
+                            result = text ?: "No answer. Check the license key, your monthly allowance and the connection."
+                            busy = false
+                        }
+                    }) { Text(if (busy) "Asking…" else "Try it now") }
+                }
+            }
+        }
+    }
+    result?.let { text ->
+        AlertDialog(onDismissRequest = { result = null }, title = { Text("Your extra") }, text = { Text(text) }, confirmButton = { TextButton(onClick = { result = null }) { Text("Close") } })
+    }
+}

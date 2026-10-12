@@ -83,4 +83,38 @@ class BriefingTest {
         assertEquals(listOf("Hello there. A story."), b.spokenParts(7))
         assertEquals(b, Briefing.fromJson(b.toJson()))
     }
+
+    @Test fun goodNewsOnlyDropsHeavyStories() {
+        assertTrue(GoodNews.heavy("Explosion kills five in the city"))
+        assertTrue(GoodNews.heavy("Krieg: Angriff auf die Stadt"))
+        assertTrue(GoodNews.heavy("Man dies after crash"))
+        assertTrue(!GoodNews.heavy("Warm weather brings the first warning of spring"))
+        assertTrue(!GoodNews.heavy("Wildflowers return to the valley"))
+        assertTrue(!GoodNews.heavy("Today a school opens its new library"))
+        val list = listOf(entry(1, "a", "Bomb attack on market", 1), entry(1, "b", "Library opens its doors", 2), entry(2, "c", "Flood warning issued", 3, summary = "Rivers rise across the region."))
+        assertEquals(listOf("Library opens its doors"), BriefingBuilder.pick(list, now, goodNewsOnly = true).map { it.title })
+        assertEquals(3, BriefingBuilder.pick(list, now).size)
+        val none = Briefing(emptyList(), 0, now, goodNewsOnly = true)
+        assertEquals("Good morning. No good news in your feeds this morning.", none.spokenParts(8)[0])
+    }
+
+    @Test fun extraIsSpokenAfterTheNewsAndSurvivesJson() {
+        val b = Briefing(listOf(BriefingItem("S", "Title", "", "")), 0, now, extra = "Honey never spoils. Jars were found in tombs.")
+        val parts = b.spokenParts(8)
+        assertEquals("Honey never spoils. Jars were found in tombs.", parts.last())
+        assertEquals(b, Briefing.fromJson(b.toJson()))
+        val n = b.copy(narration = "A long enough narration that the voice reads out loud today.")
+        assertEquals(listOf("A long enough narration that the voice reads out loud today.", "Honey never spoils. Jars were found in tombs."), n.spokenParts(8))
+    }
+
+    @Test fun cloudExtraBodyAndReply() {
+        val body = org.json.JSONObject(CloudExtra.body("", java.time.LocalDate.of(2026, 10, 12), "German"))
+        val msgs = body.getJSONArray("messages")
+        assertTrue(msgs.getJSONObject(0).getString("content").contains("2026-10-12"))
+        assertTrue(msgs.getJSONObject(0).getString("content").contains("German"))
+        assertEquals(CloudExtra.DEFAULT_PROMPT, msgs.getJSONObject(1).getString("content"))
+        assertEquals("Octopuses have three hearts and blue blood.", CloudExtra.parse("""{"choices":[{"message":{"role":"assistant","content":"**Octopuses** have three hearts and blue blood."}}]}"""))
+        assertNull(CloudExtra.parse("{}")); assertNull(CloudExtra.parse("""{"choices":[{"message":{"content":"ok"}}]}"""))
+        assertNull(CloudExtra.fetch("", ""))
+    }
 }

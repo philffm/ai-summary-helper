@@ -37,9 +37,9 @@ object LocalLlm {
     }
 
     /** The spoken briefing written by the model, or null (no model, failure, or an unusable reply: the caller then uses the plain briefing). */
-    fun narrate(context: Context, items: List<BriefingItem>, readingUnread: Int, hour: Int): String? {
+    fun narrate(context: Context, items: List<BriefingItem>, readingUnread: Int, hour: Int, goodNewsOnly: Boolean = false): String? {
         if (items.isEmpty()) return null
-        val reply = generate(context, BriefingPrompt.SYSTEM, BriefingPrompt.user(items, readingUnread, hour)) ?: return null
+        val reply = generate(context, BriefingPrompt.SYSTEM, BriefingPrompt.user(items, readingUnread, hour, goodNewsOnly)) ?: return null
         return BriefingPrompt.cleanReply(reply)
     }
 }
