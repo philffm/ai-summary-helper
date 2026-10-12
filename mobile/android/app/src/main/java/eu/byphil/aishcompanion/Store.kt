@@ -30,6 +30,11 @@ class Store(context: Context) {
         get() = prefs.getString("license", "") ?: ""
         set(v) = prefs.edit().putString("license", v.trim().take(200)).apply()
 
+    /** The email of the signed-in account (the code sign-in), empty when signed out. */
+    var accountEmail: String
+        get() = prefs.getString("account.email", "") ?: ""
+        set(v) = prefs.edit().putString("account.email", v.trim().take(200)).apply()
+
     /** Language of summaries and recaps made on the phone: a code from [SummaryLangs], "" = the language of the page. */
     var summaryLang: String
         get() = prefs.getString("summary.lang", "") ?: ""

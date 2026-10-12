@@ -89,6 +89,9 @@ class AppModel(context: Context) {
         if (p?.canReceive == true) ReceiveWorker.schedule(app) else ReceiveWorker.cancel(app)
     }
 
+    var accountEmail by mutableStateOf(store.accountEmail)
+    fun signIn(s: Signed) { store.accountEmail = s.email; accountEmail = store.accountEmail; if (s.license.isNotBlank()) saveLicense(s.license) }
+    fun signOut() { store.accountEmail = ""; accountEmail = ""; saveLicense("") }
     fun saveLicense(key: String) { store.license = key; license = store.license }
 
     /** Saves the alarm settings and sets the system alarm to match. */

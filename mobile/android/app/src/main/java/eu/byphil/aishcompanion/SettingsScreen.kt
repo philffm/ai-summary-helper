@@ -80,6 +80,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
     BackHandler(enabled = panel != null) { panel = null }
 
     val rows = listOf(
+        SettingsRow("account", "ACCOUNT", "👤", "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
         SettingsRow("link", "ACCOUNT", "🔗", "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
         SettingsRow("ai", "SUMMARIZING", "🤖", "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
         SettingsRow("feeds", "FEEDS", "📰", "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
@@ -165,6 +166,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                         TextButton(onClick = { model.applyPairing(null) }) { Text("Unpair this phone") }
                     }
                         }
+                        "account" -> AccountCard(model)
                         "ai" -> { ModelCard(model); SummaryCard(model) }
                         "feeds" -> FeedsCard(model)
                         "access" -> AccessibilityCard(model)
