@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "Partager"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Un autre appareil a modifié la liste en même temps. Réessayez."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "La liste des flux est à jour"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Liste des flux synchronisée : {added} ajoutés, {updated} modifiés, {removed} supprimés"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "La synchronisation des flux est activée. Scannez le nouveau code une fois dans l'appli du téléphone."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "La synchronisation des flux est activée : votre liste de flux (sans les articles) est synchronisée avec votre téléphone, chiffrée de bout en bout."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Dernière synchronisation : {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Activer la synchronisation des flux"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Synchroniser la liste des flux"
+  },
+  "f_syncing_9560": {
+    "message": "Synchronisation…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "La liste des flux est trop grande pour être synchronisée."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "La liste de flux synchronisée est illisible. Dissociez puis associez à nouveau."
   }
 }

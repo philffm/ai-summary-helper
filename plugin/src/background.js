@@ -38,6 +38,7 @@ const SK = {
     feedBackground: 'feeds:background',
     feedBgSeen: 'feeds:bgSeen',
     feedPending: 'feeds:pending',
+    feedSync: 'feeds:sync',         // feed-URL vault: revision and the merged list as of the last sync (feedSync.js)
     // learned topic names across languages (topicLexicon.js)
     topicLexicon: 'topics:lexicon',
     // account / identity

@@ -2671,6 +2671,15 @@ export function initFeedManager(uiObj) {
                     if (document.getElementById('feedSettingsRoot')) renderFeedSettings();
                 }, 250);
             }
+            // The feed list was changed from outside (Settings → Phone: feed sync): reload what is in memory.
+            if (ch && ch[SK.feedSubs] && subs) {
+                const nv = ch[SK.feedSubs].newValue || [];
+                const differs = nv.length !== subs.length || nv.some((s, i) => !subs[i] || s.id !== subs[i].id || subTitle(s) !== subTitle(subs[i]) || (s.tags || []).join('\n') !== (subs[i].tags || []).join('\n'));
+                if (differs) {
+                    clearTimeout(histTimer);
+                    histTimer = setTimeout(async () => { await load(); if (els && els.list) render(); if (document.getElementById('feedSettingsRoot')) renderFeedSettings(); }, 250);
+                }
+            }
             if (!ch || !ch[SK.articlesIndex]) return;
             clearTimeout(histTimer);
             histTimer = setTimeout(async () => { await loadHistoryMap(); await carryMoodToHistory(); if (els && els.list) render(); }, 250);

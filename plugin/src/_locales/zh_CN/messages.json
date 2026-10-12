@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "分享"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "另一台设备同时修改了列表。请重试。"
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "订阅源列表已是最新"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "订阅源列表已同步：新增 {added}，更改 {updated}，移除 {removed}"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "订阅源同步已开启。请在手机应用中扫描一次新的二维码。"
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "订阅源同步已开启：你的订阅源列表（不含文章）会以端到端加密方式与手机同步。"
+  },
+  "f_last_synced_fc2b": {
+    "message": "上次同步：{when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "开启订阅源同步"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "同步订阅源列表"
+  },
+  "f_syncing_9560": {
+    "message": "正在同步…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "订阅源列表过大，无法同步。"
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "无法读取已同步的订阅源列表。请取消配对后重新配对。"
   }
 }

@@ -4908,5 +4908,40 @@
   },
   "f_unknown_error_5123": {
     "message": "unknown error"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Another device changed the list at the same time. Try again."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "Feed list is up to date"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Feed list synced: {added} added, {updated} changed, {removed} removed",
+    "description": "Placeholders: {added} {updated} {removed} (keep as is)"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "Feed sync is on. Scan the new code in the phone app once."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Last synced {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Switch on feed sync"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Sync feed list"
+  },
+  "f_syncing_9560": {
+    "message": "Syncing…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "The feed list is too large to sync."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "The synced feed list could not be read. Unpair and pair again."
   }
 }

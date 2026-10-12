@@ -5,6 +5,7 @@ import qrcode from '../lib/qrcode.js';
 import { T } from './feedI18n.js';
 import { SK } from './storageKeys.js';
 import { createInboxManager } from './inboxManager.js';
+import { feedSyncAdapter } from './feedSyncStore.js';
 import { setLabel, setIconLabel } from './icons.js';
 import { normalizeUrl } from './textUtils.js';
 
@@ -19,6 +20,9 @@ const ERRORS = () => ({
     unreachable: T("Can't reach byPhil Cloud right now."),
     'pairing-invalid': T('This pairing is no longer valid. Unpair and pair again.'),
     'rate-limited': T('Too many requests. Try again later.'),
+    'too-large': T('The feed list is too large to sync.'),
+    conflict: T('Another device changed the list at the same time. Try again.'),
+    unreadable: T('The synced feed list could not be read. Unpair and pair again.'),
     error: T('Something went wrong.'),
 });
 const errorText = (code) => (ERRORS()[code] || ERRORS().error);
@@ -63,6 +67,13 @@ async function renderSettings() {
         if (st.lastError) frag.append(para(errorText(st.lastError), 'setting-note phone-inbox-error'));
         if (st.toPhone) frag.append(para(T('Send to phone is on: use ⋯ → Send to phone on any article to read it on the go.')));
         else frag.append(button(busy === 'enable' ? T('Switching on…') : T('Switch on Send to phone'), 'button-secondary', enableSend, !!busy));
+        if (st.vault) {
+            frag.append(para(T('Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone.')));
+            if (st.lastSyncAt) frag.append(para(T('Last synced {when}', { when: new Date(st.lastSyncAt).toLocaleString() })));
+            frag.append(button(busy === 'sync' ? T('Syncing…') : T('Sync feed list'), 'button-secondary', syncFeeds, !!busy));
+        } else {
+            frag.append(button(busy === 'vault' ? T('Switching on…') : T('Switch on feed sync'), 'button-secondary', enableFeedSync, !!busy));
+        }
         if (showCode) {
             const payload = await manager.pairingCode();
             if (payload) {
@@ -99,6 +110,21 @@ async function enableSend() {
     const r = await manager.enableToPhone();
     busy = '';
     if (r.ok) { showCode = true; message = T('Send to phone is on. Scan the new code in the phone app once.'); } else message = errorText(r.error);
+    await renderSettings();
+}
+async function enableFeedSync() {
+    busy = 'vault'; message = ''; await renderSettings();
+    const r = await manager.enableVault();
+    busy = '';
+    if (r.ok) { showCode = true; message = T('Feed sync is on. Scan the new code in the phone app once.'); } else message = errorText(r.error);
+    await renderSettings();
+}
+async function syncFeeds() {
+    busy = 'sync'; message = ''; await renderSettings();
+    const r = await manager.syncFeeds(feedSyncAdapter());
+    busy = '';
+    if (!r.ok) message = errorText(r.error);
+    else message = r.added || r.updated || r.removed ? T('Feed list synced: {added} added, {updated} changed, {removed} removed', { added: r.added, updated: r.updated, removed: r.removed }) : T('Feed list is up to date');
     await renderSettings();
 }
 async function checkNow() {

@@ -73,13 +73,18 @@ const lengthOf = (b64) => { try { return fromB64u(b64).length; } catch (_) { ret
  * The text inside the QR code. It carries the id, the key and the write token of the phone→extension inbox, never its read
  * token. When articles can go the other way, `toPhone` adds the id (ti) and the READ token (tr) of the extension→phone
  * inbox; the same key (k) protects both, and the inbox id is bound into every ciphertext, so one cannot be replayed into the other.
+ * `vault` adds the id (vi) and token (vt) of the feed-URL vault (feedSync.js); it is sealed with the same key and its own id as additional data.
  */
-export function pairingPayload({ inboxId, encKey, writeToken, toPhone }) {
+export function pairingPayload({ inboxId, encKey, writeToken, toPhone, vault }) {
     if (lengthOf(inboxId) !== 16 || lengthOf(encKey) !== 32 || lengthOf(writeToken) !== 32) throw new Error('Invalid pairing secrets');
     let out = `${PAIRING_SCHEME}?i=${inboxId}&k=${encKey}&w=${writeToken}`;
     if (toPhone) {
         if (lengthOf(toPhone.inboxId) !== 16 || lengthOf(toPhone.readToken) !== 32) throw new Error('Invalid pairing secrets');
         out += `&ti=${toPhone.inboxId}&tr=${toPhone.readToken}`;
+    }
+    if (vault) {
+        if (lengthOf(vault.id) !== 16 || lengthOf(vault.token) !== 32) throw new Error('Invalid pairing secrets');
+        out += `&vi=${vault.id}&vt=${vault.token}`;
     }
     return out;
 }
@@ -89,12 +94,17 @@ export function parsePairingPayload(text) {
     const s = String(text || '').trim();
     if (!s.startsWith(PAIRING_SCHEME + '?')) throw new Error('Not an AISH pairing code');
     const q = new URLSearchParams(s.slice(PAIRING_SCHEME.length + 1));
-    const out = { inboxId: q.get('i'), encKey: q.get('k'), writeToken: q.get('w'), toPhone: null };
+    const out = { inboxId: q.get('i'), encKey: q.get('k'), writeToken: q.get('w'), toPhone: null, vault: null };
     if (lengthOf(out.inboxId) !== 16 || lengthOf(out.encKey) !== 32 || lengthOf(out.writeToken) !== 32) throw new Error('Invalid pairing code');
     if (q.get('ti') || q.get('tr')) {
         const t = { inboxId: q.get('ti'), readToken: q.get('tr') };
         if (lengthOf(t.inboxId) !== 16 || lengthOf(t.readToken) !== 32) throw new Error('Invalid pairing code');
         out.toPhone = t;
+    }
+    if (q.get('vi') || q.get('vt')) {
+        const v = { id: q.get('vi'), token: q.get('vt') };
+        if (lengthOf(v.id) !== 16 || lengthOf(v.token) !== 32) throw new Error('Invalid pairing code');
+        out.vault = v;
     }
     return out;
 }
@@ -237,4 +247,40 @@ export async function decryptArticle({ inboxId, encKey }, envelope) {
     const msg = JSON.parse(td.decode(await gunzipBytes(gz)));
     if (!msg || msg.v !== ARTICLE_VERSION) throw new Error('Unsupported message');
     return cleanArticleMessage(msg);
+}
+
+// ── feed-URL vault (document v1) ─────────────────────────────────────────────────────────────────────────────────
+
+export const VAULT_VERSION = 1;
+export const MAX_VAULT_GZ = 55000;          // bytes of gzipped JSON; keeps the base64url ciphertext under the server's 80,000-character cap
+export const MAX_VAULT_RAW = 1000000;       // bytes after decompression
+
+export function newVaultSecrets() { return { id: toB64u(randomBytes(16)), token: toB64u(randomBytes(32)) }; }
+
+/**
+ * Seals the feed list: plaintext = gzip(JSON {v:1, feeds:[entry…]}), AES-256-GCM with the vault id as additional data,
+ * output { v: 1, data: base64url(nonce || ciphertext || tag) }. `opts.iv` exists only for the shared test vector.
+ */
+export async function encryptVault({ vaultId, encKey }, feeds, opts = {}) {
+    const gz = await gzipBytes(te.encode(JSON.stringify({ v: VAULT_VERSION, feeds })));
+    if (gz.length > MAX_VAULT_GZ) throw new Error('Vault too large');
+    const iv = opts.iv ? new Uint8Array(opts.iv) : randomBytes(12);
+    if (iv.length !== 12) throw new Error('Invalid nonce length');
+    const key = await importKey(encKey, 'encrypt');
+    const sealed = new Uint8Array(await subtle().subtle.encrypt({ name: 'AES-GCM', iv, additionalData: te.encode(vaultId), tagLength: 128 }, key, gz));
+    const out = new Uint8Array(12 + sealed.length);
+    out.set(iv, 0); out.set(sealed, 12);
+    return { v: VAULT_VERSION, data: toB64u(out) };
+}
+
+/** Returns the raw feed list (not yet cleaned: feedSync.cleanEntries does that). Throws on a bad tag, wrong vault, wrong version or a bomb. */
+export async function decryptVault({ vaultId, encKey }, doc) {
+    if (!doc || doc.v !== VAULT_VERSION || typeof doc.data !== 'string') throw new Error('Unsupported envelope');
+    const all = fromB64u(doc.data);
+    if (all.length < 12 + 16 + 2) throw new Error('Envelope too short');
+    const key = await importKey(encKey, 'decrypt');
+    const gz = new Uint8Array(await subtle().subtle.decrypt({ name: 'AES-GCM', iv: all.subarray(0, 12), additionalData: te.encode(vaultId), tagLength: 128 }, key, all.subarray(12)));
+    const msg = JSON.parse(td.decode(await gunzipBytes(gz, MAX_VAULT_RAW)));
+    if (!msg || msg.v !== VAULT_VERSION || !Array.isArray(msg.feeds)) throw new Error('Unsupported message');
+    return msg.feeds;
 }

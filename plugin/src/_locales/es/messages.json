@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "Compartir"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Otro dispositivo cambió la lista al mismo tiempo. Inténtalo de nuevo."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "La lista de feeds está al día"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Lista de feeds sincronizada: {added} añadidos, {updated} modificados, {removed} eliminados"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "La sincronización de feeds está activada. Escanea el nuevo código una vez en la app del móvil."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "La sincronización de feeds está activada: tu lista de feeds (sin artículos) se sincroniza con tu móvil con cifrado de extremo a extremo."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Última sincronización: {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Activar sincronización de feeds"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Sincronizar lista de feeds"
+  },
+  "f_syncing_9560": {
+    "message": "Sincronizando…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "La lista de feeds es demasiado grande para sincronizarla."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "No se pudo leer la lista de feeds sincronizada. Desvincula y vuelve a vincular."
   }
 }

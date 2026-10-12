@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "مشاركة"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "قام جهاز آخر بتغيير القائمة في الوقت نفسه. حاول مرة أخرى."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "قائمة الخلاصات محدّثة"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "تمت مزامنة قائمة الخلاصات: أُضيف {added}، وتغيّر {updated}، وأُزيل {removed}"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "مزامنة الخلاصات مفعّلة. امسح الرمز الجديد مرة واحدة في تطبيق الهاتف."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "مزامنة الخلاصات مفعّلة: تتم مزامنة قائمة خلاصاتك (دون المقالات) مع هاتفك بتشفير من طرف إلى طرف."
+  },
+  "f_last_synced_fc2b": {
+    "message": "آخر مزامنة: {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "تفعيل مزامنة الخلاصات"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "مزامنة قائمة الخلاصات"
+  },
+  "f_syncing_9560": {
+    "message": "جارٍ المزامنة…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "قائمة الخلاصات كبيرة جدًا للمزامنة."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "تعذّرت قراءة قائمة الخلاصات المتزامنة. ألغِ الاقتران ثم أعد الاقتران."
   }
 }

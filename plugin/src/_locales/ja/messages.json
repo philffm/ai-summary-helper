@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "共有"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "別のデバイスが同時にリストを変更しました。もう一度お試しください。"
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "フィードリストは最新です"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "フィードリストを同期しました：追加 {added}、変更 {updated}、削除 {removed}"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "フィード同期をオンにしました。スマホアプリで新しいコードを一度スキャンしてください。"
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "フィード同期はオンです。フィードリスト（記事は含まない）がエンドツーエンド暗号化でスマホと同期されます。"
+  },
+  "f_last_synced_fc2b": {
+    "message": "最終同期：{when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "フィード同期をオンにする"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "フィードリストを同期"
+  },
+  "f_syncing_9560": {
+    "message": "同期中…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "フィードリストが大きすぎて同期できません。"
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "同期したフィードリストを読み取れませんでした。ペアリングを解除して、もう一度ペアリングしてください。"
   }
 }

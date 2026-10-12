@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "分享"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "另一台裝置同時修改了清單。請再試一次。"
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "訂閱源清單已是最新"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "訂閱源清單已同步：新增 {added}、變更 {updated}、移除 {removed}"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "訂閱源同步已開啟。請在手機應用程式中掃描一次新的 QR 碼。"
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "訂閱源同步已開啟：你的訂閱源清單（不含文章）會以端對端加密方式與手機同步。"
+  },
+  "f_last_synced_fc2b": {
+    "message": "上次同步：{when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "開啟訂閱源同步"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "同步訂閱源清單"
+  },
+  "f_syncing_9560": {
+    "message": "同步中…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "訂閱源清單太大，無法同步。"
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "無法讀取已同步的訂閱源清單。請取消配對後重新配對。"
   }
 }

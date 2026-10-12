@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "Teilen"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Ein anderes Gerät hat die Liste gleichzeitig geändert. Versuche es erneut."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "Feed-Liste ist aktuell"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Feed-Liste synchronisiert: {added} hinzugefügt, {updated} geändert, {removed} entfernt"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "Feed-Sync ist an. Scanne den neuen Code einmal in der Handy-App."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "Feed-Sync ist an: Deine Feed-Liste (ohne Artikel) wird Ende-zu-Ende-verschlüsselt mit deinem Handy abgeglichen."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Zuletzt synchronisiert: {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Feed-Sync einschalten"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Feed-Liste synchronisieren"
+  },
+  "f_syncing_9560": {
+    "message": "Synchronisiere…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "Die Feed-Liste ist zu groß zum Synchronisieren."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "Die synchronisierte Feed-Liste konnte nicht gelesen werden. Kopplung aufheben und neu koppeln."
   }
 }

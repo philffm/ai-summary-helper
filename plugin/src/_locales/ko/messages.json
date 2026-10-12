@@ -4660,5 +4660,38 @@
   },
   "f_share_6dd8": {
     "message": "공유"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "다른 기기에서 동시에 목록을 변경했습니다. 다시 시도하세요."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "피드 목록이 최신 상태입니다"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "피드 목록 동기화 완료: {added}개 추가, {updated}개 변경, {removed}개 삭제"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "피드 동기화가 켜졌습니다. 휴대폰 앱에서 새 코드를 한 번 스캔하세요."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "피드 동기화 켜짐: 피드 목록(기사 제외)이 종단 간 암호화로 휴대폰과 동기화됩니다."
+  },
+  "f_last_synced_fc2b": {
+    "message": "마지막 동기화: {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "피드 동기화 켜기"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "피드 목록 동기화"
+  },
+  "f_syncing_9560": {
+    "message": "동기화 중…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "피드 목록이 너무 커서 동기화할 수 없습니다."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "동기화된 피드 목록을 읽을 수 없습니다. 페어링을 해제한 후 다시 페어링하세요."
   }
 }

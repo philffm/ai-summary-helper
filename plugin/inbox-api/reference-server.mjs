@@ -20,11 +20,16 @@ export const LIMITS = {
     itemTtlMs: 30 * 24 * 3600e3, // items nobody summarized or dismissed are purged (they stay until the user deals with them)
     idleTtlMs: 30 * 24 * 3600e3, // inboxes nobody touched are purged
     maxPageSize: 100,
+    maxVaultBody: 100000,        // feed-URL vault: PUT body
+    maxVaultData: 80000,         // characters of base64url ciphertext per vault document
+    putsPerHourPerVault: 120,
+    vaultIdleTtlMs: 365 * 24 * 3600e3,
 };
 // Collection names in the byPhil database. The first path segment is the collection (`aish_inboxes`); the items live in
 // `aish_inbox_items` and are reached through /{id}/items.
 const COLLECTIONS = { inboxes: 'aish_inboxes', items: 'aish_inbox_items' };
 const BASE = `/v1/projects/ai_summary_helper/${COLLECTIONS.inboxes}`;
+const VAULT_BASE = '/v1/projects/ai_summary_helper/aish_vaults';
 const ID_RE = /^[A-Za-z0-9_-]{22}$/;
 const HASH_RE = /^[0-9a-f]{64}$/;
 const B64U_RE = /^[A-Za-z0-9_-]+$/;
@@ -33,6 +38,7 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
     const L = { ...LIMITS, ...limits };
     const inboxes = new Map();   // id → { writeHash, readHash, items:[{id,cursor,receivedAt,v,data}], seq, posts:[ts], touched }
     const creates = new Map();   // ip → [ts]
+    const vaults = new Map();    // id → { tokenHash, rev, v, data, puts:[ts], touched }   (feed-URL sync: one opaque document per vault)
 
     const sha = (t) => crypto.createHash('sha256').update(t).digest('hex');
     const same = (a, b) => { const x = Buffer.from(a), y = Buffer.from(b); return x.length === y.length && crypto.timingSafeEqual(x, y); };
@@ -45,6 +51,7 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
             if (t - box.touched > L.idleTtlMs) { inboxes.delete(id); continue; }
             box.items = box.items.filter((it) => t - it.receivedAt <= L.itemTtlMs);
         }
+        for (const [id, v] of vaults) if (t - v.touched > L.vaultIdleTtlMs) vaults.delete(id);
     }
 
     function send(res, status, body, headers = {}) {
@@ -77,10 +84,56 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
         return box;
     }
 
+
+    /** Vault routes. One document per vault; PUT needs If-Match <rev> and answers 409 with the current document on a lost race. */
+    async function vaultHandler(req, res, url) {
+        const rest = url.pathname.slice(VAULT_BASE.length).split('/').filter(Boolean);
+        const method = req.method;
+        if (rest.length === 0 && method === 'POST') {
+            const ip = req.socket.remoteAddress || '?';
+            const list = recent(creates.get(ip) || [], 3600e3); creates.set(ip, list);
+            if (list.length >= L.createsPerHourPerIp) return send(res, 429, { error: 'rate-limited' }, { 'Retry-After': '3600' });
+            const b = await readBody(req, L.maxBody);
+            if (b.tooLarge) return send(res, 413, { error: 'too-large' });
+            const j = b.json;
+            if (!j || !ID_RE.test(j.id) || !HASH_RE.test(j.tokenHash)) return send(res, 400, { error: 'bad-request' });
+            if (vaults.has(j.id)) return send(res, 409, { error: 'exists' });
+            list.push(now());
+            vaults.set(j.id, { tokenHash: j.tokenHash, rev: 0, v: 1, data: '', puts: [], touched: now() });
+            return send(res, 201, { id: j.id, rev: 0 });
+        }
+        const id = rest[0];
+        const vault = ID_RE.test(id || '') ? vaults.get(id) : null;
+        if (!vault || rest.length !== 1) return send(res, 404, { error: 'not-found' });
+        const m = /^Bearer (\S+)$/.exec(req.headers.authorization || '');
+        if (!m) return send(res, 401, { error: 'unauthorized' });
+        if (!same(sha(m[1]), vault.tokenHash)) return send(res, 403, { error: 'forbidden' });
+        vault.touched = now();
+        const doc = () => ({ rev: vault.rev, v: vault.v, data: vault.data || null });
+        if (method === 'GET') return send(res, 200, doc());
+        if (method === 'DELETE') { vaults.delete(id); return send(res, 204); }
+        if (method === 'PUT') {
+            const im = /^"?(\d{1,12})"?$/.exec(req.headers['if-match'] || '');
+            if (!im) return send(res, 428, { error: 'if-match-required' });
+            const b = await readBody(req, L.maxVaultBody);
+            if (b.tooLarge) return send(res, 413, { error: 'too-large' });
+            const j = b.json;
+            if (!j || j.v !== 1 || typeof j.data !== 'string' || !B64U_RE.test(j.data)) return send(res, 400, { error: 'bad-request' });
+            if (j.data.length > L.maxVaultData) return send(res, 413, { error: 'too-large' });
+            if (recent(vault.puts, 3600e3).length >= L.putsPerHourPerVault) return send(res, 429, { error: 'rate-limited' }, { 'Retry-After': '600' });
+            vault.puts.push(now());
+            if (Number(im[1]) !== vault.rev) return send(res, 409, { error: 'conflict', ...doc() });
+            vault.rev += 1; vault.v = 1; vault.data = j.data;
+            return send(res, 200, { rev: vault.rev });
+        }
+        return send(res, 404, { error: 'not-found' });
+    }
+
     async function handler(req, res) {
         try {
             purge();
             const url = new URL(req.url, 'http://x');
+            if (url.pathname === VAULT_BASE || url.pathname.startsWith(VAULT_BASE + '/')) return await vaultHandler(req, res, url);
             if (!url.pathname.startsWith(BASE)) return send(res, 404, { error: 'not-found' });
             const rest = url.pathname.slice(BASE.length).split('/').filter(Boolean);
             const method = req.method;
@@ -153,7 +206,7 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
     }
 
     const server = http.createServer(handler);
-    server.inboxes = inboxes;   // exposed for tests only
+    server.vaults = vaults; server.inboxes = inboxes;   // exposed for tests only
     return server;
 }
 

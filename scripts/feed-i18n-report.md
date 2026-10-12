@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1354. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1343 | 0 | 0 | 46 |
-| de | 1343 | 0 | 0 | 196 |
-| es | 1343 | 0 | 0 | 173 |
-| fr | 1343 | 0 | 0 | 203 |
-| hi | 1343 | 0 | 0 | 82 |
-| it | 1343 | 0 | 0 | 171 |
-| ja | 1343 | 0 | 0 | 92 |
-| ko | 1343 | 0 | 0 | 25 |
-| pt_PT | 1343 | 0 | 0 | 164 |
-| ru | 1343 | 0 | 0 | 108 |
-| zh_CN | 1343 | 0 | 0 | 2 |
-| zh_HK | 1343 | 0 | 0 | 2 |
-| zh_TW | 1343 | 0 | 0 | 2 |
+| ar | 1354 | 0 | 0 | 47 |
+| de | 1354 | 0 | 0 | 201 |
+| es | 1354 | 0 | 0 | 181 |
+| fr | 1354 | 0 | 0 | 211 |
+| hi | 1354 | 0 | 0 | 83 |
+| it | 1354 | 0 | 0 | 180 |
+| ja | 1354 | 0 | 0 | 94 |
+| ko | 1354 | 0 | 0 | 25 |
+| pt_PT | 1354 | 0 | 0 | 173 |
+| ru | 1354 | 0 | 0 | 114 |
+| zh_CN | 1354 | 0 | 0 | 2 |
+| zh_HK | 1354 | 0 | 0 | 2 |
+| zh_TW | 1354 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -37,6 +37,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Endpoint URL: | عنوان URL لنقطة النهاية: | 24 vs 13 | 1.85× |
 | 🧙 AI Summary | 🧙 ملخص الذكاء الاصطناعي | 24 vs 13 | 1.85× |
 | AI category | فئة الذكاء الاصطناعي | 20 vs 11 | 1.82× |
+| Syncing… | جارٍ المزامنة… | 14 vs 8 | 1.75× |
 | Testing… | جارٍ الاختبار… | 14 vs 8 | 1.75× |
 | {n}% used | تم استخدام {n}٪ | 14 vs 8 | 1.75× |
 | 📥 Saved · no AI | 📥 محفوظ · بدون ذكاء اصطناعي | 28 vs 16 | 1.75× |
@@ -109,10 +110,13 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Sort: Mood | Sortieren: Stimmung | 19 vs 10 | 1.9× |
 | {n} failed | {n} fehlgeschlagen | 17 vs 9 | 1.89× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
+| Syncing… | Synchronisiere… | 15 vs 8 | 1.88× |
 | {n}% used | {n} % verbraucht | 15 vs 8 | 1.88× |
 | API key | API-Schlüssel | 13 vs 7 | 1.86× |
+| Last synced {when} | Zuletzt synchronisiert: {when} | 26 vs 14 | 1.86× |
 | My own API key | Mein eigener API-Schlüssel | 26 vs 14 | 1.86× |
 | Refresh | Aktualisieren | 13 vs 7 | 1.86× |
+| Sync feed list | Feed-Liste synchronisieren | 26 vs 14 | 1.86× |
 | Recent models | Zuletzt genutzte Modelle | 24 vs 13 | 1.85× |
 | Invalid Key | Ungültiger Schlüssel | 20 vs 11 | 1.82× |
 | New summary | Neue Zusammenfassung | 20 vs 11 | 1.82× |
@@ -207,6 +211,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Clean up & merge tags | Tags bereinigen & zusammenführen | 32 vs 21 | 1.52× |
 | Edit feeds & tags in Settings | Feeds & Tags in den Einstellungen bearbeiten | 44 vs 29 | 1.52× |
 | Summarize a page to see it here | Fasse eine Seite zusammen, um sie hier zu sehen | 47 vs 31 | 1.52× |
+| The synced feed list could not be read. Unpair and pair again. | Die synchronisierte Feed-Liste konnte nicht gelesen werden. Kopplung aufheben und neu koppeln. | 94 vs 62 | 1.52× |
 | Auto-summarize favorites | Favoriten automatisch zusammenfassen | 36 vs 24 | 1.5× |
 | Import / export OPML | OPML importieren / exportieren | 30 vs 20 | 1.5× |
 | No key facts found | Keine Kernaussagen gefunden | 27 vs 18 | 1.5× |
@@ -259,6 +264,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Ollama is not reachable — set it up in Settings | Ollama ist nicht erreichbar – richte es in den Einstellungen ein | 64 vs 47 | 1.36× |
 | Please set your LocalSend IP in Settings first. | Bitte hinterlege zuerst deine LocalSend-IP in den Einstellungen. | 64 vs 47 | 1.36× |
 | e.g. Prefer European news and keep it upbeat. | z. B. Bevorzuge europäische Nachrichten und halte es positiv. | 61 vs 45 | 1.36× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Feed-Liste synchronisiert: {added} hinzugefügt, {updated} geändert, {removed} entfernt | 67 vs 50 | 1.34× |
 | Rates, categorizes and recaps all your feed items in small batches on your own machine. No tokens spent. | Bewertet, kategorisiert und fasst alle deine Feed-Einträge in kleinen Stapeln auf deinem eigenen Rechner zusammen. Keine Tokens verbraucht. | 139 vs 104 | 1.34× |
 | Inline mode is great for "Send to Kindle". | Der Inline-Modus eignet sich gut für „An Kindle senden“. | 56 vs 42 | 1.33× |
 | This needs your account. Log in or check your plan in the settings. | Dafür brauchst du dein Konto. Melde dich an oder prüfe deinen Tarif in den Einstellungen. | 89 vs 67 | 1.33× |
@@ -307,6 +313,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Detach to popup | Separar en ventana emergente | 28 vs 15 | 1.87× |
 | Get Key | Obtener clave | 13 vs 7 | 1.86× |
 | Log Out | Cerrar sesión | 13 vs 7 | 1.86× |
+| Sync feed list | Sincronizar lista de feeds | 26 vs 14 | 1.86× |
 | About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
 | Auto-Detect | Detección automática | 20 vs 11 | 1.82× |
 | No background run yet. | Aún no hay ejecuciones en segundo plano. | 40 vs 22 | 1.82× |
@@ -315,6 +322,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Auto length bias | Ajuste de longitud automática | 29 vs 16 | 1.81× |
 | No Kindle email set. | No hay correo de Kindle configurado. | 36 vs 20 | 1.8× |
 | Switch tab | Cambiar de pestaña | 18 vs 10 | 1.8× |
+| Last synced {when} | Última sincronización: {when} | 25 vs 14 | 1.79× |
 | last opened {d} | abierto por última vez {d} | 25 vs 14 | 1.79× |
 | Text size | Tamaño del texto | 16 vs 9 | 1.78× |
 | 📈 Mood over time | 📈 Ánimo a lo largo del tiempo | 30 vs 17 | 1.76× |
@@ -322,6 +330,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Failed to export backup. | No se pudo exportar la copia de seguridad. | 42 vs 24 | 1.75× |
 | Newest first | Más recientes primero | 21 vs 12 | 1.75× |
 | Pairing code | Código de vinculación | 21 vs 12 | 1.75× |
+| Syncing… | Sincronizando… | 14 vs 8 | 1.75× |
 | Unplayed | Sin reproducir | 14 vs 8 | 1.75× |
 | {a} vs {b} | {a} frente a {b} | 14 vs 8 | 1.75× |
 | Recap scope | Alcance del resumen | 19 vs 11 | 1.73× |
@@ -342,12 +351,15 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Pair a phone | Vincular un teléfono | 20 vs 12 | 1.67× |
 | Save options | Opciones de guardado | 20 vs 12 | 1.67× |
 | Showing top tags (archive is large) | Mostrando las etiquetas principales (el archivo es grande) | 58 vs 35 | 1.66× |
+| Feed sync is on. Scan the new code in the phone app once. | La sincronización de feeds está activada. Escanea el nuevo código una vez en la app del móvil. | 94 vs 57 | 1.65× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | De forma predeterminada, las copias de seguridad omiten las claves API, los datos de inicio de sesión, las licencias y los identificadores de instalación. Mantén privados los archivos exportados. | 195 vs 119 | 1.64× |
 | Check again | Comprobar de nuevo | 18 vs 11 | 1.64× |
 | Marked {n} read | {n} marcados como leídos | 23 vs 14 | 1.64× |
 | Delete all data? | ¿Eliminar todos los datos? | 26 vs 16 | 1.63× |
 | Marked {n} unread | {n} marcados como no leídos | 26 vs 16 | 1.63× |
 | Model is writing | El modelo está escribiendo | 26 vs 16 | 1.63× |
+| Switch on feed sync | Activar sincronización de feeds | 31 vs 19 | 1.63× |
+| The feed list is too large to sync. | La lista de feeds es demasiado grande para sincronizarla. | 57 vs 35 | 1.63× |
 | Week & month recaps | Resúmenes semanales y mensuales | 31 vs 19 | 1.63× |
 | {name} · API key set | {name} · clave API configurada | 26 vs 16 | 1.63× |
 | Click again to unpair | Haz clic otra vez para desvincular | 34 vs 21 | 1.62× |
@@ -384,6 +396,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
 | Delete history? | ¿Eliminar el historial? | 23 vs 15 | 1.53× |
+| Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone. | La sincronización de feeds está activada: tu lista de feeds (sin artículos) se sincroniza con tu móvil con cifrado de extremo a extremo. | 136 vs 89 | 1.53× |
 | Free Trial Mode | Modo de prueba gratuita | 23 vs 15 | 1.53× |
 | Magic code sent! ✨ Check your inbox. | ¡Código mágico enviado! ✨ Revisa tu bandeja de entrada. | 55 vs 36 | 1.53× |
 | ✨ {label} recap is ready | ✨ El resumen de {label} está listo | 29 vs 19 | 1.53× |
@@ -419,6 +432,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Unpair and delete inbox | Desvincular y eliminar la bandeja | 33 vs 23 | 1.43× |
 | Allow browser extensions | Permitir extensiones del navegador | 34 vs 24 | 1.42× |
 | Failed to send code | No se pudo enviar el código | 27 vs 19 | 1.42× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Lista de feeds sincronizada: {added} añadidos, {updated} modificados, {removed} eliminados | 71 vs 50 | 1.42× |
 | Next day with items | Siguiente día con elementos | 27 vs 19 | 1.42× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Aún no hay nada valorado: crea un ✨ Resumen para valorar los artículos. | 71 vs 50 | 1.42× |
 | Paired · last checked {when} | Vinculado · última comprobación {when} | 34 vs 24 | 1.42× |
@@ -468,9 +482,11 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No background run yet. | Aucune exécution en arrière-plan pour le moment. | 48 vs 22 | 2.18× |
 | Get Key | Obtenir une clé | 15 vs 7 | 2.14× |
 | Saving… | Enregistrement… | 15 vs 7 | 2.14× |
+| Sync feed list | Synchroniser la liste des flux | 30 vs 14 | 2.14× |
 | Detach to popup | Détacher en fenêtre contextuelle | 32 vs 15 | 2.13× |
 | Check now | Vérifier maintenant | 19 vs 9 | 2.11× |
 | Motion on | Animations activées | 19 vs 9 | 2.11× |
+| Last synced {when} | Dernière synchronisation : {when} | 29 vs 14 | 2.07× |
 | Add tag | Ajouter un tag | 14 vs 7 | 2× |
 | All time | Toute la période | 16 vs 8 | 2× |
 | Custom | Personnalisé | 12 vs 6 | 2× |
@@ -481,6 +497,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Privacy policy | Politique de confidentialité | 28 vs 14 | 2× |
 | Save options | Options d’enregistrement | 24 vs 12 | 2× |
 | Select | Sélectionner | 12 vs 6 | 2× |
+| Syncing… | Synchronisation… | 16 vs 8 | 2× |
 | TTS returned no audio. | La synthèse vocale n’a renvoyé aucun audio. | 43 vs 22 | 1.95× |
 | What to export? | Que souhaitez-vous exporter ? | 29 vs 15 | 1.93× |
 | UI Language | Langue de l’interface | 21 vs 11 | 1.91× |
@@ -492,6 +509,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Delete all data | Supprimer toutes les données | 28 vs 15 | 1.87× |
 | No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
 | Show only research papers | Afficher uniquement les articles scientifiques | 46 vs 25 | 1.84× |
+| Switch on feed sync | Activer la synchronisation des flux | 35 vs 19 | 1.84× |
 | ⏱️ Run every | ⏱️ Exécuter toutes les | 22 vs 12 | 1.83× |
 | No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
 | Delete all data… | Supprimer toutes les données… | 29 vs 16 | 1.81× |
@@ -499,6 +517,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
 | Show code | Afficher le code | 16 vs 9 | 1.78× |
 | No devices added yet. | Aucun appareil ajouté pour l’instant. | 37 vs 21 | 1.76× |
+| Feed sync is on. Scan the new code in the phone app once. | La synchronisation des flux est activée. Scannez le nouveau code une fois dans l'appli du téléphone. | 100 vs 57 | 1.75× |
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
 | Saved! ✓ | Enregistré ! ✓ | 14 vs 8 | 1.75× |
 | Testing… | Test en cours… | 14 vs 8 | 1.75× |
@@ -530,12 +549,14 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Scan failed. Enter IP manually. | Échec de la recherche. Saisissez l’IP manuellement. | 51 vs 31 | 1.65× |
 | All sources | Toutes les sources | 18 vs 11 | 1.64× |
 | Check again | Vérifier à nouveau | 18 vs 11 | 1.64× |
+| Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone. | La synchronisation des flux est activée : votre liste de flux (sans les articles) est synchronisée avec votre téléphone, chiffrée de bout en bout. | 146 vs 89 | 1.64× |
 | Good mood only | Bonne humeur uniquement | 23 vs 14 | 1.64× |
 | Library & Data | Bibliothèque et données | 23 vs 14 | 1.64× |
 | Thinking more… | Je réfléchis davantage… | 23 vs 14 | 1.64× |
 | Export backup first | Exporter d’abord une sauvegarde | 31 vs 19 | 1.63× |
 | Open model settings | Ouvrir les réglages des modèles | 31 vs 19 | 1.63× |
 | Search installed models… | Rechercher parmi les modèles installés… | 39 vs 24 | 1.63× |
+| The feed list is too large to sync. | La liste des flux est trop grande pour être synchronisée. | 57 vs 35 | 1.63× |
 | This page has no text to save. | Cette page ne contient aucun texte à enregistrer. | 49 vs 30 | 1.63× |
 | D3 library failed to load. | Échec du chargement de la bibliothèque D3. | 42 vs 26 | 1.62× |
 | No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
@@ -647,6 +668,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Install the AISH companion on your phone, scan the code once, then share any link to it. Links arrive end-to-end encrypted and wait here for your tap. | Installez l'application compagnon AISH sur votre téléphone, scannez le code une fois, puis partagez n'importe quel lien vers elle. Les liens arrivent chiffrés de bout en bout et attendent ici votre appui. | 204 vs 150 | 1.36× |
 | Ollama is running. Installed models — click one to use it: | Ollama fonctionne. Modèles installés — cliquez sur l’un d’eux pour l’utiliser : | 79 vs 58 | 1.36× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Par défaut, les sauvegardes excluent les clés API, les identifiants, les clés de licence et les identifiants d’installation. Gardez les fichiers exportés privés. | 161 vs 119 | 1.35× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Liste des flux synchronisée : {added} ajoutés, {updated} modifiés, {removed} supprimés | 67 vs 50 | 1.34× |
 | Paste works. It signs you in after the last digit. | Le collage fonctionne. Vous êtes connecté après le dernier chiffre. | 67 vs 50 | 1.34× |
 | Style for AI briefings and week & month recaps. | Style des briefings IA et des récapitulatifs hebdo et mensuels. | 63 vs 47 | 1.34× |
 | Press <b>Win + R</b>, type <code>cmd</code> and press Enter. | Appuyez sur <b>Win + R</b>, saisissez <code>cmd</code> puis appuyez sur Entrée. | 79 vs 60 | 1.32× |
@@ -673,6 +695,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Archived | आर्काइव किया गया | 16 vs 8 | 2× |
 | reused | दोबारा उपयोग | 12 vs 6 | 2× |
 | Pairing… | पेयर हो रहा है… | 15 vs 8 | 1.88× |
+| Syncing… | सिंक हो रहा है… | 15 vs 8 | 1.88× |
 | Testing… | जाँच हो रही है… | 15 vs 8 | 1.88× |
 | Verify & Log In | सत्यापित करें और लॉग इन करें | 28 vs 15 | 1.87× |
 | By time | समय के अनुसार | 13 vs 7 | 1.86× |
@@ -752,9 +775,11 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Text size | Dimensione del testo | 20 vs 9 | 2.22× |
 | Newer | Più recenti | 11 vs 5 | 2.2× |
 | Saved | Risparmiato | 11 vs 5 | 2.2× |
+| Syncing… | Sincronizzazione… | 17 vs 8 | 2.13× |
 | Week recap | Riepilogo settimanale | 21 vs 10 | 2.1× |
 | UI Language | Lingua dell'interfaccia | 23 vs 11 | 2.09× |
 | UI language | Lingua dell'interfaccia | 23 vs 11 | 2.09× |
+| Sync feed list | Sincronizza l'elenco dei feed | 29 vs 14 | 2.07× |
 | Account Sync | Sincronizzazione account | 24 vs 12 | 2× |
 | All time | Tutto il periodo | 16 vs 8 | 2× |
 | Auto-Detect | Rilevamento automatico | 22 vs 11 | 2× |
@@ -764,6 +789,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} day recap | {n} riepilogo giornaliero | 24 vs 12 | 2× |
 | Add custom model | Aggiungi modello personalizzato | 31 vs 16 | 1.94× |
 | Easy-read font | Carattere di facile lettura | 27 vs 14 | 1.93× |
+| Last synced {when} | Ultima sincronizzazione: {when} | 27 vs 14 | 1.93× |
 | Import failed | Importazione non riuscita | 25 vs 13 | 1.92× |
 | {n} day recaps | {n} riepiloghi giornalieri | 25 vs 13 | 1.92× |
 | Length mode | Modalità di lunghezza | 21 vs 11 | 1.91× |
@@ -771,6 +797,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Enter code | Inserisci il codice | 19 vs 10 | 1.9× |
 | No items | Nessun articolo | 15 vs 8 | 1.88× |
 | Testing… | Prova in corso… | 15 vs 8 | 1.88× |
+| Switch on feed sync | Attiva la sincronizzazione dei feed | 35 vs 19 | 1.84× |
 | No items yet | Ancora nessun elemento | 22 vs 12 | 1.83× |
 | Recap failed | Riepilogo non riuscito | 22 vs 12 | 1.83× |
 | Save options | Opzioni di salvataggio | 22 vs 12 | 1.83× |
@@ -793,10 +820,12 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No shortcuts match | Nessuna scorciatoia corrisponde | 31 vs 18 | 1.72× |
 | Feed refresh interval | Intervallo di aggiornamento dei feed | 36 vs 21 | 1.71× |
 | last opened {d} | aperto l’ultima volta {d} | 24 vs 14 | 1.71× |
+| Feed sync is on. Scan the new code in the phone app once. | La sincronizzazione dei feed è attiva. Scansiona il nuovo codice una volta nell'app del telefono. | 97 vs 57 | 1.7× |
 | Mood index | Indice dell’umore | 17 vs 10 | 1.7× |
 | No answer. | Nessuna risposta. | 17 vs 10 | 1.7× |
 | World news | Notizie dal mondo | 17 vs 10 | 1.7× |
 | Not signed in | Accesso non effettuato | 22 vs 13 | 1.69× |
+| The feed list is too large to sync. | L'elenco dei feed è troppo grande per essere sincronizzato. | 59 vs 35 | 1.69× |
 | Week & month recaps | Riepiloghi settimanali e mensili | 32 vs 19 | 1.68× |
 | Hide code | Nascondi codice | 15 vs 9 | 1.67× |
 | Open in sidebar | Apri nella barra laterale | 25 vs 15 | 1.67× |
@@ -863,6 +892,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No background run yet. | Nessuna esecuzione in background. | 33 vs 22 | 1.5× |
 | Page text · {n} words | Testo della pagina · {n} parole | 30 vs 20 | 1.5× |
 | Profile · text size · motion | Profilo · dimensione del testo · movimento | 42 vs 28 | 1.5× |
+| Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone. | La sincronizzazione dei feed è attiva: l'elenco dei feed (senza articoli) si sincronizza con il telefono con crittografia end-to-end. | 133 vs 89 | 1.49× |
 | Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Inviato. Per riceverlo, scansiona il nuovo codice una volta nell’app del telefono (Impostazioni → Posta in arrivo dal telefono). | 128 vs 86 | 1.49× |
 | Switch graph search to highlight mode | Passa la ricerca del grafo alla modalità evidenziazione | 55 vs 37 | 1.49× |
 | Not set up yet — add your Kindle in Settings | Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni | 65 vs 44 | 1.48× |
@@ -905,6 +935,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mood history is kept for 13 months, even after items are removed. | Lo storico dell’umore viene conservato per 13 mesi, anche dopo la rimozione degli articoli. | 91 vs 65 | 1.4× |
 | Tip: press {key} on any page to summarize it. | Suggerimento: premi {key} su qualsiasi pagina per riassumerla. | 59 vs 42 | 1.4× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Per impostazione predefinita, i backup escludono chiavi API, dati di accesso, chiavi di licenza e identificativi di installazione. Mantieni privati i file esportati. | 165 vs 119 | 1.39× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Elenco dei feed sincronizzato: {added} aggiunti, {updated} modificati, {removed} rimossi | 69 vs 50 | 1.38× |
 | No account. Your key stays on this device. | Nessun account. La tua chiave resta su questo dispositivo. | 58 vs 42 | 1.38× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articoli su {n} valutati · l’umore deriva solo dalla valutazione dell’IA | 74 vs 54 | 1.37× |
 | This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Questo PDF non ha testo selezionabile (probabilmente una scansione). Il riconoscimento del testo non è ancora supportato. | 121 vs 89 | 1.36× |
@@ -913,6 +944,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} older items are not in this recap (limit: {max} per recap). | {n} elementi più vecchi non sono in questo riepilogo (limite: {max} per riepilogo). | 79 vs 59 | 1.34× |
 | Choose one delivery method for article detail actions. | Scegli un metodo di consegna per le azioni nel dettaglio dell'articolo. | 71 vs 54 | 1.31× |
 | Pick a way to run your summaries. Change it any time in settings. | Scegli come generare i tuoi riassunti. Puoi cambiarlo quando vuoi nelle impostazioni. | 85 vs 65 | 1.31× |
+| The synced feed list could not be read. Unpair and pair again. | Impossibile leggere l'elenco dei feed sincronizzato. Scollega e associa di nuovo. | 81 vs 62 | 1.31× |
 | e.g. Prefer European news and keep it upbeat. | es. Preferisci notizie europee e mantieni un tono positivo. | 59 vs 45 | 1.31× |
 
 ### ja
@@ -965,6 +997,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Copied as plain text. | プレーンテキストでコピーしました。 | 34 vs 21 | 1.62× |
 | No content available. | 利用できるコンテンツがありません。 | 34 vs 21 | 1.62× |
 | No devices added yet. | デバイスはまだ追加されていません。 | 34 vs 21 | 1.62× |
+| The synced feed list could not be read. Unpair and pair again. | 同期したフィードリストを読み取れませんでした。ペアリングを解除して、もう一度ペアリングしてください。 | 100 vs 62 | 1.61× |
 | All topics | すべてのトピック | 16 vs 10 | 1.6× |
 | Sent to {name} | {name}に送信しました | 16 vs 10 | 1.6× |
 | Sort: Mood | 並び替え: ムード | 16 vs 10 | 1.6× |
@@ -991,6 +1024,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add tag or DOI… | タグまたは DOI を追加… | 22 vs 15 | 1.47× |
 | Detach to popup | ポップアップに切り離す | 22 vs 15 | 1.47× |
 | Failed to send code | コードを送信できませんでした | 28 vs 19 | 1.47× |
+| Feed sync is on. Scan the new code in the phone app once. | フィード同期をオンにしました。スマホアプリで新しいコードを一度スキャンしてください。 | 84 vs 57 | 1.47× |
 | Filter shortcuts… | ショートカットを絞り込む… | 25 vs 17 | 1.47× |
 | Very slow: use a smaller model | とても遅い: より小さいモデルを使ってください | 44 vs 30 | 1.47× |
 | Nothing rated yet — write a ✨ Recap to rate items. | まだ評価されたものはありません — ✨ まとめを作成すると記事が評価されます。 | 73 vs 50 | 1.46× |
@@ -1076,6 +1110,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Backup · tags · delete | Cópia de segurança · etiquetas · eliminar | 41 vs 22 | 1.86× |
 | Easy-read font | Tipo de letra fácil de ler | 26 vs 14 | 1.86× |
 | Own key | Chave própria | 13 vs 7 | 1.86× |
+| Sync feed list | Sincronizar lista de feeds | 26 vs 14 | 1.86× |
 | Account Sync | Sincronização da conta | 22 vs 12 | 1.83× |
 | Newest first | Mais recentes primeiro | 22 vs 12 | 1.83× |
 | No devices added yet. | Ainda não há dispositivos adicionados. | 38 vs 21 | 1.81× |
@@ -1089,6 +1124,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
 | All time | Todo o período | 14 vs 8 | 1.75× |
 | Auto length bias | Ajuste automático do tamanho | 28 vs 16 | 1.75× |
+| Syncing… | A sincronizar… | 14 vs 8 | 1.75× |
 | Copied to clipboard! 📋 | Copiado para a área de transferência! 📋 | 40 vs 23 | 1.74× |
 | Add tag or DOI… | Adicionar etiqueta ou DOI… | 26 vs 15 | 1.73× |
 | Check again | Verificar novamente | 19 vs 11 | 1.73× |
@@ -1096,6 +1132,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI Language | Idioma da interface | 19 vs 11 | 1.73× |
 | UI language | Idioma da interface | 19 vs 11 | 1.73× |
 | Verify & Log In | Verificar e iniciar sessão | 26 vs 15 | 1.73× |
+| Last synced {when} | Última sincronização: {when} | 24 vs 14 | 1.71× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
 | Browser Default | Predefinição do navegador | 25 vs 15 | 1.67× |
 | Check now | Verificar agora | 15 vs 9 | 1.67× |
@@ -1129,6 +1166,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Hard facts | Factos concretos | 16 vs 10 | 1.6× |
 | Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
 | Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
+| Feed sync is on. Scan the new code in the phone app once. | A sincronização de feeds está ativa. Leia o novo código uma vez na aplicação do telemóvel. | 90 vs 57 | 1.58× |
 | Instant read | Leitura instantânea | 19 vs 12 | 1.58× |
 | Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
 | Symbol style | Estilo dos símbolos | 19 vs 12 | 1.58× |
@@ -1149,10 +1187,12 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Showing top tags (archive is large) | A mostrar as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | Delete all data | Eliminar todos os dados | 23 vs 15 | 1.53× |
+| Switch on feed sync | Ativar sincronização de feeds | 29 vs 19 | 1.53× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
 | API keys, sign-in & license | Chaves de API, início de sessão e licença | 41 vs 27 | 1.52× |
 | No password. We email you a short code. | Sem palavra-passe. Enviamos-lhe um código curto por e-mail. | 59 vs 39 | 1.51× |
+| The feed list is too large to sync. | A lista de feeds é demasiado grande para sincronizar. | 53 vs 35 | 1.51× |
 | Delete all data? | Eliminar todos os dados? | 24 vs 16 | 1.5× |
 | Delete all data… | Eliminar todos os dados… | 24 vs 16 | 1.5× |
 | Model is writing | O modelo está a escrever | 24 vs 16 | 1.5× |
@@ -1166,6 +1206,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Used up — local models still work. | Esgotada: os modelos locais continuam a funcionar. | 50 vs 34 | 1.47× |
 | {n} feeds to tag | {n} feeds por etiquetar | 22 vs 15 | 1.47× |
 | ✨ {label} recap is ready | ✨ O resumo de {label} está pronto | 28 vs 19 | 1.47× |
+| Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone. | A sincronização de feeds está ativa: a sua lista de feeds (sem artigos) é sincronizada com o telemóvel com cifragem ponto a ponto. | 130 vs 89 | 1.46× |
 | Last background run: {time} · {result} | Última execução em segundo plano: {time} · {result} | 41 vs 28 | 1.46× |
 | Paired · last checked {when} | Emparelhado · última verificação {when} | 35 vs 24 | 1.46× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
@@ -1183,6 +1224,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Topics over time | Temas ao longo do tempo | 23 vs 16 | 1.44× |
 | Sources · rename · tags · mute | Fontes · mudar nome · etiquetas · silenciar | 43 vs 30 | 1.43× |
 | (on iOS, hold to drag for 2 seconds) | (no iOS, mantenha premido 2 segundos para arrastar) | 51 vs 36 | 1.42× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Lista de feeds sincronizada: {added} adicionados, {updated} alterados, {removed} removidos | 71 vs 50 | 1.42× |
 | Mood history is kept for 13 months, even after items are removed. | O histórico de humor é mantido durante 13 meses, mesmo depois de os artigos serem removidos. | 92 vs 65 | 1.42× |
 | Open model settings | Abrir definições de modelos | 27 vs 19 | 1.42× |
 | Paired · not checked yet | Emparelhado · ainda não verificado | 34 vs 24 | 1.42× |
@@ -1191,6 +1233,7 @@ Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Use "{name}" as custom language code | Usar "{name}" como código de idioma personalizado | 45 vs 32 | 1.41× |
 | Invalid backup file. Please select a valid AI Summary Helper export. | Ficheiro de cópia de segurança inválido. Selecione uma exportação válida do AI Summary Helper. | 94 vs 68 | 1.38× |
 | Couldn't save this page. Open it once and try again. | Não foi possível guardar esta página. Abra-a uma vez e tente novamente. | 71 vs 52 | 1.37× |
+| The synced feed list could not be read. Unpair and pair again. | Não foi possível ler a lista de feeds sincronizada. Desemparelhe e emparelhe de novo. | 85 vs 62 | 1.37× |
 | to your Kindle's approved senders first — | à lista de remetentes aprovados do seu Kindle primeiro — | 56 vs 41 | 1.37× |
 | Not set up yet — add your Kindle in Settings | Ainda não configurado — adiciona o teu Kindle nas Definições | 60 vs 44 | 1.36× |
 | Send to phone is on. Scan the new code in the phone app once. | Enviar para o telemóvel está ativo. Leia o novo código uma vez na app do telemóvel. | 83 vs 61 | 1.36× |
@@ -1237,10 +1280,12 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Jump to today | Перейти к сегодняшнему дню | 26 vs 13 | 2× |
 | Sort: Name | Сортировка: название | 20 vs 10 | 2× |
 | Sources used | Использованные источники | 24 vs 12 | 2× |
+| Sync feed list | Синхронизировать список лент | 28 vs 14 | 2× |
 | View & Copy | Просмотр и копирование | 22 vs 11 | 2× |
 | reused | использована | 12 vs 6 | 2× |
 | {n}% used | Использовано {n}% | 16 vs 8 | 2× |
 | Detach to popup | Открепить во всплывающее окно | 29 vs 15 | 1.93× |
+| Last synced {when} | Последняя синхронизация: {when} | 27 vs 14 | 1.93× |
 | Privacy policy | Политика конфиденциальности | 27 vs 14 | 1.93× |
 | About & Tools | О программе и инструменты | 25 vs 13 | 1.92× |
 | Send & Share | Отправка и общий доступ | 23 vs 12 | 1.92× |
@@ -1261,6 +1306,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Save only | Только сохранить | 16 vs 9 | 1.78× |
 | Accessibility | Специальные возможности | 23 vs 13 | 1.77× |
 | Add feed | Добавить ленту | 14 vs 8 | 1.75× |
+| Syncing… | Синхронизация… | 14 vs 8 | 1.75× |
 | Phone inbox | Входящие с телефона | 19 vs 11 | 1.73× |
 | My own API key | Мой собственный API-ключ | 24 vs 14 | 1.71× |
 | last opened {d} | последний раз открыто {d} | 24 vs 14 | 1.71× |
@@ -1294,6 +1340,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Sources · rename · tags · mute | Источники · переименование · теги · отключение | 46 vs 30 | 1.53× |
 | Click again to unpair | Нажмите ещё раз, чтобы отключить | 32 vs 21 | 1.52× |
 | Mute / unmute reading | Выключить / включить звук чтения | 32 vs 21 | 1.52× |
+| Feed sync is on. Scan the new code in the phone app once. | Синхронизация лент включена. Один раз отсканируйте новый код в приложении на телефоне. | 86 vs 57 | 1.51× |
 | This pairing is no longer valid. Unpair and pair again. | Это сопряжение больше недействительно. Отключите его и выполните сопряжение заново. | 83 vs 55 | 1.51× |
 | Auto-summarize favorites | Автоматически резюмировать избранное | 36 vs 24 | 1.5× |
 | Backup · tags · delete | Резервная копия · теги · удаление | 33 vs 22 | 1.5× |
@@ -1317,6 +1364,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Export backup first | Сначала экспортируйте копию | 27 vs 19 | 1.42× |
 | Paired · last checked {when} | Подключено · последняя проверка {when} | 34 vs 24 | 1.42× |
 | Scan failed. Enter IP manually. | Сканирование не удалось. Введите IP вручную. | 44 vs 31 | 1.42× |
+| Switch on feed sync | Включить синхронизацию лент | 27 vs 19 | 1.42× |
 | Week & month recaps | Недельные и месячные обзоры | 27 vs 19 | 1.42× |
 | Ghost Highlight Amount | Количество призрачных выделений | 31 vs 22 | 1.41× |
 | Ghost highlight amount | Количество призрачных выделений | 31 vs 22 | 1.41× |
@@ -1328,6 +1376,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
 | Saving took too long (a very heavy page). Try again, or open it and summarize instead. | Сохранение заняло слишком много времени (очень тяжёлая страница). Повторите попытку или откройте её и сделайте резюме. | 118 vs 86 | 1.37× |
 | Stopped. Starting again continues where it left off. | Остановлено. При новом запуске обработка продолжится с того же места. | 69 vs 52 | 1.33× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Список лент синхронизирован: добавлено {added}, изменено {updated}, удалено {removed} | 66 vs 50 | 1.32× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | По умолчанию резервные копии не содержат API-ключи, данные для входа, лицензионные ключи и идентификаторы установки. Храните экспортированные файлы в тайне. | 156 vs 119 | 1.31× |
 | Uses your AI model · one extra call · in your app language | Использует вашу модель ИИ · один дополнительный запрос · на языке приложения | 76 vs 58 | 1.31× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |

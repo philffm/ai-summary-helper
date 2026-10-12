@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "Condividi"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Un altro dispositivo ha modificato l'elenco contemporaneamente. Riprova."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "L'elenco dei feed è aggiornato"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Elenco dei feed sincronizzato: {added} aggiunti, {updated} modificati, {removed} rimossi"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "La sincronizzazione dei feed è attiva. Scansiona il nuovo codice una volta nell'app del telefono."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "La sincronizzazione dei feed è attiva: l'elenco dei feed (senza articoli) si sincronizza con il telefono con crittografia end-to-end."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Ultima sincronizzazione: {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Attiva la sincronizzazione dei feed"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Sincronizza l'elenco dei feed"
+  },
+  "f_syncing_9560": {
+    "message": "Sincronizzazione…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "L'elenco dei feed è troppo grande per essere sincronizzato."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "Impossibile leggere l'elenco dei feed sincronizzato. Scollega e associa di nuovo."
   }
 }

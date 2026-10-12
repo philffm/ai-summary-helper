@@ -4678,5 +4678,38 @@
   },
   "f_share_6dd8": {
     "message": "साझा करें"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "किसी दूसरे डिवाइस ने उसी समय सूची बदल दी। फिर से कोशिश करें।"
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "फ़ीड सूची अप-टू-डेट है"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "फ़ीड सूची सिंक हुई: {added} जोड़े गए, {updated} बदले गए, {removed} हटाए गए"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "फ़ीड सिंक चालू है। फ़ोन ऐप में नया कोड एक बार स्कैन करें।"
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "फ़ीड सिंक चालू है: आपकी फ़ीड सूची (लेख नहीं) एंड-टू-एंड एन्क्रिप्शन के साथ आपके फ़ोन से सिंक होती है।"
+  },
+  "f_last_synced_fc2b": {
+    "message": "आख़िरी सिंक: {when}"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "फ़ीड सिंक चालू करें"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "फ़ीड सूची सिंक करें"
+  },
+  "f_syncing_9560": {
+    "message": "सिंक हो रहा है…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "फ़ीड सूची सिंक करने के लिए बहुत बड़ी है।"
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "सिंक की गई फ़ीड सूची पढ़ी नहीं जा सकी। पेयरिंग हटाएँ और फिर से पेयर करें।"
   }
 }

@@ -20,3 +20,15 @@ the phone gets its read token in the pairing code as `&ti=…&tr=…`). Same API
 The sender shortens an article until the gzip is at most 135,000 bytes; the server caps an item at 190,000 characters of base64url
 and an inbox at 8 MB of waiting ciphertext. The phone deletes each item (`DELETE …/items/{id}`, read token) after saving it.
 `tests/fixtures/inbox-vector.json` has an `article` vector every implementation must decrypt.
+
+## Feed-URL vault (`/aish_vaults`)
+
+Feed sync shares ONE encrypted document per user, not items or articles. Every device holds the same key (the pairing `k`) and the vault
+token (`&vi=<vaultId>&vt=<token>` in the pairing code). `GET` returns `{ rev, v: 1, data }`; `PUT` needs `If-Match: <rev>` and answers
+`409` with the current document when another device wrote first, so the client decrypts it, merges again and retries.
+
+- Document: `{ v: 1, data }`, `data = base64url(nonce ‖ AES-256-GCM(gzip(JSON {v:1, feeds:[entry…]})) ‖ tag)`, additional data = the vault id as UTF-8.
+- Entry: `{ url, title, tags, updatedAt }` or a tombstone `{ url, updatedAt, removed: true }`.
+- Merge (`src/modules/feedSync.js`): match by URL, larger `updatedAt` wins, tie → tombstone, then larger canonical JSON; tombstones older than 90 days are dropped. Order: `updatedAt` descending, then URL.
+- `tests/fixtures/feed-sync-vector.json` has a sealed document and the merge cases every implementation must reproduce.
+- Limits: 100 KB per PUT, 80,000 base64url characters (about 500 feeds), 120 writes per hour per vault, 20 vault creates per hour per IP; idle vaults are purged after 365 days.

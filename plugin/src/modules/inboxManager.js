@@ -12,10 +12,12 @@
 //   fetch after the stored cursor → decrypt → drop handled/duplicate links → save pending + cursor → acknowledge on the server.
 
 import { SK } from './storageKeys.js';
-import { newInboxSecrets, tokenHash, pairingPayload, decryptMessage, encryptArticle, toB64u } from './inboxCrypto.js';
+import { newInboxSecrets, newVaultSecrets, tokenHash, pairingPayload, decryptMessage, encryptArticle, encryptVault, decryptVault, toB64u } from './inboxCrypto.js';
+import { localEntries, mergeEntries, planChanges, sameEntries, cleanEntries } from './feedSync.js';
 
 // The first segment after the project is the collection name in the byPhil database: aish_inboxes (its items: aish_inbox_items).
 export const INBOX_API = 'https://api.byphil.eu/v1/projects/ai_summary_helper/aish_inboxes';
+export const VAULT_API = 'https://api.byphil.eu/v1/projects/ai_summary_helper/aish_vaults';
 export const PAGE_SIZE = 50;
 export const MAX_PAGES = 4;        // per poll; the rest is collected on the next one
 export const SEEN_MAX = 500;       // handled item ids remembered
@@ -68,7 +70,9 @@ export function classify(status) {
     return 'error';
 }
 
-export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = () => Date.now(), timeoutMs = 15000 } = {}) {
+export const SYNC_RETRIES = 5;    // lost races against another device before a feed sync gives up
+
+export function createInboxManager({ fetchFn, storage, api = INBOX_API, vaultApi = api.replace(/aish_inboxes$/, 'aish_vaults'), now = () => Date.now(), timeoutMs = 15000 } = {}) {
     const store = () => storage || chrome.storage.local;
     const doFetch = (...args) => (fetchFn || globalThis.fetch)(...args);
 
@@ -78,13 +82,14 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
     async function getPending() { const p = (await read(SK.inboxPending))[SK.inboxPending]; return Array.isArray(p) ? p : []; }
 
     /** One HTTP call; never throws. { status: 0 } means the network failed or timed out. */
-    async function call(method, url, body, token) {
+    async function call(method, url, body, token, extra) {
         const ctl = typeof AbortController === 'function' ? new AbortController() : null;
         const timer = ctl ? setTimeout(() => ctl.abort(), timeoutMs) : null;
         try {
             const headers = {};
             if (body !== undefined && body !== null) headers['Content-Type'] = 'application/json';
             if (token) headers.Authorization = 'Bearer ' + token;
+            if (extra) Object.assign(headers, extra);
             const res = await doFetch(url, { method, headers, body: body === undefined || body === null ? undefined : JSON.stringify(body), signal: ctl ? ctl.signal : undefined });
             let json = null;
             try { json = await res.json(); } catch (_) { /* empty or non-JSON body */ }
@@ -104,6 +109,13 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         return res.status === 201 ? { ok: true, toPhone: t } : { ok: false, error: classify(res.status) };
     }
 
+    /** Creates the feed-URL vault (one encrypted document the devices share). */
+    async function createVault() {
+        const v = newVaultSecrets();
+        const res = await call('POST', vaultApi, { id: v.id, tokenHash: await tokenHash(v.token) });
+        return res.status === 201 ? { ok: true, vault: v } : { ok: false, error: classify(res.status) };
+    }
+
     /** Creates the inboxes on the server and returns the text for the QR code. Already paired: returns the same code again. */
     async function pair() {
         const existing = await getConfig();
@@ -112,7 +124,8 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         const res = await call('POST', api, { id: secrets.inboxId, writeHash: await tokenHash(secrets.writeToken), readHash: await tokenHash(secrets.readToken) });
         if (res.status !== 201) return { ok: false, error: classify(res.status) };
         const second = await createToPhone();   // best effort: without it the phone→extension direction still works, and "Send to phone" can be switched on later
-        const cfg = { ...secrets, createdAt: now(), v: 1, ...(second.ok ? { toPhone: second.toPhone } : {}) };
+        const vault = await createVault();      // best effort as well: "Sync feeds" can be switched on later
+        const cfg = { ...secrets, createdAt: now(), v: 1, ...(second.ok ? { toPhone: second.toPhone } : {}), ...(vault.ok ? { vault: vault.vault } : {}) };
         await store().set({ [SK.inboxConfig]: cfg, [SK.inboxState]: EMPTY_STATE() });
         return { ok: true, existing: false, payload: pairingPayload(cfg) };
     }
@@ -127,6 +140,64 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         const next = { ...cfg, toPhone: second.toPhone };
         await store().set({ [SK.inboxConfig]: next });
         return { ok: true, existing: false, payload: pairingPayload(next) };
+    }
+
+    /** Switches on feed sync for an existing pairing. The QR code changes, so the phone has to scan it once more. */
+    async function enableVault() {
+        const cfg = await getConfig();
+        if (!cfg) return { ok: false, error: 'not-paired' };
+        if (cfg.vault) return { ok: true, existing: true, payload: pairingPayload(cfg) };
+        const made = await createVault();
+        if (!made.ok) return made;
+        const next = { ...cfg, vault: made.vault };
+        await store().set({ [SK.inboxConfig]: next });
+        return { ok: true, existing: false, payload: pairingPayload(next) };
+    }
+
+    /**
+     * Syncs the feed list (URL, title, tags; never items) through the vault.
+     *   getSubs()    → the live feeds [{url,title,tags}]
+     *   applyPlan(p) → makes this device match: p = { add:[{url,title,tags}], update:[…], remove:[url] }
+     * Resolves { ok, added, updated, removed, uploaded } or { ok: false, error }: not-paired, not-enabled, unreadable,
+     * too-large, conflict (lost the race too often), rate-limited, pairing-invalid, unreachable, error.
+     */
+    async function syncFeeds({ getSubs, applyPlan }) {
+        const cfg = await getConfig();
+        if (!cfg) return { ok: false, error: 'not-paired' };
+        if (!cfg.vault) return { ok: false, error: 'not-enabled' };
+        const sec = { vaultId: cfg.vault.id, encKey: cfg.encKey };
+        const url = `${vaultApi}/${encodeURIComponent(cfg.vault.id)}`;
+        const st = (await read(SK.feedSync))[SK.feedSync] || {};
+        const subs = await getSubs();
+        const local = localEntries(subs, st.base || [], now());
+        const open = async (doc) => {
+            if (!doc || doc.data == null) return [];
+            return cleanEntries(await decryptVault(sec, { v: doc.v, data: doc.data }));
+        };
+
+        let doc;
+        const first = await call('GET', url, null, cfg.vault.token);
+        if (first.status !== 200 || !first.json) return { ok: false, error: classify(first.status) };
+        doc = first.json;
+        let merged, uploaded = false;
+        for (let attempt = 0; attempt < SYNC_RETRIES; attempt++) {
+            let remote;
+            try { remote = await open(doc); } catch (_) { return { ok: false, error: 'unreadable' }; }
+            merged = mergeEntries(local, remote, now());
+            if (sameEntries(merged, remote)) break;
+            let body;
+            try { body = await encryptVault(sec, merged); } catch (_) { return { ok: false, error: 'too-large' }; }
+            const put = await call('PUT', url, body, cfg.vault.token, { 'If-Match': String(doc.rev) });
+            if (put.status === 200 && put.json) { doc = { rev: put.json.rev }; uploaded = true; break; }
+            if (put.status === 409 && put.json) { doc = put.json; if (attempt === SYNC_RETRIES - 1) return { ok: false, error: 'conflict' }; continue; }
+            if (put.status === 413) return { ok: false, error: 'too-large' };
+            if (put.status === 429) return { ok: false, error: 'rate-limited' };
+            return { ok: false, error: classify(put.status) };
+        }
+        const plan = planChanges(subs, merged);
+        await applyPlan(plan);
+        await store().set({ [SK.feedSync]: { rev: doc.rev, base: merged, lastSyncAt: now() } });
+        return { ok: true, added: plan.add.length, updated: plan.update.length, removed: plan.remove.length, uploaded };
     }
 
     /** The QR text for an existing pairing (to show it again or to pair a second phone). Null when not paired. */
@@ -283,7 +354,8 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
     async function status() {
         const cfg = await getConfig();
         const state = await getState();
-        return { paired: !!cfg, toPhone: !!(cfg && cfg.toPhone), createdAt: cfg ? cfg.createdAt : 0, lastPollAt: state.lastPollAt, lastError: state.lastError, pending: (await getPending()).length };
+        const sync = (await read(SK.feedSync))[SK.feedSync] || {};
+        return { paired: !!cfg, toPhone: !!(cfg && cfg.toPhone), vault: !!(cfg && cfg.vault), lastSyncAt: sync.lastSyncAt || 0, createdAt: cfg ? cfg.createdAt : 0, lastPollAt: state.lastPollAt, lastError: state.lastError, pending: (await getPending()).length };
     }
 
     /** Deletes the inbox on the server (best effort) and every local trace of the pairing, including waiting links. */
@@ -294,10 +366,11 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
             const res = await call('DELETE', `${api}/${encodeURIComponent(cfg.inboxId)}`, null, cfg.readToken);
             serverDeleted = res.status >= 200 && res.status < 300;
             if (cfg.toPhone) await call('DELETE', `${api}/${encodeURIComponent(cfg.toPhone.inboxId)}`, null, cfg.toPhone.readToken);
+            if (cfg.vault) await call('DELETE', `${vaultApi}/${encodeURIComponent(cfg.vault.id)}`, null, cfg.vault.token);
         }
-        await store().remove([SK.inboxConfig, SK.inboxPending, SK.inboxState]);
+        await store().remove([SK.inboxConfig, SK.inboxPending, SK.inboxState, SK.feedSync]);
         return { ok: true, serverDeleted };
     }
 
-    return { pair, enableToPhone, sendArticle, pairingCode, poll, listPending, resolve, flushDeletes, status, unpair };
+    return { pair, enableToPhone, enableVault, syncFeeds, sendArticle, pairingCode, poll, listPending, resolve, flushDeletes, status, unpair };
 }

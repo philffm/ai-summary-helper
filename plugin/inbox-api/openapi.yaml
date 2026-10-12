@@ -122,12 +122,61 @@ paths:
         "400": { description: Malformed }
         "403": { description: Wrong token }
         "404": { description: Unknown inbox }
+  /aish_vaults:
+    post:
+      summary: Create a feed-URL sync vault (extension or phone)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id, tokenHash]
+              properties:
+                id: { type: string, pattern: '^[A-Za-z0-9_-]{22}$' }
+                tokenHash: { type: string, pattern: '^[0-9a-f]{64}$', description: SHA-256 hex of the vault token }
+      responses:
+        "201": { description: 'Created, body { id, rev: 0 }' }
+        "400": { description: Malformed }
+        "409": { description: Id already exists }
+        "429": { description: Too many vaults from this address }
+  /aish_vaults/{id}:
+    get:
+      summary: Download the vault document (vault token)
+      security: [{ vaultToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      responses:
+        "200": { description: 'Body { rev, v: 1, data } where data is null until the first upload' }
+        "403": { description: Wrong token }
+        "404": { description: Unknown vault }
+    put:
+      summary: Replace the vault document if nobody else wrote since the revision you saw
+      description: |
+        Header If-Match: <rev>. The body is { v: 1, data: base64url(nonce || ciphertext || tag) }; AES-256-GCM, additionalData = vault id
+        as UTF-8, same key as the pairing. On 409 the response carries the current { rev, v, data }: decrypt, merge, retry.
+      security: [{ vaultToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      responses:
+        "200": { description: 'Stored, body { rev }' }
+        "400": { description: Malformed }
+        "409": { description: 'Someone else wrote first; body { error: conflict, rev, v, data }' }
+        "413": { description: Document too large }
+        "428": { description: If-Match missing }
+        "429": { description: Too many writes this hour }
+    delete:
+      summary: Delete the vault (vault token)
+      security: [{ vaultToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      responses:
+        "204": { description: Deleted }
+        "403": { description: Wrong token }
 components:
   parameters:
     id: { name: id, in: path, required: true, schema: { type: string } }
   securitySchemes:
     writeToken: { type: http, scheme: bearer }
     readToken: { type: http, scheme: bearer }
+    vaultToken: { type: http, scheme: bearer }
 x-limits:
   maxCreateBodyBytes: 4096
   maxItemBodyBytes: 200000
@@ -138,3 +187,9 @@ x-limits:
   itemTtl: 30 days   # items stay until the user summarizes or dismisses them
   idleInboxTtl: 30 days
   inboxCreatesPerHourPerIp: 20
+x-vault-limits:
+  maxPutBodyBytes: 100000
+  maxDataChars: 80000   # roughly 500 feeds
+  putsPerHourPerVault: 120
+  vaultCreatesPerHourPerIp: 20
+  idleVaultTtl: 365 days
