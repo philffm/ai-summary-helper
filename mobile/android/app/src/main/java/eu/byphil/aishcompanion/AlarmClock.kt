@@ -43,8 +43,8 @@ data class AlarmSettings(
     val snoozeMinutes: Int = 10,
     /** Let the on-device model write the briefing (when it is downloaded). */
     val useAi: Boolean = false,
-    /** Leave out stories about war, crime, disasters and death. */
-    val goodNewsOnly: Boolean = false,
+    /** All news, none of the bad news (war, crime, disasters, death), or only good news. */
+    val newsMode: NewsMode = NewsMode.ALL,
     /** Ask the cloud AI for one extra item (a fun fact, or [extraPrompt]); only that prompt is sent, never your feeds. */
     val extraOn: Boolean = false,
     val extraPrompt: String = "",
@@ -196,7 +196,7 @@ fun buildBriefingNow(context: Context, now: Long = System.currentTimeMillis()): 
     val app = context.applicationContext
     val articles = ArticleStore(app)
     val unread = articles.list().count { !articles.isRead(it.id) }
-    return BriefingBuilder.build(FeedStore(File(app.filesDir, "feeds")).everything(), unread, now, Store(app).alarm.goodNewsOnly)
+    return BriefingBuilder.build(FeedStore(File(app.filesDir, "feeds")).everything(), unread, now, Store(app).alarm.newsMode)
 }
 
 /** The prepared briefing if it is recent (the job ran before the alarm), else one built right now. Never throws. */
@@ -213,8 +213,8 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
         var plain = runCatching { buildBriefingNow(applicationContext) }.getOrNull() ?: return Result.success()
         store.briefingJson = plain.toJson()   // saved first: the alarm has a briefing even if the model is slow or fails
         val settings = store.alarm
-        if (settings.goodNewsOnly && LocalLlm.installed(applicationContext)) {
-            // Rate the new stories by mood first, so "good news only" goes by the model's judgement and not just the word list.
+        if (settings.newsMode != NewsMode.ALL && LocalLlm.installed(applicationContext)) {
+            // Rate the new stories by mood first, so the news mode goes by the model's judgement and not just the word list.
             val feedStore = FeedStore(File(applicationContext.filesDir, "feeds"))
             val rated = withContext(Dispatchers.Default) { runCatching { MoodRater.rate(applicationContext, feedStore, feedStore.everything()) }.getOrDefault(0) }
             if (rated > 0) { plain = buildBriefingNow(applicationContext); store.briefingJson = plain.toJson() }
@@ -225,7 +225,7 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
             if (extra != null) { current = current.copy(extra = extra); store.briefingJson = current.toJson() }
         }
         if (settings.useAi && LocalLlm.installed(applicationContext)) {
-            val text = withContext(Dispatchers.Default) { LocalLlm.narrate(applicationContext, plain.items, plain.readingUnread, java.time.LocalTime.now().hour, settings.goodNewsOnly) }
+            val text = withContext(Dispatchers.Default) { LocalLlm.narrate(applicationContext, plain.items, plain.readingUnread, java.time.LocalTime.now().hour, settings.newsMode) }
             if (text != null) store.briefingJson = current.copy(narration = text, builtAt = System.currentTimeMillis()).toJson()
         }
         return Result.success()

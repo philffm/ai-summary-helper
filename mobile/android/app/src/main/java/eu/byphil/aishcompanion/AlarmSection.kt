@@ -27,6 +27,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -97,12 +100,22 @@ fun AlarmCard(model: AppModel) {
                     Text("Read the briefing aloud after Stop", Modifier.weight(1f))
                     Switch(checked = a.readAloud, onCheckedChange = { update(a.copy(readAloud = it)) })
                 }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text("Good news only")
-                        Text("Leaves out war, crime, disasters and death. Works best with the on-device AI.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text("News in the briefing")
+                    val modes = listOf(NewsMode.ALL to "All news", NewsMode.NO_BAD to "No bad news", NewsMode.GOOD to "Good only")
+                    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+                        modes.forEachIndexed { i, (m, label) ->
+                            SegmentedButton(selected = a.newsMode == m, onClick = { update(a.copy(newsMode = m)) }, shape = SegmentedButtonDefaults.itemShape(i, modes.size)) { Text(label, maxLines = 1) }
+                        }
                     }
-                    Switch(checked = a.goodNewsOnly, onCheckedChange = { update(a.copy(goodNewsOnly = it)) })
+                    Text(
+                        when (a.newsMode) {
+                            NewsMode.ALL -> "Everything new from your feeds."
+                            NewsMode.NO_BAD -> "Leaves out war, crime, disasters and death; everything else stays."
+                            NewsMode.GOOD -> "Only stories rated positive. Works best with the on-device AI rating."
+                        },
+                        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
                 val next = AlarmScheduler.nextRing(context)
                 Text(

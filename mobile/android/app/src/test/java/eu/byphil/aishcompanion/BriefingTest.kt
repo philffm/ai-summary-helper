@@ -92,9 +92,10 @@ class BriefingTest {
         assertTrue(!GoodNews.heavy("Wildflowers return to the valley"))
         assertTrue(!GoodNews.heavy("Today a school opens its new library"))
         val list = listOf(entry(1, "a", "Bomb attack on market", 1), entry(1, "b", "Library opens its doors", 2), entry(2, "c", "Flood warning issued", 3, summary = "Rivers rise across the region."))
-        assertEquals(listOf("Library opens its doors"), BriefingBuilder.pick(list, now, goodNewsOnly = true).map { it.title })
+        assertEquals(listOf("Library opens its doors"), BriefingBuilder.pick(list, now, mode = NewsMode.GOOD).map { it.title })   // nothing rated positive: falls back to nothing heavy
+        assertEquals(listOf("Library opens its doors"), BriefingBuilder.pick(list, now, mode = NewsMode.NO_BAD).map { it.title })
         assertEquals(3, BriefingBuilder.pick(list, now).size)
-        val none = Briefing(emptyList(), 0, now, goodNewsOnly = true)
+        val none = Briefing(emptyList(), 0, now, mode = NewsMode.GOOD)
         assertEquals("Good morning. No good news in your feeds this morning.", none.spokenParts(8)[0])
     }
 
@@ -125,7 +126,8 @@ class BriefingTest {
             entry(2, "b", "Neutral item", 2),                               // not rated: stays
             rated(entry(3, "c", "Village wins prize", 3), 0.7),             // rated positive: first
         )
-        assertEquals(listOf("Village wins prize", "Neutral item"), BriefingBuilder.pick(list, now, goodNewsOnly = true).map { it.title })
+        assertEquals(listOf("Village wins prize"), BriefingBuilder.pick(list, now, mode = NewsMode.GOOD).map { it.title })
+        assertEquals(setOf("Village wins prize", "Neutral item"), BriefingBuilder.pick(list, now, mode = NewsMode.NO_BAD).map { it.title }.toSet())
         assertEquals(3, BriefingBuilder.pick(list, now).size)
         assertEquals("pos", Mood.of(0.15)); assertEquals("neg", Mood.of(-0.15)); assertEquals("neu", Mood.of(0.14)); assertNull(Mood.of(null))
         assertEquals("neg", Mood.effective(entry(1, "x", "Bomb attack", 1)))   // unrated: the word list decides
@@ -150,5 +152,12 @@ class BriefingTest {
         val list = (1..150).map { entry(it, "i$it", "T$it", 24L * 30) } + listOf(entry(200, "r", "Rated", 24L * 30).let { it.copy(stored = it.stored.copy(sent = 0.3)) })
         assertEquals(0, MoodRater.candidates(list, now).size)             // all older than 7 days
         assertEquals(150, MoodRater.candidates(list, now, all = true).size)   // no cap, rated ones skipped
+    }
+
+    @Test fun newsModeSurvivesJsonAndOldFlagMapsToGood() {
+        val b = Briefing(listOf(BriefingItem("S", "T", "", "")), 0, now, mode = NewsMode.NO_BAD)
+        assertEquals(NewsMode.NO_BAD, Briefing.fromJson(b.toJson())!!.mode)
+        assertEquals(NewsMode.GOOD, Briefing.fromJson("""{"items":[],"readingUnread":0,"builtAt":1,"g":true}""")!!.mode)
+        assertEquals(NewsMode.ALL, NewsMode.of("nonsense"))
     }
 }

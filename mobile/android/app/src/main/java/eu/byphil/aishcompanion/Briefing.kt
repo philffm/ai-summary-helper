@@ -11,7 +11,13 @@ data class BriefingItem(val source: String, val title: String, val snippet: Stri
  * No AI is involved; it is built from what the feeds say about themselves, so it works offline and can never fail at alarm time.
  * Pure JVM (no Android classes besides org.json), so it is unit-tested.
  */
-data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "", val extra: String = "", val goodNewsOnly: Boolean = false) {
+/** Which stories the briefing may contain. */
+enum class NewsMode {
+    ALL, NO_BAD, GOOD;
+    companion object { fun of(name: String?): NewsMode = entries.firstOrNull { it.name == name } ?: ALL }
+}
+
+data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "", val extra: String = "", val mode: NewsMode = NewsMode.ALL) {
 
     /** Lines for the screen. */
     fun lines(): List<String> = items.map { "${it.source}: ${it.title}" }
@@ -22,7 +28,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
         val greeting = when { hour < 5 -> "Hello."; hour < 12 -> "Good morning."; hour < 18 -> "Good afternoon."; else -> "Good evening." }
         val parts = ArrayList<String>()
         val tail = BriefingPrompt.chunks(extra)
-        parts += if (items.isEmpty()) "$greeting " + (if (goodNewsOnly) "No good news in your feeds this morning." else "Nothing new in your feeds.") else "$greeting " + (if (items.size == 1) "One new story from your feeds." else "${items.size} new stories from your feeds.")
+        parts += if (items.isEmpty()) "$greeting " + (when (mode) { NewsMode.GOOD -> "No good news in your feeds this morning."; NewsMode.NO_BAD -> "Nothing new without bad news in your feeds this morning."; NewsMode.ALL -> "Nothing new in your feeds." }) else "$greeting " + (if (items.size == 1) "One new story from your feeds." else "${items.size} new stories from your feeds.")
         items.forEachIndexed { i, it ->
             val head = "${i + 1}. ${it.source}: ${endSentence(it.title)}"
             parts += if (it.snippet.isBlank()) head else "$head ${endSentence(it.snippet)}"
@@ -33,7 +39,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
     }
 
     fun toJson(): String = JSONObject()
-        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration).put("x", extra).put("g", goodNewsOnly)
+        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration).put("x", extra).put("g", mode.name)
         .put("items", JSONArray(items.map { JSONObject().put("s", it.source).put("t", it.title).put("n", it.snippet).put("l", it.link) }))
         .toString()
 
@@ -43,7 +49,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
             val a = o.getJSONArray("items")
             Briefing(
                 (0 until a.length()).map { a.getJSONObject(it) }.map { BriefingItem(it.optString("s"), it.optString("t"), it.optString("n"), it.optString("l")) },
-                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"), o.optString("x"), o.optBoolean("g"),
+                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"), o.optString("x"), when (val g = o.opt("g")) { true -> NewsMode.GOOD; is String -> NewsMode.of(g); else -> NewsMode.ALL },
             )
         }.getOrNull()
 
@@ -65,13 +71,18 @@ object BriefingBuilder {
      * Unread stories, newest first, at most [perFeed] per feed and [limit] in all. Takes stories from the last 36 hours;
      * if there are none, from the last 7 days, so a quiet weekend still gives something. Stories without a date are skipped.
      */
-    fun pick(entries: List<FeedEntryRef>, now: Long, limit: Int = MAX_ITEMS, perFeed: Int = PER_FEED, goodNewsOnly: Boolean = false): List<BriefingItem> {
+    fun pick(entries: List<FeedEntryRef>, now: Long, limit: Int = MAX_ITEMS, perFeed: Int = PER_FEED, mode: NewsMode = NewsMode.ALL): List<BriefingItem> {
         val unread = entries.filter { !it.stored.read && it.stored.item.title.isNotBlank() && it.stored.item.published > 0 }
             .sortedByDescending { it.stored.item.published }
             .let { list ->
-                if (!goodNewsOnly) list
-                // Good news only: nothing rated heavy (by the model, else by the word list); stories rated positive come first, then the rest.
-                else list.filter { Mood.effective(it) != "neg" }.sortedBy { if (Mood.effective(it) == "pos") 0 else 1 }
+                // "Heavy" is the model's rating, else the word list. No bad news: those are left out. Good only: just stories rated positive;
+                // when there are none, the best that is left (nothing heavy, positive first), so the briefing is never empty for lack of ratings.
+                when (mode) {
+                    NewsMode.ALL -> list
+                    NewsMode.NO_BAD -> list.filter { Mood.effective(it) != "neg" }
+                    NewsMode.GOOD -> list.filter { Mood.effective(it) == "pos" }
+                        .ifEmpty { list.filter { Mood.effective(it) != "neg" } }
+                }
             }
         fun take(maxAge: Long): List<BriefingItem> {
             val perCount = HashMap<String, Int>()
@@ -90,8 +101,8 @@ object BriefingBuilder {
         return take(FRESH_MS).ifEmpty { take(FALLBACK_MS) }
     }
 
-    fun build(entries: List<FeedEntryRef>, readingUnread: Int, now: Long, goodNewsOnly: Boolean = false): Briefing =
-        Briefing(pick(entries, now, goodNewsOnly = goodNewsOnly), readingUnread, now, goodNewsOnly = goodNewsOnly)
+    fun build(entries: List<FeedEntryRef>, readingUnread: Int, now: Long, mode: NewsMode = NewsMode.ALL): Briefing =
+        Briefing(pick(entries, now, mode = mode), readingUnread, now, mode = mode)
 
     private fun oneLine(s: String): String = s.replace(Regex("\\s+"), " ").trim()
 
@@ -122,7 +133,7 @@ object BriefingPrompt {
     const val MIN_REPLY = 40
     const val MAX_REPLY = 1800
 
-    fun user(items: List<BriefingItem>, readingUnread: Int, hour: Int, goodNewsOnly: Boolean = false): String {
+    fun user(items: List<BriefingItem>, readingUnread: Int, hour: Int, mode: NewsMode = NewsMode.ALL): String {
         val time = when { hour < 12 -> "morning"; hour < 18 -> "afternoon"; else -> "evening" }
         val sb = StringBuilder("Time of day: $time. Begin with a short greeting that fits it.\nStories:\n")
         items.forEachIndexed { i, it ->
@@ -130,7 +141,8 @@ object BriefingPrompt {
             if (it.snippet.isNotBlank()) sb.append(" - ").append(it.snippet.take(MAX_SNIPPET))
             sb.append('\n')
         }
-        if (goodNewsOnly) sb.append("Good news only: mention only positive, constructive or simply interesting stories. Leave out anything about war, violence, crime, disasters, accidents, illness or death, even if it is listed.\n")
+        if (mode == NewsMode.NO_BAD) sb.append("Leave out anything about war, violence, crime, disasters, accidents, illness or death, even if it is listed; keep the other stories.\n")
+        if (mode == NewsMode.GOOD) sb.append("Good news only: mention only positive, constructive or simply interesting stories. Leave out anything about war, violence, crime, disasters, accidents, illness or death, even if it is listed.\n")
         if (readingUnread > 0) sb.append("End by saying that $readingUnread unread ").append(if (readingUnread == 1) "article is" else "articles are").append(" waiting in the reading list.\n")
         return sb.toString()
     }
