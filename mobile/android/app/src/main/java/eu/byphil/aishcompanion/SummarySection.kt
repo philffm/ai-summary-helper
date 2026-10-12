@@ -2,6 +2,10 @@ package eu.byphil.aishcompanion
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 /** Settings group for what the on-device model writes: the language of summaries and recaps, key-passage highlights, reading aloud. */
 @Composable
@@ -25,7 +29,7 @@ fun FeedsCard(model: AppModel) {
 /** Settings group for comfort: which hand holds the phone, and how large the reading text is. */
 @Composable
 fun AccessibilityCard(model: AppModel) {
-    var scale by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(model.store.readerScale) }
+    var scale by remember { mutableStateOf(model.store.readerScale) }
     SettingsGroup {
         ChoiceRow("🖐 Hand", "The main actions in bottom bars sit on this side, within reach of your thumb.", listOf("right" to "Right-handed", "left" to "Left-handed"), if (model.leftHanded) "left" else "right") { model.changeLeftHanded(it == "left") }
         ChoiceRow("🔠 Reading text size", "Applies to articles in the reading list.", listOf("0.9" to "Small", "1.0" to "Normal", "1.2" to "Large", "1.5" to "Huge"),
