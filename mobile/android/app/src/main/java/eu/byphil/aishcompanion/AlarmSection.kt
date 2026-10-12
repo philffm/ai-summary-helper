@@ -100,6 +100,13 @@ fun AlarmCard(model: AppModel) {
                     Text("Read the briefing aloud after Stop", Modifier.weight(1f))
                     Switch(checked = a.readAloud, onCheckedChange = { update(a.copy(readAloud = it)) })
                 }
+                val ringtones = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
+                    val picked: Uri? = r.data?.let { d -> if (android.os.Build.VERSION.SDK_INT >= 33) d.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) else @Suppress("DEPRECATION") d.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI) }
+                    if (r.resultCode == android.app.Activity.RESULT_OK && picked != null) {
+                        // the phone's default alarm stays "default", so it follows the system setting
+                        update(a.copy(sound = if (picked == android.provider.Settings.System.DEFAULT_ALARM_ALERT_URI) "" else picked.toString()))
+                    }
+                }
                 val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
                     if (uri != null) {
                         runCatching { context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
@@ -108,9 +115,19 @@ fun AlarmCard(model: AppModel) {
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text("Wake-up sound")
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                        OutlinedButton(onClick = { picker.launch(arrayOf("audio/*")) }, Modifier.weight(1f)) { Text(soundName(context, a.sound), maxLines = 1) }
-                        if (a.sound.isNotBlank()) TextButton(onClick = { update(a.copy(sound = "")) }) { Text("Reset") }
+                    Text(soundName(context, a.sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = {
+                            val current = if (a.sound.isBlank()) android.media.RingtoneManager.getActualDefaultRingtoneUri(context, android.media.RingtoneManager.TYPE_ALARM) else Uri.parse(a.sound)
+                            ringtones.launch(Intent(android.media.RingtoneManager.ACTION_RINGTONE_PICKER)
+                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TYPE, android.media.RingtoneManager.TYPE_ALARM)
+                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TITLE, "Wake-up sound")
+                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
+                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current))
+                        }) { Text("Alarm sounds") }
+                        OutlinedButton(onClick = { picker.launch(arrayOf("audio/*")) }) { Text("Music file…") }
+                        if (a.sound.isNotBlank()) TextButton(onClick = { update(a.copy(sound = "")) }) { Text("Phone default") }
                     }
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
@@ -190,6 +207,7 @@ fun AlarmCard(model: AppModel) {
 /** The name of the chosen sound file, or a label for the phone's alarm sound. */
 private fun soundName(context: android.content.Context, sound: String): String {
     if (sound.isBlank()) return "Phone alarm sound"
+    runCatching { android.media.RingtoneManager.getRingtone(context, Uri.parse(sound))?.getTitle(context) }.getOrNull()?.takeIf { it.isNotBlank() && !it.startsWith("content:") }?.let { return it }
     return runCatching {
         context.contentResolver.query(Uri.parse(sound), arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null)?.use { c -> if (c.moveToFirst()) c.getString(0) else null }
     }.getOrNull() ?: "Chosen sound"
