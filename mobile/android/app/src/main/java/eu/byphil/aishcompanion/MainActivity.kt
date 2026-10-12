@@ -81,9 +81,18 @@ class MainActivity : ComponentActivity() {
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
         setContent {
             AishTheme {
-                Surface(Modifier.fillMaxSize()) { App(model, onScan = { onResult -> scan(onResult) }, onReady = { Guard.end(this, "start") }) }
+                Surface(Modifier.fillMaxSize()) {
+                    App(model, onScan = { onResult -> scan(onResult) }, onReady = { Guard.end(this, "start") },
+                        startUrl = intent?.getStringExtra(EXTRA_OPEN_URL).orEmpty(), startSummarize = intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true)
+                }
             }
         }
+    }
+
+    companion object {
+        /** From the share sheet: open this page in the app, and with [EXTRA_SUMMARIZE] start the on-device summary once it has loaded. */
+        const val EXTRA_OPEN_URL = "eu.byphil.aishcompanion.OPEN_URL"
+        const val EXTRA_SUMMARIZE = "eu.byphil.aishcompanion.SUMMARIZE"
     }
 
     private fun scan(onResult: (String?) -> Unit) {
@@ -101,16 +110,17 @@ private enum class Tab(val label: String, val icon: ImageVector) {
 }
 
 @Composable
-private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: () -> Unit) {
+private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: () -> Unit, startUrl: String = "", startSummarize: Boolean = false) {
     androidx.compose.runtime.LaunchedEffect(Unit) { onReady() }
     // All of this is saved, so it also survives the system restarting the activity; it is not touched by folding or unfolding.
     var tab by rememberSaveable { mutableIntStateOf(if (model.pairing == null && model.feeds.isEmpty()) Tab.Settings.ordinal else Tab.Feeds.ordinal) }
     var feedSource by rememberSaveable { mutableStateOf("all") }
     var feedSel by rememberSaveable { mutableStateOf("") }
     var articleSel by rememberSaveable { mutableStateOf("") }
-    var webUrl by rememberSaveable { mutableStateOf("") }
+    var webUrl by rememberSaveable { mutableStateOf(startUrl) }
+    var autoSummarize by rememberSaveable { mutableStateOf(startSummarize) }
 
-    if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }) { webUrl = "" }; return }
+    if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }) { webUrl = ""; autoSummarize = false }; return }
 
     val wide = isWide()
     val feedUnread = model.entries.count { !it.stored.read }

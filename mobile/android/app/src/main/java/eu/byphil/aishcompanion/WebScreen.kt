@@ -50,6 +50,7 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
@@ -62,7 +63,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
@@ -74,6 +75,7 @@ fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (Stri
     var busy by remember { mutableStateOf(false) }
     var sent by remember { mutableStateOf(false) }
     var saved by remember { mutableStateOf(false) }
+    var autoPending by rememberSaveable { mutableStateOf(autoSummarize) }   // from the share sheet: summarize once the page has loaded
     var summaryTitle by remember { mutableStateOf("") }
     var summaryUrl by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -168,7 +170,10 @@ fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (Stri
                             return true
                         }
                         override fun onPageStarted(view: WebView, u: String, favicon: Bitmap?) { shown = u; canGoBack = view.canGoBack() }
-                        override fun onPageFinished(view: WebView, u: String) { shown = u; canGoBack = view.canGoBack() }
+                        override fun onPageFinished(view: WebView, u: String) {
+                            shown = u; canGoBack = view.canGoBack()
+                            if (autoPending) { autoPending = false; view.postDelayed({ summarize() }, 800) }   // a moment for scripts to fill the page
+                        }
                     }
                     webChromeClient = object : WebChromeClient() {
                         override fun onProgressChanged(view: WebView, newProgress: Int) { progress = newProgress / 100f }
