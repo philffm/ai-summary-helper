@@ -87,3 +87,13 @@ assert(!p2.includes(t.writeToken) && !p2.includes(s.readToken), 'no write token 
 assert.deepEqual(C.parsePairingPayload(p2).toPhone, { inboxId: t.inboxId, readToken: t.readToken });
 assert.throws(() => C.parsePairingPayload(p1 + '&ti=short&tr=x'), /Invalid/);
 console.log('ok');
+
+// 7) the AI summary is stored as HTML: the phone gets readable text (bullets as "- ", no tags)
+{
+    const parse = (h) => new DOMParser().parseFromString(h, 'text/html').body;
+    assert.equal(B.summaryToText('<p>Intro <b>bold</b></p><ul><li>One &amp; two</li><li>Three</li></ul>', parse), 'Intro bold\n\n- One & two\n- Three');
+    assert.equal(B.summaryToText('- already\n- plain', parse), '- already\n- plain');
+    assert.equal(B.summaryToText('', parse), '');
+    const af2 = B.articleForPhone({ url: 'https://example.com/a', title: 'T', content: '<p>x</p>', summary: '<ul><li>A</li></ul>' }, parse);
+    assert.equal(af2.summary, '- A');
+}

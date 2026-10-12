@@ -72,6 +72,27 @@ export function cleanBlocks(list) {
     return out;
 }
 
+/**
+ * The AI summary is stored as HTML (lists, bold, headings). The phone shows plain text, so it becomes lines: list items start with
+ * "- ", other blocks are paragraphs separated by a blank line.
+ */
+export function summaryToText(summary, parseHtml) {
+    const s = String(summary || '').trim();
+    if (!s) return '';
+    if (!/<[a-z][\s\S]*>/i.test(s)) return s;
+    let blocks;
+    try { blocks = parseHtml ? htmlToBlocks(parseHtml(s)) : textToBlocks(s.replace(/<[^>]*>/g, ' ')); } catch (_) { blocks = textToBlocks(s.replace(/<[^>]*>/g, ' ')); }
+    const lines = [];
+    blocks.forEach(([type, text], i) => {
+        if (type === 'li') lines.push('- ' + text);
+        else {
+            if (i > 0 && lines.length && lines[lines.length - 1] !== '') lines.push('');
+            lines.push(text, '');
+        }
+    });
+    return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
 /** The article fields the phone needs, from a saved article record. `parseHtml(html)` returns a DOM root (DOMParser in the browser). */
 export function articleForPhone(article, parseHtml) {
     const a = article || {};
@@ -89,7 +110,7 @@ export function articleForPhone(article, parseHtml) {
         site,
         byline: squash(a.byline || a.author),
         lang: squash(a.language || a.lang || a.summaryLanguage).slice(0, 20),
-        summary: String(a.summary || '').trim(),
+        summary: summaryToText(a.summary, parseHtml),
         blocks,
     };
 }
