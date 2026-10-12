@@ -4594,5 +4594,14 @@
   },
   "f_used_8faf": {
     "message": "已使用 {n}%"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "要从收件箱中移除此链接吗？它将被删除且无法恢复。"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "保存耗时过长（页面非常大）。请重试，或打开页面后直接总结。"
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "页面没有响应（被阻止或需要登录）。请打开后重试。"
   }
 }

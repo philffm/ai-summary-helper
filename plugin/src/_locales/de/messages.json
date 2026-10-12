@@ -4594,5 +4594,14 @@
   },
   "f_used_8faf": {
     "message": "{n} % verbraucht"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Diesen Link aus dem Posteingang entfernen? Er wird gelöscht und kann nicht wiederhergestellt werden."
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "Das Speichern hat zu lange gedauert (sehr umfangreiche Seite). Versuche es erneut oder öffne sie und fasse sie zusammen."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "Die Seite hat nicht geantwortet (blockiert oder Anmeldung nötig). Öffne sie und versuche es erneut."
   }
 }

@@ -4594,5 +4594,14 @@
   },
   "f_used_8faf": {
     "message": "{n} % usado"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Remover esta ligação da caixa de entrada? É eliminada e não pode ser restaurada."
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "Guardar demorou demasiado (página muito pesada). Tente novamente ou abra-a e resuma-a."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "A página não respondeu (bloqueada ou requer início de sessão). Abra-a e tente novamente."
   }
 }

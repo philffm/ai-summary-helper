@@ -4576,5 +4576,14 @@
   },
   "f_used_8faf": {
     "message": "{n}% 사용됨"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "이 링크를 받은 편지함에서 제거할까요? 삭제되며 복구할 수 없습니다."
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "저장하는 데 너무 오래 걸렸습니다(매우 무거운 페이지). 다시 시도하거나 페이지를 열어 요약하세요."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "페이지가 응답하지 않았습니다(차단되었거나 로그인이 필요함). 열어 본 뒤 다시 시도하세요."
   }
 }

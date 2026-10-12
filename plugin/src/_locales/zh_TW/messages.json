@@ -4594,5 +4594,14 @@
   },
   "f_used_8faf": {
     "message": "已使用 {n}%"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "要從收件匣移除此連結嗎？它會被刪除且無法復原。"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "儲存花費太久（頁面非常大）。請重試，或開啟頁面後直接摘要。"
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "頁面沒有回應（被封鎖或需要登入）。請開啟後重試。"
   }
 }

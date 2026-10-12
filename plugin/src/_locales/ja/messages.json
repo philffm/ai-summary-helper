@@ -4594,5 +4594,14 @@
   },
   "f_used_8faf": {
     "message": "{n}%使用済み"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "このリンクを受信箱から削除しますか？削除すると元に戻せません。"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "保存に時間がかかりすぎました（非常に重いページ）。もう一度試すか、ページを開いて要約してください。"
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "ページが応答しませんでした（ブロックされているか、ログインが必要です）。開いてからもう一度お試しください。"
   }
 }

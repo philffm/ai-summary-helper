@@ -4594,5 +4594,14 @@
   },
   "f_used_8faf": {
     "message": "{n} % utilisé"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Retirer ce lien de votre boîte de réception ? Il est supprimé et ne peut pas être restauré."
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "L'enregistrement a pris trop de temps (page très lourde). Réessayez, ou ouvrez-la et résumez-la."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "La page n'a pas répondu (bloquée ou connexion requise). Ouvrez-la et réessayez."
   }
 }
