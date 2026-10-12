@@ -1,6 +1,16 @@
 package eu.byphil.aishcompanion
 
 import androidx.compose.foundation.Image
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -65,17 +75,52 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
         if (parsed.canSync) scope.launch { model.syncFeeds() }
     }
 
+    var panel by rememberSaveable { mutableStateOf<String?>(null) }
+    var query by rememberSaveable { mutableStateOf("") }
+    BackHandler(enabled = panel != null) { panel = null }
+
+    val rows = listOf(
+        SettingsRow("link", "ACCOUNT", "🔗", "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
+        SettingsRow("ai", "SUMMARIZING", "🤖", "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
+        SettingsRow("feeds", "FEEDS", "📰", "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
+        SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock"),
+        SettingsRow("pro", "APP", "⭐", "Pro", "Extras", "pro license extras"),
+    )
+    val title = rows.firstOrNull { it.id == panel }?.title ?: "Settings"
+
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
-        topBar = { TopAppBar(title = { Text("Settings") }) },
+        topBar = {
+            TopAppBar(
+                title = { Text(title) },
+                navigationIcon = { if (panel != null) IconButton(onClick = { panel = null }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
+            )
+        },
     ) { padding ->
         Box(Modifier.padding(padding).fillMaxSize(), contentAlignment = Alignment.TopCenter) {
             Column(
-                Modifier.fillMaxSize().padding(horizontal = 0.dp).verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp),
+                Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(14.dp),
             ) {
                 Column(Modifier.widthLimit(), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    when (panel) {
+                        null -> {
+                            OutlinedTextField(
+                                query, { query = it }, Modifier.fillMaxWidth(), singleLine = true, placeholder = { Text("Search settings…") },
+                                leadingIcon = { Icon(Icons.Filled.Search, null) }, shape = RoundedCornerShape(28.dp),
+                                trailingIcon = { if (query.isNotEmpty()) IconButton(onClick = { query = "" }) { Icon(Icons.Filled.Close, contentDescription = "Clear") } },
+                            )
+                            val q = query.trim().lowercase()
+                            val shown = if (q.isEmpty()) rows else rows.filter { (it.title + " " + it.sub + " " + it.keywords).lowercase().let { t -> q.split(" ").all { w -> w in t } } }
+                            if (q.isNotEmpty() && shown.isEmpty()) Text("Nothing matches that.", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(8.dp))
+                            var last = ""
+                            for (r in shown) {
+                                if (q.isEmpty() && r.group != last) { SettingsCaption(r.group); last = r.group }
+                                NavRow(r) { panel = r.id }
+                            }
+                        }
+                        "link" -> {
                     if (p == null) {
                         Header()
                         Steps("Set up once", listOf(
@@ -118,18 +163,32 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                         model.store.lastError?.let { InfoCard("Last problem", it, isError = true) }
                         TextButton(onClick = { model.applyPairing(null) }) { Text("Unpair this phone") }
                     }
-                    SectionTitle("Morning alarm")
-                    AlarmCard(model)
-                    SectionTitle("On-device AI")
-                    ModelCard(model)
-                    SummaryCard(model)
-                    SectionTitle("Feeds")
-                    FeedsCard(model)
-                    SectionTitle("Pro")
-                    ExtrasCard(model)
+                        }
+                        "ai" -> { ModelCard(model); SummaryCard(model) }
+                        "feeds" -> FeedsCard(model)
+                        "alarm" -> AlarmCard(model)
+                        "pro" -> ExtrasCard(model)
+                    }
                     error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
                 }
             }
+        }
+    }
+}
+
+private class SettingsRow(val id: String, val group: String, val emoji: String, val title: String, val sub: String, val keywords: String)
+
+/** One row of the settings home, as in the extension: emoji, title with a live subtitle, chevron. */
+@Composable
+private fun NavRow(r: SettingsRow, onClick: () -> Unit) {
+    SettingsCard {
+        Row(Modifier.clickable(onClick = onClick).padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+            Text(r.emoji, style = MaterialTheme.typography.titleLarge)
+            Column(Modifier.weight(1f)) {
+                Text(r.title, style = MaterialTheme.typography.titleMedium)
+                Text(r.sub, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+            }
+            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
