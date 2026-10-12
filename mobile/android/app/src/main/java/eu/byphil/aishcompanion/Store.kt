@@ -30,6 +30,17 @@ class Store(context: Context) {
         get() = prefs.getString("license", "") ?: ""
         set(v) = prefs.edit().putString("license", v.trim().take(200)).apply()
 
+    /** The day recap at the top of Feeds: text, when it was written, how many stories went in. */
+    var recapText: String
+        get() = prefs.getString("recap.text", "") ?: ""
+        set(v) = prefs.edit().putString("recap.text", v).apply()
+    var recapAt: Long
+        get() = prefs.getLong("recap.at", 0)
+        set(v) = prefs.edit().putLong("recap.at", v).apply()
+    var recapCount: Int
+        get() = prefs.getInt("recap.count", 0)
+        set(v) = prefs.edit().putInt("recap.count", v).apply()
+
     /** The briefing prepared before the alarm, as JSON (see [Briefing]). */
     var briefingJson: String?
         get() = prefs.getString("briefing", null)

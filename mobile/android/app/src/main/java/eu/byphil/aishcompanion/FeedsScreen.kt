@@ -185,6 +185,9 @@ fun FeedsScreen(
                                 if (searchActive) "Nothing in your feeds matches that." else if (favOnly) "Tap the star on an item to keep it here." else if (unreadOnly) "Turn off the Unread filter to see older items." else "Pull down to refresh.",
                             )
                             else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                if (!searchActive && source == "all") item(key = "recap") {
+                                    RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } }
+                                }
                                 items(visible, key = { selectionKey(it.feed.url, it.stored.item.id) }) { e ->
                                     ItemCard(e, selected = selectionKey(e.feed.url, e.stored.item.id) == selected, onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } }) {
                                         onSelect(selectionKey(e.feed.url, e.stored.item.id))
@@ -345,6 +348,34 @@ private fun SyncCard(model: AppModel, onAdd: () -> Unit) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 FilledTonalButton(onClick = onAdd) { Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Text("  Add feed") }
                 if (canSync) OutlinedButton(onClick = { scope.launch { model.syncFeeds() } }, enabled = !model.syncing) { Icon(Icons.Filled.Sync, null, Modifier.size(18.dp)); Text(if (model.syncing) "  Syncing…" else "  Sync now") }
+            }
+        }
+    }
+}
+
+/** "Today in your feeds": the recap written on the phone, with a refresh button. Old recaps stay until the user refreshes. */
+@Composable
+private fun RecapCard(model: AppModel, onRefresh: () -> Unit) {
+    var expanded by remember { mutableStateOf(false) }
+    val text = model.recapText
+    val today = java.time.Instant.ofEpochMilli(model.recapAt).atZone(java.time.ZoneId.systemDefault()).toLocalDate() == java.time.LocalDate.now()
+    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("Today in your feeds", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                if (model.recapBusy) androidx.compose.material3.CircularProgressIndicator(Modifier.size(24.dp), strokeWidth = 2.dp)
+                else IconButton(onClick = onRefresh) { Icon(Icons.Filled.Refresh, contentDescription = "Refresh the recap") }
+            }
+            if (text.isBlank()) Text(if (model.recapBusy) "Writing it on this phone… up to a minute." else "Tap refresh to have the on-device model recap today's stories.", style = MaterialTheme.typography.bodyMedium)
+            else {
+                Text(text, style = MaterialTheme.typography.bodyMedium, maxLines = if (expanded) Int.MAX_VALUE else 6, overflow = TextOverflow.Ellipsis)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        (if (today) "Updated " else "From ") + relativeTime(model.recapAt) + " · " + model.recapCount + " stories" + (if (today) "" else ". Refresh for today."),
+                        style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f),
+                    )
+                    TextButton(onClick = { expanded = !expanded }) { Text(if (expanded) "Less" else "More") }
+                }
             }
         }
     }

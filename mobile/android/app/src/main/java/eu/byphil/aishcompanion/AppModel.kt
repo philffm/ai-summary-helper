@@ -144,6 +144,33 @@ class AppModel(context: Context) {
         if (pairing?.canSync == true) syncFeeds()
     }
 
+    var recapText by mutableStateOf(store.recapText)
+    var recapAt by mutableStateOf(store.recapAt)
+    var recapCount by mutableStateOf(store.recapCount)
+    var recapBusy by mutableStateOf(false)
+
+    /** Writes the day recap with the on-device model (never automatically: it takes a while and uses battery). Returns a short line only when something is wrong. */
+    suspend fun refreshRecap(): String? = withContext(Dispatchers.Default) {
+        if (!LocalLlm.installed(app)) "Download the on-device AI in Settings to write the recap."
+        else {
+            val items = DayRecap.pick(feedStore.everything(), System.currentTimeMillis())
+            if (items.isEmpty()) "No stories from today yet. Pull down to refresh."
+            else {
+                recapBusy = true
+                try {
+                    val text = DayRecap.cleanReply(LocalLlm.generate(app, DayRecap.SYSTEM, DayRecap.user(items)))
+                    if (text == null) "The model could not write the recap. Try again."
+                    else {
+                        val at = System.currentTimeMillis()
+                        store.recapText = text; store.recapAt = at; store.recapCount = items.size
+                        recapText = text; recapAt = at; recapCount = items.size
+                        null
+                    }
+                } finally { recapBusy = false }
+            }
+        }
+    }
+
     /** Rates unrated recent items by mood with the on-device model. Returns a short line for the UI. */
     suspend fun rateMood(): String = withContext(Dispatchers.Default) {
         if (!LocalLlm.installed(app)) "Download the on-device AI in Settings first."
