@@ -541,7 +541,7 @@ export function initMainScreen(ui) {
         if (conversation && !conversation.detached) return;
         let list = [];
         try { list = await StorageManager.getArticlesIndex(); } catch (_) { return; }
-        const hit = (list || []).filter(a => a && a.id && !a.feedStub && a.url && samePage(a.url, tab.url) && Date.now() - new Date(a.timestamp).getTime() < RESUME_WINDOW_MS)
+        const hit = (list || []).filter(a => isSummarized(a) && a.id && a.url && samePage(a.url, tab.url) && Date.now() - new Date(a.timestamp).getTime() < RESUME_WINDOW_MS)
             .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))[0];
         if (!hit || composer.state !== 'fetch') return;
         const bubble = [...feed.querySelectorAll('.summary-bubble')].find(b => b.dataset.id === hit.id);
@@ -836,8 +836,11 @@ export function initMainScreen(ui) {
         scrollFeed();
     }
 
+    /** The Summarize screen lists real summaries only: pages saved without AI ("Save only") and bare feed items live in History. */
+    const isSummarized = (a) => !!a && !a.feedStub && !(a.savedOnly && !String(a.summary || '').trim());
+
     const loadFeed = async () => {
-        const articles = await StorageManager.getArticlesIndex();
+        const articles = (await StorageManager.getArticlesIndex()).filter(isSummarized);
         feed.innerHTML = '';
         if (articles && articles.length > 0) {
             if (recentEntry) recentEntry.style.display = 'none';
