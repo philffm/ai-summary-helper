@@ -74,6 +74,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -118,6 +119,8 @@ fun FeedsScreen(
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var favOnly by remember { mutableStateOf(false) }
+    var groupOn by rememberSaveable { mutableStateOf(true) }   // stack items about the same story
+    var openStacks by remember { mutableStateOf(setOf<String>()) }
     var searching by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
     val searchFocus = remember { FocusRequester() }
@@ -139,6 +142,7 @@ fun FeedsScreen(
         ?: model.entries.firstOrNull { selectionKey(it.feed.url, it.stored.item.id) == selected }
 
     androidx.activity.compose.BackHandler(enabled = picked.isNotEmpty()) { picked = emptySet() }
+    val stacks = remember(visible, groupOn, searchActive) { if (groupOn && !searchActive) FeedStacks.stack(visible) else visible.map { Stack(it, emptyList()) } }
     val chosen = visible.filter { selectionKey(it.feed.url, it.stored.item.id) in picked }
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -205,6 +209,7 @@ fun FeedsScreen(
                         Column(Modifier.fillMaxSize()) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                FilterChip(selected = groupOn, onClick = { groupOn = !groupOn }, label = { Text("Group similar") })
                                 FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
                                     FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
@@ -226,17 +231,32 @@ fun FeedsScreen(
                                 if (!searchActive && source == "all") item(key = "recap") {
                                     RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } }
                                 }
-                                items(visible, key = { selectionKey(it.feed.url, it.stored.item.id) }) { e ->
-                                    val key = selectionKey(e.feed.url, e.stored.item.id)
-                                    ItemCard(
-                                        e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
-                                        onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
-                                        onLong = { picked = if (key in picked) picked - key else picked + key },
-                                    ) {
-                                        if (picked.isNotEmpty()) picked = if (key in picked) picked - key else picked + key
-                                        else {
-                                            onSelect(key)
-                                            scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
+                                items(stacks, key = { selectionKey(it.lead.feed.url, it.lead.stored.item.id) }) { st ->
+                                    val leadKey = selectionKey(st.lead.feed.url, st.lead.stored.item.id)
+                                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                        for (e in listOf(st.lead) + (if (leadKey in openStacks) st.others else emptyList())) {
+                                            val key = selectionKey(e.feed.url, e.stored.item.id)
+                                            ItemCard(
+                                                e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
+                                                onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
+                                                onLong = { picked = if (key in picked) picked - key else picked + key },
+                                            ) {
+                                                if (picked.isNotEmpty()) picked = if (key in picked) picked - key else picked + key
+                                                else {
+                                                    onSelect(key)
+                                                    scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
+                                                }
+                                            }
+                                        }
+                                        if (st.others.isNotEmpty()) {
+                                            val open = leadKey in openStacks
+                                            TextButton(onClick = { openStacks = if (open) openStacks - leadKey else openStacks + leadKey }) {
+                                                Text(
+                                                    if (open) "Show fewer" else st.others.size.toString() + " more on this story · " +
+                                                        st.others.map { it.feed.name }.distinct().take(3).joinToString(", "),
+                                                    maxLines = 1, overflow = TextOverflow.Ellipsis,
+                                                )
+                                            }
                                         }
                                     }
                                 }

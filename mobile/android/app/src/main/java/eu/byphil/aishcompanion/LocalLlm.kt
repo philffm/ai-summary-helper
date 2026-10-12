@@ -18,7 +18,9 @@ object LocalLlm {
      * Loads the model once and lets [block] ask it several questions: `ask(system, prompt)` returns the reply, or null when that
      * question failed. Returns false when the model is missing or could not be loaded. The model is released afterwards.
      */
-    fun session(context: Context, block: (ask: (String, String) -> String?) -> Unit): Boolean {
+    fun session(context: Context, block: (ask: (String, String) -> String?) -> Unit): Boolean = synchronized(this) { sessionLocked(context, block) }   // one model in memory at a time
+
+    private fun sessionLocked(context: Context, block: (ask: (String, String) -> String?) -> Unit): Boolean {
         val store = ModelStore.of(context)
         if (!store.installed()) return false
         var engine: Engine? = null

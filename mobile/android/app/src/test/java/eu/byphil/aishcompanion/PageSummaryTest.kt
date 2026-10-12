@@ -71,3 +71,26 @@ class PageSummaryTest {
         assertEquals("S", PageSummary.shareText("", "S", ""))
     }
 }
+
+class PageSummaryExtrasTest {
+    private val page = Page("T", listOf("p" to "The city council voted on Tuesday to approve the new budget after a long debate.", "p" to "Opponents said the plan ignores housing costs for families in the north."))
+
+    @org.junit.Test fun passagesMustBeCopiedFromThePage() {
+        val reply = "1. \"The city council voted on Tuesday to approve the new budget after a long debate.\"\n- Opponents said the plan   ignores housing costs for families in the north.\n- This sentence was invented by the model entirely."
+        val v = PageSummary.validPassages(reply, page)
+        org.junit.Assert.assertEquals(2, v.size)
+        org.junit.Assert.assertTrue(v[0].startsWith("The city council"))
+    }
+
+    @org.junit.Test fun highlightsGoIntoTheArticleAsGhosts() {
+        val json = PageSummary.articleJson("https://x.test/a", page, "- point", 1L, listOf("The city council voted on Tuesday to approve the new budget after a long debate."))
+        val a = ArticleCodec.parse(json, "local-0123456789abcdef")
+        org.junit.Assert.assertEquals(1, a.highlights.size)
+        org.junit.Assert.assertTrue(a.highlights[0].ghost)
+    }
+
+    @org.junit.Test fun languageRule() {
+        org.junit.Assert.assertTrue(SummaryLangs.rule("").contains("language of the page"))
+        org.junit.Assert.assertTrue(SummaryLangs.rule("de").contains("German"))
+    }
+}

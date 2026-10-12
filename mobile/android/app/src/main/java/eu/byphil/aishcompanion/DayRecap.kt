@@ -28,7 +28,7 @@ object DayRecap {
         return out
     }
 
-    const val SYSTEM = "You write a short recap of today's news from a list of headlines. Reply with plain text only: no title, no markdown, no emojis."
+    fun system(lang: String) = "You write a short recap of today's news from a list of headlines. " + SummaryLangs.rule(lang, "the headlines") + " Reply with plain text only: no title, no markdown, no emojis."
 
     fun user(items: List<FeedEntryRef>): String {
         val list = items.joinToString("\n") { e ->

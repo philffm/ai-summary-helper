@@ -30,6 +30,16 @@ class Store(context: Context) {
         get() = prefs.getString("license", "") ?: ""
         set(v) = prefs.edit().putString("license", v.trim().take(200)).apply()
 
+    /** Language of summaries and recaps made on the phone: a code from [SummaryLangs], "" = the language of the page. */
+    var summaryLang: String
+        get() = prefs.getString("summary.lang", "") ?: ""
+        set(v) = prefs.edit().putString("summary.lang", v).apply()
+
+    /** Whether summaries made on the phone also get AI "ghost" highlights (key passages marked in the text, as for articles sent from the browser). */
+    var ghostMarks: Boolean
+        get() = prefs.getBoolean("summary.ghost", true)
+        set(v) = prefs.edit().putBoolean("summary.ghost", v).apply()
+
     /** The day recap at the top of Feeds: text, when it was written, how many stories went in. */
     var recapText: String
         get() = prefs.getString("recap.text", "") ?: ""

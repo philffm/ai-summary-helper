@@ -56,11 +56,30 @@ class AppModel(context: Context) {
 
     /** Puts a page summarized on the phone into the reading list (marked as local; same link replaces the old entry). */
     suspend fun saveSummary(url: String, page: Page, summary: String) = withContext(Dispatchers.IO) {
-        val json = PageSummary.articleJson(url, page, summary, System.currentTimeMillis())
+        val now = System.currentTimeMillis()
         val id = PageSummary.localId(url)
-        articles.save(ArticleCodec.parse(json, id), json, System.currentTimeMillis())
+        val json = PageSummary.articleJson(url, page, summary, now)
+        articles.save(ArticleCodec.parse(json, id), json, now)
         articleList = articles.list()
+        if (ghostMarks && LocalLlm.installed(app)) {
+            // key passages are marked a little later, so the summary shows up at once; same entry, same time, now with highlights
+            background.launch {
+                val found = PageSummary.passages(app, page)
+                if (found.isNotEmpty()) {
+                    val withMarks = PageSummary.articleJson(url, page, summary, now, found)
+                    articles.save(ArticleCodec.parse(withMarks, id), withMarks, now)
+                    articleList = articles.list()
+                }
+            }
+        }
     }
+
+    private val background = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.SupervisorJob() + Dispatchers.Default)
+
+    var summaryLang by mutableStateOf(store.summaryLang)
+    var ghostMarks by mutableStateOf(store.ghostMarks)
+    fun changeSummaryLang(code: String) { store.summaryLang = code; summaryLang = code }
+    fun changeGhostMarks(on: Boolean) { store.ghostMarks = on; ghostMarks = on }
 
     fun applyPairing(p: Pairing?) {
         store.pairing = p; store.lastError = null; pairing = p
@@ -158,7 +177,7 @@ class AppModel(context: Context) {
             else {
                 recapBusy = true
                 try {
-                    val text = DayRecap.cleanReply(LocalLlm.generate(app, DayRecap.SYSTEM, DayRecap.user(items)))
+                    val text = DayRecap.cleanReply(LocalLlm.generate(app, DayRecap.system(store.summaryLang), DayRecap.user(items)))
                     if (text == null) "The model could not write the recap. Try again."
                     else {
                         val at = System.currentTimeMillis()
