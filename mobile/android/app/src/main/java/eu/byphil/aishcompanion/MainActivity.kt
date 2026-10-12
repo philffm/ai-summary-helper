@@ -23,6 +23,7 @@ import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
@@ -133,7 +134,10 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     ) { padding ->
         Row(Modifier.padding(padding).fillMaxSize()) {
             if (wide) NavigationRail {
+                // The items sit in the vertical middle of the rail, not at the top: equal spacers above and below.
+                Spacer(Modifier.weight(1f))
                 Tab.entries.forEach { t -> NavigationRailItem(selected = tab == t.ordinal, onClick = { tab = t.ordinal }, icon = { TabIcon(t) }, label = { Text(t.label) }) }
+                Spacer(Modifier.weight(1f))
             }
             Box(Modifier.weight(1f).fillMaxSize()) {
                 when (Tab.entries[tab]) {
