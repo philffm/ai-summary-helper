@@ -35,6 +35,11 @@ class Store(context: Context) {
         get() = prefs.getString("summary.lang", "") ?: ""
         set(v) = prefs.edit().putString("summary.lang", v).apply()
 
+    /** Stack items about the same story in the Feeds list. */
+    var groupSimilar: Boolean
+        get() = prefs.getBoolean("feeds.group", true)
+        set(v) = prefs.edit().putBoolean("feeds.group", v).apply()
+
     /** Text size factor in the article reader (A− / A+). */
     var readerScale: Float
         get() = prefs.getFloat("reader.scale", 1f)

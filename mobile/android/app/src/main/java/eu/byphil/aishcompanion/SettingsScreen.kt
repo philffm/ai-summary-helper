@@ -123,6 +123,8 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                     SectionTitle("On-device AI")
                     ModelCard(model)
                     SummaryCard(model)
+                    SectionTitle("Feeds")
+                    FeedsCard(model)
                     SectionTitle("Pro")
                     ExtrasCard(model)
                     error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
@@ -148,7 +150,7 @@ private fun Header() {
 
 @Composable
 private fun Steps(title: String, steps: List<String>) {
-    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
+    SettingsCard {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
             steps.forEachIndexed { i, text ->
@@ -164,6 +166,4 @@ private fun Steps(title: String, steps: List<String>) {
 }
 
 @Composable
-private fun SectionTitle(text: String) {
-    Text(text, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(start = 4.dp, top = 12.dp))
-}
+private fun SectionTitle(text: String) = SettingsCaption(text)

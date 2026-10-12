@@ -63,7 +63,11 @@ class AppModel(context: Context) {
         articleList = articles.list()
     }
 
+    var groupSimilar by mutableStateOf(store.groupSimilar)
+    fun changeGroupSimilar(on: Boolean) { store.groupSimilar = on; groupSimilar = on }
     var summaryLang by mutableStateOf(store.summaryLang)
+    var speakSummary by mutableStateOf(store.speakSummary)
+    fun changeSpeakSummary(on: Boolean) { store.speakSummary = on; speakSummary = on }
     var ghostMarks by mutableStateOf(store.ghostMarks)
     fun changeSummaryLang(code: String) { store.summaryLang = code; summaryLang = code }
     fun changeGhostMarks(on: Boolean) { store.ghostMarks = on; ghostMarks = on }

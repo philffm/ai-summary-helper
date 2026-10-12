@@ -70,7 +70,7 @@ fun ModelCard(model: AppModel) {
         have = store.downloaded(); installed = store.installed()
     }
 
-    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
+    SettingsCard {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text("On-device AI", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Text(

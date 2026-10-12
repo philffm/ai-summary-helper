@@ -120,7 +120,6 @@ fun FeedsScreen(
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var favOnly by remember { mutableStateOf(false) }
     var menuOpen by remember { mutableStateOf(false) }
-    var groupOn by rememberSaveable { mutableStateOf(true) }   // stack items about the same story
     var openStacks by remember { mutableStateOf(setOf<String>()) }
     var searching by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
@@ -143,7 +142,7 @@ fun FeedsScreen(
         ?: model.entries.firstOrNull { selectionKey(it.feed.url, it.stored.item.id) == selected }
 
     androidx.activity.compose.BackHandler(enabled = picked.isNotEmpty()) { picked = emptySet() }
-    val stacks = remember(visible, groupOn, searchActive) { if (groupOn && !searchActive) FeedStacks.stack(visible) else visible.map { Stack(it, emptyList()) } }
+    val stacks = remember(visible, model.groupSimilar, searchActive) { if (model.groupSimilar && !searchActive) FeedStacks.stack(visible) else visible.map { Stack(it, emptyList()) } }
     val chosen = visible.filter { selectionKey(it.feed.url, it.stored.item.id) in picked }
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -214,7 +213,6 @@ fun FeedsScreen(
                         Column(Modifier.fillMaxSize()) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
-                                FilterChip(selected = groupOn, onClick = { groupOn = !groupOn }, label = { Text("Group similar") })
                                 FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
                                     FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })

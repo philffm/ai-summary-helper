@@ -84,7 +84,7 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
     var summaryTitle by remember { mutableStateOf("") }
     var summaryUrl by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-    var speak by remember { mutableStateOf(Store(context).speakSummary) }   // read the summary aloud while it is written
+    var speak by remember { mutableStateOf(Store(context).speakSummary) }   // also a switch in Settings   // read the summary aloud while it is written
     var tts by remember { mutableStateOf<TextToSpeech?>(null) }
     val spoken = remember { intArrayOf(0) }                                  // how much of the streamed text has been handed to the voice
     DisposableEffect(Unit) {
