@@ -119,6 +119,7 @@ fun FeedsScreen(
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var favOnly by remember { mutableStateOf(false) }
+    var menuOpen by remember { mutableStateOf(false) }
     var groupOn by rememberSaveable { mutableStateOf(true) }   // stack items about the same story
     var openStacks by remember { mutableStateOf(setOf<String>()) }
     var searching by remember { mutableStateOf(false) }
@@ -191,11 +192,15 @@ fun FeedsScreen(
                     IconButton(onClick = { scope.launch { val n = model.refreshAll(); snackbar.showSnackbar(if (n == 0) "No new items." else "$n new items.") } }, enabled = !model.refreshing) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
                     }
-                    IconButton(onClick = { showBriefing = true }) { Icon(Icons.Filled.WbSunny, contentDescription = "Today's briefing") }
-                    IconButton(onClick = { scope.launch { snackbar.showSnackbar(model.rateMood()) } }, enabled = !model.rating) {
-                        Icon(Icons.Filled.Mood, contentDescription = "Rate by mood with the on-device AI")
-                    }
                     IconButton(onClick = { showSources = true }) { Icon(Icons.Filled.RssFeed, contentDescription = "Manage feeds") }
+                    Box {
+                        IconButton(onClick = { menuOpen = true }) { Icon(Icons.Filled.MoreVert, contentDescription = "More") }
+                        DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
+                            DropdownMenuItem(text = { Text("Today's briefing") }, leadingIcon = { Icon(Icons.Filled.WbSunny, null) }, onClick = { menuOpen = false; showBriefing = true })
+                            DropdownMenuItem(text = { Text(if (model.rating) "Rating by mood…" else "Rate by mood (on-device AI)") }, leadingIcon = { Icon(Icons.Filled.Mood, null) }, enabled = !model.rating,
+                                onClick = { menuOpen = false; scope.launch { snackbar.showSnackbar(model.rateMood()) } })
+                        }
+                    }
                 },
             )
         },

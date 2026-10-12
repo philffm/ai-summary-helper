@@ -118,9 +118,12 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                         model.store.lastError?.let { InfoCard("Last problem", it, isError = true) }
                         TextButton(onClick = { model.applyPairing(null) }) { Text("Unpair this phone") }
                     }
+                    SectionTitle("Morning alarm")
                     AlarmCard(model)
+                    SectionTitle("On-device AI")
                     ModelCard(model)
                     SummaryCard(model)
+                    SectionTitle("Pro")
                     ExtrasCard(model)
                     error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
                 }
@@ -158,4 +161,9 @@ private fun Steps(title: String, steps: List<String>) {
             }
         }
     }
+}
+
+@Composable
+private fun SectionTitle(text: String) {
+    Text(text, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(start = 4.dp, top = 12.dp))
 }

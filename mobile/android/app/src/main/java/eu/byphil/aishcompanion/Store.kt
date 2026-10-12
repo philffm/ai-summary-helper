@@ -35,6 +35,11 @@ class Store(context: Context) {
         get() = prefs.getString("summary.lang", "") ?: ""
         set(v) = prefs.edit().putString("summary.lang", v).apply()
 
+    /** Text size factor in the article reader (A− / A+). */
+    var readerScale: Float
+        get() = prefs.getFloat("reader.scale", 1f)
+        set(v) = prefs.edit().putFloat("reader.scale", v).apply()
+
     /** Read the summary aloud while the model writes it. */
     var speakSummary: Boolean
         get() = prefs.getBoolean("summary.speak", true)

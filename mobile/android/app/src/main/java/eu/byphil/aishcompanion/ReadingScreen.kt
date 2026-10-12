@@ -34,6 +34,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -108,17 +111,27 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                             LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                 items(model.articleList, key = { it.id }) { a ->
                                     val unread = !model.articles.isRead(a.id)
-                                    Card(
-                                        onClick = { onSelect(a.id); model.articles.markRead(a.id) },
-                                        modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
-                                        colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
-                                    ) {
-                                        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                                if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
-                                                Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Summarized on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    val dismiss = rememberSwipeToDismissBoxState(confirmValueChange = { v -> if (v == SwipeToDismissBoxValue.EndToStart) { deleteWithUndo(a.id); true } else false })
+                                    SwipeToDismissBox(
+                                        state = dismiss, enableDismissFromStartToEnd = false,
+                                        backgroundContent = {
+                                            Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.errorContainer, RoundedCornerShape(20.dp)).padding(end = 24.dp), contentAlignment = Alignment.CenterEnd) {
+                                                Icon(Icons.Filled.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.onErrorContainer)
                                             }
-                                            Text(a.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                                        },
+                                    ) {
+                                        Card(
+                                            onClick = { onSelect(a.id); model.articles.markRead(a.id) },
+                                            modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
+                                            colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
+                                        ) {
+                                            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                                    if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
+                                                    Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Summarized on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                                }
+                                                Text(a.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                                            }
                                         }
                                     }
                                 }
@@ -142,6 +155,9 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     LaunchedEffect(id) { model.articles.markRead(id) }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
     val placed = remember(id) { Highlighter.place(article.blocks, article.highlights) }
+    var scale by remember { mutableStateOf(model.store.readerScale) }
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density, density.fontScale * scale)) {
     ReadingColumn {
         LazyColumn(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 40.dp)) {
             item {
@@ -153,6 +169,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                         Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
                         if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
                         if (model.pairing != null && article.local) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
+                        OutlinedButton(onClick = { scale = (scale - 0.1f).coerceAtLeast(0.8f); model.store.readerScale = scale }) { Text("A−") }
+                        OutlinedButton(onClick = { scale = (scale + 0.1f).coerceAtMost(1.6f); model.store.readerScale = scale }) { Text("A+") }
                         OutlinedButton(onClick = { onDelete(id) }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
                     }
                 }
@@ -170,6 +188,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             if (article.truncated) item { Text("This long article was shortened to fit. Tap Read original for the rest.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             if (article.highlights.isNotEmpty()) item { Highlights(article.highlights) }
         }
+    }
     }
 }
 
