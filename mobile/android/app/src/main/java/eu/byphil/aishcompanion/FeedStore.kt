@@ -293,7 +293,7 @@ object FeedFetcher {
         if (page.notModified) { store.update(feed.url) { it.copy(lastFetched = now, error = "") }; return 0 }
         val parsed = if (page.error == null) FeedXml.parse(page.text, page.finalUrl) else null
         if (parsed == null) {
-            store.update(feed.url) { it.copy(error = page.error ?: "not-a-feed") }
+            store.update(feed.url) { it.copy(error = page.error ?: "not-a-feed", lastFetched = now) }
             return null
         }
         val added = store.saveItems(feed.url, parsed.items)
