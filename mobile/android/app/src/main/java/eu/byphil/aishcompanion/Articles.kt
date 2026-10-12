@@ -7,6 +7,9 @@ import java.util.zip.GZIPInputStream
 /** One text block of an article: type is h1, h2, h3, p, li, q or pre. The extension sends no markup and no images, so nothing here can run or load anything. */
 data class Block(val type: String, val text: String)
 
+/** A passage the user (or the AI, `ghost`) highlighted in the extension. Marked in the text where the same words are found. */
+data class Highlight(val ghost: Boolean, val text: String)
+
 data class Article(
     val id: String,
     val url: String,
@@ -18,6 +21,7 @@ data class Article(
     val blocks: List<Block>,
     val sentAt: Long,
     val truncated: Boolean,
+    val highlights: List<Highlight> = emptyList(),
 )
 
 /**
@@ -65,10 +69,17 @@ object ArticleCodec {
             if (type in TYPES && text.isNotBlank()) blocks.add(Block(type, text))
         }
         require(blocks.isNotEmpty()) { "empty article" }
+        val marks = ArrayList<Highlight>()
+        val hl = o.optJSONArray("hl")
+        if (hl != null) for (i in 0 until minOf(hl.length(), 200)) {
+            val h = hl.optJSONArray(i) ?: continue
+            val text = h.optString(1, "").trim()
+            if (text.length >= 5) marks.add(Highlight(h.optString(0, "") == "g", text.take(600)))
+        }
         return Article(
             id = id, url = url, title = o.optString("title"), site = o.optString("site"), byline = o.optString("byline"),
             lang = o.optString("lang"), summary = o.optString("summary"), blocks = blocks, sentAt = o.optLong("sentAt"),
-            truncated = o.optBoolean("truncated", false),
+            truncated = o.optBoolean("truncated", false), highlights = marks,
         )
     }
 }

@@ -1,0 +1,262 @@
+{
+  "_about": "Feed-URL vault. `envelope` is the stored document: decrypt with encKey and vaultId (AES-256-GCM, additional data = vaultId UTF-8, nonce first, tag last), gunzip, parse JSON {v:1, feeds}; must equal `feeds`. `merge` lists cases every implementation must reproduce: mergeEntries(a, b, now) = expect, in both argument orders. Order of the result: updatedAt descending, then url ascending.",
+  "vaultId": "rq2urq2urq2urq2urq2urg",
+  "nonceHex": "404142434445464748494a4b",
+  "feeds": [
+    {
+      "url": "https://a.example/feed.xml",
+      "title": "Größe & Wunder ✓",
+      "tags": [
+        "Nachrichten",
+        "日本語"
+      ],
+      "updatedAt": 1760000000000
+    },
+    {
+      "url": "https://b.example/rss",
+      "updatedAt": 1760000001000,
+      "removed": true
+    }
+  ],
+  "envelope": {
+    "v": 1,
+    "data": "QEFCQ0RFRkdISUpL_TKmIyY8hwPNx3q4pmqRG2GC_R4RhdXjpS_8eAKOQF45UCrj_-BLuC7VKvNTz1myrhIGjDPwUymf2QRUP021uXfEdSiMx93unYMPnu7b3fh3Lwjabliw1WFzg1dHhFH0dhMITYECTBP36I6-BKsRgwLzrQBl_F9yNKtj1qXk3KU5jQ7dKMbY_I1lj4yw4T8cIZKJGDrCG-R1oa5NA6H2-AWHPoYNtUXGgBevNRqFxLt1x4PpDttGg5kwQPioBbiBk3fjWDXJGYWR"
+  },
+  "now": 2000000000000,
+  "merge": [
+    {
+      "name": "union",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000001
+        }
+      ],
+      "b": [
+        {
+          "url": "https://b.example/rss",
+          "title": "b.example",
+          "tags": [],
+          "updatedAt": 1999568000002
+        }
+      ],
+      "expect": [
+        {
+          "url": "https://b.example/rss",
+          "title": "b.example",
+          "tags": [],
+          "updatedAt": 1999568000002
+        },
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000001
+        }
+      ]
+    },
+    {
+      "name": "newer wins",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "old",
+          "tags": [],
+          "updatedAt": 1999568000005
+        }
+      ],
+      "b": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "new",
+          "tags": [
+            "news"
+          ],
+          "updatedAt": 1999568000009
+        }
+      ],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "new",
+          "tags": [
+            "news"
+          ],
+          "updatedAt": 1999568000009
+        }
+      ]
+    },
+    {
+      "name": "removal newer than edit",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000005
+        }
+      ],
+      "b": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1999568000008,
+          "removed": true
+        }
+      ],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1999568000008,
+          "removed": true
+        }
+      ]
+    },
+    {
+      "name": "re-added after removal",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1999568000008,
+          "removed": true
+        }
+      ],
+      "b": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000012
+        }
+      ],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000012
+        }
+      ]
+    },
+    {
+      "name": "tie: removal wins",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000007
+        }
+      ],
+      "b": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1999568000007,
+          "removed": true
+        }
+      ],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1999568000007,
+          "removed": true
+        }
+      ]
+    },
+    {
+      "name": "tie: larger canonical JSON wins",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a",
+          "tags": [],
+          "updatedAt": 1999568000007
+        }
+      ],
+      "b": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "b",
+          "tags": [],
+          "updatedAt": 1999568000007
+        }
+      ],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "b",
+          "tags": [],
+          "updatedAt": 1999568000007
+        }
+      ]
+    },
+    {
+      "name": "old tombstone dropped",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1992137600000,
+          "removed": true
+        },
+        {
+          "url": "https://b.example/rss",
+          "title": "b.example",
+          "tags": [],
+          "updatedAt": 1999999999999
+        }
+      ],
+      "b": [],
+      "expect": [
+        {
+          "url": "https://b.example/rss",
+          "title": "b.example",
+          "tags": [],
+          "updatedAt": 1999999999999
+        }
+      ]
+    },
+    {
+      "name": "recent tombstone kept",
+      "a": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1992310400000,
+          "removed": true
+        }
+      ],
+      "b": [],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "updatedAt": 1992310400000,
+          "removed": true
+        }
+      ]
+    },
+    {
+      "name": "invalid entries ignored",
+      "a": [
+        {
+          "url": "ftp://x/y",
+          "updatedAt": 5
+        },
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000001
+        }
+      ],
+      "b": [],
+      "expect": [
+        {
+          "url": "https://a.example/feed.xml",
+          "title": "a.example",
+          "tags": [],
+          "updatedAt": 1999568000001
+        }
+      ]
+    }
+  ]
+}

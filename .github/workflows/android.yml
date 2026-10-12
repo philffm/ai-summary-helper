@@ -5,10 +5,10 @@ name: Android
 
 on:
   pull_request:
-    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', '.github/workflows/android.yml']
+    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', 'plugin/tests/fixtures/feed-sync-vector.json', '.github/workflows/android.yml']
   push:
     branches: [main]
-    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', '.github/workflows/android.yml']
+    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', 'plugin/tests/fixtures/feed-sync-vector.json', '.github/workflows/android.yml']
 
 permissions:
   contents: read
@@ -24,8 +24,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: The Android test vector matches the extension's
-        run: cmp plugin/tests/fixtures/inbox-vector.json mobile/android/app/src/test/resources/inbox-vector.json
+      - name: The Android test vectors match the extension's
+        run: |
+          cmp plugin/tests/fixtures/inbox-vector.json mobile/android/app/src/test/resources/inbox-vector.json
+          cmp plugin/tests/fixtures/feed-sync-vector.json mobile/android/app/src/test/resources/feed-sync-vector.json
 
       - uses: actions/setup-java@v4
         with:
@@ -35,7 +37,7 @@ jobs:
       # No Gradle wrapper is checked in: this action installs Gradle itself.
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.9'
+          gradle-version: '8.13'
 
       - name: Unit tests and debug build
         working-directory: mobile/android
