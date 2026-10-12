@@ -75,7 +75,12 @@ const lengthOf = (b64) => { try { return fromB64u(b64).length; } catch (_) { ret
  * inbox; the same key (k) protects both, and the inbox id is bound into every ciphertext, so one cannot be replayed into the other.
  * `vault` adds the id (vi) and token (vt) of the feed-URL vault (feedSync.js); it is sealed with the same key and its own id as additional data.
  */
-export function pairingPayload({ inboxId, encKey, writeToken, toPhone, vault }) {
+// The Pro license key may travel in the pairing code (lk) so the phone can use the cloud AI and show the plan. It is optional and
+// never used for the inbox or vault, which stay anonymous. Anything that does not look like a key is left out / ignored.
+const LICENSE_RE = /^[A-Za-z0-9._~:-]{8,200}$/;
+export const isLicenseKey = (v) => typeof v === 'string' && LICENSE_RE.test(v);
+
+export function pairingPayload({ inboxId, encKey, writeToken, toPhone, vault }, license) {
     if (lengthOf(inboxId) !== 16 || lengthOf(encKey) !== 32 || lengthOf(writeToken) !== 32) throw new Error('Invalid pairing secrets');
     let out = `${PAIRING_SCHEME}?i=${inboxId}&k=${encKey}&w=${writeToken}`;
     if (toPhone) {
@@ -86,6 +91,7 @@ export function pairingPayload({ inboxId, encKey, writeToken, toPhone, vault }) 
         if (lengthOf(vault.id) !== 16 || lengthOf(vault.token) !== 32) throw new Error('Invalid pairing secrets');
         out += `&vi=${vault.id}&vt=${vault.token}`;
     }
+    if (isLicenseKey(license)) out += `&lk=${license}`;
     return out;
 }
 
@@ -94,7 +100,7 @@ export function parsePairingPayload(text) {
     const s = String(text || '').trim();
     if (!s.startsWith(PAIRING_SCHEME + '?')) throw new Error('Not an AISH pairing code');
     const q = new URLSearchParams(s.slice(PAIRING_SCHEME.length + 1));
-    const out = { inboxId: q.get('i'), encKey: q.get('k'), writeToken: q.get('w'), toPhone: null, vault: null };
+    const out = { inboxId: q.get('i'), encKey: q.get('k'), writeToken: q.get('w'), toPhone: null, vault: null, license: null };
     if (lengthOf(out.inboxId) !== 16 || lengthOf(out.encKey) !== 32 || lengthOf(out.writeToken) !== 32) throw new Error('Invalid pairing code');
     if (q.get('ti') || q.get('tr')) {
         const t = { inboxId: q.get('ti'), readToken: q.get('tr') };
@@ -106,6 +112,8 @@ export function parsePairingPayload(text) {
         if (lengthOf(v.id) !== 16 || lengthOf(v.token) !== 32) throw new Error('Invalid pairing code');
         out.vault = v;
     }
+    const lk = q.get('lk');
+    if (isLicenseKey(lk)) out.license = lk;
     return out;
 }
 

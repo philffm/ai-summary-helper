@@ -79,6 +79,8 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, vaultApi
     async function read(...keys) { return store().get(keys); }
     async function getConfig() { const c = (await read(SK.inboxConfig))[SK.inboxConfig]; return c && c.inboxId && c.readToken ? c : null; }
     async function getState() { return { ...EMPTY_STATE(), ...((await read(SK.inboxState))[SK.inboxState] || {}) }; }
+    /** The Pro license key from the account settings, or '' (free plan, signed out, unreadable). Goes into the pairing code only. */
+    async function licenseKey() { try { const v = (await read(SK.licenseKey))[SK.licenseKey]; return typeof v === 'string' ? v.trim() : ''; } catch (_) { return ''; } }
     async function getPending() { const p = (await read(SK.inboxPending))[SK.inboxPending]; return Array.isArray(p) ? p : []; }
 
     /** One HTTP call; never throws. { status: 0 } means the network failed or timed out. */
@@ -119,7 +121,7 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, vaultApi
     /** Creates the inboxes on the server and returns the text for the QR code. Already paired: returns the same code again. */
     async function pair() {
         const existing = await getConfig();
-        if (existing) return { ok: true, existing: true, payload: pairingPayload(existing) };
+        if (existing) return { ok: true, existing: true, payload: pairingPayload(existing, await licenseKey()) };
         const secrets = newInboxSecrets();
         const res = await call('POST', api, { id: secrets.inboxId, writeHash: await tokenHash(secrets.writeToken), readHash: await tokenHash(secrets.readToken) });
         if (res.status !== 201) return { ok: false, error: classify(res.status) };
@@ -127,31 +129,31 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, vaultApi
         const vault = await createVault();      // best effort as well: "Sync feeds" can be switched on later
         const cfg = { ...secrets, createdAt: now(), v: 1, ...(second.ok ? { toPhone: second.toPhone } : {}), ...(vault.ok ? { vault: vault.vault } : {}) };
         await store().set({ [SK.inboxConfig]: cfg, [SK.inboxState]: EMPTY_STATE() });
-        return { ok: true, existing: false, payload: pairingPayload(cfg) };
+        return { ok: true, existing: false, payload: pairingPayload(cfg, await licenseKey()) };
     }
 
     /** Switches on "Send to phone" for an existing pairing. The QR code changes, so the phone has to scan it once more. */
     async function enableToPhone() {
         const cfg = await getConfig();
         if (!cfg) return { ok: false, error: 'not-paired' };
-        if (cfg.toPhone) return { ok: true, existing: true, payload: pairingPayload(cfg) };
+        if (cfg.toPhone) return { ok: true, existing: true, payload: pairingPayload(cfg, await licenseKey()) };
         const second = await createToPhone();
         if (!second.ok) return second;
         const next = { ...cfg, toPhone: second.toPhone };
         await store().set({ [SK.inboxConfig]: next });
-        return { ok: true, existing: false, payload: pairingPayload(next) };
+        return { ok: true, existing: false, payload: pairingPayload(next, await licenseKey()) };
     }
 
     /** Switches on feed sync for an existing pairing. The QR code changes, so the phone has to scan it once more. */
     async function enableVault() {
         const cfg = await getConfig();
         if (!cfg) return { ok: false, error: 'not-paired' };
-        if (cfg.vault) return { ok: true, existing: true, payload: pairingPayload(cfg) };
+        if (cfg.vault) return { ok: true, existing: true, payload: pairingPayload(cfg, await licenseKey()) };
         const made = await createVault();
         if (!made.ok) return made;
         const next = { ...cfg, vault: made.vault };
         await store().set({ [SK.inboxConfig]: next });
-        return { ok: true, existing: false, payload: pairingPayload(next) };
+        return { ok: true, existing: false, payload: pairingPayload(next, await licenseKey()) };
     }
 
     /**
@@ -201,7 +203,7 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, vaultApi
     }
 
     /** The QR text for an existing pairing (to show it again or to pair a second phone). Null when not paired. */
-    async function pairingCode() { const c = await getConfig(); return c ? pairingPayload(c) : null; }
+    async function pairingCode() { const c = await getConfig(); return c ? pairingPayload(c, await licenseKey()) : null; }
 
     /**
      * Sends one article (see articleBlocks.articleForPhone) to the phone, encrypted. Resolves { ok, blocks, truncated } or

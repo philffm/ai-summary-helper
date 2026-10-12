@@ -45,7 +45,7 @@ for (const bad of ['javascript:alert(1)', 'file:///etc/passwd', 'data:text/html,
 
 // 5) pairing code: matches the vector, round-trips, never contains the read token, rejects malformed codes
 assert.equal(C.pairingPayload(vec), vec.pairing);
-assert.deepEqual(C.parsePairingPayload(vec.pairing), { inboxId: vec.inboxId, encKey: vec.encKey, writeToken: vec.writeToken, toPhone: null, vault: null });
+assert.deepEqual(C.parsePairingPayload(vec.pairing), { inboxId: vec.inboxId, encKey: vec.encKey, writeToken: vec.writeToken, toPhone: null, vault: null, license: null });
 assert(!C.pairingPayload(s).includes(s.readToken), 'read token stays in the extension');
 for (const bad of ['', 'https://example.com', C.PAIRING_SCHEME + '?i=abc&k=def&w=ghi', vec.pairing.replace(/&w=.*/, ''), vec.pairing + 'x&']) {
     assert.throws(() => C.parsePairingPayload(bad), undefined, 'rejects ' + bad.slice(0, 30));
