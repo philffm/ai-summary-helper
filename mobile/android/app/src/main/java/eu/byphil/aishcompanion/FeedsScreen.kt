@@ -144,6 +144,21 @@ fun FeedsScreen(
     androidx.activity.compose.BackHandler(enabled = picked.isNotEmpty()) { picked = emptySet() }
     val stacks = remember(visible, model.groupSimilar, searchActive) { if (model.groupSimilar && !searchActive) FeedStacks.stack(visible) else visible.map { Stack(it, emptyList()) } }
     val chosen = visible.filter { selectionKey(it.feed.url, it.stored.item.id) in picked }
+    val allFav = chosen.isNotEmpty() && chosen.all { it.stored.fav }
+    val allRead = chosen.isNotEmpty() && chosen.all { it.stored.read }
+    val doFav = { val keys = picked; picked = emptySet(); scope.launch { model.setFavoriteMany(keys, !allFav) }; Unit }
+    val doRead = { val keys = picked; picked = emptySet(); scope.launch { model.markReadMany(keys, !allRead) }; Unit }
+    val doShare = {
+        val withLink = chosen.filter { it.stored.item.link.isNotEmpty() }
+        if (withLink.isNotEmpty()) shareText(context, "Links from AISH", withLink.joinToString("\n\n") { it.stored.item.title + "\n" + it.stored.item.link })
+    }
+    val doSend = {
+        val links = chosen.map { it.stored.item.link }.filter { it.isNotEmpty() }.distinct()
+        links.forEach { SendWorker.enqueue(context, it) }
+        picked = emptySet()
+        scope.launch { snackbar.showSnackbar(if (links.isEmpty()) "These items have no link." else if (links.size == 1) "Queued for the browser." else "${links.size} links queued for the browser.") }
+        Unit
+    }
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
@@ -153,41 +168,14 @@ fun FeedsScreen(
                 navigationIcon = { IconButton(onClick = { picked = emptySet() }) { Icon(Icons.Filled.Close, contentDescription = "Cancel selection") } },
                 actions = {
                     IconButton(onClick = { picked = visible.map { selectionKey(it.feed.url, it.stored.item.id) }.toSet() }) { Icon(Icons.Filled.SelectAll, contentDescription = "Select all") }
-                    val allFav = chosen.isNotEmpty() && chosen.all { it.stored.fav }
-                    IconButton(onClick = { val keys = picked; picked = emptySet(); scope.launch { model.setFavoriteMany(keys, !allFav) } }) {
-                        Icon(if (allFav) Icons.Filled.StarBorder else Icons.Filled.Star, contentDescription = if (allFav) "Remove from favorites" else "Add to favorites")
-                    }
-                    val allRead = chosen.isNotEmpty() && chosen.all { it.stored.read }
-                    IconButton(onClick = { val keys = picked; picked = emptySet(); scope.launch { model.markReadMany(keys, !allRead) } }) {
-                        Icon(if (allRead) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, contentDescription = if (allRead) "Mark as unread" else "Mark as read")
-                    }
-                    IconButton(onClick = {
-                        val links = chosen.map { it.stored.item.link }.filter { it.isNotEmpty() }
-                        if (links.isNotEmpty()) shareText(context, "Links from AISH", chosen.filter { it.stored.item.link.isNotEmpty() }.joinToString("\n\n") { it.stored.item.title + "\n" + it.stored.item.link })
-                    }) { Icon(Icons.Filled.Share, contentDescription = "Share links") }
-                    if (model.pairing != null) IconButton(onClick = {
-                        val links = chosen.map { it.stored.item.link }.filter { it.isNotEmpty() }.distinct()
-                        links.forEach { SendWorker.enqueue(context, it) }
-                        picked = emptySet()
-                        scope.launch { snackbar.showSnackbar(if (links.isEmpty()) "These items have no link." else if (links.size == 1) "Queued for the browser." else "${links.size} links queued for the browser.") }
-                    }) { Icon(Icons.AutoMirrored.Filled.Send, contentDescription = "Send to browser") }
                 },
             ) else TopAppBar(
-                title = {
-                    if (searching) TextField(
-                        value = query, onValueChange = { query = it }, singleLine = true, placeholder = { Text("Search all feeds") },
-                        colors = TextFieldDefaults.colors(focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedContainerColor = androidx.compose.ui.graphics.Color.Transparent, focusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent),
-                        modifier = Modifier.fillMaxWidth().focusRequester(searchFocus),
-                    )
-                    else Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis)
-                },
+                title = { Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis) },
                 navigationIcon = {
                     if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
                 actions = {
-                    if (searching) {
-                        IconButton(onClick = { searching = false; query = "" }) { Icon(Icons.Filled.Close, contentDescription = "Close search") }
-                    } else IconButton(onClick = { searching = true }) { Icon(Icons.Filled.Search, contentDescription = "Search") }
+                    IconButton(onClick = { searching = !searching; if (!searching) query = "" }) { Icon(if (searching) Icons.Filled.Close else Icons.Filled.Search, contentDescription = if (searching) "Close search" else "Search") }
                     IconButton(onClick = { scope.launch { val n = model.refreshAll(); snackbar.showSnackbar(if (n == 0) "No new items." else "$n new items.") } }, enabled = !model.refreshing) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
                     }
@@ -211,17 +199,8 @@ fun FeedsScreen(
                 list = {
                     PullToRefreshBox(isRefreshing = model.refreshing, onRefresh = { scope.launch { model.refreshAll() } }, modifier = Modifier.fillMaxSize()) {
                         Column(Modifier.fillMaxSize()) {
-                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
-                                FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
-                                if (anyRated) {
-                                    FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
-                                    FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😟") })
-                                }
-                                if (source != "all") FilterChip(selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
-                                if (visible.any { !it.stored.read }) FilterChip(selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
-                            }
                             if (model.rating) androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 16.dp))
+                            Column(Modifier.weight(1f)) {
                             if (model.feeds.isEmpty()) {
                                 EmptyState("No feeds yet", "Add a feed, or switch on feed sync in Settings to get the ones from your browser extension.")
                                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { FilledTonalButton(onClick = { showAdd = true }) { Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Text("  Add feed") } }
@@ -239,15 +218,21 @@ fun FeedsScreen(
                                     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                         for (e in listOf(st.lead) + (if (leadKey in openStacks) st.others else emptyList())) {
                                             val key = selectionKey(e.feed.url, e.stored.item.id)
-                                            ItemCard(
-                                                e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
+                                            SwipeableCard(
+                                                e, enabled = picked.isEmpty(),
+                                                onRead = { scope.launch { model.markRead(e.feed.url, e.stored.item.id, !e.stored.read) } },
                                                 onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
-                                                onLong = { picked = if (key in picked) picked - key else picked + key },
                                             ) {
-                                                if (picked.isNotEmpty()) picked = if (key in picked) picked - key else picked + key
-                                                else {
-                                                    onSelect(key)
-                                                    scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
+                                                ItemCard(
+                                                    e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
+                                                    onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
+                                                    onLong = { picked = if (key in picked) picked - key else picked + key },
+                                                ) {
+                                                    if (picked.isNotEmpty()) picked = if (key in picked) picked - key else picked + key
+                                                    else {
+                                                        onSelect(key)
+                                                        scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
+                                                    }
                                                 }
                                             }
                                         }
@@ -263,6 +248,33 @@ fun FeedsScreen(
                                         }
                                     }
                                 }
+                            }
+                            }
+                            if (picked.isNotEmpty()) SelectionBar(
+                                allFav = allFav, allRead = allRead, canSend = model.pairing != null,
+                                onFav = doFav, onRead = doRead, onShare = doShare, onSend = doSend,
+                            ) else if (searching) {
+                                Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                                    TextField(
+                                        value = query, onValueChange = { query = it }, singleLine = true, placeholder = { Text("Search all feeds") },
+                                        leadingIcon = { Icon(Icons.Filled.Search, null) },
+                                        trailingIcon = { IconButton(onClick = { searching = false; query = "" }) { Icon(Icons.Filled.Close, contentDescription = "Close search") } },
+                                        shape = RoundedCornerShape(28.dp),
+                                        colors = TextFieldDefaults.colors(focusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent),
+                                        modifier = Modifier.fillMaxWidth().focusRequester(searchFocus),
+                                    )
+                                }
+                            } else {
+                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
+                                if (anyRated) {
+                                    FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
+                                    FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😟") })
+                                }
+                                if (source != "all") FilterChip(selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
+                                if (visible.any { !it.stored.read }) FilterChip(selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
+                            }
                             }
                         }
                     }
@@ -325,11 +337,20 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
     val scope = rememberCoroutineScope()
     val item = e.stored.item
     var sent by remember(item.id) { mutableStateOf(false) }
+    Column(Modifier.fillMaxSize()) {
+    Box(Modifier.weight(1f)) {
     ReadingColumn {
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Text(item.title, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
             Text(listOf(e.feed.name, item.author, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+            if (item.body.isNotBlank()) PlainText(item.body)
+            if (item.link.isNotEmpty() && item.body.length < 500) Text("This feed only sends a short teaser. Tap Read page for the full article.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            TextButton(onClick = { scope.launch { model.markRead(e.feed.url, item.id, false) } }) { Text("Mark as unread") }
+        }
+    }
+    }
+        BottomActions {
                 if (item.audio.isNotEmpty()) Button(onClick = { PodcastPlayer.play(context, Episode(item.audio, item.title, e.feed.name)) }) {
                     Icon(Icons.Filled.PlayArrow, null, Modifier.size(18.dp)); Text("  Play" + (if (item.duration > 0) " · " + PodcastTime.format(item.duration * 1000) else ""))
                 }
@@ -345,11 +366,6 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
                     Icon(Icons.AutoMirrored.Filled.Send, null, Modifier.size(18.dp)); Text(if (sent) "  Queued" else "  To browser")
                 }
             }
-            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-            if (item.body.isNotBlank()) PlainText(item.body)
-            if (item.link.isNotEmpty() && item.body.length < 500) Text("This feed only sends a short teaser. Tap Read page for the full article.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            TextButton(onClick = { scope.launch { model.markRead(e.feed.url, item.id, false) } }) { Text("Mark as unread") }
-        }
     }
 }
 
@@ -463,5 +479,44 @@ private fun RecapCard(model: AppModel, onRefresh: () -> Unit) {
                 }
             }
         }
+    }
+}
+
+/** Swipe right marks read / unread, swipe left stars / unstars. The card springs back; the change shows on the card itself. */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SwipeableCard(e: FeedEntryRef, enabled: Boolean, onRead: () -> Unit, onFav: () -> Unit, content: @Composable () -> Unit) {
+    val state = androidx.compose.material3.rememberSwipeToDismissBoxState(confirmValueChange = { v ->
+        when (v) {
+            androidx.compose.material3.SwipeToDismissBoxValue.StartToEnd -> onRead()
+            androidx.compose.material3.SwipeToDismissBoxValue.EndToStart -> onFav()
+            else -> {}
+        }
+        false
+    })
+    androidx.compose.material3.SwipeToDismissBox(
+        state = state, enableDismissFromStartToEnd = enabled, enableDismissFromEndToStart = enabled,
+        backgroundContent = {
+            val toRight = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.StartToEnd
+            val toLeft = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.EndToStart
+            if (toRight || toLeft) Box(
+                Modifier.fillMaxSize().background(if (toRight) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer, RoundedCornerShape(20.dp)).padding(horizontal = 24.dp),
+                contentAlignment = if (toRight) Alignment.CenterStart else Alignment.CenterEnd,
+            ) {
+                if (toRight) Icon(if (e.stored.read) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, contentDescription = if (e.stored.read) "Mark as unread" else "Mark as read")
+                else Icon(if (e.stored.fav) Icons.Filled.StarBorder else Icons.Filled.Star, contentDescription = if (e.stored.fav) "Remove from favorites" else "Add to favorites")
+            }
+        },
+    ) { content() }
+}
+
+/** Actions for the selected items, at the bottom. */
+@Composable
+private fun SelectionBar(allFav: Boolean, allRead: Boolean, canSend: Boolean, onFav: () -> Unit, onRead: () -> Unit, onShare: () -> Unit, onSend: () -> Unit) {
+    BottomActions {
+        FilledTonalButton(onClick = onRead) { Icon(if (allRead) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, null, Modifier.size(18.dp)); Text(if (allRead) "  Unread" else "  Read") }
+        FilledTonalButton(onClick = onFav) { Icon(if (allFav) Icons.Filled.StarBorder else Icons.Filled.Star, null, Modifier.size(18.dp)); Text(if (allFav) "  Unstar" else "  Star") }
+        FilledTonalButton(onClick = onShare) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
+        if (canSend) FilledTonalButton(onClick = onSend) { Icon(Icons.AutoMirrored.Filled.Send, null, Modifier.size(18.dp)); Text("  To browser") }
     }
 }

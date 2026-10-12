@@ -19,7 +19,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -136,41 +138,8 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
         TopAppBar(
             title = { Text(title.ifBlank { Uri.parse(shown).host ?: shown }, maxLines = 1, overflow = TextOverflow.Ellipsis) },
             navigationIcon = { IconButton(onClick = onClose) { Icon(Icons.Filled.Close, contentDescription = "Close") } },
-            actions = {
-                IconButton(onClick = { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() }) {
-                    Icon(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, contentDescription = if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off")
-                }
-                IconButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, contentDescription = "Summarize on this phone") }
-                if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
-                    Icon(Icons.AutoMirrored.Filled.Send, contentDescription = if (sent) "Sent to the browser" else "Send to the AISH browser extension", tint = if (sent) MaterialTheme.colorScheme.primary else LocalContentColor.current)
-                }
-                IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") }
-            },
         )
         if (progress in 0.01f..0.99f) LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
-        if (busy || status.isNotEmpty()) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                if (busy) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp)
-                Text(status, Modifier.padding(start = if (busy) 12.dp else 0.dp), style = MaterialTheme.typography.bodySmall)
-            }
-        }
-        summary?.takeIf { it.isNotBlank() }?.let { text ->
-            Surface(tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Summary (on this phone)", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
-                        IconButton(onClick = { summary = null; tts?.stop() }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
-                    }
-                    Text(text, Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState()), style = MaterialTheme.typography.bodyMedium)
-                    Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        FilledTonalButton(onClick = { shareText(context, summaryTitle, PageSummary.shareText(summaryTitle, text, summaryUrl)) }) {
-                            Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share")
-                        }
-                        if (saved) Text("Saved to reading list", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
-                }
-            }
-        }
         AndroidView(
             modifier = Modifier.weight(1f).fillMaxWidth(),   // the page gets exactly the space left under the bars and panels
             factory = { ctx ->
@@ -214,5 +183,39 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
             },
             onRelease = { it.stopLoading(); it.destroy(); web = null },
         )
+        if (busy || status.isNotEmpty()) {
+            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                if (busy) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp)
+                Text(status, Modifier.padding(start = if (busy) 12.dp else 0.dp), style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        summary?.takeIf { it.isNotBlank() }?.let { text ->
+            Surface(tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Summary (on this phone)", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
+                        IconButton(onClick = { summary = null; tts?.stop() }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
+                    }
+                    Text(text, Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState()), style = MaterialTheme.typography.bodyMedium)
+                    Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilledTonalButton(onClick = { shareText(context, summaryTitle, PageSummary.shareText(summaryTitle, text, summaryUrl)) }) {
+                            Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share")
+                        }
+                        if (saved) Text("Saved to reading list", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                }
+            }
+        }
+        BottomActions {
+            if (canGoBack) OutlinedButton(onClick = { web?.goBack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
+            FilledTonalButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, null, Modifier.size(18.dp)); Text("  Summarize") }
+            IconButton(onClick = { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() }) {
+                Icon(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, contentDescription = if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off")
+            }
+            if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
+                Icon(Icons.AutoMirrored.Filled.Send, contentDescription = if (sent) "Sent to the browser" else "Send to the AISH browser extension", tint = if (sent) MaterialTheme.colorScheme.primary else LocalContentColor.current)
+            }
+            IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") }
+        }
     }
 }

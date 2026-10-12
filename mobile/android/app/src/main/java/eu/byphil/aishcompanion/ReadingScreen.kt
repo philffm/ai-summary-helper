@@ -21,6 +21,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.DoneAll
+import androidx.compose.material.icons.filled.MarkEmailUnread
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material.icons.filled.Refresh
@@ -110,13 +112,18 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                         PullToRefreshBox(isRefreshing = model.checking, onRefresh = { scope.launch { snackbar.showSnackbar(model.checkArticles()) } }, modifier = Modifier.fillMaxSize()) {
                             LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                 items(model.articleList, key = { it.id }) { a ->
-                                    val unread = !model.articles.isRead(a.id)
-                                    val dismiss = rememberSwipeToDismissBoxState(confirmValueChange = { v -> if (v == SwipeToDismissBoxValue.EndToStart) { deleteWithUndo(a.id); true } else false })
+                                    val unread = model.readTick >= 0 && !model.articles.isRead(a.id)
+                                    val dismiss = rememberSwipeToDismissBoxState(confirmValueChange = { v -> when (v) { SwipeToDismissBoxValue.EndToStart -> { deleteWithUndo(a.id); true }; SwipeToDismissBoxValue.StartToEnd -> { model.toggleRead(a.id); false }; else -> false } })
                                     SwipeToDismissBox(
-                                        state = dismiss, enableDismissFromStartToEnd = false,
+                                        state = dismiss,
                                         backgroundContent = {
-                                            Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.errorContainer, RoundedCornerShape(20.dp)).padding(end = 24.dp), contentAlignment = Alignment.CenterEnd) {
-                                                Icon(Icons.Filled.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.onErrorContainer)
+                                            val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
+                                            Box(
+                                                Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, RoundedCornerShape(20.dp)).padding(horizontal = 24.dp),
+                                                contentAlignment = if (right) Alignment.CenterStart else Alignment.CenterEnd,
+                                            ) {
+                                                if (right) Icon(if (unread) Icons.Filled.DoneAll else Icons.Filled.MarkEmailUnread, contentDescription = if (unread) "Mark as read" else "Mark as unread")
+                                                else Icon(Icons.Filled.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.onErrorContainer)
                                             }
                                         },
                                     ) {
@@ -159,20 +166,13 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     val density = androidx.compose.ui.platform.LocalDensity.current
     androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density, density.fontScale * scale)) {
     ReadingColumn {
-        LazyColumn(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 40.dp)) {
+      Column(Modifier.fillMaxSize()) {
+        LazyColumn(Modifier.weight(1f).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 40.dp)) {
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                     val meta = listOf(article.byline, article.site).filter { it.isNotBlank() }.joinToString(" · ")
                     if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(top = 4.dp)) {
-                        Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
-                        if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
-                        if (model.pairing != null && article.local) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
-                        OutlinedButton(onClick = { scale = (scale - 0.1f).coerceAtLeast(0.8f); model.store.readerScale = scale }) { Text("A−") }
-                        OutlinedButton(onClick = { scale = (scale + 0.1f).coerceAtMost(1.6f); model.store.readerScale = scale }) { Text("A+") }
-                        OutlinedButton(onClick = { onDelete(id) }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
-                    }
                 }
             }
             if (article.summary.isNotBlank()) item {
@@ -188,6 +188,15 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             if (article.truncated) item { Text("This long article was shortened to fit. Tap Read original for the rest.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             if (article.highlights.isNotEmpty()) item { Highlights(article.highlights) }
         }
+        BottomActions {
+            Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
+            if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
+            if (model.pairing != null && article.local) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
+            OutlinedButton(onClick = { scale = (scale - 0.1f).coerceAtLeast(0.8f); model.store.readerScale = scale }) { Text("A−") }
+            OutlinedButton(onClick = { scale = (scale + 0.1f).coerceAtMost(1.6f); model.store.readerScale = scale }) { Text("A+") }
+            OutlinedButton(onClick = { onDelete(id) }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
+        }
+      }
     }
     }
 }

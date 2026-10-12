@@ -209,3 +209,15 @@ fun shareText(context: android.content.Context, subject: String, text: String) {
         .putExtra(android.content.Intent.EXTRA_SUBJECT, subject).putExtra(android.content.Intent.EXTRA_TEXT, text)
     context.startActivity(android.content.Intent.createChooser(send, null).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK))
 }
+
+/** The actions of a screen, at the bottom where the thumb is: a tonal bar that wraps its buttons. */
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+@Composable
+fun BottomActions(content: @Composable androidx.compose.foundation.layout.FlowRowScope.() -> Unit) {
+    androidx.compose.material3.Surface(color = MaterialTheme.colorScheme.surfaceContainer, tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
+        androidx.compose.foundation.layout.FlowRow(
+            Modifier.padding(horizontal = 12.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp),
+            content = content,
+        )
+    }
+}

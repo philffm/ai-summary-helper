@@ -73,4 +73,5 @@ class ArticleStore(context: Context) {
 
     fun isRead(id: String): Boolean = prefs.getBoolean(id, false)
     fun markRead(id: String) = prefs.edit().putBoolean(id, true).apply()
+    fun markUnread(id: String) = prefs.edit().putBoolean(id, false).apply()
 }

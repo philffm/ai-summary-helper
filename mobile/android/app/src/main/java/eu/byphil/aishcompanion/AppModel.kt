@@ -46,6 +46,14 @@ class AppModel(context: Context) {
 
     fun consumeMessage() { message = null }
 
+    /** Bumped when read state flips so lists redraw. */
+    var readTick by androidx.compose.runtime.mutableIntStateOf(0)
+
+    fun toggleRead(id: String) {
+        if (articles.isRead(id)) articles.markUnread(id) else articles.markRead(id)
+        readTick++
+    }
+
     fun reload() {
         feeds = feedStore.feeds()
         entries = feedStore.everything()
