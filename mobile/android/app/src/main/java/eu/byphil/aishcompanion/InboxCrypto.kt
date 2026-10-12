@@ -19,14 +19,17 @@ object InboxCrypto {
     fun newNonce(): ByteArray = ByteArray(12).also { random.nextBytes(it) }
 
     /** Returns the envelope `data` field: base64url(nonce || ciphertext || tag). */
-    fun encrypt(pairing: Pairing, plaintext: String, nonce: ByteArray = newNonce()): String {
+    fun encrypt(pairing: Pairing, plaintext: String, nonce: ByteArray = newNonce()): String =
+        seal(pairing.inboxId, pairing.encKey, plaintext.toByteArray(Charsets.UTF_8), nonce)
+
+    /** Seals bytes with the key; [aad] (the inbox or vault id) is bound in, so a ciphertext cannot be replayed elsewhere. */
+    fun seal(aad: String, encKey: String, plain: ByteArray, nonce: ByteArray = newNonce()): String {
         require(nonce.size == 12) { "nonce must be 12 bytes" }
-        val key = SecretKeySpec(b64d.decode(pairing.encKey), "AES")
+        val key = SecretKeySpec(b64d.decode(encKey), "AES")
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         cipher.init(Cipher.ENCRYPT_MODE, key, GCMParameterSpec(128, nonce))
-        cipher.updateAAD(pairing.inboxId.toByteArray(Charsets.UTF_8))
-        val sealed = cipher.doFinal(plaintext.toByteArray(Charsets.UTF_8))
-        return b64.encodeToString(nonce + sealed)
+        cipher.updateAAD(aad.toByteArray(Charsets.UTF_8))
+        return b64.encodeToString(nonce + cipher.doFinal(plain))
     }
 
     /** Used by tests (and handy for debugging) for links; articles use [decryptBytes] and [ArticleCodec]. */

@@ -34,15 +34,18 @@ export function menuItems(a, { onRemoved } = {}) {
   const st = activeReading(a);
   const items = [];
   if (a.url) items.push({ icon: 'link', label: T('Open original'), run: () => window.open(a.url, '_blank', 'noopener') });
-  if (a.id && a.url && !a.feedStub) items.push({ icon: 'send', label: T('Send to phone'), run: async () => (await am()).sendToPhone(a) });
+  const canPhone = !!(a.id && a.url && !a.feedStub);
+  const phoneItem = { icon: 'smartphone', label: T('Send to phone'), run: async () => (await am()).sendToPhone(a) };
   if (hasSummary) {
     items.push({ icon: st === 'paused' ? 'play' : st ? 'pause' : 'volume-2', label: st === 'paused' ? T('Play') : st ? T('Pause') : T('Read aloud'), run: () => readAloud(a), needsSpeech: true });
     items.push({ icon: 'copy', label: T('Copy'), run: async () => (await am()).copyArticleToClipboard(a) });
     if (navigator.share) items.push({ icon: 'external-link', label: T('Share'), run: async () => (await am()).shareArticle(a) });
     items.push({ icon: 'send', label: T('Send via LocalSend'), run: async () => (await am()).dispatchToLocalSend(a), sep: true });
+    if (canPhone) items.push(phoneItem);
     items.push({ icon: 'book-open', label: T('Send to Kindle'), run: async () => (await am()).sendToKindle(a) });
     items.push({ icon: 'download', label: T('Export as Markdown'), run: async () => (await am()).exportToMarkdown(a) });
   }
+  if (canPhone && !hasSummary) items.push({ ...phoneItem, sep: true });
   if (a.id && canSelect(a)) items.push({ icon: 'square-check-big', label: T('Select'), run: () => startSelectionWith(a), sep: true });
   if (a.id) {
     if (!a.feedStub) items.push({ icon: a.archived ? 'undo-2' : 'archive', label: a.archived ? T('Restore to Inbox') : T('Archive'), run: async () => (await am()).applyStatus([a.id], { archived: !a.archived }), sep: true });

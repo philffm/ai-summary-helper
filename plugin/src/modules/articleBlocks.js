@@ -94,7 +94,7 @@ export function summaryToText(summary, parseHtml) {
 }
 
 /** The article fields the phone needs, from a saved article record. `parseHtml(html)` returns a DOM root (DOMParser in the browser). */
-export function articleForPhone(article, parseHtml) {
+export function articleForPhone(article, parseHtml, annotations = []) {
     const a = article || {};
     const html = String(a.content || a.html || a.text || '');
     const hasTags = /<[a-z][\s\S]*>/i.test(html);
@@ -104,6 +104,7 @@ export function articleForPhone(article, parseHtml) {
     }
     let site = '';
     try { site = new URL(a.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }
+    const hl = (Array.isArray(annotations) ? annotations : []).map((x) => [x && x.type === 'ghost' ? 'g' : 'u', String((x && x.text) || '')]);
     return {
         url: a.url,
         title: squash(a.title) || (blocks[0] ? blocks[0][1].slice(0, 120) : ''),
@@ -112,5 +113,6 @@ export function articleForPhone(article, parseHtml) {
         lang: squash(a.language || a.lang || a.summaryLanguage).slice(0, 20),
         summary: summaryToText(a.summary, parseHtml),
         blocks,
+        ...(hl.length ? { hl } : {}),
     };
 }

@@ -209,7 +209,23 @@ export function cleanArticleMessage(m) {
     };
     const summary = String(m.summary || '').trim().slice(0, 8000);
     if (summary) out.summary = summary;
+    const hl = cleanHighlights(m.hl);
+    if (hl.length) out.hl = hl;
     if (m.truncated === true) out.truncated = true;
+    return out;
+}
+
+export const MAX_HIGHLIGHTS = 200;
+/** Highlights travel as [kind, text] pairs: kind "u" = the user's own, "g" = AI ghost highlight. The phone marks them where the text is found. */
+export function cleanHighlights(list) {
+    const out = [];
+    for (const h of Array.isArray(list) ? list : []) {
+        if (!Array.isArray(h)) continue;
+        const kind = h[0] === 'g' ? 'g' : h[0] === 'u' ? 'u' : '';
+        const text = clip(h[1], 600);
+        if (kind && text.length >= 5 && !out.some((x) => x[1] === text)) out.push([kind, text]);
+        if (out.length >= MAX_HIGHLIGHTS) break;
+    }
     return out;
 }
 

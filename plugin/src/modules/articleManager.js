@@ -604,7 +604,9 @@ export async function sendToPhone(article) {
         }
         toast(T('Sending to your phone…'));
         const parse = (html) => new DOMParser().parseFromString(html, 'text/html').body;
-        const r = await mgr.sendArticle(articleForPhone(full, parse));
+        let marks = [];
+        try { marks = await fetchAnnotationsForArticle(full); } catch (_) { /* send without highlights */ }
+        const r = await mgr.sendArticle(articleForPhone(full, parse, marks));
         if (!r.ok) { toast(T('Could not send to your phone: {message}', { message: phoneErrorText(r.error) })); return; }
         if (enabledNow) {
             toast(T('Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox).'));

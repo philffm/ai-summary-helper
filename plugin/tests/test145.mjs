@@ -30,7 +30,8 @@ const av = vec.article;
 if (process.env.AISH_WRITE_VECTOR === '1') {
     const secrets = { inboxId: 'q6ytrq2trK2urq2urq2urg', encKey: vec.encKey };
     const message = { url: 'https://example.com/größe?a=1&b=2', sentAt: 1760000000000, title: 'Größe & Wunder ✓', site: 'example.com', byline: 'Jörg Müller', lang: 'de',
-        summary: '- Punkt eins\n- Punkt zwei', blocks: [['h2', 'Überschrift 日本語'], ['p', 'Ein Absatz mit Emoji 🙂 und Umlauten äöüß.'], ['li', 'Listenpunkt'], ['q', 'Zitat'], ['pre', 'a\n  b']] };
+        summary: '- Punkt eins\n- Punkt zwei', blocks: [['h2', 'Überschrift 日本語'], ['p', 'Ein Absatz mit Emoji 🙂 und Umlauten äöüß.'], ['li', 'Listenpunkt'], ['q', 'Zitat'], ['pre', 'a\n  b']],
+        hl: [['u', 'Absatz mit Emoji 🙂'], ['g', 'Umlauten äöüß'], ['g', 'zu kurz']] };
     const nonce = Uint8Array.from(Buffer.from('303132333435363738393a3b', 'hex'));
     const sealed = await C.encryptArticle(secrets, message, { iv: nonce });
     vec.article = { _about: 'Article for the phone, envelope v2. Decrypt with encKey and inboxId (the extension→phone inbox) using AES-256-GCM, then gunzip, then parse JSON. Must equal `message`.', inboxId: secrets.inboxId, nonceHex: '303132333435363738393a3b', message: C.cleanArticleMessage(message), envelope: sealed.envelope };
@@ -96,4 +97,13 @@ console.log('ok');
     assert.equal(B.summaryToText('', parse), '');
     const af2 = B.articleForPhone({ url: 'https://example.com/a', title: 'T', content: '<p>x</p>', summary: '<ul><li>A</li></ul>' }, parse);
     assert.equal(af2.summary, '- A');
+}
+
+// 8) highlights: kinds u/g, short or duplicate quotes dropped, capped
+{
+    const m = C.cleanArticleMessage({ url: 'https://example.com/p', blocks: [['p', 'x']], hl: [['u', 'a real quote'], ['g', 'a real quote'], ['g', 'AI quote here'], ['x', 'bad kind quote'], ['u', 'tiny'], 'nope'] });
+    assert.deepEqual(m.hl, [['u', 'a real quote'], ['g', 'AI quote here']]);
+    assert.equal(C.cleanArticleMessage({ url: 'https://example.com/p', blocks: [['p', 'x']] }).hl, undefined);
+    const af3 = B.articleForPhone({ url: 'https://example.com/a', title: 'T', content: '<p>x</p>' }, (h) => new DOMParser().parseFromString(h, 'text/html').body, [{ type: 'ghost', text: 'ghost quote' }, { type: 'user', text: 'user quote' }]);
+    assert.deepEqual(af3.hl, [['g', 'ghost quote'], ['u', 'user quote']]);
 }
