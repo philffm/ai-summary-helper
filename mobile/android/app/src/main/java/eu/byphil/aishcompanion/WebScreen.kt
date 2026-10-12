@@ -141,9 +141,19 @@ fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (Stri
             }
         }
         AndroidView(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.weight(1f).fillMaxWidth(),   // the page gets exactly the space left under the bars and panels
             factory = { ctx ->
                 WebView(ctx).apply {
+                    layoutParams = android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
+                    isVerticalScrollBarEnabled = true
+                    overScrollMode = android.view.View.OVER_SCROLL_IF_CONTENT_SCROLLS
+                    // the page scrolls itself: nothing around it may take the vertical drag away
+                    setOnTouchListener { v, _ -> v.parent?.requestDisallowInterceptTouchEvent(true); false }
+                    settings.useWideViewPort = true
+                    settings.loadWithOverviewMode = true
+                    settings.setSupportZoom(true)
+                    settings.builtInZoomControls = true
+                    settings.displayZoomControls = false
                     settings.javaScriptEnabled = true
                     settings.domStorageEnabled = true
                     settings.allowFileAccess = false
