@@ -22,6 +22,11 @@ private val Light = lightColorScheme(
     surfaceVariant = Color(0xFFEEF1F8), onSurfaceVariant = Color(0xFF566274),
     outline = Color(0xFF94A3B8), outlineVariant = Color(0xFFD5DBE6),
     error = Color(0xFFDC2626), onError = Color.White,
+    secondaryContainer = Color(0xFFE0E9FB), onSecondaryContainer = Color(0xFF1E3A8A),
+    tertiaryContainer = Color(0xFFFDF0C8), onTertiaryContainer = Color(0xFF5B3B05),
+    errorContainer = Color(0xFFFEE2E2), onErrorContainer = Color(0xFF7F1D1D),
+    surfaceContainerLowest = Color.White, surfaceContainerLow = Color(0xFFF5F6FC), surfaceContainer = Color(0xFFF0F2FA),
+    surfaceContainerHigh = Color(0xFFEAEDF6), surfaceContainerHighest = Color(0xFFE4E8F2),
 )
 private val Dark = darkColorScheme(
     primary = Color(0xFF60A5FA), onPrimary = Color(0xFF0B0E14),
@@ -32,10 +37,15 @@ private val Dark = darkColorScheme(
     surfaceVariant = Color(0xFF171C26), onSurfaceVariant = Color(0xFF94A3B8),
     outline = Color(0xFF64748B), outlineVariant = Color(0xFF2A3140),
     error = Color(0xFFFCA5A5), onError = Color(0xFF0B0E14),
+    secondaryContainer = Color(0xFF1E2B4A), onSecondaryContainer = Color(0xFFDBEAFE),
+    tertiaryContainer = Color(0xFF3D2F0F), onTertiaryContainer = Color(0xFFFDE68A),
+    errorContainer = Color(0xFF4C1D1D), onErrorContainer = Color(0xFFFECACA),
+    surfaceContainerLowest = Color(0xFF080A10), surfaceContainerLow = Color(0xFF0F131B), surfaceContainer = Color(0xFF131822),
+    surfaceContainerHigh = Color(0xFF181E2A), surfaceContainerHighest = Color(0xFF1E2532),
 )
 private val AishShapes = Shapes(
     extraSmall = RoundedCornerShape(6.dp), small = RoundedCornerShape(12.dp),
-    medium = RoundedCornerShape(12.dp), large = RoundedCornerShape(16.dp), extraLarge = RoundedCornerShape(20.dp),
+    medium = RoundedCornerShape(16.dp), large = RoundedCornerShape(20.dp), extraLarge = RoundedCornerShape(28.dp),
 )
 
 @Composable

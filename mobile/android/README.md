@@ -8,16 +8,27 @@ A companion for the AISH browser extension, in two directions, both end-to-end e
   sent through a second inbox, and the app collects it every 15 minutes (or on **Check now**), saves it on the phone and deletes
   it from the server. Read it offline in the **Reading list**.
 
+* **Feeds:** a basic RSS reader (RSS, Atom, JSON Feed; own parser, no external entities). The feed *list* (URL, name, tags; the
+  first tag is the folder) syncs end-to-end encrypted with the extension through one vault document; items and articles never sync,
+  each device fetches its own. In a feed item tap **To browser** to send the link to the extension, or **Read page** to open it in
+  the in-app web view.
+* **Reading list:** articles from **Send to phone**, with the AI summary as bullets and your highlights and the AI's ghost highlights
+  marked in the text (yellow, blue) and listed below.
+* **Layout:** Material 3, bottom tabs Feeds · Reading · Settings. From 600 dp width (a Fold's inner screen, tablets, landscape) the
+  tabs become a side rail and lists open next to their article. The activity handles size changes itself (`configChanges`), so
+  folding or unfolding keeps the open article, scroll position and web page. Not yet: tabletop posture / hinge awareness.
+
 ## Build
-Open `mobile/android` in Android Studio (Koala or newer), let it sync, run on a device. Unit tests: `./gradlew test`
-(or run `InboxCryptoTest` from the IDE). The tests use the shared vector in `src/test/resources/inbox-vector.json`,
-a copy of `plugin/tests/fixtures/inbox-vector.json`: keep them identical.
+Open `mobile/android` in Android Studio (Koala or newer), let it sync, run on a device. The Gradle wrapper is pinned to 8.13 (the
+range the Android Gradle plugin 8.13 supports; Gradle 9.x needs a newer plugin). Unit tests: `./gradlew test`. They use the shared
+vectors in `src/test/resources/` (`inbox-vector.json`, `feed-sync-vector.json`), copies of `plugin/tests/fixtures/`: keep them identical (CI compares).
 
 ## Pairing
 Extension → Settings → Phone inbox → **Pair a phone** shows a QR code; the app scans it with Google's code scanner
 (no camera permission) or accepts the pasted `aish-inbox://v1?...` text. The code holds the inbox id, the message key and a
 *write-only* token; the read token of that inbox stays in the extension. When **Send to phone** is on, the code also carries
-`&ti=<inbox id>&tr=<read token>` of the second inbox (the one the phone reads). If you switch it on later, scan the new code once.
+`&ti=<inbox id>&tr=<read token>` of the second inbox (the one the phone reads); when **feed sync** is on it carries
+`&vi=<vault id>&vt=<vault token>` as well. If you switch either on later, scan the new code once.
 
 ## Notes
 * Articles: wire format v2 (gzip, then AES-GCM), plain text blocks only (`h1 h2 h3 p li q pre`), at most 4 MB after decompression.

@@ -12,7 +12,14 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
 
-        <activity android:name=".MainActivity" android:exported="true">
+        <!-- configChanges: folding or unfolding a foldable, rotating or resizing the window does not restart the activity, so the open article,
+             scroll position and web page stay as they are while the layout switches between one and two panes. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:resizeableActivity="true"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|keyboard|keyboardHidden|navigation|uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
