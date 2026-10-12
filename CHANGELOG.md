@@ -5,6 +5,113 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.9 (2026-10-12)
+
+### Commit log
+
+#### Added
+
+- Add gradle files
+
+#### Changed
+
+- Alarm sound: system alarm-sound picker plus a separate music file option
+- Alarm: choose a wake-up sound, fade in over 45s, then read the briefing over ducked music
+- UI up
+- Web view: summarize button shows progress and turns into a green check that opens the reading list; Share on the thumb side; clearer progress text
+- Email-code sign-in like the extension (Account & Plan panel); sync stays end-to-end encrypted via pairing
+- Bottom bars use round icon buttons with the primary action at the thumb edge; favorite moves to the item header
+- Left-handed mode: bottom bars align to the thumb side, web view puts Summarize next to the thumb; Accessibility settings (hand, reading text size)
+- Filter chips back at the top; Settings as a home list with panels and search, like the extension
+- Thumb-zone actions and swipe gestures: bottom bars in feeds, reading list, reader and web view; swipe to mark read/unread and favorite
+- feat(android): Group similar is a Feeds setting in Settings; Settings restyled like the extension (captions, outlined cards, label + hint rows, button groups, emoji labels); read-aloud switch
+- feat(android): UI polish: Feeds overflow menu (briefing, mood), Reading list swipe to delete with undo and reader text size, Settings grouped under section titles
+- feat(android): on-device summary streams into the panel and is read aloud sentence by sentence while it is written (speaker toggle in the web view)
+- feat(android): Share → AISH opens a sheet with Summarize on this phone (opens the page and summarizes it) and Send to browser
+- feat(android): ghost highlights come out of the same model request as the summary (marker line, sentences validated against the page); no extra pass
+- feat(android): group similar items in Feeds (same rules as the extension's stacks), summary language setting, AI ghost highlights for summaries made on the phone (switch in Settings)
+- feat(android): select one or many feed items (long-press) to favorite, mark read/unread, share links or send to the browser
+- feat(android): podcast player for feed episodes (audio enclosures): mini player above the navigation bar, media notification service, saved spot per episode, speed and seek
+- feat(android): refreshable day recap card at the top of Feeds, written by the on-device model
+- feat(android): favorites (star + filter), search across all feeds, feed management sheet with extension sync status; podcast enclosures and conditional GET in storage; gentler refresh; Add feed FAB removed
+- Summarize screen: list real summaries only, saved-only pages stay in History
+- Feed AI: rate in two small requests, titles only by default, AI settings as button groups
+  - scoreItems: sentiment as '1:3 | 2:-2' pairs first, then one category request that picks from the categories in use + defaults and may add up to 2 new ones; a failed category request keeps the scores; retry is reported
+  - benchmark shows ratings vs categories time (and a retry), still classifies by total
+  - aiDetail default: titles only (80/20)
+  - feedPrefsAi: choices use the shared segmented button group, no emoji in labels
+  - tests 151/152, adjusted 4/106/114/150
+- feat(android): feed storage for favorites, podcast enclosures and conditional refresh (ETag / Last-Modified, failed feeds are retried less often)
+- feat(extension): feed AI setting 'What the AI reads' (titles only / titles + descriptions); repeat the task after the items so small local models do not just describe the list; recap Refresh/Reset/Copy buttons match the design and have icons
+- feat(android): deleting from the reading list can be undone from a snackbar
+- feat(android): Add feed offers the extension's starter feeds from shared/suggested-feeds.json (refreshed from GitHub), and a Today's briefing button in Feeds that writes it with the local model
+- feat(android): alarm news mode as a three-way toggle (all news, no bad news, good only)
+- feat(android): summaries from the web view go to the reading list (marked as made on this phone), can be shared (WhatsApp etc.), and the article can still be sent to the extension
+- feat(android): summarize the open web page with the on-device model (DOM text extraction, chunked), keep sending the link to the extension from the web view
+- feat(android): rate the whole stored feed history by mood in the background (resumable, stoppable)
+- feat(android): rate feed items by mood with the on-device model (as in the extension's Feeds view), mood tint and Positive-only / Hide-heavy filters, good-news briefing goes by the ratings
+- feat(android): read the license key from the pairing code, show the plan and monthly allowance, sign out on unpair
+- feat(phone): the pairing code can carry the Pro license key (lk) for the phone's cloud extra; inbox and vault stay anonymous
+- feat(android): good-news-only briefing and an optional cloud extra (fun fact or custom prompt) through the AISH chat endpoint
+- chore(android): app named AISH (launcher) / AI Summary Helper (in app)
+- feat(android): show the last crash on the next start (copyable) with a way to turn the alarm off
+- build(android): kotlinOptions to compilerOptions DSL; LiteRT-LM needs Kotlin 2.4
+- feat(android): on-device model (Gemma 4 E2B via LiteRT-LM): resumable Wi-Fi download with SHA-256 check, model-written spoken briefing, settings card
+- feat(android): morning alarm with spoken feed briefing (no AI), prepared 20 minutes before; fix setPairing JVM clash
+- feat(android): Material 3 app with Feeds, Reading and Settings tabs, adaptive two-pane layout for foldables, in-app web view, highlights
+- feat(android): feed reader core (RSS/Atom/JSON Feed parser, feed store, vault sync, highlights); Gradle 8.13 for AGP 8.13
+- feat(phone): send highlights and AI ghost highlights with the article; Send to phone sits with LocalSend
+- feat(sync): encrypted feed-URL sync through a vault (merge rules, sealed document, Settings → Phone)
+- feat(android): receive articles from the browser and read them offline
+  - the pairing code may carry the extension→phone inbox (&ti=&tr=); old codes still work
+  - Receiver + ReceiveWorker (every 15 min, plus Check now): read, decrypt (gzip + AES-GCM, v2), save, then delete on the server
+  - ArticleStore in app-private storage; item ids are validated as plain file names
+  - reading list and reader screens (headings, lists, quotes, code, AISH summary card)
+  - unit tests against the article part of the shared vector, bomb and tamper checks; vector copy synced
+  - README, .gitignore (*.jks, *.keystore)
+- feat(inbox): Send to phone: full articles, end-to-end encrypted, to read on the go
+  - second inbox (extension → phone), created with the pairing; the QR carries its id and read token (&ti=…&tr=…); the same key protects both
+  - envelope v2: article as plain text blocks (no markup, no images), gzip, then AES-256-GCM; shortened to fit 135 KB; decompression capped at 4 MB
+  - ⋯ → Send to phone on any article; Settings → Phone inbox can switch it on for an existing pairing
+  - reference server and openapi: item cap 190,000 chars, 8 MB waiting per inbox, v 1|2
+  - shared test vector for the article format (Android must decrypt it); tests 145, 146
+  - translations for the new strings in 13 locales; cardMenu.js added to the i18n scan
+- i18n: translate the three inbox strings (remove link, save timed out, page did not respond) in all locales
+- feat(reader): Share and the preferred delivery (LocalSend or Kindle) from the reader page
+- Monthly AI allowance: usage bar in account settings, friendly errors for quota/rate/size limits
+  - renderQuota under the plan badge (percent only, warn at 80%, full at 100%), fed by the new quota field of GET /usage
+  - quota_exceeded / rate_limited / too_large from the API get their own messages instead of the 'free daily limit' text
+  - 5 new strings in 13 locales, test144
+- ui(history): remove the Select button from the top bar (selection starts from a card's ⋯ menu or a long-press)
+- feat(inbox): opening History checks the phone inbox (when paired), on top of the 15-minute background poll
+- feat(feeds): items keep the identity they were first given (rewritten guids, tracking parameters and moved links no longer create duplicates)
+- feat(inbox): waiting phone links are counted on the toolbar icon
+- feat(inbox): the From phone chip stays: on the waiting card when its title arrives, and on the article it becomes (summary or saved copy)
+- feat(inbox): an opened phone link takes over the page's title and description; Save only survives heavy pages
+  - loader.js reports title/description of a page that waits in the inbox; the background applies it to that entry only (applyLinkMeta, a page may only describe itself); the card shows the title and a short description.
+  - Save only: image inlining is capped at 25 s, each attempt at 70 s (retries without images), the service worker is kept alive meanwhile, and a failure shows its reason (timeout / detail).
+- feat(inbox): phone cards open on click like the other cards (no separate Open button); Dismiss asks before deleting
+- feat(inbox): phone links are native cards at the top of History's Inbox tab (no separate From-phone box)
+- feat(inbox): Open a phone link from the list; Save only is more patient and says why it failed
+  - Open ↗ button and a real link on the host/path; opening leaves the entry in the list.
+  - saveFeedItem: settle delay after load, ensureContent + ping before saving, up to 3 tries; failures carry a reason (unreachable / empty / error) and the list explains each one.
+
+#### Fixed
+
+- Fix release gate: stale test expectations (Reset button, worker mock) and translations for the AI-reads settings
+- fix(android): no To browser button on articles that came from the browser (kept on summaries made on the phone)
+- fix(android): web view scrolling: take the remaining height with weight, explicit match-parent size, no parent intercepting the drag, zoom and wide viewport
+- fix(android): a failed fetch counts as an attempt, so failed feeds really wait 6 hours
+- fix(android): AddFeedDialog: plain suggestion rows instead of ListItem, braces around the result branches (second attempt at the Kotlin internal compiler error)
+- fix(android): AddFeedDialog without delegated state and local fun (Kotlin internal compiler error), clearer URL constant name
+- fix(android): centre the navigation rail items vertically on wide screens
+- fix(android): request exact-alarm permission (USE_EXACT_ALARM) so the alarm can be set
+- fix(android): crash guard: risky steps are marked, failures are caught and shown, and a next start after a crash opens a recovery screen
+- fix(android): show and edit all feed tags from the extension instead of reducing them to one folder
+- fix(phone): AI summary is sent as readable text (bullets), not raw HTML
+- fix(history): the list re-reads the archive when it changes (a finished phone summary shows up without reopening)
+- fix(history): archive and waiting phone links paint together after the skeleton
+
 ## 2.2.8 (2026-10-12)
 
 ### Commit log
