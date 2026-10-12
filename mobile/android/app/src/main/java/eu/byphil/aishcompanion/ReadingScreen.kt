@@ -152,7 +152,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(top = 4.dp)) {
                         Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
                         if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
-                        if (model.pairing != null) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
+                        if (model.pairing != null && article.local) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
                         OutlinedButton(onClick = { onDelete(id) }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
                     }
                 }
