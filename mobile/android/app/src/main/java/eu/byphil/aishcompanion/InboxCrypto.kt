@@ -29,15 +29,18 @@ object InboxCrypto {
         return b64.encodeToString(nonce + sealed)
     }
 
-    /** Used by tests (and handy for debugging); the phone itself only encrypts. */
-    fun decrypt(pairing: Pairing, data: String): String {
+    /** Used by tests (and handy for debugging) for links; articles use [decryptBytes] and [ArticleCodec]. */
+    fun decrypt(pairing: Pairing, data: String): String = String(decryptBytes(pairing.inboxId, pairing.encKey, data), Charsets.UTF_8)
+
+    /** Opens base64url(nonce || ciphertext || tag) with the key; [inboxId] is the additional data. Throws on a bad tag or another inbox. */
+    fun decryptBytes(inboxId: String, encKey: String, data: String): ByteArray {
         val raw = b64d.decode(data)
         require(raw.size >= 12 + 16) { "message too short" }
-        val key = SecretKeySpec(b64d.decode(pairing.encKey), "AES")
+        val key = SecretKeySpec(b64d.decode(encKey), "AES")
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         cipher.init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(128, raw.copyOfRange(0, 12)))
-        cipher.updateAAD(pairing.inboxId.toByteArray(Charsets.UTF_8))
-        return String(cipher.doFinal(raw.copyOfRange(12, raw.size)), Charsets.UTF_8)
+        cipher.updateAAD(inboxId.toByteArray(Charsets.UTF_8))
+        return cipher.doFinal(raw.copyOfRange(12, raw.size))
     }
 
     /** The plaintext the extension expects: {v, url, sentAt, platform}. */

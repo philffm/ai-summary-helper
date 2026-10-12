@@ -17,5 +17,46 @@
   },
   "writeHash": "f45dc82a7523d14974cea050e3028e8bf06a8ee855a9d63034ebb4fb9ecc2305",
   "readHash": "128a42f0efc787b4710881a27873ead95dfcf13a9dfbdf9ca1f2f0600ecb9407",
-  "pairing": "aish-inbox://v1?i=oKGio6SlpqeoqaqrrK2urw&k=AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8&w=QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl8"
+  "pairing": "aish-inbox://v1?i=oKGio6SlpqeoqaqrrK2urw&k=AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8&w=QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl8",
+  "article": {
+    "_about": "Article for the phone, envelope v2. Decrypt with encKey and inboxId (the extension→phone inbox) using AES-256-GCM, then gunzip, then parse JSON. Must equal `message`.",
+    "inboxId": "q6ytrq2trK2urq2urq2urg",
+    "nonceHex": "303132333435363738393a3b",
+    "message": {
+      "v": 2,
+      "url": "https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2",
+      "sentAt": 1760000000000,
+      "title": "Größe & Wunder ✓",
+      "site": "example.com",
+      "byline": "Jörg Müller",
+      "lang": "de",
+      "blocks": [
+        [
+          "h2",
+          "Überschrift 日本語"
+        ],
+        [
+          "p",
+          "Ein Absatz mit Emoji 🙂 und Umlauten äöüß."
+        ],
+        [
+          "li",
+          "Listenpunkt"
+        ],
+        [
+          "q",
+          "Zitat"
+        ],
+        [
+          "pre",
+          "a\n  b"
+        ]
+      ],
+      "summary": "- Punkt eins\n- Punkt zwei"
+    },
+    "envelope": {
+      "v": 2,
+      "data": "MDEyMzQ1Njc4OTo7rL45wOlvSgMqMMNi09O8KYiiELKxfhOWgT-AzGw2e2-TRo6w6TyhTkrY8Za2OkZrNRL8DC8jXv3pKza6pgULvJt4n0m8E7w0F8diJ6hC0gCX1YnWY91qQDy4FXl4wXmyXQ31rYzPgtDTa1V96lrUqBKO2zsC6eEpe7OnqOPhLrcMSdu6H9XG1wPfVR9lVqGhwYZZrkYjRUQdabwp9OV-QzfcpdyH-Nkfr0O6l_UFEnHOZGZTmAX0jmnesxyah6FOCJ0ZH63jEfbeyhfEsKmHaEmflAT_8WkRPNFGWci9NwrB6hWJK1uPWpcwegCpu3UK_WVaVOmIzNQwlzo3k7rDeBSsnz-K59LmKF9lmLsrcd1u0CV3ptPJkAIwJEGlMcPCJfLeHkX5J1ViARza6m69ELLzCGyUiGmN-QA6LmniIyio_uzHWg"
+    }
+  }
 }

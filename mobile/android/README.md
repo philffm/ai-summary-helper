@@ -1,8 +1,12 @@
 # AISH Companion (Android)
 
-A tiny share target for the AISH browser extension. Share a link from any app → **AISH**; it is encrypted on the phone
-(AES-256-GCM, key from the pairing code) and put in your byPhil inbox. The extension collects it, lists it under
-**History → From phone**, and you tap **Summarize**.
+A companion for the AISH browser extension, in two directions, both end-to-end encrypted:
+
+* **Phone → browser:** share a link from any app → **AISH**; it is encrypted on the phone (AES-256-GCM, key from the pairing
+  code) and put in your byPhil inbox. The extension collects it, lists it under **History → From phone**, and you tap **Summarize**.
+* **Browser → phone:** in the extension choose **⋯ → Send to phone** on an article. The full text (no images) is encrypted,
+  sent through a second inbox, and the app collects it every 15 minutes (or on **Check now**), saves it on the phone and deletes
+  it from the server. Read it offline in the **Reading list**.
 
 ## Build
 Open `mobile/android` in Android Studio (Koala or newer), let it sync, run on a device. Unit tests: `./gradlew test`
@@ -12,9 +16,13 @@ a copy of `plugin/tests/fixtures/inbox-vector.json`: keep them identical.
 ## Pairing
 Extension → Settings → Phone inbox → **Pair a phone** shows a QR code; the app scans it with Google's code scanner
 (no camera permission) or accepts the pasted `aish-inbox://v1?...` text. The code holds the inbox id, the message key and a
-*write-only* token. The read token stays in the extension.
+*write-only* token; the read token of that inbox stays in the extension. When **Send to phone** is on, the code also carries
+`&ti=<inbox id>&tr=<read token>` of the second inbox (the one the phone reads). If you switch it on later, scan the new code once.
 
 ## Notes
+* Articles: wire format v2 (gzip, then AES-GCM), plain text blocks only (`h1 h2 h3 p li q pre`), at most 4 MB after decompression.
+  They are stored in the app's private storage (`files/articles`), not readable by other apps, and removed on uninstall.
+  The unit tests decrypt the `article` part of the shared vector.
 * Wire format and API: `plugin/inbox-api/openapi.yaml`.
 * Only http(s) links are sent; the first one in the shared text.
 * Offline or server busy: WorkManager retries with backoff. A rejected pairing shows an error in the app.
