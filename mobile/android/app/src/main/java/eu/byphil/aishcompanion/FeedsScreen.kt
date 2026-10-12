@@ -45,6 +45,13 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.Sync
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.RadioButtonUnchecked
+import androidx.compose.material.icons.filled.SelectAll
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.MarkEmailUnread
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.FilterChip
@@ -114,6 +121,8 @@ fun FeedsScreen(
     var searching by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
     val searchFocus = remember { FocusRequester() }
+    var picked by remember { mutableStateOf(setOf<String>()) }   // selection keys of the items chosen for an action
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) { if (model.feeds.isNotEmpty()) model.refreshAll(force = false) }
     LaunchedEffect(model.message) { model.message?.let { snackbar.showSnackbar(it); model.consumeMessage() } }
@@ -129,11 +138,37 @@ fun FeedsScreen(
     val current = visible.firstOrNull { selectionKey(it.feed.url, it.stored.item.id) == selected }
         ?: model.entries.firstOrNull { selectionKey(it.feed.url, it.stored.item.id) == selected }
 
+    androidx.activity.compose.BackHandler(enabled = picked.isNotEmpty()) { picked = emptySet() }
+    val chosen = visible.filter { selectionKey(it.feed.url, it.stored.item.id) in picked }
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
-            TopAppBar(
+            if (picked.isNotEmpty()) TopAppBar(
+                title = { Text("${picked.size} selected") },
+                navigationIcon = { IconButton(onClick = { picked = emptySet() }) { Icon(Icons.Filled.Close, contentDescription = "Cancel selection") } },
+                actions = {
+                    IconButton(onClick = { picked = visible.map { selectionKey(it.feed.url, it.stored.item.id) }.toSet() }) { Icon(Icons.Filled.SelectAll, contentDescription = "Select all") }
+                    val allFav = chosen.isNotEmpty() && chosen.all { it.stored.fav }
+                    IconButton(onClick = { val keys = picked; picked = emptySet(); scope.launch { model.setFavoriteMany(keys, !allFav) } }) {
+                        Icon(if (allFav) Icons.Filled.StarBorder else Icons.Filled.Star, contentDescription = if (allFav) "Remove from favorites" else "Add to favorites")
+                    }
+                    val allRead = chosen.isNotEmpty() && chosen.all { it.stored.read }
+                    IconButton(onClick = { val keys = picked; picked = emptySet(); scope.launch { model.markReadMany(keys, !allRead) } }) {
+                        Icon(if (allRead) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, contentDescription = if (allRead) "Mark as unread" else "Mark as read")
+                    }
+                    IconButton(onClick = {
+                        val links = chosen.map { it.stored.item.link }.filter { it.isNotEmpty() }
+                        if (links.isNotEmpty()) shareText(context, "Links from AISH", chosen.filter { it.stored.item.link.isNotEmpty() }.joinToString("\n\n") { it.stored.item.title + "\n" + it.stored.item.link })
+                    }) { Icon(Icons.Filled.Share, contentDescription = "Share links") }
+                    if (model.pairing != null) IconButton(onClick = {
+                        val links = chosen.map { it.stored.item.link }.filter { it.isNotEmpty() }.distinct()
+                        links.forEach { SendWorker.enqueue(context, it) }
+                        picked = emptySet()
+                        scope.launch { snackbar.showSnackbar(if (links.isEmpty()) "These items have no link." else if (links.size == 1) "Queued for the browser." else "${links.size} links queued for the browser.") }
+                    }) { Icon(Icons.AutoMirrored.Filled.Send, contentDescription = "Send to browser") }
+                },
+            ) else TopAppBar(
                 title = {
                     if (searching) TextField(
                         value = query, onValueChange = { query = it }, singleLine = true, placeholder = { Text("Search all feeds") },
@@ -192,9 +227,17 @@ fun FeedsScreen(
                                     RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } }
                                 }
                                 items(visible, key = { selectionKey(it.feed.url, it.stored.item.id) }) { e ->
-                                    ItemCard(e, selected = selectionKey(e.feed.url, e.stored.item.id) == selected, onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } }) {
-                                        onSelect(selectionKey(e.feed.url, e.stored.item.id))
-                                        scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
+                                    val key = selectionKey(e.feed.url, e.stored.item.id)
+                                    ItemCard(
+                                        e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
+                                        onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
+                                        onLong = { picked = if (key in picked) picked - key else picked + key },
+                                    ) {
+                                        if (picked.isNotEmpty()) picked = if (key in picked) picked - key else picked + key
+                                        else {
+                                            onSelect(key)
+                                            scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
+                                        }
                                     }
                                 }
                             }
@@ -219,16 +262,18 @@ private fun moodTint(sent: Double?, base: androidx.compose.ui.graphics.Color): a
     return androidx.compose.ui.graphics.Color.hsv(Mood.hue(sent), 0.75f, 0.85f).copy(alpha = a).compositeOver(base)
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun ItemCard(e: FeedEntryRef, selected: Boolean, onFav: () -> Unit, onClick: () -> Unit) {
+private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, selecting: Boolean, onFav: () -> Unit, onLong: () -> Unit, onClick: () -> Unit) {
     val unread = !e.stored.read
     val item = e.stored.item
     Card(
-        onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = if (selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, MaterialTheme.colorScheme.surfaceVariant)),
+        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong), shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = if (picked || selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, MaterialTheme.colorScheme.surfaceVariant)),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (selecting) Icon(if (picked) Icons.Filled.CheckCircle else Icons.Filled.RadioButtonUnchecked, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
                 if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
                 Text(listOf(e.feed.name, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
                 when (Mood.of(e.stored.sent)) { "pos" -> Text("😊"); "neg" -> Text("😟"); else -> {} }

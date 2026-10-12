@@ -168,6 +168,10 @@ class FeedStore(private val dir: File) {
 
     @Synchronized fun markRead(url: String, id: String, read: Boolean = true) = rewrite(url) { if (it.item.id == id) it.copy(read = read) else it }
 
+    /** Several items of one feed at once (one file write). */
+    @Synchronized fun markReadIds(url: String, ids: Set<String>, read: Boolean) = rewrite(url) { if (it.item.id in ids) it.copy(read = read) else it }
+    @Synchronized fun setFavoriteIds(url: String, ids: Set<String>, fav: Boolean) = rewrite(url) { if (it.item.id in ids) it.copy(fav = fav) else it }
+
     @Synchronized fun setFavorite(url: String, id: String, fav: Boolean) = rewrite(url) { if (it.item.id == id) it.copy(fav = fav) else it }
 
     /** Stores sentiment ratings (item id → -1..1) next to the items; other items keep what they have. */

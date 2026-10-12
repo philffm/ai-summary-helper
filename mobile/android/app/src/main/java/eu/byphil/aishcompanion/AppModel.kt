@@ -192,6 +192,18 @@ class AppModel(context: Context) {
         feedStore.setFavorite(feedUrl, id, fav); entries = feedStore.everything()
     }
 
+    /** Actions on a selection: [keys] are [selectionKey]s ("feed url\nitem id"). */
+    private fun grouped(keys: Collection<String>): Map<String, Set<String>> =
+        keys.groupBy({ it.substringBefore('\n') }, { it.substringAfter('\n') }).mapValues { it.value.toSet() }
+
+    suspend fun markReadMany(keys: Collection<String>, read: Boolean) = withContext(Dispatchers.IO) {
+        grouped(keys).forEach { (u, ids) -> feedStore.markReadIds(u, ids, read) }; entries = feedStore.everything()
+    }
+
+    suspend fun setFavoriteMany(keys: Collection<String>, fav: Boolean) = withContext(Dispatchers.IO) {
+        grouped(keys).forEach { (u, ids) -> feedStore.setFavoriteIds(u, ids, fav) }; entries = feedStore.everything()
+    }
+
     suspend fun markAllRead(feedUrls: List<String>) = withContext(Dispatchers.IO) {
         feedUrls.forEach { feedStore.markAllRead(it) }; entries = feedStore.everything()
     }
