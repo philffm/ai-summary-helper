@@ -136,7 +136,7 @@ private fun Header() {
             Image(painterResource(R.drawable.ic_launcher_background), contentDescription = null, modifier = Modifier.fillMaxSize())
             Image(painterResource(R.drawable.ic_launcher_foreground), contentDescription = null, modifier = Modifier.fillMaxSize())
         }
-        Text("AISH Companion", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.SemiBold)
+        Text("AI Summary Helper", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.SemiBold)
         Text("Your feeds, your reading list and your links, in step with AI Summary Helper in the browser.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center)
     }
 }

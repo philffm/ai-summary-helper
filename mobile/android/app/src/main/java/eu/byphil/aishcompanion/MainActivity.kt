@@ -42,7 +42,7 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 
 /**
- * AISH Companion: Feeds, Reading list and Settings, like the extension's Feeds · Summarize · History bar. Pair once (scan the
+ * AI Summary Helper (AISH) on the phone: Feeds, Reading list and Settings, like the extension's Feeds · Summarize · History bar. Pair once (scan the
  * code from the extension), then read feeds (kept in step through the encrypted feed sync), read articles sent from the browser,
  * and share links to the browser. The layout follows the window width, so it also fits foldables: the Fold's inner screen shows
  * a side rail and list + detail side by side. The activity handles size changes itself (see the manifest), so folding and

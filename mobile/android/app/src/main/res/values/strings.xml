@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">AISH Companion</string>
+    <string name="app_name">AISH</string>
     <string name="share_label">AISH</string>
     <string name="toast_sent">Sent to AISH</string>
     <string name="toast_queued">Will send to AISH when you are online</string>
     <string name="toast_no_link">No web link found to share</string>
-    <string name="toast_not_paired">Open AISH Companion and pair it first</string>
+    <string name="toast_not_paired">Open AISH and pair it first</string>
 </resources>
