@@ -17,6 +17,9 @@ data class FeedItem(
     val author: String,
     val summary: String,
     val body: String,
+    /** A podcast episode's audio file (https only), and its length in seconds (0 = unknown). */
+    val audio: String = "",
+    val duration: Int = 0,
 )
 
 data class ParsedFeed(val title: String, val siteUrl: String, val items: List<FeedItem>)
@@ -210,7 +213,8 @@ object FeedXml {
         if (link.isEmpty() && guid.startsWith("http")) link = resolve(base, guid)
         val full = n.textOf("encoded").ifEmpty { n.textOf("content") }
         val desc = n.textOf("description", "summary")
-        return build(guid, title, link, n.textOf("pubDate", "date", "published", "updated"), n.textOf("creator", "author").ifEmpty { n.child("author")?.textOf("name") ?: "" }, desc, full)
+        val audio = n.all("enclosure").firstNotNullOfOrNull { e -> e.attrs["url"]?.let { u -> resolve(base, u).takeIf { r -> audioLike(r, e.attrs["type"] ?: "") } } } ?: ""
+        return build(guid, title, link, n.textOf("pubDate", "date", "published", "updated"), n.textOf("creator", "author").ifEmpty { n.child("author")?.textOf("name") ?: "" }, desc, full, audio, parseDuration(n.textOf("duration")))
     }
 
     private fun atomItem(n: Node, base: String): FeedItem? {
@@ -218,10 +222,11 @@ object FeedXml {
         return build(
             n.textOf("id"), htmlToText(n.textOf("title")), atomLink(n, "alternate", base),
             n.textOf("published").ifEmpty { n.textOf("updated") }, n.child("author")?.textOf("name") ?: "", n.textOf("summary"), full.trim(),
+            n.all("link").firstNotNullOfOrNull { l -> if (l.attrs["rel"] == "enclosure") l.attrs["href"]?.let { h -> resolve(base, h).takeIf { r -> audioLike(r, l.attrs["type"] ?: "") } } else null } ?: "",
         )
     }
 
-    private fun build(guid: String, title: String, link: String, date: String, author: String, descHtml: String, fullHtml: String): FeedItem? {
+    private fun build(guid: String, title: String, link: String, date: String, author: String, descHtml: String, fullHtml: String, audio: String = "", duration: Int = 0): FeedItem? {
         val bodyHtml = fullHtml.ifBlank { descHtml }
         val body = htmlToText(bodyHtml).take(MAX_BODY)
         val summary = htmlToText(descHtml.ifBlank { fullHtml }).replace(Regex("\\s+"), " ").take(400)
@@ -229,7 +234,7 @@ object FeedXml {
         val shownTitle = title.ifEmpty { summary.take(80) }
         if (shownTitle.isEmpty() && safeLink.isEmpty()) return null
         val id = guid.ifEmpty { safeLink.ifEmpty { shownTitle + date } }.take(300)
-        return FeedItem(id, shownTitle, safeLink, parseDate(date), htmlToText(author).take(120), summary, body)
+        return FeedItem(id, shownTitle, safeLink, parseDate(date), htmlToText(author).take(120), summary, body, audio, duration.coerceIn(0, 86_400))
     }
 
     private fun parseJsonFeed(t: String): ParsedFeed? = try {
@@ -240,10 +245,29 @@ object FeedXml {
             val it = arr.getJSONObject(i)
             val author = it.optJSONArray("authors")?.optJSONObject(0)?.optString("name", "") ?: ""
             build(it.optString("id", ""), htmlToText(it.optString("title", "")), it.optString("url", ""), it.optString("date_published", ""), author,
-                it.optString("summary", "").ifEmpty { it.optString("content_text", "") }, it.optString("content_html", "").ifEmpty { it.optString("content_text", "") })?.let(items::add)
+                it.optString("summary", "").ifEmpty { it.optString("content_text", "") }, it.optString("content_html", "").ifEmpty { it.optString("content_text", "") },
+                it.optJSONArray("attachments")?.let { a -> (0 until a.length()).mapNotNull { k -> a.optJSONObject(k) }.firstOrNull { x -> audioLike(x.optString("url", ""), x.optString("mime_type", "")) }?.optString("url", "") } ?: "",
+                it.optJSONArray("attachments")?.optJSONObject(0)?.optInt("duration_in_seconds", 0) ?: 0)?.let(items::add)
         }
         ParsedFeed(htmlToText(o.optString("title", "")), o.optString("home_page_url", ""), items)
     } catch (_: Exception) { null }
+
+    /** True for an https audio file: an audio/* type, or a known audio file extension. Plain http is left out (Android blocks it). */
+    fun audioLike(url: String, type: String): Boolean =
+        url.startsWith("https://") && (type.trim().lowercase().startsWith("audio/") || Regex("\\.(mp3|m4a|aac|ogg|oga|opus|wav)(\\?.*)?$", RegexOption.IGNORE_CASE).containsMatchIn(url))
+
+    /** "1:02:03", "35:10" or "2123" (seconds) → seconds; 0 when unknown. */
+    fun parseDuration(raw: String): Int {
+        val p = raw.trim().split(':')
+        return try {
+            when (p.size) {
+                1 -> if (p[0].isEmpty()) 0 else p[0].toDouble().toInt()
+                2 -> p[0].toInt() * 60 + p[1].toDouble().toInt()
+                3 -> p[0].toInt() * 3600 + p[1].toInt() * 60 + p[2].toDouble().toInt()
+                else -> 0
+            }
+        } catch (_: Exception) { 0 }
+    }
 
     // ── dates and links ──
 

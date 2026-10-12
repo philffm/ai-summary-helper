@@ -95,6 +95,7 @@ class AppModel(context: Context) {
             val now = System.currentTimeMillis()
             for (f in feedStore.feeds()) {
                 if (!force && now - f.lastFetched < STALE_MS) continue
+                if (!force && f.error.isNotEmpty() && now - f.lastFetched < BROKEN_MS) continue   // a feed that failed is not hammered every hour
                 FeedFetcher.refresh(feedStore, f, System.currentTimeMillis())?.let { added += it }
             }
             reload()
@@ -159,6 +160,10 @@ class AppModel(context: Context) {
         feedStore.markRead(feedUrl, id, read); entries = feedStore.everything()
     }
 
+    suspend fun setFavorite(feedUrl: String, id: String, fav: Boolean) = withContext(Dispatchers.IO) {
+        feedStore.setFavorite(feedUrl, id, fav); entries = feedStore.everything()
+    }
+
     suspend fun markAllRead(feedUrls: List<String>) = withContext(Dispatchers.IO) {
         feedUrls.forEach { feedStore.markAllRead(it) }; entries = feedStore.everything()
     }
@@ -216,6 +221,7 @@ class AppModel(context: Context) {
 
     companion object {
         const val STALE_MS = 30L * 60 * 1000
+        const val BROKEN_MS = 6L * 3600 * 1000
         fun parseTags(text: String): List<String> = FeedSync.cleanTags(text.split(',', ';'))
     }
 }

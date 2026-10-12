@@ -18,6 +18,9 @@ data class Feed(
     val addedAt: Long = 0,
     val lastFetched: Long = 0,
     val error: String = "",
+    /** Validators of the last download, so the next refresh can ask "has it changed?" and cost almost nothing when it has not. */
+    val etag: String = "",
+    val modified: String = "",
 ) {
     val name: String get() = customTitle.ifBlank { title.ifBlank { url } }
     /** The folder the phone shows the feed under: the first tag. */
@@ -25,7 +28,7 @@ data class Feed(
 }
 
 /** [sent]: sentiment from -1 (heavy) to 1 (good), rated by the on-device model; null = not rated yet. [cat]: reserved for a category label. */
-data class StoredItem(val item: FeedItem, val read: Boolean, val sent: Double? = null, val cat: String = "")
+data class StoredItem(val item: FeedItem, val read: Boolean, val sent: Double? = null, val cat: String = "", val fav: Boolean = false)
 
 /** One entry of the "all items" list. */
 data class FeedEntryRef(val feed: Feed, val stored: StoredItem)
@@ -58,7 +61,7 @@ class FeedStore(private val dir: File) {
                 val url = FeedSync.cleanFeedUrl(s.optString("url", ""))
                 if (url.isEmpty()) continue
                 val tags = ArrayList<String?>(); s.optJSONArray("tags")?.let { t -> for (j in 0 until t.length()) tags.add(t.optString(j, "")) }
-                list.add(Feed(url, s.optString("title", ""), s.optString("customTitle", ""), FeedSync.cleanTags(tags), s.optLong("addedAt", 0), s.optLong("lastFetched", 0), s.optString("error", "")))
+                list.add(Feed(url, s.optString("title", ""), s.optString("customTitle", ""), FeedSync.cleanTags(tags), s.optLong("addedAt", 0), s.optLong("lastFetched", 0), s.optString("error", ""), s.optString("etag", ""), s.optString("modified", "")))
             }
             val sy = o.optJSONObject("sync")
             val state = if (sy == null) SyncState() else SyncState(sy.optLong("rev", 0), sy.optJSONArray("base")?.let { FeedSync.parseEntries(it) } ?: emptyList(), sy.optLong("lastSyncAt", 0))
@@ -68,7 +71,7 @@ class FeedStore(private val dir: File) {
 
     @Synchronized private fun write(feeds: List<Feed>, state: SyncState) {
         val subs = JSONArray()
-        for (f in feeds) subs.put(JSONObject().put("url", f.url).put("title", f.title).put("customTitle", f.customTitle).put("tags", JSONArray(f.tags)).put("addedAt", f.addedAt).put("lastFetched", f.lastFetched).put("error", f.error))
+        for (f in feeds) subs.put(JSONObject().put("url", f.url).put("title", f.title).put("customTitle", f.customTitle).put("tags", JSONArray(f.tags)).put("addedAt", f.addedAt).put("lastFetched", f.lastFetched).put("error", f.error).put("etag", f.etag).put("modified", f.modified))
         val base = JSONArray()
         for (e in state.base) base.put(JSONObject(FeedSync.canon(e)))
         val o = JSONObject().put("subs", subs).put("sync", JSONObject().put("rev", state.rev).put("lastSyncAt", state.lastSyncAt).put("base", base))
@@ -129,58 +132,63 @@ class FeedStore(private val dir: File) {
             val arr = JSONArray(f.readText())
             (0 until arr.length()).mapNotNull { i ->
                 val o = arr.optJSONObject(i) ?: return@mapNotNull null
-                StoredItem(FeedItem(o.optString("id", ""), o.optString("title", ""), o.optString("link", ""), o.optLong("published", 0), o.optString("author", ""), o.optString("summary", ""), o.optString("body", "")), o.optBoolean("read", false),
-                    if (o.has("sent")) o.optDouble("sent").takeIf { !it.isNaN() } else null, o.optString("cat", ""))
+                StoredItem(FeedItem(o.optString("id", ""), o.optString("title", ""), o.optString("link", ""), o.optLong("published", 0), o.optString("author", ""), o.optString("summary", ""), o.optString("body", ""), o.optString("audio", ""), o.optInt("duration", 0)), o.optBoolean("read", false),
+                    if (o.has("sent")) o.optDouble("sent").takeIf { !it.isNaN() } else null, o.optString("cat", ""), o.optBoolean("fav", false))
             }
         } catch (_: Exception) { emptyList() }
     }
 
-    /** Replaces the stored items with the feed's latest, keeping the read flag of items seen before. Returns how many are new. */
+    /**
+     * Replaces the stored items with the feed's latest, keeping read flag, rating and favourite of items seen before. Favourites that
+     * have dropped out of the feed stay (after the fresh ones), so a starred item is never lost. Returns how many are new.
+     */
     @Synchronized fun saveItems(url: String, fresh: List<FeedItem>): Int {
         val old = items(url).associateBy { it.item.id }
         val arr = JSONArray()
         var added = 0
+        val kept = HashSet<String>()
         for (it in fresh.take(FeedXml.MAX_ITEMS)) {
             val was = old[it.id]
             if (was == null) added++
-            arr.put(json(it, was?.read ?: false, was?.sent, was?.cat ?: ""))
+            kept += it.id
+            arr.put(json(StoredItem(it, was?.read ?: false, was?.sent, was?.cat ?: "", was?.fav ?: false)))
         }
+        for (was in old.values) if (was.fav && was.item.id !in kept) arr.put(json(was))
         fileFor(url).writeText(arr.toString())
         return added
     }
 
-    @Synchronized fun markRead(url: String, id: String, read: Boolean = true) {
+    @Synchronized private fun rewrite(url: String, change: (StoredItem) -> StoredItem) {
         val list = items(url)
-        if (list.none { it.item.id == id }) return
+        if (list.isEmpty()) return
         val arr = JSONArray()
-        for (s in list) arr.put(json(s.item, if (s.item.id == id) read else s.read, s.sent, s.cat))
+        for (s in list) arr.put(json(change(s)))
         fileFor(url).writeText(arr.toString())
     }
+
+    @Synchronized fun markRead(url: String, id: String, read: Boolean = true) = rewrite(url) { if (it.item.id == id) it.copy(read = read) else it }
+
+    @Synchronized fun setFavorite(url: String, id: String, fav: Boolean) = rewrite(url) { if (it.item.id == id) it.copy(fav = fav) else it }
 
     /** Stores sentiment ratings (item id → -1..1) next to the items; other items keep what they have. */
     @Synchronized fun setRatings(url: String, ratings: Map<String, Double>) {
         if (ratings.isEmpty()) return
-        val list = items(url)
-        if (list.isEmpty()) return
-        val arr = JSONArray()
-        for (s in list) arr.put(json(s.item, s.read, ratings[s.item.id]?.coerceIn(-1.0, 1.0) ?: s.sent, s.cat))
-        fileFor(url).writeText(arr.toString())
+        rewrite(url) { s -> s.copy(sent = ratings[s.item.id]?.coerceIn(-1.0, 1.0) ?: s.sent) }
     }
 
-    private fun json(item: FeedItem, read: Boolean, sent: Double?, cat: String): JSONObject {
+    private fun json(s: StoredItem): JSONObject {
+        val item = s.item
         val o = JSONObject().put("id", item.id).put("title", item.title).put("link", item.link).put("published", item.published)
-            .put("author", item.author).put("summary", item.summary).put("body", item.body).put("read", read)
-        if (sent != null) o.put("sent", sent)
-        if (cat.isNotEmpty()) o.put("cat", cat)
+            .put("author", item.author).put("summary", item.summary).put("body", item.body).put("read", s.read)
+        if (item.audio.isNotEmpty()) o.put("audio", item.audio)
+        if (item.duration > 0) o.put("duration", item.duration)
+        if (s.sent != null) o.put("sent", s.sent)
+        if (s.cat.isNotEmpty()) o.put("cat", s.cat)
+        if (s.fav) o.put("fav", true)
         return o
     }
 
-    @Synchronized fun markAllRead(url: String) {
-        val list = items(url)
-        val arr = JSONArray()
-        for (s in list) arr.put(json(s.item, true, s.sent, s.cat))
-        fileFor(url).writeText(arr.toString())
-    }
+    @Synchronized fun markAllRead(url: String) = rewrite(url) { it.copy(read = true) }
 
     /** Everything, newest first; items without a date sort by feed order after dated ones. */
     fun everything(): List<FeedEntryRef> =
@@ -194,9 +202,10 @@ class FeedStore(private val dir: File) {
 object Net {
     const val MAX_BYTES = 3_000_000
 
-    data class Page(val code: Int, val text: String, val finalUrl: String, val error: String? = null)
+    data class Page(val code: Int, val text: String, val finalUrl: String, val error: String? = null, val etag: String = "", val modified: String = "", val notModified: Boolean = false)
 
-    fun get(url: String, timeoutMs: Int = 20_000): Page {
+    /** [etag] / [modified] from the last download make this a conditional request: an unchanged feed answers 304 (notModified) with no body. */
+    fun get(url: String, timeoutMs: Int = 20_000, etag: String = "", modified: String = ""): Page {
         var current = url
         try {
             for (hop in 0..5) {
@@ -206,6 +215,8 @@ object Net {
                     conn.instanceFollowRedirects = false
                     conn.connectTimeout = timeoutMs; conn.readTimeout = timeoutMs
                     conn.setRequestProperty("User-Agent", "AISH-Companion/1 (+https://byphil.eu)")
+                    if (etag.isNotEmpty()) conn.setRequestProperty("If-None-Match", etag)
+                    if (modified.isNotEmpty()) conn.setRequestProperty("If-Modified-Since", modified)
                     conn.setRequestProperty("Accept", "application/rss+xml, application/atom+xml, application/feed+json, application/xml, text/xml, text/html;q=0.8, */*;q=0.5")
                     val code = conn.responseCode
                     if (code in 301..308 && code != 304) {
@@ -213,9 +224,10 @@ object Net {
                         current = FeedXml.resolve(current, loc); if (current.isEmpty()) return Page(code, "", url, "redirect")
                         continue
                     }
+                    if (code == 304) return Page(304, "", current, notModified = true)
                     if (code !in 200..299) return Page(code, "", current, "http-$code")
                     val bytes = conn.inputStream.use { readLimited(it, MAX_BYTES) } ?: return Page(code, "", current, "too-large")
-                    return Page(code, decode(bytes, conn.contentType), current)
+                    return Page(code, decode(bytes, conn.contentType), current, etag = conn.getHeaderField("ETag") ?: "", modified = conn.getHeaderField("Last-Modified") ?: "")
                 } finally { conn.disconnect() }
             }
             return Page(0, "", current, "redirect")
@@ -268,16 +280,20 @@ object FeedFetcher {
         return FeedLookup.Failed("no-feed")
     }
 
-    /** Refreshes one stored feed; returns the number of new items, or null with the error saved on the feed. */
-    fun refresh(store: FeedStore, feed: Feed, now: Long, fetch: (String) -> Net.Page = { Net.get(it) }): Int? {
+    /**
+     * Refreshes one stored feed; returns the number of new items, or null with the error saved on the feed. Sends the validators of the
+     * last download, so an unchanged feed costs one tiny request (304) and no parsing.
+     */
+    fun refresh(store: FeedStore, feed: Feed, now: Long, fetch: (String) -> Net.Page = { u -> Net.get(u, etag = feed.etag, modified = feed.modified) }): Int? {
         val page = fetch(feed.url)
+        if (page.notModified) { store.update(feed.url) { it.copy(lastFetched = now, error = "") }; return 0 }
         val parsed = if (page.error == null) FeedXml.parse(page.text, page.finalUrl) else null
         if (parsed == null) {
             store.update(feed.url) { it.copy(error = page.error ?: "not-a-feed") }
             return null
         }
         val added = store.saveItems(feed.url, parsed.items)
-        store.update(feed.url) { it.copy(title = parsed.title.ifBlank { it.title }, lastFetched = now, error = "") }
+        store.update(feed.url) { it.copy(title = parsed.title.ifBlank { it.title }, lastFetched = now, error = "", etag = page.etag, modified = page.modified) }
         return added
     }
 }
