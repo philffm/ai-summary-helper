@@ -11,13 +11,14 @@ data class BriefingItem(val source: String, val title: String, val snippet: Stri
  * No AI is involved; it is built from what the feeds say about themselves, so it works offline and can never fail at alarm time.
  * Pure JVM (no Android classes besides org.json), so it is unit-tested.
  */
-data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long) {
+data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "") {
 
     /** Lines for the screen. */
     fun lines(): List<String> = items.map { "${it.source}: ${it.title}" }
 
     /** What the voice says, one part per sentence group, so reading can be stopped between parts. [hour] is the local hour (0–23). */
     fun spokenParts(hour: Int): List<String> {
+        if (narration.isNotBlank()) return BriefingPrompt.chunks(narration)
         val greeting = when { hour < 5 -> "Hello."; hour < 12 -> "Good morning."; hour < 18 -> "Good afternoon."; else -> "Good evening." }
         val parts = ArrayList<String>()
         parts += if (items.isEmpty()) "$greeting Nothing new in your feeds." else "$greeting " + (if (items.size == 1) "One new story from your feeds." else "${items.size} new stories from your feeds.")
@@ -30,7 +31,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
     }
 
     fun toJson(): String = JSONObject()
-        .put("builtAt", builtAt).put("readingUnread", readingUnread)
+        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration)
         .put("items", JSONArray(items.map { JSONObject().put("s", it.source).put("t", it.title).put("n", it.snippet).put("l", it.link) }))
         .toString()
 
@@ -40,7 +41,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
             val a = o.getJSONArray("items")
             Briefing(
                 (0 until a.length()).map { a.getJSONObject(it) }.map { BriefingItem(it.optString("s"), it.optString("t"), it.optString("n"), it.optString("l")) },
-                o.optInt("readingUnread"), o.optLong("builtAt"),
+                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"),
             )
         }.getOrNull()
 
@@ -99,5 +100,52 @@ object BriefingBuilder {
         val title = oneLine(item.title).lowercase()
         if (s.length < 20 || s.lowercase().startsWith(title.take(40)) || title.startsWith(s.lowercase().trimEnd('…', '.').take(40))) return ""
         return s
+    }
+}
+
+/** What the on-device model is asked, and how its answer is cleaned up before it is spoken. Pure, so it is unit-tested. */
+object BriefingPrompt {
+    const val SYSTEM = "You write a short spoken news briefing for one listener, to be read aloud by a voice. " +
+        "Use plain sentences only: no lists, no markdown, no emojis, no headings, no stage directions. " +
+        "Cover each story in one or two sentences and join related stories naturally. " +
+        "Use only the facts you are given; never add details, numbers or names that are not in the stories. " +
+        "Keep it under 170 words. Write in the language of the stories (German stories: German; mixed: English)."
+    const val MAX_SNIPPET = 300
+    const val MIN_REPLY = 40
+    const val MAX_REPLY = 1800
+
+    fun user(items: List<BriefingItem>, readingUnread: Int, hour: Int): String {
+        val time = when { hour < 12 -> "morning"; hour < 18 -> "afternoon"; else -> "evening" }
+        val sb = StringBuilder("Time of day: $time. Begin with a short greeting that fits it.\nStories:\n")
+        items.forEachIndexed { i, it ->
+            sb.append(i + 1).append(". [").append(it.source).append("] ").append(it.title)
+            if (it.snippet.isNotBlank()) sb.append(" - ").append(it.snippet.take(MAX_SNIPPET))
+            sb.append('\n')
+        }
+        if (readingUnread > 0) sb.append("End by saying that $readingUnread unread ").append(if (readingUnread == 1) "article is" else "articles are").append(" waiting in the reading list.\n")
+        return sb.toString()
+    }
+
+    /** Removes markdown the voice would read out, collapses spaces, and rejects replies that are empty, tiny or runaway long (null). */
+    fun cleanReply(reply: String): String? {
+        val t = reply.replace(Regex("(?m)^[ \\t]*(#{1,6}|[-*•]|\\d+[.)])\\s+"), "")
+            .replace(Regex("[*_`#>]+"), "")
+            .replace(Regex("[ \\t]+"), " ")
+            .replace(Regex("\\n{3,}"), "\n\n")
+            .trim()
+        return if (t.length in MIN_REPLY..MAX_REPLY) t else null
+    }
+
+    /** Pieces of at most ~400 characters at sentence ends, so reading can be stopped between them. */
+    fun chunks(text: String, max: Int = 400): List<String> {
+        val out = ArrayList<String>()
+        var cur = StringBuilder()
+        for (sentence in text.split(Regex("(?<=[.!?])\\s+|\\n+")).map { it.trim() }.filter { it.isNotEmpty() }) {
+            if (cur.isNotEmpty() && cur.length + sentence.length + 1 > max) { out += cur.toString(); cur = StringBuilder() }
+            if (cur.isNotEmpty()) cur.append(' ')
+            cur.append(sentence)
+        }
+        if (cur.isNotEmpty()) out += cur.toString()
+        return out
     }
 }

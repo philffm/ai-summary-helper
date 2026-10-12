@@ -119,6 +119,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                         TextButton(onClick = { model.applyPairing(null) }) { Text("Unpair this phone") }
                     }
                     AlarmCard(model)
+                    ModelCard(model)
                     error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
                 }
             }

@@ -18,10 +18,10 @@ class Store(context: Context) {
     var alarm: AlarmSettings
         get() = AlarmSettings(
             prefs.getBoolean("alarm.on", false), prefs.getInt("alarm.hour", 7), prefs.getInt("alarm.minute", 0),
-            prefs.getInt("alarm.days", AlarmSettings.ALL_DAYS), prefs.getBoolean("alarm.read", true), prefs.getInt("alarm.snooze", 10),
+            prefs.getInt("alarm.days", AlarmSettings.ALL_DAYS), prefs.getBoolean("alarm.read", true), prefs.getInt("alarm.snooze", 10), prefs.getBoolean("alarm.ai", false),
         )
         set(v) = prefs.edit().putBoolean("alarm.on", v.enabled).putInt("alarm.hour", v.hour).putInt("alarm.minute", v.minute)
-            .putInt("alarm.days", v.days).putBoolean("alarm.read", v.readAloud).putInt("alarm.snooze", v.snoozeMinutes).apply()
+            .putInt("alarm.days", v.days).putBoolean("alarm.read", v.readAloud).putInt("alarm.snooze", v.snoozeMinutes).putBoolean("alarm.ai", v.useAi).apply()
 
     /** The briefing prepared before the alarm, as JSON (see [Briefing]). */
     var briefingJson: String?

@@ -66,4 +66,21 @@ class BriefingTest {
         assertNull(AlarmTime.next(at(12, 17, 40), zone, 7, 0, 0))
         assertNotNull(AlarmTime.next(at(12, 17, 40), zone, 7, 0, 0b0000001))
     }
+
+    @Test fun promptAndReplyCleaning() {
+        val items = listOf(BriefingItem("Feed 1", "Big news", "Something happened today.", "https://x"))
+        val u = BriefingPrompt.user(items, 1, 7)
+        assertTrue(u.contains("Time of day: morning"))
+        assertTrue(u.contains("1. [Feed 1] Big news - Something happened today."))
+        assertTrue(u.contains("1 unread article is waiting"))
+        assertTrue(!BriefingPrompt.user(items, 0, 20).contains("waiting in the reading list"))
+        assertEquals("Good morning. Big news today.\n\nMore later in the day.", BriefingPrompt.cleanReply("## Good morning. **Big** news today.\n\n\n\n- More later in the day.   "))
+        assertNull(BriefingPrompt.cleanReply("Short."))
+        assertNull(BriefingPrompt.cleanReply("x".repeat(BriefingPrompt.MAX_REPLY + 1)))
+        val chunks = BriefingPrompt.chunks("One sentence here. ".repeat(60))
+        assertTrue(chunks.all { it.length <= 400 } && chunks.size > 1)
+        val b = Briefing(items, 0, now, "Hello there. A story.")
+        assertEquals(listOf("Hello there. A story."), b.spokenParts(7))
+        assertEquals(b, Briefing.fromJson(b.toJson()))
+    }
 }

@@ -25,6 +25,8 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import java.io.File
 import java.time.Instant
@@ -39,6 +41,8 @@ data class AlarmSettings(
     val days: Int = ALL_DAYS,
     val readAloud: Boolean = true,
     val snoozeMinutes: Int = 10,
+    /** Let the on-device model write the briefing (when it is downloaded). */
+    val useAi: Boolean = false,
 ) {
     companion object { const val ALL_DAYS = 0b1111111 }
 }
@@ -200,7 +204,13 @@ fun loadBriefing(context: Context, now: Long = System.currentTimeMillis()): Brie
 class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
     override suspend fun doWork(): Result {
         runCatching { withTimeoutOrNull(240_000) { AppModel(applicationContext).refreshAll(force = true) } }
-        runCatching { Store(applicationContext).briefingJson = buildBriefingNow(applicationContext).toJson() }
+        val store = Store(applicationContext)
+        val plain = runCatching { buildBriefingNow(applicationContext) }.getOrNull() ?: return Result.success()
+        store.briefingJson = plain.toJson()   // saved first: the alarm has a briefing even if the model is slow or fails
+        if (store.alarm.useAi && LocalLlm.installed(applicationContext)) {
+            val text = withContext(Dispatchers.Default) { LocalLlm.narrate(applicationContext, plain.items, plain.readingUnread, java.time.LocalTime.now().hour) }
+            if (text != null) store.briefingJson = plain.copy(narration = text, builtAt = System.currentTimeMillis()).toJson()
+        }
         return Result.success()
     }
 }

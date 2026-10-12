@@ -51,6 +51,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.10.1")
     implementation("androidx.work:work-runtime-ktx:2.9.1")
     implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
+    implementation("com.google.ai.edge.litertlm:litertlm-android:0.18.0")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.json:json:20240303")
