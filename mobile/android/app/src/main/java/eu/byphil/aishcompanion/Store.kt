@@ -20,10 +20,11 @@ class Store(context: Context) {
             prefs.getBoolean("alarm.on", false), prefs.getInt("alarm.hour", 7), prefs.getInt("alarm.minute", 0),
             prefs.getInt("alarm.days", AlarmSettings.ALL_DAYS), prefs.getBoolean("alarm.read", true), prefs.getInt("alarm.snooze", 10), prefs.getBoolean("alarm.ai", false),
             NewsMode.of(prefs.getString("alarm.mode", null) ?: if (prefs.getBoolean("alarm.good", false)) "GOOD" else "ALL"), prefs.getBoolean("alarm.extra", false), prefs.getString("alarm.extraPrompt", "") ?: "",
+            prefs.getString("alarm.sound", "") ?: "", prefs.getBoolean("alarm.fade", false),
         )
         set(v) = prefs.edit().putBoolean("alarm.on", v.enabled).putInt("alarm.hour", v.hour).putInt("alarm.minute", v.minute)
             .putInt("alarm.days", v.days).putBoolean("alarm.read", v.readAloud).putInt("alarm.snooze", v.snoozeMinutes).putBoolean("alarm.ai", v.useAi)
-            .putString("alarm.mode", v.newsMode.name).putBoolean("alarm.extra", v.extraOn).putString("alarm.extraPrompt", v.extraPrompt.take(300)).apply()
+            .putString("alarm.mode", v.newsMode.name).putBoolean("alarm.extra", v.extraOn).putString("alarm.extraPrompt", v.extraPrompt.take(300)).putString("alarm.sound", v.sound).putBoolean("alarm.fade", v.fadeIn).apply()
 
     /** The Pro license key, used only for the cloud extra (sent to api.byphil.eu as a bearer token, nowhere else). */
     var license: String

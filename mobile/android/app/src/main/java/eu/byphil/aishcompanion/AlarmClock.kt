@@ -13,6 +13,9 @@ import android.content.pm.ServiceInfo
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
+import android.net.Uri
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
@@ -48,6 +51,10 @@ data class AlarmSettings(
     /** Ask the cloud AI for one extra item (a fun fact, or [extraPrompt]); only that prompt is sent, never your feeds. */
     val extraOn: Boolean = false,
     val extraPrompt: String = "",
+    /** Content URI of the wake-up sound (a song or tone); empty = the phone's alarm sound. */
+    val sound: String = "",
+    /** Fade the sound in over about 45 seconds, then read the briefing over the music at a lower volume. */
+    val fadeIn: Boolean = false,
 ) {
     companion object { const val ALL_DAYS = 0b1111111 }
 }
@@ -132,6 +139,8 @@ class BootReceiver : BroadcastReceiver() {
 /** Plays the alarm sound and vibrates until stopped (or for five minutes), with a full-screen notification that opens [RingActivity]. */
 class AlarmService : Service() {
     private var player: MediaPlayer? = null
+    private var tts: TextToSpeech? = null
+    private var volume = 1f
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onBind(intent: Intent?): IBinder? = null
@@ -151,41 +160,90 @@ class AlarmService : Service() {
             .setOngoing(true).setContentIntent(open).setFullScreenIntent(open, true)
             .addAction(0, "Stop", stop).build()
         ServiceCompat.startForeground(this, NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
-        startRinging()
         handler.removeCallbacksAndMessages(null)
+        startRinging()
         handler.postDelayed({ stopRinging() }, 5 * 60_000)
         return START_NOT_STICKY
     }
 
+    /** A prepared player for [sound] (a content URI), or for the phone's alarm sound when it is empty or cannot be opened. */
+    private fun openPlayer(sound: String): MediaPlayer? {
+        val uri = if (sound.isNotBlank()) Uri.parse(sound)
+            else RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM) ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+        val p = MediaPlayer()
+        return try {
+            p.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build())
+            p.setDataSource(this, uri)
+            p.isLooping = true
+            p.prepare()
+            p
+        } catch (e: Exception) { runCatching { p.release() }; null }
+    }
+
+    private fun setVolume(v: Float) { volume = v.coerceIn(0f, 1f); runCatching { player?.setVolume(volume, volume) } }
+
+    /** Glide the volume to [target] in about 1.5 seconds. */
+    private fun glideTo(target: Float) {
+        val from = volume
+        for (i in 1..10) handler.postDelayed({ setVolume(from + (target - from) * i / 10f) }, i * 150L)
+    }
+
     private fun startRinging() {
         if (player != null) return
-        runCatching {
-            val uri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
-                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
-            player = MediaPlayer().apply {
-                setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
-                setDataSource(this@AlarmService, uri)
-                isLooping = true
-                prepare(); start()
-            }
-        }
+        val s = Store(this).alarm
+        // a chosen song that cannot be opened (moved, no longer allowed) must never mean a silent alarm: the alarm sound takes over
+        player = openPlayer(s.sound) ?: if (s.sound.isNotBlank()) openPlayer("") else null
+        val fade = s.fadeIn && player != null
+        setVolume(if (fade) 0.03f else 1f)
+        runCatching { player?.start() }
         runCatching { getSystemService(Vibrator::class.java).vibrate(VibrationEffect.createWaveform(longArrayOf(0, 600, 600), 0)) }
+        if (fade) {
+            val steps = FADE_MS / 1000
+            for (i in 1..steps) { val f = i.toFloat() / steps; handler.postDelayed({ setVolume(0.03f + 0.97f * f * f) }, i * 1000L) }   // gentle at first, then rising
+            if (s.readAloud) handler.postDelayed({ speakBriefing() }, FADE_MS + 1000L)
+        }
+    }
+
+    /** The briefing, read over the music, which is lowered while the voice speaks and comes back to a calm level afterwards. */
+    private fun speakBriefing() {
+        Thread {
+            val parts = runCatching { loadBriefing(this).spokenParts(java.time.LocalTime.now().hour) }.getOrDefault(emptyList())
+            handler.post { if (player != null && parts.isNotEmpty()) speak(parts) }
+        }.start()
+    }
+
+    private fun speak(parts: List<String>) {
+        tts = TextToSpeech(applicationContext) { status ->
+            val t = tts ?: return@TextToSpeech
+            if (status != TextToSpeech.SUCCESS || player == null) return@TextToSpeech
+            t.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+            val last = "part-" + (parts.size - 1)
+            t.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+                override fun onStart(id: String?) {}
+                override fun onDone(id: String?) { if (id == last) handler.post { glideTo(0.6f) } }
+                override fun onError(id: String?) { handler.post { glideTo(0.6f) } }
+            })
+            glideTo(0.25f)
+            parts.forEachIndexed { i, text -> t.speak(text, TextToSpeech.QUEUE_ADD, null, "part-$i") }
+        }
     }
 
     private fun stopRinging() {
         handler.removeCallbacksAndMessages(null)
+        runCatching { tts?.stop(); tts?.shutdown() }; tts = null
         runCatching { player?.stop() }; runCatching { player?.release() }; player = null
         runCatching { getSystemService(Vibrator::class.java).cancel() }
         stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
     }
 
-    override fun onDestroy() { runCatching { player?.release() }; player = null; handler.removeCallbacksAndMessages(null); super.onDestroy() }
+    override fun onDestroy() { runCatching { tts?.shutdown() }; tts = null; runCatching { player?.release() }; player = null; handler.removeCallbacksAndMessages(null); super.onDestroy() }
 
     companion object {
         const val ACTION_STOP = "eu.byphil.aishcompanion.STOP"
         private const val CHANNEL = "alarm"
         private const val NOTIFICATION_ID = 42
+        private const val FADE_MS = 45_000
 
         fun stop(context: Context) { context.startService(Intent(context, AlarmService::class.java).setAction(ACTION_STOP)) }
     }

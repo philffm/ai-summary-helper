@@ -100,6 +100,27 @@ fun AlarmCard(model: AppModel) {
                     Text("Read the briefing aloud after Stop", Modifier.weight(1f))
                     Switch(checked = a.readAloud, onCheckedChange = { update(a.copy(readAloud = it)) })
                 }
+                val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+                    if (uri != null) {
+                        runCatching { context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
+                        update(a.copy(sound = uri.toString()))
+                    }
+                }
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text("Wake-up sound")
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                        OutlinedButton(onClick = { picker.launch(arrayOf("audio/*")) }, Modifier.weight(1f)) { Text(soundName(context, a.sound), maxLines = 1) }
+                        if (a.sound.isNotBlank()) TextButton(onClick = { update(a.copy(sound = "")) }) { Text("Reset") }
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text("Fade in, then read the briefing over the music")
+                            Text("The sound starts quietly and rises for about 45 seconds. Then the briefing is spoken while the music plays softer. Stop ends both.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Switch(checked = a.fadeIn, onCheckedChange = { update(a.copy(fadeIn = it)) })
+                    }
+                    if (a.fadeIn && !a.readAloud) Text("Switch on reading the briefing aloud above to hear it over the music.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+                }
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text("News in the briefing")
                     val modes = listOf(NewsMode.ALL to "All news", NewsMode.NO_BAD to "No bad news", NewsMode.GOOD to "Good only")
@@ -164,6 +185,14 @@ fun AlarmCard(model: AppModel) {
             confirmButton = { TextButton(onClick = { preview = null }) { Text("Close") } },
         )
     }
+}
+
+/** The name of the chosen sound file, or a label for the phone's alarm sound. */
+private fun soundName(context: android.content.Context, sound: String): String {
+    if (sound.isBlank()) return "Phone alarm sound"
+    return runCatching {
+        context.contentResolver.query(Uri.parse(sound), arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null)?.use { c -> if (c.moveToFirst()) c.getString(0) else null }
+    }.getOrNull() ?: "Chosen sound"
 }
 
 private fun formatTime(hour: Int, minute: Int, is24: Boolean): String =

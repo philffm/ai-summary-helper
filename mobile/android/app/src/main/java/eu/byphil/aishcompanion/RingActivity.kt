@@ -63,7 +63,7 @@ class RingActivity : ComponentActivity() {
                         lines = briefing.lines(),
                         extra = briefing.extra,
                         snoozeMinutes = settings.snoozeMinutes,
-                        onStop = { AlarmService.stop(this); if (settings.readAloud) readOut(parts) },
+                        onStop = { AlarmService.stop(this); if (settings.readAloud && !settings.fadeIn) readOut(parts) },   // with the fade-in the briefing was already read over the music
                         onSnooze = { AlarmService.stop(this); AlarmScheduler.ringIn(this, settings.snoozeMinutes * 60L); finish() },
                         onRead = { readOut(parts) },
                         onSilence = { tts?.stop() },
