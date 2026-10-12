@@ -120,7 +120,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     var webUrl by rememberSaveable { mutableStateOf(startUrl) }
     var autoSummarize by rememberSaveable { mutableStateOf(startSummarize) }
 
-    if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }) { webUrl = ""; autoSummarize = false }; return }
+    if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }, onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false }) { webUrl = ""; autoSummarize = false }; return }
 
     val wide = isWide()
     val feedUnread = model.entries.count { !it.stored.read }

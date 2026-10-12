@@ -43,6 +43,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -70,7 +71,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onOpenReading: (String) -> Unit = {}, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
@@ -82,6 +83,7 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
     var busy by remember { mutableStateOf(false) }
     var sent by remember { mutableStateOf(false) }
     var saved by remember { mutableStateOf(false) }
+    var sumFrac by remember { mutableStateOf<Float?>(null) }
     var autoPending by rememberSaveable { mutableStateOf(autoSummarize) }   // from the share sheet: summarize once the page has loaded
     var summaryTitle by remember { mutableStateOf("") }
     var summaryUrl by remember { mutableStateOf("") }
@@ -117,7 +119,7 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
                 tts?.language = Locale.forLanguageTag(Store(context).summaryLang.ifBlank { page.lang.ifBlank { Locale.getDefault().toLanguageTag() } })
                 var streamed = ""
                 val result = withContext(Dispatchers.Default) {
-                    PageSummary.summarize(context, page, progress = { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" },
+                    PageSummary.summarize(context, page, progress = { i, n -> sumFrac = if (n > 1) (i - 1).toFloat() / n else null; status = if (n > 1) (if (i < n) "Reading part $i of ${n - 1}…" else "Writing the summary…") else "Summarizing…" },
                         onText = { t -> streamed = t; summary = t; speakNew(t, false) })   // the summary grows on screen and is read sentence by sentence
                 }
                 summary = result?.text
@@ -167,7 +169,7 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
                             try { ctx.startActivity(Intent(Intent.ACTION_VIEW, u)) } catch (_: Exception) { /* no app for it */ }
                             return true
                         }
-                        override fun onPageStarted(view: WebView, u: String, favicon: Bitmap?) { shown = u; canGoBack = view.canGoBack() }
+                        override fun onPageStarted(view: WebView, u: String, favicon: Bitmap?) { shown = u; if (u != summaryUrl) saved = false; canGoBack = view.canGoBack() }
                         override fun onPageFinished(view: WebView, u: String) {
                             shown = u; canGoBack = view.canGoBack()
                             if (autoPending) { autoPending = false; view.postDelayed({ summarize() }, 800) }   // a moment for scripts to fill the page
@@ -197,17 +199,22 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
                         IconButton(onClick = { summary = null; tts?.stop() }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
                     }
                     Text(text, Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState()), style = MaterialTheme.typography.bodyMedium)
-                    Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val share: @Composable () -> Unit = {
                         FilledTonalButton(onClick = { shareText(context, summaryTitle, PageSummary.shareText(summaryTitle, text, summaryUrl)) }) {
                             Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share")
                         }
-                        if (saved) Text("Saved to reading list", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    val savedNote: @Composable () -> Unit = { if (saved) Text("Saved to reading list", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                    Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                        // the button sits on the thumb's side: right for right-handed use
+                        if (Handed.left) { share(); savedNote() } else { savedNote(); share() }
                     }
                 }
             }
         }
         ActionBar(
-            primary = BarAction(Icons.Filled.AutoAwesome, "Summarize on this phone", enabled = !busy) { summarize() },
+            primary = if (saved && !busy && summaryUrl == shown) BarAction(Icons.Filled.Check, "Summary saved. Open it in the reading list", done = true) { onOpenReading(PageSummary.localId(summaryUrl)) }
+                else BarAction(Icons.Filled.AutoAwesome, if (busy) "Summarizing" else "Summarize on this phone", enabled = !busy, busy = busy, progress = sumFrac) { summarize() },
             secondary = listOfNotNull(
                 if (canSend) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent to the browser" else "Send to the AISH browser extension") { SendWorker.enqueue(context, shown); sent = true } else null,
                 BarAction(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off") { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() },
