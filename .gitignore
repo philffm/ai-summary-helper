@@ -19,3 +19,6 @@ plugin/dist/
 plugin/table.txt
 plugin/compatible-tools.json
 aish-release.jks
+gradlew.nat
+gradle-wrapper.jar
+gradle-wrapper.properties
