@@ -206,18 +206,14 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
                 }
             }
         }
-        // The main action (Summarize) sits next to the thumb: at the right for right-handed use, at the left otherwise.
-        val actions = listOf<@Composable () -> Unit>(
-            { FilledTonalButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, null, Modifier.size(18.dp)); Text("  Summarize") } },
-            { if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
-                Icon(Icons.AutoMirrored.Filled.Send, contentDescription = if (sent) "Sent to the browser" else "Send to the AISH browser extension", tint = if (sent) MaterialTheme.colorScheme.primary else LocalContentColor.current)
-            } },
-            { IconButton(onClick = { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() }) {
-                Icon(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, contentDescription = if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off")
-            } },
-            { IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") } },
-            { if (canGoBack) OutlinedButton(onClick = { web?.goBack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
+        ActionBar(
+            primary = BarAction(Icons.Filled.AutoAwesome, "Summarize on this phone", enabled = !busy) { summarize() },
+            secondary = listOfNotNull(
+                if (canSend) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent to the browser" else "Send to the AISH browser extension") { SendWorker.enqueue(context, shown); sent = true } else null,
+                BarAction(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off") { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() },
+                BarAction(Icons.Filled.OpenInBrowser, "Open in browser") { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) },
+                if (canGoBack) BarAction(Icons.AutoMirrored.Filled.ArrowBack, "Back") { web?.goBack() } else null,
+            ),
         )
-        BottomActions { for (a in if (Handed.left) actions else actions.reversed()) a() }
     }
 }

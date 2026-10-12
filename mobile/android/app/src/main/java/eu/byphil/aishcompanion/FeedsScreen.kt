@@ -49,6 +49,7 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
 import androidx.compose.material.icons.filled.SelectAll
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.MarkEmailUnread
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -342,7 +343,13 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
     Box(Modifier.weight(1f)) {
     ReadingColumn {
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            Text(item.title, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+            Row(verticalAlignment = Alignment.Top) {
+                Text(item.title, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                IconButton(onClick = { scope.launch { model.setFavorite(e.feed.url, item.id, !e.stored.fav) } }) {
+                    Icon(if (e.stored.fav) Icons.Filled.Star else Icons.Filled.StarBorder, contentDescription = if (e.stored.fav) "Remove from favorites" else "Add to favorites",
+                        tint = if (e.stored.fav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
             Text(listOf(e.feed.name, item.author, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
             if (item.body.isNotBlank()) PlainText(item.body)
@@ -351,22 +358,11 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
         }
     }
     }
-        BottomActions {
-                if (item.audio.isNotEmpty()) Button(onClick = { PodcastPlayer.play(context, Episode(item.audio, item.title, e.feed.name)) }) {
-                    Icon(Icons.Filled.PlayArrow, null, Modifier.size(18.dp)); Text("  Play" + (if (item.duration > 0) " · " + PodcastTime.format(item.duration * 1000) else ""))
-                }
-                if (item.link.isNotEmpty() && item.audio.isNotEmpty()) {
-                    OutlinedButton(onClick = { onOpenWeb(item.link) }) { Text("Read page") }
-                } else if (item.link.isNotEmpty()) {
-                    Button(onClick = { onOpenWeb(item.link) }) { Text("Read page") }
-                }
-                OutlinedButton(onClick = { scope.launch { model.setFavorite(e.feed.url, item.id, !e.stored.fav) } }) {
-                    Icon(if (e.stored.fav) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)); Text(if (e.stored.fav) "  Favorited" else "  Favorite")
-                }
-                if (item.link.isNotEmpty() && model.pairing != null) OutlinedButton(onClick = { SendWorker.enqueue(context, item.link); sent = true }, enabled = !sent) {
-                    Icon(Icons.AutoMirrored.Filled.Send, null, Modifier.size(18.dp)); Text(if (sent) "  Queued" else "  To browser")
-                }
-            }
+        val play = item.audio.isNotEmpty()
+        val read = if (item.link.isNotEmpty()) BarAction(Icons.Filled.OpenInBrowser, "Read page") { onOpenWeb(item.link) } else null
+        val playAct = if (play) BarAction(Icons.Filled.PlayArrow, "Play episode" + (if (item.duration > 0) ", " + PodcastTime.format(item.duration * 1000) else "")) { PodcastPlayer.play(context, Episode(item.audio, item.title, e.feed.name)) } else null
+        val toBrowser = if (item.link.isNotEmpty() && model.pairing != null) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Queued for the browser" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, item.link); sent = true } else null
+        ActionBar(primary = read ?: playAct, secondary = listOfNotNull(if (read != null) playAct else null, toBrowser))
     }
 }
 
@@ -514,10 +510,12 @@ private fun SwipeableCard(e: FeedEntryRef, enabled: Boolean, onRead: () -> Unit,
 /** Actions for the selected items, at the bottom. */
 @Composable
 private fun SelectionBar(allFav: Boolean, allRead: Boolean, canSend: Boolean, onFav: () -> Unit, onRead: () -> Unit, onShare: () -> Unit, onSend: () -> Unit) {
-    BottomActions {
-        FilledTonalButton(onClick = onRead) { Icon(if (allRead) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, null, Modifier.size(18.dp)); Text(if (allRead) "  Unread" else "  Read") }
-        FilledTonalButton(onClick = onFav) { Icon(if (allFav) Icons.Filled.StarBorder else Icons.Filled.Star, null, Modifier.size(18.dp)); Text(if (allFav) "  Unstar" else "  Star") }
-        FilledTonalButton(onClick = onShare) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
-        if (canSend) FilledTonalButton(onClick = onSend) { Icon(Icons.AutoMirrored.Filled.Send, null, Modifier.size(18.dp)); Text("  To browser") }
-    }
+    ActionBar(
+        primary = BarAction(if (allRead) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, if (allRead) "Mark as unread" else "Mark as read", onClick = onRead),
+        secondary = listOfNotNull(
+            BarAction(if (allFav) Icons.Filled.StarBorder else Icons.Filled.Star, if (allFav) "Remove from favorites" else "Add to favorites", onClick = onFav),
+            BarAction(Icons.Filled.Share, "Share", onClick = onShare),
+            if (canSend) BarAction(Icons.AutoMirrored.Filled.Send, "Send to the browser", onClick = onSend) else null,
+        ),
+    )
 }

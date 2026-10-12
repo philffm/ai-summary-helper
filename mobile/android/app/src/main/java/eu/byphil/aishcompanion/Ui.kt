@@ -226,3 +226,32 @@ fun BottomActions(content: @Composable androidx.compose.foundation.layout.FlowRo
 object Handed {
     var left by androidx.compose.runtime.mutableStateOf(false)
 }
+
+/** One round button of an [ActionBar]. */
+class BarAction(val icon: androidx.compose.ui.graphics.vector.ImageVector, val desc: String, val enabled: Boolean = true, val onClick: () -> Unit)
+
+/**
+ * The bottom bar of a screen: round icon buttons, the primary action at the thumb's edge (right-handed: far right, left-handed: far left)
+ * and the secondary ones beside it, most useful nearest the thumb.
+ */
+@Composable
+fun ActionBar(primary: BarAction?, secondary: List<BarAction>) {
+    val left = Handed.left
+    androidx.compose.material3.Surface(color = MaterialTheme.colorScheme.surfaceContainer, tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
+        androidx.compose.foundation.layout.Row(
+            Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp, if (left) Alignment.Start else Alignment.End),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            val second: @Composable () -> Unit = {
+                for (a in if (left) secondary else secondary.reversed()) {
+                    androidx.compose.material3.FilledTonalIconButton(onClick = a.onClick, enabled = a.enabled, modifier = Modifier.size(48.dp)) { Icon(a.icon, contentDescription = a.desc) }
+                }
+            }
+            val first: @Composable () -> Unit = {
+                if (primary != null) androidx.compose.material3.FilledIconButton(onClick = primary.onClick, enabled = primary.enabled, modifier = Modifier.size(56.dp)) { Icon(primary.icon, contentDescription = primary.desc) }
+            }
+            if (left) { first(); second() } else { second(); first() }
+        }
+    }
+}

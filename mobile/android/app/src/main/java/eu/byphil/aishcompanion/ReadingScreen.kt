@@ -21,6 +21,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.OpenInBrowser
+import androidx.compose.material.icons.filled.TextDecrease
+import androidx.compose.material.icons.filled.TextIncrease
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.MarkEmailUnread
 import androidx.compose.material.icons.filled.Share
@@ -188,14 +192,16 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             if (article.truncated) item { Text("This long article was shortened to fit. Tap Read original for the rest.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             if (article.highlights.isNotEmpty()) item { Highlights(article.highlights) }
         }
-        BottomActions {
-            Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
-            if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
-            if (model.pairing != null && article.local) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
-            OutlinedButton(onClick = { scale = (scale - 0.1f).coerceAtLeast(0.8f); model.store.readerScale = scale }) { Text("A−") }
-            OutlinedButton(onClick = { scale = (scale + 0.1f).coerceAtMost(1.6f); model.store.readerScale = scale }) { Text("A+") }
-            OutlinedButton(onClick = { onDelete(id) }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
-        }
+        ActionBar(
+            primary = BarAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },
+            secondary = listOfNotNull(
+                if (article.summary.isNotBlank()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) } else null,
+                if (model.pairing != null && article.local) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, article.url); sent = true } else null,
+                BarAction(Icons.Filled.TextDecrease, "Smaller text") { scale = (scale - 0.1f).coerceAtLeast(0.8f); model.store.readerScale = scale },
+                BarAction(Icons.Filled.TextIncrease, "Larger text") { scale = (scale + 0.1f).coerceAtMost(1.6f); model.store.readerScale = scale },
+                BarAction(Icons.Filled.Delete, "Delete") { onDelete(id) },
+            ),
+        )
       }
     }
     }
