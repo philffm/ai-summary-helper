@@ -19,6 +19,7 @@ object LocalLlm {
         val store = ModelStore.of(context)
         if (!store.installed()) return null
         var engine: Engine? = null
+        Guard.begin(context, "model")   // a native crash cannot be caught; this mark tells the next start what happened
         return try {
             val cache = context.cacheDir.resolve("litert").apply { mkdirs() }
             engine = Engine(EngineConfig(modelPath = store.file.path, backend = Backend.CPU(), cacheDir = cache.path))
@@ -31,6 +32,7 @@ object LocalLlm {
             null
         } finally {
             runCatching { engine?.close() }
+            Guard.end(context, "model")
         }
     }
 

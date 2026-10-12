@@ -60,6 +60,7 @@ fun AlarmCard(model: AppModel) {
     val fullScreenAllowed = Build.VERSION.SDK_INT < 34 || context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
 
     fun update(next: AlarmSettings) = model.changeAlarm(next)
+    androidx.compose.runtime.LaunchedEffect(a) { Guard.end(context, "alarm") }   // drawn fine with these settings
 
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -73,6 +74,7 @@ fun AlarmCard(model: AppModel) {
                     if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
                 })
             }
+            model.alarmError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
             if (a.enabled) {
                 val is24 = DateFormat.is24HourFormat(context)
                 OutlinedButton(onClick = { pickTime = true }, Modifier.fillMaxWidth()) { Text(formatTime(a.hour, a.minute, is24), style = MaterialTheme.typography.headlineSmall) }

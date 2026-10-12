@@ -53,26 +53,34 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()   // content is drawn under the system bars; the screens pad themselves
         CrashLog.install(this)
-        CrashLog.read(this)?.let { crash ->
-            // The last run crashed: show why instead of risking the same crash again.
+        val crash = CrashLog.read(this)
+        val pending = Guard.pending(this)
+        if (crash != null || pending.isNotEmpty()) {
+            // The last run crashed or died in the middle of a step: show why instead of risking the same crash again.
+            val report = (crash ?: "") + (if (pending.isEmpty()) "" else "\nThe app closed while: " + pending.joinToString(", ") { Guard.describe(it) })
             setContent {
                 AishTheme {
                     CrashScreen(
-                        crash,
-                        onSafeStart = { Store(this).let { it.alarm = it.alarm.copy(enabled = false) }; AlarmScheduler.reschedule(this); CrashLog.clear(this); recreate() },
-                        onOpenAnyway = { CrashLog.clear(this); recreate() },
+                        report.trim(),
+                        onSafeStart = {
+                            Store(this).let { it.alarm = it.alarm.copy(enabled = false, useAi = false) }
+                            runCatching { AlarmScheduler.reschedule(this) }
+                            CrashLog.clear(this); Guard.clear(this); recreate()
+                        },
+                        onOpenAnyway = { CrashLog.clear(this); Guard.clear(this); recreate() },
                     )
                 }
             }
             return
         }
+        Guard.begin(this, "start")   // cleared once the first screen has been drawn
         val model = AppModel(this)
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
-        AlarmScheduler.reschedule(this)   // keeps the alarm right after updates, restarts and clock changes
+        runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
         setContent {
             AishTheme {
-                Surface(Modifier.fillMaxSize()) { App(model, onScan = { onResult -> scan(onResult) }) }
+                Surface(Modifier.fillMaxSize()) { App(model, onScan = { onResult -> scan(onResult) }, onReady = { Guard.end(this, "start") }) }
             }
         }
     }
@@ -92,7 +100,8 @@ private enum class Tab(val label: String, val icon: ImageVector) {
 }
 
 @Composable
-private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
+private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: () -> Unit) {
+    androidx.compose.runtime.LaunchedEffect(Unit) { onReady() }
     // All of this is saved, so it also survives the system restarting the activity; it is not touched by folding or unfolding.
     var tab by rememberSaveable { mutableIntStateOf(if (model.pairing == null && model.feeds.isEmpty()) Tab.Settings.ordinal else Tab.Feeds.ordinal) }
     var feedSource by rememberSaveable { mutableStateOf("all") }

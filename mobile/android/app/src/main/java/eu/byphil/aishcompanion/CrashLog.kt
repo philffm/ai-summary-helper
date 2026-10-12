@@ -25,6 +25,25 @@ import androidx.compose.ui.unit.dp
 import java.io.File
 
 /**
+ * Marks risky steps ("start", "alarm", "model") before they run and clears the mark when they went well. A mark still there at the
+ * next start means the app died inside that step, even when no error could be written (a native crash). Synchronous on purpose.
+ */
+object Guard {
+    private fun prefs(context: Context) = context.applicationContext.getSharedPreferences("guard", Context.MODE_PRIVATE)
+    fun begin(context: Context, name: String) { prefs(context).edit().putBoolean(name, true).commit() }
+    fun end(context: Context, name: String) { prefs(context).edit().remove(name).commit() }
+    fun pending(context: Context): List<String> = prefs(context).all.keys.sorted()
+    fun clear(context: Context) { prefs(context).edit().clear().commit() }
+
+    fun describe(name: String): String = when (name) {
+        "start" -> "starting up"
+        "alarm" -> "setting the alarm"
+        "model" -> "running the on-device model"
+        else -> name
+    }
+}
+
+/**
  * Keeps the last crash on this phone, so a crash that happens on every start can still be read and passed on without a computer:
  * the next start shows it (see [CrashScreen]) instead of crashing again. The file stays on the phone and is only shown, never sent.
  */

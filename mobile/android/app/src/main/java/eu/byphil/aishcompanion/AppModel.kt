@@ -31,6 +31,8 @@ class AppModel(context: Context) {
     var entries by mutableStateOf(feedStore.everything())
     var articleList by mutableStateOf(articles.list())
     var alarm by mutableStateOf(store.alarm)
+    /** Why the alarm could not be set, for the settings card. */
+    var alarmError by mutableStateOf<String?>(null)
     var refreshing by mutableStateOf(false)
     var syncing by mutableStateOf(false)
     var checking by mutableStateOf(false)
@@ -55,8 +57,15 @@ class AppModel(context: Context) {
 
     /** Saves the alarm settings and sets the system alarm to match. */
     fun changeAlarm(next: AlarmSettings) {
+        Guard.begin(app, "alarm")   // cleared by the settings card once it has been drawn with the new settings
         store.alarm = next; alarm = next
-        AlarmScheduler.reschedule(app)
+        try {
+            AlarmScheduler.reschedule(app); alarmError = null
+        } catch (e: Throwable) {
+            alarmError = "The alarm could not be set: ${e::class.java.simpleName}: ${e.message}"
+            store.alarm = next.copy(enabled = false); alarm = store.alarm
+            Guard.end(app, "alarm")
+        }
     }
 
     // ── feeds ──
