@@ -145,4 +145,10 @@ class BriefingTest {
         assertEquals(listOf("New"), MoodRater.candidates(list, now).map { it.stored.item.title })
         assertEquals(MoodRater.MAX_PER_RUN, MoodRater.candidates((1..100).map { entry(it, "i$it", "T$it", 1) }, now).size)
     }
+
+    @Test fun wholeHistoryHasNoAgeOrCountLimit() {
+        val list = (1..150).map { entry(it, "i$it", "T$it", 24L * 30) } + listOf(entry(200, "r", "Rated", 24L * 30).let { it.copy(stored = it.stored.copy(sent = 0.3)) })
+        assertEquals(0, MoodRater.candidates(list, now).size)             // all older than 7 days
+        assertEquals(150, MoodRater.candidates(list, now, all = true).size)   // no cap, rated ones skipped
+    }
 }

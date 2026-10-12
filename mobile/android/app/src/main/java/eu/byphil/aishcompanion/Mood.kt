@@ -1,6 +1,17 @@
 package eu.byphil.aishcompanion
 
 import android.content.Context
+import androidx.work.BackoffPolicy
+import androidx.work.Constraints
+import androidx.work.CoroutineWorker
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkerParameters
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 /** Mood of a feed item, as in the browser extension's Feeds view: from the item's sentiment (-1 very heavy … 1 very good). */
 object Mood {
@@ -54,17 +65,18 @@ object MoodRater {
     const val MAX_AGE_MS = 7L * 24 * 3600_000
 
     /** Unrated items worth rating: recent (or undated), newest first (the list is already sorted that way), at most [MAX_PER_RUN]. */
-    fun candidates(entries: List<FeedEntryRef>, now: Long): List<FeedEntryRef> =
-        entries.filter { it.stored.sent == null && it.stored.item.title.isNotBlank() && (it.stored.item.published <= 0 || now - it.stored.item.published <= MAX_AGE_MS) }
-            .take(MAX_PER_RUN)
+    fun candidates(entries: List<FeedEntryRef>, now: Long, all: Boolean = false): List<FeedEntryRef> =
+        entries.filter { it.stored.sent == null && it.stored.item.title.isNotBlank() && (all || it.stored.item.published <= 0 || now - it.stored.item.published <= MAX_AGE_MS) }
+            .let { if (all) it else it.take(MAX_PER_RUN) }
 
     /** Rates unrated items with the on-device model and stores the ratings. Returns how many were rated. Blocking: call off the main thread. */
-    fun rate(context: Context, store: FeedStore, entries: List<FeedEntryRef>, now: Long = System.currentTimeMillis()): Int {
-        val todo = candidates(entries, now)
+    fun rate(context: Context, store: FeedStore, entries: List<FeedEntryRef>, now: Long = System.currentTimeMillis(), all: Boolean = false, cancelled: () -> Boolean = { false }): Int {
+        val todo = candidates(entries, now, all)
         if (todo.isEmpty() || !LocalLlm.installed(context)) return 0
         var rated = 0
         LocalLlm.session(context) { ask ->
             for (batch in todo.chunked(MoodPrompt.BATCH)) {
+                if (cancelled()) break   // what was rated so far is already saved
                 val reply = ask(MoodPrompt.SYSTEM, MoodPrompt.user(batch.map { it.stored.item })) ?: break
                 val scores = MoodPrompt.parse(reply, batch.size)
                 val byFeed = HashMap<String, HashMap<String, Double>>()
@@ -73,5 +85,37 @@ object MoodRater {
             }
         }
         return rated
+    }
+}
+
+/**
+ * Rates every unrated item the phone has stored (the feeds' whole stored history), in the background. Ratings are saved after every
+ * batch, so stopping loses nothing and the next run continues. A run lasts at most 8 minutes (the system's limit is 10), then asks to
+ * be run again. Gives up when a run rates nothing (the model fails or cannot be read).
+ */
+class MoodHistoryWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
+    override suspend fun doWork(): Result = withContext(Dispatchers.Default) {
+        val app = applicationContext
+        if (!LocalLlm.installed(app)) return@withContext Result.failure()
+        val store = FeedStore(File(app.filesDir, "feeds"))
+        val start = System.currentTimeMillis()
+        val rated = MoodRater.rate(app, store, store.everything(), all = true, cancelled = { isStopped || System.currentTimeMillis() - start > 8 * 60_000 })
+        val left = MoodRater.candidates(store.everything(), System.currentTimeMillis(), all = true).size
+        when {
+            left == 0 -> Result.success()
+            rated == 0 || runAttemptCount >= 40 -> Result.failure()
+            else -> Result.retry()
+        }
+    }
+
+    companion object {
+        const val NAME = "rate-history"
+        fun start(context: Context) {
+            val request = OneTimeWorkRequestBuilder<MoodHistoryWorker>()
+                .setConstraints(Constraints.Builder().setRequiresBatteryNotLow(true).build())
+                .setBackoffCriteria(BackoffPolicy.LINEAR, 10, TimeUnit.SECONDS).build()
+            WorkManager.getInstance(context.applicationContext).enqueueUniqueWork(NAME, ExistingWorkPolicy.REPLACE, request)
+        }
+        fun cancel(context: Context) { WorkManager.getInstance(context.applicationContext).cancelUniqueWork(NAME) }
     }
 }

@@ -56,6 +56,11 @@ fun ModelCard(model: AppModel) {
     var result by remember { mutableStateOf<String?>(null) }
     var confirmDelete by remember { mutableStateOf(false) }
     val a = model.alarm
+    val histWorks by WorkManager.getInstance(context).getWorkInfosForUniqueWorkFlow(MoodHistoryWorker.NAME).collectAsState(emptyList())
+    val histRunning = histWorks.any { it.state == WorkInfo.State.RUNNING || it.state == WorkInfo.State.ENQUEUED || it.state == WorkInfo.State.BLOCKED }
+    val rated = model.entries.count { it.stored.sent != null }
+    val unrated = MoodRater.candidates(model.entries, System.currentTimeMillis(), all = true).size
+    LaunchedEffect(histRunning) { while (histRunning) { delay(3000); withContext(Dispatchers.IO) { model.reload() } } }
 
     LaunchedEffect(running, waiting, works) {
         do {
@@ -79,6 +84,15 @@ fun ModelCard(model: AppModel) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("Write the morning briefing with it", Modifier.weight(1f))
                         Switch(checked = a.useAi, onCheckedChange = { model.changeAlarm(a.copy(useAi = it)) })
+                    }
+                    Text("Mood ratings: $rated of ${rated + unrated} stored feed items rated", style = MaterialTheme.typography.bodySmall)
+                    if (histRunning) {
+                        LinearProgressIndicator(progress = { if (rated + unrated == 0) 0f else rated.toFloat() / (rated + unrated) }, modifier = Modifier.fillMaxWidth())
+                        Text("Rating the whole history in the background… $unrated left. It continues if you close the app.", style = MaterialTheme.typography.bodySmall)
+                        OutlinedButton(onClick = { MoodHistoryWorker.cancel(context) }) { Text("Stop") }
+                    } else if (unrated > 0) {
+                        Text("Rating all $unrated unrated items takes roughly ${(unrated / MoodPrompt.BATCH + 1) * 10 / 60 + 1} minutes and uses a lot of battery, so it is best done while charging.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        OutlinedButton(onClick = { MoodHistoryWorker.start(context) }) { Text("Rate the whole feed history") }
                     }
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Button(enabled = !trying, onClick = {
