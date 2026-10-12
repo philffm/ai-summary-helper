@@ -4711,5 +4711,11 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "同期したフィードリストを読み取れませんでした。ペアリングを解除して、もう一度ペアリングしてください。"
+  },
+  "f_ratings_categories_1449": {
+    "message": "評価 {a} · カテゴリ {b}"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "最初の返答が読み取れなかったため、再度問い合わせました"
   }
 }

@@ -4952,5 +4952,12 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 What the AI reads"
+  },
+  "f_ratings_categories_1449": {
+    "message": "Ratings {a} · categories {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "the first reply was unreadable, so it was asked again"
   }
 }

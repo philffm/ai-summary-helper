@@ -9,9 +9,11 @@ const items = [
 ];
 const sub = () => 'News';
 
-assert.equal(getAiDetail(), 1, 'default: titles + descriptions');
+assert.equal(getAiDetail(), 0, 'default: titles only');
+assert(!itemsForPrompt(items, sub).includes('factory'), 'no description by default');
+setAiDetail(1);
 const full = itemsForPrompt(items, sub);
-assert(full.includes('The new factory will employ'), 'description present by default');
+assert(full.includes('The new factory will employ'), 'description present when asked for');
 
 const sigFull = itemSig(items[0]);
 setAiDetail(0);
@@ -24,7 +26,7 @@ assert(itemsForPrompt(items, sub, null, 40).includes('The new factory'), 'an exp
 
 setAiDetail(1);
 assert(itemsForPrompt(items, sub).includes('The new factory'));
-setAiDetail('0'); assert.equal(getAiDetail(), 0); setAiDetail(undefined); assert.equal(getAiDetail(), 1, 'unset means the default');
+setAiDetail('0'); assert.equal(getAiDetail(), 0); setAiDetail(undefined); assert.equal(getAiDetail(), 0, 'unset means the default: titles only'); setAiDetail(1); assert.equal(getAiDetail(), 1);
 
 // The task is repeated AFTER the items (a small model's context window can push the system prompt out and it then just describes the list).
 const seen = [];
@@ -35,6 +37,7 @@ assert(/Now write the recap exactly as instructed: the SCORES line, the LABELS l
 await generateRecap(items, sub, { rate: false });
 assert(!/SCORES line/.test(seen[1].user) && /MOOD line\./.test(seen[1].user), 'no SCORES line asked for without rating');
 await scoreItems(items, sub, { labels: true });
-assert(seen[2].user.trim().endsWith('Now reply with ONLY the JSON object, nothing else.') || /scores/i.test(seen[2].user), 'scoring task repeated');
+assert(seen[2].user.trim().endsWith('Now give the scores exactly in the requested format, nothing else.'), 'scoring task repeated');
+assert(seen[3].user.trim().endsWith('Now give the categories exactly in the requested format, nothing else.'), 'category task repeated');
 setAiTransport(null);
 console.log('test150 ok');

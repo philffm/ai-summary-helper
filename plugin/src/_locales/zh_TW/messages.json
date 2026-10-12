@@ -4711,5 +4711,11 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "無法讀取已同步的訂閱源清單。請取消配對後重新配對。"
+  },
+  "f_ratings_categories_1449": {
+    "message": "評分 {a} · 分類 {b}"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "第一次回覆無法解析，因此重新請求了一次"
   }
 }

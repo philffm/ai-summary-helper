@@ -601,8 +601,10 @@ async function pollFeeds() {
                 throw e;
             } finally { timeout.close(); }
         };
+        // Categories already given to items in this library, most used first: the category request picks from these (plus defaults).
+        const knownCats = () => { const m = new Map(); for (const r of Object.values(state.ratings || {})) if (r && r.cat) m.set(r.cat, (m.get(r.cat) || 0) + 1); return [...m].sort((a, b) => b[1] - a[1]).slice(0, 12).map(x => x[0]); };
         const rateChunk = async (chunk, signal) => {
-            const result = await aiCall(aiSignal => FEED_WORKER.scoreItems(chunk, i => (subscriptions.get(i.feedId) || {}).customTitle || (subscriptions.get(i.feedId) || {}).title || '', { signal: aiSignal, service: 'ollama' }), signal);
+            const result = await aiCall(aiSignal => FEED_WORKER.scoreItems(chunk, i => (subscriptions.get(i.feedId) || {}).customTitle || (subscriptions.get(i.feedId) || {}).title || '', { signal: aiSignal, service: 'ollama', knownCats: knownCats() }), signal);
             chunk.forEach((item, index) => {
                 if (!item.ai && result.scores[index] !== null) { item.sent = result.scores[index]; item.ai = true; }
                 if (!item.cat && result.labels && result.labels[index]) item.cat = result.labels[index];

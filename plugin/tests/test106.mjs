@@ -62,10 +62,10 @@ const feedAi = await imp('modules/feedAi.js');
 let transportService = '';
 feedAi.setAiTransport(async request => {
     transportService = request.service;
-    return '{"scores":[0.5],"labels":["Tech"]}';
+    return /category/i.test(request.system) ? '1:Tech' : '1:3';
 });
 const scored = await feedAi.scoreItems([{ title: 'Local story', snippet: '' }], () => 'Source', { service: 'ollama' });
-assert.deepEqual(scored, { scores: [0.5], labels: ['Tech'] });
+assert.deepEqual(scored, { scores: [0.6], labels: ['Tech'] });
 assert.equal(transportService, 'ollama', 'worker can route shared feed AI logic directly without messaging itself');
 feedAi.setAiTransport(null);
 // Backup exports omit secrets by default, opt-in backups are marked, and imports preserve or confirm secrets.

@@ -4693,5 +4693,11 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "동기화된 피드 목록을 읽을 수 없습니다. 페어링을 해제한 후 다시 페어링하세요."
+  },
+  "f_ratings_categories_1449": {
+    "message": "평가 {a} · 카테고리 {b}"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "첫 응답을 읽을 수 없어 다시 요청했습니다"
   }
 }

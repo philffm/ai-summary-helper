@@ -4167,3 +4167,7 @@ a.phone-inbox-link:hover strong { text-decoration: underline; }
 .ai-quota-bar > span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
 .ai-quota.warn .ai-quota-bar > span { background: var(--warning, #e0a030); }
 .ai-quota.full .ai-quota-bar > span { background: var(--danger, #d9534f); }
+
+/* Feed settings: choice rows use the shared button group, full width under their label */
+.feed-pref-seg { width: 100%; margin-top: 6px; }
+.feed-pref-seg button { min-width: 0; padding: 6px 4px; overflow: hidden; text-overflow: ellipsis; }

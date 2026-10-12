@@ -17,9 +17,9 @@ let recapLimit = Infinity;            // items per recap request (user setting);
 export const getRecapLimit = () => recapLimit;
 export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n === 0 || n === Infinity ? Infinity : n >= 10 ? n : Infinity; }
 const SNIPPET_MAX = 160;
-let titlesOnly = false;               // setting aiDetail: 0 = the AI reads titles only (less to process for small local models)
+let titlesOnly = true;                // setting aiDetail: 0 = the AI reads titles only (default: ~80% of the accuracy for a fraction of the work), 1 = titles + descriptions
 export const getAiDetail = () => (titlesOnly ? 0 : 1);
-export function setAiDetail(n) { titlesOnly = Number(n) === 0; }
+export function setAiDetail(n) { titlesOnly = n === undefined || n === null || n === '' ? true : Number(n) === 0; }
 
 let aiSeq = 0;
 let aiTransport = null;
@@ -114,7 +114,7 @@ export function itemSig(i) {
 const AFTER = {
     recap: (rate) => `\n\nNow write the recap exactly as instructed: ${rate ? 'the SCORES line, the LABELS line, ' : ''}2-3 sentences of overview about the news itself, up to 5 "- " lines, and the MOOD line. Do not describe the list and do not ask for a question.`,
     scores: '\n\nNow give the scores exactly in the requested format, nothing else.',
-    scoresJson: '\n\nNow reply with ONLY the JSON object, nothing else.',
+    cats: '\n\nNow give the categories exactly in the requested format, nothing else.',
     topics: '\n\nNow reply with ONLY the tags, nothing else.',
     intro: '\n\nNow write only the short introduction text, nothing else.',
 };
@@ -384,35 +384,85 @@ export function parseLabelsJson(text, n) {
     return out;
 }
 
+export const DEFAULT_CATS = ['Tech', 'Politics', 'Business', 'Science', 'Health', 'Culture', 'Sports', 'World', 'Climate', 'Design'];
+export const MAX_NEW_CATS = 2;   // per request: the model may add this many categories that are not in the known list
+
+/** Categories already in use (most used first) followed by the defaults, de-duplicated, at most 14. */
+export function categoryVocab(used = []) {
+    const seen = new Set(), out = [];
+    for (const c of [...used, ...DEFAULT_CATS]) {
+        const v = cleanLabel(c); if (!v) continue;
+        const k = v.toLowerCase(); if (seen.has(k)) continue;
+        seen.add(k); out.push(v);
+    }
+    return out.slice(0, 14);
+}
+
 /**
- * labels = false asks for the cheapest possible reply: only "id:score" pairs (e.g. "1:0.6 | 2:-0.4"), no labels, no JSON.
+ * "1:Tech | 2:Politics" -> labels aligned to n items (null where missing). Known categories are snapped to their spelling;
+ * at most `maxNew` different new categories are accepted (the first ones); items with any further new label stay null.
  */
-export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress, service } = {}) {
+export function parseCategoryLines(text, n, vocab = DEFAULT_CATS, maxNew = MAX_NEW_CATS) {
+    const out = new Array(n).fill(null);
+    const known = new Map(vocab.map(c => [c.toLowerCase(), c]));
+    const fresh = new Map();   // lowercased new label -> spelling
+    String(text || '').split(/[|;\n]/).forEach(part => {
+        const m = part.match(/(\d+)\s*[:=)]\s*(.+)/);
+        if (!m) return;
+        const k = Number(m[1]) - 1, label = cleanLabel(m[2]);
+        if (!(k >= 0 && k < n) || !label) return;
+        const key = label.toLowerCase();
+        if (known.has(key)) { out[k] = known.get(key); return; }
+        if (!fresh.has(key) && fresh.size < maxNew) fresh.set(key, label);
+        if (fresh.has(key)) out[k] = fresh.get(key);
+    });
+    return out;
+}
+
+const isCancel = (e, signal) => !!(e && (e.cancelled || e.name === 'AbortError')) || !!(signal && signal.aborted);
+
+/**
+ * Two small requests instead of one big JSON: (1) sentiment as "1:3 | 2:-2" pairs, (2) a category per item, picked from the
+ * known list (categories already in use + defaults) — the model may add up to MAX_NEW_CATS new ones. A failed category request
+ * never costs the scores. labels = false stops after the first request (cheapest). knownCats = categories already in use.
+ * onTiming({ scoreSec, catSec, retried }) reports where the time went.
+ */
+export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress, service, knownCats = [], onTiming } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
+    const n = chunk.length;
     const rule = (m) => `For each numbered item return a number from -${m} `
         + `(very negative news) through 0 (neutral) to ${m} (very positive news), judged on the news content, not tone of voice. `;
-    const system = labels
-        ? 'You rate the sentiment of news headlines. ' + rule(1)
-            + 'Also give each item a category label of one or two words (e.g. Tech, Politics, Business, Science, Health, Culture, Sports, World, Climate, Design); '
-            + 'reuse the same label for similar items, at most 8 different labels. '
-            + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`
-        : 'You rate the sentiment of news headlines. ' + rule(5)
-            + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
-    const user = `Items:\n${itemsForPrompt(chunk, subTitleFn)}${labels ? AFTER.scoresJson : AFTER.scores}`;
+    const system = 'You rate the sentiment of news headlines. ' + rule(5)
+        + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
+    const items = `Items:\n${itemsForPrompt(chunk, subTitleFn)}`;
     const usable = (a) => a && a.some(v => v !== null);
-    const text = await aiComplete(system, user, onStage, signal, onProgress, { service });
-    // Small local models often ignore the JSON format: fall back to "1:3 | 2:-2" pairs, then retry once with the simplest prompt.
-    let scores = parseScores(text, chunk.length);
-    if (!usable(scores)) scores = parseScoreLine(text, chunk.length);
-    if (usable(scores)) return { scores, labels: labels ? parseLabelsJson(text, chunk.length) : new Array(chunk.length).fill(null) };
-    if (labels) {
-        const simple = 'You rate the sentiment of news headlines. ' + rule(5)
-            + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
-        const text2 = await aiComplete(simple, user.replace(AFTER.scoresJson, AFTER.scores), onStage, signal, onProgress, { service });
-        const s2 = parseScoreLine(text2, chunk.length);
-        if (usable(s2)) return { scores: s2, labels: new Array(chunk.length).fill(null) };
+    const read = (text) => { const a = parseScoreLine(text, n); return usable(a) ? a : parseScores(text, n); };
+
+    const t0 = Date.now();
+    let scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service }));
+    let retried = false;
+    if (!usable(scores)) {   // small local models sometimes ignore the format: one more try
+        retried = true;
+        scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service }));
     }
-    throw new Error(T('The AI reply could not be read'));
+    if (!usable(scores)) throw new Error(T('The AI reply could not be read'));
+    const t1 = Date.now();
+
+    let out = new Array(n).fill(null);
+    if (labels) {
+        const vocab = categoryVocab(knownCats);
+        const catSystem = 'You assign a topic category to each news headline. '
+            + `Known categories: ${vocab.join(', ')}. For each numbered item pick the best known category. `
+            + `If none fits, you may use a NEW category of one or two words, but at most ${MAX_NEW_CATS} different new categories in total and only when really needed. `
+            + 'Reply with ONLY the item number and its category, one pair per item, nothing else, like: 1:Tech | 2:Politics | 3:Science';
+        try {
+            out = parseCategoryLines(await aiComplete(catSystem, items + AFTER.cats, onStage, signal, onProgress, { service }), n, vocab);
+        } catch (e) {
+            if (isCancel(e, signal)) throw e;   // anything else: keep the scores, the caller marks the items as "category tried"
+        }
+    }
+    if (onTiming) onTiming({ scoreSec: (t1 - t0) / 1000, catSec: labels ? (Date.now() - t1) / 1000 : 0, retried });
+    return { scores, labels: out };
 }
 
 const INTRO_STYLES = {

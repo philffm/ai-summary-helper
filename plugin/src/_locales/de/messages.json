@@ -4720,5 +4720,11 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 Was die KI liest"
+  },
+  "f_ratings_categories_1449": {
+    "message": "Bewertungen {a} · Kategorien {b}"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "die erste Antwort war unlesbar, deshalb wurde erneut gefragt"
   }
 }

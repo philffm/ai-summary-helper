@@ -1,0 +1,22 @@
+// Feed preferences › AI analysis: choices are the extension's own button group (no dropdowns, no emoji in the labels), titles only by default.
+import assert from 'assert';
+import { setup, imp, tick } from './harness.mjs';
+const { store, w } = setup({});
+store['feeds:subs'] = []; store['feeds:items'] = [];
+const $ = (s) => w.document.querySelector(s), $$ = (s) => [...w.document.querySelectorAll(s)];
+const fm = await imp('modules/feedManager.js');
+fm.initFeedManager({ showToast() {}, showScreen() {} }); await tick(80);
+w.document.dispatchEvent(new w.CustomEvent('aish:settings-panel', { detail: { name: 'feedprefs' } })); await tick(250);
+const card = $('#feedPrefsAi'); assert.ok(card, 'AI analysis card');
+assert.equal(card.querySelectorAll('select').length, 0, 'no dropdowns in this card');
+assert.ok(!/[\u{1F300}-\u{1FAFF}☀-➿]/u.test(card.textContent), 'no emoji/icons in the labels: ' + card.textContent.slice(0, 120));
+const detail = $('#feedSetAiDetail'); assert.ok(detail.classList.contains('segmented-control') && detail.classList.contains('segmented-control-buttons'), 'shared button group');
+assert.equal(detail.getAttribute('role'), 'radiogroup'); assert.ok(detail.getAttribute('aria-labelledby'));
+let on = detail.querySelector('.active'); assert.equal(on.dataset.v, '0', 'titles only is the default'); assert.equal(on.getAttribute('aria-checked'), 'true');
+detail.querySelector('[data-v="1"]').click(); await tick(60);
+assert.equal(detail.querySelector('.active').dataset.v, '1'); assert.equal(detail.querySelector('[data-v="0"]').getAttribute('aria-checked'), 'false');
+assert.equal(store['feeds:settings'].aiDetail, 1, 'saved');
+const limit = $('#feedSetRecapLimit'); assert.equal(limit.querySelectorAll('button').length, 5);
+limit.querySelector('[data-v="80"]').click(); await tick(60);
+assert.equal(store['feeds:settings'].recapLimit, 80); assert.equal(limit.querySelector('.active').textContent, '80');
+console.log('TEST 152 OK');

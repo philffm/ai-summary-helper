@@ -9,8 +9,8 @@ const mk = (id, t, ageH) => ({ id, feedId: 's1', title: t, link: 'https://x.test
 store['feeds:subs'] = [{ id: 's1', url: 'https://a/feed', title: 'Alpha', lastFetched: now }];
 store['feeds:items'] = [mk('a', 'Good news', 0.01), mk('b', 'Bad news', 0.02), mk('c', 'Meh', 0.03)];
 const calls = [];
-globalThis.__ai = (m) => { calls.push(m); return m.system.includes('"scores"') || m.system.includes('{"scores"')
-  ? { ok: true, text: '```json\n{"scores":[0.8,-0.6,0]}\n```' }
+globalThis.__ai = (m) => { calls.push(m); return /assign a topic category/.test(m.system) ? { ok: true, text: '1:Tech | 2:Politics' }
+  : /whole-number score/.test(m.system) ? { ok: true, text: '1:4 | 2:-3 | 3:0' }
   : { ok: true, text: 'Overview sentence one. Two.\n- Alpha: good thing\n- Alpha: bad thing\nMOOD: mixed\nLABELS: 1:Tech | 2:Politics | 3:"World News"' }; };
 const toasts = [];
 const uiStub = { showToast: m => toasts.push(m), showScreen() {} };
@@ -19,7 +19,7 @@ fm.initFeedManager(uiStub); await tick(50); await fm.onFeedsScreenShown(uiStub);
 const rb = $('.feed-day-ai'); assert.ok(rb, 'recap button');
 click(rb); await tick(50);
 assert.equal(calls.length, 1);
-assert.ok(calls[0].user.includes('[1] Alpha') && calls[0].user.includes('snip'));
+assert.ok(calls[0].user.includes('[1] Alpha') && !calls[0].user.includes('snip'), 'the AI reads titles only by default');
 assert.ok($('.feed-recap-overview').textContent.startsWith('Overview'));
 assert.equal($$('.feed-recap-themes li').length, 2);
 assert.ok(Object.keys(store['feeds:recaps']).length === 1, 'cached');

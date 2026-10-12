@@ -43,7 +43,7 @@ import { parseFeed, opmlXml } from './feedParse.js';
 import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
-import { icon, setLabel } from './icons.js';
+import { icon, setLabel, stripEmoji } from './icons.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight, reconcileItemIds } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
@@ -69,7 +69,7 @@ export const FEED_DEFAULTS = {
     refreshMinutes: 30,
     keepDays: 30,
     recapLimit: 0,
-    aiDetail: 1,                  // what the AI reads of each item: 1 = title + description, 0 = title only
+    aiDetail: 0,                  // what the AI reads of each item: 0 = title only (default), 1 = title + description
     libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
     autoProcess: false,           // fetch + process new items on a timer (Ollama only)
     autoProcessMinutes: 30,
@@ -1989,7 +1989,7 @@ async function scoreWithAi(list) {
             const chunk = list.slice(k, k + MAX_RECAP_ITEMS);
             let res;
             try {
-                res = await scoreItems(chunk, aiTitleOf(sm), {});
+                res = await scoreItems(chunk, aiTitleOf(sm), { knownCats: knownCategories() });
             } catch (e) {
                 // one unreadable reply must not stop the remaining batches
                 failed += chunk.length; error = e;
@@ -2155,10 +2155,27 @@ function toggleRow(id, title, hint, key) {
     return row;
 }
 
+/** Choice row as the extension's own button group (like Graph | List), label above it. Same translated text as before, without the leading emoji. */
+function segRow(id, title, key, opts) {
+    const row = el('div', 'setting-group mb-3');
+    const lab = el('span', 'setting-label', stripEmoji(title)); lab.id = id + 'Label';
+    const seg = el('div', 'segmented-control segmented-control-buttons feed-pref-seg'); seg.id = id;
+    seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-labelledby', lab.id);
+    const paint = () => seg.querySelectorAll('button').forEach((b) => { const on = Number(b.dataset.v) === Number(settings[key]); b.classList.toggle('active', on); b.setAttribute('aria-checked', String(on)); });
+    opts.forEach(([v, t]) => {
+        const b = el('button', null, t); b.type = 'button'; b.dataset.v = String(v); b.setAttribute('role', 'radio');
+        b.addEventListener('click', async () => { await setSetting(key, v); paint(); });
+        seg.append(b);
+    });
+    paint();
+    row.append(lab, seg);
+    return row;
+}
+
 function moodToggleRow() {
     const row = el('div', 'setting-group flex justify-between align-center mb-3');
     const left = el('div', 'setting-text');
-    const lab = el('label', null, T('😊 Mood')); lab.htmlFor = 'feedSetMood'; lab.className = 'setting-label';
+    const lab = el('label', null, stripEmoji(T('😊 Mood'))); lab.htmlFor = 'feedSetMood'; lab.className = 'setting-label';
     const p = el('p', null, T('Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features.')); p.className = 'setting-desc';
     left.append(lab, p);
     const sw = el('label', 'switch setting-switch');
@@ -2303,8 +2320,10 @@ async function libraryTagFeed(entry, signal, ctx = {}) {
     await saveLexicon();
     await persist();
 }
+/** Categories already in use on the feed items, most used first: the category request picks from these (plus defaults). */
+const knownCategories = () => categoryCounts(items, 12).map((x) => x[0]);
 async function libraryRateChunk(chunk, signal, ctx = {}) {
-    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal, onStage: ctx.onStage, service: 'ollama' });
+    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal, onStage: ctx.onStage, service: 'ollama', knownCats: knownCategories() });
     chunk.forEach((i, n) => {
         if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; }   // never overwrite an existing rating or category
         if (!i.cat && res.labels && res.labels[n]) i.cat = res.labels[n];
@@ -2424,6 +2443,7 @@ function performanceBlock(setup, rerender) {
         out.append(el('p', 'library-bench-main', T('{s} for {n} headlines', { s: fmtSec(r.warm), n: BENCH_COUNT })
             + ' · ' + T('first request {s} (loads the model)', { s: fmtSec(r.cold) })
             + (r.model ? ' · ' + r.model : '')));
+        if (r.warmScore > 0) out.append(el('p', 'feed-muted', T('Ratings {a} · categories {b}', { a: fmtSec(r.warmScore), b: fmtSec(r.warmCats || 0) }) + (r.retried ? ' · ' + T('the first reply was unreadable, so it was asked again') : '')));
         const list = el('ul', 'library-bench-list');
         REFERENCE.forEach((x) => {
             const lo = REFERENCE[REFERENCE.indexOf(x) - 1];
@@ -2461,9 +2481,10 @@ function performanceBlock(setup, rerender) {
             await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama' });
             const t1 = Date.now();
             status.textContent = T('Measuring… second request.');
-            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama' });
+            let split = {};
+            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama', onTiming: (t) => { split = t; } });
             const t2 = Date.now();
-            await setSetting('libraryBench', { at: Date.now(), model: setup.model || '', cold: (t1 - t0) / 1000, warm: (t2 - t1) / 1000 });
+            await setSetting('libraryBench', { at: Date.now(), model: setup.model || '', cold: (t1 - t0) / 1000, warm: (t2 - t1) / 1000, warmScore: split.scoreSec || 0, warmCats: split.catSec || 0, retried: !!split.retried });
             status.textContent = '';
             rerender();
         } catch (e) {
@@ -2592,9 +2613,9 @@ function renderFeedPrefs() {
         el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.')));
     card('feedPrefsAi', TU('AI analysis'),
         moodToggleRow(),
-        selectRow('feedSetAiDetail', T('🔎 What the AI reads'), 'aiDetail', [[1, T('Titles + descriptions')], [0, T('Titles only (faster)')]]),
-        selectRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
-        toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
+        segRow('feedSetAiDetail', T('🔎 What the AI reads'), 'aiDetail', [[0, T('Titles only (faster)')], [1, T('Titles + descriptions')]]),
+        segRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
+        toggleRow('feedSetRate', stripEmoji(T('🤖 Rate items with the recap')), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
     card('feedPrefsLibrary', TU('Whole library · Ollama'));
     renderLibraryCard(root.querySelector('#feedPrefsLibrary')).catch(() => {});
     card('feedPrefsUpdates', TU('Updates & storage'),

@@ -4711,5 +4711,11 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "تعذّرت قراءة قائمة الخلاصات المتزامنة. ألغِ الاقتران ثم أعد الاقتران."
+  },
+  "f_ratings_categories_1449": {
+    "message": "التقييمات {a} · الفئات {b}"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "كان الرد الأول غير مقروء، لذلك أُعيد الطلب"
   }
 }

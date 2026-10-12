@@ -4711,5 +4711,11 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "Não foi possível ler a lista de feeds sincronizada. Desemparelhe e emparelhe de novo."
+  },
+  "f_ratings_categories_1449": {
+    "message": "Avaliações {a} · categorias {b}"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "a primeira resposta era ilegível, por isso foi pedida de novo"
   }
 }
