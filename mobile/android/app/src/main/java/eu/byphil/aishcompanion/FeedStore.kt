@@ -24,7 +24,8 @@ data class Feed(
     val folder: String get() = tags.firstOrNull() ?: ""
 }
 
-data class StoredItem(val item: FeedItem, val read: Boolean)
+/** [sent]: sentiment from -1 (heavy) to 1 (good), rated by the on-device model; null = not rated yet. [cat]: reserved for a category label. */
+data class StoredItem(val item: FeedItem, val read: Boolean, val sent: Double? = null, val cat: String = "")
 
 /** One entry of the "all items" list. */
 data class FeedEntryRef(val feed: Feed, val stored: StoredItem)
@@ -128,7 +129,8 @@ class FeedStore(private val dir: File) {
             val arr = JSONArray(f.readText())
             (0 until arr.length()).mapNotNull { i ->
                 val o = arr.optJSONObject(i) ?: return@mapNotNull null
-                StoredItem(FeedItem(o.optString("id", ""), o.optString("title", ""), o.optString("link", ""), o.optLong("published", 0), o.optString("author", ""), o.optString("summary", ""), o.optString("body", "")), o.optBoolean("read", false))
+                StoredItem(FeedItem(o.optString("id", ""), o.optString("title", ""), o.optString("link", ""), o.optLong("published", 0), o.optString("author", ""), o.optString("summary", ""), o.optString("body", "")), o.optBoolean("read", false),
+                    if (o.has("sent")) o.optDouble("sent").takeIf { !it.isNaN() } else null, o.optString("cat", ""))
             }
         } catch (_: Exception) { emptyList() }
     }
@@ -141,7 +143,7 @@ class FeedStore(private val dir: File) {
         for (it in fresh.take(FeedXml.MAX_ITEMS)) {
             val was = old[it.id]
             if (was == null) added++
-            arr.put(JSONObject().put("id", it.id).put("title", it.title).put("link", it.link).put("published", it.published).put("author", it.author).put("summary", it.summary).put("body", it.body).put("read", was?.read ?: false))
+            arr.put(json(it, was?.read ?: false, was?.sent, was?.cat ?: ""))
         }
         fileFor(url).writeText(arr.toString())
         return added
@@ -151,14 +153,32 @@ class FeedStore(private val dir: File) {
         val list = items(url)
         if (list.none { it.item.id == id }) return
         val arr = JSONArray()
-        for (s in list) arr.put(JSONObject().put("id", s.item.id).put("title", s.item.title).put("link", s.item.link).put("published", s.item.published).put("author", s.item.author).put("summary", s.item.summary).put("body", s.item.body).put("read", if (s.item.id == id) read else s.read))
+        for (s in list) arr.put(json(s.item, if (s.item.id == id) read else s.read, s.sent, s.cat))
         fileFor(url).writeText(arr.toString())
+    }
+
+    /** Stores sentiment ratings (item id → -1..1) next to the items; other items keep what they have. */
+    @Synchronized fun setRatings(url: String, ratings: Map<String, Double>) {
+        if (ratings.isEmpty()) return
+        val list = items(url)
+        if (list.isEmpty()) return
+        val arr = JSONArray()
+        for (s in list) arr.put(json(s.item, s.read, ratings[s.item.id]?.coerceIn(-1.0, 1.0) ?: s.sent, s.cat))
+        fileFor(url).writeText(arr.toString())
+    }
+
+    private fun json(item: FeedItem, read: Boolean, sent: Double?, cat: String): JSONObject {
+        val o = JSONObject().put("id", item.id).put("title", item.title).put("link", item.link).put("published", item.published)
+            .put("author", item.author).put("summary", item.summary).put("body", item.body).put("read", read)
+        if (sent != null) o.put("sent", sent)
+        if (cat.isNotEmpty()) o.put("cat", cat)
+        return o
     }
 
     @Synchronized fun markAllRead(url: String) {
         val list = items(url)
         val arr = JSONArray()
-        for (s in list) arr.put(JSONObject().put("id", s.item.id).put("title", s.item.title).put("link", s.item.link).put("published", s.item.published).put("author", s.item.author).put("summary", s.item.summary).put("body", s.item.body).put("read", true))
+        for (s in list) arr.put(json(s.item, true, s.sent, s.cat))
         fileFor(url).writeText(arr.toString())
     }
 

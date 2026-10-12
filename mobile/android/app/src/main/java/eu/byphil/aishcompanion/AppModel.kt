@@ -36,6 +36,8 @@ class AppModel(context: Context) {
     /** Why the alarm could not be set, for the settings card. */
     var alarmError by mutableStateOf<String?>(null)
     var refreshing by mutableStateOf(false)
+    /** True while the on-device model rates the feed items by mood. */
+    var rating by mutableStateOf(false)
     var syncing by mutableStateOf(false)
     var checking by mutableStateOf(false)
     var lastSyncAt by mutableStateOf(feedStore.syncState().lastSyncAt)
@@ -130,6 +132,19 @@ class AppModel(context: Context) {
     suspend fun rename(url: String, name: String) = withContext(Dispatchers.IO) {
         feedStore.update(url) { it.copy(customTitle = if (name.isBlank() || name == it.title) "" else name.trim().take(200)) }; reload()
         if (pairing?.canSync == true) syncFeeds()
+    }
+
+    /** Rates unrated recent items by mood with the on-device model. Returns a short line for the UI. */
+    suspend fun rateMood(): String = withContext(Dispatchers.Default) {
+        if (!LocalLlm.installed(app)) "Download the on-device AI in Settings first."
+        else {
+            rating = true
+            try {
+                val n = MoodRater.rate(app, feedStore, feedStore.everything())
+                reload()
+                if (n == 0) "Nothing new to rate." else "Rated $n items by mood."
+            } finally { rating = false }
+        }
     }
 
     suspend fun markRead(feedUrl: String, id: String, read: Boolean = true) = withContext(Dispatchers.IO) {

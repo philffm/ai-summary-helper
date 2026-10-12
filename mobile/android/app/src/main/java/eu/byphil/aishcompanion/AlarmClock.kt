@@ -210,10 +210,16 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
     override suspend fun doWork(): Result {
         runCatching { withTimeoutOrNull(240_000) { AppModel(applicationContext).refreshAll(force = true) } }
         val store = Store(applicationContext)
-        val plain = runCatching { buildBriefingNow(applicationContext) }.getOrNull() ?: return Result.success()
+        var plain = runCatching { buildBriefingNow(applicationContext) }.getOrNull() ?: return Result.success()
         store.briefingJson = plain.toJson()   // saved first: the alarm has a briefing even if the model is slow or fails
-        var current = plain
         val settings = store.alarm
+        if (settings.goodNewsOnly && LocalLlm.installed(applicationContext)) {
+            // Rate the new stories by mood first, so "good news only" goes by the model's judgement and not just the word list.
+            val feedStore = FeedStore(File(applicationContext.filesDir, "feeds"))
+            val rated = withContext(Dispatchers.Default) { runCatching { MoodRater.rate(applicationContext, feedStore, feedStore.everything()) }.getOrDefault(0) }
+            if (rated > 0) { plain = buildBriefingNow(applicationContext); store.briefingJson = plain.toJson() }
+        }
+        var current = plain
         if (settings.extraOn) {
             val extra = withContext(Dispatchers.IO) { CloudExtra.fetch(store.license, settings.extraPrompt) }
             if (extra != null) { current = current.copy(extra = extra); store.briefingJson = current.toJson() }

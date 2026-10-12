@@ -67,8 +67,12 @@ object BriefingBuilder {
      */
     fun pick(entries: List<FeedEntryRef>, now: Long, limit: Int = MAX_ITEMS, perFeed: Int = PER_FEED, goodNewsOnly: Boolean = false): List<BriefingItem> {
         val unread = entries.filter { !it.stored.read && it.stored.item.title.isNotBlank() && it.stored.item.published > 0 }
-            .filter { !goodNewsOnly || !GoodNews.heavy(it.stored.item.title + " " + snippet(it.stored.item)) }
             .sortedByDescending { it.stored.item.published }
+            .let { list ->
+                if (!goodNewsOnly) list
+                // Good news only: nothing rated heavy (by the model, else by the word list); stories rated positive come first, then the rest.
+                else list.filter { Mood.effective(it) != "neg" }.sortedBy { if (Mood.effective(it) == "pos") 0 else 1 }
+            }
         fun take(maxAge: Long): List<BriefingItem> {
             val perCount = HashMap<String, Int>()
             val out = ArrayList<BriefingItem>()

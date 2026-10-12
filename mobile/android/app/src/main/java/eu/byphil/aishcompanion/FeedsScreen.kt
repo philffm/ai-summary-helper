@@ -60,6 +60,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.material.icons.filled.Mood
 import kotlinx.coroutines.launch
 
 /** "all", "folder:<tag>" (a tag of the feed in the extension) or "feed:<url>". */
@@ -92,13 +94,18 @@ fun FeedsScreen(
     var showSources by remember { mutableStateOf(false) }
     var showAdd by remember { mutableStateOf(false) }
     var unreadOnly by remember { mutableStateOf(false) }
+    var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var addError by remember { mutableStateOf<String?>(null) }
     var adding by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) { if (model.feeds.isNotEmpty()) model.refreshAll(force = false) }
     LaunchedEffect(model.message) { model.message?.let { snackbar.showSnackbar(it); model.consumeMessage() } }
 
-    val visible = model.entries.filter { matches(source, it) && (!unreadOnly || !it.stored.read) }
+    val visible = model.entries.filter {
+        matches(source, it) && (!unreadOnly || !it.stored.read) &&
+            when (moodFilter) { "pos" -> Mood.of(it.stored.sent) == "pos"; "nonneg" -> Mood.of(it.stored.sent) != "neg"; else -> true }
+    }
+    val anyRated = model.entries.any { it.stored.sent != null }
     val current = visible.firstOrNull { selectionKey(it.feed.url, it.stored.item.id) == selected }
         ?: model.entries.firstOrNull { selectionKey(it.feed.url, it.stored.item.id) == selected }
 
@@ -114,6 +121,9 @@ fun FeedsScreen(
                 actions = {
                     IconButton(onClick = { scope.launch { val n = model.refreshAll(); snackbar.showSnackbar(if (n == 0) "No new items." else "$n new items.") } }, enabled = !model.refreshing) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
+                    }
+                    IconButton(onClick = { scope.launch { snackbar.showSnackbar(model.rateMood()) } }, enabled = !model.rating) {
+                        Icon(Icons.Filled.Mood, contentDescription = "Rate by mood with the on-device AI")
                     }
                     IconButton(onClick = { showSources = true }) { Icon(Icons.Filled.RssFeed, contentDescription = "Sources") }
                 },
@@ -132,9 +142,14 @@ fun FeedsScreen(
                         Column(Modifier.fillMaxSize()) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                if (anyRated) {
+                                    FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
+                                    FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😟") })
+                                }
                                 if (source != "all") FilterChip(selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
                                 if (visible.any { !it.stored.read }) FilterChip(selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
                             }
+                            if (model.rating) androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 16.dp))
                             if (model.feeds.isEmpty()) EmptyState("No feeds yet", "Add a feed with the button below. Feeds you add in the browser extension appear here after you switch on feed sync in Settings.")
                             else if (visible.isEmpty()) EmptyState(if (unreadOnly) "All read" else "Nothing here yet", if (unreadOnly) "Turn off the Unread filter to see older items." else "Pull down to refresh.")
                             else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -169,18 +184,26 @@ fun FeedsScreen(
     if (showSources) SourcesSheet(model, source, onPick = { onSource(it); onSelect(""); showSources = false }, onDismiss = { showSources = false })
 }
 
+/** A light tint behind rated items: green for good news through red for heavy news, stronger with the score (as in the extension). */
+private fun moodTint(sent: Double?, base: androidx.compose.ui.graphics.Color): androidx.compose.ui.graphics.Color {
+    if (sent == null || Mood.of(sent) == "neu") return base
+    val a = (0.07 + 0.10 * kotlin.math.abs(sent).coerceAtMost(1.0)).toFloat() * 1.6f
+    return androidx.compose.ui.graphics.Color.hsv(Mood.hue(sent), 0.75f, 0.85f).copy(alpha = a).compositeOver(base)
+}
+
 @Composable
 private fun ItemCard(e: FeedEntryRef, selected: Boolean, onClick: () -> Unit) {
     val unread = !e.stored.read
     val item = e.stored.item
     Card(
         onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = if (selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
+        colors = CardDefaults.cardColors(containerColor = if (selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, MaterialTheme.colorScheme.surfaceVariant)),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
-                Text(listOf(e.feed.name, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(listOf(e.feed.name, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
+                when (Mood.of(e.stored.sent)) { "pos" -> Text("😊"); "neg" -> Text("😟"); else -> {} }
             }
             Text(item.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
             if (item.summary.isNotBlank() && item.summary != item.title) Text(item.summary, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)

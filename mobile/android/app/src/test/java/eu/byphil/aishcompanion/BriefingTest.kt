@@ -117,4 +117,32 @@ class BriefingTest {
         assertNull(CloudExtra.parse("{}")); assertNull(CloudExtra.parse("""{"choices":[{"message":{"content":"ok"}}]}"""))
         assertNull(CloudExtra.fetch("", ""))
     }
+
+    @Test fun moodRatingsDriveGoodNewsOnly() {
+        fun rated(e: FeedEntryRef, v: Double) = e.copy(stored = e.stored.copy(sent = v))
+        val list = listOf(
+            rated(entry(1, "a", "Quiet day at the harbour", 1), -0.8),      // rated heavy: out, though no heavy word
+            entry(2, "b", "Neutral item", 2),                               // not rated: stays
+            rated(entry(3, "c", "Village wins prize", 3), 0.7),             // rated positive: first
+        )
+        assertEquals(listOf("Village wins prize", "Neutral item"), BriefingBuilder.pick(list, now, goodNewsOnly = true).map { it.title })
+        assertEquals(3, BriefingBuilder.pick(list, now).size)
+        assertEquals("pos", Mood.of(0.15)); assertEquals("neg", Mood.of(-0.15)); assertEquals("neu", Mood.of(0.14)); assertNull(Mood.of(null))
+        assertEquals("neg", Mood.effective(entry(1, "x", "Bomb attack", 1)))   // unrated: the word list decides
+    }
+
+    @Test fun readsTheModelsScoreLine() {
+        assertEquals(listOf(0.6, -0.4, 0.0), MoodPrompt.parse("1:3 | 2:-2 | 3:0", 3))
+        assertEquals(listOf(0.5, null, -1.0), MoodPrompt.parse("1: 0.5\n3 = -9", 3))   // decimals are -1..1 already; whole numbers clamp
+        assertEquals(listOf<Double?>(null, null), MoodPrompt.parse("no scores here", 2))
+        assertEquals(listOf<Double?>(0.2), MoodPrompt.parse("1:1 | 7:5", 1))   // out-of-range ids ignored
+        val u = MoodPrompt.user(listOf(FeedItem("1", "Hello\n world", "", 0, "", "A fine sentence about hello. More.", "")))
+        assertTrue(u.startsWith("Items:\n1. Hello world - A fine sentence about hello."))
+    }
+
+    @Test fun onlyRecentUnratedItemsAreRated() {
+        val list = listOf(entry(1, "a", "New", 1), entry(1, "b", "Old", 24 * 9), entry(2, "c", "Done", 2).let { it.copy(stored = it.stored.copy(sent = 0.1)) })
+        assertEquals(listOf("New"), MoodRater.candidates(list, now).map { it.stored.item.title })
+        assertEquals(MoodRater.MAX_PER_RUN, MoodRater.candidates((1..100).map { entry(it, "i$it", "T$it", 1) }, now).size)
+    }
 }
