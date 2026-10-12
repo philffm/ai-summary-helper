@@ -33,7 +33,17 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -97,14 +107,19 @@ fun FeedsScreen(
     var showBriefing by remember { mutableStateOf(false) }
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
-    var addError by remember { mutableStateOf<String?>(null) }
-    var adding by remember { mutableStateOf(false) }
+    var favOnly by remember { mutableStateOf(false) }
+    var searching by remember { mutableStateOf(false) }
+    var query by remember { mutableStateOf("") }
+    val searchFocus = remember { FocusRequester() }
 
     LaunchedEffect(Unit) { if (model.feeds.isNotEmpty()) model.refreshAll(force = false) }
     LaunchedEffect(model.message) { model.message?.let { snackbar.showSnackbar(it); model.consumeMessage() } }
 
-    val visible = model.entries.filter {
-        matches(source, it) && (!unreadOnly || !it.stored.read) &&
+    LaunchedEffect(searching) { if (searching) searchFocus.requestFocus() }
+    val searchActive = searching && query.isNotBlank()
+    // a search looks through everything; the source and the other filters apply when not searching
+    val visible = if (searchActive) model.entries.filter { FeedSearch.matches(it, query) } else model.entries.filter {
+        matches(source, it) && (!unreadOnly || !it.stored.read) && (!favOnly || it.stored.fav) &&
             when (moodFilter) { "pos" -> Mood.of(it.stored.sent) == "pos"; "nonneg" -> Mood.of(it.stored.sent) != "neg"; else -> true }
     }
     val anyRated = model.entries.any { it.stored.sent != null }
@@ -116,11 +131,21 @@ fun FeedsScreen(
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
             TopAppBar(
-                title = { Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                title = {
+                    if (searching) TextField(
+                        value = query, onValueChange = { query = it }, singleLine = true, placeholder = { Text("Search all feeds") },
+                        colors = TextFieldDefaults.colors(focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedContainerColor = androidx.compose.ui.graphics.Color.Transparent, focusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent),
+                        modifier = Modifier.fillMaxWidth().focusRequester(searchFocus),
+                    )
+                    else Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis)
+                },
                 navigationIcon = {
                     if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
                 actions = {
+                    if (searching) {
+                        IconButton(onClick = { searching = false; query = "" }) { Icon(Icons.Filled.Close, contentDescription = "Close search") }
+                    } else IconButton(onClick = { searching = true }) { Icon(Icons.Filled.Search, contentDescription = "Search") }
                     IconButton(onClick = { scope.launch { val n = model.refreshAll(); snackbar.showSnackbar(if (n == 0) "No new items." else "$n new items.") } }, enabled = !model.refreshing) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
                     }
@@ -128,12 +153,9 @@ fun FeedsScreen(
                     IconButton(onClick = { scope.launch { snackbar.showSnackbar(model.rateMood()) } }, enabled = !model.rating) {
                         Icon(Icons.Filled.Mood, contentDescription = "Rate by mood with the on-device AI")
                     }
-                    IconButton(onClick = { showSources = true }) { Icon(Icons.Filled.RssFeed, contentDescription = "Sources") }
+                    IconButton(onClick = { showSources = true }) { Icon(Icons.Filled.RssFeed, contentDescription = "Manage feeds") }
                 },
             )
-        },
-        floatingActionButton = {
-            if (current == null || isWide()) ExtendedFloatingActionButton(onClick = { addError = null; showAdd = true }, icon = { Icon(Icons.Filled.Add, null) }, text = { Text("Add feed") })
         },
     ) { padding ->
         Box(Modifier.padding(padding).fillMaxSize()) {
@@ -145,6 +167,7 @@ fun FeedsScreen(
                         Column(Modifier.fillMaxSize()) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
                                     FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
                                     FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😟") })
@@ -153,11 +176,17 @@ fun FeedsScreen(
                                 if (visible.any { !it.stored.read }) FilterChip(selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
                             }
                             if (model.rating) androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 16.dp))
-                            if (model.feeds.isEmpty()) EmptyState("No feeds yet", "Add a feed with the button below. Feeds you add in the browser extension appear here after you switch on feed sync in Settings.")
-                            else if (visible.isEmpty()) EmptyState(if (unreadOnly) "All read" else "Nothing here yet", if (unreadOnly) "Turn off the Unread filter to see older items." else "Pull down to refresh.")
-                            else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            if (model.feeds.isEmpty()) {
+                                EmptyState("No feeds yet", "Add a feed, or switch on feed sync in Settings to get the ones from your browser extension.")
+                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { FilledTonalButton(onClick = { showAdd = true }) { Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Text("  Add feed") } }
+                            }
+                            else if (visible.isEmpty()) EmptyState(
+                                if (searchActive) "No matches" else if (favOnly) "No favorites yet" else if (unreadOnly) "All read" else "Nothing here yet",
+                                if (searchActive) "Nothing in your feeds matches that." else if (favOnly) "Tap the star on an item to keep it here." else if (unreadOnly) "Turn off the Unread filter to see older items." else "Pull down to refresh.",
+                            )
+                            else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                 items(visible, key = { selectionKey(it.feed.url, it.stored.item.id) }) { e ->
-                                    ItemCard(e, selected = selectionKey(e.feed.url, e.stored.item.id) == selected) {
+                                    ItemCard(e, selected = selectionKey(e.feed.url, e.stored.item.id) == selected, onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } }) {
                                         onSelect(selectionKey(e.feed.url, e.stored.item.id))
                                         scope.launch { model.markRead(e.feed.url, e.stored.item.id) }
                                     }
@@ -174,7 +203,7 @@ fun FeedsScreen(
 
     if (showAdd) AddFeedDialog(model, onDismiss = { showAdd = false }, onAdded = { showAdd = false; scope.launch { snackbar.showSnackbar("Feed added.") } })
     if (showBriefing) BriefingDialog(model) { showBriefing = false }
-    if (showSources) SourcesSheet(model, source, onPick = { onSource(it); onSelect(""); showSources = false }, onDismiss = { showSources = false })
+    if (showSources) SourcesSheet(model, source, onAdd = { showSources = false; showAdd = true }, onPick = { onSource(it); onSelect(""); showSources = false }, onDismiss = { showSources = false })
 }
 
 /** A light tint behind rated items: green for good news through red for heavy news, stronger with the score (as in the extension). */
@@ -185,7 +214,7 @@ private fun moodTint(sent: Double?, base: androidx.compose.ui.graphics.Color): a
 }
 
 @Composable
-private fun ItemCard(e: FeedEntryRef, selected: Boolean, onClick: () -> Unit) {
+private fun ItemCard(e: FeedEntryRef, selected: Boolean, onFav: () -> Unit, onClick: () -> Unit) {
     val unread = !e.stored.read
     val item = e.stored.item
     Card(
@@ -197,6 +226,11 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, onClick: () -> Unit) {
                 if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
                 Text(listOf(e.feed.name, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
                 when (Mood.of(e.stored.sent)) { "pos" -> Text("😊"); "neg" -> Text("😟"); else -> {} }
+                androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
+                IconButton(onClick = onFav, modifier = Modifier.size(32.dp)) {
+                    Icon(if (e.stored.fav) Icons.Filled.Star else Icons.Filled.StarBorder, contentDescription = if (e.stored.fav) "Remove from favorites" else "Add to favorites",
+                        tint = if (e.stored.fav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(20.dp))
+                }
             }
             Text(item.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
             if (item.summary.isNotBlank() && item.summary != item.title) Text(item.summary, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
@@ -216,6 +250,9 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
             Text(listOf(e.feed.name, item.author, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 if (item.link.isNotEmpty()) Button(onClick = { onOpenWeb(item.link) }) { Text("Read page") }
+                OutlinedButton(onClick = { scope.launch { model.setFavorite(e.feed.url, item.id, !e.stored.fav) } }) {
+                    Icon(if (e.stored.fav) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)); Text(if (e.stored.fav) "  Favorited" else "  Favorite")
+                }
                 if (item.link.isNotEmpty() && model.pairing != null) OutlinedButton(onClick = { SendWorker.enqueue(context, item.link); sent = true }, enabled = !sent) {
                     Icon(Icons.AutoMirrored.Filled.Send, null, Modifier.size(18.dp)); Text(if (sent) "  Queued" else "  To browser")
                 }
@@ -231,7 +268,7 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
 /** Tags (shown as folders; a feed with several tags appears under each) and feeds: pick a source, rename, edit tags, remove. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun SourcesSheet(model: AppModel, source: String, onPick: (String) -> Unit, onDismiss: () -> Unit) {
+private fun SourcesSheet(model: AppModel, source: String, onAdd: () -> Unit, onPick: (String) -> Unit, onDismiss: () -> Unit) {
     val scope = rememberCoroutineScope()
     var menuFor by remember { mutableStateOf<String?>(null) }
     var renaming by remember { mutableStateOf<Feed?>(null) }
@@ -239,6 +276,7 @@ private fun SourcesSheet(model: AppModel, source: String, onPick: (String) -> Un
     val folders = model.feeds.flatMap { it.tags }.distinct().sorted()
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
+            SyncCard(model, onAdd)
             SourceRow("All feeds", model.entries.count { !it.stored.read }, source == "all") { onPick("all") }
             for (folder in folders) {
                 SourceRow(folder, model.entries.count { folder in it.feed.tags && !it.stored.read }, source == "folder:$folder", bold = true) { onPick("folder:$folder") }
@@ -286,6 +324,27 @@ private fun FeedRow(model: AppModel, f: Feed, source: String, menuFor: String?, 
                 DropdownMenuItem(text = { Text("Rename") }, onClick = { setMenu(null); rename(f) })
                 DropdownMenuItem(text = { Text("Edit tags") }, onClick = { setMenu(null); move(f) })
                 DropdownMenuItem(text = { Text("Remove") }, onClick = { setMenu(null); scope.launch { model.removeFeed(f.url) } })
+            }
+        }
+    }
+}
+
+/** Top of the feed management sheet: whether the list follows the extension, and the Add feed action. */
+@Composable
+private fun SyncCard(model: AppModel, onAdd: () -> Unit) {
+    val scope = rememberCoroutineScope()
+    val canSync = model.pairing?.canSync == true
+    Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(if (canSync) "Synced with your extension" else "Not synced with the extension", style = MaterialTheme.typography.titleSmall)
+            Text(
+                if (canSync) "Feeds you add, rename, tag or remove here appear in the browser extension, and the other way round." + (if (model.lastSyncAt > 0) " Last sync " + relativeTime(model.lastSyncAt) + "." else "")
+                else "Switch on feed sync in the extension and scan its code in Settings to share your feed list.",
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FilledTonalButton(onClick = onAdd) { Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Text("  Add feed") }
+                if (canSync) OutlinedButton(onClick = { scope.launch { model.syncFeeds() } }, enabled = !model.syncing) { Icon(Icons.Filled.Sync, null, Modifier.size(18.dp)); Text(if (model.syncing) "  Syncing…" else "  Sync now") }
             }
         }
     }

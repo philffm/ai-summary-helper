@@ -94,8 +94,9 @@ class AppModel(context: Context) {
             var added = 0
             val now = System.currentTimeMillis()
             for (f in feedStore.feeds()) {
-                if (!force && now - f.lastFetched < STALE_MS) continue
-                if (!force && f.error.isNotEmpty() && now - f.lastFetched < BROKEN_MS) continue   // a feed that failed is not hammered every hour
+                // gentle: a feed fetched a moment ago is left alone, a feed that failed last time waits longer
+                val wait = if (f.error.isNotEmpty() && !force) BROKEN_MS else if (force) MIN_MS else STALE_MS
+                if (now - f.lastFetched < wait) continue
                 FeedFetcher.refresh(feedStore, f, System.currentTimeMillis())?.let { added += it }
             }
             reload()
@@ -221,7 +222,10 @@ class AppModel(context: Context) {
 
     companion object {
         const val STALE_MS = 30L * 60 * 1000
-        const val BROKEN_MS = 6L * 3600 * 1000
+        /** Pull-to-refresh and the refresh button skip feeds fetched less than this ago. */
+        const val MIN_MS = 2L * 60 * 1000
+        /** A feed that failed is not retried by the automatic refresh before this. */
+        const val BROKEN_MS = 6L * 60 * 60 * 1000
         fun parseTags(text: String): List<String> = FeedSync.cleanTags(text.split(',', ';'))
     }
 }
