@@ -61,6 +61,7 @@
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
         </receiver>
+        <service android:name=".PodcastService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <service android:name=".AlarmService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <activity
             android:name=".RingActivity"

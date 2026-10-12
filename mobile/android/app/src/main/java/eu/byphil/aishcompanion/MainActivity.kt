@@ -139,12 +139,15 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
                 Tab.entries.forEach { t -> NavigationRailItem(selected = tab == t.ordinal, onClick = { tab = t.ordinal }, icon = { TabIcon(t) }, label = { Text(t.label) }) }
                 Spacer(Modifier.weight(1f))
             }
-            Box(Modifier.weight(1f).fillMaxSize()) {
-                when (Tab.entries[tab]) {
-                    Tab.Feeds -> FeedsScreen(model, feedSource, { feedSource = it }, feedSel, { feedSel = it }, onOpenWeb = { webUrl = it })
-                    Tab.Reading -> ReadingScreen(model, articleSel, { articleSel = it }, onOpenWeb = { webUrl = it })
-                    Tab.Settings -> SettingsScreen(model, onScan)
+            androidx.compose.foundation.layout.Column(Modifier.weight(1f).fillMaxSize()) {
+                Box(Modifier.weight(1f).fillMaxSize()) {
+                    when (Tab.entries[tab]) {
+                        Tab.Feeds -> FeedsScreen(model, feedSource, { feedSource = it }, feedSel, { feedSel = it }, onOpenWeb = { webUrl = it })
+                        Tab.Reading -> ReadingScreen(model, articleSel, { articleSel = it }, onOpenWeb = { webUrl = it })
+                        Tab.Settings -> SettingsScreen(model, onScan)
+                    }
                 }
+                MiniPlayer()
             }
         }
     }

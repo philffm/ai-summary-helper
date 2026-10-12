@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -44,6 +45,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.Sync
+import androidx.compose.material.icons.filled.Headphones
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -230,6 +233,12 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, onFav: () -> Unit, onCl
                 Text(listOf(e.feed.name, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
                 when (Mood.of(e.stored.sent)) { "pos" -> Text("😊"); "neg" -> Text("😟"); else -> {} }
                 androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
+                if (item.audio.isNotEmpty()) {
+                    val ctx = LocalContext.current
+                    IconButton(onClick = { PodcastPlayer.play(ctx, Episode(item.audio, item.title, e.feed.name)) }, modifier = Modifier.size(32.dp)) {
+                        Icon(if (PodcastPlayer.episode?.url == item.audio && PodcastPlayer.playing) Icons.Filled.Headphones else Icons.Filled.PlayArrow, contentDescription = "Play episode", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(22.dp))
+                    }
+                }
                 IconButton(onClick = onFav, modifier = Modifier.size(32.dp)) {
                     Icon(if (e.stored.fav) Icons.Filled.Star else Icons.Filled.StarBorder, contentDescription = if (e.stored.fav) "Remove from favorites" else "Add to favorites",
                         tint = if (e.stored.fav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(20.dp))
@@ -241,6 +250,7 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, onFav: () -> Unit, onCl
     }
 }
 
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
 private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String) -> Unit) {
     val context = LocalContext.current
@@ -251,8 +261,15 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Text(item.title, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
             Text(listOf(e.feed.name, item.author, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                if (item.link.isNotEmpty()) Button(onClick = { onOpenWeb(item.link) }) { Text("Read page") }
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (item.audio.isNotEmpty()) Button(onClick = { PodcastPlayer.play(context, Episode(item.audio, item.title, e.feed.name)) }) {
+                    Icon(Icons.Filled.PlayArrow, null, Modifier.size(18.dp)); Text("  Play" + (if (item.duration > 0) " · " + PodcastTime.format(item.duration * 1000) else ""))
+                }
+                if (item.link.isNotEmpty() && item.audio.isNotEmpty()) {
+                    OutlinedButton(onClick = { onOpenWeb(item.link) }) { Text("Read page") }
+                } else if (item.link.isNotEmpty()) {
+                    Button(onClick = { onOpenWeb(item.link) }) { Text("Read page") }
+                }
                 OutlinedButton(onClick = { scope.launch { model.setFavorite(e.feed.url, item.id, !e.stored.fav) } }) {
                     Icon(if (e.stored.fav) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)); Text(if (e.stored.fav) "  Favorited" else "  Favorite")
                 }
