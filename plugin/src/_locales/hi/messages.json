@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "पेज ने जवाब नहीं दिया (ब्लॉक है या लॉगिन चाहिए)। इसे खोलें और फिर कोशिश करें।"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "फ़ोन पर भेजा नहीं जा सका: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "“फ़ोन पर भेजें” चालू नहीं हो सका: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "पहले अपना फ़ोन पेयर करें: सेटिंग → फ़ोन इनबॉक्स।"
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "इस कोड को AISH कंपैनियन ऐप से स्कैन करें। जो भी इसे स्कैन करेगा वह आपको लिंक भेज सकता है और आपके फ़ोन पर भेजे गए लेख पढ़ सकता है, इसलिए इसे निजी रखें।"
+  },
+  "f_send_to_phone_4940": {
+    "message": "फ़ोन पर भेजें"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "“फ़ोन पर भेजें” चालू है। फ़ोन ऐप में नया कोड एक बार स्कैन करें।"
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "“फ़ोन पर भेजें” चालू है: किसी भी लेख पर ⋯ → फ़ोन पर भेजें चुनें और सफ़र में पढ़ें।"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "आपके फ़ोन पर भेजा जा रहा है…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "फ़ोन पर भेज दिया गया (लंबा लेख छोटा किया गया)। लगभग 15 मिनट में पहुँचेगा।"
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "फ़ोन पर भेज दिया गया। लगभग 15 मिनट में पहुँचेगा।"
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "भेज दिया गया। इसे पाने के लिए फ़ोन ऐप में नया कोड एक बार स्कैन करें (सेटिंग → फ़ोन इनबॉक्स)।"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "“फ़ोन पर भेजें” चालू करें"
+  },
+  "f_switching_on_e78a": {
+    "message": "चालू किया जा रहा है…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "लेख तैयार नहीं किया जा सका"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "पेयरिंग अब मान्य नहीं है, फिर से पेयर करें"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "फ़ोन ने पिछले लेख अभी तक नहीं लिए हैं"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "सर्वर तक पहुँचा नहीं जा सका"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "यह लेख बहुत बड़ा है"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "बहुत ज़्यादा भेजे गए, बाद में फिर कोशिश करें"
+  },
+  "f_unknown_error_5123": {
+    "message": "अज्ञात त्रुटि"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Markdown के रूप में निर्यात करें"
+  },
+  "f_more_actions_e04b": {
+    "message": "और क्रियाएँ"
+  },
+  "f_open_original_5070": {
+    "message": "मूल पेज खोलें"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "LocalSend से भेजें"
+  },
+  "f_share_6dd8": {
+    "message": "साझा करें"
   }
 }

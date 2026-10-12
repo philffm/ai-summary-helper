@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "ページが応答しませんでした（ブロックされているか、ログインが必要です）。開いてからもう一度お試しください。"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "スマホに送信できませんでした: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "「スマホに送る」を有効にできませんでした: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "先にスマホをペア設定してください: 設定 → スマホ受信箱。"
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "このコードをAISHコンパニオンアプリでスキャンしてください。スキャンした人は、あなたにリンクを送ったり、スマホに送った記事を読んだりできるため、他人に見せないでください。"
+  },
+  "f_send_to_phone_4940": {
+    "message": "スマホに送る"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "「スマホに送る」がオンです。スマホアプリで新しいコードを一度スキャンしてください。"
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "「スマホに送る」がオンです: 記事の ⋯ → スマホに送る で、外出先でも読めます。"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "スマホに送信中…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "スマホに送信しました（長い記事は短縮）。約15分で届きます。"
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "スマホに送信しました。約15分で届きます。"
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "送信しました。受け取るには、スマホアプリで新しいコードを一度スキャンしてください（設定 → スマホ受信箱）。"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "「スマホに送る」をオンにする"
+  },
+  "f_switching_on_e78a": {
+    "message": "オンにしています…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "記事を準備できませんでした"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "ペア設定が無効になりました。もう一度ペア設定してください"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "スマホが以前の記事をまだ受信していません"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "サーバーに接続できません"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "この記事は大きすぎます"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "送信回数が多すぎます。後でもう一度お試しください"
+  },
+  "f_unknown_error_5123": {
+    "message": "不明なエラー"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Markdownとして書き出す"
+  },
+  "f_more_actions_e04b": {
+    "message": "その他の操作"
+  },
+  "f_open_original_5070": {
+    "message": "元のページを開く"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "LocalSendで送信"
+  },
+  "f_share_6dd8": {
+    "message": "共有"
   }
 }

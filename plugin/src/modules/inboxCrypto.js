@@ -12,9 +12,15 @@
 //   • readToken    32 random bytes, lets the extension read, acknowledge and delete; never leaves the extension
 // The server stores only SHA-256 hashes of the two tokens.
 
+import { cleanBlocks } from './articleBlocks.js';
+
 export const INBOX_VERSION = 1;
 export const MAX_URL_LENGTH = 2048;
 export const PAIRING_SCHEME = 'aish-inbox://v1';
+// Articles for the phone (extension → phone) travel in a second inbox, envelope version 2: the plaintext is gzip(JSON).
+export const ARTICLE_VERSION = 2;
+export const MAX_ARTICLE_GZ = 135000;       // bytes of gzipped JSON; keeps the base64url ciphertext under the server's 190,000-character item cap
+export const MAX_ARTICLE_RAW = 4000000;     // bytes after decompression (guards against a decompression bomb)
 
 const te = new TextEncoder();
 const td = new TextDecoder();
@@ -63,10 +69,19 @@ export async function tokenHash(token) {
 
 const lengthOf = (b64) => { try { return fromB64u(b64).length; } catch (_) { return -1; } };
 
-/** The text inside the QR code. It carries the id, the key and the write token, never the read token. */
-export function pairingPayload({ inboxId, encKey, writeToken }) {
+/**
+ * The text inside the QR code. It carries the id, the key and the write token of the phone→extension inbox, never its read
+ * token. When articles can go the other way, `toPhone` adds the id (ti) and the READ token (tr) of the extension→phone
+ * inbox; the same key (k) protects both, and the inbox id is bound into every ciphertext, so one cannot be replayed into the other.
+ */
+export function pairingPayload({ inboxId, encKey, writeToken, toPhone }) {
     if (lengthOf(inboxId) !== 16 || lengthOf(encKey) !== 32 || lengthOf(writeToken) !== 32) throw new Error('Invalid pairing secrets');
-    return `${PAIRING_SCHEME}?i=${inboxId}&k=${encKey}&w=${writeToken}`;
+    let out = `${PAIRING_SCHEME}?i=${inboxId}&k=${encKey}&w=${writeToken}`;
+    if (toPhone) {
+        if (lengthOf(toPhone.inboxId) !== 16 || lengthOf(toPhone.readToken) !== 32) throw new Error('Invalid pairing secrets');
+        out += `&ti=${toPhone.inboxId}&tr=${toPhone.readToken}`;
+    }
+    return out;
 }
 
 /** Inverse of pairingPayload; used by tests and as the reference for the phone apps. Throws on anything malformed. */
@@ -74,8 +89,13 @@ export function parsePairingPayload(text) {
     const s = String(text || '').trim();
     if (!s.startsWith(PAIRING_SCHEME + '?')) throw new Error('Not an AISH pairing code');
     const q = new URLSearchParams(s.slice(PAIRING_SCHEME.length + 1));
-    const out = { inboxId: q.get('i'), encKey: q.get('k'), writeToken: q.get('w') };
+    const out = { inboxId: q.get('i'), encKey: q.get('k'), writeToken: q.get('w'), toPhone: null };
     if (lengthOf(out.inboxId) !== 16 || lengthOf(out.encKey) !== 32 || lengthOf(out.writeToken) !== 32) throw new Error('Invalid pairing code');
+    if (q.get('ti') || q.get('tr')) {
+        const t = { inboxId: q.get('ti'), readToken: q.get('tr') };
+        if (lengthOf(t.inboxId) !== 16 || lengthOf(t.readToken) !== 32) throw new Error('Invalid pairing code');
+        out.toPhone = t;
+    }
     return out;
 }
 
@@ -135,4 +155,86 @@ export async function decryptMessage({ inboxId, encKey }, envelope) {
     const url = cleanLink(msg.url);
     if (!url) throw new Error('Not a web link');
     return { url, sentAt: Number.isFinite(msg.sentAt) ? msg.sentAt : 0, platform: typeof msg.platform === 'string' ? msg.platform : '' };
+}
+
+// ── articles for the phone (envelope v2) ─────────────────────────────────────────────────────────────────────────
+const clip = (v, n) => String(v == null ? '' : v).replace(/\s+/g, ' ').trim().slice(0, n);
+
+async function gzipBytes(bytes) {
+    const cs = new CompressionStream('gzip');
+    const w = cs.writable.getWriter();
+    w.write(bytes); w.close();
+    return new Uint8Array(await new Response(cs.readable).arrayBuffer());
+}
+
+async function gunzipBytes(bytes, limit = MAX_ARTICLE_RAW) {
+    const ds = new DecompressionStream('gzip');
+    const w = ds.writable.getWriter();
+    w.write(bytes).catch(() => {}); w.close().catch(() => {});
+    const reader = ds.readable.getReader();
+    const chunks = []; let total = 0;
+    for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        total += value.length;
+        if (total > limit) { try { await reader.cancel(); } catch (_) { /* already stopped */ } throw new Error('Article too large'); }
+        chunks.push(value);
+    }
+    const out = new Uint8Array(total); let o = 0;
+    for (const c of chunks) { out.set(c, o); o += c.length; }
+    return out;
+}
+
+/** Normalises an article message (from the app or from the wire): web link only, known block types only, clipped fields. */
+export function cleanArticleMessage(m) {
+    const url = cleanLink(m && m.url);
+    if (!url) throw new Error('Not a web link');
+    const blocks = cleanBlocks(m.blocks);
+    if (!blocks.length) throw new Error('Empty article');
+    const out = {
+        v: ARTICLE_VERSION, url,
+        sentAt: Number.isFinite(m.sentAt) ? m.sentAt : 0,
+        title: clip(m.title, 300), site: clip(m.site, 120), byline: clip(m.byline, 200), lang: clip(m.lang, 20),
+        blocks,
+    };
+    const summary = String(m.summary || '').trim().slice(0, 8000);
+    if (summary) out.summary = summary;
+    if (m.truncated === true) out.truncated = true;
+    return out;
+}
+
+/**
+ * Encrypts one article for the extension→phone inbox. The JSON is gzipped first (ciphertext does not compress), then sealed
+ * with AES-256-GCM with the inbox id as additional data; output { v: 2, data }. When the gzip would exceed MAX_ARTICLE_GZ the
+ * tail of the article is dropped and `truncated` is set. `opts.iv` exists only for the shared test vector.
+ */
+export async function encryptArticle({ inboxId, encKey }, message, opts = {}) {
+    let msg = cleanArticleMessage({ ...message, sentAt: Number.isFinite(message && message.sentAt) ? message.sentAt : Date.now() });
+    let gz = await gzipBytes(te.encode(JSON.stringify(msg)));
+    let keep = msg.blocks.length;
+    while (gz.length > MAX_ARTICLE_GZ && keep > 1) {
+        keep = Math.max(1, Math.floor(keep * 0.8));
+        msg = { ...msg, blocks: msg.blocks.slice(0, keep), truncated: true };
+        gz = await gzipBytes(te.encode(JSON.stringify(msg)));
+    }
+    if (gz.length > MAX_ARTICLE_GZ) throw new Error('Article too large');
+    const iv = opts.iv ? new Uint8Array(opts.iv) : randomBytes(12);
+    if (iv.length !== 12) throw new Error('Invalid nonce length');
+    const key = await importKey(encKey, 'encrypt');
+    const sealed = new Uint8Array(await subtle().subtle.encrypt({ name: 'AES-GCM', iv, additionalData: te.encode(inboxId), tagLength: 128 }, key, gz));
+    const out = new Uint8Array(12 + sealed.length);
+    out.set(iv, 0); out.set(sealed, 12);
+    return { envelope: { v: ARTICLE_VERSION, data: toB64u(out) }, blocks: msg.blocks.length, truncated: !!msg.truncated, bytes: gz.length };
+}
+
+/** Reference decryption for tests and the phone apps: bad tag, wrong inbox, wrong version, bomb or non-web link all throw. */
+export async function decryptArticle({ inboxId, encKey }, envelope) {
+    if (!envelope || envelope.v !== ARTICLE_VERSION || typeof envelope.data !== 'string') throw new Error('Unsupported envelope');
+    const all = fromB64u(envelope.data);
+    if (all.length < 12 + 16 + 2) throw new Error('Envelope too short');
+    const key = await importKey(encKey, 'decrypt');
+    const gz = new Uint8Array(await subtle().subtle.decrypt({ name: 'AES-GCM', iv: all.subarray(0, 12), additionalData: te.encode(inboxId), tagLength: 128 }, key, all.subarray(12)));
+    const msg = JSON.parse(td.decode(await gunzipBytes(gz)));
+    if (!msg || msg.v !== ARTICLE_VERSION) throw new Error('Unsupported message');
+    return cleanArticleMessage(msg);
 }

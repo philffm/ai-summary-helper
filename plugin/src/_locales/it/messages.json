@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "La pagina non ha risposto (bloccata o serve un accesso). Aprila e riprova."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Impossibile inviare al telefono: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Impossibile attivare Invia al telefono: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Abbina prima il telefono: Impostazioni → Posta in arrivo dal telefono."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Scansiona questo codice con l’app companion di AISH. Chi lo scansiona può inviarti link e leggere gli articoli che mandi al telefono, quindi tienilo privato."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Invia al telefono"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Invia al telefono è attivo. Scansiona il nuovo codice una volta nell’app del telefono."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Invia al telefono è attivo: usa ⋯ → Invia al telefono su un articolo per leggerlo in giro."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Invio al telefono…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Inviato al telefono (articolo lungo abbreviato). Arriva entro circa 15 minuti."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Inviato al telefono. Arriva entro circa 15 minuti."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Inviato. Per riceverlo, scansiona il nuovo codice una volta nell’app del telefono (Impostazioni → Posta in arrivo dal telefono)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Attiva Invia al telefono"
+  },
+  "f_switching_on_e78a": {
+    "message": "Attivazione…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "non è stato possibile preparare l’articolo"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "l’abbinamento non è più valido, abbina di nuovo"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "il telefono non ha ancora ritirato gli articoli precedenti"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "il server non è raggiungibile"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "questo articolo è troppo grande"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "troppi invii, riprova più tardi"
+  },
+  "f_unknown_error_5123": {
+    "message": "errore sconosciuto"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Esporta come Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "Altre azioni"
+  },
+  "f_open_original_5070": {
+    "message": "Apri l’originale"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Invia con LocalSend"
+  },
+  "f_share_6dd8": {
+    "message": "Condividi"
   }
 }

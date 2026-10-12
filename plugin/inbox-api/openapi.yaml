@@ -52,16 +52,16 @@ paths:
               type: object
               required: [v, data]
               properties:
-                v: { type: integer, enum: [1] }
-                data: { type: string, description: base64url(nonce || ciphertext || tag) }
+                v: { type: integer, enum: [1, 2], description: "1 = plaintext is JSON (a link, phone to extension). 2 = plaintext is gzip(JSON) (an article, extension to phone). The server never looks inside." }
+                data: { type: string, maxLength: 190000, description: base64url(nonce || ciphertext || tag) }
       responses:
         "202": { description: Accepted }
         "400": { description: Malformed }
         "401": { description: No token }
         "403": { description: Wrong token }
         "404": { description: Unknown inbox }
-        "413": { description: Body over 4 KB }
-        "429": { description: Inbox full (200 waiting) or over about 60 posts per hour (Retry-After) }
+        "413": { description: Body over 200 KB or data over 190,000 characters }
+        "429": { description: Inbox full (200 items or 8 MB waiting; error "inbox-full") or over about 60 posts per hour (error "rate-limited", Retry-After) }
     get:
       summary: List items after a cursor (extension, read token)
       security: [{ readToken: [] }]
@@ -129,7 +129,10 @@ components:
     writeToken: { type: http, scheme: bearer }
     readToken: { type: http, scheme: bearer }
 x-limits:
-  maxItemBytes: 4096
+  maxCreateBodyBytes: 4096
+  maxItemBodyBytes: 200000
+  maxItemDataChars: 190000   # base64url ciphertext; an article is gzipped to at most 135,000 bytes first
+  maxWaitingChars: 8000000   # per inbox
   maxWaitingItems: 200
   postsPerHourPerInbox: 60
   itemTtl: 30 days   # items stay until the user summarizes or dismisses them

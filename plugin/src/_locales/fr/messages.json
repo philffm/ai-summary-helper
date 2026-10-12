@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "La page n'a pas répondu (bloquée ou connexion requise). Ouvrez-la et réessayez."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Impossible d’envoyer à votre téléphone : {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Impossible d’activer Envoyer au téléphone : {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Jumelez d’abord votre téléphone : Réglages → Boîte de réception mobile."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Scannez ce code avec l’application compagnon AISH. Quiconque le scanne peut vous envoyer des liens et lire les articles que vous envoyez à votre téléphone : gardez-le privé."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Envoyer au téléphone"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Envoyer au téléphone est activé. Scannez le nouveau code une fois dans l’application du téléphone."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Envoyer au téléphone est activé : utilisez ⋯ → Envoyer au téléphone sur un article pour le lire en déplacement."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Envoi vers votre téléphone…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Envoyé à votre téléphone (article long raccourci). Il arrive en 15 minutes environ."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Envoyé à votre téléphone. Il arrive en 15 minutes environ."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Envoyé. Pour le recevoir, scannez le nouveau code une fois dans l’application du téléphone (Réglages → Boîte de réception mobile)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Activer Envoyer au téléphone"
+  },
+  "f_switching_on_e78a": {
+    "message": "Activation…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "l’article n’a pas pu être préparé"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "le jumelage n’est plus valide, jumelez à nouveau"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "le téléphone n’a pas encore récupéré les articles précédents"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "le serveur est inaccessible"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "cet article est trop volumineux"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "trop d’envois, réessayez plus tard"
+  },
+  "f_unknown_error_5123": {
+    "message": "erreur inconnue"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Exporter en Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "Plus d’actions"
+  },
+  "f_open_original_5070": {
+    "message": "Ouvrir l’original"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Envoyer via LocalSend"
+  },
+  "f_share_6dd8": {
+    "message": "Partager"
   }
 }

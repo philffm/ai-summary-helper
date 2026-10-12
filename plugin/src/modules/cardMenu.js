@@ -34,6 +34,7 @@ export function menuItems(a, { onRemoved } = {}) {
   const st = activeReading(a);
   const items = [];
   if (a.url) items.push({ icon: 'link', label: T('Open original'), run: () => window.open(a.url, '_blank', 'noopener') });
+  if (a.id && a.url && !a.feedStub) items.push({ icon: 'send', label: T('Send to phone'), run: async () => (await am()).sendToPhone(a) });
   if (hasSummary) {
     items.push({ icon: st === 'paused' ? 'play' : st ? 'pause' : 'volume-2', label: st === 'paused' ? T('Play') : st ? T('Pause') : T('Read aloud'), run: () => readAloud(a), needsSpeech: true });
     items.push({ icon: 'copy', label: T('Copy'), run: async () => (await am()).copyArticleToClipboard(a) });

@@ -4831,5 +4831,82 @@
   "f_used_8faf": {
     "message": "{n}% used",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Could not send to your phone: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Could not switch on Send to phone: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Export as Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "More actions"
+  },
+  "f_open_original_5070": {
+    "message": "Open original"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Pair your phone first: Settings → Phone inbox."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Scan this code with the AISH companion app. Anyone who scans it can send links to you and read the articles you send to your phone, so keep it private."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Send to phone"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Send to phone is on. Scan the new code in the phone app once."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Send to phone is on: use ⋯ → Send to phone on any article to read it on the go."
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Send via LocalSend"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Sending to your phone…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Sent to your phone (long article shortened). It arrives within about 15 minutes."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Sent to your phone. It arrives within about 15 minutes."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox)."
+  },
+  "f_share_6dd8": {
+    "message": "Share"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Switch on Send to phone"
+  },
+  "f_switching_on_e78a": {
+    "message": "Switching on…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "the article could not be prepared"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "the pairing is no longer valid, pair again"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "the phone has not collected the earlier articles yet"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "the server is not reachable"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "this article is too large"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "too many sends, try again later"
+  },
+  "f_unknown_error_5123": {
+    "message": "unknown error"
   }
 }

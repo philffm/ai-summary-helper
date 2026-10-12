@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "لم تستجب الصفحة (محظورة أو تتطلب تسجيل الدخول). افتحها وحاول مجددًا."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "تعذّر الإرسال إلى هاتفك: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "تعذّر تشغيل «إرسال إلى الهاتف»: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "أقرن هاتفك أولًا: الإعدادات ← صندوق وارد الهاتف."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "امسح هذا الرمز بتطبيق AISH المرافق. يمكن لأي شخص يمسحه أن يرسل إليك روابط وأن يقرأ المقالات التي ترسلها إلى هاتفك، لذا أبقِه خاصًا."
+  },
+  "f_send_to_phone_4940": {
+    "message": "إرسال إلى الهاتف"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "«إرسال إلى الهاتف» مفعّل. امسح الرمز الجديد مرة واحدة في تطبيق الهاتف."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "«إرسال إلى الهاتف» مفعّل: استخدم ⋯ ← إرسال إلى الهاتف في أي مقال لقراءته وأنت خارج المنزل."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "جارٍ الإرسال إلى هاتفك…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "أُرسل إلى هاتفك (تم اختصار المقال الطويل). يصل خلال نحو 15 دقيقة."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "أُرسل إلى هاتفك. يصل خلال نحو 15 دقيقة."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "تم الإرسال. لاستلامه، امسح الرمز الجديد مرة واحدة في تطبيق الهاتف (الإعدادات ← صندوق وارد الهاتف)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "تشغيل «إرسال إلى الهاتف»"
+  },
+  "f_switching_on_e78a": {
+    "message": "جارٍ التشغيل…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "تعذّر تجهيز المقال"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "لم يعد الاقتران صالحًا، أعد الاقتران"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "لم يستلم الهاتف المقالات السابقة بعد"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "تعذّر الوصول إلى الخادم"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "هذا المقال كبير جدًا"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "عدد كبير من عمليات الإرسال، حاول لاحقًا"
+  },
+  "f_unknown_error_5123": {
+    "message": "خطأ غير معروف"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "تصدير بصيغة Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "المزيد من الإجراءات"
+  },
+  "f_open_original_5070": {
+    "message": "فتح الأصل"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "إرسال عبر LocalSend"
+  },
+  "f_share_6dd8": {
+    "message": "مشاركة"
   }
 }

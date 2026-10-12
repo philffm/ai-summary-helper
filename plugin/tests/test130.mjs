@@ -111,7 +111,7 @@ try {
     assert.equal(waiting(id2), 1, 'kept on the server');
 
     // server limits
-    const big = await fetch(`${api}/${id}/items`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + p.writeToken }, body: JSON.stringify({ v: 1, data: 'A'.repeat(5000) }) });
+    const big = await fetch(`${api}/${id}/items`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + p.writeToken }, body: JSON.stringify({ v: 1, data: 'A'.repeat(200000) }) });
     assert.equal(big.status, 413);
 
     // unpair: server inbox deleted, local traces gone, phone posts now fail

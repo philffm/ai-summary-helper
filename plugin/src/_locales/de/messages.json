@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "Die Seite hat nicht geantwortet (blockiert oder Anmeldung nötig). Öffne sie und versuche es erneut."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Senden ans Handy fehlgeschlagen: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "„An Handy senden“ konnte nicht aktiviert werden: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Koppel zuerst dein Handy: Einstellungen → Handy-Posteingang."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Scanne diesen Code mit der AISH-Begleit-App. Wer ihn scannt, kann dir Links senden und die Artikel lesen, die du ans Handy schickst – halte ihn deshalb privat."
+  },
+  "f_send_to_phone_4940": {
+    "message": "An Handy senden"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "„An Handy senden“ ist aktiv. Scanne den neuen Code einmal in der Handy-App."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "„An Handy senden“ ist aktiv: Nutze ⋯ → An Handy senden bei einem Artikel, um ihn unterwegs zu lesen."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Wird ans Handy gesendet …"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Ans Handy gesendet (langer Artikel gekürzt). Er kommt in etwa 15 Minuten an."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Ans Handy gesendet. Er kommt in etwa 15 Minuten an."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Gesendet. Scanne zum Empfangen den neuen Code einmal in der Handy-App (Einstellungen → Handy-Posteingang)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "„An Handy senden“ aktivieren"
+  },
+  "f_switching_on_e78a": {
+    "message": "Wird aktiviert …"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "der Artikel konnte nicht vorbereitet werden"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "die Kopplung ist nicht mehr gültig, bitte neu koppeln"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "das Handy hat die früheren Artikel noch nicht abgeholt"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "der Server ist nicht erreichbar"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "dieser Artikel ist zu groß"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "zu viele Sendungen, versuche es später erneut"
+  },
+  "f_unknown_error_5123": {
+    "message": "unbekannter Fehler"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Als Markdown exportieren"
+  },
+  "f_more_actions_e04b": {
+    "message": "Weitere Aktionen"
+  },
+  "f_open_original_5070": {
+    "message": "Original öffnen"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Über LocalSend senden"
+  },
+  "f_share_6dd8": {
+    "message": "Teilen"
   }
 }

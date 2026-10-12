@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "La página no respondió (bloqueada o requiere iniciar sesión). Ábrela e inténtalo de nuevo."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "No se pudo enviar a tu teléfono: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "No se pudo activar Enviar al teléfono: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Primero vincula tu teléfono: Ajustes → Bandeja del teléfono."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Escanea este código con la app complementaria de AISH. Quien lo escanee puede enviarte enlaces y leer los artículos que envíes a tu teléfono, así que mantenlo en privado."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Enviar al teléfono"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Enviar al teléfono está activado. Escanea el código nuevo una vez en la app del teléfono."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Enviar al teléfono está activado: usa ⋯ → Enviar al teléfono en cualquier artículo para leerlo en movimiento."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Enviando a tu teléfono…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Enviado a tu teléfono (artículo largo acortado). Llega en unos 15 minutos."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Enviado a tu teléfono. Llega en unos 15 minutos."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Enviado. Para recibirlo, escanea el código nuevo una vez en la app del teléfono (Ajustes → Bandeja del teléfono)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Activar Enviar al teléfono"
+  },
+  "f_switching_on_e78a": {
+    "message": "Activando…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "no se pudo preparar el artículo"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "la vinculación ya no es válida, vuelve a vincular"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "el teléfono aún no ha recogido los artículos anteriores"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "el servidor no está disponible"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "este artículo es demasiado grande"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "demasiados envíos, inténtalo más tarde"
+  },
+  "f_unknown_error_5123": {
+    "message": "error desconocido"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Exportar como Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "Más acciones"
+  },
+  "f_open_original_5070": {
+    "message": "Abrir original"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Enviar con LocalSend"
+  },
+  "f_share_6dd8": {
+    "message": "Compartir"
   }
 }

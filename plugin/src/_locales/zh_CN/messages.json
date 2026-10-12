@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "页面没有响应（被阻止或需要登录）。请打开后重试。"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "无法发送到手机：{message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "无法开启“发送到手机”：{message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "请先配对手机：设置 → 手机收件箱。"
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "请用 AISH 配套应用扫描此二维码。任何扫描它的人都可以向你发送链接，并阅读你发送到手机的文章，请妥善保密。"
+  },
+  "f_send_to_phone_4940": {
+    "message": "发送到手机"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "“发送到手机”已开启。请在手机应用中再扫描一次新的二维码。"
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "“发送到手机”已开启：在任意文章上点击 ⋯ → 发送到手机，即可在路上阅读。"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "正在发送到手机…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "已发送到手机（长文章已缩短）。约 15 分钟内到达。"
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "已发送到手机。约 15 分钟内到达。"
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "已发送。要接收它，请在手机应用中扫描一次新的二维码（设置 → 手机收件箱）。"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "开启“发送到手机”"
+  },
+  "f_switching_on_e78a": {
+    "message": "正在开启…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "无法准备这篇文章"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "配对已失效，请重新配对"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "手机尚未收取之前的文章"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "无法连接服务器"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "这篇文章太大"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "发送次数过多，请稍后再试"
+  },
+  "f_unknown_error_5123": {
+    "message": "未知错误"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "导出为 Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "更多操作"
+  },
+  "f_open_original_5070": {
+    "message": "打开原文"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "通过 LocalSend 发送"
+  },
+  "f_share_6dd8": {
+    "message": "分享"
   }
 }

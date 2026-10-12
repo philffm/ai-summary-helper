@@ -61,11 +61,13 @@ async function renderSettings() {
         const when = st.lastPollAt ? new Date(st.lastPollAt).toLocaleString() : '';
         frag.append(para(when ? T('Paired · last checked {when}', { when }) : T('Paired · not checked yet'), 'setting-note phone-inbox-status'));
         if (st.lastError) frag.append(para(errorText(st.lastError), 'setting-note phone-inbox-error'));
+        if (st.toPhone) frag.append(para(T('Send to phone is on: use ⋯ → Send to phone on any article to read it on the go.')));
+        else frag.append(button(busy === 'enable' ? T('Switching on…') : T('Switch on Send to phone'), 'button-secondary', enableSend, !!busy));
         if (showCode) {
             const payload = await manager.pairingCode();
             if (payload) {
                 frag.append(qrBox(payload));
-                frag.append(para(T('Scan this code with the AISH companion app. Anyone who scans it can send links to you, so keep it private.')));
+                frag.append(para(T('Scan this code with the AISH companion app. Anyone who scans it can send links to you and read the articles you send to your phone, so keep it private.')));
             }
         }
         const row = document.createElement('div');
@@ -90,6 +92,13 @@ async function pair() {
     const r = await manager.pair();
     busy = '';
     if (r.ok) showCode = true; else message = errorText(r.error);
+    await renderSettings();
+}
+async function enableSend() {
+    busy = 'enable'; message = ''; await renderSettings();
+    const r = await manager.enableToPhone();
+    busy = '';
+    if (r.ok) { showCode = true; message = T('Send to phone is on. Scan the new code in the phone app once.'); } else message = errorText(r.error);
     await renderSettings();
 }
 async function checkNow() {

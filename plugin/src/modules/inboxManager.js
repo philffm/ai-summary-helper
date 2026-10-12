@@ -12,7 +12,7 @@
 //   fetch after the stored cursor → decrypt → drop handled/duplicate links → save pending + cursor → acknowledge on the server.
 
 import { SK } from './storageKeys.js';
-import { newInboxSecrets, tokenHash, pairingPayload, decryptMessage } from './inboxCrypto.js';
+import { newInboxSecrets, tokenHash, pairingPayload, decryptMessage, encryptArticle, toB64u } from './inboxCrypto.js';
 
 // The first segment after the project is the collection name in the byPhil database: aish_inboxes (its items: aish_inbox_items).
 export const INBOX_API = 'https://api.byphil.eu/v1/projects/ai_summary_helper/aish_inboxes';
@@ -96,19 +96,60 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         }
     }
 
-    /** Creates the inbox on the server and returns the text for the QR code. Already paired: returns the same code again. */
+    const randomB64u = (n) => toB64u(globalThis.crypto.getRandomValues(new Uint8Array(n)));
+    /** Creates the second inbox (extension → phone: articles to read on the go). The extension holds both of its tokens; the phone gets the read token. */
+    async function createToPhone() {
+        const t = { inboxId: randomB64u(16), writeToken: randomB64u(32), readToken: randomB64u(32) };
+        const res = await call('POST', api, { id: t.inboxId, writeHash: await tokenHash(t.writeToken), readHash: await tokenHash(t.readToken) });
+        return res.status === 201 ? { ok: true, toPhone: t } : { ok: false, error: classify(res.status) };
+    }
+
+    /** Creates the inboxes on the server and returns the text for the QR code. Already paired: returns the same code again. */
     async function pair() {
         const existing = await getConfig();
         if (existing) return { ok: true, existing: true, payload: pairingPayload(existing) };
         const secrets = newInboxSecrets();
         const res = await call('POST', api, { id: secrets.inboxId, writeHash: await tokenHash(secrets.writeToken), readHash: await tokenHash(secrets.readToken) });
         if (res.status !== 201) return { ok: false, error: classify(res.status) };
-        await store().set({ [SK.inboxConfig]: { ...secrets, createdAt: now(), v: 1 }, [SK.inboxState]: EMPTY_STATE() });
-        return { ok: true, existing: false, payload: pairingPayload(secrets) };
+        const second = await createToPhone();   // best effort: without it the phone→extension direction still works, and "Send to phone" can be switched on later
+        const cfg = { ...secrets, createdAt: now(), v: 1, ...(second.ok ? { toPhone: second.toPhone } : {}) };
+        await store().set({ [SK.inboxConfig]: cfg, [SK.inboxState]: EMPTY_STATE() });
+        return { ok: true, existing: false, payload: pairingPayload(cfg) };
+    }
+
+    /** Switches on "Send to phone" for an existing pairing. The QR code changes, so the phone has to scan it once more. */
+    async function enableToPhone() {
+        const cfg = await getConfig();
+        if (!cfg) return { ok: false, error: 'not-paired' };
+        if (cfg.toPhone) return { ok: true, existing: true, payload: pairingPayload(cfg) };
+        const second = await createToPhone();
+        if (!second.ok) return second;
+        const next = { ...cfg, toPhone: second.toPhone };
+        await store().set({ [SK.inboxConfig]: next });
+        return { ok: true, existing: false, payload: pairingPayload(next) };
     }
 
     /** The QR text for an existing pairing (to show it again or to pair a second phone). Null when not paired. */
     async function pairingCode() { const c = await getConfig(); return c ? pairingPayload(c) : null; }
+
+    /**
+     * Sends one article (see articleBlocks.articleForPhone) to the phone, encrypted. Resolves { ok, blocks, truncated } or
+     * { ok: false, error } with: not-paired, not-enabled (no extension→phone inbox yet), too-large, rate-limited, inbox-full,
+     * pairing-invalid, unreachable, error. The article waits on the server (7 days) until the phone has saved it.
+     */
+    async function sendArticle(article) {
+        const cfg = await getConfig();
+        if (!cfg) return { ok: false, error: 'not-paired' };
+        if (!cfg.toPhone) return { ok: false, error: 'not-enabled' };
+        let sealed;
+        try { sealed = await encryptArticle({ inboxId: cfg.toPhone.inboxId, encKey: cfg.encKey }, article); }
+        catch (e) { return { ok: false, error: /too large/i.test(String(e && e.message)) ? 'too-large' : 'unreadable' }; }
+        const res = await call('POST', `${api}/${encodeURIComponent(cfg.toPhone.inboxId)}/items`, sealed.envelope, cfg.toPhone.writeToken);
+        if (res.status === 202) return { ok: true, blocks: sealed.blocks, truncated: sealed.truncated };
+        if (res.status === 413) return { ok: false, error: 'too-large' };
+        if (res.status === 429) return { ok: false, error: res.json && res.json.error === 'inbox-full' ? 'inbox-full' : 'rate-limited' };
+        return { ok: false, error: classify(res.status) };
+    }
 
     let inFlight = null;
     /** Collects waiting links. Safe to call from the alarm and the popup at once: overlapping calls share one run. */
@@ -242,7 +283,7 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
     async function status() {
         const cfg = await getConfig();
         const state = await getState();
-        return { paired: !!cfg, createdAt: cfg ? cfg.createdAt : 0, lastPollAt: state.lastPollAt, lastError: state.lastError, pending: (await getPending()).length };
+        return { paired: !!cfg, toPhone: !!(cfg && cfg.toPhone), createdAt: cfg ? cfg.createdAt : 0, lastPollAt: state.lastPollAt, lastError: state.lastError, pending: (await getPending()).length };
     }
 
     /** Deletes the inbox on the server (best effort) and every local trace of the pairing, including waiting links. */
@@ -252,10 +293,11 @@ export function createInboxManager({ fetchFn, storage, api = INBOX_API, now = ()
         if (cfg) {
             const res = await call('DELETE', `${api}/${encodeURIComponent(cfg.inboxId)}`, null, cfg.readToken);
             serverDeleted = res.status >= 200 && res.status < 300;
+            if (cfg.toPhone) await call('DELETE', `${api}/${encodeURIComponent(cfg.toPhone.inboxId)}`, null, cfg.toPhone.readToken);
         }
         await store().remove([SK.inboxConfig, SK.inboxPending, SK.inboxState]);
         return { ok: true, serverDeleted };
     }
 
-    return { pair, pairingCode, poll, listPending, resolve, flushDeletes, status, unpair };
+    return { pair, enableToPhone, sendArticle, pairingCode, poll, listPending, resolve, flushDeletes, status, unpair };
 }

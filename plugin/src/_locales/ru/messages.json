@@ -4603,5 +4603,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "Страница не ответила (заблокирована или нужен вход). Откройте её и повторите попытку."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Не удалось отправить на телефон: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Не удалось включить «Отправить на телефон»: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Сначала подключите телефон: Настройки → Входящие с телефона."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Отсканируйте этот код в приложении-компаньоне AISH. Каждый, кто его отсканирует, сможет отправлять вам ссылки и читать статьи, которые вы отправляете на телефон, поэтому храните его в тайне."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Отправить на телефон"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "«Отправить на телефон» включено. Один раз отсканируйте новый код в приложении на телефоне."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "«Отправить на телефон» включено: выберите ⋯ → Отправить на телефон у статьи, чтобы читать её в дороге."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Отправка на телефон…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Отправлено на телефон (длинная статья сокращена). Придёт примерно через 15 минут."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Отправлено на телефон. Придёт примерно через 15 минут."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Отправлено. Чтобы получить, один раз отсканируйте новый код в приложении на телефоне (Настройки → Входящие с телефона)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Включить «Отправить на телефон»"
+  },
+  "f_switching_on_e78a": {
+    "message": "Включение…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "не удалось подготовить статью"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "подключение больше не действует, подключите снова"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "телефон ещё не забрал предыдущие статьи"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "сервер недоступен"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "эта статья слишком большая"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "слишком много отправок, повторите позже"
+  },
+  "f_unknown_error_5123": {
+    "message": "неизвестная ошибка"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Экспорт в Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "Другие действия"
+  },
+  "f_open_original_5070": {
+    "message": "Открыть оригинал"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Отправить через LocalSend"
+  },
+  "f_share_6dd8": {
+    "message": "Поделиться"
   }
 }

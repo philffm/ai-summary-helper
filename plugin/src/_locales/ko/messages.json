@@ -4585,5 +4585,80 @@
   },
   "f_the_page_didn_t_respond_bloc_372d": {
     "message": "페이지가 응답하지 않았습니다(차단되었거나 로그인이 필요함). 열어 본 뒤 다시 시도하세요."
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "휴대폰으로 보내지 못했습니다: {message}"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "‘휴대폰으로 보내기’를 켜지 못했습니다: {message}"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "먼저 휴대폰을 페어링하세요: 설정 → 휴대폰 받은 편지함."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "AISH 동반 앱으로 이 코드를 스캔하세요. 코드를 스캔한 사람은 내게 링크를 보내고 내가 휴대폰으로 보낸 글을 읽을 수 있으니 비공개로 유지하세요."
+  },
+  "f_send_to_phone_4940": {
+    "message": "휴대폰으로 보내기"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "‘휴대폰으로 보내기’가 켜졌습니다. 휴대폰 앱에서 새 코드를 한 번 스캔하세요."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "‘휴대폰으로 보내기’가 켜졌습니다: 글의 ⋯ → 휴대폰으로 보내기로 이동 중에도 읽을 수 있어요."
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "휴대폰으로 보내는 중…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "휴대폰으로 보냈습니다(긴 글은 줄임). 약 15분 안에 도착합니다."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "휴대폰으로 보냈습니다. 약 15분 안에 도착합니다."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "보냈습니다. 받으려면 휴대폰 앱에서 새 코드를 한 번 스캔하세요(설정 → 휴대폰 받은 편지함)."
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "‘휴대폰으로 보내기’ 켜기"
+  },
+  "f_switching_on_e78a": {
+    "message": "켜는 중…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "글을 준비하지 못했습니다"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "페어링이 더 이상 유효하지 않습니다. 다시 페어링하세요"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "휴대폰이 이전 글을 아직 가져가지 않았습니다"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "서버에 연결할 수 없습니다"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "이 글은 너무 큽니다"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "전송이 너무 많습니다. 나중에 다시 시도하세요"
+  },
+  "f_unknown_error_5123": {
+    "message": "알 수 없는 오류"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Markdown으로 내보내기"
+  },
+  "f_more_actions_e04b": {
+    "message": "더 보기"
+  },
+  "f_open_original_5070": {
+    "message": "원본 열기"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "LocalSend로 보내기"
+  },
+  "f_share_6dd8": {
+    "message": "공유"
   }
 }

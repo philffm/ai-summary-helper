@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1343. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1318 | 0 | 0 | 45 |
-| de | 1318 | 0 | 0 | 194 |
-| es | 1318 | 0 | 0 | 169 |
-| fr | 1318 | 0 | 0 | 197 |
-| hi | 1318 | 0 | 0 | 79 |
-| it | 1318 | 0 | 0 | 168 |
-| ja | 1318 | 0 | 0 | 89 |
-| ko | 1318 | 0 | 0 | 24 |
-| pt_PT | 1318 | 0 | 0 | 159 |
-| ru | 1318 | 0 | 0 | 104 |
-| zh_CN | 1318 | 0 | 0 | 2 |
-| zh_HK | 1318 | 0 | 0 | 2 |
-| zh_TW | 1318 | 0 | 0 | 2 |
+| ar | 1343 | 0 | 0 | 46 |
+| de | 1343 | 0 | 0 | 196 |
+| es | 1343 | 0 | 0 | 173 |
+| fr | 1343 | 0 | 0 | 203 |
+| hi | 1343 | 0 | 0 | 82 |
+| it | 1343 | 0 | 0 | 171 |
+| ja | 1343 | 0 | 0 | 92 |
+| ko | 1343 | 0 | 0 | 25 |
+| pt_PT | 1343 | 0 | 0 | 164 |
+| ru | 1343 | 0 | 0 | 108 |
+| zh_CN | 1343 | 0 | 0 | 2 |
+| zh_HK | 1343 | 0 | 0 | 2 |
+| zh_TW | 1343 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -50,6 +50,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No Kindle email set. | لم يُضبط بريد Kindle الإلكتروني. | 32 vs 20 | 1.6× |
 | Words Read | الكلمات المقروءة | 16 vs 10 | 1.6× |
 | {n} feeds to tag | {n} خلاصات بحاجة إلى وسوم | 24 vs 15 | 1.6× |
+| More actions | المزيد من الإجراءات | 19 vs 12 | 1.58× |
 | {n} unopened 30d+ | {n} لم تُفتح منذ 30+ يومًا | 25 vs 16 | 1.56× |
 | Back to top | العودة إلى الأعلى | 17 vs 11 | 1.55× |
 | Phone inbox | صندوق وارد الهاتف | 17 vs 11 | 1.55× |
@@ -225,6 +226,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} items could not be scored | {n} Einträge konnten nicht bewertet werden | 41 vs 28 | 1.46× |
 | Not set up yet — add your Kindle in Settings | Noch nicht eingerichtet — Kindle in den Einstellungen hinzufügen | 64 vs 44 | 1.45× |
 | Summary + full article | Zusammenfassung + ganzer Artikel | 32 vs 22 | 1.45× |
+| too many sends, try again later | zu viele Sendungen, versuche es später erneut | 45 vs 31 | 1.45× |
 | {n} paper skipped (no DOI or lookup failed) | {n} Paper übersprungen (keine DOI oder Abfrage fehlgeschlagen) | 61 vs 42 | 1.45× |
 | Delete settings… | Einstellungen löschen … | 23 vs 16 | 1.44× |
 | Summarize / send | Zusammenfassen / senden | 23 vs 16 | 1.44× |
@@ -265,6 +267,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Install the AISH companion on your phone, scan the code once, then share any link to it. Links arrive end-to-end encrypted and wait here for your tap. | Installiere die AISH-Begleiter-App auf deinem Handy, scanne den Code einmalig und teile dann beliebige Links dorthin. Die Links kommen Ende-zu-Ende-verschlüsselt an und warten hier auf deinen Tipp. | 197 vs 150 | 1.31× |
 | Run this command. It lets extensions, and only extensions, talk to Ollama: | Führe diesen Befehl aus. Er erlaubt Erweiterungen, und nur Erweiterungen, mit Ollama zu sprechen: | 97 vs 74 | 1.31× |
 | Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh. | Der Zugriff auf Websites ist aus. Erlaube ihn unter about:addons → diese Erweiterung → Berechtigungen („Auf Ihre Daten für alle Websites zugreifen“) und aktualisiere dann. | 171 vs 131 | 1.31× |
+| Pair your phone first: Settings → Phone inbox. | Koppel zuerst dein Handy: Einstellungen → Handy-Posteingang. | 60 vs 46 | 1.3× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Bewertet den Ton von Zusammenfassungen und Feed-Beiträgen. Steuert Stimmungsfilter, Diagramme und die Quellen-Bilanz. Ausschalten blendet alle Stimmungsfunktionen aus. | 167 vs 128 | 1.3× |
 
 ### es
@@ -401,6 +404,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Open Command Prompt | Abrir el símbolo del sistema | 28 vs 19 | 1.47× |
 | Queue a question… | Pon una pregunta en cola… | 25 vs 17 | 1.47× |
 | {n} feeds to tag | {n} feeds por etiquetar | 22 vs 15 | 1.47× |
+| Send to phone is on. Scan the new code in the phone app once. | Enviar al teléfono está activado. Escanea el código nuevo una vez en la app del teléfono. | 89 vs 61 | 1.46× |
 | Writing a {n}-word summary… | Escribiendo un resumen de {n} palabras… | 38 vs 26 | 1.46× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} de {n} artículos valorados · el ánimo proviene solo de la valoración de la IA | 79 vs 54 | 1.46× |
 | Sort: Read share | Orden: Porcentaje leído | 23 vs 16 | 1.44× |
@@ -428,6 +432,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ✓ Named {n} of {total} tags. | ✓ {n} de {total} etiquetas nombradas. | 31 vs 22 | 1.41× |
 | 🔁 Process new items automatically | 🔁 Procesar automáticamente los elementos nuevos | 48 vs 34 | 1.41× |
 | Automatic light-blue quote highlights from summaries | Citas resaltadas en azul claro automáticamente a partir de los resúmenes | 72 vs 52 | 1.38× |
+| Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Enviar al teléfono está activado: usa ⋯ → Enviar al teléfono en cualquier artículo para leerlo en movimiento. | 109 vs 79 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Valora el tono de los resúmenes y de los elementos del feed. Activa filtros de ánimo, gráficos y el balance de fuentes. Desactívalo para ocultar todas las funciones de ánimo. | 174 vs 128 | 1.36× |
 | Your own mix of batch size, requests per run and interval. | Tu propia combinación de tamaño de lote, solicitudes por ejecución e intervalo. | 79 vs 58 | 1.36× |
 | Shown in the article and included in exports | Se muestra en el artículo y se incluye en las exportaciones | 59 vs 44 | 1.34× |
@@ -439,6 +444,8 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Resets preferences, prompts, API keys, sign-in and send targets on this device. Summaries, highlights and feeds stay. | Restablece preferencias, prompts, claves de API, inicio de sesión y destinos de envío en este dispositivo. Los resúmenes, resaltados y feeds se conservan. | 154 vs 117 | 1.32× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Haz clic derecho en el icono de Ollama de la bandeja (abajo a la derecha) y elige <b>Quit</b>. | 94 vs 71 | 1.32× |
 | Couldn't save this page. Open it once and try again. | No se pudo guardar esta página. Ábrela una vez e inténtalo de nuevo. | 68 vs 52 | 1.31× |
+| Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Enviado. Para recibirlo, escanea el código nuevo una vez en la app del teléfono (Ajustes → Bandeja del teléfono). | 113 vs 86 | 1.31× |
+| Pair your phone first: Settings → Phone inbox. | Primero vincula tu teléfono: Ajustes → Bandeja del teléfono. | 60 vs 46 | 1.3× |
 
 ### fr
 | English | Translation | width | ratio |
@@ -473,6 +480,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Open in sidebar | Ouvrir dans le panneau latéral | 30 vs 15 | 2× |
 | Privacy policy | Politique de confidentialité | 28 vs 14 | 2× |
 | Save options | Options d’enregistrement | 24 vs 12 | 2× |
+| Select | Sélectionner | 12 vs 6 | 2× |
 | TTS returned no audio. | La synthèse vocale n’a renvoyé aucun audio. | 43 vs 22 | 1.95× |
 | What to export? | Que souhaitez-vous exporter ? | 29 vs 15 | 1.93× |
 | UI Language | Langue de l’interface | 21 vs 11 | 1.91× |
@@ -532,6 +540,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | D3 library failed to load. | Échec du chargement de la bibliothèque D3. | 42 vs 26 | 1.62× |
 | No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
 | No shortcuts match | Aucun raccourci ne correspond | 29 vs 18 | 1.61× |
+| Send to phone is on. Scan the new code in the phone app once. | Envoyer au téléphone est activé. Scannez le nouveau code une fois dans l’application du téléphone. | 98 vs 61 | 1.61× |
 | Browser Default | Par défaut du navigateur | 24 vs 15 | 1.6× |
 | Delete history? | Supprimer l’historique ? | 24 vs 15 | 1.6× |
 | No articles to graph yet. | Aucun article à afficher dans le graphe. | 40 vs 25 | 1.6× |
@@ -555,7 +564,9 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Faites un clic droit sur l’icône Ollama de la zone de notification (en bas à droite) et choisissez <b>Quit</b>. | 111 vs 71 | 1.56× |
 | Copy failed | Échec de la copie | 17 vs 11 | 1.55× |
 | {n} tag lists to name | {n} listes d’étiquettes à nommer | 31 vs 20 | 1.55× |
+| Pair your phone first: Settings → Phone inbox. | Jumelez d’abord votre téléphone : Réglages → Boîte de réception mobile. | 71 vs 46 | 1.54× |
 | Search feeds… | Rechercher des flux… | 20 vs 13 | 1.54× |
+| Send to phone | Envoyer au téléphone | 20 vs 13 | 1.54× |
 | Use Native Chrome Side Panel | Utiliser le panneau latéral natif de Chrome | 43 vs 28 | 1.54× |
 | {n} day recaps | {n} récaps quotidiens | 20 vs 13 | 1.54× |
 | Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
@@ -563,6 +574,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {a} items rated · {b} day recaps written | {a} éléments évalués · {b} récapitulatifs quotidiens rédigés | 58 vs 38 | 1.53× |
 | Click again to unpair | Cliquez à nouveau pour dissocier | 32 vs 21 | 1.52× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
+| Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Envoyé. Pour le recevoir, scannez le nouveau code une fois dans l’application du téléphone (Réglages → Boîte de réception mobile). | 130 vs 86 | 1.51× |
 | Delete settings? | Supprimer les réglages ? | 24 vs 16 | 1.5× |
 | Error generating podcast: {msg} | Erreur lors de la création du podcast : {msg} | 42 vs 28 | 1.5× |
 | No receiver address set. | Aucune adresse de récepteur définie. | 36 vs 24 | 1.5× |
@@ -620,6 +632,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Include all questions in exports | Inclure toutes les questions dans les exports | 45 vs 32 | 1.41× |
 | Keep it in History, no AI, nothing sent | Gardez-le dans l’historique, sans IA, rien n’est envoyé | 55 vs 39 | 1.41× |
 | Only {r} of {n} items are rated | Seulement {r} articles sur {n} sont évalués | 41 vs 29 | 1.41× |
+| Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Envoyer au téléphone est activé : utilisez ⋯ → Envoyer au téléphone sur un article pour le lire en déplacement. | 111 vs 79 | 1.41× |
 | Updates & storage | Mises à jour et stockage | 24 vs 17 | 1.41× |
 | 🔁 Process new items automatically | 🔁 Traiter automatiquement les nouveaux éléments | 48 vs 34 | 1.41× |
 | Not set up yet — add your Kindle in Settings | Pas encore configuré — ajoutez votre Kindle dans les Réglages | 61 vs 44 | 1.39× |
@@ -665,6 +678,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | By time | समय के अनुसार | 13 vs 7 | 1.86× |
 | over {s} | {s} से ज़्यादा | 13 vs 7 | 1.86× |
 | Copied as plain text. | सादे टेक्स्ट के रूप में कॉपी किया गया। | 38 vs 21 | 1.81× |
+| Export as Markdown | Markdown के रूप में निर्यात करें | 32 vs 18 | 1.78× |
 | Resets {date} | {date} को रीसेट होगा | 16 vs 9 | 1.78× |
 | View & edit › | देखें और संपादित करें › | 23 vs 13 | 1.77× |
 | By topic | विषय के अनुसार | 14 vs 8 | 1.75× |
@@ -698,6 +712,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
 | Checking... | जांच हो रही है... | 17 vs 11 | 1.55× |
 | No background run yet. | अभी तक कोई बैकग्राउंड रन नहीं हुआ। | 34 vs 22 | 1.55× |
+| Switching on… | चालू किया जा रहा है… | 20 vs 13 | 1.54× |
 | Export settings | सेटिंग्स एक्सपोर्ट करें | 23 vs 15 | 1.53× |
 | What to export? | क्या एक्सपोर्ट करना है? | 23 vs 15 | 1.53× |
 | Export or restore all settings as a JSON file. | सारी सेटिंग्स को JSON फ़ाइल के रूप में एक्सपोर्ट या पुनर्स्थापित करें। | 70 vs 46 | 1.52× |
@@ -720,6 +735,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No settings match “{query}”. | “{query}” से मेल खाती कोई सेटिंग नहीं। | 33 vs 23 | 1.43× |
 | Not enough rated items yet | अभी पर्याप्त रेट किए गए आइटम नहीं हैं | 37 vs 26 | 1.42× |
 | e.g. Prefer European news and keep it upbeat. | जैसे: यूरोपीय समाचारों को प्राथमिकता दें और लहजा सकारात्मक रखें। | 64 vs 45 | 1.42× |
+| too many sends, try again later | बहुत ज़्यादा भेजे गए, बाद में फिर कोशिश करें | 44 vs 31 | 1.42× |
 | {done} of {total} sent. {error} | {total} में से {done} भेजे गए। {error} | 24 vs 17 | 1.41× |
 | ✨ Updating recap… | ✨ रीकैप अपडेट हो रहा है… | 24 vs 17 | 1.41× |
 | Found device at {ip} — click Add to save it ✓ | {ip} पर डिवाइस मिला — सहेजने के लिए जोड़ें पर क्लिक करें ✓ | 56 vs 43 | 1.3× |
@@ -836,6 +852,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ✨ {label} recap is ready | ✨ Il riepilogo di {label} è pronto | 29 vs 19 | 1.53× |
 | Customize text size, spacing, font, motion | Personalizza dimensione testo, spaziatura, carattere e movimento | 64 vs 42 | 1.52× |
 | Mute / unmute reading | Disattiva / attiva audio lettura | 32 vs 21 | 1.52× |
+| Pair your phone first: Settings → Phone inbox. | Abbina prima il telefono: Impostazioni → Posta in arrivo dal telefono. | 70 vs 46 | 1.52× |
 | Keep it in History, no AI, nothing sent | Tienilo nella cronologia, senza IA, non viene inviato nulla | 59 vs 39 | 1.51× |
 | Not set up yet — add a receiver in Settings | Non ancora configurato: aggiungi un ricevitore nelle Impostazioni | 65 vs 43 | 1.51× |
 | Add LocalSend device | Aggiungi dispositivo LocalSend | 30 vs 20 | 1.5× |
@@ -846,6 +863,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No background run yet. | Nessuna esecuzione in background. | 33 vs 22 | 1.5× |
 | Page text · {n} words | Testo della pagina · {n} parole | 30 vs 20 | 1.5× |
 | Profile · text size · motion | Profilo · dimensione del testo · movimento | 42 vs 28 | 1.5× |
+| Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Inviato. Per riceverlo, scansiona il nuovo codice una volta nell’app del telefono (Impostazioni → Posta in arrivo dal telefono). | 128 vs 86 | 1.49× |
 | Switch graph search to highlight mode | Passa la ricerca del grafo alla modalità evidenziazione | 55 vs 37 | 1.49× |
 | Not set up yet — add your Kindle in Settings | Non ancora configurato: aggiungi il tuo Kindle nelle Impostazioni | 65 vs 44 | 1.48× |
 | This page can't be saved. | Questa pagina non può essere salvata. | 37 vs 25 | 1.48× |
@@ -878,6 +896,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Allow browser extensions | Consenti le estensioni del browser | 34 vs 24 | 1.42× |
 | Local models. No account, no key. | Modelli locali. Nessun account, nessuna chiave. | 47 vs 33 | 1.42× |
 | Native Chrome side panel | Pannello laterale nativo di Chrome | 34 vs 24 | 1.42× |
+| Send to phone is on. Scan the new code in the phone app once. | Invia al telefono è attivo. Scansiona il nuovo codice una volta nell’app del telefono. | 86 vs 61 | 1.41× |
 | TTS returned no audio. | Il TTS non ha restituito audio. | 31 vs 22 | 1.41× |
 | {name} · local, no API key | {name} · locale, nessuna chiave API | 31 vs 22 | 1.41× |
 | {n} older items are not in this recap. | {n} elementi più vecchi non sono in questo riepilogo. | 52 vs 37 | 1.41× |
@@ -957,6 +976,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 4 digits, sent to {email} | 4桁のコードを {email} に送信しました | 31 vs 20 | 1.55× |
 | Import / export OPML | OPMLのインポート / エクスポート | 31 vs 20 | 1.55× |
 | Session lost. Please request a new code. | セッションが切れました。新しいコードをリクエストしてください。 | 62 vs 40 | 1.55× |
+| too many sends, try again later | 送信回数が多すぎます。後でもう一度お試しください | 48 vs 31 | 1.55× |
 | 🎧 Podcasts | 🎧 ポッドキャスト | 17 vs 11 | 1.55× |
 | 📅 Activity | 📅 アクティビティ | 17 vs 11 | 1.55× |
 | Preset prompt | プリセットプロンプト | 20 vs 13 | 1.54× |
@@ -987,7 +1007,9 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | The page didn't respond (blocked, or it needs a login). Open it and try again. | ページが応答しませんでした（ブロックされているか、ログインが必要です）。開いてからもう一度お試しください。 | 106 vs 78 | 1.36× |
 | Ollama is running, but no model is installed yet. Download one in a terminal: | Ollama は動作していますが、モデルがまだインストールされていません。ターミナルでダウンロードしてください: | 104 vs 77 | 1.35× |
 | Invalid backup file. Please select a valid AI Summary Helper export. | 無効なバックアップファイルです。AI Summary Helperのエクスポートファイルを選択してください。 | 91 vs 68 | 1.34× |
+| Send to phone is on. Scan the new code in the phone app once. | 「スマホに送る」がオンです。スマホアプリで新しいコードを一度スキャンしてください。 | 82 vs 61 | 1.34× |
 | Pick the receiver. Its app has to be open and on the same Wi‑Fi. | 受信先を選択してください。相手のアプリを開き、同じWi‑Fiに接続しておく必要があります。 | 85 vs 64 | 1.33× |
+| the pairing is no longer valid, pair again | ペア設定が無効になりました。もう一度ペア設定してください | 56 vs 42 | 1.33× |
 
 ### ko
 | English | Translation | width | ratio |
@@ -1014,6 +1036,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Network error sending to Kindle. | Kindle로 보내는 중 네트워크 오류가 발생했어요. | 46 vs 32 | 1.44× |
 | No shortcuts match | 일치하는 단축키가 없습니다 | 26 vs 18 | 1.44× |
 | Scored {a} of {b}… | {b}개 중 {a}개 점수 매김… | 23 vs 16 | 1.44× |
+| too many sends, try again later | 전송이 너무 많습니다. 나중에 다시 시도하세요 | 44 vs 31 | 1.42× |
 | This pairing is no longer valid. Unpair and pair again. | 이 페어링은 더 이상 유효하지 않습니다. 페어링을 해제한 뒤 다시 페어링하세요. | 76 vs 55 | 1.38× |
 | Runs entirely in your browser — no data leaves it. | 모든 작업이 브라우저 안에서 처리되며 데이터는 밖으로 나가지 않아요. | 67 vs 50 | 1.34× |
 
@@ -1062,6 +1085,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | — Feel free to | — Sinta-se à vontade para | 25 vs 14 | 1.79× |
 | Name tags | Nomear etiquetas | 16 vs 9 | 1.78× |
 | Text size | Tamanho do texto | 16 vs 9 | 1.78× |
+| Send to phone | Enviar para o telemóvel | 23 vs 13 | 1.77× |
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
 | All time | Todo o período | 14 vs 8 | 1.75× |
 | Auto length bias | Ajuste automático do tamanho | 28 vs 16 | 1.75× |
@@ -1090,6 +1114,7 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
 | Failed to export backup. | Falha ao exportar a cópia de segurança. | 39 vs 24 | 1.63× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
+| Pair your phone first: Settings → Phone inbox. | Emparelhe primeiro o telemóvel: Definições → Caixa de entrada do telemóvel. | 75 vs 46 | 1.63× |
 | {name} · API key set | {name} · chave da API definida | 26 vs 16 | 1.63× |
 | Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
 | Feed refresh interval | Intervalo de atualização dos feeds | 34 vs 21 | 1.62× |
@@ -1168,6 +1193,8 @@ Strings: 1318. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Couldn't save this page. Open it once and try again. | Não foi possível guardar esta página. Abra-a uma vez e tente novamente. | 71 vs 52 | 1.37× |
 | to your Kindle's approved senders first — | à lista de remetentes aprovados do seu Kindle primeiro — | 56 vs 41 | 1.37× |
 | Not set up yet — add your Kindle in Settings | Ainda não configurado — adiciona o teu Kindle nas Definições | 60 vs 44 | 1.36× |
+| Send to phone is on. Scan the new code in the phone app once. | Enviar para o telemóvel está ativo. Leia o novo código uma vez na app do telemóvel. | 83 vs 61 | 1.36× |
+| Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Enviado. Para o receber, leia o novo código uma vez na app do telemóvel (Definições → Caixa de entrada do telemóvel). | 117 vs 86 | 1.36× |
 | Not set up yet — add a receiver in Settings | Ainda não configurado — adiciona um recetor nas Definições | 58 vs 43 | 1.35× |
 | This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Este PDF não tem texto selecionável (provavelmente uma digitalização). O reconhecimento de texto ainda não é suportado. | 119 vs 89 | 1.34× |
 | Your own mix of batch size, requests per run and interval. | A tua própria combinação de tamanho de lote, pedidos por execução e intervalo. | 78 vs 58 | 1.34× |
@@ -1193,6 +1220,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Automatic light-blue quote highlights from summaries | Destaques de citações em azul-claro automáticos a partir dos resumos | 68 vs 52 | 1.31× |
 | This pairing is no longer valid. Unpair and pair again. | Este emparelhamento já não é válido. Desemparelhe e emparelhe novamente. | 72 vs 55 | 1.31× |
 | e.g. Prefer European news and keep it upbeat. | p. ex. Prefere notícias europeias e mantém um tom positivo. | 59 vs 45 | 1.31× |
+| Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Enviar para o telemóvel está ativo: use ⋯ → Enviar para o telemóvel num artigo para o ler em movimento. | 103 vs 79 | 1.3× |
 
 ### ru
 | English | Translation | width | ratio |
@@ -1260,6 +1288,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Next / previous card | Следующая / предыдущая карточка | 31 vs 20 | 1.55× |
 | Stop Ollama | Остановить Ollama | 17 vs 11 | 1.55× |
 | ✅ Sent · {date} | ✅ Отправлено · {date} | 17 vs 11 | 1.55× |
+| Send to phone | Отправить на телефон | 20 vs 13 | 1.54× |
 | View & edit › | Смотреть и править › | 20 vs 13 | 1.54× |
 | Add Kindle device | Добавить устройство Kindle | 26 vs 17 | 1.53× |
 | Sources · rename · tags · mute | Источники · переименование · теги · отключение | 46 vs 30 | 1.53× |
@@ -1270,6 +1299,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Backup · tags · delete | Резервная копия · теги · удаление | 33 vs 22 | 1.5× |
 | {n} tag lists to name | Списков тегов для названий: {n} | 30 vs 20 | 1.5× |
 | 🤖 Score {n} unscored items | 🤖 Оценить необработанные материалы: {n} | 39 vs 26 | 1.5× |
+| Send to phone is on. Scan the new code in the phone app once. | «Отправить на телефон» включено. Один раз отсканируйте новый код в приложении на телефоне. | 90 vs 61 | 1.48× |
 | Summarize this page | Кратко изложить эту страницу | 28 vs 19 | 1.47× |
 | {n} never opened | Не открыто ни разу: {n} | 22 vs 15 | 1.47× |
 | Couldn't save this page. Open it once and try again. | Не удалось сохранить эту страницу. Откройте её один раз и повторите попытку. | 76 vs 52 | 1.46× |
@@ -1293,6 +1323,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Used up — local models still work. | Исчерпан — локальные модели продолжают работать. | 48 vs 34 | 1.41× |
 | 📈 Mood over time | 📈 Настроение во времени | 24 vs 17 | 1.41× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Пока ничего не оценено — составьте ✨ сводку, чтобы оценить материалы. | 69 vs 50 | 1.38× |
+| Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Отправлено. Чтобы получить, один раз отсканируйте новый код в приложении на телефоне (Настройки → Входящие с телефона). | 119 vs 86 | 1.38× |
 | Tip: press {key} on any page to summarize it. | Совет: нажмите {key} на любой странице, чтобы пересказать её. | 58 vs 42 | 1.38× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
 | Saving took too long (a very heavy page). Try again, or open it and summarize instead. | Сохранение заняло слишком много времени (очень тяжёлая страница). Повторите попытку или откройте её и сделайте резюме. | 118 vs 86 | 1.37× |
@@ -1300,6 +1331,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | По умолчанию резервные копии не содержат API-ключи, данные для входа, лицензионные ключи и идентификаторы установки. Храните экспортированные файлы в тайне. | 156 vs 119 | 1.31× |
 | Uses your AI model · one extra call · in your app language | Использует вашу модель ИИ · один дополнительный запрос · на языке приложения | 76 vs 58 | 1.31× |
 | {r} of {n} items rated · mood comes from AI scoring only | Оценено {r} из {n} материалов · настроение определяется только оценкой ИИ | 71 vs 54 | 1.31× |
+| Pair your phone first: Settings → Phone inbox. | Сначала подключите телефон: Настройки → Входящие с телефона. | 60 vs 46 | 1.3× |
 | Refresh feeds that post often and that you read first | Обновлять ленты, которые часто публикуют и которые вы читаете первыми | 69 vs 53 | 1.3× |
 
 ### zh_CN

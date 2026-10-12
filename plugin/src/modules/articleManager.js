@@ -25,6 +25,8 @@ import { normalizeDoi } from '../content/paper.js';
 import { paperState, paperChips, paperDoi, doiUrl, paperLine, paperType, paperFacts, paperSearchText, extractPaperFacts } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
 import { mountPhoneCards, loadPhoneEntries, pollInbox } from './inboxView.js';
+import { createInboxManager } from './inboxManager.js';
+import { articleForPhone } from './articleBlocks.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
@@ -575,6 +577,58 @@ export async function dispatchToLocalSend(article) {
     } catch (err) {
         console.error('[LocalSend Error]', err);
         if (uiManagerRef) uiManagerRef.showToast(T('Transfer failed: {message}', { message: err?.message || T('Check if receiver is online.') }));
+    }
+}
+
+/** Sends the article's full text to the paired phone (end-to-end encrypted through the byPhil inbox) to read on the go. */
+export async function sendToPhone(article) {
+    const toast = (m) => { if (uiManagerRef) uiManagerRef.showToast(m); };
+    const openPanel = () => import('./settingsNav.js').then((m) => m.openSettingsPanel('phoneinbox')).catch(() => {});
+    const mgr = createInboxManager();
+    try {
+        if (!(await mgr.status()).paired) {
+            toast(T('Pair your phone first: Settings → Phone inbox.'));
+            if (uiManagerRef) uiManagerRef.showScreen('settings');
+            openPanel();
+            return;
+        }
+        let full = article;
+        if (article.id && article.content === undefined) {
+            try { full = { ...article, ...(await StorageManager.getArticleFull(article.id)) }; } catch (_) { /* send what we have */ }
+        }
+        let enabledNow = false;
+        if (!(await mgr.status()).toPhone) {
+            const on = await mgr.enableToPhone();
+            if (!on.ok) { toast(T('Could not switch on Send to phone: {message}', { message: phoneErrorText(on.error) })); return; }
+            enabledNow = true;
+        }
+        toast(T('Sending to your phone…'));
+        const parse = (html) => new DOMParser().parseFromString(html, 'text/html').body;
+        const r = await mgr.sendArticle(articleForPhone(full, parse));
+        if (!r.ok) { toast(T('Could not send to your phone: {message}', { message: phoneErrorText(r.error) })); return; }
+        if (enabledNow) {
+            toast(T('Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox).'));
+            if (uiManagerRef) uiManagerRef.showScreen('settings');
+            openPanel();
+        } else {
+            toast(r.truncated ? T('Sent to your phone (long article shortened). It arrives within about 15 minutes.') : T('Sent to your phone. It arrives within about 15 minutes.'));
+        }
+        if (article.id) applyStatus([article.id], { sent: { kind: 'phone', label: '' } }).catch(() => {});
+    } catch (err) {
+        console.error('[Send to phone]', err);
+        toast(T('Could not send to your phone: {message}', { message: err?.message || '' }));
+    }
+}
+
+function phoneErrorText(code) {
+    switch (code) {
+        case 'too-large': return T('this article is too large');
+        case 'rate-limited': return T('too many sends, try again later');
+        case 'inbox-full': return T('the phone has not collected the earlier articles yet');
+        case 'pairing-invalid': return T('the pairing is no longer valid, pair again');
+        case 'unreachable': return T('the server is not reachable');
+        case 'unreadable': return T('the article could not be prepared');
+        default: return T('unknown error');
     }
 }
 

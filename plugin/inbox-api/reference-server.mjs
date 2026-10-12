@@ -10,7 +10,10 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 export const LIMITS = {
-    maxBody: 4096,               // bytes per posted item
+    maxBody: 4096,               // create requests
+    maxItemBody: 200000,         // posted items (an article for the phone: gzipped, encrypted, about 140 KB at most)
+    maxItemData: 190000,         // characters of base64url ciphertext per item
+    maxWaitingBytes: 8000000,    // per inbox, total characters of waiting ciphertext
     maxWaiting: 200,             // unclaimed items per inbox
     postsPerHour: 60,            // per inbox
     createsPerHourPerIp: 20,
@@ -107,14 +110,16 @@ export function createInboxServer({ now = () => Date.now(), limits = {} } = {}) 
             // POST /aish_inboxes/{id}/items   (phone)
             if (rest.length === 2 && rest[1] === 'items' && method === 'POST') {
                 const box = auth(req, res, id, 'write'); if (!box) return;
-                const b = await readBody(req, L.maxBody);
+                const b = await readBody(req, L.maxItemBody);
                 if (b.tooLarge) return send(res, 413, { error: 'too-large' });
                 const j = b.json;
-                if (!j || j.v !== 1 || typeof j.data !== 'string' || !B64U_RE.test(j.data)) return send(res, 400, { error: 'bad-request' });
+                if (!j || (j.v !== 1 && j.v !== 2) || typeof j.data !== 'string' || !B64U_RE.test(j.data)) return send(res, 400, { error: 'bad-request' });
+                if (j.data.length > L.maxItemData) return send(res, 413, { error: 'too-large' });
                 if (box.items.length >= L.maxWaiting) return send(res, 429, { error: 'inbox-full' }, { 'Retry-After': '3600' });
+                if (box.items.reduce((n, it) => n + it.data.length, 0) + j.data.length > L.maxWaitingBytes) return send(res, 429, { error: 'inbox-full' }, { 'Retry-After': '3600' });
                 if (recent(box.posts, 3600e3).length >= L.postsPerHour) return send(res, 429, { error: 'rate-limited' }, { 'Retry-After': '600' });
                 box.posts.push(now());
-                const item = { id: crypto.randomBytes(8).toString('hex'), cursor: cur(++box.seq), receivedAt: now(), v: 1, data: j.data };
+                const item = { id: crypto.randomBytes(8).toString('hex'), cursor: cur(++box.seq), receivedAt: now(), v: j.v, data: j.data };
                 box.items.push(item);
                 return send(res, 202, { id: item.id });
             }
