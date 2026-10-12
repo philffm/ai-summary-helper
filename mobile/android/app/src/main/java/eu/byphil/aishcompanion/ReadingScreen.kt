@@ -35,7 +35,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
@@ -63,6 +65,19 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
     val current = model.articleList.firstOrNull { it.id == selected }
 
     LaunchedEffect(Unit) { model.reload() }
+
+    // Delete with a way back: the article waits in a bin while the snackbar offers Undo; it is gone for good when that goes away.
+    val deleteWithUndo: (String) -> Unit = { id ->
+        if (model.articles.trash(id)) {
+            model.reload()
+            onSelect("")
+            scope.launch {
+                val result = snackbar.showSnackbar("Article deleted", actionLabel = "Undo", withDismissAction = true, duration = SnackbarDuration.Long)
+                if (result == SnackbarResult.ActionPerformed) model.articles.restore(id) else model.articles.purge(id)
+                model.reload()
+            }
+        }
+    }
 
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -111,7 +126,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                         }
                     }
                 },
-                detail = { current?.let { ArticleReader(model, it.id, onClosed = { onSelect("") }, onOpenWeb = onOpenWeb) } },
+                detail = { current?.let { ArticleReader(model, it.id, onDelete = deleteWithUndo, onOpenWeb = onOpenWeb) } },
                 empty = { EmptyState("Pick an article", "Choose an article from the list to read it here.") },
             )
         }
@@ -120,7 +135,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-private fun ArticleReader(model: AppModel, id: String, onClosed: () -> Unit, onOpenWeb: (String) -> Unit) {
+private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Unit, onOpenWeb: (String) -> Unit) {
     val context = LocalContext.current
     var sent by remember(id) { mutableStateOf(false) }
     val article = remember(id) { model.articles.load(id) }
@@ -138,7 +153,7 @@ private fun ArticleReader(model: AppModel, id: String, onClosed: () -> Unit, onO
                         Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
                         if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
                         if (model.pairing != null) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
-                        OutlinedButton(onClick = { model.articles.delete(id); model.reload(); onClosed() }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
+                        OutlinedButton(onClick = { onDelete(id) }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
                     }
                 }
             }

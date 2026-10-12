@@ -13,6 +13,7 @@ data class ArticleMeta(val id: String, val title: String, val site: String, val 
  */
 class ArticleStore(context: Context) {
     private val dir = File(context.applicationContext.filesDir, "articles").apply { mkdirs() }
+    private val trashDir = File(context.applicationContext.filesDir, "articles-trash").apply { mkdirs() }
     private val prefs = context.applicationContext.getSharedPreferences("aish-read", Context.MODE_PRIVATE)
 
     companion object {
@@ -45,6 +46,28 @@ class ArticleStore(context: Context) {
     fun delete(id: String) {
         if (!ID.matches(id)) return
         File(dir, "$id.json").delete(); File(dir, "$id.meta").delete()
+        prefs.edit().remove(id).apply()
+    }
+
+    init { trashDir.listFiles()?.forEach { it.delete() } }   // a new process has no pending undo, so whatever is left in the bin is gone for good
+
+    /** Takes the article out of the list but keeps it in a bin until [purge] or [restore] (for "Undo"). One level: a newer trash replaces nothing, ids are separate files. */
+    fun trash(id: String): Boolean {
+        if (!ID.matches(id) || !File(dir, "$id.json").exists()) return false
+        File(dir, "$id.json").renameTo(File(trashDir, "$id.json")); File(dir, "$id.meta").renameTo(File(trashDir, "$id.meta"))
+        return true
+    }
+
+    fun restore(id: String): Boolean {
+        if (!ID.matches(id) || !File(trashDir, "$id.json").exists()) return false
+        File(trashDir, "$id.json").renameTo(File(dir, "$id.json")); File(trashDir, "$id.meta").renameTo(File(dir, "$id.meta"))
+        return true
+    }
+
+    /** Deletes a trashed article for good (and forgets that it was read). */
+    fun purge(id: String) {
+        if (!ID.matches(id)) return
+        File(trashDir, "$id.json").delete(); File(trashDir, "$id.meta").delete()
         prefs.edit().remove(id).apply()
     }
 
