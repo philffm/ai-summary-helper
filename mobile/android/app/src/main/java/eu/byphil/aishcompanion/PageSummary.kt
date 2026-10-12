@@ -55,17 +55,22 @@ object PageSummary {
     const val MAX_CHUNKS = 5        // longer pages are cut here; the start of an article carries the point
     const val MIN_TEXT = 200
 
-    fun system(lang: String) = "You summarise a web page for a reader who is short of time. " + SummaryLangs.rule(lang) + " " +
+    /** Marker line the model puts between the summary and the copied sentences (same request, so no extra model time). */
+    const val MARKER = "KEY SENTENCES:"
+    private const val COPY_RULE = "copy 3 to 5 sentences that carry the main points word for word, exactly as written in the text and in the text's own language, " +
+        "one per line, without numbering or quotation marks."
+
+    fun system(lang: String, marks: Boolean = false) = "You summarise a web page for a reader who is short of time. " + SummaryLangs.rule(lang) + " " +
         "Start with one sentence saying what the page is about, then give 3 to 5 short key points, one per line, each starting with '- '. " +
-        "Use only what the text says: no opinions, no added facts, no preamble, no markdown other than the leading '- '. Keep it under 150 words."
+        "Use only what the text says: no opinions, no added facts, no preamble, no markdown other than the leading '- '. Keep it under 150 words." +
+        (if (marks) " After the summary write a line saying exactly $MARKER and below it $COPY_RULE" else "")
     /** Notes on one part of a long page stay in the page's language; the final summary is written in the chosen one. */
-    const val SYSTEM_PART = "Condense this part of a longer web page into its key facts, as at most 5 short lines starting with '- '. " +
-        "Use only what the text says. Keep the language of the text."
+    fun systemPart(marks: Boolean = false) = "Condense this part of a longer web page into its key facts, as at most 5 short lines starting with '- '. " +
+        "Use only what the text says. Keep the language of the text." +
+        (if (marks) " After the lines write a line saying exactly $MARKER and below it copy 1 or 2 sentences of this part that carry its main points word for word, one per line, without numbering or quotation marks." else "")
     fun systemJoin(lang: String) = "These are notes from consecutive parts of one web page. Write the summary of the whole page: one sentence on what it is about, " +
         "then 3 to 5 key points, one per line, each starting with '- '. Use only the notes; no preamble. Keep it under 150 words. " + SummaryLangs.rule(lang, "the notes")
 
-    const val SYSTEM_PASSAGES = "From the text, copy the 3 to 5 sentences that carry its main points. Copy each one word for word, exactly as written in the text, " +
-        "one per line, with no numbering, no quotation marks and no comment."
     const val MAX_PASSAGES = 5
 
     /** Stable per link, so summarizing the same page again replaces its reading-list entry. Only characters ArticleStore accepts. */
@@ -125,33 +130,43 @@ object PageSummary {
         return out
     }
 
-    /** Asks the model for the key sentences of the page and keeps those it copied correctly. Blocking; empty when the model is missing or copied nothing right. */
-    fun passages(context: Context, page: Page): List<String> {
-        val parts = parts(page).take(2)
-        if (parts.isEmpty()) return emptyList()
-        val found = ArrayList<String>()
-        LocalLlm.session(context) { ask ->
-            for (p in parts) validPassages(ask(SYSTEM_PASSAGES, p), page).forEach { if (found.size < MAX_PASSAGES && found.none { f -> f == it }) found.add(it) }
-        }
-        return found
+    /** Splits a reply at the [MARKER] line: (summary text, the copied sentences after it, or null). */
+    fun splitReply(reply: String): Pair<String, String?> {
+        val m = Regex("(?im)^[\\s*#>_-]*key\\s+sentences?\\s*:?[\\s*_]*$").find(reply) ?: return reply to null
+        return reply.substring(0, m.range.first) to reply.substring(m.range.last + 1)
     }
 
-    /** Blocking; call off the main thread. [progress] gets (step, steps). Null when the model is missing or gave nothing usable. */
-    fun summarize(context: Context, page: Page, progress: (Int, Int) -> Unit = { _, _ -> }): String? {
+    /** What summarizing a page gives back: the summary, and (when asked for) the key sentences found in the page. */
+    data class Result(val text: String, val passages: List<String>)
+
+    /**
+     * Blocking; call off the main thread. [progress] gets (step, steps). Null when the model is missing or gave nothing usable.
+     * With [marks] the key sentences come out of the same requests as the summary (a short page is one request; a long page is
+     * one per part plus one to join the notes), so highlighting costs no extra model run.
+     */
+    fun summarize(context: Context, page: Page, marks: Boolean = Store(context).ghostMarks, progress: (Int, Int) -> Unit = { _, _ -> }): Result? {
         val parts = parts(page)
         if (parts.isEmpty()) return null
         val lang = Store(context).summaryLang
-        var result: String? = null
+        var text: String? = null
+        val found = ArrayList<String>()
+        val keep: (String?) -> Unit = { raw -> if (raw != null) for (p in validPassages(raw, page)) if (found.size < MAX_PASSAGES && found.none { it == p }) found.add(p) }
         LocalLlm.session(context) { ask ->
             if (parts.size == 1) {
                 progress(1, 1)
-                result = ask(system(lang), parts[0])
+                val (body, copied) = splitReply(ask(system(lang, marks), parts[0]) ?: "")
+                text = clean(body); if (marks) keep(copied)
             } else {
                 val total = parts.size + 1
-                val notes = parts.mapIndexedNotNull { i, p -> progress(i + 1, total); ask(SYSTEM_PART, p)?.let(::clean) }
-                if (notes.isNotEmpty()) { progress(total, total); result = ask(systemJoin(lang), notes.joinToString("\n\n")) }
+                val notes = parts.mapIndexedNotNull { i, p ->
+                    progress(i + 1, total)
+                    val (body, copied) = splitReply(ask(systemPart(marks), p) ?: "")
+                    if (marks) keep(copied)
+                    clean(body)
+                }
+                if (notes.isNotEmpty()) { progress(total, total); text = ask(systemJoin(lang), notes.joinToString("\n\n"))?.let(::clean) }
             }
         }
-        return result?.let(::clean)
+        return text?.let { Result(it, found.toList()) }
     }
 }

@@ -62,7 +62,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (String, Page, String) -> Unit = { _, _, _ -> }, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
@@ -89,12 +89,12 @@ fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (Stri
             if (page == null || !PageSummary.enough(page)) { status = "This page has no readable text to summarize."; busy = false; return@evaluateJavascript }
             scope.launch {
                 val result = withContext(Dispatchers.Default) {
-                    PageSummary.summarize(context, page) { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" }
+                    PageSummary.summarize(context, page, progress = { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" })
                 }
-                summary = result
+                summary = result?.text
                 if (result != null) {
                     summaryTitle = page.title.ifBlank { Uri.parse(pageUrl).host ?: pageUrl }; summaryUrl = pageUrl
-                    saved = runCatching { onSummarized(pageUrl, page, result) }.isSuccess   // into the reading list, marked "on this phone"
+                    saved = runCatching { onSummarized(pageUrl, page, result.text, result.passages) }.isSuccess   // into the reading list, marked "on this phone"
                 }
                 status = if (result == null) "The model could not summarize this page." else ""
                 busy = false

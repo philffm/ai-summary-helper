@@ -89,6 +89,13 @@ class PageSummaryExtrasTest {
         org.junit.Assert.assertTrue(a.highlights[0].ghost)
     }
 
+    @org.junit.Test fun replySplitsAtTheMarker() {
+        val (body, copied) = PageSummary.splitReply("About a budget.\n- one\n- two\n\n**KEY SENTENCES:**\nThe city council voted on Tuesday to approve the new budget after a long debate.")
+        org.junit.Assert.assertTrue(body.contains("- two") && !body.contains("KEY"))
+        org.junit.Assert.assertEquals(1, PageSummary.validPassages(copied, page).size)
+        org.junit.Assert.assertNull(PageSummary.splitReply("No marker here").second)
+    }
+
     @org.junit.Test fun languageRule() {
         org.junit.Assert.assertTrue(SummaryLangs.rule("").contains("language of the page"))
         org.junit.Assert.assertTrue(SummaryLangs.rule("de").contains("German"))
