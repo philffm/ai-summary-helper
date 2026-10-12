@@ -244,15 +244,40 @@ object FeedXml {
         for (i in 0 until minOf(arr.length(), MAX_ITEMS)) {
             val it = arr.getJSONObject(i)
             val author = it.optJSONArray("authors")?.optJSONObject(0)?.optString("name", "") ?: ""
-            build(it.optString("id", ""), htmlToText(it.optString("title", "")), it.optString("url", ""), it.optString("date_published", ""), author,
-                it.optString("summary", "").ifEmpty { it.optString("content_text", "") }, it.optString("content_html", "").ifEmpty { it.optString("content_text", "") },
-                it.optJSONArray("attachments")?.let { a -> (0 until a.length()).mapNotNull { k -> a.optJSONObject(k) }.firstOrNull { x -> audioLike(x.optString("url", ""), x.optString("mime_type", "")) }?.optString("url", "") } ?: "",
-                it.optJSONArray("attachments")?.optJSONObject(0)?.optInt("duration_in_seconds", 0) ?: 0)?.let(items::add)
+            val attachments = it.optJSONArray("attachments")
+            var audioUrl = ""
+            var audioDuration = 0
+            if (attachments != null) {
+                for (k in 0 until attachments.length()) {
+                    val att = attachments.optJSONObject(k) ?: continue
+                    val url = att.optString("url", "")
+                    val mime = att.optString("mime_type", "")
+                    if (audioLike(url, mime)) {
+                        audioUrl = url
+                        audioDuration = att.optInt("duration_in_seconds", 0)
+                        break
+                    }
+                }
+            }
+            val summaryHtml = it.optString("summary", "").ifEmpty { it.optString("content_text", "") }
+            val contentHtml = it.optString("content_html", "").ifEmpty { it.optString("content_text", "") }
+            val item = build(
+                guid = it.optString("id", ""),
+                title = htmlToText(it.optString("title", "")),
+                link = it.optString("url", ""),
+                date = it.optString("date_published", ""),
+                author = author,
+                descHtml = summaryHtml,
+                fullHtml = contentHtml,
+                audio = audioUrl,
+                duration = audioDuration
+            )
+            if (item != null) items.add(item)
         }
         ParsedFeed(htmlToText(o.optString("title", "")), o.optString("home_page_url", ""), items)
     } catch (_: Exception) { null }
 
-    /** True for an https audio file: an audio/* type, or a known audio file extension. Plain http is left out (Android blocks it). */
+    /** True for an https audio file: an audio/ mime type, or a known audio file extension. Plain http is left out (Android blocks it). */
     fun audioLike(url: String, type: String): Boolean =
         url.startsWith("https://") && (type.trim().lowercase().startsWith("audio/") || Regex("\\.(mp3|m4a|aac|ogg|oga|opus|wav)(\\?.*)?$", RegexOption.IGNORE_CASE).containsMatchIn(url))
 
@@ -303,7 +328,7 @@ object FeedXml {
         val out = ArrayList<String>()
         for (m in Regex("(?is)<link\\b[^>]*>").findAll(html)) {
             val tag = m.value
-            fun attr(name: String) = Regex("(?is)\\b$name\\s*=\\s*(\"([^\"]*)\"|'([^']*)'|([^\\s>]+))").find(tag)?.let { it.groupValues[2].ifEmpty { it.groupValues[3].ifEmpty { it.groupValues[4] } } } ?: ""
+            fun attr(name: String) = Regex("""(?is)\b""" + name + """\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))""").find(tag)?.let { it.groupValues[2].ifEmpty { it.groupValues[3].ifEmpty { it.groupValues[4] } } } ?: ""
             val rel = attr("rel").lowercase(); val type = attr("type").lowercase()
             if ("alternate" in rel && (type.contains("rss") || type.contains("atom") || type.contains("feed+json") || type == "application/json")) {
                 val u = resolve(base, decodeXml(attr("href")))
