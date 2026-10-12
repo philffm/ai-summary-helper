@@ -78,7 +78,7 @@ class AppModel(context: Context) {
     }
 
     /** null on success, else a short reason for the UI. */
-    suspend fun addFeed(input: String, folder: String): String? = withContext(Dispatchers.IO) {
+    suspend fun addFeed(input: String, tagText: String): String? = withContext(Dispatchers.IO) {
         when (val r = FeedFetcher.lookup(input)) {
             is FeedLookup.Failed -> when (r.reason) {
                 "invalid", "empty" -> "That is not a web address."
@@ -88,7 +88,7 @@ class AppModel(context: Context) {
             }
             is FeedLookup.Found -> {
                 val now = System.currentTimeMillis()
-                val f = feedStore.add(r.url, r.feed.title, if (folder.isBlank()) emptyList() else listOf(folder), now)
+                val f = feedStore.add(r.url, r.feed.title, parseTags(tagText), now)
                 if (f == null) "Already subscribed."
                 else {
                     feedStore.saveItems(f.url, r.feed.items)
@@ -106,8 +106,9 @@ class AppModel(context: Context) {
         if (pairing?.canSync == true) syncFeeds()
     }
 
-    suspend fun setFolder(url: String, folder: String) = withContext(Dispatchers.IO) {
-        feedStore.update(url) { it.copy(tags = if (folder.isBlank()) emptyList() else listOf(folder.trim().take(40))) }; reload()
+    /** Replaces the feed's tags with the comma-separated [tagText]. The extension's tags are all kept and shown; nothing is reduced to one folder. */
+    suspend fun setTags(url: String, tagText: String) = withContext(Dispatchers.IO) {
+        feedStore.update(url) { it.copy(tags = parseTags(tagText)) }; reload()
         if (pairing?.canSync == true) syncFeeds()
     }
 
@@ -175,7 +176,10 @@ class AppModel(context: Context) {
         } finally { checking = false }
     }
 
-    companion object { const val STALE_MS = 30L * 60 * 1000 }
+    companion object {
+        const val STALE_MS = 30L * 60 * 1000
+        fun parseTags(text: String): List<String> = FeedSync.cleanTags(text.split(',', ';'))
+    }
 }
 
 /** Refreshes the feeds and syncs the list once an hour while online. */

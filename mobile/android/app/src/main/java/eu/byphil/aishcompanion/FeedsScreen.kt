@@ -62,10 +62,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
-/** "all", "folder:<name>" or "feed:<url>". */
+/** "all", "folder:<tag>" (a tag of the feed in the extension) or "feed:<url>". */
 private fun matches(source: String, e: FeedEntryRef): Boolean = when {
     source == "all" -> true
-    source.startsWith("folder:") -> e.feed.folder == source.removePrefix("folder:")
+    source.startsWith("folder:") -> source.removePrefix("folder:") in e.feed.tags
     source.startsWith("feed:") -> e.feed.url == source.removePrefix("feed:")
     else -> true
 }
@@ -155,7 +155,7 @@ fun FeedsScreen(
     }
 
     if (showAdd) FieldDialog(
-        title = "Add feed", label = "Feed or website address", label2 = "Folder (optional)", confirm = "Add", error = addError, busy = adding,
+        title = "Add feed", label = "Feed or website address", label2 = "Tags (optional, separated by commas)", confirm = "Add", error = addError, busy = adding,
         onDismiss = { showAdd = false },
         onConfirm = { url, folder ->
             scope.launch {
@@ -212,7 +212,7 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
     }
 }
 
-/** Folders and feeds: pick a source, rename, move to a folder, remove. */
+/** Tags (shown as folders; a feed with several tags appears under each) and feeds: pick a source, rename, edit tags, remove. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SourcesSheet(model: AppModel, source: String, onPick: (String) -> Unit, onDismiss: () -> Unit) {
@@ -220,21 +220,21 @@ private fun SourcesSheet(model: AppModel, source: String, onPick: (String) -> Un
     var menuFor by remember { mutableStateOf<String?>(null) }
     var renaming by remember { mutableStateOf<Feed?>(null) }
     var moving by remember { mutableStateOf<Feed?>(null) }
-    val folders = model.feeds.map { it.folder }.filter { it.isNotEmpty() }.distinct().sorted()
+    val folders = model.feeds.flatMap { it.tags }.distinct().sorted()
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
             SourceRow("All feeds", model.entries.count { !it.stored.read }, source == "all") { onPick("all") }
             for (folder in folders) {
-                SourceRow(folder, model.entries.count { it.feed.folder == folder && !it.stored.read }, source == "folder:$folder", bold = true) { onPick("folder:$folder") }
-                for (f in model.feeds.filter { it.folder == folder }) FeedRow(model, f, source, menuFor, { menuFor = it }, onPick, { renaming = it }, { moving = it }, scope)
+                SourceRow(folder, model.entries.count { folder in it.feed.tags && !it.stored.read }, source == "folder:$folder", bold = true) { onPick("folder:$folder") }
+                for (f in model.feeds.filter { folder in it.tags }) FeedRow(model, f, source, menuFor, { menuFor = it }, onPick, { renaming = it }, { moving = it }, scope)
             }
-            val loose = model.feeds.filter { it.folder.isEmpty() }
-            if (loose.isNotEmpty() && folders.isNotEmpty()) Text("No folder", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 24.dp, top = 12.dp, bottom = 4.dp))
+            val loose = model.feeds.filter { it.tags.isEmpty() }
+            if (loose.isNotEmpty() && folders.isNotEmpty()) Text("No tag", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 24.dp, top = 12.dp, bottom = 4.dp))
             for (f in loose) FeedRow(model, f, source, menuFor, { menuFor = it }, onPick, { renaming = it }, { moving = it }, scope)
         }
     }
     renaming?.let { f -> FieldDialog("Rename feed", "Name", f.name, confirm = "Save", onDismiss = { renaming = null }, onConfirm = { a, _ -> scope.launch { model.rename(f.url, a) }; renaming = null }) }
-    moving?.let { f -> FieldDialog("Move to folder", "Folder (empty for none)", f.folder, confirm = "Save", onDismiss = { moving = null }, onConfirm = { a, _ -> scope.launch { model.setFolder(f.url, a) }; moving = null }) }
+    moving?.let { f -> FieldDialog("Edit tags", "Tags, separated by commas (empty for none)", f.tags.joinToString(", "), confirm = "Save", onDismiss = { moving = null }, onConfirm = { a, _ -> scope.launch { model.setTags(f.url, a) }; moving = null }) }
 }
 
 @Composable
@@ -268,7 +268,7 @@ private fun FeedRow(model: AppModel, f: Feed, source: String, menuFor: String?, 
             IconButton(onClick = { setMenu(f.url) }) { Icon(Icons.Filled.MoreVert, contentDescription = "More") }
             DropdownMenu(expanded = menuFor == f.url, onDismissRequest = { setMenu(null) }) {
                 DropdownMenuItem(text = { Text("Rename") }, onClick = { setMenu(null); rename(f) })
-                DropdownMenuItem(text = { Text("Move to folder") }, onClick = { setMenu(null); move(f) })
+                DropdownMenuItem(text = { Text("Edit tags") }, onClick = { setMenu(null); move(f) })
                 DropdownMenuItem(text = { Text("Remove") }, onClick = { setMenu(null); scope.launch { model.removeFeed(f.url) } })
             }
         }
