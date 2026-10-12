@@ -25,7 +25,7 @@ const worker = {
     },
     generateRecap: async () => ({}), generateRecapUpdate: async () => ({}),
     uiLanguage: async () => ({ code: 'en', name: 'English' }), loadLexicon: async () => {}, saveLexicon: async () => {},
-    learnTagNames: async () => 0,
+    learnTagNames: async () => 0, setAiDetail: () => {},
     generateFeedTopics: async () => { topicCalls++; return { tags: ['News', 'World'], lang: 'en' }; }
 };
 const SK = {

@@ -4717,5 +4717,14 @@
   },
   "f_the_first_reply_was_unreadab_6510": {
     "message": "la prima risposta era illeggibile, quindi è stata richiesta di nuovo"
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "Titoli + descrizioni"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "Solo titoli (più veloce)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 Cosa legge l'IA"
   }
 }

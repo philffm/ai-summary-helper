@@ -4717,5 +4717,14 @@
   },
   "f_the_first_reply_was_unreadab_6510": {
     "message": "पहला उत्तर पढ़ने योग्य नहीं था, इसलिए दोबारा पूछा गया"
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "शीर्षक + विवरण"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "केवल शीर्षक (तेज़)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 AI क्या पढ़ता है"
   }
 }

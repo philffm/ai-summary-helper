@@ -4717,5 +4717,14 @@
   },
   "f_the_first_reply_was_unreadab_6510": {
     "message": "كان الرد الأول غير مقروء، لذلك أُعيد الطلب"
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "العناوين + الأوصاف"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "العناوين فقط (أسرع)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 ما يقرأه الذكاء الاصطناعي"
   }
 }

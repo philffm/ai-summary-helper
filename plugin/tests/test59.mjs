@@ -34,7 +34,7 @@ st2.stop();
 // Reset button exists in both recap UIs (source check; the sheets need the full feed UI).
 import fs from 'fs';
 const here = new URL('../src/modules/', import.meta.url);
-assert(/confirmBtn\(T\('Reset'\)/.test(fs.readFileSync(new URL('feedManager.js', here), 'utf8')));
+assert(/confirmBtn\([^)]*T\('Reset'\)/.test(fs.readFileSync(new URL('feedManager.js', here), 'utf8')));
 assert(/refreshFromScratch/.test(fs.readFileSync(new URL('feedRollup.js', here), 'utf8')));
 // Follow-up answers: HTML / fences / comments become clean text; SOURCES still parsed; streaming preview hides SOURCES.
 const { cleanAnswer, answerPreview, parseAnswer } = await imp('modules/conversation.js');

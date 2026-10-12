@@ -4717,5 +4717,14 @@
   },
   "f_the_first_reply_was_unreadab_6510": {
     "message": "最初の返答が読み取れなかったため、再度問い合わせました"
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "タイトル＋説明"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "タイトルのみ（高速）"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 AIが読む内容"
   }
 }

@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1354. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1354 | 0 | 0 | 47 |
-| de | 1354 | 0 | 0 | 201 |
-| es | 1354 | 0 | 0 | 181 |
-| fr | 1354 | 0 | 0 | 211 |
-| hi | 1354 | 0 | 0 | 83 |
-| it | 1354 | 0 | 0 | 180 |
-| ja | 1354 | 0 | 0 | 94 |
-| ko | 1354 | 0 | 0 | 25 |
-| pt_PT | 1354 | 0 | 0 | 173 |
-| ru | 1354 | 0 | 0 | 114 |
-| zh_CN | 1354 | 0 | 0 | 2 |
-| zh_HK | 1354 | 0 | 0 | 2 |
-| zh_TW | 1354 | 0 | 0 | 2 |
+| ar | 1359 | 0 | 0 | 47 |
+| de | 1359 | 0 | 0 | 201 |
+| es | 1359 | 0 | 0 | 181 |
+| fr | 1359 | 0 | 0 | 212 |
+| hi | 1359 | 0 | 0 | 83 |
+| it | 1359 | 0 | 0 | 180 |
+| ja | 1359 | 0 | 0 | 94 |
+| ko | 1359 | 0 | 0 | 25 |
+| pt_PT | 1359 | 0 | 0 | 173 |
+| ru | 1359 | 0 | 0 | 114 |
+| zh_CN | 1359 | 0 | 0 | 2 |
+| zh_HK | 1359 | 0 | 0 | 2 |
+| zh_TW | 1359 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -603,6 +603,7 @@ Strings: 1354. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Pick a name for your show: | Choisissez un nom pour votre émission : | 39 vs 26 | 1.5× |
 | Select summaries | Sélectionner des résumés | 24 vs 16 | 1.5× |
 | Sign in to use byPhil Cloud models | Connecte-toi pour utiliser les modèles byPhil Cloud | 51 vs 34 | 1.5× |
+| Titles only (faster) | Titres seulement (plus rapide) | 30 vs 20 | 1.5× |
 | Type {word} to confirm | Saisissez {word} pour confirmer | 27 vs 18 | 1.5× |
 | 🎓 Mark as paper | 🎓 Marquer comme article | 24 vs 16 | 1.5× |
 | 🔄 Refresh feeds every | 🔄 Actualiser les flux toutes les | 33 vs 22 | 1.5× |

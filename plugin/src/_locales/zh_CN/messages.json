@@ -4717,5 +4717,14 @@
   },
   "f_the_first_reply_was_unreadab_6510": {
     "message": "第一次回复无法解析，因此重新请求了一次"
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "标题 + 描述"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "仅标题（更快）"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 AI 读取的内容"
   }
 }
