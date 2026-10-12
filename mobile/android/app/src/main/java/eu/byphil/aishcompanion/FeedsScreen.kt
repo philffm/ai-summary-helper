@@ -25,6 +25,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.filled.RssFeed
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -93,6 +94,7 @@ fun FeedsScreen(
     val snackbar = remember { SnackbarHostState() }
     var showSources by remember { mutableStateOf(false) }
     var showAdd by remember { mutableStateOf(false) }
+    var showBriefing by remember { mutableStateOf(false) }
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var addError by remember { mutableStateOf<String?>(null) }
@@ -122,6 +124,7 @@ fun FeedsScreen(
                     IconButton(onClick = { scope.launch { val n = model.refreshAll(); snackbar.showSnackbar(if (n == 0) "No new items." else "$n new items.") } }, enabled = !model.refreshing) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
                     }
+                    IconButton(onClick = { showBriefing = true }) { Icon(Icons.Filled.WbSunny, contentDescription = "Today's briefing") }
                     IconButton(onClick = { scope.launch { snackbar.showSnackbar(model.rateMood()) } }, enabled = !model.rating) {
                         Icon(Icons.Filled.Mood, contentDescription = "Rate by mood with the on-device AI")
                     }
@@ -169,18 +172,8 @@ fun FeedsScreen(
         }
     }
 
-    if (showAdd) FieldDialog(
-        title = "Add feed", label = "Feed or website address", label2 = "Tags (optional, separated by commas)", confirm = "Add", error = addError, busy = adding,
-        onDismiss = { showAdd = false },
-        onConfirm = { url, folder ->
-            scope.launch {
-                adding = true; addError = null
-                val err = model.addFeed(url, folder)
-                adding = false
-                if (err == null) { showAdd = false; snackbar.showSnackbar("Feed added.") } else addError = err
-            }
-        },
-    )
+    if (showAdd) AddFeedDialog(model, onDismiss = { showAdd = false }, onAdded = { showAdd = false; scope.launch { snackbar.showSnackbar("Feed added.") } })
+    if (showBriefing) BriefingDialog(model) { showBriefing = false }
     if (showSources) SourcesSheet(model, source, onPick = { onSource(it); onSelect(""); showSources = false }, onDismiss = { showSources = false })
 }
 

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "note": "Starter feeds offered by Add feed in the browser extension and the Android app. The app reads this file from GitHub (and ships a copy). Keep it in step with SUGGESTED_FEEDS in plugin/src/modules/feedManager.js (a test checks the addresses).",
+  "feeds": [
+    { "name": "Street Phil-osophy", "tags": ["Podcast", "Design", "Independent"], "note": "Podcast by the author · design, life & tech", "url": "https://philwornath.com/api/podcast.xml", "icon": "🎧" },
+    { "name": "BBC News", "tags": ["News"], "note": "World news", "url": "https://feeds.bbci.co.uk/news/rss.xml", "icon": "🌍" },
+    { "name": "DW", "tags": ["News"], "note": "Deutsche Welle · top stories", "url": "https://rss.dw.com/rdf/rss-en-top", "icon": "📡" },
+    { "name": "Al Jazeera", "tags": ["News"], "note": "World news", "url": "https://www.aljazeera.com/xml/rss/all.xml", "icon": "🗞️" },
+    { "name": "ProPublica", "tags": ["Independent", "News"], "note": "Independent investigative journalism", "url": "https://www.propublica.org/feeds/propublica/main", "icon": "🔎" },
+    { "name": "404 Media", "tags": ["Independent", "Tech"], "note": "Independent tech journalism", "url": "https://www.404media.co/rss/", "icon": "💾" },
+    { "name": "The Markup", "tags": ["Independent", "Tech"], "note": "Independent tech accountability", "url": "https://themarkup.org/feeds/rss.xml", "icon": "🔬" }
+  ]
+}

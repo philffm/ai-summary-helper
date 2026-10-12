@@ -35,6 +35,8 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
         }
     }
+    // The starter feeds live in the repo (shared/suggested-feeds.json); the app ships a copy and refreshes it from GitHub.
+    sourceSets.getByName("main").assets.srcDir(rootProject.projectDir.resolve("../../shared"))
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
