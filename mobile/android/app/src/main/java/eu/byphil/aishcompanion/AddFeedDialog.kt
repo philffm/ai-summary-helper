@@ -20,11 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -37,33 +35,33 @@ import kotlinx.coroutines.withContext
 fun AddFeedDialog(model: AppModel, onDismiss: () -> Unit, onAdded: (String) -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    var address by remember { mutableStateOf("") }
-    var tags by remember { mutableStateOf("") }
-    var error by remember { mutableStateOf<String?>(null) }
-    var busy by remember { mutableStateOf(false) }
-    var suggestions by remember { mutableStateOf(SuggestedFeeds.load(context)) }
-    LaunchedEffect(Unit) { suggestions = withContext(Dispatchers.IO) { SuggestedFeeds.refresh(context) } }
+    val address = remember { mutableStateOf("") }
+    val tags = remember { mutableStateOf("") }
+    val error = remember { mutableStateOf<String?>(null) }
+    val busy = remember { mutableStateOf(false) }
+    val suggestions = remember { mutableStateOf(SuggestedFeeds.load(context)) }
+    LaunchedEffect(Unit) { suggestions.value = withContext(Dispatchers.IO) { SuggestedFeeds.refresh(context) } }
 
     val have = model.feeds.map { it.url }.toSet()
-    val shown = suggestions.filter { it.url !in have }
+    val shown = suggestions.value.filter { it.url !in have }
 
-    fun add(url: String, tagText: String) {
+    val add: (String, String) -> Unit = { url, tagText ->
         scope.launch {
-            busy = true; error = null
+            busy.value = true; error.value = null
             val err = model.addFeed(url, tagText)
-            busy = false
-            if (err == null) onAdded(url) else error = err
+            busy.value = false
+            if (err == null) onAdded(url) else error.value = err
         }
     }
 
     AlertDialog(
-        onDismissRequest = { if (!busy) onDismiss() },
+        onDismissRequest = { if (!busy.value) onDismiss() },
         title = { Text("Add feed") },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()).heightIn(max = 460.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                OutlinedTextField(address, { address = it }, label = { Text("Feed or website address") }, singleLine = true, modifier = Modifier.fillMaxWidth(), isError = error != null)
-                OutlinedTextField(tags, { tags = it }, label = { Text("Tags (optional, separated by commas)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                if (error != null) Text(error!!, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                OutlinedTextField(address.value, { address.value = it }, label = { Text("Feed or website address") }, singleLine = true, modifier = Modifier.fillMaxWidth(), isError = error.value != null)
+                OutlinedTextField(tags.value, { tags.value = it }, label = { Text("Tags (optional, separated by commas)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                error.value?.let { msg -> Text(msg, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
                 if (shown.isNotEmpty()) {
                     HorizontalDivider()
                     Text("Suggested", style = MaterialTheme.typography.titleSmall)
@@ -73,13 +71,13 @@ fun AddFeedDialog(model: AppModel, onDismiss: () -> Unit, onAdded: (String) -> U
                             leadingContent = { Text(f.icon, style = MaterialTheme.typography.titleLarge) },
                             headlineContent = { Text(f.name) },
                             supportingContent = { Text(listOf(f.note, f.tags.joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), maxLines = 2) },
-                            trailingContent = { IconButton(onClick = { add(f.url, f.tags.joinToString(",")) }, enabled = !busy) { Icon(Icons.Filled.Add, contentDescription = "Add ${f.name}") } },
+                            trailingContent = { IconButton(onClick = { add(f.url, f.tags.joinToString(",")) }, enabled = !busy.value) { Icon(Icons.Filled.Add, contentDescription = "Add ${f.name}") } },
                         )
                     }
                 }
             }
         },
-        confirmButton = { TextButton(onClick = { add(address, tags) }, enabled = !busy && address.isNotBlank()) { Text(if (busy) "Working…" else "Add") } },
-        dismissButton = { TextButton(onClick = onDismiss, enabled = !busy) { Text("Cancel") } },
+        confirmButton = { TextButton(onClick = { add(address.value, tags.value) }, enabled = !busy.value && address.value.isNotBlank()) { Text(if (busy.value) "Working…" else "Add") } },
+        dismissButton = { TextButton(onClick = onDismiss, enabled = !busy.value) { Text("Cancel") } },
     )
 }

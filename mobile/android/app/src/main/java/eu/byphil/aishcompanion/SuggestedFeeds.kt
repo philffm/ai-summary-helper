@@ -14,7 +14,7 @@ data class SuggestedFeed(val name: String, val url: String, val tags: List<Strin
  * Order of use: refreshed copy, else the shipped one. A broken download never replaces a good list.
  */
 object SuggestedFeeds {
-    const val URL = "https://raw.githubusercontent.com/philffm/ai-summary-helper/main/shared/suggested-feeds.json"
+    const val SOURCE_URL = "https://raw.githubusercontent.com/philffm/ai-summary-helper/main/shared/suggested-feeds.json"
     private const val FILE = "suggested-feeds.json"
     private const val MAX_BYTES = 100_000
 
@@ -40,7 +40,7 @@ object SuggestedFeeds {
     /** Blocking. Fetches the list from the repo and keeps it when it parses; returns the list to show (new, else what was there). */
     fun refresh(context: Context): List<SuggestedFeed> {
         runCatching {
-            val c = URL(URL).openConnection() as HttpURLConnection
+            val c = URL(SOURCE_URL).openConnection() as HttpURLConnection
             c.connectTimeout = 8000; c.readTimeout = 8000; c.instanceFollowRedirects = false
             if (c.responseCode == 200) {
                 val bytes = c.inputStream.use { it.readNBytes(MAX_BYTES + 1) }
