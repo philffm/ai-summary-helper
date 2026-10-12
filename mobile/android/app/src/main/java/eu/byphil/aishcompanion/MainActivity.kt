@@ -52,6 +52,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()   // content is drawn under the system bars; the screens pad themselves
+        CrashLog.install(this)
+        CrashLog.read(this)?.let { crash ->
+            // The last run crashed: show why instead of risking the same crash again.
+            setContent {
+                AishTheme {
+                    CrashScreen(
+                        crash,
+                        onSafeStart = { Store(this).let { it.alarm = it.alarm.copy(enabled = false) }; AlarmScheduler.reschedule(this); CrashLog.clear(this); recreate() },
+                        onOpenAnyway = { CrashLog.clear(this); recreate() },
+                    )
+                }
+            }
+            return
+        }
         val model = AppModel(this)
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
