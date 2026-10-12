@@ -31,6 +31,8 @@ class AppModel(context: Context) {
     var entries by mutableStateOf(feedStore.everything())
     var articleList by mutableStateOf(articles.list())
     var alarm by mutableStateOf(store.alarm)
+    /** The Pro license key (from the pairing code or typed in); empty when there is none. */
+    var license by mutableStateOf(store.license)
     /** Why the alarm could not be set, for the settings card. */
     var alarmError by mutableStateOf<String?>(null)
     var refreshing by mutableStateOf(false)
@@ -52,8 +54,12 @@ class AppModel(context: Context) {
 
     fun applyPairing(p: Pairing?) {
         store.pairing = p; store.lastError = null; pairing = p
+        if (p == null) saveLicense("")   // unpairing also forgets the Pro key
+        else p.license?.let { saveLicense(it) }   // a key in the code replaces the one entered by hand
         if (p?.canReceive == true) ReceiveWorker.schedule(app) else ReceiveWorker.cancel(app)
     }
+
+    fun saveLicense(key: String) { store.license = key; license = store.license }
 
     /** Saves the alarm settings and sets the system alarm to match. */
     fun changeAlarm(next: AlarmSettings) {

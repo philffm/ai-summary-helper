@@ -161,10 +161,18 @@ private fun formatTime(hour: Int, minute: Int, is24: Boolean): String =
 fun ExtrasCard(model: AppModel) {
     val a = model.alarm
     val scope = rememberCoroutineScope()
-    var license by remember { mutableStateOf(model.store.license) }
+    val saved = model.license
+    var license by remember(saved) { mutableStateOf(saved) }
     var prompt by remember { mutableStateOf(a.extraPrompt) }
     var busy by remember { mutableStateOf(false) }
     var result by remember { mutableStateOf<String?>(null) }
+    var status by remember { mutableStateOf<String?>(null) }
+
+    fun checkLicense(key: String) {
+        status = "Checking…"
+        scope.launch { status = Account.describe(withContext(Dispatchers.IO) { Account.check(key) }) }
+    }
+    androidx.compose.runtime.LaunchedEffect(saved) { if (saved.isNotBlank()) checkLicense(saved) else status = null }
 
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -175,14 +183,18 @@ fun ExtrasCard(model: AppModel) {
                 }
                 Switch(checked = a.extraOn, onCheckedChange = { model.changeAlarm(a.copy(extraOn = it)) })
             }
+            OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key (from the extension code or pasted)") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                OutlinedButton(enabled = license.isNotBlank() && license.trim() != saved, onClick = { model.saveLicense(license) }) { Text("Save key") }
+                status?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f)) }
+            }
             if (a.extraOn) {
                 Text("Only the prompt below, today's date and your language are sent, with your Pro license key, to api.byphil.eu. Your feeds and reading list never leave the phone. The cloud AI cannot look things up, so ask for facts and stories, not live data.", style = MaterialTheme.typography.bodySmall)
-                OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
                 OutlinedTextField(prompt, { prompt = it.take(CloudExtra.MAX_PROMPT) }, Modifier.fillMaxWidth(), label = { Text("What should it say? (empty: a fun fact)") }, maxLines = 3)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Button(onClick = { model.store.license = license; model.changeAlarm(a.copy(extraPrompt = prompt.trim())) }) { Text("Save") }
+                    Button(onClick = { model.changeAlarm(a.copy(extraPrompt = prompt.trim())) }) { Text("Save prompt") }
                     OutlinedButton(enabled = !busy && license.isNotBlank(), onClick = {
-                        busy = true; model.store.license = license
+                        busy = true; model.saveLicense(license)
                         scope.launch {
                             val text = withContext(Dispatchers.IO) { CloudExtra.fetch(license, prompt) }
                             result = text ?: "No answer. Check the license key, your monthly allowance and the connection."
