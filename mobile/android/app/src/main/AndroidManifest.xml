@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Setting an alarm-clock alarm needs one of these. USE_EXACT_ALARM (Android 13+) is granted automatically to alarm-clock apps;
+         Android 12 uses SCHEDULE_EXACT_ALARM, which the user can switch off in system settings. -->
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
