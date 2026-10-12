@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -20,6 +21,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -98,7 +101,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                                 if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
-                                                Text(listOf(a.site, relativeTime(a.receivedAt)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                                Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Summarized on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                             }
                                             Text(a.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
                                         }
@@ -115,8 +118,11 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
     }
 }
 
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
 private fun ArticleReader(model: AppModel, id: String, onClosed: () -> Unit, onOpenWeb: (String) -> Unit) {
+    val context = LocalContext.current
+    var sent by remember(id) { mutableStateOf(false) }
     val article = remember(id) { model.articles.load(id) }
     LaunchedEffect(id) { model.articles.markRead(id) }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
@@ -128,8 +134,10 @@ private fun ArticleReader(model: AppModel, id: String, onClosed: () -> Unit, onO
                     Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                     val meta = listOf(article.byline, article.site).filter { it.isNotBlank() }.joinToString(" · ")
                     if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 4.dp)) {
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(top = 4.dp)) {
                         Button(onClick = { onOpenWeb(article.url) }) { Text("Read original") }
+                        if (article.summary.isNotBlank()) OutlinedButton(onClick = { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) }) { Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share") }
+                        if (model.pairing != null) OutlinedButton(onClick = { SendWorker.enqueue(context, article.url); sent = true }, enabled = !sent) { Text(if (sent) "Sent" else "To browser") }
                         OutlinedButton(onClick = { model.articles.delete(id); model.reload(); onClosed() }) { Icon(Icons.Filled.Delete, null, Modifier.size(18.dp)); Text("  Delete") }
                     }
                 }
@@ -137,7 +145,7 @@ private fun ArticleReader(model: AppModel, id: String, onClosed: () -> Unit, onO
             if (article.summary.isNotBlank()) item {
                 Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text("AISH summary", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                        Text(if (article.local) "Summary · made on this phone" else "AISH summary", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                         PlainText(article.summary)
                     }
                 }

@@ -12,6 +12,9 @@ import android.webkit.WebViewClient
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -59,7 +62,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, canSend: Boolean = false, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, onSummarized: suspend (String, Page, String) -> Unit = { _, _, _ -> }, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
@@ -70,13 +73,17 @@ fun WebScreen(url: String, canSend: Boolean = false, onClose: () -> Unit) {
     var status by remember { mutableStateOf("") }      // progress or error text while/after summarizing
     var busy by remember { mutableStateOf(false) }
     var sent by remember { mutableStateOf(false) }
+    var saved by remember { mutableStateOf(false) }
+    var summaryTitle by remember { mutableStateOf("") }
+    var summaryUrl by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
     fun summarize() {
         val view = web ?: return
         if (busy) return
         if (!LocalLlm.installed(context)) { status = "Download the on-device model in Settings first."; return }
-        busy = true; status = "Reading the page…"; summary = null
+        val pageUrl = shown
+        busy = true; status = "Reading the page…"; summary = null; saved = false
         view.evaluateJavascript(PageExtract.SCRIPT) { raw ->
             val page = PageExtract.parse(raw)
             if (page == null || !PageSummary.enough(page)) { status = "This page has no readable text to summarize."; busy = false; return@evaluateJavascript }
@@ -85,6 +92,10 @@ fun WebScreen(url: String, canSend: Boolean = false, onClose: () -> Unit) {
                     PageSummary.summarize(context, page) { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" }
                 }
                 summary = result
+                if (result != null) {
+                    summaryTitle = page.title.ifBlank { Uri.parse(pageUrl).host ?: pageUrl }; summaryUrl = pageUrl
+                    saved = runCatching { onSummarized(pageUrl, page, result) }.isSuccess   // into the reading list, marked "on this phone"
+                }
                 status = if (result == null) "The model could not summarize this page." else ""
                 busy = false
             }
@@ -120,6 +131,12 @@ fun WebScreen(url: String, canSend: Boolean = false, onClose: () -> Unit) {
                         IconButton(onClick = { summary = null }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
                     }
                     Text(text, Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState()), style = MaterialTheme.typography.bodyMedium)
+                    Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilledTonalButton(onClick = { shareText(context, summaryTitle, PageSummary.shareText(summaryTitle, text, summaryUrl)) }) {
+                            Icon(Icons.Filled.Share, null, Modifier.size(18.dp)); Text("  Share")
+                        }
+                        if (saved) Text("Saved to reading list", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
                 }
             }
         }

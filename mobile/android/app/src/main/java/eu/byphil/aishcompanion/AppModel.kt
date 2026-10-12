@@ -54,6 +54,14 @@ class AppModel(context: Context) {
         pairing = store.pairing
     }
 
+    /** Puts a page summarized on the phone into the reading list (marked as local; same link replaces the old entry). */
+    suspend fun saveSummary(url: String, page: Page, summary: String) = withContext(Dispatchers.IO) {
+        val json = PageSummary.articleJson(url, page, summary, System.currentTimeMillis())
+        val id = PageSummary.localId(url)
+        articles.save(ArticleCodec.parse(json, id), json, System.currentTimeMillis())
+        articleList = articles.list()
+    }
+
     fun applyPairing(p: Pairing?) {
         store.pairing = p; store.lastError = null; pairing = p
         if (p == null) saveLicense("")   // unpairing also forgets the Pro key

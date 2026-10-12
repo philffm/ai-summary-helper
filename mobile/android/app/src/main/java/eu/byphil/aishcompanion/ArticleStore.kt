@@ -5,7 +5,7 @@ import org.json.JSONObject
 import java.io.File
 
 /** What the list needs, without parsing the whole article. */
-data class ArticleMeta(val id: String, val title: String, val site: String, val url: String, val receivedAt: Long, val blocks: Int)
+data class ArticleMeta(val id: String, val title: String, val site: String, val url: String, val receivedAt: Long, val blocks: Int, val local: Boolean = false)
 
 /**
  * Articles that arrived from the browser, in app-private storage (other apps cannot read it; it is removed when the app is
@@ -27,7 +27,7 @@ class ArticleStore(context: Context) {
         File(dir, "${article.id}.json").writeText(json)
         File(dir, "${article.id}.meta").writeText(
             JSONObject().put("id", article.id).put("title", article.title.ifBlank { article.url }).put("site", article.site)
-                .put("url", article.url).put("receivedAt", receivedAt).put("blocks", article.blocks.size).toString(),
+                .put("url", article.url).put("receivedAt", receivedAt).put("blocks", article.blocks.size).put("local", article.local).toString(),
         )
     }
 
@@ -35,7 +35,7 @@ class ArticleStore(context: Context) {
         (dir.listFiles { f -> f.extension == "meta" } ?: emptyArray()).mapNotNull { f ->
             runCatching {
                 val o = JSONObject(f.readText())
-                ArticleMeta(o.getString("id"), o.getString("title"), o.optString("site"), o.getString("url"), o.optLong("receivedAt"), o.optInt("blocks"))
+                ArticleMeta(o.getString("id"), o.getString("title"), o.optString("site"), o.getString("url"), o.optLong("receivedAt"), o.optInt("blocks"), o.optBoolean("local", false))
             }.getOrNull()
         }.sortedByDescending { it.receivedAt }
 

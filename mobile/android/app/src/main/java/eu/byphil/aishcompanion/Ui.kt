@@ -201,3 +201,10 @@ fun InfoCard(title: String, body: String, isError: Boolean = false, content: (@C
         }
     }
 }
+
+/** Opens the system share sheet (WhatsApp, Signal, mail, ...) with plain text. */
+fun shareText(context: android.content.Context, subject: String, text: String) {
+    val send = android.content.Intent(android.content.Intent.ACTION_SEND).setType("text/plain")
+        .putExtra(android.content.Intent.EXTRA_SUBJECT, subject).putExtra(android.content.Intent.EXTRA_TEXT, text)
+    context.startActivity(android.content.Intent.createChooser(send, null).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK))
+}

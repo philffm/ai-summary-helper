@@ -6,7 +6,7 @@ import org.json.JSONObject
 import org.json.JSONTokener
 
 /** A web page reduced to its readable text: the title and blocks of (tag, text). */
-data class Page(val title: String, val blocks: List<Pair<String, String>>) {
+data class Page(val title: String, val blocks: List<Pair<String, String>>, val lang: String = "") {
     fun text(): String = blocks.joinToString("\n") { (tag, t) -> if (tag.startsWith("h")) "\n$t" else t }.trim()
 }
 
@@ -31,7 +31,7 @@ var tag=e.tagName.toLowerCase();
 if(tag==='blockquote')tag='q';
 var min=tag[0]==='h'?2:(tag==='li'?25:40);
 if(t.length<min||seen[t])continue;seen[t]=1;out.push([tag,t])}
-return JSON.stringify({title:document.title||'',blocks:out})})()"""
+return JSON.stringify({title:document.title||'',lang:document.documentElement.lang||'',blocks:out})})()"""
 
     /** The value evaluateJavascript hands back is the script's string result, JSON-quoted again. Null when it is empty or unusable. */
     fun parse(raw: String?): Page? {
@@ -45,7 +45,7 @@ return JSON.stringify({title:document.title||'',blocks:out})})()"""
                 val t = b.optString(1).trim()
                 if (t.isEmpty()) null else b.optString(0) to t
             }
-            if (blocks.isEmpty()) null else Page(o.optString("title"), blocks)
+            if (blocks.isEmpty()) null else Page(o.optString("title"), blocks, o.optString("lang"))
         } catch (_: Exception) { null }
     }
 }
@@ -62,6 +62,24 @@ object PageSummary {
         "Use only what the text says. Keep the language of the text."
     const val SYSTEM_JOIN = "These are notes from consecutive parts of one web page. Write the summary of the whole page: one sentence on what it is about, " +
         "then 3 to 5 key points, one per line, each starting with '- '. Use only the notes; no preamble. Keep it under 150 words and in the language of the notes."
+
+    /** Stable per link, so summarizing the same page again replaces its reading-list entry. Only characters ArticleStore accepts. */
+    fun localId(url: String): String {
+        val d = java.security.MessageDigest.getInstance("SHA-256").digest(url.trim().toByteArray())
+        return "local-" + d.take(8).joinToString("") { "%02x".format(it) }
+    }
+
+    /** The article as the reading list stores it (wire format v2 plus local=true), with the summary and the extracted text. */
+    fun articleJson(url: String, page: Page, summary: String, now: Long): String {
+        val blocks = JSONArray(); page.blocks.forEach { (t, x) -> blocks.put(JSONArray().put(t).put(x)) }
+        val host = runCatching { java.net.URI(url).host }.getOrNull().orEmpty().removePrefix("www.")
+        return JSONObject().put("v", 2).put("url", url).put("sentAt", now).put("title", page.title.ifBlank { host.ifBlank { url } })
+            .put("site", host).put("byline", "").put("lang", page.lang).put("summary", summary).put("blocks", blocks).put("local", true).toString()
+    }
+
+    /** What goes to WhatsApp, mail and the like: title, the summary, and the link. */
+    fun shareText(title: String, summary: String, url: String): String =
+        listOf(title.trim(), summary.trim(), url.trim()).filter { it.isNotEmpty() }.joinToString("\n\n")
 
     fun enough(page: Page): Boolean = page.text().length >= MIN_TEXT
 

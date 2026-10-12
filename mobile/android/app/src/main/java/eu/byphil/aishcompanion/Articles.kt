@@ -22,6 +22,8 @@ data class Article(
     val sentAt: Long,
     val truncated: Boolean,
     val highlights: List<Highlight> = emptyList(),
+    /** Summarized on this phone from a page opened in the app (not sent from the browser). */
+    val local: Boolean = false,
 )
 
 /**
@@ -79,7 +81,7 @@ object ArticleCodec {
         return Article(
             id = id, url = url, title = o.optString("title"), site = o.optString("site"), byline = o.optString("byline"),
             lang = o.optString("lang"), summary = o.optString("summary"), blocks = blocks, sentAt = o.optLong("sentAt"),
-            truncated = o.optBoolean("truncated", false), highlights = marks,
+            truncated = o.optBoolean("truncated", false), highlights = marks, local = o.optBoolean("local", false),
         )
     }
 }

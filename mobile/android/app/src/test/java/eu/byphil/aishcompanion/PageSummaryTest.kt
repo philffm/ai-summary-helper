@@ -47,4 +47,27 @@ class PageSummaryTest {
         assertEquals("Summary\n- First point here\n- second point here\n- third point", out)
         assertNull(PageSummary.clean("ok"))
     }
+
+    @Test fun localIdIsStablePerLinkAndAcceptedByTheStore() {
+        val a = PageSummary.localId("https://example.com/a")
+        assertEquals(a, PageSummary.localId(" https://example.com/a "))
+        assertTrue(a != PageSummary.localId("https://example.com/b"))
+        assertTrue(ArticleStore.ID.matches(a))
+    }
+
+    @Test fun summaryBecomesAReadingListArticleMarkedLocal() {
+        val page = Page("Why agents need memory", listOf("h1" to "Why agents need memory", "p" to "Body text here."), "en")
+        val json = PageSummary.articleJson("https://www.example.com/x", page, "- key point", 123L)
+        val a = ArticleCodec.parse(json, PageSummary.localId("https://www.example.com/x"))
+        assertTrue(a.local)
+        assertEquals("example.com", a.site)
+        assertEquals("- key point", a.summary)
+        assertEquals("en", a.lang)
+        assertEquals(2, a.blocks.size)
+    }
+
+    @Test fun shareTextHasTitleSummaryAndLink() {
+        assertEquals("T\n\nS\n\nhttps://x.y", PageSummary.shareText(" T ", " S ", "https://x.y"))
+        assertEquals("S", PageSummary.shareText("", "S", ""))
+    }
 }
