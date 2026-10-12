@@ -206,16 +206,18 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
                 }
             }
         }
-        BottomActions {
-            if (canGoBack) OutlinedButton(onClick = { web?.goBack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
-            FilledTonalButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, null, Modifier.size(18.dp)); Text("  Summarize") }
-            IconButton(onClick = { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() }) {
-                Icon(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, contentDescription = if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off")
-            }
-            if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
+        // The main action (Summarize) sits next to the thumb: at the right for right-handed use, at the left otherwise.
+        val actions = listOf<@Composable () -> Unit>(
+            { FilledTonalButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, null, Modifier.size(18.dp)); Text("  Summarize") } },
+            { if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
                 Icon(Icons.AutoMirrored.Filled.Send, contentDescription = if (sent) "Sent to the browser" else "Send to the AISH browser extension", tint = if (sent) MaterialTheme.colorScheme.primary else LocalContentColor.current)
-            }
-            IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") }
-        }
+            } },
+            { IconButton(onClick = { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() }) {
+                Icon(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, contentDescription = if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off")
+            } },
+            { IconButton(onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) }) { Icon(Icons.Filled.OpenInBrowser, contentDescription = "Open in browser") } },
+            { if (canGoBack) OutlinedButton(onClick = { web?.goBack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
+        )
+        BottomActions { for (a in if (Handed.left) actions else actions.reversed()) a() }
     }
 }

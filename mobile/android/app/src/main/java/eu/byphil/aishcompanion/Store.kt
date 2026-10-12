@@ -36,6 +36,11 @@ class Store(context: Context) {
         set(v) = prefs.edit().putString("summary.lang", v).apply()
 
     /** Stack items about the same story in the Feeds list. */
+    /** Which hand holds the phone: the main actions sit on that side. */
+    var leftHanded: Boolean
+        get() = prefs.getBoolean("ui.left", false)
+        set(v) = prefs.edit().putBoolean("ui.left", v).apply()
+
     var groupSimilar: Boolean
         get() = prefs.getBoolean("feeds.group", true)
         set(v) = prefs.edit().putBoolean("feeds.group", v).apply()

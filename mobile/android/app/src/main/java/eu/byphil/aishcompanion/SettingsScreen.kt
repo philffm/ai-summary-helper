@@ -83,6 +83,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
         SettingsRow("link", "ACCOUNT", "🔗", "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
         SettingsRow("ai", "SUMMARIZING", "🤖", "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
         SettingsRow("feeds", "FEEDS", "📰", "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
+        SettingsRow("access", "APP", "♿", "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
         SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock"),
         SettingsRow("pro", "APP", "⭐", "Pro", "Extras", "pro license extras"),
     )
@@ -166,6 +167,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                         }
                         "ai" -> { ModelCard(model); SummaryCard(model) }
                         "feeds" -> FeedsCard(model)
+                        "access" -> AccessibilityCard(model)
                         "alarm" -> AlarmCard(model)
                         "pro" -> ExtrasCard(model)
                     }

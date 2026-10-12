@@ -216,8 +216,13 @@ fun shareText(context: android.content.Context, subject: String, text: String) {
 fun BottomActions(content: @Composable androidx.compose.foundation.layout.FlowRowScope.() -> Unit) {
     androidx.compose.material3.Surface(color = MaterialTheme.colorScheme.surfaceContainer, tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
         androidx.compose.foundation.layout.FlowRow(
-            Modifier.padding(horizontal = 12.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp),
+            Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp, if (Handed.left) Alignment.Start else Alignment.End), verticalArrangement = Arrangement.spacedBy(4.dp),
             content = content,
         )
     }
+}
+
+/** Handedness: right-handed puts the main actions at the right of the bottom bars, left-handed at the left. Read wherever a bar is laid out. */
+object Handed {
+    var left by androidx.compose.runtime.mutableStateOf(false)
 }
