@@ -655,6 +655,12 @@ export async function removeArticle(article) {
     return true;
 }
 
+/**
+ * Lets a page that is not the popup (the reader) use shareArticle / sendToKindle / dispatchToLocalSend: they report
+ * through `ui.showToast` and send people to Settings through `ui.showScreen`. initArticleManager() does this itself.
+ */
+export function bindUiManager(ui) { uiManagerRef = ui; }
+
 export function initArticleManager(uiManager) {
     loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;

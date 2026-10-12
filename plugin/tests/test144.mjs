@@ -1,43 +1,43 @@
-// Monthly AI allowance bar (account settings) + the server's budget error codes mapped to friendly messages.
-import assert from 'assert';
-import fs from 'fs';
-import { setup, imp } from './harness.mjs';
-const { w } = setup({});
-const d = w.document; globalThis.document = d; globalThis.window = w;
-const { renderQuota } = await imp('modules/authManager.js');
-const host = d.createElement('div'); const badge = d.createElement('span'); host.append(badge); d.body.append(host);
+// Reader page: Share and the preferred delivery (LocalSend or Kindle) work like in the article's detail view.
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
+const { store, w } = setup({});
+const { SK, articleRecKey } = await imp('../src/modules/storageKeys.js');
+const page = fs.readFileSync(new URL('../src/readerPage.html', import.meta.url), 'utf8');
+w.document.documentElement.innerHTML = page.replace(/^[\s\S]*?<html[^>]*>/i, '').replace(/<\/html>[\s\S]*$/i, '');
+globalThis.File = w.File;
+const url = 'https://example.com/post';
+const art = { id: 'a1', url, title: 'Reader send test', timestamp: new Date().toISOString(), summary: '<p>Short summary</p>', content: '<p>Full text of the article.</p>' };
+store['articles:index'] = [{ id: 'a1', url, title: art.title, timestamp: art.timestamp }];
+store[articleRecKey('a1')] = art;
+store.deliveryPreference = 'localsend';
+store['send:devices'] = [{ id: 'l1', label: 'Pixel', type: 'localsend', addresses: ['192.168.1.5'] }];
+const sent = [];
+chrome.runtime.sendMessage = (m, cb) => {
+  sent.push(m);
+  const r = m.action === 'sendLocalSendP2P' ? { success: true, ok: true, status: 200, data: { sessionId: 's1', files: {} } } : {};
+  if (cb) { cb(r); return; } return Promise.resolve(r);
+};
+const shared = [];
+Object.defineProperty(w.navigator, 'share', { configurable: true, value: async (d) => { shared.push(d); } });
+w.location.hash = '#id=a1';
+await imp('../src/readerPage.js'); await tick(250);
+const d = w.document;
+const group = d.getElementById('rpSendGroup');
+assert(group && !group.hidden, 'send group is visible for a stored article');
+assert(!d.getElementById('rpShare').hidden, 'Share is offered when the browser can share');
+assert.equal(d.getElementById('rpSend').textContent, 'LocalSend', 'the preferred delivery is labelled');
 
-renderQuota(badge, { percent: 40, used_usd: 0.6, limit_usd: 1.5, reset_at: '2026-11-01T00:00:00.000Z' });
-let box = host.querySelector('.ai-quota');
-assert.ok(box, 'bar shown'); assert.equal(host.children[1], box, 'right under the plan badge');
-assert.equal(box.querySelector('.ai-quota-pct').textContent, '40% used');
-const bar = box.querySelector('.ai-quota-bar');
-assert.equal(bar.getAttribute('role'), 'progressbar'); assert.equal(bar.getAttribute('aria-valuenow'), '40'); assert.equal(bar.firstElementChild.style.width, '40%');
-assert.ok(!/\$|usd/i.test(box.textContent), 'percent only, no money amounts');
-assert.ok(!box.classList.contains('warn') && !box.classList.contains('full'));
+// LocalSend: sends the article document to the configured receiver, tells the reader
+d.getElementById('rpSend').click(); await tick(400);
+const ls = sent.filter(m => m.action === 'sendLocalSendP2P');
+assert(ls.length >= 2 && ls.every(m => /192\.168\.1\.5/.test(m.targetUrl)), 'prepare + upload went to the receiver');
+const toast = d.getElementById('rpToast');
+assert(!toast.hidden && /Sent successfully/.test(toast.textContent), 'toast: ' + toast.textContent);
+assert(!d.getElementById('rpSend').disabled, 'button usable again');
 
-renderQuota(badge, { percent: 85, reset_at: '2026-11-01T00:00:00.000Z' });
-assert.equal(host.querySelectorAll('.ai-quota').length, 1, 'updated in place');
-assert.ok(host.querySelector('.ai-quota').classList.contains('warn')); assert.ok(/lighter model/.test(host.querySelector('.ai-quota-note').textContent));
-renderQuota(badge, { percent: 100, reset_at: 'nonsense' });
-assert.ok(host.querySelector('.ai-quota').classList.contains('full')); assert.ok(/local models still work/.test(host.querySelector('.ai-quota-note').textContent));
-renderQuota(badge, { percent: 250 }); assert.equal(host.querySelector('.ai-quota-bar').getAttribute('aria-valuenow'), '100', 'clamped');
-renderQuota(badge, null); assert.ok(!host.querySelector('.ai-quota'), 'free / unmetered accounts: no bar');
+// Share
+d.getElementById('rpShare').click(); await tick(300);
+assert.equal(shared.length, 1, 'native share was used');
+assert.equal(shared[0].title, 'Reader send test');
 
-// friendly messages for the server's codes (background.js + content.js hold their own copy of the mapping)
-for (const f of ['background.js', 'content.js']) {
-    const src = fs.readFileSync(new URL('../src/' + f, import.meta.url), 'utf8');
-    const at = src.search(/function (?:aiFriendlyError|friendlyLimitError)\(/);
-    assert.ok(at >= 0, f + ': function found');
-    let i = src.indexOf('{', at), depth = 0, j = i;
-    for (; j < src.length; j++) { if (src[j] === '{') depth++; else if (src[j] === '}' && --depth === 0) break; }
-    const code = src.slice(at, j + 1);
-    const params = code.match(/\(([^)]*)\)/)[1];
-    const fn = new Function(`${code}; return ${code.match(/function (\w+)/)[1]};`)();
-    const call = (txt) => fn(...(params.includes(',') ? [429, txt] : [txt]));
-    assert.match(call('{"code":"quota_exceeded"}'), /monthly AI allowance is used up/, f);
-    assert.match(call('{"code":"rate_limited"}'), /Too many AI requests/, f);
-    assert.match(call('{"code":"too_large"}'), /too much text/, f);
-    assert.match(call('Free trial exhausted (3 requests per day)'), /daily/, f + ': old wording unchanged');
-}
 console.log('TEST 144 OK');

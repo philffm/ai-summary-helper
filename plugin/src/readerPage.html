@@ -29,12 +29,17 @@
         <button type="button" data-view="summary">Summary</button>
         <button type="button" data-view="content">Full text</button>
       </div>
+      <div class="rp-group" role="group" id="rpSendGroup" hidden>
+        <button type="button" id="rpShare">Share</button>
+        <button type="button" id="rpSend" hidden>Send</button>
+      </div>
       <button type="button" id="rpPrint" class="rp-plain">Print</button>
     </div>
   </header>
   <main class="rp-page" id="rpPage">
     <p class="rp-loading" id="rpLoading">Loading…</p>
   </main>
+  <div class="rp-toast" id="rpToast" role="status" aria-live="polite" hidden></div>
   <script type="module" src="readerPage.js"></script>
 </body>
 </html>

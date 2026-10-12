@@ -8,6 +8,7 @@ import { withQuestions } from './modules/conversation.js';
 import { fetchAnnotationsForArticle, markHighlights } from './modules/annotationExporter.js';
 import StorageManager from './modules/storageManager.js';
 import { SK } from './modules/storageKeys.js';
+import { stripEmoji } from './modules/icons.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -15,6 +16,7 @@ const DEFAULTS = { size: 2, font: 'serif', theme: 'auto', view: 'both' };
 const root = document.documentElement;
 const $ = (id) => document.getElementById(id);
 let prefs = { ...DEFAULTS };
+let raw = null;          // the stored article as it is (the display copy carries the pinned questions)
 
 const clean = (html) => {
   const doc = new DOMParser().parseFromString(String(html || ''), 'text/html');
@@ -89,6 +91,7 @@ function buildToc(page) {
 async function loadArticle(id) {
   const article = await StorageManager.getArticleFull(id);
   if (!article || (!article.content && !article.summary && !article.html && !article.text)) return null;
+  raw = { ...article };
   const turns = await StorageManager.getConversation(id);
   if (turns.length) {
     let all = false;
@@ -135,6 +138,42 @@ async function render() {
   if (!summaryHtml || !contentHtml) { prefs.view = 'both'; root.dataset.rpView = 'both'; $('rpViewGroup').hidden = true; }
 }
 
+// ── Share / send: the same actions as the article's detail view, reusing articleManager ──
+let toastTimer = null;
+function toast(msg) {
+  const t = $('rpToast'); if (!t || !msg) return;
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 4500);
+}
+let am = null;
+async function actions() {
+  if (!am) {
+    am = await import('./modules/articleManager.js');
+    // No popup around: messages become toasts, "go to Settings" becomes a hint
+    am.bindUiManager({ showToast: toast, showScreen: () => toast(T('Open the extension and set it up under Settings → Send.')) });
+  }
+  return am;
+}
+async function runAction(btn, fn) {
+  if (!raw || btn.disabled) return;
+  btn.disabled = true;
+  try { await fn(await actions(), { ...raw }); } catch (e) { toast(String((e && e.message) || e)); } finally { btn.disabled = false; }
+}
+async function wireSend() {
+  const group = $('rpSendGroup'), share = $('rpShare'), send = $('rpSend');
+  if (!group || !raw) return;
+  let pref = 'kindle';
+  try { pref = (await StorageManager.getAll()).deliveryPreference === 'localsend' ? 'localsend' : 'kindle'; } catch (_) { /* default */ }
+  const canShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
+  share.hidden = !canShare;
+  share.textContent = stripEmoji(T('Share 🔗'));
+  share.addEventListener('click', () => runAction(share, (m, a) => m.shareArticle(a)));
+  send.hidden = false;
+  send.textContent = pref === 'localsend' ? stripEmoji(T('LocalSend 📱')) : stripEmoji(T('Kindle 📚'));
+  send.addEventListener('click', () => runAction(send, (m, a) => (pref === 'localsend' ? m.dispatchToLocalSend(a) : m.sendToKindle(a))));
+  group.hidden = false;
+}
+
 async function init() {
   let cfg = {};
   let lang = 'en';
@@ -144,5 +183,6 @@ async function init() {
   try { await applyTranslations(lang); } catch (_) { /* English */ }
   labelControls(); wireControls(); applyPrefs();
   await render();
+  await wireSend();
 }
 init();
