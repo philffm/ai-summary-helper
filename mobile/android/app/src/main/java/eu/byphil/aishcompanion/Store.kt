@@ -35,6 +35,11 @@ class Store(context: Context) {
         get() = prefs.getString("summary.lang", "") ?: ""
         set(v) = prefs.edit().putString("summary.lang", v).apply()
 
+    /** Read the summary aloud while the model writes it. */
+    var speakSummary: Boolean
+        get() = prefs.getBoolean("summary.speak", true)
+        set(v) = prefs.edit().putBoolean("summary.speak", v).apply()
+
     /** Whether summaries made on the phone also get AI "ghost" highlights (key passages marked in the text, as for articles sent from the browser). */
     var ghostMarks: Boolean
         get() = prefs.getBoolean("summary.ghost", true)

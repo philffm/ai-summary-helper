@@ -136,6 +136,14 @@ object PageSummary {
         return reply.substring(0, m.range.first) to reply.substring(m.range.last + 1)
     }
 
+    /** The part of a streamed reply that is the summary: nothing from the marker line on, and no half-written marker at the end. */
+    fun visible(streamed: String): String {
+        val body = splitReply(streamed).first
+        val nl = body.lastIndexOf('\n')
+        val tail = body.substring(nl + 1).trim().trimStart('*', '#', '>', '_', '-', ' ').lowercase()
+        return if (tail.length >= 2 && "key sentences:".startsWith(tail)) body.substring(0, nl + 1) else body
+    }
+
     /** What summarizing a page gives back: the summary, and (when asked for) the key sentences found in the page. */
     data class Result(val text: String, val passages: List<String>)
 
@@ -144,17 +152,18 @@ object PageSummary {
      * With [marks] the key sentences come out of the same requests as the summary (a short page is one request; a long page is
      * one per part plus one to join the notes), so highlighting costs no extra model run.
      */
-    fun summarize(context: Context, page: Page, marks: Boolean = Store(context).ghostMarks, progress: (Int, Int) -> Unit = { _, _ -> }): Result? {
+    fun summarize(context: Context, page: Page, marks: Boolean = Store(context).ghostMarks, progress: (Int, Int) -> Unit = { _, _ -> }, onText: (String) -> Unit = {}): Result? {
         val parts = parts(page)
         if (parts.isEmpty()) return null
         val lang = Store(context).summaryLang
         var text: String? = null
         val found = ArrayList<String>()
         val keep: (String?) -> Unit = { raw -> if (raw != null) for (p in validPassages(raw, page)) if (found.size < MAX_PASSAGES && found.none { it == p }) found.add(p) }
-        LocalLlm.session(context) { ask ->
+        LocalLlm.sessionWithStream(context) { ask, stream ->
             if (parts.size == 1) {
                 progress(1, 1)
-                val (body, copied) = splitReply(ask(system(lang, marks), parts[0]) ?: "")
+                val raw = stream(system(lang, marks), parts[0]) { onText(visible(it)) } ?: ask(system(lang, marks), parts[0]) ?: ""
+                val (body, copied) = splitReply(raw)
                 text = clean(body); if (marks) keep(copied)
             } else {
                 val total = parts.size + 1
@@ -164,7 +173,7 @@ object PageSummary {
                     if (marks) keep(copied)
                     clean(body)
                 }
-                if (notes.isNotEmpty()) { progress(total, total); text = ask(systemJoin(lang), notes.joinToString("\n\n"))?.let(::clean) }
+                if (notes.isNotEmpty()) { progress(total, total); text = (stream(systemJoin(lang), notes.joinToString("\n\n")) { onText(visible(it)) } ?: ask(systemJoin(lang), notes.joinToString("\n\n")))?.let(::clean) }
             }
         }
         return text?.let { Result(it, found.toList()) }

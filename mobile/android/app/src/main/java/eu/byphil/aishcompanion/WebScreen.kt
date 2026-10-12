@@ -4,6 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.speech.tts.TextToSpeech
+import androidx.compose.material.icons.filled.VolumeOff
+import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.runtime.DisposableEffect
+import java.util.Locale
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
@@ -79,6 +84,22 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
     var summaryTitle by remember { mutableStateOf("") }
     var summaryUrl by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+    var speak by remember { mutableStateOf(Store(context).speakSummary) }   // read the summary aloud while it is written
+    var tts by remember { mutableStateOf<TextToSpeech?>(null) }
+    val spoken = remember { intArrayOf(0) }                                  // how much of the streamed text has been handed to the voice
+    DisposableEffect(Unit) {
+        val engine = TextToSpeech(context.applicationContext) { }
+        tts = engine
+        onDispose { engine.stop(); engine.shutdown() }
+    }
+    val speakNew: (String, Boolean) -> Unit = { text, last ->
+        val engine = tts
+        if (speak && engine != null) {
+            val (sentences, upTo) = SpeechChunker.next(text, spoken[0], last)
+            spoken[0] = upTo
+            for (sentence in sentences) engine.speak(sentence, TextToSpeech.QUEUE_ADD, null, "sum-" + System.nanoTime())
+        }
+    }
 
     fun summarize() {
         val view = web ?: return
@@ -86,14 +107,19 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
         if (!LocalLlm.installed(context)) { status = "Download the on-device model in Settings first."; return }
         val pageUrl = shown
         busy = true; status = "Reading the page…"; summary = null; saved = false
+        tts?.stop(); spoken[0] = 0
         view.evaluateJavascript(PageExtract.SCRIPT) { raw ->
             val page = PageExtract.parse(raw)
             if (page == null || !PageSummary.enough(page)) { status = "This page has no readable text to summarize."; busy = false; return@evaluateJavascript }
             scope.launch {
+                tts?.language = Locale.forLanguageTag(Store(context).summaryLang.ifBlank { page.lang.ifBlank { Locale.getDefault().toLanguageTag() } })
+                var streamed = ""
                 val result = withContext(Dispatchers.Default) {
-                    PageSummary.summarize(context, page, progress = { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" })
+                    PageSummary.summarize(context, page, progress = { i, n -> status = if (n > 1) "Summarizing… $i/$n" else "Summarizing…" },
+                        onText = { t -> streamed = t; summary = t; speakNew(t, false) })   // the summary grows on screen and is read sentence by sentence
                 }
                 summary = result?.text
+                if (result != null) speakNew(streamed.ifBlank { result.text }, true)
                 if (result != null) {
                     summaryTitle = page.title.ifBlank { Uri.parse(pageUrl).host ?: pageUrl }; summaryUrl = pageUrl
                     saved = runCatching { onSummarized(pageUrl, page, result.text, result.passages) }.isSuccess   // into the reading list, marked "on this phone"
@@ -111,6 +137,9 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
             title = { Text(title.ifBlank { Uri.parse(shown).host ?: shown }, maxLines = 1, overflow = TextOverflow.Ellipsis) },
             navigationIcon = { IconButton(onClick = onClose) { Icon(Icons.Filled.Close, contentDescription = "Close") } },
             actions = {
+                IconButton(onClick = { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() }) {
+                    Icon(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, contentDescription = if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off")
+                }
                 IconButton(onClick = { summarize() }, enabled = !busy) { Icon(Icons.Filled.AutoAwesome, contentDescription = "Summarize on this phone") }
                 if (canSend) IconButton(onClick = { SendWorker.enqueue(context, shown); sent = true }) {
                     Icon(Icons.AutoMirrored.Filled.Send, contentDescription = if (sent) "Sent to the browser" else "Send to the AISH browser extension", tint = if (sent) MaterialTheme.colorScheme.primary else LocalContentColor.current)
@@ -125,12 +154,12 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
                 Text(status, Modifier.padding(start = if (busy) 12.dp else 0.dp), style = MaterialTheme.typography.bodySmall)
             }
         }
-        summary?.let { text ->
+        summary?.takeIf { it.isNotBlank() }?.let { text ->
             Surface(tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("Summary (on this phone)", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
-                        IconButton(onClick = { summary = null }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
+                        IconButton(onClick = { summary = null; tts?.stop() }) { Icon(Icons.Filled.Close, contentDescription = "Hide summary") }
                     }
                     Text(text, Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState()), style = MaterialTheme.typography.bodyMedium)
                     Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {

@@ -18,9 +18,13 @@ object LocalLlm {
      * Loads the model once and lets [block] ask it several questions: `ask(system, prompt)` returns the reply, or null when that
      * question failed. Returns false when the model is missing or could not be loaded. The model is released afterwards.
      */
-    fun session(context: Context, block: (ask: (String, String) -> String?) -> Unit): Boolean = synchronized(this) { sessionLocked(context, block) }   // one model in memory at a time
+    fun session(context: Context, block: (ask: (String, String) -> String?) -> Unit): Boolean = synchronized(this) { sessionLocked(context) { ask, _ -> block(ask) } }   // one model in memory at a time
 
-    private fun sessionLocked(context: Context, block: (ask: (String, String) -> String?) -> Unit): Boolean {
+    /** Like [session], and `stream(system, prompt, onText)` also hands the reply over while it is being written ([onText] gets everything so far). Null when it failed. */
+    fun sessionWithStream(context: Context, block: (ask: (String, String) -> String?, stream: (String, String, (String) -> Unit) -> String?) -> Unit): Boolean =
+        synchronized(this) { sessionLocked(context, block) }
+
+    private fun sessionLocked(context: Context, block: (ask: (String, String) -> String?, stream: (String, String, (String) -> Unit) -> String?) -> Unit): Boolean {
         val store = ModelStore.of(context)
         if (!store.installed()) return false
         var engine: Engine? = null
@@ -30,12 +34,23 @@ object LocalLlm {
             engine = Engine(EngineConfig(modelPath = store.file.path, backend = Backend.CPU(), cacheDir = cache.path))
             engine.initialize()
             val eng: Engine = engine
-            block { system, prompt ->
+            block({ system, prompt ->
                 try {
                     val conversation = eng.createConversation(ConversationConfig(systemInstruction = Contents.of(system)))
                     try { conversation.sendMessage(prompt).toString() } finally { conversation.close() }
                 } catch (_: Exception) { null }
-            }
+            }, { system, prompt, onText ->
+                try {
+                    val conversation = eng.createConversation(ConversationConfig(systemInstruction = Contents.of(system)))
+                    try {
+                        val sb = StringBuilder()
+                        kotlinx.coroutines.runBlocking {
+                            conversation.sendMessageAsync(prompt).collect { chunk -> sb.append(chunk.toString()); onText(sb.toString()) }
+                        }
+                        sb.toString().ifBlank { null }
+                    } finally { conversation.close() }
+                } catch (_: Exception) { null }
+            })
             true
         } catch (e: Exception) {
             false
