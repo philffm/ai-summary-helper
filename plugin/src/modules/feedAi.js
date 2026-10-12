@@ -17,6 +17,9 @@ let recapLimit = Infinity;            // items per recap request (user setting);
 export const getRecapLimit = () => recapLimit;
 export function setRecapLimit(n) { n = Math.round(Number(n)); recapLimit = n === 0 || n === Infinity ? Infinity : n >= 10 ? n : Infinity; }
 const SNIPPET_MAX = 160;
+let titlesOnly = false;               // setting aiDetail: 0 = the AI reads titles only (less to process for small local models)
+export const getAiDetail = () => (titlesOnly ? 0 : 1);
+export function setAiDetail(n) { titlesOnly = Number(n) === 0; }
 
 let aiSeq = 0;
 let aiTransport = null;
@@ -103,10 +106,23 @@ export function itemSig(i) {
     return (h >>> 0).toString(36);
 }
 
-export function itemsForPrompt(list, subTitleFn, mark, snippetMax = SNIPPET_MAX) {
+/**
+ * The instructions again, AFTER the items. A long list can push the system prompt out of a small local model's context window
+ * (or out of its attention); the model then just describes the list ("this appears to be a compilation of headlines…").
+ * The end of the prompt is what such a model keeps, so the task is repeated there in one line.
+ */
+const AFTER = {
+    recap: (rate) => `\n\nNow write the recap exactly as instructed: ${rate ? 'the SCORES line, the LABELS line, ' : ''}2-3 sentences of overview about the news itself, up to 5 "- " lines, and the MOOD line. Do not describe the list and do not ask for a question.`,
+    scores: '\n\nNow give the scores exactly in the requested format, nothing else.',
+    scoresJson: '\n\nNow reply with ONLY the JSON object, nothing else.',
+    topics: '\n\nNow reply with ONLY the tags, nothing else.',
+    intro: '\n\nNow write only the short introduction text, nothing else.',
+};
+
+export function itemsForPrompt(list, subTitleFn, mark, snippetMax = titlesOnly ? 0 : SNIPPET_MAX) {
     return list.map((i, k) => {
         const parts = [`[${k + 1}] ${clip(subTitleFn(i), 40)} — ${clip(i.title, 140)}${mark ? mark(i) : ''}`];
-        const sn = clip(i.snippet, snippetMax);
+        const sn = snippetMax > 0 ? clip(i.snippet, snippetMax) : '';
         if (sn) parts.push(sn);
         return parts.join(' — ');
     }).join('\n');
@@ -149,7 +165,7 @@ export async function generateFeedTopics(title, list, { cats = [], signal, onSta
         + (code === 'en' ? 'Reply with ONLY the tags separated by commas, nothing else.'
             : 'Write each tag as "tag in that language = its English name", e.g. "Fußball = Football". Reply with ONLY these pairs separated by commas, nothing else.');
     const dist = cats.length ? `\nCategory distribution of all its posts: ${cats.map(([c, n]) => `${c} ×${n}`).join(', ')}` : '';
-    const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, 80)}`;
+    const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, titlesOnly ? 0 : 80)}${AFTER.topics}`;
     const pairs = parseTopicPairs(await aiComplete(system, user, onStage, signal, onProgress, { service }));
     if (!pairs.length) throw new Error(T('The AI reply could not be read'));
     // keys = language-independent identity of each tag (its English name); the lexicon learns "Fußball" = "football" for every feed and article
@@ -305,7 +321,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
         + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}`, onStage, signal,
+    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}${AFTER.recap(rate)}`, onStage, signal,
         streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings), service });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
@@ -333,7 +349,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
-    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}`, onStage, signal,
+    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}${AFTER.recap(rate)}`, onStage, signal,
         streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings), service });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
@@ -382,7 +398,7 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
             + `Reply with ONLY JSON: {"scores":[...],"labels":[...]} with exactly ${chunk.length} numbers and ${chunk.length} label strings in item order.`
         : 'You rate the sentiment of news headlines. ' + rule(5)
             + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
-    const user = `Items:\n${itemsForPrompt(chunk, subTitleFn)}`;
+    const user = `Items:\n${itemsForPrompt(chunk, subTitleFn)}${labels ? AFTER.scoresJson : AFTER.scores}`;
     const usable = (a) => a && a.some(v => v !== null);
     const text = await aiComplete(system, user, onStage, signal, onProgress, { service });
     // Small local models often ignore the JSON format: fall back to "1:3 | 2:-2" pairs, then retry once with the simplest prompt.
@@ -392,7 +408,7 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
     if (labels) {
         const simple = 'You rate the sentiment of news headlines. ' + rule(5)
             + 'Reply with ONLY the item number and its whole-number score, one pair per item, nothing else, like: 1:3 | 2:-2 | 3:0';
-        const text2 = await aiComplete(simple, user, onStage, signal, onProgress, { service });
+        const text2 = await aiComplete(simple, user.replace(AFTER.scoresJson, AFTER.scores), onStage, signal, onProgress, { service });
         const s2 = parseScoreLine(text2, chunk.length);
         if (usable(s2)) return { scores: s2, labels: new Array(chunk.length).fill(null) };
     }
@@ -415,7 +431,7 @@ export async function generateDigestIntro(list, style = 'briefing', { onStage, s
     const system = `You write the short introduction at the top of a reading digest made of several article summaries. Write it in ${lang}. `
         + `Length and tone: ${INTRO_STYLES[style] || INTRO_STYLES.briefing}. `
         + 'Mention what the pieces have in common or how they differ. Use ONLY information from the summaries: no new facts, no quotes, no markdown, no lists, no title, no greeting. Reply with the intro text only.';
-    const user = list.slice(0, 12).map((a, i) => `[${i + 1}] ${clip(a.title, 140)} — ${clip(plain(a.summary), 400)}`).join('\n');
+    const user = list.slice(0, 12).map((a, i) => `[${i + 1}] ${clip(a.title, 140)} — ${clip(plain(a.summary), 400)}`).join('\n') + AFTER.intro;
     const raw = await aiComplete(system, user, onStage, signal, onProgress, { partial: true });
     const text = String(raw || '').replace(/[*#_`>]/g, '').replace(/^["“”'\s]+|["“”'\s]+$/g, '').replace(/\s+/g, ' ').trim().slice(0, 700);
     if (!text) throw new Error(T('The AI reply could not be read'));

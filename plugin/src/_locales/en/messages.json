@@ -4943,5 +4943,14 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "The synced feed list could not be read. Unpair and pair again."
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "Titles + descriptions"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "Titles only (faster)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 What the AI reads"
   }
 }

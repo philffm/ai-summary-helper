@@ -29,7 +29,7 @@ import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
-import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, learnTagNames, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit } from './feedAi.js';
+import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, learnTagNames, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit, setAiDetail } from './feedAi.js';
 import { el } from './dom.js';
 import { renderAnswer, renderInline } from './qaView.js';
 import { createRecapStatus } from './recapStatus.js';
@@ -69,6 +69,7 @@ export const FEED_DEFAULTS = {
     refreshMinutes: 30,
     keepDays: 30,
     recapLimit: 0,
+    aiDetail: 1,                  // what the AI reads of each item: 1 = title + description, 0 = title only
     libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
     autoProcess: false,           // fetch + process new items on a timer (Ollama only)
     autoProcessMinutes: 30,
@@ -120,6 +121,7 @@ async function load() {
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
     mergeBackground(background);
     setRecapLimit(settings.recapLimit);
+    setAiDetail(settings.aiDetail);
     if (data[UI_KEY]) ui = { ...ui, ...data[UI_KEY] };
     // Folders became tags: each feed's folder turns into its first tag.
     subs.forEach(s => {
@@ -1833,12 +1835,12 @@ function renderMonthWeeks() {
 }
 
 /** Two-step button: first click arms it (label changes for 4 s), second click runs `fn`. */
-function confirmBtn(label, armedLabel, fn) {
+function confirmBtn(label, armedLabel, fn, cls = 'btn-sm') {
     let timer = 0;
-    const b = btn('btn-sm', label, () => {
+    const b = btn(cls, label, () => {
         if (!timer) {
-            b.textContent = armedLabel;
-            timer = setTimeout(() => { timer = 0; b.textContent = label; }, 4000);
+            setLabel(b, armedLabel);   // keeps the icon (a leading emoji becomes one)
+            timer = setTimeout(() => { timer = 0; setLabel(b, label); }, 4000);
             return;
         }
         clearTimeout(timer); timer = 0; fn();
@@ -1871,7 +1873,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         if (missing.length) {
             const box = el('div', 'feed-recap-missing');
             box.append(el('p', 'feed-recap-stale', TN(missing.length, '{n} older item is not in this recap (limit: {max} per recap).', '{n} older items are not in this recap (limit: {max} per recap).', { max: list.length })));
-            box.append(btn('btn-sm', T('Remove limit and refresh'), async () => { await setSetting('recapLimit', 0); closeSheet(); openRecap(dayStart, label, source, true); }));
+            box.append(btn('button-secondary btn-sm', '↻ ' + T('Remove limit and refresh'), async () => { await setSetting('recapLimit', 0); closeSheet(); openRecap(dayStart, label, source, true); }));
             const det = el('details', 'feed-recap-missing-list');
             det.append(el('summary', null, T('Show them — open one by one')));
             missing.forEach(x => { const a = el('a', null, x.title || x.link); a.href = x.link; a.target = '_blank'; a.rel = 'noopener'; det.append(a); });
@@ -1880,14 +1882,15 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         }
         if (stale) body.append(el('p', 'feed-recap-stale', T('New items arrived since this recap — Refresh to include them.')));
         const row = el('div', 'feed-recap-actions');
-        row.append(btn('btn-sm', T('↻ Refresh'), () => run(true)),
-            confirmBtn(T('Reset'), T('Discard & rewrite?'), () => {
+        // Same buttons as everywhere else (secondary, small, with an icon); the icon comes from a leading emoji outside T() so the translations stay as they are.
+        row.append(btn('button-secondary btn-sm', T('↻ Refresh'), () => run(true)),
+            confirmBtn('🧹 ' + T('Reset'), '⚠ ' + T('Discard & rewrite?'), () => {
                 delete recaps[key];
                 chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});
                 renderRecapCard();
                 run(false);
-            }),
-            btn('btn-sm', T('Copy'), async () => {
+            }, 'button-secondary btn-sm'),
+            btn('button-secondary btn-sm', '📋 ' + T('Copy'), async () => {
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); toast(uiRef, T('Recap copied')); }
                 catch (e) { toast(uiRef, T('Copy failed')); }
             }));
@@ -2037,6 +2040,7 @@ async function setSetting(key, value) {
     await persistSettings();
     if (key === 'backgroundPoll' || key === 'refreshMinutes' || key === 'autoProcess' || key === 'autoProcessMinutes' || key === 'keepDays') sendPollConfig();
     if (key === 'recapLimit') setRecapLimit(value);
+    if (key === 'aiDetail') setAiDetail(value);
     if (key === 'autoProcess' && value) { settings.autoProcessAt = 0; await persistSettings(); }
     if (key === 'keepDays') { pruneItems(); await persist(); render(); }
 }
@@ -2588,6 +2592,7 @@ function renderFeedPrefs() {
         el('p', 'feed-muted', T('Summarize on a feed item follows the mode chosen on the Summarize screen (extension by default). Favorites are always kept.')));
     card('feedPrefsAi', TU('AI analysis'),
         moodToggleRow(),
+        selectRow('feedSetAiDetail', T('🔎 What the AI reads'), 'aiDetail', [[1, T('Titles + descriptions')], [0, T('Titles only (faster)')]]),
         selectRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
         toggleRow('feedSetRate', T('🤖 Rate items with the recap'), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
     card('feedPrefsLibrary', TU('Whole library · Ollama'));

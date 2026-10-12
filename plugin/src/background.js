@@ -570,6 +570,7 @@ async function pollFeeds() {
             if (!recaps[key] || (Number(recap.at) || 0) >= (Number(recaps[key].at) || 0)) recaps[key] = recap;
         });
         const topicLang = (await FEED_WORKER.uiLanguage()).code;
+        FEED_WORKER.setAiDetail(d.feedSettings.aiDetail);   // titles only, or titles + descriptions
         await FEED_WORKER.loadLexicon();
         const plan = FEED_WORKER.planLibrary({
             items: mergedItems, recaps, source: 'all', inSource: () => true,

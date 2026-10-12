@@ -2608,7 +2608,8 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .feed-rc-sum.md-body ul, .feed-rc-sum.md-body ol { padding-left: 16px; }
 .feed-rc-sum.md-body .md-h { margin: 0; font-size: inherit; font-weight: 600; }
 .feed-recap-stale { font-size: var(--fs-sm); color: var(--mood-warn-text); margin: 0 0 8px; }
-.feed-recap-actions { display: flex; gap: 8px; margin: 6px 0 10px; }
+.feed-recap-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 10px; }
+.feed-recap-actions .btn-sm { display: inline-flex; align-items: center; gap: 6px; }
 .feed-recap-loading { font-size: var(--fs-base); margin: 6px 0; }
 .recap-preview { margin: 6px 0; padding: 8px 10px; border-left: 3px solid var(--glass-border, rgba(127,127,127,.4)); font-size: var(--fs-sm, 13px); line-height: 1.45; opacity: .85; max-height: 7.5em; overflow: hidden; }
 .recap-cancel { margin-top: 4px; }

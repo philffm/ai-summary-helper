@@ -4711,5 +4711,14 @@
   },
   "f_the_synced_feed_list_could_n_be9b": {
     "message": "Die synchronisierte Feed-Liste konnte nicht gelesen werden. Kopplung aufheben und neu koppeln."
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "Titel + Beschreibungen"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "Nur Titel (schneller)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 Was die KI liest"
   }
 }
