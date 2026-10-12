@@ -61,7 +61,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
     fun accept(text: String?) {
         val parsed = text?.let { Pairing.parse(it) }
         if (parsed == null) { error = "That is not an AISH pairing code."; return }
-        model.setPairing(parsed); error = null; pasted = ""; showPaste = false
+        model.applyPairing(parsed); error = null; pasted = ""; showPaste = false
         if (parsed.canSync) scope.launch { model.syncFeeds() }
     }
 
@@ -116,8 +116,9 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                             "In Feeds, open an item and tap To browser to send it to the extension.",
                         ))
                         model.store.lastError?.let { InfoCard("Last problem", it, isError = true) }
-                        TextButton(onClick = { model.setPairing(null) }) { Text("Unpair this phone") }
+                        TextButton(onClick = { model.applyPairing(null) }) { Text("Unpair this phone") }
                     }
+                    AlarmCard(model)
                     error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
                 }
             }

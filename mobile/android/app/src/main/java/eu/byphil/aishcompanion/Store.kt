@@ -13,4 +13,18 @@ class Store(context: Context) {
     var lastError: String?
         get() = prefs.getString("lastError", null)
         set(v) = prefs.edit().apply { if (v == null) remove("lastError") else putString("lastError", v) }.apply()
+
+    /** The morning alarm settings. */
+    var alarm: AlarmSettings
+        get() = AlarmSettings(
+            prefs.getBoolean("alarm.on", false), prefs.getInt("alarm.hour", 7), prefs.getInt("alarm.minute", 0),
+            prefs.getInt("alarm.days", AlarmSettings.ALL_DAYS), prefs.getBoolean("alarm.read", true), prefs.getInt("alarm.snooze", 10),
+        )
+        set(v) = prefs.edit().putBoolean("alarm.on", v.enabled).putInt("alarm.hour", v.hour).putInt("alarm.minute", v.minute)
+            .putInt("alarm.days", v.days).putBoolean("alarm.read", v.readAloud).putInt("alarm.snooze", v.snoozeMinutes).apply()
+
+    /** The briefing prepared before the alarm, as JSON (see [Briefing]). */
+    var briefingJson: String?
+        get() = prefs.getString("briefing", null)
+        set(v) = prefs.edit().apply { if (v == null) remove("briefing") else putString("briefing", v) }.apply()
 }

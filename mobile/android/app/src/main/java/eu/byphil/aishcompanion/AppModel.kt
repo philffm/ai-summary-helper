@@ -30,6 +30,7 @@ class AppModel(context: Context) {
     var feeds by mutableStateOf(feedStore.feeds())
     var entries by mutableStateOf(feedStore.everything())
     var articleList by mutableStateOf(articles.list())
+    var alarm by mutableStateOf(store.alarm)
     var refreshing by mutableStateOf(false)
     var syncing by mutableStateOf(false)
     var checking by mutableStateOf(false)
@@ -47,9 +48,15 @@ class AppModel(context: Context) {
         pairing = store.pairing
     }
 
-    fun setPairing(p: Pairing?) {
+    fun applyPairing(p: Pairing?) {
         store.pairing = p; store.lastError = null; pairing = p
         if (p?.canReceive == true) ReceiveWorker.schedule(app) else ReceiveWorker.cancel(app)
+    }
+
+    /** Saves the alarm settings and sets the system alarm to match. */
+    fun changeAlarm(next: AlarmSettings) {
+        store.alarm = next; alarm = next
+        AlarmScheduler.reschedule(app)
     }
 
     // ── feeds ──

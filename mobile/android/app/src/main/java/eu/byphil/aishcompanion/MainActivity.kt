@@ -55,6 +55,7 @@ class MainActivity : ComponentActivity() {
         val model = AppModel(this)
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
+        AlarmScheduler.reschedule(this)   // keeps the alarm right after updates, restarts and clock changes
         setContent {
             AishTheme {
                 Surface(Modifier.fillMaxSize()) { App(model, onScan = { onResult -> scan(onResult) }) }
