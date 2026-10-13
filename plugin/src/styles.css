@@ -130,18 +130,18 @@
   --accent-soft-strong: color-mix(in srgb, var(--accent) 18%, transparent);
   /* podcast player */
   --player-bg: color-mix(in srgb, var(--sheet-bg) 96%, transparent);   /* semantic surface (sheet-bg): follows theme and brand; stays a bit see-through for the blur */
-  --player-border: rgba(15,23,42,.10);
-  --player-shadow: 0 14px 36px rgba(15,23,42,.18), 0 2px 6px rgba(15,23,42,.10);
+  --player-border: var(--sheet-border);
+  --player-shadow: var(--sheet-shadow);
   --player-fg: var(--text-primary);
-  --player-track: rgba(15,23,42,.16);
+  --player-track: color-mix(in srgb, var(--player-fg) 18%, transparent);
   --player-fill: var(--accent);
-  --player-hover: rgba(15,23,42,.08);
-  --player-pill: rgba(15,23,42,.08);
-  --player-pill-hover: rgba(15,23,42,.14);
+  --player-hover: color-mix(in srgb, var(--player-fg) 10%, transparent);
+  --player-pill: color-mix(in srgb, var(--player-fg) 10%, transparent);
+  --player-pill-hover: color-mix(in srgb, var(--player-fg) 18%, transparent);
   --player-play-bg: var(--accent);
   --player-play-fg: var(--on-accent);
-  --player-cover-bg: #cbd5e1;
-  --player-err: #b91c1c;
+  --player-cover-bg: var(--track-bg);
+  --player-err: var(--mood-neg-text);
 }
 
 /* ── Dark Mode ─────────────────────────────────────────────────────────── */
@@ -160,14 +160,6 @@
     --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06);
 
     --text-primary: #e8edf5;
-    --player-border: rgba(255,255,255,.08);
-    --player-shadow: 0 14px 36px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.25);
-    --player-track: rgba(255,255,255,.22);
-    --player-hover: rgba(255,255,255,.12);
-    --player-pill: rgba(255,255,255,.12);
-    --player-pill-hover: rgba(255,255,255,.22);
-    --player-cover-bg: #334155;
-    --player-err: #fca5a5;
     --text-secondary: #b8c4d4;
     --text-muted: #94a3b8;
     --text-link: #93c5fd;
@@ -234,14 +226,6 @@
   --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06);
 
   --text-primary: #e8edf5;
-  --player-border: rgba(255,255,255,.08);
-  --player-shadow: 0 14px 36px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.25);
-  --player-track: rgba(255,255,255,.22);
-  --player-hover: rgba(255,255,255,.12);
-  --player-pill: rgba(255,255,255,.12);
-  --player-pill-hover: rgba(255,255,255,.22);
-  --player-cover-bg: #334155;
-  --player-err: #fca5a5;
   --text-secondary: #b8c4d4;
   --text-muted: #94a3b8;
   --text-link: #93c5fd;
