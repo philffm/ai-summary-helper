@@ -51,7 +51,7 @@ export function iconEl(name, cls = '') {
 
 // Leading pictographs/arrows/flags (+ variation selectors, ZWJ, spaces) that translated labels still carry.
 const LEAD = /^(?:[\p{Extended_Pictographic}\p{Regional_Indicator}←-⇿★☆✓✕️‍]|\s)+/u;
-const TRAIL = /(?:[\p{Extended_Pictographic}\p{Regional_Indicator}\u2190-\u21FF\uFE0F\u200D]|\s)+$/u;
+const TRAIL = /(?:[\p{Extended_Pictographic}\p{Regional_Indicator}\u2190-\u21FF\u2713\u2715\u2605\u2606\uFE0F\u200D]|\s)+$/u;
 export function stripLeadingEmoji(s) { return String(s == null ? '' : s).replace(LEAD, ''); }
 /** Strips pictographs from both ends ('Copy 📋' → 'Copy'): labels whose translations carry the old emoji. */
 export function stripEmoji(s) { return stripLeadingEmoji(s).replace(TRAIL, ''); }
