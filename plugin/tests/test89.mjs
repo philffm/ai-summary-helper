@@ -37,7 +37,8 @@ assert(card.querySelector('.card-decision .decision-chip') && !card.querySelecto
 await am.showArticleDetail({ ...store['articles:index'][0], ...store['articles:rec:a1'] }); await tick(80);
 const det = d.querySelector('.article-detail-card');
 assert(det, 'detail rendered');
-assert(!det.querySelector('img[src="x"], script, style, iframe, form, input'), 'no injected elements: ' + det.innerHTML.slice(0, 300));
+const detCopy = det.cloneNode(true); detCopy.querySelectorAll('#sourceCheckMount').forEach(n => n.remove());   // the app's own source-check form is not page content
+assert(!detCopy.querySelector('img[src="x"], script, style, iframe, form, input'), 'no injected elements: ' + detCopy.innerHTML.slice(0, 300));
 noHandlers(det, 'detail');
 assert(!det.querySelector('a[href^="javascript"]'), 'no javascript: links');
 assert(!det.querySelector('.detail-original-body [style]'), 'page inline styles dropped');

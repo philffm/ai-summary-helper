@@ -44,7 +44,8 @@ let pendingRender = false;
 let historyLoaded = false;        // the archive has been read once: before that a phone-inbox event must not paint a half list
 
 const isSent = (a) => Array.isArray(a.sentTo) && a.sentTo.length > 0;
-const TAB_DEFS = [['inbox', () => T('Inbox')], ['read', () => T('Read')], ['sent', () => T('Sent')], ['research', () => T('Research')], ['archive', () => T('Archive')]];
+const TAB_DEFS = [['inbox', () => T('Inbox')], ['read', () => T('Read')], ['sent', () => T('Sent')], ['research', () => T('Research')], ['collections', () => T('Collections')], ['archive', () => T('Archive')]];
+let collectionCount = 0;   // shown on the Collections tab; refreshed when that tab renders or a collection changes
 const RESEARCH_FILTERS = [['all', () => T('All')], ['review', () => T('Reviews')], ['trial', () => T('Trials')], ['preprint', () => T('Preprints')]];
 let researchFilter = 'all';
 
@@ -52,6 +53,7 @@ function tabList(tab) {
     if (tab === 'read') return cachedArticles.filter(a => a.readAt);
     if (tab === 'sent') return cachedArticles.filter(isSent);
     if (tab === 'archive') return archivedCache;
+    if (tab === 'collections') return [];   // not articles: collectionsView.js draws this tab
     if (tab === 'research') return cachedArticles.filter(a => paperState(a) && (researchFilter === 'all' || paperType(a) === researchFilter));
     return cachedArticles;
 }
@@ -90,7 +92,7 @@ function buildTabs() {
         b.setAttribute('aria-selected', String(historyTab === id));
         b.firstChild.textContent = label();
         if (id === 'research') b.hidden = historyTab !== 'research' && !cachedArticles.some(a => paperState(a));   // only for people who save papers
-        b.lastChild.textContent = String(id === 'research' ? cachedArticles.filter(a => paperState(a)).length : tabList(id).length);
+        b.lastChild.textContent = String(id === 'research' ? cachedArticles.filter(a => paperState(a)).length : id === 'collections' ? collectionCount : tabList(id).length);
     });
     syncTabbarLater(nav);
     return nav;
@@ -732,6 +734,28 @@ function paintDetailStar(on) {
     // the star icon is filled by CSS from aria-pressed / .is-on
 }
 
+/** Collections: the "Add to collection" sheet (card ⋯ menu and the article detail). */
+export async function addToCollection(article) {
+    const { openAddSheet } = await import('./collectionsView.js');
+    await openAddSheet(article, { onDone: () => { if (historyTab === 'collections') renderTab(); } });
+}
+
+/** Inline in the article: which collections hold it, and the source check (same stored answers as in the collection). */
+async function mountSourceCheck(article, host) {
+    if (!host || !article || !article.id) return;
+    try {
+        const [{ collectionsStrip, sourceCheckPanel }, full] = await Promise.all([import('./collectionsView.js'), StorageManager.getArticleFull(article.id)]);
+        if (!host.isConnected) return;
+        host.textContent = '';
+        host.append(await collectionsStrip(full));
+        const det = document.createElement('details');
+        det.className = 'detail-source-check';
+        const sum = document.createElement('summary'); sum.textContent = T('Source check');
+        det.append(sum, sourceCheckPanel(full));
+        host.append(det);
+    } catch (_) { /* the article still reads fine without it */ }
+}
+
 /** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
 export async function removeArticle(article) {
     if (!article || !article.id) return false;
@@ -754,6 +778,7 @@ export function bindUiManager(ui) { uiManagerRef = ui; }
 export function initArticleManager(uiManager) {
     loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;
+    import('./collectionsView.js').then(m => m.initCollectionsView({ toast: (msg) => uiManager.showToast(msg), openArticle: (a) => showArticleDetail(a) })).catch(() => {});
     // The lexicon grew (tag naming in Settings or a background run): tag chips change language, so redraw the list.
     // Waiting phone links changed. Before the first load the archive is empty here: painting now would show the phone
     // cards alone and the rest a moment later. loadHistory() mounts both together, so wait for it.
@@ -1219,6 +1244,13 @@ export function renderArticles(articles) {
     const tabsNav = buildTabs();
     if (tabsBar && tabsNav.parentNode !== tabsBar) tabsBar.appendChild(tabsNav);
     renderResearchFilters(tabsBar);
+    if (historyTab === 'collections') {
+        // Collections are not article cards: their own view fills the list element.
+        import('./collectionsView.js').then(({ renderCollectionsTab }) => renderCollectionsTab(articleList, {
+            onCount: (n) => { if (n !== collectionCount) { collectionCount = n; buildTabs(); } },
+        })).catch(() => {});
+        return;
+    }
     // Links shared from the phone wait as cards at the top of the Inbox tab (inboxView.js).
     const phoneCards = historyTab === 'inbox' ? mountPhoneCards(articleList) : 0;
     if (!articles || articles.length === 0) {
@@ -1871,6 +1903,7 @@ export async function showArticleDetail(article) {
           <div>${safeSummary}</div>
           <div id="qaMount" class="detail-qa"></div>
         </div>
+        <div id="sourceCheckMount" class="detail-source"></div>
         <div id="localInsights" class="detail-insights"></div>
         <details class="detail-original">
           <summary>${T('📄 Original Content')}</summary>
@@ -1886,6 +1919,7 @@ export async function showArticleDetail(article) {
     renderDetailTags(article, articleDetailContent.querySelector('.detail-tags'));
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
+    mountSourceCheck(article, articleDetailContent.querySelector('#sourceCheckMount'));
     {   // saved page metadata: favicon + description (set as text, never as HTML)
         const m = article.meta || {};
         const fav = m.favicon || article.favicon;

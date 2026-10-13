@@ -74,6 +74,9 @@ const SK = {
     workspace: 'ui:workspace',
     reviewPrompt: 'ui:reviewPrompt',
     exportAllQuestions: 'ui:exportAllQuestions',
+    lastCollection: 'ui:lastCollection',   // id of the collection a page was last added to (pre-selected in the "Add to collection" sheet)
+    // collections: a question and the saved articles that answer it (index = list data, records: coll:rec:<id>)
+    collIndex: 'coll:index',
     // configuration with secrets (API keys, endpoints) — never synced
     servicesConfig: 'config:services',
     // migration flags
@@ -88,6 +91,11 @@ const KEYS_SCHEMA = 1;
 const ARTICLE_REC = 'articles:rec:';
 const articleRecKey = (id) => ARTICLE_REC + id;
 const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTICLE_REC);
+
+/** Prefix of the per-collection record keys: coll:rec:<id> (name, question, source article ids, notes). */
+const COLL_REC = 'coll:rec:';
+const collRecKey = (id) => COLL_REC + id;
+const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_REC);
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 const SK_LEGACY = {

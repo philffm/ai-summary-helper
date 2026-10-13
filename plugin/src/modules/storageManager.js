@@ -1,4 +1,5 @@
-import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, migrateStorageKeys } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, migrateStorageKeys } from './storageKeys.js';
+import { removeArticleFromCollections, clearCollectionSources } from './collections.js';
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
@@ -40,7 +41,7 @@ class StorageManager {
 
     static isLocalKey(key) {
         // Per-article records are dynamic keys (articles:rec:<id>, formerly article:<id>).
-        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
+        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || isCollRecKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
     }
 
     // ─────────────────────────────────────────────
@@ -452,6 +453,7 @@ class StorageManager {
         const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => a.id !== id) });
         await new Promise(resolve => chrome.storage.local.remove(articleRecKey(id), resolve));
+        await removeArticleFromCollections(id);   // no dead references in any collection
     }
 
     // Deletes every article record, not just the index — a plain
@@ -462,6 +464,7 @@ class StorageManager {
         const recordKeys = articlesIndex.map(a => articleRecKey(a.id));
         if (recordKeys.length) await new Promise(resolve => chrome.storage.local.remove(recordKeys, resolve));
         await this.setLocal({ [SK.articlesIndex]: [] });
+        await clearCollectionSources();
     }
 
     // Archiving is essentially free with this shape: flip a flag on the small

@@ -15,7 +15,7 @@ am.initArticleManager(ui);
 am.loadHistory(); await tick(150);
 const d = w.document;
 const tabs = () => [...d.querySelectorAll('.history-tab:not([hidden])')].map(b => b.textContent);
-assert.deepEqual(tabs(), ['Inbox2', 'Read1', 'Sent0', 'Archive1'], 'counts ' + tabs());
+assert.deepEqual(tabs(), ['Inbox2', 'Read1', 'Sent0', 'Collections0', 'Archive1'], 'counts ' + tabs());
 let cards = [...d.querySelectorAll('#articleList .article-card')];
 assert.equal(cards.length, 2);
 assert(cards[0].textContent.includes('🆕 New') && cards[1].textContent.includes('👀 Read'));

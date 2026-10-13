@@ -3,7 +3,7 @@
 // Every key the extension owns belongs to one category here; test104 fails when a key in storageKeys.js (SK) is in none of them,
 // so a key added later can never be forgotten by a delete button. The functions take the storage areas as arguments (default:
 // the real chrome ones) so they can be tested with plain objects.
-import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC } from './storageKeys.js';
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
 
@@ -14,7 +14,7 @@ export const SECRET_KEYS = [
 
 export const CATEGORIES = {
     // the summaries and everything attached to them
-    articles: { keys: [SK.articlesIndex, SK.articlesSchema], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY], extra: ['articles', 'articleHistory'] },
+    articles: { keys: [SK.articlesIndex, SK.articlesSchema, SK.collIndex], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC], extra: ['articles', 'articleHistory'] },
     // yellow highlights and AI ghost highlights, all pages
     highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
     // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
@@ -28,7 +28,7 @@ export const CATEGORIES = {
     prefs: {
         syncAll: true, localStorageToo: true,
         keys: [SK.feedSettings, SK.feedUi, SK.topicLexicon, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
-            SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions],
+            SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions, SK.lastCollection],
     },
 };
 

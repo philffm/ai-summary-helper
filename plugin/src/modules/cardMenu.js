@@ -43,6 +43,7 @@ export function menuItems(a, { onRemoved, detail = false } = {}) {
     items.push({ icon: 'send', label: T('Send via LocalSend'), run: async () => (await am()).dispatchToLocalSend(a), sep: true });
     if (canPhone) items.push(phoneItem);
     items.push({ icon: 'book-open', label: T('Send to Kindle'), run: async () => (await am()).sendToKindle(a) });
+    items.push({ icon: 'layers', label: T('Add to collection'), run: async () => (await am()).addToCollection(a) });
     items.push({ icon: 'download', label: T('Export as Markdown'), run: async () => (await am()).exportToMarkdown(a) });
     items.push({ icon: 'folders', label: T('Send to Obsidian'), run: async () => (await am()).sendToObsidian(a) });
     items.push({ icon: 'file-text', label: T('Export as document (ODT)'), run: async () => (await am()).exportToDocument(a) });

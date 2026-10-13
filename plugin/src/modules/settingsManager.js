@@ -1314,7 +1314,7 @@ export function initBackupRestore() {
                     // before migration has run in this session.
                     const count = (safeLocalData[SK.articlesIndex] || safeLocalData.articles || []).length;
                     backup = {
-                        _backup_version: 3,   // 3 = registry key names (articles:index, feeds:*, account:* …); v2 (old names) still imports
+                        _backup_version: 4,   // 4 = + collections (coll:index, coll:rec:<id>); 3 = registry key names (articles:index, feeds:*, account:* …); v2 (old names) still imports
                         _exported_at: new Date().toISOString(),
                         _article_count: count,
                         _contains_secrets: includeSecrets,
@@ -1381,7 +1381,7 @@ export function initBackupRestore() {
                     if (containsSecrets && !window.confirm(T('This backup contains API keys, sign-in details, license keys, or an install identifier. Importing will replace matching stored secrets. Continue?'))) return;
                     const currentData = await StorageManager.getAll();
 
-                    if (importedData._backup_version === 2 || importedData._backup_version === 3) {
+                    if (importedData._backup_version === 2 || importedData._backup_version === 3 || importedData._backup_version === 4) {
                         // FIX: Leverage the new StorageManager routing
                         const settings = importedData.settings;
                         // v2 backups use the pre-registry key names → translate (no-op for v3)
