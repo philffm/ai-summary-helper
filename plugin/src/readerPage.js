@@ -49,6 +49,7 @@ function labelControls() {
   document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
   $('rpPrint').textContent = T('Print');
   $('rpListen').textContent = T('Read aloud');
+  $('rpApp').textContent = T('Open app');
 }
 
 function wireControls() {
@@ -215,6 +216,24 @@ async function wireListen() {
   window.addEventListener('pagehide', () => { const m = reader.state.meta; if (m && m.tool === 'reader') reader.stop(); });
 }
 
+// ── The app as a floating panel on this page (the reader is our own page, so popup.html embeds directly) ──
+function wireApp() {
+  const btn = $('rpApp'); if (!btn) return;
+  let frame = null;
+  const close = () => { if (frame) { frame.remove(); frame = null; } btn.setAttribute('aria-pressed', 'false'); };
+  btn.addEventListener('click', () => {
+    if (frame) { close(); return; }
+    frame = document.createElement('iframe');
+    frame.className = 'rp-float'; frame.title = T('Open app');
+    frame.src = chrome.runtime.getURL('popup.html') + '?surface=float';
+    document.body.appendChild(frame);
+    btn.setAttribute('aria-pressed', 'true');
+  });
+  window.addEventListener('message', (e) => {
+    if (frame && e.source === frame.contentWindow && e.origin === location.origin && e.data && e.data.aishFloat === 'close') close();
+  });
+}
+
 async function init() {
   let cfg = {};
   let lang = 'en';
@@ -226,6 +245,7 @@ async function init() {
   await render();
   await wireSend();
   wireListen();
+  wireApp();
   // "#id=…&print=1": the PDF export of the article menu — print dialog (Save as PDF) once the page is laid out
   if (new URLSearchParams(window.location.hash.slice(1)).get('print') === '1' && raw) {
     setPref({ view: 'both' });

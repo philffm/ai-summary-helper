@@ -6,11 +6,13 @@
 
 /**
  * Where this page runs: 'sidepanel' (Chrome's side panel), 'inpage' (the sidebar iframe the content script puts
- * into the page; its #hash carries the sidebarChannel token) or 'popup'.
+ * into the page; its #hash carries the sidebarChannel token), 'tab' (its own browser tab, "Open in new tab"),
+ * 'float' (a floating panel inside one of our own pages, e.g. the reader) or 'popup'.
  */
 export function currentSurface(search = (typeof location !== 'undefined' ? location.search : ''), hash = (typeof location !== 'undefined' ? location.hash : '')) {
     try {
-        if (new URLSearchParams(search).get('surface') === 'sidepanel') return 'sidepanel';
+        const surface = new URLSearchParams(search).get('surface');
+        if (surface === 'sidepanel' || surface === 'tab' || surface === 'float') return surface;
         if (/(^|[#&])aish-sidebar=/.test(String(hash || ''))) return 'inpage';
     } catch (_) { /* fall through */ }
     return 'popup';

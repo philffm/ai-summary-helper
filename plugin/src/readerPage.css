@@ -52,11 +52,12 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .rp-empty { color: var(--rp-muted); font-style: italic; }
 .rp-toast { position: fixed; inset: auto 1rem 1rem 1rem; max-width: 28rem; margin-inline: auto; z-index: 30; background: var(--rp-text); color: var(--rp-bg); padding: .65rem 1rem; border-radius: .6rem; font: 600 .85rem/1.4 var(--rp-ui); text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
 .rp-toast[hidden] { display: none; }
+.rp-float { position: fixed; top: 12px; right: 12px; width: min(420px, calc(100vw - 24px)); height: calc(100dvh - 24px); border: 0; border-radius: 16px; z-index: 40; background: var(--rp-bg); box-shadow: 0 8px 32px rgba(0,0,0,.25), 0 0 0 1px var(--rp-line); color-scheme: light dark; }
 .rp-speaking { background: var(--rp-mark-ghost); border-radius: .25rem; box-shadow: 0 0 0 .2rem var(--rp-mark-ghost); }
 .rp-group button:disabled, .rp-plain:disabled { opacity: .55; cursor: progress; }
 @media (max-width: 600px) { .rp-bar-in { gap: .4rem; } .rp-page { padding-top: 1.5rem; } }
 @media print {
-  .rp-bar, .rp-progress, .rp-toc, .rp-toast { display: none; }
+  .rp-bar, .rp-progress, .rp-toc, .rp-toast, .rp-float { display: none; }
   body { background: #fff; color: #000; } .rp-page { max-width: none; padding: 0; }
   :root { --rp-surface: #fff; --rp-text: #000; --rp-accent: #000; --rp-mark: #ffe96b; }
 }

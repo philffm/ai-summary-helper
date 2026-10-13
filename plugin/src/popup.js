@@ -113,13 +113,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Chrome: one button docks this page into the side panel, and in the side panel undocks it to a popup.
         // sidePanel.open needs the click's user gesture, so the window id is known before the click.
-        const docking = !inSidebar && surface !== 'inpage' && sidePanelAvailable();
+        const hosted = surface === 'tab' || surface === 'float';   // own tab / floating panel in a page of ours: no docking
+        const docking = !inSidebar && surface !== 'inpage' && !hosted && sidePanelAvailable();
         let windowId = null;
         if (docking) {
             try { chrome.windows.getCurrent((w) => { windowId = w && w.id; }); } catch (_) { /* no windows API: the background falls back */ }
             const label = surface === 'sidepanel' ? T('Detach to popup') : T('Attach to side panel');
             setIcon(popoutBtn, surface === 'sidepanel' ? 'arrow-down-left' : 'pin', 'icon--lg');
             popoutBtn.title = label; popoutBtn.setAttribute('aria-label', label);
+            popoutBtn.removeAttribute('data-i18n-title');
+        } else if (surface === 'tab') {
+            popoutBtn.hidden = true;   // already a full page: closing is the browser tab's job
+        } else if (surface === 'float') {
+            // Floating panel in the reader: the button closes it (the hosting page removes the iframe).
+            setIcon(popoutBtn, 'x', 'icon--lg');
+            popoutBtn.title = T('Close'); popoutBtn.setAttribute('aria-label', T('Close'));
             popoutBtn.removeAttribute('data-i18n-title');
         } else if (surface === 'inpage') {
             // The in-page sidebar: the button closes it (the click below toggles it off through the content script).
@@ -129,6 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         popoutBtn.addEventListener('click', async () => {
+            if (surface === 'float') { try { window.parent.postMessage({ aishFloat: 'close' }, location.origin); } catch (_) { /* host gone */ } return; }
             if (docking) {
                 try {
                     if (surface === 'sidepanel') { await detachToPopup(windowId); return; }
@@ -170,6 +179,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 console.error('[sidePanel] Failed:', err.message);
             }
         });
+    }
+
+    // ── Open in new tab (full page) ────────────────────────────────────
+    const openTabBtn = document.getElementById('openTabButton');
+    if (openTabBtn) {
+        if (surface === 'tab') openTabBtn.hidden = true;
+        else {
+            const label = T('Open in new tab');
+            openTabBtn.title = label; openTabBtn.setAttribute('aria-label', label);
+            openTabBtn.addEventListener('click', async () => {
+                const url = chrome.runtime.getURL('popup.html') + '?surface=tab';
+                try { await chrome.tabs.create({ url }); } catch (_) { window.open(url, '_blank', 'noopener'); }
+                if (surface === 'popup') window.close();
+            });
+        }
     }
 
     // ── Summary length (Auto | Custom, slider + number field) ───────────

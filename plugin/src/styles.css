@@ -3602,6 +3602,9 @@ body:not([data-screen="feeds"]):not([data-screen="history"]) .back-to-top { disp
 
 /* Firefox sidebar (sidebar_action): the same page, any width the user drags the sidebar to. */
 body[data-surface="sidebar"] { min-width: 0; }
+/* Own browser tab: the app stays one readable column in the middle (transform = fixed children, e.g. the bottom nav, stay inside it) */
+body[data-surface="tab"] { max-width: 760px; margin: 0 auto; transform: translateZ(0); border-inline: 1px solid var(--outline); box-shadow: 0 0 40px rgba(0,0,0,.08); }
+html:has(body[data-surface="tab"]) { background: var(--bg-page); }
 
 /* Read aloud: Listen pill, mini player and options popover (part of the reading tools cluster) */
 .reading-tools.is-reading .rt-pill:not(.rt-listen) { display: none; }

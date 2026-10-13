@@ -6,6 +6,7 @@ import { setup, imp, tick, SRC } from './harness.mjs';
 // 1. module on its own
 const P = await imp('modules/panelDock.js');
 assert.equal(P.currentSurface('?surface=sidepanel'), 'sidepanel');
+assert.equal(P.currentSurface('?surface=tab'), 'tab'); assert.equal(P.currentSurface('?surface=float'), 'float');
 assert.equal(P.currentSurface(''), 'popup'); assert.equal(P.currentSurface('?surface=x'), 'popup');
 assert.equal(P.currentSurface('', '#aish-sidebar=123e4567-e89b-42d3-a456-426614174000'), 'inpage', 'in-page sidebar iframe');
 assert.equal(P.currentSurface('', '#other'), 'popup');
