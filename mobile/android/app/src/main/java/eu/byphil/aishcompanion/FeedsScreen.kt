@@ -216,7 +216,7 @@ fun FeedsScreen(
                                 FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
                                     FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
-                                    FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😟") })
+                                    FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😢") })
                                 }
                                 if (source != "all") FilterChip(selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
                                 if (visible.any { !it.stored.read }) FilterChip(selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
@@ -323,7 +323,7 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, select
                 if (selecting) Icon(if (picked) Icons.Filled.CheckCircle else Icons.Filled.RadioButtonUnchecked, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
                 if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
                 Text(listOf(e.feed.name, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
-                when (Mood.of(e.stored.sent)) { "pos" -> Text("😊"); "neg" -> Text("😟"); else -> {} }
+                when (Mood.of(e.stored.sent)) { "pos" -> Text("😊"); "neg" -> Text("😢"); else -> {} }
                 androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
                 if (item.audio.isNotEmpty()) {
                     val ctx = LocalContext.current
