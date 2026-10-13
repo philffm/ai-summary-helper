@@ -129,7 +129,7 @@
   --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
   --accent-soft-strong: color-mix(in srgb, var(--accent) 18%, transparent);
   /* podcast player */
-  --player-bg: linear-gradient(160deg, rgba(255,255,255,.97), rgba(241,245,249,.97));
+  --player-bg: color-mix(in srgb, var(--sheet-bg) 96%, transparent);   /* semantic surface (sheet-bg): follows theme and brand; stays a bit see-through for the blur */
   --player-border: rgba(15,23,42,.10);
   --player-shadow: 0 14px 36px rgba(15,23,42,.18), 0 2px 6px rgba(15,23,42,.10);
   --player-fg: var(--text-primary);
@@ -160,7 +160,6 @@
     --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06);
 
     --text-primary: #e8edf5;
-    --player-bg: linear-gradient(160deg, rgba(30,41,59,.96), rgba(15,23,42,.96));
     --player-border: rgba(255,255,255,.08);
     --player-shadow: 0 14px 36px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.25);
     --player-track: rgba(255,255,255,.22);
@@ -235,7 +234,6 @@
   --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06);
 
   --text-primary: #e8edf5;
-  --player-bg: linear-gradient(160deg, rgba(30,41,59,.96), rgba(15,23,42,.96));
   --player-border: rgba(255,255,255,.08);
   --player-shadow: 0 14px 36px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.25);
   --player-track: rgba(255,255,255,.22);
