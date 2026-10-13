@@ -1,6 +1,7 @@
 package eu.byphil.aishcompanion
 
 import android.text.format.Formatter
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -46,12 +48,18 @@ import java.time.LocalTime
 fun ModelCard(model: AppModel) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val store = remember { ModelStore.of(context) }
+    var optionId by remember { mutableStateOf(model.store.modelId) }
+    val option = Models.byId(optionId)
+    val store = remember(optionId) { ModelStore.of(context, option) }
     val works by WorkManager.getInstance(context).getWorkInfosForUniqueWorkFlow(ModelDownloadWorker.NAME).collectAsState(emptyList())
     val running = works.any { it.state == WorkInfo.State.RUNNING }
     val waiting = works.any { it.state == WorkInfo.State.ENQUEUED || it.state == WorkInfo.State.BLOCKED }
-    var have by remember { mutableLongStateOf(store.downloaded()) }
-    var installed by remember { mutableStateOf(store.installed()) }
+    var have by remember(optionId) { mutableLongStateOf(store.downloaded()) }
+    var installed by remember(optionId) { mutableStateOf(store.installed()) }
+    var profile by remember { mutableStateOf<DeviceProfile?>(null) }
+    var checking by remember { mutableStateOf(false) }
+    var speed by remember { mutableStateOf<String?>(null) }
+    var testing by remember { mutableStateOf(false) }
     var trying by remember { mutableStateOf(false) }
     var result by remember { mutableStateOf<String?>(null) }
     var confirmDelete by remember { mutableStateOf(false) }
@@ -62,7 +70,7 @@ fun ModelCard(model: AppModel) {
     val unrated = MoodRater.candidates(model.entries, System.currentTimeMillis(), all = true).size
     LaunchedEffect(histRunning) { while (histRunning) { delay(3000); withContext(Dispatchers.IO) { model.reload() } } }
 
-    LaunchedEffect(running, waiting, works) {
+    LaunchedEffect(running, waiting, works, optionId) {
         do {
             have = store.downloaded(); installed = store.installed()
             delay(1000)
@@ -74,13 +82,51 @@ fun ModelCard(model: AppModel) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text("On-device AI", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Text(
-                "${ModelSpec.NAME} runs on this phone to write your briefing as natural sentences instead of a headline list. Nothing is sent anywhere. " +
-                    "Your Fold's built-in Gemini Nano is not available for apps, so the model is downloaded once (${Formatter.formatShortFileSize(context, ModelSpec.SIZE)}).",
+                "${option.name} runs on this phone to write your briefing as natural sentences instead of a headline list. Nothing is sent anywhere. " +
+                    "Your Fold's built-in Gemini Nano is not available for apps, so the model is downloaded once (${Formatter.formatShortFileSize(context, option.size)}).",
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            val rec = profile?.let { DeviceBench.recommend(it) }
+            Text("Model", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+            val p = profile
+            if (p == null) {
+                OutlinedButton(enabled = !checking, onClick = {
+                    checking = true
+                    scope.launch {
+                        val found = withContext(Dispatchers.Default) { DeviceBench.measure(context) }
+                        profile = found; checking = false
+                    }
+                }) { Text(if (checking) "Checking this phone…" else "Check this phone and recommend a model") }
+                Text("Takes a few seconds and downloads nothing. It measures your phone's memory and how fast it reads it, which decides how fast a model can write.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            } else {
+                Text("%.0f GB memory · %d cores · memory speed %.0f GB/s. Speeds below are estimates.".format(p.ramGb, p.cores, p.bandwidthGbps), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+            Models.ALL.forEach { o ->
+                val v = p?.let { DeviceBench.verdict(it, o) }
+                Row(
+                    Modifier.fillMaxWidth().clickable { if (o.id != optionId) { ModelDownloadWorker.cancel(context); model.store.modelId = o.id; optionId = o.id; speed = null } },
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    RadioButton(selected = o.id == optionId, onClick = null)
+                    Column(Modifier.weight(1f).padding(start = 12.dp, top = 6.dp, bottom = 6.dp)) {
+                        Text(o.name + " · " + Formatter.formatShortFileSize(context, o.size) + (if (ModelStore.of(context, o).installed()) " · on this phone" else ""), style = MaterialTheme.typography.bodyLarge)
+                        Text(o.blurb + (v?.let { " " + if (it.fit == Fit.NO) it.fit.label + "." else it.fit.label + ", about %.0f words per second.".format(it.wordsPerSecond) } ?: ""), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        if (rec?.id == o.id) Text("Recommended for this phone", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
+                    }
+                }
+            }
             when {
                 installed -> {
-                    Text("Installed · ${Formatter.formatShortFileSize(context, ModelSpec.SIZE)}", style = MaterialTheme.typography.bodyMedium)
+                    Text("Installed · ${Formatter.formatShortFileSize(context, option.size)}", style = MaterialTheme.typography.bodyMedium)
+                    OutlinedButton(enabled = !testing, onClick = {
+                        testing = true; speed = null
+                        scope.launch {
+                            val wps = withContext(Dispatchers.Default) { LocalLlm.speedTest(context) }
+                            speed = if (wps == null) "The model could not run the test now." else "Measured: %.1f words per second.".format(wps) + (if (wps < 2.5) " That is slow; a smaller model will feel better." else "")
+                            testing = false
+                        }
+                    }) { Text(if (testing) "Testing… (up to a minute)" else "Test speed") }
+                    speed?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("Write the morning briefing with it", Modifier.weight(1f))
                         Switch(checked = a.useAi, onCheckedChange = { model.changeAlarm(a.copy(useAi = it)) })
@@ -110,15 +156,15 @@ fun ModelCard(model: AppModel) {
                     }
                 }
                 running || waiting -> {
-                    LinearProgressIndicator(progress = { (have.toFloat() / ModelSpec.SIZE).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth())
+                    LinearProgressIndicator(progress = { (have.toFloat() / option.size).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth())
                     Text(
-                        (if (running) "Downloading… " else "Waiting for Wi-Fi… ") + "${Formatter.formatShortFileSize(context, have)} of ${Formatter.formatShortFileSize(context, ModelSpec.SIZE)}",
+                        (if (running) "Downloading… " else "Waiting for Wi-Fi… ") + "${Formatter.formatShortFileSize(context, have)} of ${Formatter.formatShortFileSize(context, option.size)}",
                         style = MaterialTheme.typography.bodySmall,
                     )
                     OutlinedButton(onClick = { ModelDownloadWorker.cancel(context) }) { Text("Pause") }
                 }
                 else -> {
-                    if (have > 0) Text("Paused at ${Formatter.formatShortFileSize(context, have)} of ${Formatter.formatShortFileSize(context, ModelSpec.SIZE)}.", style = MaterialTheme.typography.bodySmall)
+                    if (have > 0) Text("Paused at ${Formatter.formatShortFileSize(context, have)} of ${Formatter.formatShortFileSize(context, option.size)}.", style = MaterialTheme.typography.bodySmall)
                     Button(onClick = { ModelDownloadWorker.start(context) }) { Text(if (have > 0) "Resume download" else "Download (Wi-Fi only)") }
                     works.firstOrNull { it.state == WorkInfo.State.FAILED }?.let { Text("The last download failed (not enough space or a corrupt file). Free some space and try again.", color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
                 }
@@ -138,7 +184,7 @@ fun ModelCard(model: AppModel) {
         AlertDialog(
             onDismissRequest = { confirmDelete = false },
             title = { Text("Delete the model?") },
-            text = { Text("This frees ${Formatter.formatShortFileSize(context, ModelSpec.SIZE)}. Briefings go back to headline lists until you download it again.") },
+            text = { Text("This frees ${Formatter.formatShortFileSize(context, option.size)}. Briefings go back to headline lists until you download it again.") },
             confirmButton = { TextButton(onClick = { ModelDownloadWorker.cancel(context); store.delete(); model.changeAlarm(a.copy(useAi = false)); have = 0; installed = false; confirmDelete = false }) { Text("Delete") } },
             dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text("Cancel") } },
         )

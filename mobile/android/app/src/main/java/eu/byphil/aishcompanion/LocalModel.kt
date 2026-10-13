@@ -33,6 +33,35 @@ object ModelSpec {
     const val SPACE_MARGIN = 300L * 1024 * 1024
 }
 
+/** One downloadable model: an exact revision of a public repository, size and SHA-256 checked after the download. */
+data class ModelOption(
+    val id: String, val name: String, val file: String, val size: Long, val sha256: String, val url: String,
+    /** 1 (small) to 4 (best): used to pick the best model a phone can run well. */
+    val quality: Int, val blurb: String,
+    /** Gigabytes actually read for every word written: less than the file when part of it is a lookup table (Gemma's per-layer embeddings). */
+    val activeGb: Double = size / 1e9,
+) {
+    val gb: Double get() = size / 1e9
+    /** Memory the model needs while it works: the file itself plus the working memory (context and runtime). */
+    val needGb: Double get() = gb * 1.2 + 0.6
+}
+
+/** The models the phone can use. Gemma 4 E2B stays the default; the others are chosen after a quick check of the phone. */
+object Models {
+    val DEFAULT = ModelOption("gemma-4-e2b", ModelSpec.NAME, ModelSpec.FILE, ModelSpec.SIZE, ModelSpec.SHA256, ModelSpec.URL, 3, "Balanced: good summaries, runs on most recent phones with 8 GB of memory.", 1.4)
+    val ALL: List<ModelOption> = listOf(
+        ModelOption("qwen3-0.6b", "Qwen3 0.6B", "Qwen3-0.6B.litertlm", 614_236_160L, "555579ff2f4fd13379abe69c1c3ab5200f7338bc92471557f1d6614a6e5ab0b4",
+            "https://huggingface.co/litert-community/Qwen3-0.6B/resolve/a3c5d805ae362dff7f580bc25f2dfb9a5a7eaa76/Qwen3-0.6B.litertlm", 1, "Tiny and fast, for phones with little memory. Shorter, simpler summaries.", 0.45),
+        DEFAULT,
+        ModelOption("phi-4-mini", "Phi-4 mini", "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm", 3_910_090_752L, "7764d4deb53800578307be33039476b38a6c370fff71bedb3c0552563e23ab02",
+            "https://huggingface.co/litert-community/Phi-4-mini-instruct/resolve/8cd368be75fdb94d5a6f6f5b40f1ab22a6c2543e/Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm", 3, "Strong at reasoning, mostly English. Large and slower."),
+        ModelOption("gemma-4-e4b", "Gemma 4 E4B", "gemma-4-E4B-it.litertlm", 3_659_530_240L, "0b2a8980ce155fd97673d8e820b4d29d9c7d99b8fa6806f425d969b145bd52e0",
+            "https://huggingface.co/litert-community/gemma-4-E4B-it-litert-lm/resolve/2eee7ac325f20eb8c9ac1d0e972f7c84663062da/gemma-4-E4B-it.litertlm", 4, "The best summaries and the most languages. Needs a phone with 12 GB of memory.", 2.2),
+    )
+    fun byId(id: String): ModelOption = ALL.firstOrNull { it.id == id } ?: DEFAULT
+    fun selected(context: Context): ModelOption = byId(Store(context).modelId)
+}
+
 /** Where the model file lives (app-private, so removing the app removes it) and how far the download is. */
 class ModelStore(val dir: File, private val size: Long = ModelSpec.SIZE, name: String = ModelSpec.FILE) {
     val file = File(dir, name)
@@ -42,7 +71,10 @@ class ModelStore(val dir: File, private val size: Long = ModelSpec.SIZE, name: S
     fun delete() { file.delete(); part.delete() }
     val total: Long get() = size
 
-    companion object { fun of(context: Context) = ModelStore(File(context.applicationContext.filesDir, "model")) }
+    companion object {
+        /** The store of the chosen model (or of [option]); each model has its own file, so several can be on the phone. */
+        fun of(context: Context, option: ModelOption = Models.selected(context)) = ModelStore(File(context.applicationContext.filesDir, "model"), option.size, option.file)
+    }
 }
 
 /** Resumable download with a manual redirect loop (https only), then size and SHA-256 check. Blocking: call off the main thread. */
@@ -107,7 +139,8 @@ object ModelDownloader {
 /** Downloads in the background on unmetered networks (Wi-Fi); a stopped or interrupted download continues from the partial file. */
 class ModelDownloadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
-        when (ModelDownloader.download(ModelStore.of(applicationContext), cancelled = { isStopped })) {
+        val option = Models.selected(applicationContext)
+        when (ModelDownloader.download(ModelStore.of(applicationContext, option), option.url, option.sha256, cancelled = { isStopped })) {
             null -> Result.success()
             "network", "cancelled" -> Result.retry()
             else -> Result.failure()

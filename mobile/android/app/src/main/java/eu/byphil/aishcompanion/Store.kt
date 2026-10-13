@@ -42,6 +42,11 @@ class Store(context: Context) {
         set(v) = prefs.edit().putString("summary.lang", v).apply()
 
     /** Stack items about the same story in the Feeds list. */
+    /** The on-device model in use (an id from [Models]). */
+    var modelId: String
+        get() = prefs.getString("model.id", Models.DEFAULT.id) ?: Models.DEFAULT.id
+        set(v) = prefs.edit().putString("model.id", v).apply()
+
     /** Which hand holds the phone: the main actions sit on that side. */
     var leftHanded: Boolean
         get() = prefs.getBoolean("ui.left", false)

@@ -37,7 +37,7 @@ object LocalLlm {
             block({ system, prompt ->
                 try {
                     val conversation = eng.createConversation(ConversationConfig(systemInstruction = Contents.of(system)))
-                    try { conversation.sendMessage(prompt).toString() } finally { conversation.close() }
+                    try { clean(conversation.sendMessage(prompt).toString()) } finally { conversation.close() }
                 } catch (_: Exception) { null }
             }, { system, prompt, onText ->
                 try {
@@ -45,9 +45,9 @@ object LocalLlm {
                     try {
                         val sb = StringBuilder()
                         kotlinx.coroutines.runBlocking {
-                            conversation.sendMessageAsync(prompt).collect { chunk -> sb.append(chunk.toString()); onText(sb.toString()) }
+                            conversation.sendMessageAsync(prompt).collect { chunk -> sb.append(chunk.toString()); onText(clean(sb.toString())) }
                         }
-                        sb.toString().ifBlank { null }
+                        clean(sb.toString()).ifBlank { null }
                     } finally { conversation.close() }
                 } catch (_: Exception) { null }
             })
@@ -60,6 +60,26 @@ object LocalLlm {
             runCatching { engine?.close() }
             Guard.end(context, "model")
         }
+    }
+
+    /** Some models (Qwen3) think out loud between <think> tags first; that part is never shown or spoken, also while it is still being written. */
+    fun clean(reply: String): String {
+        var s = reply.replace(Regex("(?s)<think>.*?</think>"), "")
+        val open = s.indexOf("<think>")
+        if (open >= 0) s = s.substring(0, open)
+        return s.trimStart()
+    }
+
+    /** Measures the real speed of the installed model with a short fixed task: words per second, or null when it could not run. Blocking. */
+    fun speedTest(context: Context): Double? {
+        var words = 0; var ms = 0L
+        val ran = sessionWithStream(context) { _, stream ->
+            val start = System.nanoTime()
+            val out = stream("You are a concise assistant.", "Explain in about 80 words why sleep matters for memory.") { }
+            ms = (System.nanoTime() - start) / 1_000_000
+            words = out?.trim()?.split(Regex("\\s+"))?.size ?: 0
+        }
+        return if (ran && words > 0 && ms > 0) words * 1000.0 / ms else null
     }
 
     /** Runs [prompt] (with [system] as the standing instruction) and returns the raw reply, or null when the model is missing or anything fails. */
