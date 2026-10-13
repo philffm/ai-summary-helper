@@ -67,8 +67,12 @@ export function initInstantRead({ chip, barHost, button, fallback }) {
     const t = mk('span', 'sr-t');
     const mute = btn('sr-mute', () => reader.mute());
     const vol = mk('input', 'sr-vol'); vol.type = 'range'; vol.min = '0'; vol.max = '100'; vol.setAttribute('aria-label', T('Volume'));
+    // The track fill is drawn from --range-progress (see the slider rules in styles.css) — without it the bar stays half full.
+    const fill = () => vol.style.setProperty('--range-progress', vol.value + '%');
+    vol.value = '100'; fill();
+    vol.addEventListener('input', fill);
     vol.addEventListener('change', () => reader.setVolume(Number(vol.value) / 100));
-    reader.prefs().then((p) => { vol.value = String(Math.round((p.volume >= 0 ? p.volume : 1) * 100)); }).catch(() => {});
+    reader.prefs().then((p) => { vol.value = String(Math.round((p.volume >= 0 ? p.volume : 1) * 100)); fill(); }).catch(() => {});
     const rate = btn('sr-rate', async () => { const cur = reader.state.rate || 1; await reader.setRate(STEPS[(STEPS.indexOf(cur) + 1) % STEPS.length]); });
     rate.title = T('Reading speed'); rate.setAttribute('aria-label', T('Reading speed'));
     x.append(pp, t, mute, vol, rate);
