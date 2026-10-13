@@ -1858,7 +1858,6 @@ export async function showArticleDetail(article) {
         <div class="action-bar detail-actions">
           <button class="button-secondary open-button">${icon('book-open')} ${lbl('Read 👓')}</button>
           <button class="button-secondary copy-button">${icon('copy')} ${lbl('Copy 📋')}</button>
-          <button class="button-secondary md-button">${icon('download')} ${lbl('.MD 💾')}</button>
           <button class="button-secondary share-button">${icon('link')} ${lbl('Share 🔗')}</button>
           <button class="button-secondary kindle-button">${icon('book-open')} ${lbl('Kindle 📚')}</button>
           <button class="button-secondary localsend-button">${icon('smartphone')} ${lbl('LocalSend 📱')}</button>
@@ -1898,7 +1897,6 @@ export async function showArticleDetail(article) {
     const copyBtn = articleDetailContent.querySelector('.copy-button');
     const kindleBtn = articleDetailContent.querySelector('.kindle-button');
     const localSendBtn = articleDetailContent.querySelector('.localsend-button');
-    const mdBtn = articleDetailContent.querySelector('.md-button');
     const openBtn = articleDetailContent.querySelector('.open-button');
 
     StorageManager.getAll().then((cfg) => {
@@ -1915,12 +1913,15 @@ export async function showArticleDetail(article) {
     if (copyBtn) copyBtn.addEventListener('click', (e) => { e.stopPropagation(); copyArticleToClipboard(article); });
     if (kindleBtn) kindleBtn.addEventListener('click', (e) => { e.stopPropagation(); sendToKindle(article); });
     if (localSendBtn) localSendBtn.addEventListener('click', (e) => { e.stopPropagation(); dispatchToLocalSend(article); });
-    if (mdBtn) mdBtn.addEventListener('click', (e) => { e.stopPropagation(); exportToMarkdown(article); });
     if (openBtn) {
         openBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             openReadMode(article);
         });
+    }
+    {   // ⋯ — everything the list's menu offers (Markdown, ODT/Word/PDF, Obsidian, archive, delete, …)
+        const bar = articleDetailContent.querySelector('.detail-actions');
+        if (bar) attachCardMenu(bar, article, { detail: true, onRemoved: () => { const b = document.getElementById('detailBackButton'); if (b) b.click(); } });
     }
     // Show detail, hide list and graph
     if (articleList) articleList.style.display = 'none';

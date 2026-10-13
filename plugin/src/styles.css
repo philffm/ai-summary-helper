@@ -3682,6 +3682,7 @@ body[data-surface="tab"] { min-width: 0; }
 .detail-decision-title { font-size: var(--fs-md); font-weight: 600; color: var(--accent); }
 .detail-decision-reason { margin: 0; font-size: var(--fs-sm); color: var(--text-secondary); }
 .detail-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.detail-actions .card-menu-btn { align-self: center; border: 1px solid var(--outline); height: 34px; min-width: 34px; }
 .detail-actions .localsend-button { background: #0284c7; color: #fff; border: none; }
 .article-detail-card .summary-box { background: var(--accent-a05); padding: 12px; border-left: 4px solid var(--accent-glow); margin-bottom: 12px; }
 .summary-box-title { display: block; margin-bottom: 8px; }

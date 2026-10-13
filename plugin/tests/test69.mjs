@@ -26,7 +26,7 @@ const am = await imp('../src/modules/articleManager.js');
 await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(100);
 const d = w.document;
 const labels = [...d.querySelectorAll('.action-bar button')].map(b => b.className.split(' ')[1] || b.className);
-assert.deepEqual(labels.filter(c => !/kindle/.test(c)), ['open-button', 'copy-button', 'md-button', 'share-button', 'localsend-button']);
+assert.deepEqual(labels.filter(c => !/kindle/.test(c)), ['open-button', 'copy-button', 'share-button', 'localsend-button', 'card-menu-btn'], 'no .MD button; the ⋯ menu carries the rest');
 assert(d.querySelector('.action-bar .open-button').classList.contains('button-secondary'));
 const pd = d.querySelector('details.paper-details');
 assert(pd && !pd.open, 'paper details collapsed by default');

@@ -29,7 +29,7 @@ async function readAloud(a) {
 const am = () => import('./articleManager.js');
 
 /** Menu entries for an article (hidden ones are left out). */
-export function menuItems(a, { onRemoved } = {}) {
+export function menuItems(a, { onRemoved, detail = false } = {}) {
   const hasSummary = !!(a.summary && String(a.summary).trim()) && !a.feedStub;
   const st = activeReading(a);
   const items = [];
@@ -50,7 +50,7 @@ export function menuItems(a, { onRemoved } = {}) {
     if (a.id) items.push({ icon: 'newspaper', label: T('Export as PDF'), run: async () => (await am()).exportToPdf(a) });
   }
   if (canPhone && !hasSummary) items.push({ ...phoneItem, sep: true });
-  if (a.id && canSelect(a)) items.push({ icon: 'square-check-big', label: T('Select'), run: () => startSelectionWith(a), sep: true });
+  if (a.id && !detail && canSelect(a)) items.push({ icon: 'square-check-big', label: T('Select'), run: () => startSelectionWith(a), sep: true });
   if (a.id) {
     if (!a.feedStub) items.push({ icon: a.archived ? 'undo-2' : 'archive', label: a.archived ? T('Restore to Inbox') : T('Archive'), run: async () => (await am()).applyStatus([a.id], { archived: !a.archived }), sep: true });
     items.push({ icon: 'trash-2', label: T('Delete'), danger: true, sep: !hasSummary || a.feedStub, run: async () => { const ok = await (await am()).removeArticle(a); if (ok && onRemoved) onRemoved(a); } });
