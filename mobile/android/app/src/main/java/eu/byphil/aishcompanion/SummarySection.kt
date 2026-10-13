@@ -36,8 +36,11 @@ fun FeedsCard(model: AppModel) {
 fun AccessibilityCard(model: AppModel) {
     var scale by remember { mutableStateOf(model.store.readerScale) }
     SettingsGroup {
+        ChoiceRow("🅰 Reading typeface", "\"Easy read\" is Atkinson Hyperlegible, designed for low vision.", ReaderLook.FONTS, model.readerFont) { model.changeReaderFont(it) }
+        ChoiceRow("↕ Line spacing", "Space between lines of article text.", ReaderLook.SPACING.map { it.first.toString() to it.second }, ReaderLook.SPACING.minByOrNull { kotlin.math.abs(it.first - model.readerSpacing) }!!.first.toString()) { model.changeReaderSpacing(it.toFloat()) }
+        ChoiceRow("🎨 Reading background", "Paper is warm and easy on the eyes; Dark and White ignore the app theme.", ReaderLook.THEMES, model.readerTheme) { model.changeReaderTheme(it) }
         ChoiceRow("🖐 Hand", "The main actions in bottom bars sit on this side, within reach of your thumb.", listOf("right" to "Right-handed", "left" to "Left-handed"), if (model.leftHanded) "left" else "right") { model.changeLeftHanded(it == "left") }
         ChoiceRow("🔠 Reading text size", "Applies to articles in the reading list.", listOf("0.9" to "Small", "1.0" to "Normal", "1.2" to "Large", "1.5" to "Huge"),
-            listOf(0.9f, 1.0f, 1.2f, 1.5f).minByOrNull { kotlin.math.abs(it - scale) }.toString()) { scale = it.toFloat(); model.store.readerScale = scale }
+            listOf(0.9f, 1.0f, 1.2f, 1.5f).minByOrNull { kotlin.math.abs(it - scale) }.toString()) { scale = it.toFloat(); model.changeReaderScale(scale) }
     }
 }

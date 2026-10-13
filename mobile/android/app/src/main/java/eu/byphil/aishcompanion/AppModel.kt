@@ -66,6 +66,7 @@ class AppModel(context: Context) {
         leftHanded = store.leftHanded.also { Handed.left = it }
         groupSimilar = store.groupSimilar
         summaryLang = store.summaryLang
+        readerScale = store.readerScale; readerFont = store.readerFont; readerSpacing = store.readerSpacing; readerTheme = store.readerTheme
         speakSummary = store.speakSummary
         ghostMarks = store.ghostMarks
         runCatching { AlarmScheduler.reschedule(app) }
@@ -91,6 +92,14 @@ class AppModel(context: Context) {
 
     var leftHanded by mutableStateOf(store.leftHanded.also { Handed.left = it })
     fun changeLeftHanded(on: Boolean) { store.leftHanded = on; leftHanded = on; Handed.left = on }
+    var readerScale by mutableStateOf(store.readerScale)
+    fun changeReaderScale(v: Float) { store.readerScale = v; readerScale = v }
+    var readerFont by mutableStateOf(store.readerFont)
+    fun changeReaderFont(v: String) { store.readerFont = v; readerFont = v }
+    var readerSpacing by mutableStateOf(store.readerSpacing)
+    fun changeReaderSpacing(v: Float) { store.readerSpacing = v; readerSpacing = store.readerSpacing }
+    var readerTheme by mutableStateOf(store.readerTheme)
+    fun changeReaderTheme(v: String) { store.readerTheme = v; readerTheme = v }
     var groupSimilar by mutableStateOf(store.groupSimilar)
     fun changeGroupSimilar(on: Boolean) { store.groupSimilar = on; groupSimilar = on }
     var summaryLang by mutableStateOf(store.summaryLang)

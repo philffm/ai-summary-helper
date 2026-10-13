@@ -73,6 +73,21 @@ class Store(context: Context) {
         get() = prefs.getFloat("reader.scale", 1f)
         set(v) = prefs.edit().putFloat("reader.scale", v).apply()
 
+    /** Reader typeface: "sans" (app font), "serif" or "easy" (Atkinson Hyperlegible). */
+    var readerFont: String
+        get() = prefs.getString("reader.font", "sans") ?: "sans"
+        set(v) = prefs.edit().putString("reader.font", v).apply()
+
+    /** Line spacing factor of article text (1 = as designed). */
+    var readerSpacing: Float
+        get() = prefs.getFloat("reader.spacing", 1f)
+        set(v) = prefs.edit().putFloat("reader.spacing", v.coerceIn(0.9f, 1.8f)).apply()
+
+    /** Reader background: "auto" (follows the app), "paper", "white" or "dark". */
+    var readerTheme: String
+        get() = prefs.getString("reader.theme", "auto") ?: "auto"
+        set(v) = prefs.edit().putString("reader.theme", v).apply()
+
     /** Speech rate when an article is read aloud (1 = normal). */
     var ttsRate: Float
         get() = prefs.getFloat("tts.rate", 1f)

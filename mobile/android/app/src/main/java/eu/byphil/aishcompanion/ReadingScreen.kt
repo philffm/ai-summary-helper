@@ -250,9 +250,16 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
     val placed = remember(id) { Highlighter.place(article.blocks, article.highlights) }
     val archived = model.readTick >= 0 && model.articles.isArchived(id)
-    val scale = remember(id) { model.store.readerScale }   // set in Settings → Accessibility
+    val scale = model.readerScale   // set in the reader sheet or Settings → Accessibility
+    var sheet by remember(id) { mutableStateOf(false) }
+    val look = ReaderLook.colors(model.readerTheme)
+    val style = ReaderStyle(ReaderLook.family(model.readerFont), model.readerSpacing)
     val density = androidx.compose.ui.platform.LocalDensity.current
-    androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density, density.fontScale * scale)) {
+    androidx.compose.runtime.CompositionLocalProvider(
+        androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density, density.fontScale * scale),
+        LocalReaderStyle provides style,
+    ) {
+    androidx.compose.material3.Surface(Modifier.fillMaxSize(), color = look?.first ?: MaterialTheme.colorScheme.surface, contentColor = look?.second ?: MaterialTheme.colorScheme.onSurface) {
     ReadingColumn {
       Column(Modifier.fillMaxSize()) {
         LazyColumn(Modifier.weight(1f).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 40.dp)) {
@@ -277,6 +284,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                         AssistChip(onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
                         AssistChip(onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { Icon(Icons.Filled.Close, null) })
                     }
+                    AssistChip(onClick = { sheet = true }, label = { Text("Aa") })
                     AssistChip(onClick = { voice.stop(); speedReading = true }, label = { Text("Speed read") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
                     AssistChip(
                         onClick = {
@@ -356,6 +364,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
       }
     }
     }
+    }
+    if (sheet) ReaderSheet(model) { sheet = false }
     if (speedReading) SpeedReadDialog(
         words = remember(id) { Rsvp.words(article.blocks) }, wpm = wpm,
         onWpm = { wpm = it.coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM); model.store.readerWpm = wpm },

@@ -144,22 +144,25 @@ fun markedText(text: String, marks: List<Mark>): AnnotatedString {
 @Composable
 fun BlockView(b: Block, marks: List<Mark> = emptyList()) {
     val text = markedText(b.text, marks)
+    val rs = LocalReaderStyle.current
+    val body = MaterialTheme.typography.bodyLarge.copy(fontFamily = rs.family ?: MaterialTheme.typography.bodyLarge.fontFamily)
+    val line = (27 * rs.spacing).sp
     when (b.type) {
         "h1" -> Text(text, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
         "h2" -> Text(text, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 10.dp))
         "h3" -> Text(text, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 6.dp))
         "li" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Text("•", style = MaterialTheme.typography.bodyLarge)
-            Text(text, style = MaterialTheme.typography.bodyLarge, fontSize = 17.sp, lineHeight = 27.sp, modifier = Modifier.weight(1f))
+            Text(text, style = body, fontSize = 17.sp, lineHeight = line, modifier = Modifier.weight(1f))
         }
         "q" -> Row(Modifier.height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Box(Modifier.width(3.dp).fillMaxHeight().background(MaterialTheme.colorScheme.primary, RoundedCornerShape(2.dp)))
-            Text(text, style = MaterialTheme.typography.bodyLarge, fontSize = 17.sp, fontStyle = FontStyle.Italic, lineHeight = 27.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(text, style = body, fontSize = 17.sp, fontStyle = FontStyle.Italic, lineHeight = line, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         "pre" -> Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(12.dp)) {
             Text(b.text, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall, modifier = Modifier.horizontalScroll(rememberScrollState()).padding(12.dp))
         }
-        else -> Text(text, style = MaterialTheme.typography.bodyLarge, fontSize = 17.sp, lineHeight = 28.sp)
+        else -> Text(text, style = body, fontSize = 17.sp, lineHeight = (28 * rs.spacing).sp)
     }
 }
 

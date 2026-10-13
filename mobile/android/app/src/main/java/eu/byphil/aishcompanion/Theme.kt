@@ -4,6 +4,12 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontVariation
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -48,7 +54,28 @@ private val AishShapes = Shapes(
     medium = RoundedCornerShape(16.dp), large = RoundedCornerShape(20.dp), extraLarge = RoundedCornerShape(28.dp),
 )
 
+/** Hanken Grotesk, as in the extension (variable font: one file, every weight). */
+@OptIn(androidx.compose.ui.text.ExperimentalTextApi::class)
+val HankenGrotesk = FontFamily(
+    listOf(400, 500, 600, 700).map { w -> Font(R.font.hanken_grotesk, FontWeight(w), variationSettings = FontVariation.Settings(FontVariation.weight(w))) },
+)
+
+/** Atkinson Hyperlegible, the "easy read" face of the extension: letter shapes that stay distinct at a glance. */
+val AtkinsonHyperlegible = FontFamily(Font(R.font.atkinson_hyperlegible, FontWeight.Normal), Font(R.font.atkinson_hyperlegible_bold, FontWeight.Bold))
+
+private fun Typography.with(family: FontFamily): Typography {
+    fun TextStyle.f() = copy(fontFamily = family)
+    return copy(
+        displayLarge = displayLarge.f(), displayMedium = displayMedium.f(), displaySmall = displaySmall.f(),
+        headlineLarge = headlineLarge.f(), headlineMedium = headlineMedium.f(), headlineSmall = headlineSmall.f(),
+        titleLarge = titleLarge.f(), titleMedium = titleMedium.f(), titleSmall = titleSmall.f(),
+        bodyLarge = bodyLarge.f(), bodyMedium = bodyMedium.f(), bodySmall = bodySmall.f(),
+        labelLarge = labelLarge.f(), labelMedium = labelMedium.f(), labelSmall = labelSmall.f(),
+    )
+}
+private val AishTypography = Typography().with(HankenGrotesk)
+
 @Composable
 fun AishTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = if (isSystemInDarkTheme()) Dark else Light, shapes = AishShapes, content = content)
+    MaterialTheme(colorScheme = if (isSystemInDarkTheme()) Dark else Light, shapes = AishShapes, typography = AishTypography, content = content)
 }
