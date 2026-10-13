@@ -52,11 +52,12 @@
   }
 
   // Safe no-op: only forwards events when tracking is active.
-  window.aishTrack = function (category, action, name, value) {
+  // `maxName` (default 120) lets one caller keep a longer name, e.g. the free-text answer of the uninstall form.
+  window.aishTrack = function (category, action, name, value, maxName) {
     try {
       if (!loaded || !allowed()) return;
       var a = ['trackEvent', category, action];
-      if (name !== undefined && name !== null) a.push(String(name).slice(0, 120));
+      if (name !== undefined && name !== null) a.push(String(name).slice(0, maxName || 120));
       if (value !== undefined && value !== null && !isNaN(Number(value))) a.push(Number(value));
       window._paq.push(a);
     } catch (e) {}
