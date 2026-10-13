@@ -14,4 +14,17 @@ object SummaryLangs {
         val name = ALL.firstOrNull { it.first == code && code.isNotEmpty() }?.second
         return if (name == null) "Reply in the language of $source." else "Reply in $name, whatever language $source is in."
     }
+
+    /**
+     * The one language for a recap or briefing, which mixes headlines from several feeds: the language chosen in Settings, or, when that is
+     * "Same as the page" (which means nothing for a mix), the phone's language, or English when that is not on the list.
+     */
+    fun feedLanguage(code: String, device: String = java.util.Locale.getDefault().language): String =
+        (ALL.firstOrNull { it.first == code && code.isNotEmpty() } ?: ALL.firstOrNull { it.first == device && device.isNotEmpty() } ?: ALL.first { it.first == "en" }).second
+
+    /** The prompt sentence for such a mix: one language, and headlines in other languages are translated, not copied. */
+    fun feedRule(code: String, device: String = java.util.Locale.getDefault().language): String {
+        val name = feedLanguage(code, device)
+        return "Write everything in $name. Headlines in other languages must be translated into $name; never copy a headline in another language."
+    }
 }

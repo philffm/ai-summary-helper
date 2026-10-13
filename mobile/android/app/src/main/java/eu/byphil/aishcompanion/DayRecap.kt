@@ -22,7 +22,7 @@ object DayRecap {
 
     fun pick(entries: List<FeedEntryRef>, now: Long, zone: ZoneId = ZoneId.systemDefault()): List<FeedEntryRef> = pickRanked(entries, now, zone).map { it.lead }
 
-    fun system(lang: String) = "You write a short recap of today's news from a list of headlines. " + SummaryLangs.rule(lang, "the headlines") + " Reply with plain text only: no title, no markdown, no emojis."
+    fun system(lang: String, device: String = java.util.Locale.getDefault().language) = "You write a short recap of today's news from a list of headlines. " + SummaryLangs.feedRule(lang, device) + " Reply with plain text only: no title, no markdown, no emojis."
 
     /** [sources] is, per item, how many different feeds carry that story (1 when unknown). */
     fun user(items: List<FeedEntryRef>, sources: List<Int> = emptyList()): String {

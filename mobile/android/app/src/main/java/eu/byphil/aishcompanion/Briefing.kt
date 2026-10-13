@@ -115,11 +115,11 @@ object BriefingBuilder {
 
 /** What the on-device model is asked, and how its answer is cleaned up before it is spoken. Pure, so it is unit-tested. */
 object BriefingPrompt {
-    const val SYSTEM = "You write a short spoken news briefing for one listener, to be read aloud by a voice. " +
+    fun system(lang: String, device: String = java.util.Locale.getDefault().language) = "You write a short spoken news briefing for one listener, to be read aloud by a voice. " +
         "Use plain sentences only: no lists, no markdown, no emojis, no headings, no stage directions. " +
         "Cover each story in one or two sentences and join related stories naturally; stories marked as covered by several sources are the bigger news, so mention them first. " +
         "Use only the facts you are given; never add details, numbers or names that are not in the stories. " +
-        "Keep it under 170 words. Write in the language of the stories (German stories: German; mixed: English)."
+        "Keep it under 170 words. " + SummaryLangs.feedRule(lang, device)
     const val MAX_SNIPPET = 300
     const val MIN_REPLY = 40
     const val MAX_REPLY = 1800

@@ -161,4 +161,12 @@ class BriefingTest {
         assertEquals(NewsMode.GOOD, Briefing.fromJson("""{"items":[],"readingUnread":0,"builtAt":1,"g":true}""")!!.mode)
         assertEquals(NewsMode.ALL, NewsMode.of("nonsense"))
     }
+
+    @Test fun feedsAreWrittenInOneLanguage() {
+        assertEquals("German", SummaryLangs.feedLanguage("de", "en"))
+        assertEquals("German", SummaryLangs.feedLanguage("", "de"))      // "same as the page" means the phone's language for a mix of feeds
+        assertEquals("English", SummaryLangs.feedLanguage("", "xx"))
+        assertTrue(DayRecap.system("", "de").contains("Write everything in German"))
+        assertTrue(BriefingPrompt.system("fr", "de").contains("translated into French"))
+    }
 }
