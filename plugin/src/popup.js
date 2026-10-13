@@ -1,5 +1,5 @@
 import { modelIconName } from './modules/modelBadge.js';
-import { modelPriceLabel } from './modules/modelManager.js';
+import { modelPriceLabel, suggestModels } from './modules/modelManager.js';
 import { icon, iconEl, setIcon, setLabel } from './modules/icons.js';
 import { checkOllama } from './modules/ollamaCheck.js';
 import { applyA11y } from './modules/a11y.js';
@@ -490,6 +490,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         };
 
+        let cloudRosterCache = null;   // one roster request per popup session
         const renderUI = () => {
             renderModelUI = renderUI; // expose for the model panel chip handler
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
@@ -541,6 +542,32 @@ document.addEventListener("DOMContentLoaded", async () => {
                             });
                             modelIdGrid.appendChild(btn);
                         });
+                        // Below the recent ones: the most popular and the cheapest models, one tap away (the server's list is already limited to affordable models).
+                        try {
+                            if (!cloudRosterCache) cloudRosterCache = fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`).then(r => r.json()).catch(() => null);
+                            const roster = await cloudRosterCache;
+                            const picks = roster && roster.success ? suggestModels(roster.models, recentCloudModels) : [];
+                            if (!roster || !roster.success) cloudRosterCache = null;
+                            if (picks.length && !customModelInput.value.trim()) {
+                                const note = document.createElement('span'); note.className = 'model-grid-note'; note.textContent = T('Popular and cheapest');
+                                modelIdGrid.appendChild(note);
+                                picks.forEach(model => {
+                                    const btn = document.createElement('button');
+                                    btn.className = 'pill pill--sm pill--soft';
+                                    btn.textContent = model.name.includes(': ') ? model.name.split(': ').slice(1).join(': ') : model.name;
+                                    const price = modelPriceLabel(model); btn.title = model.name + (price ? ' · ' + price : '');
+                                    if (model.id === activeCloudModel) btn.classList.add('active');
+                                    btn.addEventListener('click', async (e) => {
+                                        e.preventDefault();
+                                        if (!(await requireCloudSignIn())) return;
+                                        await chrome.storage.sync.set({ preferredCloudModel: model.id, recentCloudModels: [model.id, ...recentCloudModels.filter(m => m !== model.id)].slice(0, 10) });
+                                        await renderUI();
+                                        applyAndClose();
+                                    });
+                                    modelIdGrid.appendChild(btn);
+                                });
+                            }
+                        } catch (_) { /* suggestions are optional */ }
                         return;
                     }
 

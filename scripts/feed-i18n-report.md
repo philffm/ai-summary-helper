@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1369 | 0 | 0 | 46 |
-| de | 1369 | 0 | 0 | 200 |
-| es | 1369 | 0 | 0 | 184 |
-| fr | 1369 | 0 | 0 | 214 |
-| hi | 1369 | 0 | 0 | 84 |
-| it | 1369 | 0 | 0 | 183 |
-| ja | 1369 | 0 | 0 | 95 |
-| ko | 1369 | 0 | 0 | 25 |
-| pt_PT | 1369 | 0 | 0 | 175 |
-| ru | 1369 | 0 | 0 | 114 |
-| zh_CN | 1369 | 0 | 0 | 2 |
-| zh_HK | 1369 | 0 | 0 | 2 |
-| zh_TW | 1369 | 0 | 0 | 2 |
+| ar | 1370 | 0 | 0 | 46 |
+| de | 1370 | 0 | 0 | 200 |
+| es | 1370 | 0 | 0 | 184 |
+| fr | 1370 | 0 | 0 | 215 |
+| hi | 1370 | 0 | 0 | 84 |
+| it | 1370 | 0 | 0 | 183 |
+| ja | 1370 | 0 | 0 | 95 |
+| ko | 1370 | 0 | 0 | 25 |
+| pt_PT | 1370 | 0 | 0 | 175 |
+| ru | 1370 | 0 | 0 | 114 |
+| zh_CN | 1370 | 0 | 0 | 2 |
+| zh_HK | 1370 | 0 | 0 | 2 |
+| zh_TW | 1370 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -630,6 +630,7 @@ Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add LocalSend device | Ajouter un appareil LocalSend | 29 vs 20 | 1.45× |
 | Add model ID, e.g. gemma4:e2b | Ajouter un ID de modèle, p. ex. gemma4:e2b | 42 vs 29 | 1.45× |
 | Customize text size, spacing, font, motion | Personnaliser taille du texte, interligne, police, animations | 61 vs 42 | 1.45× |
+| Popular and cheapest | Populaires et les moins chers | 29 vs 20 | 1.45× |
 | Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
 | a run takes about {t} | une exécution dure environ {t} | 29 vs 20 | 1.45× |
 | Add custom model | Ajouter un modèle perso | 23 vs 16 | 1.44× |

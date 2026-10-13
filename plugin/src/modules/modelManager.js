@@ -100,6 +100,20 @@ export function fmtPrice(n) {
     const s = v.toFixed(v < 1 ? 3 : 2);
     return '$' + (v < 1 && s.endsWith('0') ? s.slice(0, -1) : s);
 }
+/**
+ * Quick-pick suggestions from the cloud roster (already limited to affordable models and sorted by popularity by the server):
+ * the 4 most popular and, among the top 20, the 4 cheapest for summaries (input counts triple: a summary reads much more than it writes).
+ * Models in [taken] (already shown as recent) are skipped.
+ */
+export function suggestModels(models, taken = []) {
+    const skip = new Set(taken);
+    const top = (Array.isArray(models) ? models : []).slice(0, 20).filter(m => m && m.id && !skip.has(m.id));
+    const popular = top.slice(0, 4);
+    const ids = new Set(popular.map(m => m.id));
+    const cost = (m) => (Number.isFinite(m.price_in) && Number.isFinite(m.price_out)) ? m.price_in * 3 + m.price_out : Infinity;
+    const cheapest = top.filter(m => !ids.has(m.id) && cost(m) !== Infinity).sort((a, b) => cost(a) - cost(b)).slice(0, 4);
+    return [...popular, ...cheapest];
+}
 /** Short price tag for a model from the roster: "$0.10 in / $0.40 out per 1M tokens", "Free", or '' when the server sent no prices. */
 export function modelPriceLabel(model) {
     if (!model || !Number.isFinite(model.price_in) || !Number.isFinite(model.price_out)) return '';

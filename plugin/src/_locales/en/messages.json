@@ -5001,5 +5001,8 @@
   "f_left_4083": {
     "message": "{n}% left",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_popular_and_cheapest_4ff4": {
+    "message": "Popular and cheapest"
   }
 }
