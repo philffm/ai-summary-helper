@@ -17,6 +17,17 @@ assert.equal(bytes[0], 0x50); assert.equal(bytes[1], 0x4b, 'zip signature');
 const txt = Buffer.from(bytes).toString('latin1');
 for (const n of ['[Content_Types].xml', '_rels/.rels', 'word/document.xml']) assert.ok(txt.includes(n), n);
 
+// OpenDocument text
+const od = await imp('modules/odtExport.js');
+const body = od.markdownToOdtBody('# T\n\n**b** & <x>\n- one\n- two\n> q');
+assert.ok(body.includes('<text:h text:style-name="Heading_20_1" text:outline-level="1">T</text:h>'));
+assert.ok(body.includes('TBold') && body.includes('&amp;') && body.includes('&lt;x&gt;'));
+assert.equal((body.match(/<text:list-item>/g) || []).length, 2); assert.equal((body.match(/<text:list>/g) || []).length, 1, 'one list for consecutive bullets');
+const odt = await od.markdownToOdt('# Hi');
+assert.equal(odt.type, 'application/vnd.oasis.opendocument.text');
+const ob = Buffer.from(await odt.arrayBuffer()).toString('latin1');
+assert.ok(ob.indexOf('mimetype') < ob.indexOf('content.xml') && ob.indexOf('mimetype') < 60, 'mimetype entry first');
+
 // read-aloud: a foreign-language quote becomes its own utterance
 const spoken = [];
 globalThis.self = globalThis;

@@ -408,6 +408,13 @@ export async function exportToWord(article) {
     downloadBlob(await markdownToDocx(mdContent.replace(/^---\n[\s\S]*?\n---\n/, '')), `${markdownFileBase(article, createdDate)}.docx`);
 }
 
+/** Text document (.odt, OpenDocument): opens in LibreOffice, OnlyOffice, Pages, Nextcloud and Word. */
+export async function exportToDocument(article) {
+    const { mdContent, createdDate } = await buildMarkdown(article);
+    const { markdownToOdt } = await import('./odtExport.js');
+    downloadBlob(await markdownToOdt(mdContent.replace(/^---\n[\s\S]*?\n---\n/, '')), `${markdownFileBase(article, createdDate)}.odt`);
+}
+
 /** PDF: the reader page in print mode — the browser's "Save as PDF" gives a clean, typeset document. */
 export async function exportToPdf(article) {
     if (!article.id) return;
