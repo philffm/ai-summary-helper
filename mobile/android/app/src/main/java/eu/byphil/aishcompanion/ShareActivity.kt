@@ -41,7 +41,7 @@ class ShareActivity : ComponentActivity() {
         }
         val paired = Store(this).pairing != null
         setContent {
-            AishTheme {
+            AishTheme(highContrast = Store(this).highContrast, reduceMotion = Store(this).reduceMotion, themeMode = Store(this).themeMode, dynamicColor = Store(this).dynamicColor) {
                 ShareSheet(
                     link = link, canSend = paired,
                     onSend = { SendWorker.enqueue(this, link); Toast.makeText(this, R.string.toast_queued, Toast.LENGTH_SHORT).show(); finish() },

@@ -1,5 +1,8 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.heading
@@ -175,6 +178,11 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                 FilterChip(selected = view == ReadingView.ALL, onClick = { view = ReadingView.ALL }, label = { Text("All") })
                                 FilterChip(selected = view == ReadingView.ARCHIVED, onClick = { view = ReadingView.ARCHIVED }, label = { Text("Archive") })
                             }
+                            if (query.isNotBlank() && shown.isNotEmpty()) Text(
+                                "${shown.size} ${if (shown.size == 1) "result" else "results"}",
+                                style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(horizontal = 20.dp).semantics { liveRegion = LiveRegionMode.Polite },
+                            )
                             if (shown.isEmpty()) Box(Modifier.weight(1f).fillMaxWidth()) {
                                 EmptyState(
                                     if (query.isNotBlank()) "No match" else if (view == ReadingView.ARCHIVED) "Archive is empty" else if (view == ReadingView.UNREAD) "All read" else "Nothing here",
@@ -307,6 +315,13 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                 androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     val playing = voice.state != ReadAloud.State.IDLE
                     AssistChip(
+                        modifier = Modifier.semantics {
+                            stateDescription = when (voice.state) {
+                                ReadAloud.State.PLAYING -> "Playing, sentence ${voice.index + 1} of ${voice.total}"
+                                ReadAloud.State.PAUSED -> "Paused at sentence ${voice.index + 1} of ${voice.total}"
+                                else -> "Not playing"
+                            }
+                        },
                         onClick = {
                             if (playing) voice.toggle() else voice.start(ReadAloudUnits.article(article.title, article.blocks), article.lang)
                         },
@@ -319,7 +334,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                     }
                     if (LocalLlm.installed(context)) AssistChip(
                         onClick = { summarize() },
-                        label = { Text(if (summarizing) summaryNote else if (article.summary.isBlank()) "Summarize" else "Summarize again") },
+                        label = { Text(if (summarizing) summaryNote else if (article.summary.isBlank()) "Summarize" else "Summarize again", modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) },
                         leadingIcon = { Icon(Icons.Filled.AutoAwesome, null) },
                     )
                     // Everything else lives behind ⋯ so the top of the article stays calm.

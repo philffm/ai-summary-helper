@@ -59,7 +59,7 @@ class RingActivity : ComponentActivity() {
             }
         }
         setContent {
-            AishTheme {
+            AishTheme(highContrast = Store(this).highContrast, reduceMotion = Store(this).reduceMotion, themeMode = Store(this).themeMode, dynamicColor = Store(this).dynamicColor) {
                 Surface(Modifier.fillMaxSize()) {
                     RingScreen(
                         lines = if (briefing.narration.isNotBlank()) BriefingPrompt.chunks(briefing.narration, 600) else briefing.lines(),

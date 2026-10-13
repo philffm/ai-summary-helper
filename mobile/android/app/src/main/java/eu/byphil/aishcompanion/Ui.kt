@@ -57,9 +57,15 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun windowWidthDp(): Int = LocalConfiguration.current.screenWidthDp
 
-/** From 600 dp up (the Fold's inner screen, tablets, landscape): navigation rail and list + detail side by side. */
+/** Material 3 window width classes: compact < 600 dp, medium 600–839 dp, expanded ≥ 840 dp. */
+enum class WidthClass { Compact, Medium, Expanded }
+
 @Composable
-fun isWide(): Boolean = windowWidthDp() >= 600
+fun widthClass(): WidthClass = windowWidthDp().let { if (it >= 840) WidthClass.Expanded else if (it >= 600) WidthClass.Medium else WidthClass.Compact }
+
+/** From the medium class up (the Fold's inner screen, tablets, landscape): navigation rail and list + detail side by side. */
+@Composable
+fun isWide(): Boolean = widthClass() != WidthClass.Compact
 
 /**
  * List and detail. Wide: side by side with a divider. Narrow: the list, and the detail on top once something is selected
@@ -69,13 +75,25 @@ fun isWide(): Boolean = windowWidthDp() >= 600
 fun ListDetail(hasSelection: Boolean, onBackToList: () -> Unit, list: @Composable () -> Unit, detail: @Composable () -> Unit, empty: @Composable () -> Unit) {
     if (isWide()) {
         Row(Modifier.fillMaxSize()) {
-            Box(Modifier.width(if (windowWidthDp() >= 840) 400.dp else 340.dp).fillMaxHeight()) { list() }
+            Box(Modifier.width(if (widthClass() == WidthClass.Expanded) 400.dp else 340.dp).fillMaxHeight()) { list() }
             VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
             Box(Modifier.weight(1f).fillMaxHeight()) { if (hasSelection) detail() else empty() }
         }
     } else {
         BackHandler(enabled = hasSelection, onBack = onBackToList)
-        if (hasSelection) detail() else list()
+        // Fade-through between list and detail (no motion when the user asked for less).
+        val reduce = LocalReduceMotion.current
+        androidx.compose.animation.AnimatedContent(
+            targetState = hasSelection, label = "list-detail",
+            transitionSpec = {
+                if (reduce) androidx.compose.animation.ContentTransform(androidx.compose.animation.EnterTransition.None, androidx.compose.animation.ExitTransition.None)
+                else androidx.compose.animation.ContentTransform(
+                    targetContentEnter = androidx.compose.animation.fadeIn(androidx.compose.animation.core.tween(210, delayMillis = 90)) +
+                        androidx.compose.animation.scaleIn(androidx.compose.animation.core.tween(210, delayMillis = 90), initialScale = 0.94f),
+                    initialContentExit = androidx.compose.animation.fadeOut(androidx.compose.animation.core.tween(90)),
+                )
+            },
+        ) { showDetail -> if (showDetail) detail() else list() }
     }
 }
 
@@ -266,31 +284,38 @@ class BarAction(
 @Composable
 fun ActionBar(primary: BarAction?, secondary: List<BarAction>) {
     val left = Handed.left
-    androidx.compose.material3.Surface(color = MaterialTheme.colorScheme.surfaceContainer, tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
+    // A Material 3 bottom app bar: the container, tonal elevation and height come from the component; no inset padding because
+    // the screens sit above the navigation bar already.
+    androidx.compose.material3.BottomAppBar(windowInsets = androidx.compose.foundation.layout.WindowInsets(0, 0, 0, 0)) {
         androidx.compose.foundation.layout.Row(
-            Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+            Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(12.dp, if (left) Alignment.Start else Alignment.End),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             val second: @Composable () -> Unit = {
                 for (a in if (left) secondary else secondary.reversed()) {
-                    androidx.compose.material3.FilledTonalIconButton(onClick = a.onClick, enabled = a.enabled, modifier = Modifier.size(48.dp)) { Icon(a.icon, contentDescription = a.desc) }
+                    androidx.compose.material3.IconButton(onClick = a.onClick, enabled = a.enabled) { Icon(a.icon, contentDescription = a.desc) }
                 }
             }
             val first: @Composable () -> Unit = {
-                if (primary != null) androidx.compose.material3.FilledIconButton(
-                    onClick = primary.onClick, enabled = primary.enabled || primary.busy, modifier = Modifier.size(56.dp),
-                    colors = if (primary.done) androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer, contentColor = MaterialTheme.colorScheme.onPrimaryContainer) else androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(),
-                ) {
-                    when {
-                        primary.done -> Icon(Icons.Filled.Check, contentDescription = primary.desc)
-                        primary.busy -> Box(contentAlignment = Alignment.Center) {
-                            val p = primary.progress
-                            if (p != null) androidx.compose.material3.CircularProgressIndicator(progress = { p.coerceIn(0.05f, 1f) }, modifier = Modifier.size(32.dp), strokeWidth = 3.dp, color = androidx.compose.material3.LocalContentColor.current)
-                            else androidx.compose.material3.CircularProgressIndicator(modifier = Modifier.size(32.dp), strokeWidth = 3.dp, color = androidx.compose.material3.LocalContentColor.current)
-                            Icon(primary.icon, contentDescription = primary.desc, modifier = Modifier.size(16.dp))
+                if (primary != null) {
+                    val active = primary.enabled || primary.busy
+                    androidx.compose.material3.FloatingActionButton(
+                        onClick = { if (active) primary.onClick() },
+                        containerColor = if (primary.done) MaterialTheme.colorScheme.primaryContainer else if (active) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant,
+                        contentColor = if (active) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurfaceVariant,
+                        elevation = androidx.compose.material3.FloatingActionButtonDefaults.bottomAppBarFabElevation(),
+                    ) {
+                        when {
+                            primary.done -> Icon(Icons.Filled.Check, contentDescription = primary.desc)
+                            primary.busy -> Box(contentAlignment = Alignment.Center) {
+                                val p = primary.progress
+                                if (p != null) androidx.compose.material3.CircularProgressIndicator(progress = { p.coerceIn(0.05f, 1f) }, modifier = Modifier.size(32.dp), strokeWidth = 3.dp, color = androidx.compose.material3.LocalContentColor.current)
+                                else androidx.compose.material3.CircularProgressIndicator(modifier = Modifier.size(32.dp), strokeWidth = 3.dp, color = androidx.compose.material3.LocalContentColor.current)
+                                Icon(primary.icon, contentDescription = primary.desc, modifier = Modifier.size(16.dp))
+                            }
+                            else -> Icon(primary.icon, contentDescription = primary.desc)
                         }
-                        else -> Icon(primary.icon, contentDescription = primary.desc)
                     }
                 }
             }

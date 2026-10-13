@@ -73,6 +73,16 @@ class Store(context: Context) {
         get() = prefs.getFloat("reader.scale", 1f)
         set(v) = prefs.edit().putFloat("reader.scale", v).apply()
 
+    /** "system" (follow the phone), "light" or "dark". */
+    var themeMode: String
+        get() = prefs.getString("ui.theme", "system") ?: "system"
+        set(v) = prefs.edit().putString("ui.theme", v).apply()
+
+    /** Android 12+: colours from the wallpaper instead of the brand blue. */
+    var dynamicColor: Boolean
+        get() = prefs.getBoolean("ui.dynamic", false)
+        set(v) = prefs.edit().putBoolean("ui.dynamic", v).apply()
+
     /** Strongest text and border contrast (a stricter colour scheme). */
     var highContrast: Boolean
         get() = prefs.getBoolean("ui.contrast", false)

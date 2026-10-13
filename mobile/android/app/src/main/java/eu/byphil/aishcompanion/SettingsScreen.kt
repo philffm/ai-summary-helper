@@ -1,5 +1,6 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.AutoAwesome
@@ -181,11 +182,15 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
         error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
     }
 
+    val scroll = androidx.compose.material3.TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val bigTitle = !wide && panel == null   // the home list: a medium title that collapses while scrolling
     Scaffold(
+        modifier = if (bigTitle) Modifier.nestedScroll(scroll.nestedScrollConnection) else Modifier,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
-            TopAppBar(
+            if (bigTitle) androidx.compose.material3.MediumTopAppBar(title = { Text(title) }, scrollBehavior = scroll)
+            else TopAppBar(
                 title = { Text(title) },
                 navigationIcon = { if (!wide && panel != null) IconButton(onClick = { panel = null }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
             )

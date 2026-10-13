@@ -91,9 +91,22 @@ private fun Typography.with(family: FontFamily): Typography {
 private val AishTypography = Typography().with(HankenGrotesk)
 
 @Composable
-fun AishTheme(highContrast: Boolean = false, reduceMotion: Boolean = false, content: @Composable () -> Unit) {
-    val dark = isSystemInDarkTheme()
-    val scheme = when { highContrast && dark -> DarkHigh; highContrast -> LightHigh; dark -> Dark; else -> Light }
+fun AishTheme(
+    highContrast: Boolean = false, reduceMotion: Boolean = false,
+    /** "system", "light" or "dark": the app's own choice, independent of the system setting. */
+    themeMode: String = "system",
+    /** Android 12+: take the colours from the wallpaper instead of the brand blue. Ignored with high contrast. */
+    dynamicColor: Boolean = false,
+    content: @Composable () -> Unit,
+) {
+    val dark = when (themeMode) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val wallpaper = dynamicColor && !highContrast && android.os.Build.VERSION.SDK_INT >= 31
+    val scheme = when {
+        wallpaper && dark -> androidx.compose.material3.dynamicDarkColorScheme(context)
+        wallpaper -> androidx.compose.material3.dynamicLightColorScheme(context)
+        highContrast && dark -> DarkHigh; highContrast -> LightHigh; dark -> Dark; else -> Light
+    }
     val noMotion = reduceMotion || !android.animation.ValueAnimator.areAnimatorsEnabled()
     androidx.compose.runtime.CompositionLocalProvider(LocalReduceMotion provides noMotion) {
         MaterialTheme(colorScheme = scheme, shapes = AishShapes, typography = AishTypography, content = content)

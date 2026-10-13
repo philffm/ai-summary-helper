@@ -82,7 +82,16 @@ class MainActivity : ComponentActivity() {
         FeedWorker.schedule(this)
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
         setContent {
-            AishTheme(highContrast = model.highContrast, reduceMotion = model.reduceMotion) {
+            AishTheme(highContrast = model.highContrast, reduceMotion = model.reduceMotion, themeMode = model.themeMode, dynamicColor = model.dynamicColor) {
+                androidx.compose.runtime.SideEffect {
+                    // Status and navigation bar icons follow the app's own light/dark choice, not only the system's.
+                    val t = android.graphics.Color.TRANSPARENT
+                    when (model.themeMode) {
+                        "dark" -> enableEdgeToEdge(androidx.activity.SystemBarStyle.dark(t), androidx.activity.SystemBarStyle.dark(t))
+                        "light" -> enableEdgeToEdge(androidx.activity.SystemBarStyle.light(t, t), androidx.activity.SystemBarStyle.light(t, t))
+                        else -> enableEdgeToEdge()
+                    }
+                }
                 Surface(Modifier.fillMaxSize()) {
                     App(model, onScan = { onResult -> scan(onResult) }, onReady = { Guard.end(this, "start") },
                         startUrl = intent?.getStringExtra(EXTRA_OPEN_URL).orEmpty(), startSummarize = intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true)
