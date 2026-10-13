@@ -3359,7 +3359,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .composer-pill { padding: 5px 5px 5px 18px; border-radius: 28px; }
 .composer-pill .input-card-textarea { min-height: 44px; height: 44px; padding: 12px 0; font-size: 15px; line-height: 20px; }
 .composer-pill .input-card-textarea::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.composer-pill #fetchSummary { min-height: var(--composer-btn-h, 44px); height: var(--composer-btn-h, 44px); border-radius: 22px; padding: 0 22px; font-size: 15px; }
+.composer-pill #fetchSummary { min-height: var(--composer-btn-h, 44px); height: var(--composer-btn-h, 44px); border-radius: 22px; padding: 0 16px; font-size: 15px; }
 .page-chip { padding: 8px 12px; border-radius: 14px; }
 .page-chip-title { font-size: 13px; }
 .page-chip-meta { font-size: 12px; }
