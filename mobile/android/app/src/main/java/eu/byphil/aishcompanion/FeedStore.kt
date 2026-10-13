@@ -35,11 +35,17 @@ data class FeedEntryRef(val feed: Feed, val stored: StoredItem)
 
 /**
  * Feeds and their latest items in files under [dir] (app-private on the phone): feeds.json, and one items-<hash>.json per feed.
- * Items are the feed's own latest entries (at most [FeedXml.MAX_ITEMS]); they are never synced, each device fetches its own.
+ * Items are the feed's latest entries (at most [FeedXml.MAX_ITEMS]) plus what the phone kept from earlier fetches, for [KEEP_MS]; they are never synced, each device fetches its own.
  * Pure JVM (a directory instead of a Context), so it is unit-tested.
  */
 class FeedStore(private val dir: File) {
     init { dir.mkdirs() }
+
+    companion object {
+        /** How long items that dropped out of a feed stay on the phone, and the most items stored per feed. */
+        const val KEEP_MS = 30L * 24 * 3600_000
+        const val MAX_STORED = 400
+    }
 
     private val feedsFile get() = File(dir, "feeds.json")
 
@@ -139,21 +145,35 @@ class FeedStore(private val dir: File) {
     }
 
     /**
-     * Replaces the stored items with the feed's latest, keeping read flag, rating and favourite of items seen before. Favourites that
-     * have dropped out of the feed stay (after the fresh ones), so a starred item is never lost. Returns how many are new.
+     * Stores the feed's latest items on top of what is already on the phone, so the phone builds up its own archive: items that have dropped
+     * out of the feed stay for [KEEP_MS] (up to [MAX_STORED] per feed), without their long text, to keep the files small. Read flag, rating and
+     * favourite of items seen before are kept; favourites stay for good. An item without a usable date (none, or in the future) is dated when
+     * it was first seen, so it still belongs to "today". An empty answer from the server never wipes the archive. Returns how many are new.
      */
-    @Synchronized fun saveItems(url: String, fresh: List<FeedItem>): Int {
-        val old = items(url).associateBy { it.item.id }
+    @Synchronized fun saveItems(url: String, fresh: List<FeedItem>, now: Long = System.currentTimeMillis()): Int {
+        val old = items(url)
+        val oldById = old.associateBy { it.item.id }
         val arr = JSONArray()
         var added = 0
         val kept = HashSet<String>()
-        for (it in fresh.take(FeedXml.MAX_ITEMS)) {
-            val was = old[it.id]
+        for (raw in fresh.take(FeedXml.MAX_ITEMS)) {
+            val was = oldById[raw.id]
             if (was == null) added++
-            kept += it.id
-            arr.put(json(StoredItem(it, was?.read ?: false, was?.sent, was?.cat ?: "", was?.fav ?: false)))
+            kept += raw.id
+            val published = when {
+                raw.published in 1..now -> raw.published
+                else -> was?.item?.published?.takeIf { it in 1..now } ?: now
+            }
+            val item = if (published != raw.published) raw.copy(published = published) else raw
+            arr.put(json(StoredItem(item, was?.read ?: false, was?.sent, was?.cat ?: "", was?.fav ?: false)))
         }
-        for (was in old.values) if (was.fav && was.item.id !in kept) arr.put(json(was))
+        var room = MAX_STORED - kept.size
+        val cutoff = now - KEEP_MS
+        for (was in old.sortedByDescending { it.item.published }) {
+            if (was.item.id in kept) continue
+            if (was.fav) arr.put(json(was))
+            else if (room > 0 && was.item.published >= cutoff) { arr.put(json(was.copy(item = was.item.copy(body = "")))); room-- }
+        }
         fileFor(url).writeText(arr.toString())
         return added
     }

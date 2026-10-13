@@ -10,12 +10,13 @@ object DayRecap {
     private const val MIN_TODAY = 3
     private const val DAY_MS = 24L * 60 * 60 * 1000
 
-    /** Today's stories (since local midnight), or the last 24 hours when today has fewer than three, best first: stories several feeds carry, then newer and starred ones, spread over the feeds (see [StoryRank]). At most [PER_FEED] per feed and [MAX_ITEMS] in all. */
+    /** Today's stories (since local midnight), or the last 24 hours when today has fewer than three (the last three days when that is empty too), best first: stories several feeds carry, then newer and starred ones, spread over the feeds (see [StoryRank]). At most [PER_FEED] per feed and [MAX_ITEMS] in all. */
     fun pickRanked(entries: List<FeedEntryRef>, now: Long, zone: ZoneId = ZoneId.systemDefault()): List<Ranked> {
         val midnight = Instant.ofEpochMilli(now).atZone(zone).toLocalDate().atStartOfDay(zone).toInstant().toEpochMilli()
         val dated = entries.filter { it.stored.item.published in 1..now }.sortedByDescending { it.stored.item.published }
         var pool = dated.filter { it.stored.item.published >= midnight }
         if (pool.size < MIN_TODAY) pool = dated.filter { it.stored.item.published >= now - DAY_MS }
+        if (pool.isEmpty()) pool = dated.filter { it.stored.item.published >= now - 3 * DAY_MS }   // a quiet spell: the stories the phone kept
         return StoryRank.rank(pool, now, DAY_MS, MAX_ITEMS, PER_FEED)
     }
 

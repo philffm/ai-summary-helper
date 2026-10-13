@@ -51,3 +51,49 @@ class FeedStoreExtrasTest {
         assertEquals("\"v1\"", st.feeds()[0].etag)
     }
 }
+
+class FeedArchiveTest {
+    private fun store() = FeedStore(File(System.getProperty("java.io.tmpdir"), "feedstore-archive-" + System.nanoTime()))
+    private val now = 1_800_000_000_000L
+    private val day = 24 * 3600_000L
+    private fun item(id: String, at: Long, body: String = "long body") = FeedItem(id, "Title $id", "https://s.example/$id", at, "", "sum", body)
+
+    @Test fun itemsThatDropOutOfTheFeedStayForThirtyDaysWithoutTheirBody() {
+        val st = store()
+        val f = st.add("https://s.example/feed", "S", emptyList(), 1)!!
+        st.saveItems(f.url, listOf(item("a", now - day), item("b", now - 2 * day)), now)
+        st.markRead(f.url, "a")
+        st.saveItems(f.url, listOf(item("c", now)), now + 1000)
+        val ids = st.items(f.url).associateBy { it.item.id }
+        assertEquals(setOf("a", "b", "c"), ids.keys)
+        assertTrue(ids.getValue("a").read)
+        assertEquals("", ids.getValue("a").item.body)
+        assertEquals("long body", ids.getValue("c").item.body)
+    }
+
+    @Test fun oldItemsAreDroppedAfterThirtyDays() {
+        val st = store()
+        val f = st.add("https://s.example/feed", "S", emptyList(), 1)!!
+        st.saveItems(f.url, listOf(item("a", now - day)), now)
+        st.saveItems(f.url, listOf(item("c", now + 40 * day)), now + 40 * day)
+        assertEquals(listOf("c"), st.items(f.url).map { it.item.id })
+    }
+
+    @Test fun anEmptyAnswerDoesNotWipeTheArchive() {
+        val st = store()
+        val f = st.add("https://s.example/feed", "S", emptyList(), 1)!!
+        st.saveItems(f.url, listOf(item("a", now - day)), now)
+        st.saveItems(f.url, emptyList(), now + 1000)
+        assertEquals(listOf("a"), st.items(f.url).map { it.item.id })
+    }
+
+    @Test fun undatedAndFutureItemsAreDatedWhenFirstSeen() {
+        val st = store()
+        val f = st.add("https://s.example/feed", "S", emptyList(), 1)!!
+        st.saveItems(f.url, listOf(item("undated", 0), item("future", now + 5 * day)), now)
+        assertEquals(now, st.items(f.url).first { it.item.id == "undated" }.item.published)
+        assertEquals(now, st.items(f.url).first { it.item.id == "future" }.item.published)
+        st.saveItems(f.url, listOf(item("undated", 0)), now + day)   // seen again later: keeps the first date
+        assertEquals(now, st.items(f.url).first { it.item.id == "undated" }.item.published)
+    }
+}
