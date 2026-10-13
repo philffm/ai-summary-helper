@@ -94,8 +94,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
         SettingsRow("feeds", "FEEDS", "📰", "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
         SettingsRow("access", "APP", "♿", "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
         SettingsRow("storage", "APP", "💾", "Storage", "Archive, models and cache", "storage space disk archive clear delete models cache free"),
-        SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock"),
-        SettingsRow("pro", "APP", "⭐", "Pro", "Extras", "pro license extras"),
+        SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock extra fun fact cloud pro license"),
     )
     val title = if (wide) "Settings" else rows.firstOrNull { it.id == cur }?.title ?: "Settings"
 
@@ -168,7 +167,6 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                         "storage" -> StorageCard(model)
                         "access" -> AccessibilityCard(model)
                         "alarm" -> AlarmCard(model)
-                        "pro" -> ExtrasCard(model)
                             }
         error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
     }

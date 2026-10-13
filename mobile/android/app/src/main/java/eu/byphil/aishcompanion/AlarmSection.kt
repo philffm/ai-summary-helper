@@ -164,6 +164,9 @@ fun AlarmCard(model: AppModel) {
                 OutlinedButton(onClick = { AlarmScheduler.ringIn(context, 10); model.message = "The alarm will ring in 10 seconds." }) { Text("Test ring") }
             }
         }
+
+        SettingsCaption("Pro extra")
+        ExtrasCard(model)
     }
 
     if (pickTime) {
@@ -229,12 +232,12 @@ fun ExtrasCard(model: AppModel) {
 
     SettingsGroup {
         ToggleRow("✨ Extra from the cloud AI", "A fun fact of the day, or anything you ask for, added to the end of your briefing.", a.extraOn) { model.changeAlarm(a.copy(extraOn = it)) }
-            OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key (from the extension code or pasted)") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                OutlinedButton(enabled = license.isNotBlank() && license.trim() != saved, onClick = { model.saveLicense(license) }) { Text("Save key") }
-                status?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f)) }
-            }
             if (a.extraOn) {
+                OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key (from the extension code or pasted)") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedButton(enabled = license.isNotBlank() && license.trim() != saved, onClick = { model.saveLicense(license) }) { Text("Save key") }
+                    status?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f)) }
+                }
                 Text("Only the prompt below, today's date and your language are sent, with your Pro license key, to api.byphil.eu. Your feeds and reading list never leave the phone. The cloud AI cannot look things up, so ask for facts and stories, not live data.", style = MaterialTheme.typography.bodySmall)
                 OutlinedTextField(prompt, { prompt = it.take(CloudExtra.MAX_PROMPT) }, Modifier.fillMaxWidth(), label = { Text("What should it say? (empty: a fun fact)") }, maxLines = 3)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
