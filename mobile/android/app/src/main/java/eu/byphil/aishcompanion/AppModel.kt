@@ -189,13 +189,26 @@ class AppModel(context: Context) {
     var recapCount by mutableStateOf(store.recapCount)
     var recapBusy by mutableStateOf(false)
 
+    /** Why there is nothing to recap: no feeds, never refreshed, or the feeds have had nothing new for days (with when the phone last refreshed and the newest story it has). */
+    private fun noStoriesMessage(): String {
+        val feeds = feedStore.feeds()
+        if (feeds.isEmpty()) return "No feeds yet. Add some in the Feeds tab."
+        val ok = feeds.filter { it.error.isEmpty() && it.lastFetched > 0 }
+        if (ok.isEmpty()) return if (feeds.any { it.error.isNotEmpty() }) "The feeds could not be reached. Check the connection and pull down to refresh." else "Your feeds have not been refreshed yet. Pull down to refresh."
+        val newest = feedStore.everything().maxOfOrNull { it.stored.item.published } ?: 0L
+        val failed = feeds.size - ok.size
+        return "No stories in the last 3 days. Last refreshed ${relativeTime(ok.maxOf { it.lastFetched })}" +
+            (if (newest > 0) ", newest story ${relativeTime(newest)}" else "") +
+            (if (failed > 0) ", $failed of ${feeds.size} feeds could not be reached" else "") + "."
+    }
+
     /** Writes the day recap with the on-device model (never automatically: it takes a while and uses battery). Returns a short line only when something is wrong. */
     suspend fun refreshRecap(): String? = withContext(Dispatchers.Default) {
         if (!LocalLlm.installed(app)) "Download the on-device AI in Settings to write the recap."
         else {
             val ranked = DayRecap.pickRanked(feedStore.everything(), System.currentTimeMillis())
             val items = ranked.map { it.lead }
-            if (items.isEmpty()) "No stories from today yet. Pull down to refresh."
+            if (items.isEmpty()) noStoriesMessage()
             else {
                 recapBusy = true
                 try {
