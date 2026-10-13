@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1365. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1365 | 0 | 0 | 47 |
-| de | 1365 | 0 | 0 | 202 |
-| es | 1365 | 0 | 0 | 181 |
-| fr | 1365 | 0 | 0 | 213 |
-| hi | 1365 | 0 | 0 | 85 |
-| it | 1365 | 0 | 0 | 181 |
-| ja | 1365 | 0 | 0 | 94 |
-| ko | 1365 | 0 | 0 | 25 |
-| pt_PT | 1365 | 0 | 0 | 174 |
-| ru | 1365 | 0 | 0 | 116 |
-| zh_CN | 1365 | 0 | 0 | 2 |
-| zh_HK | 1365 | 0 | 0 | 2 |
-| zh_TW | 1365 | 0 | 0 | 2 |
+| ar | 1364 | 0 | 0 | 47 |
+| de | 1364 | 0 | 0 | 201 |
+| es | 1364 | 0 | 0 | 181 |
+| fr | 1364 | 0 | 0 | 213 |
+| hi | 1364 | 0 | 0 | 84 |
+| it | 1364 | 0 | 0 | 181 |
+| ja | 1364 | 0 | 0 | 94 |
+| ko | 1364 | 0 | 0 | 25 |
+| pt_PT | 1364 | 0 | 0 | 174 |
+| ru | 1364 | 0 | 0 | 115 |
+| zh_CN | 1364 | 0 | 0 | 2 |
+| zh_HK | 1364 | 0 | 0 | 2 |
+| zh_TW | 1364 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -205,7 +205,6 @@ Strings: 1365. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Close pane {n} | Bereich {n} schließen | 20 vs 13 | 1.54× |
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
-| {used} of {limit} used | {used} von {limit} verbraucht | 20 vs 13 | 1.54× |
 | Found device at {ip} — click Add to save it ✓ | Gerät unter {ip} gefunden – zum Speichern auf „Hinzufügen“ klicken ✓ | 66 vs 43 | 1.53× |
 | This page has no text to save. | Diese Seite enthält keinen Text zum Speichern. | 46 vs 30 | 1.53× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
@@ -719,7 +718,6 @@ Strings: 1365. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Sending... | भेजा जा रहा है... | 17 vs 10 | 1.7× |
 | contact me | मुझसे संपर्क करें | 17 vs 10 | 1.7× |
 | Scoring with AI… | AI से स्कोर किया जा रहा है… | 27 vs 16 | 1.69× |
-| {used} of {limit} used | {limit} में से {used} उपयोग हुआ | 22 vs 13 | 1.69× |
 | Paired · {n} waiting | पेयर किया गया · {n} प्रतीक्षा में | 32 vs 19 | 1.68× |
 | Set as active send target | सक्रिय भेजने के गंतव्य के रूप में सेट करें | 42 vs 25 | 1.68× |
 | Changelog | बदलावों की सूची | 15 vs 9 | 1.67× |
@@ -1326,7 +1324,6 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | High contrast | Высокая контрастность | 21 vs 13 | 1.62× |
 | Next sentence | Следующее предложение | 21 vs 13 | 1.62× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |
-| {used} of {limit} used | Использовано {used} из {limit} | 21 vs 13 | 1.62× |
 | Use Native Chrome Side Panel | Использовать встроенную боковую панель Chrome | 45 vs 28 | 1.61× |
 | Free Trial Mode | Бесплатный пробный режим | 24 vs 15 | 1.6× |
 | Open in sidebar | Открыть в боковой панели | 24 vs 15 | 1.6× |

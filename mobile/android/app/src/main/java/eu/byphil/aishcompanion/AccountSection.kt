@@ -92,7 +92,7 @@ fun AccountCard(model: AppModel) {
 private fun UsageCard(u: AccountInfo, localRuns: Int, cloudCalls: Int) {
     SettingsCaption("AI use this month")
     SettingsGroup {
-        Text("${Account.usd(u.usedUsd)} of ${Account.usd(u.limitUsd)} · ${u.percent}%", style = MaterialTheme.typography.titleMedium)
+        Text("${u.percent}% of the monthly allowance used", style = MaterialTheme.typography.titleMedium)
         Text(
             "${u.requests} cloud request" + (if (u.requests == 1) "" else "s") + " · ${Account.tokens(u.tokensIn)} tokens in, ${Account.tokens(u.tokensOut)} out" +
                 (if (u.resetAt.length >= 10) " · resets ${u.resetAt.take(10)}" else ""),
@@ -100,7 +100,7 @@ private fun UsageCard(u: AccountInfo, localRuns: Int, cloudCalls: Int) {
         )
         if (u.models.isNotEmpty()) {
             Text("By model", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            for (m in u.models) Text("${m.model.substringAfterLast('/')} · ${Account.usd(m.costUsd)} · ${m.requests}×", style = MaterialTheme.typography.bodyMedium)
+            for (m in u.models) Text("${m.model.substringAfterLast('/')} · ${m.requests}×", style = MaterialTheme.typography.bodyMedium)
             Text("From 80% of the allowance the cheapest model is used; at 100% cloud AI pauses until the reset.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } else if (u.lastModel.isNotBlank()) Text("Last model: ${u.lastModel.substringAfterLast('/')}", style = MaterialTheme.typography.bodyMedium)
         Text(

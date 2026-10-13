@@ -24,7 +24,7 @@ class AccountTest {
     @Test fun readsTheUsageAnswer() {
         val pro = Account.parse("""{"success":true,"quota":{"used_usd":0.123,"limit_usd":1.5,"percent":8,"requests":4,"reset_at":"x"},"account":{}}""")!!
         assertTrue(pro.active); assertEquals(8, pro.percent)
-        assertEquals("Pro active · 0.12 of 1.50 used this month (8%)", Account.describe(pro))
+        assertEquals("Pro active · 8% of this month's AI allowance used", Account.describe(pro))
         val free = Account.parse("""{"success":true,"quota":null}""")!!
         assertFalse(free.active)
         assertEquals("This key is not recognised, or has no AI allowance.", Account.describe(free))
@@ -41,7 +41,6 @@ class AccountTest {
         assertEquals("google/gemini-2.5-flash", u.models[0].model); assertEquals(0.4, u.models[0].costUsd, 1e-9)
         assertEquals("google/gemini-2.5-flash", u.lastModel)
         assertEquals("12.3k", Account.tokens(12300)); assertEquals("950", Account.tokens(950)); assertEquals("2.4M", Account.tokens(2_400_000))
-        assertEquals("<$0.01", Account.usd(0.002)); assertEquals("$0.50", Account.usd(0.5)); assertEquals("$0.00", Account.usd(0.0))
         assertEquals(0, Account.parse("""{"quota":{"used_usd":0,"limit_usd":1.5,"percent":0},"account":{}}""")!!.models.size)
     }
 }
