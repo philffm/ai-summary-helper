@@ -54,6 +54,21 @@ class AppModel(context: Context) {
         readTick++
     }
 
+    /** Archive on or off for one article; bumps [readTick] so the list redraws. */
+    fun setArchived(id: String, on: Boolean) { articles.setArchived(id, on); readTick++ }
+
+    /** After a settings import: every setting read from the preferences again, and the alarm set to match. */
+    fun reloadSettings() {
+        alarm = store.alarm
+        leftHanded = store.leftHanded.also { Handed.left = it }
+        groupSimilar = store.groupSimilar
+        summaryLang = store.summaryLang
+        speakSummary = store.speakSummary
+        ghostMarks = store.ghostMarks
+        runCatching { AlarmScheduler.reschedule(app) }
+        readTick++
+    }
+
     fun reload() {
         feeds = feedStore.feeds()
         entries = feedStore.everything()

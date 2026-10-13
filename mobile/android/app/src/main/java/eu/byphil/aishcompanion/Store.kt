@@ -73,6 +73,34 @@ class Store(context: Context) {
         get() = prefs.getFloat("reader.scale", 1f)
         set(v) = prefs.edit().putFloat("reader.scale", v).apply()
 
+    /** Speech rate when an article is read aloud (1 = normal). */
+    var ttsRate: Float
+        get() = prefs.getFloat("tts.rate", 1f)
+        set(v) = prefs.edit().putFloat("tts.rate", v).apply()
+
+    /** Speed reading pace, words per minute. */
+    var readerWpm: Int
+        get() = prefs.getInt("reader.wpm", 300)
+        set(v) = prefs.edit().putInt("reader.wpm", v.coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM)).apply()
+
+    /** Preferences as a backup file (see [SettingsBackup]: no pairing, licence or account). */
+    fun exportSettings(): String = SettingsBackup.export(prefs.all)
+
+    /** Writes the values of a backup file back; returns how many were applied. Throws when the text is not a backup. */
+    fun importSettings(text: String): Int {
+        val values = SettingsBackup.parse(text)
+        val e = prefs.edit()
+        for ((k, v) in values) when (v) {
+            is Boolean -> e.putBoolean(k, v)
+            is Int -> e.putInt(k, v)
+            is Long -> e.putLong(k, v)
+            is Float -> e.putFloat(k, v)
+            is String -> e.putString(k, v)
+        }
+        e.apply()
+        return values.size
+    }
+
     /** Read the summary aloud while the model writes it. */
     var speakSummary: Boolean
         get() = prefs.getBoolean("summary.speak", true)

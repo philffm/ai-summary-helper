@@ -46,7 +46,7 @@ class ArticleStore(context: Context) {
     fun delete(id: String) {
         if (!ID.matches(id)) return
         File(dir, "$id.json").delete(); File(dir, "$id.meta").delete()
-        prefs.edit().remove(id).apply()
+        prefs.edit().remove(id).remove("arch:$id").apply()
     }
 
     init { trashDir.listFiles()?.forEach { it.delete() } }   // a new process has no pending undo, so whatever is left in the bin is gone for good
@@ -68,7 +68,14 @@ class ArticleStore(context: Context) {
     fun purge(id: String) {
         if (!ID.matches(id)) return
         File(trashDir, "$id.json").delete(); File(trashDir, "$id.meta").delete()
-        prefs.edit().remove(id).apply()
+        prefs.edit().remove(id).remove("arch:$id").apply()
+    }
+
+    /** Archived articles stay on the phone but leave the main list (shown under the Archive filter). Stored apart from the read flag. */
+    fun isArchived(id: String): Boolean = prefs.getBoolean("arch:$id", false)
+    fun setArchived(id: String, on: Boolean) {
+        if (!ID.matches(id)) return
+        prefs.edit().apply { if (on) putBoolean("arch:$id", true) else remove("arch:$id") }.apply()
     }
 
     fun isRead(id: String): Boolean = prefs.getBoolean(id, false)

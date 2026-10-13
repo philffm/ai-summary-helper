@@ -63,6 +63,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import androidx.compose.material.icons.filled.Archive
+import androidx.compose.material.icons.filled.Unarchive
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Speed
+import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Description
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.foundation.layout.fillMaxHeight
 
 /** The reading list: articles sent from the browser (Send to phone). Two panes on wide screens. */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -72,6 +88,16 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
     val snackbar = remember { SnackbarHostState() }
     val canReceive = model.pairing?.canReceive == true
     val current = model.articleList.firstOrNull { it.id == selected }
+    var searching by rememberSaveable { mutableStateOf(false) }
+    var query by rememberSaveable { mutableStateOf("") }
+    var view by rememberSaveable { mutableStateOf(ReadingView.ALL) }
+    // Search also looks into the article text; each text is read from disk once per list.
+    val texts = remember(model.articleList) { HashMap<String, String>() }
+    val shown = remember(model.articleList, query, view, model.readTick) {
+        ReadingFilter.apply(model.articleList, query, view, { model.articles.isRead(it) }, { model.articles.isArchived(it) }) { id ->
+            texts.getOrPut(id) { model.articles.load(id)?.let { a -> a.summary + " " + a.blocks.joinToString(" ") { b -> b.text } }.orEmpty() }
+        }
+    }
 
     LaunchedEffect(Unit) { model.reload() }
 
@@ -88,6 +114,16 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
         }
     }
 
+    // Archive instead of delete: the article leaves the list but stays on the phone (Archive filter); Undo brings it back.
+    val archiveWithUndo: (String) -> Unit = { id ->
+        model.setArchived(id, true)
+        if (id == selected) onSelect("")
+        scope.launch {
+            val result = snackbar.showSnackbar("Archived", actionLabel = "Undo", withDismissAction = true, duration = SnackbarDuration.Short)
+            if (result == SnackbarResult.ActionPerformed) model.setArchived(id, false)
+        }
+    }
+
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
@@ -96,6 +132,9 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                 title = { Text("Reading list") },
                 navigationIcon = { if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
                 actions = {
+                    if (model.articleList.isNotEmpty()) IconButton(onClick = { searching = !searching; if (!searching) query = "" }) {
+                        Icon(if (searching) Icons.Filled.Close else Icons.Filled.Search, contentDescription = if (searching) "Close search" else "Search")
+                    }
                     if (canReceive) IconButton(onClick = { scope.launch { snackbar.showSnackbar(model.checkArticles()) } }, enabled = !model.checking) { Icon(Icons.Filled.Refresh, contentDescription = "Check for new articles") }
                 },
             )
@@ -113,35 +152,62 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                             else "Switch on Send to phone in the extension (Settings → Phone inbox), then scan the new code in Settings here.",
                         )
                     } else {
-                        PullToRefreshBox(isRefreshing = model.checking, onRefresh = { scope.launch { snackbar.showSnackbar(model.checkArticles()) } }, modifier = Modifier.fillMaxSize()) {
-                            LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                items(model.articleList, key = { it.id }) { a ->
-                                    val unread = model.readTick >= 0 && !model.articles.isRead(a.id)
-                                    val dismiss = rememberSwipeToDismissBoxState(confirmValueChange = { v -> when (v) { SwipeToDismissBoxValue.EndToStart -> { deleteWithUndo(a.id); true }; SwipeToDismissBoxValue.StartToEnd -> { model.toggleRead(a.id); false }; else -> false } })
-                                    SwipeToDismissBox(
-                                        state = dismiss,
-                                        backgroundContent = {
-                                            val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
-                                            Box(
-                                                Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, RoundedCornerShape(20.dp)).padding(horizontal = 24.dp),
-                                                contentAlignment = if (right) Alignment.CenterStart else Alignment.CenterEnd,
-                                            ) {
-                                                if (right) Icon(if (unread) Icons.Filled.DoneAll else Icons.Filled.MarkEmailUnread, contentDescription = if (unread) "Mark as read" else "Mark as unread")
-                                                else Icon(Icons.Filled.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.onErrorContainer)
+                        Column(Modifier.fillMaxSize()) {
+                            if (searching) OutlinedTextField(
+                                query, { query = it }, Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 8.dp), singleLine = true,
+                                placeholder = { Text("Search title, site and text") }, shape = RoundedCornerShape(28.dp),
+                                leadingIcon = { Icon(Icons.Filled.Search, null) },
+                            )
+                            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                FilterChip(selected = view == ReadingView.UNREAD, onClick = { view = ReadingView.UNREAD }, label = { Text("Unread") })
+                                FilterChip(selected = view == ReadingView.ALL, onClick = { view = ReadingView.ALL }, label = { Text("All") })
+                                FilterChip(selected = view == ReadingView.ARCHIVED, onClick = { view = ReadingView.ARCHIVED }, label = { Text("Archive") })
+                            }
+                            if (shown.isEmpty()) Box(Modifier.weight(1f).fillMaxWidth()) {
+                                EmptyState(
+                                    if (query.isNotBlank()) "No match" else if (view == ReadingView.ARCHIVED) "Archive is empty" else if (view == ReadingView.UNREAD) "All read" else "Nothing here",
+                                    if (query.isNotBlank()) "Nothing in this view matches “$query”. Try another word, or switch the filter above."
+                                    else if (view == ReadingView.ARCHIVED) "Swipe an article to the left to archive it. It stays on the phone, out of the way."
+                                    else "Switch the filter above to see the rest.",
+                                )
+                            } else PullToRefreshBox(isRefreshing = model.checking, onRefresh = { scope.launch { snackbar.showSnackbar(model.checkArticles()) } }, modifier = Modifier.weight(1f).fillMaxWidth()) {
+                                LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                    items(shown, key = { it.id }) { a ->
+                                        val unread = model.readTick >= 0 && !model.articles.isRead(a.id)
+                                        val inArchive = view == ReadingView.ARCHIVED
+                                        val dismiss = rememberSwipeToDismissBoxState(confirmValueChange = { v ->
+                                            when (v) {
+                                                SwipeToDismissBoxValue.EndToStart -> { if (inArchive) deleteWithUndo(a.id) else archiveWithUndo(a.id); true }
+                                                SwipeToDismissBoxValue.StartToEnd -> { model.toggleRead(a.id); false }
+                                                else -> false
                                             }
-                                        },
-                                    ) {
-                                        Card(
-                                            onClick = { onSelect(a.id); model.articles.markRead(a.id) },
-                                            modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
-                                            colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
-                                        ) {
-                                            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                                    if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
-                                                    Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Summarized on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        })
+                                        SwipeToDismissBox(
+                                            state = dismiss,
+                                            backgroundContent = {
+                                                val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
+                                                Box(
+                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, RoundedCornerShape(20.dp)).padding(horizontal = 24.dp),
+                                                    contentAlignment = if (right) Alignment.CenterStart else Alignment.CenterEnd,
+                                                ) {
+                                                    if (right) Icon(if (unread) Icons.Filled.DoneAll else Icons.Filled.MarkEmailUnread, contentDescription = if (unread) "Mark as read" else "Mark as unread")
+                                                    else if (inArchive) Icon(Icons.Filled.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.onErrorContainer)
+                                                    else Icon(Icons.Filled.Archive, contentDescription = "Archive", tint = MaterialTheme.colorScheme.onErrorContainer)
                                                 }
-                                                Text(a.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                                            },
+                                        ) {
+                                            Card(
+                                                onClick = { onSelect(a.id); model.articles.markRead(a.id) },
+                                                modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
+                                                colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
+                                            ) {
+                                                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                                        if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
+                                                        Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Summarized on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                                    }
+                                                    Text(a.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                                                }
                                             }
                                         }
                                     }
@@ -150,7 +216,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                         }
                     }
                 },
-                detail = { current?.let { ArticleReader(model, it.id, onDelete = deleteWithUndo, onOpenWeb = onOpenWeb) } },
+                detail = { current?.let { ArticleReader(model, it.id, onDelete = deleteWithUndo, onArchive = archiveWithUndo, onOpenWeb = onOpenWeb) } },
                 empty = { EmptyState("Pick an article", "Choose an article from the list to read it here.") },
             )
         }
@@ -159,13 +225,18 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Unit, onOpenWeb: (String) -> Unit) {
+private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Unit, onArchive: (String) -> Unit, onOpenWeb: (String) -> Unit) {
     val context = LocalContext.current
     var sent by remember(id) { mutableStateOf(false) }
+    var speedReading by remember(id) { mutableStateOf(false) }
+    var wpm by remember { mutableStateOf(model.store.readerWpm) }
     val article = remember(id) { model.articles.load(id) }
+    val voice = remember(id) { ReadAloud(context, model.store.ttsRate) { model.store.ttsRate = it } }
+    DisposableEffect(id) { onDispose { voice.shutdown() } }
     LaunchedEffect(id) { model.articles.markRead(id) }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
     val placed = remember(id) { Highlighter.place(article.blocks, article.highlights) }
+    val archived = model.readTick >= 0 && model.articles.isArchived(id)
     val scale = remember(id) { model.store.readerScale }   // set in Settings → Accessibility
     val density = androidx.compose.ui.platform.LocalDensity.current
     androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density, density.fontScale * scale)) {
@@ -177,6 +248,39 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                     Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                     val meta = listOf(article.byline, article.site).filter { it.isNotBlank() }.joinToString(" · ")
                     if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+            item {
+                androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    val playing = voice.state != ReadAloud.State.IDLE
+                    AssistChip(
+                        onClick = {
+                            if (playing) voice.toggle() else voice.start(ReadAloudUnits.article(article.title, article.blocks), article.lang)
+                        },
+                        label = { Text(when (voice.state) { ReadAloud.State.PLAYING -> "Pause"; ReadAloud.State.PAUSED -> "Resume"; else -> "Listen" }) },
+                        leadingIcon = { Icon(if (voice.state == ReadAloud.State.PLAYING) Icons.Filled.Pause else if (voice.state == ReadAloud.State.PAUSED) Icons.Filled.PlayArrow else Icons.Filled.VolumeUp, null) },
+                    )
+                    if (playing) {
+                        AssistChip(onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
+                        AssistChip(onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { Icon(Icons.Filled.Close, null) })
+                    }
+                    AssistChip(onClick = { voice.stop(); speedReading = true }, label = { Text("Speed read") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
+                    AssistChip(
+                        onClick = {
+                            val cm = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                            cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, ArticleMarkdown.render(article)))
+                            android.widget.Toast.makeText(context, "Copied as Markdown", android.widget.Toast.LENGTH_SHORT).show()
+                        },
+                        label = { Text("Copy Markdown") }, leadingIcon = { Icon(Icons.Filled.ContentCopy, null) },
+                    )
+                    AssistChip(
+                        onClick = { shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article)) },
+                        label = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) },
+                    )
+                    AssistChip(
+                        onClick = { if (archived) model.setArchived(id, false) else onArchive(id) },
+                        label = { Text(if (archived) "Unarchive" else "Archive") }, leadingIcon = { Icon(if (archived) Icons.Filled.Unarchive else Icons.Filled.Archive, null) },
+                    )
                 }
             }
             if (article.summary.isNotBlank()) item {
@@ -203,6 +307,11 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
       }
     }
     }
+    if (speedReading) SpeedReadDialog(
+        words = remember(id) { Rsvp.words(article.blocks) }, wpm = wpm,
+        onWpm = { wpm = it.coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM); model.store.readerWpm = wpm },
+        onClose = { speedReading = false },
+    )
 }
 
 @Composable

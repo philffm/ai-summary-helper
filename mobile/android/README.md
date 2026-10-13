@@ -14,6 +14,9 @@ A companion for the AISH browser extension, in two directions, both end-to-end e
   the in-app web view.
 * **Reading list:** articles from **Send to phone**, with the AI summary as bullets and your highlights and the AI's ghost highlights
   marked in the text (yellow, blue) and listed below.
+* **Reading tools:** per article, read aloud (play, pause, speed), speed reading (one word at a time, 150–900 wpm), copy or share as
+  Markdown (front matter like the extension), archive (swipe left; an Archive filter keeps them), and search over title, site and text.
+  **Settings → Backup & restore** exports preferences to a file (never the pairing, licence or account) and imports them on a new phone.
 * **Layout:** Material 3, bottom tabs Feeds · Reading · Settings. From 600 dp width (a Fold's inner screen, tablets, landscape) the
   tabs become a side rail and lists open next to their article. The activity handles size changes itself (`configChanges`), so
   folding or unfolding keeps the open article, scroll position and web page. Not yet: tabletop posture / hinge awareness.
