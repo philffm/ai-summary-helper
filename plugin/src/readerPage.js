@@ -9,6 +9,8 @@ import { fetchAnnotationsForArticle, markHighlights } from './modules/annotation
 import StorageManager from './modules/storageManager.js';
 import { SK } from './modules/storageKeys.js';
 import { stripEmoji } from './modules/icons.js';
+import { getReader, speechUnits, detectLang } from './modules/reader.js';
+import { ttsLang } from './modules/languages.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -46,6 +48,7 @@ function labelControls() {
   const vw = { both: T('Both'), summary: T('Summary'), content: T('Full text') };
   document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
   $('rpPrint').textContent = T('Print');
+  $('rpListen').textContent = T('Read aloud');
 }
 
 function wireControls() {
@@ -174,6 +177,44 @@ async function wireSend() {
   group.hidden = false;
 }
 
+
+// ── Read aloud: the visible part (summary and/or full text), sentence by sentence with the current one marked ──
+const MARK = 'rp-speaking';
+let units = [], stopState = null;
+const mark = (i) => {
+  document.querySelectorAll('.' + MARK).forEach(e => e.classList.remove(MARK));
+  const u = units[i]; if (u && u.el) { u.el.classList.add(MARK); u.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+};
+async function wireListen() {
+  const btn = $('rpListen'), reader = getReader();
+  if (!btn || !(await reader.ready)) return;
+  btn.hidden = false;
+  const paint = () => {
+    const st = reader.state, mine = st.meta && st.meta.tool === 'reader' && st.meta.id === (raw && raw.id);
+    const s = mine ? st.state : 'idle';
+    btn.textContent = s === 'playing' || s === 'waiting' ? T('Pause') : s === 'paused' ? T('Resume') : T('Read aloud');
+    btn.setAttribute('aria-pressed', String(s === 'playing' || s === 'waiting'));
+    if (mine && s !== 'idle') mark(st.index); else mark(-1);
+  };
+  stopState = reader.onState(paint);
+  btn.addEventListener('click', async () => {
+    const st = reader.state;
+    if (st.meta && st.meta.tool === 'reader' && st.meta.id === raw.id && ['playing', 'paused', 'waiting'].includes(st.state)) { reader.toggle(); return; }
+    const view = root.dataset.rpView;
+    const parts = [];
+    if (view !== 'content') parts.push(document.querySelector('.rp-summary'));
+    if (view !== 'summary') parts.push(document.querySelector('.rp-content'));
+    units = parts.flatMap(c => speechUnits(c));
+    if (!units.length) { toast(T('Nothing to read aloud.')); return; }
+    const sample = units.slice(0, 6).map(u => u.text).join(' ');
+    let code = await detectLang(sample);
+    if (!code) { try { code = (await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'; } catch (_) { code = 'en'; } }
+    const lang = ttsLang(code);
+    await reader.start(units.map(u => ({ text: u.text })), lang, { meta: { tool: 'reader', id: raw.id, lang } });
+  });
+  window.addEventListener('pagehide', () => { const m = reader.state.meta; if (m && m.tool === 'reader') reader.stop(); });
+}
+
 async function init() {
   let cfg = {};
   let lang = 'en';
@@ -184,5 +225,11 @@ async function init() {
   labelControls(); wireControls(); applyPrefs();
   await render();
   await wireSend();
+  wireListen();
+  // "#id=…&print=1": the PDF export of the article menu — print dialog (Save as PDF) once the page is laid out
+  if (new URLSearchParams(window.location.hash.slice(1)).get('print') === '1' && raw) {
+    setPref({ view: 'both' });
+    setTimeout(() => window.print(), 400);
+  }
 }
 init();

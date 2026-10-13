@@ -299,10 +299,8 @@ export async function shareArticle(article) {
         }
     }
 }
-/**
- * Generates and downloads a Markdown file with YAML Frontmatter
- */
-export async function exportToMarkdown(article) {
+/** The article as one Markdown note (YAML front matter, summary, Q&A, highlights, original text). */
+async function buildMarkdown(article) {
     // 1. Format date as YYYY-MM-DD for Obsidian frontmatter
     const createdDate = new Date(article.timestamp).toISOString().split('T')[0];
     
@@ -385,23 +383,48 @@ ${annotationsPlain}
 ## 📝 Original Content
 ${contentPlain.trim().replace(/\n{3,}/g, '\n\n')}
 `;
+    return { mdContent, createdDate };
+}
 
-    // 6. Generate and trigger download
-    const blob = new Blob([mdContent], { type: 'text/markdown' });
+const markdownFileBase = (article, createdDate) => `${createdDate}_${(article.title || 'article').replace(/[^a-z0-9]/gi, '_').toLowerCase()}_summary`;
+
+function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    
-    // Create a safe, clean filename
-    const safeFilename = (article.title || 'article').replace(/[^a-z0-9]/gi, '_').toLowerCase();
-    
-    a.href = url;
-    a.download = `${createdDate}_${safeFilename}_summary.md`;
-    document.body.appendChild(a);
-    a.click();
-    
-    // Cleanup
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export async function exportToMarkdown(article) {
+    const { mdContent, createdDate } = await buildMarkdown(article);
+    downloadBlob(new Blob([mdContent], { type: 'text/markdown' }), `${markdownFileBase(article, createdDate)}.md`);
+}
+
+/** Word (.docx) export of the same note — no library: markdownToDocx writes the few XML parts Word needs. */
+export async function exportToWord(article) {
+    const { mdContent, createdDate } = await buildMarkdown(article);
+    const { markdownToDocx } = await import('./docxExport.js');
+    downloadBlob(await markdownToDocx(mdContent.replace(/^---\n[\s\S]*?\n---\n/, '')), `${markdownFileBase(article, createdDate)}.docx`);
+}
+
+/** PDF: the reader page in print mode — the browser's "Save as PDF" gives a clean, typeset document. */
+export async function exportToPdf(article) {
+    if (!article.id) return;
+    const url = chrome.runtime.getURL('readerPage.html') + '#id=' + encodeURIComponent(article.id) + '&print=1';
+    try { if (chrome.tabs && chrome.tabs.create) { await chrome.tabs.create({ url }); return; } } catch (_) { /* fall through */ }
+    window.open(url, '_blank', 'noopener');
+}
+
+/** Obsidian: the note goes through the clipboard (a URI is too short for long articles), then obsidian://new opens it in the default vault. */
+export async function sendToObsidian(article) {
+    const { mdContent, createdDate } = await buildMarkdown(article);
+    const name = (article.title || 'Untitled').replace(/[\\/:*?"<>|#^[\]]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80) || 'Untitled';
+    try { await navigator.clipboard.writeText(mdContent); }
+    catch (_) { downloadBlob(new Blob([mdContent], { type: 'text/markdown' }), `${markdownFileBase(article, createdDate)}.md`); return; }
+    const a = document.createElement('a');
+    a.href = `obsidian://new?name=${encodeURIComponent(name)}&clipboard`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 /**
