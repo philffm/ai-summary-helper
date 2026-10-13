@@ -39,6 +39,23 @@ object Account {
         else -> n.toString()
     }
 
+    /** "2026-11-01T00:00:00.000Z" → "Resets Nov 1" (empty when the date is missing or unreadable). */
+    fun resetLabel(resetAt: String): String = runCatching {
+        val d = java.time.LocalDate.parse(resetAt.take(10))
+        "Resets " + d.month.getDisplayName(java.time.format.TextStyle.SHORT, Locale.getDefault()) + " " + d.dayOfMonth
+    }.getOrDefault("")
+
+    /** The line under the allowance bar, as in the extension: what changes at 80 % and 100 %, plus the reset date. */
+    fun allowanceNote(percent: Int, resetAt: String): String {
+        val reset = resetLabel(resetAt)
+        val text = when {
+            percent >= 100 -> "Used up — local models still work."
+            percent >= 80 -> "Almost used up — summaries now use a lighter model until then."
+            else -> ""
+        }
+        return listOf(text, reset).filter { it.isNotEmpty() }.joinToString(" · ")
+    }
+
     fun usd(v: Double): String = if (v in 0.0..0.005 && v > 0) "<$0.01" else String.format(Locale.US, "$%.2f", v)
 
     fun describe(info: AccountInfo?): String = when {

@@ -33,6 +33,16 @@ class AccountTest {
         assertNull(Account.check(""))
     }
 
+    @Test fun allowanceNoteFollowsTheExtension() {
+        assertEquals("", Account.allowanceNote(10, ""))
+        assertTrue(Account.allowanceNote(10, "2026-11-01T00:00:00.000Z").startsWith("Resets "))
+        assertTrue(Account.allowanceNote(10, "2026-11-01T00:00:00.000Z").endsWith(" 1"))
+        assertEquals("Almost used up — summaries now use a lighter model until then.", Account.allowanceNote(85, "garbage"))
+        assertEquals("Used up — local models still work.", Account.allowanceNote(100, ""))
+        assertTrue(Account.allowanceNote(100, "2026-11-01").contains(" · Resets "))
+        assertEquals("", Account.resetLabel("x"))
+    }
+
     @Test fun readsTokensAndModels() {
         val u = Account.parse("""{"quota":{"used_usd":0.5,"limit_usd":1.5,"percent":33,"requests":7,"tokens_in":12300,"tokens_out":950,"reset_at":"2026-11-01T00:00:00.000Z",
             "by_model":[{"model":"google/gemini-2.5-flash","requests":5,"cost_usd":0.4,"tokens_in":10000,"tokens_out":800},{"model":"b/small","requests":2,"cost_usd":0.1,"tokens_in":2300,"tokens_out":150}]},

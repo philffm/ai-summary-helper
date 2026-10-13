@@ -90,23 +90,37 @@ fun AccountCard(model: AppModel) {
 /** This month's cloud AI use as the server counts it, and what ran on this phone (free, never sent anywhere). */
 @Composable
 private fun UsageCard(u: AccountInfo, localRuns: Int, cloudCalls: Int) {
+    // Same layout as the extension: title and "N% left", a bar that shrinks as the allowance is used, a note, then collapsible details. No money amounts.
+    val pct = u.percent.coerceIn(0, 100)
+    val tint = when {
+        pct >= 100 -> MaterialTheme.colorScheme.error
+        pct >= 80 -> MaterialTheme.colorScheme.tertiary
+        else -> MaterialTheme.colorScheme.primary
+    }
+    var open by remember { mutableStateOf(false) }
     SettingsCaption("AI use this month")
     SettingsGroup {
-        Text("${100 - u.percent}% of the monthly allowance left", style = MaterialTheme.typography.titleMedium)
-        androidx.compose.material3.LinearProgressIndicator(progress = { (1f - u.percent / 100f).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth())
-        Text(
-            "${u.requests} cloud request" + (if (u.requests == 1) "" else "s") + " · ${Account.tokens(u.tokensIn)} tokens in, ${Account.tokens(u.tokensOut)} out" +
-                (if (u.resetAt.length >= 10) " · resets ${u.resetAt.take(10)}" else ""),
-            style = MaterialTheme.typography.bodyMedium,
-        )
-        if (u.models.isNotEmpty()) {
-            Text("By model", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            for (m in u.models) Text("${m.model.substringAfterLast('/')} · ${m.requests}×", style = MaterialTheme.typography.bodyMedium)
-            Text("From 80% of the allowance the cheapest model is used; at 100% cloud AI pauses until the reset.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        } else if (u.lastModel.isNotBlank()) Text("Last model: ${u.lastModel.substringAfterLast('/')}", style = MaterialTheme.typography.bodyMedium)
-        Text(
-            "On this phone: $localRuns on-device model run" + (if (localRuns == 1) "" else "s") + " (free, never sent anywhere) · $cloudCalls call" + (if (cloudCalls == 1) "" else "s") + " to the cloud AI. Use from the browser extension counts here too.",
-            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text("Monthly AI allowance", style = MaterialTheme.typography.titleMedium)
+            Text("${100 - pct}% left", style = MaterialTheme.typography.titleMedium, color = tint)
+        }
+        androidx.compose.material3.LinearProgressIndicator(progress = { (1f - pct / 100f).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = tint)
+        Account.allowanceNote(pct, u.resetAt).takeIf { it.isNotEmpty() }?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        TextButton(onClick = { open = !open }) { Text(if (open) "Hide usage details" else "Usage details") }
+        if (open) {
+            Text(
+                "${u.requests} request" + (if (u.requests == 1) "" else "s") + " this month",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Text("${Account.tokens(u.tokensIn)} tokens in · ${Account.tokens(u.tokensOut)} tokens out", style = MaterialTheme.typography.bodyMedium)
+            if (u.models.isNotEmpty()) {
+                Text("By model", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                for (m in u.models) Text("${m.model.substringAfterLast('/')} · ${m.requests}×", style = MaterialTheme.typography.bodyMedium)
+            } else if (u.lastModel.isNotBlank()) Text("Last model: ${u.lastModel.substringAfterLast('/')}", style = MaterialTheme.typography.bodyMedium)
+            Text(
+                "On this phone: $localRuns on-device model run" + (if (localRuns == 1) "" else "s") + " (free, never sent anywhere) · $cloudCalls call" + (if (cloudCalls == 1) "" else "s") + " to the cloud AI. Use from the browser extension counts here too.",
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
     }
 }
