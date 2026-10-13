@@ -17,6 +17,8 @@ A companion for the AISH browser extension, in two directions, both end-to-end e
 * **Reading tools:** per article, read aloud (play, pause, speed), speed reading (one word at a time, 150–900 wpm), copy or share as
   Markdown (front matter like the extension), archive (swipe left; an Archive filter keeps them), and search over title, site and text.
   **Settings → Backup & restore** exports preferences to a file (never the pairing, licence or account) and imports them on a new phone.
+* **Highlights:** press and hold a paragraph in the reader to highlight it (again to remove); they are stored on the phone, shown with the
+  highlights from the browser, and included in Markdown copy/share.
 * **Reader comfort:** typeface (app font Hanken Grotesk, serif, or Atkinson Hyperlegible "easy read"), text size, line spacing and background
   (auto, paper, white, dark) from the **Aa** chip or Settings → Accessibility. From the reader you can also summarize on the phone and
   set a reminder (in an hour, this evening, tomorrow morning; one notification, one tap opens the article).

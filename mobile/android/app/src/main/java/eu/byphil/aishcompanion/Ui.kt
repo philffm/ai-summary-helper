@@ -3,6 +3,7 @@ package eu.byphil.aishcompanion
 import android.text.format.DateUtils
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -142,8 +143,18 @@ fun markedText(text: String, marks: List<Mark>): AnnotatedString {
 
 /** One article block. [marks] are the highlights found in this block's text. */
 @Composable
-fun BlockView(b: Block, marks: List<Mark> = emptyList()) {
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+fun BlockView(b: Block, marks: List<Mark> = emptyList(), onLongPress: (() -> Unit)? = null) {
     val text = markedText(b.text, marks)
+    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
+    val press = if (onLongPress == null || b.type == "pre") Modifier else Modifier.combinedClickable(
+        onClick = {}, onLongClick = { haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress); onLongPress() },
+    )
+    Box(press) { BlockContent(b, text) }
+}
+
+@Composable
+private fun BlockContent(b: Block, text: androidx.compose.ui.text.AnnotatedString) {
     val rs = LocalReaderStyle.current
     val body = MaterialTheme.typography.bodyLarge.copy(fontFamily = rs.family ?: MaterialTheme.typography.bodyLarge.fontFamily)
     val line = (27 * rs.spacing).sp

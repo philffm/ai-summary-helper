@@ -64,7 +64,7 @@ class ArticleStore(context: Context) {
 
     fun delete(id: String) {
         if (!ID.matches(id)) return
-        File(dir, "$id.json").delete(); File(dir, "$id.meta").delete()
+        File(dir, "$id.json").delete(); File(dir, "$id.meta").delete(); File(dir, "$id.hl").delete()
         prefs.edit().remove(id).remove("arch:$id").apply()
     }
 
@@ -73,21 +73,41 @@ class ArticleStore(context: Context) {
     /** Takes the article out of the list but keeps it in a bin until [purge] or [restore] (for "Undo"). One level: a newer trash replaces nothing, ids are separate files. */
     fun trash(id: String): Boolean {
         if (!ID.matches(id) || !File(dir, "$id.json").exists()) return false
-        File(dir, "$id.json").renameTo(File(trashDir, "$id.json")); File(dir, "$id.meta").renameTo(File(trashDir, "$id.meta"))
+        File(dir, "$id.json").renameTo(File(trashDir, "$id.json")); File(dir, "$id.meta").renameTo(File(trashDir, "$id.meta")); File(dir, "$id.hl").renameTo(File(trashDir, "$id.hl"))
         return true
     }
 
     fun restore(id: String): Boolean {
         if (!ID.matches(id) || !File(trashDir, "$id.json").exists()) return false
-        File(trashDir, "$id.json").renameTo(File(dir, "$id.json")); File(trashDir, "$id.meta").renameTo(File(dir, "$id.meta"))
+        File(trashDir, "$id.json").renameTo(File(dir, "$id.json")); File(trashDir, "$id.meta").renameTo(File(dir, "$id.meta")); File(trashDir, "$id.hl").renameTo(File(dir, "$id.hl"))
         return true
     }
 
     /** Deletes a trashed article for good (and forgets that it was read). */
     fun purge(id: String) {
         if (!ID.matches(id)) return
-        File(trashDir, "$id.json").delete(); File(trashDir, "$id.meta").delete()
+        File(trashDir, "$id.json").delete(); File(trashDir, "$id.meta").delete(); File(trashDir, "$id.hl").delete()
         prefs.edit().remove(id).remove("arch:$id").apply()
+    }
+
+    /** Passages the user marked on this phone (long-press a paragraph in the reader). One small file per article. */
+    fun userHighlights(id: String): List<String> {
+        if (!ID.matches(id)) return emptyList()
+        val f = File(dir, "$id.hl")
+        if (!f.exists()) return emptyList()
+        return runCatching { val a = org.json.JSONArray(f.readText()); (0 until a.length()).map { a.getString(it) } }.getOrDefault(emptyList())
+    }
+
+    /** Marks the passage, or removes the mark when it is already there. Returns true when it is marked afterwards. */
+    fun toggleHighlight(id: String, text: String): Boolean {
+        if (!ID.matches(id)) return false
+        val t = text.trim().take(600)
+        if (t.length < 5) return false
+        val cur = userHighlights(id).toMutableList()
+        val on = if (t in cur) { cur.remove(t); false } else { cur.add(t); true }
+        val f = File(dir, "$id.hl")
+        if (cur.isEmpty()) f.delete() else f.writeText(org.json.JSONArray(cur).toString())
+        return on
     }
 
     /** Archived articles stay on the phone but leave the main list (shown under the Archive filter). Stored apart from the read flag. */

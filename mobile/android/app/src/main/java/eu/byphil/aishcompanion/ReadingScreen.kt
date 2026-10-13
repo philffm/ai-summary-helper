@@ -191,6 +191,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                         })
                                         SwipeToDismissBox(
                                             state = dismiss,
+                                            modifier = Modifier.animateItem(),
                                             backgroundContent = {
                                                 val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
                                                 Box(
@@ -248,7 +249,10 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     DisposableEffect(id) { onDispose { voice.shutdown() } }
     LaunchedEffect(id) { model.articles.markRead(id) }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
-    val placed = remember(id) { Highlighter.place(article.blocks, article.highlights) }
+    var mineTick by remember(id) { mutableIntStateOf(0) }   // bumped when the reader marks or unmarks a paragraph
+    val mine = remember(id, mineTick) { model.articles.userHighlights(id).map { Highlight(false, it) } }
+    val allHighlights = remember(article, mine) { article.highlights + mine.filter { m -> article.highlights.none { it.text == m.text } } }
+    val placed = remember(id, allHighlights) { Highlighter.place(article.blocks, allHighlights) }
     val archived = model.readTick >= 0 && model.articles.isArchived(id)
     val scale = model.readerScale   // set in the reader sheet or Settings → Accessibility
     var sheet by remember(id) { mutableStateOf(false) }
@@ -289,13 +293,13 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                     AssistChip(
                         onClick = {
                             val cm = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                            cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, ArticleMarkdown.render(article)))
+                            cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, ArticleMarkdown.render(article.copy(highlights = allHighlights))))
                             android.widget.Toast.makeText(context, "Copied as Markdown", android.widget.Toast.LENGTH_SHORT).show()
                         },
                         label = { Text("Copy Markdown") }, leadingIcon = { Icon(Icons.Filled.ContentCopy, null) },
                     )
                     AssistChip(
-                        onClick = { shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article)) },
+                        onClick = { shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article.copy(highlights = allHighlights))) },
                         label = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) },
                     )
                     if (LocalLlm.installed(context)) AssistChip(
@@ -349,14 +353,22 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                 }
             }
             item { HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant) }
-            items(article.blocks.size) { i -> BlockView(article.blocks[i], placed[i] ?: emptyList()) }
+            items(article.blocks.size) { i ->
+                val block = article.blocks[i]
+                BlockView(block, placed[i] ?: emptyList(), onLongPress = {
+                    val on = model.articles.toggleHighlight(id, block.text)
+                    mineTick++
+                    android.widget.Toast.makeText(context, if (on) "Highlighted" else "Highlight removed", android.widget.Toast.LENGTH_SHORT).show()
+                })
+            }
             if (article.truncated) item { Text("This long article was shortened to fit. Tap Read original for the rest.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
-            if (article.highlights.isNotEmpty()) item { Highlights(article.highlights) }
+            if (allHighlights.isNotEmpty()) item { Highlights(allHighlights) }
+            if (allHighlights.isEmpty() && article.blocks.isNotEmpty()) item { Text("Tip: press and hold a paragraph to highlight it.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         }
         ActionBar(
             primary = BarAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },
             secondary = listOfNotNull(
-                if (article.summary.isNotBlank() || article.highlights.isNotEmpty()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url, article.highlights.map { it.text })) } else null,
+                if (article.summary.isNotBlank() || allHighlights.isNotEmpty()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url, allHighlights.map { it.text })) } else null,
                 if (model.pairing != null && article.local) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, article.url); sent = true } else null,
                 BarAction(Icons.Filled.Delete, "Delete") { onDelete(id) },
             ),
