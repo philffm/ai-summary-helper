@@ -1456,7 +1456,7 @@ function setupOnboardingExtras(ui) {
             const back = () => { s2.hidden = true; s1.hidden = false; };
             mountStyleStep(s2, { onBack: back, onDone: () => { chrome.storage.sync.set({ onboardingDismissed: true }); back(); } });
             s1.hidden = true; s2.hidden = false;
-            s2.scrollIntoView({ block: 'start' });
+            if (s2.scrollIntoView) s2.scrollIntoView({ block: 'start' });
         });
     }
     bind('onboardingCustomApiBtn', 'modeLocal');

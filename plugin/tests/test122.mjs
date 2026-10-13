@@ -1,4 +1,4 @@
-// Onboarding mask: Continue stays inactive until a provider is set up; that card turns green with "✓ Set up"; Continue dismisses the mask for good.
+// Onboarding mask: Continue stays inactive until a provider is set up; that card turns green with "✓ Set up"; Continue opens the summary-style step; Done dismisses the mask for good.
 import assert from 'assert'; import fs from 'fs';
 import { setup, imp, tick } from './harness.mjs';
 const { w, store } = setup({}); const d = w.document;
@@ -49,8 +49,13 @@ assert.equal(store.connectionMode, 'local', 'Continue leaves the unusable cloud 
 assert.equal(store.activeService, 'ollama', 'and picks the configured Ollama model');
 store.onboardingDismissed = undefined; delete store.onboardingDismissed;
 
-// Continue → dismissed for good
-skip.click(); await tick(20);
+// Continue → step 2 (summary style) → Done dismisses for good
+skip.click(); await tick(40);
+assert.equal(store.onboardingDismissed, undefined, 'Continue opens the style step, it does not dismiss yet');
+assert.equal(d.getElementById('onboardingStep1').hidden, true); assert.equal(d.getElementById('onboardingStep2').hidden, false);
+assert.equal(d.querySelectorAll('#onboardingStep2 .onboarding-style').length, 4, 'four styles to choose from');
+d.querySelector('#onboardingStep2 .onboarding-skip').click(); await tick(40);
+assert.equal(store.promptType, 'builder', 'the chosen style is stored as the prompt');
 assert.equal(store.onboardingDismissed, true, 'dismissal stored');
 fire({ onboardingDismissed: { newValue: true } }); await tick(80);
 assert.equal(box.style.display, 'none', 'mask gone, input bar usable');
