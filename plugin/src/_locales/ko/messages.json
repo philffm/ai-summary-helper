@@ -4753,5 +4753,11 @@
   },
   "f_use_1947": {
     "message": "{id} 사용"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "요약이 클라우드를 사용하더라도 리캡은 내 Ollama 모델이 작성합니다"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 브리핑에는 항상 내 로컬 모델 사용"
   }
 }

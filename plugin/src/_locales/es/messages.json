@@ -4771,5 +4771,11 @@
   },
   "f_use_1947": {
     "message": "Usar {id}"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "Los resúmenes los escribe tu modelo de Ollama, aunque los resúmenes de páginas usen la nube"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Usar siempre mi modelo local para los resúmenes diarios"
   }
 }

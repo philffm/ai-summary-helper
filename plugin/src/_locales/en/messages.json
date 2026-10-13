@@ -5011,5 +5011,11 @@
   "f_use_1947": {
     "message": "Use {id}",
     "description": "Placeholders: {id} (keep as is)"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "Recaps are written by your Ollama model, even when summaries use the cloud"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Always use my local model for briefings"
   }
 }

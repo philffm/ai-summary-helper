@@ -322,7 +322,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}${AFTER.recap(rate)}`, onStage, signal,
-        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings), service });
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
@@ -350,7 +350,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
     const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}${AFTER.recap(rate)}`, onStage, signal,
-        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: !!(rate && onRatings), service });
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return { ...r, sent: chunk };
@@ -562,7 +562,7 @@ function partText(p) {
  * With `prev`, only the new or changed parts are sent and the previous roll-up stands in for everything else.
  * parts = [{ label, recap }]
  */
-export async function generateRollup(parts, { label = '', prev = null, edited = () => false, onStage, signal, onProgress } = {}) {
+export async function generateRollup(parts, { label = '', prev = null, edited = () => false, onStage, signal, onProgress, service } = {}) {
     const lang = await languageName();
     const suffix = await feedStyle('recap');
     const lr = await langRule();
@@ -575,7 +575,7 @@ export async function generateRollup(parts, { label = '', prev = null, edited = 
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const body = parts.map(p => partText(p) + (edited(p) ? ' (changed)' : '')).join('\n\n');
     const cur = prev ? [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n') : '';
-    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`, onStage, signal, onProgress);
+    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`, onStage, signal, onProgress, { partial: true, service });
     const r = parseRecap(text, 0);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;

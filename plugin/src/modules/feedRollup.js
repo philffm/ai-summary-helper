@@ -210,11 +210,11 @@ export function openRollup(scope, anchor, ctx) {
             const cached = ctx.getRecaps()[key];
             const fresh = cached && cached.covered ? changedOf(cached, P) : null;
             if (cached && fresh && !fresh.length) { ctx.toast(T('Nothing new since this recap')); return drawResult(cached, P); }
-            const st = createRecapStatus({ title: cached ? T('✨ Updating recap…') : T('✨ Writing recap…'), detail: T('Sends {n} short recaps, not {m} headlines', { n: (fresh || P.parts).length, m: P.total }), onCancel: () => { if (cached) drawResult(cached, P); else drawPlan(P, null); } });
+            const st = createRecapStatus({ title: cached ? T('✨ Updating recap…') : T('✨ Writing recap…'), detail: T('Sends {n} short recaps, not {m} headlines', { n: (fresh || P.parts).length, m: P.total }), onCancel: () => { if (cached) drawResult(cached, P); else drawPlan(P, null); }, local: !!(ctx.briefingService && ctx.briefingService()), speakId: key });
             body.replaceChildren(st.node);
             const send = fresh || P.parts;
             let r;
-            try { r = await generateRollup(send, { label, prev: fresh ? cached : null, edited: (p) => !!(cached && p.key in cached.covered), onStage: st.onStage, signal: st.signal, onProgress: st.onProgress }); }
+            try { r = await generateRollup(send, { label, prev: fresh ? cached : null, edited: (p) => !!(cached && p.key in cached.covered), onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, service: ctx.briefingService ? ctx.briefingService() : '' }); st.complete(); }
             finally { st.stop(); }
             const rc = { ...r, at: Date.now(), n: P.total, scope, covered: fresh ? { ...cached.covered, ...sigsOf(send) } : sigsOf(P.parts) };
             ctx.getRecaps()[key] = rc;

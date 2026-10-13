@@ -4771,5 +4771,11 @@
   },
   "f_use_1947": {
     "message": "استخدام {id}"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "يكتب نموذج Ollama الخاص بك الملخصات، حتى عندما تستخدم التلخيصات السحابة"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 استخدم نموذجي المحلي دائمًا للإيجازات"
   }
 }

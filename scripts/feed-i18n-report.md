@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1371. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1371 | 0 | 0 | 46 |
-| de | 1371 | 0 | 0 | 202 |
-| es | 1371 | 0 | 0 | 185 |
-| fr | 1371 | 0 | 0 | 215 |
-| hi | 1371 | 0 | 0 | 86 |
-| it | 1371 | 0 | 0 | 184 |
-| ja | 1371 | 0 | 0 | 95 |
-| ko | 1371 | 0 | 0 | 26 |
-| pt_PT | 1371 | 0 | 0 | 176 |
-| ru | 1371 | 0 | 0 | 116 |
-| zh_CN | 1371 | 0 | 0 | 2 |
-| zh_HK | 1371 | 0 | 0 | 2 |
-| zh_TW | 1371 | 0 | 0 | 2 |
+| ar | 1373 | 0 | 0 | 46 |
+| de | 1373 | 0 | 0 | 202 |
+| es | 1373 | 0 | 0 | 186 |
+| fr | 1373 | 0 | 0 | 217 |
+| hi | 1373 | 0 | 0 | 86 |
+| it | 1373 | 0 | 0 | 184 |
+| ja | 1373 | 0 | 0 | 95 |
+| ko | 1373 | 0 | 0 | 26 |
+| pt_PT | 1373 | 0 | 0 | 176 |
+| ru | 1373 | 0 | 0 | 117 |
+| zh_CN | 1373 | 0 | 0 | 2 |
+| zh_HK | 1373 | 0 | 0 | 2 |
+| zh_TW | 1373 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -451,6 +451,7 @@ Strings: 1371. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 🔁 Process new items automatically | 🔁 Procesar automáticamente los elementos nuevos | 48 vs 34 | 1.41× |
 | Automatic light-blue quote highlights from summaries | Citas resaltadas en azul claro automáticamente a partir de los resúmenes | 72 vs 52 | 1.38× |
 | Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Enviar al teléfono está activado: usa ⋯ → Enviar al teléfono en cualquier artículo para leerlo en movimiento. | 109 vs 79 | 1.38× |
+| 🏠 Always use my local model for briefings | 🏠 Usar siempre mi modelo local para los resúmenes diarios | 58 vs 42 | 1.38× |
 | Rates the tone of summaries and feed items. Powers mood filters, charts and the Source diet. Turn off to hide all mood features. | Valora el tono de los resúmenes y de los elementos del feed. Activa filtros de ánimo, gráficos y el balance de fuentes. Desactívalo para ocultar todas las funciones de ánimo. | 174 vs 128 | 1.36× |
 | Your own mix of batch size, requests per run and interval. | Tu propia combinación de tamaño de lote, solicitudes por ejecución e intervalo. | 79 vs 58 | 1.36× |
 | Shown in the article and included in exports | Se muestra en el artículo y se incluye en las exportaciones | 59 vs 44 | 1.34× |
@@ -679,7 +680,9 @@ Strings: 1371. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Feed list synced: {added} added, {updated} changed, {removed} removed | Liste des flux synchronisée : {added} ajoutés, {updated} modifiés, {removed} supprimés | 67 vs 50 | 1.34× |
 | Paste works. It signs you in after the last digit. | Le collage fonctionne. Vous êtes connecté après le dernier chiffre. | 67 vs 50 | 1.34× |
 | Style for AI briefings and week & month recaps. | Style des briefings IA et des récapitulatifs hebdo et mensuels. | 63 vs 47 | 1.34× |
+| 🏠 Always use my local model for briefings | 🏠 Toujours utiliser mon modèle local pour les briefings | 56 vs 42 | 1.33× |
 | Press <b>Win + R</b>, type <code>cmd</code> and press Enter. | Appuyez sur <b>Win + R</b>, saisissez <code>cmd</code> puis appuyez sur Entrée. | 79 vs 60 | 1.32× |
+| Recaps are written by your Ollama model, even when summaries use the cloud | Les récapitulatifs sont rédigés par votre modèle Ollama, même quand les résumés utilisent le cloud | 98 vs 74 | 1.32× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} anciens éléments ne sont pas dans ce récapitulatif (limite : {max} par récap). | 78 vs 59 | 1.32× |
 | Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh. | L’accès aux sites web est désactivé. Autorisez-le dans about:addons → cette extension → Autorisations (« Accéder à vos données pour tous les sites web »), puis actualisez. | 171 vs 131 | 1.31× |
 | Short pages get a few sentences, long reads get more. Never longer than half the article. | Les pages courtes reçoivent quelques phrases, les longues lectures davantage. Jamais plus de la moitié de l’article. | 116 vs 89 | 1.3× |
@@ -1397,6 +1400,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Tip: press {key} on any page to summarize it. | Совет: нажмите {key} на любой странице, чтобы пересказать её. | 58 vs 42 | 1.38× |
 | Also automatic: opening marks Read, sending marks Sent | Тоже автоматически: открытие помечает «Прочитано», отправка — «Отправлено» | 74 vs 54 | 1.37× |
 | Saving took too long (a very heavy page). Try again, or open it and summarize instead. | Сохранение заняло слишком много времени (очень тяжёлая страница). Повторите попытку или откройте её и сделайте резюме. | 118 vs 86 | 1.37× |
+| 🏠 Always use my local model for briefings | 🏠 Всегда использовать мою локальную модель для брифингов | 57 vs 42 | 1.36× |
 | Stopped. Starting again continues where it left off. | Остановлено. При новом запуске обработка продолжится с того же места. | 69 vs 52 | 1.33× |
 | Feed list synced: {added} added, {updated} changed, {removed} removed | Список лент синхронизирован: добавлено {added}, изменено {updated}, удалено {removed} | 66 vs 50 | 1.32× |
 | By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | По умолчанию резервные копии не содержат API-ключи, данные для входа, лицензионные ключи и идентификаторы установки. Храните экспортированные файлы в тайне. | 156 vs 119 | 1.31× |

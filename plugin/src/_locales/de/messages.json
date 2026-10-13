@@ -4771,5 +4771,11 @@
   },
   "f_use_1947": {
     "message": "{id} verwenden"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "Recaps schreibt dein Ollama-Modell, auch wenn Zusammenfassungen die Cloud nutzen"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Für Briefings immer mein lokales Modell nutzen"
   }
 }

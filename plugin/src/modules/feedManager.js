@@ -33,6 +33,8 @@ import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTo
 import { el } from './dom.js';
 import { renderAnswer, renderInline } from './qaView.js';
 import { createRecapStatus } from './recapStatus.js';
+import { toggleReadRecap, readingState, speechAvailable } from './recapSpeech.js';
+import { getReader } from './reader.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { moodEnabled, setMoodEnabled } from './moodSetting.js';
 import { startOfDay } from './dateUtils.js';
@@ -64,6 +66,7 @@ const DAY_MS = 86400000;
 export const FEED_DEFAULTS = {
     markReadOnOpen: true,
     rateWithRecap: true,
+    localBriefings: false,
     autoSummarizeFavs: false,
     backgroundPoll: false,
     refreshMinutes: 30,
@@ -1670,6 +1673,8 @@ function applyRatings(arr, r, rate, live = false) {
     if (!live) persist();
     render();
 }
+/** 'ollama' when briefings are set to always use the local model, else '' (the connection chosen for summaries). */
+const briefingService = () => (settings.localBriefings ? 'ollama' : '');
 const liveRatings = (arr, rate) => (r) => applyRatings(arr, r, rate, true);
 
 /** Write (and store) a day recap without opening its sheet — used by week/month recaps for days that have none yet. */
@@ -1678,7 +1683,7 @@ async function buildDayRecap(dayStart, source) {
     const list = recapCovered(all);
     if (!list.length) return null;
     const rate = settings.rateWithRecap !== false;
-    const r = await generateRecap(list, aiTitleOf(subMap()), { rate, onRatings: liveRatings(list, rate) });
+    const r = await generateRecap(list, aiTitleOf(subMap()), { rate, onRatings: liveRatings(list, rate), service: briefingService() });
     applyRatings(list, r, rate);
     const { labels: _l, scores: _s, ...rc } = r;
     const key = `${dayStart}|${source}`;
@@ -1695,6 +1700,7 @@ function rollCtx(source = ui.source) {
         saveRecaps: () => { chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {}); renderRecapCard(); },
         inSource: (i) => inSource(i, sm, source),
         buildDay: buildDayRecap,
+        briefingService,
         toast: (m) => toast(uiRef, m),
     };
 }
@@ -1894,6 +1900,13 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); toast(uiRef, T('Recap copied')); }
                 catch (e) { toast(uiRef, T('Copy failed')); }
             }));
+        speechAvailable().then(ok => {
+            if (!ok || !row.isConnected) return;
+            const sp = btn('button-secondary btn-sm', '🔊 ' + T('Read aloud'), () => toggleReadRecap(key, r));
+            const paint = () => { const st = readingState(key); sp.textContent = st === 'paused' ? '▶ ' + T('Play') : st ? '⏸ ' + T('Pause') : '🔊 ' + T('Read aloud'); };
+            const off = getReader().onState(() => { if (!sp.isConnected) { off(); return; } paint(); });
+            paint(); row.append(sp);
+        });
         body.append(row,
             btn('feed-manage-link', list.some(needsAi) ? TN(list.filter(needsAi).length, '🤖  Score {n} unscored item with AI', '🤖  Score {n} unscored items with AI') : T('✓  All items here are scored'), () => { closeSheet(); scoreWithAi(list); }),
             el('p', 'feed-muted', T('AI-generated from {n} headlines and snippets. Generated at {time}. Not a substitute for reading.', { n: list.length, time: new Date(r.at).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' }) })));
@@ -1915,11 +1928,12 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
                 body.prepend(el('p', 'feed-muted', T('Nothing new since this recap — Reset rewrites it from scratch.')));
                 return;
             }
-            const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true) });
+            const st = createRecapStatus({ title: T('✨ Updating recap…'), detail: T('Sending {n} new or edited titles and short snippets to your AI connection.', { n: Math.min(fresh.length, getRecapLimit()) }), onCancel: () => draw(cached, true), local: !!briefingService(), speakId: key });
             body.replaceChildren(st.node);
             const done = trackJob('d:' + key, body);
             try {
-                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(fresh.slice(0, getRecapLimit()), rate) });
+                const r = await generateRecapUpdate(cached, fresh, aiTitleOf(sm), { rate, edited: (x) => x.id in cached.covered, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(fresh.slice(0, getRecapLimit()), rate), service: briefingService() });
+                st.complete();
                 st.stop();
                 applyRatings(r.sent, r, rate);
                 const { labels: _l, scores: _s, sent: sentItems, ...rc } = r;
@@ -1938,11 +1952,12 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
             }
             return;
         }
-        const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); } });
+        const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); }, local: !!briefingService(), speakId: key });
         body.replaceChildren(st.node);
         const done = trackJob('d:' + key, body);
         try {
-            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(list, rate) });
+            const r = await generateRecap(list, aiTitleOf(sm), { rate, onStage: st.onStage, signal: st.signal, onProgress: st.onProgress, onRatings: liveRatings(list, rate), service: briefingService() });
+            st.complete();
             st.stop();
             applyRatings(list, r, rate);
             const { labels: _l, scores: _s, ...rc } = r;
@@ -2615,7 +2630,8 @@ function renderFeedPrefs() {
         moodToggleRow(),
         segRow('feedSetAiDetail', T('🔎 What the AI reads'), 'aiDetail', [[0, T('Titles only (faster)')], [1, T('Titles + descriptions')]]),
         segRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
-        toggleRow('feedSetRate', stripEmoji(T('🤖 Rate items with the recap')), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'));
+        toggleRow('feedSetRate', stripEmoji(T('🤖 Rate items with the recap')), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'),
+        toggleRow('feedSetLocalBriefings', stripEmoji(T('🏠 Always use my local model for briefings')), T('Recaps are written by your Ollama model, even when summaries use the cloud'), 'localBriefings'));
     card('feedPrefsLibrary', TU('Whole library · Ollama'));
     renderLibraryCard(root.querySelector('#feedPrefsLibrary')).catch(() => {});
     card('feedPrefsUpdates', TU('Updates & storage'),

@@ -4771,5 +4771,11 @@
   },
   "f_use_1947": {
     "message": "{id} का उपयोग करें"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "रीकैप आपका Ollama मॉडल लिखता है, भले ही सारांश क्लाउड का उपयोग करें"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 ब्रीफ़िंग के लिए हमेशा मेरा लोकल मॉडल इस्तेमाल करें"
   }
 }

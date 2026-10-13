@@ -4771,5 +4771,11 @@
   },
   "f_use_1947": {
     "message": "Usa {id}"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "I riepiloghi sono scritti dal tuo modello Ollama, anche quando i riassunti usano il cloud"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Usa sempre il mio modello locale per i briefing"
   }
 }

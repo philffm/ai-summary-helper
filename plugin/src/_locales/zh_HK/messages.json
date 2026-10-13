@@ -4771,5 +4771,11 @@
   },
   "f_use_1947": {
     "message": "使用 {id}"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "即使摘要使用雲端，回顧也由你的 Ollama 模型撰寫"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 簡報一律使用我的本機模型"
   }
 }
