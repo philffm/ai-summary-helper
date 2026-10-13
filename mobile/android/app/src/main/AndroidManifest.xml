@@ -61,6 +61,11 @@
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
         </receiver>
+        <!-- Home-screen widget with the day recap. Redrawn by the app whenever a new recap is written. -->
+        <receiver android:name=".RecapWidget" android:exported="false">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/recap_widget_info" />
+        </receiver>
         <service android:name=".PodcastService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <service android:name=".AlarmService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <activity

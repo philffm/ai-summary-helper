@@ -5,4 +5,7 @@
     <string name="toast_queued">Will send to AISH when you are online</string>
     <string name="toast_no_link">No web link found to share</string>
     <string name="toast_not_paired">Open AISH and pair it first</string>
+    <string name="widget_title">TODAY IN YOUR FEEDS</string>
+    <string name="widget_description">The day recap from your feeds</string>
+    <string name="widget_empty">No recap yet. Open AISH and tap Recap in Feeds to write one.</string>
 </resources>

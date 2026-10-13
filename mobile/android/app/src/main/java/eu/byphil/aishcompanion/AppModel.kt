@@ -218,6 +218,7 @@ class AppModel(context: Context) {
                         val at = System.currentTimeMillis()
                         store.recapText = text; store.recapAt = at; store.recapCount = items.size
                         recapText = text; recapAt = at; recapCount = items.size
+                        runCatching { RecapWidget.refresh(app) }
                         null
                     }
                 } finally { recapBusy = false }
