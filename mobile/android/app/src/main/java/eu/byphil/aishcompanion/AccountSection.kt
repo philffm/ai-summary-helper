@@ -36,10 +36,14 @@ fun AccountCard(model: AppModel) {
     var busy by remember { mutableStateOf(false) }
     var note by remember { mutableStateOf<String?>(null) }
     var plan by remember { mutableStateOf<String?>(null) }
+    var usage by remember { mutableStateOf<AccountInfo?>(null) }
     val signedIn = model.accountEmail.isNotBlank()
 
     LaunchedEffect(model.license, signedIn) {
-        plan = if (signedIn && model.license.isNotBlank()) { Account.describe(withContext(Dispatchers.IO) { Account.check(model.license) }) } else null
+        if (signedIn && model.license.isNotBlank()) {
+            val info = withContext(Dispatchers.IO) { Account.check(model.license) }
+            plan = Account.describe(info); usage = info?.takeIf { it.active }
+        } else { plan = null; usage = null }
     }
 
     fun send() {
@@ -59,6 +63,7 @@ fun AccountCard(model: AppModel) {
         }
     }
 
+    usage?.let { u -> UsageCard(u, model.store.localRuns, model.store.cloudCalls) }
     SettingsGroup {
         if (signedIn) {
             Text("Signed in as ${model.accountEmail}", style = MaterialTheme.typography.titleMedium)
@@ -79,5 +84,28 @@ fun AccountCard(model: AppModel) {
         }
         note?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         Text("Signing in only identifies your account. Your feeds and reading list sync with the browser end-to-end encrypted through the pairing code, never through the account.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+/** This month's cloud AI use as the server counts it, and what ran on this phone (free, never sent anywhere). */
+@Composable
+private fun UsageCard(u: AccountInfo, localRuns: Int, cloudCalls: Int) {
+    SettingsCaption("AI use this month")
+    SettingsGroup {
+        Text("${Account.usd(u.usedUsd)} of ${Account.usd(u.limitUsd)} · ${u.percent}%", style = MaterialTheme.typography.titleMedium)
+        Text(
+            "${u.requests} cloud request" + (if (u.requests == 1) "" else "s") + " · ${Account.tokens(u.tokensIn)} tokens in, ${Account.tokens(u.tokensOut)} out" +
+                (if (u.resetAt.length >= 10) " · resets ${u.resetAt.take(10)}" else ""),
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        if (u.models.isNotEmpty()) {
+            Text("By model", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            for (m in u.models) Text("${m.model.substringAfterLast('/')} · ${Account.usd(m.costUsd)} · ${m.requests}×", style = MaterialTheme.typography.bodyMedium)
+            Text("From 80% of the allowance the cheapest model is used; at 100% cloud AI pauses until the reset.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        } else if (u.lastModel.isNotBlank()) Text("Last model: ${u.lastModel.substringAfterLast('/')}", style = MaterialTheme.typography.bodyMedium)
+        Text(
+            "On this phone: $localRuns on-device model run" + (if (localRuns == 1) "" else "s") + " (free, never sent anywhere) · $cloudCalls call" + (if (cloudCalls == 1) "" else "s") + " to the cloud AI. Use from the browser extension counts here too.",
+            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }

@@ -280,6 +280,7 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
         var current = plain
         if (settings.extraOn) {
             val extra = withContext(Dispatchers.IO) { CloudExtra.fetch(store.license, settings.extraPrompt) }
+            if (extra != null) store.bumpCloud()
             if (extra != null) { current = current.copy(extra = extra); store.briefingJson = current.toJson() }
         }
         if (settings.useAi && LocalLlm.installed(applicationContext)) {

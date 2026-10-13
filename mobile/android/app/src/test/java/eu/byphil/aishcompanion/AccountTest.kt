@@ -32,4 +32,16 @@ class AccountTest {
         assertEquals("Could not check the license right now.", Account.describe(null))
         assertNull(Account.check(""))
     }
+
+    @Test fun readsTokensAndModels() {
+        val u = Account.parse("""{"quota":{"used_usd":0.5,"limit_usd":1.5,"percent":33,"requests":7,"tokens_in":12300,"tokens_out":950,"reset_at":"2026-11-01T00:00:00.000Z",
+            "by_model":[{"model":"google/gemini-2.5-flash","requests":5,"cost_usd":0.4,"tokens_in":10000,"tokens_out":800},{"model":"b/small","requests":2,"cost_usd":0.1,"tokens_in":2300,"tokens_out":150}]},
+            "account":{"last_model":"google/gemini-2.5-flash"}}""")!!
+        assertEquals(7, u.requests); assertEquals(12300L, u.tokensIn); assertEquals(2, u.models.size)
+        assertEquals("google/gemini-2.5-flash", u.models[0].model); assertEquals(0.4, u.models[0].costUsd, 1e-9)
+        assertEquals("google/gemini-2.5-flash", u.lastModel)
+        assertEquals("12.3k", Account.tokens(12300)); assertEquals("950", Account.tokens(950)); assertEquals("2.4M", Account.tokens(2_400_000))
+        assertEquals("<$0.01", Account.usd(0.002)); assertEquals("$0.50", Account.usd(0.5)); assertEquals("$0.00", Account.usd(0.0))
+        assertEquals(0, Account.parse("""{"quota":{"used_usd":0,"limit_usd":1.5,"percent":0},"account":{}}""")!!.models.size)
+    }
 }

@@ -52,6 +52,13 @@ class Store(context: Context) {
         get() = prefs.getString("model.id", Models.DEFAULT.id) ?: Models.DEFAULT.id
         set(v) = prefs.edit().putString("model.id", v).apply()
 
+    /** How often this month the on-device model ran, and how often this phone called the cloud AI (the briefing extra). Local runs are free and never reach the server. */
+    private fun month() = java.time.LocalDate.now().toString().take(7)
+    val localRuns: Int get() = prefs.getInt("use.local." + month(), 0)
+    val cloudCalls: Int get() = prefs.getInt("use.cloud." + month(), 0)
+    fun bumpLocal() { prefs.edit().putInt("use.local." + month(), localRuns + 1).apply() }
+    fun bumpCloud() { prefs.edit().putInt("use.cloud." + month(), cloudCalls + 1).apply() }
+
     /** Which hand holds the phone: the main actions sit on that side. */
     var leftHanded: Boolean
         get() = prefs.getBoolean("ui.left", false)

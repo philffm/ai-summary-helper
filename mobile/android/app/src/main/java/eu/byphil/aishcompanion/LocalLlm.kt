@@ -35,11 +35,13 @@ object LocalLlm {
             engine.initialize()
             val eng: Engine = engine
             block({ system, prompt ->
+                runCatching { Store(context).bumpLocal() }
                 try {
                     val conversation = eng.createConversation(ConversationConfig(systemInstruction = Contents.of(system)))
                     try { clean(conversation.sendMessage(prompt).toString()) } finally { conversation.close() }
                 } catch (_: Exception) { null }
             }, { system, prompt, onText ->
+                runCatching { Store(context).bumpLocal() }
                 try {
                     val conversation = eng.createConversation(ConversationConfig(systemInstruction = Contents.of(system)))
                     try {
