@@ -89,6 +89,8 @@ class AppModel(context: Context) {
         if (p?.canReceive == true) ReceiveWorker.schedule(app) else ReceiveWorker.cancel(app)
     }
 
+    var onboarded by mutableStateOf(store.onboarded)
+    fun finishOnboarding() { store.onboarded = true; onboarded = true }
     var accountEmail by mutableStateOf(store.accountEmail)
     fun signIn(s: Signed) { store.accountEmail = s.email; accountEmail = store.accountEmail; if (s.license.isNotBlank()) saveLicense(s.license) }
     fun signOut() { store.accountEmail = ""; accountEmail = ""; saveLicense("") }
@@ -150,6 +152,21 @@ class AppModel(context: Context) {
             }
         }
     }
+
+    /** Adds the feeds of an OPML file that are not followed yet (their folders become tags). Returns a short line for the UI. */
+    suspend fun importOpml(text: String): String = withContext(Dispatchers.IO) {
+        val list = Opml.parse(text)
+        if (list.isEmpty()) "No feeds found in that file."
+        else {
+            val now = System.currentTimeMillis()
+            val added = list.count { feedStore.add(it.url, it.title, it.tags, now) != null }
+            reload()
+            if (added > 0 && pairing?.canSync == true) syncFeeds()
+            if (added == 0) "All ${list.size} feeds were already here." else "Added $added feed" + (if (added == 1) "" else "s") + (if (added < list.size) ", ${list.size - added} were already here." else ".")
+        }
+    }
+
+    fun exportOpml(): String = Opml.export(feedStore.feeds())
 
     suspend fun removeFeed(url: String) = withContext(Dispatchers.IO) {
         feedStore.remove(url); reload()

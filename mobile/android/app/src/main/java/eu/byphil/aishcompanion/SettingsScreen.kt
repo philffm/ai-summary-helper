@@ -58,7 +58,7 @@ import kotlinx.coroutines.launch
 /** Pairing, feed sync, sending articles: everything that has to do with the link to the browser extension. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
+fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPanel: String = "") {
     val scope = rememberCoroutineScope()
     val snackbar = remember { SnackbarHostState() }
     var error by remember { mutableStateOf<String?>(null) }
@@ -75,7 +75,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
         if (parsed.canSync) scope.launch { model.syncFeeds() }
     }
 
-    var panel by rememberSaveable { mutableStateOf<String?>(null) }
+    var panel by rememberSaveable(startPanel) { mutableStateOf<String?>(startPanel.ifEmpty { null }) }
     var query by rememberSaveable { mutableStateOf("") }
     BackHandler(enabled = panel != null) { panel = null }
 
@@ -85,6 +85,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
         SettingsRow("ai", "SUMMARIZING", "🤖", "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
         SettingsRow("feeds", "FEEDS", "📰", "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
         SettingsRow("access", "APP", "♿", "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
+        SettingsRow("storage", "APP", "💾", "Storage", "Archive, models and cache", "storage space disk archive clear delete models cache free"),
         SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock"),
         SettingsRow("pro", "APP", "⭐", "Pro", "Extras", "pro license extras"),
     )
@@ -169,6 +170,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit) {
                         "account" -> AccountCard(model)
                         "ai" -> { ModelCard(model); SummaryCard(model) }
                         "feeds" -> FeedsCard(model)
+                        "storage" -> StorageCard(model)
                         "access" -> AccessibilityCard(model)
                         "alarm" -> AlarmCard(model)
                         "pro" -> ExtrasCard(model)

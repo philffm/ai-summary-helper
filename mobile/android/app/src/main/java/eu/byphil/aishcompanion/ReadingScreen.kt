@@ -166,7 +166,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     LaunchedEffect(id) { model.articles.markRead(id) }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
     val placed = remember(id) { Highlighter.place(article.blocks, article.highlights) }
-    var scale by remember { mutableStateOf(model.store.readerScale) }
+    val scale = remember(id) { model.store.readerScale }   // set in Settings → Accessibility
     val density = androidx.compose.ui.platform.LocalDensity.current
     androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density, density.fontScale * scale)) {
     ReadingColumn {
@@ -197,8 +197,6 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             secondary = listOfNotNull(
                 if (article.summary.isNotBlank()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) } else null,
                 if (model.pairing != null && article.local) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, article.url); sent = true } else null,
-                BarAction(Icons.Filled.TextDecrease, "Smaller text") { scale = (scale - 0.1f).coerceAtLeast(0.8f); model.store.readerScale = scale },
-                BarAction(Icons.Filled.TextIncrease, "Larger text") { scale = (scale + 0.1f).coerceAtMost(1.6f); model.store.readerScale = scale },
                 BarAction(Icons.Filled.Delete, "Delete") { onDelete(id) },
             ),
         )

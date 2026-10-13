@@ -178,6 +178,22 @@ class FeedStore(private val dir: File) {
         return added
     }
 
+    /** Removes stored items older than [days] days, favourites excepted. Items still listed by their feed come back (unread) on the next refresh. Returns how many were removed. */
+    @Synchronized fun pruneOlderThan(days: Int, now: Long): Int {
+        val cutoff = now - days * 24L * 3600_000
+        var removed = 0
+        for (f in feeds()) {
+            val list = items(f.url)
+            val keep = list.filter { it.fav || it.item.published <= 0 || it.item.published >= cutoff }
+            if (keep.size == list.size) continue
+            removed += list.size - keep.size
+            val arr = JSONArray()
+            for (s in keep) arr.put(json(s))
+            fileFor(f.url).writeText(arr.toString())
+        }
+        return removed
+    }
+
     @Synchronized private fun rewrite(url: String, change: (StoredItem) -> StoredItem) {
         val list = items(url)
         if (list.isEmpty()) return

@@ -31,6 +31,11 @@ class Store(context: Context) {
         get() = prefs.getString("license", "") ?: ""
         set(v) = prefs.edit().putString("license", v.trim().take(200)).apply()
 
+    /** The first-run card on the empty Feeds screen was finished or skipped. */
+    var onboarded: Boolean
+        get() = prefs.getBoolean("onboarded", false)
+        set(v) = prefs.edit().putBoolean("onboarded", v).apply()
+
     /** The email of the signed-in account (the code sign-in), empty when signed out. */
     var accountEmail: String
         get() = prefs.getString("account.email", "") ?: ""

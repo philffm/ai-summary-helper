@@ -24,6 +24,11 @@ fun FeedsCard(model: AppModel) {
     SettingsGroup {
         ToggleRow("🧩 Group similar items", "Stacks items about the same story from several sources under one card.", model.groupSimilar) { model.changeGroupSimilar(it) }
     }
+    SettingsCaption("Backup & restore")
+    SettingsGroup {
+        androidx.compose.material3.Text("Your feed list as an OPML file, the format every feed reader understands. Folders become tags. Items and favourites stay on this phone.", style = androidx.compose.material3.MaterialTheme.typography.bodySmall, color = androidx.compose.material3.MaterialTheme.colorScheme.onSurfaceVariant)
+        OpmlButtons(model)
+    }
 }
 
 /** Settings group for comfort: which hand holds the phone, and how large the reading text is. */

@@ -113,15 +113,17 @@ private enum class Tab(val label: String, val icon: ImageVector) {
 private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: () -> Unit, startUrl: String = "", startSummarize: Boolean = false) {
     androidx.compose.runtime.LaunchedEffect(Unit) { onReady() }
     // All of this is saved, so it also survives the system restarting the activity; it is not touched by folding or unfolding.
-    var tab by rememberSaveable { mutableIntStateOf(if (model.pairing == null && model.feeds.isEmpty()) Tab.Settings.ordinal else Tab.Feeds.ordinal) }
+    var tab by rememberSaveable { mutableIntStateOf(Tab.Feeds.ordinal) }
     var feedSource by rememberSaveable { mutableStateOf("all") }
     var feedSel by rememberSaveable { mutableStateOf("") }
     var articleSel by rememberSaveable { mutableStateOf("") }
+    var settingsPanel by rememberSaveable { mutableStateOf("") }
     var webUrl by rememberSaveable { mutableStateOf(startUrl) }
     var autoSummarize by rememberSaveable { mutableStateOf(startSummarize) }
 
     if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }, onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false }) { webUrl = ""; autoSummarize = false }; return }
 
+    androidx.compose.runtime.LaunchedEffect(tab) { if (tab != Tab.Settings.ordinal) settingsPanel = "" }
     val wide = isWide()
     val feedUnread = model.entries.count { !it.stored.read }
     val readingUnread = model.articleList.count { !model.articles.isRead(it.id) }
@@ -152,9 +154,9 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
             androidx.compose.foundation.layout.Column(Modifier.weight(1f).fillMaxSize()) {
                 Box(Modifier.weight(1f).fillMaxSize()) {
                     when (Tab.entries[tab]) {
-                        Tab.Feeds -> FeedsScreen(model, feedSource, { feedSource = it }, feedSel, { feedSel = it }, onOpenWeb = { webUrl = it })
+                        Tab.Feeds -> FeedsScreen(model, feedSource, { feedSource = it }, feedSel, { feedSel = it }, onOpenWeb = { webUrl = it }, onOpenSettings = { settingsPanel = it; tab = Tab.Settings.ordinal })
                         Tab.Reading -> ReadingScreen(model, articleSel, { articleSel = it }, onOpenWeb = { webUrl = it })
-                        Tab.Settings -> SettingsScreen(model, onScan)
+                        Tab.Settings -> SettingsScreen(model, onScan, startPanel = settingsPanel)
                     }
                 }
                 MiniPlayer()

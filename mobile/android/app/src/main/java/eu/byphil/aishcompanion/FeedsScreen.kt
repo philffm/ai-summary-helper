@@ -111,11 +111,14 @@ fun FeedsScreen(
     source: String, onSource: (String) -> Unit,
     selected: String, onSelect: (String) -> Unit,
     onOpenWeb: (String) -> Unit,
+    onOpenSettings: (String) -> Unit = {},
 ) {
     val scope = rememberCoroutineScope()
     val snackbar = remember { SnackbarHostState() }
     var showSources by remember { mutableStateOf(false) }
     var showAdd by remember { mutableStateOf(false) }
+    val showOnboarding = !model.onboarded && model.feeds.size < 3 && !model.refreshing
+    LaunchedEffect(model.feeds.size) { if (model.feeds.size >= 3) model.finishOnboarding() }   // set up: three feeds are a start
     var showBriefing by remember { mutableStateOf(false) }
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
@@ -201,7 +204,7 @@ fun FeedsScreen(
                     PullToRefreshBox(isRefreshing = model.refreshing, onRefresh = { scope.launch { model.refreshAll() } }, modifier = Modifier.fillMaxSize()) {
                         Column(Modifier.fillMaxSize()) {
                             if (model.rating) androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 16.dp))
-                            if (!searching && model.feeds.isNotEmpty()) {
+                            if (!searching && model.feeds.isNotEmpty() && !showOnboarding) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
                                 FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
@@ -214,7 +217,8 @@ fun FeedsScreen(
                             }
                             }
                             Column(Modifier.weight(1f)) {
-                            if (model.feeds.isEmpty()) {
+                            if (showOnboarding) OnboardingCard(model, onOpenSettings, onAddByAddress = { showAdd = true })
+                            else if (model.feeds.isEmpty()) {
                                 EmptyState("No feeds yet", "Add a feed, or switch on feed sync in Settings to get the ones from your browser extension.")
                                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { FilledTonalButton(onClick = { showAdd = true }) { Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Text("  Add feed") } }
                             }
