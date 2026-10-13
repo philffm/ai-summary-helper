@@ -123,9 +123,14 @@ export async function collectionsStrip(article) {
 let sheet = null, sheetTrap = null;
 const closeSheet = () => { if (sheetTrap) { sheetTrap.release(); sheetTrap = null; } if (sheet) { sheet.remove(); sheet = null; } };
 
-/** Pre-selects the collection used last (marked "last used"); the reader always sees where the page goes. */
-export async function openAddSheet(article, { onDone = () => {} } = {}) {   // article = null: just create a collection
+/**
+ * Pre-selects the collection used last (marked "last used"); the reader always sees where the pages go.
+ * `target` is one article, a list of articles (History selection), or null: then it only creates a collection.
+ */
+export async function openAddSheet(target, { onDone = () => {} } = {}) {
     closeSheet();
+    const items = Array.isArray(target) ? target.filter(Boolean) : target ? [target] : [];
+    const article = items.length ? items[0] : null;
     const [all, last] = await Promise.all([listCollections(), lastCollectionId()]);
     // Without an article this is "New collection": only the form, nothing is added.
     let chosen = article && all.some(c => c.id === last) ? last : '';
@@ -143,7 +148,7 @@ export async function openAddSheet(article, { onDone = () => {} } = {}) {   // a
     const paint = () => {
         body.textContent = '';
         const head = el('div', 'sendsheet-head');
-        head.append(el('div', 'sendsheet-title', article ? T('Add to collection') : T('New collection')), el('div', 'sendsheet-sub', article ? (article.title || article.url || '') : ''));
+        head.append(el('div', 'sendsheet-title', article ? T('Add to collection') : T('New collection')), el('div', 'sendsheet-sub', article ? (items.length > 1 ? T('{n} articles', { n: items.length }) : (article.title || article.url || '')) : ''));
         body.append(head);
         const group = el('div', 'coll-pick'); group.setAttribute('role', 'radiogroup');
         (article ? all : []).forEach(c => {
@@ -179,10 +184,21 @@ export async function openAddSheet(article, { onDone = () => {} } = {}) {   // a
                     id = c.id; name = c.name;
                 }
                 if (!article) { closeSheet(); onDone(id); return; }
-                const r = await addSource(id, article.id);
-                if (!r.ok) { msg.hidden = false; msg.textContent = r.reason === 'full' ? T('This collection is full ({n} sources).', { n: MAX_SOURCES }) : T('That collection no longer exists.'); add.disabled = false; return; }
+                let added = 0, already = 0, full = false, missing = false;
+                for (const a of items) {
+                    const r = await addSource(id, a.id);
+                    if (!r.ok) { if (r.reason === 'full') full = true; else missing = true; break; }
+                    if (r.added) added++; else already++;
+                }
+                if (missing || (full && !added && !already)) {
+                    msg.hidden = false;
+                    msg.textContent = missing ? T('That collection no longer exists.') : T('This collection is full ({n} sources).', { n: MAX_SOURCES });
+                    add.disabled = false; return;
+                }
                 closeSheet();
-                toast(r.added ? T('Added to “{name}”', { name }) : T('Already in “{name}”', { name }));
+                if (full) toast(T('{a} added to “{name}”; the collection is full ({n} sources).', { a: added, name, n: MAX_SOURCES }));
+                else if (items.length > 1) toast(T('{a} added to “{name}”', { a: added, name }));
+                else toast(added ? T('Added to “{name}”', { name }) : T('Already in “{name}”', { name }));
                 onDone(id);
             } catch (e) { msg.hidden = false; msg.textContent = String((e && e.message) || e); add.disabled = false; }
         });

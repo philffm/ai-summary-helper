@@ -89,4 +89,16 @@ assert.ok(store[articleRecKey('a1')], 'article untouched');
 w.confirm = () => true;
 [...host.querySelectorAll('button')].find(b => b.textContent === 'Delete collection').click(); await tick(60);
 assert.ok(!(await C.listCollections()).some(c => c.id === first.id));
+
+// several articles at once (History selection)
+const multi = await C.createCollection({ name: 'Batch' });
+await V.openAddSheet([{ id: 'a1', title: 'First article' }, { id: 'a2', title: 'Second article' }]);
+await tick(30);
+const msheet = d.querySelector('.sendsheet');
+assert.ok(msheet.textContent.includes('2 articles'), 'sheet names the number of articles');
+[...msheet.querySelectorAll('.sendsheet-row')].find(r => r.textContent.includes('Batch')).click();
+[...msheet.querySelectorAll('button')].find(b => b.textContent === 'Add').click();
+await tick(80);
+assert.deepEqual((await C.getCollection(multi.id)).sources.map(s => s.articleId).sort(), ['a1', 'a2']);
+assert.ok(toasts.at(-1).startsWith('2 added'));
 console.log('ok');

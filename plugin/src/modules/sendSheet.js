@@ -349,6 +349,15 @@ function viewMark() {
         closeSheet(); setActive(false);
         if (patch.archived === true) undoToast(TN(ids.length, '🗄️ {n} archived', '🗄️ {n} archived'), () => deps.applyStatus(ids, { archived: false }));
     }, '')));
+    // Not a status: the selection goes into a collection (the same sheet as the card menu, with "last used" pre-selected).
+    body.append(row('📚', T('Add to collection'), '', async () => {
+        const articles = selected();
+        closeSheet();
+        try {
+            const { openAddSheet } = await import('./collectionsView.js');
+            await openAddSheet(articles, { onDone: () => setActive(false) });
+        } catch (_) { deps.toast(T('Could not open collections')); }
+    }, '›'));
     body.append(btn(T('Cancel'), false, closeSheet));
 }
 
