@@ -8,8 +8,11 @@ import StorageManager from './storageManager.js';
 
 export async function activeModelLabel() {
     try {
-        const s = await chrome.storage.sync.get(['connectionMode', 'activeService']);
-        if (s.connectionMode !== 'local') return T('AISH cloud');
+        const s = await chrome.storage.sync.get(['connectionMode', 'activeService', 'preferredCloudModel']);
+        if (s.connectionMode !== 'local') {
+            const cloud = String(s.preferredCloudModel || '').split('/').pop();   // "google/gemini-3.6-flash" → "gemini-3.6-flash"
+            return cloud ? `${T('AISH cloud')} · ${cloud}` : T('AISH cloud');
+        }
         const m = await StorageManager.getActiveModel(s.activeService);
         return m && m.id ? m.id : s.activeService;
     } catch (e) { return ''; }
