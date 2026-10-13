@@ -200,7 +200,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                             backgroundContent = {
                                                 val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
                                                 Box(
-                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, MaterialTheme.shapes.large).padding(horizontal = 24.dp),
+                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, MaterialTheme.shapes.medium).padding(horizontal = 24.dp),
                                                     contentAlignment = if (right) Alignment.CenterStart else Alignment.CenterEnd,
                                                 ) {
                                                     if (right) Icon(if (unread) Icons.Filled.DoneAll else Icons.Filled.MarkEmailUnread, contentDescription = if (unread) "Mark as read" else "Mark as unread")
@@ -209,7 +209,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                                 }
                                             },
                                         ) {
-                                            Card(
+                                            AishCard(
                                                 onClick = { onSelect(a.id); model.articles.markRead(a.id) },
                                                 // The swipe gestures as TalkBack actions (swiping is not reachable without sight or fine motor control).
                                                 modifier = Modifier.fillMaxWidth().semantics {
@@ -217,8 +217,8 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                                         CustomAccessibilityAction(if (unread) "Mark as read" else "Mark as unread") { model.toggleRead(a.id); true },
                                                         CustomAccessibilityAction(if (inArchive) "Delete" else "Archive") { if (inArchive) deleteWithUndo(a.id) else archiveWithUndo(a.id); true },
                                                     )
-                                                }, shape = MaterialTheme.shapes.large,
-                                                colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
+                                                }, 
+                                                tone = if (a.id == selected) CardTone.Selected else CardTone.Outlined,
                                             ) {
                                                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -363,7 +363,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                 }
             }
             if (article.summary.isNotBlank()) item {
-                Card(Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large, colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
+                AishCard(Modifier.fillMaxWidth(), tone = CardTone.Summary) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(if (article.local) "Summary · made on this phone" else "AISH summary", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                         PlainText(article.summary)

@@ -316,9 +316,10 @@ private fun moodTint(sent: Double?, base: androidx.compose.ui.graphics.Color): a
 private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, selecting: Boolean, onFav: () -> Unit, onLong: () -> Unit, onClick: () -> Unit) {
     val unread = !e.stored.read
     val item = e.stored.item
-    Card(
-        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong), shape = MaterialTheme.shapes.large,
-        colors = CardDefaults.cardColors(containerColor = if (picked || selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, MaterialTheme.colorScheme.surfaceVariant)),
+    AishCard(
+        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong),
+        tone = if (picked || selected) CardTone.Selected else CardTone.Outlined,
+        container = if (picked || selected) null else moodTint(e.stored.sent, MaterialTheme.colorScheme.surface),   // rated items carry a faint mood tint
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -490,7 +491,7 @@ private fun RecapCard(model: AppModel, onRefresh: () -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     val text = model.recapText
     val today = java.time.Instant.ofEpochMilli(model.recapAt).atZone(java.time.ZoneId.systemDefault()).toLocalDate() == java.time.LocalDate.now()
-    Card(Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large, colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
+    AishCard(Modifier.fillMaxWidth(), tone = CardTone.Summary) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Today in your feeds", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
@@ -536,7 +537,7 @@ private fun SwipeableCard(e: FeedEntryRef, enabled: Boolean, onRead: () -> Unit,
             val toRight = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.StartToEnd
             val toLeft = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.EndToStart
             if (toRight || toLeft) Box(
-                Modifier.fillMaxSize().background(if (toRight) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.shapes.large).padding(horizontal = 24.dp),
+                Modifier.fillMaxSize().background(if (toRight) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.shapes.medium).padding(horizontal = 24.dp),
                 contentAlignment = if (toRight) Alignment.CenterStart else Alignment.CenterEnd,
             ) {
                 if (toRight) Icon(if (e.stored.read) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, contentDescription = if (e.stored.read) "Mark as unread" else "Mark as read")

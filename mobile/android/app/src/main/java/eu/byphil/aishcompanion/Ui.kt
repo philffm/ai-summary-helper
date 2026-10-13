@@ -120,12 +120,11 @@ fun FieldDialog(title: String, label: String, initial: String = "", label2: Stri
 
 // ── reading: text with highlights ──
 
+/** AI passages sit on the secondary container, the reader's own marks on the tertiary container: both are theme roles, so dark and high contrast follow. */
 @Composable
-private fun markColors(ghost: Boolean): Pair<Color, Color> {
-    val dark = MaterialTheme.colorScheme.background.red < 0.3f
-    return if (ghost) (if (dark) Color(0xFF1E3A8A) else Color(0xFFCFE3FF)) to MaterialTheme.colorScheme.onSurface
-    else (if (dark) Color(0xFF854D0E) else Color(0xFFFDE68A)) to MaterialTheme.colorScheme.onSurface
-}
+private fun markColors(ghost: Boolean): Pair<Color, Color> =
+    if (ghost) MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer
+    else MaterialTheme.colorScheme.tertiaryContainer to MaterialTheme.colorScheme.onTertiaryContainer
 
 @Composable
 fun markedText(text: String, marks: List<Mark>): AnnotatedString {
@@ -281,7 +280,7 @@ fun ActionBar(primary: BarAction?, secondary: List<BarAction>) {
             val first: @Composable () -> Unit = {
                 if (primary != null) androidx.compose.material3.FilledIconButton(
                     onClick = primary.onClick, enabled = primary.enabled || primary.busy, modifier = Modifier.size(56.dp),
-                    colors = if (primary.done) androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(containerColor = androidx.compose.ui.graphics.Color(0xFF2E7D32), contentColor = androidx.compose.ui.graphics.Color.White) else androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(),
+                    colors = if (primary.done) androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer, contentColor = MaterialTheme.colorScheme.onPrimaryContainer) else androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(),
                 ) {
                     when {
                         primary.done -> Icon(Icons.Filled.Check, contentDescription = primary.desc)

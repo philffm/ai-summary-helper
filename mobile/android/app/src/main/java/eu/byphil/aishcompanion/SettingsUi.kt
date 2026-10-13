@@ -49,15 +49,26 @@ fun SettingsCaption(text: String) {
     Text(text.uppercase(), style = MaterialTheme.typography.labelMedium, letterSpacing = 0.8.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.semantics { heading() }.padding(start = 4.dp, top = 14.dp))
 }
 
-/** The outlined card of a settings group: thin outline, no fill, small radius. */
+/** The one card of the app: outlined, medium radius. Filled only when something is selected or is the summary. */
+enum class CardTone { Outlined, Selected, Summary }
+
+@Composable
+fun AishCard(
+    modifier: Modifier = Modifier, onClick: (() -> Unit)? = null, tone: CardTone = CardTone.Outlined,
+    container: androidx.compose.ui.graphics.Color? = null, content: @Composable ColumnScope.() -> Unit,
+) {
+    val scheme = MaterialTheme.colorScheme
+    val bg = container ?: when (tone) { CardTone.Outlined -> scheme.surface; CardTone.Selected -> scheme.secondaryContainer; CardTone.Summary -> scheme.primaryContainer }
+    val colors = CardDefaults.cardColors(containerColor = bg)
+    val border = if (tone == CardTone.Outlined) BorderStroke(1.dp, scheme.outlineVariant) else null
+    if (onClick != null) Card(onClick = onClick, modifier = modifier, shape = MaterialTheme.shapes.medium, colors = colors, border = border, content = content)
+    else Card(modifier = modifier, shape = MaterialTheme.shapes.medium, colors = colors, border = border, content = content)
+}
+
+/** The outlined card of a settings group: thin outline, no fill. */
 @Composable
 fun SettingsCard(content: @Composable ColumnScope.() -> Unit) {
-    Card(
-        Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.small,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
-        content = content,
-    )
+    AishCard(Modifier.fillMaxWidth(), content = content)
 }
 
 /** The leading icon of a settings row: a Material Symbol in a tinted rounded square, the same size in every row. */

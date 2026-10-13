@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 private val Light = lightColorScheme(
     primary = Color(0xFF2563EB), onPrimary = Color.White,
     primaryContainer = Color(0xFFDBEAFE), onPrimaryContainer = Color(0xFF1E3A8A),
-    secondary = Color(0xFF3B82F6), onSecondary = Color.White,
+    secondary = Color(0xFF2F5FD0), onSecondary = Color.White,   // 5.5:1 (the lighter #3B82F6 gave white text only 3.7:1)
     background = Color(0xFFFAF8FF), onBackground = Color(0xFF0F172A),
     surface = Color(0xFFFAF8FF), onSurface = Color(0xFF0F172A),
     surfaceVariant = Color(0xFFEEF1F8), onSurfaceVariant = Color(0xFF566274),
@@ -37,7 +37,7 @@ private val Light = lightColorScheme(
 private val Dark = darkColorScheme(
     primary = Color(0xFF60A5FA), onPrimary = Color(0xFF0B0E14),
     primaryContainer = Color(0xFF1E3A8A), onPrimaryContainer = Color(0xFFDBEAFE),
-    secondary = Color(0xFF3B82F6), onSecondary = Color.White,
+    secondary = Color(0xFF3B82F6), onSecondary = Color(0xFF0B0E14),   // dark text on the bright blue: 5.3:1
     background = Color(0xFF0B0E14), onBackground = Color(0xFFE8EDF5),
     surface = Color(0xFF0B0E14), onSurface = Color(0xFFE8EDF5),
     surfaceVariant = Color(0xFF171C26), onSurfaceVariant = Color(0xFF94A3B8),
