@@ -47,10 +47,10 @@ export function newTurn(turns, { q, a, sources = [] }) {
 
 export function buildPrompt({ title, content, summary, turns = [], question, draft = '' }) {
     const system = 'You answer follow-up questions about one web page. Use only the page text and the summary below. '
-        + 'Be concise and answer in the language of the question. Reply in plain text (short paragraphs, "- " bullets, **bold**) — never HTML or code blocks. '
+        + 'Be concise. Answer in the language of the SUMMARY below (the reader chose it), even if the question is phrased differently. Reply in plain text (short paragraphs, "- " bullets, **bold**) — never HTML or code blocks. '
         + 'After the answer add one last line: SOURCES: "quote 1" | "quote 2" — up to 3 short passages copied word for word from the page text '
         + '(each at least 8 words) that support the answer. Omit the line if no passage fits. '
-        + 'Then one final line: QUESTIONS: [{"q":"question 1","a":"answer 1"}, {"q":"question 2","a":"answer 2"}] — up to 3 short follow-up questions (3-6 words each, in the language of your answer) '
+        + 'Then one final line: QUESTIONS: [{"q":"question 1","a":"answer 1"}, {"q":"question 2","a":"answer 2"}] — up to 3 short follow-up questions (3-6 words each, in the language of the SUMMARY, the same as your answer) '
         + 'the reader may want to ask next, answerable from the page and different from the earlier questions, each with "a": a 2-sentence answer from the page.';
     const history = turns.slice(-MAX_PROMPT_TURNS).map(t => `Q: ${t.q}\nA: ${t.a}`).join('\n\n');
     const user = `PAGE TITLE: ${title || ''}\n\nPAGE TEXT:\n${plain(content).slice(0, MAX_PAGE_CHARS)}\n\n`
