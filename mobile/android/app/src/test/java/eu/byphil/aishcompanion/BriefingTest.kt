@@ -21,7 +21,8 @@ class BriefingTest {
             entry(2, "d", "D", 4), entry(2, "e", "E", 5, read = true), entry(3, "f", "F", 40),
         )
         val got = BriefingBuilder.pick(list, now).map { it.title }
-        assertEquals(listOf("A", "B", "D"), got)   // C: third of feed 1; E read; F older than 36 hours
+        assertEquals("A", got.first())
+        assertEquals(setOf("A", "B", "D"), got.toSet())   // C: third of feed 1; E read; F older than 36 hours
     }
 
     @Test fun fallsBackToTheLastWeekAndSkipsUndatedItems() {

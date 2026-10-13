@@ -176,12 +176,13 @@ class AppModel(context: Context) {
     suspend fun refreshRecap(): String? = withContext(Dispatchers.Default) {
         if (!LocalLlm.installed(app)) "Download the on-device AI in Settings to write the recap."
         else {
-            val items = DayRecap.pick(feedStore.everything(), System.currentTimeMillis())
+            val ranked = DayRecap.pickRanked(feedStore.everything(), System.currentTimeMillis())
+            val items = ranked.map { it.lead }
             if (items.isEmpty()) "No stories from today yet. Pull down to refresh."
             else {
                 recapBusy = true
                 try {
-                    val text = DayRecap.cleanReply(LocalLlm.generate(app, DayRecap.system(store.summaryLang), DayRecap.user(items)))
+                    val text = DayRecap.cleanReply(LocalLlm.generate(app, DayRecap.system(store.summaryLang), DayRecap.user(items, ranked.map { it.sources })))
                     if (text == null) "The model could not write the recap. Try again."
                     else {
                         val at = System.currentTimeMillis()

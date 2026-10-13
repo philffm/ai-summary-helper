@@ -4,7 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 /** One story in the morning briefing. [snippet] is the first sentence of the feed's own summary (may be empty). */
-data class BriefingItem(val source: String, val title: String, val snippet: String, val link: String)
+data class BriefingItem(val source: String, val title: String, val snippet: String, val link: String, val sources: Int = 1)
 
 /**
  * The morning briefing: the freshest unread stories from the feeds, plus how many articles wait in the reading list.
@@ -40,7 +40,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
 
     fun toJson(): String = JSONObject()
         .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration).put("x", extra).put("g", mode.name)
-        .put("items", JSONArray(items.map { JSONObject().put("s", it.source).put("t", it.title).put("n", it.snippet).put("l", it.link) }))
+        .put("items", JSONArray(items.map { JSONObject().put("s", it.source).put("t", it.title).put("n", it.snippet).put("l", it.link).put("c", it.sources) }))
         .toString()
 
     companion object {
@@ -48,7 +48,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
             val o = JSONObject(text ?: return null)
             val a = o.getJSONArray("items")
             Briefing(
-                (0 until a.length()).map { a.getJSONObject(it) }.map { BriefingItem(it.optString("s"), it.optString("t"), it.optString("n"), it.optString("l")) },
+                (0 until a.length()).map { a.getJSONObject(it) }.map { BriefingItem(it.optString("s"), it.optString("t"), it.optString("n"), it.optString("l"), it.optInt("c", 1)) },
                 o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"), o.optString("x"), when (val g = o.opt("g")) { true -> NewsMode.GOOD; is String -> NewsMode.of(g); else -> NewsMode.ALL },
             )
         }.getOrNull()
@@ -68,7 +68,7 @@ object BriefingBuilder {
     const val SNIPPET_MAX = 160
 
     /**
-     * Unread stories, newest first, at most [perFeed] per feed and [limit] in all. Takes stories from the last 36 hours;
+     * Unread stories, the biggest first (carried by most feeds, then newer and starred ones; see [StoryRank]), at most [perFeed] per feed and [limit] in all. Takes stories from the last 36 hours;
      * if there are none, from the last 7 days, so a quiet weekend still gives something. Stories without a date are skipped.
      */
     fun pick(entries: List<FeedEntryRef>, now: Long, limit: Int = MAX_ITEMS, perFeed: Int = PER_FEED, mode: NewsMode = NewsMode.ALL): List<BriefingItem> {
@@ -84,20 +84,11 @@ object BriefingBuilder {
                         .ifEmpty { list.filter { Mood.effective(it) != "neg" } }
                 }
             }
-        fun take(maxAge: Long): List<BriefingItem> {
-            val perCount = HashMap<String, Int>()
-            val out = ArrayList<BriefingItem>()
-            for (e in unread) {
-                if (out.size >= limit) break
-                if (now - e.stored.item.published > maxAge) continue
-                val n = perCount[e.feed.url] ?: 0
-                if (n >= perFeed) continue
-                perCount[e.feed.url] = n + 1
-                val item = e.stored.item
-                out += BriefingItem(e.feed.name, oneLine(item.title), snippet(item), item.link)
+        fun take(maxAge: Long): List<BriefingItem> =
+            StoryRank.rank(unread.filter { now - it.stored.item.published <= maxAge }, now, maxAge, limit, perFeed).map { r ->
+                val item = r.lead.stored.item
+                BriefingItem(r.lead.feed.name, oneLine(item.title), snippet(item), item.link, r.sources)
             }
-            return out
-        }
         return take(FRESH_MS).ifEmpty { take(FALLBACK_MS) }
     }
 
@@ -126,7 +117,7 @@ object BriefingBuilder {
 object BriefingPrompt {
     const val SYSTEM = "You write a short spoken news briefing for one listener, to be read aloud by a voice. " +
         "Use plain sentences only: no lists, no markdown, no emojis, no headings, no stage directions. " +
-        "Cover each story in one or two sentences and join related stories naturally. " +
+        "Cover each story in one or two sentences and join related stories naturally; stories marked as covered by several sources are the bigger news, so mention them first. " +
         "Use only the facts you are given; never add details, numbers or names that are not in the stories. " +
         "Keep it under 170 words. Write in the language of the stories (German stories: German; mixed: English)."
     const val MAX_SNIPPET = 300
@@ -137,7 +128,7 @@ object BriefingPrompt {
         val time = when { hour < 12 -> "morning"; hour < 18 -> "afternoon"; else -> "evening" }
         val sb = StringBuilder("Time of day: $time. Begin with a short greeting that fits it.\nStories:\n")
         items.forEachIndexed { i, it ->
-            sb.append(i + 1).append(". [").append(it.source).append("] ").append(it.title)
+            sb.append(i + 1).append(". [").append(it.source).append(if (it.sources > 1) ", covered by ${it.sources} sources" else "").append("] ").append(it.title)
             if (it.snippet.isNotBlank()) sb.append(" - ").append(it.snippet.take(MAX_SNIPPET))
             sb.append('\n')
         }
