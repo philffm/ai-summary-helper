@@ -4726,5 +4726,23 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 AIが読む内容"
+  },
+  "f_by_model_f8c9": {
+    "message": "モデル別"
+  },
+  "f_usage_details_5d1e": {
+    "message": "使用状況の詳細"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "入力 {input} トークン · 出力 {output} トークン"
+  },
+  "f_request_this_month_2b08": {
+    "message": "今月 {n} 件のリクエスト"
+  },
+  "f_requests_this_month_9977": {
+    "message": "今月 {n} 件のリクエスト"
+  },
+  "f_of_used_1e41": {
+    "message": "{limit} 中 {used} を使用"
   }
 }

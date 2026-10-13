@@ -4726,5 +4726,23 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 ما يقرأه الذكاء الاصطناعي"
+  },
+  "f_by_model_f8c9": {
+    "message": "حسب النموذج"
+  },
+  "f_usage_details_5d1e": {
+    "message": "تفاصيل الاستخدام"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} رمز مُدخل · {output} رمز مُخرج"
+  },
+  "f_request_this_month_2b08": {
+    "message": "{n} طلب هذا الشهر"
+  },
+  "f_requests_this_month_9977": {
+    "message": "{n} طلبات هذا الشهر"
+  },
+  "f_of_used_1e41": {
+    "message": "تم استخدام {used} من {limit}"
   }
 }

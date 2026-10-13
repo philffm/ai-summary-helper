@@ -12,7 +12,7 @@ import { escapeHtml } from './textUtils.js';
 // Every registered view is kept in sync whenever auth state changes, so the
 // Settings panel and the onboarding mask never drift apart.
 import StorageManager from './storageManager.js';
-import { T } from './feedI18n.js';
+import { T, TN } from './feedI18n.js';
 
 let activeOtpId = null;
 let otpExpiryTimeoutId = null;
@@ -216,6 +216,43 @@ export function renderQuota(anchor, quota) {
     const reset = when ? T('Resets {date}', { date: when }) : '';
     note.textContent = pct >= 100 ? T('Used up — local models still work.') + (reset ? ' · ' + reset : '')
         : pct >= 80 ? T('Almost used up — summaries now use a lighter model until then.') + (reset ? ' · ' + reset : '') : reset;
+    renderQuotaDetails(box, quota);
+}
+
+/** Dollars for the details: "$0.42", "<$0.01" for tiny non-zero amounts. */
+export function fmtUsd(v) { const n = Number(v) || 0; return n > 0 && n < 0.005 ? '<$0.01' : '$' + n.toFixed(2); }
+/** 950 → "950", 12300 → "12.3k", 2400000 → "2.4M". */
+export function fmtTokens(v) { const n = Number(v) || 0; return n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? (n / 1e3).toFixed(1) + 'k' : String(Math.round(n)); }
+
+/** Collapsible "Usage details" under the allowance bar: money, requests, tokens and the split by model. Only when the server sends them. */
+export function renderQuotaDetails(box, quota) {
+    if (!box) return;
+    let det = box.querySelector(':scope > .ai-quota-details');
+    const has = quota && (Number.isFinite(quota.requests) || Number.isFinite(quota.used_usd));
+    if (!has) { if (det) det.remove(); const t = box.querySelector(':scope > .ai-quota-toggle'); if (t) t.remove(); return; }
+    const doc = box.ownerDocument;
+    let toggle = box.querySelector(':scope > .ai-quota-toggle');
+    if (!toggle) {
+        toggle = doc.createElement('button'); toggle.type = 'button'; toggle.className = 'ai-quota-toggle';
+        det = doc.createElement('div'); det.className = 'ai-quota-details'; det.hidden = true;
+        toggle.addEventListener('click', () => { det.hidden = !det.hidden; toggle.setAttribute('aria-expanded', String(!det.hidden)); });
+        toggle.setAttribute('aria-expanded', 'false');
+        box.appendChild(toggle); box.appendChild(det);
+    }
+    toggle.textContent = T('Usage details');
+    const rows = [];
+    const add = (cls, text) => rows.push([cls, text]);
+    add('', T('{used} of {limit} used', { used: fmtUsd(quota.used_usd), limit: fmtUsd(quota.limit_usd) }));
+    if (Number.isFinite(quota.requests)) add('', TN(quota.requests, '{n} request this month', '{n} requests this month'));
+    if (Number.isFinite(quota.tokens_in) || Number.isFinite(quota.tokens_out)) add('', T('{input} tokens in · {output} tokens out', { input: fmtTokens(quota.tokens_in), output: fmtTokens(quota.tokens_out) }));
+    const models = Array.isArray(quota.by_model) ? quota.by_model : [];
+    if (models.length) {
+        add('head', T('By model'));
+        for (const m of models) add('model', `${String(m.model || '?').split('/').pop()} · ${fmtUsd(m.cost_usd)} · ${m.requests || 0}×`);
+    }
+    det = box.querySelector(':scope > .ai-quota-details');
+    det.textContent = '';
+    for (const [cls, text] of rows) { const d = doc.createElement('div'); if (cls) d.className = 'ai-quota-' + cls; d.textContent = text; det.appendChild(d); }
 }
 
 // Four digit boxes drawn over the real (transparent) input: keeps paste, autofill (one-time-code) and keyboards working.

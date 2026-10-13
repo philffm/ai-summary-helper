@@ -4708,5 +4708,23 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 AI가 읽는 내용"
+  },
+  "f_by_model_f8c9": {
+    "message": "모델별"
+  },
+  "f_usage_details_5d1e": {
+    "message": "사용량 상세"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "입력 {input} 토큰 · 출력 {output} 토큰"
+  },
+  "f_request_this_month_2b08": {
+    "message": "이번 달 요청 {n}건"
+  },
+  "f_requests_this_month_9977": {
+    "message": "이번 달 요청 {n}건"
+  },
+  "f_of_used_1e41": {
+    "message": "{limit} 중 {used} 사용"
   }
 }

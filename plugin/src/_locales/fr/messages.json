@@ -4726,5 +4726,23 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 Ce que lit l'IA"
+  },
+  "f_by_model_f8c9": {
+    "message": "Par modèle"
+  },
+  "f_usage_details_5d1e": {
+    "message": "Détails d’utilisation"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} jetons en entrée · {output} en sortie"
+  },
+  "f_request_this_month_2b08": {
+    "message": "{n} requête ce mois-ci"
+  },
+  "f_requests_this_month_9977": {
+    "message": "{n} requêtes ce mois-ci"
+  },
+  "f_of_used_1e41": {
+    "message": "{used} sur {limit} utilisés"
   }
 }

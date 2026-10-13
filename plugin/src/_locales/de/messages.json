@@ -4726,5 +4726,23 @@
   },
   "f_the_first_reply_was_unreadab_6510": {
     "message": "die erste Antwort war unlesbar, deshalb wurde erneut gefragt"
+  },
+  "f_by_model_f8c9": {
+    "message": "Nach Modell"
+  },
+  "f_usage_details_5d1e": {
+    "message": "Nutzungsdetails"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} Tokens ein · {output} Tokens aus"
+  },
+  "f_request_this_month_2b08": {
+    "message": "{n} Anfrage in diesem Monat"
+  },
+  "f_requests_this_month_9977": {
+    "message": "{n} Anfragen in diesem Monat"
+  },
+  "f_of_used_1e41": {
+    "message": "{used} von {limit} verbraucht"
   }
 }

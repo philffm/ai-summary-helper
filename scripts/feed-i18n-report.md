@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1365. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1359 | 0 | 0 | 47 |
-| de | 1359 | 0 | 0 | 201 |
-| es | 1359 | 0 | 0 | 181 |
-| fr | 1359 | 0 | 0 | 212 |
-| hi | 1359 | 0 | 0 | 83 |
-| it | 1359 | 0 | 0 | 180 |
-| ja | 1359 | 0 | 0 | 94 |
-| ko | 1359 | 0 | 0 | 25 |
-| pt_PT | 1359 | 0 | 0 | 173 |
-| ru | 1359 | 0 | 0 | 114 |
-| zh_CN | 1359 | 0 | 0 | 2 |
-| zh_HK | 1359 | 0 | 0 | 2 |
-| zh_TW | 1359 | 0 | 0 | 2 |
+| ar | 1365 | 0 | 0 | 47 |
+| de | 1365 | 0 | 0 | 202 |
+| es | 1365 | 0 | 0 | 181 |
+| fr | 1365 | 0 | 0 | 213 |
+| hi | 1365 | 0 | 0 | 85 |
+| it | 1365 | 0 | 0 | 181 |
+| ja | 1365 | 0 | 0 | 94 |
+| ko | 1365 | 0 | 0 | 25 |
+| pt_PT | 1365 | 0 | 0 | 174 |
+| ru | 1365 | 0 | 0 | 116 |
+| zh_CN | 1365 | 0 | 0 | 2 |
+| zh_HK | 1365 | 0 | 0 | 2 |
+| zh_TW | 1365 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -205,6 +205,7 @@ Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Close pane {n} | Bereich {n} schließen | 20 vs 13 | 1.54× |
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
+| {used} of {limit} used | {used} von {limit} verbraucht | 20 vs 13 | 1.54× |
 | Found device at {ip} — click Add to save it ✓ | Gerät unter {ip} gefunden – zum Speichern auf „Hinzufügen“ klicken ✓ | 66 vs 43 | 1.53× |
 | This page has no text to save. | Diese Seite enthält keinen Text zum Speichern. | 46 vs 30 | 1.53× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
@@ -559,6 +560,7 @@ Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | The feed list is too large to sync. | La liste des flux est trop grande pour être synchronisée. | 57 vs 35 | 1.63× |
 | This page has no text to save. | Cette page ne contient aucun texte à enregistrer. | 49 vs 30 | 1.63× |
 | D3 library failed to load. | Échec du chargement de la bibliothèque D3. | 42 vs 26 | 1.62× |
+| Usage details | Détails d’utilisation | 21 vs 13 | 1.62× |
 | No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
 | No shortcuts match | Aucun raccourci ne correspond | 29 vs 18 | 1.61× |
 | Send to phone is on. Scan the new code in the phone app once. | Envoyer au téléphone est activé. Scannez le nouveau code une fois dans l’application du téléphone. | 98 vs 61 | 1.61× |
@@ -705,6 +707,7 @@ Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Export as Markdown | Markdown के रूप में निर्यात करें | 32 vs 18 | 1.78× |
 | Resets {date} | {date} को रीसेट होगा | 16 vs 9 | 1.78× |
 | View & edit › | देखें और संपादित करें › | 23 vs 13 | 1.77× |
+| By model | मॉडल के अनुसार | 14 vs 8 | 1.75× |
 | By topic | विषय के अनुसार | 14 vs 8 | 1.75× |
 | Loading… | लोड हो रहा है… | 14 vs 8 | 1.75× |
 | No audio | कोई ऑडियो नहीं | 14 vs 8 | 1.75× |
@@ -716,6 +719,7 @@ Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Sending... | भेजा जा रहा है... | 17 vs 10 | 1.7× |
 | contact me | मुझसे संपर्क करें | 17 vs 10 | 1.7× |
 | Scoring with AI… | AI से स्कोर किया जा रहा है… | 27 vs 16 | 1.69× |
+| {used} of {limit} used | {limit} में से {used} उपयोग हुआ | 22 vs 13 | 1.69× |
 | Paired · {n} waiting | पेयर किया गया · {n} प्रतीक्षा में | 32 vs 19 | 1.68× |
 | Set as active send target | सक्रिय भेजने के गंतव्य के रूप में सेट करें | 42 vs 25 | 1.68× |
 | Changelog | बदलावों की सूची | 15 vs 9 | 1.67× |
@@ -871,6 +875,7 @@ Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | waiting {s}s | in attesa da {s} s | 17 vs 11 | 1.55× |
 | Failed to export backup. | Esportazione del backup non riuscita. | 37 vs 24 | 1.54× |
 | Standup humor | Umorismo da stand-up | 20 vs 13 | 1.54× |
+| Usage details | Dettagli di utilizzo | 20 vs 13 | 1.54× |
 | Browser Default | Predefinito del browser | 23 vs 15 | 1.53× |
 | Connection Path | Percorso di connessione | 23 vs 15 | 1.53× |
 | Connection path | Percorso di connessione | 23 vs 15 | 1.53× |
@@ -1135,6 +1140,7 @@ Strings: 1359. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Verify & Log In | Verificar e iniciar sessão | 26 vs 15 | 1.73× |
 | Last synced {when} | Última sincronização: {when} | 24 vs 14 | 1.71× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
+| Usage details | Detalhes de utilização | 22 vs 13 | 1.69× |
 | Browser Default | Predefinição do navegador | 25 vs 15 | 1.67× |
 | Check now | Verificar agora | 15 vs 9 | 1.67× |
 | Click again to unpair | Clique novamente para desemparelhar | 35 vs 21 | 1.67× |
@@ -1290,6 +1296,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Privacy policy | Политика конфиденциальности | 27 vs 14 | 1.93× |
 | About & Tools | О программе и инструменты | 25 vs 13 | 1.92× |
 | Send & Share | Отправка и общий доступ | 23 vs 12 | 1.92× |
+| Usage details | Подробности использования | 25 vs 13 | 1.92× |
 | Resend code | Отправить код ещё раз | 21 vs 11 | 1.91× |
 | Copy list | Копировать список | 17 vs 9 | 1.89× |
 | Motion on | Анимация включена | 17 vs 9 | 1.89× |
@@ -1319,6 +1326,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | High contrast | Высокая контрастность | 21 vs 13 | 1.62× |
 | Next sentence | Следующее предложение | 21 vs 13 | 1.62× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |
+| {used} of {limit} used | Использовано {used} из {limit} | 21 vs 13 | 1.62× |
 | Use Native Chrome Side Panel | Использовать встроенную боковую панель Chrome | 45 vs 28 | 1.61× |
 | Free Trial Mode | Бесплатный пробный режим | 24 vs 15 | 1.6× |
 | Open in sidebar | Открыть в боковой панели | 24 vs 15 | 1.6× |

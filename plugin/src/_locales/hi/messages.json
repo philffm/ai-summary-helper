@@ -4726,5 +4726,23 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 AI क्या पढ़ता है"
+  },
+  "f_by_model_f8c9": {
+    "message": "मॉडल के अनुसार"
+  },
+  "f_usage_details_5d1e": {
+    "message": "उपयोग का विवरण"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} टोकन इनपुट · {output} टोकन आउटपुट"
+  },
+  "f_request_this_month_2b08": {
+    "message": "इस महीने {n} अनुरोध"
+  },
+  "f_requests_this_month_9977": {
+    "message": "इस महीने {n} अनुरोध"
+  },
+  "f_of_used_1e41": {
+    "message": "{limit} में से {used} उपयोग हुआ"
   }
 }

@@ -4726,5 +4726,23 @@
   },
   "f_what_the_ai_reads_2fda": {
     "message": "🔎 AI 讀取的內容"
+  },
+  "f_by_model_f8c9": {
+    "message": "按模型"
+  },
+  "f_usage_details_5d1e": {
+    "message": "用量詳情"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "輸入 {input} 個權杖 · 輸出 {output} 個權杖"
+  },
+  "f_request_this_month_2b08": {
+    "message": "本月 {n} 次請求"
+  },
+  "f_requests_this_month_9977": {
+    "message": "本月 {n} 次請求"
+  },
+  "f_of_used_1e41": {
+    "message": "已用 {used}，上限 {limit}"
   }
 }
