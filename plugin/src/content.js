@@ -65,6 +65,11 @@ import {
   extractPdfText,
   pdfErrorMessage
 } from './content/pdfExtractor.js';
+import {
+  isYoutubeWatchPage,
+  extractYoutubeTranscript,
+  youtubeErrorMessage
+} from './content/youtube.js';
 
 (() => {
   // ── Cross-browser shim ────────────────────────────────────────────────
@@ -566,6 +571,17 @@ import {
         // an empty/scrubbed prompt upstream or leaving the UI stuck.
         showPlaceholder(targetElement, 'Could not read this PDF.');
         relay('summaryError', { error: pdfErrorMessage(err) });
+        throw err;
+      }
+    } else if (isYoutubeWatchPage()) {
+      // A watch page has no article text: the video's captions are the content.
+      try {
+        const yt = await extractYoutubeTranscript({ lang: String(document.documentElement.lang || '').split('-')[0].toLowerCase() });
+        contentHtml = yt.html;
+        contentText = yt.text;
+      } catch (err) {
+        showPlaceholder(targetElement, 'Could not read this video.');
+        relay('summaryError', { error: youtubeErrorMessage(err) });
         throw err;
       }
     } else {
