@@ -15,7 +15,7 @@ const uiLang = () => {
 
 const plain = (t) => String(t || '').replace(/```[\s\S]*?(```|$)/g, '').replace(/[*_`#>]+/g, '').replace(/\[(.*?)\]\([^)]*\)/g, '$1');
 
-export function initInstantRead({ chip, panel, barHost, button, fallback }) {
+export function initInstantRead({ chip, barHost, button, fallback }) {
   const reader = getReader();
   let chatReady = Promise.resolve(), chain = Promise.resolve(), on = false, active = false, spoken = 0, sumLang = 'en', lastUnits = [], wasReading = false, ready = false, bar = null;
 
@@ -25,7 +25,7 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     chip.classList.toggle('is-on', on);
     chip.classList.toggle('is-speaking', on && st.meta && st.meta.tool === 'instant' && ['playing', 'waiting'].includes(st.state));
     const ic = chip.querySelector('.chip-icon'); if (ic) setIcon(ic, on ? 'volume-2' : 'volume-x');
-    chip.title = T('Instant read'); chip.setAttribute('aria-label', T('Instant read') + ': ' + (on ? T('On') : T('Off')));
+    chip.title = T('Instant read') + ': ' + (on ? T('On') : T('Off')); chip.setAttribute('aria-label', chip.title); chip.setAttribute('aria-pressed', String(on));
   };
 
   const fallbackUnits = async () => {
@@ -56,6 +56,24 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     await reader.start(units, sumLang, { meta: { tool: 'instant', lang: sumLang } });
   });
 
+  // The bar appears once speech starts: pause/play, mute, volume, speed. It is built once and updated in place, so a
+  // slider being dragged survives the state changes that arrive every sentence.
+  let parts = null;
+  const STEPS = [1, 1.25, 1.5, 0.8];
+  const buildBar = () => {
+    const x = mk('div', 'sr-bar'); x.setAttribute('role', 'group'); x.setAttribute('aria-label', T('Instant read'));
+    const btn = (cls, fn) => { const e = mk('button', 'sr-b ' + cls); e.type = 'button'; e.addEventListener('click', fn); return e; };
+    const pp = btn('sr-pp', () => reader.toggle());
+    const t = mk('span', 'sr-t');
+    const mute = btn('sr-mute', () => reader.mute());
+    const vol = mk('input', 'sr-vol'); vol.type = 'range'; vol.min = '0'; vol.max = '100'; vol.setAttribute('aria-label', T('Volume'));
+    vol.addEventListener('change', () => reader.setVolume(Number(vol.value) / 100));
+    reader.prefs().then((p) => { vol.value = String(Math.round((p.volume >= 0 ? p.volume : 1) * 100)); }).catch(() => {});
+    const rate = btn('sr-rate', async () => { const cur = reader.state.rate || 1; await reader.setRate(STEPS[(STEPS.indexOf(cur) + 1) % STEPS.length]); });
+    rate.title = T('Reading speed'); rate.setAttribute('aria-label', T('Reading speed'));
+    x.append(pp, t, mute, vol, rate);
+    return { bar: x, pp, t, mute, vol, rate };
+  };
   const paintBar = () => {
     paintButton();
     const st = reader.state, mine = st.meta && st.meta.tool === 'instant';
@@ -63,44 +81,30 @@ export function initInstantRead({ chip, panel, barHost, button, fallback }) {
     if (running) wasReading = true;
     // The bar shows only while reading; "finished / read again" lives in the summary card's Read again button.
     if (!running) { if (bar) bar.hidden = true; return; }
-    if (!bar || !bar.isConnected) { bar = mk('div', 'sr-bar'); bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', T('Instant read')); if (!barHost) return; barHost.prepend(bar); }
-    bar.hidden = false; bar.textContent = '';
-    const b = (cls, txt, label, fn) => { const x = mk('button', 'sr-b ' + cls, txt); x.type = 'button'; x.title = label; x.setAttribute('aria-label', label); x.addEventListener('click', fn); return x; };
-    bar.append(b('sr-pp', st.state === 'paused' ? '▶' : '❚❚', st.state === 'paused' ? T('Play') : T('Pause'), () => reader.toggle()),
-        mk('span', 'sr-t', T('Reading · sentence {n}', { n: Math.min(st.index + 1, st.total || 1) })),
-        b('sr-mute' + (st.muted ? ' is-on' : ''), st.muted ? '🔇' : '🔊', st.muted ? T('Unmute') : T('Mute'), () => reader.mute()),
-        b('sr-rate', String(st.rate || 1) + '×', T('Reading speed'), async () => { const steps = [1, 1.25, 1.5, 0.8]; await reader.setRate(steps[(steps.indexOf(st.rate || 1) + 1) % steps.length]); }));
+    if (!parts || !bar || !bar.isConnected) {
+      if (!barHost) return;
+      parts = buildBar(); bar = parts.bar; barHost.prepend(bar);
+    }
+    bar.hidden = false;
+    const paused = st.state === 'paused';
+    parts.pp.textContent = paused ? '▶' : '❚❚'; parts.pp.title = paused ? T('Play') : T('Pause'); parts.pp.setAttribute('aria-label', parts.pp.title);
+    parts.t.textContent = T('Reading · sentence {n}', { n: Math.min(st.index + 1, st.total || 1) });
+    parts.mute.textContent = st.muted ? '🔇' : '🔊'; parts.mute.classList.toggle('is-on', !!st.muted);
+    parts.mute.title = st.muted ? T('Unmute') : T('Mute'); parts.mute.setAttribute('aria-label', parts.mute.title);
+    parts.rate.textContent = String(st.rate || 1) + '×';
   };
   reader.onState(() => { paintChip(); paintBar(); });
 
-  async function paintPanel() {
-    if (!panel) return;
-    const prefs = await reader.prefs();
-    let code = 'en'; try { code = (await chrome.storage.sync.get('selectedLanguage')).selectedLanguage || 'en'; } catch (_) { /* default */ }
-    const lang = ttsLang(code);
-    const v = pickVoice(reader.voices, lang, prefs.voices && prefs.voices[langBase(lang)]);
-    let name = lang; try { name = new Intl.DisplayNames([document.documentElement.lang || 'en'], { type: 'language' }).of(langBase(lang)) || lang; } catch (_) { /* raw code */ }
-    panel.textContent = '';
-    const head = mk('div', 'sr-head'); head.append(mk('strong', '', T('Instant read')));
-    const sw = mk('label', 'switch'); const cb = mk('input'); cb.type = 'checkbox'; cb.id = 'instantReadToggle'; cb.checked = on; cb.setAttribute('aria-label', T('Instant read'));
-    cb.addEventListener('change', async () => { on = cb.checked; await reader.setInstant(on); if (!on) reader.stop(); paintChip(); });
-    sw.append(cb, mk('span', 'slider-toggle')); head.append(sw); panel.append(head);
-    panel.append(mk('p', 'sr-note', T('Speaks the title and site first, then the summary sentence by sentence while the model writes.')));
-    const vol = mk('div', 'sr-vol'); const rg = mk('input'); rg.type = 'range'; rg.min = '0'; rg.max = '100'; rg.id = 'soundVolume'; rg.value = String(Math.round((prefs.volume >= 0 ? prefs.volume : 1) * 100)); rg.setAttribute('aria-label', T('Volume'));
-    rg.addEventListener('change', () => reader.setVolume(Number(rg.value) / 100));
-    vol.append(mk('span', '', '🔈'), rg, mk('span', '', '🔊')); panel.append(vol);
-    const rates = mk('div', 'rt-rates');
-    [0.8, 1, 1.25, 1.5].forEach((r) => { const x = mk('button', 'rt-rate-b' + ((prefs.rate || 1) === r ? ' is-on' : ''), r + '×'); x.type = 'button'; x.addEventListener('click', async () => { await reader.setRate(r); paintPanel(); }); rates.append(x); });
-    panel.append(rates);
-    panel.append(mk('p', 'sr-note', v ? T('Voice: {voice} · {lang}. It follows the summary language; title and site are announced in the app language.', { voice: v.name, lang: name }) : T('No voice for {lang} is installed on this device.', { lang: name })));
-  }
-
+  // One tap on the toolbar icon switches instant read on or off; the controls appear once speech starts.
   const ready_ = reader.ready.then(async (ok) => {
     ready = ok;
     paintButton();
     if (!ok) { if (chip) chip.hidden = true; return; }
     on = !!(await reader.prefs()).instant; paintChip();
-    if (chip) chip.addEventListener('click', () => setTimeout(() => { if (panel && panel.style.display === 'block') paintPanel(); }, 0));
+    if (chip) chip.addEventListener('click', async () => {
+      on = !on; await reader.setInstant(on);
+      if (!on) { reader.stop(); } paintChip();
+    });
   });
 
   document.addEventListener('keydown', (e) => {

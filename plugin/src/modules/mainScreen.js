@@ -970,7 +970,7 @@ export function initMainScreen(ui) {
     let instant = null;
     try {
         const pill = document.querySelector('.composer-pill');
-        instant = initInstantRead({ chip: document.getElementById('chipSound'), panel: document.getElementById('panelSound'), barHost: pill && pill.parentElement, });
+        instant = initInstantRead({ chip: document.getElementById('chipSound'), barHost: pill && pill.parentElement, });
     } catch (_) { /* reading aloud is optional */ }
     const handleStreamMessage = (msg) => {
         if (instant) { try { instant.onMessage(msg); } catch (_) { /* never block the stream */ } }

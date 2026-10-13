@@ -3633,12 +3633,9 @@ body[data-surface="sidebar"] { min-width: 0; }
 .chip-sound.is-speaking .chip-icon { animation: sr-pulse 1.1s ease-in-out infinite; }
 @keyframes sr-pulse { 50% { transform: scale(1.18); } }
 @media (prefers-reduced-motion: reduce) { .chip-sound.is-speaking .chip-icon { animation: none; } }
-#panelSound .sr-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-#panelSound .sr-note { margin: 6px 0; font-size: 11px; color: var(--text-muted); line-height: 1.4; }
-#panelSound .sr-vol { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
-#panelSound .sr-vol input { flex: 1; }
 .sr-bar { display: flex; align-items: center; gap: 8px; padding: 6px 10px; margin: 0 0 8px; border: 1px solid var(--border, rgba(128,128,128,.3)); border-radius: 999px; background: var(--surface, transparent); font-size: 12px; user-select: none; }
 .sr-bar[hidden] { display: none; }
+.sr-bar .sr-vol { width: 64px; flex: none; accent-color: var(--accent); }
 .sr-bar .sr-t { flex: 1; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sr-b { border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 12px; min-width: 28px; min-height: 28px; padding: 0 6px; border-radius: 999px; }
 .sr-b:hover, .sr-b:focus-visible { background: rgba(128,128,128,.18); }

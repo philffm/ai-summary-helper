@@ -23,5 +23,6 @@ assert(JSON.parse(fs.readFileSync(root + 'chrome/manifest.json', 'utf8')).permis
 for (const p of ['firefox', 'ios']) assert(JSON.stringify(JSON.parse(fs.readFileSync(root + p + '/manifest.json', 'utf8')).background).includes('ttsEngine.js'), p);
 const html = fs.readFileSync(new URL('../src/popup.html', import.meta.url), 'utf8');
 assert(!html.includes('compatibleToolsList'));
-assert(html.includes('id="chipSound"') && html.includes('id="panelSound"'));
+assert(html.includes('id="chipSound"') && !html.includes('id="panelSound"'), 'the toolbar icon toggles instant read itself, no settings panel');
+assert(!/id="chipSound"[^>]*data-panel/.test(html), 'chip is not a panel opener');
 console.log('TEST 77 OK');
