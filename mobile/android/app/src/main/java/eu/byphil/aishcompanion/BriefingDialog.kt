@@ -53,7 +53,6 @@ fun BriefingDialog(model: AppModel, onDismiss: () -> Unit) {
     }
     DisposableEffect(Unit) {
         val engine = TextToSpeech(context.applicationContext) { status -> if (status != TextToSpeech.SUCCESS) tts = null }
-        engine.language = Locale.getDefault()
         engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onStart(id: String?) {}
             override fun onDone(id: String?) { if (id == "briefing-end") speaking = false }
@@ -66,6 +65,7 @@ fun BriefingDialog(model: AppModel, onDismiss: () -> Unit) {
         val engine = tts ?: return
         if (speaking) { engine.stop(); speaking = false; return }
         val parts = BriefingPrompt.chunks(text ?: return)
+        runCatching { engine.language = if (byAi) SummaryLangs.feedLocale(model.store.summaryLang) else Locale.getDefault() }   // the written briefing is in the chosen language
         speaking = true
         parts.forEachIndexed { i, p -> engine.speak(p, TextToSpeech.QUEUE_ADD, null, if (i == parts.lastIndex) "briefing-end" else "briefing-$i") }
     }

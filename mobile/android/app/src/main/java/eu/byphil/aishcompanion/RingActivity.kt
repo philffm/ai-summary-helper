@@ -49,9 +49,11 @@ class RingActivity : ComponentActivity() {
         val settings = Store(this).alarm
         val briefing = loadBriefing(this)
         val parts = briefing.spokenParts(LocalTime.now().hour)
+        val voice = if (briefing.narration.isNotBlank()) SummaryLangs.feedLocale(Store(this).summaryLang) else java.util.Locale.getDefault()   // the written briefing is in the chosen language; the plain list is read as the phone speaks
         tts = TextToSpeech(applicationContext) { status ->
             if (status == TextToSpeech.SUCCESS) {
                 ttsReady = true
+                runCatching { tts?.language = voice }
                 tts?.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
                 pendingParts?.let { speak(it); pendingParts = null }
             }
@@ -60,7 +62,8 @@ class RingActivity : ComponentActivity() {
             AishTheme {
                 Surface(Modifier.fillMaxSize()) {
                     RingScreen(
-                        lines = briefing.lines(),
+                        lines = if (briefing.narration.isNotBlank()) BriefingPrompt.chunks(briefing.narration, 600) else briefing.lines(),
+                        numbered = briefing.narration.isBlank(),
                         extra = briefing.extra,
                         snoozeMinutes = settings.snoozeMinutes,
                         onStop = { AlarmService.stop(this); if (settings.readAloud && !settings.fadeIn) readOut(parts) },   // with the fade-in the briefing was already read over the music
@@ -86,7 +89,7 @@ class RingActivity : ComponentActivity() {
 }
 
 @Composable
-private fun RingScreen(lines: List<String>, extra: String, snoozeMinutes: Int, onStop: () -> Unit, onSnooze: () -> Unit, onRead: () -> Unit, onSilence: () -> Unit, onClose: () -> Unit) {
+private fun RingScreen(lines: List<String>, numbered: Boolean, extra: String, snoozeMinutes: Int, onStop: () -> Unit, onSnooze: () -> Unit, onRead: () -> Unit, onSilence: () -> Unit, onClose: () -> Unit) {
     var stopped by remember { mutableStateOf(false) }
     val time = remember { LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) }
     BackHandler(enabled = !stopped) { /* the alarm is stopped with its buttons, not by accident */ }
@@ -103,7 +106,7 @@ private fun RingScreen(lines: List<String>, extra: String, snoozeMinutes: Int, o
             Text("Your briefing", style = MaterialTheme.typography.titleLarge)
             Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 if (lines.isEmpty()) Text("Nothing new in your feeds.", style = MaterialTheme.typography.bodyLarge)
-                lines.forEachIndexed { i, l -> Text("${i + 1}. $l", style = MaterialTheme.typography.bodyLarge) }
+                lines.forEachIndexed { i, l -> Text(if (numbered) "${i + 1}. $l" else l, style = MaterialTheme.typography.bodyLarge) }
                 if (extra.isNotBlank()) Text(extra, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.primary)
             }
             Button(onClick = onRead, Modifier.fillMaxWidth()) { Text("Read aloud again") }

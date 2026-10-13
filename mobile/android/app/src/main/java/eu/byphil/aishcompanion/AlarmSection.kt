@@ -242,7 +242,7 @@ fun ExtrasCard(model: AppModel) {
                     OutlinedButton(enabled = !busy && license.isNotBlank(), onClick = {
                         busy = true; model.saveLicense(license)
                         scope.launch {
-                            val text = withContext(Dispatchers.IO) { CloudExtra.fetch(license, prompt) }
+                            val text = withContext(Dispatchers.IO) { CloudExtra.fetch(license, prompt, language = SummaryLangs.feedLanguage(model.store.summaryLang)) }
                             if (text != null) model.store.bumpCloud()
                             result = text ?: "No answer. Check the license key, your monthly allowance and the connection."
                             busy = false

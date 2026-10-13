@@ -207,15 +207,18 @@ class AlarmService : Service() {
     /** The briefing, read over the music, which is lowered while the voice speaks and comes back to a calm level afterwards. */
     private fun speakBriefing() {
         Thread {
-            val parts = runCatching { loadBriefing(this).spokenParts(java.time.LocalTime.now().hour) }.getOrDefault(emptyList())
-            handler.post { if (player != null && parts.isNotEmpty()) speak(parts) }
+            val briefing = runCatching { loadBriefing(this) }.getOrNull()
+            val parts = briefing?.let { runCatching { it.spokenParts(java.time.LocalTime.now().hour) }.getOrNull() }.orEmpty()
+            val voice = if (briefing != null && briefing.narration.isNotBlank()) SummaryLangs.feedLocale(Store(this).summaryLang) else java.util.Locale.getDefault()
+            handler.post { if (player != null && parts.isNotEmpty()) speak(parts, voice) }
         }.start()
     }
 
-    private fun speak(parts: List<String>) {
+    private fun speak(parts: List<String>, voice: java.util.Locale) {
         tts = TextToSpeech(applicationContext) { status ->
             val t = tts ?: return@TextToSpeech
             if (status != TextToSpeech.SUCCESS || player == null) return@TextToSpeech
+            runCatching { t.language = voice }
             t.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
             val last = "part-" + (parts.size - 1)
             t.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
@@ -279,7 +282,7 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
         }
         var current = plain
         if (settings.extraOn) {
-            val extra = withContext(Dispatchers.IO) { CloudExtra.fetch(store.license, settings.extraPrompt) }
+            val extra = withContext(Dispatchers.IO) { CloudExtra.fetch(store.license, settings.extraPrompt, language = SummaryLangs.feedLanguage(store.summaryLang)) }
             if (extra != null) store.bumpCloud()
             if (extra != null) { current = current.copy(extra = extra); store.briefingJson = current.toJson() }
         }

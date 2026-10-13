@@ -19,8 +19,13 @@ object SummaryLangs {
      * The one language for a recap or briefing, which mixes headlines from several feeds: the language chosen in Settings, or, when that is
      * "Same as the page" (which means nothing for a mix), the phone's language, or English when that is not on the list.
      */
-    fun feedLanguage(code: String, device: String = java.util.Locale.getDefault().language): String =
-        (ALL.firstOrNull { it.first == code && code.isNotEmpty() } ?: ALL.firstOrNull { it.first == device && device.isNotEmpty() } ?: ALL.first { it.first == "en" }).second
+    private fun feedEntry(code: String, device: String) =
+        ALL.firstOrNull { it.first == code && code.isNotEmpty() } ?: ALL.firstOrNull { it.first == device && device.isNotEmpty() } ?: ALL.first { it.first == "en" }
+
+    fun feedLanguage(code: String, device: String = java.util.Locale.getDefault().language): String = feedEntry(code, device).second
+
+    /** The voice for reading such a text aloud: the same language the text was written in. */
+    fun feedLocale(code: String, device: String = java.util.Locale.getDefault().language): java.util.Locale = java.util.Locale.forLanguageTag(feedEntry(code, device).first)
 
     /** The prompt sentence for such a mix: one language, and headlines in other languages are translated, not copied. */
     fun feedRule(code: String, device: String = java.util.Locale.getDefault().language): String {
