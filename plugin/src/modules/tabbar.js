@@ -74,6 +74,9 @@ export function syncTabbar(bar, { animate = true } = {}) {
     if (!(w > 0)) { watch(bar); return; }                   // hidden / detached: measured once it has a size
     const fresh = !ind.dataset.init;
     const prev = key ? lastPos.get(key) : null;
+    // A resize that does not move the target (the active label turns bold, a count changes) must not cut a running slide
+    // short: switching the transition off for a snap would cancel it and the indicator would jump.
+    if (!animate && !fresh && prev && Math.abs(prev.x - x) < 0.75 && Math.abs(prev.w - w) < 0.75) return;
     if (fresh) {
         ind.dataset.init = '1';
         bar.classList.add('tb-nomove');
