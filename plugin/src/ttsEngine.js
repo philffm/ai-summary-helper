@@ -10,6 +10,47 @@
  */
 (function (root) {
     const api = typeof chrome !== 'undefined' ? chrome : (typeof browser !== 'undefined' ? browser : null);
+    // ── Language switch inside a sentence: quoted passages (“…”, „…“, "…", «…») written in another language than the
+    // sentence are spoken with that language's voice. Detection is a tiny stop-word count — enough to tell a German
+    // sentence with an English quote from an all-German one; anything unclear stays in the sentence's language.
+    const STOP = {
+        en: 'the and of to in is that it for with as was on are this be by not or from have has but they their will would can an which more about',
+        de: 'der die das und ist nicht ein eine mit von zu den für auf dem sich auch es im als aber wie oder nach wird bei noch nur über sind',
+        fr: 'le la les des et est une un du de pour que qui dans pas sur au avec ce il elle sont plus par mais ou nous vous',
+        es: 'el la los las de y que en un una es por con para no se su al lo como más pero sus le ya o este',
+        it: 'il lo la gli le di e che un una è per con non si su da come più ma anche sono del della nel',
+        pt: 'o a os as de e que em um uma é para com não se por mais mas como foi ao do da no na'
+    };
+    const STOPSETS = Object.keys(STOP).reduce((m, k) => { m[k] = new Set(STOP[k].split(' ')); return m; }, {});
+    const TTS_LANG = { en: 'en-US', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', it: 'it-IT', pt: 'pt-PT' };
+    const QUOTE = /„[^“”"]{15,}?[“”"]|“[^”]{15,}?”|"[^"]{15,}?"|«[^»]{15,}?»/g;
+    function guessLang(text) {
+        const words = text.toLowerCase().match(/[a-zäöüßàâçéèêëîïôûùñáíóúãõ]+/g) || [];
+        if (words.length < 4) return '';
+        let best = '', top = 0, second = 0;
+        for (const k of Object.keys(STOPSETS)) {
+            const n = words.reduce((c, w) => c + (STOPSETS[k].has(w) ? 1 : 0), 0);
+            if (n > top) { second = top; top = n; best = k; } else if (n > second) second = n;
+        }
+        return top >= 2 && top > second ? best : '';
+    }
+    function splitLang(it) {
+        const base = String(it.lang || '').split(/[-_]/)[0].toLowerCase();
+        const whole = [{ text: it.text, lang: it.lang, voice: it.voice }];
+        if (!base || !STOPSETS[base]) return whole;
+        const parts = []; let last = 0, switched = false, m;
+        QUOTE.lastIndex = 0;
+        while ((m = QUOTE.exec(it.text))) {
+            const q = m[0], g = guessLang(q.slice(1, -1));
+            if (!g || g === base) continue;
+            if (m.index > last) parts.push({ text: it.text.slice(last, m.index), lang: it.lang, voice: it.voice });
+            parts.push({ text: q, lang: TTS_LANG[g] });
+            last = m.index + q.length; switched = true;
+        }
+        if (!switched) return whole;
+        if (last < it.text.length) parts.push({ text: it.text.slice(last), lang: it.lang, voice: it.voice });
+        return parts.filter(p => /\S/.test(p.text));
+    }
     function create(host) {
         let queue = [], idx = 0, state = 'idle', rate = 1, volume = 1, muted = false, open = false, gen = 0, meta = null, error = '';
         const chromeTts = !!(api && api.tts && api.tts.speak);
@@ -26,18 +67,26 @@
             const it = queue[i];
             const next = () => { if (my === gen) speakAt(i + 1); };
             const fail = (e) => { if (my !== gen) return; error = String(e || 'error'); state = 'idle'; emit(); };
-            try {
-                if (chromeTts) {
-                    api.tts.speak(it.text, { lang: it.lang, voiceName: it.voice || undefined, rate, volume: muted ? 0 : volume, onEvent: (ev) => { if (ev.type === 'end') next(); else if (ev.type === 'error') fail(ev.errorMessage); } });
-                } else if (ss) {
-                    const u = new SpeechSynthesisUtterance(it.text);
-                    u.lang = it.lang || ''; u.rate = rate; u.volume = muted ? 0 : volume;
-                    if (it.voice) { const v = ss.getVoices().find(x => x.name === it.voice); if (v) u.voice = v; }
-                    u.onend = next;
-                    u.onerror = (e) => { if (e && (e.error === 'interrupted' || e.error === 'canceled')) return; fail(e && e.error); };
-                    ss.speak(u);
-                } else fail('No speech engine');
-            } catch (e) { fail(e && e.message); }
+            const parts = splitLang(it);
+            // A foreign-language quote inside the sentence gets its own utterance (and voice language); the queue index stays per sentence.
+            const speakPart = (k) => {
+                if (my !== gen) return;
+                if (k >= parts.length) { next(); return; }
+                const part = parts[k], done = () => speakPart(k + 1);
+                try {
+                    if (chromeTts) {
+                        api.tts.speak(part.text, { lang: part.lang, voiceName: part.voice || undefined, rate, volume: muted ? 0 : volume, onEvent: (ev) => { if (ev.type === 'end') done(); else if (ev.type === 'error') fail(ev.errorMessage); } });
+                    } else if (ss) {
+                        const u = new SpeechSynthesisUtterance(part.text);
+                        u.lang = part.lang || ''; u.rate = rate; u.volume = muted ? 0 : volume;
+                        if (part.voice) { const v = ss.getVoices().find(x => x.name === part.voice); if (v) u.voice = v; }
+                        u.onend = done;
+                        u.onerror = (e) => { if (e && (e.error === 'interrupted' || e.error === 'canceled')) return; fail(e && e.error); };
+                        ss.speak(u);
+                    } else fail('No speech engine');
+                } catch (e) { fail(e && e.message); }
+            };
+            speakPart(0);
         }
         function voices() {
             return new Promise((resolve) => {
