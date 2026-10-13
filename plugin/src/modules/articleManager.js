@@ -301,6 +301,10 @@ export async function shareArticle(article) {
 }
 /** The article as one Markdown note (YAML front matter, summary, Q&A, highlights, original text). */
 async function buildMarkdown(article) {
+    // The list passes lean index entries (no page text): the original content lives in the full record.
+    if (article && article.id && !article.content) {
+        try { const full = await StorageManager.getArticleFull(article.id); if (full) article = { ...article, ...full }; } catch (_) { /* export what we have */ }
+    }
     // 1. Format date as YYYY-MM-DD for Obsidian frontmatter
     const createdDate = new Date(article.timestamp).toISOString().split('T')[0];
     
