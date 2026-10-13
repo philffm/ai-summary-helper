@@ -5,15 +5,15 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
 | ar | 1370 | 0 | 0 | 46 |
-| de | 1370 | 0 | 0 | 200 |
-| es | 1370 | 0 | 0 | 184 |
+| de | 1370 | 0 | 0 | 201 |
+| es | 1370 | 0 | 0 | 185 |
 | fr | 1370 | 0 | 0 | 215 |
-| hi | 1370 | 0 | 0 | 84 |
-| it | 1370 | 0 | 0 | 183 |
+| hi | 1370 | 0 | 0 | 85 |
+| it | 1370 | 0 | 0 | 184 |
 | ja | 1370 | 0 | 0 | 95 |
-| ko | 1370 | 0 | 0 | 25 |
-| pt_PT | 1370 | 0 | 0 | 175 |
-| ru | 1370 | 0 | 0 | 114 |
+| ko | 1370 | 0 | 0 | 26 |
+| pt_PT | 1370 | 0 | 0 | 176 |
+| ru | 1370 | 0 | 0 | 115 |
 | zh_CN | 1370 | 0 | 0 | 2 |
 | zh_HK | 1370 | 0 | 0 | 2 |
 | zh_TW | 1370 | 0 | 0 | 2 |
@@ -74,6 +74,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Add | Hinzufügen | 10 vs 3 | 3.33× |
+| Best value | Bestes Preis-Leistungs-Verhältnis | 33 vs 10 | 3.3× |
 | Mute | Stummschalten | 13 vs 4 | 3.25× |
 | or consider | oder unterstütze das Projekt mit | 32 vs 11 | 2.91× |
 | News | Nachrichten | 11 vs 4 | 2.75× |
@@ -284,6 +285,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Inbox | Bandeja de entrada | 18 vs 5 | 3.6× |
 | Ask | Preguntar | 9 vs 3 | 3× |
 | Unmute | Dejar de silenciar | 18 vs 6 | 3× |
+| Best value | Mejor relación calidad-precio | 29 vs 10 | 2.9× |
 | Play | Reproducir | 10 vs 4 | 2.5× |
 | Older | Más antiguos | 12 vs 5 | 2.4× |
 | Reset | Restablecer | 11 vs 5 | 2.2× |
@@ -468,6 +470,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Inbox | Boîte de réception | 18 vs 5 | 3.6× |
 | Off | Désactivé | 9 vs 3 | 3× |
 | off | désactivé | 9 vs 3 | 3× |
+| Best value | Meilleur rapport qualité-prix | 29 vs 10 | 2.9× |
 | Changelog | Journal des modifications | 25 vs 9 | 2.78× |
 | Reset | Réinitialiser | 13 vs 5 | 2.6× |
 | News | Actualités | 10 vs 4 | 2.5× |
@@ -630,7 +633,6 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add LocalSend device | Ajouter un appareil LocalSend | 29 vs 20 | 1.45× |
 | Add model ID, e.g. gemma4:e2b | Ajouter un ID de modèle, p. ex. gemma4:e2b | 42 vs 29 | 1.45× |
 | Customize text size, spacing, font, motion | Personnaliser taille du texte, interligne, police, animations | 61 vs 42 | 1.45× |
-| Popular and cheapest | Populaires et les moins chers | 29 vs 20 | 1.45× |
 | Search cloud models… | Rechercher des modèles cloud… | 29 vs 20 | 1.45× |
 | a run takes about {t} | une exécution dure environ {t} | 29 vs 20 | 1.45× |
 | Add custom model | Ajouter un modèle perso | 23 vs 16 | 1.44× |
@@ -691,6 +693,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Use {p} | {p} इस्तेमाल करें | 16 vs 6 | 2.67× |
 | Gaps | अधूरे विषय | 10 vs 4 | 2.5× |
 | Mute | म्यूट करें | 10 vs 4 | 2.5× |
+| Best value | सबसे अच्छी कीमत-गुणवत्ता | 24 vs 10 | 2.4× |
 | Saving… | सहेजा जा रहा है… | 16 vs 7 | 2.29× |
 | Noisy | शोरगुल वाला | 11 vs 5 | 2.2× |
 | 🎓 Mark as paper | 🎓 शोध-पत्र के रूप में चिह्नित करें | 35 vs 16 | 2.19× |
@@ -772,6 +775,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 ### it
 | English | Translation | width | ratio |
 |---|---|---|---|
+| Best value | Miglior rapporto qualità-prezzo | 31 vs 10 | 3.1× |
 | Inbox | Posta in arrivo | 15 vs 5 | 3× |
 | Changelog | Registro delle modifiche | 24 vs 9 | 2.67× |
 | Phone inbox | Posta in arrivo dal telefono | 28 vs 11 | 2.55× |
@@ -1066,6 +1070,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No items yet | 아직 항목이 없습니다 | 20 vs 12 | 1.67× |
 | Phone inbox | 휴대폰 받은 편지함 | 18 vs 11 | 1.64× |
 | 4 digits, sent to {email} | 4자리 코드를 {email}(으)로 보냈습니다 | 32 vs 20 | 1.6× |
+| Best value | 가성비 좋은 모델 | 16 vs 10 | 1.6× |
 | No answer. | 답변이 없습니다. | 16 vs 10 | 1.6× |
 | TTS returned no audio. | TTS에서 오디오가 반환되지 않았어요. | 35 vs 22 | 1.59× |
 | Delete all data? | 모든 데이터를 삭제할까요? | 25 vs 16 | 1.56× |
@@ -1090,6 +1095,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Inbox | Caixa de entrada | 16 vs 5 | 3.2× |
 | Add | Adicionar | 9 vs 3 | 3× |
 | Ask | Perguntar | 9 vs 3 | 3× |
+| Best value | Melhor relação qualidade-preço | 30 vs 10 | 3× |
 | Off | Desligado | 9 vs 3 | 3× |
 | off | desligado | 9 vs 3 | 3× |
 | Phone inbox | Caixa de entrada do telemóvel | 29 vs 11 | 2.64× |
@@ -1280,6 +1286,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 ### ru
 | English | Translation | width | ratio |
 |---|---|---|---|
+| Best value | Лучшее соотношение цены и качества | 34 vs 10 | 3.4× |
 | move | перемещение | 11 vs 4 | 2.75× |
 | Copy | Копировать | 10 vs 4 | 2.5× |
 | Sent | Отправлено | 10 vs 4 | 2.5× |

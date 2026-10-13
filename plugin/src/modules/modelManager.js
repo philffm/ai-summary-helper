@@ -102,17 +102,17 @@ export function fmtPrice(n) {
 }
 /**
  * Quick-pick suggestions from the cloud roster (already limited to affordable models and sorted by popularity by the server):
- * the 4 most popular and, among the top 20, the 4 cheapest for summaries (input counts triple: a summary reads much more than it writes).
- * Models in [taken] (already shown as recent) are skipped.
+ * the 5 best value among the top 20 — popularity rank and price rank added up, lowest first. Price counts input triple
+ * (a summary reads much more than it writes). Models in [taken] (already shown as recent) are skipped. Without prices: popularity only.
  */
-export function suggestModels(models, taken = []) {
+export function suggestModels(models, taken = [], count = 5) {
     const skip = new Set(taken);
     const top = (Array.isArray(models) ? models : []).slice(0, 20).filter(m => m && m.id && !skip.has(m.id));
-    const popular = top.slice(0, 4);
-    const ids = new Set(popular.map(m => m.id));
     const cost = (m) => (Number.isFinite(m.price_in) && Number.isFinite(m.price_out)) ? m.price_in * 3 + m.price_out : Infinity;
-    const cheapest = top.filter(m => !ids.has(m.id) && cost(m) !== Infinity).sort((a, b) => cost(a) - cost(b)).slice(0, 4);
-    return [...popular, ...cheapest];
+    const byPrice = [...top].sort((a, b) => cost(a) - cost(b));
+    const priced = top.every(m => cost(m) !== Infinity);
+    const score = (m, i) => i + (priced ? byPrice.indexOf(m) : 0);
+    return top.map((m, i) => ({ m, i, sc: score(m, i) })).sort((a, b) => a.sc - b.sc || a.i - b.i).slice(0, count).map(x => x.m);
 }
 /** Short price tag for a model from the roster: "$0.10 in / $0.40 out per 1M tokens", "Free", or '' when the server sent no prices. */
 export function modelPriceLabel(model) {

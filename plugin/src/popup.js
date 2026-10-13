@@ -542,14 +542,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                             });
                             modelIdGrid.appendChild(btn);
                         });
-                        // Below the recent ones: the most popular and the cheapest models, one tap away (the server's list is already limited to affordable models).
+                        // Below the recent ones: the 5 best value models (popularity and price together), one tap away (the server's list is already limited to affordable models).
                         try {
                             if (!cloudRosterCache) cloudRosterCache = fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`).then(r => r.json()).catch(() => null);
                             const roster = await cloudRosterCache;
                             const picks = roster && roster.success ? suggestModels(roster.models, recentCloudModels) : [];
                             if (!roster || !roster.success) cloudRosterCache = null;
                             if (picks.length && !customModelInput.value.trim()) {
-                                const note = document.createElement('span'); note.className = 'model-grid-note'; note.textContent = T('Popular and cheapest');
+                                const note = document.createElement('span'); note.className = 'model-grid-note'; note.textContent = T('Best value');
                                 modelIdGrid.appendChild(note);
                                 picks.forEach(model => {
                                     const btn = document.createElement('button');
