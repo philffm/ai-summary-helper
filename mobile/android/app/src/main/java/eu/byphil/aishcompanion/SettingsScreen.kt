@@ -2,7 +2,12 @@ package eu.byphil.aishcompanion
 
 import androidx.compose.foundation.Image
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.VerticalDivider
+import androidx.compose.ui.graphics.Color
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -77,7 +82,10 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
 
     var panel by rememberSaveable(startPanel) { mutableStateOf<String?>(startPanel.ifEmpty { null }) }
     var query by rememberSaveable { mutableStateOf("") }
-    BackHandler(enabled = panel != null) { panel = null }
+    val wide = isWide()
+    BackHandler(enabled = !wide && panel != null) { panel = null }
+    // On a wide screen (the Fold unfolded, tablets) the list stays on the left and a panel is always open on the right.
+    val cur = if (wide) (panel ?: "account") else panel
 
     val rows = listOf(
         SettingsRow("account", "ACCOUNT", "👤", "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
@@ -89,26 +97,9 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
         SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock"),
         SettingsRow("pro", "APP", "⭐", "Pro", "Extras", "pro license extras"),
     )
-    val title = rows.firstOrNull { it.id == panel }?.title ?: "Settings"
+    val title = if (wide) "Settings" else rows.firstOrNull { it.id == cur }?.title ?: "Settings"
 
-    Scaffold(
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        snackbarHost = { SnackbarHost(snackbar) },
-        topBar = {
-            TopAppBar(
-                title = { Text(title) },
-                navigationIcon = { if (panel != null) IconButton(onClick = { panel = null }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
-            )
-        },
-    ) { padding ->
-        Box(Modifier.padding(padding).fillMaxSize(), contentAlignment = Alignment.TopCenter) {
-            Column(
-                Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp),
-                horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(14.dp),
-            ) {
-                Column(Modifier.widthLimit(), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                    when (panel) {
-                        null -> {
+    val homeList: @Composable () -> Unit = {
                             OutlinedTextField(
                                 query, { query = it }, Modifier.fillMaxWidth(), singleLine = true, placeholder = { Text("Search settings…") },
                                 leadingIcon = { Icon(Icons.Filled.Search, null) }, shape = RoundedCornerShape(28.dp),
@@ -120,9 +111,13 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                             var last = ""
                             for (r in shown) {
                                 if (q.isEmpty() && r.group != last) { SettingsCaption(r.group); last = r.group }
-                                NavRow(r) { panel = r.id }
+                                NavRow(r, selected = wide && r.id == cur) { panel = r.id }
                             }
-                        }
+                        
+    }
+    val panelContent: @Composable () -> Unit = {
+        when (cur) {
+            null -> {}
                         "link" -> {
                     if (p == null) {
                         Header()
@@ -174,9 +169,36 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                         "access" -> AccessibilityCard(model)
                         "alarm" -> AlarmCard(model)
                         "pro" -> ExtrasCard(model)
+                            }
+        error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
+    }
+
+    Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        snackbarHost = { SnackbarHost(snackbar) },
+        topBar = {
+            TopAppBar(
+                title = { Text(title) },
+                navigationIcon = { if (!wide && panel != null) IconButton(onClick = { panel = null }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
+            )
+        },
+    ) { padding ->
+        if (wide) {
+            Row(Modifier.padding(padding).fillMaxSize()) {
+                Column(Modifier.width(if (windowWidthDp() >= 840) 400.dp else 340.dp).fillMaxHeight().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) { homeList() }
+                VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                Box(Modifier.weight(1f).fillMaxHeight(), contentAlignment = Alignment.TopCenter) {
+                    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Column(Modifier.widthLimit(), verticalArrangement = Arrangement.spacedBy(14.dp)) { panelContent() }
                     }
-                    error?.let { Text(it, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center) }
                 }
+            }
+        } else Box(Modifier.padding(padding).fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+            Column(
+                Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(14.dp),
+            ) {
+                Column(Modifier.widthLimit(), verticalArrangement = Arrangement.spacedBy(14.dp)) { if (cur == null) homeList() else panelContent() }
             }
         }
     }
@@ -186,9 +208,9 @@ private class SettingsRow(val id: String, val group: String, val emoji: String, 
 
 /** One row of the settings home, as in the extension: emoji, title with a live subtitle, chevron. */
 @Composable
-private fun NavRow(r: SettingsRow, onClick: () -> Unit) {
+private fun NavRow(r: SettingsRow, selected: Boolean = false, onClick: () -> Unit) {
     SettingsCard {
-        Row(Modifier.clickable(onClick = onClick).padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+        Row(Modifier.background(if (selected) MaterialTheme.colorScheme.secondaryContainer else Color.Transparent).clickable(onClick = onClick).padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
             Text(r.emoji, style = MaterialTheme.typography.titleLarge)
             Column(Modifier.weight(1f)) {
                 Text(r.title, style = MaterialTheme.typography.titleMedium)

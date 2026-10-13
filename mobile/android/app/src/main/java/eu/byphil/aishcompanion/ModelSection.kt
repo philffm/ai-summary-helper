@@ -78,16 +78,14 @@ fun ModelCard(model: AppModel) {
         have = store.downloaded(); installed = store.installed()
     }
 
-    SettingsCard {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text("On-device AI", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+    SettingsCaption("Model")
+    SettingsGroup {
             Text(
                 "${option.name} runs on this phone to write your briefing as natural sentences instead of a headline list. Nothing is sent anywhere. " +
                     "Your Fold's built-in Gemini Nano is not available for apps, so the model is downloaded once (${Formatter.formatShortFileSize(context, option.size)}).",
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             val rec = profile?.let { DeviceBench.recommend(it) }
-            Text("Model", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
             val p = profile
             if (p == null) {
                 OutlinedButton(enabled = !checking, onClick = {
@@ -115,6 +113,9 @@ fun ModelCard(model: AppModel) {
                     }
                 }
             }
+    }
+    SettingsCaption(if (installed) "On this phone" else "Download")
+    SettingsGroup {
             when {
                 installed -> {
                     Text("Installed · ${Formatter.formatShortFileSize(context, option.size)}", style = MaterialTheme.typography.bodyMedium)
@@ -127,10 +128,7 @@ fun ModelCard(model: AppModel) {
                         }
                     }) { Text(if (testing) "Testing… (up to a minute)" else "Test speed") }
                     speed?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Write the morning briefing with it", Modifier.weight(1f))
-                        Switch(checked = a.useAi, onCheckedChange = { model.changeAlarm(a.copy(useAi = it)) })
-                    }
+                    ToggleRow("Write the morning briefing with it", "Natural sentences instead of a headline list.", a.useAi) { model.changeAlarm(a.copy(useAi = it)) }
                     Text("Mood ratings: $rated of ${rated + unrated} stored feed items rated", style = MaterialTheme.typography.bodySmall)
                     if (histRunning) {
                         LinearProgressIndicator(progress = { if (rated + unrated == 0) 0f else rated.toFloat() / (rated + unrated) }, modifier = Modifier.fillMaxWidth())
@@ -169,7 +167,6 @@ fun ModelCard(model: AppModel) {
                     works.firstOrNull { it.state == WorkInfo.State.FAILED }?.let { Text("The last download failed (not enough space or a corrupt file). Free some space and try again.", color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
                 }
             }
-        }
     }
 
     result?.let { text ->

@@ -70,6 +70,18 @@ class PageSummaryTest {
         assertEquals("T\n\nS\n\nhttps://x.y", PageSummary.shareText(" T ", " S ", "https://x.y"))
         assertEquals("S", PageSummary.shareText("", "S", ""))
     }
+
+    @Test fun shareTextListsKeyPassagesCappedAndDeduped() {
+        val long = "word ".repeat(100)
+        val t = PageSummary.shareText("T", "S", "https://x.y", listOf(" A  b ", "A b", "", long) + (1..10).map { "p$it" })
+        assertTrue(t.startsWith("T\n\nS\n\nKey passages:\n• A b\n"))
+        val bullets = t.lines().filter { it.startsWith("• ") }
+        assertEquals(PageSummary.SHARE_PASSAGES, bullets.size)
+        assertEquals("• A b", bullets[0])
+        assertTrue(bullets[1].length <= PageSummary.SHARE_PASSAGE_MAX + 3)
+        assertTrue(t.endsWith("https://x.y"))
+        assertEquals("T\n\nKey passages:\n• Only", PageSummary.shareText("T", "", "", listOf("Only")))
+    }
 }
 
 class PageSummaryExtrasTest {

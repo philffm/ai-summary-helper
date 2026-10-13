@@ -71,22 +71,23 @@ fun AlarmCard(model: AppModel) {
     fun update(next: AlarmSettings) = model.changeAlarm(next)
     androidx.compose.runtime.LaunchedEffect(a) { Guard.end(context, "alarm") }   // drawn fine with these settings
 
-    SettingsCard {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text("Morning alarm", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                    Text("Wakes you and reads your feed briefing. No AI, so it also works offline.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                Switch(checked = a.enabled, onCheckedChange = { on ->
-                    update(a.copy(enabled = on))
-                    if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
-                })
+    SettingsGroup {
+        ToggleRow("⏰ Morning alarm", "Wakes you and reads your feed briefing. No AI needed, so it also works offline.", a.enabled) { on ->
+            update(a.copy(enabled = on))
+            if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+        model.alarmError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
+    }
+    if (a.enabled) {
+        val is24 = DateFormat.is24HourFormat(context)
+        SettingsCaption("When")
+        SettingsGroup {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("Time", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                OutlinedButton(onClick = { pickTime = true }) { Text(formatTime(a.hour, a.minute, is24), style = MaterialTheme.typography.titleMedium) }
             }
-            model.alarmError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
-            if (a.enabled) {
-                val is24 = DateFormat.is24HourFormat(context)
-                OutlinedButton(onClick = { pickTime = true }, Modifier.fillMaxWidth()) { Text(formatTime(a.hour, a.minute, is24), style = MaterialTheme.typography.headlineSmall) }
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text("Days", style = MaterialTheme.typography.bodyLarge)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     for (i in 0..6) {
                         FilterChip(
@@ -96,79 +97,71 @@ fun AlarmCard(model: AppModel) {
                         )
                     }
                 }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Read the briefing aloud after Stop", Modifier.weight(1f))
-                    Switch(checked = a.readAloud, onCheckedChange = { update(a.copy(readAloud = it)) })
-                }
-                val ringtones = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
-                    val picked: Uri? = r.data?.let { d -> if (android.os.Build.VERSION.SDK_INT >= 33) d.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) else @Suppress("DEPRECATION") d.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI) }
-                    if (r.resultCode == android.app.Activity.RESULT_OK && picked != null) {
-                        // the phone's default alarm stays "default", so it follows the system setting
-                        update(a.copy(sound = if (picked == android.provider.Settings.System.DEFAULT_ALARM_ALERT_URI) "" else picked.toString()))
-                    }
-                }
-                val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-                    if (uri != null) {
-                        runCatching { context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
-                        update(a.copy(sound = uri.toString()))
-                    }
-                }
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Text("Wake-up sound")
-                    Text(soundName(context, a.sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedButton(onClick = {
-                            val current = if (a.sound.isBlank()) android.media.RingtoneManager.getActualDefaultRingtoneUri(context, android.media.RingtoneManager.TYPE_ALARM) else Uri.parse(a.sound)
-                            ringtones.launch(Intent(android.media.RingtoneManager.ACTION_RINGTONE_PICKER)
-                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TYPE, android.media.RingtoneManager.TYPE_ALARM)
-                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TITLE, "Wake-up sound")
-                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
-                                .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current))
-                        }) { Text("Alarm sounds") }
-                        OutlinedButton(onClick = { picker.launch(arrayOf("audio/*")) }) { Text("Music file…") }
-                        if (a.sound.isNotBlank()) TextButton(onClick = { update(a.copy(sound = "")) }) { Text("Phone default") }
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Column(Modifier.weight(1f)) {
-                            Text("Fade in, then read the briefing over the music")
-                            Text("The sound starts quietly and rises for about 45 seconds. Then the briefing is spoken while the music plays softer. Stop ends both.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        }
-                        Switch(checked = a.fadeIn, onCheckedChange = { update(a.copy(fadeIn = it)) })
-                    }
-                    if (a.fadeIn && !a.readAloud) Text("Switch on reading the briefing aloud above to hear it over the music.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
-                }
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Text("News in the briefing")
-                    val modes = listOf(NewsMode.ALL to "All news", NewsMode.NO_BAD to "No bad news", NewsMode.GOOD to "Good only")
-                    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-                        modes.forEachIndexed { i, (m, label) ->
-                            SegmentedButton(selected = a.newsMode == m, onClick = { update(a.copy(newsMode = m)) }, shape = SegmentedButtonDefaults.itemShape(i, modes.size)) { Text(label, maxLines = 1) }
-                        }
-                    }
-                    Text(
-                        when (a.newsMode) {
-                            NewsMode.ALL -> "Everything new from your feeds."
-                            NewsMode.NO_BAD -> "Leaves out war, crime, disasters and death; everything else stays."
-                            NewsMode.GOOD -> "Only stories rated positive. Works best with the on-device AI rating."
-                        },
-                        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
                 val next = AlarmScheduler.nextRing(context)
                 Text(
                     if (next == null) "Pick at least one day." else "Next alarm: " + java.time.format.DateTimeFormatter.ofPattern("EEE d MMM, HH:mm", Locale.getDefault()).format(Instant.ofEpochMilli(next).atZone(ZoneId.systemDefault())) +
                         ". The briefing is prepared about 20 minutes before.",
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                if (!fullScreenAllowed) {
-                    Text("To show the alarm over the lock screen, allow full-screen alerts for this app.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
-                    TextButton(onClick = { context.startActivity(Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}"))) }) { Text("Allow full-screen alerts") }
+            }
+            if (!fullScreenAllowed) {
+                Text("To show the alarm over the lock screen, allow full-screen alerts for this app.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+                TextButton(onClick = { context.startActivity(Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}"))) }) { Text("Allow full-screen alerts") }
+            }
+        }
+
+        SettingsCaption("Sound")
+        val ringtones = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
+            val picked: Uri? = r.data?.let { d -> if (android.os.Build.VERSION.SDK_INT >= 33) d.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) else @Suppress("DEPRECATION") d.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI) }
+            if (r.resultCode == android.app.Activity.RESULT_OK && picked != null) {
+                // the phone's default alarm stays "default", so it follows the system setting
+                update(a.copy(sound = if (picked == android.provider.Settings.System.DEFAULT_ALARM_ALERT_URI) "" else picked.toString()))
+            }
+        }
+        val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri != null) {
+                runCatching { context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
+                update(a.copy(sound = uri.toString()))
+            }
+        }
+        SettingsGroup {
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text("Wake-up sound", style = MaterialTheme.typography.bodyLarge)
+                Text(soundName(context, a.sound), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(onClick = {
+                        val current = if (a.sound.isBlank()) android.media.RingtoneManager.getActualDefaultRingtoneUri(context, android.media.RingtoneManager.TYPE_ALARM) else Uri.parse(a.sound)
+                        ringtones.launch(Intent(android.media.RingtoneManager.ACTION_RINGTONE_PICKER)
+                            .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TYPE, android.media.RingtoneManager.TYPE_ALARM)
+                            .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TITLE, "Wake-up sound")
+                            .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                            .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
+                            .putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current))
+                    }) { Text("Alarm sounds") }
+                    OutlinedButton(onClick = { picker.launch(arrayOf("audio/*")) }) { Text("Music file…") }
+                    if (a.sound.isNotBlank()) TextButton(onClick = { update(a.copy(sound = "")) }) { Text("Phone default") }
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = { preview = buildBriefingNow(context) }) { Text("Preview briefing") }
-                    OutlinedButton(onClick = { AlarmScheduler.ringIn(context, 10); model.message = "The alarm will ring in 10 seconds." }) { Text("Test ring") }
-                }
+            }
+            ToggleRow("Fade in the sound", "Starts quietly and rises for about 45 seconds. Then the briefing is spoken while the music plays softer. Stop ends both.", a.fadeIn) { update(a.copy(fadeIn = it)) }
+        }
+
+        SettingsCaption("Briefing")
+        SettingsGroup {
+            ToggleRow("Read the briefing aloud", "After Stop, or over the music when the sound fades in.", a.readAloud) { update(a.copy(readAloud = it)) }
+            if (a.fadeIn && !a.readAloud) Text("Switch on reading aloud to hear the briefing over the music.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+            ChoiceRow(
+                "News in the briefing",
+                when (a.newsMode) {
+                    NewsMode.ALL -> "Everything new from your feeds."
+                    NewsMode.NO_BAD -> "Leaves out war, crime, disasters and death; everything else stays."
+                    NewsMode.GOOD -> "Only stories rated positive. Works best with the on-device AI rating."
+                },
+                listOf(NewsMode.ALL.name to "All news", NewsMode.NO_BAD.name to "No bad news", NewsMode.GOOD.name to "Good only"),
+                a.newsMode.name,
+            ) { update(a.copy(newsMode = NewsMode.of(it))) }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = { preview = buildBriefingNow(context) }) { Text("Preview briefing") }
+                OutlinedButton(onClick = { AlarmScheduler.ringIn(context, 10); model.message = "The alarm will ring in 10 seconds." }) { Text("Test ring") }
             }
         }
     }
@@ -234,15 +227,8 @@ fun ExtrasCard(model: AppModel) {
     }
     androidx.compose.runtime.LaunchedEffect(saved) { if (saved.isNotBlank()) checkLicense(saved) else status = null }
 
-    SettingsCard {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text("Extra from the cloud AI", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                    Text("A fun fact of the day, or anything you ask for, added to the end of your briefing.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                Switch(checked = a.extraOn, onCheckedChange = { model.changeAlarm(a.copy(extraOn = it)) })
-            }
+    SettingsGroup {
+        ToggleRow("✨ Extra from the cloud AI", "A fun fact of the day, or anything you ask for, added to the end of your briefing.", a.extraOn) { model.changeAlarm(a.copy(extraOn = it)) }
             OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key (from the extension code or pasted)") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedButton(enabled = license.isNotBlank() && license.trim() != saved, onClick = { model.saveLicense(license) }) { Text("Save key") }
@@ -263,7 +249,6 @@ fun ExtrasCard(model: AppModel) {
                     }) { Text(if (busy) "Asking…" else "Try it now") }
                 }
             }
-        }
     }
     result?.let { text ->
         AlertDialog(onDismissRequest = { result = null }, title = { Text("Your extra") }, text = { Text(text) }, confirmButton = { TextButton(onClick = { result = null }) { Text("Close") } })

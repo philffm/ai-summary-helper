@@ -195,7 +195,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
         ActionBar(
             primary = BarAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },
             secondary = listOfNotNull(
-                if (article.summary.isNotBlank()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url)) } else null,
+                if (article.summary.isNotBlank() || article.highlights.isNotEmpty()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url, article.highlights.map { it.text })) } else null,
                 if (model.pairing != null && article.local) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, article.url); sent = true } else null,
                 BarAction(Icons.Filled.Delete, "Delete") { onDelete(id) },
             ),

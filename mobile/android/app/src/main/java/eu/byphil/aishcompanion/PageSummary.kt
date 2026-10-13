@@ -89,9 +89,16 @@ object PageSummary {
             }.toString()
     }
 
-    /** What goes to WhatsApp, mail and the like: title, the summary, and the link. */
-    fun shareText(title: String, summary: String, url: String): String =
-        listOf(title.trim(), summary.trim(), url.trim()).filter { it.isNotEmpty() }.joinToString("\n\n")
+    const val SHARE_PASSAGES = 6
+    const val SHARE_PASSAGE_MAX = 240
+
+    /** What goes to WhatsApp, mail and the like: title, the summary, the key passages (highlights) as a short bullet list, and the link. */
+    fun shareText(title: String, summary: String, url: String, passages: List<String> = emptyList()): String {
+        val marks = passages.map { it.replace(Regex("\\s+"), " ").trim() }.filter { it.isNotEmpty() }.distinct().take(SHARE_PASSAGES)
+            .map { if (it.length > SHARE_PASSAGE_MAX) it.take(SHARE_PASSAGE_MAX).substringBeforeLast(' ').trimEnd(',', ';', ':', ' ') + "…" else it }
+        val block = if (marks.isEmpty()) "" else "Key passages:\n" + marks.joinToString("\n") { "• $it" }
+        return listOf(title.trim(), summary.trim(), block, url.trim()).filter { it.isNotEmpty() }.joinToString("\n\n")
+    }
 
     fun enough(page: Page): Boolean = page.text().length >= MIN_TEXT
 
