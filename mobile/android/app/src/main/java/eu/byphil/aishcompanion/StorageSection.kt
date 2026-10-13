@@ -40,6 +40,8 @@ fun StorageCard(model: AppModel) {
     var itemCount by remember { mutableIntStateOf(0) }
     var articleBytes by remember { mutableStateOf(0L) }
     var cacheBytes by remember { mutableStateOf(0L) }
+    var podcastBytes by remember { mutableStateOf(0L) }
+    var podcastCount by remember { mutableIntStateOf(0) }
     var modelSizes by remember { mutableStateOf(listOf<Pair<ModelOption, Long>>()) }
     var confirm by remember { mutableStateOf<String?>(null) }
     val selected = Models.selected(context)
@@ -51,12 +53,13 @@ fun StorageCard(model: AppModel) {
             itemCount = FeedStore(File(app.filesDir, "feeds")).let { s -> s.feeds().sumOf { s.items(it.url).size } }
             articleBytes = sizeOf(File(app.filesDir, "articles")) + sizeOf(File(app.filesDir, "articles-trash"))
             cacheBytes = sizeOf(app.cacheDir)
+            podcastBytes = PodcastDownloads.totalBytes(app); podcastCount = PodcastDownloads.count(app)
             modelSizes = Models.ALL.map { o -> val st = ModelStore.of(app, o); o to (if (st.file.exists()) st.file.length() else 0L) + (if (st.part.exists()) st.part.length() else 0L) }.filter { it.second > 0 }
         }
     }
     fun size(b: Long) = Formatter.formatShortFileSize(context, b)
     val others = modelSizes.filter { it.first.id != selected.id }
-    val total = feedBytes + articleBytes + cacheBytes + modelSizes.sumOf { it.second }
+    val total = feedBytes + articleBytes + podcastBytes + cacheBytes + modelSizes.sumOf { it.second }
 
     SettingsGroup {
         Text("This app uses ${size(total)}", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
@@ -64,6 +67,7 @@ fun StorageCard(model: AppModel) {
         Text("Reading list: ${model.articleList.size} articles · ${size(articleBytes)}", style = MaterialTheme.typography.bodyMedium)
         if (modelSizes.isEmpty()) Text("On-device models: none downloaded", style = MaterialTheme.typography.bodyMedium)
         else modelSizes.forEach { (o, b) -> Text("${o.name}${if (o.id == selected.id) " (in use)" else ""}: ${size(b)}", style = MaterialTheme.typography.bodyMedium) }
+        Text("Podcast episodes: $podcastCount saved · ${size(podcastBytes)}", style = MaterialTheme.typography.bodyMedium)
         Text("Working cache: ${size(cacheBytes)}", style = MaterialTheme.typography.bodyMedium)
     }
     SettingsCaption("Free space")
@@ -72,6 +76,7 @@ fun StorageCard(model: AppModel) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedButton(onClick = { confirm = "prune" }, Modifier.fillMaxWidth()) { Text("Remove feed items older than 7 days") }
             if (others.isNotEmpty()) OutlinedButton(onClick = { confirm = "models" }, Modifier.fillMaxWidth()) { Text("Delete other models (${size(others.sumOf { it.second })})") }
+            if (podcastCount > 0) OutlinedButton(onClick = { confirm = "podcasts" }, Modifier.fillMaxWidth()) { Text("Delete saved episodes (${size(podcastBytes)})") }
             OutlinedButton(onClick = { confirm = "cache" }, Modifier.fillMaxWidth(), enabled = cacheBytes > 0) { Text("Clear working cache (${size(cacheBytes)})") }
         }
     }
@@ -80,6 +85,7 @@ fun StorageCard(model: AppModel) {
         val (title, text) = when (which) {
             "prune" -> "Remove old feed items?" to "Items older than 7 days are removed, except your favourites. Items a feed still lists come back on the next refresh, as unread."
             "models" -> "Delete other models?" to "Frees ${size(others.sumOf { it.second })}. ${selected.name} stays. You can download the others again."
+            "podcasts" -> "Delete saved episodes?" to "Frees ${size(podcastBytes)}. Episodes stream again when you play them online."
             else -> "Clear the cache?" to "Frees ${size(cacheBytes)}. The model rebuilds it the next time it runs, which can take a little longer once."
         }
         AlertDialog(
@@ -94,6 +100,7 @@ fun StorageCard(model: AppModel) {
                             when (which) {
                                 "prune" -> { val n = FeedStore(File(app.filesDir, "feeds")).pruneOlderThan(7, System.currentTimeMillis()); "Removed $n items." }
                                 "models" -> { others.forEach { ModelStore.of(app, it.first).delete() }; "Deleted ${others.size} model" + (if (others.size == 1) "." else "s.") }
+                                "podcasts" -> { PodcastDownloads.deleteAll(app); "Saved episodes deleted." }
                                 else -> { app.cacheDir.listFiles()?.forEach { it.deleteRecursively() }; "Cache cleared." }
                             }
                         }

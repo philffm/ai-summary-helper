@@ -53,6 +53,9 @@ import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.MarkEmailUnread
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.DownloadDone
+import androidx.compose.material.icons.filled.Downloading
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.FilterChip
@@ -366,7 +369,14 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
         val read = if (item.link.isNotEmpty()) BarAction(Icons.Filled.OpenInBrowser, "Read page") { onOpenWeb(item.link) } else null
         val playAct = if (play) BarAction(Icons.Filled.PlayArrow, "Play episode" + (if (item.duration > 0) ", " + PodcastTime.format(item.duration * 1000) else "")) { PodcastPlayer.play(context, Episode(item.audio, item.title, e.feed.name)) } else null
         val toBrowser = if (item.link.isNotEmpty() && model.pairing != null) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Queued for the browser" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, item.link); sent = true } else null
-        ActionBar(primary = read ?: playAct, secondary = listOfNotNull(if (read != null) playAct else null, toBrowser))
+        val saved = if (play) PodcastDownloads.has(context, item.audio) else false
+        val fetching = if (play) PodcastDownloads.active[item.audio] else null
+        val offline = if (!play) null else when {
+            saved -> BarAction(Icons.Filled.DownloadDone, "Saved for offline, tap to remove") { PodcastDownloads.delete(context, item.audio) }
+            fetching != null -> BarAction(Icons.Filled.Downloading, "Downloading" + (if (fetching >= 0f) " " + (fetching * 100).toInt() + "%" else "…") + ", tap to cancel") { PodcastDownloads.cancel(context, item.audio) }
+            else -> BarAction(Icons.Filled.Download, "Download for offline") { PodcastDownloads.start(context, item.audio) }
+        }
+        ActionBar(primary = read ?: playAct, secondary = listOfNotNull(if (read != null) playAct else null, offline, toBrowser))
     }
 }
 

@@ -7,12 +7,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bedtime
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Forward30
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Replay10
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -47,6 +51,18 @@ fun MiniPlayer() {
                     Text(ep.title, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     Text(PodcastPlayer.error ?: ep.feed, style = MaterialTheme.typography.labelSmall, maxLines = 1, overflow = TextOverflow.Ellipsis,
                         color = if (PodcastPlayer.error != null) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Box {
+                    var sleepMenu by remember { mutableStateOf(false) }
+                    val sleepAt = PodcastPlayer.sleepAtMs
+                    TextButton(onClick = { sleepMenu = true }) {
+                        Icon(Icons.Filled.Bedtime, contentDescription = "Sleep timer", modifier = Modifier.size(20.dp))
+                        if (sleepAt > 0) Text(" " + PodcastTime.sleepLeft(sleepAt - System.currentTimeMillis()), style = MaterialTheme.typography.labelMedium)
+                    }
+                    DropdownMenu(expanded = sleepMenu, onDismissRequest = { sleepMenu = false }) {
+                        for (m in PodcastTime.SLEEP_MINUTES) DropdownMenuItem(text = { Text("Pause in $m minutes") }, onClick = { PodcastPlayer.setSleepTimer(m); sleepMenu = false })
+                        if (sleepAt > 0) DropdownMenuItem(text = { Text("Turn sleep timer off") }, onClick = { PodcastPlayer.setSleepTimer(0); sleepMenu = false })
+                    }
                 }
                 IconButton(onClick = { PodcastPlayer.stop() }) { Icon(Icons.Filled.Close, contentDescription = "Close player") }
             }

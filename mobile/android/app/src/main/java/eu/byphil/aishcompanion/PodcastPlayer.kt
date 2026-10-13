@@ -13,16 +13,18 @@ import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.media.PlaybackParams
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
-import java.security.MessageDigest
 
 /** An episode from a feed's audio enclosure. [url] is https. */
 data class Episode(val url: String, val title: String, val feed: String)
@@ -38,6 +40,11 @@ object PodcastTime {
 
     /** Where to resume: the saved spot, unless it is within the last 10 seconds (then start again) or nothing is known. */
     fun resumeAt(savedMs: Int, durationMs: Int): Int = if (savedMs <= 0 || (durationMs > 0 && savedMs > durationMs - 10_000)) 0 else savedMs
+
+    /** "12 min" left, rounded up; "under 1 min" at the end. */
+    fun sleepLeft(remainingMs: Long): String { val m = ((remainingMs + 59_999) / 60_000).toInt(); return if (remainingMs <= 0) "now" else if (m <= 1) "under 1 min" else "$m min" }
+
+    val SLEEP_MINUTES = listOf(15, 30, 45, 60)
 
     val SPEEDS = listOf(1f, 1.25f, 1.5f, 2f, 0.8f)
     fun nextSpeed(current: Float): Float = SPEEDS[(SPEEDS.indexOfFirst { it == current } + 1) % SPEEDS.size]
@@ -56,13 +63,35 @@ object PodcastPlayer {
     var positionMs by mutableIntStateOf(0); private set
     var durationMs by mutableIntStateOf(0); private set
 
+    /** When the sleep timer pauses playback (epoch ms), 0 when it is off. */
+    var sleepAtMs by mutableLongStateOf(0L); private set
+
+    private val handler = Handler(Looper.getMainLooper())
+    private val sleepRunnable = Runnable { sleepAtMs = 0; fadeOutAndPause() }
+
     private var player: MediaPlayer? = null
     private var app: Context? = null
     private var focus: AudioFocusRequest? = null
     private var lastSaved = 0L
 
+    /** Pauses after [minutes] (0 turns the timer off). The sound fades out over the last few seconds. */
+    fun setSleepTimer(minutes: Int) {
+        handler.removeCallbacks(sleepRunnable)
+        if (minutes <= 0) { sleepAtMs = 0; return }
+        sleepAtMs = System.currentTimeMillis() + minutes * 60_000L
+        handler.postDelayed(sleepRunnable, minutes * 60_000L)
+    }
+
+    private fun fadeOutAndPause() {
+        val mp = player
+        if (mp == null || !playing) { pause(); return }
+        val steps = 10
+        for (i in 1..steps) handler.postDelayed({ if (player === mp) runCatching { val v = 1f - i / steps.toFloat(); mp.setVolume(v, v) } }, i * 300L)
+        handler.postDelayed({ if (player === mp) { pause(); runCatching { mp.setVolume(1f, 1f) } } }, (steps + 1) * 300L)
+    }
+
     private fun prefs(c: Context) = c.getSharedPreferences("podcast", Context.MODE_PRIVATE)
-    private fun key(url: String) = "pos." + MessageDigest.getInstance("SHA-1").digest(url.toByteArray()).joinToString("") { "%02x".format(it) }.take(20)
+    private fun key(url: String) = "pos." + PodcastDownloads.hash(url)
 
     fun savedPosition(context: Context, url: String): Int = prefs(context.applicationContext).getInt(key(url), 0)
     private fun save(ms: Int) { val c = app ?: return; val e = episode ?: return; prefs(c).edit().putInt(key(e.url), ms).apply() }
@@ -77,7 +106,7 @@ object PodcastPlayer {
             val mp = MediaPlayer()
             player = mp
             mp.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
-            mp.setDataSource(ep.url)
+            mp.setDataSource(PodcastDownloads.local(c, ep.url)?.absolutePath ?: ep.url)   // a saved copy plays without a connection
             mp.setOnPreparedListener {
                 if (player !== mp) return@setOnPreparedListener
                 loading = false
@@ -139,6 +168,7 @@ object PodcastPlayer {
 
     /** Closes the player and the notification. */
     fun stop() {
+        setSleepTimer(0)
         release(saveSpot = true); episode = null; playing = false; loading = false; error = null
         app?.let { PodcastService.refresh(it) }
     }
