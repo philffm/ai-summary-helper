@@ -4744,5 +4744,20 @@
   },
   "f_of_used_1e41": {
     "message": "{limit} 中 {used} を使用"
+  },
+  "f_default_086b": {
+    "message": "（デフォルト）"
+  },
+  "f_free_36fb": {
+    "message": "無料"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "モデルID"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "例: gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "入力 {input} / 出力 {output}（100万トークンあたり）"
   }
 }

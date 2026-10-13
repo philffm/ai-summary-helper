@@ -4726,5 +4726,20 @@
   },
   "f_of_used_1e41": {
     "message": "{limit} 중 {used} 사용"
+  },
+  "f_default_086b": {
+    "message": "(기본값)"
+  },
+  "f_free_36fb": {
+    "message": "무료"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "모델 ID"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "예: gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "입력 {input} / 출력 {output} (100만 토큰당)"
   }
 }

@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1364 | 0 | 0 | 47 |
-| de | 1364 | 0 | 0 | 201 |
-| es | 1364 | 0 | 0 | 181 |
-| fr | 1364 | 0 | 0 | 213 |
-| hi | 1364 | 0 | 0 | 84 |
-| it | 1364 | 0 | 0 | 181 |
-| ja | 1364 | 0 | 0 | 94 |
-| ko | 1364 | 0 | 0 | 25 |
-| pt_PT | 1364 | 0 | 0 | 174 |
-| ru | 1364 | 0 | 0 | 115 |
-| zh_CN | 1364 | 0 | 0 | 2 |
-| zh_HK | 1364 | 0 | 0 | 2 |
-| zh_TW | 1364 | 0 | 0 | 2 |
+| ar | 1369 | 0 | 0 | 47 |
+| de | 1369 | 0 | 0 | 201 |
+| es | 1369 | 0 | 0 | 184 |
+| fr | 1369 | 0 | 0 | 214 |
+| hi | 1369 | 0 | 0 | 84 |
+| it | 1369 | 0 | 0 | 183 |
+| ja | 1369 | 0 | 0 | 95 |
+| ko | 1369 | 0 | 0 | 25 |
+| pt_PT | 1369 | 0 | 0 | 175 |
+| ru | 1369 | 0 | 0 | 115 |
+| zh_CN | 1369 | 0 | 0 | 2 |
+| zh_HK | 1369 | 0 | 0 | 2 |
+| zh_TW | 1369 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -324,6 +324,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Switch tab | Cambiar de pestaña | 18 vs 10 | 1.8× |
 | Last synced {when} | Última sincronización: {when} | 25 vs 14 | 1.79× |
 | last opened {d} | abierto por última vez {d} | 25 vs 14 | 1.79× |
+| (default) | (predeterminado) | 16 vs 9 | 1.78× |
 | Text size | Tamaño del texto | 16 vs 9 | 1.78× |
 | 📈 Mood over time | 📈 Ánimo a lo largo del tiempo | 30 vs 17 | 1.76× |
 | All time | Todo el tiempo | 14 vs 8 | 1.75× |
@@ -414,6 +415,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add Kindle device | Añadir dispositivo Kindle | 25 vs 17 | 1.47× |
 | Add tag or DOI… | Añadir etiqueta o DOI… | 22 vs 15 | 1.47× |
 | Briefing layout | Estructura del resumen | 22 vs 15 | 1.47× |
+| Model Identifiers | Identificadores de modelo | 25 vs 17 | 1.47× |
 | Open Command Prompt | Abrir el símbolo del sistema | 28 vs 19 | 1.47× |
 | Queue a question… | Pon una pregunta en cola… | 25 vs 17 | 1.47× |
 | {n} feeds to tag | {n} feeds por etiquetar | 22 vs 15 | 1.47× |
@@ -430,6 +432,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Press ? anywhere outside a text field | Pulsa ? en cualquier lugar fuera de un campo de texto | 53 vs 37 | 1.43× |
 | Sources · rename · tags · mute | Fuentes · renombrar · etiquetas · silenciar | 43 vs 30 | 1.43× |
 | Unpair and delete inbox | Desvincular y eliminar la bandeja | 33 vs 23 | 1.43× |
+| {input} in / {output} out per 1M tokens | {input} entrada / {output} salida por 1 M de tokens | 40 vs 28 | 1.43× |
 | Allow browser extensions | Permitir extensiones del navegador | 34 vs 24 | 1.42× |
 | Failed to send code | No se pudo enviar el código | 27 vs 19 | 1.42× |
 | Feed list synced: {added} added, {updated} changed, {removed} removed | Lista de feeds sincronizada: {added} añadidos, {updated} modificados, {removed} eliminados | 71 vs 50 | 1.42× |
@@ -521,6 +524,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Mark as… | Marquer comme… | 14 vs 8 | 1.75× |
 | Saved! ✓ | Enregistré ! ✓ | 14 vs 8 | 1.75× |
 | Testing… | Test en cours… | 14 vs 8 | 1.75× |
+| {input} in / {output} out per 1M tokens | {input} en entrée / {output} en sortie par million de jetons | 49 vs 28 | 1.75× |
 | Stack similar items | Regrouper les éléments similaires | 33 vs 19 | 1.74× |
 | Motion & layout | Animations et mise en page | 26 vs 15 | 1.73× |
 | Open week › | Ouvrir la semaine › | 19 vs 11 | 1.73× |
@@ -842,6 +846,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary Length | Lunghezza del riassunto | 23 vs 14 | 1.64× |
 | Thinking more… | Ci sto pensando ancora… | 23 vs 14 | 1.64× |
 | Unsubscribe | Annulla iscrizione | 18 vs 11 | 1.64× |
+| {input} in / {output} out per 1M tokens | {input} in ingresso / {output} in uscita per 1 M di token | 46 vs 28 | 1.64× |
 | Delete settings? | Eliminare le impostazioni? | 26 vs 16 | 1.63× |
 | Model identifier | Identificatore del modello | 26 vs 16 | 1.63× |
 | 🕸️ Add a connection map | 🕸️ Aggiungi una mappa dei collegamenti | 39 vs 24 | 1.63× |
@@ -879,6 +884,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Connection path | Percorso di connessione | 23 vs 15 | 1.53× |
 | Failed to send code | Invio del codice non riuscito | 29 vs 19 | 1.53× |
 | Full style text | Testo di stile completo | 23 vs 15 | 1.53× |
+| Model Identifiers | Identificatori del modello | 26 vs 17 | 1.53× |
 | Queue a question… | Metti in coda una domanda… | 26 vs 17 | 1.53× |
 | Reading page... | Lettura della pagina... | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Aggiornamento riepilogo… | 26 vs 17 | 1.53× |
@@ -1037,6 +1043,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Copied to clipboard! 📋 | クリップボードにコピーしました 📋 | 33 vs 23 | 1.43× |
 | Ollama · {n} installed | Ollama · {n} 件インストール済み | 30 vs 21 | 1.43× |
 | Please keep this window open | このウィンドウを開いたままにしてください | 40 vs 28 | 1.43× |
+| {input} in / {output} out per 1M tokens | 入力 {input} / 出力 {output}（100万トークンあたり） | 40 vs 28 | 1.43× |
 | ✓ Updated {a}, merged {b}. | ✓ {a}件を更新、{b}件を統合しました。 | 34 vs 24 | 1.42× |
 | Batch {a}/{b} failed: {m} | バッチ {a}/{b} が失敗しました: {m} | 31 vs 22 | 1.41× |
 | Citation lookup failed — try again | 引用の取得に失敗しました。もう一度お試しください | 48 vs 34 | 1.41× |
@@ -1204,6 +1211,7 @@ Strings: 1364. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No receiver address set. | Nenhum endereço de recetor definido. | 36 vs 24 | 1.5× |
 | ↩ Restore to Inbox | ↩ Repor na caixa de entrada | 27 vs 18 | 1.5× |
 | Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
+| Model Identifiers | Identificadores de modelo | 25 vs 17 | 1.47× |
 | Model is writing… | O modelo está a escrever… | 25 vs 17 | 1.47× |
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
 | Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |

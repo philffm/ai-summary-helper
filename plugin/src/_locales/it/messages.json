@@ -4744,5 +4744,20 @@
   },
   "f_of_used_1e41": {
     "message": "{used} di {limit} usati"
+  },
+  "f_default_086b": {
+    "message": "(predefinito)"
+  },
+  "f_free_36fb": {
+    "message": "Gratis"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "Identificatori del modello"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "ad es. gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "{input} in ingresso / {output} in uscita per 1 M di token"
   }
 }

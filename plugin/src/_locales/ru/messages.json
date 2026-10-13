@@ -4744,5 +4744,20 @@
   },
   "f_of_used_1e41": {
     "message": "Использовано {used} из {limit}"
+  },
+  "f_default_086b": {
+    "message": "(по умолчанию)"
+  },
+  "f_free_36fb": {
+    "message": "Бесплатно"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "Идентификаторы моделей"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "напр. gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "{input} вход / {output} выход за 1 млн токенов"
   }
 }

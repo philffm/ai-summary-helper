@@ -4744,5 +4744,20 @@
   },
   "f_of_used_1e41": {
     "message": "{limit} में से {used} उपयोग हुआ"
+  },
+  "f_default_086b": {
+    "message": "(डिफ़ॉल्ट)"
+  },
+  "f_free_36fb": {
+    "message": "मुफ़्त"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "मॉडल पहचानकर्ता"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "उदा. gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "प्रति 10 लाख टोकन: {input} इनपुट / {output} आउटपुट"
   }
 }

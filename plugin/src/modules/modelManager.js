@@ -93,4 +93,17 @@ import StorageManager from './storageManager.js';
     }
 
 // Expose for use in settingsManager.js
+/** "$0.10", "$0.075", "$12.50": USD per million tokens, at least two decimals, up to three below one dollar. */
+export function fmtPrice(n) {
+    const v = Number(n);
+    if (!Number.isFinite(v)) return '';
+    const s = v.toFixed(v < 1 ? 3 : 2);
+    return '$' + (v < 1 && s.endsWith('0') ? s.slice(0, -1) : s);
+}
+/** Short price tag for a model from the roster: "$0.10 in / $0.40 out per 1M tokens", "Free", or '' when the server sent no prices. */
+export function modelPriceLabel(model) {
+    if (!model || !Number.isFinite(model.price_in) || !Number.isFinite(model.price_out)) return '';
+    if (model.price_in === 0 && model.price_out === 0) return T('Free');
+    return T('{input} in / {output} out per 1M tokens', { input: fmtPrice(model.price_in), output: fmtPrice(model.price_out) });
+}
 export { updateModelIdentifierUI };

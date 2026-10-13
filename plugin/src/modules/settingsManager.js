@@ -10,7 +10,7 @@ import { deleteData, describeData } from './dataReset.js';
 import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from './backupUtils.js';
 import StorageManager from './storageManager.js';
 import { initPromptSettings } from './promptSettings.js';
-import { updateModelIdentifierUI } from './modelManager.js';
+import { updateModelIdentifierUI, modelPriceLabel } from './modelManager.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { unknownTags, keysNeedingLabel } from './topicConcepts.js';
@@ -346,7 +346,8 @@ async function initModelSettings(storageData) {
                         const option = document.createElement('option');
                         option.value = model.id;
                         // Example output: "Gemini 3.8 Flash (Context: 1M)"
-                        option.textContent = `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})`;
+                        const price = modelPriceLabel(model);
+                        option.textContent = `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})` + (price ? ' · ' + price : '');
                         cloudModelSelect.appendChild(option);
                     });
 

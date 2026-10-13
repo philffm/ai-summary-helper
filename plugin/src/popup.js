@@ -1,4 +1,5 @@
 import { modelIconName } from './modules/modelBadge.js';
+import { modelPriceLabel } from './modules/modelManager.js';
 import { icon, iconEl, setIcon, setLabel } from './modules/icons.js';
 import { checkOllama } from './modules/ollamaCheck.js';
 import { applyA11y } from './modules/a11y.js';
@@ -562,6 +563,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 const btn = document.createElement('button');
                                 btn.className = 'pill pill--sm pill--soft';
                                 btn.textContent = model.name;
+                                { const price = modelPriceLabel(model); if (price) btn.title = model.name + ' · ' + price; }
                                 if (model.id === activeCloudModel) btn.classList.add('active');
                                 btn.addEventListener('click', async (e) => {
                                     e.preventDefault();

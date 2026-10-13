@@ -4981,5 +4981,21 @@
   "f_of_used_1e41": {
     "message": "{used} of {limit} used",
     "description": "Placeholders: {used} {limit} (keep as is)"
+  },
+  "f_default_086b": {
+    "message": "(default)"
+  },
+  "f_free_36fb": {
+    "message": "Free"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "Model Identifiers"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "e.g. gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "{input} in / {output} out per 1M tokens",
+    "description": "Placeholders: {input} {output} (keep as is)"
   }
 }
