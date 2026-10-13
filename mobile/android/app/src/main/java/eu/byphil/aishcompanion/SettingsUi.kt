@@ -1,5 +1,7 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -44,7 +46,7 @@ import androidx.compose.ui.unit.sp
 /** A small uppercase caption above a group of cards ("Subscriptions · 12" in the extension). */
 @Composable
 fun SettingsCaption(text: String) {
-    Text(text.uppercase(), style = MaterialTheme.typography.labelMedium, letterSpacing = 0.8.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 4.dp, top = 14.dp))
+    Text(text.uppercase(), style = MaterialTheme.typography.labelMedium, letterSpacing = 0.8.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.semantics { heading() }.padding(start = 4.dp, top = 14.dp))
 }
 
 /** The outlined card of a settings group: thin outline, no fill, small radius. */

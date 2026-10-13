@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
         FeedWorker.schedule(this)
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
         setContent {
-            AishTheme {
+            AishTheme(highContrast = model.highContrast, reduceMotion = model.reduceMotion) {
                 Surface(Modifier.fillMaxSize()) {
                     App(model, onScan = { onResult -> scan(onResult) }, onReady = { Guard.end(this, "start") },
                         startUrl = intent?.getStringExtra(EXTRA_OPEN_URL).orEmpty(), startSummarize = intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true)

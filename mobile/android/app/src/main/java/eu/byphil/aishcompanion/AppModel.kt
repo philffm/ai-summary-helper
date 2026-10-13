@@ -66,6 +66,7 @@ class AppModel(context: Context) {
         leftHanded = store.leftHanded.also { Handed.left = it }
         groupSimilar = store.groupSimilar
         summaryLang = store.summaryLang
+        highContrast = store.highContrast; reduceMotion = store.reduceMotion
         readerScale = store.readerScale; readerFont = store.readerFont; readerSpacing = store.readerSpacing; readerTheme = store.readerTheme
         speakSummary = store.speakSummary
         ghostMarks = store.ghostMarks
@@ -92,6 +93,10 @@ class AppModel(context: Context) {
 
     var leftHanded by mutableStateOf(store.leftHanded.also { Handed.left = it })
     fun changeLeftHanded(on: Boolean) { store.leftHanded = on; leftHanded = on; Handed.left = on }
+    var highContrast by mutableStateOf(store.highContrast)
+    fun changeHighContrast(on: Boolean) { store.highContrast = on; highContrast = on }
+    var reduceMotion by mutableStateOf(store.reduceMotion)
+    fun changeReduceMotion(on: Boolean) { store.reduceMotion = on; reduceMotion = on }
     var readerScale by mutableStateOf(store.readerScale)
     fun changeReaderScale(v: Float) { store.readerScale = v; readerScale = v }
     var readerFont by mutableStateOf(store.readerFont)

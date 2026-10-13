@@ -1,5 +1,7 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.material.icons.filled.Contrast
+import androidx.compose.material.icons.filled.MotionPhotosOff
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Highlight
@@ -46,6 +48,8 @@ fun FeedsCard(model: AppModel) {
 fun AccessibilityCard(model: AppModel) {
     var scale by remember { mutableStateOf(model.store.readerScale) }
     SettingsGroup {
+        ToggleRow("High contrast", "Stronger text and border colours throughout the app.", model.highContrast, icon = Icons.Filled.Contrast) { model.changeHighContrast(it) }
+        ToggleRow("Reduce motion", "No list animations. The system's \"remove animations\" setting is respected as well.", model.reduceMotion, icon = Icons.Filled.MotionPhotosOff) { model.changeReduceMotion(it) }
         ChoiceRow("Reading typeface", "\"Easy read\" is Atkinson Hyperlegible, designed for low vision.", ReaderLook.FONTS, model.readerFont, icon = Icons.Filled.TextFields) { model.changeReaderFont(it) }
         ChoiceRow("Line spacing", "Space between lines of article text.", ReaderLook.SPACING.map { it.first.toString() to it.second }, ReaderLook.SPACING.minByOrNull { kotlin.math.abs(it.first - model.readerSpacing) }!!.first.toString(), icon = Icons.Filled.FormatLineSpacing) { model.changeReaderSpacing(it.toFloat()) }
         ChoiceRow("Reading background", "Paper is warm and easy on the eyes; Dark and White ignore the app theme.", ReaderLook.THEMES, model.readerTheme, icon = Icons.Filled.Palette) { model.changeReaderTheme(it) }

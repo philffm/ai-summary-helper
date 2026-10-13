@@ -1,5 +1,7 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import android.text.format.DateUtils
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -159,9 +161,9 @@ private fun BlockContent(b: Block, text: androidx.compose.ui.text.AnnotatedStrin
     val body = MaterialTheme.typography.bodyLarge.copy(fontFamily = rs.family ?: MaterialTheme.typography.bodyLarge.fontFamily)
     val line = (27 * rs.spacing).sp
     when (b.type) {
-        "h1" -> Text(text, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
-        "h2" -> Text(text, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 10.dp))
-        "h3" -> Text(text, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 6.dp))
+        "h1" -> Text(text, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, modifier = Modifier.semantics { heading() }.padding(top = 12.dp))
+        "h2" -> Text(text, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.semantics { heading() }.padding(top = 10.dp))
+        "h3" -> Text(text, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, modifier = Modifier.semantics { heading() }.padding(top = 6.dp))
         "li" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Text("•", style = MaterialTheme.typography.bodyLarge)
             Text(text, style = body, fontSize = 17.sp, lineHeight = line, modifier = Modifier.weight(1f))

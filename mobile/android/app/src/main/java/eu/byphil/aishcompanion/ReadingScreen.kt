@@ -1,5 +1,9 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -192,7 +196,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                         })
                                         SwipeToDismissBox(
                                             state = dismiss,
-                                            modifier = Modifier.animateItem(),
+                                            modifier = if (LocalReduceMotion.current) Modifier else Modifier.animateItem(),
                                             backgroundContent = {
                                                 val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
                                                 Box(
@@ -207,7 +211,13 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                         ) {
                                             Card(
                                                 onClick = { onSelect(a.id); model.articles.markRead(a.id) },
-                                                modifier = Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large,
+                                                // The swipe gestures as TalkBack actions (swiping is not reachable without sight or fine motor control).
+                                                modifier = Modifier.fillMaxWidth().semantics {
+                                                    customActions = listOf(
+                                                        CustomAccessibilityAction(if (unread) "Mark as read" else "Mark as unread") { model.toggleRead(a.id); true },
+                                                        CustomAccessibilityAction(if (inArchive) "Delete" else "Archive") { if (inArchive) deleteWithUndo(a.id) else archiveWithUndo(a.id); true },
+                                                    )
+                                                }, shape = MaterialTheme.shapes.large,
                                                 colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
                                             ) {
                                                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -288,7 +298,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
         LazyColumn(Modifier.weight(1f).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 40.dp)) {
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                    Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.semantics { heading() })
                     val meta = listOf(article.byline, article.site).filter { it.isNotBlank() }.joinToString(" · ")
                     if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
@@ -396,7 +406,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
 @Composable
 private fun Highlights(list: List<Highlight>) {
     Column(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(top = 16.dp)) {
-        Text("Highlights", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+        Text("Highlights", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.semantics { heading() })
         for (h in list) {
             val (bg, fg) = if (h.ghost) MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.tertiaryContainer to MaterialTheme.colorScheme.onTertiaryContainer
             Card(Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.medium, colors = CardDefaults.cardColors(containerColor = bg, contentColor = fg)) {

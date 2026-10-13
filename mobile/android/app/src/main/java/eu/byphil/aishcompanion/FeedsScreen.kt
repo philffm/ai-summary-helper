@@ -1,5 +1,7 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -524,6 +526,12 @@ private fun SwipeableCard(e: FeedEntryRef, enabled: Boolean, onRead: () -> Unit,
     })
     androidx.compose.material3.SwipeToDismissBox(
         state = state, enableDismissFromStartToEnd = enabled, enableDismissFromEndToStart = enabled,
+        modifier = androidx.compose.ui.Modifier.semantics {
+            customActions = listOf(
+                androidx.compose.ui.semantics.CustomAccessibilityAction(if (e.stored.read) "Mark as unread" else "Mark as read") { onRead(); true },
+                androidx.compose.ui.semantics.CustomAccessibilityAction(if (e.stored.fav) "Remove from favorites" else "Add to favorites") { onFav(); true },
+            )
+        },
         backgroundContent = {
             val toRight = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.StartToEnd
             val toLeft = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.EndToStart

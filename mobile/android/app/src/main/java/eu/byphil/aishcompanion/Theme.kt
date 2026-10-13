@@ -26,7 +26,7 @@ private val Light = lightColorScheme(
     background = Color(0xFFFAF8FF), onBackground = Color(0xFF0F172A),
     surface = Color(0xFFFAF8FF), onSurface = Color(0xFF0F172A),
     surfaceVariant = Color(0xFFEEF1F8), onSurfaceVariant = Color(0xFF566274),
-    outline = Color(0xFF94A3B8), outlineVariant = Color(0xFFD5DBE6),
+    outline = Color(0xFF64748B), outlineVariant = Color(0xFFD5DBE6),
     error = Color(0xFFDC2626), onError = Color.White,
     secondaryContainer = Color(0xFFE0E9FB), onSecondaryContainer = Color(0xFF1E3A8A),
     tertiaryContainer = Color(0xFFFDF0C8), onTertiaryContainer = Color(0xFF5B3B05),
@@ -49,6 +49,21 @@ private val Dark = darkColorScheme(
     surfaceContainerLowest = Color(0xFF080A10), surfaceContainerLow = Color(0xFF0F131B), surfaceContainer = Color(0xFF131822),
     surfaceContainerHigh = Color(0xFF181E2A), surfaceContainerHighest = Color(0xFF1E2532),
 )
+// High contrast: text and borders at the strongest steps (WCAG AAA for text), same brand hue.
+private val LightHigh = Light.copy(
+    primary = Color(0xFF1D4ED8), onSurface = Color(0xFF000000), onBackground = Color(0xFF000000), onSurfaceVariant = Color(0xFF2B3544),
+    outline = Color(0xFF334155), outlineVariant = Color(0xFF64748B), primaryContainer = Color(0xFFBFD7FE), onPrimaryContainer = Color(0xFF0B1F5C),
+    secondary = Color(0xFF1D4ED8),
+)
+private val DarkHigh = Dark.copy(
+    primary = Color(0xFF93C5FD), onSurface = Color(0xFFFFFFFF), onBackground = Color(0xFFFFFFFF), onSurfaceVariant = Color(0xFFD5DBE6),
+    outline = Color(0xFFCBD5E1), outlineVariant = Color(0xFF94A3B8), primaryContainer = Color(0xFF1E3A8A), onPrimaryContainer = Color(0xFFFFFFFF),
+    secondary = Color(0xFF93C5FD), onSecondary = Color(0xFF0B0E14),
+)
+
+/** True when animations should be skipped: the "Reduce motion" setting, or the system turned animations off. */
+val LocalReduceMotion = androidx.compose.runtime.compositionLocalOf { false }
+
 private val AishShapes = Shapes(
     extraSmall = RoundedCornerShape(6.dp), small = RoundedCornerShape(12.dp),
     medium = RoundedCornerShape(16.dp), large = RoundedCornerShape(20.dp), extraLarge = RoundedCornerShape(28.dp),
@@ -76,6 +91,11 @@ private fun Typography.with(family: FontFamily): Typography {
 private val AishTypography = Typography().with(HankenGrotesk)
 
 @Composable
-fun AishTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = if (isSystemInDarkTheme()) Dark else Light, shapes = AishShapes, typography = AishTypography, content = content)
+fun AishTheme(highContrast: Boolean = false, reduceMotion: Boolean = false, content: @Composable () -> Unit) {
+    val dark = isSystemInDarkTheme()
+    val scheme = when { highContrast && dark -> DarkHigh; highContrast -> LightHigh; dark -> Dark; else -> Light }
+    val noMotion = reduceMotion || !android.animation.ValueAnimator.areAnimatorsEnabled()
+    androidx.compose.runtime.CompositionLocalProvider(LocalReduceMotion provides noMotion) {
+        MaterialTheme(colorScheme = scheme, shapes = AishShapes, typography = AishTypography, content = content)
+    }
 }

@@ -8,7 +8,7 @@ import org.json.JSONObject
  */
 object SettingsBackup {
     const val FORMAT = "aish-settings-v1"
-    private val EXACT = setOf("feeds.group", "model.id", "ui.left", "reader.scale", "reader.font", "reader.theme", "reader.spacing", "reader.wpm", "summary.lang", "summary.speak", "summary.ghost", "tts.rate")
+    private val EXACT = setOf("feeds.group", "model.id", "ui.left", "ui.contrast", "ui.motion", "reader.scale", "reader.font", "reader.theme", "reader.spacing", "reader.wpm", "summary.lang", "summary.speak", "summary.ghost", "tts.rate")
     private val PREFIX = listOf("alarm.")
     private val NOT = setOf("alarm.sound")   // a sound URI means nothing on another phone
 

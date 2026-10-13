@@ -73,6 +73,16 @@ class Store(context: Context) {
         get() = prefs.getFloat("reader.scale", 1f)
         set(v) = prefs.edit().putFloat("reader.scale", v).apply()
 
+    /** Strongest text and border contrast (a stricter colour scheme). */
+    var highContrast: Boolean
+        get() = prefs.getBoolean("ui.contrast", false)
+        set(v) = prefs.edit().putBoolean("ui.contrast", v).apply()
+
+    /** Skip list and screen animations (the system "remove animations" switch also counts). */
+    var reduceMotion: Boolean
+        get() = prefs.getBoolean("ui.motion", false)
+        set(v) = prefs.edit().putBoolean("ui.motion", v).apply()
+
     /** Reader typeface: "sans" (app font), "serif" or "easy" (Atkinson Hyperlegible). */
     var readerFont: String
         get() = prefs.getString("reader.font", "sans") ?: "sans"
