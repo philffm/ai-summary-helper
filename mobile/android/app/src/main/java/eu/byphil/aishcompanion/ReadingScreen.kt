@@ -81,6 +81,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.mutableIntStateOf
@@ -162,7 +163,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                         Column(Modifier.fillMaxSize()) {
                             if (searching) OutlinedTextField(
                                 query, { query = it }, Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 8.dp), singleLine = true,
-                                placeholder = { Text("Search title, site and text") }, shape = RoundedCornerShape(28.dp),
+                                placeholder = { Text("Search title, site and text") }, shape = MaterialTheme.shapes.extraLarge,
                                 leadingIcon = { Icon(Icons.Filled.Search, null) },
                             )
                             Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -195,7 +196,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                             backgroundContent = {
                                                 val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
                                                 Box(
-                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, RoundedCornerShape(20.dp)).padding(horizontal = 24.dp),
+                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, MaterialTheme.shapes.large).padding(horizontal = 24.dp),
                                                     contentAlignment = if (right) Alignment.CenterStart else Alignment.CenterEnd,
                                                 ) {
                                                     if (right) Icon(if (unread) Icons.Filled.DoneAll else Icons.Filled.MarkEmailUnread, contentDescription = if (unread) "Mark as read" else "Mark as unread")
@@ -206,7 +207,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                         ) {
                                             Card(
                                                 onClick = { onSelect(a.id); model.articles.markRead(a.id) },
-                                                modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
+                                                modifier = Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large,
                                                 colors = CardDefaults.cardColors(containerColor = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant),
                                             ) {
                                                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -243,10 +244,28 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     var summarizing by remember(id) { mutableStateOf(false) }
     var summaryNote by remember(id) { mutableStateOf("") }
     var remindMenu by remember(id) { mutableStateOf(false) }
+    var moreMenu by remember(id) { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val notifPermission = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     val voice = remember(id) { ReadAloud(context, model.store.ttsRate) { model.store.ttsRate = it } }
     DisposableEffect(id) { onDispose { voice.shutdown() } }
+    val summarize: () -> Unit = {
+        if (!summarizing) {
+            val a = article
+            if (a != null) {
+                summarizing = true; summaryNote = "Summarizing on this phone…"
+                scope.launch {
+                    val page = Page(a.title, a.blocks.map { it.type to it.text }, a.lang)
+                    val result = withContext(Dispatchers.Default) {
+                        runCatching { PageSummary.summarize(context, page, progress = { i, n -> summaryNote = if (n > 1) "Part $i of $n…" else "Summarizing on this phone…" }) }.getOrNull()
+                    }
+                    if (result != null && model.articles.setSummary(id, result.text, result.passages)) { version++; summaryNote = "" }
+                    else summaryNote = "The model could not summarize this article."
+                    summarizing = false
+                }
+            }
+        }
+    }
     LaunchedEffect(id) { model.articles.markRead(id) }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
     var mineTick by remember(id) { mutableIntStateOf(0) }   // bumped when the reader marks or unmarks a paragraph
@@ -288,64 +307,53 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                         AssistChip(onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
                         AssistChip(onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { Icon(Icons.Filled.Close, null) })
                     }
-                    AssistChip(onClick = { sheet = true }, label = { Text("Aa") })
-                    AssistChip(onClick = { voice.stop(); speedReading = true }, label = { Text("Speed read") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
-                    AssistChip(
-                        onClick = {
-                            val cm = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                            cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, ArticleMarkdown.render(article.copy(highlights = allHighlights))))
-                            android.widget.Toast.makeText(context, "Copied as Markdown", android.widget.Toast.LENGTH_SHORT).show()
-                        },
-                        label = { Text("Copy Markdown") }, leadingIcon = { Icon(Icons.Filled.ContentCopy, null) },
-                    )
-                    AssistChip(
-                        onClick = { shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article.copy(highlights = allHighlights))) },
-                        label = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) },
-                    )
                     if (LocalLlm.installed(context)) AssistChip(
-                        onClick = {
-                            if (summarizing) return@AssistChip
-                            summarizing = true; summaryNote = "Summarizing on this phone…"
-                            scope.launch {
-                                val page = Page(article.title, article.blocks.map { it.type to it.text }, article.lang)
-                                val result = withContext(Dispatchers.Default) {
-                                    runCatching { PageSummary.summarize(context, page, progress = { i, n -> summaryNote = if (n > 1) "Part $i of $n…" else "Summarizing on this phone…" }) }.getOrNull()
-                                }
-                                if (result != null && model.articles.setSummary(id, result.text, result.passages)) { version++; summaryNote = "" }
-                                else summaryNote = "The model could not summarize this article."
-                                summarizing = false
-                            }
-                        },
+                        onClick = { summarize() },
                         label = { Text(if (summarizing) summaryNote else if (article.summary.isBlank()) "Summarize" else "Summarize again") },
                         leadingIcon = { Icon(Icons.Filled.AutoAwesome, null) },
                     )
+                    // Everything else lives behind ⋯ so the top of the article stays calm.
                     Box {
-                        AssistChip(
-                            onClick = {
-                                if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-                                remindMenu = true
-                            },
-                            label = { Text("Remind me") }, leadingIcon = { Icon(Icons.Filled.Alarm, null) },
-                        )
-                        DropdownMenu(expanded = remindMenu, onDismissRequest = { remindMenu = false }) {
-                            for (o in ReminderTimes.options(java.time.ZonedDateTime.now())) DropdownMenuItem(
-                                text = { Text(o.label) },
-                                onClick = {
-                                    remindMenu = false
-                                    Reminders.schedule(context, o.delayMs, article.title, article.url, id)
-                                    android.widget.Toast.makeText(context, "I will remind you: ${o.label.lowercase()}", android.widget.Toast.LENGTH_SHORT).show()
-                                },
-                            )
+                        AssistChip(onClick = { moreMenu = true }, label = { Text("More") }, leadingIcon = { Icon(Icons.Filled.MoreVert, null) })
+                        DropdownMenu(expanded = moreMenu, onDismissRequest = { moreMenu = false; remindMenu = false }) {
+                            if (remindMenu) {
+                                for (o in ReminderTimes.options(java.time.ZonedDateTime.now())) DropdownMenuItem(
+                                    text = { Text(o.label) },
+                                    onClick = {
+                                        moreMenu = false; remindMenu = false
+                                        Reminders.schedule(context, o.delayMs, article.title, article.url, id)
+                                        android.widget.Toast.makeText(context, "I will remind you: ${o.label.lowercase()}", android.widget.Toast.LENGTH_SHORT).show()
+                                    },
+                                )
+                            } else {
+                                DropdownMenuItem(text = { Text("Speed read") }, leadingIcon = { Icon(Icons.Filled.Speed, null) }, onClick = { moreMenu = false; voice.stop(); speedReading = true })
+                                DropdownMenuItem(text = { Text("Text & layout") }, leadingIcon = { Icon(Icons.Filled.TextIncrease, null) }, onClick = { moreMenu = false; sheet = true })
+                                DropdownMenuItem(text = { Text("Copy Markdown") }, leadingIcon = { Icon(Icons.Filled.ContentCopy, null) }, onClick = {
+                                    moreMenu = false
+                                    val cm = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                                    cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, ArticleMarkdown.render(article.copy(highlights = allHighlights))))
+                                    android.widget.Toast.makeText(context, "Copied as Markdown", android.widget.Toast.LENGTH_SHORT).show()
+                                })
+                                DropdownMenuItem(text = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) }, onClick = {
+                                    moreMenu = false
+                                    shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article.copy(highlights = allHighlights)))
+                                })
+                                DropdownMenuItem(text = { Text("Remind me") }, leadingIcon = { Icon(Icons.Filled.Alarm, null) }, onClick = {
+                                    if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                                    remindMenu = true
+                                })
+                                DropdownMenuItem(
+                                    text = { Text(if (archived) "Unarchive" else "Archive") },
+                                    leadingIcon = { Icon(if (archived) Icons.Filled.Unarchive else Icons.Filled.Archive, null) },
+                                    onClick = { moreMenu = false; if (archived) model.setArchived(id, false) else onArchive(id) },
+                                )
+                            }
                         }
                     }
-                    AssistChip(
-                        onClick = { if (archived) model.setArchived(id, false) else onArchive(id) },
-                        label = { Text(if (archived) "Unarchive" else "Archive") }, leadingIcon = { Icon(if (archived) Icons.Filled.Unarchive else Icons.Filled.Archive, null) },
-                    )
                 }
             }
             if (article.summary.isNotBlank()) item {
-                Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
+                Card(Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large, colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(if (article.local) "Summary · made on this phone" else "AISH summary", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                         PlainText(article.summary)
@@ -391,7 +399,7 @@ private fun Highlights(list: List<Highlight>) {
         Text("Highlights", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
         for (h in list) {
             val (bg, fg) = if (h.ghost) MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.tertiaryContainer to MaterialTheme.colorScheme.onTertiaryContainer
-            Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = bg, contentColor = fg)) {
+            Card(Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.medium, colors = CardDefaults.cardColors(containerColor = bg, contentColor = fg)) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(if (h.ghost) "AI highlight" else "Your highlight", style = MaterialTheme.typography.labelSmall)
                     Text(h.text, style = MaterialTheme.typography.bodyMedium)

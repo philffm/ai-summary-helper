@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,11 +51,19 @@ fun SettingsCaption(text: String) {
 @Composable
 fun SettingsCard(content: @Composable ColumnScope.() -> Unit) {
     Card(
-        Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp),
+        Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.small,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
         content = content,
     )
+}
+
+/** The leading icon of a settings row: a Material Symbol in a tinted rounded square, the same size in every row. */
+@Composable
+fun LeadingIcon(icon: ImageVector) {
+    Box(Modifier.size(40.dp).background(MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.shapes.small), contentAlignment = Alignment.Center) {
+        Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.onSecondaryContainer, modifier = Modifier.size(22.dp))
+    }
 }
 
 /** A card with rows in it, padded the same way everywhere. */
@@ -62,8 +74,9 @@ fun SettingsGroup(content: @Composable ColumnScope.() -> Unit) {
 
 /** Label and hint on the left, a switch on the right. */
 @Composable
-fun ToggleRow(title: String, hint: String, checked: Boolean, onChange: (Boolean) -> Unit) {
+fun ToggleRow(title: String, hint: String, checked: Boolean, icon: ImageVector? = null, onChange: (Boolean) -> Unit) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        if (icon != null) LeadingIcon(icon)
         Column(Modifier.weight(1f)) {
             Text(title, style = MaterialTheme.typography.bodyLarge)
             if (hint.isNotEmpty()) Text(hint, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -74,9 +87,10 @@ fun ToggleRow(title: String, hint: String, checked: Boolean, onChange: (Boolean)
 
 /** Label on the left, the current choice as a drop-down button on the right (for longer lists). */
 @Composable
-fun SelectRow(title: String, current: String, options: List<Pair<String, String>>, onPick: (String) -> Unit) {
+fun SelectRow(title: String, current: String, options: List<Pair<String, String>>, icon: ImageVector? = null, onPick: (String) -> Unit) {
     val open = remember { mutableStateOf(false) }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        if (icon != null) LeadingIcon(icon)
         Text(title, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
         Box {
             OutlinedButton(onClick = { open.value = true }) { Text(current, maxLines = 1, overflow = TextOverflow.Ellipsis) }
@@ -90,9 +104,12 @@ fun SelectRow(title: String, current: String, options: List<Pair<String, String>
 /** Label above a button group (like Graph | List in the extension) for two to four short choices. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChoiceRow(title: String, hint: String, options: List<Pair<String, String>>, selected: String, onPick: (String) -> Unit) {
+fun ChoiceRow(title: String, hint: String, options: List<Pair<String, String>>, selected: String, icon: ImageVector? = null, onPick: (String) -> Unit) {
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Text(title, style = MaterialTheme.typography.bodyLarge)
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            if (icon != null) LeadingIcon(icon)
+            Text(title, style = MaterialTheme.typography.bodyLarge)
+        }
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
             options.forEachIndexed { i, (value, label) ->
                 SegmentedButton(selected = selected == value, onClick = { onPick(value) }, shape = SegmentedButtonDefaults.itemShape(i, options.size)) { Text(label, maxLines = 1, overflow = TextOverflow.Ellipsis) }

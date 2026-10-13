@@ -1,5 +1,8 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.material.icons.filled.Link
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -78,19 +81,19 @@ fun OnboardingCard(model: AppModel, onOpenSettings: (String) -> Unit, onAddByAdd
         }
 
         SettingsCaption("Optional")
-        OnboardingLink("🔗", "Connect your browser", "Sync feeds and send articles with the AISH extension, end-to-end encrypted.") { onOpenSettings("link") }
-        OnboardingLink("👤", "Sign in for Pro", "Your plan and the cloud AI, with an email code.") { onOpenSettings("account") }
-        OnboardingLink("🤖", "Download the on-device AI", "Summaries, recaps and the morning briefing, written on this phone.") { onOpenSettings("ai") }
+        OnboardingLink(Icons.Filled.Link, "Connect your browser", "Sync feeds and send articles with the AISH extension, end-to-end encrypted.") { onOpenSettings("link") }
+        OnboardingLink(Icons.Filled.Person, "Sign in for Pro", "Your plan and the cloud AI, with an email code.") { onOpenSettings("account") }
+        OnboardingLink(Icons.Filled.AutoAwesome, "Download the on-device AI", "Summaries, recaps and the morning briefing, written on this phone.") { onOpenSettings("ai") }
 
         TextButton(onClick = { model.finishOnboarding() }, Modifier.align(Alignment.CenterHorizontally)) { Text("Skip for now") }
     }
 }
 
 @Composable
-private fun OnboardingLink(emoji: String, title: String, sub: String, onClick: () -> Unit) {
+private fun OnboardingLink(icon: androidx.compose.ui.graphics.vector.ImageVector, title: String, sub: String, onClick: () -> Unit) {
     SettingsCard {
         Row(Modifier.fillMaxWidth().clickableRow(onClick).padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-            Text(emoji, style = MaterialTheme.typography.titleLarge)
+            LeadingIcon(icon)
             Column(Modifier.weight(1f)) {
                 Text(title, style = MaterialTheme.typography.titleMedium)
                 Text(sub, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

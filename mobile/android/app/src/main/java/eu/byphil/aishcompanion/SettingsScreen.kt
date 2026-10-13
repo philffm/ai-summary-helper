@@ -1,5 +1,13 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Link
+import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.RssFeed
+import androidx.compose.material.icons.filled.Accessibility
+import androidx.compose.material.icons.filled.Storage
+import androidx.compose.material.icons.filled.SettingsBackupRestore
+import androidx.compose.material.icons.filled.Alarm
 import androidx.compose.foundation.Image
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -88,21 +96,21 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
     val cur = if (wide) (panel ?: "account") else panel
 
     val rows = listOf(
-        SettingsRow("account", "ACCOUNT", "👤", "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
-        SettingsRow("link", "ACCOUNT", "🔗", "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
-        SettingsRow("ai", "SUMMARIZING", "🤖", "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
-        SettingsRow("feeds", "FEEDS", "📰", "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
-        SettingsRow("access", "APP", "♿", "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
-        SettingsRow("storage", "APP", "💾", "Storage", "Archive, models and cache", "storage space disk archive clear delete models cache free"),
-        SettingsRow("backup", "APP", "🔁", "Backup & restore", "Export or import your settings", "backup restore export import settings new phone move transfer file"),
-        SettingsRow("alarm", "APP", "⏰", "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock extra fun fact cloud pro license"),
+        SettingsRow("account", "ACCOUNT", Icons.Filled.Person, "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
+        SettingsRow("link", "ACCOUNT", Icons.Filled.Link, "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
+        SettingsRow("ai", "SUMMARIZING", Icons.Filled.AutoAwesome, "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
+        SettingsRow("feeds", "FEEDS", Icons.Filled.RssFeed, "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
+        SettingsRow("access", "APP", Icons.Filled.Accessibility, "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
+        SettingsRow("storage", "APP", Icons.Filled.Storage, "Storage", "Archive, models and cache", "storage space disk archive clear delete models cache free"),
+        SettingsRow("backup", "APP", Icons.Filled.SettingsBackupRestore, "Backup & restore", "Export or import your settings", "backup restore export import settings new phone move transfer file"),
+        SettingsRow("alarm", "APP", Icons.Filled.Alarm, "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock extra fun fact cloud pro license"),
     )
     val title = if (wide) "Settings" else rows.firstOrNull { it.id == cur }?.title ?: "Settings"
 
     val homeList: @Composable () -> Unit = {
                             OutlinedTextField(
                                 query, { query = it }, Modifier.fillMaxWidth(), singleLine = true, placeholder = { Text("Search settings…") },
-                                leadingIcon = { Icon(Icons.Filled.Search, null) }, shape = RoundedCornerShape(28.dp),
+                                leadingIcon = { Icon(Icons.Filled.Search, null) }, shape = MaterialTheme.shapes.extraLarge,
                                 trailingIcon = { if (query.isNotEmpty()) IconButton(onClick = { query = "" }) { Icon(Icons.Filled.Close, contentDescription = "Clear") } },
                             )
                             val q = query.trim().lowercase()
@@ -204,14 +212,14 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
     }
 }
 
-private class SettingsRow(val id: String, val group: String, val emoji: String, val title: String, val sub: String, val keywords: String)
+private class SettingsRow(val id: String, val group: String, val icon: androidx.compose.ui.graphics.vector.ImageVector, val title: String, val sub: String, val keywords: String)
 
 /** One row of the settings home, as in the extension: emoji, title with a live subtitle, chevron. */
 @Composable
 private fun NavRow(r: SettingsRow, selected: Boolean = false, onClick: () -> Unit) {
     SettingsCard {
         Row(Modifier.background(if (selected) MaterialTheme.colorScheme.secondaryContainer else Color.Transparent).clickable(onClick = onClick).padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-            Text(r.emoji, style = MaterialTheme.typography.titleLarge)
+            LeadingIcon(r.icon)
             Column(Modifier.weight(1f)) {
                 Text(r.title, style = MaterialTheme.typography.titleMedium)
                 Text(r.sub, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)

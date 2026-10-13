@@ -1,5 +1,8 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material.icons.filled.AutoAwesome
 import android.Manifest
 import android.app.NotificationManager
 import android.content.Intent
@@ -72,7 +75,7 @@ fun AlarmCard(model: AppModel) {
     androidx.compose.runtime.LaunchedEffect(a) { Guard.end(context, "alarm") }   // drawn fine with these settings
 
     SettingsGroup {
-        ToggleRow("⏰ Morning alarm", "Wakes you and reads your feed briefing. No AI needed, so it also works offline.", a.enabled) { on ->
+        ToggleRow("Morning alarm", "Wakes you and reads your feed briefing. No AI needed, so it also works offline.", a.enabled, icon = Icons.Filled.Alarm) { on ->
             update(a.copy(enabled = on))
             if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
@@ -231,7 +234,7 @@ fun ExtrasCard(model: AppModel) {
     androidx.compose.runtime.LaunchedEffect(saved) { if (saved.isNotBlank()) checkLicense(saved) else status = null }
 
     SettingsGroup {
-        ToggleRow("✨ Extra from the cloud AI", "A fun fact of the day, or anything you ask for, added to the end of your briefing.", a.extraOn) { model.changeAlarm(a.copy(extraOn = it)) }
+        ToggleRow("Extra from the cloud AI", "A fun fact of the day, or anything you ask for, added to the end of your briefing.", a.extraOn, icon = Icons.Filled.AutoAwesome) { model.changeAlarm(a.copy(extraOn = it)) }
             if (a.extraOn) {
                 OutlinedTextField(license, { license = it }, Modifier.fillMaxWidth(), label = { Text("Pro license key (from the extension code or pasted)") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {

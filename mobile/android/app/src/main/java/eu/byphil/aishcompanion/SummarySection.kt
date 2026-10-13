@@ -1,5 +1,15 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Highlight
+import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Layers
+import androidx.compose.material.icons.filled.TextFields
+import androidx.compose.material.icons.filled.FormatLineSpacing
+import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.PanTool
+import androidx.compose.material.icons.filled.FormatSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -12,9 +22,9 @@ import androidx.compose.runtime.setValue
 fun SummaryCard(model: AppModel) {
     LaunchedEffect(Unit) { model.speakSummary = model.store.speakSummary }   // the web view's speaker button changes it too
     SettingsGroup {
-        SelectRow("🌐 Language", SummaryLangs.label(model.summaryLang), SummaryLangs.ALL.map { it.first to it.second }) { model.changeSummaryLang(it) }
-        ToggleRow("🖍 Mark key passages", "The model picks the main sentences of a summarized page and highlights them faintly in the reading list, like the AI highlights in the browser.", model.ghostMarks) { model.changeGhostMarks(it) }
-        ToggleRow("🔊 Read summaries aloud", "Speaks the summary sentence by sentence while the model writes it.", model.speakSummary) { model.changeSpeakSummary(it) }
+        SelectRow("Language", SummaryLangs.label(model.summaryLang), SummaryLangs.ALL.map { it.first to it.second }, icon = Icons.Filled.Language) { model.changeSummaryLang(it) }
+        ToggleRow("Mark key passages", "The model picks the main sentences of a summarized page and highlights them faintly in the reading list, like the AI highlights in the browser.", model.ghostMarks, icon = Icons.Filled.Highlight) { model.changeGhostMarks(it) }
+        ToggleRow("Read summaries aloud", "Speaks the summary sentence by sentence while the model writes it.", model.speakSummary, icon = Icons.Filled.VolumeUp) { model.changeSpeakSummary(it) }
     }
 }
 
@@ -22,7 +32,7 @@ fun SummaryCard(model: AppModel) {
 @Composable
 fun FeedsCard(model: AppModel) {
     SettingsGroup {
-        ToggleRow("🧩 Group similar items", "Stacks items about the same story from several sources under one card.", model.groupSimilar) { model.changeGroupSimilar(it) }
+        ToggleRow("Group similar items", "Stacks items about the same story from several sources under one card.", model.groupSimilar, icon = Icons.Filled.Layers) { model.changeGroupSimilar(it) }
     }
     SettingsCaption("Backup & restore")
     SettingsGroup {
@@ -36,11 +46,11 @@ fun FeedsCard(model: AppModel) {
 fun AccessibilityCard(model: AppModel) {
     var scale by remember { mutableStateOf(model.store.readerScale) }
     SettingsGroup {
-        ChoiceRow("🅰 Reading typeface", "\"Easy read\" is Atkinson Hyperlegible, designed for low vision.", ReaderLook.FONTS, model.readerFont) { model.changeReaderFont(it) }
-        ChoiceRow("↕ Line spacing", "Space between lines of article text.", ReaderLook.SPACING.map { it.first.toString() to it.second }, ReaderLook.SPACING.minByOrNull { kotlin.math.abs(it.first - model.readerSpacing) }!!.first.toString()) { model.changeReaderSpacing(it.toFloat()) }
-        ChoiceRow("🎨 Reading background", "Paper is warm and easy on the eyes; Dark and White ignore the app theme.", ReaderLook.THEMES, model.readerTheme) { model.changeReaderTheme(it) }
-        ChoiceRow("🖐 Hand", "The main actions in bottom bars sit on this side, within reach of your thumb.", listOf("right" to "Right-handed", "left" to "Left-handed"), if (model.leftHanded) "left" else "right") { model.changeLeftHanded(it == "left") }
-        ChoiceRow("🔠 Reading text size", "Applies to articles in the reading list.", listOf("0.9" to "Small", "1.0" to "Normal", "1.2" to "Large", "1.5" to "Huge"),
-            listOf(0.9f, 1.0f, 1.2f, 1.5f).minByOrNull { kotlin.math.abs(it - scale) }.toString()) { scale = it.toFloat(); model.changeReaderScale(scale) }
+        ChoiceRow("Reading typeface", "\"Easy read\" is Atkinson Hyperlegible, designed for low vision.", ReaderLook.FONTS, model.readerFont, icon = Icons.Filled.TextFields) { model.changeReaderFont(it) }
+        ChoiceRow("Line spacing", "Space between lines of article text.", ReaderLook.SPACING.map { it.first.toString() to it.second }, ReaderLook.SPACING.minByOrNull { kotlin.math.abs(it.first - model.readerSpacing) }!!.first.toString(), icon = Icons.Filled.FormatLineSpacing) { model.changeReaderSpacing(it.toFloat()) }
+        ChoiceRow("Reading background", "Paper is warm and easy on the eyes; Dark and White ignore the app theme.", ReaderLook.THEMES, model.readerTheme, icon = Icons.Filled.Palette) { model.changeReaderTheme(it) }
+        ChoiceRow("Hand", "The main actions in bottom bars sit on this side, within reach of your thumb.", listOf("right" to "Right-handed", "left" to "Left-handed"), if (model.leftHanded) "left" else "right", icon = Icons.Filled.PanTool) { model.changeLeftHanded(it == "left") }
+        ChoiceRow("Reading text size", "Applies to articles in the reading list.", listOf("0.9" to "Small", "1.0" to "Normal", "1.2" to "Large", "1.5" to "Huge"),
+            listOf(0.9f, 1.0f, 1.2f, 1.5f).minByOrNull { kotlin.math.abs(it - scale) }.toString(), icon = Icons.Filled.FormatSize) { scale = it.toFloat(); model.changeReaderScale(scale) }
     }
 }

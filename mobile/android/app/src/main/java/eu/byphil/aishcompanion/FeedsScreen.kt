@@ -282,7 +282,7 @@ fun FeedsScreen(
                                         value = query, onValueChange = { query = it }, singleLine = true, placeholder = { Text("Search all feeds") },
                                         leadingIcon = { Icon(Icons.Filled.Search, null) },
                                         trailingIcon = { IconButton(onClick = { searching = false; query = "" }) { Icon(Icons.Filled.Close, contentDescription = "Close search") } },
-                                        shape = RoundedCornerShape(28.dp),
+                                        shape = MaterialTheme.shapes.extraLarge,
                                         colors = TextFieldDefaults.colors(focusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent),
                                         modifier = Modifier.fillMaxWidth().focusRequester(searchFocus),
                                     )
@@ -315,7 +315,7 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, select
     val unread = !e.stored.read
     val item = e.stored.item
     Card(
-        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong), shape = RoundedCornerShape(20.dp),
+        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong), shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(containerColor = if (picked || selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, MaterialTheme.colorScheme.surfaceVariant)),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -466,7 +466,7 @@ private fun FeedRow(model: AppModel, f: Feed, source: String, menuFor: String?, 
 private fun SyncCard(model: AppModel, onAdd: () -> Unit) {
     val scope = rememberCoroutineScope()
     val canSync = model.pairing?.canSync == true
-    Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+    Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(if (canSync) "Synced with your extension" else "Not synced with the extension", style = MaterialTheme.typography.titleSmall)
             Text(
@@ -488,7 +488,7 @@ private fun RecapCard(model: AppModel, onRefresh: () -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     val text = model.recapText
     val today = java.time.Instant.ofEpochMilli(model.recapAt).atZone(java.time.ZoneId.systemDefault()).toLocalDate() == java.time.LocalDate.now()
-    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
+    Card(Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large, colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Today in your feeds", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
@@ -528,7 +528,7 @@ private fun SwipeableCard(e: FeedEntryRef, enabled: Boolean, onRead: () -> Unit,
             val toRight = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.StartToEnd
             val toLeft = state.dismissDirection == androidx.compose.material3.SwipeToDismissBoxValue.EndToStart
             if (toRight || toLeft) Box(
-                Modifier.fillMaxSize().background(if (toRight) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer, RoundedCornerShape(20.dp)).padding(horizontal = 24.dp),
+                Modifier.fillMaxSize().background(if (toRight) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.shapes.large).padding(horizontal = 24.dp),
                 contentAlignment = if (toRight) Alignment.CenterStart else Alignment.CenterEnd,
             ) {
                 if (toRight) Icon(if (e.stored.read) Icons.Filled.MarkEmailUnread else Icons.Filled.DoneAll, contentDescription = if (e.stored.read) "Mark as unread" else "Mark as read")

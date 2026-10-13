@@ -170,7 +170,7 @@ private fun BlockContent(b: Block, text: androidx.compose.ui.text.AnnotatedStrin
             Box(Modifier.width(3.dp).fillMaxHeight().background(MaterialTheme.colorScheme.primary, RoundedCornerShape(2.dp)))
             Text(text, style = body, fontSize = 17.sp, fontStyle = FontStyle.Italic, lineHeight = line, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
-        "pre" -> Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(12.dp)) {
+        "pre" -> Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = MaterialTheme.shapes.small) {
             Text(b.text, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall, modifier = Modifier.horizontalScroll(rememberScrollState()).padding(12.dp))
         }
         else -> Text(text, style = body, fontSize = 17.sp, lineHeight = (28 * rs.spacing).sp)
@@ -209,7 +209,7 @@ fun PlainText(text: String) {
 fun InfoCard(title: String, body: String, isError: Boolean = false, content: (@Composable () -> Unit)? = null) {
     Card(
         Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(12.dp),
+        shape = MaterialTheme.shapes.small,
         colors = CardDefaults.cardColors(containerColor = if (isError) MaterialTheme.colorScheme.errorContainer else MaterialTheme.colorScheme.surface),
         border = androidx.compose.foundation.BorderStroke(1.dp, if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outlineVariant),
     ) {
