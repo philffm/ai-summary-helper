@@ -206,9 +206,9 @@ export function renderQuota(anchor, quota) {
     const pct = Math.max(0, Math.min(100, Math.round(quota.percent)));
     const bar = box.querySelector('.ai-quota-bar');
     box.querySelector('.ai-quota-title').textContent = T('Monthly AI allowance');
-    box.querySelector('.ai-quota-pct').textContent = T('{n}% used', { n: pct });
-    bar.setAttribute('aria-valuenow', String(pct)); bar.setAttribute('aria-label', T('Monthly AI allowance'));
-    bar.firstElementChild.style.width = pct + '%';
+    box.querySelector('.ai-quota-pct').textContent = T('{n}% left', { n: 100 - pct });
+    bar.setAttribute('aria-valuenow', String(100 - pct)); bar.setAttribute('aria-label', T('Monthly AI allowance'));
+    bar.firstElementChild.style.width = (100 - pct) + '%';   // the bar shows what is left, so it shrinks as the allowance is used
     box.classList.toggle('warn', pct >= 80 && pct < 100); box.classList.toggle('full', pct >= 100);
     let when = '';
     try { when = new Date(quota.reset_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (_) { /* keep empty */ }

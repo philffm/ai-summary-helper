@@ -4759,5 +4759,8 @@
   },
   "f_in_out_per_1m_tokens_5847": {
     "message": "प्रति 10 लाख टोकन: {input} इनपुट / {output} आउटपुट"
+  },
+  "f_left_4083": {
+    "message": "{n}% शेष"
   }
 }

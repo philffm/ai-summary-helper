@@ -92,7 +92,8 @@ fun AccountCard(model: AppModel) {
 private fun UsageCard(u: AccountInfo, localRuns: Int, cloudCalls: Int) {
     SettingsCaption("AI use this month")
     SettingsGroup {
-        Text("${u.percent}% of the monthly allowance used", style = MaterialTheme.typography.titleMedium)
+        Text("${100 - u.percent}% of the monthly allowance left", style = MaterialTheme.typography.titleMedium)
+        androidx.compose.material3.LinearProgressIndicator(progress = { (1f - u.percent / 100f).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth())
         Text(
             "${u.requests} cloud request" + (if (u.requests == 1) "" else "s") + " · ${Account.tokens(u.tokensIn)} tokens in, ${Account.tokens(u.tokensOut)} out" +
                 (if (u.resetAt.length >= 10) " · resets ${u.resetAt.take(10)}" else ""),

@@ -4759,5 +4759,8 @@
   },
   "f_in_out_per_1m_tokens_5847": {
     "message": "{input} вход / {output} выход за 1 млн токенов"
+  },
+  "f_left_4083": {
+    "message": "Осталось {n}%"
   }
 }

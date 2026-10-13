@@ -43,7 +43,7 @@ object Account {
 
     fun describe(info: AccountInfo?): String = when {
         info == null -> "Could not check the license right now."
-        info.active -> "Pro active · ${info.percent}% of this month's AI allowance used"
+        info.active -> "Pro active · ${100 - info.percent}% of this month's AI allowance left"
         else -> "This key is not recognised, or has no AI allowance."
     }
 

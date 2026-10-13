@@ -4759,5 +4759,8 @@
   },
   "f_in_out_per_1m_tokens_5847": {
     "message": "{input} ein / {output} aus pro 1 Mio. Tokens"
+  },
+  "f_left_4083": {
+    "message": "{n} % übrig"
   }
 }

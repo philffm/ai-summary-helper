@@ -4741,5 +4741,8 @@
   },
   "f_in_out_per_1m_tokens_5847": {
     "message": "입력 {input} / 출력 {output} (100만 토큰당)"
+  },
+  "f_left_4083": {
+    "message": "{n}% 남음"
   }
 }

@@ -4759,5 +4759,8 @@
   },
   "f_in_out_per_1m_tokens_5847": {
     "message": "{input} en entrée / {output} en sortie par million de jetons"
+  },
+  "f_left_4083": {
+    "message": "{n} % restant"
   }
 }

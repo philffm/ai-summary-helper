@@ -4759,5 +4759,8 @@
   },
   "f_in_out_per_1m_tokens_5847": {
     "message": "每百万令牌：输入 {input} / 输出 {output}"
+  },
+  "f_left_4083": {
+    "message": "剩余 {n}%"
   }
 }

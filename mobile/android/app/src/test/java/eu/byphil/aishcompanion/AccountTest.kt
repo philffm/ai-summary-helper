@@ -24,7 +24,7 @@ class AccountTest {
     @Test fun readsTheUsageAnswer() {
         val pro = Account.parse("""{"success":true,"quota":{"used_usd":0.123,"limit_usd":1.5,"percent":8,"requests":4,"reset_at":"x"},"account":{}}""")!!
         assertTrue(pro.active); assertEquals(8, pro.percent)
-        assertEquals("Pro active · 8% of this month's AI allowance used", Account.describe(pro))
+        assertEquals("Pro active · 92% of this month's AI allowance left", Account.describe(pro))
         val free = Account.parse("""{"success":true,"quota":null}""")!!
         assertFalse(free.active)
         assertEquals("This key is not recognised, or has no AI allowance.", Account.describe(free))

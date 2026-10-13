@@ -4,8 +4,8 @@ Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1369 | 0 | 0 | 47 |
-| de | 1369 | 0 | 0 | 201 |
+| ar | 1369 | 0 | 0 | 46 |
+| de | 1369 | 0 | 0 | 200 |
 | es | 1369 | 0 | 0 | 184 |
 | fr | 1369 | 0 | 0 | 214 |
 | hi | 1369 | 0 | 0 | 84 |
@@ -13,7 +13,7 @@ Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ja | 1369 | 0 | 0 | 95 |
 | ko | 1369 | 0 | 0 | 25 |
 | pt_PT | 1369 | 0 | 0 | 175 |
-| ru | 1369 | 0 | 0 | 115 |
+| ru | 1369 | 0 | 0 | 114 |
 | zh_CN | 1369 | 0 | 0 | 2 |
 | zh_HK | 1369 | 0 | 0 | 2 |
 | zh_TW | 1369 | 0 | 0 | 2 |
@@ -39,7 +39,6 @@ Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | AI category | فئة الذكاء الاصطناعي | 20 vs 11 | 1.82× |
 | Syncing… | جارٍ المزامنة… | 14 vs 8 | 1.75× |
 | Testing… | جارٍ الاختبار… | 14 vs 8 | 1.75× |
-| {n}% used | تم استخدام {n}٪ | 14 vs 8 | 1.75× |
 | 📥 Saved · no AI | 📥 محفوظ · بدون ذكاء اصطناعي | 28 vs 16 | 1.75× |
 | Reading · AI · updates | القراءة · الذكاء الاصطناعي · التحديثات | 38 vs 22 | 1.73× |
 | No articles to graph yet. | لا توجد مقالات لعرضها في الرسم البياني بعد. | 43 vs 25 | 1.72× |
@@ -111,7 +110,6 @@ Strings: 1369. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} failed | {n} fehlgeschlagen | 17 vs 9 | 1.89× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
 | Syncing… | Synchronisiere… | 15 vs 8 | 1.88× |
-| {n}% used | {n} % verbraucht | 15 vs 8 | 1.88× |
 | API key | API-Schlüssel | 13 vs 7 | 1.86× |
 | Last synced {when} | Zuletzt synchronisiert: {when} | 26 vs 14 | 1.86× |
 | My own API key | Mein eigener API-Schlüssel | 26 vs 14 | 1.86× |
@@ -1296,7 +1294,6 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Sync feed list | Синхронизировать список лент | 28 vs 14 | 2× |
 | View & Copy | Просмотр и копирование | 22 vs 11 | 2× |
 | reused | использована | 12 vs 6 | 2× |
-| {n}% used | Использовано {n}% | 16 vs 8 | 2× |
 | Detach to popup | Открепить во всплывающее окно | 29 vs 15 | 1.93× |
 | Last synced {when} | Последняя синхронизация: {when} | 27 vs 14 | 1.93× |
 | Privacy policy | Политика конфиденциальности | 27 vs 14 | 1.93× |
