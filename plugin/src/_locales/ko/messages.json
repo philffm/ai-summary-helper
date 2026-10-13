@@ -4750,5 +4750,8 @@
   },
   "f_best_value_f0ca": {
     "message": "가성비 좋은 모델"
+  },
+  "f_use_1947": {
+    "message": "{id} 사용"
   }
 }

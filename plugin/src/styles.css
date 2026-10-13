@@ -3956,6 +3956,7 @@ body[data-surface="sidebar"] { min-width: 0; }
 .lang-custom-ic { font-size: 14px; }
 .remove-recent, .remove-tag { margin-left: 4px; opacity: .5; cursor: pointer; }
 .remove-recent:hover, .remove-tag:hover { opacity: 1; }
+.tag-grid > .model-grid-note { flex: 0 0 100%; margin-top: 4px; }   /* a caption between pill groups sits on its own line */
 .model-grid-note { padding: 4px 0; font-size: var(--fs-xs); color: var(--text-muted); }
 .model-grid-note.is-error { color: var(--danger); }
 

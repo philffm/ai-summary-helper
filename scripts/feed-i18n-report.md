@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1371. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1370 | 0 | 0 | 46 |
-| de | 1370 | 0 | 0 | 201 |
-| es | 1370 | 0 | 0 | 185 |
-| fr | 1370 | 0 | 0 | 215 |
-| hi | 1370 | 0 | 0 | 85 |
-| it | 1370 | 0 | 0 | 184 |
-| ja | 1370 | 0 | 0 | 95 |
-| ko | 1370 | 0 | 0 | 26 |
-| pt_PT | 1370 | 0 | 0 | 176 |
-| ru | 1370 | 0 | 0 | 115 |
-| zh_CN | 1370 | 0 | 0 | 2 |
-| zh_HK | 1370 | 0 | 0 | 2 |
-| zh_TW | 1370 | 0 | 0 | 2 |
+| ar | 1371 | 0 | 0 | 46 |
+| de | 1371 | 0 | 0 | 202 |
+| es | 1371 | 0 | 0 | 185 |
+| fr | 1371 | 0 | 0 | 215 |
+| hi | 1371 | 0 | 0 | 86 |
+| it | 1371 | 0 | 0 | 184 |
+| ja | 1371 | 0 | 0 | 95 |
+| ko | 1371 | 0 | 0 | 26 |
+| pt_PT | 1371 | 0 | 0 | 176 |
+| ru | 1371 | 0 | 0 | 116 |
+| zh_CN | 1371 | 0 | 0 | 2 |
+| zh_HK | 1371 | 0 | 0 | 2 |
+| zh_TW | 1371 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -104,6 +104,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Set up | Eingerichtet | 12 vs 6 | 2× |
 | UI Language | Sprache der Oberfläche | 22 vs 11 | 2× |
 | UI language | Sprache der Oberfläche | 22 vs 11 | 2× |
+| Use {id} | {id} verwenden | 12 vs 6 | 2× |
 | Use {p} | {p} verwenden | 12 vs 6 | 2× |
 | What I used | Was ich verwendet habe | 22 vs 11 | 2× |
 | ✨ Smart refresh order | ✨ Intelligente Aktualisierungsreihenfolge | 41 vs 21 | 1.95× |
@@ -690,6 +691,7 @@ Strings: 1370. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Edit | संपादित करें | 12 vs 4 | 3× |
 | Mark as… | इस रूप में चिह्नित करें… | 24 vs 8 | 3× |
 | vs {label} | {label} की तुलना में | 15 vs 5 | 3× |
+| Use {id} | {id} का उपयोग करें | 16 vs 6 | 2.67× |
 | Use {p} | {p} इस्तेमाल करें | 16 vs 6 | 2.67× |
 | Gaps | अधूरे विषय | 10 vs 4 | 2.5× |
 | Mute | म्यूट करें | 10 vs 4 | 2.5× |
@@ -1290,6 +1292,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | move | перемещение | 11 vs 4 | 2.75× |
 | Copy | Копировать | 10 vs 4 | 2.5× |
 | Sent | Отправлено | 10 vs 4 | 2.5× |
+| Use {id} | Использовать {id} | 15 vs 6 | 2.5× |
 | Use {p} | Использовать {p} | 15 vs 6 | 2.5× |
 | Casual | Непринуждённый | 14 vs 6 | 2.33× |
 | Saved | Сэкономлено | 11 vs 5 | 2.2× |

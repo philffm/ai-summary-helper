@@ -491,6 +491,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         let cloudRosterCache = null;   // one roster request per popup session
+        let renderSeq = 0;             // renders overlap (the roster is awaited): only the latest may add the suggestions
+        // Any model id can be typed in cloud mode (e.g. a pricier one): "vendor/model". The monthly allowance still applies, so when it is used up the request is refused.
+        const MODEL_ID_RE = /^[\w.\-]+\/[\w.\-:+]+$/;
+        const useCloudModelId = async (id) => {
+            if (!(await requireCloudSignIn())) return false;
+            const { recentCloudModels: recent = [] } = await chrome.storage.sync.get('recentCloudModels');
+            await chrome.storage.sync.set({ preferredCloudModel: id, recentCloudModels: [id, ...recent.filter(m => m !== id)].slice(0, 10) });
+            return true;
+        };
         const renderUI = () => {
             renderModelUI = renderUI; // expose for the model panel chip handler
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
@@ -542,10 +551,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                             });
                             modelIdGrid.appendChild(btn);
                         });
+                        const mySeq = ++renderSeq;
                         // Below the recent ones: the 5 best value models (popularity and price together), one tap away (the server's list is already limited to affordable models).
                         try {
                             if (!cloudRosterCache) cloudRosterCache = fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`).then(r => r.json()).catch(() => null);
                             const roster = await cloudRosterCache;
+                            if (mySeq !== renderSeq) return;
                             const picks = roster && roster.success ? suggestModels(roster.models, recentCloudModels) : [];
                             if (!roster || !roster.success) cloudRosterCache = null;
                             if (picks.length && !customModelInput.value.trim()) {
@@ -581,8 +592,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 m.name.toLowerCase().includes(filter) || m.id.toLowerCase().includes(filter)
                             );
                             
+                            // A typed "vendor/model" that is not in the list can still be used.
+                            const typed = customModelInput.value.trim();
+                            const addTypedPill = () => {
+                                if (!MODEL_ID_RE.test(typed) || data.models.some(m => m.id === typed)) return;
+                                const btn = document.createElement('button');
+                                btn.className = 'pill pill--sm pill--soft';
+                                btn.textContent = T('Use {id}', { id: typed });
+                                btn.addEventListener('click', async (e) => {
+                                    e.preventDefault();
+                                    if (!(await useCloudModelId(typed))) return;
+                                    customModelInput.value = '';
+                                    await renderUI();
+                                    applyAndClose();
+                                });
+                                modelIdGrid.appendChild(btn);
+                            };
                             if (searchResults.length === 0) {
                                 modelIdGrid.innerHTML = '<span class="model-grid-note">' + T('No matches found') + '</span>';
+                                addTypedPill();
                                 return;
                             }
 
@@ -608,6 +636,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 });
                                 modelIdGrid.appendChild(btn);
                             });
+                            addTypedPill();
                         }
                     } catch (err) {
                         modelIdGrid.innerHTML = '<span class="model-grid-note is-error">' + T('Failed to load models') + '</span>';
@@ -732,7 +761,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const val = customModelInput.value.trim();
             if (!val) return;
             const { connectionMode: cm, activeService } = await chrome.storage.sync.get(['connectionMode', 'activeService']);
-            if ((cm || 'cloud') === 'cloud' || activeService === 'ollama') return; // cloud / Ollama input is a search filter
+            if ((cm || 'cloud') === 'cloud') {
+                // Cloud: the input is a search filter, but Enter / "+" on a typed "vendor/model" uses that model.
+                if (explicit && MODEL_ID_RE.test(val) && await useCloudModelId(val)) { customModelInput.value = ''; renderUI(); refreshModelChip(); closeModelPanel(); }
+                return;
+            }
+            if (activeService === 'ollama') return; // Ollama input is a search filter
             committing = true;
             // The stored active provider is the source of truth (the hidden select can lag behind it).
             const svcId = activeService || modelSelect.value || 'openai';

@@ -5007,5 +5007,9 @@
   },
   "f_best_value_f0ca": {
     "message": "Best value"
+  },
+  "f_use_1947": {
+    "message": "Use {id}",
+    "description": "Placeholders: {id} (keep as is)"
   }
 }

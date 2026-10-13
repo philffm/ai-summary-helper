@@ -4768,5 +4768,8 @@
   },
   "f_best_value_f0ca": {
     "message": "高 CP 值"
+  },
+  "f_use_1947": {
+    "message": "使用 {id}"
   }
 }
