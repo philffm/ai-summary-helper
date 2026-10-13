@@ -4035,6 +4035,17 @@ body[data-surface="sidebar"] { min-width: 0; }
 .onboarding-container .onboarding-option .onboarding-auth-box p:last-child { margin-bottom: 0; }
 .onboarding-skip.button-primary { width: auto; max-width: none; background: var(--accent); border-color: transparent; color: #fff; }
 .onboarding-skip:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+.onboarding-step { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.onboarding-step[hidden] { display: none; }
+.onboarding-style.is-selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--glass-card)); }
+.onboarding-example { width: 100%; max-width: 360px; margin-top: var(--spacing-s-4); padding: var(--spacing-s-3); border: 1px dashed var(--outline); border-radius: var(--radius-md); background: var(--glass-card); text-align: left; }
+.onboarding-example-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin-bottom: 4px; }
+.onboarding-example-body { font-size: var(--fs-sm); line-height: 1.5; color: var(--text-primary); }
+.onboarding-example-body h4 { margin: 0 0 4px; font-size: var(--fs-base); }
+.onboarding-example-body p, .onboarding-example-body ul, .onboarding-example-body blockquote { margin: 0 0 6px; }
+.onboarding-example-body ul { padding-inline-start: 18px; }
+.onboarding-example-body blockquote { padding-inline-start: 8px; border-inline-start: 3px solid var(--outline); color: var(--text-secondary); }
+.onboarding-actions { display: flex; gap: var(--spacing-s-2); justify-content: center; margin-top: var(--spacing-s-4); }
 .onboarding-container .onboarding-tip { margin: var(--spacing-s-4) 0 0; font-size: var(--fs-xs); color: var(--text-muted); }
 
 /* ── Delete dialog: checklist of what goes ─────────────────────────────── */

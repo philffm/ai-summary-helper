@@ -1446,7 +1446,18 @@ function setupOnboardingExtras(ui) {
     const skip = document.getElementById('onboardingSkipBtn');
     if (skip && !skip.dataset.bound) {
         skip.dataset.bound = 'true';
-        skip.addEventListener('click', async () => { if (skip.disabled) return; await activateConfigured(); chrome.storage.sync.set({ onboardingDismissed: true }); });
+        // Step 1 (provider) → step 2 (summary style with a live example) → done.
+        skip.addEventListener('click', async () => {
+            if (skip.disabled) return;
+            await activateConfigured();
+            const s1 = document.getElementById('onboardingStep1'), s2 = document.getElementById('onboardingStep2');
+            if (!s1 || !s2) { chrome.storage.sync.set({ onboardingDismissed: true }); return; }
+            const { mountStyleStep } = await import('./onboardingStyle.js');
+            const back = () => { s2.hidden = true; s1.hidden = false; };
+            mountStyleStep(s2, { onBack: back, onDone: () => { chrome.storage.sync.set({ onboardingDismissed: true }); back(); } });
+            s1.hidden = true; s2.hidden = false;
+            s2.scrollIntoView({ block: 'start' });
+        });
     }
     bind('onboardingCustomApiBtn', 'modeLocal');
     bind('onboardingOllamaBtn', 'modeOllama');
