@@ -76,6 +76,8 @@ class MainActivity : ComponentActivity() {
         }
         Guard.begin(this, "start")   // cleared once the first screen has been drawn
         val model = AppModel(this)
+        appModel = model
+        intent?.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { model.openArticle = it }
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
@@ -93,6 +95,17 @@ class MainActivity : ComponentActivity() {
         /** From the share sheet: open this page in the app, and with [EXTRA_SUMMARIZE] start the on-device summary once it has loaded. */
         const val EXTRA_OPEN_URL = "eu.byphil.aishcompanion.OPEN_URL"
         const val EXTRA_SUMMARIZE = "eu.byphil.aishcompanion.SUMMARIZE"
+        /** From a reminder notification: open this reading-list article. */
+        const val EXTRA_OPEN_ARTICLE = "eu.byphil.aishcompanion.OPEN_ARTICLE"
+    }
+
+    private var appModel: AppModel? = null
+
+    /** A reminder tapped while the app is already open (singleTop). */
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        intent.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { appModel?.openArticle = it }
     }
 
     private fun scan(onResult: (String?) -> Unit) {
@@ -124,6 +137,10 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }, onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false }) { webUrl = ""; autoSummarize = false }; return }
 
     androidx.compose.runtime.LaunchedEffect(tab) { if (tab != Tab.Settings.ordinal) settingsPanel = "" }
+    // A reminder was tapped: show that article in the reading list.
+    androidx.compose.runtime.LaunchedEffect(model.openArticle) {
+        if (model.openArticle.isNotEmpty()) { webUrl = ""; tab = Tab.Reading.ordinal; articleSel = model.openArticle; model.openArticle = "" }
+    }
     val wide = isWide()
     val feedUnread = model.entries.count { !it.stored.read }
     val readingUnread = model.articleList.count { !model.articles.isRead(it.id) }

@@ -43,6 +43,25 @@ class ArticleStore(context: Context) {
     fun load(id: String): Article? =
         if (!ID.matches(id)) null else runCatching { ArticleCodec.parse(File(dir, "$id.json").readText(), id) }.getOrNull()
 
+    /** Stores a summary made on this phone for an article that already has its text (and the key passages as AI highlights). */
+    fun setSummary(id: String, summary: String, passages: List<String> = emptyList()): Boolean {
+        if (!ID.matches(id)) return false
+        val f = File(dir, "$id.json")
+        if (!f.exists()) return false
+        return runCatching {
+            val o = JSONObject(f.readText())
+            o.put("summary", summary)
+            if (passages.isNotEmpty()) {
+                val hl = o.optJSONArray("hl") ?: org.json.JSONArray()
+                val have = (0 until hl.length()).mapNotNull { hl.optJSONArray(it)?.optString(1) }.toSet()
+                for (p in passages) if (p !in have) hl.put(org.json.JSONArray().put("g").put(p))
+                o.put("hl", hl)
+            }
+            f.writeText(o.toString())
+            true
+        }.getOrDefault(false)
+    }
+
     fun delete(id: String) {
         if (!ID.matches(id)) return
         File(dir, "$id.json").delete(); File(dir, "$id.meta").delete()

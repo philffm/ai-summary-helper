@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Alarm
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -49,6 +50,10 @@ class ShareActivity : ComponentActivity() {
                             .putExtra(MainActivity.EXTRA_OPEN_URL, link).putExtra(MainActivity.EXTRA_SUMMARIZE, true))
                         finish()
                     },
+                    onRemind = { delayMs, label ->
+                        Reminders.schedule(this, delayMs, link, link)
+                        Toast.makeText(this, "I will remind you: ${label.lowercase()}", Toast.LENGTH_SHORT).show(); finish()
+                    },
                     onDismiss = { finish() },
                 )
             }
@@ -58,14 +63,22 @@ class ShareActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ShareSheet(link: String, canSend: Boolean, onSend: () -> Unit, onSummarize: () -> Unit, onDismiss: () -> Unit) {
+private fun ShareSheet(link: String, canSend: Boolean, onSend: () -> Unit, onSummarize: () -> Unit, onRemind: (Long, String) -> Unit, onDismiss: () -> Unit) {
+    val remind = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val permission = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text("AI Summary Helper", style = MaterialTheme.typography.titleMedium)
             Text(link, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
             Button(onClick = onSummarize, modifier = Modifier.fillMaxWidth()) { Icon(Icons.Filled.AutoAwesome, null, Modifier.size(18.dp)); Text("  Summarize on this phone") }
             if (canSend) OutlinedButton(onClick = onSend, modifier = Modifier.fillMaxWidth()) { Icon(Icons.AutoMirrored.Filled.Send, null, Modifier.size(18.dp)); Text("  Send to browser") }
-            else Text("Pair this phone in Settings to also send links to your browser.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            OutlinedButton(onClick = {
+                if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) permission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                remind.value = !remind.value
+            }, modifier = Modifier.fillMaxWidth()) { Icon(Icons.Filled.Alarm, null, Modifier.size(18.dp)); Text("  Remind me") }
+            if (remind.value) for (o in ReminderTimes.options(java.time.ZonedDateTime.now())) OutlinedButton(onClick = { onRemind(o.delayMs, o.label) }, modifier = Modifier.fillMaxWidth()) { Text(o.label) }
+            if (!canSend) Text("Pair this phone in Settings to also send links to your browser.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }

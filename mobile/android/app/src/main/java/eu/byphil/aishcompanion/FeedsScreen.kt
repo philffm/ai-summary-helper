@@ -57,6 +57,9 @@ import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.DownloadDone
 import androidx.compose.material.icons.filled.Downloading
 import androidx.compose.material.icons.filled.Headphones
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
@@ -346,6 +349,8 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
     val scope = rememberCoroutineScope()
     val item = e.stored.item
     var sent by remember(item.id) { mutableStateOf(false) }
+    val voice = remember(item.id) { ReadAloud(context, model.store.ttsRate) { model.store.ttsRate = it } }
+    androidx.compose.runtime.DisposableEffect(item.id) { onDispose { voice.shutdown() } }
     Column(Modifier.fillMaxSize()) {
     Box(Modifier.weight(1f)) {
     ReadingColumn {
@@ -358,6 +363,18 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
                 }
             }
             Text(listOf(e.feed.name, item.author, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (item.body.isNotBlank()) androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                val playing = voice.state != ReadAloud.State.IDLE
+                androidx.compose.material3.AssistChip(
+                    onClick = { if (playing) voice.toggle() else voice.start(ReadAloudUnits.text(item.title, item.body)) },
+                    label = { Text(when (voice.state) { ReadAloud.State.PLAYING -> "Pause"; ReadAloud.State.PAUSED -> "Resume"; else -> "Listen" }) },
+                    leadingIcon = { androidx.compose.material3.Icon(if (voice.state == ReadAloud.State.PLAYING) Icons.Filled.Pause else if (voice.state == ReadAloud.State.PAUSED) Icons.Filled.PlayArrow else Icons.Filled.VolumeUp, null) },
+                )
+                if (playing) {
+                    androidx.compose.material3.AssistChip(onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { androidx.compose.material3.Icon(Icons.Filled.Speed, null) })
+                    androidx.compose.material3.AssistChip(onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { androidx.compose.material3.Icon(Icons.Filled.Close, null) })
+                }
+            }
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
             if (item.body.isNotBlank()) PlainText(item.body)
             if (item.link.isNotEmpty() && item.body.length < 500) Text("This feed only sends a short teaser. Tap Read page for the full article.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)

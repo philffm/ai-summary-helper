@@ -79,6 +79,13 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.runtime.mutableIntStateOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /** The reading list: articles sent from the browser (Send to phone). Two panes on wide screens. */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -230,7 +237,13 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     var sent by remember(id) { mutableStateOf(false) }
     var speedReading by remember(id) { mutableStateOf(false) }
     var wpm by remember { mutableStateOf(model.store.readerWpm) }
-    val article = remember(id) { model.articles.load(id) }
+    var version by remember(id) { mutableIntStateOf(0) }   // bumped when the stored article changes (a summary was added)
+    val article = remember(id, version) { model.articles.load(id) }
+    var summarizing by remember(id) { mutableStateOf(false) }
+    var summaryNote by remember(id) { mutableStateOf("") }
+    var remindMenu by remember(id) { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
+    val notifPermission = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     val voice = remember(id) { ReadAloud(context, model.store.ttsRate) { model.store.ttsRate = it } }
     DisposableEffect(id) { onDispose { voice.shutdown() } }
     LaunchedEffect(id) { model.articles.markRead(id) }
@@ -277,6 +290,42 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                         onClick = { shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article)) },
                         label = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) },
                     )
+                    if (LocalLlm.installed(context)) AssistChip(
+                        onClick = {
+                            if (summarizing) return@AssistChip
+                            summarizing = true; summaryNote = "Summarizing on this phone…"
+                            scope.launch {
+                                val page = Page(article.title, article.blocks.map { it.type to it.text }, article.lang)
+                                val result = withContext(Dispatchers.Default) {
+                                    runCatching { PageSummary.summarize(context, page, progress = { i, n -> summaryNote = if (n > 1) "Part $i of $n…" else "Summarizing on this phone…" }) }.getOrNull()
+                                }
+                                if (result != null && model.articles.setSummary(id, result.text, result.passages)) { version++; summaryNote = "" }
+                                else summaryNote = "The model could not summarize this article."
+                                summarizing = false
+                            }
+                        },
+                        label = { Text(if (summarizing) summaryNote else if (article.summary.isBlank()) "Summarize" else "Summarize again") },
+                        leadingIcon = { Icon(Icons.Filled.AutoAwesome, null) },
+                    )
+                    Box {
+                        AssistChip(
+                            onClick = {
+                                if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                                remindMenu = true
+                            },
+                            label = { Text("Remind me") }, leadingIcon = { Icon(Icons.Filled.Alarm, null) },
+                        )
+                        DropdownMenu(expanded = remindMenu, onDismissRequest = { remindMenu = false }) {
+                            for (o in ReminderTimes.options(java.time.ZonedDateTime.now())) DropdownMenuItem(
+                                text = { Text(o.label) },
+                                onClick = {
+                                    remindMenu = false
+                                    Reminders.schedule(context, o.delayMs, article.title, article.url, id)
+                                    android.widget.Toast.makeText(context, "I will remind you: ${o.label.lowercase()}", android.widget.Toast.LENGTH_SHORT).show()
+                                },
+                            )
+                        }
+                    }
                     AssistChip(
                         onClick = { if (archived) model.setArchived(id, false) else onArchive(id) },
                         label = { Text(if (archived) "Unarchive" else "Archive") }, leadingIcon = { Icon(if (archived) Icons.Filled.Unarchive else Icons.Filled.Archive, null) },

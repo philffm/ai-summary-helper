@@ -46,6 +46,9 @@ class AppModel(context: Context) {
 
     fun consumeMessage() { message = null }
 
+    /** Set by a reminder notification: the reading-list article to open (the UI clears it). */
+    var openArticle by mutableStateOf("")
+
     /** Bumped when read state flips so lists redraw. */
     var readTick by androidx.compose.runtime.mutableIntStateOf(0)
 

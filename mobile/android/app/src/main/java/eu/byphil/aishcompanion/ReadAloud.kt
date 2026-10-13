@@ -21,6 +21,10 @@ object ReadAloudUnits {
         (if (title.isNotBlank()) listOf(title.trim()) else emptyList()) + blocks.filter { it.type != "pre" }.flatMap { sentences(it.text) }
 
     fun summary(summary: String): List<String> = sentences(summary)
+
+    /** A feed item: title, then its text (paragraphs and "- " lists as the feed gives them). */
+    fun text(title: String, body: String): List<String> =
+        (if (title.isNotBlank()) listOf(title.trim()) else emptyList()) + sentences(body)
 }
 
 /**

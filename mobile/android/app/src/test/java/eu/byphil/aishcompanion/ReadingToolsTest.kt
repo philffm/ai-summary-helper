@@ -90,4 +90,15 @@ class ReadingToolsTest {
         assertEquals(listOf("Title", "One.", "Two!", "Three"), u)
         assertEquals(listOf("A.", "B."), ReadAloudUnits.summary("A. B."))
     }
+
+    @Test fun reminderOptionsDependOnTheTimeOfDay() {
+        val zone = java.time.ZoneId.of("Europe/Berlin")
+        val morning = java.time.ZonedDateTime.of(2026, 10, 13, 9, 30, 0, 0, zone)
+        val o1 = ReminderTimes.options(morning)
+        assertEquals(listOf("In 1 hour", "This evening, 18:00", "Tomorrow morning, 08:00"), o1.map { it.label })
+        assertEquals(java.time.Duration.ofMinutes(8 * 60 + 30).toMillis(), o1[1].delayMs)
+        assertEquals(java.time.Duration.ofHours(22).plusMinutes(30).toMillis(), o1[2].delayMs)
+        val night = java.time.ZonedDateTime.of(2026, 10, 13, 20, 0, 0, 0, zone)
+        assertEquals(listOf("In 1 hour", "Tomorrow morning, 08:00"), ReminderTimes.options(night).map { it.label })
+    }
 }
