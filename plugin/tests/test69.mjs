@@ -91,6 +91,20 @@ assert(sc2.querySelector('.source-doi-add'), '+ DOI button in the card');
     n = names(); assert(n.some(t => /K5/.test(t)), 'expanded list shows all devices: ' + JSON.stringify(n));
     delete store['send:devices'];
   }
+  {   // Send is held back for 10 s: Undo cancels, leaving the popup sends right away
+    const toasts = []; const fake = { showScreen() {}, showToast: (m, dur, act) => { const t = { m, act, setText(x) { t.m = x; }, dismiss() { t.gone = true; } }; toasts.push(t); return t; } };
+    am.bindUiManager(fake);
+    const sent = []; const prevSend = chrome.runtime.sendMessage; chrome.runtime.sendMessage = (m, cb) => { sent.push(m); const r = { success: true }; if (cb) { cb(r); return; } return Promise.resolve(r); };
+    await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);
+    d.querySelector('#detailTopActions .detail-split-main').click(); await tick(60);
+    const t = toasts.find(x => /Sending to .* in 10 s/.test(x.m)); assert(t && t.act && t.act.label === 'Undo', 'countdown toast with Undo: ' + JSON.stringify(toasts.map(x => x.m)));
+    t.act.onClick(); await tick(60);
+    assert(toasts.some(x => /Cancelled/.test(x.m)) && sent.length === 0, 'undo: nothing was sent');
+    d.querySelector('#detailTopActions .detail-split-main').click(); await tick(60);
+    const n0 = toasts.length; w.dispatchEvent(new w.Event('pagehide')); await tick(200);
+    assert(toasts.some(x => x.gone), 'pending send was flushed when the popup closes');
+    chrome.runtime.sendMessage = prevSend;
+  }
   // configured list: own order, own selection
   store.detailToolbarItems = ['pdf', 'copy', 'bogus'];
   await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);

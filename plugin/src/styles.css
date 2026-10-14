@@ -4404,3 +4404,8 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .send-detail-title { margin: 4px 0 8px; font-size: var(--fs-lg); }
 .send-default-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; margin-bottom: 8px; background: var(--glass-card); border: 1px solid var(--outline); border-radius: var(--radius-md); }
 .send-pane[hidden], .send-detail[hidden] { display: none !important; }
+
+.toast-message { display: flex; align-items: center; gap: 12px; }
+.toast-action { background: transparent; border: 0; padding: 4px 8px; font-weight: 700; color: var(--accent); cursor: pointer; border-radius: var(--radius-sm); }
+.toast-action:hover { background: var(--accent-glow); }
+.toast-message .toast-action { pointer-events: auto; }

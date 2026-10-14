@@ -2269,12 +2269,29 @@ const SEND_TARGETS = {
     share: { icon: 'link', short: () => T('Share'), label: () => T('Share…'), run: (a) => shareArticle(a) },
 };
 const sendTargetOk = (id, a) => id !== 'phone' || !!(a && a.id && a.url && !a.feedStub);
+const SEND_UNDO_SECONDS = 10;
+const pendingSends = new Set();
+/** Holds a send back for a few seconds so it can still be taken back. Leaving the popup sends it right away (nothing is lost). */
+function sendWithUndo(label, run) {
+    if (!uiManagerRef) return run();
+    let left = SEND_UNDO_SECONDS, done = false, tick = null, toast = null;
+    const text = () => T('Sending to {name} in {n} s', { name: label, n: left });
+    const finish = (go) => { if (done) return; done = true; clearInterval(tick); pendingSends.delete(flush); if (toast) toast.dismiss(); if (go) return run(); uiManagerRef.showToast(T('Cancelled: not sent')); };
+    const flush = () => finish(true);
+    toast = uiManagerRef.showToast(text(), (SEND_UNDO_SECONDS + 1) * 1000, { label: T('Undo'), onClick: () => finish(false) });
+    pendingSends.add(flush);
+    tick = setInterval(() => { left -= 1; if (left <= 0) flush(); else if (toast) toast.setText(text()); }, 1000);
+}
+try { window.addEventListener('pagehide', () => { [...pendingSends].forEach(f => f()); }); } catch (_) { /* no window */ }
 async function runSendTarget(id, a) {
     const def = SEND_TARGETS[id]; if (!def) return;
     toolbarPrefs.sendTarget = id;
     try { chrome.storage.sync.set({ lastSendTarget: id }); } catch (_) { /* remembered for this session only */ }
     layoutDetailActions();
-    await def.run(a);
+    if (id === 'share') return def.run(a);   // the system share sheet has its own cancel
+    let name = def.short();
+    try { const cfg = await StorageManager.getAll(); const dev = StorageManager.getActiveDevice(cfg, id); if (dev && dev.label) name = `${def.short()} · ${dev.label}`; } catch (_) { /* generic name */ }
+    sendWithUndo(name, () => def.run(a));
 }
 const SEND_DEVICE_MAX = 3;   // devices shown per send type; the rest sits behind "+N more"
 async function openSendMenu(btn, expanded = '') {

@@ -5335,5 +5335,11 @@
   },
   "f_more_b42e": {
     "message": "{n} weitere…"
+  },
+  "f_cancelled_not_sent_e7ab": {
+    "message": "Abgebrochen: nichts gesendet"
+  },
+  "f_sending_to_in_s_808b": {
+    "message": "Senden an {name} in {n} s"
   }
 }

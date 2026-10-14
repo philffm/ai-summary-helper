@@ -188,7 +188,7 @@ class UIManager {
         element.style.display = show ? 'block' : 'none';
     }
 
-    showToast(message, duration = 3000) {
+    showToast(message, duration = 3000, action = null) {
         // Shared stack container so concurrent toasts lay out one below the
         // other via normal flex flow instead of each being independently
         // fixed-positioned at the same spot and overlapping.
@@ -201,9 +201,18 @@ class UIManager {
         }
         const toast = document.createElement('div');
         toast.className = 'toast-message';
-        toast.textContent = message;
+        const text = document.createElement('span'); text.textContent = message; toast.appendChild(text);
+        let timer = null;
+        const dismiss = () => { clearTimeout(timer); toast.remove(); };
+        // Optional action button (e.g. Undo): { label, onClick }. Returns a handle to update the text or close the toast.
+        if (action && action.label) {
+            const b = document.createElement('button'); b.type = 'button'; b.className = 'toast-action'; b.textContent = action.label;
+            b.addEventListener('click', () => { dismiss(); try { action.onClick && action.onClick(); } catch (_) { /* ignore */ } });
+            toast.appendChild(b);
+        }
         stack.appendChild(toast);
-        setTimeout(() => toast.remove(), duration);
+        timer = setTimeout(() => toast.remove(), duration);
+        return { dismiss, setText: (m) => { text.textContent = m; }, el: toast };
     }
 
     // Podcast menu entry point

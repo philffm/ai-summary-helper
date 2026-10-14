@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1546. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1546 | 0 | 0 | 46 |
-| de | 1546 | 0 | 0 | 222 |
-| es | 1546 | 0 | 0 | 186 |
-| fr | 1546 | 0 | 0 | 217 |
-| hi | 1546 | 0 | 0 | 86 |
-| it | 1546 | 0 | 0 | 184 |
-| ja | 1546 | 0 | 0 | 95 |
-| ko | 1546 | 0 | 0 | 26 |
-| pt_PT | 1546 | 0 | 0 | 176 |
-| ru | 1546 | 0 | 0 | 117 |
-| zh_CN | 1546 | 0 | 0 | 2 |
-| zh_HK | 1546 | 0 | 0 | 2 |
-| zh_TW | 1546 | 0 | 0 | 2 |
+| ar | 1549 | 0 | 0 | 46 |
+| de | 1549 | 0 | 0 | 223 |
+| es | 1549 | 0 | 0 | 186 |
+| fr | 1549 | 0 | 0 | 217 |
+| hi | 1549 | 0 | 0 | 86 |
+| it | 1549 | 0 | 0 | 184 |
+| ja | 1549 | 0 | 0 | 95 |
+| ko | 1549 | 0 | 0 | 26 |
+| pt_PT | 1549 | 0 | 0 | 176 |
+| ru | 1549 | 0 | 0 | 117 |
+| zh_CN | 1549 | 0 | 0 | 2 |
+| zh_HK | 1549 | 0 | 0 | 2 |
+| zh_TW | 1549 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -235,6 +235,7 @@ Strings: 1546. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Set your Kindle email in Settings first. | Hinterlege zuerst deine Kindle-E-Mail in den Einstellungen. | 59 vs 40 | 1.48× |
 | Used whenever you summarize a page or article. | Wird verwendet, wenn du eine Seite oder einen Artikel zusammenfasst. | 68 vs 46 | 1.48× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
+| Cancelled: not sent | Abgebrochen: nichts gesendet | 28 vs 19 | 1.47× |
 | Don't have a key? | Du hast keinen Schlüssel? | 25 vs 17 | 1.47× |
 | Open in sidebar | In Seitenleiste öffnen | 22 vs 15 | 1.47× |
 | Saved for Later | Für später gespeichert | 22 vs 15 | 1.47× |
