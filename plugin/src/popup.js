@@ -480,10 +480,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Ollama source: list what is actually installed (added to the model grid) or warn that it is not reachable.
         let ollamaProbeSeq = 0;
-        const probeOllamaModels = async (endpoint, knownIds, svcId) => {
+        const probeOllamaModels = async (endpoint, knownIds, svcId, apiKey = '') => {
             const seq = ++ollamaProbeSeq;
             const custom = svcId === 'custom';
-            const result = custom ? await checkOpenAiModels(endpoint, (servicesConfig?.custom || {}).apiKey) : await checkOllama(endpoint);
+            const result = custom ? await checkOpenAiModels(endpoint, apiKey) : await checkOllama(endpoint);
             if (seq !== ollamaProbeSeq || modelSelect.value !== svcId) return; // a newer render took over
             if (!result.ok) {
                 // Custom server: a missing list is no error — the model name can be typed by hand.
@@ -709,7 +709,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 else if (cfg.apiKey) setModelStatus(T('{name} · API key set', { name: meta?.name || curSvcId }), '');
                 else setModelStatus(T('{name} · API key missing — add it in Settings', { name: meta?.name || curSvcId }), 'warn');
                 if (meta?.apiKeyField) setModelStatus(T('{name} · own server', { name: meta.name }), '');
-                if (curSvcId === 'ollama' || curSvcId === 'custom') probeOllamaModels(cfg.endpoint || meta?.endpointUrl, customIds, curSvcId);
+                if (curSvcId === 'ollama' || curSvcId === 'custom') probeOllamaModels(cfg.endpoint || meta?.endpointUrl, customIds, curSvcId, cfg.apiKey || '');
 
                 // Provider tags
                 modelProviderGrid.innerHTML = '';
