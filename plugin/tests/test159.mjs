@@ -35,7 +35,7 @@ globalThis.chrome = { runtime: { sendMessage() {} }, tts: { speak: (text, o) => 
 await import(process.env.AISH_SRC + '/ttsEngine.js');
 const eng = globalThis.AISH_TTS.create({ send() {} });
 await eng.handle({ cmd: 'speak', items: [{ text: 'Sie verlangt Prüfung statt Plattform: „Extraordinary claims require extraordinary evidence, and I am not the one making the claim.“ Das ist wichtig.', lang: 'de' }, { text: 'Ein ganz normaler deutscher Satz ohne Zitat und mit genug Wörtern.', lang: 'de' }] });
-await new Promise(r => setTimeout(r, 80));
+for (let i = 0; i < 100 && spoken.length < 4; i++) await new Promise(r => setTimeout(r, 20));   // wait for the queue, not a fixed time (slow CI)
 assert.deepEqual(spoken.map(s => s.lang), ['de', 'en-US', 'de', 'de']);
 assert.ok(spoken[1].text.startsWith('„Extraordinary'));
 console.log('ok');
