@@ -168,4 +168,4 @@ We may update this Privacy Policy as the extension's features change. Material c
 
 ## Contact Us
 
-Questions about this Privacy Policy? Contact us at [philipp@wornath.de](mailto:philipp@wornath.de), or via [GitHub Issues](https://github.com/philffm/ai-summary-helper/issues).
+Questions about this Privacy Policy? Contact us at [info@byphil.eu](mailto:info@byphil.eu), or via [GitHub Issues](https://github.com/philffm/ai-summary-helper/issues).
