@@ -28,7 +28,7 @@ You choose how summaries are generated:
 
 - **Bring your own key (BYOK)** — OpenAI, Google Gemini, Mistral AI, DeepSeek, or a custom endpoint. Your API key is stored locally on your device only (never synced, never sent to us). Page content you choose to summarize is sent directly from your browser to the provider you selected, using your own key and subject to that provider's own privacy policy. We do not see, log, or store this content.
 - **Local model via Ollama** — if you run a model locally, page content is sent only to your own machine. Nothing leaves your device.
-- **byphil Cloud (optional, paid)** — a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one.
+- **byphil Cloud (optional, paid)** — a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request via OpenRouter to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one.
 
 ### License and subscription status
 
@@ -139,14 +139,14 @@ Depending on how you configure the extension, your page content may be sent to:
 
 - OpenAI, Google (Gemini), Mistral AI, or DeepSeek — only if you've entered your own API key for that provider, and only for the page you actively summarize.
 - Our byphil backend, hosted by IONOS SE in Germany — only if you sign in, use byphil Cloud or Send to Kindle.
-- The model provider behind byphil Cloud — the text you summarize is relayed to the model you use, for that request only.
+- OpenRouter, through which byphil Cloud connects to the models, and the model provider it routes to — the text you summarize is relayed to the model you use, for that request only.
 - Stripe — payments and subscription management, as Merchant of Record.
 - Amazon — if you send an article to your Kindle, Amazon delivers it under its own privacy terms.
 - Your own local Ollama instance — not a third party; stays on your machine.
 
 We are not responsible for the privacy practices of third-party AI providers you choose to connect. We encourage you to review their policies before connecting an account.
 
-**You decide which model processes your text.** Whether you use your own key or byphil Cloud, you choose the provider and model in the settings, and you are responsible for checking that provider's terms and where it processes data. Providers and Amazon may process data outside the EU/EEA under their own safeguards (for example standard contractual clauses); we do not transfer your data to third countries ourselves.
+**You decide which model processes your text.** Whether you use your own key or byphil Cloud, you choose the provider and model in the settings, and you are responsible for checking that provider's terms and where it processes data. OpenRouter, the model providers behind it and Amazon may process data outside the EU/EEA under their own safeguards (for example standard contractual clauses); we do not transfer your data to third countries ourselves.
 
 ## Data Security
 
