@@ -30854,6 +30854,1711 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "78263442d81cefe70288b78c689dfbf714eeef6dac68108d070bea34f3f3e8fc": {
+      "en": "Who is responsible",
+      "translations": {
+        "de": {
+          "text": "Verantwortliche Stelle",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Responsable du traitement",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Quién es el responsable",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "责任主体",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "誰負責管理您的資料",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "管理者について",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인정보 처리 책임자",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quem é o responsável",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "जिम्मेदार कौन है (Who is responsible)",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bên chịu trách nhiệm",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "24050b9b1b850ea03ee0b7262acf7b17985510c557f1e9b508814881db55af49": {
+      "en": "The controller within the meaning of Art. 4(7) GDPR is Phil Wornath. The full name and address for service are in the",
+      "translations": {
+        "de": {
+          "text": "Verantwortlicher im Sinne von Art. 4 Abs. 7 DSGVO ist Phil Wornath. Den vollständigen Namen und die ladungsfähige Anschrift finden Sie im",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le responsable du traitement au sens de l'art. 4, point 7 du RGPD est Phil Wornath. Le nom complet et l'adresse de signification sont indiqués dans les",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El responsable del tratamiento en el sentido del Art. 4(7) del RGPD es Phil Wornath. El nombre completo y la dirección para notificaciones se encuentran en el",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "根据 GDPR 第 4(7) 条，数据控制者为 Phil Wornath。完整的法定名称与送达地址详见",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "依據 GDPR 第 4 條第 7 款之規定，資料控制者（Controller）為 Phil Wornath。完整姓名與法定送達地址請見",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "GDPR第4条第7項におけるデータ管理者は Phil Wornath です。正式な氏名および送達先住所は",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "GDPR 제4조 제7항에 따른 개인정보 처리자는 Phil Wornath입니다. 송달 가능한 전체 성명 및 주소는 다음에서 확인하실 수 있습니다: ",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O controlador de dados nos termos do Art. 4(7) do GDPR é Phil Wornath. O nome completo e endereço para notificações estão no",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "GDPR के Art. 4(7) के तहत डेटा कंट्रोलर Phil Wornath हैं। सर्विस के लिए पूरा नाम और पता यहाँ मौजूद है:",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bên kiểm soát dữ liệu theo quy định tại Điều 4(7) GDPR là Phil Wornath. Tên đầy đủ và địa chỉ liên hệ phục vụ pháp lý có trong",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d426496bd779f2a5b135a3f4e1f48781363bc0fae9297b3f48ffb25041d72a0b": {
+      "en": "; you can reach us at the contact details at the end of this policy.",
+      "translations": {
+        "de": {
+          "text": "; Sie erreichen uns über die Kontaktdaten am Ende dieser Erklärung.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": " ; vous pouvez nous joindre aux coordonnées figurant à la fin de cette politique.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "; puedes comunicarte con nosotros utilizando los datos de contacto que figuran al final de esta política.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "；您也可以通过本政策末尾的联系方式与我们取得联系。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "；您也可以透過本政策結尾提供的聯絡資訊與我們聯繫。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "に記載されています。本ポリシーの最後にある連絡先からもお問い合わせいただけます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ". 본 개인정보 처리방침 하단의 연락처를 통해서도 문의하실 수 있습니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "; você pode falar conosco usando os dados de contato no final desta política.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "; आप इस पॉलिसी के अंत में दिए गए कॉन्टैक्ट डिटेल्स के ज़रिए हमसे संपर्क कर सकते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "; bạn có thể liên hệ với chúng tôi theo thông tin liên hệ ở cuối chính sách này.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7f4eb7728af7e6d6c8b8975a6a3a8ea86b8edae89455630a8e85fd0a64f48453": {
+      "en": "legal notice",
+      "translations": {
+        "de": {
+          "text": "Impressum",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "mentions légales",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "aviso legal",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "法律声明",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "法律聲明",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "法的通知（Legal Notice）",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "법적 고지(Legal Notice)",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "aviso legal",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "legal notice",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "thông báo pháp lý",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "914abc1f999e8f84074f0f81c23685a80ff554cb0a1e2b6239d6e7aacc428c8f": {
+      "en": "— a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request via OpenRouter to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one.",
+      "translations": {
+        "de": {
+          "text": "– eine gehostete Option für alle, die keinen eigenen API-Schlüssel verwalten möchten. Wenn Sie dieses Paket wählen, wird der zu zusammenfassende Text über unser Backend geleitet. Dieses leitet die Anfrage über OpenRouter in Ihrem Auftrag an einen Modell-Anbieter weiter und liefert die Zusammenfassung zurück. Der Text wird ausschließlich weitergeleitet: Wir speichern weder Seiteninhalte, URLs noch Zusammenfassungen. Pro Konto erfassen wir lediglich Nutzungs-Metadaten: die Anzahl der abgeschlossenen Anfragen, den Token-Verbrauch, den Zeitpunkt der letzten Anfrage sowie das verwendete Modell. Das Konto selbst ist optional; alle anderen Funktionen arbeiten komplett ohne Konto.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "— une option hébergée pour les personnes qui préfèrent ne pas gérer de clé API. Si vous choisissez cette offre, le texte que vous souhaitez résumer transite par notre backend, qui relaie la requête via OpenRouter vers un fournisseur de modèle sous-jacent en votre nom et renvoie le résumé. Il s'agit d'un simple relais : nous ne stockons aucun contenu de page, URL ou résumé. Ce que nous enregistrons par compte, ce sont des métadonnées d'utilisation : le nombre de requêtes effectuées, la consommation de tokens, l'horodatage de la dernière requête et le modèle utilisé. La création d'un compte reste facultative ; toutes les autres fonctionnalités fonctionnent sans compte.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "— una opción alojada para quienes prefieren no gestionar una clave de API. Si eliges este plan, el texto que pides resumir pasa por nuestro backend, que retransmite la solicitud a través de OpenRouter a un proveedor de modelos subyacente en tu nombre y devuelve el resumen. Solo se retransmite: no almacenamos el contenido de las páginas, las URL ni los resúmenes. Lo que registramos por cuenta son metadatos de uso: el número de solicitudes completadas, el consumo de tokens, la hora de la última solicitud y el modelo utilizado. La cuenta en sí es opcional; todas las demás funciones funcionan sin ella.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "—— 为不愿自行管理 API key 的用户提供的云端托管方案。如果您选择此方案，您请求摘要的文本将经由我们的后端处理，后端会代表您通过 OpenRouter 将请求中转至底层的模型提供商，并返回生成的摘要。这仅属于实时转发：我们不会存储任何网页内容、URL 或摘要结果。我们在账户维度记录的仅为使用元数据：已完成请求次数、Token 用量、最后一次请求的时间以及所使用的模型。账户本身完全可选；无需注册账户即可正常使用所有其他功能。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "——為不想自行管理 API Key 的使用者提供的託管方案。若您選擇此方案，您要求摘要的文字會經由我們的後端，透過 OpenRouter 代您將請求轉發至底層的模型提供商，並傳回摘要。這僅屬於轉發流程：我們不會儲存任何網頁內容、URL 或摘要結果。我們在各帳號下記錄的僅有使用情況中繼資料：已完成的請求次數、Token 用量、最後一次請求時間及所使用的模型。帳號本身為選用項目，所有其他功能無須帳號即可正常運作。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "— APIキーの管理を行わずに利用したい方向けのホスティング型オプションです。このプランを選択した場合、要約をリクエストしたテキストは当社のバックエンドを経由し、お客様に代わってOpenRouter経由で対象のモデルプロバイダーに中継されて要約結果が返されます。データは中継されるだけであり、ページコンテンツ、URL、要約結果が当社に保存されることはありません。アカウントごとに記録されるのは、完了したリクエスト数、トークン使用量、最後のリクエスト日時、使用されたモデルなどの利用状況メタデータのみです。アカウントの作成自体は任意であり、他のすべての機能はアカウントなしでご利用いただけます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "— API 키를 직접 관리하지 않고 편리하게 이용하고자 하는 분들을 위한 호스팅 옵션입니다. 이 요금제를 선택하시면 요약을 요청한 텍스트가 당사 백엔드를 거쳐 전송되며, 당사 백엔드는 OpenRouter를 통해 고객님을 대신하여 해당 모델 제공자에게 요청을 중계하고 요약 결과를 반환합니다. 이는 단순 중계일 뿐이며 페이지 콘텐츠, URL, 요약본은 일절 저장하지 않습니다. 계정별로 기록되는 정보는 완료된 요청 수, 토큰 사용량, 마지막 요청 시간 및 사용된 모델과 같은 사용 메타데이터뿐입니다. 계정 생성은 선택 사항이며, 계정이 없어도 다른 모든 기능을 자유롭게 이용하실 수 있습니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "— uma opção na nuvem para quem prefere não gerenciar uma chave de API própria. Se você escolher este plano, o texto que você pedir para resumir passará pelo nosso backend, que repassa a requisição via OpenRouter para o provedor do modelo escolhido em seu nome e retorna o resumo. Trata-se apenas de um repasse: nós não armazenamos o conteúdo das páginas, URLs ou resumos. O que registramos por conta são metadados de uso: a quantidade de requisições concluídas, uso de tokens, o horário da última requisição e o modelo utilizado. A criação de conta é opcional; todos os outros recursos funcionam sem ela.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "— उन लोगों के लिए एक होस्टेड ऑप्शन जो API key खुद मैनेज नहीं करना चाहते। अगर आप यह टियर चुनते हैं, तो जिस टेक्स्ट को आप समराइज़ करने के लिए भेजते हैं वह हमारे बैकएंड से होकर गुज़रता है, जो आपकी तरफ से OpenRouter के ज़रिए रिक्वेस्ट को अंडरलाइंग मॉडल प्रोवाइडर तक रिले करता है और समरी वापस लौटाता है। यह डेटा केवल रिले किया जाता है: हम पेज कंटेंट, URLs या समरीज़ को स्टोर नहीं करते हैं। प्रति अकाउंट हम केवल यूसेज मेटाडेटा रिकॉर्ड करते हैं: पूरे किए गए रिक्वेस्ट्स की संख्या, टोकन यूसेज, आख़िरी रिक्वेस्ट का समय और इस्तेमाल किया गया मॉडल। अकाउंट बनाना पूरी तरह ऑप्शनल है; बाकी सभी फीचर्स बिना किसी अकाउंट के काम करते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "— tùy chọn máy chủ lưu trữ dành cho những ai không muốn tự quản lý khóa API. Nếu bạn chọn gói này, văn bản bạn yêu cầu tóm tắt sẽ đi qua hệ thống máy chủ của chúng tôi, chuyển tiếp yêu cầu qua OpenRouter đến nhà cung cấp mô hình tương ứng thay cho bạn và trả về bản tóm tắt. Dữ liệu chỉ được chuyển tiếp: chúng tôi không lưu trữ nội dung trang, URL hay bản tóm tắt. Những gì chúng tôi ghi nhận theo từng tài khoản chỉ là siêu dữ liệu sử dụng: số lượng yêu cầu đã hoàn thành, lượng token đã dùng, thời gian của yêu cầu gần nhất và mô hình được sử dụng. Việc tạo tài khoản là hoàn toàn tùy chọn; tất cả các tính năng khác vẫn hoạt động bình thường mà không cần tài khoản.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "66e6000380667a2b007621309df80dd1c1469530ff2a152964327dc4596e4939": {
+      "en": "When you uninstall the extension, Chrome opens a short feedback page on this website. The address contains only the extension version and the number of days it was installed — no identifiers, no page content, no history. What you choose or type in the form (a reason, an optional comment) is recorded as an event in our self-hosted, cookieless analytics, together with the extension version and the days installed, and is only used to improve the extension. If your browser sends Do Not Track or you opted out of analytics, nothing is sent. There is no email field; for a reply, open a GitHub issue. You can close the page without answering.",
+      "translations": {
+        "de": {
+          "text": "Wenn Sie die Erweiterung deinstallieren, öffnet Chrome eine kurze Feedback-Seite auf dieser Website. Die Adresse enthält lediglich die Versionsnummer der Erweiterung sowie die Anzahl der Tage seit der Installation – keinerlei Identifikatoren, keine Seiteninhalte und keinen Verlauf. Was Sie im Formular auswählen oder eingeben (ein Grund, ein optionaler Kommentar), wird zusammen mit der Versionsnummer und der Installationsdauer als Ereignis in unserer selbst gehosteten, cookielosen Webanalyse erfasst und ausschließlich zur Verbesserung der Erweiterung verwendet. Falls Ihr Browser „Do Not Track“ sendet oder Sie der Analyse widersprochen haben, wird nichts übermittelt. Es gibt kein E-Mail-Feld; für eine Rückmeldung eröffnen Sie bitte ein GitHub-Issue. Sie können die Seite jederzeit schließen, ohne Angaben zu machen.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lorsque vous désinstallez l'extension, Chrome ouvre une courte page d'évaluation sur ce site web. L'adresse contient uniquement la version de l'extension et le nombre de jours d'installation — aucun identifiant, aucun contenu de page, aucun historique. Ce que vous sélectionnez ou saisissez dans le formulaire (une raison, un commentaire facultatif) est enregistré en tant qu'événement dans nos outils de mesure d'audience auto-hébergés et sans cookies, avec la version de l'extension et le nombre de jours d'installation, et est uniquement utilisé pour améliorer l'extension. Si votre navigateur envoie le signal Do Not Track ou si vous avez désactivé les mesures d'audience, rien n'est envoyé. Il n'y a aucun champ d'e-mail ; pour obtenir une réponse, ouvrez un ticket sur GitHub. Vous pouvez fermer la page sans répondre.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cuando desinstalas la extensión, Chrome abre una breve página de comentarios en este sitio web. La dirección solo contiene la versión de la extensión y el número de días que estuvo instalada — sin identificadores, sin contenido de páginas, sin historial. Lo que elijas o escribas en el formulario (un motivo, un comentario opcional) se registra como un evento en nuestra analítica autoalojada y sin cookies, junto con la versión de la extensión y los días de instalación, y solo se utiliza para mejorar la extensión. Si tu navegador envía Do Not Track o desactivaste las analíticas, no se envía nada. No hay campo de correo electrónico; para recibir una respuesta, abre una incidencia en GitHub. Puedes cerrar la página sin responder.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "当您卸载扩展程序时，Chrome 会在此网站上打开一个简短的反馈页面。该请求地址仅包含扩展版本和已安装天数 —— 不含任何个人身份标识、页面内容或浏览历史。您在表单中选择或输入的内容（原因及可选的反馈意见）将连同扩展版本和安装天数一起，作为事件记录在我们自建且不使用 Cookie 的分析系统中，仅用于改进扩展程序。如果您的浏览器启用了 Do Not Track 或您已选择停用数据分析，则不会发送任何信息。表单无需填写邮箱；如需交流回复，请提交 GitHub issue。您可以直接关闭该页面而不做任何填写。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "當您解除安裝擴充功能時，Chrome 會在此網站開啟一個簡短的意見回饋頁面。該網址僅包含擴充功能版本以及安裝天數——不含任何識別碼、網頁內容或瀏覽紀錄。您在表單中選擇或輸入的內容（原因、選填意見）將作為事件記錄在我們自建（self-hosted）且不使用 Cookie 的分析工具中，並連同擴充功能版本與安裝天數一起記錄，僅用於改進擴充功能。若您的瀏覽器發送了 Do Not Track 訊號或您已選擇退出數據分析，則不會發送任何資料。此頁面沒有 Email 欄位；若需回覆，請在 GitHub 開啟 Issue。您也可以直接關閉該頁面而不填寫任何內容。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "拡張機能をアンインストールすると、Chromeによって当サイト上の簡単なフィードバックページが開かれます。このページのURLには、拡張機能のバージョンとインストールされていた日数のみが含まれ、識別子、ページコンテンツ、閲覧履歴などは一切含まれません。フォームで選択または入力された内容（理由や任意のコメント）は、拡張機能のバージョンおよびインストール日数とともに、Cookieを使用しない自社ホスト型の分析ツールにイベントとして記録され、拡張機能の改善のみに使用されます。ブラウザで「Do Not Track」が有効になっている場合や、分析をオプトアウトしている場合は何も送信されません。メールアドレスの入力欄はありませんので、返信が必要な場合はGitHubのIssueをご利用ください。回答せずにページを閉じることも可能です。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "확장 프로그램을 삭제하면 Chrome에서 본 웹사이트의 간단한 피드백 페이지가 열립니다. 해당 웹 주소에는 확장 프로그램 버전과 설치 기간(일수)만 포함되며 식별자, 페이지 콘텐츠, 방문 기록은 전혀 포함되지 않습니다. 양식에 선택하거나 입력하신 내용(삭제 이유, 선택적 의견)은 확장 프로그램 버전 및 설치 기간과 함께 쿠키를 사용하지 않는 자체 호스팅 분석 도구에 이벤트로 기록되며, 오직 확장 프로그램 개선 목적으로만 사용됩니다. 브라우저에서 '추적 거부(Do Not Track)' 신호를 보내거나 분석 수집을 거부하신 경우에는 아무런 데이터도 전송되지 않습니다. 이메일 입력란은 별도로 없으므로 답변이 필요하신 경우 GitHub 이슈를 등록해 주세요. 설문에 응답하지 않고 페이지를 그냥 닫으셔도 됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quando você desinstala a extensão, o Chrome abre uma rápida página de feedback neste site. O endereço contém apenas a versão da extensão e a quantidade de dias em que ela esteve instalada — sem identificadores, sem conteúdo de páginas, sem histórico. O que você escolher ou digitar no formulário (um motivo, um comentário opcional) é registrado como um evento na nossa ferramenta de análise auto-hospedada e sem cookies, juntamente com a versão da extensão e os dias de instalação, sendo usado exclusivamente para melhorar a extensão. Se o seu navegador enviar o sinal Não Rastrear (Do Not Track) ou se você tiver desativado as estatísticas, nada é enviado. Não há campo de e-mail; para obter uma resposta, abra uma issue no GitHub. Você pode fechar a página sem responder.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "जब आप एक्सटेंशन को अनइंस्टॉल करते हैं, तो Chrome इस वेबसाइट पर एक छोटा फ़ीडबैक पेज खोलता है। इस एड्रेस में केवल एक्सटेंशन वर्ज़न और यह कितने दिनों तक इंस्टॉल्ड था उसकी संख्या होती है — कोई आइडेंटिफ़ायर, कोई पेज कंटेंट, कोई हिस्ट्री नहीं। फ़ॉर्म में आप जो भी चुनते हैं या टाइप करते हैं (कारण, कोई ऑप्शनल कमेंट), वह एक्सटेंशन वर्ज़न और इंस्टॉलेशन के दिनों के साथ हमारे सेल्फ़-होस्टेड, कुकी-लेस एनालिटिक्स में एक इवेंट के रूप में रिकॉर्ड किया जाता है, और इसका इस्तेमाल केवल एक्सटेंशन को बेहतर बनाने के लिए किया जाता है। यदि आपका ब्राउज़र Do Not Track भेजता है या आपने एनालिटिक्स से ऑप्ट-आउट किया है, तो कुछ भी नहीं भेजा जाता है। यहाँ कोई ईमेल फ़ील्ड नहीं है; जवाब पाने के लिए GitHub issue खोलें। आप बिना जवाब दिए पेज बंद कर सकते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Khi bạn gỡ cài đặt tiện ích mở rộng, Chrome sẽ mở một trang phản hồi ngắn trên trang web này. Địa chỉ chỉ chứa phiên bản tiện ích và số ngày tiện ích đã được cài đặt — không có mã định danh, không có nội dung trang, không có lịch sử duyệt web. Những gì bạn chọn hoặc nhập vào biểu mẫu (lý do, nhận xét tùy chọn) sẽ được ghi lại dưới dạng sự kiện trong hệ thống phân tích tự lưu trữ, không sử dụng cookie của chúng tôi, cùng với phiên bản tiện ích và số ngày đã cài đặt, và chỉ được dùng để cải thiện tiện ích. Nếu trình duyệt của bạn gửi tín hiệu Do Not Track hoặc bạn đã chọn không tham gia phân tích, sẽ không có dữ liệu nào được gửi đi. Không có trường nhập email; nếu cần phản hồi, vui lòng tạo một GitHub issue. Bạn có thể đóng trang mà không cần trả lời.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0792bc1fb0bbe7e36e05e9091d0c4cdf506bc57535d01da76881f01c58eea6ca": {
+      "en": "removes everything the extension stores on the device and starts it fresh. Removing the extension also removes its data. These actions delete local data only. Your account and the records we hold on our server (see below) you manage at",
+      "translations": {
+        "de": {
+          "text": "löscht alle von der Erweiterung auf dem Gerät gespeicherten Daten und setzt sie zurück. Auch das Entfernen der Erweiterung löscht deren lokale Daten. Diese Schritte löschen ausschließlich lokale Daten. Ihr Konto und die auf unserem Server gespeicherten Daten (siehe unten) verwalten Sie unter",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "supprime tout ce que l'extension stocke sur l'appareil et la réinitialise. Désinstaller l'extension supprime également ses données. Ces actions ne suppriment que les données locales. Votre compte et les données que nous conservons sur notre serveur (voir ci-dessous) sont gérés sur",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "elimina todo lo que la extensión almacena en el dispositivo y la reinicia desde cero. Eliminar la extensión también borra sus datos. Estas acciones solo eliminan datos locales. Tu cuenta y los registros que conservamos en nuestro servidor (ver más abajo) los puedes gestionar en",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "会清除扩展程序存储在设备上的所有数据并重置为初始状态。卸载扩展程序同样会清除其全部本地数据。这些操作仅删除本地数据。您的账户以及我们在服务器上保存的记录（见下文），均可在以下页面进行管理：",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "會清除擴充功能儲存在裝置上的所有資料並將其重設為初始狀態。移除擴充功能亦會刪除其資料。這些操作僅會刪除本機資料。至於您的帳號以及我們在伺服器上保留的紀錄（詳見下方），您可以在",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "を実行すると、拡張機能が端末内に保存しているすべてのデータが削除され、初期状態に戻ります。拡張機能をアンインストールすることでもデータは削除されます。これらの操作で削除されるのはローカルデータのみです。アカウントおよび当社のサーバーに保持されている記録（下記参照）の管理は、",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "을(를) 실행하면 확장 프로그램이 기기에 저장한 모든 데이터가 삭제되고 초기 상태로 재설정됩니다. 확장 프로그램을 삭제하셔도 관련 데이터가 함께 제거됩니다. 이러한 작업은 로컬 데이터만 삭제합니다. 계정 및 당사 서버에 보관된 기록(하단 참조)은 다음 페이지에서 직접 관리하실 수 있습니다: ",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "remove tudo o que a extensão armazena no dispositivo e redefine suas configurações. Remover a extensão também apaga seus dados. Essas ações excluem apenas dados locais. Sua conta e os registros que mantemos no nosso servidor (veja abaixo) são gerenciados por você em",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "डिवाइस पर एक्सटेंशन द्वारा स्टोर किए गए सभी डेटा को हटा देता है और इसे नए सिरे से शुरू करता है। एक्सटेंशन को रिमूव करने से उसका डेटा भी डिलीट हो जाता है। ये एक्शन्स केवल लोकल डेटा को डिलीट करते हैं। आपका अकाउंट और हमारे सर्वर पर मौजूद रिकॉर्ड्स (नीचे देखें) आप यहाँ मैनेज कर सकते हैं:",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "sẽ xóa toàn bộ dữ liệu tiện ích mở rộng lưu trữ trên thiết bị và thiết lập lại từ đầu. Gỡ cài đặt tiện ích cũng sẽ xóa dữ liệu của tiện ích. Các hành động này chỉ xóa dữ liệu cục bộ. Tài khoản của bạn và các bản ghi chúng tôi lưu giữ trên máy chủ (xem bên dưới) có thể được quản lý tại",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9eef1b1d16d7f960a2dd3a1157eb8108976b39098d55f92775d63c0acf76f89f": {
+      "en": ": there you can export your data and delete your account. The extension and the Android app link to it from the account settings.",
+      "translations": {
+        "de": {
+          "text": ": Dort können Sie Ihre Daten exportieren und Ihr Konto löschen. Die Erweiterung und die Android-App verlinken in den Kontoeinstellungen direkt dorthin.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": " : vous pouvez y exporter vos données et supprimer votre compte. L'extension et l'application Android y renvoient depuis les paramètres du compte.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ": allí puedes exportar tus datos y eliminar tu cuenta. La extensión y la aplicación para Android enlazan a este apartado desde los ajustes de la cuenta.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "：您可以在该页面导出个人数据并注销账户。扩展程序和 Android 应用均可在账户设置中直接跳转至该页面。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "進行管理：您可以在該處匯出資料並刪除帳號。擴充功能與 Android 應用程式均在帳號設定中提供了此頁面的連結。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "から行えます。こちらでデータの書き出しやアカウントの削除が可能です。拡張機能およびAndroidアプリのアカウント設定からもリンクされています。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ". 해당 페이지에서 데이터를 내보내거나 계정을 삭제할 수 있습니다. 확장 프로그램과 Android 앱의 계정 설정에서도 이 링크로 바로 이동할 수 있습니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ": lá você pode exportar seus dados e excluir sua conta. A extensão e o app para Android possuem links para essa página nas configurações de conta.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ": वहाँ आप अपना डेटा एक्सपोर्ट कर सकते हैं और अपना अकाउंट डिलीट कर सकते हैं। एक्सटेंशन और Android ऐप अकाउंट सेटिंग्स से इसे लिंक करते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ": tại đây bạn có thể xuất dữ liệu và xóa tài khoản của mình. Tiện ích mở rộng và ứng dụng Android có liên kết dẫn đến trang này từ phần cài đặt tài khoản.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d78f6a14a7cbf0d145734b2f333f5f1b37f1f4a321273bf5251307590bdf96f2": {
+      "en": "byphil.eu/#account",
+      "translations": {
+        "de": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "byphil.eu/#account",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9b0d0b3ff13b1410d258e7acb778fccaf54345c0c16b2a9bdde749618c56cd25": {
+      "en": "Legal bases and retention",
+      "translations": {
+        "de": {
+          "text": "Rechtsgrundlagen und Speicherdauer",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Bases juridiques et durées de conservation",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Bases jurídicas y conservación",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "法律依据与保留期限",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "法律依據與資料保存期限",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "法的根拠とデータ保持期間",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "처리 근거 및 보유 기간",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Bases legais e retenção de dados",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कानूनी आधार और डेटा का रिटेंशन (Legal bases and retention)",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cơ sở pháp lý và thời gian lưu trữ dữ liệu",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "97af79ec1f67cc61900a2b5d6a5f8a67726e57d2c2e0c70fbdbeb6bdb36938e8": {
+      "en": "Almost everything is processed on your device and never reaches us. Where we do process data, this is the basis and how long we keep it:",
+      "translations": {
+        "de": {
+          "text": "Nahezu alles wird lokal auf Ihrem Gerät verarbeitet und erreicht uns zu keinem Zeitpunkt. Soweit wir dennoch Daten verarbeiten, geschieht dies auf folgenden Rechtsgrundlagen und für folgende Dauer:",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "La quasi-totalité des données est traitée localement sur votre appareil et ne nous parvient jamais. Lorsque nous traitons des données, voici la base juridique et la durée de conservation applicables :",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Casi todo se procesa directamente en tu dispositivo y nunca llega a nosotros. En los casos en que sí tratamos datos, esta es la base jurídica y el tiempo que los conservamos:",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "绝大部分数据均直接在您的本地设备上处理，绝不会传输至我们的服务器。针对我们确实会处理的数据，其处理依据与保留期限如下：",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "絕大多數資料均在您的本機裝置上處理，絕不會傳送給我們。若我們確實處理了資料，其法律依據與保存期限如下：",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ほぼすべての処理はお客様の端末上（オンデバイス）で行われ、当社のサーバーに届くことはありません。当社がデータを処理する場合の根拠と保持期間は以下のとおりです。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "거의 모든 데이터는 고객님의 기기 내에서 로컬로 처리되며 당사 서버로 전송되지 않습니다. 당사에서 데이터를 처리하는 경우, 그 법적 근거 및 보유 기간은 다음과 같습니다:",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quase tudo é processado no seu dispositivo e nunca chega até nós. Onde realizamos o processamento de dados, estas são as bases legais e o tempo de retenção:",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "लगभग सब कुछ आपके डिवाइस पर प्रोसेस होता है और हम तक कभी नहीं पहुँचता। जहाँ हम डेटा प्रोसेस करते हैं, उसका आधार और हम इसे कब तक रखते हैं, वह यह है:",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hầu hết mọi tác vụ đều được xử lý trực tiếp trên thiết bị của bạn và không bao giờ gửi đến chúng tôi. Đối với phần dữ liệu chúng tôi có xử lý, đây là cơ sở pháp lý và thời hạn lưu giữ:",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "30aefd0531cf6c0ec4612aefb2c749b05cedb7b53c98c177d63461ac7dcf8442": {
+      "en": "(email address, one-time code, license key, plan status) — to provide the account you asked for, Art. 6(1)(b) GDPR. Kept as long as the account exists; when you delete the account it is deleted.",
+      "translations": {
+        "de": {
+          "text": "(E-Mail-Adresse, Einmalcode, Lizenzschlüssel, Tarifstatus) – zur Bereitstellung des von Ihnen angeforderten Kontos, Art. 6 Abs. 1 lit. b DSGVO. Gespeichert, solange das Konto besteht; bei Löschung des Kontos werden die Daten entfernt.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(adresse e-mail, code à usage unique, clé de licence, statut de l'abonnement) — pour fournir le compte demandé, art. 6, par. 1, point b du RGPD. Conservées tant que le compte existe ; supprimées lors de la suppression du compte.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(dirección de correo electrónico, código de un solo uso, clave de licencia, estado del plan) — para proporcionar la cuenta que solicitaste, Art. 6(1)(b) del RGPD. Se conservan mientras exista la cuenta; al eliminar la cuenta, se eliminan.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "（电子邮件地址、一次性验证码、许可证密钥、套餐状态）—— 用于提供您所请求的账户服务，依据 GDPR 第 6(1)(b) 条。在账户存续期间保留；当您注销账户时即被彻底删除。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "（Email 地址、一次性驗證碼、授權金鑰、方案狀態）——依據 GDPR 第 6 條第 1 款第 (b) 項，用於提供您所申請的帳號。保存期限為帳號存續期間；當您刪除帳號時，該資料即會一併刪除。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（メールアドレス、ワンタイムコード、ライセンスキー、プランステータス）— ご要望のアカウント機能を提供するため（GDPR第6条第1項(b)）。アカウントが存在する限り保持され、アカウントが削除されると同時に削除されます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(이메일 주소, 일회용 인증 코드, 라이선스 키, 플랜 상태) — 요청하신 계정 서비스를 제공하기 위함(GDPR 제6조 제1항 (b)호). 계정이 유지되는 동안 보관되며, 계정 삭제 시 함께 파기됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(endereço de e-mail, código de uso único, chave de licença, status do plano) — para fornecer a conta solicitada por você, Art. 6(1)(b) do GDPR. Mantidos enquanto a conta existir; quando você exclui a conta, eles são apagados.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(ईमेल एड्रेस, वन-टाइम कोड, लाइसेंस की, प्लान स्टेटस) — आपके द्वारा मांगे गए अकाउंट को प्रोवाइड करने के लिए, Art. 6(1)(b) GDPR। जब तक अकाउंट एक्टिव रहता है तब तक रखा जाता है; अकाउंट डिलीट करने पर यह डिलीट हो जाता है।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(địa chỉ email, mã một lần, khóa bản quyền, trạng thái gói) — để cung cấp tài khoản theo yêu cầu của bạn, Điều 6(1)(b) GDPR. Được lưu giữ trong suốt thời gian tài khoản tồn tại; khi bạn xóa tài khoản, dữ liệu này sẽ bị xóa.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "605a69f4bf956a3ee9587a9bb839d5ad5a2cb3c72087f2bc30d979d61c6d52d7": {
+      "en": "Account and sign-in",
+      "translations": {
+        "de": {
+          "text": "Konto und Anmeldung",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Compte et connexion",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cuenta e inicio de sesión",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "账户与登录",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "帳號與登入",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アカウントおよびサインイン",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "계정 및 로그인",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Conta e login",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Account and sign-in",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tài khoản và đăng nhập",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6b1f32496e1d5f2d0924377f97b5bb4c2d1b5591f1c5aa2b8b66c1c3965b0c59": {
+      "en": "(relaying the text you summarize, usage counters, token usage, last request, last model) — to perform the service, Art. 6(1)(b). The text is only relayed and not stored. The usage metadata is kept as long as the account exists and deleted with it.",
+      "translations": {
+        "de": {
+          "text": "(Weiterleitung des zu zusammenfassenden Textes, Nutzungszähler, Token-Verbrauch, letzte Anfrage, letztes Modell) – zur Erfüllung des Vertrags, Art. 6 Abs. 1 lit. b DSGVO. Der Text wird nur weitergeleitet und nicht gespeichert. Die Nutzungs-Metadaten werden für die Dauer des Kontos gespeichert und mit ihm gelöscht.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(relais du texte à résumer, compteurs d'utilisation, consommation de tokens, dernière requête, dernier modèle utilisé) — pour exécuter le service, art. 6, par. 1, point b. Le texte est uniquement relayé et n'est pas stocké. Les métadonnées d'utilisation sont conservées tant que le compte existe et supprimées en même temps que lui.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(retransmisión del texto que resumes, contadores de uso, consumo de tokens, última solicitud, último modelo) — para prestar el servicio, Art. 6(1)(b). El texto solo se retransmite y no se almacena. Los metadatos de uso se conservan mientras exista la cuenta y se eliminan junto con ella.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "（中转待摘要文本、使用计数器、Token 用量、最后请求时间、最后使用模型）—— 用于履行相关服务，依据第 6(1)(b) 条。文本仅作实时中转，不作任何存储。使用元数据在账户存续期间保留，并在注销账户时一并删除。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "（轉發您要摘要的文字、使用計數器、Token 用量、最後請求時間、最後使用模型）——依據第 6 條第 1 款第 (b) 項，用於履行服務。文字僅進行轉發，不會被儲存。使用情況中繼資料將在帳號存續期間保留，並於帳號刪除時一併移除。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（要約対象テキストの中継、利用カウンター、トークン使用量、最後のリクエスト、最後に使用したモデル）— サービスを提供するため（GDPR第6条第1項(b)）。テキストは中継されるのみで保存されません。利用状況のメタデータはアカウントが存在する限り保持され、アカウント削除時に一緒に削除されます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(요약 요청 텍스트 중계, 사용량 카운터, 토큰 사용량, 마지막 요청 시간, 마지막 사용 모델) — 서비스 제공을 위함(GDPR 제6조 제1항 (b)호). 텍스트는 단순 중계될 뿐 저장되지 않습니다. 사용 메타데이터는 계정이 유지되는 동안 보관되며 계정 삭제 시 함께 파기됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(repasse do texto que você resume, contadores de uso, consumo de tokens, última requisição, último modelo) — para executar o serviço, Art. 6(1)(b). O texto é apenas repassado e não fica armazenado. Os metadados de uso são mantidos enquanto a conta existir e são excluídos junto com ela.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(आपके समराइज़ किए जाने वाले टेक्स्ट को रिले करना, यूसेज काउंटर्स, टोकन यूसेज, आख़िरी रिक्वेस्ट, आख़िरी मॉडल) — सर्विस डिलीवर करने के लिए, Art. 6(1)(b)। टेक्स्ट केवल रिले किया जाता है और स्टोर नहीं होता। यूसेज मेटाडेटा तब तक रखा जाता है जब तक अकाउंट मौजूद है और अकाउंट के साथ ही डिलीट हो जाता है।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(chuyển tiếp văn bản bạn tóm tắt, bộ đếm lượt sử dụng, lượng token đã dùng, yêu cầu gần nhất, mô hình gần nhất) — để thực hiện dịch vụ, Điều 6(1)(b). Văn bản chỉ được chuyển tiếp và không lưu trữ. Siêu dữ liệu sử dụng được giữ chừng nào tài khoản còn tồn tại và sẽ bị xóa cùng với tài khoản.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f90eb3f84f6e2361bf3c12590327220bf38809745d9f56464631632e09432766": {
+      "en": "byphil Cloud",
+      "translations": {
+        "de": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "byphil Cloud",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c41d9d48f9fcc8c98d1ff277768efb42506249bbdcdc89628cf49e58e7d886fb": {
+      "en": "(the article you send, your Kindle address) — to perform the sending you trigger, Art. 6(1)(b). Used only to create and send that email.",
+      "translations": {
+        "de": {
+          "text": "(der gesendete Artikel, Ihre Kindle-Adresse) – zur Ausführung des von Ihnen ausgelösten Versands, Art. 6 Abs. 1 lit. b DSGVO. Wird ausschließlich zum Erstellen und Versenden dieser E-Mail verwendet.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "(l'article envoyé, votre adresse Kindle) — pour exécuter l'envoi que vous déclenchez, art. 6, par. 1, point b. Utilisé uniquement pour créer et envoyer cet e-mail.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "(el artículo que envías, tu dirección de Kindle) — para realizar el envío que solicitas, Art. 6(1)(b). Se utiliza únicamente para crear y enviar ese correo electrónico.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "（您发送的文章内容、您的 Kindle 接收邮箱）—— 用于执行您触发的推送操作，依据第 6(1)(b) 条。仅用于生成并发送该封电子邮件。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "（您傳送的文章、您的 Kindle 地址）——依據第 6 條第 1 款第 (b) 項，用於執行您觸發的傳送操作。僅用於建立並發送該封電子郵件。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "（送信する記事、お客様のKindleアドレス）— お客様が指示した送信処理を実行するため（GDPR第6条第1項(b)）。該当のメールを作成・送信するためだけに利用されます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "(전송할 문서/기사, 고객님의 Kindle 이메일 주소) — 요청하신 발송 작업을 수행하기 위함(GDPR 제6조 제1항 (b)호). 해당 이메일을 생성하고 발송하는 목적으로만 일회성으로 사용됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "(o artigo enviado, seu endereço do Kindle) — para realizar o envio solicitado por você, Art. 6(1)(b). Usados unicamente para criar e enviar aquele e-mail.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "(आपके द्वारा भेजा जाने वाला आर्टिकल, आपका Kindle एड्रेस) — आपके ट्रिगर किए गए सेंडिंग एक्शन को पूरा करने के लिए, Art. 6(1)(b)। इसका इस्तेमाल केवल उस ईमेल को बनाने और भेजने के लिए किया जाता है।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "(bài viết bạn gửi, địa chỉ Kindle của bạn) — để thực hiện lệnh gửi do bạn kích hoạt, Điều 6(1)(b). Chỉ được sử dụng để tạo và gửi email đó.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "eb92407facd902f9ddf283116906daec0caf63dde94e06411b1cda052bfcf4f4": {
+      "en": "— to perform the contract and meet accounting duties, Art. 6(1)(b) and (c). Billing records are kept as long as the law requires.",
+      "translations": {
+        "de": {
+          "text": "– zur Vertragserfüllung und Einhaltung gesetzlicher Aufbewahrungspflichten, Art. 6 Abs. 1 lit. b und c DSGVO. Abrechnungsdaten werden gemäß den gesetzlichen Fristen aufbewahrt.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "— pour exécuter le contrat et respecter les obligations comptables, art. 6, par. 1, points b et c. Les pièces justificatives de facturation sont conservées pendant la durée requise par la loi.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "— para ejecutar el contrato y cumplir con las obligaciones contables, Art. 6(1)(b) y (c). Los registros de facturación se conservan durante el tiempo exigido por ley.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "—— 用于履行合同及满足法定的会计合规义务，依据第 6(1)(b) 及 (c) 条。账单记录将依法定要求的期限予以保留。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "——依據第 6 條第 1 款第 (b) 及 (c) 項，用於履行合約並遵循會計法定義務。帳務紀錄將依法律規定之年限保存。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "— 契約の履行および会計上の義務を果たすため（GDPR第6条第1項(b)および(c)）。請求記録は法令で定められた期間保持されます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "— 계약 이행 및 회계 법적 의무 준수를 위함(GDPR 제6조 제1항 (b)호 및 (c)호). 결제 및 청구 기록은 관련 법령이 규정한 기간 동안 보관됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "— para cumprir o contrato e atender às obrigações contábeis e fiscais, Art. 6(1)(b) e (c). Os registros de faturamento são mantidos pelo período exigido por lei.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "— कॉन्ट्रैक्ट पूरा करने और अकाउंटिंग से जुड़े नियमों के पालन के लिए, Art. 6(1)(b) और (c)। बिलिंग रिकॉर्ड्स को कानून द्वारा निर्धारित समय तक रखा जाता है।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "— để thực hiện hợp đồng và đáp ứng nghĩa vụ kế toán, Điều 6(1)(b) và (c). Hồ sơ thanh toán được lưu giữ theo thời gian luật định.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "167d38ec3c862242222d510cc99bc3329387a022f1eacd8d69f5427f2adead79": {
+      "en": "Payments and license verification",
+      "translations": {
+        "de": {
+          "text": "Zahlungen und Lizenzprüfung",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Paiements et vérification de licence",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Pagos y verificación de licencias",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支付与许可证验证",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "付款與授權驗證",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "決済およびライセンス認証",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "결제 및 라이선스 확인",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Pagamentos e verificação de licença",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Payments and license verification",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thanh toán và xác minh bản quyền",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f11f2ccc3823a960034d4dca2c6a25f446fc74d84360b4934224d6d189f40240": {
+      "en": "— our legitimate interest in improving the site and the extension, Art. 6(1)(f). The data is anonymous (see Analytics & cookies).",
+      "translations": {
+        "de": {
+          "text": "– unser berechtigtes Interesse an der Verbesserung der Website und der Erweiterung, Art. 6 Abs. 1 lit. f DSGVO. Die Daten sind anonym (siehe Analyse & Cookies).",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "— notre intérêt légitime à améliorer le site et l'extension, art. 6, par. 1, point f. Les données sont anonymes (voir Statistiques & cookies).",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "— nuestro interés legítimo en mejorar el sitio web y la extensión, Art. 6(1)(f). Los datos son anónimos (ver Analítica y cookies).",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "—— 基于我们改进网站和扩展程序的合法商业利益，依据第 6(1)(f) 条。该数据完全匿名（详见“分析与 Cookie”部分）。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "——依據第 6 條第 1 款第 (f) 項，基於我們改進網站與擴充功能之正當利益。該資料完全匿名（請參閱「數據分析與 Cookie」）。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "— サイトおよび拡張機能を改善するという当社の正当な利益のため（GDPR第6条第1項(f)）。データは匿名です（「アクセス解析とCookie」セクション参照）。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "— 웹사이트 및 확장 프로그램 개선을 위한 정당한 이익(GDPR 제6조 제1항 (f)호). 데이터는 완전히 익명으로 처리됩니다(분석 도구 및 쿠키 항목 참조).",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "— nosso interesse legítimo em melhorar o site e a extensão, Art. 6(1)(f). Os dados são anônimos (consulte Métricas e cookies).",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "— साइट और एक्सटेंशन को बेहतर बनाने में हमारा लीगल इंटरेस्ट (वैध हित), Art. 6(1)(f)। यह डेटा पूरी तरह अनाम (anonymous) है (Analytics & cookies देखें)।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "— lợi ích hợp pháp của chúng tôi trong việc cải thiện trang web và tiện ích mở rộng, Điều 6(1)(f). Dữ liệu hoàn toàn ẩn danh (xem mục Phân tích & cookie).",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "80724a1a0277d5ad63166d2108fbf912f727a608406f82b21ec44dd7ae213945": {
+      "en": "Website analytics and uninstall feedback",
+      "translations": {
+        "de": {
+          "text": "Webanalyse und Deinstallations-Feedback",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Statistiques du site et retours de désinstallation",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Analítica web y comentarios de desinstalación",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "网站分析与卸载反馈",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "網站數據分析與解除安裝意見回饋",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ウェブサイト解析とアンインストール時のフィードバック",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "웹사이트 분석 및 삭제 피드백",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Estatísticas do site e feedback de desinstalação",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Website analytics and uninstall feedback",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phân tích trang web và phản hồi gỡ cài đặt",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d6a7daa75a7164539375633bfc6b3879349182a191045cc149d6e6e4e1bd6772": {
+      "en": "You can export your account data and delete your account at any time at",
+      "translations": {
+        "de": {
+          "text": "Sie können Ihre Kontodaten jederzeit exportieren und Ihr Konto löschen unter",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vous pouvez à tout moment exporter les données de votre compte et supprimer ce dernier sur",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Puedes exportar los datos de tu cuenta y eliminarla en cualquier momento en",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "您可以随时在以下页面导出您的账户数据并注销账户：",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "您隨時可以在",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アカウントデータの書き出しおよびアカウントの削除は、いつでも",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "언제든지 다음 페이지에서 계정 데이터를 내보내거나 계정을 영구 삭제하실 수 있습니다: ",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Você pode exportar os dados da sua conta e excluí-la a qualquer momento em",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप किसी भी समय यहाँ जाकर अपना अकाउंट डेटा एक्सपोर्ट कर सकते हैं और अकाउंट डिलीट कर सकते हैं:",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn có thể xuất dữ liệu tài khoản và xóa tài khoản của mình bất cứ lúc nào tại",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fc2821025b8721f8a3d3e76365b990e6dd4ca2d508c72e3ca8566f1f86b5a17b": {
+      "en": ". Deleting the account deletes the data stored for it.",
+      "translations": {
+        "de": {
+          "text": ". Durch das Löschen des Kontos werden alle dafür gespeicherten Daten entfernt.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ". Supprimer le compte supprime l'ensemble des données qui y sont associées.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ". Eliminar la cuenta borra los datos almacenados para ella.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "。注销账户将同步彻底删除该账户名下存储的所有数据。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "匯出您的帳號資料並刪除帳號。刪除帳號會同時刪除為該帳號儲存的所有資料。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "で行うことができます。アカウントを削除すると、そのアカウントに関連して保存されていたデータも削除されます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ". 계정을 삭제하면 해당 계정에 저장된 모든 데이터가 즉시 파기됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ". Excluir a conta apaga todos os dados armazenados associados a ela.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ". अकाउंट डिलीट करने से उसके लिए स्टोर किया गया सारा डेटा डिलीट हो जाता है।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ". Việc xóa tài khoản sẽ xóa toàn bộ dữ liệu được lưu trữ cho tài khoản đó.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "51e37212f186513a609e2bf001059ad94662eb548b7c2430448db6ae959f345c": {
+      "en": "Our byphil backend, hosted by IONOS SE in Germany — only if you sign in, use byphil Cloud or Send to Kindle.",
+      "translations": {
+        "de": {
+          "text": "Unser byphil-Backend, gehostet bei IONOS SE in Deutschland – nur, wenn Sie sich anmelden, byphil Cloud oder Send to Kindle nutzen.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Notre backend byphil, hébergé par IONOS SE en Allemagne — uniquement si vous vous connectez, utilisez byphil Cloud ou « Send to Kindle ».",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Nuestro backend de byphil, alojado por IONOS SE en Alemania — únicamente si inicias sesión, usas byphil Cloud o Send to Kindle.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "我们的 byphil 后端服务（托管于德国 IONOS SE）—— 仅在您登录账户、使用 byphil Cloud 或使用 Send to Kindle 功能时涉及。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "我們的 byphil 後端伺服器（由德國 IONOS SE 託管）——僅在您登入、使用 byphil Cloud 或使用 Send to Kindle 時適用。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "当社のbyphilバックエンド（ドイツのIONOS SEにてホスティング）— サインイン、byphil Cloudの利用、または「Send to Kindle」を使用した場合のみ。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "독일 IONOS SE에서 호스팅하는 byphil 백엔드 — 로그인하거나 byphil Cloud 또는 Send to Kindle 기능을 사용할 때만 제한적으로 연결됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Nosso backend byphil, hospedado pela IONOS SE na Alemanha — somente se você fizer login, usar a byphil Cloud ou o recurso Enviar para o Kindle.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हमारा byphil बैकएंड, जो जर्मनी में IONOS SE द्वारा होस्ट किया गया है — केवल तभी जब आप साइन इन करते हैं, byphil Cloud या Send to Kindle का इस्तेमाल करते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hệ thống backend byphil của chúng tôi, được lưu trữ bởi IONOS SE tại Đức — chỉ khi bạn đăng nhập, sử dụng byphil Cloud hoặc Send to Kindle.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "69b9e02d37a067ac6a36a4afbaa8440253b877b3375938ff91fe5123b3414a0b": {
+      "en": "OpenRouter, through which byphil Cloud connects to the models, and the model provider it routes to — the text you summarize is relayed to the model you use, for that request only.",
+      "translations": {
+        "de": {
+          "text": "OpenRouter, worüber byphil Cloud die Modelle anbindet, sowie der jeweilige Modell-Anbieter – der zu zusammenfassende Text wird ausschließlich für diese konkrete Anfrage an das gewählte Modell weitergeleitet.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "OpenRouter, par lequel byphil Cloud se connecte aux modèles, ainsi que le fournisseur de modèle vers lequel la requête est routée — le texte que vous résumez est relayé au modèle choisi, uniquement pour le traitement de cette requête.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "OpenRouter, a través del cual byphil Cloud se conecta a los modelos, y el proveedor del modelo al que redirige — el texto que resumes se retransmite al modelo que utilizas, únicamente para esa solicitud.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "OpenRouter（byphil Cloud 借此连接模型）及所路由的模型提供商 —— 您提交摘要的文本仅会在该单次请求中转发至您指定的模型。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "OpenRouter（byphil Cloud 藉此連線至各 AI 模型）及其所路由至的模型提供商——您要求摘要的文字僅會在該次請求中轉發給您所使用的模型。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "OpenRouter（byphil Cloudがモデルに接続する経路）および中継先のモデルプロバイダー — 要約対象のテキストは、そのリクエストのためだけに使用モデルへと中継されます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byphil Cloud가 AI 모델에 연결하기 위해 사용하는 OpenRouter 및 해당 중계 모델 제공자 — 요약할 텍스트는 해당 요청 처리를 위해서만 사용 중인 모델로 안전하게 중계됩니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "OpenRouter, através da qual a byphil Cloud se conecta aos modelos, e o provedor de modelo para o qual a requisição é direcionada — o texto resumido é repassado ao modelo escolhido, apenas para atender àquela requisição específica.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "OpenRouter, जिसके ज़रिए byphil Cloud मॉडल्स से कनेक्ट होता है, और वह मॉडल प्रोवाइडर जिस पर यह रूट करता है — आपका समराइज़ किया जाने वाला टेक्स्ट केवल उसी रिक्वेस्ट के लिए चुने गए मॉडल तक रिले किया जाता है।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "OpenRouter, cầu nối giúp byphil Cloud kết nối với các mô hình, và nhà cung cấp mô hình được định tuyến tới — văn bản bạn tóm tắt chỉ được chuyển tiếp đến mô hình bạn sử dụng cho riêng yêu cầu đó.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "16439a8671940a146a13285422e4ad42f7c7718a4906e6c44a0fdca1b7bbbba7": {
+      "en": "Stripe — payments and subscription management, as Merchant of Record.",
+      "translations": {
+        "de": {
+          "text": "Stripe – Zahlungsabwicklung und Abonnementverwaltung als Merchant of Record.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Stripe — pour les paiements et la gestion des abonnements, en tant que Merchant of Record (revendeur officiel).",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Stripe — pagos y gestión de suscripciones, como Merchant of Record.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Stripe —— 作为法定销售商（Merchant of Record）处理付款交易与订阅管理。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Stripe——作為登記名義商戶（Merchant of Record），處理付款與訂閱管理。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Stripe — 販売代理人（Merchant of Record）としての決済およびサブスクリプション管理。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Stripe — 등록 판매자(Merchant of Record)로서 결제 및 구독 관리를 처리합니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Stripe — processamento de pagamentos e gerenciamento de assinaturas, atuando como Merchant of Record.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Stripe — Merchant of Record के रूप में पेमेंट्स और सब्सक्रिप्शन मैनेजमेंट।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Stripe — xử lý thanh toán và quản lý gói đăng ký, với vai trò là Merchant of Record.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "501af5e139a343a369bcaac4a22da44b28c80d43413bf24d3299ff1e7fb88dbb": {
+      "en": "Whether you use your own key or byphil Cloud, you choose the provider and model in the settings, and you are responsible for checking that provider's terms and where it processes data. OpenRouter, the model providers behind it and Amazon may process data outside the EU/EEA under their own safeguards (for example standard contractual clauses); we do not transfer your data to third countries ourselves.",
+      "translations": {
+        "de": {
+          "text": "Ob Sie einen eigenen Schlüssel oder byphil Cloud nutzen: Sie wählen Anbieter und Modell selbst in den Einstellungen und sind dafür verantwortlich, die Bedingungen des Anbieters sowie den Verarbeitungsort zu prüfen. OpenRouter, die nachgelagerten Modell-Anbieter und Amazon verarbeiten Daten gegebenenfalls außerhalb der EU/des EWR unter eigenen Garantien (z. B. Standardvertragsklauseln); wir selbst übermitteln Ihre Daten nicht in Drittländer.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Que vous utilisiez votre propre clé API ou byphil Cloud, vous choisissez le fournisseur et le modèle dans les paramètres, et il vous appartient de vérifier les conditions de ce fournisseur ainsi que le lieu de traitement des données. OpenRouter, les fournisseurs de modèles sous-jacents et Amazon peuvent traiter des données en dehors de l'UE/EEE sous leurs propres garanties appropriées (par exemple, des clauses contractuelles types) ; nous ne transférons pas nous-mêmes vos données vers des pays tiers.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tanto si utilizas tu propia clave como byphil Cloud, tú eliges el proveedor y el modelo en la configuración, y es tu responsabilidad revisar las condiciones de dicho proveedor y dónde procesa los datos. OpenRouter, los proveedores de modelos vinculados y Amazon pueden tratar datos fuera de la UE/EEE bajo sus propias garantías (por ejemplo, cláusulas contractuales tipo); nosotros no transferimos tus datos a terceros países por cuenta propia.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无论您使用自己的 API key 还是 byphil Cloud，您均可在设置中自主选择模型提供商与具体模型，并由您负责查阅该提供商的服务条款及其数据处理所在地。OpenRouter、其后端的模型提供商以及 Amazon 可能会在其自身的合规保障措施（例如标准合同条款 SCC）下在欧盟/欧洲经济区（EU/EEA）境外处理数据；我们自身不会主动将您的数据跨境传输至第三方国家。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無論您是使用自備金鑰還是 byphil Cloud，您都可以於設定中自行選擇提供商與模型，且您有責任查閱該提供商的條款及其資料處理地點。OpenRouter、其背後的模型提供商以及 Amazon 可能會依據其自身的保障措施（例如標準合約條款）在歐盟/歐洲經濟區（EU/EEA）境外處理資料；我們本身不會主動將您的資料傳輸至第三國。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ご自身のAPIキーを使用する場合でも、byphil Cloudを使用する場合でも、設定で使用するプロバイダーとモデルを選択するのはお客様自身であり、該当プロバイダーの利用規約やデータ処理地域を確認する責任はお客様にあります。OpenRouter、その背後にあるモデルプロバイダー、およびAmazonは、独自の保護措置（標準契約条項など）に基づいてEU/EEA外でデータを処理する場合があります。当社自身がお客様のデータを第三国に移転することはありません。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인 API 키를 사용하든 byphil Cloud를 이용하든, 설정에서 AI 제공자와 모델을 직접 선택할 수 있으며 해당 제공자의 이용약관 및 데이터 처리 지역을 확인할 책임은 사용자 본인에게 있습니다. OpenRouter, 연동된 AI 모델 제공자 및 Amazon은 자체 보호 조치(예: 표준계약조항/SCC)에 따라 EU/EEA 외부에서 데이터를 처리할 수 있습니다. 당사는 고객님의 데이터를 제3국으로 직접 이전하지 않습니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quer você use sua própria chave ou a byphil Cloud, é você quem escolhe o provedor e o modelo nas configurações, e você é responsável por verificar os termos desse provedor e onde ele processa os dados. A OpenRouter, os provedores de modelos associados a ela e a Amazon podem processar dados fora da UE/EEE sob suas próprias salvaguardas (por exemplo, cláusulas contratuais padrão); nós não transferimos seus dados diretamente para países terceiros.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "चाहे आप अपनी खुद की की (key) इस्तेमाल करें या byphil Cloud, आप सेटिंग्स में प्रोवाइडर और मॉडल चुनते हैं, और उस प्रोवाइडर की शर्तों और वह डेटा कहाँ प्रोसेस करता है, इसकी जाँच करने के लिए आप खुद ज़िम्मेदार हैं। OpenRouter, उसके पीछे के मॉडल प्रोवाइडर्स और Amazon अपने स्वयं के सेफ़गार्ड्स (उदाहरण के लिए standard contractual clauses) के तहत EU/EEA के बाहर डेटा प्रोसेस कर सकते हैं; हम खुद आपके डेटा को तीसरे देशों में ट्रांसफ़र नहीं करते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Dù bạn sử dụng khóa riêng của mình hay byphil Cloud, bạn đều tự chọn nhà cung cấp và mô hình trong phần cài đặt, đồng thời chịu trách nhiệm kiểm tra các điều khoản và nơi xử lý dữ liệu của nhà cung cấp đó. OpenRouter, các nhà cung cấp mô hình liên kết và Amazon có thể xử lý dữ liệu bên ngoài EU/EEA theo các biện pháp bảo vệ riêng của họ (ví dụ: các điều khoản hợp đồng tiêu chuẩn); bản thân chúng tôi không tự ý chuyển dữ liệu của bạn sang các nước thứ ba.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ca5b5fe90a9d784dbb5bd4f1cef524215fd7415619f09d706cf1aa60b1dc01e5": {
+      "en": "You decide which model processes your text.",
+      "translations": {
+        "de": {
+          "text": "Sie entscheiden, welches Modell Ihren Text verarbeitet.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vous choisissez quel modèle traite votre texte.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tú decides qué modelo procesa tu texto.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "由您全权自主决定由哪个模型来处理您的文本。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "由您決定由哪個模型來處理您的文字。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "どのモデルにテキストを処理させるかは、お客様自身で決定できます。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 모델로 텍스트를 처리할지는 전적으로 고객님이 결정합니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Você decide qual modelo processa seu texto.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप तय करते हैं कि कौन सा मॉडल आपके टेक्स्ट को प्रोसेस करेगा।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn có toàn quyền quyết định mô hình nào sẽ xử lý văn bản của mình.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "08eedcd0cd4381a60701650afca88911cb5c831a462e812e9d1dcdbfbe240363": {
+      "en": "Since almost all of your data is stored locally on your own device, you already have direct control over it — you can view, export, or delete it at any time via the extension's Settings, or by uninstalling the extension. For any data we do hold on our servers (byphil Cloud subscription/billing metadata), you can manage and export it, and delete your account, at",
+      "translations": {
+        "de": {
+          "text": "Da nahezu alle Ihre Daten lokal auf Ihrem eigenen Gerät verbleiben, behalten Sie stets die direkte Kontrolle: Sie können sie jederzeit über die Einstellungen der Erweiterung einsehen, exportieren oder löschen – oder indem Sie die Erweiterung deinstallieren. Daten, die wir auf unseren Servern vorhalten (byphil Cloud Abonnement-/Abrechnungs-Metadaten), können Sie verwalten, exportieren sowie Ihr Konto löschen unter",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Puisque la quasi-totalité de vos données est stockée localement sur votre propre appareil, vous en gardez le contrôle direct : vous pouvez les consulter, les exporter ou les supprimer à tout moment via les paramètres de l'extension, ou en désinstallant cette dernière. Pour les données que nous conservons sur nos serveurs (métadonnées d'abonnement/facturation byphil Cloud), vous pouvez les gérer, les exporter et supprimer votre compte sur",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Dado que casi todos tus datos se almacenan localmente en tu propio dispositivo, ya tienes control directo sobre ellos: puedes verlos, exportarlos o eliminarlos en cualquier momento desde los Ajustes de la extensión, o desinstalando la extensión. Para cualquier dato que sí conservemos en nuestros servidores (metadatos de suscripción/facturación de byphil Cloud), puedes gestionarlo, exportarlo y eliminar tu cuenta en",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "鉴于您的绝大多数数据均直接保存在您自己的本地设备上，您天然对其拥有完全的掌控权 —— 您可以随时通过扩展程序的“设置”查看、导出或删除数据，或直接卸载扩展程序。对于我们服务器上留存的数据（byphil Cloud 订阅/账单元数据），您可以在以下页面进行管理、导出及注销账户：",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "由於絕大部分資料均存放在您自己的本機裝置上，您本就擁有直接掌控權——您可以隨時透過擴充功能的「設定」或直接解除安裝擴充功能，來檢視、匯出或刪除這些資料。針對我們在伺服器上保留的資料（byphil Cloud 訂閱/帳務中繼資料），您可以在",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "お客様のデータはほぼすべて端末内にローカル保存されるため、お客様自身が直接管理できます。拡張機能の「設定」から、または拡張機能をアンインストールすることで、いつでもデータの確認、書き出し、削除が可能です。当社のサーバーに保持されているデータ（byphil Cloudのサブスクリプション/請求メタデータなど）については、",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "대부분의 데이터는 고객님의 기기에만 안전하게 로컬로 저장되므로, 사용자가 데이터를 완전히 통제할 수 있습니다. 확장 프로그램의 '설정' 메뉴에서 언제든지 데이터를 확인, 내보내기, 삭제할 수 있으며 확장 프로그램을 제거하여 삭제할 수도 있습니다. 당사 서버에 저장되는 일부 데이터(byphil Cloud 구독/결제 메타데이터)의 경우 다음 링크에서 관리, 내보내기 및 계정 삭제가 가능합니다: ",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Como quase todos os seus dados ficam armazenados localmente no seu próprio dispositivo, você já tem controle total sobre eles — podendo visualizá-los, exportá-los ou excluí-los a qualquer momento nas Configurações da extensão, ou simplesmente desinstalando a extensão. Para quaisquer dados que mantemos em nossos servidores (assinatura da byphil Cloud e metadados de faturamento), você pode gerenciá-los, exportá-los e excluir sua conta em",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "चूँकि आपका लगभग सारा डेटा आपके अपने डिवाइस पर लोकली स्टोर होता है, इसलिए आपका उस पर पहले से ही पूरा कंट्रोल है — आप एक्सटेंशन की Settings के ज़रिए या एक्सटेंशन को अनइंस्टॉल करके कभी भी इसे देख सकते हैं, एक्सपोर्ट कर सकते हैं या डिलीट कर सकते हैं। जो भी डेटा हम अपने सर्वर पर रखते हैं (byphil Cloud सब्सक्रिप्शन/बिलिंग मेटाडेटा), आप उसे यहाँ मैनेज और एक्सपोर्ट कर सकते हैं, और अपना अकाउंट डिलीट कर सकते हैं:",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Vì hầu như toàn bộ dữ liệu được lưu trữ cục bộ ngay trên thiết bị của bạn, bạn hoàn toàn nắm quyền kiểm soát trực tiếp — bạn có thể xem, xuất hoặc xóa dữ liệu bất kỳ lúc nào qua Cài đặt của tiện ích mở rộng hoặc bằng cách gỡ cài đặt tiện ích. Đối với bất kỳ dữ liệu nào chúng tôi lưu trữ trên máy chủ (siêu dữ liệu thanh toán/gói đăng ký byphil Cloud), bạn có thể quản lý, xuất dữ liệu và xóa tài khoản tại",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "da123ab44b3324bedcd53ea08ca0c4ce4fbeac2ade3591c4ce638e6137c2c2d3": {
+      "en": ", or contact us below.",
+      "translations": {
+        "de": {
+          "text": " – oder kontaktieren Sie uns wie unten angegeben.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ", ou en nous contactant ci-dessous.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ", o contactarnos abajo.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "，或通过文末的方式联系我们。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "進行管理與匯出，以及刪除您的帳號；或者您也可以透過下方的聯絡方式與我們聯繫。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "で管理、書き出し、アカウント削除を行うか、下記のお問い合わせ先までご連絡ください。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ". 또는 하단의 연락처로 문의해 주시기 바랍니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ", ou entrar em contato conosco pelos canais abaixo.",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ", या नीचे हमसे संपर्क कर सकते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ", hoặc liên hệ với chúng tôi bên dưới.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "98659960838bc4c1e817ccd5b36e8d09e129cba3cb1517147f46198a0781c1e8": {
+      "en": "You have the right to access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction (Art. 18), data portability (Art. 20) and objection (Art. 21), and to withdraw consent at any time. You also have the right to lodge a complaint with a supervisory authority (Art. 77), in particular in the member state of your residence. We do not use your data for automated decisions with legal effect or for profiling.",
+      "translations": {
+        "de": {
+          "text": "Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21) sowie das Recht, Einwilligungen jederzeit zu widerrufen. Zudem haben Sie das Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 77), insbesondere in dem Mitgliedstaat Ihres Wohnsitzes. Wir nutzen Ihre Daten nicht für automatisierte Entscheidungsfindungen mit rechtlicher Wirkung oder für Profiling.",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vous disposez d'un droit d'accès (art. 15), de rectification (art. 16), d'effacement (art. 17), de limitation du traitement (art. 18), de portabilité (art. 20) et d'opposition (art. 21), ainsi que du droit de retirer votre consentement à tout moment. Vous avez également le droit d'introduire une réclamation auprès d'une autorité de contrôle (art. 77), notamment dans l'État membre de votre résidence. Nous n'utilisons pas vos données pour des décisions automatisées produisant des effets juridiques ou pour du profilage.",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tienes derecho de acceso (Art. 15), rectificación (Art. 16), supresión (Art. 17), limitación del tratamiento (Art. 18), portabilidad de los datos (Art. 20) y oposición (Art. 21), así como a retirar tu consentimiento en cualquier momento. También tienes derecho a presentar una reclamación ante una autoridad de control (Art. 77), en particular en el Estado miembro de tu residencia. No utilizamos tus datos para decisiones automatizadas con efectos jurídicos ni para la elaboración de perfiles.",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "您依法享有知情访问权（第 15 条）、更正权（第 16 条）、删除权（第 17 条）、限制处理权（第 18 条）、数据可携权（第 20 条）以及异议权（第 21 条），并有权随时撤回已给出的同意。您亦有权向监管机构提出申诉（第 77 条），特别是在您常住地所在的欧盟成员国监管机构。我们绝不会将您的数据用于产生法律效力的自动化决策或用户画像（Profiling）。",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "您享有查閱權（第 15 條）、更正權（第 16 條）、刪除權（第 17 條）、限制處理權（第 18 條）、資料可攜權（第 20 條）以及異議權（第 21 條），並有權隨時撤回同意。您亦有權向主管機關提出申訴（第 77 條），特別是在您居住地所在的成員國。我們不會將您的資料用於具有法律效力的自動化決策或進行使用者側寫（profiling）。",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "お客様には、アクセス権（第15条）、訂正権（第16条）、消去権（第17条）、処理の制限権（第18条）、データポータビリティ権（第20条）、異議申立権（第21条）、およびいつでも同意を撤回する権利があります。また、特にお住まいの加盟国の監督機関に異議を申し立てる権利（第77条）を有します。当社はお客様のデータを法的効果を伴う自動化された意思決定やプロファイリングに使用することはありません。",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "귀하는 정보주체로서 열람 청구권(제15조), 정정 청구권(제16조), 삭제 청구권(제17조), 처리 제한 청구권(제18조), 데이터 이동권(제20조), 처리 거부권(제21조) 및 언제든지 동의를 철회할 권리를 가집니다. 또한 거주지 관할 감독 기관에 불복을 제기할 권리(제77조)도 보유합니다. 당사는 귀하의 데이터를 법적 효력을 발생시키는 자동화된 의사결정이나 프로파일링에 활용하지 않습니다.",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Você tem o direito de acesso (Art. 15), retificação (Art. 16), exclusão (Art. 17), limitação do processamento (Art. 18), portabilidade dos dados (Art. 20) e oposição (Art. 21), bem como o direito de retirar seu consentimento a qualquer momento. Você também tem o direito de apresentar uma reclamação a uma autoridade de controle (Art. 77), em especial no país da sua residência. Não usamos seus dados para decisões automatizadas com efeitos jurídicos ou para criação de perfis (profiling).",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपको एक्सेस (Art. 15), रेक्टिफ़िकेशन (Art. 16), इरेज़र (Art. 17), रेस्ट्रिक्शन (Art. 18), डेटा पोर्टेबिलिटी (Art. 20) और ऑब्जेक्शन (Art. 21) का अधिकार है, और किसी भी समय अपनी सहमति वापस लेने का अधिकार है। आपको सुपरवाइज़री अथॉरिटी (Art. 77) के पास शिकायत दर्ज करने का भी अधिकार है, विशेष रूप से अपने निवास वाले सदस्य देश में। हम कानूनी प्रभाव वाले ऑटोमेटेड डिसीजन या प्रोफ़ाइलिंग के लिए आपके डेटा का उपयोग नहीं करते हैं।",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn có quyền truy cập (Điều 15), chỉnh sửa (Điều 16), xóa bỏ (Điều 17), hạn chế xử lý (Điều 18), chuyển giao dữ liệu (Điều 20) và phản đối (Điều 21), cũng như quyền rút lại sự đồng ý bất kỳ lúc nào. Bạn cũng có quyền khiếu nại với cơ quan giám sát (Điều 77), đặc biệt là tại quốc gia thành viên nơi bạn cư trú. Chúng tôi không sử dụng dữ liệu của bạn cho các quyết định tự động mang tính pháp lý hoặc để lập hồ sơ cá nhân.",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3e0184d23650e1fdef549bd855f103c18dfe0065ad40940f5b2fe3412892fceb": {
+      "en": "info@byphil.eu",
+      "translations": {
+        "de": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:13:08.923Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:13:20.922Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:13:31.268Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:13:56.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:14:21.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:14:30.364Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:14:50.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:15:08.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:15:21.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "info@byphil.eu",
+          "translatedAt": "2026-10-14T09:15:48.147Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
