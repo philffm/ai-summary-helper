@@ -5,6 +5,83 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.13 (2026-10-14)
+
+### Commit log
+
+#### Changed
+
+- Settings: KOReader / LocalSend appears once as the send-target title (drop the second heading with the icon)
+- Send from the article toolbar is held back 10 s with an Undo toast
+- Send menu: list paired devices per send type (max 3, rest behind "N more…")
+- Settings: Send & Share as a target list (Kindle, LocalSend, Phone inbox, Share)
+  - Target list with status and a "Default" tag; each target opens its own form (ids unchanged)
+  - Default target switch drives the existing deliveryPreference
+  - Settings search jumps straight to the right target form
+  - Bookmarklet generator stays on the list view
+  - i18n (de) + test167
+- Article view: source card, joined configurable toolbar, Send split button
+  - Source card with DOI entry, key facts open by default when a DOI exists
+  - Joined toolbar (Read/Copy/Favorite/Listen/Send/...) configurable by drag & drop in the article view, adapts to width
+  - Send split button (Kindle, LocalSend, phone, share) with remembered last target
+  - Graph top row: research/time chips aligned next to the view toggle
+  - Storage cleanup, bulk send actions, card menu scrolling
+  - i18n keys for all locales, tests 30/69/164-166
+- Android test: the broken-item-file test calls the archive helper with its timestamp (CI did not compile the unit tests)
+- Contact address is info@byphil.eu in SECURITY.md and the translated privacy pages
+- Privacy: name OpenRouter as the route to the models behind byphil Cloud
+- Privacy: contact address is info@byphil.eu
+- Privacy: controller, legal bases and retention per purpose, recipients (IONOS Germany, Stripe, model provider), third countries, full rights list and complaint right
+- Privacy: say precisely what byphil Cloud relays vs. records (usage metadata only), account optional
+- Account: link to byphil.eu/#account (export data, delete account) from the extension account settings, the Android account screen and the privacy policy
+- Site: goodbye and privacy sources carry the Matomo uninstall feedback (docs/ is built from site-src, so the Formbricks text came back)
+- Privacy: regenerate plugin/src/privacy.md from the site source
+- Extension: tab indicator keeps sliding — a resize that does not move the target no longer snaps it
+- Extension: History selection (also in Archive) can add the selected articles to a collection
+- Extension: collections (Sammlungen) — add sheet with last-used preselected, Collections tab, source profile and lateral-reading check
+- Android: shared links wait in a queue while a page is open; stored feed items survive a broken write and always show; good-news alarm falls back to the latest good news
+  - share sheet: links arriving while a page is open are queued (Next / Skip to next bar) instead of replacing it; each link gets fresh page state
+  - FeedStore: item files written atomically with a .bak, read falls back to it (a cut-off file no longer shows an empty list or wipes the archive)
+  - AppModel: refresh always reloads what is stored, a failed vault sync no longer stops it; reload on resume
+  - Briefing: good-news-only with nothing positive in 7 days uses the latest positive stories, read or not, however old, and says so
+- Android: a link shared while the app is open replaces the page instead of getting lost (onNewIntent was ignoring it)
+- Improve button sizing
+- Android: bottom app bar, medium title in settings, fade-through list/detail, in-app light/dark and wallpaper colours, state descriptions and live regions
+- Android: one AishCard, theme roles instead of raw colours for highlights and done state, secondary with 4.5:1 text
+- Android: accessibility — TalkBack actions for swipes, headings, high contrast, reduce motion, stronger outline
+- Android: negative mood is a crying face
+- Android: predictive back, shape tokens instead of magic radii, Material icons instead of emoji in settings and onboarding
+- Site: uninstall feedback goes to Matomo as events instead of opening a mail window
+- Android: highlight paragraphs in the reader (long press), animated list changes
+- Android: Hanken Grotesk app font, reader typeface/spacing/background sheet, easy-read face
+- Android: summarize and remind from the reader, listen to feed items, reminder notifications
+- Android: read aloud, speed reading, Markdown copy/share, archive, search and settings backup in the reading list
+- Extension: Markdown/Obsidian/ODT/Word export loads the original text for list entries
+- Extension: article detail drops the .MD button and gets the full ⋯ menu
+- Extension: tab view uses the full window width
+- Extension: open the app in its own tab, and as a floating panel from the reader
+- Extension: instant read volume bar draws its fill
+- Extension: onboarding test covers the style step; guard scrollIntoView
+- Extension: onboarding step 2 — choose a summary style and see an example
+- Extension: instant read is toggled by the toolbar icon, controls (pause, mute, volume, speed) appear once speech starts
+- Extension: export as OpenDocument text (.odt) first, Word (.docx) second
+- Extension: summarize YouTube videos from their captions
+- Extension: send to Obsidian, export as Word and PDF, read aloud in the reader page
+- Extension: podcast player tokens all derive from semantic tokens
+- Extension: --player-bg derives from the semantic --sheet-bg token (themes and brands follow)
+- Extension: strip a trailing check/star from icon labels, so 'Saved! ✓' shows one checkmark
+- Extension: read-aloud speaks foreign-language quotes with a matching voice language
+- Extension: follow-up questions stay in the summary's language
+
+#### Fixed
+
+- test159: wait for the read-aloud queue to finish instead of a fixed 80 ms (flaked on slow CI)
+
+#### Developer experience
+
+- CI: flaky tests found on main/nightly become one issue per test (comment on recurrence, label flaky)
+- Tests: a failed test is run once more alone; passing on retry is reported as flaky (warning + CI summary) instead of failing the run
+
 ## 2.2.10 (2026-10-13)
 
 ### Commit log
