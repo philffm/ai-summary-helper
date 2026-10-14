@@ -101,11 +101,11 @@ class FeedArchiveTest {
         val dir = File(System.getProperty("java.io.tmpdir"), "feedstore-broken-" + System.nanoTime())
         val st = FeedStore(dir)
         val f = st.add("https://s.example/feed", "S", emptyList(), 1)!!
-        st.saveItems(f.url, listOf(item("a"), item("b")))
-        st.saveItems(f.url, listOf(item("a"), item("b")))          // second write leaves the first as .bak
+        st.saveItems(f.url, listOf(item("a", now), item("b", now)))
+        st.saveItems(f.url, listOf(item("a", now), item("b", now)))          // second write leaves the first as .bak
         dir.listFiles { x -> x.name.startsWith("items-") && x.name.endsWith(".json") }!!.forEach { it.writeText("[{\"id\":\"a\",\"ti") }   // cut off mid-write
         assertEquals(setOf("a", "b"), st.items(f.url).map { it.item.id }.toSet())
-        assertEquals(2, st.saveItems(f.url, listOf(item("c"), item("d"))) )   // the archive is not wiped by the next refresh
+        assertEquals(2, st.saveItems(f.url, listOf(item("c", now), item("d", now))) )   // the archive is not wiped by the next refresh
         assertEquals(setOf("a", "b", "c", "d"), st.items(f.url).map { it.item.id }.toSet())
     }
 }
