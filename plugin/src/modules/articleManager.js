@@ -2276,17 +2276,42 @@ async function runSendTarget(id, a) {
     layoutDetailActions();
     await def.run(a);
 }
-async function openSendMenu(btn) {
+const SEND_DEVICE_MAX = 3;   // devices shown per send type; the rest sits behind "+N more"
+async function openSendMenu(btn, expanded = '') {
     const a = currentDetailArticle; if (!a) return;
     const { openItems } = await import('./cardMenu.js');
-    let phone = null;
+    let phone = null, cfg = {};
     try { phone = (await createInboxManager().status()).paired; } catch (_) { /* unknown → plain row */ }
-    const items = ['kindle', 'localsend', 'phone'].filter(id => sendTargetOk(id, a)).map((id) => ({
-        icon: SEND_TARGETS[id].icon, label: SEND_TARGETS[id].label(), active: id === toolbarPrefs.sendTarget,
-        sub: id === toolbarPrefs.sendTarget ? T('Last used') : (id === 'phone' && phone === false ? T('Not paired · pair now') : ''),
-        tag: id === toolbarPrefs.delivery ? T('Default') : (id === 'phone' && phone ? T('Paired') : ''),
-        run: () => runSendTarget(id, a),
-    }));
+    try { cfg = await StorageManager.getAll(); } catch (_) { /* no devices known → plain rows */ }
+    const items = [];
+    for (const id of ['kindle', 'localsend', 'phone'].filter(t => sendTargetOk(t, a))) {
+        const def = SEND_TARGETS[id];
+        const devices = id === 'phone' ? [] : (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices].filter(d => d.type === id) : []);
+        const last = id === toolbarPrefs.sendTarget;
+        if (!devices.length) {
+            items.push({
+                icon: def.icon, label: def.label(), active: last,
+                sub: last ? T('Last used') : (id === 'phone' && phone === false ? T('Not paired · pair now') : ''),
+                tag: id === toolbarPrefs.delivery ? T('Default') : (id === 'phone' && phone ? T('Paired') : ''),
+                run: () => runSendTarget(id, a),
+            });
+            continue;
+        }
+        const activeId = (StorageManager.getActiveDevice(cfg, id) || {}).id;
+        const shown = expanded === id ? devices : devices.slice(0, SEND_DEVICE_MAX);
+        for (const d of shown) {
+            const isActive = d.id === activeId;
+            items.push({
+                icon: def.icon, label: `${def.short()} · ${d.label || d.id}`, active: last && isActive,
+                sub: last && isActive ? T('Last used') : '',
+                tag: id === toolbarPrefs.delivery && isActive ? T('Default') : '',
+                run: async () => { try { await StorageManager.setActiveDevice(id, d.id); } catch (_) { /* send to the current device */ } return runSendTarget(id, a); },
+            });
+        }
+        if (devices.length > shown.length) {
+            items.push({ icon: 'ellipsis', label: T('{n} more…', { n: devices.length - shown.length }), sub: def.short(), run: () => setTimeout(() => openSendMenu(btn, id), 0) });
+        }
+    }
     items.push({ icon: 'link', label: T('Share…'), sub: T('System share: apps, AirDrop, mail'), sep: true, run: () => runSendTarget('share', a) });
     items.push({ icon: 'copy', label: T('Copy link'), run: async () => { try { await navigator.clipboard.writeText(a.url || ''); if (uiManagerRef) uiManagerRef.showToast(T('Link copied')); } catch (_) { /* ignore */ } } });
     items.push({ icon: 'settings', label: T('Manage targets…'), sep: true, run: () => { if (uiManagerRef) uiManagerRef.showScreen('settings'); import('./settingsNav.js').then(m => m.openSettingsPanel('send')).catch(() => {}); } });

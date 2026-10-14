@@ -5332,5 +5332,8 @@
   },
   "f_send_targets_3e2c": {
     "message": "‹ Send targets"
+  },
+  "f_more_b42e": {
+    "message": "{n} more…"
   }
 }

@@ -78,6 +78,19 @@ assert(sc2.querySelector('.source-doi-add'), '+ DOI button in the card');
     assert(!d.getElementById('toolbarTray') && !d.querySelector('#detailTopActions.is-editing'), 'Done leaves edit mode');
     delete store.detailToolbarItems;
   }
+  {   // Send menu lists the paired devices per send type: three, the rest behind "N more…"
+    store['send:devices'] = [1, 2, 3, 4, 5].map(n => ({ id: 'k' + n, type: 'kindle', label: 'K' + n, address: 'mailto:k' + n + '@kindle.com' })).concat([{ id: 'l1', type: 'localsend', label: 'Pixel', addresses: ['1.2.3.4'] }]);
+    await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);
+    d.querySelector('#detailTopActions .detail-split-more').click(); await tick(80);
+    const names = () => [...d.querySelectorAll('.card-menu-item')].map(b => b.textContent);
+    let n = names();
+    assert(n.some(t => /K1/.test(t)) && n.some(t => /K3/.test(t)) && !n.some(t => /K4/.test(t)), 'three kindle devices: ' + JSON.stringify(n));
+    assert(n.some(t => /Pixel/.test(t)), 'localsend device listed');
+    const more = [...d.querySelectorAll('.card-menu-item')].find(b => /2 more/.test(b.textContent)); assert(more, 'N more… entry');
+    more.click(); await tick(120);
+    n = names(); assert(n.some(t => /K5/.test(t)), 'expanded list shows all devices: ' + JSON.stringify(n));
+    delete store['send:devices'];
+  }
   // configured list: own order, own selection
   store.detailToolbarItems = ['pdf', 'copy', 'bogus'];
   await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);
