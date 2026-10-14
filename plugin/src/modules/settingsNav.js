@@ -37,6 +37,7 @@ const INDEX = [
     ['send', N_('Delivery method'), 'deliveryPreference', 'kindle koreader localsend send deliver'],
     ['send', N_('Kindle devices'), 'newKindleEmail', 'kindle email device send to kindle'],
     ['send', N_('KOReader / LocalSend devices'), 'newLocalSendIp', 'koreader localsend ip device scan'],
+    ['send', N_('Obsidian vault and folder'), 'obsidianVault', 'obsidian vault folder note markdown'],
     ['send', N_('Bookmarklet generator'), 'generateBookmarkletBtn', 'bookmarklet ios android mobile safari'],
     ['appearance', N_('Theme'), 'themeSeg', 'dark light mode appearance system contrast'],
     ['appearance', N_('UI language'), 'uiLangSelect', 'language translation locale interface'],

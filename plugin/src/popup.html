@@ -567,6 +567,19 @@
                   <h3 class="send-detail-title" data-i18n="f_share_6dd8">Share</h3>
                   <p class="setting-note" data-i18n="f_opens_your_system_share_shee_38bd">Opens your system share sheet (Mail, Messages, AirDrop, notes apps …) with the article link and summary. Nothing to set up.</p>
                 </div>
+                <div class="send-detail" id="sendDetail-obsidian" hidden>
+                  <button type="button" class="settings-back send-detail-back" data-send-back data-i18n="f_send_targets_3e2c">‹ Send targets</button>
+                  <h3 class="send-detail-title">Obsidian</h3>
+                  <p class="setting-note" data-i18n="f_the_note_is_copied_and_opened_in_obsidian">The note is copied to the clipboard and opened in Obsidian as a new note. Leave both fields empty to use the vault Obsidian opened last.</p>
+                  <div class="setting-group">
+                    <label for="obsidianVault" data-i18n="f_vault_name_optional_obs1">Vault name (optional)</label>
+                    <input type="text" id="obsidianVault" autocomplete="off" spellcheck="false" placeholder="My vault">
+                  </div>
+                  <div class="setting-group">
+                    <label for="obsidianFolder" data-i18n="f_folder_in_the_vault_optional_obs2">Folder in the vault (optional)</label>
+                    <input type="text" id="obsidianFolder" autocomplete="off" spellcheck="false" placeholder="Inbox/AISH">
+                  </div>
+                </div>
                 <div class="setting-group mb-3 send-pane" data-send-pane="kindle localsend" hidden>
                   <p class="setting-note" data-i18n="f_choose_one_delivery_method_f_1ac4">
                     Choose one delivery method for article detail actions.

@@ -13,6 +13,7 @@ const TARGETS = [
     { id: 'kindle', icon: 'send', emoji: '📚', name: () => 'Kindle' },
     { id: 'localsend', icon: 'smartphone', emoji: '📖', name: () => 'KOReader / LocalSend' },
     { id: 'phone', icon: 'smartphone', emoji: '📱', name: () => T('Phone inbox'), panel: 'phoneinbox' },
+    { id: 'obsidian', icon: 'folders', emoji: '🗂️', name: () => 'Obsidian' },
     { id: 'share', icon: 'share', emoji: '↗️', name: () => T('Share') },
 ];
 
@@ -46,6 +47,10 @@ async function status() {
     out.kindle = dev('kindle'); out.localsend = dev('localsend');
     out.phone = sub ? sub.textContent.trim() : T('Not paired');
     out.share = T('Always available');
+    try {
+        const o = await chrome.storage.sync.get({ obsidianVault: '', obsidianFolder: '' });
+        out.obsidian = [o.obsidianVault, o.obsidianFolder].filter(Boolean).join(' · ') || T('Last used vault');
+    } catch (_) { out.obsidian = T('Last used vault'); }
     out.mode = mode; out.paired = paired;
     return out;
 }

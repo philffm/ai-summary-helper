@@ -627,6 +627,12 @@ function initGeneralSettings(storageData) {
     }
 
     // ── Notify when the background queue finishes ──────────────────
+    for (const [id, key] of [['obsidianVault', 'obsidianVault'], ['obsidianFolder', 'obsidianFolder']]) {
+        const input = document.getElementById(id);
+        if (!input) continue;
+        input.value = storageData[key] || '';
+        input.addEventListener('change', async () => { await autoSave(key, input.value.trim()); document.dispatchEvent(new CustomEvent('aish:delivery-default')); });
+    }
     const notifyToggle = document.getElementById('notifyWhenDoneToggle');
     if (notifyToggle) {
         notifyToggle.checked = storageData.notifyWhenDone !== false;

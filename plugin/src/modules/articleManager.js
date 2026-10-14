@@ -28,6 +28,8 @@ import { aiComplete } from './feedAi.js';
 import { mountPhoneCards, loadPhoneEntries, pollInbox } from './inboxView.js';
 import { createInboxManager } from './inboxManager.js';
 import { articleForPhone } from './articleBlocks.js';
+import { assignFileBases, safeFileName } from './articleFormat.js';
+import { obsidianUri } from './obsidianUri.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
 
@@ -431,14 +433,23 @@ export async function exportToPdf(article) {
     window.open(url, '_blank', 'noopener');
 }
 
-/** Obsidian: the note goes through the clipboard (a URI is too short for long articles), then obsidian://new opens it in the default vault. */
+/**
+ * Obsidian: the note goes through the clipboard (a URI is too short for long articles), then obsidian://new opens it.
+ * Vault and folder come from Settings › Send & Share › Obsidian; the file name is the archive export's stable name.
+ */
 export async function sendToObsidian(article) {
     const { mdContent, createdDate } = await buildMarkdown(article);
-    const name = (article.title || 'Untitled').replace(/[\\/:*?"<>|#^[\]]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80) || 'Untitled';
+    let vault = '', folder = '', name = safeFileName(article.title);
+    try { const p = await chrome.storage.sync.get({ obsidianVault: '', obsidianFolder: '' }); vault = p.obsidianVault; folder = p.obsidianFolder; } catch (_) { /* defaults */ }
+    try {
+        const idx = (await chrome.storage.local.get({ [SK.articlesIndex]: [] }))[SK.articlesIndex] || [];
+        const n = assignFileBases(idx.filter(a => a && a.id && !a.feedStub && !a.savedOnly)).get(article.id);
+        if (n) name = n;
+    } catch (_) { /* title only */ }
     try { await navigator.clipboard.writeText(mdContent); }
     catch (_) { downloadBlob(new Blob([mdContent], { type: 'text/markdown' }), `${markdownFileBase(article, createdDate)}.md`); return; }
     const a = document.createElement('a');
-    a.href = `obsidian://new?name=${encodeURIComponent(name)}&clipboard`;
+    a.href = obsidianUri({ name, vault, folder });
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 

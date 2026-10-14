@@ -1,4 +1,4 @@
-// Settings › Send & Share: target list (Kindle, LocalSend, Phone, Share), detail views, "Default" tag + switch.
+// Settings › Send & Share: target list (Kindle, LocalSend, Phone, Obsidian, Share), detail views, "Default" tag + switch.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});
 const d = w.document; globalThis.document = d; globalThis.window = w;
@@ -10,7 +10,7 @@ store['send:devices'] = [{ id: 'k1', type: 'kindle', label: 'A', address: 'mailt
 const st = await imp('modules/sendTargets.js');
 st.initSendTargets(); await tick(700);
 const rows = [...d.querySelectorAll('#sendTargets .send-target')];
-assert.deepEqual(rows.map(r => r.dataset.target), ['kindle', 'localsend', 'phone', 'share']);
+assert.deepEqual(rows.map(r => r.dataset.target), ['kindle', 'localsend', 'phone', 'obsidian', 'share']);
 assert(/1 devices|1 Ger/.test(rows[0].textContent) || /1/.test(rows[0].textContent), 'kindle count: ' + rows[0].textContent);
 assert(/2/.test(rows[1].textContent), 'localsend count: ' + rows[1].textContent);
 assert(rows[1].querySelector('.send-default-tag') && !rows[0].querySelector('.send-default-tag'), 'default tag only on the default target');
@@ -28,6 +28,13 @@ assert(!d.getElementById('sendTargets').hidden && !d.getElementById('sendTools')
 // share detail
 d.querySelector('[data-target=share]').click();
 assert(!d.getElementById('sendDetail-share').hidden);
+// Obsidian detail: vault and folder fields, nothing else of the Kindle/LocalSend forms
+d.querySelector('#sendDetail-share [data-send-back]').click(); await tick(100);
+d.querySelector('[data-target=obsidian]').click();
+assert(!d.getElementById('sendDetail-obsidian').hidden && d.getElementById('sendDetail-share').hidden);
+assert(d.getElementById('obsidianVault') && d.getElementById('obsidianFolder'));
+assert(d.getElementById('kindleDeliveryConfig').closest('[data-send-pane]').hidden, 'no kindle form in the obsidian view');
+d.querySelector('#sendDetail-obsidian [data-send-back]').click(); await tick(100);
 // settings search jumps straight to the right form
 d.dispatchEvent(new w.CustomEvent('aish:settings-panel', { detail: { name: 'send', targetId: 'newLocalSendIp' } })); await tick(50);
 assert(!d.getElementById('sendDetail-localsend').hidden && !d.getElementById('localSendDeliveryConfig').hidden, 'search target opens its form');
