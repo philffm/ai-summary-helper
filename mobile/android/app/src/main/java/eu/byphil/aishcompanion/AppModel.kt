@@ -49,6 +49,9 @@ class AppModel(context: Context) {
     /** Set by a reminder notification: the reading-list article to open (the UI clears it). */
     var openArticle by mutableStateOf("")
 
+    /** Set by the share sheet (also while the app is already open): a page to open in the app and, if true, summarize on this phone. The UI clears it. */
+    var pendingShare by mutableStateOf<Pair<String, Boolean>?>(null)
+
     /** Bumped when read state flips so lists redraw. */
     var readTick by androidx.compose.runtime.mutableIntStateOf(0)
 

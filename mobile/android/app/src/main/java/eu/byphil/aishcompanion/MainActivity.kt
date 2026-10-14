@@ -78,6 +78,8 @@ class MainActivity : ComponentActivity() {
         val model = AppModel(this)
         appModel = model
         intent?.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { model.openArticle = it }
+        // Only on a fresh start: after a system restart the saved state already holds the page that was open.
+        if (savedInstanceState == null) intent?.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { model.pendingShare = it to (intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true) }
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
@@ -94,7 +96,7 @@ class MainActivity : ComponentActivity() {
                 }
                 Surface(Modifier.fillMaxSize()) {
                     App(model, onScan = { onResult -> scan(onResult) }, onReady = { Guard.end(this, "start") },
-                        startUrl = intent?.getStringExtra(EXTRA_OPEN_URL).orEmpty(), startSummarize = intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true)
+                        startUrl = "", startSummarize = false)
                 }
             }
         }
@@ -115,6 +117,8 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         intent.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { appModel?.openArticle = it }
+        // A link shared while the app is open: it replaces the page that is showing instead of being lost.
+        intent.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { appModel?.pendingShare = it to intent.getBooleanExtra(EXTRA_SUMMARIZE, false) }
     }
 
     private fun scan(onResult: (String?) -> Unit) {
@@ -143,6 +147,10 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     var webUrl by rememberSaveable { mutableStateOf(startUrl) }
     var autoSummarize by rememberSaveable { mutableStateOf(startSummarize) }
 
+    // A link from the share sheet, at start or while the app is open: show it (replacing any page that is open) and start the summary.
+    androidx.compose.runtime.LaunchedEffect(model.pendingShare) {
+        model.pendingShare?.let { (u, sum) -> webUrl = u; autoSummarize = sum; model.pendingShare = null }
+    }
     if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }, onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false }) { webUrl = ""; autoSummarize = false }; return }
 
     androidx.compose.runtime.LaunchedEffect(tab) { if (tab != Tab.Settings.ordinal) settingsPanel = "" }

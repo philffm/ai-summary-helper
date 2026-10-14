@@ -88,6 +88,15 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
     var summaryTitle by remember { mutableStateOf("") }
     var summaryUrl by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+    // A new link while this page is open (share sheet): load it here and start over, instead of staying on the old page.
+    var loadedUrl by remember { mutableStateOf(url) }
+    androidx.compose.runtime.LaunchedEffect(url, autoSummarize) {
+        if (loadedUrl != url) {
+            loadedUrl = url; summary = null; status = ""; busy = false; sent = false; saved = false
+            autoPending = autoSummarize
+            web?.loadUrl(url)
+        }
+    }
     var speak by remember { mutableStateOf(Store(context).speakSummary) }   // also a switch in Settings   // read the summary aloud while it is written
     var tts by remember { mutableStateOf<TextToSpeech?>(null) }
     val spoken = remember { intArrayOf(0) }                                  // how much of the streamed text has been handed to the voice
