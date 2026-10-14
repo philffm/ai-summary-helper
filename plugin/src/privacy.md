@@ -24,7 +24,7 @@ You choose how summaries are generated:
 
 - **Bring your own key (BYOK)** — OpenAI, Google Gemini, Mistral AI, DeepSeek, or a custom endpoint. Your API key is stored locally on your device only (never synced, never sent to us). Page content you choose to summarize is sent directly from your browser to the provider you selected, using your own key and subject to that provider's own privacy policy. We do not see, log, or store this content.
 - **Local model via Ollama** — if you run a model locally, page content is sent only to your own machine. Nothing leaves your device.
-- **byphil Cloud (optional, paid)** — a hosted option for people who'd rather not manage an API key. If you choose this tier, page content is sent to our backend, which proxies the request to an underlying model provider on your behalf and returns the summary. We do not permanently store the content of pages processed this way.
+- **byphil Cloud (optional, paid)** — a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one.
 
 ### License and subscription status
 
