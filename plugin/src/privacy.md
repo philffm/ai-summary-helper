@@ -10,6 +10,10 @@ This Privacy Policy explains what data AI Summary Helper handles, where it goes,
 
 If you disagree with any part of this policy, please do not install or use the extension.
 
+## Who is responsible
+
+The controller within the meaning of Art. 4(7) GDPR is Phil Wornath. The full name and address for service are in the [legal notice](https://philwornath.com/de/legal); you can reach us at the contact details at the end of this policy.
+
 ## No Account Required for Core Features
 
 AI Summary Helper does not require you to create an account, sign in, or provide any personal information to summarize pages, highlight, follow feeds, or keep your archive. Your API key (if you use your own) and your entire article history live in your browser's local storage.
@@ -92,6 +96,18 @@ Only functional preferences, never for tracking: `aish_analytics` (your opt-out 
 
 Fonts (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) are served from this site itself, so your IP address is not passed to Google or any font provider just by visiting. The only external requests are links you click, and the optional byPhil account / Stripe checkout pages you choose to open.
 
+## Legal bases and retention
+
+Almost everything is processed on your device and never reaches us. Where we do process data, this is the basis and how long we keep it:
+
+- **Account and sign-in** (email address, one-time code, license key, plan status) — to provide the account you asked for, Art. 6(1)(b) GDPR. Kept as long as the account exists; when you delete the account it is deleted.
+- **byphil Cloud** (relaying the text you summarize, usage counters, token usage, last request, last model) — to perform the service, Art. 6(1)(b). The text is only relayed and not stored. The usage metadata is kept as long as the account exists and deleted with it.
+- **Send to Kindle** (the article you send, your Kindle address) — to perform the sending you trigger, Art. 6(1)(b). Used only to create and send that email.
+- **Payments and license verification** — to perform the contract and meet accounting duties, Art. 6(1)(b) and (c). Billing records are kept as long as the law requires.
+- **Website analytics and uninstall feedback** — our legitimate interest in improving the site and the extension, Art. 6(1)(f). The data is anonymous (see Analytics & cookies).
+
+You can export your account data and delete your account at any time at [byphil.eu/#account](https://byphil.eu/#account). Deleting the account deletes the data stored for it.
+
 ## Permissions We Request, and Why
 
 | Permission | Why we need it |
@@ -122,11 +138,15 @@ We do not use these permissions to track your browsing, build an advertising pro
 Depending on how you configure the extension, your page content may be sent to:
 
 - OpenAI, Google (Gemini), Mistral AI, or DeepSeek — only if you've entered your own API key for that provider, and only for the page you actively summarize.
-- Our byphil backend — only if you use byphil Cloud or Send to Kindle.
+- Our byphil backend, hosted by IONOS SE in Germany — only if you sign in, use byphil Cloud or Send to Kindle.
+- The model provider behind byphil Cloud — the text you summarize is relayed to the model you use, for that request only.
+- Stripe — payments and subscription management, as Merchant of Record.
 - Amazon — if you send an article to your Kindle, Amazon delivers it under its own privacy terms.
 - Your own local Ollama instance — not a third party; stays on your machine.
 
 We are not responsible for the privacy practices of third-party AI providers you choose to connect. We encourage you to review their policies before connecting an account.
+
+**You decide which model processes your text.** Whether you use your own key or byphil Cloud, you choose the provider and model in the settings, and you are responsible for checking that provider's terms and where it processes data. Providers and Amazon may process data outside the EU/EEA under their own safeguards (for example standard contractual clauses); we do not transfer your data to third countries ourselves.
 
 ## Data Security
 
@@ -138,7 +158,9 @@ AI Summary Helper is not directed at children under 13 (or the relevant minimum 
 
 ## Your Rights (GDPR / CCPA and similar)
 
-Since almost all of your data is stored locally on your own device, you already have direct control over it — you can view, export, or delete it at any time via the extension's Settings, or by uninstalling the extension. For any data we do hold on our servers (byphil Cloud subscription/billing metadata), you can request access, correction, or deletion by contacting us below.
+Since almost all of your data is stored locally on your own device, you already have direct control over it — you can view, export, or delete it at any time via the extension's Settings, or by uninstalling the extension. For any data we do hold on our servers (byphil Cloud subscription/billing metadata), you can manage and export it, and delete your account, at [byphil.eu/#account](https://byphil.eu/#account), or contact us below.
+
+You have the right to access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction (Art. 18), data portability (Art. 20) and objection (Art. 21), and to withdraw consent at any time. You also have the right to lodge a complaint with a supervisory authority (Art. 77), in particular in the member state of your residence. We do not use your data for automated decisions with legal effect or for profiling.
 
 ## Changes to This Policy
 
