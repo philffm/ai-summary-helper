@@ -5,6 +5,14 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.14 (2026-10-14)
+
+### Commit log
+
+#### Changed
+
+- Store listing per market, localized context menu, CJK word count, neutral default prompt
+
 ## 2.2.13 (2026-10-14)
 
 ### Commit log
