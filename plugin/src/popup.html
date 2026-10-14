@@ -560,12 +560,12 @@
                     <span data-i18n="f_koreader_plugin_566b">KOReader plugin:</span> <a href="https://github.com/kaikozlov/localsend.koplugin" target="_blank" rel="noopener noreferrer">kaikozlov/localsend.koplugin</a><br />
                     <span data-i18n="f_for_koreader_prefer_60bb">For KOReader, prefer</span> <strong>HTTP</strong> (<code>http://IP</code>) <span data-i18n="f_instead_of_https_which_can_b_69d5">instead of HTTPS, which can be buggy.</span>
                   </p>
-                  <div class="setting-group flex justify-between align-center mb-8">
-                    <label class="label-flush" for="deliveryPreference" data-i18n="f_delivery_method_6dc6">Delivery Method</label>
-                    <select id="deliveryPreference">
-                      <option value="kindle">Kindle</option>
-                      <option value="localsend">LocalSend</option>
-                    </select>
+                  <div class="setting-group mb-8">
+                    <span class="a11y-label" id="deliveryLabel" data-i18n="f_delivery_method_6dc6">Delivery Method</span>
+                    <div class="a11y-seg" id="deliveryPreference" role="radiogroup" aria-labelledby="deliveryLabel">
+                      <button type="button" role="radio" data-value="kindle">Kindle</button>
+                      <button type="button" role="radio" data-value="localsend">LocalSend</button>
+                    </div>
                   </div>
 
                   <!-- Multiple devices can be configured per delivery method; the
@@ -737,6 +737,41 @@
       <button type="button" id="exportMarkdownButton" class="button-secondary btn-sm"><span class="ic"><svg class="icon icon-file-text" aria-hidden="true" focusable="false"><use href="#i-file-text"/></svg><span class="ic-e" aria-hidden="true">📄</span></span> Export history as Markdown (.zip)</button>
     </div>
   </div>
+  <div class="settings-card storage-card" id="libStorage">
+    <div class="settings-card-head"><h3><span class="ic-e" aria-hidden="true">🧹</span> <span data-t="title">Storage &amp; cleanup</span></h3><p id="storageUsage" aria-live="polite">…</p></div>
+    <div class="storage-bar" id="storageBar" role="img" aria-label="" hidden><span class="storage-bar-img"></span><span class="storage-bar-txt"></span><span class="storage-bar-rest"></span></div>
+    <ul class="storage-legend" id="storageLegend" hidden></ul>
+    <div class="setting-group flex justify-between align-center">
+      <label class="setting-label-inline" for="saveImagesToggle" data-t="saveImages">Save images with articles</label>
+      <label class="switch"><input type="checkbox" id="saveImagesToggle" checked /><span class="slider-toggle"></span></label>
+    </div>
+    <p class="settings-card-note" data-t="saveImagesNote">Off: new articles keep only the text. Pictures are what makes saved pages large.</p>
+    <div class="settings-divider"></div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><strong data-t="imgTitle">Remove images from saved articles</strong><span id="storageImagesHint"></span></div>
+      <button type="button" id="storageImagesButton" class="button-secondary btn-sm" data-t="imgBtn">Remove images</button>
+    </div>
+    <div class="settings-divider"></div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><strong data-t="txtTitle">Remove page text of old articles</strong><span id="storageTextHint"></span></div>
+      <button type="button" id="storageTextButton" class="button-secondary btn-sm" data-t="txtBtn">Remove page text</button>
+    </div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><span data-t="age">Not opened for at least (days)</span></div>
+      <div class="a11y-seg" id="storageAgeSeg" role="radiogroup" data-t-label="age">
+        <button type="button" role="radio" data-value="30">30</button>
+        <button type="button" role="radio" data-value="90">90</button>
+        <button type="button" role="radio" data-value="180">180</button>
+      </div>
+    </div>
+    <p class="settings-card-note" data-t="txtNote">Keeps title, summary, tags, highlights and your statistics. Questions about the article then use the summary only. Starred articles and articles in a collection are skipped.</p>
+    <div class="settings-divider"></div>
+    <div class="settings-action-row">
+      <div class="settings-action-text"><strong data-t="revTitle">Review large, unopened articles</strong><span data-t="revHint">Duplicates and large, unopened articles. Pick what to trim or delete.</span></div>
+      <button type="button" id="storageReviewButton" class="button-secondary btn-sm" data-t="revBtn">Review</button>
+    </div>
+    <p id="storageResult" class="settings-card-note" style="display:none" aria-live="polite"></p>
+  </div>
   <div class="settings-card local-intelligence">
     <div class="settings-card-head"><h3 data-i18n="f_on_device_tools_d85a"><span class="ic"><svg class="icon icon-brain" aria-hidden="true" focusable="false"><use href="#i-brain"/></svg><span class="ic-e" aria-hidden="true">🧠</span></span> On-device tools</h3><p data-i18n="f_runs_entirely_in_your_browse_6c55">Runs entirely in your browser — no data leaves it.</p></div>
     <div class="settings-action-row">
@@ -789,7 +824,7 @@
           <p>
             <span data-i18n="f_open_source_software_by_0ec8">Open Source software by</span>
             <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.2.11</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
+            <br />AI Summary Helper v<span id="versionNumber">2.2.24</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank" data-i18n="f_contribute_on_github_5ab8">contribute on GitHub 💙</a>
           </p>
           <p class="about-links">

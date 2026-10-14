@@ -849,6 +849,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
+    // While the window is being resized the expensive effects (backdrop blurs, transitions) are switched off and come back 180 ms after
+    // the last resize event: every blur is repainted on every frame of a drag, which is what makes resizing a long list crawl.
+    {
+        let resizeIdle = 0;
+        window.addEventListener('resize', () => {
+            document.body.classList.add('is-resizing');
+            clearTimeout(resizeIdle);
+            resizeIdle = setTimeout(() => document.body.classList.remove('is-resizing'), 180);
+        }, { passive: true });
+    }
+
     // Reposition the nav blob when the window resizes
     window.addEventListener('resize', () => {
         const activeScreen = document.querySelector('.nav-item.active')?.dataset.screen;

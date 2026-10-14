@@ -95,7 +95,8 @@ assert.ok(!/FULL ARTICLE TEXT/.test(sent[0].user), 'article body never sent');
 assert.ok(card.querySelector('.graph-cluster-answer').textContent.includes('point one'));
 // [n] becomes a pill with the article's name that opens it; unknown numbers stay text
 const pills = [...card.querySelectorAll('.graph-cluster-answer .graph-cite')];
-assert.deepEqual(pills.map(p => p.textContent), ['1 · T c1', '2 · T c3', '1 · T c1', '2 · T c3'], 'numbers follow the order sent to the model (unopened first)');
+assert.deepEqual(pills.map(p => p.textContent), ['1', '2', '1', '2'], 'pills show only the number, in the order sent to the model (unopened first)');
+assert.deepEqual(pills.map(p => p.title), ['T c1', 'T c3', 'T c1', 'T c3'], 'the article title shows on hover');
 assert.ok(/\[9\]/.test(card.querySelector('.graph-cluster-answer').textContent), 'out-of-range reference stays text');
 opened.length = 0; pills[1].click(); assert.deepEqual(opened, ['c3'], 'pill opens its article');
 const srcs = [...card.querySelectorAll('.graph-cluster-sources .graph-cluster-src')];

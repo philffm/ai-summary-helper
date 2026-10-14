@@ -2,6 +2,7 @@ import { mountReadingTools, destroyReadingTools } from './readingTools.js';
 import { showSkeleton, clearSkeleton } from './skeleton.js';
 import { modelIcon } from './modelBadge.js';
 import { icon, iconEl, setIconLabel, stripEmoji } from './icons.js';
+import { TOOLBAR_CATALOG, TOOLBAR_PREF, DEFAULT_TOOLBAR, normalizeToolbar } from './detailToolbar.js';
 import { SK } from './storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
 // Article Manager
@@ -740,20 +741,132 @@ export async function addToCollection(article) {
     await openAddSheet(article, { onDone: () => { if (historyTab === 'collections') renderTab(); } });
 }
 
-/** Inline in the article: which collections hold it, and the source check (same stored answers as in the collection). */
+// ── "Free up space" hint ────────────────────────────────────────────────────
+// When the saved data is heavy (the index is read on every open) and there are large articles nobody opened for months,
+// a dismissible note at the top of the list opens a sheet to delete them. Measured once per popup; dismissed for 14 days.
+let storageHint = null;   // null = not measured yet · 'pending' · 'none' · { report }
+const HINT_QUIET_DAYS = 14;
+
+async function measureStorageHint() {
+    try {
+        const { [SK.storageHint]: dismissed } = await StorageManager.getLocal({ [SK.storageHint]: '' });
+        if (dismissed && Date.now() - new Date(dismissed).getTime() < HINT_QUIET_DAYS * 86400000) return 'none';
+        const [{ measure }, C, index] = await Promise.all([import('./storageHealth.js'), import('./collections.js'), StorageManager.getArticlesIndex({ includeArchived: true })]);
+        const keep = new Set();
+        for (const c of await C.listCollections()) { const rec = await C.getCollection(c.id); (rec ? rec.sources : []).forEach(s => keep.add(s.articleId)); }
+        const report = await measure(index, SK.articlesIndex, keep);
+        return report.level === 'heavy' && report.candidates.list.length ? { report, index, keep } : 'none';
+    } catch (_) { return 'none'; }
+}
+
+async function mountStorageHint(articleList) {
+    if (storageHint === null) {
+        storageHint = 'pending';
+        storageHint = await measureStorageHint();
+    }
+    if (!storageHint || storageHint === 'pending' || storageHint === 'none') return;
+    if (!articleList.isConnected || historyTab === 'collections' || articleList.querySelector('.storage-hint')) return;
+    const { report, index: hintIndex, keep: hintKeep } = storageHint;
+    const { formatBytes, openStorageSheet } = await import('./storageHealth.js');
+    const box = document.createElement('div'); box.className = 'storage-hint'; box.setAttribute('role', 'note');
+    const tx = document.createElement('span');
+    tx.textContent = T('Saved data is getting large ({size}). {n} big articles have not been opened for months.', { size: formatBytes(report.totalBytes), n: report.candidates.total });
+    const go = document.createElement('button'); go.type = 'button'; go.className = 'button-secondary btn-sm'; go.textContent = T('Free up space');
+    const later = document.createElement('button'); later.type = 'button'; later.className = 'button-secondary btn-sm'; later.textContent = T('Not now');
+    go.addEventListener('click', () => openStorageSheet({
+        report, index: hintIndex, keep: hintKeep,
+        deleteIds: async (ids) => {
+            for (const id of ids) await StorageManager.deleteArticle(id);
+            const gone = new Set(ids);
+            cachedArticles = cachedArticles.filter(a => !gone.has(a.id)); archivedCache = archivedCache.filter(a => !gone.has(a.id));
+            invalidateSearchIndex();
+        },
+        pruneIds: async (ids) => {
+            const sh = await import('./storageHealth.js');
+            const all = await StorageManager.getArticlesIndex({ includeArchived: true });
+            await sh.dropPageText(all, ids, SK.articlesIndex);
+            const done = new Set(ids);
+            [cachedArticles, archivedCache].forEach(l => l.forEach(a => { if (done.has(a.id)) a.contentPruned = true; }));
+        },
+        onDone: (n, how) => { storageHint = null; renderTab(); if (uiManagerRef) uiManagerRef.showToast(how === 'pruned' ? T('Page text of {n} articles removed', { n }) : T('{n} articles deleted', { n })); },
+    }));
+    later.addEventListener('click', async () => { storageHint = 'none'; box.remove(); await StorageManager.setLocal({ [SK.storageHint]: new Date().toISOString() }); });
+    box.append(tx, go, later);
+    articleList.prepend(box);
+}
+
+/** Pencil next to the title in the article detail: rename the saved article (Enter or leaving the field saves, Esc cancels). */
+function mountTitleEdit(article, h3) {
+    if (!h3 || !article || !article.id) return;
+    const pen = document.createElement('button');
+    pen.type = 'button'; pen.className = 'detail-title-edit';
+    pen.append(iconEl('pencil', 'icon--sm'));
+    pen.title = T('Rename'); pen.setAttribute('aria-label', T('Rename'));
+    h3.appendChild(pen);
+    pen.addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'text'; input.className = 'detail-title-input'; input.maxLength = 200; input.value = article.title || '';
+        input.setAttribute('aria-label', T('Title'));
+        // The title is plain text inside the h3 (escaped HTML); rebuild it as one text node to be safe.
+        const setText = (title) => { [...h3.childNodes].forEach(n => { if (n !== pen && !(n.nodeType === 1 && n.classList.contains('detail-fav'))) n.remove(); }); h3.insertBefore(document.createTextNode(title), pen); };
+        const original = article.title || '';
+        [...h3.childNodes].forEach(n => { if (n !== pen && !(n.nodeType === 1 && n.classList.contains('detail-fav'))) n.remove(); });
+        pen.hidden = true; h3.insertBefore(input, pen); input.focus(); input.select();
+        let done = false;
+        const finish = async (save) => {
+            if (done) return; done = true;
+            const next = input.value.replace(/\s+/g, ' ').trim();
+            input.remove(); pen.hidden = false;
+            if (save && next && next !== original) {
+                const stored = await StorageManager.setTitle(article.id, next);
+                if (stored) {
+                    article.title = stored;
+                    [cachedArticles, archivedCache].forEach(list => { const hit = list.find(a => a.id === article.id); if (hit) hit.title = stored; });
+                    invalidateSearchIndex();
+                    setText(stored);
+                    if (uiManagerRef) uiManagerRef.showToast(T('Renamed'));
+                    return;
+                }
+            }
+            setText(original);
+        };
+        input.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Enter') { e.preventDefault(); finish(true); } else if (e.key === 'Escape') { e.preventDefault(); finish(false); } });
+        input.addEventListener('blur', () => finish(true));
+    });
+}
+
+/** Inline in the article: which collections hold it. (The source check lives in the source card under the tags.) */
 async function mountSourceCheck(article, host) {
     if (!host || !article || !article.id) return;
     try {
-        const [{ collectionsStrip, sourceCheckPanel }, full] = await Promise.all([import('./collectionsView.js'), StorageManager.getArticleFull(article.id)]);
+        const [{ collectionsStrip }, full] = await Promise.all([import('./collectionsView.js'), StorageManager.getArticleFull(article.id)]);
         if (!host.isConnected) return;
         host.textContent = '';
         host.append(await collectionsStrip(full));
-        const det = document.createElement('details');
-        det.className = 'detail-source-check';
-        const sum = document.createElement('summary'); sum.textContent = T('Source check');
-        det.append(sum, sourceCheckPanel(full));
-        host.append(det);
     } catch (_) { /* the article still reads fine without it */ }
+}
+
+/** Bulk: one Markdown file with every selected summary (separated by a rule). */
+export async function exportManyMarkdown(list) {
+    const parts = [];
+    for (const a of list) { try { parts.push((await buildMarkdown(a)).mdContent); } catch (_) { /* skip unreadable */ } }
+    if (!parts.length) return false;
+    downloadBlob(new Blob([parts.join('\n\n---\n\n')], { type: 'text/markdown' }), `AISH-${new Date().toISOString().slice(0, 10)}-${parts.length}.md`);
+    return true;
+}
+
+/** Bulk delete after one confirmation; keeps the History caches in sync. */
+export async function removeMany(ids) {
+    if (!ids || !ids.length) return false;
+    if (!confirm(T('Delete {n} selected articles? This cannot be undone.', { n: ids.length }))) return false;
+    for (const id of ids) await StorageManager.deleteArticle(id);
+    const gone = new Set(ids);
+    cachedArticles = cachedArticles.filter(i => !gone.has(i.id));
+    archivedCache = archivedCache.filter(i => !gone.has(i.id));
+    invalidateSearchIndex();
+    if (document.getElementById('articleList')) renderTab();
+    if (uiManagerRef) uiManagerRef.showToast(T('{n} articles deleted', { n: ids.length }));
+    return true;
 }
 
 /** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
@@ -810,7 +923,7 @@ export function initArticleManager(uiManager) {
     document.addEventListener('aish:lexiconChanged', () => { try { if (document.getElementById('articleList')) renderTab(); } catch (e) { /* list not mounted */ } });
     initSelection({
         deliverKindle, deliverLocalSend,
-        applyStatus, currentTab: () => historyTab,
+        applyStatus, exportManyMarkdown, removeMany, currentTab: () => historyTab,
         toast: (m) => uiManager.showToast(m),
         openSettings: (section, target) => { uiManager.showScreen('settings'); import('./settingsNav.js').then(m => m.openSettingsPanel(section, target)).catch(() => {}); }
     });
@@ -935,6 +1048,10 @@ export function initArticleManager(uiManager) {
 
     if (detailDeleteBtn) {
         detailDeleteBtn.addEventListener('click', deleteCurrentDetailArticle);
+    }
+    if (detailTopBar && typeof ResizeObserver !== 'undefined') {   // wider / narrower pane: move the action buttons up or down
+        let raf = 0;
+        new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { if (currentDetailArticle && detailTopBar.style.display !== 'none') layoutDetailActions(); }); }).observe(detailTopBar);
     }
     {   // ★ favorite from the article view
         const ds = document.getElementById('detailStarBtn');
@@ -1198,6 +1315,7 @@ export function loadHistory() {
     if (reportContainer && !wsActive()) reportContainer.style.display = 'none';
     if (articleDetail) articleDetail.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'none';
+    toolbarEditing = false; document.getElementById('toolbarTray')?.remove();
     if (historyTopBar) historyTopBar.classList.remove('scroll-hidden');
     if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
     if (historyTopBar) historyTopBar.style.display = 'flex';
@@ -1236,8 +1354,18 @@ function renderResearchFilters(bar) {
     });
 }
 
+const LAZY_FIRST = 30;   // cards built at once for a long list
+const LAZY_MORE = 40;    // cards added each time the end comes into view
+
 export function renderArticles(articles) {
     const articleList = document.getElementById('articleList');
+    // Cancel any in-flight chunked render FIRST (before any early return, e.g. the Collections tab): a rapid re-render or a tab
+    // switch must not keep appending stale cards after we've cleared the list.
+    if (articleList.__renderChunkId) {
+        cancelIdleCallback(articleList.__renderChunkId);
+        articleList.__renderChunkId = null;
+    }
+    if (articleList.__lazy) { articleList.__lazy.stop(); articleList.__lazy = null; }
     articleList.innerHTML = '';
     // The tabs live in the top bar (like Feeds' scope row), mounted once.
     const tabsBar = document.getElementById('historyTopBar');
@@ -1251,6 +1379,7 @@ export function renderArticles(articles) {
         })).catch(() => {});
         return;
     }
+    mountStorageHint(articleList).catch(() => {});
     // Links shared from the phone wait as cards at the top of the Inbox tab (inboxView.js).
     const phoneCards = historyTab === 'inbox' ? mountPhoneCards(articleList) : 0;
     if (!articles || articles.length === 0) {
@@ -1265,13 +1394,6 @@ export function renderArticles(articles) {
         return;
     }
 
-    // Cancel any in-flight chunked render so a rapid re-render (e.g. a
-    // search keystroke) doesn't keep appending stale cards after we've
-    // cleared the list.
-    if (articleList.__renderChunkId) {
-        cancelIdleCallback(articleList.__renderChunkId);
-        articleList.__renderChunkId = null;
-    }
 
     const sortedArticles = articles.slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
@@ -1283,6 +1405,32 @@ export function renderArticles(articles) {
     // paint the first cards immediately and fill the rest in spare time.
     const CHUNK = 20;
     let index = 0;
+
+    // Long lists: build the first screens now and the rest while scrolling (a sentinel at the end loads the next batch), so
+    // thousands of saved articles never mean thousands of cards in the DOM at once. A search renders everything first
+    // (filterArticles → flush) because it filters the cards in the DOM. Without IntersectionObserver the idle chunks below run.
+    if (typeof IntersectionObserver === 'function' && sortedArticles.length > LAZY_FIRST) {
+        const total = sortedArticles.length;
+        const sentinel = document.createElement('div');
+        sentinel.className = 'list-sentinel'; sentinel.setAttribute('aria-hidden', 'true');
+        let obs = null;
+        const stop = () => { if (obs) { obs.disconnect(); obs = null; } sentinel.remove(); };
+        const append = (n) => {
+            if (!sentinel.parentNode) return;   // finished or replaced by a newer render
+            const end = Math.min(index + n, total);
+            const frag = document.createDocumentFragment();
+            for (; index < end; index++) frag.appendChild(buildArticleCard(sortedArticles[index]));
+            articleList.insertBefore(frag, sentinel);
+            if (index >= total) { stop(); articleList.__lazy = null; return; }
+            // the sentinel moved: observe it again so a still-visible sentinel keeps loading
+            if (obs) { if (typeof obs.unobserve === 'function') obs.unobserve(sentinel); obs.observe(sentinel); }
+        };
+        articleList.appendChild(sentinel);
+        obs = new IntersectionObserver((entries) => { if (entries.some(e => e.isIntersecting)) append(LAZY_MORE); }, { rootMargin: '800px 0px' });
+        articleList.__lazy = { stop, flush: () => append(total - index) };
+        append(LAZY_FIRST);
+        return;
+    }
 
     const renderChunk = () => {
         const end = Math.min(index + CHUNK, sortedArticles.length);
@@ -1515,6 +1663,8 @@ function scheduleReportSearch(filterText, cheapMatch) {
 export function filterArticles() {
     const searchInput = document.getElementById('searchInput');
     const filterText = searchInput.value.trim();
+    const lazyList = document.getElementById('articleList');
+    if (filterText && lazyList && lazyList.__lazy) lazyList.__lazy.flush();   // the filter works on rendered cards: render the rest first
     const lowerFilter = filterText.toLowerCase();
     const graphContainer = document.getElementById('graphContainer');
 
@@ -1642,6 +1792,21 @@ async function renderDetailQa(article, mount) {
 }
 
 /** 🎓 row in the detail view: badges, authors · journal · year, DOI link and the "Mark as paper / Not a paper" override. */
+/** Stores a DOI on the article (and marks it as a paper); also fills the source profile from doi.org once. Callers refresh the view. */
+async function assignDoiTo(article, doi) {
+    await StorageManager.savePaperInfo(article.id, { state: 'yes', doi });
+    await applyStatus([article.id], { paperOverride: 'yes' });
+    article.paperOverride = 'yes'; article.doi = doi; article.paper = 'yes';
+    article.meta = Object.assign({}, article.meta, { paper: Object.assign({}, article.meta && article.meta.paper, { state: 'yes', doi }) });
+    const hit = cachedArticles.find(a => a.id === article.id) || archivedCache.find(a => a.id === article.id);
+    if (hit) { hit.doi = doi; hit.paper = 'yes'; }
+    try {   // the profile (title, authors, year, publisher) from the DOI, so the card shows it right away
+        const CV = await import('./collectionsView.js');
+        const full = await StorageManager.getArticleFull(article.id);
+        await CV.autoFillFromDoi({ ...article, ...full });
+    } catch (_) { /* the DOI is saved either way */ }
+}
+
 /** Tag row of the detail view (status badges only exist on list cards, where they come before the type): 🎓 paper chips first (✕ = not a paper), then the tags (✕ removes), then "+ Tag" (also: mark as research paper). */
 function renderDetailTags(article, host) {
     if (!host) return;
@@ -1680,15 +1845,7 @@ function renderDetailTags(article, host) {
         e.stopPropagation();
         const input = document.createElement('input');
         input.type = 'text'; input.className = 'tag-input'; input.maxLength = 200; input.placeholder = T('Add tag or DOI…'); input.setAttribute('aria-label', T('Add tag or DOI…'));
-        const assignDoi = async (doi) => {
-            await StorageManager.savePaperInfo(article.id, { state: 'yes', doi });
-            await applyStatus([article.id], { paperOverride: 'yes' });
-            article.paperOverride = 'yes'; article.doi = doi; article.paper = 'yes';
-            article.meta = Object.assign({}, article.meta, { paper: Object.assign({}, article.meta && article.meta.paper, { state: 'yes', doi }) });
-            const hit = cachedArticles.find(a => a.id === article.id) || archivedCache.find(a => a.id === article.id);
-            if (hit) { hit.doi = doi; hit.paper = 'yes'; }
-            refresh();
-        };
+        const assignDoi = async (doi) => { await assignDoiTo(article, doi); refresh(); };
         const commit = () => {
             const v = input.value.trim();
             const doi = v ? normalizeDoi(v) : '';
@@ -1768,46 +1925,142 @@ function renderCiteBlock(article, host) {
     host.append(bar, box, Object.assign(document.createElement('div'), { className: 'cite-src', textContent: T('Source: doi.org') }));
 }
 
-let paperDetailsOpen = false;
+// ── Source card (Paper details + Source check in one) ─────────────────────
+// One card under the tags: a summary that is always visible (type, hints, authors · year · publisher, DOI — or a field to add one)
+// and up to three sections, collapsed by default (Key facts opens when a DOI is set): Key facts and Cite (papers), Source check (every saved article).
+// Wide pane: facts + cite on the left, the check on the right (CSS container query).
+let sourceOpen = {};
+const yearOf = (d) => String(d || '').slice(0, 4);
+
+async function paintSourceSummary(article, box, row) {
+    try {
+        const [C, CV, full] = await Promise.all([import('./collections.js'), import('./collectionsView.js'), StorageManager.getArticleFull(article.id)]);
+        if (!box.isConnected) return;
+        const rec = { ...article, ...full };
+        const profile = C.effectiveProfile(rec);
+        const hints = C.profileHints(profile);
+        box.replaceChildren();
+        const l1 = document.createElement('div'); l1.className = 'source-line1';
+        const ty = document.createElement('strong'); ty.className = 'source-type';
+        ty.textContent = (paperState(article) ? '🎓 ' : '🔎 ') + (CV.typeLabel(profile.type) || T('Source'));
+        l1.append(ty);
+        if (hints.includes('preprint')) { const h = document.createElement('span'); h.className = 'source-hint'; h.textContent = CV.hintLabel('preprint'); l1.append(h); }
+        const sp = document.createElement('span'); sp.className = 'source-sp'; l1.append(sp);
+        const doi = paperDoi(rec);
+        if (doi && doiUrl(doi)) {
+            const a = document.createElement('a'); a.className = 'cite-btn source-doi'; a.href = doiUrl(doi); a.target = '_blank'; a.rel = 'noopener noreferrer';
+            a.textContent = (rec.sourceProfile && rec.sourceProfile.fromDoi ? T('DOI ✓ ↗') : T('DOI ↗')); a.title = doi;
+            l1.append(a);
+        } else {
+            const add = document.createElement('button'); add.type = 'button'; add.className = 'cite-btn source-doi-add'; add.textContent = T('+ DOI');
+            add.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const input = document.createElement('input'); input.type = 'text'; input.className = 'tag-input source-doi-input'; input.maxLength = 200;
+                input.placeholder = T('10.xxxx/… or doi.org link'); input.setAttribute('aria-label', T('Add DOI'));
+                let done = false;
+                const commit = async () => {
+                    if (done) return; done = true;
+                    const v = input.value.trim(); const d = v ? normalizeDoi(v) : '';
+                    if (d && doiUrl(d)) {
+                        input.disabled = true;
+                        await assignDoiTo(article, d);
+                        const tags = row.parentNode && row.parentNode.querySelector('.detail-tags');
+                        if (tags) renderDetailTags(article, tags); else renderPaperRow(article, row);
+                    } else { if (v && uiManagerRef) uiManagerRef.showToast(T('Enter a valid DOI first.')); paintSourceSummary(article, box, row); }
+                };
+                input.addEventListener('keydown', (ev) => { ev.stopPropagation(); if (ev.key === 'Enter' && !ev.isComposing) { ev.preventDefault(); commit(); } else if (ev.key === 'Escape') { done = true; paintSourceSummary(article, box, row); } });
+                input.addEventListener('blur', () => setTimeout(() => { if (input.isConnected) commit(); }, 120));
+                add.replaceWith(input); input.focus();
+            });
+            l1.append(add);
+        }
+        const line = [profile.author, yearOf(profile.date), profile.publisher].filter(Boolean).join(' · ');
+        const l2 = document.createElement('div'); l2.className = 'source-line2' + (line ? '' : ' is-empty'); l2.textContent = line || T('No source details yet');
+        box.append(l1, l2);
+        // check progress in the (closed) section header
+        const pr = C.checkProgress(rec.sourceCheck);
+        paintCheckProgress(row, pr);
+        // a DOI is known but the profile was never filled from it: do it once, then show the result
+        if (doi) CV.autoFillFromDoi(rec).then((p) => { if (p && box.isConnected) paintSourceSummary(article, box, row); });
+    } catch (_) { /* the card still works without its summary */ }
+}
+
+function paintCheckProgress(row, pr) {
+    const t = row && row.querySelector('.source-progress'); if (!t) return;
+    t.textContent = T('{a} of {n} answered', { a: pr.answered, n: pr.total });
+    t.classList.toggle('is-done', !!pr.done);
+    const dots = row.querySelector('.source-dots');
+    if (dots) { dots.replaceChildren(); for (let i = 0; i < pr.total; i++) { const d = document.createElement('i'); if (i < pr.answered) d.className = 'on'; dots.append(d); } }
+}
+
 function renderPaperRow(article, row) {
     if (!row) return;
     row.replaceChildren();
-    if (!paperState(article)) { row.hidden = true; return; }   // the 🎓 chip itself lives in the tag row (renderDetailTags)
+    if (!article || !article.id || article.feedStub) { row.hidden = true; return; }
     row.hidden = false;
-    row.className = 'paper-row';
-    const wrapper = document.createElement('details'); wrapper.className = 'paper-details'; wrapper.open = paperDetailsOpen;
-    wrapper.addEventListener('toggle', () => { paperDetailsOpen = wrapper.open; });
-    const sum = document.createElement('summary'); sum.textContent = T('🎓 Paper details · Facts · Cite · DOI');
-    wrapper.appendChild(sum); row.appendChild(wrapper);
-    const line = paperLine(article);
-    if (line) { const l = document.createElement('div'); l.className = 'paper-line'; l.textContent = line; wrapper.appendChild(l); }
-    const facts = paperFacts(article);
-    const card = document.createElement('div'); card.className = 'paper-card';
-    if (facts.length) {
-        const box = document.createElement('dl'); box.className = 'paper-facts';
-        facts.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; box.append(dt, dd); });
-        card.appendChild(box);
+    row.className = 'paper-row source-card-row';
+    const isPaper = !!paperState(article);
+    const card = document.createElement('div'); card.className = 'source-card' + (isPaper ? '' : ' no-paper');
+    const summary = document.createElement('div'); summary.className = 'source-summary';
+    card.append(summary);
+    const section = (key, title, extra) => {
+        const d = document.createElement('details'); d.className = 'source-sec source-sec-' + key;
+        d.open = key in sourceOpen ? !!sourceOpen[key] : (key === 'facts' && !!paperDoi(article));   // with a DOI the key facts are open by default; a manual choice wins
+        d.addEventListener('toggle', () => { sourceOpen[key] = d.open; });
+        const sm = document.createElement('summary'); const t = document.createElement('span'); t.className = 'source-sec-t'; t.textContent = title; sm.append(t);
+        if (extra) sm.append(extra);
+        d.append(sm); card.append(d); return d;
+    };
+    if (isPaper) {
+        // key facts
+        const facts = paperFacts(article);
+        const fs = section('facts', T('Key facts'));
+        const body = document.createElement('div'); body.className = 'source-sec-body'; fs.append(body);
+        if (facts.length) {
+            const box = document.createElement('dl'); box.className = 'paper-facts';
+            facts.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; box.append(dt, dd); });
+            body.append(box);
+        } else {
+            const f = document.createElement('button');
+            f.type = 'button'; f.className = 'button-secondary paper-facts-btn'; f.textContent = T('🔎 Key facts');
+            f.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                f.disabled = true; f.textContent = T('Thinking…');
+                try {
+                    const merged = await extractPaperFacts(article, aiComplete, new Intl.DisplayNames(['en'], { type: 'language' }).of(locale()) || 'English');
+                    article.meta = { ...(article.meta || {}), paper: { ...((article.meta || {}).paper || {}), ...merged } };
+                    article.paperType = merged.type;
+                    sourceOpen.facts = true;
+                    renderPaperRow(article, row);
+                } catch (err) { f.disabled = false; f.textContent = '❌ ' + ((err && err.message) || T('AI request failed')); }
+            });
+            body.append(f);
+        }
+        // cite
+        const cs = section('cite', T('Cite'));
+        const cite = document.createElement('div'); cite.className = 'cite-block source-sec-body'; cs.append(cite); renderCiteBlock(article, cite);
     }
-    if (article.id && paperState(article)) {
-        const cite = document.createElement('div'); cite.className = 'cite-block';
-        card.appendChild(cite); renderCiteBlock(article, cite);
-    }
-    wrapper.appendChild(card);
-    if (!facts.length && article.id && paperState(article)) {
-        const f = document.createElement('button');
-        f.type = 'button'; f.className = 'button-secondary paper-facts-btn'; f.textContent = T('🔎 Key facts');
-        f.addEventListener('click', async (e) => {
-            e.stopPropagation();
-            f.disabled = true; f.textContent = T('Thinking…');
-            try {
-                const merged = await extractPaperFacts(article, aiComplete, new Intl.DisplayNames(['en'], { type: 'language' }).of(locale()) || 'English');
-                article.meta = { ...(article.meta || {}), paper: { ...((article.meta || {}).paper || {}), ...merged } };
-                article.paperType = merged.type;
-                renderPaperRow(article, row);
-            } catch (err) { f.disabled = false; f.textContent = '❌ ' + ((err && err.message) || T('AI request failed')); }
-        });
-        card.insertBefore(f, card.firstChild);
-    }
+    // source check: built when first opened (it reads the saved profile and answers)
+    const progress = document.createElement('span'); progress.className = 'source-progress';
+    const dots = document.createElement('span'); dots.className = 'source-dots'; dots.setAttribute('aria-hidden', 'true');
+    const extra = document.createElement('span'); extra.className = 'source-sec-x'; extra.append(progress, dots);
+    const ck = section('check', T('Source check'), extra);
+    const checkBody = document.createElement('div'); checkBody.className = 'source-sec-body'; ck.append(checkBody);
+    const buildCheck = async () => {
+        if (checkBody.firstChild) return;
+        try {
+            const [CV, full] = await Promise.all([import('./collectionsView.js'), StorageManager.getArticleFull(article.id)]);
+            const panel = CV.sourceCheckPanel({ ...article, ...full }, {
+                origin: 'inline', bare: true,
+                onChange: () => { paintCheckProgress(row, panel.getProgress()); paintSourceSummary(article, summary, row); },
+            });
+            checkBody.append(panel);
+        } catch (_) { /* the rest of the card still works */ }
+    };
+    ck.addEventListener('toggle', () => { if (ck.open) buildCheck(); });
+    if (ck.open) buildCheck();
+    row.appendChild(card);
+    paintSourceSummary(article, summary, row);
 }
 
 export async function showArticleDetail(article) {
@@ -1836,6 +2089,7 @@ export async function showArticleDetail(article) {
         } catch (_) { article = { ...article, conversation: [] }; }
     }
     currentDetailArticle = article;
+    sourceOpen = {};   // the source card starts collapsed on every article
     {   const ds = document.getElementById('detailStarBtn'); if (ds) { ds.hidden = !article.id || !!article.feedStub; paintDetailStar(!!article.favorite); } }
     recordArticleOpened(article);
     if (article && article.id && !article.readAt && !article.feedStub) { article.readAt = new Date().toISOString(); applyStatus([article.id], { read: true }).catch(() => {}); }
@@ -1892,11 +2146,11 @@ export async function showArticleDetail(article) {
         ${decisionBadge}
         <div class="paper-row" hidden></div>
         <div class="action-bar detail-actions">
-          <button class="button-secondary open-button">${icon('book-open')} ${lbl('Read 👓')}</button>
-          <button class="button-secondary copy-button">${icon('copy')} ${lbl('Copy 📋')}</button>
-          <button class="button-secondary share-button">${icon('link')} ${lbl('Share 🔗')}</button>
-          <button class="button-secondary kindle-button">${icon('book-open')} ${lbl('Kindle 📚')}</button>
-          <button class="button-secondary localsend-button">${icon('smartphone')} ${lbl('LocalSend 📱')}</button>
+          <button class="button-secondary open-button">${icon('book-open')} <span class="act-label">${lbl('Read 👓')}</span></button>
+          <button class="button-secondary copy-button">${icon('copy')} <span class="act-label">${lbl('Copy 📋')}</span></button>
+          <button class="button-secondary share-button">${icon('link')} <span class="act-label">${lbl('Share 🔗')}</span></button>
+          <button class="button-secondary kindle-button">${icon('book-open')} <span class="act-label">${lbl('Kindle 📚')}</span></button>
+          <button class="button-secondary localsend-button">${icon('smartphone')} <span class="act-label">${lbl('LocalSend 📱')}</span></button>
         </div>
         <div class="summary-box">
           <strong class="summary-box-title">${T('🧙 AI Summary')}</strong>
@@ -1917,6 +2171,7 @@ export async function showArticleDetail(article) {
     // of the detail view from rendering.
     renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
     renderDetailTags(article, articleDetailContent.querySelector('.detail-tags'));
+    mountTitleEdit(article, articleDetailContent.querySelector('.detail-title'));
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
     mountSourceCheck(article, articleDetailContent.querySelector('#sourceCheckMount'));
@@ -1959,18 +2214,260 @@ export async function showArticleDetail(article) {
     }
     {   // ⋯ — everything the list's menu offers (Markdown, ODT/Word/PDF, Obsidian, archive, delete, …)
         const bar = articleDetailContent.querySelector('.detail-actions');
-        if (bar) attachCardMenu(bar, article, { detail: true, onRemoved: () => { const b = document.getElementById('detailBackButton'); if (b) b.click(); } });
+        if (bar) attachCardMenu(bar, article, { detail: true, extra: detailExtraItems, onRemoved: () => { const b = document.getElementById('detailBackButton'); if (b) b.click(); } });
     }
     // Show detail, hide list and graph
+    await loadToolbarPrefs();
+    // fresh content: drop the previous article's buttons from the top bar (they were moved out of the old content),
+    // otherwise every opened article would add another set of Read/Copy/Share/Kindle buttons
+    toolbarEditing = false; document.getElementById('toolbarTray')?.remove();
+    parkExistingTools();
+    document.getElementById('detailTopActions')?.remove();
+    detailTopBar?.querySelectorAll('.card-menu-btn').forEach(b => b.remove());
+    topActions = false;   // buttons are in the row again until the layout runs below
     if (articleList) articleList.style.display = 'none';
     if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
     if (historyTopBar) historyTopBar.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'flex';
     articleDetail.style.display = 'block';
+    layoutDetailActions();
     mountReadingTools({ scroller: document.getElementById('historyScreen'), content: articleDetailContent, article });   // Scroll to top + contents on long texts
     // Keyboard: focus moves to "Back" (so Esc / Enter returns); the card that opened this stays remembered.
     const back = document.getElementById('detailBackButton');
     if (back) back.focus({ preventScroll: true });
+}
+
+
+// ── Detail actions: one joined toolbar in the top bar when there is room ──
+// Wide enough: a single segmented bar next to Back — Read / Copy / Share first, more of the user's configured actions as the
+// pane gets wider, ⋯ as its last segment (it always carries everything). Narrow (the popup): the buttons stay in the row below
+// the title, as before.
+const TOP_LABELS_MIN = 780;
+let topActions = false;
+let toolbarPrefs = { items: DEFAULT_TOOLBAR.slice(), delivery: 'kindle', sendTarget: 'kindle' };
+const loadToolbarPrefs = () => StorageManager.getAll().then((cfg) => {
+    const delivery = cfg.deliveryPreference === 'localsend' ? 'localsend' : 'kindle';
+    toolbarPrefs = { items: normalizeToolbar(cfg[TOOLBAR_PREF]), delivery, sendTarget: SEND_TARGETS[cfg.lastSendTarget] ? cfg.lastSendTarget : delivery };
+}).catch(() => {});
+const toolbarShown = new Set();   // ids currently in the bar (the rest is reachable through ⋯)
+const detailExtraItems = () => !topActions ? [] : [
+    ...(toolbarShown.has('favorite') || !document.getElementById('detailStarBtn') || document.getElementById('detailStarBtn').hidden ? [] : [{ icon: 'star', label: currentDetailArticle && currentDetailArticle.favorite ? T('Remove from favorites') : T('Favorite'), run: () => document.getElementById('detailStarBtn').click() }]),
+    { icon: 'settings', label: T('Customize toolbar…'), run: () => enterToolbarEdit(), sep: true },
+    { icon: 'network', label: T('View graph'), run: () => document.getElementById('detailGraphToggleBtn')?.click() },
+    { icon: 'chart-column', label: T('View analytics report'), run: () => document.getElementById('detailReportToggleBtn')?.click() },
+];
+const toolbarRun = (id, a) => ({
+    read: () => openReadMode(a), copy: () => copyArticleToClipboard(a),
+    markdown: () => exportToMarkdown(a), obsidian: () => sendToObsidian(a),
+    pdf: () => exportToPdf(a), collection: () => addToCollection(a),
+}[id]);
+// Send split button: where "Send" goes. The label shows the last used target; the ▾ lists them all.
+const SEND_TARGETS = {
+    kindle: { icon: 'book-open', short: () => T('Kindle'), label: () => T('Send to Kindle'), run: (a) => sendToKindle(a) },
+    localsend: { icon: 'send', short: () => T('LocalSend'), label: () => T('Send via LocalSend'), run: (a) => dispatchToLocalSend(a) },
+    phone: { icon: 'smartphone', short: () => T('Phone'), label: () => T('Send to phone'), run: (a) => sendToPhone(a) },
+    share: { icon: 'link', short: () => T('Share'), label: () => T('Share…'), run: (a) => shareArticle(a) },
+};
+const sendTargetOk = (id, a) => id !== 'phone' || !!(a && a.id && a.url && !a.feedStub);
+async function runSendTarget(id, a) {
+    const def = SEND_TARGETS[id]; if (!def) return;
+    toolbarPrefs.sendTarget = id;
+    try { chrome.storage.sync.set({ lastSendTarget: id }); } catch (_) { /* remembered for this session only */ }
+    layoutDetailActions();
+    await def.run(a);
+}
+async function openSendMenu(btn) {
+    const a = currentDetailArticle; if (!a) return;
+    const { openItems } = await import('./cardMenu.js');
+    let phone = null;
+    try { phone = (await createInboxManager().status()).paired; } catch (_) { /* unknown → plain row */ }
+    const items = ['kindle', 'localsend', 'phone'].filter(id => sendTargetOk(id, a)).map((id) => ({
+        icon: SEND_TARGETS[id].icon, label: SEND_TARGETS[id].label(), active: id === toolbarPrefs.sendTarget,
+        sub: id === toolbarPrefs.sendTarget ? T('Last used') : (id === 'phone' && phone === false ? T('Not paired · pair now') : ''),
+        tag: id === toolbarPrefs.delivery ? T('Default') : (id === 'phone' && phone ? T('Paired') : ''),
+        run: () => runSendTarget(id, a),
+    }));
+    items.push({ icon: 'link', label: T('Share…'), sub: T('System share: apps, AirDrop, mail'), sep: true, run: () => runSendTarget('share', a) });
+    items.push({ icon: 'copy', label: T('Copy link'), run: async () => { try { await navigator.clipboard.writeText(a.url || ''); if (uiManagerRef) uiManagerRef.showToast(T('Link copied')); } catch (_) { /* ignore */ } } });
+    items.push({ icon: 'settings', label: T('Manage targets…'), sep: true, run: () => { if (uiManagerRef) uiManagerRef.showScreen('settings'); import('./settingsNav.js').then(m => m.openSettingsPanel('send')).catch(() => {}); } });
+    openItems(btn, items);
+}
+const toolbarAvailable = () => true;
+/** How many configured actions fit: at least three, then one more per free slot. */
+function toolbarSlots(width, labels, total) {
+    const per = labels ? 132 : 50;
+    const room = width - 120 /* back */ - 56 /* ⋯ */ - 48 /* gaps */;
+    return Math.min(total, Math.max(Math.min(3, total), Math.floor(room / per)));
+}
+/** Favorite / Read aloud are top-bar buttons with their own state; they move into the toolbar and back. */
+function parkExistingTools() {
+    const topBar = document.getElementById('detailTopBar'); const more = document.getElementById('detailMoreBtn');
+    Object.values(TOOLBAR_CATALOG).forEach((def) => {
+        const el = def.existing && document.querySelector(def.existing);
+        if (el && topBar) { if (el.parentElement !== topBar) topBar.insertBefore(el, more || null); el.classList.remove('detail-tool'); el.classList.add('tool-parked'); }
+    });
+}
+function paintDetailToolbar(holder, cb, width, labels) {
+    const a = currentDetailArticle;
+    parkExistingTools();
+    holder.replaceChildren(); toolbarShown.clear();
+    holder.classList.toggle('with-labels', labels);
+    const ids = toolbarPrefs.items.filter(id => TOOLBAR_CATALOG[id] && toolbarAvailable(id, a));
+    holder.classList.toggle('is-editing', toolbarEditing);
+    ids.slice(0, toolbarEditing ? ids.length : toolbarSlots(width, labels, ids.length)).forEach((id) => {
+        const def = TOOLBAR_CATALOG[id];
+        const name = def.label();
+        if (def.existing) {
+            const el = document.querySelector(def.existing); if (!el) return;
+            el.classList.add('detail-tool'); el.classList.remove('tool-parked'); toolbarShown.add(id);
+            if (!el.querySelector('.act-label')) { const t = document.createElement('span'); t.className = 'act-label'; t.textContent = def.short(); el.append(t); }
+            if (toolbarEditing) markEditable(el, id);
+            holder.append(el); return;
+        }
+        if (def.split) {
+            const tgt = SEND_TARGETS[sendTargetOk(toolbarPrefs.sendTarget, a) ? toolbarPrefs.sendTarget : 'kindle'];
+            const wrap = document.createElement('div'); wrap.className = 'detail-split detail-tool tool-send';
+            const main = document.createElement('button'); main.type = 'button'; main.className = 'detail-split-main';
+            main.title = tgt.label(); main.setAttribute('aria-label', tgt.label());
+            main.append(iconEl(tgt.icon)); const mt = document.createElement('span'); mt.className = 'act-label'; mt.textContent = tgt.short(); main.append(mt);
+            main.addEventListener('click', (e) => { e.stopPropagation(); if (!toolbarEditing) runSendTarget(sendTargetOk(toolbarPrefs.sendTarget, a) ? toolbarPrefs.sendTarget : 'kindle', a); });
+            const more = document.createElement('button'); more.type = 'button'; more.className = 'detail-split-more'; more.append(iconEl('chevron-down'));
+            more.title = T('Send to…'); more.setAttribute('aria-label', T('Send to…')); more.setAttribute('aria-haspopup', 'menu');
+            more.setAttribute('aria-expanded', 'false');
+            more.addEventListener('click', async (e) => { e.stopPropagation(); if (toolbarEditing) return; if (more.getAttribute('aria-expanded') === 'true') { (await import('./cardMenu.js')).closeMenu(); return; } openSendMenu(more); });
+            wrap.append(main, more);
+            if (toolbarEditing) markEditable(wrap, id);
+            holder.append(wrap); return;
+        }
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'detail-tool tool-' + id;
+        b.title = name; b.setAttribute('aria-label', name);
+        b.append(iconEl(def.icon));
+        const t = document.createElement('span'); t.className = 'act-label'; t.textContent = def.short(); b.append(t);
+        b.addEventListener('click', (e) => { e.stopPropagation(); Promise.resolve().then(() => toolbarRun(id, a)()).catch(() => {}); });
+        if (toolbarEditing) markEditable(b, id);
+        holder.append(b);
+    });
+    if (cb) holder.append(cb);
+}
+// ── Customize: the bar itself is the editor (drag handles) with a tray of the actions that only live in ⋯ ──
+let toolbarEditing = false;
+const saveToolbar = (items) => {
+    toolbarPrefs.items = normalizeToolbar(items);
+    try { chrome.storage.sync.set({ [TOOLBAR_PREF]: toolbarPrefs.items }); } catch (_) { /* the bar still follows this session */ }
+    layoutDetailActions(); paintToolbarTray();
+};
+function moveToolbarItem(id, index) {   // index = position among the bar's configured actions; -1 → back to the tray (⋯ menu)
+    const items = toolbarPrefs.items.filter(x => x !== id);
+    if (index < 0) { if (!items.length) return; } else items.splice(Math.min(index, items.length), 0, id);
+    saveToolbar(items);
+}
+function markEditable(el, id) {
+    el.draggable = true; el.dataset.toolId = id; el.classList.add('is-editable');
+    if (!el.querySelector('.tool-grip')) { const g = document.createElement('span'); g.className = 'tool-grip'; g.setAttribute('aria-hidden', 'true'); g.textContent = '⋮⋮'; el.prepend(g); }
+    el.addEventListener('dragstart', (e) => { e.dataTransfer.setData('text/plain', id); e.dataTransfer.effectAllowed = 'move'; el.classList.add('is-dragging'); });
+    el.addEventListener('dragend', () => el.classList.remove('is-dragging'));
+    el.addEventListener('keydown', (e) => {   // keyboard: Alt+←/→ move, Delete sends it back to ⋯
+        const i = toolbarPrefs.items.indexOf(id);
+        if (e.altKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); e.stopPropagation(); moveToolbarItem(id, Math.max(0, i + (e.key === 'ArrowRight' ? 1 : -1))); document.querySelector('#detailTopActions [data-tool-id="' + id + '"]')?.focus(); }
+        else if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); e.stopPropagation(); moveToolbarItem(id, -1); }
+    });
+}
+function dropIndex(holder, x) {   // where in the bar a dragged item would land
+    const tools = [...holder.querySelectorAll('.is-editable')];
+    let i = 0; for (const t of tools) { const r = t.getBoundingClientRect(); if (x > r.left + r.width / 2) i++; else break; }
+    return i;
+}
+function wireBarDrop(holder) {
+    if (holder.dataset.dnd) return; holder.dataset.dnd = '1';
+    holder.addEventListener('click', (e) => { if (toolbarEditing && e.target.closest('.is-editable')) { e.preventDefault(); e.stopPropagation(); } }, true);
+    holder.addEventListener('dragover', (e) => { if (!toolbarEditing) return; e.preventDefault(); holder.classList.add('is-drop'); holder.style.setProperty('--drop-x', '1'); });
+    holder.addEventListener('dragleave', (e) => { if (!holder.contains(e.relatedTarget)) holder.classList.remove('is-drop'); });
+    holder.addEventListener('drop', (e) => { if (!toolbarEditing) return; e.preventDefault(); holder.classList.remove('is-drop'); const id = e.dataTransfer.getData('text/plain'); if (TOOLBAR_CATALOG[id]) moveToolbarItem(id, dropIndex(holder, e.clientX)); });
+}
+function paintToolbarTray() {
+    const topBar = document.getElementById('detailTopBar');
+    let tray = document.getElementById('toolbarTray');
+    if (!toolbarEditing || !topBar) { if (tray) tray.remove(); return; }
+    if (!tray) { tray = document.createElement('div'); tray.id = 'toolbarTray'; tray.className = 'toolbar-tray'; tray.setAttribute('role', 'group'); topBar.after(tray);
+        tray.addEventListener('dragover', (e) => { e.preventDefault(); tray.classList.add('is-drop'); });
+        tray.addEventListener('dragleave', (e) => { if (!tray.contains(e.relatedTarget)) tray.classList.remove('is-drop'); });
+        tray.addEventListener('drop', (e) => { e.preventDefault(); tray.classList.remove('is-drop'); const id = e.dataTransfer.getData('text/plain'); if (TOOLBAR_CATALOG[id]) moveToolbarItem(id, -1); }); }
+    tray.setAttribute('aria-label', T('Customize toolbar…'));
+    tray.replaceChildren();
+    const h = document.createElement('div'); h.className = 'toolbar-tray-t'; h.textContent = T('Other actions: drag into the bar'); tray.append(h);
+    const chips = document.createElement('div'); chips.className = 'toolbar-tray-chips'; tray.append(chips);
+    Object.keys(TOOLBAR_CATALOG).filter(id => !toolbarPrefs.items.includes(id) && toolbarAvailable(id, currentDetailArticle)).forEach((id) => {
+        const def = TOOLBAR_CATALOG[id];
+        const c = document.createElement('button'); c.type = 'button'; c.className = 'toolbar-chip'; c.draggable = true; c.dataset.toolId = id; c.title = def.label();
+        const g = document.createElement('span'); g.className = 'tool-grip'; g.textContent = '⋮⋮'; g.setAttribute('aria-hidden', 'true');
+        const t = document.createElement('span'); t.textContent = def.short();
+        c.append(g, iconEl(def.icon), t);
+        c.addEventListener('dragstart', (e) => { e.dataTransfer.setData('text/plain', id); e.dataTransfer.effectAllowed = 'move'; c.classList.add('is-dragging'); });
+        c.addEventListener('dragend', () => c.classList.remove('is-dragging'));
+        c.addEventListener('click', () => moveToolbarItem(id, toolbarPrefs.items.length));   // click / Enter adds at the end (touch, keyboard)
+        chips.append(c);
+    });
+    if (!chips.children.length) { const e = document.createElement('span'); e.className = 'toolbar-tray-empty'; e.textContent = T('Everything is in the bar.'); chips.append(e); }
+    const row = document.createElement('div'); row.className = 'toolbar-tray-row'; tray.append(row);
+    const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'button-secondary btn-sm'; reset.textContent = T('Reset toolbar');
+    reset.addEventListener('click', () => saveToolbar(DEFAULT_TOOLBAR.slice()));
+    const sp = document.createElement('span'); sp.className = 'source-sp';
+    const done = document.createElement('button'); done.type = 'button'; done.className = 'button-primary btn-sm'; done.textContent = T('Done');
+    done.addEventListener('click', exitToolbarEdit);
+    row.append(reset, sp, done);
+}
+function enterToolbarEdit() { toolbarEditing = true; layoutDetailActions(); paintToolbarTray(); document.querySelector('#detailTopActions .is-editable')?.focus(); }
+function exitToolbarEdit() { toolbarEditing = false; layoutDetailActions(); paintToolbarTray(); }
+
+/** "Back to History" becomes "Back" (the full text stays as tooltip), and just the arrow in a very narrow pane. */
+function shortenBackLabel(back, mode) {   // mode: 'full' | 'short' | 'icon'
+    if (!back) return;
+    const tn = [...back.childNodes].reverse().find(n => n.nodeType === 3 && n.textContent.trim() !== '' || n.nodeType === 3 && back.dataset.fullLabel !== undefined);
+    if (!tn) return;
+    if (mode === 'full') {
+        if (back.dataset.fullLabel !== undefined) { tn.textContent = back.dataset.fullLabel; delete back.dataset.fullLabel; back.removeAttribute('title'); back.removeAttribute('aria-label'); }
+        return;
+    }
+    if (back.dataset.fullLabel === undefined) back.dataset.fullLabel = tn.textContent;
+    tn.textContent = mode === 'icon' ? '' : ' ' + T('Back');
+    back.title = back.dataset.fullLabel.trim(); back.setAttribute('aria-label', back.title);
+}
+function layoutDetailActions() {
+    const topBar = document.getElementById('detailTopBar');
+    const content = document.getElementById('articleDetailContent');
+    const bar = content && content.querySelector('.detail-actions');
+    if (!topBar || !bar) return;
+    const width = topBar.getBoundingClientRect().width;
+    const want = true;   // the joined toolbar is used at every width; narrow panes just show fewer actions, icons only
+    const labels = width >= TOP_LABELS_MIN;
+    const more = document.getElementById('detailMoreBtn');
+    const back = document.getElementById('detailBackButton');
+    let holder = document.getElementById('detailTopActions');
+    shortenBackLabel(back, width < 440 ? 'icon' : 'short');
+    if (want) {
+        if (!holder) {
+            holder = document.createElement('div'); holder.id = 'detailTopActions'; holder.className = 'detail-toolbar';
+            holder.setAttribute('role', 'toolbar'); holder.setAttribute('aria-label', T('Article actions'));
+            holder.addEventListener('keydown', (e) => {   // arrow keys move along the bar
+                if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+                const l = [...holder.querySelectorAll('button')]; const i = l.indexOf(document.activeElement); if (i < 0) return;
+                e.preventDefault(); l[(i + (e.key === 'ArrowRight' ? 1 : l.length - 1)) % l.length].focus();
+            });
+            back.after(holder);
+        }
+        wireBarDrop(holder);
+        let cb = topBar.querySelector('.card-menu-btn') || bar.querySelector('.card-menu-btn');
+        if (cb) cb.classList.add('detail-top-more');
+        paintDetailToolbar(holder, cb, width, labels);
+        if (!topActions) { if (more) more.hidden = true; bar.hidden = true; topActions = true; }
+    } else if (topActions) {
+        const cb = holder && holder.querySelector('.card-menu-btn');
+        if (cb) { cb.classList.remove('detail-top-more'); bar.append(cb); }
+        parkExistingTools();
+        if (holder) holder.remove();
+        if (more) more.hidden = false;
+        bar.hidden = false; topActions = false;
+    }
 }
 
 /** Read mode: the article in its own tab (reader page: typography, themes, highlights). Falls back to a plain tab. */

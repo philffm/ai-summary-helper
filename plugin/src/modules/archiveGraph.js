@@ -166,6 +166,12 @@ export function articlesOfTag(nodes, links, tagId) {
 
 // Time window over the graph: article nodes outside [from, to] (whole months) fade, topics with nothing inside fade too.
 const TIME_DIM_CLASS = 'graph-time-dim';
+/** One row at the top of the graph: view switch (Graph / List / Gaps) with the filter chips (Research, Time) right next to it. */
+function graphTopbar(container) {
+    let t = container.querySelector(':scope > .graph-topbar');
+    if (!t) { t = document.createElement('div'); t.className = 'graph-topbar'; container.prepend(t); }
+    return t;
+}
 export function monthIndex(ts) { const d = new Date(ts); return d.getFullYear() * 12 + d.getMonth(); }
 export function monthsOf(articles) {
     const idx = (articles || []).map(a => new Date(a.timestamp).getTime()).filter(Number.isFinite).map(monthIndex);
@@ -893,7 +899,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
 /** Row (top-left, under the Graph|List switch) that holds the filter chips side by side. */
 function filterBar(container) {
     let bar = container.querySelector(':scope > .graph-filterbar');
-    if (!bar) { bar = document.createElement('div'); bar.className = 'graph-filterbar'; container.append(bar); }
+    if (!bar) { bar = document.createElement('div'); bar.className = 'graph-filterbar'; graphTopbar(container).append(bar); }
     return bar;
 }
 
@@ -1071,7 +1077,8 @@ export function renderGraphList(container, nodes, links, gaps = []) {
     document.addEventListener('keydown', container.__graphKeyDoc);
     toggle.append(gBtn, lBtn, ...(pBtn ? [pBtn] : []));
     set('graph', false);
-    container.append(toggle, list, gapList, live);
+    graphTopbar(container).prepend(toggle);
+    container.append(list, gapList, live);
 }
 
 /**

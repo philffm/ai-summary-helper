@@ -47,7 +47,7 @@ assert.equal(store['articles:index'].filter(a => a.archived).length, 0, 'undo');
 // mark as… sheet
 await enterSelection(d);
 d.querySelector('.sel-more').click(); await tick(30);
-const opts = [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')]; assert.equal(opts.length, 5, 'four statuses + Add to collection'); assert.ok(opts[4].textContent.includes('Add to collection'));
+const opts = [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')]; assert.equal(opts.length, 8, 'four statuses + Add to collection + Favorite + Markdown export + Delete'); assert.ok(opts[4].textContent.includes('Add to collection'));
 opts[1].click(); await tick(100);   // Unread
 assert(!store['articles:index'].find(a => a.id === 'a1').readAt, 'unread');
 console.log('TEST 30 OK');

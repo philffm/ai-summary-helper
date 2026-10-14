@@ -405,6 +405,18 @@ class StorageManager {
         return true;
     }
 
+    /** Rename an article (index entry): trimmed, one line, max 200 characters. Returns the stored title, or null (unknown id / empty). */
+    static async setTitle(id, title) {
+        const clean = String(title || '').replace(/\s+/g, ' ').trim().slice(0, 200);
+        if (!id || !clean) return null;
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        const e = articlesIndex.find(a => a.id === id);
+        if (!e) return null;
+        e.title = clean;
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex });
+        return clean;
+    }
+
     /** Replace an article's tags (index entry): trimmed, de-duplicated, max 12 of 40 characters. Returns the stored list. */
     static async setTags(id, tags) {
         if (!id) return null;
@@ -501,6 +513,10 @@ class StorageManager {
                 const v = patch.paperOverride === 'yes' || patch.paperOverride === 'no' ? patch.paperOverride : null;
                 if (v && e.paperOverride !== v) { e.paperOverride = v; changed = true; }
                 else if (!v && e.paperOverride) { delete e.paperOverride; changed = true; }
+            }
+            if (typeof patch.favorite === 'boolean' && !!e.favorite !== patch.favorite) {
+                if (patch.favorite) e.favorite = true; else delete e.favorite;
+                changed = true;
             }
             if (typeof patch.archived === 'boolean' && !!e.archived !== patch.archived) {
                 e.archived = patch.archived;

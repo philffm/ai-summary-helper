@@ -102,3 +102,68 @@ await tick(80);
 assert.deepEqual((await C.getCollection(multi.id)).sources.map(s => s.articleId).sort(), ['a1', 'a2']);
 assert.ok(toasts.at(-1).startsWith('2 added'));
 console.log('ok');
+
+// AI overview: parsed into agree / disagree / missing, stored on the collection, carried into the Markdown export
+{
+    const parts = C.parseOverview('## Agree\n- A [1][2]\n\n## Disagree\n- X [1] vs [2]\n## Missing\n- Y');
+    assert.deepEqual(parts.map(p => p.key), ['agree', 'disagree', 'missing']);
+    assert.equal(C.parseOverview('plain [1]')[0].key, '', 'unstructured text stays one block');
+    const c = await C.createCollection({ name: 'Ov', question: 'Q?' });
+    await C.saveOverview(c.id, { text: '## Agree\n- A [1]', ids: ['a1', 'a2'], used: 2 });
+    const rec = await C.getCollection(c.id);
+    assert.deepEqual(rec.overview.ids, ['a1', 'a2']);
+    const md = C.collectionMarkdown(rec, [], { label: (k) => k });
+    assert.ok(md.includes('## Overview') && md.includes('- A [1]'), 'overview in the export');
+    await C.saveOverview(c.id, null);
+    assert.equal((await C.getCollection(c.id)).overview, undefined, 'overview can be cleared');
+}
+
+// Picker ranking: articles that share words with the first source / the question come first
+{
+    const cands = [{ id: 'x1', title: 'Cooking pasta quickly', tags: [] }, { id: 'x2', title: 'Sleep and memory in students', tags: [] }, { id: 'x3', title: 'Tax rules', tags: ['learning'] }];
+    const r = C.rankCandidates(cands, { name: 'Learning', question: 'Does sleep help recall?' }, [{ title: 'Sleep and memory consolidation: a review', tags: ['learning'] }]);
+    assert.equal(r[0].a.id, 'x2'); assert.ok(r[0].score > r[1].score);
+    assert.equal(r[1].a.id, 'x3', 'a shared tag counts'); assert.equal(r[2].score, 0);
+}
+
+// Counters, worksheet
+{
+    assert.equal(await C.bumpStat('x_test'), 1); assert.equal(await C.bumpStat('x_test'), 2);
+    assert.equal((await C.getStats()).x_test, 2);
+    const ws = C.collectionWorksheet({ name: 'WS', question: 'Q?' }, [{ title: 'T1', url: 'https://a.test' }], { label: (k) => k });
+    assert.ok(ws.includes('# Worksheet: WS') && ws.includes('> Q?') && ws.includes('## 1. T1') && ws.includes('q_origin'), 'worksheet has question, source and the four questions');
+    assert.ok(!/answer/i.test(ws.replace('Check each source', '')), 'no answers are filled in');
+}
+
+// Original title wins over the AI headline; profile from a DOI record
+{
+    assert.equal(C.displayTitle({ title: '🔍 AI headline', sourceProfile: { title: 'What caused the US pandemic-era inflation?' } }), 'What caused the US pandemic-era inflation?');
+    assert.equal(C.displayTitle({ title: 'Own title', sourceProfile: { title: '' } }), 'Own title');
+    const p = C.profileFromCsl({ type: 'journal-article', title: 'T', author: [{ given: 'Olivier', family: 'Blanchard' }, { given: 'Ben', family: 'Bernanke' }], container: 'Brookings Papers', year: '2023' });
+    assert.deepEqual(p, { title: 'T', author: 'Olivier Blanchard, Ben Bernanke', date: '2023', publisher: 'Brookings Papers', type: 'peer' });
+    assert.equal(C.profileFromCsl({ type: 'report', title: 'R', author: [], year: '' }).type, '', 'unknown types stay open');
+    assert.ok(C.profileFromCsl({ title: 'X', author: [{ family: 'A' }, { family: 'B' }, { family: 'C' }, { family: 'D' }] }).author.endsWith('et al.'));
+    await C.saveSourceProfile('a1', { type: '', author: '', date: '', publisher: '', title: 'Orig title' });
+    const md = C.collectionMarkdown({ name: 'N' }, await C.collectionArticles({ sources: [{ articleId: 'a1' }] }), { label: (k) => k });
+    assert.ok(md.includes('Orig title') && !md.includes('First article'), 'export uses the original title');
+}
+
+// Renaming a saved article
+{
+    const SM = (await imp('modules/storageManager.js')).default;
+    assert.equal(await SM.setTitle('a2', '  Own   title \n here '), 'Own title here');
+    assert.equal(store[SK.articlesIndex].find(a => a.id === 'a2').title, 'Own title here');
+    assert.equal(await SM.setTitle('a2', '   '), null, 'an empty title is refused');
+    assert.equal(await SM.setTitle('nope', 'x'), null, 'unknown id');
+}
+
+// "Find other sources": the source's own title, not the AI headline; DOI data fills only empty fields
+{
+    const url = C.otherSourcesQuery({ title: '🔍 AI headline here', sourceProfile: { title: 'What caused the US pandemic-era inflation?' } }, '');
+    assert.equal(decodeURIComponent(url.split('q=')[1]), 'What caused the US pandemic-era inflation?');
+    assert.equal(decodeURIComponent(C.otherSourcesQuery({ title: '🔍 Only headline' }, 'Q').split('q=')[1]), 'Q Only headline', 'leading emoji is dropped');
+    const fromCsl = { title: 'Paper', author: 'A B', date: '2023', publisher: 'NBER', type: 'peer' };
+    const m = C.mergeDoiProfile({ author: 'My own' }, fromCsl);
+    assert.deepEqual(m, { type: 'peer', author: 'My own', date: '2023', publisher: 'NBER', title: 'Paper', fromDoi: true }, 'the reader’s author stays');
+    assert.equal(C.mergeDoiProfile(m, fromCsl), null, 'nothing to add the second time');
+}

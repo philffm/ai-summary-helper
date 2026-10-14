@@ -44,8 +44,8 @@ export function linkCitations(root, articles, onOpen) {
             refs.forEach((k, i) => {
                 if (i) frag.append(document.createTextNode(' '));
                 const a = articles[k - 1];
-                const b = el('button', 'chat-src graph-cite', k + ' · ' + clip(title(a), 26));
-                b.type = 'button'; b.title = title(a);
+                const b = el('button', 'chat-src graph-cite', String(k));   // number only; the title shows on hover (and is the accessible name)
+                b.type = 'button'; b.title = title(a); b.setAttribute('aria-label', k + ' · ' + title(a));
                 b.addEventListener('click', (e) => { e.stopPropagation(); onOpen(a); });
                 frag.append(b);
             });
@@ -227,6 +227,24 @@ export function openClusterPage(container, { label, articles }) {
             } finally { exp.disabled = false; }
         });
         actions.append(exp);
+    }
+    const savable = list.filter(a => a.id && !a.feedStub);
+    if (savable.length >= 2) {
+        const sv = el('button', 'button-secondary graph-cluster-coll'); sv.type = 'button';
+        sv.textContent = '🗂 ' + T('Save as collection');
+        sv.title = T('Start a collection from the newest articles of this topic (up to 15). Nothing is sent anywhere.');
+        sv.addEventListener('click', async (e) => {
+            e.stopPropagation(); sv.disabled = true;
+            try {
+                const C = await import('./collections.js');
+                const pick = savable.slice().sort((a, b) => (hasText(b) - hasText(a)) || (new Date(b.timestamp) - new Date(a.timestamp))).slice(0, C.MAX_SOURCES);
+                const c = await C.createCollection({ name: label, question: '' });
+                for (const a of pick) { const r = await C.addSource(c.id, a.id); if (!r.ok) break; }
+                C.bumpStat('cluster_saved').catch(() => {});
+                sv.textContent = '✓ ' + T('Saved as collection ({n} sources)', { n: pick.length });
+            } catch (_) { sv.disabled = false; sv.textContent = '🗂 ' + T('Save as collection'); }
+        });
+        actions.append(sv);
     }
     scroll.append(actions, out);
 

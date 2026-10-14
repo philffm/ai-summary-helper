@@ -26,11 +26,65 @@ const am = await imp('../src/modules/articleManager.js');
 await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(100);
 const d = w.document;
 const labels = [...d.querySelectorAll('.action-bar button')].map(b => b.className.split(' ')[1] || b.className);
-assert.deepEqual(labels.filter(c => !/kindle/.test(c)), ['open-button', 'copy-button', 'share-button', 'localsend-button', 'card-menu-btn'], 'no .MD button; the ⋯ menu carries the rest');
+assert.deepEqual(labels.filter(c => !/kindle/.test(c)), ['open-button', 'copy-button', 'share-button', 'localsend-button'], 'no .MD button; the ⋯ menu (now the toolbar\'s last segment) carries the rest');
+assert(d.querySelector('#detailTopActions > .card-menu-btn'), 'the joined toolbar is used at every width, with ⋯ at its end');
 assert(d.querySelector('.action-bar .open-button').classList.contains('button-secondary'));
-const pd = d.querySelector('details.paper-details');
-assert(pd && !pd.open, 'paper details collapsed by default');
-assert(pd.querySelector('.cite-block') && pd.querySelector('summary'));
+const sc = d.querySelector('.source-card');
+assert(sc, 'combined source card');
+for (const k of ['facts', 'cite', 'check']) { const s = sc.querySelector('details.source-sec-' + k); assert(s && s.querySelector('summary'), k + ' present'); assert.equal(s.open, k === 'facts', k + (k === 'facts' ? ' open (the article has a DOI)' : ' collapsed by default')); }
+assert(sc.querySelector('.cite-block'));
+assert(sc.querySelector('.source-doi'), 'DOI shown in the card summary');
+// non-paper: Source + Check only, DOI can be entered in the card
+store['articles:index'].push({ id: 'a2', url: 'https://x.com/2', title: 'Plain', timestamp: iso(0), summary: '<p>two</p>', tags: [] });
+await am.showArticleDetail({ ...store['articles:index'][1] }); await tick(100);
+const sc2 = d.querySelector('.source-card');
+assert(sc2 && sc2.classList.contains('no-paper') && !sc2.querySelector('.source-sec-facts') && sc2.querySelector('.source-sec-check:not([open])'), 'non-paper card: check only');
+assert(sc2.querySelector('.source-doi-add'), '+ DOI button in the card');
+// wide top bar: actions move up once and are not duplicated when another article is opened
+{
+  const tb = d.getElementById('detailTopBar');
+  tb.getBoundingClientRect = () => ({ width: 900, height: 50, top: 0, left: 0, right: 900, bottom: 50 });
+  await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);
+  await am.showArticleDetail({ ...store['articles:index'][1] }); await tick(60);
+  await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);
+  assert.equal(d.querySelectorAll('#detailTopBar .tool-read').length, 1, 'one Read button in the top bar');
+  assert.equal(d.querySelectorAll('#detailTopBar .tool-copy').length, 1, 'one Copy button in the top bar');
+  assert.equal(d.querySelectorAll('#detailTopBar .card-menu-btn').length, 1, 'one ⋯ button in the top bar');
+  const toolId = (b) => b.id === 'detailStarBtn' ? 'favorite' : b.id === 'detailListenBtn' ? 'listen' : (b.className.match(/tool-(\w+)/) || [])[1];
+  const tools = [...d.querySelectorAll('#detailTopActions > .detail-tool')].map(toolId);
+  assert.deepEqual(tools.slice(0, 3), ['read', 'copy', 'favorite'], 'Read / Copy come first: ' + tools);
+  assert(d.querySelector('#detailTopActions').lastElementChild.classList.contains('card-menu-btn'), '⋯ is the last segment');
+  {   // the buttons really run their action (Read opens the reader page in a tab)
+    const opened = []; globalThis.chrome.runtime.getURL = (p) => 'chrome-extension://abc/' + p; globalThis.chrome.tabs = { ...(globalThis.chrome.tabs || {}), create: async (o) => { opened.push(o.url); } };
+    d.querySelector('#detailTopActions .tool-read').click(); await tick(80);
+    assert(opened.some(u => /readerPage\.html#id=a1/.test(u)), 'Read opens the reader: ' + JSON.stringify(opened));
+  }
+  assert(d.querySelector('#detailTopActions #detailStarBtn'), 'favorite button is part of the toolbar');
+  assert(d.querySelector('#detailTopActions #detailListenBtn'), 'read-aloud button is part of the toolbar');
+  {   // customize: ⋯ → "Customize toolbar…" turns the bar into the editor
+    d.querySelector('#detailTopActions .card-menu-btn').click(); await tick(30);
+    const item = [...d.querySelectorAll('.card-menu-item')].find(b => /Customize toolbar/.test(b.textContent));
+    assert(item, 'menu offers Customize toolbar…'); item.click(); await tick(60);
+    assert(d.getElementById('toolbarTray') && d.querySelector('#detailTopActions.is-editing'), 'edit mode: tray + editing bar');
+    const before = [...d.querySelectorAll('#detailTopActions .is-editable')].map(b => b.dataset.toolId);
+    const chip = d.querySelector('#toolbarTray .toolbar-chip'); assert(chip, 'tray lists the actions that are only in ⋯');
+    const id = chip.dataset.toolId; chip.click(); await tick(60);
+    assert(store.detailToolbarItems && store.detailToolbarItems.includes(id), 'adding saves the list');
+    assert.equal(d.querySelectorAll('#detailTopActions .is-editable').length, before.length + 1);
+    const first = d.querySelector('#detailTopActions .is-editable');
+    first.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Delete', bubbles: true })); await tick(60);
+    assert(!d.querySelector('#toolbarTray [data-tool-id="read"]') === false, 'removed action is back in the tray');
+    d.querySelector('#toolbarTray .button-primary').click(); await tick(40);
+    assert(!d.getElementById('toolbarTray') && !d.querySelector('#detailTopActions.is-editing'), 'Done leaves edit mode');
+    delete store.detailToolbarItems;
+  }
+  // configured list: own order, own selection
+  store.detailToolbarItems = ['pdf', 'copy', 'bogus'];
+  await am.showArticleDetail({ ...store['articles:index'][0] }); await tick(60);
+  assert.deepEqual([...d.querySelectorAll('#detailTopActions > .detail-tool')].map(toolId), ['pdf', 'copy'], 'configured toolbar');
+  assert(d.querySelector('#detailTopBar > #detailStarBtn'), 'favorite goes back to the bar when it is not configured');
+  delete store.detailToolbarItems;
+}
 console.log('TEST 69 OK');
 // profile switching: no leftovers (high contrast theme / reduce motion) — logic mirrored from settingsManager
 const src = fs.readFileSync(new URL('../src/modules/settingsManager.js', import.meta.url), 'utf8');

@@ -4777,5 +4777,539 @@
   },
   "f_always_use_my_local_model_fo_39bd": {
     "message": "🏠 Usar siempre mi modelo local para los resúmenes diarios"
+  },
+  "f_a_collection_bundles_saved_a_8449": {
+    "message": "A collection bundles saved articles under one question."
+  },
+  "f_add_to_collection_512f": {
+    "message": "Add to collection"
+  },
+  "f_added_to_bd62": {
+    "message": "Added to “{name}”"
+  },
+  "f_already_in_43ae": {
+    "message": "Already in “{name}”"
+  },
+  "f_author_c776": {
+    "message": "Author"
+  },
+  "f_authority_agency_6682": {
+    "message": "Authority / agency"
+  },
+  "f_check_8de7": {
+    "message": "Check"
+  },
+  "f_collection_a8b1": {
+    "message": "Collection"
+  },
+  "f_collections_a966": {
+    "message": "Collections"
+  },
+  "f_could_not_open_collections_0d10": {
+    "message": "Could not open collections"
+  },
+  "f_create_e47d": {
+    "message": "Create"
+  },
+  "f_delete_collection_71b6": {
+    "message": "Delete collection"
+  },
+  "f_delete_the_collection_the_ar_f797": {
+    "message": "Delete the collection “{name}”? The articles stay in your history."
+  },
+  "f_export_markdown_8a28": {
+    "message": "Export Markdown"
+  },
+  "f_export_as_pdf_f6e3": {
+    "message": "Export as PDF"
+  },
+  "f_export_as_word_docx_9060": {
+    "message": "Export as Word (DOCX)"
+  },
+  "f_export_as_document_odt_a99e": {
+    "message": "Export as document (ODT)"
+  },
+  "f_find_other_sources_about_thi_21b5": {
+    "message": "Find other sources about this"
+  },
+  "f_hints_not_ratings_you_decide_cd48": {
+    "message": "Hints, not ratings: you decide how far to trust this source."
+  },
+  "f_in_c8be": {
+    "message": "In"
+  },
+  "f_name_of_the_collection_83f4": {
+    "message": "Name of the collection"
+  },
+  "f_new_collection_ab5b": {
+    "message": "New collection"
+  },
+  "f_no_author_found_d6ed": {
+    "message": "No author found"
+  },
+  "f_no_date_found_370a": {
+    "message": "No date found"
+  },
+  "f_no_source_details_yet_8e2f": {
+    "message": "No source details yet"
+  },
+  "f_no_sources_yet_use_add_to_co_dd26": {
+    "message": "No sources yet. Use “Add to collection” in an article’s ⋯ menu."
+  },
+  "f_not_in_a_collection_yet_8554": {
+    "message": "Not in a collection yet"
+  },
+  "f_older_than_5_years_e219": {
+    "message": "Older than 5 years"
+  },
+  "f_open_an_article_s_menu_and_c_0caa": {
+    "message": "Open an article’s ⋯ menu and choose “Add to collection”, or start one here."
+  },
+  "f_open_in_new_tab_d191": {
+    "message": "Open in new tab"
+  },
+  "f_opinion_blog_1ad4": {
+    "message": "Opinion / blog"
+  },
+  "f_peer_reviewed_46f1": {
+    "message": "Peer-reviewed"
+  },
+  "f_pre_selected_the_collection__f2bf": {
+    "message": "Pre-selected: the collection you used last. You can change it."
+  },
+  "f_preprint_1c21": {
+    "message": "Preprint"
+  },
+  "f_preprint_not_peer_reviewed_2153": {
+    "message": "Preprint, not peer reviewed"
+  },
+  "f_primary_source_50de": {
+    "message": "Primary source"
+  },
+  "f_publisher_ed1f": {
+    "message": "Publisher"
+  },
+  "f_remove_from_collection_ed35": {
+    "message": "Remove from collection"
+  },
+  "f_secondary_source_87f6": {
+    "message": "Secondary source"
+  },
+  "f_send_to_obsidian_a6e9": {
+    "message": "Send to Obsidian"
+  },
+  "f_source_check_4cb0": {
+    "message": "Source check"
+  },
+  "f_that_collection_no_longer_ex_264a": {
+    "message": "That collection no longer exists."
+  },
+  "f_this_collection_is_full_sour_a6b7": {
+    "message": "This collection is full ({n} sources)."
+  },
+  "f_type_d06d": {
+    "message": "Type"
+  },
+  "f_what_do_other_sources_say_ab_34c8": {
+    "message": "What do other sources say about it?"
+  },
+  "f_what_is_missing_186e": {
+    "message": "What is missing?"
+  },
+  "f_where_does_the_claim_come_fr_de33": {
+    "message": "Where does the claim come from?"
+  },
+  "f_who_is_behind_this_f59e": {
+    "message": "Who is behind this?"
+  },
+  "f_your_question_761e": {
+    "message": "Your question"
+  },
+  "f_your_question_optional_cc1d": {
+    "message": "Your question (optional)"
+  },
+  "f_last_used_743a": {
+    "message": "last used"
+  },
+  "f_sources_9831": {
+    "message": "sources"
+  },
+  "f_updated_4716": {
+    "message": "updated {d}"
+  },
+  "f_added_to_2a85": {
+    "message": "{a} added to “{name}”"
+  },
+  "f_added_to_the_collection_is_f_3393": {
+    "message": "{a} added to “{name}”; the collection is full ({n} sources)."
+  },
+  "f_of_answered_a944": {
+    "message": "{a} of {n} answered"
+  },
+  "f_of_checked_9b44": {
+    "message": "{a} of {n} checked"
+  },
+  "f_checked_6b66": {
+    "message": "{a}/{n} checked"
+  },
+  "f_of_sources_570e": {
+    "message": "{n} of {max} sources"
+  },
+  "f_sources_1825": {
+    "message": "{n} sources"
+  },
+  "f_add_sources_ca4e": {
+    "message": "Add sources"
+  },
+  "f_all_sources_checked_export_t_a6d2": {
+    "message": "All sources checked. Export the collection as Markdown to write it up or share it."
+  },
+  "f_next_check_your_sources_stil_a5d2": {
+    "message": "Next: check your sources ({n} still open), then export the collection."
+  },
+  "f_agree_2be3": {
+    "message": "Agree"
+  },
+  "f_compare_what_your_sources_sa_ce64": {
+    "message": "Compare what your sources say: where they agree, disagree and what is missing."
+  },
+  "f_create_overview_8cc0": {
+    "message": "Create overview"
+  },
+  "f_created_sources_56b9": {
+    "message": "Created {d}, {n} sources."
+  },
+  "f_disagree_94b9": {
+    "message": "Disagree"
+  },
+  "f_from_summaries_1ec5": {
+    "message": "From summaries"
+  },
+  "f_from_summaries_not_checked_a_3af2": {
+    "message": "From summaries, not checked against the full texts."
+  },
+  "f_missing_d6a7": {
+    "message": "Missing"
+  },
+  "f_needs_at_least_2_sources_wit_8f99": {
+    "message": "Needs at least 2 sources with a summary."
+  },
+  "f_not_checked_against_the_full_abd6": {
+    "message": "Not checked against the full texts."
+  },
+  "f_overview_4fba": {
+    "message": "Overview"
+  },
+  "f_sends_your_question_and_summ_e6d1": {
+    "message": "Sends your question and {n} summaries to your AI model. Full texts stay on your device."
+  },
+  "f_the_sources_changed_since_re_a027": {
+    "message": "The sources changed since — refresh."
+  },
+  "f_other_saved_articles_e035": {
+    "message": "Other saved articles"
+  },
+  "f_suggested_fits_your_sources_efa7": {
+    "message": "Suggested: fits your sources"
+  },
+  "f_check_each_source_before_you_2659": {
+    "message": "Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say."
+  },
+  "f_copy_references_6116": {
+    "message": "Copy references"
+  },
+  "f_save_as_collection_36e4": {
+    "message": "Save as collection"
+  },
+  "f_saved_as_collection_sources_8421": {
+    "message": "Saved as collection ({n} sources)"
+  },
+  "f_start_a_collection_from_the__5c47": {
+    "message": "Start a collection from the newest articles of this topic (up to 15). Nothing is sent anywhere."
+  },
+  "f_task_3d8c": {
+    "message": "Task"
+  },
+  "f_worksheet_4fe3": {
+    "message": "Worksheet"
+  },
+  "f_references_copied_a61d": {
+    "message": "{n} references copied"
+  },
+  "f_references_copied_without_do_7bc4": {
+    "message": "{n} references copied, {m} without DOI skipped"
+  },
+  "f_doi_e927": {
+    "message": "DOI"
+  },
+  "f_enter_a_valid_doi_first_93c8": {
+    "message": "Enter a valid DOI first."
+  },
+  "f_fill_from_doi_7cb8": {
+    "message": "Fill from DOI"
+  },
+  "f_filled_from_doi_org_check_an_a9ae": {
+    "message": "Filled from doi.org. Check and change anything."
+  },
+  "f_original_title_8400": {
+    "message": "Original title"
+  },
+  "f_rename_31f3": {
+    "message": "Rename"
+  },
+  "f_renamed_10b5": {
+    "message": "Renamed"
+  },
+  "f_title_71a9": {
+    "message": "Title"
+  },
+  "f_delete_about_d83d": {
+    "message": "Delete {n} (about {size})"
+  },
+  "f_delete_articles_this_cannot__5f89": {
+    "message": "Delete {n} articles? This cannot be undone."
+  },
+  "f_deleting_removes_the_summary_b7d4": {
+    "message": "Deleting removes the summary and the saved page text. Export a backup first if unsure."
+  },
+  "f_free_up_space_e9f2": {
+    "message": "Free up space"
+  },
+  "f_not_now_6fce": {
+    "message": "Not now"
+  },
+  "f_nothing_large_and_unopened_t_7635": {
+    "message": "Nothing large and unopened to remove."
+  },
+  "f_saved_data_is_getting_large__3b00": {
+    "message": "Saved data is getting large ({size}). {n} big articles have not been opened for months."
+  },
+  "f_saved_data_these_articles_ar_c4fc": {
+    "message": "Saved data: {size}. These articles are large and have not been opened for {d}+ days."
+  },
+  "f_select_what_can_go_7927": {
+    "message": "Select what can go"
+  },
+  "f_showing_the_largest_of_bd2f": {
+    "message": "Showing the {n} largest of {m}."
+  },
+  "f_not_opened_for_days_05c1": {
+    "message": "not opened for {d} days"
+  },
+  "f_articles_deleted_7937": {
+    "message": "{n} articles deleted"
+  },
+  "f_more_are_starred_or_in_a_col_6c6e": {
+    "message": "{n} more are starred or in a collection and are never listed."
+  },
+  "f_add_to_favorites_3814": {
+    "message": "Add to favorites"
+  },
+  "f_delete_selected_articles_thi_fc7a": {
+    "message": "Delete {n} selected articles? This cannot be undone."
+  },
+  "f_remove_from_favorites_bb86": {
+    "message": "Remove from favorites"
+  },
+  "f_summaries_in_one_file_ed78": {
+    "message": "{n} summaries in one file"
+  },
+  "f_summary_in_one_file_2d00": {
+    "message": "{n} summary in one file"
+  },
+  "f_images_removed_from_articles_8da9": {
+    "message": "Images removed from {n} articles · about {size} freed"
+  },
+  "f_keeps_title_summary_tags_hig_a492": {
+    "message": "Keeps title, summary, tags, highlights and your statistics. Questions about the article then use the summary only. Starred articles and articles in a collection are skipped."
+  },
+  "f_no_saved_images_7ea9": {
+    "message": "No saved images."
+  },
+  "f_not_opened_for_at_least_days_3606": {
+    "message": "Not opened for at least (days)"
+  },
+  "f_nothing_old_enough_5ba9": {
+    "message": "Nothing old enough."
+  },
+  "f_off_new_articles_keep_only_t_f4c4": {
+    "message": "Off: new articles keep only the text. Pictures are what makes saved pages large."
+  },
+  "f_page_text_of_articles_remove_9099": {
+    "message": "Page text of {n} articles removed"
+  },
+  "f_page_text_removed_from_artic_59a7": {
+    "message": "Page text removed from {n} articles · about {size} freed"
+  },
+  "f_pick_single_articles_to_trim_a05e": {
+    "message": "Pick single articles to trim or delete."
+  },
+  "f_remove_images_ac3d": {
+    "message": "Remove images"
+  },
+  "f_remove_images_from_saved_art_71cb": {
+    "message": "Remove images from saved articles"
+  },
+  "f_remove_page_text_3553": {
+    "message": "Remove page text"
+  },
+  "f_remove_page_text_of_old_arti_3fc8": {
+    "message": "Remove page text of old articles"
+  },
+  "f_remove_page_text_of_about_b647": {
+    "message": "Remove page text of {n} (about {size})"
+  },
+  "f_remove_the_images_from_all_s_b3c1": {
+    "message": "Remove the images from all saved articles? The text stays. This cannot be undone."
+  },
+  "f_remove_the_saved_page_text_o_8d34": {
+    "message": "Remove the saved page text of {n} articles? Summaries and statistics stay. This cannot be undone."
+  },
+  "f_removing_the_page_text_keeps_f4ca": {
+    "message": "Removing the page text keeps title, summary, tags and highlights, and the statistics stay the same. Deleting removes the whole article. Export a backup first if unsure."
+  },
+  "f_review_large_unopened_articl_df0f": {
+    "message": "Review large, unopened articles"
+  },
+  "f_save_images_with_articles_7dcd": {
+    "message": "Save images with articles"
+  },
+  "f_saved_data_articles_2ab7": {
+    "message": "Saved data: {size} · {n} articles"
+  },
+  "f_storage_cleanup_e0d8": {
+    "message": "Storage & cleanup"
+  },
+  "f_articles_with_images_about_8d5b": {
+    "message": "{n} articles with images · about {size}"
+  },
+  "f_articles_about_f741": {
+    "message": "{n} articles · about {size}"
+  },
+  "f_copy_of_5f2c": {
+    "message": "Copy of “{t}”"
+  },
+  "f_duplicates_259f": {
+    "message": "Duplicates"
+  },
+  "f_duplicates_and_large_unopene_2310": {
+    "message": "Duplicates and large, unopened articles. Pick what to trim or delete."
+  },
+  "f_images_53cb": {
+    "message": "Images"
+  },
+  "f_large_and_not_opened_31c1": {
+    "message": "Large and not opened"
+  },
+  "f_nothing_large_unopened_or_du_4ba6": {
+    "message": "Nothing large, unopened or duplicated to remove."
+  },
+  "f_page_text_fa29": {
+    "message": "Page text"
+  },
+  "f_saved_data_tick_what_can_go_4926": {
+    "message": "Saved data: {size}. Tick what can go."
+  },
+  "f_show_more_bc06": {
+    "message": "Show more ({n})"
+  },
+  "f_stays_statistics_are_based_o_7b82": {
+    "message": "Stays — statistics are based on this"
+  },
+  "f_summaries_tags_highlights_467b": {
+    "message": "Summaries, tags, highlights"
+  },
+  "f_the_same_page_saved_more_tha_5a32": {
+    "message": "The same page saved more than once. The newest copy with a summary stays."
+  },
+  "f_view_analytics_report_0aaa": {
+    "message": "View analytics report"
+  },
+  "f_view_graph_dfcc": {
+    "message": "View graph"
+  },
+  "f_doi_7aee": {
+    "message": "+ DOI"
+  },
+  "f_10_xxxx_or_doi_org_link_63ec": {
+    "message": "10.xxxx/… or doi.org link"
+  },
+  "f_add_doi_d4a4": {
+    "message": "Add DOI"
+  },
+  "f_cite_237e": {
+    "message": "Cite"
+  },
+  "f_doi_0b23": {
+    "message": "DOI ✓ ↗"
+  },
+  "f_article_actions_2b7e": {
+    "message": "Article actions"
+  },
+  "f_article_toolbar_008a": {
+    "message": "Article toolbar"
+  },
+  "f_markdown_116c": {
+    "message": "Markdown"
+  },
+  "f_move_down_faa8": {
+    "message": "Move down"
+  },
+  "f_move_up_9e41": {
+    "message": "Move up"
+  },
+  "f_obsidian_8150": {
+    "message": "Obsidian"
+  },
+  "f_pdf_7875": {
+    "message": "PDF"
+  },
+  "f_phone_944f": {
+    "message": "Phone"
+  },
+  "f_pick_the_actions_for_the_bar_c800": {
+    "message": "Pick the actions for the bar above an article and put them in order. The first three always show; more appear when the window is wider. Everything else stays in the ⋯ menu."
+  },
+  "f_reset_toolbar_ee9b": {
+    "message": "Reset toolbar"
+  },
+  "f_send_to_e_reader_kindle_or_l_48d7": {
+    "message": "Send to e-reader (Kindle or LocalSend)"
+  },
+  "f_customize_toolbar_b65f": {
+    "message": "Customize toolbar…"
+  },
+  "f_everything_is_in_the_bar_d67d": {
+    "message": "Everything is in the bar."
+  },
+  "f_other_actions_drag_into_the__ae3e": {
+    "message": "Other actions: drag into the bar"
+  },
+  "f_copy_link_90dc": {
+    "message": "Copy link"
+  },
+  "f_kindle_a768": {
+    "message": "Kindle"
+  },
+  "f_last_used_5cda": {
+    "message": "Last used"
+  },
+  "f_link_copied_d7d3": {
+    "message": "Link copied"
+  },
+  "f_manage_targets_5162": {
+    "message": "Manage targets…"
+  },
+  "f_not_paired_pair_now_fffe": {
+    "message": "Not paired · pair now"
+  },
+  "f_send_to_eb5e": {
+    "message": "Send to…"
+  },
+  "f_share_c6da": {
+    "message": "Share…"
+  },
+  "f_system_share_apps_airdrop_ma_a10d": {
+    "message": "System share: apps, AirDrop, mail"
   }
 }

@@ -28,7 +28,7 @@ export const CATEGORIES = {
     prefs: {
         syncAll: true, localStorageToo: true,
         keys: [SK.feedSettings, SK.feedUi, SK.topicLexicon, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
-            SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions, SK.lastCollection],
+            SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions, SK.lastCollection, SK.collStats, SK.storageHint],
     },
 };
 

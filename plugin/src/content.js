@@ -21,6 +21,11 @@ import {
 } from './content/extractor.js';
 
 import { markdownToHtml, stripReasoning, escapeHtml } from './content/markdown.js';
+import { stripImages } from './content/stripImages.js';
+
+// Settings → Library & Data → "Save images with articles" (default on): off keeps the text only.
+const wantsImages = () => new Promise((r) => { try { chrome.storage.sync.get({ saveImages: true }, (d) => r(d.saveImages !== false)); } catch (_) { r(true); } });
+const prepareImages = async (html) => (await wantsImages()) ? inlineAndCompressImages(html) : stripImages(html);
 
 import {
   ensureHighlightUiStyles,
@@ -356,7 +361,8 @@ import {
           let meta = {};
           try { meta = collectPageMeta(); } catch (_) { /* optional */ }
           // Images are inlined for offline reading, but a page with many or slow ones must not hold the save hostage.
-          if (!request.noImages) {
+          if (!(await wantsImages())) html = stripImages(html);
+          else if (!request.noImages) {
             const capped = new Promise((r) => setTimeout(() => r(html), 25000));
             try { html = await Promise.race([inlineAndCompressImages(html), capped]); } catch (_) { /* keep original html */ }
           }
@@ -616,7 +622,7 @@ import {
     }
 
     // Start image compression immediately and let it run while AI is streaming.
-    const imageCompressionPromise = inlineAndCompressImages(contentHtml);
+    const imageCompressionPromise = prepareImages(contentHtml);
 
     const donationMessage = getRandomDonationMessage();
     showPlaceholder(targetElement, donationMessage);

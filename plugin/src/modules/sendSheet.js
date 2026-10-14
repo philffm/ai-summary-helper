@@ -358,6 +358,19 @@ function viewMark() {
             await openAddSheet(articles, { onDone: () => setActive(false) });
         } catch (_) { deps.toast(T('Could not open collections')); }
     }, '›'));
+    // More bulk actions: favorite, one Markdown file, delete.
+    const allFav = list.length > 0 && list.every(a => a.favorite);
+    body.append(row(allFav ? '☆' : '⭐', allFav ? T('Remove from favorites') : T('Add to favorites'), '', async () => {
+        await deps.applyStatus(ids, { favorite: !allFav });
+        closeSheet(); setActive(false);
+    }, ''));
+    if (deps.exportManyMarkdown) body.append(row('⬇️', T('Export as Markdown'), TN(list.length, '{n} summary in one file', '{n} summaries in one file'), async () => {
+        await deps.exportManyMarkdown(list);
+        closeSheet(); setActive(false);
+    }, ''));
+    if (deps.removeMany) body.append(row('🗑️', T('Delete'), '', async () => {
+        if (await deps.removeMany(ids)) { closeSheet(); setActive(false); }
+    }, ''));
     body.append(btn(T('Cancel'), false, closeSheet));
 }
 

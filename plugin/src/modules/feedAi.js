@@ -501,7 +501,8 @@ export async function askCluster(list, { topic = '', question = '', layout = '' 
     const q = String(question || '').trim();
     const unique = dedupeArticles(list);   // the same page saved twice (or reached by two feeds) counts once
     const all = unique.map(a => ({ a, body: clip(plain(a.summary || a.snippet || ''), 500) })).filter(x => x.body);
-    const items = all.slice(0, CLUSTER_MAX * CLUSTER_RUNS);
+    const cmp = layout === 'compare';   // collection overview: agree / disagree / missing, one request, at most CLUSTER_MAX sources
+    const items = all.slice(0, cmp ? CLUSTER_MAX : CLUSTER_MAX * CLUSTER_RUNS);
     if (!items.length) throw new Error(T('These articles have no summaries yet'));
     const base = `You work from a reader's own saved article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
         + 'Use ONLY the numbered summaries: no outside facts. Refer to items as [n]. If they do not contain the answer, say so. ';
@@ -515,7 +516,10 @@ export async function askCluster(list, { topic = '', question = '', layout = '' 
     for (let i = 0; i < items.length; i += CLUSTER_MAX) chunks.push(items.slice(i, i + CLUSTER_MAX));
     let text;
     if (chunks.length === 1) {
-        const system = base + (q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
+        const compareSys = 'Compare the sources with respect to the reader\'s question (if there is none, to what they have in common). Write exactly three sections with these heading lines, in English, in this order: "## Agree", "## Disagree", "## Missing". '
+            + 'Under each heading write 1 to 3 short bullet lines; every claim carries its [n] references. Disagree: where sources contradict each other or differ in size or certainty; if there is no disagreement, write one bullet saying so. '
+            + 'Missing: what the summaries do not cover and what the reader should check next. Do not judge which source is right.';
+        const system = base + (cmp ? compareSys : q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
             : layout ? 'Write a short overview paragraph first (2 sentences), then the sections.' + sections
             : 'Write a short briefing: what they say together, where they differ or add to each other, and which one to read first. At most 8 bullet lines, no headings.');
         text = clean(await aiComplete(system, lines(items, 0) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));

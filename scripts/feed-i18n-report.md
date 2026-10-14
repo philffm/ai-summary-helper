@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1539. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1373 | 0 | 0 | 46 |
-| de | 1373 | 0 | 0 | 202 |
-| es | 1373 | 0 | 0 | 186 |
-| fr | 1373 | 0 | 0 | 217 |
-| hi | 1373 | 0 | 0 | 86 |
-| it | 1373 | 0 | 0 | 184 |
-| ja | 1373 | 0 | 0 | 95 |
-| ko | 1373 | 0 | 0 | 26 |
-| pt_PT | 1373 | 0 | 0 | 176 |
-| ru | 1373 | 0 | 0 | 117 |
-| zh_CN | 1373 | 0 | 0 | 2 |
-| zh_HK | 1373 | 0 | 0 | 2 |
-| zh_TW | 1373 | 0 | 0 | 2 |
+| ar | 1530 | 9 | 0 | 46 |
+| de | 1530 | 9 | 0 | 219 |
+| es | 1530 | 9 | 0 | 186 |
+| fr | 1530 | 9 | 0 | 217 |
+| hi | 1530 | 9 | 0 | 86 |
+| it | 1530 | 9 | 0 | 184 |
+| ja | 1530 | 9 | 0 | 95 |
+| ko | 1530 | 9 | 0 | 26 |
+| pt_PT | 1530 | 9 | 0 | 176 |
+| ru | 1530 | 9 | 0 | 117 |
+| zh_CN | 1530 | 9 | 0 | 2 |
+| zh_HK | 1530 | 9 | 0 | 2 |
+| zh_TW | 1530 | 9 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -96,6 +96,7 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | All time | Gesamter Zeitraum | 17 vs 8 | 2.13× |
 | Resets {date} | Zurücksetzung am {date} | 19 vs 9 | 2.11× |
 | Copy failed | Kopieren fehlgeschlagen | 23 vs 11 | 2.09× |
+| Add DOI | DOI hinzufügen | 14 vs 7 | 2× |
 | Add tag | Tag hinzufügen | 14 vs 7 | 2× |
 | Changelog | Änderungsprotokoll | 18 vs 9 | 2× |
 | Hide ⌃ | Ausblenden ⌃ | 12 vs 6 | 2× |
@@ -146,6 +147,7 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ⏳ Summarizing… | ⏳ Wird zusammengefasst … | 24 vs 14 | 1.71× |
 | ✨ Build my own | ✨ Selbst zusammenstellen | 24 vs 14 | 1.71× |
 | Dig deeper | Tiefer eintauchen | 17 vs 10 | 1.7× |
+| No saved images. | Keine gespeicherten Bilder. | 27 vs 16 | 1.69× |
 | Select summaries | Zusammenfassungen auswählen | 27 vs 16 | 1.69× |
 | Summary Language | Sprache der Zusammenfassung | 27 vs 16 | 1.69× |
 | View & edit › | Ansehen & bearbeiten › | 22 vs 13 | 1.69× |
@@ -159,8 +161,10 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Sort: Unread | Sortieren: Ungelesen | 20 vs 12 | 1.67× |
 | Tagging feed {a} of {b} | Feed {a} von {b} wird verschlagwortet | 35 vs 21 | 1.67× |
 | Voice · auto | Stimme · automatisch | 20 vs 12 | 1.67× |
+| last used | zuletzt benutzt | 15 vs 9 | 1.67× |
 | {n} summaries | {n} Zusammenfassungen | 20 vs 12 | 1.67× |
 | ↻ Refresh | ↻ Aktualisieren | 15 vs 9 | 1.67× |
+| Add sources | Quellen hinzufügen | 18 vs 11 | 1.64× |
 | Marked {n} read | {n} als gelesen markiert | 23 vs 14 | 1.64× |
 | Resend code | Code erneut senden | 18 vs 11 | 1.64× |
 | View & Copy | Ansehen & kopieren | 18 vs 11 | 1.64× |
@@ -191,11 +195,13 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary length in words | Länge der Zusammenfassung in Wörtern | 36 vs 23 | 1.57× |
 | {n} steps, then merged | {n} Schritte, dann zusammengeführt | 33 vs 21 | 1.57× |
 | Add custom model | Eigenes Modell hinzufügen | 25 vs 16 | 1.56× |
+| Citation lookup failed — try again | Zitat-Abfrage fehlgeschlagen – bitte erneut versuchen | 53 vs 34 | 1.56× |
 | Marked {n} unread | {n} als ungelesen markiert | 25 vs 16 | 1.56× |
 | Not set up yet — add a receiver in Settings | Noch nicht eingerichtet — Empfänger in den Einstellungen hinzufügen | 67 vs 43 | 1.56× |
 | Please enter a valid email. | Bitte gib eine gültige E-Mail-Adresse ein. | 42 vs 27 | 1.56× |
 | Restore to Inbox | In den Posteingang zurück | 25 vs 16 | 1.56× |
 | Share failed: {message} | Teilen fehlgeschlagen: {message} | 25 vs 16 | 1.56× |
+| The sources changed since — refresh. | Die Quellen haben sich seitdem geändert – aktualisieren. | 56 vs 36 | 1.56× |
 | ✨ Writing intro… | ✨ Intro wird geschrieben… | 25 vs 16 | 1.56× |
 | Batch {a}/{b} failed: {m} | Durchlauf {a}/{b} fehlgeschlagen: {m} | 34 vs 22 | 1.55× |
 | No Kindle email set. | Keine Kindle-E-Mail hinterlegt. | 31 vs 20 | 1.55× |
@@ -203,6 +209,7 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No summary returned. | Keine Zusammenfassung erhalten. | 31 vs 20 | 1.55× |
 | Phone inbox | Handy-Posteingang | 17 vs 11 | 1.55× |
 | Close pane {n} | Bereich {n} schließen | 20 vs 13 | 1.54× |
+| Could not open collections | Sammlungen konnten nicht geöffnet werden | 40 vs 26 | 1.54× |
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
 | Found device at {ip} — click Add to save it ✓ | Gerät unter {ip} gefunden – zum Speichern auf „Hinzufügen“ klicken ✓ | 66 vs 43 | 1.53× |
@@ -217,6 +224,7 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No key facts found | Keine Kernaussagen gefunden | 27 vs 18 | 1.5× |
 | Open contents (long texts) | Inhaltsverzeichnis öffnen (lange Texte) | 39 vs 26 | 1.5× |
 | Writing the summary… | Schreibe die Zusammenfassung … | 30 vs 20 | 1.5× |
+| {n} summary in one file | {n} Zusammenfassung in einer Datei | 33 vs 22 | 1.5× |
 | ↩ Restore to Inbox | ↩ In den Posteingang zurück | 27 vs 18 | 1.5× |
 | 📥 Saved · no AI | 📥 Gespeichert · ohne KI | 24 vs 16 | 1.5× |
 | The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Zusammenfassungen nutzen diese Größe und diesen Abstand. | 121 vs 81 | 1.49× |
@@ -229,10 +237,12 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Saved for Later | Für später gespeichert | 22 vs 15 | 1.47× |
 | Writing a {n}-word summary… | Schreibe Zusammenfassung ({n} Wörter) … | 38 vs 26 | 1.46× |
 | {n} items could not be scored | {n} Einträge konnten nicht bewertet werden | 41 vs 28 | 1.46× |
+| {n} summaries in one file | {n} Zusammenfassungen in einer Datei | 35 vs 24 | 1.46× |
 | Not set up yet — add your Kindle in Settings | Noch nicht eingerichtet — Kindle in den Einstellungen hinzufügen | 64 vs 44 | 1.45× |
 | Summary + full article | Zusammenfassung + ganzer Artikel | 32 vs 22 | 1.45× |
 | too many sends, try again later | zu viele Sendungen, versuche es später erneut | 45 vs 31 | 1.45× |
 | {n} paper skipped (no DOI or lookup failed) | {n} Paper übersprungen (keine DOI oder Abfrage fehlgeschlagen) | 61 vs 42 | 1.45× |
+| Add to favorites | Zu Favoriten hinzufügen | 23 vs 16 | 1.44× |
 | Delete settings… | Einstellungen löschen … | 23 vs 16 | 1.44× |
 | Summarize / send | Zusammenfassen / senden | 23 vs 16 | 1.44× |
 | Waiting for the running summary — click to remove from the queue | Wartet auf die laufende Zusammenfassung – klicken, um sie aus der Warteschlange zu entfernen | 92 vs 64 | 1.44× |
@@ -256,8 +266,11 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | not your active summary model | nicht dein aktives Zusammenfassungsmodell | 41 vs 29 | 1.41× |
 | starts when the current summary is done | startet, sobald die aktuelle Zusammenfassung fertig ist | 55 vs 39 | 1.41× |
 | {name} · API key missing — add it in Settings | {name} · API-Schlüssel fehlt – in den Einstellungen hinzufügen | 58 vs 41 | 1.41× |
+| Delete {n} articles? This cannot be undone. | {n} Artikel löschen? Das lässt sich nicht rückgängig machen. | 59 vs 42 | 1.4× |
 | Saving took too long (a very heavy page). Try again, or open it and summarize instead. | Das Speichern hat zu lange gedauert (sehr umfangreiche Seite). Versuche es erneut oder öffne sie und fasse sie zusammen. | 120 vs 86 | 1.4× |
+| Delete {n} selected articles? This cannot be undone. | {n} ausgewählte Artikel löschen? Das lässt sich nicht rückgängig machen. | 71 vs 51 | 1.39× |
 | Pick a way to run your summaries. Change it any time in settings. | Wähle, wie deine Zusammenfassungen laufen sollen. Jederzeit in den Einstellungen änderbar. | 90 vs 65 | 1.38× |
+| Remove the saved page text of {n} articles? Summaries and statistics stay. This cannot be undone. | Gespeicherten Seitentext von {n} Artikeln entfernen? Zusammenfassungen und Statistik bleiben. Das lässt sich nicht rückgängig machen. | 132 vs 96 | 1.38× |
 | Stopped. Starting again continues where it left off. | Gestoppt. Beim erneuten Start geht es dort weiter, wo es aufgehört hat. | 71 vs 52 | 1.37× |
 | Free cloud models and your summaries on every device. Or skip this and use your own API key. | Kostenlose Cloud-Modelle und deine Zusammenfassungen auf jedem Gerät. Oder überspringen und den eigenen API-Schlüssel nutzen. | 125 vs 92 | 1.36× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
@@ -268,8 +281,12 @@ Strings: 1373. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Rates, categorizes and recaps all your feed items in small batches on your own machine. No tokens spent. | Bewertet, kategorisiert und fasst alle deine Feed-Einträge in kleinen Stapeln auf deinem eigenen Rechner zusammen. Keine Tokens verbraucht. | 139 vs 104 | 1.34× |
 | Inline mode is great for "Send to Kindle". | Der Inline-Modus eignet sich gut für „An Kindle senden“. | 56 vs 42 | 1.33× |
 | This needs your account. Log in or check your plan in the settings. | Dafür brauchst du dein Konto. Melde dich an oder prüfe deinen Tarif in den Einstellungen. | 89 vs 67 | 1.33× |
+| Duplicates and large, unopened articles. Pick what to trim or delete. | Duplikate und große, ungeöffnete Artikel. Wähle, was verkleinert oder gelöscht werden soll. | 91 vs 69 | 1.32× |
+| Filled from doi.org. Check and change anything. | Aus doi.org gefüllt. Prüfe alles und ändere, was nicht stimmt. | 62 vs 47 | 1.32× |
 | From {n} summaries — nothing else was sent | Aus {n} Zusammenfassungen – sonst wurde nichts gesendet | 54 vs 41 | 1.32× |
+| Hints, not ratings: you decide how far to trust this source. | Hinweise, keine Bewertungen: Du entscheidest, wie weit du dieser Quelle traust. | 79 vs 60 | 1.32× |
 | Paste works. It signs you in after the last digit. | Einfügen funktioniert. Nach der letzten Ziffer bist du angemeldet. | 66 vs 50 | 1.32× |
+| Remove the images from all saved articles? The text stays. This cannot be undone. | Bilder aus allen gespeicherten Artikeln entfernen? Der Text bleibt. Das lässt sich nicht rückgängig machen. | 107 vs 81 | 1.32× |
 | Install the AISH companion on your phone, scan the code once, then share any link to it. Links arrive end-to-end encrypted and wait here for your tap. | Installiere die AISH-Begleiter-App auf deinem Handy, scanne den Code einmalig und teile dann beliebige Links dorthin. Die Links kommen Ende-zu-Ende-verschlüsselt an und warten hier auf deinen Tipp. | 197 vs 150 | 1.31× |
 | Run this command. It lets extensions, and only extensions, talk to Ollama: | Führe diesen Befehl aus. Er erlaubt Erweiterungen, und nur Erweiterungen, mit Ollama zu sprechen: | 97 vs 74 | 1.31× |
 | Website access is off. Allow it in about:addons → this extension → Permissions ("Access your data for all websites"), then refresh. | Der Zugriff auf Websites ist aus. Erlaube ihn unter about:addons → diese Erweiterung → Berechtigungen („Auf Ihre Daten für alle Websites zugreifen“) und aktualisiere dann. | 171 vs 131 | 1.31× |
@@ -1426,3 +1443,150 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
 | ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
+
+## Problems
+
+en is missing 9 strings (run merge)
+
+### ar: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### de: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### es: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### fr: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### hi: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### it: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### ja: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### ko: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### pt_PT: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### ru: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### zh_CN: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### zh_HK: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail
+
+### zh_TW: 9 missing
+- Copy link
+- Kindle
+- Last used
+- Link copied
+- Manage targets…
+- Not paired · pair now
+- Send to…
+- Share…
+- System share: apps, AirDrop, mail

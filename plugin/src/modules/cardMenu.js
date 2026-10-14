@@ -9,7 +9,7 @@ import { ttsLang } from './languages.js';
 import { canSelect, startSelectionWith } from './sendSheet.js';
 
 let current = null;   // { close }
-const closeMenu = () => { if (current) { const c = current; current = null; c.close(); } };
+export const closeMenu = () => { if (current) { const c = current; current = null; c.close(); } };
 
 const activeReading = (a) => {
   const r = getReader(); const m = r.state.meta;
@@ -29,7 +29,7 @@ async function readAloud(a) {
 const am = () => import('./articleManager.js');
 
 /** Menu entries for an article (hidden ones are left out). */
-export function menuItems(a, { onRemoved, detail = false } = {}) {
+export function menuItems(a, { onRemoved, detail = false, extra = null } = {}) {
   const hasSummary = !!(a.summary && String(a.summary).trim()) && !a.feedStub;
   const st = activeReading(a);
   const items = [];
@@ -52,6 +52,8 @@ export function menuItems(a, { onRemoved, detail = false } = {}) {
   }
   if (canPhone && !hasSummary) items.push({ ...phoneItem, sep: true });
   if (a.id && !detail && canSelect(a)) items.push({ icon: 'square-check-big', label: T('Select'), run: () => startSelectionWith(a), sep: true });
+  const more = typeof extra === 'function' ? extra() : (Array.isArray(extra) ? extra : []);
+  more.forEach(x => items.push(x));   // e.g. graph / analytics entries when the article view carries this menu in its top bar
   if (a.id) {
     if (!a.feedStub) items.push({ icon: a.archived ? 'undo-2' : 'archive', label: a.archived ? T('Restore to Inbox') : T('Archive'), run: async () => (await am()).applyStatus([a.id], { archived: !a.archived }), sep: true });
     items.push({ icon: 'trash-2', label: T('Delete'), danger: true, sep: !hasSummary || a.feedStub, run: async () => { const ok = await (await am()).removeArticle(a); if (ok && onRemoved) onRemoved(a); } });
@@ -59,9 +61,11 @@ export function menuItems(a, { onRemoved, detail = false } = {}) {
   return items;
 }
 
-function openMenu(btn, a, opts) {
+function openMenu(btn, a, opts) { openItems(btn, menuItems(a, opts)); }
+
+/** The popover itself: any list of { icon, label, run, sep?, danger?, sub?, tag?, active? } under `btn` (also used by the article toolbar's Send menu). */
+export function openItems(btn, items) {
   closeMenu();
-  const items = menuItems(a, opts);
   if (!items.length) return;
   const menu = document.createElement('div');
   menu.className = 'card-menu'; menu.setAttribute('role', 'menu'); menu.setAttribute('aria-label', T('More actions'));
@@ -72,8 +76,12 @@ function openMenu(btn, a, opts) {
     b.type = 'button'; b.setAttribute('role', 'menuitem');
     b.className = 'card-menu-item' + (it.danger ? ' is-danger' : '');
     const ic = document.createElement('span'); ic.className = 'card-menu-ic'; ic.setAttribute('aria-hidden', 'true'); ic.append(iconEl(it.icon));
-    const tx = document.createElement('span'); tx.textContent = it.label;
+    const tx = document.createElement('span'); tx.className = 'card-menu-tx';
+    const lab = document.createElement('span'); lab.textContent = it.label; tx.append(lab);
+    if (it.sub) { const sb = document.createElement('small'); sb.className = 'card-menu-sub'; sb.textContent = it.sub; tx.append(sb); }
     b.append(ic, tx);
+    if (it.tag) { const tg = document.createElement('span'); tg.className = 'card-menu-tag'; tg.textContent = it.tag; b.append(tg); }
+    if (it.active) b.classList.add('is-active');
     if (it.needsSpeech) { b.hidden = true; speech.ready.then((ok) => { b.hidden = !ok; }); }
     b.addEventListener('click', (e) => { e.stopPropagation(); closeMenu(); Promise.resolve().then(it.run).catch(() => {}); });
     menu.appendChild(b);
@@ -81,12 +89,23 @@ function openMenu(btn, a, opts) {
   document.body.appendChild(menu);
   btn.setAttribute('aria-expanded', 'true');
   // place under the button, right aligned; flip up when there is no room
-  const r = btn.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.offsetHeight;
+  // usable area ends above the fixed bottom nav; if the menu does not fit it scrolls
+  const r = btn.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.scrollHeight;
+  const nav = document.getElementById('bottomNav');
+  const navTop = nav && nav.getBoundingClientRect().height ? nav.getBoundingClientRect().top : window.innerHeight;
+  const limit = Math.min(window.innerHeight, navTop) - 8;
+  const below = limit - (r.bottom + 4), above = r.top - 4 - 8;
   const left = Math.max(8, Math.min(window.innerWidth - mw - 8, r.right - mw));
-  let top = r.bottom + 4; if (top + mh > window.innerHeight - 8) top = Math.max(8, r.top - mh - 4);
+  let top, room;
+  if (mh <= below) { top = r.bottom + 4; room = below; }
+  else if (mh <= above) { top = r.top - mh - 4; room = above; }
+  else if (below >= above) { top = r.bottom + 4; room = below; }
+  else { top = 8; room = above; }
+  menu.style.maxHeight = Math.max(120, room) + 'px';
+  if (top + Math.min(mh, Math.max(120, room)) > limit) top = Math.max(8, limit - Math.min(mh, Math.max(120, room)));
   menu.style.left = left + 'px'; menu.style.top = top + 'px';
   const enabled = () => [...menu.querySelectorAll('.card-menu-item')].filter(x => !x.hidden);
-  const outside = (e) => { if (!menu.contains(e.target) && e.target !== btn) closeMenu(); };
+  const outside = (e) => { if (!menu.contains(e.target) && !btn.contains(e.target)) closeMenu(); };
   const keys = (e) => {
     if (e.key === 'Escape') { e.preventDefault(); closeMenu(); btn.focus(); return; }
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -95,15 +114,17 @@ function openMenu(btn, a, opts) {
     }
     if (e.key === 'Tab') closeMenu();
   };
+  const onScroll = (e) => { if (e.target === menu || (e.target instanceof Node && menu.contains(e.target))) return; closeMenu(); };
   const close = () => {
     menu.remove(); btn.setAttribute('aria-expanded', 'false');
     document.removeEventListener('pointerdown', outside, true); document.removeEventListener('keydown', keys, true);
-    window.removeEventListener('scroll', closeMenu, true); window.removeEventListener('resize', closeMenu);
+    window.removeEventListener('scroll', onScroll, true); window.removeEventListener('resize', closeMenu);
   };
   document.addEventListener('pointerdown', outside, true); document.addEventListener('keydown', keys, true);
-  window.addEventListener('scroll', closeMenu, true); window.addEventListener('resize', closeMenu);
+  window.addEventListener('scroll', onScroll, true); window.addEventListener('resize', closeMenu);
   current = { close };
   const f = enabled()[0]; if (f) f.focus({ preventScroll: true });
+  menu.addEventListener('focusin', (e) => { if (e.target.scrollIntoView) e.target.scrollIntoView({ block: 'nearest' }); });
 }
 
 /** Adds the ellipsis button to `host` and wires the menu. Returns the button. */

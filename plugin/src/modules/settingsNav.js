@@ -48,6 +48,8 @@ const INDEX = [
     ['library', N_('Export settings'), 'exportSettingsButton', 'backup export download json'],
     ['library', N_('Import settings'), 'importSettingsButton', 'restore import backup json'],
     ['library', N_('Clean up & merge tags'), 'cleanupTagsButton', 'tags duplicates merge clean on-device'],
+    ['library', N_('Storage & cleanup'), 'libStorage', 'storage space free memory size images pictures cleanup large old lag slow'],
+    ['library', N_('Save images with articles'), 'saveImagesToggle', 'images pictures photos save storage text only'],
     ['library', N_('Delete history'), 'deleteHistoryButton', 'danger erase clear remove articles archive'],
     ['library', N_('Delete all data'), 'deleteAllButton', 'danger erase clear remove everything wipe reset factory keys feeds highlights'],
     ['library', N_('Delete settings'), 'deleteSettingsButton', 'danger reset erase remove'],

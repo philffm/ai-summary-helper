@@ -74,6 +74,8 @@ export const SK = {
     reviewPrompt: 'ui:reviewPrompt',
     exportAllQuestions: 'ui:exportAllQuestions',
     lastCollection: 'ui:lastCollection',   // id of the collection a page was last added to (pre-selected in the "Add to collection" sheet)
+    collStats: 'ui:collStats',             // local counters for the collections feature ({event: count}); no content, never leaves the device
+    storageHint: 'ui:storageHint',         // when the "free up space" hint was last dismissed (ISO time)
     // collections: a question and the saved articles that answer it (index = list data, records: coll:rec:<id>)
     collIndex: 'coll:index',
     // configuration with secrets (API keys, endpoints) — never synced
