@@ -36,6 +36,18 @@
         "responseStructure": "result.message?.content"
     },
     {
+        "id": "custom",
+        "name": "OpenAI-compatible server",
+        "apiKeyDocumentationUrl": "https://github.com/philffm/ai-summary-helper#compatible-tools",
+        "endpointUrl": "",
+        "endpointPlaceholder": "http://localhost:1234/v1",
+        "defaultModel": "",
+        "allowCustomEndpoint": true,
+        "apiKeyOptional": true,
+        "apiKeyField": true,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
         "id": "gemini",
         "name": "Gemini",
         "apiKeyDocumentationUrl": "https://cloud.google.com/docs/authentication/api-keys",

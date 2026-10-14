@@ -17,6 +17,7 @@ import { unknownTags, keysNeedingLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { learnTagNames, translateFeedTopics, uiLanguage } from './feedAi.js';
 import { escapeHtml } from './textUtils.js';
+import { normalizeChatUrl } from './endpointUrl.js';
 import { T, TN } from './feedI18n.js';
 import { setLabel } from './icons.js';
 import { exportHistoryMarkdown } from './markdownArchive.js';
@@ -465,12 +466,13 @@ async function initModelSettings(storageData) {
 
         // Keyless providers (Ollama): no API key field at all.
         const apiKeyContainer = document.getElementById('apiKeyContainer');
-        if (apiKeyContainer) apiKeyContainer.style.display = service?.apiKeyOptional ? 'none' : '';
+        if (apiKeyContainer) apiKeyContainer.style.display = (service?.apiKeyOptional && !service?.apiKeyField) ? 'none' : '';
 
         const customEndpointContainer = document.getElementById('customEndpointContainer');
         if (customEndpointContainer) {
             customEndpointContainer.style.display = service?.allowCustomEndpoint ? 'block' : 'none';
         }
+        if (endpointInput) endpointInput.placeholder = service?.endpointPlaceholder || service?.endpointUrl || 'http://localhost:11434/api/chat';
 
         renderOllamaTutorial(serviceId, cfg.endpoint || service?.endpointUrl, async (name) => {
             const entry = (await StorageManager.getAll())[SK.servicesConfig]?.[serviceId] || {};
@@ -503,7 +505,10 @@ async function initModelSettings(storageData) {
 
     if (endpointInput) {
         endpointInput.addEventListener('change', () => {
-            StorageManager.updateService(shownService, { endpoint: endpointInput.value }).then(() => updateFields(shownService));
+            // OpenAI-compatible servers: https://host/v1, …/v1/ or the full …/chat/completions all end up as the full chat URL.
+            const typed = shownService === 'custom' ? normalizeChatUrl(endpointInput.value) : null;
+            const value = typed && typed.ok ? typed.chatUrl : endpointInput.value.trim();
+            StorageManager.updateService(shownService, { endpoint: value }).then(() => updateFields(shownService));
         });
     }
 

@@ -713,6 +713,9 @@ import {
           if (!modelIdentifier && connectionMode !== 'cloud' && String(activeService || '').toLowerCase() === 'ollama') {
             throw new Error('No Ollama model selected. Install one (e.g. "ollama pull llama3.2") and pick it in the model panel.');
           }
+          if (!modelIdentifier && connectionMode !== 'cloud' && String(activeService || '').toLowerCase() === 'custom') {
+            throw new Error('No model selected for your own server. Pick or type the model name in the model panel.');
+          }
 
           if (!apiUrl) throw new Error('Model endpoint is not configured.');
           try { new URL(apiUrl); } catch (urlErr) { throw new Error(`Configured endpoint is not a valid URL: ${apiUrl}`); }
@@ -995,7 +998,7 @@ import {
                     contentPiece = json.message?.content || json.response || '';
                     if (!contentPiece && json.message?.thinking) thinkingText += json.message.thinking;
                   } else {
-                    contentPiece = json.choices?.[0]?.delta?.content || json.message?.content || json.response || '';
+                    contentPiece = json.choices?.[0]?.delta?.content || json.choices?.[0]?.message?.content || json.message?.content || json.response || '';
                   }
 
                   if (contentPiece) {

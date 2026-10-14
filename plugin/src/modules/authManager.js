@@ -546,7 +546,8 @@ async function verifyOtp(view) {
             const sync = await chrome.storage.sync.get(['connectionMode', 'activeService', 'preferredCloudModel']);
             const loc = await chrome.storage.local.get([SK.servicesConfig]);
             const cfg = ((loc[SK.servicesConfig] || {})[sync.activeService]) || {};
-            const ownApi = sync.connectionMode === 'local' && !!(cfg.apiKey || sync.activeService === 'ollama');
+            const ownServer = sync.activeService === 'custom' && !!cfg.endpoint && !!(cfg.activeModelId || (Array.isArray(cfg.customModel) ? cfg.customModel.length : cfg.customModel));
+            const ownApi = sync.connectionMode === 'local' && !!(cfg.apiKey || sync.activeService === 'ollama' || ownServer);
             const upd = {};
             if (!ownApi && sync.connectionMode !== 'cloud') upd.connectionMode = 'cloud';
             if (!sync.preferredCloudModel) upd.preferredCloudModel = 'google/gemini-3.8-flash';

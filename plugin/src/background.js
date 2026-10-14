@@ -717,6 +717,8 @@ function aiFriendlyError(status, body) {
     if (/402|429|trial exhausted|requests per day|requests per week|quota|too many|rate/i.test(e)) {
         return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.';
     }
+    if (status === 401 || status === 403) return `The server rejects the key or the request (${status}). Check the API key in Settings.`;
+    if (status === 404) return 'The path does not match (404). With your own server the address usually needs /v1 at the end.';
     return `AI request failed (${status}${body ? ': ' + String(body).slice(0, 160) : ''})`;
 }
 
@@ -806,6 +808,7 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
             keyOptional = true;
             if (!model) throw new Error('No Ollama model selected. Install one (e.g. "ollama pull llama3.2") and pick it in the model panel.');
         }
+        if (service === 'custom' && !model) throw new Error('No model selected for your own server. Pick or type the model name in the model panel.');
     }
     if (!apiKey && !keyOptional) throw new Error('Set your API key under Settings \u203a Models & API first.');
     if (!url && service !== 'gemini') throw new Error('Model endpoint is not configured.');

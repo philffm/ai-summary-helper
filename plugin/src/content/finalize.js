@@ -10,7 +10,7 @@ import { parseSuggestionList } from '../modules/suggestions.js';
 
 /** Incremental parser for the streamed API response: {summary, thinking} so far. */
 export function createStreamParser(service) {
-  let buffer = '', summary = '', thinking = '';
+  let buffer = '', summary = '', thinking = '', raw = '';
   const line1 = (line) => {
     line = line.trim();
     if (!line || line === 'data: [DONE]') return;
@@ -19,13 +19,19 @@ export function createStreamParser(service) {
       let piece = '';
       if (service === 'gemini') piece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
       else if (service === 'ollama') { piece = json.message?.content || json.response || ''; if (!piece && json.message?.thinking) thinking += json.message.thinking; }
-      else piece = json.choices?.[0]?.delta?.content || json.message?.content || json.response || '';
+      else piece = json.choices?.[0]?.delta?.content || json.choices?.[0]?.message?.content || json.message?.content || json.response || '';
       if (piece) summary += piece;
     } catch (_) { /* partial JSON */ }
   };
   return {
-    push(chunk) { buffer += chunk; const lines = buffer.split('\n'); buffer = lines.pop(); lines.forEach(line1); },
-    end() { if (buffer) { line1(buffer); buffer = ''; } },
+    push(chunk) { if (!summary && raw.length < 2e6) raw += chunk; buffer += chunk; const lines = buffer.split('\n'); buffer = lines.pop(); lines.forEach(line1); },
+    end() {
+      if (buffer) { line1(buffer); buffer = ''; }
+      // A server that ignores "stream": true answers with one (possibly pretty-printed) JSON document instead of lines.
+      if (!summary && raw.trim().startsWith('{')) {
+        try { const j = JSON.parse(raw); summary = String(j.choices?.[0]?.message?.content || j.message?.content || ''); } catch (_) { /* not one JSON document */ }
+      }
+    },
     get summary() { return summary; },
     get thinking() { return thinking; }
   };

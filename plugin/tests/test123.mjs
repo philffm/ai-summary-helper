@@ -6,7 +6,7 @@ const services = JSON.parse(fs.readFileSync(process.env.AISH_SRC + '/services.js
 const ollama = services.find(s => s.id === 'ollama');
 assert(ollama && ollama.apiKeyOptional, 'ollama entry exists');
 assert(!ollama.defaultModel, 'no default model for Ollama');
-assert(services.filter(s => s.id !== 'ollama').every(s => s.defaultModel), 'cloud providers keep their defaults');
+assert(services.filter(s => s.id !== 'ollama' && s.id !== 'custom').every(s => s.defaultModel), 'cloud providers keep their defaults');
 
 w.document.body.innerHTML = '<div id="modelIdentifierContainer"></div>';
 const { updateModelIdentifierUI } = await imp('modules/modelManager.js');

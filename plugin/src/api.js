@@ -28,9 +28,15 @@ export async function createChatCompletion(inputText, apiKey, selectedLanguage, 
             }
         }
 
-        // Ensure we have an apiKey unless it's Ollama
+        // An API key is required unless the service is keyless (Ollama, own OpenAI-compatible server): services.json decides.
         if (!apiKey && (activeService || '').toLowerCase() !== 'ollama') {
-            throw new Error('API key not provided for the active service');
+            let optional = false;
+            try {
+                const { default: SM } = await import('./modules/storageManager.js');
+                const meta = (await SM.getServices()).find(s => s.id === activeService);
+                optional = !!(meta && meta.apiKeyOptional);
+            } catch (e) { /* no metadata: key stays required */ }
+            if (!optional) throw new Error('API key not provided for the active service');
         }
 
         // Build a system instruction tailored to podcast creation

@@ -2,6 +2,7 @@ import { modelIconName } from './modules/modelBadge.js';
 import { modelPriceLabel, suggestModels } from './modules/modelManager.js';
 import { icon, iconEl, setIcon, setLabel } from './modules/icons.js';
 import { checkOllama } from './modules/ollamaCheck.js';
+import { checkOpenAiModels } from './modules/openaiModelsCheck.js';
 import { applyA11y } from './modules/a11y.js';
 import { SK } from './modules/storageKeys.js';
 import { initLengthControl } from './modules/lengthControl.js';
@@ -481,15 +482,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         let ollamaProbeSeq = 0;
         const probeOllamaModels = async (endpoint, knownIds, svcId) => {
             const seq = ++ollamaProbeSeq;
-            const result = await checkOllama(endpoint);
-            if (seq !== ollamaProbeSeq || modelSelect.value !== 'ollama') return; // a newer render took over
+            const custom = svcId === 'custom';
+            const result = custom ? await checkOpenAiModels(endpoint, (servicesConfig?.custom || {}).apiKey) : await checkOllama(endpoint);
+            if (seq !== ollamaProbeSeq || modelSelect.value !== svcId) return; // a newer render took over
             if (!result.ok) {
+                // Custom server: a missing list is no error — the model name can be typed by hand.
+                if (custom) {
+                    if (result.reason === 'invalid') setModelStatus(T('Enter the server address in Settings'), 'warn');
+                    else if (result.reason === 'unauthorized') setModelStatus(T('Server rejects the key — check it in Settings'), 'warn');
+                    else if (result.reason === 'unreachable') setModelStatus(T('Server not reachable (is it running? is the URL right?)'), 'warn');
+                    else setModelStatus(T('No model list from this server — type the model name'), '');
+                    return;
+                }
                 setModelStatus(result.reason === 'forbidden'
                     ? T('Ollama refused the request (OLLAMA_ORIGINS) — see Settings')
                     : T('Ollama is not reachable — set it up in Settings'), 'warn');
                 return;
             }
-            setModelStatus(result.models.length ? T('Ollama · {n} installed', { n: result.models.length }) : T('Ollama is running, but no model is installed — run: ollama pull llama3.2'), result.models.length ? '' : 'warn');
+            if (custom) setModelStatus(result.models.length ? T('Server · {n} models', { n: result.models.length }) : T('No model list from this server — type the model name'), '');
+            else setModelStatus(result.models.length ? T('Ollama · {n} installed', { n: result.models.length }) : T('Ollama is running, but no model is installed — run: ollama pull llama3.2'), result.models.length ? '' : 'warn');
             const shown = new Set(Array.from(modelIdGrid.querySelectorAll('button')).map(b => b.dataset.modelId));
             const term = customModelInput.value.toLowerCase().trim();
             const matches = result.models.filter(id => !shown.has(id) && (!term || id.toLowerCase().includes(term)));
@@ -694,10 +705,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Update chip label to show only the active model ID
                 setModelChip(activeModel, modelIconName({ connectionMode: 'local', service: curSvcId, modelId: activeModel }));
-                if (meta?.apiKeyOptional) setModelStatus(T('{name} · local, no API key', { name: meta.name }), '');
+                if (meta?.apiKeyOptional && !meta.apiKeyField) setModelStatus(T('{name} · local, no API key', { name: meta.name }), '');
                 else if (cfg.apiKey) setModelStatus(T('{name} · API key set', { name: meta?.name || curSvcId }), '');
                 else setModelStatus(T('{name} · API key missing — add it in Settings', { name: meta?.name || curSvcId }), 'warn');
-                if (curSvcId === 'ollama') probeOllamaModels(cfg.endpoint || meta?.endpointUrl, customIds, curSvcId);
+                if (meta?.apiKeyField) setModelStatus(T('{name} · own server', { name: meta.name }), '');
+                if (curSvcId === 'ollama' || curSvcId === 'custom') probeOllamaModels(cfg.endpoint || meta?.endpointUrl, customIds, curSvcId);
 
                 // Provider tags
                 modelProviderGrid.innerHTML = '';

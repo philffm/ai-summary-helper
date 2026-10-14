@@ -1468,7 +1468,10 @@ async function configuredKinds() {
     const data = await StorageManager.get([SK.token, SK.servicesConfig, 'activeService', 'connectionMode']);
     const cfgs = data[SK.servicesConfig] || {};
     const oll = cfgs.ollama || {};
-    const ownService = Object.keys(cfgs).find((id) => id !== 'ollama' && !!(cfgs[id] && cfgs[id].apiKey)) || '';
+    // Own OpenAI-compatible server: set up once address and model are there; the key is optional.
+    const hasModel = (c) => !!(c && (c.activeModelId || (Array.isArray(c.customModel) ? c.customModel.length : c.customModel)));
+    const isSetUp = (id) => (id === 'custom' ? !!(cfgs.custom && cfgs.custom.endpoint && hasModel(cfgs.custom)) : !!(cfgs[id] && cfgs[id].apiKey));
+    const ownService = Object.keys(cfgs).find((id) => id !== 'ollama' && isSetUp(id)) || '';
     const chosenOllama = !!(oll.activeModelId || (Array.isArray(oll.customModel) ? oll.customModel.length : oll.customModel));
     return {
         cloud: !!data[SK.token],
