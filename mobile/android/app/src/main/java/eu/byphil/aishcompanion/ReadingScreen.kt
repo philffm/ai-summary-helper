@@ -361,7 +361,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                                 })
                                 DropdownMenuItem(text = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) }, onClick = {
                                     moreMenu = false
-                                    shareText(context, ArticleMarkdown.fileName(article.title), ArticleMarkdown.render(article.copy(highlights = allHighlights)))
+                                    shareText(context, ArticleMarkdown.fileName(article.title, article.aid), ArticleMarkdown.render(article.copy(highlights = allHighlights)))
                                 })
                                 DropdownMenuItem(text = { Text("Remind me") }, leadingIcon = { Icon(Icons.Filled.Alarm, null) }, onClick = {
                                     if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)

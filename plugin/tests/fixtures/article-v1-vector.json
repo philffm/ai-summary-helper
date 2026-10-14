@@ -1,0 +1,147 @@
+{
+  "_about": "Shared test vector for AISH Article JSON v1 and the Markdown note (plugin/formats/article-json-v1.md). The extension builds `expectedJson` and `expectedMarkdown` from `input` (test168); the Android app builds the front matter from `android.message` (ArticleMarkdownTest) and must equal `android.expectedFrontMatter` (the same keys, minus mood and tags, which the phone does not know). `names` pins stable file names.",
+  "input": {
+    "entry": {
+      "id": "article_1760000000000_ab12cd",
+      "title": "Größe &\n„Wunder“ ✓ \"quoted\"",
+      "url": "https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2",
+      "timestamp": 1760000000000,
+      "tags": [
+        "Ökologie",
+        "ai \"tools\""
+      ],
+      "moodScore": 0.4,
+      "modelId": "deepseek/deepseek-v4.1-flash",
+      "language": "de",
+      "byline": ""
+    },
+    "record": {
+      "summary": "<h2>Kern</h2><p>Ein <strong>Absatz</strong> mit 🙂 &amp; Umlauten äöüß.</p><ul><li>Punkt eins</li><li>Punkt zwei</li></ul>",
+      "conversation": [
+        {
+          "q": "Warum?",
+          "a": "Weil „es“ so ist.",
+          "pinned": true
+        },
+        {
+          "q": "Nicht gepinnt",
+          "a": "x"
+        }
+      ]
+    },
+    "highlights": [
+      {
+        "type": "user",
+        "text": "Absatz mit 🙂",
+        "timestamp": 1760000100000
+      },
+      {
+        "type": "ghost",
+        "text": "Umlauten äöüß",
+        "timestamp": 1760000200000
+      },
+      {
+        "type": "user",
+        "text": "verworfen",
+        "timestamp": 1,
+        "dismissed": true
+      }
+    ]
+  },
+  "expectedJson": {
+    "aish": "article/1",
+    "id": "article_1760000000000_ab12cd",
+    "url": "https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2",
+    "title": "Größe & „Wunder“ ✓ \"quoted\"",
+    "site": "example.com",
+    "lang": "de",
+    "savedAt": "2025-10-09T08:53:20.000Z",
+    "tags": [
+      "Ökologie",
+      "ai \"tools\""
+    ],
+    "mood": 0.4,
+    "summary": {
+      "md": "### Kern\n\nEin **Absatz** mit 🙂 & Umlauten äöüß.\n\n- Punkt eins\n- Punkt zwei"
+    },
+    "highlights": [
+      {
+        "type": "user",
+        "text": "Absatz mit 🙂",
+        "at": "2025-10-09T08:55:00.000Z"
+      },
+      {
+        "type": "ghost",
+        "text": "Umlauten äöüß",
+        "at": "2025-10-09T08:56:40.000Z"
+      }
+    ],
+    "qa": [
+      {
+        "q": "Warum?",
+        "a": "Weil „es“ so ist."
+      }
+    ],
+    "model": "deepseek/deepseek-v4.1-flash"
+  },
+  "expectedMarkdown": "---\ntitle: \"Größe & „Wunder“ ✓ \\\"quoted\\\"\"\nsource: \"https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2\"\nsite: \"example.com\"\ncreated: 2025-10-09\ntags:\n  - \"Ökologie\"\n  - \"ai \\\"tools\\\"\"\nmood: 0.4\naish_id: \"article_1760000000000_ab12cd\"\naish_format: 1\nurl: \"https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2\"\ndate: 2025-10-09\n---\n\n# Größe & „Wunder“ ✓ \"quoted\"\n\n## Summary\n\n### Kern\n\nEin **Absatz** mit 🙂 & Umlauten äöüß.\n\n- Punkt eins\n- Punkt zwei\n\n## Highlights & Notes\n\n> Absatz mit 🙂\n\n## AI Suggested Highlights\n\n> Umlauten äöüß\n\n## From your question\n\n**Warum?**\n\nWeil „es“ so ist.\n\n## Related\n\n- [[Anderer Artikel]]\n",
+  "android": {
+    "expectedFrontMatter": "---\ntitle: \"Größe & „Wunder“ ✓ \\\"quoted\\\"\"\nsource: \"https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2\"\nsite: \"example.com\"\ncreated: 2025-10-09\ntags: []\naish_id: \"article_1760000000000_ab12cd\"\naish_format: 1\nurl: \"https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2\"\ndate: 2025-10-09\n---"
+  },
+  "names": {
+    "articles": [
+      {
+        "id": "article_1760000000300_aaaaaa",
+        "title": "Same title",
+        "timestamp": 1760000000300
+      },
+      {
+        "id": "article_1760000000100_bbbbbb",
+        "title": "same TITLE",
+        "timestamp": 1760000000100
+      },
+      {
+        "id": "article_1760000000200_cccccc",
+        "title": "Odd: <name>/with*chars?",
+        "timestamp": 1760000000200
+      },
+      {
+        "id": "article_1760000000400_dddddd",
+        "title": "   ",
+        "timestamp": 1760000000400
+      }
+    ],
+    "expected": {
+      "article_1760000000100_bbbbbb": "same TITLE",
+      "article_1760000000200_cccccc": "Odd name with chars",
+      "article_1760000000300_aaaaaa": "Same title (aaaaaa)",
+      "article_1760000000400_dddddd": "Untitled (dddddd)"
+    }
+  },
+  "phone": {
+    "_about": "The phone envelope v2 of the same article with the optional `aid`. Sealed with the nonce below by test168; ArticleMarkdownTest decrypts it and renders the front matter.",
+    "inboxId": "q6ytrq2trK2urq2urq2urg",
+    "encKey": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+    "nonceHex": "303132333435363738393a3b",
+    "message": {
+      "v": 2,
+      "url": "https://example.com/gr%C3%B6%C3%9Fe?a=1&b=2",
+      "sentAt": 1760000000000,
+      "title": "Größe & „Wunder“ ✓ \"quoted\"",
+      "site": "example.com",
+      "lang": "de",
+      "blocks": [
+        [
+          "p",
+          "Text"
+        ]
+      ],
+      "summary": "",
+      "aid": "article_1760000000000_ab12cd"
+    },
+    "envelope": {
+      "v": 2,
+      "data": "MDEyMzQ1Njc4OTo7rL45wOlvSgMqINtiU5P8WIxi4AXFShGpih5JXLnyUR77yEm2ShD7y8UeBwz-GBJAfxclSERjVr_BBAZlvDEtCs9NIg-Rh6Nl8ZiEBzhfswMP5tQJuIxkL7NcDlnW9mJTTMRK6sGniUpfEUswTuTr9zCek7boBvH8qOA5yOCNOJgpHI4o9SYMX4Prpk0CAYz469Tln20yQfSEZ68yxlefgkaj_L1emYykM-M76-dGxsezmdYum29lvSMHaZJyjTcqTPbwPwPyjAfMzWOC--Ib_w8YIQfNeI7ODSjzKBrdrMgAIKM"
+    }
+  }
+}

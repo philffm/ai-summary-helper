@@ -2,6 +2,9 @@ import { SK, articleRecKey } from './storageKeys.js';
 import { pageKeyForUrl } from './pageKey.js';
 import { qaMarkdown } from './conversation.js';
 import { T } from './feedI18n.js';
+import { toArticleJson, assignFileBases, frontMatter, htmlToMarkdown, safeFileName } from './articleFormat.js';
+
+export { htmlToMarkdown, safeFileName };
 // markdownArchive.js
 // Bulk export of the History as a .zip of Markdown files (YAML front matter + summary, highlights, pinned Q&A)
 // that opens cleanly in Obsidian / Logseq. Pure helpers + a tiny dependency-free "store" zip writer;
@@ -9,49 +12,21 @@ import { T } from './feedI18n.js';
 
 const BATCH = 25;
 const yieldUi = () => new Promise(r => setTimeout(r, 0));
-const yamlStr = (v) => `"${String(v == null ? '' : v).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r?\n/g, ' ')}"`;
 
-/** Summary HTML → Markdown (regex pass, no DOM: cheap enough for hundreds of articles). */
-export function htmlToMarkdown(html) {
-    return String(html || '')
-        .replace(/<\s*(script|style)[\s\S]*?<\/\s*\1\s*>/gi, '')
-        .replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (_, n, t) => `\n\n${'#'.repeat(Math.min(6, +n + 1))} ${t.replace(/<[^>]+>/g, '').trim()}\n\n`)
-        .replace(/<(strong|b)>([\s\S]*?)<\/\1>/gi, '**$2**')
-        .replace(/<(em|i)>([\s\S]*?)<\/\1>/gi, '*$2*')
-        .replace(/<a\s[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, '[$2]($1)')
-        .replace(/<li[^>]*>/gi, '\n- ')
-        .replace(/<br\s*\/?>/gi, '\n')
-        .replace(/<\/(p|div|ul|ol|blockquote)>/gi, '\n\n')
-        .replace(/<[^>]+>/g, '')
-        .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
-        .replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-}
-
-/** Filesystem-safe base name (no extension). */
-export function safeFileName(title) {
-    const s = String(title || '').replace(/[\\/:*?"<>|#^[\]\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim().replace(/^\.+/, '').slice(0, 80).trim();
-    return s || 'Untitled';
-}
-
-/** One article → { name, text }. `related` = [fileBaseName] rendered as [[wikilinks]]. */
+/** One article → Markdown text: front matter and sections built from the Article JSON (articleFormat.js). `related` = [fileBaseName] as [[wikilinks]]. */
 export function articleToMarkdown(article, { highlights = [], conversation = [], related = [] } = {}) {
     const a = article || {};
-    const date = (() => { const d = new Date(a.timestamp); return isNaN(d) ? '' : d.toISOString().split('T')[0]; })();
-    const tags = (a.tags || []).map(t => `  - ${yamlStr(t)}`);
-    const fm = ['---', `title: ${yamlStr(a.title || 'Untitled')}`, `url: ${yamlStr(a.url || '')}`, `date: ${date}`,
-        `mood: ${typeof a.moodScore === 'number' ? a.moodScore : ''}`, tags.length ? 'tags:\n' + tags.join('\n') : 'tags: []', '---'];
-    const body = [`# ${a.title || 'Untitled'}`];
-    const base = a.summaryBase !== undefined ? a.summaryBase : a.summary;
-    const summary = htmlToMarkdown(base);
-    if (summary) body.push(`## ${T('Summary')}\n\n${summary}`);
-    const user = highlights.filter(h => h && h.type !== 'ghost'), ghost = highlights.filter(h => h && h.type === 'ghost');
+    const json = toArticleJson(a, { highlights, conversation });
+    const body = [`# ${json.title || 'Untitled'}`];
+    if (json.summary.md) body.push(`## ${T('Summary')}\n\n${json.summary.md}`);
+    const user = json.highlights.filter(h => h.type !== 'ghost'), ghost = json.highlights.filter(h => h.type === 'ghost');
     const quote = (h) => `> ${String(h.text || '').replace(/\s*\n\s*/g, '\n> ')}`;
     if (user.length) body.push(`## ${T('Highlights & Notes')}\n\n${user.map(quote).join('\n\n')}`);
     if (ghost.length) body.push(`## ${T('AI Suggested Highlights')}\n\n${ghost.map(quote).join('\n\n')}`);
     const qa = qaMarkdown(conversation);
     if (qa) body.push(qa.trim());
     if (related.length) body.push(`## ${T('Related')}\n\n${related.map(n => `- [[${n}]]`).join('\n')}`);
-    return fm.join('\n') + '\n\n' + body.join('\n\n') + '\n';
+    return frontMatter(json) + '\n\n' + body.join('\n\n') + '\n';
 }
 
 // ── minimal zip writer (method 0 = stored; UTF-8 names) ──
@@ -126,13 +101,7 @@ export async function buildArchiveFiles({ onProgress, ids = null, briefing = nul
     const hlByUrl = new Map();
     for (const h of annotations) { if (h && h.url && !h.dismissed) { if (!hlByUrl.has(h.url)) hlByUrl.set(h.url, []); hlByUrl.get(h.url).push(h); } }
 
-    const used = new Set();
-    const names = new Map();
-    for (const a of everything) {
-        let base = safeFileName(a.title), n = 2;
-        while (used.has(base.toLowerCase())) base = `${safeFileName(a.title)} (${n++})`;
-        used.add(base.toLowerCase()); names.set(a.id, base);
-    }
+    const names = assignFileBases(everything);   // stable: the same article keeps its file name when others are added
     const byTag = new Map();
     for (const a of everything) for (const t of new Set((a.tags || []).map(x => String(x).toLowerCase()))) { if (!byTag.has(t)) byTag.set(t, []); byTag.get(t).push(a.id); }
 

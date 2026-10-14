@@ -14,7 +14,7 @@ class ReadingToolsTest {
 
     @Test fun markdownHasFrontMatterSummaryAndBlocks() {
         val md = ArticleMarkdown.render(art(hl = listOf(Highlight(false, "The city closes streets."), Highlight(true, "Walk more"))))
-        assertTrue(md.startsWith("---\ntitle: \"Cars: \\\"free\\\" Sundays\"\nsource: \"https://x.test/post\"\nauthor: \"Jo Doe\"\nsite: \"x.test\"\ncreated: 2025-10-09\ntags: []\n---\n"))
+        assertTrue(md.startsWith("---\ntitle: \"Cars: \\\"free\\\" Sundays\"\nsource: \"https://x.test/post\"\nauthor: \"Jo Doe\"\nsite: \"x.test\"\ncreated: 2025-10-09\ntags: []\naish_format: 1\nurl: \"https://x.test/post\"\ndate: 2025-10-09\n---\n"))
         assertTrue(md.contains("# Cars: \"free\" Sundays\n"))
         assertTrue(md.contains("## Summary\n\nA short summary."))
         assertTrue(md.contains("## Highlights\n\n> The city closes streets."))

@@ -3,7 +3,11 @@ package eu.byphil.aishcompanion
 import java.time.Instant
 import java.time.ZoneOffset
 
-/** An article as one Markdown note: YAML front matter (like the extension's export), summary, text, highlights. Pure, unit-tested. */
+/**
+ * An article as one Markdown note: YAML front matter, summary, text, highlights. Pure, unit-tested.
+ * The front matter keys are the extension's (plugin/src/modules/articleFormat.js, plugin/formats/article-json-v1.md): `source`, `created`,
+ * `aish_id` (only when the extension sent its article id), `aish_format`, and `url`/`date` as a transition copy of `source`/`created`.
+ */
 object ArticleMarkdown {
     private fun yaml(v: String) = "\"" + v.replace("\\", "\\\\").replace("\"", "\\\"").replace(Regex("\\s*\\R\\s*"), " ").trim() + "\""
 
@@ -17,7 +21,12 @@ object ArticleMarkdown {
         if (a.byline.isNotBlank()) sb.append("author: ").append(yaml(a.byline)).append('\n')
         if (a.site.isNotBlank()) sb.append("site: ").append(yaml(a.site)).append('\n')
         if (date.isNotEmpty()) sb.append("created: ").append(date).append('\n')
-        sb.append("tags: []\n---\n\n")
+        sb.append("tags: []\n")
+        if (a.aid.isNotBlank()) sb.append("aish_id: ").append(yaml(a.aid)).append('\n')
+        sb.append("aish_format: 1\n")
+        sb.append("url: ").append(yaml(a.url)).append('\n')
+        if (date.isNotEmpty()) sb.append("date: ").append(date).append('\n')
+        sb.append("---\n\n")
         sb.append("# ").append(a.title.ifBlank { a.url }.replace('\n', ' ')).append("\n\n")
         if (a.summary.isNotBlank()) sb.append("## Summary\n\n").append(a.summary.trim()).append("\n\n")
         val own = a.highlights.filter { !it.ghost }
@@ -46,8 +55,9 @@ object ArticleMarkdown {
     private fun quote(t: String) = t.trim().lines().joinToString("\n") { "> $it" }
 
     /** A file name for the note: the title without characters that file systems and Obsidian reject. */
-    fun fileName(title: String): String {
+    fun fileName(title: String, aid: String = ""): String {
         val s = title.replace(Regex("[\\\\/:*?\"<>|#^\\[\\]\\u0000-\\u001f]"), " ").replace(Regex("\\s+"), " ").trim().trimStart('.').take(80).trim()
-        return (s.ifEmpty { "Untitled" }) + ".md"
+        if (s.isEmpty()) return "Untitled" + (aid.filter { it.isLetterOrDigit() }.takeLast(6).let { if (it.isEmpty()) "" else " ($it)" }) + ".md"
+        return s + ".md"
     }
 }

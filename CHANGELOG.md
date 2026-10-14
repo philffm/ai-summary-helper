@@ -5,6 +5,10 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+- **Notes: one front matter schema, a stable id.** Markdown notes from the extension (single article and archive export) and from the Android app use the same keys: `title`, `source`, `author`, `site`, `created`, `tags`, `mood` (extension), `aish_id`, `aish_format: 1`. `url` and `date` stay as copies of `source` and `created` for a transition period; they will be removed in a later release, so update Dataview queries to `source` and `created`.
+- **Archive export: file names no longer depend on the order of the archive.** The oldest article with a title keeps the plain name, later ones with the same title get ` (<id tail>)` instead of a running number, so exporting again into the same folder does not rename or overwrite other notes. Notes without a title are `Untitled (<id tail>)`.
+- **Exchange format documented:** AISH Article JSON v1 (`plugin/formats/article-json-v1.md`). The phone envelope v2 gets an optional `aid`.
+
 ## 2.2.14 (2026-10-14)
 
 ### Commit log

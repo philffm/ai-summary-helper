@@ -24,6 +24,8 @@ data class Article(
     val highlights: List<Highlight> = emptyList(),
     /** Summarized on this phone from a page opened in the app (not sent from the browser). */
     val local: Boolean = false,
+    /** The article's id in the extension (`aid` in the envelope); empty for older senders and for pages opened here. Ends up as `aish_id` in the note. */
+    val aid: String = "",
 )
 
 /**
@@ -34,6 +36,7 @@ data class Article(
 object ArticleCodec {
     const val MAX_RAW = 4_000_000   // decompressed bytes accepted; guards against a decompression bomb
     private val TYPES = setOf("h1", "h2", "h3", "p", "li", "q", "pre")
+    private val AID = Regex("[A-Za-z0-9_-]{1,80}")
 
     fun gunzip(bytes: ByteArray, limit: Int = MAX_RAW): ByteArray {
         GZIPInputStream(bytes.inputStream()).use { input ->
@@ -82,6 +85,7 @@ object ArticleCodec {
             id = id, url = url, title = o.optString("title"), site = o.optString("site"), byline = o.optString("byline"),
             lang = o.optString("lang"), summary = o.optString("summary"), blocks = blocks, sentAt = o.optLong("sentAt"),
             truncated = o.optBoolean("truncated", false), highlights = marks, local = o.optBoolean("local", false),
+            aid = o.optString("aid").takeIf { AID.matches(it) } ?: "",
         )
     }
 }

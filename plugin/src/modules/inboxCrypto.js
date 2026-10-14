@@ -220,6 +220,8 @@ export function cleanArticleMessage(m) {
     const hl = cleanHighlights(m.hl);
     if (hl.length) out.hl = hl;
     if (m.truncated === true) out.truncated = true;
+    const aid = clip(m.aid, 80);   // the extension's article id (optional; apps that do not know it ignore it)
+    if (/^[A-Za-z0-9_-]{1,80}$/.test(aid)) out.aid = aid;
     return out;
 }
 

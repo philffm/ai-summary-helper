@@ -336,7 +336,8 @@ created: ${createdDate}${paperFm}
 description: 
 ${tagsFrontmatter}
 bookrecs: 
-why: 
+why: ${article.id ? `\naish_id: "${String(article.id).replace(/"/g, '')}"` : ''}
+aish_format: 1
 ---`;
 
     // 5. Construct the Markdown Body — convert vanilla <img> and <a> to Markdown

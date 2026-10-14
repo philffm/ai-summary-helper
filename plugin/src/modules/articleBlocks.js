@@ -15,6 +15,8 @@ const HEADING = { h1: 'h1', h2: 'h2', h3: 'h3', h4: 'h3', h5: 'h3', h6: 'h3' };
 const BLOCKISH = new Set(['p', 'div', 'section', 'article', 'main', 'ul', 'ol', 'table', 'tbody', 'thead', 'tfoot', 'tr', 'figure', 'figcaption',
     'dl', 'dt', 'dd', 'details', 'summary', 'header', 'address', 'hr', 'body', 'html']);
 
+import { siteOf, authorOf, langOf } from './articleMeta.js';
+
 const squash = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 const textOf = (n) => (n.textContent != null ? n.textContent : (n.nodeValue || ''));
 
@@ -102,17 +104,16 @@ export function articleForPhone(article, parseHtml, annotations = []) {
     if (html) {
         try { blocks = hasTags && parseHtml ? htmlToBlocks(parseHtml(html)) : textToBlocks(html); } catch (_) { blocks = textToBlocks(html.replace(/<[^>]*>/g, ' ')); }
     }
-    let site = '';
-    try { site = new URL(a.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }
     const hl = (Array.isArray(annotations) ? annotations : []).map((x) => [x && x.type === 'ghost' ? 'g' : 'u', String((x && x.text) || '')]);
     return {
         url: a.url,
         title: squash(a.title) || (blocks[0] ? blocks[0][1].slice(0, 120) : ''),
-        site,
-        byline: squash(a.byline || a.author),
-        lang: squash(a.language || a.lang || a.summaryLanguage).slice(0, 20),
+        site: siteOf(a.url),
+        byline: authorOf(a),
+        lang: langOf(a),
         summary: summaryToText(a.summary, parseHtml),
         blocks,
         ...(hl.length ? { hl } : {}),
+        ...(a.id ? { aid: String(a.id) } : {}),
     };
 }

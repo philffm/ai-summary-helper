@@ -16,7 +16,7 @@ tokens or links; TLS only.
 
 A second inbox, created by the extension together with the first, carries articles the other way (extension writes, phone reads;
 the phone gets its read token in the pairing code as `&ti=…&tr=…`). Same API, same key, `v: 2`: the plaintext is
-`gzip(JSON)` with `{v:2, url, sentAt, title, site, byline, lang, summary?, blocks:[[type,text]…], truncated?}`. Block types: `h1 h2 h3 p li q pre`.
+`gzip(JSON)` with `{v:2, url, sentAt, title, site, byline, lang, summary?, blocks:[[type,text]…], hl?, truncated?, aid?}` (`aid` = the extension's article id, optional; older apps ignore it). Block types: `h1 h2 h3 p li q pre`.
 The sender shortens an article until the gzip is at most 135,000 bytes; the server caps an item at 190,000 characters of base64url
 and an inbox at 8 MB of waiting ciphertext. The phone deletes each item (`DELETE …/items/{id}`, read token) after saving it.
 `tests/fixtures/inbox-vector.json` has an `article` vector every implementation must decrypt.
