@@ -32,7 +32,7 @@ If you activate a Pro license or byphil Cloud subscription, your license key is 
 
 ### Uninstall feedback
 
-When you uninstall the extension, Chrome opens a short feedback page on this website. The address contains only the extension version and the number of days it was installed — no identifiers, no page content, no history. What you choose or type in the form (a reason, an optional comment) is recorded as an event in our self-hosted, cookieless analytics, together with the extension version and the days installed, and is only used to improve the extension. If your browser sends Do Not Track or you opted out of analytics, nothing is sent. There is no email field; for a reply, open a GitHub issue. You can close the page without answering.
+When you uninstall the extension, Chrome opens a short feedback page on this website. The address contains only the extension version and the number of days it was installed — no identifiers, no page content, no history. Anything you type into the form (a reason, a comment, an optional email if you want a reply) is sent to our survey tool, Formbricks, and is only used to improve the extension. You can close the page without answering.
 
 ### Article history, highlights, and settings
 
