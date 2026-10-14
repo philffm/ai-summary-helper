@@ -1,5 +1,6 @@
 import { SK } from './storageKeys.js';
 import { T, N_ } from './feedI18n.js';
+import { initSendTargets } from './sendTargets.js';
 // settingsNav.js
 // Settings home (grouped list) → panel navigation, live row subtitles, and
 // search. All controls keep their original ids (settingsManager.js / authManager.js
@@ -212,6 +213,7 @@ export function initSettingsNav(ui) {
     });
     document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', showHome));
     let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(syncWide, 120); });
+    initSendTargets();
     syncWide();
     if (settingsIsWide()) openSettingsPanel('account');
 

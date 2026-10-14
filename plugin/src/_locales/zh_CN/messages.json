@@ -5311,5 +5311,26 @@
   },
   "f_system_share_apps_airdrop_ma_a10d": {
     "message": "System share: apps, AirDrop, mail"
+  },
+  "f_always_available_45ef": {
+    "message": "Always available"
+  },
+  "f_not_paired_e80f": {
+    "message": "Not paired"
+  },
+  "f_not_set_up_eacf": {
+    "message": "Not set up"
+  },
+  "f_opens_your_system_share_shee_38bd": {
+    "message": "Opens your system share sheet (Mail, Messages, AirDrop, notes apps …) with the article link and summary. Nothing to set up."
+  },
+  "f_use_as_default_target_9cee": {
+    "message": "Use as default target"
+  },
+  "f_devices_961c": {
+    "message": "{n} devices"
+  },
+  "f_send_targets_3e2c": {
+    "message": "‹ Send targets"
   }
 }

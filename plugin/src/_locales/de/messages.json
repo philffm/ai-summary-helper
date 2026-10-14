@@ -5311,5 +5311,26 @@
   },
   "f_system_share_apps_airdrop_ma_a10d": {
     "message": "System-Teilen: Apps, AirDrop, Mail"
+  },
+  "f_always_available_45ef": {
+    "message": "Immer verfügbar"
+  },
+  "f_not_paired_e80f": {
+    "message": "Nicht gekoppelt"
+  },
+  "f_not_set_up_eacf": {
+    "message": "Nicht eingerichtet"
+  },
+  "f_opens_your_system_share_shee_38bd": {
+    "message": "Öffnet das System-Teilen-Menü (Mail, Nachrichten, AirDrop, Notiz-Apps …) mit Artikellink und Zusammenfassung. Nichts einzurichten."
+  },
+  "f_use_as_default_target_9cee": {
+    "message": "Als Standardziel verwenden"
+  },
+  "f_devices_961c": {
+    "message": "{n} Geräte"
+  },
+  "f_send_targets_3e2c": {
+    "message": "‹ Sendeziele"
   }
 }

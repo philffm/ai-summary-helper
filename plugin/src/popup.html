@@ -551,7 +551,23 @@
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsSend">Send &amp; Share</span></h2>
   </div>
-                <div class="setting-group mb-3" >
+                <div id="sendTargets" class="send-targets" role="list"></div>
+                <div class="send-detail" id="sendDetail-kindle" hidden>
+                  <button type="button" class="settings-back send-detail-back" data-send-back data-i18n="f_send_targets_3e2c">‹ Send targets</button>
+                  <h3 class="send-detail-title">Kindle</h3>
+                  <div class="send-default-row"><span data-i18n="f_use_as_default_target_9cee">Use as default target</span><label class="switch"><input type="checkbox" id="sendDefaultKindle" /><span class="slider-toggle"></span></label></div>
+                </div>
+                <div class="send-detail" id="sendDetail-localsend" hidden>
+                  <button type="button" class="settings-back send-detail-back" data-send-back data-i18n="f_send_targets_3e2c">‹ Send targets</button>
+                  <h3 class="send-detail-title">KOReader / LocalSend</h3>
+                  <div class="send-default-row"><span data-i18n="f_use_as_default_target_9cee">Use as default target</span><label class="switch"><input type="checkbox" id="sendDefaultLocalsend" /><span class="slider-toggle"></span></label></div>
+                </div>
+                <div class="send-detail" id="sendDetail-share" hidden>
+                  <button type="button" class="settings-back send-detail-back" data-send-back data-i18n="f_send_targets_3e2c">‹ Send targets</button>
+                  <h3 class="send-detail-title" data-i18n="f_share_6dd8">Share</h3>
+                  <p class="setting-note" data-i18n="f_opens_your_system_share_shee_38bd">Opens your system share sheet (Mail, Messages, AirDrop, notes apps …) with the article link and summary. Nothing to set up.</p>
+                </div>
+                <div class="setting-group mb-3 send-pane" data-send-pane="kindle localsend" hidden>
                   <h4 class="setting-subhead" data-i18n="f_koreader_localsend_a1c0"><span class="ic"><svg class="icon icon-smartphone" aria-hidden="true" focusable="false"><use href="#i-smartphone"/></svg><span class="ic-e" aria-hidden="true">📱</span></span> KOReader / LocalSend</h4>
                   <p class="setting-note" data-i18n="f_choose_one_delivery_method_f_1ac4">
                     Choose one delivery method for article detail actions.
@@ -560,7 +576,7 @@
                     <span data-i18n="f_koreader_plugin_566b">KOReader plugin:</span> <a href="https://github.com/kaikozlov/localsend.koplugin" target="_blank" rel="noopener noreferrer">kaikozlov/localsend.koplugin</a><br />
                     <span data-i18n="f_for_koreader_prefer_60bb">For KOReader, prefer</span> <strong>HTTP</strong> (<code>http://IP</code>) <span data-i18n="f_instead_of_https_which_can_b_69d5">instead of HTTPS, which can be buggy.</span>
                   </p>
-                  <div class="setting-group mb-8">
+                  <div class="setting-group mb-8" hidden>
                     <span class="a11y-label" id="deliveryLabel" data-i18n="f_delivery_method_6dc6">Delivery Method</span>
                     <div class="a11y-seg" id="deliveryPreference" role="radiogroup" aria-labelledby="deliveryLabel">
                       <button type="button" role="radio" data-value="kindle">Kindle</button>
@@ -571,7 +587,7 @@
                   <!-- Multiple devices can be configured per delivery method; the
                        ★ button on a row marks it the active send target (see
                        settingsManager.js / StorageManager.getActiveDevice). -->
-                  <div class="delivery-config" id="kindleDeliveryConfig">
+                  <div class="delivery-config send-pane" data-send-pane="kindle" id="kindleDeliveryConfig">
                     <div class="device-list" id="kindleDeviceList"></div>
                     <div class="device-add-row">
                       <input class="device-input device-input--label" type="text" id="newKindleLabel" placeholder="Label"
@@ -583,7 +599,7 @@
                     <div class="device-help"><span data-i18n="f_used_for_send_to_kindle_deli_25f4">Used for Send to Kindle delivery. Add</span> <strong>kindle@byphil.eu</strong> <span data-i18n="f_to_your_kindle_s_approved_se_5305">to your Kindle's approved senders first —</span> <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H" target="_blank" rel="noopener"><span data-i18n="f_amazon_s_guide_135b">Amazon's guide</span></a>.</div>
                   </div>
 
-                  <div class="delivery-config" id="localSendDeliveryConfig">
+                  <div class="delivery-config send-pane" data-send-pane="localsend" id="localSendDeliveryConfig">
                     <div class="device-list" id="localSendDeviceList"></div>
                     <div class="device-add-row">
                       <input class="device-input device-input--label" type="text" id="newLocalSendLabel" placeholder="Label"
@@ -596,7 +612,7 @@
                     <div class="device-status" id="localSendStatus"></div>
                   </div>
                 </div>
-                <div class="setting-group mb-3 setting-divided">
+                <div class="setting-group mb-3 setting-divided send-pane" data-send-pane="list" id="sendTools">
                   <h4 class="setting-subhead" data-i18n="f_bookmarklet_generator_23fa"><span class="ic"><svg class="icon icon-bookmark" aria-hidden="true" focusable="false"><use href="#i-bookmark"/></svg><span class="ic-e" aria-hidden="true">🔖</span></span> Bookmarklet Generator</h4>
                   <p class="setting-note" data-i18n="f_generate_a_bookmarklet_that__081e">
                     Generate a bookmarklet that summarizes any page in any browser — including iOS/Android where the extension can't run. It uses your byphil Cloud login.
@@ -824,7 +840,7 @@
           <p>
             <span data-i18n="f_open_source_software_by_0ec8">Open Source software by</span>
             <a href="https://link.philwornath.com/?ref=aish" target="_blank">Phil Wornath</a>
-            <br />AI Summary Helper v<span id="versionNumber">2.2.24</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
+            <br />AI Summary Helper v<span id="versionNumber">2.2.11</span> <span data-i18n="f_feel_free_to_c446">— Feel free to</span>
             <a href="https://github.com/philffm/ai-summary-helper" target="_blank" data-i18n="f_contribute_on_github_5ab8">contribute on GitHub 💙</a>
           </p>
           <p class="about-links">

@@ -1,22 +1,22 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1539. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1546. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1530 | 9 | 0 | 46 |
-| de | 1530 | 9 | 0 | 219 |
-| es | 1530 | 9 | 0 | 186 |
-| fr | 1530 | 9 | 0 | 217 |
-| hi | 1530 | 9 | 0 | 86 |
-| it | 1530 | 9 | 0 | 184 |
-| ja | 1530 | 9 | 0 | 95 |
-| ko | 1530 | 9 | 0 | 26 |
-| pt_PT | 1530 | 9 | 0 | 176 |
-| ru | 1530 | 9 | 0 | 117 |
-| zh_CN | 1530 | 9 | 0 | 2 |
-| zh_HK | 1530 | 9 | 0 | 2 |
-| zh_TW | 1530 | 9 | 0 | 2 |
+| ar | 1546 | 0 | 0 | 46 |
+| de | 1546 | 0 | 0 | 222 |
+| es | 1546 | 0 | 0 | 186 |
+| fr | 1546 | 0 | 0 | 217 |
+| hi | 1546 | 0 | 0 | 86 |
+| it | 1546 | 0 | 0 | 184 |
+| ja | 1546 | 0 | 0 | 95 |
+| ko | 1546 | 0 | 0 | 26 |
+| pt_PT | 1546 | 0 | 0 | 176 |
+| ru | 1546 | 0 | 0 | 117 |
+| zh_CN | 1546 | 0 | 0 | 2 |
+| zh_HK | 1546 | 0 | 0 | 2 |
+| zh_TW | 1546 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -110,6 +110,7 @@ Strings: 1539. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | What I used | Was ich verwendet habe | 22 vs 11 | 2× |
 | ✨ Smart refresh order | ✨ Intelligente Aktualisierungsreihenfolge | 41 vs 21 | 1.95× |
 | Sort: Mood | Sortieren: Stimmung | 19 vs 10 | 1.9× |
+| Last used | Zuletzt verwendet | 17 vs 9 | 1.89× |
 | {n} failed | {n} fehlgeschlagen | 17 vs 9 | 1.89× |
 | Add feed | Feed hinzufügen | 15 vs 8 | 1.88× |
 | Syncing… | Synchronisiere… | 15 vs 8 | 1.88× |
@@ -122,6 +123,7 @@ Strings: 1539. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Invalid Key | Ungültiger Schlüssel | 20 vs 11 | 1.82× |
 | New summary | Neue Zusammenfassung | 20 vs 11 | 1.82× |
 | {name} · API key set | {name} · API-Schlüssel hinterlegt | 29 vs 16 | 1.81× |
+| Not set up | Nicht eingerichtet | 18 vs 10 | 1.8× |
 | {n} feeds to tag | {n} Feeds zu verschlagworten | 27 vs 15 | 1.8× |
 | {n} summary | {n} Zusammenfassung | 18 vs 10 | 1.8× |
 | Summary Length | Länge der Zusammenfassung | 25 vs 14 | 1.79× |
@@ -229,6 +231,7 @@ Strings: 1539. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | 📥 Saved · no AI | 📥 Gespeichert · ohne KI | 24 vs 16 | 1.5× |
 | The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Zusammenfassungen nutzen diese Größe und diesen Abstand. | 121 vs 81 | 1.49× |
 | No tags found. Add tags to your summaries! | Keine Tags gefunden. Füge deinen Zusammenfassungen Tags hinzu! | 62 vs 42 | 1.48× |
+| Not paired · pair now | Nicht gekoppelt · jetzt koppeln | 31 vs 21 | 1.48× |
 | Set your Kindle email in Settings first. | Hinterlege zuerst deine Kindle-E-Mail in den Einstellungen. | 59 vs 40 | 1.48× |
 | Used whenever you summarize a page or article. | Wird verwendet, wenn du eine Seite oder einen Artikel zusammenfasst. | 68 vs 46 | 1.48× |
 | AI request failed | KI-Anfrage fehlgeschlagen | 25 vs 17 | 1.47× |
@@ -1443,150 +1446,3 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
 | ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
-
-## Problems
-
-en is missing 9 strings (run merge)
-
-### ar: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### de: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### es: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### fr: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### hi: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### it: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### ja: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### ko: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### pt_PT: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### ru: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### zh_CN: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### zh_HK: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail
-
-### zh_TW: 9 missing
-- Copy link
-- Kindle
-- Last used
-- Link copied
-- Manage targets…
-- Not paired · pair now
-- Send to…
-- Share…
-- System share: apps, AirDrop, mail

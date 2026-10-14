@@ -867,13 +867,10 @@ function initLocalSendSettings(storageData) {
         });
     }
 
+    // Which config block is visible is decided by the target list (sendTargets.js);
+    // here we only tell it that the default target changed.
     const applyDeliveryModeVisibility = (mode) => {
-        if (kindleConfigBlock) {
-            kindleConfigBlock.style.display = mode === 'kindle' ? 'block' : 'none';
-        }
-        if (localSendConfigBlock) {
-            localSendConfigBlock.style.display = mode === 'localsend' ? 'block' : 'none';
-        }
+        document.dispatchEvent(new CustomEvent('aish:delivery-default', { detail: { mode } }));
     };
 
     if (deliveryPreferenceSelect) {

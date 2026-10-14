@@ -4394,3 +4394,13 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .detail-split-more .icon { transition: transform .15s ease; }
 .detail-split-more[aria-expanded="true"] .icon { transform: rotate(180deg); }
 html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
+
+/* Settings › Send & Share: target list + per-target detail views */
+.send-targets { margin-bottom: 12px; }
+.send-target .settings-row-icon { font-size: var(--fs-xl); }
+.send-default-tag { flex-shrink: 0; padding: 2px 8px; border-radius: 999px; font-size: var(--fs-xs, 11px); font-weight: 600; color: var(--accent); background: var(--accent-glow); border: 1px solid var(--accent); }
+.send-detail { margin-bottom: 12px; }
+.send-detail-back { display: inline-block; }
+.send-detail-title { margin: 4px 0 8px; font-size: var(--fs-lg); }
+.send-default-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; margin-bottom: 8px; background: var(--glass-card); border: 1px solid var(--outline); border-radius: var(--radius-md); }
+.send-pane[hidden], .send-detail[hidden] { display: none !important; }
