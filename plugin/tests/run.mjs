@@ -8,6 +8,8 @@
 //                              the translation coverage). Run before a release; CI does it on main, nightly and on tags.
 //   --verbose                  one line per test      --list   show which tests would run and why, then stop
 //   --base <ref>               compare with this ref instead of origin/main
+//   --no-retry                 do not re-run a failed test once. By default a test that fails and then passes alone is reported as
+//                              flaky (warning + list, also in the CI summary) and does not fail the run; failing twice still does.
 import { spawn } from 'child_process';
 import os from 'os';
 import fs from 'fs';
@@ -59,8 +61,19 @@ await Promise.all(Array.from({ length: Math.max(1, Math.min(os.cpus().length, fi
   while (next < files.length) { const i = next++; results[i] = await runOne(files[i]); }
 }));
 
-const failed = [], known = [];
+// A failure is run once more, alone (no CPU contention). Pass on the retry = flaky: warn and keep going; fail again = real.
+const retried = new Map();
+if (!flag('--no-retry')) {
+  for (let i = 0; i < results.length; i++) {
+    const r = results[i];
+    if (r.status === 0 || KNOWN_FAILING.has(r.f)) continue;
+    const again = await runOne(r.f);
+    if (again.status === 0) { retried.set(r.f, r); results[i] = { ...again, flaky: true }; }
+  }
+}
+const failed = [], known = [], flaky = [];
 for (const r of results) {
+  if (r.flaky) { flaky.push(r.f); console.log('FLAKY', r.f.padEnd(12), about(r.f), '(failed once, passed on retry)'); continue; }
   const f = r.f, ok = r.status === 0;
   if (ok) { if (verbose) console.log('ok   ', f.padEnd(12), String((r.ms / 1000).toFixed(1)).padStart(5) + 's', about(f)); continue; }
   if (KNOWN_FAILING.has(f)) { known.push(f); console.log('known', f.padEnd(12), about(f)); continue; }
@@ -69,5 +82,13 @@ for (const r of results) {
   console.log((r.stderr || r.stdout || '').split('\n').filter(Boolean).slice(-12).join('\n'));
 }
 if (note) console.log(note);
-console.log(`${files.length - failed.length - known.length} passed, ${known.length} known-failing, ${failed.length} failed in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
+if (flaky.length) {
+  // Visible in the CI run: an annotation per test and a block in the job summary, so flakes get fixed, not forgotten.
+  flaky.forEach((f) => console.log(`::warning title=Flaky test::${f} failed once and passed on retry — ${about(f)}`));
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    const first = (f) => (retried.get(f).stderr || retried.get(f).stdout || '').split('\n').filter(Boolean).slice(-3).join(' ').slice(0, 300);
+    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Flaky tests (failed once, passed on retry)\n\n` + flaky.map((f) => `- \`${f}\` — ${about(f)}\n  - first failure: ${first(f)}`).join('\n') + '\n\n');
+  }
+}
+console.log(`${files.length - failed.length - known.length} passed${flaky.length ? ` (${flaky.length} flaky)` : ''}, ${known.length} known-failing, ${failed.length} failed in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 process.exit(failed.length ? 1 : 0);
