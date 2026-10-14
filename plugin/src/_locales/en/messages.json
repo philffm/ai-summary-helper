@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – Summarize Web Pages, PDFs & YouTube (BYOK, Ollama)"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or Ollama. Built-in RSS reader, save for later, highlights, Kindle export. Open source, no login."
+    "message": "Summarize any web page, PDF or YouTube video in 41 languages with your own AI key or local Ollama. Private, open source, no account."
   },
   "fetchSummary": {
     "message": "Fetch Summary"
@@ -5624,5 +5624,21 @@
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s",
     "description": "Placeholders: {name} {n} (keep as is)"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Highlight selection",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Remove all highlights",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Summarize this page",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Summarize & close tab",
+    "description": "Right-click menu entry"
   }
 }

@@ -909,7 +909,7 @@
     "message": "حلقات"
   },
   "f_graph_77e7": {
-    "message": "رسم"
+    "message": "الرسم البياني"
   },
   "f_insights_f1e8": {
     "message": "رؤى"
@@ -4803,7 +4803,7 @@
     "message": "Collection"
   },
   "f_collections_a966": {
-    "message": "Collections"
+    "message": "المجموعات"
   },
   "f_could_not_open_collections_0d10": {
     "message": "Could not open collections"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ تمييز التحديد",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 إزالة كل التمييزات",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ لخّص هذه الصفحة",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ لخّص وأغلق علامة التبويب",
+    "description": "Right-click menu entry"
   }
 }

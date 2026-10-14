@@ -4803,7 +4803,7 @@
     "message": "Collection"
   },
   "f_collections_a966": {
-    "message": "Collections"
+    "message": "संग्रह"
   },
   "f_could_not_open_collections_0d10": {
     "message": "Could not open collections"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ चयन हाइलाइट करें",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 सभी हाइलाइट हटाएँ",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ इस पेज का सारांश बनाएँ",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ सारांश बनाकर टैब बंद करें",
+    "description": "Right-click menu entry"
   }
 }

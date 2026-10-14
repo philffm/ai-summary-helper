@@ -1,0 +1,183 @@
+AI Summary Helper es una extensión de Chrome gratuita y de código abierto que resume cualquier página web, PDF o vídeo de YouTube en tu idioma, con tu propia clave de IA (OpenAI, Gemini, Mistral, DeepSeek) o totalmente en local con Ollama. Lo que lees se convierte en una biblioteca privada y fácil de buscar, con subrayados, preguntas de seguimiento, grafo de conocimiento, estadísticas de lectura, lector RSS y envío a Kindle. Con tu propia clave u Ollama no necesitas cuenta, y tus artículos se quedan en tu dispositivo.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ EN UN MINUTO
+━━━━━━━━━━━━━━━━━━━━
+• Pulsa Ctrl+Mayús+E (⌘+Mayús+E en Mac) o clic derecho → «Resumir esta página».
+• El resumen aparece en directo en el panel lateral, la ventana emergente o una barra lateral en la página, en cualquiera de 41 idiomas.
+• Las frases clave se resaltan en azul claro en la página, para ir directo a la fuente.
+• Haz preguntas de seguimiento; cada respuesta indica el fragmento del que sale.
+• Todo se guarda en tu historial: búscalo, márcalo como favorito, mira cómo se conectan los temas y expórtalo.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 TU IA, TU ELECCIÓN
+━━━━━━━━━━━━━━━━━━━━
+• Tu propia clave de API: OpenAI, Google Gemini, Mistral AI o DeepSeek. Pagas al proveedor por uso, normalmente unos céntimos al mes, en lugar de una suscripción fija.
+• 100 % local con Ollama: ejecuta Gemma, Llama, Qwen o cualquier otro modelo de Ollama en tu ordenador, o en un servidor Ollama propio de tu red. Sin clave, sin coste por consulta, y el contenido de la página nunca sale de tu equipo.
+• byphil Cloud (opcional): sin clave y sin configuración. Inicia sesión con tu correo y un código de un solo uso y obtén una pequeña cuota diaria gratuita; ilimitado con Pro.
+
+Tu propia clave y Ollama no necesitan cuenta. Todo el código fuente es público en GitHub, así que puedes comprobar qué envía la extensión y a dónde.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 RESUME PÁGINAS WEB, PDF Y VÍDEOS DE YOUTUBE
+━━━━━━━━━━━━━━━━━━━━
+• Páginas web y noticias: extrae el texto del artículo sin menús, anuncios ni avisos de cookies.
+• PDF: artículos científicos, informes y manuales abiertos en Chrome, también archivos locales.
+• Vídeos de YouTube: resúmenes a partir de los subtítulos, para saber si una charla de 40 minutos merece la pena.
+• Extensión del resumen: «Auto» se adapta al largo del artículo, o elige entre 20 y 2.000 palabras, en versión corta, estándar o larga.
+• Prompts: plantillas como Análisis técnico, Contexto histórico, Perspectiva cultural y Predicciones, además de tus propios prompts.
+• Resumir y cerrar pestaña: resume, elige cuándo volver y la pestaña se cierra sola.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 RESÚMENES EN TU IDIOMA
+━━━━━━━━━━━━━━━━━━━━
+Lee un artículo en inglés y obtén el resumen en español, o al revés. AI Summary Helper escribe resúmenes en 41 idiomas, entre ellos español, catalán, portugués, inglés, francés, alemán, italiano, neerlandés, árabe, turco, ruso, japonés, coreano y chino. La interfaz está disponible en 14 idiomas, incluido el español.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 PREGÚNTALE A LA PÁGINA
+━━━━━━━━━━━━━━━━━━━━
+• Preguntas de seguimiento sobre el artículo que acabas de resumir, en un chat que recuerda la conversación.
+• Las respuestas incluyen etiquetas de fuente que apuntan al fragmento exacto del artículo.
+• Tres preguntas sugeridas tras cada resumen, a un clic.
+• Fija las mejores respuestas: se guardan y se exportan con el artículo.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ SUBRAYADOS QUE SE QUEDAN
+━━━━━━━━━━━━━━━━━━━━
+• Resaltados de la IA: las frases más importantes aparecen en azul claro directamente en la página.
+• Tus propios subrayados en amarillo, desde el clic derecho; vuelven a aparecer cuando regresas a la página.
+• Los subrayados viajan con el artículo a las exportaciones de Markdown, Word, Kindle y Obsidian.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 LEE A TU MANERA
+━━━━━━━━━━━━━━━━━━━━
+• Leer en voz alta: el resumen o el artículo con las voces de tu navegador, a la velocidad que prefieras.
+• Instant Read: cada frase se lee en cuanto la IA la escribe, con las manos libres.
+• Lectura rápida (RSVP): el resumen palabra por palabra, a velocidad lenta, media o rápida.
+• Modo lectura con anillo de progreso e índice para textos largos.
+• Índices de legibilidad (Flesch) para cada artículo guardado.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 LEER MÁS TARDE, SIN 100 PESTAÑAS ABIERTAS
+━━━━━━━━━━━━━━━━━━━━
+Cierra la pestaña, conserva la idea. Guarda un artículo con una nota y un momento para volver: Mañana, Fin de semana, Esta semana o Sesión de investigación. Una notificación de Chrome te lo recuerda justo cuando pediste, con tu nota.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ TU BIBLIOTECA DE LECTURA
+━━━━━━━━━━━━━━━━━━━━
+Cada resumen se guarda localmente en tu historial, organizado en Bandeja de entrada, Leídos, Enviados, Investigación, Colecciones y Archivo.
+
+• Búsqueda de texto completo al instante en todos tus artículos, en tu dispositivo.
+• Artículos similares: qué más de tu biblioteca se relaciona con lo que estás leyendo.
+• Detección de duplicados por enlace, título y contenido.
+• Colecciones: agrupa artículos en torno a una pregunta y revísalos con una hoja de verificación de fuentes.
+• Favoritos, etiquetas, notas y recordatorios.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ GRAFO DE CONOCIMIENTO
+━━━━━━━━━━━━━━━━━━━━
+Mira cómo se conecta todo lo que has leído. El grafo agrupa tus artículos por temas, une los que comparten etiquetas o contenido y muestra una lista de lectura con los temas que no abres desde hace 30 días. Escribe un breve resumen por tema y expórtalo en Markdown.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 ESTADÍSTICAS DE LECTURA
+━━━━━━━━━━━━━━━━━━━━
+• Tiempo ahorrado: lo que habrías tardado en leer los artículos completos frente a tus resúmenes.
+• Artículos, palabras leídas, racha de días y mejor racha.
+• Actividad de los últimos 30 días o 12 semanas.
+• Categorías principales y nube de palabras de tus lecturas.
+• Estado de ánimo en el tiempo: el tono de las noticias que lees, por día, semana o mes, y qué lo hizo cambiar.
+
+Todas las estadísticas se calculan en tu dispositivo. Nada se envía a servicios de seguimiento.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ MODO ANCHO Y VISTA DIVIDIDA (NUEVO EN 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Abre AI Summary Helper en su propia pestaña o ensancha el panel lateral: el historial y los feeds pasan a vista dividida. Desde 720 píxeles, lista y grafo lado a lado; desde 1.100 píxeles, lista, grafo y estadísticas en tres columnas. Elige 1, 2 o 3 columnas en la cabecera y qué muestra cada una.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 LECTOR RSS CON RESÚMENES DE IA
+━━━━━━━━━━━━━━━━━━━━
+• Sigue blogs, periódicos y pódcast por RSS o Atom; importa y exporta tus suscripciones en OPML.
+• Resúmenes diarios que se agrupan en resúmenes semanales y mensuales, escritos por la IA que elijas. Solo se envían títulos y fragmentos, y solo cuando tú lo pides.
+• Con un modelo local de Ollama, los nuevos artículos se valoran y resumen en segundo plano, cada 15 minutos a 6 horas.
+• Las pilas de noticias agrupan la misma historia de distintos medios.
+• Análisis de feeds: actividad, temas, tu «dieta de fuentes» de los últimos 30 días y el tono de tus feeds en el tiempo.
+• Reproductor de pódcast integrado que sigue sonando al cerrar la ventana, de 0,75× a 2×.
+• Marca un elemento con una estrella para resumirlo y guardarlo en el historial.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 MODO INVESTIGACIÓN Y CITAS
+━━━━━━━━━━━━━━━━━━━━
+• Detecta artículos científicos en PubMed, Springer, Wiley, JSTOR y otras editoriales.
+• Citas correctas a partir del DOI en APA 7, MLA 9, Chicago (autor-fecha), BibTeX y RIS. Los datos vienen de doi.org, nunca de la IA, y solo el DOI sale de tu dispositivo.
+• Descarga references.bib o .ris para Zotero, Mendeley o LaTeX.
+• Verificación de fuentes: tipo, autor, fecha y editor, más cuatro preguntas de lectura lateral antes de fiarte de una fuente. Pistas, no puntuaciones.
+• Una pestaña de Investigación con filtros para revisiones, ensayos y preprints.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 ENVIAR, EXPORTAR Y COMPARTIR
+━━━━━━━━━━━━━━━━━━━━
+• Enviar a Kindle: resúmenes y artículos con formato, subrayados incluidos. Requiere iniciar sesión gratis en byphil; 3 envíos gratis, ilimitados con Pro.
+• LocalSend: envía artículos por tu wifi a móviles, tabletas o lectores KOReader, sin pasar por la nube.
+• Enviar al móvil: vincula tu móvil con un código QR. Los enlaces que compartes en el móvil llegan cifrados de extremo a extremo a tu historial, y puedes devolver artículos completos al móvil.
+• Resumen tipo revista: agrupa varios artículos en un número para Kindle, LocalSend o Markdown.
+• Exporta en Markdown (un artículo o toda la biblioteca en ZIP con front matter), Word (DOCX), OpenDocument (ODT) o PDF, o envíalo directamente a Obsidian.
+• Copia de seguridad y restauración de la biblioteca y los ajustes; las claves de API y los inicios de sesión solo se incluyen si lo eliges.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 PRIVACIDAD DESDE EL DISEÑO
+━━━━━━━━━━━━━━━━━━━━
+• Artículos, resúmenes, subrayados, feeds y estadísticas se guardan en el almacenamiento local de tu navegador, en tu dispositivo.
+• El contenido de las páginas solo va al proveedor de IA que elijas, o a nadie con Ollama.
+• Sin SDK de seguimiento ni de analítica, sin anuncios, sin venta de datos.
+• Código abierto: todo el código es público en GitHub (philffm/ai-summary-helper).
+• Hecho en la UE por byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ ACCESIBLE Y CÓMODO
+━━━━━━━━━━━━━━━━━━━━
+• Temas claro, oscuro y de alto contraste, o según el sistema.
+• Tamaño de texto del 85 al 150 % y tres interlineados.
+• Fuente Atkinson Hyperlegible opcional, para leer mejor.
+• Respeta el ajuste de reducir movimiento; atajos de teclado en todas partes (pulsa ? para verlos).
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ DÓNDE USARLO
+━━━━━━━━━━━━━━━━━━━━
+• Panel lateral de Chrome, ventana emergente, barra lateral en la página, pestaña propia o ventana separada.
+• Teclado: Ctrl+Mayús+E resume la página actual, Ctrl+Mayús+Y abre AI Summary Helper (⌘ en Mac). Dentro de la app: Ctrl+F o / para buscar, j y k para moverte, Esc para volver.
+• Otros navegadores y móviles: un bookmarklet lleva los resúmenes a cualquier navegador, también en iOS y Android (requiere byphil Cloud).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ PREGUNTAS FRECUENTES
+━━━━━━━━━━━━━━━━━━━━
+¿AI Summary Helper es gratis?
+Sí. La extensión es gratuita y de código abierto. Con tu propia clave de API pagas directamente al proveedor, normalmente unos céntimos al mes. Con Ollama no cuesta nada. byphil Cloud incluye una pequeña cuota diaria gratuita; Pro elimina los límites.
+
+¿Puedo resumir un artículo en inglés en español?
+Sí. Elige el español como idioma del resumen; el original puede estar en cualquier otro idioma.
+
+¿Hay un resumidor que funcione con mi propia clave de API?
+Sí. AI Summary Helper funciona con claves de OpenAI, Google Gemini, Mistral AI y DeepSeek, sin crear cuenta.
+
+¿Puedo resumir páginas con una IA local?
+Sí. Instala Ollama, descarga un modelo como Gemma o Llama y elige Ollama en AI Summary Helper. Todo funciona en tu ordenador, también con un servidor Ollama propio.
+
+¿Sirve para PDF y vídeos de YouTube?
+Sí. Los PDF abiertos en Chrome, también archivos locales, y los vídeos de YouTube con subtítulos se resumen como cualquier página.
+
+¿Genera citas en APA para mis trabajos?
+Sí. En artículos científicos con DOI crea la cita en APA 7, MLA 9, Chicago, BibTeX o RIS con datos de doi.org.
+
+¿Cómo envío artículos web a mi Kindle?
+Inicia sesión en byphil, añade kindle@byphil.eu como remitente aprobado en tu cuenta de Amazon, escribe el correo de tu Kindle en Ajustes → Enviar y usa Enviar → Kindle. Tres envíos son gratis; con Pro, ilimitados.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 PARA EMPEZAR
+━━━━━━━━━━━━━━━━━━━━
+1. Añade AI Summary Helper a Chrome y fíjalo en la barra de herramientas.
+2. Elige byphil Cloud, tu propia clave de API u Ollama en la breve configuración.
+3. Abre un artículo, un PDF o un vídeo de YouTube y pulsa Ctrl+Mayús+E (⌘+Mayús+E en Mac).
+4. Lee, escucha, pregunta y encuéntralo después en tu historial.
+
+Tus comentarios e ideas son bienvenidos en GitHub. Hecho por byphil.

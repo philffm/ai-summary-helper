@@ -3,6 +3,11 @@ import { removeArticleFromCollections, clearCollectionSources } from './collecti
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
+import { buildArticlePrompt } from './promptBuilder.js';
+
+// Fallback article prompt for installs that skip the onboarding style step: the same neutral "Brief" style
+// the onboarding preselects (never the author's personal mix).
+export const DEFAULT_PROMPT_BUILDER = { tone: 'neutral', length: 'short', focus: ['facts'], extra: '' };
 // storageManager.js
 
 // Precomputed once per save/migration so analyticsManager.js's reading-time
@@ -18,11 +23,8 @@ class StorageManager {
     }
 
     static DEFAULTS = {
-        prompt: `- brief summary
-    - fun standup comedy set on the topic
-    - what does it mean for my profession (ux)
-    - book recommendations`,
-        promptType: 'custom',
+        prompt: buildArticlePrompt(DEFAULT_PROMPT_BUILDER),
+        promptType: 'builder',
         selectedLanguage: 'en-US',
         connectionMode: 'cloud',
         preferredCloudModel: 'google/gemini-3.8-flash'
@@ -806,7 +808,9 @@ class StorageManager {
         if (!data.prompt) {
             await this.set({
                 prompt: this.DEFAULTS.prompt,
-                promptType: 'custom'
+                promptType: 'builder',
+                presetPrompt: 'builder',
+                promptBuilder: DEFAULT_PROMPT_BUILDER
             });
         }
     }

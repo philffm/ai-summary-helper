@@ -1,0 +1,184 @@
+AI Summary Helper est une extension Chrome gratuite et open source qui résume n'importe quelle page web, PDF ou vidéo YouTube dans votre langue, avec votre propre clé IA (Mistral AI, OpenAI, Gemini, DeepSeek) ou entièrement en local avec Ollama. Vos lectures deviennent une bibliothèque privée et consultable, avec surlignages, questions de suivi, graphe de connaissances, statistiques de lecture, lecteur RSS et envoi vers Kindle. Aucun compte n'est nécessaire avec votre propre clé ou Ollama, et vos articles restent sur votre appareil.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ EN UNE MINUTE
+━━━━━━━━━━━━━━━━━━━━
+• Appuyez sur Ctrl+Maj+E (⌘+Maj+E sur Mac) ou clic droit → « Résumer cette page ».
+• Le résumé s'affiche en direct dans le panneau latéral, la fenêtre de l'extension ou une barre latérale sur la page, dans l'une des 41 langues.
+• Les phrases clés sont surlignées en bleu clair sur la page : vous retrouvez la source en un instant.
+• Posez des questions de suivi ; chaque réponse indique le passage dont elle provient.
+• Tout est enregistré dans votre historique : recherche, favoris, liens entre les sujets, export.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 VOTRE IA, VOTRE CHOIX
+━━━━━━━━━━━━━━━━━━━━
+• Votre propre clé API : Mistral AI (fournisseur français), OpenAI, Google Gemini ou DeepSeek. Vous payez le fournisseur à l'usage, souvent quelques centimes par mois, au lieu d'un abonnement fixe.
+• 100 % local avec Ollama : faites tourner Gemma, Llama, Qwen ou tout autre modèle Ollama sur votre ordinateur, ou sur un serveur Ollama auto-hébergé de votre réseau. Pas de clé, pas de coût par requête, et le contenu des pages ne quitte jamais votre machine.
+• byphil Cloud (facultatif) : sans clé ni configuration. Connexion par e-mail et code à usage unique, avec un petit quota quotidien gratuit ; illimité avec Pro.
+
+Votre propre clé et Ollama ne demandent aucun compte. Le code source complet est public sur GitHub : vous pouvez vérifier ce que l'extension envoie, et à qui.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 RÉSUMER PAGES WEB, PDF ET VIDÉOS YOUTUBE
+━━━━━━━━━━━━━━━━━━━━
+• Pages web et articles de presse : le texte de l'article est extrait proprement, sans menus, publicités ni bandeaux de cookies.
+• PDF : articles scientifiques, rapports et manuels ouverts dans Chrome, y compris les fichiers locaux.
+• Vidéos YouTube : résumés générés à partir des sous-titres, pour savoir si une conférence de 40 minutes vaut le détour.
+• Longueur : « Auto » s'adapte à la longueur de l'article, ou fixez entre 20 et 2 000 mots, en version courte, standard ou longue.
+• Prompts : modèles tels que Analyse technique, Contexte historique, Perspective culturelle et Prévisions, plus vos propres prompts.
+• Résumer et fermer l'onglet : résumez, choisissez quand y revenir, et l'onglet se ferme tout seul.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 RÉSUMÉS DANS VOTRE LANGUE
+━━━━━━━━━━━━━━━━━━━━
+Lisez un article en anglais et obtenez le résumé en français, ou l'inverse. AI Summary Helper rédige des résumés en 41 langues, dont le français, l'anglais, l'allemand, l'espagnol, l'italien, le portugais, le néerlandais, le catalan, le polonais, le roumain, l'arabe, le turc, le japonais, le coréen et le chinois. L'interface est disponible en 14 langues, dont le français.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 INTERROGEZ LA PAGE
+━━━━━━━━━━━━━━━━━━━━
+• Questions de suivi sur l'article que vous venez de résumer, dans une conversation qui garde le contexte.
+• Des étiquettes de source renvoient au passage exact de l'article.
+• Trois questions suggérées après chaque résumé, en un clic.
+• Épinglez les meilleures réponses : elles sont enregistrées et exportées avec l'article.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ DES SURLIGNAGES QUI RESTENT
+━━━━━━━━━━━━━━━━━━━━
+• Surlignages IA : les phrases les plus importantes apparaissent en bleu clair directement sur la page.
+• Vos propres surlignages en jaune, via le clic droit ; ils réapparaissent quand vous revenez sur la page.
+• Les surlignages suivent l'article dans les exports Markdown, Word, Kindle et Obsidian.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 LISEZ COMME VOUS VOULEZ
+━━━━━━━━━━━━━━━━━━━━
+• Lecture à voix haute : résumé ou article lu par les voix de votre navigateur, à la vitesse choisie.
+• Instant Read : chaque phrase est lue dès que l'IA l'a écrite, les mains libres.
+• Lecture rapide (RSVP) : le résumé mot par mot, en vitesse lente, moyenne ou rapide.
+• Mode lecture avec anneau de progression et table des matières pour les longs textes.
+• Indices de lisibilité (Flesch) pour chaque article enregistré.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 LIRE PLUS TARD, SANS 100 ONGLETS OUVERTS
+━━━━━━━━━━━━━━━━━━━━
+Fermez l'onglet, gardez l'idée. Enregistrez un article avec une note et un moment pour y revenir : Demain, Ce week-end, Cette semaine ou Session de recherche. Une notification Chrome vous le rappelle au bon moment, avec votre note.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ VOTRE BIBLIOTHÈQUE DE LECTURE
+━━━━━━━━━━━━━━━━━━━━
+Chaque résumé est enregistré localement dans votre historique, classé en Boîte de réception, Lus, Envoyés, Recherche, Collections et Archives.
+
+• Recherche plein texte instantanée dans tous vos articles, sur votre appareil.
+• Articles similaires : ce qui, dans votre bibliothèque, se rapproche de l'article en cours.
+• Détection des doublons par lien, titre et contenu.
+• Collections : regroupez des articles autour d'une question et vérifiez-les avec une fiche de contrôle des sources.
+• Favoris, tags, notes et rappels.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ GRAPHE DE CONNAISSANCES
+━━━━━━━━━━━━━━━━━━━━
+Voyez comment tout ce que vous avez lu est relié. Le graphe regroupe vos articles par thèmes, relie ceux qui partagent des tags ou un contenu proche, et propose une liste de lecture des thèmes non ouverts depuis 30 jours. Rédigez une synthèse courte par thème et exportez-la en Markdown.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 STATISTIQUES DE LECTURE
+━━━━━━━━━━━━━━━━━━━━
+• Temps gagné : la durée de lecture des articles complets comparée à vos résumés.
+• Articles, mots lus, jours d'affilée et meilleure série.
+• Activité sur 30 jours ou 12 semaines.
+• Catégories principales et nuage de mots de vos lectures.
+• Humeur au fil du temps : le ton des actualités que vous lisez, par jour, semaine ou mois, et ce qui l'a fait évoluer.
+
+Toutes les statistiques sont calculées sur votre appareil. Rien n'est envoyé à un service de suivi.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ MODE LARGE ET VUE PARTAGÉE (NOUVEAU EN 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Ouvrez AI Summary Helper dans un onglet ou élargissez le panneau latéral : l'historique et les flux passent en vue partagée. Dès 720 pixels, liste et graphe côte à côte ; dès 1 100 pixels, liste, graphe et statistiques sur trois colonnes. Choisissez 1, 2 ou 3 colonnes dans l'en-tête, et le contenu de chacune.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 LECTEUR RSS AVEC RÉCAPITULATIFS IA
+━━━━━━━━━━━━━━━━━━━━
+• Suivez blogs, journaux et podcasts en RSS ou Atom ; importez et exportez vos abonnements en OPML.
+• Récapitulatifs quotidiens regroupés en synthèses hebdomadaires et mensuelles, rédigés par l'IA de votre choix. Seuls les titres et extraits sont envoyés, et seulement à votre demande.
+• Avec un modèle Ollama local, les nouveaux articles sont notés et résumés en arrière-plan, toutes les 15 minutes à 6 heures.
+• Les piles d'actualités regroupent la même info venant de plusieurs médias.
+• Analyse des flux : activité, thèmes, votre « régime de sources » sur 30 jours et l'humeur de vos flux dans le temps.
+• Lecteur de podcasts intégré qui continue quand la fenêtre se ferme, de 0,75× à 2×.
+• Ajoutez une étoile à un article pour le résumer et le classer dans l'historique.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 MODE RECHERCHE ET CITATIONS
+━━━━━━━━━━━━━━━━━━━━
+• Détecte les articles scientifiques sur PubMed, Springer, Wiley, JSTOR et chez d'autres éditeurs.
+• Citations exactes à partir du DOI en APA 7, MLA 9, Chicago (auteur-date), BibTeX et RIS. Les données viennent de doi.org, jamais de l'IA, et seul le DOI quitte votre appareil.
+• Téléchargez references.bib ou .ris pour Zotero, Mendeley ou LaTeX.
+• Vérification des sources : type, auteur, date et éditeur, plus quatre questions de lecture latérale avant de faire confiance à une source. Des pistes, pas des notes.
+• Un onglet Recherche avec filtres pour revues, essais et prépublications.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 ENVOYER, EXPORTER, PARTAGER
+━━━━━━━━━━━━━━━━━━━━
+• Envoyer vers Kindle : résumés et articles mis en forme, surlignages compris. Nécessite une connexion byphil gratuite ; 3 envois gratuits, illimité avec Pro.
+• LocalSend : envoyez des articles via votre Wi-Fi vers un téléphone, une tablette ou une liseuse KOReader, sans passer par le cloud.
+• Envoyer au téléphone : associez votre téléphone par QR code. Les liens partagés depuis le téléphone arrivent chiffrés de bout en bout dans votre historique, et les articles complets repartent vers le téléphone.
+• Digest magazine : regroupez plusieurs articles en un numéro pour Kindle, LocalSend ou Markdown.
+• Export en Markdown (un article ou toute la bibliothèque en ZIP avec front matter), Word (DOCX), OpenDocument (ODT) ou PDF, ou directement vers Obsidian.
+• Sauvegarde et restauration de la bibliothèque et des réglages ; clés API et connexions exclues, sauf si vous les incluez.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 CONFIDENTIALITÉ DÈS LA CONCEPTION
+━━━━━━━━━━━━━━━━━━━━
+• Articles, résumés, surlignages, flux et statistiques sont stockés dans le stockage local de votre navigateur, sur votre appareil.
+• Le contenu des pages n'est envoyé qu'au fournisseur IA que vous avez choisi, ou à personne avec Ollama.
+• Aucun SDK de suivi ou d'analyse, aucune publicité, aucune revente de données.
+• Dans l'esprit du RGPD : vous décidez où vont vos données ; Mistral est un fournisseur européen, et Ollama n'en implique aucun.
+• Open source : tout le code est public sur GitHub (philffm/ai-summary-helper).
+• Conçu dans l'UE par byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ ACCESSIBLE ET CONFORTABLE
+━━━━━━━━━━━━━━━━━━━━
+• Thèmes clair, sombre et contraste élevé, ou réglage système.
+• Taille du texte de 85 à 150 % et trois interlignes.
+• Police Atkinson Hyperlegible en option, pour une meilleure lisibilité.
+• Respect du réglage « réduire les animations » ; raccourcis clavier partout (touche ? pour les afficher).
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ OÙ L'UTILISER
+━━━━━━━━━━━━━━━━━━━━
+• Panneau latéral de Chrome, fenêtre de l'extension, barre latérale sur la page, onglet dédié ou fenêtre détachée.
+• Clavier : Ctrl+Maj+E résume la page, Ctrl+Maj+Y ouvre AI Summary Helper (⌘ sur Mac). Dans l'app : Ctrl+F ou / pour chercher, j et k pour naviguer, Échap pour revenir.
+• Autres navigateurs et téléphones : un bookmarklet apporte les résumés dans n'importe quel navigateur, y compris sur iOS et Android (byphil Cloud requis).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ QUESTIONS FRÉQUENTES
+━━━━━━━━━━━━━━━━━━━━
+AI Summary Helper est-il gratuit ?
+Oui. L'extension est gratuite et open source. Avec votre propre clé API, vous payez directement le fournisseur, souvent quelques centimes par mois. Avec Ollama, c'est gratuit. byphil Cloud inclut un petit quota quotidien gratuit ; Pro lève les limites.
+
+Peut-on résumer une page web avec Mistral ?
+Oui. Saisissez votre clé Mistral AI dans les réglages ; vos résumés, questions et récapitulatifs passent alors par Mistral, fournisseur européen.
+
+Peut-on résumer des pages avec une IA locale ?
+Oui. Installez Ollama, téléchargez un modèle comme Gemma ou Llama et choisissez Ollama dans AI Summary Helper. Tout fonctionne alors sur votre ordinateur, y compris avec un serveur Ollama auto-hébergé.
+
+Quels fournisseurs fonctionnent avec ma propre clé ?
+Mistral AI, OpenAI, Google Gemini et DeepSeek. Ollama couvre les modèles locaux et auto-hébergés.
+
+L'extension résume-t-elle les PDF et les vidéos YouTube ?
+Oui. Les PDF ouverts dans Chrome, y compris les fichiers locaux, et les vidéos YouTube sous-titrées se résument comme une page web.
+
+Comment envoyer des articles web vers mon Kindle ?
+Connectez-vous à byphil, ajoutez kindle@byphil.eu comme expéditeur approuvé dans votre compte Amazon, indiquez l'adresse e-mail de votre Kindle dans Réglages → Envoyer, puis utilisez Envoyer → Kindle. Trois envois sont gratuits, illimités avec Pro.
+
+Mes données restent-elles privées ?
+Votre bibliothèque reste dans votre navigateur. Le texte des pages ne va qu'au fournisseur choisi, ou nulle part avec Ollama. Aucun SDK de suivi, et le code est ouvert à l'audit.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 POUR COMMENCER
+━━━━━━━━━━━━━━━━━━━━
+1. Ajoutez AI Summary Helper à Chrome et épinglez-le dans la barre d'outils.
+2. Choisissez byphil Cloud, votre clé API ou Ollama lors de la courte configuration.
+3. Ouvrez un article, un PDF ou une vidéo YouTube et appuyez sur Ctrl+Maj+E (⌘+Maj+E sur Mac).
+4. Lisez, écoutez, posez vos questions, et retrouvez tout plus tard dans l'historique.
+
+Vos retours et idées sont les bienvenus sur GitHub. Conçu par byphil.

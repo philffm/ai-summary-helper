@@ -909,7 +909,7 @@
     "message": "Выпуски"
   },
   "f_graph_77e7": {
-    "message": "График"
+    "message": "Граф"
   },
   "f_insights_f1e8": {
     "message": "Аналитика"
@@ -4803,7 +4803,7 @@
     "message": "Collection"
   },
   "f_collections_a966": {
-    "message": "Collections"
+    "message": "Коллекции"
   },
   "f_could_not_open_collections_0d10": {
     "message": "Could not open collections"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Выделить фрагмент",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Удалить все выделения",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Кратко изложить страницу",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Изложить и закрыть вкладку",
+    "description": "Right-click menu entry"
   }
 }

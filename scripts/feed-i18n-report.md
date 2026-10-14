@@ -4,7 +4,7 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1549 | 0 | 0 | 46 |
+| ar | 1549 | 0 | 0 | 47 |
 | de | 1549 | 0 | 0 | 223 |
 | es | 1549 | 0 | 0 | 186 |
 | fr | 1549 | 0 | 0 | 217 |
@@ -24,6 +24,7 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | English | Translation | width | ratio |
 |---|---|---|---|
 | AI Model | نموذج الذكاء الاصطناعي | 22 vs 8 | 2.75× |
+| Graph | الرسم البياني | 13 vs 5 | 2.6× |
 | vs {label} | مقارنةً بـ {label} | 13 vs 5 | 2.6× |
 | Sent | تم الإرسال | 10 vs 4 | 2.5× |
 | reused | مُعاد استخدامه | 14 vs 6 | 2.33× |

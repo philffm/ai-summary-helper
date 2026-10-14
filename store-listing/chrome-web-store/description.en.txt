@@ -1,0 +1,191 @@
+AI Summary Helper is a free, open-source Chrome extension that summarizes any web page, PDF or YouTube video in your language, with your own AI key (OpenAI, Gemini, Mistral, DeepSeek) or a fully local model through Ollama. It turns what you read into a private, searchable library with highlights, follow-up questions, a knowledge graph, reading analytics, an RSS reader and Send to Kindle. No account is needed for your own key or Ollama, and your articles stay on your device.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ WHAT IT DOES IN ONE MINUTE
+━━━━━━━━━━━━━━━━━━━━
+• Press Ctrl+Shift+E (⌘+Shift+E on Mac) or right-click → "Summarize this page".
+• The summary streams into the side panel, popup or an in-page sidebar, in any of 41 languages.
+• Key sentences light up on the page as "ghost highlights", so you can jump straight to the evidence.
+• Ask follow-up questions; answers quote the passage they come from.
+• Everything is saved to your History: search it, star it, see how topics connect, export it.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 YOUR AI, YOUR CHOICE
+━━━━━━━━━━━━━━━━━━━━
+Pick the model that fits your budget and your privacy needs:
+
+• Own API key (BYOK): OpenAI, Google Gemini, Mistral AI or DeepSeek. You pay the provider per request, usually a few cents a month, instead of a flat subscription.
+• Fully local with Ollama: run Gemma, Llama, Qwen or any other Ollama model on your own computer, or point AI Summary Helper at a self-hosted Ollama endpoint on your network. No API key, no cost per request, and page content never leaves your machine.
+• byphil Cloud (optional): no key and no setup. Sign in with your email and a one-time code and get a small free daily allowance; upgrade to Pro for unlimited summaries.
+
+Your own key and Ollama need no account at all. The full source code is public on GitHub, so you can check exactly what the extension sends and where.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 SUMMARIZE WEB PAGES, PDFs AND YOUTUBE
+━━━━━━━━━━━━━━━━━━━━
+• Web pages and news articles: clean extraction of the article text, without menus, ads or cookie banners.
+• PDFs: research papers, reports and manuals opened in a Chrome tab, including local files.
+• YouTube videos: summaries built from the video's captions, so you can decide whether a 40-minute talk is worth your time.
+• Summary length: "Auto" scales with the length of the article, or set a fixed length from 20 to 2,000 words, with a short, standard or long bias.
+• Prompts: presets such as Technical Deep Dive, Historical Context, Cultural Perspective and Future Predictions, plus your own custom prompts.
+• Summarize & close tab: summarize, choose when you want to come back, and let the tab close itself.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 SUMMARIZE IN YOUR LANGUAGE
+━━━━━━━━━━━━━━━━━━━━
+Read an English article and get the summary in German, Japanese or Spanish, or the other way round. AI Summary Helper writes summaries in 41 languages, including English, German, French, Spanish, Italian, Portuguese, Dutch, Polish, Swedish, Danish, Ukrainian, Russian, Turkish, Arabic, Hindi, Japanese, Korean, Chinese (Simplified and Traditional), Thai, Indonesian and Vietnamese. The interface itself is available in 14 languages.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 ASK THE PAGE ANYTHING
+━━━━━━━━━━━━━━━━━━━━
+• Follow-up questions about the article you just summarized, in a chat that remembers the conversation.
+• Answers come with source chips that point to the exact passage in the article.
+• Three suggested questions after every summary, so you can dig deeper with one click.
+• Pin the best answers; they are saved with the article and exported with it.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ HIGHLIGHTS THAT STAY
+━━━━━━━━━━━━━━━━━━━━
+• AI ghost highlights: the most important sentences are marked in light blue directly on the page.
+• Your own highlights in yellow, from the right-click menu; they reappear when you come back to the page.
+• Highlights travel with the article into Markdown, Word, Kindle and Obsidian exports.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 READ YOUR WAY
+━━━━━━━━━━━━━━━━━━━━
+• Listen: have any summary or article read aloud with your browser's voices, at the speed you like.
+• Instant Read: hear each sentence the moment the AI writes it, hands-free.
+• Speed reading (RSVP): read a streaming summary word by word at slow, medium or fast speed.
+• Reader view with a progress ring and table of contents for long articles.
+• Readability scores (Flesch Reading Ease and grade level) for every saved article.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 SAVE FOR LATER, WITHOUT 100 OPEN TABS
+━━━━━━━━━━━━━━━━━━━━
+Close the tab, keep the thought. Save an article with a note and a time to come back: Tomorrow, Weekend, This week or Research session. A Chrome notification brings you back to it, with your note, exactly when you asked.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ YOUR READING LIBRARY
+━━━━━━━━━━━━━━━━━━━━
+Every summary is stored locally in your History, organized into Inbox, Read, Sent, Research, Collections and Archive.
+
+• Search: instant full-text search across all saved articles, on your device.
+• Similar articles: see what else in your library is related to the article you are reading.
+• Duplicate detection by link, title and content keeps the library clean.
+• Collections: group articles under one question and work through them with a source-check worksheet.
+• Favorites, tags, notes and timed reminders.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ KNOWLEDGE GRAPH
+━━━━━━━━━━━━━━━━━━━━
+See how everything you have read connects. The knowledge graph groups your articles into topic clusters, links articles that share tags or content, and shows a reading list of topics you have not opened in 30 days. Write a short brief for any cluster and export it as Markdown.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 READING ANALYTICS
+━━━━━━━━━━━━━━━━━━━━
+• Time saved: how long the full articles would have taken versus your summaries.
+• Articles, words read, day streak and best streak.
+• Activity chart for the last 30 days or 12 weeks.
+• Top categories and a word cloud of what you read.
+• Mood over time: the tone of the news you read, by day, week or month, and what moved it.
+
+All analytics are calculated on your device. Nothing is sent to a tracking service.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ WIDE MODE AND SPLIT VIEW (NEW IN 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Open AI Summary Helper in its own tab or drag the side panel wider, and History and Feeds switch to a split view: list and knowledge graph side by side from 720 pixels, list, graph and analytics as three panes from 1,100 pixels. Choose 1, 2 or 3 panes from the header and pick what each pane shows.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 RSS READER WITH AI RECAPS
+━━━━━━━━━━━━━━━━━━━━
+• Follow blogs, newspapers and podcasts by RSS or Atom; import and export your subscriptions as OPML.
+• Daily recaps that roll up into weekly and monthly overviews, written by the AI you chose. Only titles and snippets are sent, and only when you ask.
+• With a local Ollama model, new items can be rated and recapped in the background every 15 minutes to 6 hours.
+• Story stacks group the same story from different outlets.
+• Feed insights: activity, topics, your "source diet" for the last 30 days and the mood of your feeds over time.
+• Built-in podcast player that keeps playing when the popup closes, at 0.75× to 2× speed.
+• Star an item to summarize it and file it in your History.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 RESEARCH MODE AND CITATIONS
+━━━━━━━━━━━━━━━━━━━━
+• Detects academic papers on PubMed, Springer, Wiley, JSTOR and other publishers.
+• Correct citations from the DOI in APA 7, MLA 9, Chicago (author-date), BibTeX and RIS. Citation data comes from doi.org, never from the AI, and only the DOI leaves your device.
+• Download references.bib or .ris for Zotero, Mendeley or LaTeX.
+• Source check for any page: type, author, date and publisher, plus four lateral-reading questions to judge a source before you trust it. Hints, not ratings.
+• A Research tab with filters for reviews, trials and preprints.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 SEND, EXPORT AND SHARE
+━━━━━━━━━━━━━━━━━━━━
+• Send to Kindle: summaries and formatted articles, highlights included, delivered to your Kindle. Requires a free byphil sign-in; 3 sends are free, unlimited with Pro.
+• LocalSend: send articles over your home Wi-Fi to phones, tablets or KOReader e-readers, with no cloud in between.
+• Send to phone: pair your phone with a QR code. Links you share on the phone arrive end-to-end encrypted in your History, and you can push full articles back to the phone.
+• Magazine digest: bundle several articles into one issue for Kindle, LocalSend or Markdown.
+• Export as Markdown (one article, or the whole library as a ZIP with front matter), Word (DOCX), OpenDocument (ODT) or PDF, or send it straight to Obsidian.
+• Share through your system's share sheet where available.
+• Backup and restore your whole library and settings; API keys and sign-ins are left out of backups unless you choose to include them.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 PRIVACY BY DESIGN
+━━━━━━━━━━━━━━━━━━━━
+• Your articles, summaries, highlights, feeds and analytics are stored in your browser's local storage, on your device.
+• Page content is sent only to the AI provider you chose, or to nobody at all with a local Ollama model.
+• No tracking or analytics SDK, no ads, no selling of data.
+• Open source: the complete code is public on GitHub (philffm/ai-summary-helper) for anyone to audit.
+• Made in the EU by byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ ACCESSIBLE AND COMFORTABLE
+━━━━━━━━━━━━━━━━━━━━
+• Light, dark and high-contrast themes, or follow your system.
+• Text size from 85 to 150 percent and three line-spacing options.
+• Optional Atkinson Hyperlegible font for better legibility.
+• Respects reduced motion; keyboard shortcuts throughout (press ? to see them all).
+• Presets: Default, Large, Contrast and Calm.
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ WHERE YOU CAN USE IT
+━━━━━━━━━━━━━━━━━━━━
+• Chrome side panel, popup, in-page sidebar, its own tab or a pop-out window.
+• Keyboard: Ctrl+Shift+E summarizes the current page, Ctrl+Shift+Y opens AI Summary Helper (⌘ on Mac). Inside the app: Ctrl+F or / to search, j and k to move between cards, Esc to go back.
+• Right-click menu: Summarize this page, Summarize & close tab, Highlight selection, Remove all highlights.
+• Other browsers and phones: a bookmarklet brings summaries to any browser, including iOS and Android (requires byphil Cloud).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ FREQUENTLY ASKED QUESTIONS
+━━━━━━━━━━━━━━━━━━━━
+Is AI Summary Helper free?
+Yes. The extension is free and open source. With your own API key you pay your provider directly, usually a few cents a month. With Ollama it costs nothing. byphil Cloud includes a small free daily allowance; Pro removes the limits.
+
+Can I summarize web pages with a local AI model?
+Yes. Install Ollama, pull a model such as Gemma or Llama, and select Ollama in AI Summary Helper. Summaries, follow-up questions and feed recaps then run entirely on your computer, also with a self-hosted Ollama server on your network.
+
+Which AI providers work with my own API key?
+OpenAI, Google Gemini, Mistral AI and DeepSeek. Ollama covers local and self-hosted models.
+
+Does it work with PDFs and YouTube?
+Yes. PDFs opened in Chrome, including local files, and YouTube videos with captions can be summarized like any page.
+
+Can it summarize an English article in another language?
+Yes. Choose any of 41 summary languages; the source can be in a different language.
+
+How do I send web articles to my Kindle?
+Sign in to byphil, add kindle@byphil.eu as an approved sender in your Amazon account, enter your Kindle email in Settings → Send, and use Send → Kindle. Three sends are free; Pro makes it unlimited.
+
+Is my data private?
+Your library is stored locally in your browser. Page text goes only to the AI provider you picked, or nowhere with Ollama. The extension contains no tracking SDK, and the code is open for review.
+
+How is this different from other AI summarizer extensions?
+Most summarizers lock you into one provider, require an account and route everything through their servers on a monthly subscription. AI Summary Helper lets you bring your own key or run fully local, needs no account for either, and turns your summaries into a searchable library with a knowledge graph, analytics, RSS and e-reader export.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 GET STARTED
+━━━━━━━━━━━━━━━━━━━━
+1. Add AI Summary Helper to Chrome and pin it to the toolbar.
+2. Choose byphil Cloud, your own API key or Ollama in the short setup.
+3. Open any article, PDF or YouTube video and press Ctrl+Shift+E (⌘+Shift+E on Mac).
+4. Read, listen, ask follow-up questions, and find it again later in your History.
+
+Feedback and feature requests are welcome on GitHub. Built by byphil.

@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – Resumir páginas web, PDF y YouTube con IA"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Resume con tu clave de IA u Ollama. Lector RSS, guardar para después, resaltados, envío a Kindle. Código abierto, sin registro."
+    "message": "Resume páginas web, PDF y vídeos de YouTube en 41 idiomas con tu propia clave de IA o en local con Ollama. Código abierto."
   },
   "fetchSummary": {
     "message": "Obtener Resumen"
@@ -993,7 +993,7 @@
     "message": "Episodios"
   },
   "f_graph_77e7": {
-    "message": "Gráfico"
+    "message": "Grafo"
   },
   "f_insights_f1e8": {
     "message": "Resumen"
@@ -4803,7 +4803,7 @@
     "message": "Collection"
   },
   "f_collections_a966": {
-    "message": "Collections"
+    "message": "Colecciones"
   },
   "f_could_not_open_collections_0d10": {
     "message": "Could not open collections"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Resaltar selección",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Quitar todos los resaltados",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Resumir esta página",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Resumir y cerrar pestaña",
+    "description": "Right-click menu entry"
   }
 }

@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – Webseiten, PDFs & YouTube mit KI zusammenfassen"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Zusammenfassen mit eigenem KI-Key oder Ollama. RSS-Reader, Später-lesen, Markierungen, Kindle-Export. Open Source, ohne Login."
+    "message": "Webseiten, PDFs und YouTube-Videos in 41 Sprachen zusammenfassen: mit eigenem KI-Schlüssel oder lokal mit Ollama. Open Source."
   },
   "fetchSummary": {
     "message": "Zusammenfassung abrufen"
@@ -999,7 +999,7 @@
     "message": "Folgen"
   },
   "f_graph_77e7": {
-    "message": "Grafik"
+    "message": "Graph"
   },
   "f_insights_f1e8": {
     "message": "Einblicke"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Senden an {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Auswahl markieren",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Alle Markierungen entfernen",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Diese Seite zusammenfassen",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Zusammenfassen & Tab schließen",
+    "description": "Right-click menu entry"
   }
 }

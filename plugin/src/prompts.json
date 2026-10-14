@@ -1,7 +1,7 @@
 [
     {
         "name": "Default",
-        "prompt": "- Article summary section with creative title explaining the article in simple terms. - More extensive summary with a bit more detail (4-5 sentences) and most significant quotes (as stated, in original language) - Fun reference to the topic related to my competence as a UX designer. - Humorous take on the topic like a standup comedian. - Related book and media recommendations. - Answer additional questions in a serious and engaging way. Add emojis, hashtags, use HTML, highlight interesting parts, max 1000 words."
+        "prompt": "- Summarize the article clearly, explaining it in simple terms. - Highlight the key facts and the main argument. - Keep names, numbers and dates exact. - Tone: neutral and factual. - Answer additional questions in a serious and engaging way."
     },
     {
         "name": "Phil's secret prompt",

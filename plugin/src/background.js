@@ -244,11 +244,13 @@ chrome.runtime.onInstalled.addListener(async () => {
 chrome.runtime.onInstalled.addListener(() => {
     if (!chrome.contextMenus) return;   // iOS Safari has no context menus
     chrome.contextMenus.removeAll(() => {
-        chrome.contextMenus.create({ id: 'aish-highlight',        title: '✏️ Highlight selection',    contexts: ['selection'] });
-        chrome.contextMenus.create({ id: 'aish-clear-highlights', title: '🧹 Remove all highlights',  contexts: ['page', 'selection'] });
-        chrome.contextMenus.create({ id: 'sep1', type: 'separator',                                   contexts: ['page', 'selection'] });
-        chrome.contextMenus.create({ id: 'aish-summarize',        title: '✨ Summarize this page',    contexts: ['page'] });
-        chrome.contextMenus.create({ id: 'aish-summarize-close',  title: '✨ Summarize & close tab',  contexts: ['page'] });
+        // Titles follow the browser language (_locales); English is the fallback.
+        const t = (key, fallback) => { try { return chrome.i18n.getMessage(key) || fallback; } catch (_) { return fallback; } };
+        chrome.contextMenus.create({ id: 'aish-highlight',        title: t('ctxHighlightSelection', '✏️ Highlight selection'),   contexts: ['selection'] });
+        chrome.contextMenus.create({ id: 'aish-clear-highlights', title: t('ctxRemoveHighlights', '🧹 Remove all highlights'),   contexts: ['page', 'selection'] });
+        chrome.contextMenus.create({ id: 'sep1', type: 'separator',                                                             contexts: ['page', 'selection'] });
+        chrome.contextMenus.create({ id: 'aish-summarize',        title: t('ctxSummarizePage', '✨ Summarize this page'),        contexts: ['page'] });
+        chrome.contextMenus.create({ id: 'aish-summarize-close',  title: t('ctxSummarizeClose', '✨ Summarize & close tab'),     contexts: ['page'] });
     });
 });
 
@@ -1016,7 +1018,7 @@ async function updateSumBadge() {
         await chrome.action.setBadgeText({ text: b.text });
         // the tooltip says what the number is made of
         try {
-            const name = (chrome.i18n && chrome.i18n.getMessage('extensionName')) || 'AI Summary Helper';
+            const name = (chrome.i18n && chrome.i18n.getMessage('extensionShortName')) || 'AI Summary Helper';   // the store title is too long for a tooltip
             await chrome.action.setTitle({ title: b.inbox > 0 ? `${name} · ${b.inbox} link${b.inbox === 1 ? '' : 's'} from your phone` : name });
         } catch (_) { /* tooltip is cosmetic */ }
     } catch (_) { /* badge is cosmetic */ }

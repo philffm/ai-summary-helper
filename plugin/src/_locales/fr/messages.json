@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – Résumer pages web, PDF et YouTube avec l'IA"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Résumez avec votre clé IA ou Ollama. Lecteur RSS, lire plus tard, surlignage, envoi Kindle. Open source, sans compte."
+    "message": "Résumez pages web, PDF et vidéos YouTube en 41 langues avec votre clé IA (Mistral, OpenAI…) ou Ollama en local. Open source."
   },
   "fetchSummary": {
     "message": "Obtenir le résumé"
@@ -993,7 +993,7 @@
     "message": "Épisodes"
   },
   "f_graph_77e7": {
-    "message": "Graphique"
+    "message": "Graphe"
   },
   "f_insights_f1e8": {
     "message": "Aperçu"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Surligner la sélection",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Supprimer tous les surlignages",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Résumer cette page",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Résumer et fermer l'onglet",
+    "description": "Right-click menu entry"
   }
 }

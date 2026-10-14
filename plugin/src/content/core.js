@@ -32,8 +32,17 @@ export function getTopUserTags(limit = 10) {
   });
 }
 
+// Japanese and Chinese (and Thai) are written without spaces: splitting on whitespace counts a whole paragraph as
+// one word. Count those scripts by characters instead (about 2 CJK / 5 Thai characters per English-word equivalent),
+// so reading time, "time saved" and "words read" stay comparable across languages.
+const CJK_CHARS = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]/g;
+const THAI_CHARS = /[\u0e00-\u0e7f]/g;
 function countWords(html) {
-  return (html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  const text = (html || '').replace(/<[^>]+>/g, ' ');
+  const cjk = (text.match(CJK_CHARS) || []).length;
+  const thai = (text.match(THAI_CHARS) || []).length;
+  const spaced = text.replace(CJK_CHARS, ' ').replace(THAI_CHARS, ' ').split(/\s+/).filter(Boolean).length;
+  return spaced + Math.round(cjk / 2) + Math.round(thai / 5);
 }
 
 /**

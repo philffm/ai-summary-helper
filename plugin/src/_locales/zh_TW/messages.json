@@ -993,7 +993,7 @@
     "message": "集數"
   },
   "f_graph_77e7": {
-    "message": "圖表"
+    "message": "圖譜"
   },
   "f_insights_f1e8": {
     "message": "洞察"
@@ -4803,7 +4803,7 @@
     "message": "Collection"
   },
   "f_collections_a966": {
-    "message": "Collections"
+    "message": "合集"
   },
   "f_could_not_open_collections_0d10": {
     "message": "Could not open collections"
@@ -5341,5 +5341,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ 標註選取內容",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 清除所有標註",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ 摘要此頁面",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ 摘要並關閉分頁",
+    "description": "Right-click menu entry"
   }
 }

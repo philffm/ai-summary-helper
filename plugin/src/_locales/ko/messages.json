@@ -4785,7 +4785,7 @@
     "message": "Collection"
   },
   "f_collections_a966": {
-    "message": "Collections"
+    "message": "컬렉션"
   },
   "f_could_not_open_collections_0d10": {
     "message": "Could not open collections"
@@ -5323,5 +5323,21 @@
   },
   "f_sending_to_in_s_808b": {
     "message": "Sending to {name} in {n} s"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ 선택 영역 하이라이트",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 모든 하이라이트 지우기",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ 이 페이지 요약",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ 요약하고 탭 닫기",
+    "description": "Right-click menu entry"
   }
 }
