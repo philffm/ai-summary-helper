@@ -43,6 +43,9 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: write      # flaky tests are filed as one issue per test (scripts/report-flaky.mjs)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -54,3 +57,10 @@ jobs:
         run: npm run lint -- --quiet
       - name: Every test, the audits and the translation check
         run: npm run test:release
+        env:
+          AISH_FLAKY_FILE: ${{ runner.temp }}/flaky-tests.json
+      - name: Report flaky tests as issues
+        if: always()
+        run: node scripts/report-flaky.mjs "$RUNNER_TEMP/flaky-tests.json"
+        env:
+          GH_TOKEN: ${{ github.token }}

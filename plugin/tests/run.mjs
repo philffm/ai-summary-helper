@@ -85,6 +85,11 @@ if (note) console.log(note);
 if (flaky.length) {
   // Visible in the CI run: an annotation per test and a block in the job summary, so flakes get fixed, not forgotten.
   flaky.forEach((f) => console.log(`::warning title=Flaky test::${f} failed once and passed on retry — ${about(f)}`));
+  // CI (main, nightly) hands over a path: scripts/report-flaky.mjs turns the list into one deduplicated issue per test.
+  if (process.env.AISH_FLAKY_FILE) {
+    const err = (f) => (retried.get(f).stderr || retried.get(f).stdout || '').split('\n').filter(Boolean).slice(-6).join('\n').slice(0, 1200);
+    fs.writeFileSync(process.env.AISH_FLAKY_FILE, JSON.stringify(flaky.map((f) => ({ test: f, about: about(f), error: err(f) })), null, 2));
+  }
   if (process.env.GITHUB_STEP_SUMMARY) {
     const first = (f) => (retried.get(f).stderr || retried.get(f).stdout || '').split('\n').filter(Boolean).slice(-3).join(' ').slice(0, 300);
     fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Flaky tests (failed once, passed on retry)\n\n` + flaky.map((f) => `- \`${f}\` — ${about(f)}\n  - first failure: ${first(f)}`).join('\n') + '\n\n');
