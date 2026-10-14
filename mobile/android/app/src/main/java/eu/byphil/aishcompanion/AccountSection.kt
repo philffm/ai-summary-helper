@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
@@ -63,12 +64,14 @@ fun AccountCard(model: AppModel) {
         }
     }
 
+    val uriHandler = LocalUriHandler.current
     usage?.let { u -> UsageCard(u, model.store.localRuns, model.store.cloudCalls) }
     SettingsGroup {
         if (signedIn) {
             Text("Signed in as ${model.accountEmail}", style = MaterialTheme.typography.titleMedium)
             Text(plan ?: if (model.license.isBlank()) "Free plan." else "Checking your plan…", style = MaterialTheme.typography.bodyMedium)
             OutlinedButton(onClick = { model.signOut() }) { Text("Sign out") }
+            TextButton(onClick = { uriHandler.openUri("https://byphil.eu/#account") }) { Text("Manage account: export or delete your data") }
         } else if (otpId == null) {
             Text("Sign in to use your plan and the cloud AI here, as in the browser extension.", style = MaterialTheme.typography.bodyMedium)
             OutlinedTextField(email, { email = it }, Modifier.fillMaxWidth(), label = { Text("Email") }, singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email))
