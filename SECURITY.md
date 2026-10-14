@@ -5,7 +5,7 @@
 Please **do not open a public issue** for security problems. Report them privately:
 
 - GitHub: *Security* tab › *Report a vulnerability* (private advisory), or
-- Email: philipp@wornath.de
+- Email: info@byphil.eu
 
 Include what you found, how to reproduce it, the browser and extension version (Settings › About). I aim to answer within a few days.
 
