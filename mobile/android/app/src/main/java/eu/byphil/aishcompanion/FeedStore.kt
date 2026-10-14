@@ -106,7 +106,7 @@ class FeedStore(private val dir: File) {
     @Synchronized fun remove(url: String) {
         val (feeds, state) = readRoot()
         write(feeds.filter { it.url != url }, state)
-        fileFor(url).delete()
+        fileFor(url).delete(); File(fileFor(url).path + ".bak").delete()
     }
 
     // ── sync ──
@@ -131,9 +131,25 @@ class FeedStore(private val dir: File) {
 
     // ── items ──
 
+    /**
+     * Item files are written to a temp file and renamed, with the previous version kept as .bak, so a reader (the worker, the UI) never sees a
+     * half-written file and a crash in the middle of a write cannot wipe the stored items.
+     */
+    private fun writeItems(f: File, text: String) {
+        val tmp = File(f.path + ".tmp")
+        tmp.writeText(text)
+        if (f.exists()) runCatching { f.copyTo(File(f.path + ".bak"), overwrite = true) }
+        if (!tmp.renameTo(f)) { f.delete(); tmp.renameTo(f) }
+    }
+
     @Synchronized fun items(url: String): List<StoredItem> {
         val f = fileFor(url)
-        if (!f.exists()) return emptyList()
+        return readItems(f).takeIf { it != null } ?: readItems(File(f.path + ".bak")) ?: emptyList()
+    }
+
+    /** null when the file is missing or cannot be read (so the caller can try the backup). */
+    private fun readItems(f: File): List<StoredItem>? {
+        if (!f.exists()) return null
         return try {
             val arr = JSONArray(f.readText())
             (0 until arr.length()).mapNotNull { i ->
@@ -141,7 +157,7 @@ class FeedStore(private val dir: File) {
                 StoredItem(FeedItem(o.optString("id", ""), o.optString("title", ""), o.optString("link", ""), o.optLong("published", 0), o.optString("author", ""), o.optString("summary", ""), o.optString("body", ""), o.optString("audio", ""), o.optInt("duration", 0)), o.optBoolean("read", false),
                     if (o.has("sent")) o.optDouble("sent").takeIf { !it.isNaN() } else null, o.optString("cat", ""), o.optBoolean("fav", false))
             }
-        } catch (_: Exception) { emptyList() }
+        } catch (_: Exception) { null }
     }
 
     /**
@@ -174,7 +190,7 @@ class FeedStore(private val dir: File) {
             if (was.fav) arr.put(json(was))
             else if (room > 0 && was.item.published >= cutoff) { arr.put(json(was.copy(item = was.item.copy(body = "")))); room-- }
         }
-        fileFor(url).writeText(arr.toString())
+        writeItems(fileFor(url), arr.toString())
         return added
     }
 
@@ -189,7 +205,7 @@ class FeedStore(private val dir: File) {
             removed += list.size - keep.size
             val arr = JSONArray()
             for (s in keep) arr.put(json(s))
-            fileFor(f.url).writeText(arr.toString())
+            writeItems(fileFor(f.url), arr.toString())
         }
         return removed
     }
@@ -199,7 +215,7 @@ class FeedStore(private val dir: File) {
         if (list.isEmpty()) return
         val arr = JSONArray()
         for (s in list) arr.put(json(change(s)))
-        fileFor(url).writeText(arr.toString())
+        writeItems(fileFor(url), arr.toString())
     }
 
     @Synchronized fun markRead(url: String, id: String, read: Boolean = true) = rewrite(url) { if (it.item.id == id) it.copy(read = read) else it }

@@ -155,7 +155,7 @@ class AppModel(context: Context) {
     suspend fun refreshAll(force: Boolean = true): Int = withContext(Dispatchers.IO) {
         refreshing = true
         try {
-            if (pairing?.canSync == true) runSync()
+            if (pairing?.canSync == true) runCatching { runSync() }   // a failed sync must not stop the feeds from refreshing or the stored items from showing
             var added = 0
             val now = System.currentTimeMillis()
             for (f in feedStore.feeds()) {
@@ -164,9 +164,8 @@ class AppModel(context: Context) {
                 if (now - f.lastFetched < wait) continue
                 FeedFetcher.refresh(feedStore, f, System.currentTimeMillis())?.let { added += it }
             }
-            reload()
             added
-        } finally { refreshing = false }
+        } finally { reload(); refreshing = false }   // always show what is stored, also after an error or while offline
     }
 
     /** null on success, else a short reason for the UI. */

@@ -71,7 +71,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onOpenReading: (String) -> Unit = {}, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onOpenReading: (String) -> Unit = {}, queued: Int = 0, nextLabel: String = "", onNext: () -> Unit = {}, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
@@ -88,15 +88,6 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
     var summaryTitle by remember { mutableStateOf("") }
     var summaryUrl by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-    // A new link while this page is open (share sheet): load it here and start over, instead of staying on the old page.
-    var loadedUrl by remember { mutableStateOf(url) }
-    androidx.compose.runtime.LaunchedEffect(url, autoSummarize) {
-        if (loadedUrl != url) {
-            loadedUrl = url; summary = null; status = ""; busy = false; sent = false; saved = false
-            autoPending = autoSummarize
-            web?.loadUrl(url)
-        }
-    }
     var speak by remember { mutableStateOf(Store(context).speakSummary) }   // also a switch in Settings   // read the summary aloud while it is written
     var tts by remember { mutableStateOf<TextToSpeech?>(null) }
     val spoken = remember { intArrayOf(0) }                                  // how much of the streamed text has been handed to the voice
@@ -150,6 +141,12 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
             title = { Text(title.ifBlank { Uri.parse(shown).host ?: shown }, maxLines = 1, overflow = TextOverflow.Ellipsis) },
             navigationIcon = { IconButton(onClick = onClose) { Icon(Icons.Filled.Close, contentDescription = "Close") } },
         )
+        if (queued > 0) Surface(tonalElevation = 2.dp, modifier = Modifier.fillMaxWidth()) {
+            Row(Modifier.fillMaxWidth().padding(start = 16.dp, end = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(if (queued == 1) "1 link waiting: $nextLabel" else "$queued links waiting, next: $nextLabel", Modifier.weight(1f), style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                androidx.compose.material3.TextButton(onClick = onNext) { Text(if (busy) "Skip to next" else "Next") }
+            }
+        }
         if (progress in 0.01f..0.99f) LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
         AndroidView(
             modifier = Modifier.weight(1f).fillMaxWidth(),   // the page gets exactly the space left under the bars and panels

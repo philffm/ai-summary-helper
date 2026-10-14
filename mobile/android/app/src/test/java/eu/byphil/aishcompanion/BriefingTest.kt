@@ -170,4 +170,19 @@ class BriefingTest {
         assertTrue(DayRecap.system("", "de").contains("Write everything in German"))
         assertTrue(BriefingPrompt.system("fr", "de").contains("translated into French"))
     }
+
+    @Test fun goodNewsShowsTheLatestEvenWhenItIsOld() {
+        fun rated(e: FeedEntryRef, v: Double) = e.copy(stored = e.stored.copy(sent = v))
+        val old = rated(entry(1, "p", "Whales return to the bay", 24 * 20, read = true), 0.8)   // three weeks old and already read
+        val list = listOf(old, entry(2, "n", "Neutral item", 2))
+        val (items, older) = BriefingBuilder.pickWithAge(list, now, mode = NewsMode.GOOD)
+        assertEquals(listOf("Whales return to the bay"), items.map { it.title }); assertTrue(older)
+        val b = BriefingBuilder.build(list, 0, now, NewsMode.GOOD)
+        assertTrue(b.older)
+        assertEquals("Good morning. No new good news this morning, so here is the latest good story.", b.spokenParts(8)[0])
+        assertEquals(b, Briefing.fromJson(b.toJson()))
+        val fresh = BriefingBuilder.pickWithAge(listOf(old, rated(entry(3, "q", "Village wins prize", 3), 0.7)), now, mode = NewsMode.GOOD)
+        assertEquals(listOf("Village wins prize"), fresh.first.map { it.title }); assertTrue(!fresh.second)   // something new: only that
+        assertTrue(BriefingBuilder.pickWithAge(listOf(entry(1, "a", "Ancient", 24 * 10)), now).first.isEmpty())  // all news: unchanged
+    }
 }

@@ -112,6 +112,12 @@ class MainActivity : ComponentActivity() {
 
     private var appModel: AppModel? = null
 
+    /** Back in the app: the background worker may have stored new items, so show what is on the phone. */
+    override fun onResume() {
+        super.onResume()
+        appModel?.let { runCatching { it.reload() } }
+    }
+
     /** A reminder tapped while the app is already open (singleTop). */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
@@ -147,11 +153,30 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     var webUrl by rememberSaveable { mutableStateOf(startUrl) }
     var autoSummarize by rememberSaveable { mutableStateOf(startSummarize) }
 
-    // A link from the share sheet, at start or while the app is open: show it (replacing any page that is open) and start the summary.
-    androidx.compose.runtime.LaunchedEffect(model.pendingShare) {
-        model.pendingShare?.let { (u, sum) -> webUrl = u; autoSummarize = sum; model.pendingShare = null }
+    // Links shared while a page is open wait in a queue ("S|url" = summarize it, "O|url" = just open it) instead of replacing the page or getting lost.
+    var queue by rememberSaveable { mutableStateOf(ArrayList<String>()) }
+    val advance = {
+        if (queue.isEmpty()) { webUrl = ""; autoSummarize = false }
+        else { val n = queue[0]; queue = ArrayList(queue.drop(1)); webUrl = n.substring(2); autoSummarize = n.startsWith("S|") }
     }
-    if (webUrl.isNotEmpty()) { WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize, onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) }, onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false }) { webUrl = ""; autoSummarize = false }; return }
+    androidx.compose.runtime.LaunchedEffect(model.pendingShare) {
+        model.pendingShare?.let { (u, sum) ->
+            if (webUrl.isEmpty()) { webUrl = u; autoSummarize = sum }
+            else if (u != webUrl && queue.none { it.substring(2) == u }) queue = ArrayList(queue + ((if (sum) "S|" else "O|") + u))
+            model.pendingShare = null
+        }
+    }
+    if (webUrl.isNotEmpty()) {
+        // A fresh page state for every link: the summary and the reading of one page never leak into the next.
+        androidx.compose.runtime.key(webUrl) {
+            WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize,
+                queued = queue.size, nextLabel = queue.firstOrNull()?.let { android.net.Uri.parse(it.substring(2)).host ?: it.substring(2) }.orEmpty(), onNext = advance,
+                onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) },
+                onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false; queue = ArrayList() },
+                onClose = advance)
+        }
+        return
+    }
 
     androidx.compose.runtime.LaunchedEffect(tab) { if (tab != Tab.Settings.ordinal) settingsPanel = "" }
     // A reminder was tapped: show that article in the reading list.
