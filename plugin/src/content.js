@@ -3,7 +3,7 @@ import { lengthSpec, readLengthSetting, resolveSummaryLength } from './modules/s
 import { languageEnglishName, languageRule } from './modules/languages.js';
 import { paperIndexFields, detectPaperInText, matchPagePaper } from './content/paper.js';
 import { finalizeSummary } from './content/finalize.js';
-import { isTokenExpired, SESSION_EXPIRED_MESSAGE, SIGN_IN_HINT } from './modules/sessionToken.js';
+import { isTokenExpired, refreshSession, SESSION_EXPIRED_MESSAGE, SIGN_IN_HINT } from './modules/sessionToken.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -637,6 +637,8 @@ import {
       ]).then(async ([syncData, localData]) => {
         const data = { ...syncData, ...localData };
         const moodOn = data.moodEnabled !== false;
+        // Cloud mode only (own keys / local models never talk to the byPhil API): a token close to its end is swapped before it is read.
+        if ((data.connectionMode || 'cloud') === 'cloud') await refreshSession({ apiBase: API_BASE }).catch(() => {});
         const localAuth = await chrome.storage.local.get([SK.token]).catch(() => ({}));
         const sessionToken = localAuth?.[SK.token] || '';
         const connectionMode = data.connectionMode || 'cloud';

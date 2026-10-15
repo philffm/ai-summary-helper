@@ -732,6 +732,36 @@ function aiTokenExpired(token) {
     } catch (_) { return false; }
 }
 
+// Silent login renewal for the worker (same rule as refreshSession() in modules/sessionToken.js): a token with under 7 days left is
+// swapped via POST /v1/auth/refresh. Never throws; on any failure the old token stays.
+let aiRefreshFailedAt = 0, aiRefreshInflight = null;
+function aiTokenNeedsRefresh(token) {
+    if (!token || typeof token !== 'string' || aiTokenExpired(token)) return false;
+    try {
+        let b64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+        if (b64.length % 4) b64 += '='.repeat(4 - (b64.length % 4));
+        const p = JSON.parse(decodeURIComponent(atob(b64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
+        return typeof p.exp === 'number' && p.exp * 1000 - Date.now() < 7 * 24 * 3600e3;
+    } catch (_) { return false; }
+}
+function aiRefreshSession(token) {
+    if (aiRefreshInflight) return aiRefreshInflight;
+    if (Date.now() - aiRefreshFailedAt < 10 * 60e3) return Promise.resolve(false);
+    aiRefreshInflight = (async () => {
+        try {
+            const res = await fetch('https://api.byphil.eu/v1/auth/refresh', { method: 'POST', headers: { Authorization: `Bearer ${token}` } });
+            const body = res.ok ? await res.json() : null;
+            if (!body || !body.success || !body.token) { aiRefreshFailedAt = Date.now(); return false; }
+            const write = { [SK.token]: body.token };
+            if (body.record && body.record.id) write[SK.user] = body.record;
+            if (body.record && body.record.license_key) write[SK.licenseKey] = body.record.license_key;
+            await chrome.storage.local.set(write);
+            return true;
+        } catch (_) { aiRefreshFailedAt = Date.now(); return false; } finally { aiRefreshInflight = null; }
+    })();
+    return aiRefreshInflight;
+}
+
 function aiFriendlyError(status, body, cloud) {
     const e = `${status} ${body || ''}`;
     // Server-side cost budget (byphilapi): specific codes before the generic "limit" wording below.
@@ -798,7 +828,10 @@ function aiDelta(line) {
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
 async function aiComplete({ system, user, id, partial, service: forcedService, signal }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
-    const local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
+    let local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
+    if (!forcedService && (sync.connectionMode || 'cloud') === 'cloud' && aiTokenNeedsRefresh(local[SK.token]) && await aiRefreshSession(local[SK.token])) {
+        local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => local);
+    }
     // `forcedService` (only 'ollama') lets the whole-library run use the local model whatever is active for summaries.
     const forced = forcedService === 'ollama' ? 'ollama' : '';
     const connectionMode = forced ? 'local' : (sync.connectionMode || 'cloud');

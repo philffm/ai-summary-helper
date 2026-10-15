@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // though articles exist (History looks fine because it only loads on
     // first navigation there, by which point migration has long finished).
     await StorageManager.initializeDefaults();
+    // Keep the login alive: a token close to expiry is renewed in the background (never blocks, never signs out).
+    chrome.storage.sync.get('connectionMode').then(({ connectionMode }) => (connectionMode || 'cloud') === 'cloud' && import('./modules/sessionToken.js').then((m) => m.refreshSession({ apiBase: StorageManager.getApiBase() }))).catch(() => {});
 
     // ── Apply UI language setting ───────────────────────────────────────
     import('./modules/i18n.js').then(({ applyTranslations }) => {
