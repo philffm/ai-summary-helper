@@ -828,7 +828,7 @@ class StorageManager {
     // ─────────────────────────────────────────────
 
     static async getActiveServiceConfig() {
-        const data = await this.getAll();
+        const data = await this.get(['connectionMode', SK.licenseKey, 'preferredCloudModel', 'activeService', SK.servicesConfig]);
         const connectionMode = data.connectionMode || 'cloud';
 
         if (connectionMode === 'cloud') {
@@ -861,7 +861,7 @@ class StorageManager {
     }
 
     static async updateService(serviceId, updates) {
-        const data = await this.getAll();
+        const data = await this.get(SK.servicesConfig);
         const cfg = data[SK.servicesConfig] || {};
         cfg[serviceId] = {
             ...(cfg[serviceId] || {}),
@@ -898,7 +898,7 @@ class StorageManager {
      * @returns {{id: string, provider: string}}
      */
     static async getActiveModel(serviceId, cfg) {
-        const data = cfg ? { [SK.servicesConfig]: { [serviceId]: cfg } } : await this.getAll();
+        const data = cfg ? { [SK.servicesConfig]: { [serviceId]: cfg } } : await this.get(SK.servicesConfig);
         const services = await this.getServices();
         const serviceMeta = services.find(s => s.id === serviceId);
         const entry = (data[SK.servicesConfig] || {})[serviceId] || {};

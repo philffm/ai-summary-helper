@@ -132,13 +132,17 @@ const scheduleOtpExpiry = (expiresAt) => {
     if (msRemaining <= 0) return;
 
     otpExpiryTimeoutId = setTimeout(async () => {
-        const currentState = await StorageManager.getAll();
+        const currentState = await readAuthState();
         if (currentState[SK.otpId]) {
             const patch = await clearPendingOtpState();
             await refreshAuthState({ ...currentState, ...patch });
         }
     }, msRemaining);
 };
+
+// Only the keys the auth views read: getAll() would pull the whole library (every article record) for each refresh.
+const AUTH_STATE_KEYS = [SK.user, SK.token, SK.otpId, SK.otpEmail, SK.otpExpiresAt, SK.otpRequestedAt];
+const readAuthState = () => StorageManager.get(AUTH_STATE_KEYS);
 
 const ensureInstallId = async () => StorageManager.getInstallId();
 
@@ -289,7 +293,7 @@ function setLoggedInOnlySectionsVisible(isLoggedIn) {
 
 // ── Core: render current auth/OTP state into every registered view ─────
 async function refreshAuthState(forceData = null) {
-    const data = forceData || await StorageManager.getAll();
+    const data = forceData || await readAuthState();
     const user = data[SK.user];
     const token = data[SK.token];
     const pendingOtpId = data[SK.otpId];
@@ -459,7 +463,7 @@ async function verifyOtp(view) {
         return;
     }
 
-    const stored = await StorageManager.getAll();
+    const stored = await readAuthState();
     const effectiveOtpId = activeOtpId || stored[SK.otpId];
     const pendingOtpExpiryTime = parseOtpExpiry(stored[SK.otpExpiresAt]);
 
@@ -469,7 +473,7 @@ async function verifyOtp(view) {
     }
     if (!pendingOtpExpiryTime || pendingOtpExpiryTime <= Date.now()) {
         const patch = await clearPendingOtpState();
-        const currentState = await StorageManager.getAll();
+        const currentState = await readAuthState();
         await refreshAuthState({ ...currentState, ...patch });
         notify(view, T('Code expired. Please request a new one.'));
         return;
@@ -567,7 +571,7 @@ async function verifyOtp(view) {
         notify(view, T('Successfully connected! 🧙'));
         if (view.codeInput) { view.codeInput.value = ''; renderOtpBoxes(view.codeInput); }
 
-        const currentState = await StorageManager.getAll();
+        const currentState = await readAuthState();
         await refreshAuthState({ ...currentState, ...authData });
     } catch (err) {
         console.error('Validation failure:', err);
@@ -590,7 +594,7 @@ async function logout() {
     await StorageManager.set(logoutData);
     activeOtpId = null;
 
-    const currentState = await StorageManager.getAll();
+    const currentState = await readAuthState();
     await refreshAuthState({ ...currentState, ...logoutData });
 
     if (uiManagerRef) uiManagerRef.showToast(T('Logged out.'));
@@ -713,7 +717,7 @@ export async function initAuthManager(uiManager) {
 
 export async function refreshAuthStateFromSettings() {
     await refreshAuthState();
-    const { [SK.token]: pb_token } = await StorageManager.getAll();
+    const { [SK.token]: pb_token } = await StorageManager.get(SK.token);
     if (!pb_token) return;
     try {
         const response = await fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/usage`, {
@@ -731,10 +735,10 @@ export async function refreshAuthStateFromSettings() {
 
             // Sync the server-side license key into local storage so the
             // "Pro License Key" field reflects the account's actual license.
-            const { [SK.user]: pb_user } = await StorageManager.getAll();
+            const { [SK.user]: pb_user } = await StorageManager.get(SK.user);
             const serverLicenseKey = pb_user?.license_key;
             if (serverLicenseKey) {
-                const { [SK.licenseKey]: licenseKey } = await StorageManager.getAll();
+                const { [SK.licenseKey]: licenseKey } = await StorageManager.get(SK.licenseKey);
                 if (licenseKey !== serverLicenseKey) {
                     await StorageManager.set({ [SK.licenseKey]: serverLicenseKey });
                     const licenseKeyInput = document.getElementById('licenseKey');

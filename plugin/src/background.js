@@ -847,7 +847,9 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
         if (res.body && res.body.getReader) {
             const reader = res.body.getReader();
             const dec = new TextDecoder('utf-8');
-            let buf = '', chars = 0, think = 0, last = 0, acc = '';
+            let buf = '', chars = 0, think = 0, last = 0, acc = '', sent = 0;
+            // Only what is new since the last tick goes over the wire (the full text every 250 ms is O(n²)); the receiver appends.
+            const partialPart = () => { if (!partial) return {}; const from = sent, delta = acc.slice(sent); sent = acc.length; return { delta, from }; };
             for (;;) {
                 const { value, done } = await reader.read();
                 if (done) break;
@@ -857,10 +859,10 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
                 let tail = '';
                 for (const l of lines) { const d = aiDelta(l); if (d) { chars += d.text.length; think += d.think.length; tail += d.text; if (partial) acc += d.text; } }
                 const now = Date.now();
-                if (now - last > 250) { last = now; progress({ phase: 'stream', chars, think, tail: tail.slice(-80), ...(partial ? { text: acc } : {}) }); }
+                if (now - last > 250) { last = now; progress({ phase: 'stream', chars, think, tail: tail.slice(-80), ...partialPart() }); }
             }
             raw += dec.decode();
-            progress({ phase: 'stream', chars, think, tail: '', ...(partial ? { text: acc } : {}) });
+            progress({ phase: 'stream', chars, think, tail: '', ...partialPart() });
         } else raw = await res.text();
         const text = parseAiResponseText(raw);
         if (!text) throw new Error('The model returned an empty response.');

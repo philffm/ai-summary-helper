@@ -38,7 +38,16 @@ export function aiComplete(system, user, onStage, signal, onProgress, { partial 
             try { chrome.runtime.sendMessage({ action: 'aiCancel', id }, () => void chrome.runtime.lastError); } catch (e) { /* worker gone */ }
             reject(cancelled());
         }, { once: true });
-        const onMsg = (m) => { if (m && m.action === 'aiProgress' && m.id === id) { if (onStage) onStage(m.phase === 'stream' ? 'write' : 'wait'); if (onProgress) onProgress(m); } };
+        // The worker sends the new part of the text per tick; rebuild the full text here so onProgress consumers keep reading `m.text`.
+        // `from` is the offset the delta starts at: a delta that does not continue what we hold (a missed tick) is dropped, so a
+        // half-built text is never handed on; the next tick is dropped too, the final reply comes with the response anyway.
+        let streamed = '';
+        const onMsg = (m) => { if (m && m.action === 'aiProgress' && m.id === id) {
+            if (typeof m.delta === 'string') {
+                if (m.from !== streamed.length) return;
+                streamed += m.delta; m = { ...m, text: streamed };
+            }
+            if (onStage) onStage(m.phase === 'stream' ? 'write' : 'wait'); if (onProgress) onProgress(m); } };
         const done = () => { try { chrome.runtime.onMessage.removeListener(onMsg); } catch (e) { /* no listener API */ } };
         try { chrome.runtime.onMessage.addListener(onMsg); } catch (e) { /* tests */ }
         if (onStage) { onStage('send'); setTimeout(() => onStage('wait'), 350); }
@@ -72,7 +81,7 @@ async function languageName() {
 
 // English names of the UI locale folders: tags follow the UI language (`uiLanguage`), not the summary language.
 const UI_LANGUAGE_NAMES = {
-    en: 'English', de: 'German', es: 'Spanish', fr: 'French', it: 'Italian', pt_PT: 'Portuguese', ru: 'Russian', hi: 'Hindi',
+    en: 'English', de: 'German', es: 'Spanish', fr: 'French', it: 'Italian', pt_PT: 'European Portuguese', pt_BR: 'Brazilian Portuguese', ru: 'Russian', hi: 'Hindi',
     ko: 'Korean', ja: 'Japanese', zh_CN: 'Simplified Chinese (简体中文)', zh_TW: 'Traditional Chinese (繁體中文, Taiwan)',
     zh_HK: 'Traditional Chinese (繁體中文, Hong Kong)', ar: 'Arabic'
 };

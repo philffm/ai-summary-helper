@@ -45,7 +45,7 @@ import StorageManager from './storageManager.js';
                     e.stopPropagation();
                     const tag = el.closest('.model-id-tag');
                     const model = tag.dataset.model;
-                    StorageManager.get(null).then(storageData => {
+                    StorageManager.get(SK.servicesConfig).then(storageData => {
                         const servicesConfig = storageData[SK.servicesConfig] || {};
                         let list = Array.isArray(servicesConfig[serviceId]?.customModel)
                           ? [...servicesConfig[serviceId].customModel]
@@ -69,7 +69,7 @@ import StorageManager from './storageManager.js';
                 const addModel = () => {
                     const val = addInput.value.trim();
                     if (!val) return;
-                    StorageManager.get(null).then(storageData => {
+                    StorageManager.get(SK.servicesConfig).then(storageData => {
                         const servicesConfig = storageData[SK.servicesConfig] || {};
                         const entry = servicesConfig[serviceId] || {};
                         let list = Array.isArray(entry.customModel) ? [...entry.customModel] : (entry.customModel ? [entry.customModel] : []);

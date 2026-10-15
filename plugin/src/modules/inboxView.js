@@ -442,10 +442,12 @@ export async function pollInbox({ minGapMs = 20000 } = {}) {
 export async function initInboxView() {
     try { if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage); } catch (_) { /* no runtime */ }
     await Promise.all([renderSettings(), renderList()]);
+    // Debounced: a poll or a sync writes several of these keys in a row; one redraw covers them all.
+    let listTimer = null, settingsTimer = null;
     chrome.storage.onChanged.addListener((changes, ns) => {
         if (ns !== 'local') return;
-        if (changes[SK.inboxPending]) renderList();
-        if (changes[SK.inboxPending] || changes[SK.inboxState] || changes[SK.inboxConfig]) renderSettings();
+        if (changes[SK.inboxPending]) { clearTimeout(listTimer); listTimer = setTimeout(renderList, 150); }
+        if (changes[SK.inboxPending] || changes[SK.inboxState] || changes[SK.inboxConfig]) { clearTimeout(settingsTimer); settingsTimer = setTimeout(renderSettings, 150); }
     });
     // collect whatever the phone shared since the popup was last open (always: a fresh popup, whatever the last check)
     manager.poll().then(() => { renderList(); renderSettings(); }).catch(() => {});

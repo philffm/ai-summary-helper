@@ -167,7 +167,7 @@ async function wireSend() {
   const group = $('rpSendGroup'), share = $('rpShare'), send = $('rpSend');
   if (!group || !raw) return;
   let pref = 'kindle';
-  try { pref = (await StorageManager.getAll()).deliveryPreference === 'localsend' ? 'localsend' : 'kindle'; } catch (_) { /* default */ }
+  try { pref = (await StorageManager.get('deliveryPreference')).deliveryPreference === 'localsend' ? 'localsend' : 'kindle'; } catch (_) { /* default */ }
   const canShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
   share.hidden = !canShare;
   share.textContent = stripEmoji(T('Share 🔗'));

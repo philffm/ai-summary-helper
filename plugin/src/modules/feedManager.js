@@ -153,6 +153,18 @@ function mergeBackground(background = {}) {
     });
 }
 
+/** True unless `status` is the only part of the background state that differs (or the old value is unknown). */
+function backgroundListChanged(prev, next) {
+    if (!prev || !next) return true;
+    const a = prev.items || [], b = next.items || [];
+    if (a.length !== b.length || (a.length && (a[0].id !== b[0].id || a[a.length - 1].id !== b[b.length - 1].id))) return true;
+    const ra = prev.ratings || {}, rb = next.ratings || {}, ca = prev.recaps || {}, cb = next.recaps || {};
+    const ka = Object.keys(rb);
+    if (Object.keys(ra).length !== ka.length || Object.keys(ca).length !== Object.keys(cb).length) return true;
+    if (ka.some(k => JSON.stringify(ra[k]) !== JSON.stringify(rb[k]))) return true;
+    return Object.keys(cb).some(k => (Number((ca[k] || {}).at) || 0) !== (Number(cb[k].at) || 0) || JSON.stringify(ca[k]) !== JSON.stringify(cb[k]));
+}
+
 // Count the current items' moods into the long-lived daily store (older days survive item pruning).
 function syncMood() {
     if (snapshotMood(moodDaily, items, itemMood, startOfDay)) chrome.storage.local.set({ [MOOD_KEY]: moodDaily }).catch(() => {});
@@ -2701,15 +2713,22 @@ export function initFeedManager(uiObj) {
     if (chrome.runtime.onMessage && chrome.runtime.onMessage.addListener) chrome.runtime.onMessage.addListener(onSummaryMessage);
     // Any new summary (also from the Summarize screen or a background tab) flips the matching card to "View summary".
     if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
-        let histTimer = null;
+        let histTimer = null, bgListDirty = false;
         chrome.storage.onChanged.addListener((ch) => {
             if (ch && ch[SK.feedBackground]) {
+                // The background run rewrites this key on every step. Redraw the list only when something it shows changed
+                // (items, ratings, recaps); a bare status update (the "last run" line) only needs the settings view.
+                // Sticky until the debounce fires: a status-only write must not cancel the list redraw an earlier write asked for.
+                bgListDirty = bgListDirty || backgroundListChanged(ch[SK.feedBackground].oldValue, ch[SK.feedBackground].newValue);
                 clearTimeout(histTimer);
                 histTimer = setTimeout(async () => {
+                    const listChanged = bgListDirty; bgListDirty = false;
                     const data = await chrome.storage.local.get({ [SK.feedBackground]: {} });
                     mergeBackground(data[SK.feedBackground] || {});
-                    syncMood();
-                    if (els && els.list) render();
+                    if (listChanged) {
+                        syncMood();
+                        if (els && els.list) render();
+                    }
                     if (document.getElementById('feedSettingsRoot')) renderFeedSettings();
                 }, 250);
             }
