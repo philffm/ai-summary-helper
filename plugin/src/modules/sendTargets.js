@@ -7,14 +7,28 @@ import { T } from './feedI18n.js';
 // ★ stays "active device" inside the Kindle / LocalSend lists.
 
 const $ = (id) => document.getElementById(id);
+
+// Same dual markup as popup.html: CSS shows the emoji or the SVG per html[data-icon-style].
+function iconPair(name, emoji, size) {
+    const NS = 'http://www.w3.org/2000/svg';
+    const wrap = document.createElement('span'); wrap.className = 'ic';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', `icon icon-${name}` + (size ? ` icon--${size}` : ''));
+    svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+    const use = document.createElementNS(NS, 'use'); use.setAttribute('href', `#i-${name}`);
+    svg.append(use);
+    const e = document.createElement('span'); e.className = 'ic-e'; e.setAttribute('aria-hidden', 'true'); e.textContent = emoji;
+    wrap.append(svg, e);
+    return wrap;
+}
 let view = 'list';
 
 const TARGETS = [
-    { id: 'kindle', icon: 'send', emoji: '📚', name: () => 'Kindle' },
+    { id: 'kindle', icon: 'book-open', emoji: '📚', name: () => 'Kindle' },
     { id: 'localsend', icon: 'smartphone', emoji: '📖', name: () => 'KOReader / LocalSend' },
     { id: 'phone', icon: 'smartphone', emoji: '📱', name: () => T('Phone inbox'), panel: 'phoneinbox' },
     { id: 'obsidian', icon: 'folders', emoji: '🗂️', name: () => 'Obsidian' },
-    { id: 'share', icon: 'share', emoji: '↗️', name: () => T('Share') },
+    { id: 'share', icon: 'share-2', emoji: '↗️', name: () => T('Share') },
 ];
 
 export function setSendView(next) {
@@ -64,7 +78,7 @@ export async function renderSendTargets() {
         const row = document.createElement('button');
         row.type = 'button'; row.className = 'settings-row send-target'; row.setAttribute('role', 'listitem');
         row.dataset.target = t.id;
-        const ic = document.createElement('span'); ic.className = 'settings-row-icon'; ic.textContent = t.emoji; ic.setAttribute('aria-hidden', 'true');
+        const ic = document.createElement('span'); ic.className = 'settings-row-icon'; ic.append(iconPair(t.icon, t.emoji, 'lg')); ic.setAttribute('aria-hidden', 'true');
         const tx = document.createElement('span'); tx.className = 'settings-row-text';
         const ti = document.createElement('span'); ti.className = 'settings-row-title'; ti.textContent = t.name();
         const su = document.createElement('span'); su.className = 'settings-row-sub'; su.textContent = st[t.id];
@@ -73,7 +87,7 @@ export async function renderSendTargets() {
         if (t.id === st.mode) {
             const tag = document.createElement('span'); tag.className = 'send-default-tag'; tag.textContent = T('Default'); row.append(tag);
         }
-        const ch = document.createElement('span'); ch.className = 'settings-row-chev'; ch.textContent = '›'; ch.setAttribute('aria-hidden', 'true');
+        const ch = document.createElement('span'); ch.className = 'settings-row-chev'; ch.append(iconPair('chevron-right', '›')); ch.setAttribute('aria-hidden', 'true');
         row.append(ch);
         row.addEventListener('click', async () => {
             if (t.panel) { const m = await import('./settingsNav.js'); m.openSettingsPanel(t.panel); return; }

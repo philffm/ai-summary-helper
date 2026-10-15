@@ -4380,8 +4380,8 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .detail-toolbar > .detail-split { flex: 1 1 0; min-width: 0; display: flex; align-items: stretch; border-left: 1px solid var(--outline); }
 .detail-toolbar > .detail-split > button { border: 0; border-radius: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: var(--fs-md); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 100%; }
 .detail-toolbar > .detail-split > button:hover { background: var(--accent-a08, rgba(127,127,127,.12)); }
-.detail-toolbar > .detail-split > .detail-split-main { flex: 1 1 auto; min-width: 0; padding: 0 10px; color: var(--accent); background: var(--accent-a15, transparent); }
-.detail-toolbar > .detail-split > .detail-split-more { flex: 0 0 30px; border-left: 1px solid var(--outline); color: var(--accent); font-size: 11px; }
+.detail-toolbar > .detail-split > .detail-split-main { flex: 1 1 auto; min-width: 0; padding: 0 10px; }
+.detail-toolbar > .detail-split > .detail-split-more { flex: 0 0 30px; border-left: 1px solid var(--outline); font-size: 11px; }
 .detail-toolbar:not(.with-labels) .detail-split .act-label { display: none; }
 .card-menu-tx { display: flex; flex-direction: column; min-width: 0; }
 .card-menu-sub { font-size: var(--fs-xs); color: var(--text-muted); font-weight: 400; }

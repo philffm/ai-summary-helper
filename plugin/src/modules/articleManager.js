@@ -2276,9 +2276,9 @@ const toolbarRun = (id, a) => ({
 // Send split button: where "Send" goes. The label shows the last used target; the ▾ lists them all.
 const SEND_TARGETS = {
     kindle: { icon: 'book-open', short: () => T('Kindle'), label: () => T('Send to Kindle'), run: (a) => sendToKindle(a) },
-    localsend: { icon: 'send', short: () => T('LocalSend'), label: () => T('Send via LocalSend'), run: (a) => dispatchToLocalSend(a) },
+    localsend: { icon: 'share-2', short: () => T('LocalSend'), label: () => T('Send via LocalSend'), run: (a) => dispatchToLocalSend(a) },
     phone: { icon: 'smartphone', short: () => T('Phone'), label: () => T('Send to phone'), run: (a) => sendToPhone(a) },
-    share: { icon: 'link', short: () => T('Share'), label: () => T('Share…'), run: (a) => shareArticle(a) },
+    share: { icon: 'send', short: () => T('Share'), label: () => T('Share…'), run: (a) => shareArticle(a) },
 };
 const sendTargetOk = (id, a) => id !== 'phone' || !!(a && a.id && a.url && !a.feedStub);
 const SEND_UNDO_SECONDS = 10;
@@ -2341,7 +2341,7 @@ async function openSendMenu(btn, expanded = '') {
             items.push({ icon: 'ellipsis', label: T('{n} more…', { n: devices.length - shown.length }), sub: def.short(), run: () => setTimeout(() => openSendMenu(btn, id), 0) });
         }
     }
-    items.push({ icon: 'link', label: T('Share…'), sub: T('System share: apps, AirDrop, mail'), sep: true, run: () => runSendTarget('share', a) });
+    items.push({ icon: 'send', label: T('Share…'), sub: T('System share: apps, AirDrop, mail'), sep: true, run: () => runSendTarget('share', a) });
     items.push({ icon: 'copy', label: T('Copy link'), run: async () => { try { await navigator.clipboard.writeText(a.url || ''); if (uiManagerRef) uiManagerRef.showToast(T('Link copied')); } catch (_) { /* ignore */ } } });
     items.push({ icon: 'settings', label: T('Manage targets…'), sep: true, run: () => { if (uiManagerRef) uiManagerRef.showScreen('settings'); import('./settingsNav.js').then(m => m.openSettingsPanel('send')).catch(() => {}); } });
     openItems(btn, items);
