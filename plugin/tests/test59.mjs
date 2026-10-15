@@ -86,7 +86,7 @@ assert(/parts\.push\(\{ text: finalReminder \}\)/.test(contentSrc), 'gemini: rem
 const { resolveLocale } = await imp('modules/i18n.js');
 assert.equal(resolveLocale('de'), 'de'); assert.equal(resolveLocale('de-DE'), 'de');
 assert.equal(resolveLocale('', 'de-AT'), 'de'); assert.equal(resolveLocale('', 'en-GB'), 'en');
-assert.equal(resolveLocale('pt'), 'pt_PT'); assert.equal(resolveLocale('', 'pt-BR'), 'pt_PT');
+assert.equal(resolveLocale('pt'), 'pt_PT'); assert.equal(resolveLocale('', 'pt-BR'), 'pt_BR'); assert.equal(resolveLocale('', 'pt-PT'), 'pt_PT');
 assert.equal(resolveLocale('zh-TW'), 'zh_TW'); assert.equal(resolveLocale('', 'zh-Hant'), 'zh_TW'); assert.equal(resolveLocale('zh'), 'zh_CN'); assert.equal(resolveLocale('', 'zh-HK'), 'zh_HK');
 assert.equal(resolveLocale('', 'sv-SE'), 'en'); assert.equal(resolveLocale('ar'), 'ar');
 // Send sheet: the digest intro uses the shared status card with streamed preview; cancel = skip intro.

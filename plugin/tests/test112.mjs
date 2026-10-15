@@ -51,7 +51,7 @@ assert.notEqual(conceptKey('Bundesliga'), conceptKey('News'));
 assert.equal(topicLabel('Economics', 'de'), 'Wirtschaft'); assert.equal(topicLabel('Nachrichten', 'en'), 'News'); assert.equal(topicLabel('Bundesliga', 'de'), 'Bundesliga');
 assert.equal(topicLabel('News', 'ja'), 'ニュース'); assert.equal(topicLabel('News', 'zh_HK'), '新聞');
 assert.equal(conceptList('de').length, Object.keys(CONCEPTS).length);
-for (const [id, byLocale] of Object.entries(CONCEPTS)) for (const l of ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar']) assert(byLocale[l] && byLocale[l].length, `${id} has a label for ${l}`);
+for (const [id, byLocale] of Object.entries(CONCEPTS)) for (const l of ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'pt_BR', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar']) assert(byLocale[l] && byLocale[l].length, `${id} has a label for ${l}`);
 assert.deepEqual(parseTopicTags('News, Nachrichten, Wirtschaft, Economics, Sport'), ['News', 'Wirtschaft', 'Sport'], 'cross-language duplicates collapse');
 // A feed whose tags are all known topics is not re-tagged when the UI language changes (it is just shown in the new language).
 assert(!needsTopics({ topics: ['News', 'Wirtschaft'], topicsLang: 'de' }, 'en'));

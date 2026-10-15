@@ -9,8 +9,14 @@ Store texts per market, SEO- and GEO-optimized (Oct 2026, based on 2.2.13). Fact
 | ja | AI Summary Helper – WebページとPDFをAIで要約 (36) | 75 | 5902 |
 | fr | AI Summary Helper – Résumer pages web et PDF avec l'IA (54) | 124 | 12874 |
 | es | AI Summary Helper – Resumir páginas web y PDF con IA (52) | 122 | 12027 |
+| pt_BR | AI Summary Helper – Resumir páginas web e PDFs com IA (53) | 129 | 14168 |
+| pt_PT | AI Summary Helper – Resumir páginas Web e PDF com IA (52) | 130 | – (uses pt_BR or en) |
+| ko | AI Summary Helper – 웹페이지와 PDF를 AI로 요약 (37) | 96 | 7998 |
+| zh_TW | AI Summary Helper – 用 AI 摘要網頁與 PDF (34) | 71 | 6066 |
+| zh_HK | AI Summary Helper – 以 AI 摘要網頁及 PDF (34) | 73 | 6057 |
 
-- **Title and summary** ship with the package: `extensionName` and `extensionDescription` in `plugin/src/_locales/<lang>/messages.json` (set for en, de, ja, fr, es).
+- **Title and summary** ship with the package: `extensionName` and `extensionDescription` in `plugin/src/_locales/<lang>/messages.json` (set for en, de, ja, fr, es, pt_BR, pt_PT, ko, zh_TW, zh_HK; zh_CN and the other UI locales still carry the older English name).
+- **zh_TW and zh_HK** are written separately (Taiwan vs. Hong Kong vocabulary), not character-converted. **pt_BR** is Brazilian Portuguese; pt_PT has its own title and summary.
 - **Descriptions** are pasted per language in the Developer Dashboard (Store listing → language). Copy `description.<lang>.txt` as is.
 
 ## Rules these texts follow

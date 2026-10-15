@@ -599,7 +599,7 @@ function initGeneralSettings(storageData) {
     // ── UI Language ────────────────────────────────────────────────
     const uiLangSelect = document.getElementById('uiLangSelect');
     if (uiLangSelect) {
-        const savedUiLang = storageData.uiLanguage || '';
+        const savedUiLang = ({ pt: 'pt_PT' })[storageData.uiLanguage] || storageData.uiLanguage || '';
         if (savedUiLang && ![...uiLangSelect.options].some(o => o.value === savedUiLang)) {
             // Language no longer offered (not actively maintained): keep it
             // visible for people who already picked it, so the control isn't blank.

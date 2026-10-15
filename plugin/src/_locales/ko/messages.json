@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – 웹페이지와 PDF를 AI로 요약"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "내 AI 키나 Ollama로 요약. RSS 리더 내장, 나중에 읽기, 하이라이트, Kindle 전송. 오픈소스, 로그인 불필요."
+    "message": "웹페이지, PDF, YouTube 영상을 한국어 등 41개 언어로 요약하는 무료 오픈소스 확장 프로그램. 내 API 키(BYOK) 또는 Ollama 로컬 AI로 사용합니다."
   },
   "fetchSummary": {
     "message": "요약 가져오기"

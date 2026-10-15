@@ -15,12 +15,12 @@ let fallbackDictionary = {};
 })();
 
 // Locale folders shipped in _locales (all fully translated; tests/test60.mjs enforces coverage).
-export const SUPPORTED_LOCALES = ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar'];
+export const SUPPORTED_LOCALES = ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'pt_BR', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar'];
 const RTL = new Set(['ar', 'he', 'fa', 'ur']);
 
 /**
  * Stored/browser language code → locale folder. '' (Browser Default) follows the browser's UI language;
- * 'de-DE' → de, 'pt'/'pt-BR' → pt_PT, 'zh-TW'/'zh-Hant' → zh_TW, 'zh-HK' → zh_HK, other zh → zh_CN; unknown → en.
+ * 'de-DE' → de, 'pt-BR' → pt_BR, 'pt-PT' and bare 'pt' → pt_PT, 'zh-TW'/'zh-Hant' → zh_TW, 'zh-HK' → zh_HK, other zh → zh_CN; unknown → en.
  */
 export function resolveLocale(code, browserLang) {
     let c = String(code || '').trim();

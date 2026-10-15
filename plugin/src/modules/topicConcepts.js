@@ -10,7 +10,7 @@
 // topicLabel(tag, locale)  → the known topic's label in that locale, otherwise the tag unchanged
 // conceptList(locale)      → the labels of all known topics in that locale (used as suggested vocabulary for the AI)
 
-const L = (en, de, es, fr, it, pt_PT, ru, hi, ko, ja, zh_CN, zh_TW, ar) => ({ en, de, es, fr, it, pt_PT, ru, hi, ko, ja, zh_CN, zh_TW, zh_HK: zh_TW, ar });
+const L = (en, de, es, fr, it, pt_PT, ru, hi, ko, ja, zh_CN, zh_TW, ar) => ({ en, de, es, fr, it, pt_PT, ru, hi, ko, ja, zh_CN, zh_TW, zh_HK: zh_TW, pt_BR: pt_PT, ar });
 
 export const CONCEPTS = {
     news: L(['News', 'Headlines', 'Breaking'], ['Nachrichten', 'News', 'Meldungen'], ['Noticias', 'Actualidad'], ['Actualités', 'Actualites', 'Infos', 'Nouvelles'], ['Notizie', 'Attualità', 'News'], ['Notícias', 'Noticias', 'Atualidade'], ['Новости'], ['समाचार', 'खबरें', 'ख़बरें'], ['뉴스', '소식'], ['ニュース'], ['新闻', '资讯'], ['新聞', '資訊', '新聞'], ['أخبار', 'الأخبار']),

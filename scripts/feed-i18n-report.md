@@ -1,22 +1,23 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1557. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1549 | 0 | 0 | 47 |
-| de | 1549 | 0 | 0 | 223 |
-| es | 1549 | 0 | 0 | 186 |
-| fr | 1549 | 0 | 0 | 217 |
-| hi | 1549 | 0 | 0 | 86 |
-| it | 1549 | 0 | 0 | 184 |
-| ja | 1549 | 0 | 0 | 95 |
-| ko | 1549 | 0 | 0 | 26 |
-| pt_PT | 1549 | 0 | 0 | 176 |
-| ru | 1549 | 0 | 0 | 117 |
-| zh_CN | 1549 | 0 | 0 | 2 |
-| zh_HK | 1549 | 0 | 0 | 2 |
-| zh_TW | 1549 | 0 | 0 | 2 |
+| ar | 1549 | 8 | 0 | 47 |
+| de | 1549 | 8 | 0 | 223 |
+| es | 1549 | 8 | 0 | 186 |
+| fr | 1549 | 8 | 0 | 217 |
+| hi | 1549 | 8 | 0 | 86 |
+| it | 1549 | 8 | 0 | 184 |
+| ja | 1549 | 8 | 0 | 95 |
+| ko | 1549 | 8 | 0 | 26 |
+| pt_BR | 1549 | 8 | 0 | 185 |
+| pt_PT | 1549 | 8 | 0 | 202 |
+| ru | 1549 | 8 | 0 | 117 |
+| zh_CN | 1549 | 8 | 0 | 2 |
+| zh_HK | 1549 | 8 | 0 | 2 |
+| zh_TW | 1549 | 8 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -1116,6 +1117,209 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | This pairing is no longer valid. Unpair and pair again. | 이 페어링은 더 이상 유효하지 않습니다. 페어링을 해제한 뒤 다시 페어링하세요. | 76 vs 55 | 1.38× |
 | Runs entirely in your browser — no data leaves it. | 모든 작업이 브라우저 안에서 처리되며 데이터는 밖으로 나가지 않아요. | 67 vs 50 | 1.34× |
 
+### pt_BR
+| English | Translation | width | ratio |
+|---|---|---|---|
+| Off | Desativado | 10 vs 3 | 3.33× |
+| off | desativado | 10 vs 3 | 3.33× |
+| Inbox | Caixa de entrada | 16 vs 5 | 3.2× |
+| Add | Adicionar | 9 vs 3 | 3× |
+| Ask | Perguntar | 9 vs 3 | 3× |
+| Newer | Mais recentes | 13 vs 5 | 2.6× |
+| Add tag | Adicionar etiqueta | 18 vs 7 | 2.57× |
+| Play | Reproduzir | 10 vs 4 | 2.5× |
+| Solo | Individual | 10 vs 4 | 2.5× |
+| Phone inbox | Caixa de entrada do celular | 27 vs 11 | 2.45× |
+| Changelog | Registro de alterações | 22 vs 9 | 2.44× |
+| Worksheet | Roteiro de verificação | 22 vs 9 | 2.44× |
+| Older | Mais antigos | 12 vs 5 | 2.4× |
+| Share | Compartilhar | 12 vs 5 | 2.4× |
+| Reset toolbar | Redefinir barra de ferramentas | 30 vs 13 | 2.31× |
+| contact me | entre em contato comigo | 23 vs 10 | 2.3× |
+| + Add | + Adicionar | 11 vs 5 | 2.2× |
+| Best value | Melhor custo-benefício | 22 vs 10 | 2.2× |
+| Saved | Economizado | 11 vs 5 | 2.2× |
+| Table view | Visualização em tabela | 22 vs 10 | 2.2× |
+| shared tag | etiqueta compartilhada | 22 vs 10 | 2.2× |
+| Custom | Personalizado | 13 vs 6 | 2.17× |
+| Share… | Compartilhar… | 13 vs 6 | 2.17× |
+| Graph view | Visualização em grafo | 21 vs 10 | 2.1× |
+| No background run yet. | Ainda não houve uma execução em segundo plano. | 46 vs 22 | 2.09× |
+| Pane {n} view | Visualização do painel {n} | 25 vs 12 | 2.08× |
+| Restore to Inbox | Restaurar para a caixa de entrada | 33 vs 16 | 2.06× |
+| AI-rated | Avaliados por IA | 16 vs 8 | 2× |
+| Casual | Descontraído | 12 vs 6 | 2× |
+| Line spacing | Espaçamento entre linhas | 24 vs 12 | 2× |
+| ▶ Play | ▶ Reproduzir | 12 vs 6 | 2× |
+| 💬 Ask | 💬 Perguntar | 12 vs 6 | 2× |
+| ＋ Add | ＋ Adicionar | 12 vs 6 | 2× |
+| ↩ Restore to Inbox | ↩ Restaurar para a caixa de entrada | 35 vs 18 | 1.94× |
+| Activity view | Visualização de atividade | 25 vs 13 | 1.92× |
+| Customize toolbar… | Personalizar barra de ferramentas… | 34 vs 18 | 1.89× |
+| Add custom model | Adicionar modelo personalizado | 30 vs 16 | 1.88× |
+| Share 🔗 | Compartilhar 🔗 | 15 vs 8 | 1.88× |
+| Add DOI | Adicionar DOI | 13 vs 7 | 1.86× |
+| My own API key | Minha própria chave de API | 26 vs 14 | 1.86× |
+| Own key | Chave própria | 13 vs 7 | 1.86× |
+| Sync feed list | Sincronizar lista de feeds | 26 vs 14 | 1.86× |
+| Account Sync | Sincronização da conta | 22 vs 12 | 1.83× |
+| Newest first | Mais recentes primeiro | 22 vs 12 | 1.83× |
+| No devices added yet. | Ainda não há dispositivos adicionados. | 38 vs 21 | 1.81× |
+| Share failed: {message} | Falha no compartilhamento: {message} | 29 vs 16 | 1.81× |
+| last opened {d} | aberto pela última vez {d} | 25 vs 14 | 1.79× |
+| Last used | Usado por último | 16 vs 9 | 1.78× |
+| Name tags | Nomear etiquetas | 16 vs 9 | 1.78× |
+| Text size | Tamanho do texto | 16 vs 9 | 1.78× |
+| last used | usada por último | 16 vs 9 | 1.78× |
+| No date found | Nenhuma data encontrada | 23 vs 13 | 1.77× |
+| Add feed | Adicionar feed | 14 vs 8 | 1.75× |
+| All time | Todo o período | 14 vs 8 | 1.75× |
+| Auto length bias | Ajuste automático do tamanho | 28 vs 16 | 1.75× |
+| Send & Share | Enviar e compartilhar | 21 vs 12 | 1.75× |
+| Syncing… | Sincronizando… | 14 vs 8 | 1.75× |
+| Copied to clipboard! 📋 | Copiado para a área de transferência! 📋 | 40 vs 23 | 1.74× |
+| No settings match “{query}”. | Nenhuma configuração corresponde a “{query}”. | 40 vs 23 | 1.74× |
+| Add tag or DOI… | Adicionar etiqueta ou DOI… | 26 vs 15 | 1.73× |
+| Auto-Detect | Detecção automática | 19 vs 11 | 1.73× |
+| Check again | Verificar novamente | 19 vs 11 | 1.73× |
+| Free Trial Mode | Modo de avaliação gratuita | 26 vs 15 | 1.73× |
+| UI Language | Idioma da interface | 19 vs 11 | 1.73× |
+| UI language | Idioma da interface | 19 vs 11 | 1.73× |
+| Last synced {when} | Última sincronização: {when} | 24 vs 14 | 1.71× |
+| World news | Notícias do mundo | 17 vs 10 | 1.7× |
+| Check now | Verificar agora | 15 vs 9 | 1.67× |
+| Motion on | Movimento ativo | 15 vs 9 | 1.67× |
+| Page text | Texto da página | 15 vs 9 | 1.67× |
+| Pairing code | Código de pareamento | 20 vs 12 | 1.67× |
+| Save options | Opções de salvamento | 20 vs 12 | 1.67× |
+| Source check | Verificação de fonte | 20 vs 12 | 1.67× |
+| ☁️ Top terms | ☁️ Termos principais | 20 vs 12 | 1.67× |
+| AI-rated: heavy news | Avaliado por IA: notícias pesadas | 33 vs 20 | 1.65× |
+| Add Kindle device | Adicionar dispositivo Kindle | 28 vs 17 | 1.65× |
+| No Kindle email set. | Nenhum e-mail do Kindle definido. | 33 vs 20 | 1.65× |
+| Unpair and delete inbox | Desparear e excluir a caixa de entrada | 38 vs 23 | 1.65× |
+| Updates & storage | Atualizações e armazenamento | 28 vs 17 | 1.65× |
+| Privacy policy | Política de privacidade | 23 vs 14 | 1.64× |
+| Unsubscribe | Cancelar inscrição | 18 vs 11 | 1.64× |
+| waiting {s}s | aguardando há {s} s | 18 vs 11 | 1.64× |
+| Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
+| Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
+| {name} · API key set | {name} · chave da API definida | 26 vs 16 | 1.63× |
+| Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
+| Feed refresh interval | Intervalo de atualização dos feeds | 34 vs 21 | 1.62× |
+| Reading speed | Velocidade de leitura | 21 vs 13 | 1.62× |
+| Send to phone | Enviar para o celular | 21 vs 13 | 1.62× |
+| ✨ Smart refresh order | ✨ Ordem de atualização inteligente | 34 vs 21 | 1.62× |
+| Custom prompt text | Texto do prompt personalizado | 29 vs 18 | 1.61× |
+| Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
+| Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
+| Instant read | Leitura instantânea | 19 vs 12 | 1.58× |
+| Open model settings | Abrir configurações de modelos | 30 vs 19 | 1.58× |
+| Symbol style | Estilo dos símbolos | 19 vs 12 | 1.58× |
+| Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
+| View: Filtered | Visualização: filtrada | 22 vs 14 | 1.57× |
+| — Feel free to | — Fique à vontade para | 22 vs 14 | 1.57× |
+| Delete settings? | Excluir as configurações? | 25 vs 16 | 1.56× |
+| Magic code sent! ✨ Check your inbox. | Código mágico enviado! ✨ Verifique sua caixa de entrada. | 56 vs 36 | 1.56× |
+| No key facts found | Nenhum fato-chave encontrado | 28 vs 18 | 1.56× |
+| Sort: Read share | Ordenar: porcentagem lida | 25 vs 16 | 1.56× |
+| Add LocalSend device | Adicionar dispositivo LocalSend | 31 vs 20 | 1.55× |
+| No tags found. Add tags to your summaries! | Nenhuma etiqueta encontrada. Adicione etiquetas aos seus resumos! | 65 vs 42 | 1.55× |
+| {n} tag lists to name | {n} listas de etiquetas a nomear | 31 vs 20 | 1.55× |
+| Can't reach byPhil Cloud right now. | Não é possível conectar ao byPhil Cloud neste momento. | 54 vs 35 | 1.54× |
+| Feed sync is on. Scan the new code in the phone app once. | A sincronização de feeds está ativada. Escaneie o novo código uma vez no app do celular. | 88 vs 57 | 1.54× |
+| No receiver address set. | Nenhum endereço de receptor definido. | 37 vs 24 | 1.54× |
+| Not enough rated items yet | Ainda não há itens avaliados suficientes | 40 vs 26 | 1.54× |
+| Pair your phone first: Settings → Phone inbox. | Pareie primeiro o celular: Configurações → Caixa de entrada do celular. | 71 vs 46 | 1.54× |
+| Showing top tags (archive is large) | Mostrando as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
+| {n} files sent | {n} arquivos enviados | 20 vs 13 | 1.54× |
+| ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
+| (on iOS, hold to drag for 2 seconds) | (no iOS, mantenha pressionado 2 segundos para arrastar) | 55 vs 36 | 1.53× |
+| Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado em {ip} — clique em Adicionar para salvá-lo ✓ | 66 vs 43 | 1.53× |
+| No author found | Nenhum autor encontrado | 23 vs 15 | 1.53× |
+| Switch on feed sync | Ativar sincronização de feeds | 29 vs 19 | 1.53× |
+| Upgrade to Pro Pass | Fazer upgrade para o Pro Pass | 29 vs 19 | 1.53× |
+| Verify & Log In | Verificar e fazer login | 23 vs 15 | 1.53× |
+| 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
+| AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
+| Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone. | A sincronização de feeds está ativada: sua lista de feeds (sem artigos) é sincronizada com o celular com criptografia de ponta a ponta. | 135 vs 89 | 1.52× |
+| Mood on/off (tone analysis) | Humor ativado/desativado (análise de tom) | 41 vs 27 | 1.52× |
+| System share: apps, AirDrop, mail | Compartilhamento do sistema: apps, AirDrop, e-mail | 50 vs 33 | 1.52× |
+| Model is writing | O modelo está escrevendo | 24 vs 16 | 1.5× |
+| Press ? anywhere outside a text field | Pressione ? em qualquer lugar fora de um campo de texto | 55 vs 37 | 1.49× |
+| Click again to unpair | Clique novamente para desparear | 31 vs 21 | 1.48× |
+| Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
+| Delete all data | Excluir todos os dados | 22 vs 15 | 1.47× |
+| Export settings | Exportar configurações | 22 vs 15 | 1.47× |
+| Import settings | Importar configurações | 22 vs 15 | 1.47× |
+| Model Identifiers | Identificadores de modelo | 25 vs 17 | 1.47× |
+| Model is writing… | O modelo está escrevendo… | 25 vs 17 | 1.47× |
+| No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
+| Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |
+| Queue a question… | Colocar pergunta na fila… | 25 vs 17 | 1.47× |
+| Used up — local models still work. | Esgotada: os modelos locais continuam funcionando. | 50 vs 34 | 1.47× |
+| ✨ {label} recap is ready | ✨ O resumo de {label} está pronto | 28 vs 19 | 1.47× |
+| Last background run: {time} · {result} | Última execução em segundo plano: {time} · {result} | 41 vs 28 | 1.46× |
+| Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clique com o botão direito no ícone do Ollama na bandeja (canto inferior direito) e escolha <b>Quit</b>. | 104 vs 71 | 1.46× |
+| Customize text size, spacing, font, motion | Personalizar tamanho do texto, espaçamento, fonte e movimento | 61 vs 42 | 1.45× |
+| Edit feeds & tags in Settings | Editar feeds e etiquetas nas configurações | 42 vs 29 | 1.45× |
+| Ghost Highlight Amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
+| Ghost highlight amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
+| Page text · {n} words | Texto da página · {n} palavras | 29 vs 20 | 1.45× |
+| a run takes about {t} | uma execução leva cerca de {t} | 29 vs 20 | 1.45× |
+| ☁️ Free cloud models | ☁️ Modelos na nuvem gratuitos | 29 vs 20 | 1.45× |
+| Add to favorites | Adicionar aos favoritos | 23 vs 16 | 1.44× |
+| Could not add feed | Não foi possível adicionar | 26 vs 18 | 1.44× |
+| Delete all data? | Excluir todos os dados? | 23 vs 16 | 1.44× |
+| Delete all data… | Excluir todos os dados… | 23 vs 16 | 1.44× |
+| Flesch reading ease: {ease}/100 | Facilidade de leitura de Flesch: {ease}/100 | 39 vs 27 | 1.44× |
+| Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
+| No matches found | Nenhuma correspondência | 23 vs 16 | 1.44× |
+| Not set up yet — add a receiver in Settings | Ainda não configurado — adicione um receptor nas Configurações | 62 vs 43 | 1.44× |
+| Remove page text | Remover texto da página | 23 vs 16 | 1.44× |
+| Topics over time | Temas ao longo do tempo | 23 vs 16 | 1.44× |
+| {n} unopened 30d+ | {n} não abertos há 30+ d | 23 vs 16 | 1.44× |
+| The feed list is too large to sync. | A lista de feeds é grande demais para sincronizar. | 50 vs 35 | 1.43× |
+| Feed list synced: {added} added, {updated} changed, {removed} removed | Lista de feeds sincronizada: {added} adicionados, {updated} alterados, {removed} removidos | 71 vs 50 | 1.42× |
+| Use "{name}" as custom language code | Usar "{name}" como código de idioma personalizado | 45 vs 32 | 1.41× |
+| Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Enviado. Para recebê-lo, escaneie o novo código uma vez no app do celular (Configurações → Caixa de entrada do celular). | 120 vs 86 | 1.4× |
+| List view: {tags} tags. Press Tab to browse, Enter to filter. | Visualização em lista: {tags} etiquetas. Use Tab para navegar e Enter para filtrar. | 79 vs 57 | 1.39× |
+| Not set up yet — add your Kindle in Settings | Ainda não configurado — adicione seu Kindle nas Configurações | 61 vs 44 | 1.39× |
+| Send to phone is on. Scan the new code in the phone app once. | Enviar para o celular está ativado. Escaneie o novo código uma vez no app do celular. | 85 vs 61 | 1.39× |
+| Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Enviar para o celular está ativado: use ⋯ → Enviar para o celular em um artigo para lê-lo em qualquer lugar. | 108 vs 79 | 1.37× |
+| to your Kindle's approved senders first — | à lista de remetentes aprovados do seu Kindle primeiro — | 56 vs 41 | 1.37× |
+| {name} · API key missing — add it in Settings | {name} · falta a chave da API — adicione-a nas Configurações | 56 vs 41 | 1.37× |
+| By default, backups omit API keys, sign-in details, license keys, and install identifiers. Keep exported files private. | Por padrão, os backups não incluem chaves de API, dados de login, chaves de licença nem identificadores de instalação. Mantenha os arquivos exportados em sigilo. | 161 vs 119 | 1.35× |
+| Couldn't save this page. Open it once and try again. | Não foi possível salvar esta página. Abra-a uma vez e tente novamente. | 70 vs 52 | 1.35× |
+| Export or restore all settings as a JSON file. | Exporte ou restaure todas as configurações em um arquivo JSON. | 62 vs 46 | 1.35× |
+| Only {r} rated items — at least 5 are needed | Apenas {r} artigos avaliados — são necessários pelo menos 5 | 58 vs 43 | 1.35× |
+| Mood history is kept for 13 months, even after items are removed. | O histórico de humor é mantido por 13 meses, mesmo depois que os artigos são removidos. | 87 vs 65 | 1.34× |
+| This PDF has no selectable text (probably a scan). Text recognition is not supported yet. | Este PDF não tem texto selecionável (provavelmente uma digitalização). O reconhecimento de texto ainda não é suportado. | 119 vs 89 | 1.34× |
+| 📚 Send to Kindle
+
+Free tier: 3 Kindle sends included.
+Upgrade to Pro for unlimited.
+
+Make sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).
+
+Send this article to Kindle? | 📚 Enviar para o Kindle
+
+Plano gratuito: 3 envios para o Kindle incluídos.
+Atualize para o Pro para envios ilimitados.
+
+Certifique-se de que kindle@byphil.eu está na lista de remetentes aprovados do seu Kindle (veja a ajuda da Amazon).
+
+Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
+| Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically. | Os feeds e caixas de entrada (feed do LinkedIn, página inicial do X, …) já são ignorados automaticamente. | 105 vs 79 | 1.33× |
+| Could not reach Ollama. Make sure it is running and the endpoint is correct. | Não foi possível conectar ao Ollama. Verifique se ele está em execução e se o endpoint está correto. | 100 vs 76 | 1.32× |
+| The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | À noite, vovô Kowalsky vê o ímã cair no pé do pinguim queixoso. Os resumos usam este tamanho e espaçamento. | 107 vs 81 | 1.32× |
+| AI adds 2–3 sentences on top of the digest | A IA acrescenta 2–3 frases no início do resumo conjunto | 55 vs 42 | 1.31× |
+| Automatic light-blue quote highlights from summaries | Destaques de citações em azul-claro automáticos a partir dos resumos | 68 vs 52 | 1.31× |
+| Your own mix of batch size, requests per run and interval. | Sua própria combinação de tamanho de lote, pedidos por execução e intervalo. | 76 vs 58 | 1.31× |
+| e.g. Prefer European news and keep it upbeat. | ex.: Prefira notícias europeias e mantenha um tom positivo. | 59 vs 45 | 1.31× |
+| Emoji look different on every device. Icons look the same everywhere. | Os emojis têm aparência diferente em cada dispositivo. Os ícones são iguais em todo lugar. | 90 vs 69 | 1.3× |
+| Refresh feeds that post often and that you read first | Atualizar primeiro os feeds que publicam com frequência e que você lê | 69 vs 53 | 1.3× |
+
 ### pt_PT
 | English | Translation | width | ratio |
 |---|---|---|---|
@@ -1143,16 +1347,23 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | My own API key | A minha própria chave de API | 28 vs 14 | 2× |
 | Pairing code | Código de emparelhamento | 24 vs 12 | 2× |
 | Preset | Predefinição | 12 vs 6 | 2× |
+| Rename | Mudar o nome | 12 vs 6 | 2× |
+| Reset toolbar | Repor barra de ferramentas | 26 vs 13 | 2× |
 | ▶ Play | ▶ Reproduzir | 12 vs 6 | 2× |
 | 💬 Ask | 💬 Perguntar | 12 vs 6 | 2× |
 | ＋ Add | ＋ Adicionar | 12 vs 6 | 2× |
+| Fill from DOI | Preencher a partir do DOI | 25 vs 13 | 1.92× |
 | Pair a phone | Emparelhar um telemóvel | 23 vs 12 | 1.92× |
 | shared tag | etiqueta partilhada | 19 vs 10 | 1.9× |
+| Customize toolbar… | Personalizar barra de ferramentas… | 34 vs 18 | 1.89× |
+| Worksheet | Ficha de trabalho | 17 vs 9 | 1.89× |
 | Add custom model | Adicionar modelo personalizado | 30 vs 16 | 1.88× |
 | Unpair and delete inbox | Desemparelhar e eliminar a caixa de entrada | 43 vs 23 | 1.87× |
+| Add DOI | Adicionar DOI | 13 vs 7 | 1.86× |
 | Backup · tags · delete | Cópia de segurança · etiquetas · eliminar | 41 vs 22 | 1.86× |
 | Easy-read font | Tipo de letra fácil de ler | 26 vs 14 | 1.86× |
 | Own key | Chave própria | 13 vs 7 | 1.86× |
+| Renamed | Nome alterado | 13 vs 7 | 1.86× |
 | Sync feed list | Sincronizar lista de feeds | 26 vs 14 | 1.86× |
 | Account Sync | Sincronização da conta | 22 vs 12 | 1.83× |
 | Newest first | Mais recentes primeiro | 22 vs 12 | 1.83× |
@@ -1161,8 +1372,11 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Switch tab | Mudar de separador | 18 vs 10 | 1.8× |
 | last opened {d} | aberto pela última vez {d} | 25 vs 14 | 1.79× |
 | — Feel free to | — Sinta-se à vontade para | 25 vs 14 | 1.79× |
+| Last used | Usado por último | 16 vs 9 | 1.78× |
 | Name tags | Nomear etiquetas | 16 vs 9 | 1.78× |
 | Text size | Tamanho do texto | 16 vs 9 | 1.78× |
+| last used | usada por último | 16 vs 9 | 1.78× |
+| No date found | Nenhuma data encontrada | 23 vs 13 | 1.77× |
 | Send to phone | Enviar para o telemóvel | 23 vs 13 | 1.77× |
 | Add feed | Adicionar feed | 14 vs 8 | 1.75× |
 | All time | Todo o período | 14 vs 8 | 1.75× |
@@ -1182,6 +1396,8 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Check now | Verificar agora | 15 vs 9 | 1.67× |
 | Click again to unpair | Clique novamente para desemparelhar | 35 vs 21 | 1.67× |
 | Motion on | Movimento ativo | 15 vs 9 | 1.67× |
+| Page text | Texto da página | 15 vs 9 | 1.67× |
+| Source check | Verificação da fonte | 20 vs 12 | 1.67× |
 | ☁️ Top terms | ☁️ Termos principais | 20 vs 12 | 1.67× |
 | AI-rated: heavy news | Avaliado por IA: notícias pesadas | 33 vs 20 | 1.65× |
 | Add Kindle device | Adicionar dispositivo Kindle | 28 vs 17 | 1.65× |
@@ -1199,6 +1415,7 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key set | {name} · chave da API definida | 26 vs 16 | 1.63× |
 | Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
 | Feed refresh interval | Intervalo de atualização dos feeds | 34 vs 21 | 1.62× |
+| Not paired · pair now | Não emparelhado · emparelhar agora | 34 vs 21 | 1.62× |
 | Reading speed | Velocidade de leitura | 21 vs 13 | 1.62× |
 | {n} files sent | {n} ficheiros enviados | 21 vs 13 | 1.62× |
 | ✨ Smart refresh order | ✨ Ordem de atualização inteligente | 34 vs 21 | 1.62× |
@@ -1208,6 +1425,7 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No settings match “{query}”. | Nenhuma definição corresponde a “{query}”. | 37 vs 23 | 1.61× |
 | Full style text | Texto de estilo completo | 24 vs 15 | 1.6× |
 | Hard facts | Factos concretos | 16 vs 10 | 1.6× |
+| Open in new tab | Abrir num novo separador | 24 vs 15 | 1.6× |
 | Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
 | Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
 | Feed sync is on. Scan the new code in the phone app once. | A sincronização de feeds está ativa. Leia o novo código uma vez na aplicação do telemóvel. | 90 vs 57 | 1.58× |
@@ -1231,6 +1449,7 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Showing top tags (archive is large) | A mostrar as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | Delete all data | Eliminar todos os dados | 23 vs 15 | 1.53× |
+| No author found | Nenhum autor encontrado | 23 vs 15 | 1.53× |
 | Switch on feed sync | Ativar sincronização de feeds | 29 vs 19 | 1.53× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
@@ -1241,11 +1460,15 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Delete all data… | Eliminar todos os dados… | 24 vs 16 | 1.5× |
 | Model is writing | O modelo está a escrever | 24 vs 16 | 1.5× |
 | No receiver address set. | Nenhum endereço de recetor definido. | 36 vs 24 | 1.5× |
+| No saved images. | Nenhuma imagem guardada. | 24 vs 16 | 1.5× |
 | ↩ Restore to Inbox | ↩ Repor na caixa de entrada | 27 vs 18 | 1.5× |
 | Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
+| Sending to {name} in {n} s | A enviar para {name} dentro de {n} s | 31 vs 21 | 1.48× |
+| Filled from doi.org. Check and change anything. | Preenchido a partir de doi.org. Verifique e altere o que for preciso. | 69 vs 47 | 1.47× |
 | Model Identifiers | Identificadores de modelo | 25 vs 17 | 1.47× |
 | Model is writing… | O modelo está a escrever… | 25 vs 17 | 1.47× |
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
+| Nothing old enough. | Nada suficientemente antigo. | 28 vs 19 | 1.47× |
 | Open in sidebar | Abrir na barra lateral | 22 vs 15 | 1.47× |
 | Queue a question… | Colocar pergunta em fila… | 25 vs 17 | 1.47× |
 | Used up — local models still work. | Esgotada: os modelos locais continuam a funcionar. | 50 vs 34 | 1.47× |
@@ -1259,13 +1482,17 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Ghost highlight amount | Quantidade de destaques fantasma | 32 vs 22 | 1.45× |
 | Page text · {n} words | Texto da página · {n} palavras | 29 vs 20 | 1.45× |
 | Scan failed. Enter IP manually. | Falha na procura. Introduza o IP manualmente. | 45 vs 31 | 1.45× |
+| System share: apps, AirDrop, mail | Partilha do sistema: aplicações, AirDrop, e-mail | 48 vs 33 | 1.45× |
 | ☁️ Free cloud models | ☁️ Modelos na nuvem gratuitos | 29 vs 20 | 1.45× |
+| Add to favorites | Adicionar aos favoritos | 23 vs 16 | 1.44× |
+| Authority / agency | Entidade pública / agência | 26 vs 18 | 1.44× |
 | Could not add feed | Não foi possível adicionar | 26 vs 18 | 1.44× |
 | Delete settings? | Eliminar as definições? | 23 vs 16 | 1.44× |
 | Flesch reading ease: {ease}/100 | Facilidade de leitura de Flesch: {ease}/100 | 39 vs 27 | 1.44× |
 | Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
 | Mood on/off (tone analysis) | Humor ligado/desligado (análise de tom) | 39 vs 27 | 1.44× |
 | No matches found | Nenhuma correspondência | 23 vs 16 | 1.44× |
+| Remove page text | Remover texto da página | 23 vs 16 | 1.44× |
 | Topics over time | Temas ao longo do tempo | 23 vs 16 | 1.44× |
 | Sources · rename · tags · mute | Fontes · mudar nome · etiquetas · silenciar | 43 vs 30 | 1.43× |
 | (on iOS, hold to drag for 2 seconds) | (no iOS, mantenha premido 2 segundos para arrastar) | 51 vs 36 | 1.42× |
@@ -1275,7 +1502,9 @@ Strings: 1549. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Paired · not checked yet | Emparelhado · ainda não verificado | 34 vs 24 | 1.42× |
 | Preset and custom prompt | Prompt predefinido e personalizado | 34 vs 24 | 1.42× |
 | No articles saved yet. | Ainda não há artigos guardados. | 31 vs 22 | 1.41× |
+| Remove page text of old articles | Remover o texto da página dos artigos antigos | 45 vs 32 | 1.41× |
 | Use "{name}" as custom language code | Usar "{name}" como código de idioma personalizado | 45 vs 32 | 1.41× |
+| Hints, not ratings: you decide how far to trust this source. | Pistas, não classificações: cabe-lhe a si decidir até que ponto confia nesta fonte. | 83 vs 60 | 1.38× |
 | Invalid backup file. Please select a valid AI Summary Helper export. | Ficheiro de cópia de segurança inválido. Selecione uma exportação válida do AI Summary Helper. | 94 vs 68 | 1.38× |
 | Couldn't save this page. Open it once and try again. | Não foi possível guardar esta página. Abra-a uma vez e tente novamente. | 71 vs 52 | 1.37× |
 | The synced feed list could not be read. Unpair and pair again. | Não foi possível ler a lista de feeds sincronizada. Desemparelhe e emparelhe de novo. | 85 vs 62 | 1.37× |
@@ -1301,6 +1530,7 @@ Atualize para o Pro para envios ilimitados.
 Certifique-se de que kindle@byphil.eu está na lista de remetentes aprovados do seu Kindle (veja a ajuda da Amazon).
 
 Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
+| Deleting removes the summary and the saved page text. Export a backup first if unsure. | Eliminar remove o resumo e o texto da página guardado. Em caso de dúvida, exporte primeiro uma cópia de segurança. | 114 vs 86 | 1.33× |
 | Feeds and inboxes (LinkedIn feed, X home, …) are already skipped automatically. | Os feeds e caixas de entrada (feed do LinkedIn, página inicial do X, …) já são ignorados automaticamente. | 105 vs 79 | 1.33× |
 | Include API keys and sign-in details (anyone with the file can use them) | Incluir chaves API e dados de início de sessão (qualquer pessoa com o ficheiro pode utilizá-los) | 96 vs 72 | 1.33× |
 | The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | À noite, vovô Kowalsky vê o ímã cair no pé do pinguim queixoso. Os resumos usam este tamanho e espaçamento. | 107 vs 81 | 1.32× |
@@ -1448,3 +1678,147 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
 | ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
+
+## Problems
+
+en is missing 8 strings (run merge)
+
+### ar: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### de: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### es: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### fr: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### hi: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### it: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### ja: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### ko: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### pt_BR: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### pt_PT: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### ru: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### zh_CN: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### zh_HK: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
+
+### zh_TW: 8 missing
+- Enter the server address in Settings
+- Last used vault
+- No model list from this server — type the model name
+- Obsidian vault and folder
+- Server not reachable (is it running? is the URL right?)
+- Server rejects the key — check it in Settings
+- Server · {n} models
+- {name} · own server
