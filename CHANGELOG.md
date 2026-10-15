@@ -5,6 +5,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.19 (2026-10-15)
+
 - **Your own OpenAI-compatible server.** Settings › Models: a new provider "OpenAI-compatible server" for LM Studio, llama.cpp, vLLM, LiteLLM, Open WebUI, LocalAI, Jan or Ollama via `/v1`. Enter `https://host/v1` (or the full `…/chat/completions`), an optional key and a model name; the model list is read from `/models` when the server offers it. Background jobs (Feed rating, recaps) stay on Ollama.
 - **Internal: foundation for send targets (no visible change).** A background outbox with retry, a per-target ledger and a restricted fetch for future adapters (WebDAV and others). Nothing is sent yet and no existing setting or data is touched. Backups never contain the send queue.
 - **Send to Obsidian: vault and folder.** Settings › Send & Share › Obsidian: optional vault name and folder; the note opens there (`vault=` / `file=`). The file name is the same stable name as in the archive export.
@@ -12,6 +14,35 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - **Notes: one front matter schema, a stable id.** Markdown notes from the extension (single article and archive export) and from the Android app use the same keys: `title`, `source`, `author`, `site`, `created`, `tags`, `mood` (extension), `aish_id`, `aish_format: 1`. `url` and `date` stay as copies of `source` and `created` for a transition period; they will be removed in a later release, so update Dataview queries to `source` and `created`.
 - **Archive export: file names no longer depend on the order of the archive.** The oldest article with a title keeps the plain name, later ones with the same title get ` (<id tail>)` instead of a running number, so exporting again into the same folder does not rename or overwrite other notes. Notes without a title are `Untitled (<id tail>)`.
 - **Exchange format documented:** AISH Article JSON v1 (`plugin/formats/article-json-v1.md`). The phone envelope v2 gets an optional `aid`.
+
+### Commit log
+
+#### Changed
+
+- Send & Share: native SVG icons in the target list, split-button colours
+- i18n: pt_BR and zh_HK as own locales, store listing per market
+- Send targets: foundation (outbox, ledger, restricted fetch), no visible change
+- Cloud: never send an expired login token
+- Perf: targeted storage reads, streaming deltas, fewer feed redraws
+  - authManager, storageManager, modelManager, readerPage: read only the keys needed instead of getAll()/get(null) (which pulled every article record)
+  - inboxView: debounce storage.onChanged redraws
+  - aiProgress: send the new text part (delta + offset) per tick instead of the whole text; feedAi rebuilds it and drops a delta that does not continue
+  - feedManager: redraw the list on feedBackground changes only when items, ratings or recaps changed (status-only writes update the settings view)
+- Own OpenAI-compatible endpoint (service custom): URL normalisation, model list, key optional, parsers, error hints
+- Obsidian: vault and folder settings, stable note name, tested URI builder
+- Notes: AISH Article JSON v1, stable file names and aish_id; one front matter schema in extension and Android; optional aid in the phone envelope
+- i18n: update translations for changed content
+
+#### Fixed
+
+- Fix CI: build.js writes targets-worker.js; test168 no longer compares gzip bytes
+  - build.js was marked skip-worktree locally, so the targets-worker step from the send-targets commit never reached the repo (test173 failed in CI). Only that step is committed; the local white-label (brands) edits stay uncommitted.
+  - test168 compared the sealed phone envelope byte for byte, which depends on the zlib version (Node 22 in CI vs 26 locally). It now checks version, nonce and that both envelopes decrypt to the same message.
+- Fix: model list probe for own server used an out-of-scope variable (pass the key in)
+
+#### Developer experience
+
+- chore: version 2.2.18
 
 ## 2.2.14 (2026-10-14)
 
