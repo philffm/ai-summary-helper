@@ -40,4 +40,26 @@ await assert.rejects(aiComplete({ system: 's', user: 'u' }), /API key/);
 store.sync = {}; store.local = {};
 reply = () => ({ ok: false, status: 429, text: async () => 'too many' });
 await assert.rejects(aiComplete({ system: 's', user: 'u' }), /free daily limit/);
+// expired login token (cloud): never sent; license key is the fallback, otherwise a clear "sign in again" message
+const jwt = (exp) => 'h.' + Buffer.from(JSON.stringify({ exp })).toString('base64url') + '.s';
+const past = Math.floor(Date.now() / 1000) - 3600, future = Math.floor(Date.now() / 1000) + 3600;
+reply = () => ok(JSON.stringify({ choices: [{ message: { content: 'cl' } }] }));
+store.sync = {}; store.local = { 'account:token': jwt(future) };
+await aiComplete({ system: 's', user: 'u' }); assert.equal(calls.at(-1).o.headers.Authorization, 'Bearer ' + jwt(future));
+store.local = { 'account:token': jwt(past), 'account:licenseKey': 'LIC' };
+await aiComplete({ system: 's', user: 'u' }); assert.equal(calls.at(-1).o.headers.Authorization, 'Bearer LIC');
+store.local = { 'account:token': jwt(past) }; const before = calls.length;
+await assert.rejects(aiComplete({ system: 's', user: 'u' }), /session has expired.*sign in again/i);
+assert.equal(calls.length, before, 'an expired token must not reach the API');
+store.local = { 'account:token': 'not-a-jwt' };
+await aiComplete({ system: 's', user: 'u' }); assert.equal(calls.at(-1).o.headers.Authorization, 'Bearer not-a-jwt'); // unreadable: behaves as before
+reply = () => ({ ok: false, status: 401, text: async () => 'unauthorized' });
+store.local = {}; await assert.rejects(aiComplete({ system: 's', user: 'u' }), /sign in again/i);
+reply = () => ({ ok: false, status: 429, text: async () => 'too many' });
+await assert.rejects(aiComplete({ system: 's', user: 'u' }), /free daily limit.*sign in again/i);
+store.sync = { connectionMode: 'own', activeService: 'ollama' }; store.local = { 'config:services': {} };
+await assert.rejects(aiComplete({ system: 's', user: 'u' }), (e) => /free daily limit/.test(e.message) && !/sign in/i.test(e.message)); // own server: no sign-in hint
+{ const { isTokenExpired } = await import(process.env.AISH_SRC + '/modules/sessionToken.js');
+  assert.equal(isTokenExpired(jwt(past)), true); assert.equal(isTokenExpired(jwt(future)), false);
+  assert.equal(isTokenExpired(''), false); assert.equal(isTokenExpired('x.y.z'), false); assert.equal(isTokenExpired(null), false); }
 console.log('TEST 5 OK');

@@ -3,6 +3,7 @@ import { lengthSpec, readLengthSetting, resolveSummaryLength } from './modules/s
 import { languageEnglishName, languageRule } from './modules/languages.js';
 import { paperIndexFields, detectPaperInText, matchPagePaper } from './content/paper.js';
 import { finalizeSummary } from './content/finalize.js';
+import { isTokenExpired, SESSION_EXPIRED_MESSAGE, SIGN_IN_HINT } from './modules/sessionToken.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -137,7 +138,7 @@ import {
     const isLimit =
       /402|429|trial exhausted|requests per day|requests per week|limit|quota|too many|rate/i.test(e);
     if (!isLimit) return `Error: ${e}`;
-    return 'You\u2019ve reached your free daily summary limit. Come back tomorrow for 3 more \u2014 or upgrade to Pro for unlimited summaries.';
+    return 'You\u2019ve reached your free daily summary limit. Come back tomorrow for 3 more \u2014 or upgrade to Pro for unlimited summaries.' + SIGN_IN_HINT;
   }
 
   // Cache the setting so sync reads don't block event handlers
@@ -642,6 +643,7 @@ import {
         let activeService = data.activeService || 'openai';
         let cfg = (data[SK.servicesConfig] || {})[activeService] || {};
         let apiKey = cfg.apiKey || '';
+        let sessionExpired = false;
 
         let apiUrl = cfg.endpoint;
         // Resolve the active model. It may be a legacy string or a
@@ -659,7 +661,10 @@ import {
           activeService = 'cloud';
           apiUrl = `${API_BASE}/v1/projects/ai_summary_helper/chat`;
           modelIdentifier = data.preferredCloudModel || 'google/gemini-3.8-flash';
-          apiKey = sessionToken || data[SK.licenseKey] || '';
+          // An expired login token is not sent: the API would treat it as signed out. Fall back to the license key, else ask for a new sign-in.
+          const tokenExpired = isTokenExpired(sessionToken);
+          apiKey = (!tokenExpired && sessionToken) || data[SK.licenseKey] || '';
+          sessionExpired = tokenExpired && !apiKey;
         } else if (cfg) {
           apiUrl = cfg.endpointUrl || apiUrl;
           modelIdentifier = cfg.modelIdentifier || modelIdentifier;
@@ -688,6 +693,14 @@ import {
           } catch (_) { return false; }
         };
         if (String(activeService || '').trim().toLowerCase() === 'ollama' || (connectionMode !== 'cloud' && isLocalEndpoint(apiUrl))) apiKeyOptional = true;
+
+        if (sessionExpired) {
+          relay('summaryError', { error: SESSION_EXPIRED_MESSAGE });
+          const ph = targetElement.querySelector('.placeholder');
+          if (ph) ph.innerHTML = `<b>${escapeHtml(SESSION_EXPIRED_MESSAGE)}</b>`;
+          reject(new Error(SESSION_EXPIRED_MESSAGE));
+          return;
+        }
 
         if (!apiKey && !apiKeyOptional) {
           // The service and mode are in the message so a wrong stored provider is obvious from the popup.

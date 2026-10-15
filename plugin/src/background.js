@@ -708,14 +708,25 @@ if (typeof AishAudio !== 'undefined' && typeof Audio !== 'undefined') AishAudio.
 
 const AISH_API_BASE = 'https://api.byphil.eu';
 
-function aiFriendlyError(status, body) {
+// Login-token expiry (same rule as modules/sessionToken.js; this file is not a module). Only a readable JWT with a past `exp` counts.
+function aiTokenExpired(token) {
+    if (!token || typeof token !== 'string') return false;
+    try {
+        let b64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+        if (b64.length % 4) b64 += '='.repeat(4 - (b64.length % 4));
+        const p = JSON.parse(decodeURIComponent(atob(b64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
+        return typeof p.exp === 'number' && p.exp * 1000 <= Date.now();
+    } catch (_) { return false; }
+}
+
+function aiFriendlyError(status, body, cloud) {
     const e = `${status} ${body || ''}`;
     // Server-side cost budget (byphilapi): specific codes before the generic "limit" wording below.
     if (/quota_exceeded/.test(e)) return 'Your monthly AI allowance is used up. It resets on the 1st \u2014 local models still work.';
     if (/rate_limited/.test(e)) return 'Too many AI requests in a short time. Please wait a few minutes.';
     if (/too_large/.test(e)) return 'That is too much text for one request. Try fewer items.';
     if (/402|429|trial exhausted|requests per day|requests per week|quota|too many|rate/i.test(e)) {
-        return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.';
+        return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.' + (cloud ? ' Already a Pro user? Sign in again under Settings \u203a Account.' : '');
     }
     if (status === 401 || status === 403) return `The server rejects the key or the request (${status}). Check the API key in Settings.`;
     if (status === 404) return 'The path does not match (404). With your own server the address usually needs /v1 at the end.';
@@ -730,6 +741,7 @@ function parseAiResponseText(raw) {
         let single = true;
         try { JSON.parse(t); } catch (_) { single = false; }
         if (!single) {
+    if (cloud && (status === 401 || status === 403)) return 'Your session could not be verified. Please sign in again under Settings \u203a Account.';
             let out = '';
             // One object per line, or objects glued together with just whitespace between them.
             for (const line of t.split(/\r?\n|(?<=\})\s+(?=\{)/)) { const d = aiDelta(line); if (d) out += d.text; }
@@ -790,7 +802,10 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
         service = 'cloud';
         url = `${AISH_API_BASE}/v1/projects/ai_summary_helper/chat`;
         model = sync.preferredCloudModel || 'google/gemini-3.8-flash';
-        apiKey = local[SK.token] || local[SK.licenseKey] || '';
+        // An expired login token is not sent (the API would treat it as signed out): use the license key, else ask for a new sign-in.
+        const tokenExpired = aiTokenExpired(local[SK.token]);
+        apiKey = (!tokenExpired && local[SK.token]) || local[SK.licenseKey] || '';
+        if (tokenExpired && !apiKey) throw new Error('Your session has expired. Please sign in again under Settings \u203a Account.');
         keyOptional = true;
     } else {
         url = cfg.endpointUrl || url;
@@ -841,7 +856,7 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
         if ((res.status === 400 || res.status === 422) && service !== 'gemini') {
             res = await fetch(url, { method: 'POST', headers, body: body.replace('"stream":true', '"stream":false'), signal: ctrl.signal });
         }
-        if (!res.ok) throw new Error(aiFriendlyError(res.status, await res.text()));
+        if (!res.ok) throw new Error(aiFriendlyError(res.status, await res.text(), service === 'cloud'));
         progress({ phase: 'headers' });
         let raw = '';
         if (res.body && res.body.getReader) {
