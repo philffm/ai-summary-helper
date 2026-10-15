@@ -62,6 +62,10 @@ assert.ok(!('aid' in C.cleanArticleMessage({ ...msg, aid: '../../etc' })));
 // the shared phone vector (no aid) still decrypts and the same message with aid round-trips
 const iv = Buffer.from(vec.phone.nonceHex, 'hex');
 const sealed = await C.encryptArticle({ inboxId: vec.phone.inboxId, encKey: vec.phone.encKey }, vec.phone.message, { iv });
-assert.deepEqual(sealed.envelope, vec.phone.envelope, 'same bytes as the vector');
+// The gzip step is zlib-version dependent (Node 22 and 26 emit different bytes), so the envelope is compared by what it
+// carries, not byte for byte: same version and nonce prefix, and both decrypt to the same message.
+assert.equal(sealed.envelope.v, vec.phone.envelope.v);
+assert.equal(sealed.envelope.data.slice(0, 16), vec.phone.envelope.data.slice(0, 16), 'same nonce');
+assert.deepEqual(await C.decryptArticle({ inboxId: vec.phone.inboxId, encKey: vec.phone.encKey }, sealed.envelope), await C.decryptArticle({ inboxId: vec.phone.inboxId, encKey: vec.phone.encKey }, vec.phone.envelope), 'same message as the vector');
 assert.equal((await C.decryptArticle({ inboxId: vec.phone.inboxId, encKey: vec.phone.encKey }, vec.phone.envelope)).aid, vec.phone.message.aid);
 console.log('TEST 168 OK'); process.exit(0);
