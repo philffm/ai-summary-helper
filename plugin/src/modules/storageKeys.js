@@ -58,6 +58,12 @@ export const SK = {
     inboxConfig: 'inbox:config',     // inbox id, encryption key, write and read tokens — secret, never backed up
     inboxPending: 'inbox:pending',   // links from the phone that wait for the user (Summarize / Dismiss)
     inboxState: 'inbox:state',       // cursor, acknowledged cursor, handled item ids, last poll time and error
+    // send targets (targets/*): connections hold no secrets; secrets are one key so backup filtering stays simple
+    targetConnections: 'targets:connections',
+    targetSecrets: 'targets:secrets',        // { [connectionId]: {...} } — secret, never backed up without opt-in
+    targetList: 'targets:list',
+    targetDefault: 'targets:default',
+    targetOutbox: 'targets:outbox',          // open send jobs — transient, never backed up or restored
     // podcasts
     podcasts: 'podcasts:list',
     podcastName: 'podcasts:lastName',
@@ -97,6 +103,11 @@ export const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTI
 export const COLL_REC = 'coll:rec:';
 export const collRecKey = (id) => COLL_REC + id;
 export const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_REC);
+
+/** Prefix of the per-target ledger keys: targets:ledger:<targetId> (what was sent where). */
+export const TARGET_LEDGER = 'targets:ledger:';
+export const targetLedgerKey = (id) => TARGET_LEDGER + id;
+export const isTargetLedgerKey = (k) => typeof k === 'string' && k.startsWith(TARGET_LEDGER);
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 export const SK_LEGACY = {

@@ -3,14 +3,17 @@
 // Every key the extension owns belongs to one category here; test104 fails when a key in storageKeys.js (SK) is in none of them,
 // so a key added later can never be forgotten by a delete button. The functions take the storage areas as arguments (default:
 // the real chrome ones) so they can be tested with plain objects.
-import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER } from './storageKeys.js';
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
 
 export const SECRET_KEYS = [
     SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail,
-    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig
+    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig, SK.targetSecrets
 ];
+
+/** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
+export const TRANSIENT_KEYS = [SK.targetOutbox];
 
 export const CATEGORIES = {
     // the summaries and everything attached to them
@@ -23,7 +26,7 @@ export const CATEGORIES = {
     // API keys and endpoints, sign-in, license
     keys: { keys: SECRET_KEYS, extra: ['servicesConfig'] },
     // Kindle addresses, LocalSend targets, links waiting from the phone inbox
-    send: { keys: [SK.devices, SK.activeDevices, SK.localSendIp, SK.devicesMigrated, SK.inboxPending, SK.inboxState] },
+    send: { keys: [SK.devices, SK.activeDevices, SK.localSendIp, SK.devicesMigrated, SK.inboxPending, SK.inboxState, SK.targetConnections, SK.targetList, SK.targetDefault, SK.targetOutbox], prefixes: [TARGET_LEDGER] },
     // preferences: everything in sync storage, plus the local UI state and the feed / podcast preferences
     prefs: {
         syncAll: true, localStorageToo: true,

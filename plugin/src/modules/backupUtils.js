@@ -1,5 +1,5 @@
 import { SK, SK_LEGACY, renameKeys } from './storageKeys.js';
-import { SECRET_KEYS } from './dataReset.js';
+import { SECRET_KEYS, TRANSIENT_KEYS } from './dataReset.js';
 
 const secretNames = new Set([
     ...SECRET_KEYS,
@@ -18,6 +18,7 @@ function withoutApiKeys(services) {
 export function filterBackupSecrets(data, includeSecrets) {
     const result = {};
     for (const [key, value] of Object.entries(data || {})) {
+        if (TRANSIENT_KEYS.includes(key)) continue;   // the send queue is never exported
         if (key === SK.servicesConfig || key === 'servicesConfig') {
             result[key] = includeSecrets ? value : withoutApiKeys(value);
         } else if (includeSecrets || !secretNames.has(key)) {
@@ -41,6 +42,7 @@ export function hasBackupSecrets(data) {
 
 export function prepareImportedData(data, currentData) {
     const imported = renameKeys(data);
+    for (const k of TRANSIENT_KEYS) delete imported[k];   // a restored queue would send everything again, maybe from another device
     const importedServices = imported[SK.servicesConfig];
     if (!importedServices || typeof importedServices !== 'object') return imported;
 

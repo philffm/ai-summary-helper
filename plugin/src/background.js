@@ -12,8 +12,10 @@ try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } 
 try { if (typeof importScripts === 'function') importScripts('finalize.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('feed-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('inbox-worker.js'); } catch (_) { /* listed in the manifest instead */ }
+try { if (typeof importScripts === 'function') importScripts('targets-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 const FIN = globalThis.AISH_FINALIZE || null;
 const INBOX = globalThis.AISH_INBOX || null;
+const TARGETS = globalThis.AISH_TARGETS || null;
 const FEED_WORKER = globalThis.AISH_FEED_WORKER || null;
 const ttsEngine = globalThis.AISH_TTS ? globalThis.AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
@@ -59,6 +61,12 @@ const SK = {
     inboxConfig: 'inbox:config',     // inbox id, encryption key, write and read tokens — secret, never backed up
     inboxPending: 'inbox:pending',   // links from the phone that wait for the user (Summarize / Dismiss)
     inboxState: 'inbox:state',       // cursor, acknowledged cursor, handled item ids, last poll time and error
+    // send targets (targets/*): connections hold no secrets; secrets are one key so backup filtering stays simple
+    targetConnections: 'targets:connections',
+    targetSecrets: 'targets:secrets',        // { [connectionId]: {...} } — secret, never backed up without opt-in
+    targetList: 'targets:list',
+    targetDefault: 'targets:default',
+    targetOutbox: 'targets:outbox',          // open send jobs — transient, never backed up or restored
     // podcasts
     podcasts: 'podcasts:list',
     podcastName: 'podcasts:lastName',
@@ -98,6 +106,11 @@ const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTICLE_REC
 const COLL_REC = 'coll:rec:';
 const collRecKey = (id) => COLL_REC + id;
 const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_REC);
+
+/** Prefix of the per-target ledger keys: targets:ledger:<targetId> (what was sent where). */
+const TARGET_LEDGER = 'targets:ledger:';
+const targetLedgerKey = (id) => TARGET_LEDGER + id;
+const isTargetLedgerKey = (k) => typeof k === 'string' && k.startsWith(TARGET_LEDGER);
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 const SK_LEGACY = {
@@ -728,6 +741,7 @@ function aiFriendlyError(status, body, cloud) {
     if (/402|429|trial exhausted|requests per day|requests per week|quota|too many|rate/i.test(e)) {
         return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.' + (cloud ? ' Already a Pro user? Sign in again under Settings \u203a Account.' : '');
     }
+    if (cloud && (status === 401 || status === 403)) return 'Your session could not be verified. Please sign in again under Settings \u203a Account.';
     if (status === 401 || status === 403) return `The server rejects the key or the request (${status}). Check the API key in Settings.`;
     if (status === 404) return 'The path does not match (404). With your own server the address usually needs /v1 at the end.';
     return `AI request failed (${status}${body ? ': ' + String(body).slice(0, 160) : ''})`;
@@ -741,7 +755,6 @@ function parseAiResponseText(raw) {
         let single = true;
         try { JSON.parse(t); } catch (_) { single = false; }
         if (!single) {
-    if (cloud && (status === 401 || status === 403)) return 'Your session could not be verified. Please sign in again under Settings \u203a Account.';
             let out = '';
             // One object per line, or objects glued together with just whitespace between them.
             for (const line of t.split(/\r?\n|(?<=\})\s+(?=\{)/)) { const d = aiDelta(line); if (d) out += d.text; }
@@ -915,11 +928,16 @@ async function pollInbox() {
 }
 
 chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); applyInboxPollConfig(); });
+
+// ── Send targets: durable outbox with retry (modules/targets/). No adapter is registered yet, so nothing is ever queued. ──
+const targets = TARGETS ? TARGETS.createTargets({ log: () => {} }) : null;
+if (targets) targets.start().catch((e) => console.warn('[Targets] start failed:', e && e.message));
 chrome.runtime.onInstalled.addListener(() => { applyFeedPollConfig(); applyInboxPollConfig(); });
 
 chrome.alarms?.onAlarm?.addListener(async (alarm) => {
     if (alarm.name === FEED_ALARM) { await pollFeeds(); return; }
     if (alarm.name === INBOX_ALARM) { await pollInbox(); return; }
+    if (targets && alarm.name === targets.ALARM) { targets.drain().catch(() => {}); return; }
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));
@@ -1258,7 +1276,7 @@ async function saveFeedItem(url) {
 
 // Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
 // on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs']);
+const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel']);
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
@@ -1270,6 +1288,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg && EXTENSION_PAGE_ACTIONS.has(msg.action) && !fromExtensionPage(sender)) {
         sendResponse({ ok: false, success: false, error: 'Not allowed from a web page' });
         return false;
+    }
+    if (msg && (msg.action === 'targetEnqueue' || msg.action === 'targetStatus' || msg.action === 'targetCancel')) {
+        if (!targets) { sendResponse({ ok: false, error: 'targets-unavailable' }); return false; }
+        const run = msg.action === 'targetEnqueue' ? targets.enqueue(String(msg.targetId || ''), String(msg.articleId || ''))
+            : msg.action === 'targetStatus' ? targets.status(msg.targetId ? String(msg.targetId) : '')
+            : targets.cancel(String(msg.jobId || ''));
+        run.then(sendResponse).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        return true;
     }
     if (msg && msg.action === 'ttsCmd') {
         if (!ttsEngine) { sendResponse({ ok: false, available: false }); return false; }

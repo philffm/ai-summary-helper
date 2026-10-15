@@ -5,6 +5,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+- **Your own OpenAI-compatible server.** Settings › Models: a new provider "OpenAI-compatible server" for LM Studio, llama.cpp, vLLM, LiteLLM, Open WebUI, LocalAI, Jan or Ollama via `/v1`. Enter `https://host/v1` (or the full `…/chat/completions`), an optional key and a model name; the model list is read from `/models` when the server offers it. Background jobs (Feed rating, recaps) stay on Ollama.
+- **Internal: foundation for send targets (no visible change).** A background outbox with retry, a per-target ledger and a restricted fetch for future adapters (WebDAV and others). Nothing is sent yet and no existing setting or data is touched. Backups never contain the send queue.
 - **Send to Obsidian: vault and folder.** Settings › Send & Share › Obsidian: optional vault name and folder; the note opens there (`vault=` / `file=`). The file name is the same stable name as in the archive export.
 
 - **Notes: one front matter schema, a stable id.** Markdown notes from the extension (single article and archive export) and from the Android app use the same keys: `title`, `source`, `author`, `site`, `created`, `tags`, `mood` (extension), `aish_id`, `aish_format: 1`. `url` and `date` stay as copies of `source` and `created` for a transition period; they will be removed in a later release, so update Dataview queries to `source` and `created`.

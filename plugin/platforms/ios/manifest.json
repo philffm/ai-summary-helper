@@ -24,6 +24,7 @@
       "finalize.js",
       "feed-worker.js",
       "inbox-worker.js",
+      "targets-worker.js",
       "background.js"
     ]
   },
