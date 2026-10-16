@@ -184,6 +184,8 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
         if (model.openArticle.isNotEmpty()) { webUrl = ""; tab = Tab.Reading.ordinal; articleSel = model.openArticle; model.openArticle = "" }
     }
     val wide = isWide()
+    // Full-screen reading only exists on a wide screen, inside the tab it was started in, with an item open.
+    androidx.compose.runtime.LaunchedEffect(wide, tab) { model.focusReading = false }
     val feedUnread = model.entries.count { !it.stored.read }
     val readingUnread = model.articleList.count { !model.articles.isRead(it.id) }
     val badge = mapOf(Tab.Feeds to feedUnread, Tab.Reading to readingUnread, Tab.Settings to 0)
@@ -204,7 +206,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
         },
     ) { padding ->
         Row(Modifier.padding(padding).fillMaxSize()) {
-            if (wide) NavigationRail {
+            if (wide && !model.focusReading) NavigationRail {
                 // The items sit in the vertical middle of the rail, not at the top: equal spacers above and below.
                 Spacer(Modifier.weight(1f))
                 Tab.entries.forEach { t -> NavigationRailItem(selected = tab == t.ordinal, onClick = { tab = t.ordinal }, icon = { TabIcon(t) }, label = { Text(t.label) }) }

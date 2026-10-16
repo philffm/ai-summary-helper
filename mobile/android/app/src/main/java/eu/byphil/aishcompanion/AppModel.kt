@@ -49,6 +49,9 @@ class AppModel(context: Context) {
     /** Set by a reminder notification: the reading-list article to open (the UI clears it). */
     var openArticle by mutableStateOf("")
 
+    /** Wide screens: the open item is read full screen (list and navigation rail hidden). */
+    var focusReading by mutableStateOf(false)
+
     /** Set by the share sheet (also while the app is already open): a page to open in the app and, if true, summarize on this phone. The UI clears it. */
     var pendingShare by mutableStateOf<Pair<String, Boolean>?>(null)
 

@@ -171,6 +171,7 @@ fun FeedsScreen(
         scope.launch { snackbar.showSnackbar(if (links.isEmpty()) "These items have no link." else if (links.size == 1) "Queued for the browser." else "${links.size} links queued for the browser.") }
         Unit
     }
+    LaunchedEffect(current == null) { if (current == null) model.focusReading = false }
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
@@ -187,6 +188,7 @@ fun FeedsScreen(
                     if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
                 actions = {
+                    if (isWide() && current != null) FocusToggle(model.focusReading) { model.focusReading = !model.focusReading }
                     IconButton(onClick = { searching = !searching; if (!searching) query = "" }) { Icon(if (searching) Icons.Filled.Close else Icons.Filled.Search, contentDescription = if (searching) "Close search" else "Search") }
                     IconButton(onClick = { scope.launch { val n = model.refreshAll(); snackbar.showSnackbar(if (n == 0) "No new items." else "$n new items.") } }, enabled = !model.refreshing) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
@@ -208,6 +210,7 @@ fun FeedsScreen(
             ListDetail(
                 hasSelection = current != null,
                 onBackToList = { onSelect("") },
+                focus = model.focusReading, onExitFocus = { model.focusReading = false },
                 list = {
                     PullToRefreshBox(isRefreshing = model.refreshing, onRefresh = { scope.launch { model.refreshAll() } }, modifier = Modifier.fillMaxSize()) {
                         Column(Modifier.fillMaxSize()) {

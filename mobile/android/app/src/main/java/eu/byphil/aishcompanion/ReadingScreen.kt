@@ -139,6 +139,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
         }
     }
 
+    LaunchedEffect(current == null) { if (current == null) model.focusReading = false }
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
@@ -147,6 +148,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                 title = { Text("Reading list") },
                 navigationIcon = { if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
                 actions = {
+                    if (isWide() && current != null) FocusToggle(model.focusReading) { model.focusReading = !model.focusReading }
                     if (model.articleList.isNotEmpty()) IconButton(onClick = { searching = !searching; if (!searching) query = "" }) {
                         Icon(if (searching) Icons.Filled.Close else Icons.Filled.Search, contentDescription = if (searching) "Close search" else "Search")
                     }
@@ -159,6 +161,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
             ListDetail(
                 hasSelection = current != null,
                 onBackToList = { onSelect("") },
+                focus = model.focusReading, onExitFocus = { model.focusReading = false },
                 list = {
                     if (model.articleList.isEmpty()) {
                         EmptyState(

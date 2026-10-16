@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Fullscreen
+import androidx.compose.material.icons.filled.FullscreenExit
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
@@ -72,11 +74,16 @@ fun isWide(): Boolean = widthClass() != WidthClass.Compact
  * (system back returns to the list). The selection lives with the caller, so folding or unfolding keeps the open item.
  */
 @Composable
-fun ListDetail(hasSelection: Boolean, onBackToList: () -> Unit, list: @Composable () -> Unit, detail: @Composable () -> Unit, empty: @Composable () -> Unit) {
+fun ListDetail(hasSelection: Boolean, onBackToList: () -> Unit, list: @Composable () -> Unit, detail: @Composable () -> Unit, empty: @Composable () -> Unit, focus: Boolean = false, onExitFocus: () -> Unit = {}) {
     if (isWide()) {
+        // Focus (reading full screen): the list steps aside and the open item gets the whole width; back or the toggle brings the list back.
+        val focused = focus && hasSelection
+        BackHandler(enabled = focused, onBack = onExitFocus)
         Row(Modifier.fillMaxSize()) {
-            Box(Modifier.width(if (widthClass() == WidthClass.Expanded) 400.dp else 340.dp).fillMaxHeight()) { list() }
-            VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+            if (!focused) {
+                Box(Modifier.width(if (widthClass() == WidthClass.Expanded) 400.dp else 340.dp).fillMaxHeight()) { list() }
+                VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+            }
             Box(Modifier.weight(1f).fillMaxHeight()) { if (hasSelection) detail() else empty() }
         }
     } else {
@@ -94,6 +101,17 @@ fun ListDetail(hasSelection: Boolean, onBackToList: () -> Unit, list: @Composabl
                 )
             },
         ) { showDetail -> if (showDetail) detail() else list() }
+    }
+}
+
+/** The toggle for reading full screen, shown in the top bar of a wide screen while an item is open. */
+@Composable
+fun FocusToggle(focus: Boolean, onToggle: () -> Unit) {
+    androidx.compose.material3.IconButton(onClick = onToggle) {
+        androidx.compose.material3.Icon(
+            if (focus) Icons.Filled.FullscreenExit else Icons.Filled.Fullscreen,
+            contentDescription = if (focus) "Show the list again" else "Read full screen",
+        )
     }
 }
 
