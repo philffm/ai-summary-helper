@@ -2952,6 +2952,8 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 .ps-seg-btn.on { background: var(--seg-on-bg); color: var(--text-primary); font-weight: 600; }
 .ps-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .ps-select { width: 100%; }
+.ps-tagform { display: flex; gap: 6px; margin-top: 6px; }
+.ps-tag-input { flex: 1; min-width: 0; padding: 8px 10px; border-radius: var(--radius-md); border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); }
 .ps-text { width: 100%; min-height: 140px; box-sizing: border-box; padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); resize: vertical; }
 .ps-text.short { min-height: 64px; }
 .ps-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font-size: var(--fs-md); font-weight: 500; text-align: left; cursor: pointer; box-shadow: none; }
@@ -4067,7 +4069,16 @@ body[data-surface="tab"] { min-width: 0; }
 .onboarding-step { width: 100%; display: flex; flex-direction: column; align-items: center; }
 .onboarding-step[hidden] { display: none; }
 .onboarding-style.is-selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--glass-card)); }
-.onboarding-example { width: 100%; max-width: 360px; margin-top: var(--spacing-s-4); padding: var(--spacing-s-3); border: 1px dashed var(--outline); border-radius: var(--radius-md); background: var(--glass-card); text-align: left; }
+.onboarding-you { width: 100%; max-width: 360px; margin-top: var(--spacing-s-4); display: flex; flex-direction: column; gap: var(--spacing-s-3); text-align: left; }
+.onboarding-you-group { display: flex; flex-direction: column; gap: 6px; }
+.onboarding-you-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); }
+.onboarding-tag-form { display: flex; gap: 6px; }
+.onboarding-tag-input { flex: 1; min-width: 0; padding: 8px 10px; border-radius: var(--radius-md); border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); }
+.onboarding-tag-add { width: auto; padding: 8px 14px; }
+.onboarding-prompt { width: 100%; max-width: 360px; margin-top: var(--spacing-s-3); font-size: var(--fs-sm); color: var(--text-secondary); text-align: left; }
+.onboarding-prompt summary { cursor: pointer; font-weight: 600; }
+.onboarding-prompt-text { margin: 6px 0 0; padding: 8px 10px; border-radius: var(--radius-md); background: var(--field-bg); white-space: pre-wrap; word-break: break-word; font: inherit; font-size: var(--fs-xs); max-height: 160px; overflow-y: auto; }
+.onboarding-example {  width: 100%; max-width: 360px; margin-top: var(--spacing-s-4); padding: var(--spacing-s-3); border: 1px dashed var(--outline); border-radius: var(--radius-md); background: var(--glass-card); text-align: left; }
 .onboarding-example-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin-bottom: 4px; }
 .onboarding-example-body { font-size: var(--fs-sm); line-height: 1.5; color: var(--text-primary); }
 .onboarding-example-body h4 { margin: 0 0 4px; font-size: var(--fs-base); }

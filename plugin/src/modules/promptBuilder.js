@@ -33,6 +33,30 @@ export const ARTICLE_FOCUS = [
     { id: 'style',   group: 'extras', text: 'Add emojis and hashtags, use HTML and highlight interesting parts.' }
 ];
 
+// ── About me: a mindset (lens) and free tags ────────────────────────────────
+/** One optional viewpoint. id → sentence; '' (no lens) is the default. */
+export const LENSES = [
+    { id: 'stoic',     text: 'Frame the key points through a Stoic lens: what can the reader control, and what is noise?' },
+    { id: 'skeptic',   text: 'Take a skeptical view: question the claims, check the evidence and point out gaps.' },
+    { id: 'optimist',  text: 'Look for opportunities and constructive angles.' },
+    { id: 'pragmatic', text: 'Stay pragmatic: what is useful in practice, and what is hype?' }
+];
+export const MAX_TAGS = 8;
+export const MAX_TAG_LENGTH = 30;
+
+/** Free tags (“UX designer”, “parent of two” …): trimmed, one line, unique, limited. Returns a new array. */
+export function normalizeTags(list) {
+    const out = [], seen = new Set();
+    for (const raw of Array.isArray(list) ? list : []) {
+        const t = String(raw == null ? '' : raw).replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/^[-•*]+\s*/, '').slice(0, MAX_TAG_LENGTH).trim();
+        const k = t.toLocaleLowerCase();
+        if (!t || seen.has(k)) continue;
+        seen.add(k); out.push(t);
+        if (out.length >= MAX_TAGS) break;
+    }
+    return out;
+}
+
 export const PHIL_MIX = { tone: 'neutral', length: 'long', focus: ['title', 'quotes', 'ux', 'standup', 'media', 'style'], extra: '' };
 export const ARTICLE_DEFAULTS = { tone: 'neutral', length: 'medium', focus: ['facts', 'numbers'], extra: '' };
 
@@ -47,6 +71,10 @@ export function normalizeBuilder(b, defaults = ARTICLE_DEFAULTS) {
     if (!LENGTHS.includes(o.length)) o.length = defaults.length;
     o.focus = Array.isArray(o.focus) ? o.focus.filter(x => typeof x === 'string') : [...defaults.focus];
     o.extra = String(o.extra || '').slice(0, 800);
+    // Optional “about me” parts: only present when set, so older stored builders keep their exact shape.
+    if (LENSES.some(l => l.id === o.lens)) o.lens = o.lens; else delete o.lens;
+    const about = normalizeTags(o.about);
+    if (about.length) o.about = about; else delete o.about;
     return o;
 }
 
@@ -55,6 +83,8 @@ export function buildArticlePrompt(b) {
     const parts = [
         'Summarize the article clearly, explaining it in simple terms.',
         ...pick(ARTICLE_FOCUS, o.focus),
+        ...(o.lens ? [LENSES.find(l => l.id === o.lens).text] : []),
+        ...(o.about ? [`About me: ${o.about.join(', ')}. Match examples, comparisons and recommendations to this.`] : []),
         TONE_TEXT[o.tone],
         ARTICLE_LENGTH[o.length],
         'Answer additional questions in a serious and engaging way.'
