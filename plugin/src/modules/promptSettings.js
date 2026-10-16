@@ -283,6 +283,23 @@ function onInput(e) {
     }
 }
 
+// The popup loads this screen once, but the prompt can change elsewhere (onboarding, another popup window, sync).
+// Reload when stored values differ from what is shown; never while the user is typing in a field here.
+const PROMPT_KEYS = ['prompt', 'presetPrompt', 'promptType', 'promptBuilder', 'promptCustomText', 'feedPromptCfg'];
+let reloading = false;
+export async function onStoredPromptChanged(changes, area) {
+    if (area && area !== 'sync') return;
+    if (!root || reloading || !PROMPT_KEYS.some(k => changes && changes[k])) return;
+    const el = document.activeElement;
+    if (el && root.contains(el) && /^(TEXTAREA|INPUT)$/.test(el.tagName)) return;
+    const shown = JSON.stringify([S.art.type, S.art.builder, S.art.text, S.feed.briefing, S.feed.recap]);
+    reloading = true;
+    try {
+        await load();
+        if (JSON.stringify([S.art.type, S.art.builder, S.art.text, S.feed.briefing, S.feed.recap]) !== shown) render();
+    } finally { reloading = false; }
+}
+
 export async function initPromptSettings(rootEl) {
     root = rootEl || document.getElementById('promptSettingsRoot');
     if (!root) return;
@@ -293,4 +310,5 @@ export async function initPromptSettings(rootEl) {
     try { presets = await (await fetch('prompts.json')).json(); } catch (e) { presets = []; }
     await load();
     render();
+    try { chrome.storage.onChanged.addListener(onStoredPromptChanged); } catch (e) { /* no listener: the screen refreshes on next open */ }
 }
