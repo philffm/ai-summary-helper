@@ -162,6 +162,7 @@ class AlarmService : Service() {
         ServiceCompat.startForeground(this, NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
         handler.removeCallbacksAndMessages(null)
         startRinging()
+        Thread { refreshBeforeRinging(this) }.start()   // the ring screen picks the result up when it arrives
         handler.postDelayed({ stopRinging() }, 5 * 60_000)
         return START_NOT_STICKY
     }
@@ -257,7 +258,25 @@ fun buildBriefingNow(context: Context, now: Long = System.currentTimeMillis()): 
     val app = context.applicationContext
     val articles = ArticleStore(app)
     val unread = articles.list().count { !articles.isRead(it.id) }
-    return BriefingBuilder.build(FeedStore(File(app.filesDir, "feeds")).everything(), unread, now, Store(app).alarm.newsMode)
+    val feedStore = FeedStore(File(app.filesDir, "feeds"))
+    return BriefingBuilder.build(feedStore.everything(), unread, now, Store(app).alarm.newsMode, feedStore.feeds())
+}
+
+/**
+ * When the alarm rings and the prepared briefing is missing, stale or empty (the phone held back the preparation job in the night, as
+ * battery savers do), fetch the feeds now: the ringing service is a foreground service and has network. Plain briefing only; keeps the extra.
+ * Blocking, with a time limit: call from a background thread. Never throws.
+ */
+fun refreshBeforeRinging(context: Context) {
+    runCatching {
+        val app = context.applicationContext
+        val store = Store(app)
+        val now = System.currentTimeMillis()
+        val saved = Briefing.fromJson(store.briefingJson)
+        if (saved != null && now - saved.builtAt in 0..3 * 3600_000L && saved.items.isNotEmpty()) return
+        kotlinx.coroutines.runBlocking { withTimeoutOrNull(40_000) { AppModel(app).refreshAll(force = true) } }
+        store.briefingJson = buildBriefingNow(app).copy(extra = saved?.takeIf { now - it.builtAt in 0..3 * 3600_000L }?.extra.orEmpty()).toJson()
+    }
 }
 
 /** The prepared briefing if it is recent (the job ran before the alarm), else one built right now. Never throws. */

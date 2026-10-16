@@ -48,6 +48,7 @@ class RingActivity : ComponentActivity() {
         enableEdgeToEdge()
         val settings = Store(this).alarm
         val briefing = loadBriefing(this)
+        val shown = androidx.compose.runtime.mutableStateOf(briefing)   // replaced when the ringing service has fetched fresher feeds
         val parts = briefing.spokenParts(LocalTime.now().hour)
         val voice = if (briefing.narration.isNotBlank()) SummaryLangs.feedLocale(Store(this).summaryLang) else java.util.Locale.getDefault()   // the written briefing is in the chosen language; the plain list is read as the phone speaks
         tts = TextToSpeech(applicationContext) { status ->
@@ -60,15 +61,23 @@ class RingActivity : ComponentActivity() {
         }
         setContent {
             AishTheme(highContrast = Store(this).highContrast, reduceMotion = Store(this).reduceMotion, themeMode = Store(this).themeMode, dynamicColor = Store(this).dynamicColor) {
+                androidx.compose.runtime.LaunchedEffect(Unit) {
+                    repeat(30) {
+                        kotlinx.coroutines.delay(2000)
+                        Briefing.fromJson(Store(this@RingActivity).briefingJson)?.let { if (it != shown.value) shown.value = it }
+                    }
+                }
                 Surface(Modifier.fillMaxSize()) {
+                    val b = shown.value
                     RingScreen(
-                        lines = if (briefing.narration.isNotBlank()) BriefingPrompt.chunks(briefing.narration, 600) else briefing.lines(),
-                        numbered = briefing.narration.isBlank(),
-                        extra = briefing.extra,
+                        lines = if (b.narration.isNotBlank()) BriefingPrompt.chunks(b.narration, 600) else b.lines(),
+                        numbered = b.narration.isBlank(),
+                        note = b.note,
+                        extra = b.extra,
                         snoozeMinutes = settings.snoozeMinutes,
-                        onStop = { AlarmService.stop(this); if (settings.readAloud && !settings.fadeIn) readOut(parts) },   // with the fade-in the briefing was already read over the music
+                        onStop = { AlarmService.stop(this); if (settings.readAloud && !settings.fadeIn) readOut(shown.value.spokenParts(LocalTime.now().hour)) },   // with the fade-in the briefing was already read over the music
                         onSnooze = { AlarmService.stop(this); AlarmScheduler.ringIn(this, settings.snoozeMinutes * 60L); finish() },
-                        onRead = { readOut(parts) },
+                        onRead = { readOut(shown.value.spokenParts(LocalTime.now().hour)) },
                         onSilence = { tts?.stop() },
                         onClose = { finish() },
                     )
@@ -89,7 +98,7 @@ class RingActivity : ComponentActivity() {
 }
 
 @Composable
-private fun RingScreen(lines: List<String>, numbered: Boolean, extra: String, snoozeMinutes: Int, onStop: () -> Unit, onSnooze: () -> Unit, onRead: () -> Unit, onSilence: () -> Unit, onClose: () -> Unit) {
+private fun RingScreen(lines: List<String>, numbered: Boolean, note: String, extra: String, snoozeMinutes: Int, onStop: () -> Unit, onSnooze: () -> Unit, onRead: () -> Unit, onSilence: () -> Unit, onClose: () -> Unit) {
     var stopped by remember { mutableStateOf(false) }
     val time = remember { LocalTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) }
     BackHandler(enabled = !stopped) { /* the alarm is stopped with its buttons, not by accident */ }
@@ -105,7 +114,7 @@ private fun RingScreen(lines: List<String>, numbered: Boolean, extra: String, sn
         } else {
             Text("Your briefing", style = MaterialTheme.typography.titleLarge)
             Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                if (lines.isEmpty()) Text("Nothing new in your feeds.", style = MaterialTheme.typography.bodyLarge)
+                if (lines.isEmpty()) { Text("Nothing new in your feeds.", style = MaterialTheme.typography.bodyLarge); if (note.isNotBlank()) Text(note, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
                 lines.forEachIndexed { i, l -> Text(if (numbered) "${i + 1}. $l" else l, style = MaterialTheme.typography.bodyLarge) }
                 if (extra.isNotBlank()) Text(extra, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.primary)
             }

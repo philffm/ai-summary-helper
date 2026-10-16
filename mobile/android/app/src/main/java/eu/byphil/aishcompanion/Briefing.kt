@@ -17,7 +17,7 @@ enum class NewsMode {
     companion object { fun of(name: String?): NewsMode = entries.firstOrNull { it.name == name } ?: ALL }
 }
 
-data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "", val extra: String = "", val mode: NewsMode = NewsMode.ALL, val older: Boolean = false) {
+data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val builtAt: Long, val narration: String = "", val extra: String = "", val mode: NewsMode = NewsMode.ALL, val older: Boolean = false, val note: String = "") {
 
     /** Lines for the screen. */
     fun lines(): List<String> = items.map { "${it.source}: ${it.title}" }
@@ -35,12 +35,13 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
             parts += if (it.snippet.isBlank()) head else "$head ${endSentence(it.snippet)}"
         }
         if (readingUnread > 0) parts += "You also have $readingUnread unread " + (if (readingUnread == 1) "article" else "articles") + " in your reading list."
+        if (items.isEmpty() && note.isNotBlank()) parts += note
         parts += tail
         return parts
     }
 
     fun toJson(): String = JSONObject()
-        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration).put("x", extra).put("g", mode.name).put("o", older)
+        .put("builtAt", builtAt).put("readingUnread", readingUnread).put("r", narration).put("x", extra).put("g", mode.name).put("o", older).put("d", note)
         .put("items", JSONArray(items.map { JSONObject().put("s", it.source).put("t", it.title).put("n", it.snippet).put("l", it.link).put("c", it.sources) }))
         .toString()
 
@@ -50,7 +51,7 @@ data class Briefing(val items: List<BriefingItem>, val readingUnread: Int, val b
             val a = o.getJSONArray("items")
             Briefing(
                 (0 until a.length()).map { a.getJSONObject(it) }.map { BriefingItem(it.optString("s"), it.optString("t"), it.optString("n"), it.optString("l"), it.optInt("c", 1)) },
-                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"), o.optString("x"), when (val g = o.opt("g")) { true -> NewsMode.GOOD; is String -> NewsMode.of(g); else -> NewsMode.ALL }, o.optBoolean("o", false),
+                o.optInt("readingUnread"), o.optLong("builtAt"), o.optString("r"), o.optString("x"), when (val g = o.opt("g")) { true -> NewsMode.GOOD; is String -> NewsMode.of(g); else -> NewsMode.ALL }, o.optBoolean("o", false), o.optString("d"),
             )
         }.getOrNull()
 
@@ -106,9 +107,29 @@ object BriefingBuilder {
         }
     }
 
-    fun build(entries: List<FeedEntryRef>, readingUnread: Int, now: Long, mode: NewsMode = NewsMode.ALL): Briefing {
+    fun build(entries: List<FeedEntryRef>, readingUnread: Int, now: Long, mode: NewsMode = NewsMode.ALL, feeds: List<Feed> = emptyList()): Briefing {
         val (items, older) = pickWithAge(entries, now, mode = mode)
-        return Briefing(items, readingUnread, now, mode = mode, older = older)
+        return Briefing(items, readingUnread, now, mode = mode, older = older, note = if (items.isEmpty()) diagnose(feeds, entries, now) else "")
+    }
+
+    /** Why a briefing can be empty, in one or two plain sentences: stale feeds (the phone may be limiting this app in the background), failing feeds, or everything already read. */
+    fun diagnose(feeds: List<Feed>, entries: List<FeedEntryRef>, now: Long): String {
+        if (feeds.isEmpty()) return "No feeds yet."
+        fun ago(ms: Long): String { val h = ms.coerceAtLeast(0) / 3600_000; return if (h < 1) "less than an hour ago" else if (h < 48) "$h hours ago" else "${h / 24} days ago" }
+        val fetched = feeds.maxOf { it.lastFetched }
+        val failed = feeds.count { it.error.isNotEmpty() }
+        val unread = entries.count { !it.stored.read && it.stored.item.published > 0 && now - it.stored.item.published <= FALLBACK_MS }
+        val sb = StringBuilder()
+        if (fetched <= 0) sb.append("Your feeds have not been refreshed yet.")
+        else {
+            sb.append("Feeds last refreshed ${ago(now - fetched)}")
+            if (failed > 0) sb.append(", $failed of ${feeds.size} could not be reached")
+            sb.append(".")
+        }
+        val newest = entries.maxOfOrNull { it.stored.item.published } ?: 0L
+        if (newest > 0) sb.append(" Newest story ${ago(now - newest)}; $unread unread from the last 7 days.")
+        if (fetched <= 0 || now - fetched > 12 * 3600_000L) sb.append(" The phone may be limiting this app in the background: set its battery use to Unrestricted.")
+        return sb.toString()
     }
 
     private fun oneLine(s: String): String = s.replace(Regex("\\s+"), " ").trim()

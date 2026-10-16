@@ -185,4 +185,20 @@ class BriefingTest {
         assertEquals(listOf("Village wins prize"), fresh.first.map { it.title }); assertTrue(!fresh.second)   // something new: only that
         assertTrue(BriefingBuilder.pickWithAge(listOf(entry(1, "a", "Ancient", 24 * 10)), now).first.isEmpty())  // all news: unchanged
     }
+
+    @Test fun anEmptyBriefingSaysWhy() {
+        val stale = Feed("https://f1.example/feed", "Feed 1", lastFetched = now - 50 * h)
+        val e = entry(1, "a", "Old", 24 * 3, read = true)
+        val b = BriefingBuilder.build(listOf(e), 0, now, feeds = listOf(stale))
+        assertTrue(b.items.isEmpty())
+        assertTrue(b.note.startsWith("Feeds last refreshed 2 days ago."))
+        assertTrue(b.note.contains("0 unread from the last 7 days"))
+        assertTrue(b.note.contains("Unrestricted"))      // refreshed long ago: points at the battery setting
+        assertEquals(b, Briefing.fromJson(b.toJson()))
+        val fresh = BriefingBuilder.diagnose(listOf(stale.copy(lastFetched = now - h / 2, error = "unreachable")), listOf(e), now)
+        assertTrue(fresh.startsWith("Feeds last refreshed less than an hour ago, 1 of 1 could not be reached."))
+        assertTrue(!fresh.contains("Unrestricted"))
+        assertEquals("No feeds yet.", BriefingBuilder.diagnose(emptyList(), emptyList(), now))
+        assertEquals("", BriefingBuilder.build(listOf(entry(1, "n", "New", 1)), 0, now, feeds = listOf(stale)).note)   // with stories there is nothing to explain
+    }
 }
