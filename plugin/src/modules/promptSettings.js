@@ -7,7 +7,7 @@
 import { T } from './feedI18n.js';
 import { aiComplete, generateRecap } from './feedAi.js';
 import {
-    ARTICLE_FOCUS, ARTICLE_DEFAULTS, FEED_FOCUS, FEED_DEFAULTS, PHIL_MIX,
+    ARTICLE_FOCUS, ARTICLE_DEFAULTS, LENSES, MAX_TAGS, MAX_TAG_LENGTH, normalizeTags, FEED_FOCUS, FEED_DEFAULTS, PHIL_MIX,
     normalizeBuilder, buildArticlePrompt, buildFeedStyle
 } from './promptBuilder.js';
 
@@ -63,6 +63,7 @@ async function load() {
 function saveArticle() {
     const a = S.art;
     if (a.type === 'builder') {
+        a.builder = normalizeBuilder(a.builder, ARTICLE_DEFAULTS);
         a.text = buildArticlePrompt(a.builder);
         return chrome.storage.sync.set({ promptType: 'builder', presetPrompt: 'builder', promptBuilder: a.builder, prompt: a.text, promptCustomText: a.customText || '' });
     }
@@ -95,6 +96,13 @@ const ART_LABELS = () => ({
     facts: T('Key facts'), numbers: T('Numbers'), opinions: T('Opinions'), actions: T('Action items'),
     title: T('Creative title'), quotes: T('Key quotes'), ux: T('UX designer reference'), standup: T('Standup humor'), media: T('Book & media tips'), style: T('Emojis & hashtags')
 });
+const LENS_LABELS = () => ({ stoic: T('Stoic'), skeptic: T('Skeptic'), optimist: T('Optimist'), pragmatic: T('Pragmatic') });
+function tagsHtml(tags) {
+    const full = tags.length >= MAX_TAGS;
+    return `<div class="ps-chips">${tags.map(t => `<button type="button" class="pill on" data-act="tagdel" data-v="${esc(t)}" aria-label="${esc(T('Remove {tag}', { tag: t }))}">${esc(t)}  ✕</button>`).join('')}</div>
+      <div class="ps-tagform"><input type="text" id="psTag" class="ps-tag-input" maxlength="${MAX_TAG_LENGTH}" placeholder="${esc(T('Add your own, e.g. parent of two'))}" aria-label="${esc(T('Add your own tag'))}"${full ? ' disabled' : ''}>
+      <button type="button" class="button-secondary btn-md" data-act="tagadd"${full ? ' disabled' : ''}>${esc(T('Add'))}</button></div>`;
+}
 const FEED_LABELS = () => ({ facts: T('Hard facts'), numbers: T('Numbers'), impact: T('Why it matters'), humor: T('Light humor') });
 
 function testBox(kind) {
@@ -121,12 +129,17 @@ function articlesHtml() {
       <div class="ps-group"><span class="ps-label">${esc(T('Length'))}</span>${seg('length', LEN_LABELS(), b.length)}</div>
       <div class="ps-group"><span class="ps-label">${esc(T('Focus on'))}</span>${chips('focus', ARTICLE_FOCUS.filter(f => f.group === 'focus'), b.focus, L)}</div>
       <div class="ps-group"><span class="ps-label">${esc(T('Extras'))} <button type="button" class="ps-link" data-act="phil">${esc(T('✨ Phil’s mix'))}</button></span>${chips('focus', ARTICLE_FOCUS.filter(f => f.group === 'extras'), b.focus, L)}</div>
+      <div class="ps-group"><span class="ps-label">${esc(T('Mindset'))}</span>${seg('lens', [['', T('None')], ...LENSES.map(l => [l.id, LENS_LABELS()[l.id]])], b.lens || '')}</div>
+      <div class="ps-group"><span class="ps-label">${esc(T('About you'))}</span>${tagsHtml(b.about || [])}</div>
       <div class="ps-group"><label class="ps-label" for="psExtra">${esc(T('Extra instructions'))}</label>
         <textarea id="psExtra" class="ps-text short" placeholder="${esc(T('e.g. Always name the author and publication.'))}">${esc(b.extra)}</textarea></div>`;
     }
+    // Presets and hand-written prompts: the text is the point of the page, so it is always visible (no toggle).
+    // Builder: the generated prompt is tucked away behind “Show prompt”.
     const manual = a.type !== 'builder';
-    h += `<button type="button" class="ps-row" data-act="toggleFull"><span>${esc(T('Full prompt'))}</span><span class="ps-link">${esc(a.open || manual ? T('Hide ⌃') : T('View & edit ›'))}</span></button>`;
-    if (a.open || manual) {
+    if (manual) h += `<span class="ps-label">${esc(T('Full prompt'))}</span>`;
+    else h += `<button type="button" class="ps-row" data-act="toggleFull" aria-expanded="${a.open}"><span>${esc(T('Full prompt'))}</span><span class="ps-link">${esc(a.open ? T('Hide ⌃') : T('Show prompt ›'))}</span></button>`;
+    if (manual || a.open) {
         h += `<textarea id="prompt" class="ps-text" placeholder="${esc(T('Enter your custom prompt here...'))}">${esc(a.text)}</textarea>`;
         if (a.type === 'custom') h += `<div class="ps-note warn">${esc(T('✏️ Edited by hand — the chips won’t change it until you go back to the builder.'))} <button type="button" class="ps-link" data-act="toBuilder">${esc(T('Back to builder'))}</button></div>`;
     }
@@ -213,7 +226,10 @@ async function onClick(e) {
         if (act === 'tone') a.builder.tone = v;
         else if (act === 'length') a.builder.length = v;
         else if (act === 'focus') a.builder.focus = toggleIn(a.builder.focus, v);
-        else if (act === 'phil') a.builder = { ...PHIL_MIX, extra: a.builder.extra };
+        else if (act === 'phil') a.builder = { ...PHIL_MIX, extra: a.builder.extra, ...(a.builder.lens ? { lens: a.builder.lens } : {}), ...(a.builder.about ? { about: a.builder.about } : {}) };
+        else if (act === 'lens') { if (v) a.builder.lens = v; else delete a.builder.lens; }
+        else if (act === 'tagdel') a.builder.about = (a.builder.about || []).filter(x => x !== v);
+        else if (act === 'tagadd') { const inp = root.querySelector('#psTag'); a.builder.about = normalizeTags([...(a.builder.about || []), inp ? inp.value : '']); }
         else return;
         await saveArticle(); render(); return;
     }
@@ -244,6 +260,13 @@ function onChange(e) {
     }
 }
 
+function onKey(e) {
+    if (e.target.id !== 'psTag' || (e.key !== 'Enter' && e.key !== ',')) return;
+    e.preventDefault();
+    const a = S.art; a.builder.about = normalizeTags([...(a.builder.about || []), e.target.value]);
+    saveArticle().then(() => { render(); const t = root.querySelector('#psTag'); if (t) t.focus(); });
+}
+
 let tm = null;
 function onInput(e) {
     const id = e.target.id;
@@ -263,13 +286,32 @@ function onInput(e) {
     }
 }
 
+// The popup loads this screen once, but the prompt can change elsewhere (onboarding, another popup window, sync).
+// Reload when stored values differ from what is shown; never while the user is typing in a field here.
+const PROMPT_KEYS = ['prompt', 'presetPrompt', 'promptType', 'promptBuilder', 'promptCustomText', 'feedPromptCfg'];
+let reloading = false;
+export async function onStoredPromptChanged(changes, area) {
+    if (area && area !== 'sync') return;
+    if (!root || reloading || !PROMPT_KEYS.some(k => changes && changes[k])) return;
+    const el = document.activeElement;
+    if (el && root.contains(el) && /^(TEXTAREA|INPUT)$/.test(el.tagName)) return;
+    const shown = JSON.stringify([S.art.type, S.art.builder, S.art.text, S.feed.briefing, S.feed.recap]);
+    reloading = true;
+    try {
+        await load();
+        if (JSON.stringify([S.art.type, S.art.builder, S.art.text, S.feed.briefing, S.feed.recap]) !== shown) render();
+    } finally { reloading = false; }
+}
+
 export async function initPromptSettings(rootEl) {
     root = rootEl || document.getElementById('promptSettingsRoot');
     if (!root) return;
     root.addEventListener('click', onClick);
     root.addEventListener('change', onChange);
     root.addEventListener('input', onInput);
+    root.addEventListener('keydown', onKey);
     try { presets = await (await fetch('prompts.json')).json(); } catch (e) { presets = []; }
     await load();
     render();
+    try { chrome.storage.onChanged.addListener(onStoredPromptChanged); } catch (e) { /* no listener: the screen refreshes on next open */ }
 }
