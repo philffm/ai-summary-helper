@@ -62,12 +62,6 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 | Best for | Daily reading: history, search, RSS, highlights | Quick use on devices where extensions can't run |
 | Get it | [**Add to Chrome**](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb) | [**Create your bookmarklet**](https://ai-summary-helper.byphil.eu/bookmarklet.html) |
 
-## How it works
-
-<p align="center">
-  <img src="assets/walkthrough.png" alt="Walkthrough of the six steps: summarize any page, ask follow-up questions, highlight what matters, follow your sites with RSS, search and connect your archive, send a digest to Kindle or LocalSend" width="100%">
-</p>
-
 ## What you get
 
 - **Summaries of pages, PDFs and YouTube videos.** With your model: the byphil Cloud gives you access to most LLMs with no API key of your own. Or bring your own key for OpenAI, Gemini, Mistral, DeepSeek, or run Ollama locally.
