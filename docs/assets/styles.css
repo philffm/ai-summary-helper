@@ -666,11 +666,31 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 
 /* ── Product screenshots (landing page) ─────────────────────────── */
 .hero-shot{ margin:52px auto 0; max-width:1040px; }
-.hero-shot img, .shot img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-medium); box-shadow:0 24px 48px -24px var(--card-shadow); background:var(--surface-2); }
-.shot{ margin:0; min-width:0; }
-.shot figcaption{ margin-top:10px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
-.shot-grid{ display:grid; gap:20px; margin-top:24px; }
-.shot-grid.cols-2{ grid-template-columns:repeat(2, 1fr); }
-.shot-grid.cols-3{ grid-template-columns:repeat(3, 1fr); }
-.shot-panels{ max-width:760px; margin-left:auto; margin-right:auto; }
-@media (max-width:720px){ .shot-grid.cols-2{ grid-template-columns:1fr; } .shot-grid.cols-3{ gap:10px; } .hero-shot{ margin-top:36px; } }
+.hero-shot img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-medium); box-shadow:0 24px 48px -24px var(--card-shadow); background:var(--surface-2); }
+
+/* Peek carousel: current slide centred, neighbours peek in. Native scroll-snap, JS only syncs state. */
+.cx{ --cx-w:min(760px, 78%); }
+.cx-stage{ position:relative; }
+.cx-track{ list-style:none; margin:0; padding:8px calc((100% - var(--cx-w)) / 2) 12px; display:flex; gap:28px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.cx-track::-webkit-scrollbar{ display:none; }
+.cx-track{ -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
+.cx-track:focus-visible{ outline:2px solid var(--signal); outline-offset:4px; border-radius:14px; }
+.cx-slide{ flex:0 0 var(--cx-w); scroll-snap-align:center; opacity:.45; transform:scale(.92); transition:opacity .35s ease, transform .35s ease; }
+.cx-slide.is-active{ opacity:1; transform:none; }
+.cx-slide figure{ margin:0; }
+.cx-slide img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-medium); box-shadow:0 24px 48px -24px var(--card-shadow); background:var(--surface-2); }
+.cx-slide figcaption{ margin-top:16px; display:flex; flex-direction:column; gap:2px; text-align:center; opacity:0; transition:opacity .35s ease; }
+.cx-slide.is-active figcaption{ opacity:1; }
+.cx-slide figcaption strong{ font-family:var(--font-display); font-size:17px; font-weight:600; color:var(--paper); }
+.cx-slide figcaption span{ font-size:14.5px; line-height:1.5; color:var(--paper-dim); }
+.cx-nav{ position:absolute; top:calc(8px + (var(--cx-w) * 0.31)); transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:1px solid var(--border-medium); background:var(--surface-1-strong); color:var(--paper); display:grid; place-items:center; cursor:pointer; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 8px 20px -10px var(--card-shadow); }
+.cx-nav svg{ width:22px; height:22px; }
+.cx-prev{ left:4px; } .cx-next{ right:4px; }
+.cx-nav:hover{ border-color:var(--signal); }
+.cx-nav:focus-visible, .cx-dot:focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
+.cx-nav[disabled]{ opacity:.35; cursor:default; }
+.cx-dots{ display:flex; justify-content:center; gap:8px; margin-top:8px; }
+.cx-dot{ width:8px; height:8px; padding:0; border:0; border-radius:4px; background:var(--border-strong); cursor:pointer; transition:width .25s ease, background .25s ease; }
+.cx-dot.is-active{ width:28px; background:var(--signal); }
+@media (max-width:720px){ .cx{ --cx-w:86%; } .cx-nav{ display:none; } .hero-shot{ margin-top:36px; } .cx-track{ gap:16px; } }
+@media (prefers-reduced-motion:reduce){ .cx-slide, .cx-slide figcaption, .cx-dot{ transition:none; } }
