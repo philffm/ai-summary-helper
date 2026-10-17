@@ -39,13 +39,24 @@ export function aiComplete(system, user, onStage, signal, onProgress, { partial 
             reject(cancelled());
         }, { once: true });
         // The worker sends the new part of the text per tick; rebuild the full text here so onProgress consumers keep reading `m.text`.
-        // `from` is the offset the delta starts at: a delta that does not continue what we hold (a missed tick) is dropped, so a
-        // half-built text is never handed on; the next tick is dropped too, the final reply comes with the response anyway.
-        let streamed = '';
+        // `from` is the offset the delta starts at. A delta that does not continue what we hold (a missed tick) is never appended, so a
+        // half-built text is never handed on. Instead we warn once and ask the worker to resend everything (`aiResync`): its next
+        // delta then starts at 0 and replaces what we hold. The final reply comes with the response anyway.
+        let streamed = '', resyncAsked = 0, resyncs = 0;
         const onMsg = (m) => { if (m && m.action === 'aiProgress' && m.id === id) {
             if (typeof m.delta === 'string') {
-                if (m.from !== streamed.length) return;
-                streamed += m.delta; m = { ...m, text: streamed };
+                if (m.from === 0) { if (streamed && resyncAsked) { resyncAsked = 0; resyncs++; } streamed = m.delta; }
+                else if (m.from === streamed.length) streamed += m.delta;
+                else {
+                    const now = Date.now();
+                    if (now - resyncAsked > 1000) {
+                        resyncAsked = now;
+                        console.warn(`[AISH] stream out of sync (have ${streamed.length} chars, delta starts at ${m.from}); asking for a resend`);
+                        try { chrome.runtime.sendMessage({ action: 'aiResync', id }, () => void chrome.runtime.lastError); } catch (e) { /* worker gone */ }
+                    }
+                    return;
+                }
+                m = { ...m, text: streamed, ...(resyncs ? { resyncs } : {}) };
             }
             if (onStage) onStage(m.phase === 'stream' ? 'write' : 'wait'); if (onProgress) onProgress(m); } };
         const done = () => { try { chrome.runtime.onMessage.removeListener(onMsg); } catch (e) { /* no listener API */ } };
