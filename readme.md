@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="AI Summary Helper — Summarize the web. Keep what matters." width="100%">
+  <img src="assets/press/aish-hero-en.png" alt="AI Summary Helper: any page, summed up in your language" width="100%">
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.2-4C8DFF">
+  <a href="https://github.com/philffm/ai-summary-helper/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/philffm/ai-summary-helper?label=version&color=4C8DFF"></a>
   <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-555">
   <img alt="Vanilla JS, no framework" src="https://img.shields.io/badge/vanilla-ES_modules-F0C36B">
   <img alt="Privacy: your key, your data" src="https://img.shields.io/badge/privacy-your_key%2C_your_data-2EA043">
@@ -21,10 +21,6 @@
 > You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
 **AI Summary Helper** (AISH) turns that pile into a reading habit. It gives you a short overview of any article, PDF or YouTube video in your own language, in the browser's side panel. Bring your own key for OpenAI, Google Gemini, Mistral AI or DeepSeek, or run an open model locally with Ollama: no account needed, and the page text goes only to the provider you chose, or nowhere at all. Follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive. Then send a digest to your Kindle or another device, so you read what you picked on purpose.
-
-<p align="center">
-  <img src="assets/press/aish-hero-en.png" alt="AI Summary Helper: any page, summed up in your language" width="100%">
-</p>
 
 ## At a glance
 
