@@ -134,9 +134,12 @@ function articlesHtml() {
       <div class="ps-group"><label class="ps-label" for="psExtra">${esc(T('Extra instructions'))}</label>
         <textarea id="psExtra" class="ps-text short" placeholder="${esc(T('e.g. Always name the author and publication.'))}">${esc(b.extra)}</textarea></div>`;
     }
+    // Presets and hand-written prompts: the text is the point of the page, so it is always visible (no toggle).
+    // Builder: the generated prompt is tucked away behind “Show prompt”.
     const manual = a.type !== 'builder';
-    h += `<button type="button" class="ps-row" data-act="toggleFull"><span>${esc(T('Full prompt'))}</span><span class="ps-link">${esc(a.open || manual ? T('Hide ⌃') : T('View & edit ›'))}</span></button>`;
-    if (a.open || manual) {
+    if (manual) h += `<span class="ps-label">${esc(T('Full prompt'))}</span>`;
+    else h += `<button type="button" class="ps-row" data-act="toggleFull" aria-expanded="${a.open}"><span>${esc(T('Full prompt'))}</span><span class="ps-link">${esc(a.open ? T('Hide ⌃') : T('Show prompt ›'))}</span></button>`;
+    if (manual || a.open) {
         h += `<textarea id="prompt" class="ps-text" placeholder="${esc(T('Enter your custom prompt here...'))}">${esc(a.text)}</textarea>`;
         if (a.type === 'custom') h += `<div class="ps-note warn">${esc(T('✏️ Edited by hand — the chips won’t change it until you go back to the builder.'))} <button type="button" class="ps-link" data-act="toBuilder">${esc(T('Back to builder'))}</button></div>`;
     }

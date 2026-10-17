@@ -17,4 +17,14 @@ assert.equal(root.querySelector('#promptSelect').value, 'builder');
 // own edits keep working: remove the tag
 root.querySelector('[data-act="tagdel"]').click(); await tick(30);
 assert.ok(!store.promptBuilder.about && !store.prompt.includes('About me'), 'removing the tag is saved');
+// “Full prompt”: no toggle for presets/custom (text always visible); toggle only in the builder
+const sel = root.querySelector('#promptSelect');
+sel.value = 'Default'; sel.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(30);
+assert.ok(root.querySelector('#prompt') && !root.querySelector('[data-act="toggleFull"]'), 'preset: text visible, no Hide button');
+const sel2 = root.querySelector('#promptSelect'); sel2.value = 'builder'; sel2.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(30);
+assert.ok(!root.querySelector('#prompt') && root.querySelector('[data-act="toggleFull"]'), 'builder: prompt hidden behind a toggle');
+root.querySelector('[data-act="toggleFull"]').click(); await tick(20);
+assert.ok(root.querySelector('#prompt'), 'toggle shows the prompt');
+root.querySelector('[data-act="toggleFull"]').click(); await tick(20);
+assert.ok(!root.querySelector('#prompt'), 'and hides it again');
 console.log('ok');
