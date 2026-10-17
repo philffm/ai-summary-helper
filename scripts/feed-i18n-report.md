@@ -1,23 +1,23 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1557. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1549 | 8 | 0 | 47 |
-| de | 1549 | 8 | 0 | 223 |
-| es | 1549 | 8 | 0 | 186 |
-| fr | 1549 | 8 | 0 | 217 |
-| hi | 1549 | 8 | 0 | 86 |
-| it | 1549 | 8 | 0 | 184 |
-| ja | 1549 | 8 | 0 | 95 |
-| ko | 1549 | 8 | 0 | 26 |
-| pt_BR | 1549 | 8 | 0 | 185 |
-| pt_PT | 1549 | 8 | 0 | 202 |
-| ru | 1549 | 8 | 0 | 117 |
-| zh_CN | 1549 | 8 | 0 | 2 |
-| zh_HK | 1549 | 8 | 0 | 2 |
-| zh_TW | 1549 | 8 | 0 | 2 |
+| ar | 1549 | 19 | 0 | 47 |
+| de | 1549 | 19 | 0 | 223 |
+| es | 1549 | 19 | 0 | 186 |
+| fr | 1549 | 19 | 0 | 217 |
+| hi | 1549 | 19 | 0 | 86 |
+| it | 1549 | 19 | 0 | 184 |
+| ja | 1549 | 19 | 0 | 95 |
+| ko | 1549 | 19 | 0 | 26 |
+| pt_BR | 1549 | 19 | 0 | 185 |
+| pt_PT | 1549 | 19 | 0 | 202 |
+| ru | 1549 | 19 | 0 | 117 |
+| zh_CN | 1549 | 19 | 0 | 2 |
+| zh_HK | 1549 | 19 | 0 | 2 |
+| zh_TW | 1549 | 19 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -1681,144 +1681,298 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 
 ## Problems
 
-en is missing 8 strings (run merge)
+en is missing 19 strings (run merge)
 
-### ar: 8 missing
+### ar: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### de: 8 missing
+### de: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### es: 8 missing
+### es: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### fr: 8 missing
+### fr: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### hi: 8 missing
+### hi: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### it: 8 missing
+### it: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### ja: 8 missing
+### ja: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### ko: 8 missing
+### ko: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### pt_BR: 8 missing
+### pt_BR: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### pt_PT: 8 missing
+### pt_PT: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### ru: 8 missing
+### ru: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### zh_CN: 8 missing
+### zh_CN: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### zh_HK: 8 missing
+### zh_HK: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
 
-### zh_TW: 8 missing
+### zh_TW: 19 missing
+- About you
+- Add your own tag
+- Add your own, e.g. parent of two
 - Enter the server address in Settings
 - Last used vault
+- Mindset
 - No model list from this server — type the model name
+- None
 - Obsidian vault and folder
+- Optimist
+- Pragmatic
+- Remove {tag}
 - Server not reachable (is it running? is the URL right?)
 - Server rejects the key — check it in Settings
 - Server · {n} models
+- Show prompt ›
+- Skeptic
+- Stoic
 - {name} · own server
