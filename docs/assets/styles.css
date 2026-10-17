@@ -663,3 +663,14 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
   outline:3px solid var(--paper); outline-offset:3px; box-shadow:0 0 0 6px var(--signal); border-radius:12px;
 }
 @media (forced-colors:active){ .btn-primary, .btn-secondary{ border:2px solid ButtonText; } }
+
+/* ── Product screenshots (landing page) ─────────────────────────── */
+.hero-shot{ margin:52px auto 0; max-width:1040px; }
+.hero-shot img, .shot img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-medium); box-shadow:0 24px 48px -24px var(--card-shadow); background:var(--surface-2); }
+.shot{ margin:0; min-width:0; }
+.shot figcaption{ margin-top:10px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
+.shot-grid{ display:grid; gap:20px; margin-top:24px; }
+.shot-grid.cols-2{ grid-template-columns:repeat(2, 1fr); }
+.shot-grid.cols-3{ grid-template-columns:repeat(3, 1fr); }
+.shot-panels{ max-width:760px; margin-left:auto; margin-right:auto; }
+@media (max-width:720px){ .shot-grid.cols-2{ grid-template-columns:1fr; } .shot-grid.cols-3{ gap:10px; } .hero-shot{ margin-top:36px; } }

@@ -10,19 +10,48 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.1-4C8DFF">
+  <img alt="Version" src="https://img.shields.io/badge/version-2.2-4C8DFF">
   <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-555">
   <img alt="Vanilla JS, no framework" src="https://img.shields.io/badge/vanilla-ES_modules-F0C36B">
   <img alt="Privacy: your key, your data" src="https://img.shields.io/badge/privacy-your_key%2C_your_data-2EA043">
 </p>
 
+<h3 align="center">A free, open-source browser extension that summarizes web pages, PDFs and YouTube videos in 41 languages, with your own AI key or a fully local model. Your reading library stays on your device.</h3>
+
 > You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
-**AI Summary Helper** turns that pile into a reading habit. Summarize any page with the AI of your choice, follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive that lives on your device. Then send a curated digest to your Kindle or another device, so you read what you picked on purpose.
+**AI Summary Helper** (AISH) turns that pile into a reading habit. It gives you a short overview of any article, PDF or YouTube video in your own language, in the browser's side panel. Bring your own key for OpenAI, Google Gemini, Mistral AI or DeepSeek, or run an open model locally with Ollama: no account needed, and the page text goes only to the provider you chose, or nowhere at all. Follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive. Then send a digest to your Kindle or another device, so you read what you picked on purpose.
 
 <p align="center">
-  <img src="assets/aish.png" alt="AI Summary Helper screenshot" width="720">
+  <img src="assets/press/aish-hero-en.png" alt="AI Summary Helper: any page, summed up in your language" width="100%">
 </p>
+
+## At a glance
+
+- **Free and MIT-licensed.** No account for your own key or local models. Optional byphil Cloud has a small free daily allowance and a Pro plan.
+- **Private by design.** Library, highlights and statistics are stored in the browser. No tracking or analytics SDKs. See the [privacy policy](privacy.md).
+- **Answers you can check.** Follow-up answers point to the passage they come from; quotes that are not in the article are discarded.
+- **Your language.** Summaries in 41 languages, interface in 14.
+- **Shortcut.** `Ctrl+Shift+E` (`⌘+Shift+E` on Mac).
+- **New in 2.2.** A split view for large screens and a research mode for scientific papers (see below).
+
+## Screenshots
+
+<p align="center">
+  <img src="assets/press/aish-inpage-detail-en.png" alt="Summary in the side panel next to the article" width="49%">
+  <img src="assets/press/aish-inpage-ask-en.png" alt="Follow-up answer with a source marker and highlighted sentences" width="49%">
+</p>
+<p align="center">
+  <img src="assets/press/aish-panel-main-en.png" alt="Side panel with recent summaries" width="24%">
+  <img src="assets/press/aish-panel-history-en.png" alt="History with inbox, read and collections tabs" width="24%">
+  <img src="assets/press/aish-panel-feeds-en.png" alt="RSS reader with suggested sources" width="24%">
+</p>
+<p align="center">
+  <img src="assets/press/aish-split-wide-en.png" alt="Split view: list, knowledge graph and analytics side by side" width="49%">
+  <img src="assets/press/aish-research-dark-en.png" alt="Research mode with a collection, in dark mode" width="49%">
+</p>
+
+Images for press and reviews live in [`assets/press/`](assets/press/).
 
 ## Pick how you want to use it
 
@@ -41,13 +70,17 @@
 
 ## What you get
 
-- **Summaries with your model.** The byPhil API gives you access to most LLM models with no API key of your own. Or bring your own key for OpenAI, Gemini, Mistral, DeepSeek, or run Ollama locally.
+- **Summaries of pages, PDFs and YouTube videos.** With your model: the byphil Cloud gives you access to most LLMs with no API key of your own. Or bring your own key for OpenAI, Gemini, Mistral, DeepSeek, or run Ollama locally.
 - **Conversational summaries.** Ask follow-up questions; answers cite the page and jump to the exact passage. Pin the good ones into the summary.
+- **Research mode (2.2).** Recognises scientific papers, extracts design, sample and funding, and builds citations from the DOI registry. Group papers in collections.
+- **Split view (2.2).** On large screens, the list, knowledge graph and analytics sit side by side.
+- **Read aloud.** Listen while the answer is written.
 - **Built-in RSS reader.** Follow sites, filter by source, tag, date or mood, import OPML, get an optional AI recap of the day.
 - **Highlights and ghost highlights.** Mark text yourself or let the AI mark the key passages. Start a summary straight from the on-page highlights panel.
 - **A searchable archive.** On-device full-text search, a knowledge graph of your saves, and an analytics report of your reading.
 - **Read it later, on purpose.** "Summarize & Close" saves a tab with a reminder; the digest sends a varied selection to Kindle or LocalSend.
-- **Your language.** 40+ summary languages (including Traditional and Simplified Chinese) and a localized interface.
+- **Your language.** 41 summary languages (including Traditional and Simplified Chinese) and an interface in 14 languages.
+- **Export.** Markdown and Obsidian export alongside Send to Kindle and LocalSend.
 
 > **How sending works.** *Send to Kindle* goes through the byPhil backend, because Amazon only accepts documents by email from approved senders: add `kindle@byphil.eu` to your approved senders in your Amazon account. The free tier includes 3 Kindle sends; unlimited Kindle sends require the [Support Pass](https://byphil.eu/#pass). *LocalSend* (and the system share sheet, e.g. AirDrop) is direct: the file goes from your browser to the device you pick, works with any device running a LocalSend-compatible app, and never touches our server. See the [privacy policy](privacy.md).
 

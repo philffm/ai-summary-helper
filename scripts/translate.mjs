@@ -192,6 +192,19 @@ function injectUnits($, units, translations) {
  * for every locale, which is why every translated page's assets/ links
  * were broken.
  */
+function localizeShots($, locale) {
+    // Swap "assets/shots/<name>-en.webp" for "<name>-<locale>.webp" when that file exists.
+    const code = path.basename(locale.dir);
+    $('img[src*="assets/shots/"]').each((_, el) => {
+        const $el = $(el);
+        const src = $el.attr('src');
+        const m = src.match(/^(.*assets\/shots\/)([^/]+)-en\.webp$/);
+        if (!m) return;
+        const file = `${m[2]}-${code}.webp`;
+        if (existsSync(path.join(ROOT, 'assets', 'shots', file))) $el.attr('src', `${m[1]}${file}`);
+    });
+}
+
 function rewriteAssetPaths($, locale) {
     const extraUps = '../'.repeat(locale.dir.split('/').length);
     $('[href], [src]').each((_, el) => {
@@ -368,6 +381,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
 
         const translations = { ...cached, ...fresh };
         injectUnits($, units, translations);
+        localizeShots($, locale);
         rewriteAssetPaths($, locale);
         setHtmlLang($, locale);
         addHreflangTags($, config, code, relPath);
