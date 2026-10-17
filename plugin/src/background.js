@@ -826,6 +826,7 @@ function aiDelta(line) {
 }
 
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
+const aiResyncAsked = new Set(); // request ids whose receiver lost a streamed delta: the next tick resends the whole text
 async function aiComplete({ system, user, id, partial, service: forcedService, signal }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     let local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
@@ -910,7 +911,11 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
             const dec = new TextDecoder('utf-8');
             let buf = '', chars = 0, think = 0, last = 0, acc = '', sent = 0;
             // Only what is new since the last tick goes over the wire (the full text every 250 ms is O(n²)); the receiver appends.
-            const partialPart = () => { if (!partial) return {}; const from = sent, delta = acc.slice(sent); sent = acc.length; return { delta, from }; };
+            const partialPart = () => {
+                if (!partial) return {};
+                if (id && aiResyncAsked.delete(id)) sent = 0; // receiver missed a tick: resend from the start (it replaces what it holds)
+                const from = sent, delta = acc.slice(sent); sent = acc.length; return { delta, from };
+            };
             for (;;) {
                 const { value, done } = await reader.read();
                 if (done) break;
@@ -932,7 +937,7 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
         if (e.name === 'AbortError') throw new Error('The AI request was cancelled.');
         throw e;
     } finally {
-        if (id) aiJobs.delete(id);
+        if (id) { aiJobs.delete(id); aiResyncAsked.delete(id); }
         if (signal) signal.removeEventListener('abort', abort);
     }
 }
@@ -1309,7 +1314,7 @@ async function saveFeedItem(url) {
 
 // Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
 // on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel']);
+const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'aiResync', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel']);
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
@@ -1350,6 +1355,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;
     }
+    if (msg.action === 'aiResync') { if (aiJobs.has(msg.id)) aiResyncAsked.add(msg.id); sendResponse({ ok: true }); return true; }
     if (msg.action === 'aiCancel') { const c = aiJobs.get(msg.id); if (c) c.abort(); sendResponse({ ok: true }); return true; }
     if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
     if (msg.action === 'audioEnsure') {
