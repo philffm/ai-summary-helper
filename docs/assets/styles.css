@@ -1130,31 +1130,3 @@ body:has(.nav--pill){padding-top:88px}
   .nav--pill .mobile-menu[data-mode="menu"] .mm-post strong{font-size:16px;font-weight:600}
   .nav--pill .mobile-menu[data-mode="menu"] .mm-post:hover{border-color:var(--signal);background:var(--surface-1)}
 }
-
-/* v3: two subtle cards (Blog + Languages), both always visible; mode only decides which comes first */
-.nav--pill .mobile-menu[data-mode] .lang-card{display:none}
-.nav--pill .mobile-menu[data-mode="menu"] .lang-search,.nav--pill .mobile-menu[data-mode="menu"] .mm-lang-h{display:flex!important}
-.nav--pill .mobile-menu[data-mode="menu"] .mm-lang-h{display:block!important}
-.nav--pill .mobile-menu[data-mode="menu"] .lang-groups{display:block!important}
-.nav--pill .mm-lang,.nav--pill .mm-posts{border:1px solid var(--border-subtle,var(--border-medium));background:color-mix(in srgb,var(--surface-1) 55%,transparent);border-radius:22px;padding:20px}
-.nav--pill .mm-lang{margin-top:20px}
-.nav--pill .mm-lang .lang-search{background:transparent}
-.nav--pill .mm-lang .lang-group:last-of-type{margin-bottom:0}
-@media (min-width:861px){
-  .nav--pill .mm-lang{margin-top:0}
-  .nav--pill .mobile-menu .mm-posts{display:grid;grid-template-columns:1fr;gap:2px;margin:0 0 16px}
-  .nav--pill .mobile-menu[data-mode="lang"] .mm-posts{margin:16px 0 0}
-  .nav--pill .mobile-menu[data-mode="menu"] .mm-inner{grid-template-areas:"links posts" "links lang" "bottom lang"}
-  .nav--pill .mobile-menu .mm-post,.nav--pill .mobile-menu[data-mode="menu"] .mm-post{flex-direction:row;align-items:baseline;gap:12px;padding:9px 12px;border:0;border-radius:12px;background:none}
-  .nav--pill .mobile-menu .mm-post>span:last-child,.nav--pill .mobile-menu[data-mode="menu"] .mm-post>span:last-child{display:none}
-  .nav--pill .mobile-menu .mm-post strong,.nav--pill .mobile-menu[data-mode="menu"] .mm-post strong{font-size:15px;font-weight:500}
-  .nav--pill .mobile-menu .mm-post:hover{background:var(--surface-1);transform:none}
-  .nav--pill .mm-all{padding:8px 12px 0}
-}
-@media (min-width:861px){
-  .nav--pill .mobile-menu[data-mode] .mm-posts{grid-template-columns:1fr}
-  .nav--pill .mm-post .mega-tag{flex:0 0 104px}
-  .nav--pill .mm-lang .lang-search{margin-bottom:20px}
-}
-.nav--pill .mobile-menu[data-mode] .mm-lang .lang-search{margin-bottom:20px}
-@media (min-width:861px){.nav--pill .mobile-menu[data-mode] .mm-post{padding:7px 12px}}
