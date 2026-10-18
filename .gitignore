@@ -21,4 +21,4 @@ plugin/compatible-tools.json
 aish-release.jks
 gradlew.nat
 gradle-wrapper.jar
-gradle-wrapper.properties
+gradle-wrapper.properties_site/

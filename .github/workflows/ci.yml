@@ -36,6 +36,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Lint (errors only)
         run: npm run lint -- --quiet
+      - name: Live demo still builds and its mock covers every popup action
+        run: npm run demo:check
       - name: Tests the change can reach
         run: npm test -- --deep
 

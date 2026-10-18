@@ -12,6 +12,8 @@
     "build:android": "node plugin/scripts/build.js android",
     "build:ios": "node plugin/scripts/build.js ios",
     "privacy:build": "node scripts/privacy-md.mjs",
+    "demo:build": "node plugin/scripts/build-demo.mjs",
+    "demo:check": "node plugin/scripts/build-demo.mjs --check",
     "site:build": "node scripts/privacy-md.mjs && node scripts/build-site.mjs && node scripts/seo.mjs",
     "translate": "npm run site:build && node scripts/translate.mjs && node scripts/seo.mjs",
     "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
