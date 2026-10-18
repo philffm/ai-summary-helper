@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Política de Privacidade — AI Summary Helper</title>
+<meta name="description" content="Como o AI Summary Helper trata seus dados: suas chaves de API e histórico de artigos ficam no seu dispositivo, e o conteúdo da página só é enviado ao provedor de IA que você escolher.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="Política de Privacidade — AI Summary Helper">
+<meta property="og:description" content="Como o AI Summary Helper trata seus dados: suas chaves de API e histórico de artigos ficam no seu dispositivo.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/pt/privacy.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="pt_BR"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Política de Privacidade — AI Summary Helper"><meta name="twitter:description" content="Como o AI Summary Helper trata seus dados: suas chaves de API e histórico de artigos ficam no seu dispositivo."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/pt/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Ir para o conteúdo</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte de byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">Recursos</a>
+        <a href="index.html#digest">Digest</a>
+        <a href="index.html#pricing">Preços</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Minha conta</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">Recursos</a>
+      <a href="index.html#digest">Digest</a>
+      <a href="index.html#pricing">Preços</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Minha conta</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte de byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Alternar para modo claro</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Política de Privacidade</span>
+      <h1>Política de Privacidade</h1>
+      <p class="post-sub">Suas chaves de API, histórico de artigos e destaques ficam no seu dispositivo. O conteúdo da página só é enviado ao provedor de IA que você escolher — incluindo um modelo 100% local, se essa for a sua escolha.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>Última atualização: outubro de 2026</em></p>
+
+        <p>Esta Política de Privacidade explica quais dados o AI Summary Helper processa, para onde vão e por quê. O resumo direto: suas chaves de API, histórico de artigos e destaques permanecem no seu dispositivo. O conteúdo das páginas só é enviado ao provedor de IA que você decidir conectar — incluindo a opção de usar um modelo totalmente local (sem custos de assinatura e funcionando offline), onde nada sai da sua máquina. Não exibimos anúncios, não vendemos dados e não exigimos criação de conta para nenhum recurso principal.</p>
+
+        <p>Se você discordar de qualquer parte desta política, por favor, não instale nem utilize a extensão.</p>
+
+        <h2>Quem é o responsável</h2>
+        <p>O controlador de dados nos termos do Art. 4(7) do GDPR é Phil Wornath. O nome completo e endereço para notificações estão no <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">aviso legal</a>; você pode falar conosco usando os dados de contato no final desta política.</p>
+
+        <h2>Nenhuma conta necessária para os recursos principais</h2>
+        <p>O AI Summary Helper não exige que você crie uma conta, faça login ou forneça dados pessoais para resumir páginas, destacar textos, acompanhar feeds ou manter seu arquivo. Sua chave de API (caso utilize a sua própria) e todo o seu histórico de artigos ficam salvos localmente no armazenamento do seu navegador.</p>
+        <p>Uma conta só é necessária para os serviços na nuvem: byphil Cloud (resumos sem precisar de uma chave própria) e Send to Kindle. O login é feito com seu e-mail e um código de acesso único. Armazenamos apenas esse e-mail, o status do seu plano ou licença e contadores básicos de uso (como o número de requisições e envios para o Kindle) para gerenciar os limites do plano.</p>
+
+        <h2>Quais Dados Processamos e Para Onde Eles Vão</h2>
+
+        <h3>Sua conexão com provedores de IA</h3>
+        <p>Você escolhe como os resumos são gerados:</p>
+        <ul>
+          <li><strong>Traga sua própria chave (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek ou um endpoint personalizado. Sua chave de API fica armazenada apenas localmente no seu dispositivo (nunca é sincronizada nem enviada para nós). O conteúdo da página que você escolhe resumir é enviado diretamente do seu navegador para o provedor selecionado, usando sua própria chave e sujeito à política de privacidade desse provedor. Não vemos, registramos nem armazenamos esse conteúdo.</li>
+          <li><strong>Modelo local via Ollama</strong> — se você executa um modelo localmente, o conteúdo da página é enviado apenas para a sua própria máquina. Nada sai do seu dispositivo, funcionando 100% offline e sem custos recorrentes de assinatura de API.</li>
+          <li><strong>byphil Cloud (opcional, pago)</strong> — uma opção na nuvem para quem prefere não gerenciar uma chave de API própria. Se você escolher este plano, o texto que você pedir para resumir passará pelo nosso backend, que repassa a requisição via OpenRouter para o provedor do modelo escolhido em seu nome e retorna o resumo. Trata-se apenas de um repasse: nós não armazenamos o conteúdo das páginas, URLs ou resumos. O que registramos por conta são metadados de uso: a quantidade de requisições concluídas, uso de tokens, o horário da última requisição e o modelo utilizado. A criação de conta é opcional; todos os outros recursos funcionam sem ela.</li>
+        </ul>
+
+        <h3>Licença e status da assinatura</h3>
+        <p>Se você ativar uma licença Pro ou uma assinatura do byphil Cloud, sua chave de licença ficará armazenada localmente no seu dispositivo (nunca sincronizada) e será usada para verificar o status da assinatura com nosso backend. Metadados básicos de conta/faturamento são gerenciados pelo nosso processador de pagamentos e backend; não armazenamos o conteúdo das suas páginas nem seu histórico de leitura em nossos servidores.</p>
+
+        <h3>Feedback de desinstalação</h3>
+        <p>Quando você desinstala a extensão, o Chrome abre uma rápida página de feedback neste site. O endereço contém apenas a versão da extensão e a quantidade de dias em que ela esteve instalada — sem identificadores, sem conteúdo de páginas, sem histórico. O que você escolher ou digitar no formulário (um motivo, um comentário opcional) é registrado como um evento na nossa ferramenta de análise auto-hospedada e sem cookies, juntamente com a versão da extensão e os dias de instalação, sendo usado exclusivamente para melhorar a extensão. Se o seu navegador enviar o sinal Não Rastrear (Do Not Track) ou se você tiver desativado as estatísticas, nada é enviado. Não há campo de e-mail; para obter uma resposta, abra uma issue no GitHub. Você pode fechar a página sem responder.</p>
+
+        <h3>Histórico de artigos, destaques e configurações</h3>
+        <p>Tudo o que você salva fica armazenado localmente no seu navegador, utilizando as APIs de armazenamento integradas do Chrome — nunca em nossos servidores:</p>
+        <table>
+          <thead>
+            <tr><th>Dado</th><th>Armazenamento</th><th>Sincronizado via Chrome?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Artigos e resumos salvos</td><td>Local</td><td>Não</td></tr>
+            <tr><td>Inscrições e itens de feeds RSS</td><td>Local</td><td>Não</td></tr>
+            <tr><td>Chaves de API / configuração de provedores</td><td>Local</td><td>Não — confidencial, apenas no dispositivo</td></tr>
+            <tr><td>Chave de licença</td><td>Local</td><td>Não — confidencial, apenas no dispositivo</td></tr>
+            <tr><td>IP de rede do LocalSend</td><td>Local</td><td>Não</td></tr>
+            <tr><td>Destaques de texto e destaques automáticos de IA</td><td>Local (por página)</td><td>Não</td></tr>
+            <tr><td>Prompt padrão, idioma e tamanho do resumo</td><td>Sync</td><td>Sim, através da sua própria conta do Chrome</td></tr>
+            <tr><td>Preferência de ativação/desativação de destaques</td><td>Sync</td><td>Sim, através da sua própria conta do Chrome</td></tr>
+          </tbody>
+        </table>
+        <p>Itens marcados como "Sync" utilizam a sincronização nativa do Chrome vinculada à sua conta Google — esses dados passam pela infraestrutura do Google, e não pela nossa, exatamente como acontece com os seus favoritos. Não temos nenhum acesso a eles.</p>
+        <p>Você pode exportar seus dados a qualquer momento em Configurações → Biblioteca e dados → Backup e restauração. Por padrão, os backups omitem chaves de API, dados de login, chaves de licença e identificadores de instalação; incluí-los é uma opção explícita com aviso, pois qualquer pessoa de posse desse arquivo poderá usá-los. Mantenha os arquivos exportados em segurança e lembre-se de que backups mais antigos podem conter informações confidenciais. No mesmo local, a Zona de perigo permite excluir itens por categoria, exibindo a contagem do que será removido: resumos e arquivo, destaques, feeds, podcasts, chaves de API / login / licença, destinos de envio (Kindle, LocalSend) e preferências. <em>Excluir todos os dados</em> remove tudo o que a extensão armazena no dispositivo e redefine suas configurações. Remover a extensão também apaga seus dados. Essas ações excluem apenas dados locais. Sua conta e os registros que mantemos no nosso servidor (veja abaixo) são gerenciados por você em <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: lá você pode exportar seus dados e excluir sua conta. A extensão e o app para Android possuem links para essa página nas configurações de conta.</p>
+
+        <h3>Feeds RSS</h3>
+        <p>O leitor de Feeds integrado armazena suas inscrições e os itens de feed obtidos localmente no seu navegador — nunca sincronizados, nunca enviados para nós. Quando você adiciona ou atualiza um feed, a extensão solicita o endereço desse feed diretamente ao servidor do publicador, assim como seu navegador faria ao acessar o site, permitindo que o publicador veja a solicitação. Nós não intermediamos via proxy, não registramos em log nem visualizamos suas inscrições ou lista de leitura. A importação de OPML é processada inteiramente no seu dispositivo. Se você ativar as verificações em segundo plano (desativadas por padrão), a extensão solicitará novamente seus feeds no intervalo que você escolher, apenas para exibir a contagem no ícone da barra de ferramentas. Resumir um item de feed funciona como resumir qualquer outra página: seu conteúdo só é enviado ao provedor de IA que você escolheu e apenas quando você solicita um resumo. O resumo diário por IA e a análise de tom por IA opcionais funcionam da mesma forma: somente quando você clica neles, a extensão envia títulos de itens, nomes das fontes e pequenos trechos (e não os artigos completos) para o provedor de IA escolhido, e o resumo resultante fica em cache no seu dispositivo. Os episódios de podcast em um feed são transmitidos via streaming diretamente do servidor do publicador quando você clica em Play.</p>
+
+        <h3>Envio de artigos: Kindle, LocalSend e menu de compartilhamento</h3>
+        <p>Existem dois caminhos distintos, e apenas um deles passa pelo nosso servidor:</p>
+        <ul>
+          <li><strong>O Send to Kindle passa pelo nosso servidor.</strong> A Amazon só aceita documentos por e-mail de remetentes autorizados. Por isso, a extensão envia o artigo (título, resumo, texto, destaques e link de origem) para o backend do byphil, que o encaminha para o e-mail do seu Kindle. Basta adicionar nosso endereço (kindle@byphil.eu) à lista de remetentes aprovados na sua conta da Amazon. O conteúdo é usado exclusivamente para gerar e enviar esse e-mail. O envio para o Kindle requer login ou uma licença ativa; o plano gratuito inclui 3 envios.</li>
+          <li><strong>O LocalSend e o menu de compartilhamento do sistema (como o AirDrop) são diretos.</strong> O arquivo vai diretamente do seu navegador para o dispositivo escolhido na sua rede local ou para o app selecionado no menu de compartilhamento. Não temos qualquer intermediação, visualização ou armazenamento desse conteúdo. O LocalSend funciona em celulares, tablets, computadores e e-readers com o app instalado.</li>
+        </ul>
+
+        <h2 id="analytics">Métricas e cookies</h2>
+        <p><strong>Resumo:</strong> este site não armazena <strong>nenhum cookie</strong> e não usa rastreadores de anúncios ou entre sites. Contabilizamos visitas anônimas com uma instância própria do Matomo, e você pode desativar isso a qualquer momento.</p>
+        <p><strong>A extensão para navegador não contém nenhum código de análise (analytics), telemetria ou rastreamento.</strong> As únicas conexões de rede realizadas são direcionadas ao provedor de IA configurado por você, aos feeds assinados, às páginas que você solicita carregar e (se utilizados) ao backend do byphil para o byphil Cloud, login, validação de licença e Send to Kindle.</p>
+        <h3>O que medimos</h3>
+        <p>Visualizações de página, idioma da página, origem do tráfego (referrer), país aproximado/navegador/tipo de dispositivo e com quais partes do site você interage (por exemplo, cliques em "Adicionar ao Chrome", alternador de preços, itens do FAQ, seções pelas quais você navega e etapas do gerador de bookmarklet). Os eventos nunca contêm endereços de e-mail, chaves de API, códigos de uso único, conteúdo de páginas ou dados de artigos.</p>
+        <h3>Como é configurado</h3>
+        <p>O Matomo roda em nosso próprio servidor (analytics.philwornath.de, Alemanha), sem intermediários ou terceiros. Ele é carregado com cookies desativados e sem fingerprinting de recursos do navegador; endereços IP são anonimizados antes do armazenamento; nenhum ID de usuário ou identificador entre sites é atribuído, garantindo que as visitas não possam ser vinculadas entre dias ou dispositivos diferentes. Os dados não são vendidos nem compartilhados com terceiros.</p>
+        <p>Como nada é armazenado ou lido no seu dispositivo para fins de rastreamento, essa medição se baseia em nosso legítimo interesse de entender como o site é utilizado (Art. 6(1)(f) do RGPD/GDPR) e não exige um banner de consentimento de cookies nos termos do § 25 da TDDDG / Diretiva de Privacidade Eletrônica. Você tem o direito de se opor (Art. 21 do RGPD/GDPR) a qualquer momento.</p>
+        <h3>Suas opções</h3>
+        <p>A coleta de métricas é desativada automaticamente se o seu navegador enviar <em>Do Not Track</em> ou <em>Global Privacy Control</em>. Você também pode desativar manualmente via <a href="#" data-analytics-settings="">Configurações de analytics</a> (também disponível no rodapé de todas as páginas). <span id="analyticsStatusInline"></span></p>
+        <h3>O que fica armazenado no seu navegador</h3>
+        <p>Apenas preferências funcionais, nunca para rastreamento: <code>aish_analytics</code> (sua escolha de desativação), <code>aish_analytics_notice</code> (que você fechou o aviso informativo) e, se utilizados, a escolha do tema, a dispensa de sugestão de idioma e as configurações do gerador de bookmarklet. Esses dados permanecem no seu dispositivo e não são enviados para nós.</p>
+        <h3>Fontes e recursos externos</h3>
+        <p>As fontes (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) são hospedadas no próprio site, portanto o seu endereço IP não é repassado ao Google nem a nenhum provedor de fontes ao acessá-lo. As únicas requisições externas são links nos quais você clica e as páginas opcionais de conta byPhil / checkout da Stripe que você optar por abrir.</p>
+
+
+        <h2>Bases legais e retenção de dados</h2>
+        <p>Quase tudo é processado no seu dispositivo e nunca chega até nós. Onde realizamos o processamento de dados, estas são as bases legais e o tempo de retenção:</p>
+        <ul>
+          <li><strong>Conta e login</strong> (endereço de e-mail, código de uso único, chave de licença, status do plano) — para fornecer a conta solicitada por você, Art. 6(1)(b) do GDPR. Mantidos enquanto a conta existir; quando você exclui a conta, eles são apagados.</li>
+          <li><strong>byphil Cloud</strong> (repasse do texto que você resume, contadores de uso, consumo de tokens, última requisição, último modelo) — para executar o serviço, Art. 6(1)(b). O texto é apenas repassado e não fica armazenado. Os metadados de uso são mantidos enquanto a conta existir e são excluídos junto com ela.</li>
+          <li><strong>Enviar para o Kindle</strong> (o artigo enviado, seu endereço do Kindle) — para realizar o envio solicitado por você, Art. 6(1)(b). Usados unicamente para criar e enviar aquele e-mail.</li>
+          <li><strong>Pagamentos e verificação de licença</strong> — para cumprir o contrato e atender às obrigações contábeis e fiscais, Art. 6(1)(b) e (c). Os registros de faturamento são mantidos pelo período exigido por lei.</li>
+          <li><strong>Estatísticas do site e feedback de desinstalação</strong> — nosso interesse legítimo em melhorar o site e a extensão, Art. 6(1)(f). Os dados são anônimos (consulte Métricas e cookies).</li>
+        </ul>
+        <p>Você pode exportar os dados da sua conta e excluí-la a qualquer momento em <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. Excluir a conta apaga todos os dados armazenados associados a ela.</p>
+
+        <h2>Permissões que Solicitamos e os Motivos</h2>
+        <table>
+          <thead>
+            <tr><th>Permissão</th><th>Por que precisamos dela</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>Ler o conteúdo da página que você escolher ativamente resumir</td></tr>
+            <tr><td><code>storage</code></td><td>Salvar suas configurações, histórico de artigos e destaques localmente</td></tr>
+            <tr><td><code>contextMenus</code></td><td>Disponibilizar ações no menu do botão direito (Resumir, Destacar, etc.)</td></tr>
+            <tr><td><code>notifications</code></td><td>Exibir lembretes programados de artigos salvos para ler depois</td></tr>
+            <tr><td><code>alarms</code></td><td>Agendar essas notificações de lembrete</td></tr>
+            <tr><td><code>tabs</code></td><td>Fechar a aba automaticamente após usar "Resumir e Fechar"</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Suportar o painel lateral nativo do Chrome como opção de visualização</td></tr>
+            <tr><td><code>scripting</code></td><td>Injetar o script de conteúdo necessário para ler e resumir uma página</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Reproduzir áudios de podcasts e ler resumos em voz alta em segundo plano com o popup fechado</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Manter um grande arquivo local de artigos e destaques sem atingir o limite padrão de armazenamento</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Permitir que você resuma qualquer página que visitar — o conteúdo só é lido e transmitido quando você aciona ativamente um resumo, nunca de forma passiva</td></tr>
+          </tbody>
+        </table>
+        <p>Não usamos essas permissões para rastrear sua navegação, criar perfis publicitários ou coletar dados além do estritamente necessário para fornecer os recursos descritos acima.</p>
+
+        <h2>O Que Não Fazemos</h2>
+        <ul>
+          <li>Não exibimos anúncios e não vendemos, alugamos nem repassamos seus dados para anunciantes ou corretores de dados.</li>
+          <li>Não exigimos cadastro ou login para nenhum recurso essencial.</li>
+          <li>Não registramos nem retemos o conteúdo das páginas que você resume usando sua própria chave de API ou um modelo local (como Ollama), e nunca temos acesso ao que você envia via LocalSend ou menu de compartilhamento.</li>
+          <li>Não temos acesso ao seu histórico de artigos, destaques ou chaves de API salvos localmente — eles nunca saem do seu dispositivo, a menos que você os exporte explicitamente.</li>
+        </ul>
+
+        <h2>Serviços de Terceiros</h2>
+        <p>Dependendo de como você configurar a extensão, o conteúdo da página pode ser enviado para:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI ou DeepSeek — apenas se você tiver inserido sua própria chave de API desse provedor, e somente para a página que você ativamente solicitar o resumo.</li>
+          <li>Nosso backend byphil, hospedado pela IONOS SE na Alemanha — somente se você fizer login, usar a byphil Cloud ou o recurso Enviar para o Kindle.</li>
+          <li>OpenRouter, através da qual a byphil Cloud se conecta aos modelos, e o provedor de modelo para o qual a requisição é direcionada — o texto resumido é repassado ao modelo escolhido, apenas para atender àquela requisição específica.</li>
+          <li>Stripe — processamento de pagamentos e gerenciamento de assinaturas, atuando como Merchant of Record.</li>
+          <li>Amazon — se você enviar um artigo para o seu Kindle, a entrega é realizada sob as políticas de privacidade da própria Amazon.</li>
+          <li>Sua própria instância local do Ollama — não é um terceiro; processando no dispositivo e ficando na sua máquina.</li>
+        </ul>
+        <p>Não nos responsabilizamos pelas práticas de privacidade de provedores de IA de terceiros que você decidir conectar. Recomendamos que você revise as políticas deles antes de conectar sua chave.</p>
+        <p><strong>Você decide qual modelo processa seu texto.</strong> Quer você use sua própria chave ou a byphil Cloud, é você quem escolhe o provedor e o modelo nas configurações, e você é responsável por verificar os termos desse provedor e onde ele processa os dados. A OpenRouter, os provedores de modelos associados a ela e a Amazon podem processar dados fora da UE/EEE sob suas próprias salvaguardas (por exemplo, cláusulas contratuais padrão); nós não transferimos seus dados diretamente para países terceiros.</p>
+
+        <h2>Segurança dos Dados</h2>
+        <p>Adotamos medidas técnicas razoáveis e adequadas aos dados envolvidos — a maior parte dos quais nunca chega aos nossos servidores, pois fica salva localmente no seu navegador. A comunicação com o nosso backend (para o byphil Cloud e validação de licença) é criptografada em trânsito. Nenhum método de transmissão ou armazenamento é 100% seguro e não podemos garantir segurança absoluta, mas não coletamos nada além do necessário para disponibilizar os recursos descritos.</p>
+
+        <h2>Privacidade de Menores</h2>
+        <p>O AI Summary Helper não é direcionado a crianças menores de 13 anos (ou a idade mínima legal na sua jurisdição), e não coletamos intencionalmente informações pessoais de crianças.</p>
+
+        <h2>Seus Direitos (LGPD / GDPR / CCPA e similares)</h2>
+        <p>Como quase todos os seus dados ficam armazenados localmente no seu próprio dispositivo, você já tem controle total sobre eles — podendo visualizá-los, exportá-los ou excluí-los a qualquer momento nas Configurações da extensão, ou simplesmente desinstalando a extensão. Para quaisquer dados que mantemos em nossos servidores (assinatura da byphil Cloud e metadados de faturamento), você pode gerenciá-los, exportá-los e excluir sua conta em <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>, ou entrar em contato conosco pelos canais abaixo.</p>
+        <p>Você tem o direito de acesso (Art. 15), retificação (Art. 16), exclusão (Art. 17), limitação do processamento (Art. 18), portabilidade dos dados (Art. 20) e oposição (Art. 21), bem como o direito de retirar seu consentimento a qualquer momento. Você também tem o direito de apresentar uma reclamação a uma autoridade de controle (Art. 77), em especial no país da sua residência. Não usamos seus dados para decisões automatizadas com efeitos jurídicos ou para criação de perfis (profiling).</p>
+
+        <h2>Alterações Nesta Política</h2>
+        <p>Podemos atualizar esta Política de Privacidade conforme os recursos da extensão evoluírem. Mudanças relevantes serão refletidas aqui com a data de "Última atualização" revisada. O uso contínuo da extensão após qualquer alteração representa a aceitação da política atualizada.</p>
+
+        <h2>Fale Conosco</h2>
+        <p>Dúvidas sobre esta Política de Privacidade? Entre em contato pelo e-mail <a href="mailto:info@byphil.eu">info@byphil.eu</a>, ou através do <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+        <a href="../bookmarklet.html">Bookmarklet (sem instalação)</a>
+        <a href="privacy.html">Privacidade</a>
+        <a href="#" data-analytics-settings="">Configurações de analytics</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Termos de Serviço</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Reembolsos e Devoluções</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — software independente desenvolvido na Alemanha. Pagamentos processados pela Stripe como Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Resolução de Litígios de Consumo da UE</a> · Desenvolvido e mantido por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>개인정보 처리방침 — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helper의 데이터 처리 방식: 사용자의 API 키와 아티클 기록은 기기에만 안전하게 보관되며, 페이지 콘텐츠는 사용자가 직접 선택한 AI 서비스로만 전송됩니다.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="개인정보 처리방침 — AI Summary Helper">
+<meta property="og:description" content="AI Summary Helper의 데이터 처리 방식: 사용자의 API 키와 아티클 기록은 기기에만 안전하게 보관됩니다.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/ko/privacy.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="개인정보 처리방침 — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper의 데이터 처리 방식: 사용자의 API 키와 아티클 기록은 기기에만 안전하게 보관됩니다."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 프로젝트의 일부입니다.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">기능</a>
+        <a href="index.html#digest">다이제스트</a>
+        <a href="index.html#pricing">요금제</a>
+        <a href="blog/">블로그</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">내 계정</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">기능</a>
+      <a href="index.html#digest">다이제스트</a>
+      <a href="index.html#pricing">요금제</a>
+      <a href="blog/">블로그</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">내 계정</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 프로젝트 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">라이트 모드로 전환</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">개인정보 처리방침</span>
+      <h1>개인정보 처리방침</h1>
+      <p class="post-sub">API 키, 아티클 기록, 하이라이트는 사용자의 기기에만 보관됩니다. 페이지 콘텐츠는 사용자가 선택한 AI 제공자에게만 전송되며, 완전한 로컬 모델을 선택할 경우 어떤 데이터도 기기 밖으로 나가지 않습니다.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>최종 업데이트: 2026년 10월</em></p>
+
+        <p>본 개인정보 처리방침은 AI Summary Helper가 처리하는 데이터의 종류와 저장 위치, 처리 목적을 설명합니다. 요약하자면, API 키, 아티클 기록, 하이라이트는 사용자의 기기에만 안전하게 보관됩니다. 페이지 콘텐츠는 사용자가 직접 선택한 AI 제공자에게만 전송되며, 완전한 로컬 모델을 선택하면 데이터가 외부로 일절 전송되지 않습니다. 본 서비스는 광고를 게재하지 않고, 데이터를 판매하지 않으며, 핵심 기능을 이용할 때 별도의 계정을 요구하지 않습니다.</p>
+
+        <p>본 정책의 내용에 동의하지 않으시는 경우 확장 프로그램을 설치하거나 사용하지 마시기 바랍니다.</p>
+
+        <h2>개인정보 처리 책임자</h2>
+        <p>GDPR 제4조 제7항에 따른 개인정보 처리자는 Phil Wornath입니다. 송달 가능한 전체 성명 및 주소는 다음에서 확인하실 수 있습니다:  <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">법적 고지(Legal Notice)</a>. 본 개인정보 처리방침 하단의 연락처를 통해서도 문의하실 수 있습니다.</p>
+
+        <h2>핵심 기능은 계정 없이도 바로 사용할 수 있어요</h2>
+        <p>AI Summary Helper는 웹페이지 요약, 하이라이트 표시, 피드 구독, 아카이브 보관 등의 기능을 사용할 때 계정 생성이나 로그인, 어떠한 개인정보도 요구하지 않아요. 직접 등록한 API 키(사용하는 경우)와 전체 아티클 기록은 모두 브라우저의 로컬 스토리지에 안전하게 보관됩니다.</p>
+        <p>계정은 자체 호스팅 서비스인 byphil Cloud(개인 키 없이 요약) 및 Send to Kindle 기능을 이용할 때만 필요해요. 이메일 주소와 일회용 코드로 간편하게 로그인할 수 있습니다. 요금제 한도를 적용하기 위해 해당 이메일 주소, 플랜 또는 라이선스 상태, 기본 사용량 통계(예: 요청 횟수 및 Kindle 전송 횟수)만 저장됩니다.</p>
+
+        <h2>처리하는 데이터 및 데이터 전송 위치</h2>
+
+        <h3>AI 서비스 연결 방식</h3>
+        <p>요약 생성 방식을 직접 선택할 수 있습니다:</p>
+        <ul>
+          <li><strong>개인 API 키 직접 사용 (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek 또는 커스텀 엔드포인트를 지원합니다. API 키는 사용자의 기기 로컬에만 저장되며, 동기화되거나 당사 서버로 전송되지 않습니다. 요약하도록 선택한 페이지 콘텐츠는 본인의 API 키를 사용하여 브라우저에서 해당 AI 제공업체로 직접 전송되며, 해당 제공업체의 개인정보 처리방침을 따릅니다. 당사는 이 콘텐츠를 확인하거나 기록(로그), 저장하지 않습니다.</li>
+          <li><strong>Ollama를 통한 로컬 모델</strong> — 로컬에서 직접 AI 모델을 실행할 경우, 페이지 콘텐츠는 사용자 본인의 컴퓨터로만 전송됩니다. 어떤 데이터도 기기 외부로 나가지 않습니다.</li>
+          <li><strong>byphil Cloud (선택형 유료 플랜)</strong> — API 키를 직접 관리하지 않고 편리하게 이용하고자 하는 분들을 위한 호스팅 옵션입니다. 이 요금제를 선택하시면 요약을 요청한 텍스트가 당사 백엔드를 거쳐 전송되며, 당사 백엔드는 OpenRouter를 통해 고객님을 대신하여 해당 모델 제공자에게 요청을 중계하고 요약 결과를 반환합니다. 이는 단순 중계일 뿐이며 페이지 콘텐츠, URL, 요약본은 일절 저장하지 않습니다. 계정별로 기록되는 정보는 완료된 요청 수, 토큰 사용량, 마지막 요청 시간 및 사용된 모델과 같은 사용 메타데이터뿐입니다. 계정 생성은 선택 사항이며, 계정이 없어도 다른 모든 기능을 자유롭게 이용하실 수 있습니다.</li>
+        </ul>
+
+        <h3>라이선스 및 구독 상태</h3>
+        <p>Pro 라이선스 또는 byphil Cloud 구독을 활성화하면 라이선스 키가 기기 로컬에 저장되며(동기화되지 않음), 백엔드를 통해 구독 상태를 확인하는 데 사용됩니다. 기본적인 계정 및 결제 메타데이터는 결제 대행사와 백엔드에서 처리하며, 사용자의 페이지 콘텐츠나 읽기 기록은 당사 서버에 일절 저장하지 않습니다.</p>
+
+        <h3>삭제 피드백</h3>
+        <p>확장 프로그램을 삭제하면 Chrome에서 본 웹사이트의 간단한 피드백 페이지가 열립니다. 해당 웹 주소에는 확장 프로그램 버전과 설치 기간(일수)만 포함되며 식별자, 페이지 콘텐츠, 방문 기록은 전혀 포함되지 않습니다. 양식에 선택하거나 입력하신 내용(삭제 이유, 선택적 의견)은 확장 프로그램 버전 및 설치 기간과 함께 쿠키를 사용하지 않는 자체 호스팅 분석 도구에 이벤트로 기록되며, 오직 확장 프로그램 개선 목적으로만 사용됩니다. 브라우저에서 '추적 거부(Do Not Track)' 신호를 보내거나 분석 수집을 거부하신 경우에는 아무런 데이터도 전송되지 않습니다. 이메일 입력란은 별도로 없으므로 답변이 필요하신 경우 GitHub 이슈를 등록해 주세요. 설문에 응답하지 않고 페이지를 그냥 닫으셔도 됩니다.</p>
+
+        <h3>아티클 기록, 하이라이트 및 설정</h3>
+        <p>저장된 모든 정보는 당사 서버가 아닌 Chrome의 내장 스토리지 API를 통해 브라우저 로컬에 저장됩니다:</p>
+        <table>
+          <thead>
+            <tr><th>데이터</th><th>저장 위치</th><th>Chrome 동기화 여부</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>저장된 아티클 및 요약본</td><td>로컬 (Local)</td><td>동기화 안 됨</td></tr>
+            <tr><td>RSS 피드 구독 및 항목</td><td>로컬 (Local)</td><td>동기화 안 됨</td></tr>
+            <tr><td>API 키 / AI 제공자 설정</td><td>로컬 (Local)</td><td>동기화 안 됨 — 민감 정보, 기기 전용</td></tr>
+            <tr><td>라이선스 키</td><td>로컬 (Local)</td><td>동기화 안 됨 — 민감 정보, 기기 전용</td></tr>
+            <tr><td>LocalSend 네트워크 IP</td><td>로컬 (Local)</td><td>동기화 안 됨</td></tr>
+            <tr><td>텍스트 하이라이트 &amp; AI 고스트 하이라이트</td><td>로컬 (페이지별)</td><td>동기화 안 됨</td></tr>
+            <tr><td>기본 프롬프트, 언어, 요약 길이</td><td>동기화 (Sync)</td><td>동기화됨 (사용자의 Chrome 계정 연동)</td></tr>
+            <tr><td>하이라이트 켜기/끄기 설정</td><td>동기화 (Sync)</td><td>동기화됨 (사용자의 Chrome 계정 연동)</td></tr>
+          </tbody>
+        </table>
+        <p>"동기화 (Sync)"로 표시된 항목은 사용자의 Google 계정과 연결된 Chrome 자체 동기화 기능을 사용합니다. 이 데이터는 북마크와 마찬가지로 당사가 아닌 Google의 인프라를 거쳐 처리되며, 당사는 이에 접근할 수 없습니다.</p>
+        <p>Settings → Library &amp; Data → Backup &amp; restore 메뉴에서 언제든지 데이터를 내보낼 수 있어요. 백업 시 API 키, 로그인 정보, 라이선스 키 및 설치 식별자는 기본적으로 제외됩니다. 해당 백업 파일이 있으면 누구나 이 정보를 사용할 수 있으므로, 포함하려면 경고 확인 후 직접 선택해야 해요. 내보낸 파일은 안전하게 비공개로 보관하시고, 이전 백업 파일에 민감한 정보가 포함되어 있을 수 있다는 점도 기억해 주세요. 같은 위치에 있는 Danger zone에서는 삭제될 항목 수와 함께 카테고리별로 데이터를 삭제할 수 있어요. 대상 항목은 요약 및 아카이브, 하이라이트, 피드, 팟캐스트, API 키 / 로그인 / 라이선스, 전송 대상(Kindle, LocalSend), 환경설정입니다. <em>모든 데이터 삭제</em> 을(를) 실행하면 확장 프로그램이 기기에 저장한 모든 데이터가 삭제되고 초기 상태로 재설정됩니다. 확장 프로그램을 삭제하셔도 관련 데이터가 함께 제거됩니다. 이러한 작업은 로컬 데이터만 삭제합니다. 계정 및 당사 서버에 보관된 기록(하단 참조)은 다음 페이지에서 직접 관리하실 수 있습니다:  <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. 해당 페이지에서 데이터를 내보내거나 계정을 삭제할 수 있습니다. 확장 프로그램과 Android 앱의 계정 설정에서도 이 링크로 바로 이동할 수 있습니다.</p>
+
+        <h3>RSS 피드</h3>
+        <p>내장된 Feeds 리더는 구독 정보와 가져온 피드 항목을 브라우저에 로컬로 저장하며, 외부와 동기화되거나 당사 서버로 전송되지 않습니다. 피드를 추가하거나 새로고침하면 브라우저에서 사이트를 직접 방문할 때와 마찬가지로 확장 프로그램이 발행사 서버에 피드 주소를 직접 요청하므로 발행사에서 해당 요청을 확인할 수 있습니다. 당사는 사용자의 구독 정보나 읽기 목록을 프록시 처리하거나 기록(로그)을 남기거나 열람하지 않습니다. OPML 가져오기는 전적으로 기기 내에서 처리됩니다. 백그라운드 확인 기능(기본값: 꺼짐)을 켜면 툴바 아이콘에 개수를 표시하기 위해서만 설정한 주기에 따라 피드를 다시 요청합니다. 피드 항목 요약은 일반 페이지 요약과 동일하게 작동하며, 요약을 실행할 때만 사용자가 선택한 AI 제공업체로 콘텐츠가 전송됩니다. 선택 기능인 AI 일일 요약(AI day recap) 및 AI 톤 스코어링(AI tone scoring)도 동일하게 작동합니다. 클릭할 때만 확장 프로그램이 전체 본문이 아닌 항목 제목, 출처 이름, 짧은 발췌문만을 선택한 AI 제공업체로 전송하며, 생성된 요약 결과는 기기에 캐시됩니다. 피드의 팟캐스트 에피소드는 재생(Play)을 누를 때 발행사 서버에서 직접 스트리밍됩니다.</p>
+
+        <h3>아티클 전송: Kindle, LocalSend 및 공유 시트</h3>
+        <p>전송 방식은 두 가지 경로로 나뉘며, 그중 하나만 당사 서버를 거칩니다:</p>
+        <ul>
+          <li><strong>Send to Kindle은 당사 서버를 거쳐 전송됩니다.</strong> Amazon은 승인된 발신자의 이메일로만 문서를 수신하므로, 확장 프로그램이 아티클(제목, 요약본, 본문, 하이라이트 및 출처 주소)을 byphil 백엔드로 전송한 후 입력하신 Kindle 주소로 이메일을 발송합니다. Amazon 계정의 승인된 발신자 목록에 발신용 이메일(kindle@byphil.eu)을 추가해 주셔야 해요. 전송된 콘텐츠는 이메일 생성 및 발송 목적으로만 사용됩니다. Kindle 전송 기능은 로그인 또는 라이선스가 필요하며, 무료 티어에서는 3회까지 전송할 수 있습니다.</li>
+          <li><strong>LocalSend 및 시스템 공유 시트(예: AirDrop)는 기기간 직접 전송됩니다.</strong> 파일은 브라우저에서 로컬 네트워크상의 지정한 기기나 공유 시트에서 선택한 앱으로 직접 전송돼요. 당사는 이 과정에 전혀 관여하지 않으며 콘텐츠를 확인하거나 저장하지 않습니다. LocalSend는 호환 앱이 설치된 스마트폰, 태블릿, PC 및 전자책 리더기에서 원활하게 작동합니다.</li>
+        </ul>
+
+        <h2 id="analytics">분석 및 쿠키</h2>
+        <p><strong>요약:</strong> 이 웹사이트는 <strong>쿠키를 전혀 생성하지 않으며</strong> 광고나 크로스 사이트 트래커를 일절 사용하지 않습니다. 자체 호스팅 Matomo 인스턴스로 익명 방문 데이터만 집계하며, 언제든지 비활성화할 수 있습니다.</p>
+        <p><strong>브라우저 확장 프로그램 자체에는 어떠한 분석 도구, 텔레메트리 또는 추적 코드도 포함되어 있지 않아요.</strong> 확장 프로그램의 네트워크 요청은 오직 사용자가 설정한 AI 제공자, 구독한 피드, 가져오도록 요청한 웹페이지, 그리고 (해당 기능을 이용할 경우) byphil Cloud, 로그인, 라이선스 확인 및 Send to Kindle을 위한 byphil 백엔드로만 전송됩니다.</p>
+        <h3>수집하는 데이터</h3>
+        <p>페이지 조회수, 페이지 언어, 유입 경로(referrer), 대략적인 국가/브라우저/기기 유형, 사이트 내 상호작용 요소(예: 'Chrome에 추가' 클릭, 요금제 토글, FAQ 항목, 스크롤한 섹션, 북마클릿 생성기 단계 등)를 측정합니다. 이벤트 데이터에는 이메일 주소, API 키, 일회용 코드, 페이지 콘텐츠나 기사 본문 데이터가 절대 포함되지 않습니다.</p>
+        <h3>설정 및 운영 방식</h3>
+        <p>Matomo는 제3자 서비스가 아닌 자체 서버(독일 소재 analytics.philwornath.de)에서 직접 실행됩니다. 쿠키 비활성화 및 브라우저 핑거프린팅 없이 로드되며, IP 주소는 저장 전 익명화 처리됩니다. 사용자 ID나 크로스 사이트 식별자를 부여하지 않으므로 일자별 혹은 기기 간 방문을 연결하여 추적할 수 없습니다. 데이터는 제3자에게 판매되거나 공유되지 않습니다.</p>
+        <p>추적 목적으로 기기에 어떠한 정보도 저장하거나 읽지 않으므로, 본 측정은 웹사이트 이용 방식 파악을 위한 정당한 이익(GDPR 제6조 제1항 (f)호)에 기반하며 독일 TDDDG 제25조 및 ePrivacy 지침에 따른 쿠키 동의 배너가 필요하지 않습니다. 귀하는 언제든지 이에 대해 이의를 제기할 권리(GDPR 제21조)가 있습니다.</p>
+        <h3>사용자 선택권</h3>
+        <p>브라우저에서 다음 신호를 전송하면 분석 기능이 자동으로 비활성화됩니다: <em>Do Not Track</em> 또는 <em>Global Privacy Control</em>. 다음 링크를 통해 수동으로 분석을 거부(옵트아웃)할 수도 있습니다: <a href="#" data-analytics-settings="">분석 설정</a> (모든 페이지 하단 푸터에서도 설정 가능). <span id="analyticsStatusInline"></span></p>
+        <h3>브라우저에 저장되는 정보</h3>
+        <p>추적 목적이 아닌 순수 기능 설정만 기기에 저장됩니다: <code>aish_analytics</code> (분석 거부/옵트아웃 설정), <code>aish_analytics_notice</code> (안내 공지 닫기 여부), 그리고 사용 시 테마 설정, 언어 제안 닫기, 북마클릿 생성기 설정 등입니다. 이 데이터는 사용자의 기기에만 유지되며 외부로 전송되지 않습니다.</p>
+        <h3>폰트 및 외부 리소스</h3>
+        <p>폰트(Inter, Space Grotesk, JetBrains Mono; SIL Open Font License)는 본 사이트 자체에서 직접 제공되므로, 단순히 사이트를 방문하는 것만으로는 Google이나 폰트 제공업체에 IP 주소가 전송되지 않습니다. 발생하는 외부 요청은 사용자가 직접 클릭한 링크와 직접 열기로 선택한 선택적 byPhil 계정 / Stripe 결제 페이지뿐입니다.</p>
+
+
+        <h2>처리 근거 및 보유 기간</h2>
+        <p>거의 모든 데이터는 고객님의 기기 내에서 로컬로 처리되며 당사 서버로 전송되지 않습니다. 당사에서 데이터를 처리하는 경우, 그 법적 근거 및 보유 기간은 다음과 같습니다:</p>
+        <ul>
+          <li><strong>계정 및 로그인</strong> (이메일 주소, 일회용 인증 코드, 라이선스 키, 플랜 상태) — 요청하신 계정 서비스를 제공하기 위함(GDPR 제6조 제1항 (b)호). 계정이 유지되는 동안 보관되며, 계정 삭제 시 함께 파기됩니다.</li>
+          <li><strong>byphil Cloud</strong> (요약 요청 텍스트 중계, 사용량 카운터, 토큰 사용량, 마지막 요청 시간, 마지막 사용 모델) — 서비스 제공을 위함(GDPR 제6조 제1항 (b)호). 텍스트는 단순 중계될 뿐 저장되지 않습니다. 사용 메타데이터는 계정이 유지되는 동안 보관되며 계정 삭제 시 함께 파기됩니다.</li>
+          <li><strong>Kindle로 보내기</strong> (전송할 문서/기사, 고객님의 Kindle 이메일 주소) — 요청하신 발송 작업을 수행하기 위함(GDPR 제6조 제1항 (b)호). 해당 이메일을 생성하고 발송하는 목적으로만 일회성으로 사용됩니다.</li>
+          <li><strong>결제 및 라이선스 확인</strong> — 계약 이행 및 회계 법적 의무 준수를 위함(GDPR 제6조 제1항 (b)호 및 (c)호). 결제 및 청구 기록은 관련 법령이 규정한 기간 동안 보관됩니다.</li>
+          <li><strong>웹사이트 분석 및 삭제 피드백</strong> — 웹사이트 및 확장 프로그램 개선을 위한 정당한 이익(GDPR 제6조 제1항 (f)호). 데이터는 완전히 익명으로 처리됩니다(분석 도구 및 쿠키 항목 참조).</li>
+        </ul>
+        <p>언제든지 다음 페이지에서 계정 데이터를 내보내거나 계정을 영구 삭제하실 수 있습니다:  <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. 계정을 삭제하면 해당 계정에 저장된 모든 데이터가 즉시 파기됩니다.</p>
+
+        <h2>요청하는 권한 및 사용 목적</h2>
+        <table>
+          <thead>
+            <tr><th>권한</th><th>사용 목적</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>사용자가 직접 요약을 요청한 활성 페이지의 콘텐츠를 읽기 위해 사용</td></tr>
+            <tr><td><code>storage</code></td><td>설정, 아티클 기록, 하이라이트를 기기 로컬에 저장하기 위해 사용</td></tr>
+            <tr><td><code>contextMenus</code></td><td>우클릭 메뉴 기능(요약하기, 하이라이트 등)을 제공하기 위해 사용</td></tr>
+            <tr><td><code>notifications</code></td><td>나중에 읽기로 저장한 아티클의 예약 알림을 표시하기 위해 사용</td></tr>
+            <tr><td><code>alarms</code></td><td>아티클 알림 일정을 예약하기 위해 사용</td></tr>
+            <tr><td><code>tabs</code></td><td>"요약 후 닫기" 기능 실행 시 해당 탭을 자동으로 닫기 위해 사용</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Chrome의 기본 사이드 패널 보기 기능을 지원하기 위해 사용</td></tr>
+            <tr><td><code>scripting</code></td><td>페이지를 읽고 요약하는 데 필요한 콘텐츠 스크립트를 삽입하기 위해 사용</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>팝업 창이 닫혀 있어도 백그라운드에서 팟캐스트 오디오를 재생하고 요약본을 음성으로 읽어줍니다</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>기본 저장 용량 제한 없이 대용량의 아티클 및 하이라이트 아카이브를 로컬에 보관합니다</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>방문하는 모든 웹페이지를 요약할 수 있도록 지원 — 백그라운드에서 수동적으로 수집되지 않으며, 사용자가 직접 요약을 실행할 때만 콘텐츠를 읽고 전송함</td></tr>
+          </tbody>
+        </table>
+        <p>당사는 이러한 권한을 브라우징 활동 추적, 광고 프로필 생성, 또는 위에서 설명한 기능 제공 목적 이외의 데이터 수집에 절대 사용하지 않습니다.</p>
+
+        <h2>수행하지 않는 행위</h2>
+        <ul>
+          <li>광고를 게재하거나 노출하지 않으며, 광고주나 데이터 브로커에게 사용자 데이터를 판매, 대여 또는 거래하지 않습니다.</li>
+          <li>어떤 핵심 기능에도 계정 생성이나 로그인을 요구하지 않습니다.</li>
+          <li>개인 API 키나 로컬 모델을 통해 요약한 웹페이지 내용은 기록하거나 보관하지 않으며, LocalSend나 공유 시트로 전송하는 데이터 역시 절대 열람하지 않습니다.</li>
+          <li>기기 로컬에 저장된 아티클 기록, 하이라이트, API 키에 접근하지 않습니다. 사용자가 직접 내보내기를 하지 않는 한 데이터는 기기 밖으로 나가지 않습니다.</li>
+        </ul>
+
+        <h2>타사 서비스 (Third-Party Services)</h2>
+        <p>확장 프로그램 설정에 따라 페이지 콘텐츠가 다음 대상으로 전송될 수 있습니다:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI 또는 DeepSeek — 해당 제공업체의 자체 API 키를 입력하고 활성 페이지의 요약을 직접 실행한 경우에만 해당합니다.</li>
+          <li>독일 IONOS SE에서 호스팅하는 byphil 백엔드 — 로그인하거나 byphil Cloud 또는 Send to Kindle 기능을 사용할 때만 제한적으로 연결됩니다.</li>
+          <li>byphil Cloud가 AI 모델에 연결하기 위해 사용하는 OpenRouter 및 해당 중계 모델 제공자 — 요약할 텍스트는 해당 요청 처리를 위해서만 사용 중인 모델로 안전하게 중계됩니다.</li>
+          <li>Stripe — 등록 판매자(Merchant of Record)로서 결제 및 구독 관리를 처리합니다.</li>
+          <li>Amazon — 아티클을 Kindle로 전송하는 경우, Amazon의 개인정보 처리방침에 따라 전송 및 전달됩니다.</li>
+          <li>사용자의 로컬 Ollama 인스턴스 — 타사 서비스가 아니며 모든 데이터는 사용자의 컴퓨터 내에만 유지됩니다.</li>
+        </ul>
+        <p>당사는 사용자가 연결하기로 선택한 타사 AI 제공업체의 개인정보 보호 관행에 대해 책임을 지지 않습니다. 계정을 연결하기 전에 해당 업체의 개인정보 처리방침을 검토해 보시기 바랍니다.</p>
+        <p><strong>어떤 모델로 텍스트를 처리할지는 전적으로 고객님이 결정합니다.</strong> 개인 API 키를 사용하든 byphil Cloud를 이용하든, 설정에서 AI 제공자와 모델을 직접 선택할 수 있으며 해당 제공자의 이용약관 및 데이터 처리 지역을 확인할 책임은 사용자 본인에게 있습니다. OpenRouter, 연동된 AI 모델 제공자 및 Amazon은 자체 보호 조치(예: 표준계약조항/SCC)에 따라 EU/EEA 외부에서 데이터를 처리할 수 있습니다. 당사는 고객님의 데이터를 제3국으로 직접 이전하지 않습니다.</p>
+
+        <h2>데이터 보안</h2>
+        <p>대부분의 데이터는 브라우저 로컬에 저장되어 애초에 당사 서버로 전송되지 않으며, 취급하는 데이터에 적합한 합리적인 기술적 조치를 적용하고 있습니다. 백엔드와의 통신(byphil Cloud 및 라이선스 확인)은 전송 중 암호화됩니다. 완벽하게 안전한 전송이나 저장 방법은 없으므로 절대적인 보안을 보장할 수는 없지만, 설명된 기능을 제공하는 데 필요한 것 이상의 데이터를 수집하지 않습니다.</p>
+
+        <h2>아동 개인정보 보호</h2>
+        <p>AI Summary Helper는 만 14세 미만(또는 해당 국가의 법정 최소 연령 미만) 아동을 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않습니다.</p>
+
+        <h2>이용자의 권리 (GDPR, CCPA 등)</h2>
+        <p>대부분의 데이터는 고객님의 기기에만 안전하게 로컬로 저장되므로, 사용자가 데이터를 완전히 통제할 수 있습니다. 확장 프로그램의 '설정' 메뉴에서 언제든지 데이터를 확인, 내보내기, 삭제할 수 있으며 확장 프로그램을 제거하여 삭제할 수도 있습니다. 당사 서버에 저장되는 일부 데이터(byphil Cloud 구독/결제 메타데이터)의 경우 다음 링크에서 관리, 내보내기 및 계정 삭제가 가능합니다:  <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. 또는 하단의 연락처로 문의해 주시기 바랍니다.</p>
+        <p>귀하는 정보주체로서 열람 청구권(제15조), 정정 청구권(제16조), 삭제 청구권(제17조), 처리 제한 청구권(제18조), 데이터 이동권(제20조), 처리 거부권(제21조) 및 언제든지 동의를 철회할 권리를 가집니다. 또한 거주지 관할 감독 기관에 불복을 제기할 권리(제77조)도 보유합니다. 당사는 귀하의 데이터를 법적 효력을 발생시키는 자동화된 의사결정이나 프로파일링에 활용하지 않습니다.</p>
+
+        <h2>개인정보 처리방침의 변경</h2>
+        <p>확장 프로그램의 기능 변경에 따라 본 개인정보 처리방침이 업데이트될 수 있습니다. 중요한 변경 사항이 있는 경우 최신 "최종 수정일"과 함께 본 페이지에 공지됩니다. 변경 이후에도 확장 프로그램을 계속 사용하시면 수정된 정책에 동의하는 것으로 간주됩니다.</p>
+
+        <h2>문의하기</h2>
+        <p>본 개인정보 처리방침에 대해 질문이 있으신가요? 다음 이메일( <a href="mailto:info@byphil.eu">info@byphil.eu</a>) 또는  <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues를 통해 문의해 주세요.</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="../bookmarklet.html">북마클릿 (설치 불필요)</a>
+        <a href="privacy.html">개인정보 보호</a>
+        <a href="#" data-analytics-settings="">분석 설정</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">이용약관</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">환불 및 반품 정책</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — 독일에서 제작된 독립 소프트웨어입니다. 결제는 기록상 판매자(Merchant of Record)인 Stripe를 통해 처리됩니다.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU 소비자 분쟁 해결</a> · 기획 및 개발: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+
+
+</body></html>

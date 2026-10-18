@@ -49,7 +49,7 @@ jobs:
 
       # docs/ is generated (by build-site.mjs) and committed (GitHub Pages
       # serves it directly), so both the English pages AND the translated
-      # lang/ output can change in one PR here. git-add stays scoped
+      # locale output can change in one PR here. git-add stays scoped
       # explicitly rather than a blanket `-A`, which in a monorepo risks
       # sweeping up unrelated changes from the extension build.
       - name: Open pull request with the updated translations

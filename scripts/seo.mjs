@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// scripts/seo.mjs — idempotent SEO pass over docs/*.html (incl. docs/lang/**):
+// scripts/seo.mjs — idempotent SEO pass over docs/*.html (incl. the locale folders docs/<code>/):
 //  * adds <link rel="canonical"> + og:url (self-referencing, clean URLs: index.html -> /)
 //  * normalises hreflang hrefs to the same clean form
 //  * drops hreflang alternates whose target page does not exist (not every post is translated)
@@ -12,6 +12,9 @@ import path from 'node:path';
 import * as cheerio from 'cheerio';
 
 const BASE = 'https://ai-summary-helper.byphil.eu';
+// Locale folders (docs/de/, docs/fr/ …) come from the translation config, so renaming them needs no change here.
+const LOCALE_DIRS = Object.values(JSON.parse(fs.readFileSync(path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs', 'i18n', 'locales.json'), 'utf8')).locales).map((l) => l.dir);
+const isLocalized = (rel) => LOCALE_DIRS.some((d) => rel === d || rel.startsWith(d + '/'));
 const DOCS = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs');
 const clean = (rel) => BASE + '/' + rel.replace(/(^|\/)index\.html$/, '$1');
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -49,7 +52,7 @@ function jsonLd($, rel, self, lang, title, desc, image) {
   $('script[data-seo="ld"]').remove();
   const graph = [];
   const publisher = { '@type': 'Organization', '@id': 'https://byphil.eu/#org', name: 'byphil', url: 'https://byphil.eu/' };
-  const isHome = rel === 'index.html' || /^lang\/[^/]+\/index\.html$/.test(rel);
+  const isHome = rel === 'index.html' || LOCALE_DIRS.some((d) => rel === d + '/index.html');
   const isPost = /(^|\/)blog\/(?!index\.html)[^/]+\.html$/.test(rel);
   if (isHome) {
     graph.push({ '@type': 'WebSite', '@id': BASE + '/#website', url: BASE + '/', name: 'AI Summary Helper', inLanguage: lang, publisher: { '@id': publisher['@id'] } });
@@ -86,6 +89,27 @@ for (const file of walk(DOCS)) {
     $(el).attr('href', h);
     alts.push([$(el).attr('hreflang'), h]);
   });
+  // Translated pages link to pages that are not translated (bookmarklet, some posts): point those links at the English page instead of a 404.
+  if (isLocalized(rel)) {
+    const locDir = LOCALE_DIRS.find((d) => rel.startsWith(d + '/'));
+    $('a[href]').each((_, el) => {
+      const raw = $(el).attr('href') || '';
+      if (!raw || /^(https?:|mailto:|tel:|#|\/\/|javascript:)/.test(raw)) return;
+      const m = raw.match(/^([^#?]*)([#?].*)?$/); const pathPart = m[1], rest = m[2] || '';
+      if (!pathPart) return;
+      const abs = path.join(path.dirname(file), pathPart);
+      if (fs.existsSync(abs) && fs.statSync(abs).isFile()) return;
+      if (fs.existsSync(path.join(abs, 'index.html'))) return;
+      const inLocale = path.relative(path.join(DOCS, locDir), abs);
+      if (inLocale.startsWith('..')) return;
+      const en = path.join(DOCS, inLocale);
+      const hit = fs.existsSync(en) && fs.statSync(en).isFile() ? en : (fs.existsSync(path.join(en, 'index.html')) ? en : null);
+      if (!hit) return;
+      let nr = path.relative(path.dirname(file), hit).split(path.sep).join('/');
+      if (pathPart.endsWith('/') && !nr.endsWith('/')) nr += '/';
+      $(el).attr('href', nr + rest);
+    });
+  }
   const lang = $('html').attr('lang') || 'en';
   const title = $('title').text().trim(), desc = $('meta[name="description"]').attr('content') || '';
   const ogImg = $('meta[property="og:image"]').attr('content') || DEFAULT_OG_IMAGE;
@@ -101,14 +125,14 @@ for (const file of walk(DOCS)) {
   setMeta($, 'name', 'twitter:image', ogImg);
   if (!noindex) jsonLd($, rel, self, lang, title, desc, ogImg);
   fs.writeFileSync(file, $.html());
-  if (!noindex && rel !== 'goodbye.html' && !/^lang\//.test(rel) === true || (!noindex && /^lang\//.test(rel))) {
+  if (!noindex) {
     if (rel === 'goodbye.html' || rel.endsWith('/goodbye.html')) continue;
     entries.push({ rel, self, alts, mtime: fs.statSync(file).mtime, git: lastmod(path.join('docs', rel)), title, desc });
   }
 }
 entries.sort((a, b) => a.self.length - b.self.length || a.self.localeCompare(b.self));
 const day = (d) => d.toISOString().slice(0, 10);
-const prio = (e) => (e.self === BASE + '/' ? '1.0' : /lang\//.test(e.rel) ? '0.5' : /blog\//.test(e.rel) ? '0.7' : '0.8');
+const prio = (e) => (e.self === BASE + '/' ? '1.0' : isLocalized(e.rel) ? '0.5' : /blog\//.test(e.rel) ? '0.7' : '0.8');
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
 for (const e of entries) {
   xml += `  <url>\n    <loc>${esc(e.self)}</loc>\n    <lastmod>${e.git || day(e.mtime)}</lastmod>\n    <priority>${prio(e)}</priority>\n`;
@@ -120,7 +144,7 @@ fs.writeFileSync(path.join(DOCS, 'sitemap.xml'), xml);
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\n`);
 
 // llms.txt: a plain-text map for AI assistants and answer engines (English pages only; each links to its translations via hreflang).
-const en = entries.filter((e) => !/^lang\//.test(e.rel));
+const en = entries.filter((e) => !isLocalized(e.rel));
 const line = (e) => `- [${e.title.replace(/\s+[—-]\s+AI Summary Helper.*$/, '')}](${e.self}): ${e.desc}`;
 const llms = [
   '# AI Summary Helper',
@@ -141,7 +165,7 @@ const llms = [
   ...en.filter((e) => /blog\//.test(e.rel)).map(line),
   '',
   '## Translations',
-  'Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /lang/<code>/.',
+  'Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /<code>/ (for example /de/).',
   '',
 ].join('\n');
 fs.writeFileSync(path.join(DOCS, 'llms.txt'), llms);

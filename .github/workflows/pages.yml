@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
+      - 'scripts/legacy-lang-stubs.mjs'
       - 'plugin/src/**'
       - 'plugin/demo/**'
       - 'plugin/scripts/build-demo.mjs'
@@ -42,6 +43,8 @@ jobs:
           cp -R docs/. _site/
           mkdir -p _site/demo
           cp -R plugin/dist/demo/. _site/demo/
+          # Old /lang/<code>/… URLs: redirect stubs to the new /<code>/… pages (Pages has no server-side 301)
+          node scripts/legacy-lang-stubs.mjs _site
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

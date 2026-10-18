@@ -19,7 +19,7 @@ needs real files to serve, same reasoning as before):
   the shared `assets/` folder" — resolved per-page based on its depth.
 - **`scripts/build-site.mjs`** — assembles `site-src/` → `docs/*.html`
   (English). Run this first, always, before translating.
-- **`scripts/translate.mjs`** — translates `docs/*.html` → `docs/lang/{locale}/*.html`.
+- **`scripts/translate.mjs`** — translates `docs/*.html` → `docs/{locale}/*.html`.
 
 ## How translation staleness works
 

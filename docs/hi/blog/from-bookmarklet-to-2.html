@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="hi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>एक Bookmarklet से 2.0 तक: अब असल में क्या बन चुका है AI Summary Helper — AI Summary Helper</title>
+<meta name="description" content="इसकी शुरुआत एक व्यक्ति की Kindle reading habit के लिए बने bookmarklet से हुई थी। जानिए v1 से open-source 2.0 rebuild के बीच क्या बदला — और क्यों।">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/from-bookmarklet-to-2.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="hi_IN"><meta property="og:type" content="article"><meta property="og:title" content="एक Bookmarklet से 2.0 तक: अब असल में क्या बन चुका है AI Summary Helper — AI Summary Helper"><meta property="og:description" content="इसकी शुरुआत एक व्यक्ति की Kindle reading habit के लिए बने bookmarklet से हुई थी। जानिए v1 से open-source 2.0 rebuild के बीच क्या बदला — और क्यों।"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="एक Bookmarklet से 2.0 तक: अब असल में क्या बन चुका है AI Summary Helper — AI Summary Helper"><meta name="twitter:description" content="इसकी शुरुआत एक व्यक्ति की Kindle reading habit के लिए बने bookmarklet से हुई थी। जानिए v1 से open-source 2.0 rebuild के बीच क्या बदला — और क्यों।"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html#post","headline":"Bookmarklet से 2.0 तक: AI Summary Helper अब असल में क्या है","description":"इसकी शुरुआत एक व्यक्ति की Kindle reading habit के लिए बने bookmarklet से हुई थी। जानिए v1 से open-source 2.0 rebuild के बीच क्या बदला — और क्यों।","inLanguage":"hi","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/hi/blog/"},{"@type":"ListItem","position":3,"name":"Bookmarklet से 2.0 तक: AI Summary Helper अब असल में क्या है","item":"https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">सीधे content पर जाएं</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. का हिस्सा।
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← App पर वापस जाएं</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. का हिस्सा ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Light mode में बदलें</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Product · जून 2026</span>
+      <h1>Bookmarklet से 2.0 तक: AI Summary Helper अब असल में क्या है</h1>
+      <p class="post-sub">इसकी शुरुआत Kindle पर पढ़ने के लिए एक one-click bookmarklet के रूप में हुई थी। दो साल और एक पूरे rebuild के बाद, आज यह जो कुछ भी करता है, उसमें से ज़्यादातर चीज़ें तब मौजूद भी नहीं थीं जब पहले 100 लोगों ने साइन अप किया था।</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper एक फ्री, open-source Chrome extension है जो आपके अपने AI provider या पूरी तरह offline local model का उपयोग करके किसी भी वेब पेज को summarize करता है, timed reminders के साथ articles को बाद के लिए save करता है, और आपकी reading history को एक searchable, connected archive में बदल देता है — बिना किसी recurring cost के।</strong> पहले वर्जन में इनमें से कुछ भी नहीं था। यहाँ जानिए कि तब क्या था, और यह वहाँ से यहाँ तक कैसे पहुँचा।</p>
+
+        <h2>इसकी असल शुरुआत कैसे हुई</h2>
+        <p>जुलाई 2024 में, यह सिर्फ एक bookmarklet था — कोई extension भी नहीं। आप दिलचस्प articles ढूंढते, दर्जनों tabs खोलते, और बाकी सबकी तरह उन्हें कभी पढ़ ही नहीं पाते। इसका ओरिजिनल आइडिया बेहद सीधा और पर्सनल था: एक custom-prompt summarizer जो अपने आउटपुट को सीधे पेज में insert कर देता था, ताकि जब आप आर्टिकल को <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble का Send-to-Kindle टूल</a>का इस्तेमाल करके Kindle पर भेजें, तो summary भी साथ चली जाए। बस इतना ही था पूरा प्रोडक्ट। एक AI provider, एक prompt field। एक bookmarklet वेरिएंट जो कहीं भी काम करता था, यहाँ तक कि iOS Safari पर भी, और एक Chrome extension वेरिएंट उन लोगों के लिए जो prompt को on-the-fly adjust करना चाहते थे।</p>
+        <p>कुछ ही हफ्तों में इसके 100 एक्टिव यूज़र्स हो गए — जो वाकई हैरान करने वाला था, क्योंकि इसे एक प्रोडक्ट बनाने के लिए नहीं, बल्कि सिर्फ एक इंसान की अपनी reading habit को सुधारने के लिए बनाया गया था।</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Diagram: एंड-टू-एंड समरी, Ask, Stream, Finalize और Save से लेकर Follow up तक" width="1760" height="620" loading="lazy"><figcaption>जब आप आज Summarize दबाते हैं तो क्या होता है, पाँच स्टेप्स में।</figcaption></figure>
+        <h2>तब से 2.0 के बीच असल में क्या बदला</h2>
+        <p>कोर आइडिया कभी नहीं बदला — अपनी शर्तों पर summarize करें और browser tab से बेहतर जगह पढ़ें। लेकिन इसके इर्द-गिर्द की लगभग हर चीज़ बदल गई:</p>
+
+        <h3>एक provider की जगह अब 5 ऑप्शन्स का विकल्प</h3>
+        <p>v1 सिर्फ OpenAI-only था, आपकी key और एक endpoint। 2.0 आपकी अपनी API key के साथ OpenAI, Google Gemini, Mistral, और DeepSeek को सपोर्ट करता है, साथ ही Ollama के ज़रिए पूरी तरह on-device local execution का ऑप्शन भी देता है — यानी अगर आप न चाहें, तो पेज का कंटेंट आपकी मशीन से बाहर कभी नहीं जाएगा, वो भी zero recurring cost पर। उन लोगों के लिए एक optional hosted tier (byphil Cloud) भी है जो key management के झंझट से बचना चाहते हैं, लेकिन इसे कभी अनिवार्य नहीं बनाया गया। यह सिर्फ एक छोटा फीचर एडिशन नहीं था; इसने इस टूल का पूरा नेचर ही बदल दिया। v1 में आपको बाय डिफ़ॉल्ट एक कंपनी पर भरोसा करना पड़ता था। 2.0 आपको किसी ऐसे पर भरोसा करने के लिए मजबूर नहीं करता जिसे आपने खुद न चुना हो।</p>
+
+        <h3>"Insert into the page" अब एक पूरा workflow बन गया</h3>
+        <p>ओरिजिनल सोच — बाद में पढ़ें, ब्राउज़र से शांत किसी जगह पर — आज भी वही है, लेकिन अब यह सिर्फ DOM में पेस्ट की गई summary नहीं है। पेज पर right-click करने पर अब मिलता है <strong>Summarize &amp; Close Tab</strong>: एक timeframe चुनें (Tomorrow, Weekend, This Week, Research Session), एक note जोड़ें, और RSVP overlay में फटाफट summary पढ़ने के बाद tab अपने आप बंद हो जाता है। एक Chrome notification आपको ठीक उसी समय वापस इस पर लाता है जब आपने कहा था — न कि "कभी बाद में" या "जब याद आए तब।"</p>
+
+        <h3>Save किए गए articles का ढेर अब एक व्यवस्थित, नेविगेट करने लायक लाइब्रेरी बन गया</h3>
+        <p>v1 में कोई history नहीं थी — summary पेज पर दिखती थी और फिर गायब हो जाती थी। अब हर save किया गया आर्टिकल एक local, searchable archive में रहता है, जिसमें text highlighting (साथ ही ज़रूरी passages पर AI-suggested "ghost" highlights), एक reading-analytics heatmap, और एक D3 knowledge graph शामिल है जो आपके पढ़े गए कंटेंट को सिर्फ एक लंबी लिस्ट बनाने के बजाय टॉपिक के हिसाब से cluster करता है।</p>
+
+        <h3>Kindle ही इसका मुख्य उद्देश्य था। अब यह कई विकल्पों में से एक है</h3>
+        <p>Reabble के टूल के ज़रिए Send-to-Kindle ही इस प्रोजेक्ट के बनने की मुख्य वजह थी। यह आज भी natively समर्थित है, लेकिन ब्राउज़र से दूर पढ़ने के लिए अब आपके पास iPhone या iPad पर AirDrop (जो सीधे Apple Books में खुलता है) या आपके अपने Wi-Fi पर KOReader जैसे ऐप्स के लिए LocalSend का विकल्प भी है। मूल सोच वही है — ब्राउज़र से हटाकर पढ़ने के लिए बनी किसी डिवाइस पर ले जाना — बस अब इसके तरीके और बढ़ गए हैं।</p>
+
+        <h2>जो चीज़ें नहीं बदलीं</h2>
+        <p>यह अभी भी पूरी तरह फ्री है, open source है (MIT-licensed, पूरा कोड GitHub पर उपलब्ध है), और किसी भी कोर फीचर के लिए अकाउंट की ज़रूरत नहीं है। यह बात कभी समझौते का विषय नहीं थी — यही वजह थी कि v1 को एक bookmarklet के रूप में बनाया गया था: किसी ऐसे व्यक्ति द्वारा जो अपने reading tool का खुद मालिक होना चाहता था, उसे किराए पर नहीं लेना चाहता था।</p>
+
+        <h2>FAQ</h2>
+        <p><strong>क्या यह वही प्रोजेक्ट है जो ओरिजिनल bookmarklet था?</strong><br>
+        हाँ — वही open-source प्रोजेक्ट, वही GitHub repo, जो जुलाई 2024 से लगातार डेवलप हो रहा है। Bookmarklet वेरिएंट आज भी उन लोगों के लिए मौजूद है जो बिना किसी इंस्टॉलेशन के browser-agnostic विकल्प चाहते हैं।</p>
+        <p><strong>क्या इसे इस्तेमाल करने के लिए मुझे OpenAI अकाउंट की ज़रूरत है?</strong><br>
+        नहीं। v1 में ऐसा था, लेकिन अब ऐसा नहीं है। आप कोई भी समर्थित provider चुन सकते हैं, या फिर बिना किसी external account के Ollama के ज़रिए पूरी तरह offline local model चला सकते हैं।</p>
+        <p><strong>Gumroad वर्जन का क्या हुआ?</strong><br>
+        शुरुआती यूज़र्स से सपोर्ट पाने के लिए प्रोजेक्ट की शुरुआत वहाँ से हुई थी। यह extension हमेशा से फ्री और open source रहा है — Gumroad इस टूल के लिए कभी कोई paywall नहीं था।</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper एक फ़्री Chrome extension है।</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics settings</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — independent software built in Germany.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

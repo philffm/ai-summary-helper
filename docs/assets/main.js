@@ -113,7 +113,7 @@ function setBilling(period) {
 /* ── Locale suggestion banner (English pages only) ───────────────── */
 (function () {
   // Only offer a locale switch on English pages. Anyone already on a
-  // /lang/xx/ page is left alone — no redirect, so every locale URL
+  // /xx/ page is left alone — no redirect, so every locale URL
   // stays independently reachable and indexable.
   var htmlLang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
   if (htmlLang && htmlLang !== 'en' && htmlLang.indexOf('en-') !== 0) return;
@@ -144,11 +144,11 @@ function setBilling(period) {
   var dismissed = false;
   try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
 
-  // Same-page mapping: /index.html -> /lang/xx/index.html, and
-  // /blog/foo.html -> /lang/xx/blog/foo.html. Never just the homepage.
+  // Same-page mapping: /index.html -> /xx/index.html, and
+  // /blog/foo.html -> /xx/blog/foo.html. Never just the homepage.
   var rel = window.location.pathname.replace(/^\/+/, '');
   if (!rel) rel = 'index.html';
-  var href = '/lang/' + target + '/' + rel;
+  var href = '/' + target + '/' + rel;
 
   var banner = document.createElement('div');
   banner.className = 'lang-banner';

@@ -26,4 +26,4 @@
 - [Search and Tags Without the Cloud](https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html): The TF-IDF index behind AI Summary Helper's search, duplicate detection, and digest features — and why most of it never needed a server.
 
 ## Translations
-Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /lang/<code>/.
+Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /<code>/ (for example /de/).
