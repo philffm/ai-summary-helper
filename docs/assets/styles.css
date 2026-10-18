@@ -863,3 +863,8 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hs-dot.is-on{ width:30px; background:var(--signal); }
 .hs-pp:focus-visible, .hs-dot:focus-visible, .hs-steps li:focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
 .hs-steps li{ cursor:pointer; }
+
+/* Hero walkthrough: longer localized strings must wrap inside the article and tab bar */
+.hs-art{overflow-wrap:anywhere;hyphens:auto}
+.hs-art h4{font-size:clamp(20px,calc(26px - 6px*var(--p-panel,0)),26px);overflow-wrap:anywhere}
+.hs-tabs i{font-size:11.5px;padding-left:6px;padding-right:6px;white-space:nowrap}
