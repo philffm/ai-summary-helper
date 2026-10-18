@@ -996,16 +996,6 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .nav--pill .lang-menu{right:0;width:220px;max-height:min(70vh,420px);overflow:auto;display:grid;grid-template-columns:1fr 1fr}
 .nav--pill .lang-menu a{color:var(--paper-dim);font-size:13px;text-decoration:none}
 .nav--pill .lang-menu a:hover{background:var(--surface-1);color:var(--paper)}
-/* Mega menu (blog) */
-.nav--pill .pill-mega{position:static}
-.nav--pill .mega-trigger svg{transition:transform .2s}
-.nav--pill .mega-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
-.nav--pill .mega-panel{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);width:min(780px,calc(100vw - 32px));padding:14px;border-radius:22px;background:var(--nav-bg,rgba(16,17,22,.94));border:1px solid var(--border-medium);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 24px 60px rgba(0,0,0,.4);white-space:normal}
-.nav--pill .mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.nav--pill .pill a.mega-post{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:12px;border-radius:14px;color:var(--paper-dim);font-weight:400;font-size:13px;line-height:1.35;white-space:normal}
-.nav--pill .mega-post strong{color:var(--paper);font-size:14px;font-weight:600}
-.nav--pill .mega-tag{font:600 10px/1 var(--mono,'JetBrains Mono',monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
-.nav--pill .pill a.mega-all{justify-content:flex-end;margin-top:8px;color:var(--signal)}
 /* Mobile */
 .nav--pill .nav-toggle{display:none}
 .nav--pill .mobile-menu{position:fixed;inset:0;background:var(--paper-bg,var(--bg,#0b0c10));pointer-events:auto;overflow:auto;padding:84px 0 32px}
@@ -1086,3 +1076,5 @@ header.nav.nav--pill .wordmark img{width:44px;height:44px;border-radius:12px}
 body:has(.nav--pill){padding-top:88px}
 @media (max-width:860px){body:has(.nav--pill){padding-top:68px}}
 .nav--pill .pill{box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.nav--pill .mega-tag{font:600 10px/1 var(--mono,'JetBrains Mono',monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
+.nav--pill .pill,.nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{background:var(--nav-bg-solid)}

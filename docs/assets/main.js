@@ -1087,8 +1087,6 @@ function setBilling(period) {
   if (!nav || !nav.classList.contains('nav--pill')) return;
   var mm = document.getElementById('mobileMenu'), tg = document.getElementById('navToggle');
 
-  function onScroll() { nav.classList.toggle('is-compact', window.scrollY > 80); }
-  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
   // Popovers: [trigger, panel]
   var pops = [];
@@ -1110,12 +1108,9 @@ function setBilling(period) {
       wrap.addEventListener('focusout', function (e) { if (!wrap.contains(e.relatedTarget)) close(); });
     }
   }
-  pop(document.getElementById('megaBtn'), document.getElementById('megaPanel'), true);
-  pop(document.getElementById('pillMoreBtn'), document.getElementById('pillMoreMenu'), false);
   pop(document.getElementById('langBtn'), document.getElementById('langMenu'), false);
   document.addEventListener('click', function (e) { if (!nav.contains(e.target)) pops.forEach(function (p) { p.close(); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') pops.forEach(function (p) { p.close(); }); });
-  window.addEventListener('scroll', function () { pops.forEach(function (p) { if (p.panel.id === 'megaPanel') p.close(); }); }, { passive: true });
 
   // Current-locale highlight in language lists
   var m = location.pathname.match(/^\/([a-z]{2}(?:-[a-z]{2})?)\//i), cur = m ? m[1].toLowerCase() : 'en';
