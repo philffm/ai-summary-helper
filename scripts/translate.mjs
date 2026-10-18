@@ -128,6 +128,19 @@ function extractUnits($) {
         }
     });
 
+    // Accessible/UI attributes (aria-label, placeholder, title) outside opt-outs
+    $('body [aria-label], body [placeholder], body [title]').each((_, el) => {
+        const $el = $(el);
+        if ($el.closest('[data-no-translate]').length) return;
+        for (const attr of ['aria-label', 'placeholder', 'title']) {
+            const v = $el.attr(attr);
+            if (!v || !v.trim()) continue;
+            const id = nextId('attr');
+            $el.attr(`data-aish-a-${attr}`, id);
+            units.push({ id, text: v.trim(), kind: 'attr', attr });
+        }
+    });
+
     return units;
 }
 
@@ -164,6 +177,17 @@ function injectUnits($, units, translations) {
             if (!unit || !translations[unit.id]) return;
             node.data = `${unit.leading}${translations[unit.id]}${unit.trailing}`;
         });
+    });
+
+    // aria-label / placeholder / title
+    $('body *').each((_, el) => {
+        const $el = $(el);
+        for (const attr of ['aria-label', 'placeholder', 'title']) {
+            const id = $el.attr(`data-aish-a-${attr}`);
+            if (!id) continue;
+            if (translations[id]) $el.attr(attr, translations[id]);
+            $el.removeAttr(`data-aish-a-${attr}`);
+        }
     });
 
     // alt text
