@@ -1143,7 +1143,9 @@ function setBilling(period) {
   if (ls && lg) {
     var pills = [].slice.call(lg.querySelectorAll('.lang-pill')), empty = lg.querySelector('.lang-empty');
     var curPill = lg.querySelector('[aria-current]');
-    if (curPill) ls.placeholder = curPill.textContent;
+    if (curPill) { ls.placeholder = curPill.textContent; var cc = document.querySelector('.lang-card-cur'); if (cc) cc.textContent = curPill.textContent; }
+    var lc = document.getElementById('langCard');
+    if (lc && mm) lc.addEventListener('click', function () { mm.setAttribute('data-mode', 'lang'); ls.focus(); });
     function filter() {
       var q = ls.value.trim().toLowerCase(), n = 0;
       pills.forEach(function (a) { var ok = !q || a.getAttribute('data-q').indexOf(q) > -1; a.hidden = !ok; if (ok) n++; });
