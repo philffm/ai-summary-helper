@@ -941,3 +941,6 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hs-graph svg{ height:60px; }
 .hs-graph > div{ white-space:nowrap; font-size:12.5px; }
 @media (max-width:900px){ .hs-graph{ display:none; } }
+
+/* The left step list is gone; the caption above the indicator and the cursor label carry the steps */
+.hs-steps{ display:none !important; }
