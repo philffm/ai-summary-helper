@@ -460,6 +460,41 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
     return anyApiCallsThisFile;
 }
 
+/**
+ * Menu blog cards: use the real (translated) blog page titles instead of an
+ * independently machine-translated copy, so the menu and the post itself
+ * always agree. Runs after every page has been written for the locale.
+ */
+async function syncNavPostTitles(config, targetLocales, files) {
+    for (const [code, locale] of Object.entries(targetLocales)) {
+        if (!locale) continue;
+        const titles = {};
+        for (const f of files) {
+            const m = f.match(/^blog\/([^/]+)\.html$/);
+            if (!m || m[1] === 'index') continue;
+            const fp = path.join(ROOT, locale.dir, f);
+            if (!existsSync(fp)) continue;
+            const t = cheerio.load(await readFile(fp, 'utf8'))('head > title').text().trim();
+            // drop the trailing "— Site name" suffix (any dash/pipe variant)
+            const clean = t.replace(/\s+[—–|\-]\s+[^—–|]*$/, '').trim();
+            if (clean) titles[m[1]] = clean;
+        }
+        for (const f of files) {
+            const fp = path.join(ROOT, locale.dir, f);
+            if (!existsSync(fp)) continue;
+            const html = await readFile(fp, 'utf8');
+            if (!html.includes('mm-post')) continue;
+            const $ = cheerio.load(html, { decodeEntities: false });
+            let changed = false;
+            $('a.mm-post').each((_, el) => {
+                const slug = ($(el).attr('href') || '').match(/([^/]+)\.html$/)?.[1];
+                if (slug && titles[slug]) { $(el).find('strong').text(titles[slug]); changed = true; }
+            });
+            if (changed) await writeFile(fp, $.html(), 'utf8');
+        }
+    }
+}
+
 async function main() {
     const config = await loadJson(CONFIG_PATH);
     const manifest = existsSync(MANIFEST_PATH) ? await loadJson(MANIFEST_PATH) : { strings: {} };
@@ -481,6 +516,8 @@ async function main() {
         const called = await translateFile(relPath, config, targetLocales, manifest, apiKey);
         if (called) filesWithApiCalls++;
     }
+
+    await syncNavPostTitles(config, targetLocales, targetFiles);
 
     // Only persist the cache on a REAL run. Dry-runs are preview-only and
     // must never mutate docs/i18n/manifest.json.
