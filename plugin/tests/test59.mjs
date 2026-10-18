@@ -88,7 +88,8 @@ assert.equal(resolveLocale('de'), 'de'); assert.equal(resolveLocale('de-DE'), 'd
 assert.equal(resolveLocale('', 'de-AT'), 'de'); assert.equal(resolveLocale('', 'en-GB'), 'en');
 assert.equal(resolveLocale('pt'), 'pt_PT'); assert.equal(resolveLocale('', 'pt-BR'), 'pt_BR'); assert.equal(resolveLocale('', 'pt-PT'), 'pt_PT');
 assert.equal(resolveLocale('zh-TW'), 'zh_TW'); assert.equal(resolveLocale('', 'zh-Hant'), 'zh_TW'); assert.equal(resolveLocale('zh'), 'zh_CN'); assert.equal(resolveLocale('', 'zh-HK'), 'zh_HK');
-assert.equal(resolveLocale('', 'sv-SE'), 'en'); assert.equal(resolveLocale('ar'), 'ar');
+assert.equal(resolveLocale('', 'he-IL'), 'en'); assert.equal(resolveLocale('ar'), 'ar');
+assert.equal(resolveLocale('', 'sv-SE'), 'sv'); assert.equal(resolveLocale('', 'nb-NO'), 'no'); assert.equal(resolveLocale('nn'), 'no'); assert.equal(resolveLocale('', 'fi-FI'), 'fi'); assert.equal(resolveLocale('uk'), 'uk');
 // Send sheet: the digest intro uses the shared status card with streamed preview; cancel = skip intro.
 const stI = createRecapStatus({ title: 'Intro', preview: true });
 stI.onProgress({ phase: 'stream', chars: 5, think: 0, tail: 'He', text: '**Hello** world' });
