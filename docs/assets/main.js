@@ -848,50 +848,25 @@ function setBilling(period) {
   T('Page', 'lang', htmlLang);
 })();
 
-/* ── Peek carousel (landing page "See it") ───────────────────────── */
+/* ── Scrollytelling (landing page "See it") ────────────────────────
+   The steps scroll past a sticky screenshot; the step that crosses the middle of the viewport decides which image shows. */
 (function () {
-  var root = document.querySelector('[data-carousel]');
-  if (!root) return;
-  var track = root.querySelector('.cx-track');
-  var slides = [].slice.call(track.children);
-  var dots = [].slice.call(root.querySelectorAll('.cx-dot'));
-  var prev = root.querySelector('.cx-prev'), next = root.querySelector('.cx-next');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var active = 0, raf = 0;
-  function nearest() {
-    var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = Infinity;
-    slides.forEach(function (el, i) {
-      var d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid);
-      if (d < bd) { bd = d; best = i; }
-    });
-    return best;
-  }
-  function sync(i) {
-    active = i;
-    slides.forEach(function (el, k) { el.classList.toggle('is-active', k === i); el.setAttribute('aria-current', k === i ? 'true' : 'false'); });
-    dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
-    if (prev) prev.disabled = i === 0;
-    if (next) next.disabled = i === slides.length - 1;
-  }
-  function go(i) {
-    i = Math.max(0, Math.min(slides.length - 1, i));
-    var el = slides[i];
-    track.scrollTo({ left: el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
-  }
-  track.addEventListener('scroll', function () {
-    if (raf) return;
-    raf = requestAnimationFrame(function () { raf = 0; var i = nearest(); if (i !== active) sync(i); });
-  }, { passive: true });
-  if (prev) prev.addEventListener('click', function () { go(active - 1); });
-  if (next) next.addEventListener('click', function () { go(active + 1); });
-  dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); }); });
-  slides.forEach(function (el, i) { el.addEventListener('click', function () { if (String(window.getSelection && window.getSelection()).length) return; if (i !== active) go(i); }); });
-  track.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
+  document.querySelectorAll('[data-story]').forEach(function (root) {
+    var steps = [].slice.call(root.querySelectorAll('.story-step'));
+    var imgs = [].slice.call(root.querySelectorAll('.story-img'));
+    if (!steps.length || imgs.length !== steps.length || !('IntersectionObserver' in window)) { imgs.forEach(function (i) { i.classList.add('is-active'); }); return; }
+    var current = -1;
+    function show(i) {
+      if (i === current) return; current = i;
+      steps.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+      imgs.forEach(function (m, k) { m.classList.toggle('is-active', k === i); });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) show(steps.indexOf(e.target)); });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    steps.forEach(function (s) { io.observe(s); });
+    show(0);
   });
-  window.addEventListener('resize', function () { go(active); });
-  go(0); sync(0);
 })();
 
 // Live demo: the iframe is created on click, so the page stays light until someone wants it.
