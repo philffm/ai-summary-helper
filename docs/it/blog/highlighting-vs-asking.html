@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Fai domande sulle tue evidenziazioni — AI Summary Helper</title>
+<meta name="description" content="Evidenziare è una delle tecniche di studio meno efficaci. Perché dà comunque l'illusione di essere produttivi e quale piccolo cambiamento fa davvero la differenza.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte di byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funzionalità</a>
+        <a href="../index.html#pricing">Prezzi</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Torna all'app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funzionalità</a>
+      <a href="../index.html#pricing">Prezzi</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte di byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guida · Settembre 2026</span>
+      <h1>Evidenziare e basta non serve a molto. Fai domande sul testo.</h1>
+      <p class="post-sub">Evidenziare sembra studiare. La ricerca dimostra che, nella maggior parte dei casi, non lo è. La soluzione è semplice: non fermarti all'evidenziazione, fai domande sul testo.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Nel 2013, Dunlosky e colleghi hanno pubblicato una rassegna su <em>Psychological Science in the Public Interest</em> che valutava dieci diffuse tecniche di apprendimento in base alle prove scientifiche della loro efficacia. Evidenziare e sottolineare sono finite nel gruppo a più bassa utilità, insieme alla rilettura. I test pratici e la ripetizione spaziata nel tempo sono risultati i più efficaci.</p>
+        <p>L'aspetto insidioso non è che evidenziare sia inutile. È che dà la sensazione di lavorare. Leggi, trovi la frase chiave, la marchi e la pagina si riempie di giallo. Qualcosa è stato fatto, quindi pensi che sia servito.</p>
+
+        <h2>Perché un'evidenziazione è un ricordo debole</h2>
+        <p>Un'evidenziazione registra <em>che</em> che hai ritenuto importante una frase. Non ti costringe a farci nulla. Puoi contrassegnare un passaggio senza averlo compreso, oppure evidenziarlo a una seconda lettura senza averci riflettuto alla prima. La rassegna evidenzia come le tecniche che si limitano a riesporti al materiale risultino meno efficaci di quelle che ti spingono a rielaborarlo attivamente.</p>
+
+        <h2>Le domande sono il modo più rapido per rielaborare le informazioni</h2>
+        <p>La stessa rassegna ha valutato come moderatamente utile una tecnica basata su domande, l'interrogazione elaborativa: chiedersi <em>perché</em> un determinato fatto sia vero. Non serve un quiz complesso. Basta un prompt che ti spinga a formulare una breve spiegazione con parole tue.</p>
+        <p>È esattamente questo lo scopo di una domanda di approfondimento, se mirata al punto giusto. Chiedersi “Quali erano i rischi?” su un passaggio specifico ti obbliga a chiarire cosa vuoi capire, e la risposta ti offre un elemento da confrontare con ciò che ti aspettavi.</p>
+
+        <h2>Evidenzia, poi fai domande</h2>
+        <p>In AI Summary Helper, evidenziare è solo il primo passo. Seleziona un passaggio e rimarrà visibile sulla pagina, pronto per quando tornerai sull'articolo. Poi fai una domanda di approfondimento. La risposta cita direttamente la fonte e, con un clic sulla citazione, torni al paragrafo esatto per verificare come il modello ha interpretato il testo. Evidenziazioni e conversazioni vengono salvate per ciascun articolo: così riprendi sempre esattamente da dove avevi interrotto.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="Slide: Evidenzia il testo e fai domande, con una chat che mostra la domanda “Quali erano i rischi?” e una risposta con citazione della pagina" width="800" height="1000" loading="lazy"><figcaption>Evidenzia un passaggio, fai una domanda e torna subito alla citazione che supporta la risposta.</figcaption></figure>
+        <h2>Una routine da due minuti</h2>
+        <ol>
+          <li><strong>Evidenzia al massimo tre passaggi.</strong> Se tutto è evidenziato, niente è evidenziato.</li>
+          <li><strong>Fai una domanda per ogni evidenziazione.</strong> Basta chiedersi “Perché questo è importante?” o “Cosa cambierebbe se non fosse vero?”.</li>
+          <li><strong>Prima di leggere la risposta, prova a formularla a voce alta o in una sola riga.</strong> È nel confronto che avviene l'apprendimento.</li>
+        </ol>
+        <p>Tutto questo non significa che evidenziare sia sbagliato. Significa che è solo il punto di partenza: l'evidenziatore trova il passaggio, la domanda lo fissa nella memoria.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper è un'estensione gratuita per Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Aggiungi a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../privacy.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software indipendente sviluppato in Germania.<br>
+      Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

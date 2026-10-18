@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Ви не прочитаєте збережене — AI Summary Helper</title>
+<meta name="description" content="Більшість збережених статей ніколи не відкривають знову. Ось чому існує Digest і чому він навмисно не намагається збільшити цю купу.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/unread-saves.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/unread-saves.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/unread-saves.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/unread-saves.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/unread-saves.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/unread-saves.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/unread-saves.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/unread-saves.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/unread-saves.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/unread-saves.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/unread-saves.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/unread-saves.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/unread-saves.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/unread-saves.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/unread-saves.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Частина byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Можливості</a>
+        <a href="../index.html#pricing">Тарифи</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад до застосунку</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Можливості</a>
+      <a href="../index.html#pricing">Тарифи</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Частина byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Продукт · Вересень 2026</span>
+      <h1>Ви не прочитаєте більшість збереженого. Ось реальне рішення.</h1>
+      <p class="post-sub">Переважну більшість збережених статей ніколи більше не відкривають. Це проблема не дисципліни, а дизайну.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Дослідження звичок збереження закладок (Бергман, Віттакер і Шулер) виявили те, про що більшість із нас здогадувалися, але не хотіли зізнаватися: переважну більшість матеріалів, збережених «на потім», ніколи більше не відкривають. За деякими даними, ця цифра сягає 84%.</p>
+        <p>Якщо це схоже на ваш список для читання — справа не у вашій дисципліні. Це проблема дизайну: вона в інструментах, а не у вас.</p>
+
+        <h2>Проблема не в рефлексі зберігати. Проблема в самій купі.</h2>
+        <p>Зберегти щось — це один клік і пів секунди наміру. А от справді прочитати це пізніше вимагає відкрити застосунок, гортати список, роздутий до 60, 100, 200 пунктів, і вирішити, що саме обрати просто зараз, у ті п’ять вільних хвилин, що з’явилися. Саме на цьому другому кроці майже всі здаються — не тому, що статті нецікаві, а тому, що <em>вибір серед 200 пунктів</em> — це окрема виснажлива робота, а більшість застосунків для відкладеного читання просто скидають на вас усю цю купу й залишають наодинці.</p>
+        <p>Іншими словами, закладка — це обіцянка, яку ви постійно порушуєте. Не через лінощі. А тому, що інструмент переклав найскладніше — вибір того, що саме прочитати просто зараз — повністю на вас, не надавши жодної допомоги.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/tab-clutter.webp" alt="Слайд: 82% людей стверджують, що безлад у вкладках викликає у них стрес; показано панель браузера, переповнену відкритими вкладками" width="800" height="1000" loading="lazy"><figcaption>Купа починається з цього: кожна відкрита вкладка — це обіцянка прочитати пізніше.</figcaption></figure>
+        <h2>Для чого оптимізована більшість застосунків «прочитати пізніше»</h2>
+        <p>Майже кожен інструмент у цій категорії створений, щоб зробити <em>збереження</em> максимально простим. Але це хибна мета оптимізації, якщо справжнє вузьке місце — це <em>вибір</em>. Довший список не стає кориснішим за короткий, якщо ви взагалі не відкриваєте застосунок, щоб у нього зазирнути.</p>
+
+        <h2>Ідея, що стоїть за Digest</h2>
+        <p>Замість того щоб змушувати вас гортати нескінченний список і мучитися з вибором, функція Digest у AI Summary Helper робить перший відбір за вас. Один клік — і вона вибирає невелику частину збереженого (типово п’ять матеріалів), зважаючи на:</p>
+        <ul>
+          <li><strong>Свіжість</strong>, щоб не підсовувати те, що ви зберегли вісім місяців тому й про що давно забули</li>
+          <li><strong>Різноманітність</strong>, щоб не видавати п'ять статей на одну тему лише тому, що ви зберегли їх під час одного новинного циклу</li>
+          <li><strong>Настрій (за бажанням)</strong> — виберіть «позитивний», «нейтральний» або «глибокий і серйозний», і добірка схилиться в цей бік залежно від тону збереженого</li>
+        </ul>
+        <p>Ось і все. П'ять матеріалів замість двохсот. Рішення, яке можна ухвалити за десять секунд, замість вкладки, яку ви просто закриєте з розпачу.</p>
+
+        <h2>А далі — жодної прив’язки до застосунку</h2>
+        <p>Головне: коли Digest формує добірку, вам не обов'язково читати її в розширенні. Він об'єднує вибрані матеріали — стислі виклади та посилання на першоджерела — в один файл, який можна надіслати прямо на ваш Kindle або інший пристрій у вашій мережі. Завантажте його перед перельотом, вихідними чи поїздкою без зв'язку. Цей файл створено саме для того, щоб для читання вам не був потрібен ноутбук із відкритим розширенням.</p>
+
+        <h2>Чому це важливіше, ніж здається</h2>
+        <p>Кожен сервіс відкладеного читання запевняє, що допоможе вам «читати більше збереженого». Але майже жоден із них не змінює сам процес вибору. Вони лише спрощують збереження, через що (згідно з тим же дослідженням) купа зростає швидше, а головна проблема так і лишається невирішеною.</p>
+        <p>Справжнє вирішення — не в кращому списку. А в тому, щоб узагалі не дивитися на цей список.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper — це безкоштовне розширення для Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — незалежне програмне забезпечення, створене в Німеччині.<br>
+      Дизайн та розробка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

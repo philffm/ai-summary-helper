@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="nb"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Du kommer ikke til å lese det du lagrer — AI Summary Helper</title>
+<meta name="description" content="De fleste artikler man bokmerker blir aldri åpnet igjen. Her er grunnen til at Digest finnes, og hvorfor den bevisst unngår å gjøre haugen større.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/unread-saves.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/unread-saves.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/unread-saves.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/unread-saves.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/unread-saves.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/unread-saves.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/unread-saves.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/unread-saves.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/unread-saves.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/unread-saves.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/unread-saves.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/unread-saves.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/unread-saves.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/unread-saves.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/unread-saves.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Hopp til innholdet</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> En del av byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funksjoner</a>
+        <a href="../index.html#pricing">Priser</a>
+        <a href="./" aria-current="page">Blogg</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Tilbake til appen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funksjoner</a>
+      <a href="../index.html#pricing">Priser</a>
+      <a href="./">Blogg</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">En del av byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Bytt til lys modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Produkt · September 2026</span>
+      <h1>Du kommer ikke til å lese det meste du lagrer. Her er den faktiske løsningen.</h1>
+      <p class="post-sub">Det store flertallet av lagrede artikler blir aldri åpnet igjen. Det er ikke et problem med viljestyrken din — det er et designproblem.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Forskning på bokmerkingsatferd (Bergman, Whittaker og Schooler) avdekket noe de fleste av oss allerede mistenkte, men ikke ville innrømme: Det overveldende flertallet av ting folk lagrer for å lese senere, blir aldri åpnet igjen. Enkelte studier viser at tallet er så høyt som 84 %.</p>
+        <p>Hvis dette høres kjent ut for din egen leseliste, handler det ikke om mangel på disiplin. Det er et designproblem — i verktøyene, ikke hos deg.</p>
+
+        <h2>Det er ikke refleksen med å lagre som er problemet. Det er haugen.</h2>
+        <p>Å lagre noe tar ett klikk og et halvt sekunds intensjon. Å faktisk lese det senere krever at du åpner en app igjen, blar gjennom en liste som har vokst til 60, 100 eller 200 artikler, og tar en avgjørelse om hva du skal lese akkurat nå, i den lille femminutters pausen du har funnet. Det er i dette andre steget nesten alle gir opp — ikke fordi artiklene var kjedelige, men fordi <em>det å velge mellom 200 ting</em> er en jobb i seg selv, og de fleste «les-senere»-apper overlater hele haugen til deg og forsvinner.</p>
+        <p>Et bokmerke er med andre ord et løfte du stadig bryter. Ikke fordi du er lat, men fordi verktøyet ba deg gjøre den vanskelige delen — å bestemme hva du faktisk skal lese her og nå — helt uten hjelp.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/tab-clutter.webp" alt="Lysbilde: 82 % oppgir at fanekaos stresser dem, med en fanelinje i nettleseren full av åpne faner" width="800" height="1000" loading="lazy"><figcaption>Haugen starter her: Hver åpne fane er et løfte om å lese det senere.</figcaption></figure>
+        <h2>Hva de fleste «les-senere»-apper optimaliserer for</h2>
+        <p>Nesten alle verktøy i denne kategorien er bygget for å gjøre <em>selve lagringen</em> helt sømløst. Det er feil ting å optimalisere for hvis det faktiske problemet er <em>å velge</em>. En lengre liste er ikke mer nyttig enn en kort liste hvis du uansett aldri åpner appen for å se på den.</p>
+
+        <h2>Tanken bak Digest</h2>
+        <p>I stedet for å be deg bla gjennom en voksende haug og ta et valg, gjør Digest-funksjonen i AI Summary Helper det første utvalget for deg. Trykk på den, så velger den ut et lite knippe av de lagrede sakene dine — fem som standard — basert på:</p>
+        <ul>
+          <li><strong>Hvor nylig det er lagret</strong>, slik at du slipper å få opp noe du lagret for åtte måneder siden og for lengst har glemt</li>
+          <li><strong>Variasjon</strong>, slik at du slipper fem artikler om det samme temaet bare fordi du lagret flere saker fra samme nyhetsbilde</li>
+          <li><strong>Stemning, om du ønsker det</strong> — velg «muntert», «nøytralt» eller «dypt og seriøst», så vinkles utvalget basert på tonen i det du har lagret</li>
+        </ul>
+        <p>Det er alt. Fem utvalgte saker, ikke to hundre. Et valg du kan ta på ti sekunder, i stedet for en liste du bare lukker fanen på.</p>
+
+        <h2>Deretter kommer det seg helt ut av «les-senere»-appen</h2>
+        <p>Det som virkelig betyr noe: Når Digest har gjort utvalget, er du ikke låst til å lese det i nettleserutvidelsen. Den samler utvalget — sammendrag og lenker tilbake til kilden — i én fil du kan sende rett til Kindle eller en annen enhet på nettverket ditt. Last det over før en flytur, en helgetur eller en togtur uten dekning. Pakken finnes nettopp for at du skal slippe å sitte foran laptopen med utvidelsen åpen når du faktisk skal lese.</p>
+
+        <h2>Hvorfor dette betyr mer enn det kanskje høres ut som</h2>
+        <p>Alle «les-senere»-verktøy hevder at de hjelper deg med å «lese mer av det du lagrer». Nesten ingen av dem endrer noe som helst ved selve øyeblikket der du må velge. De gjør det bare enklere å lagre, noe som — ifølge den samme forskningen — gjør at haugen vokser raskere uten å løse den delen som faktisk var ødelagt.</p>
+        <p>Løsningen er ikke en bedre liste. Det er å slippe å se på listen i det hele tatt.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper er en gratis Chrome-utvidelse.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../privacy.html">Personvern</a>
+        <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — uavhengig programvare utviklet i Tyskland.<br>
+      Designet og utviklet av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

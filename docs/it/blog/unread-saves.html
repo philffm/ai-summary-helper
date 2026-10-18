@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Non leggerai quello che salvi — AI Summary Helper</title>
+<meta name="description" content="La maggior parte degli articoli salvati nei segnalibri non viene mai riaperta. Ecco perché esiste Digest e perché evita intenzionalmente di ingrandire la pila.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/unread-saves.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/unread-saves.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/unread-saves.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/unread-saves.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/unread-saves.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/unread-saves.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/unread-saves.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/unread-saves.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/unread-saves.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/unread-saves.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/unread-saves.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/unread-saves.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/unread-saves.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/unread-saves.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/unread-saves.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte di byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funzionalità</a>
+        <a href="../index.html#pricing">Prezzi</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Torna all'app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funzionalità</a>
+      <a href="../index.html#pricing">Prezzi</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte di byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Prodotto · Settembre 2026</span>
+      <h1>Non leggerai quasi nulla di ciò che salvi. Ecco la vera soluzione.</h1>
+      <p class="post-sub">La stragrande maggioranza degli articoli salvati non viene mai riaperta. Non è un problema di disciplina: è un problema di design.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Le ricerche sulle abitudini di salvataggio dei segnalibri (Bergman, Whittaker e Schooler) hanno evidenziato ciò che molti di noi già sospettavano senza volerlo ammettere: la stragrande maggioranza dei contenuti salvati per "leggere più tardi" non viene mai riaperta. Alcuni studi parlano di percentuali che toccano l'84%.</p>
+        <p>Se ti sembra descrivere la tua lista di lettura, non è un problema di disciplina. È un difetto di progettazione degli strumenti, non tuo.</p>
+
+        <h2>Il riflesso di salvare non è il problema. Il problema è la pila che si accumula.</h2>
+        <p>Salvare qualcosa richiede un clic e mezzo secondo di intenzione. Leggerlo davvero in seguito richiede di riaprire un'app, scorrere un elenco cresciuto fino a 60, 100, 200 elementi e decidere quale scegliere, proprio adesso, nei cinque minuti liberi che sei riuscito a trovare. È in questo secondo passaggio che quasi tutti si arrendono: non perché gli articoli non fossero interessanti, ma perché <em>scegliere tra 200 elementi</em> è già di per sé un lavoro, e la maggior parte delle app per "leggere dopo" ti scarica addosso l'intera pila e se ne va.</p>
+        <p>In altre parole, un segnalibro è una promessa che continui a infrangere. Non per pigrizia, ma perché lo strumento ti chiede di fare la parte più difficile — decidere cosa leggere davvero, proprio adesso — senza darti alcun aiuto.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/tab-clutter.webp" alt="Slide: L'82% delle persone dichiara che l'eccesso di schede aperte genera stress, con una barra del browser piena zeppa di schede" width="800" height="1000" loading="lazy"><figcaption>La pila inizia qui: ogni scheda aperta è una promessa di lettura rimandata a più tardi.</figcaption></figure>
+        <h2>Ciò per cui la maggior parte delle app "read-it-later" è ottimizzata</h2>
+        <p>Quasi tutti gli strumenti di questa categoria sono progettati per rendere <em>il salvataggio</em> privo di attrito. Ma è l'obiettivo sbagliato se il vero punto debole è <em>la scelta</em>. Una lista più lunga non è più utile di una breve se non apri mai l'app per guardarla.</p>
+
+        <h2>L'idea alla base di Digest</h2>
+        <p>Invece di chiederti di scorrere una pila infinita e prendere una decisione, la funzione Digest di AI Summary Helper fa una prima selezione al posto tuo. Basta un tocco ed estrae un piccolo gruppo dai tuoi salvataggi — cinque, per impostazione predefinita — dando priorità a:</p>
+        <ul>
+          <li><strong>Recenza</strong>, per non riproporti contenuti salvati otto mesi fa a cui ormai non sei più interessato</li>
+          <li><strong>Varietà</strong>, per non ritrovarti con cinque articoli sullo stesso tema solo perché hai salvato diverse notizie della stessa giornata</li>
+          <li><strong>Umore, se lo desideri</strong> — scegli tra "ottimista", "neutro" o "approfondito e serio", e la selezione si adatterà in base al tono di ciò che hai salvato</li>
+        </ul>
+        <p>Tutto qui. Cinque scelte, non duecento. Una decisione che puoi prendere in dieci secondi invece di una lista infinita che ti farebbe solo chiudere la scheda.</p>
+
+        <h2>E poi esce del tutto dalla tua app di lettura</h2>
+        <p>L'aspetto davvero fondamentale: una volta che Digest ha fatto la sua selezione, non sei costretto a leggere all'interno dell'estensione. Raggruppa i contenuti scelti — riassunti e link alla fonte originale — in un unico file che puoi inviare direttamente al tuo Kindle o a un altro dispositivo sulla tua rete locale. Caricalo prima di un volo, del weekend o di un tragitto senza campo. Il pacchetto nasce proprio per permetterti di leggere quando vuoi, senza dover rimanere davanti al portatile con l'estensione aperta.</p>
+
+        <h2>Perché questo è molto più importante di quanto sembri</h2>
+        <p>Qualsiasi strumento per "leggere dopo" promette di aiutarti a "leggere di più di ciò che salvi". Ma quasi nessuno interviene sul momento reale della scelta. Si limitano a rendere più facile il salvataggio, il che — secondo le stesse ricerche — fa solo accumulare la pila più in fretta senza risolvere il vero problema.</p>
+        <p>La soluzione non è una lista migliore. È non dover guardare affatto la lista.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper è un'estensione gratuita per Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Aggiungi a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../privacy.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software indipendente sviluppato in Germania.<br>
+      Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

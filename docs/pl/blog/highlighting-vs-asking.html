@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="pl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Zadawaj pytania do zaznaczeń — AI Summary Helper</title>
+<meta name="description" content="Zakreślanie tekstu to jedna z najmniej skutecznych metod nauki. Dlaczego wciąż wydaje się produktywne i jaka drobna zmiana sprawi, że wiedza zostanie w głowie?">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Przejdź do treści</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Część byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funkcje</a>
+        <a href="../index.html#pricing">Cennik</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Wróć do aplikacji</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funkcje</a>
+      <a href="../index.html#pricing">Cennik</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Część byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Przełącz na tryb jasny</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Poradnik · Wrzesień 2026</span>
+      <h1>Samo zakreślanie prawie nic nie daje. Zamiast tego zadawaj pytania.</h1>
+      <p class="post-sub">Zakreślanie tekstu sprawia wrażenie nauki. Badania pokazują jednak, że rzadko nią jest. Rozwiązanie jest proste: nie poprzestawaj na zakreśleniu — dopytaj o szczegóły.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>W 2013 roku Dunlosky wraz ze współpracownikami opublikował w czasopiśmie <em>„Psychological Science in the Public Interest”</em> przegląd badań oceniający dziesięć popularnych technik uczenia się pod kątem ich udowodnionej skuteczności. Zakreślanie i podkreślanie trafiły do grupy o najniższej użyteczności, tuż obok powtórnego czytania. Najwyższe oceny uzyskały testy sprawdzające oraz rozłożenie nauki w czasie.</p>
+        <p>Niepokojące jest nie to, że zakreślanie jest mało skuteczne, lecz to, że sprawia wrażenie ciężkiej pracy. Czytasz tekst, znajdujesz ważne zdanie, zaznaczasz je, a strona żółknie od zakreślacza. Coś zostało zrobione, więc wydaje się, że przyniosło to efekt.</p>
+
+        <h2>Dlaczego samo zaznaczenie słabo utrwala pamięć</h2>
+        <p>Zaznaczenie utrwala jedynie fakt, <em>że</em> że dane zdanie uznano za ważne. Nie wymaga jednak żadnej dalszej pracy z tekstem. Fragment można zaznaczyć bez jego zrozumienia, a przy kolejnym czytaniu zakreślić go bez wcześniejszej refleksji. Wniosek z badania jest jasny: techniki polegające wyłącznie na powtórnym kontakcie z materiałem przegrywają z tymi, które zmuszają do aktywnego przetworzenia informacji.</p>
+
+        <h2>Pytania to najprostszy sposób na aktywne przetwarzanie wiedzy</h2>
+        <p>Ten sam przegląd badań ocenił technikę zadawania pytań wyjaśniających (tzw. elaborative interrogation) jako umiarkowanie użyteczną. Polega ona na zadawaniu sobie pytania, <em>dlaczego</em> dlaczego dane twierdzenie jest prawdziwe. Nie trzeba do tego quizów — wystarczy impuls zmuszający do sformułowania krótkiego wyjaśnienia własnymi słowami.</p>
+        <p>Właśnie tak działa precyzyjnie zadane pytanie uzupełniające. Pytanie typu „Jakie było ryzyko?”, odniesione do konkretnego fragmentu, zmusza do określenia, czego właściwie chcesz się dowiedzieć, a uzyskana odpowiedź pozwala zestawić fakty z własnymi przypuszczeniami.</p>
+
+        <h2>Zaznacz, a potem zapytaj</h2>
+        <p>W AI Summary Helper zaznaczenie tekstu to dopiero połowa sukcesu. Zaznaczony fragment pozostaje na stronie, dzięki czemu jest widoczny po powrocie do artykułu. Następnie możesz zadać dotyczące go pytanie. W odpowiedzi pojawią się cytaty ze źródła — kliknięcie w cytat przenosi bezpośrednio do właściwego akapitu, co pozwala upewnić się, jak model zinterpretował treść. Zaznaczenia i rozmowy są zapisywane dla każdego artykułu, więc kolejną sesję można wznowić dokładnie tam, gdzie została przerwana.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="Slajd: Zaznacz i zapytaj — czat z pytaniem „Jakie było ryzyko?” i odpowiedzią zawierającą cytat ze strony" width="800" height="1000" loading="lazy"><figcaption>Zaznacz fragment, zadaj pytanie i jednym kliknięciem wróć do źródłowego cytatu potwierdzającego odpowiedź.</figcaption></figure>
+        <h2>Dwuminutowa rutyna</h2>
+        <ol>
+          <li><strong>Zaznacz maksymalnie trzy fragmenty.</strong> Gdy wszystko jest zaznaczone, nic się nie wyróżnia.</li>
+          <li><strong>Zadaj jedno pytanie do każdego zaznaczenia.</strong> Wystarczą pytania w stylu: „Dlaczego to jest ważne?” lub „Co by się zmieniło, gdyby to nie była prawda?”.</li>
+          <li><strong>Zanim przeczytasz odpowiedź, sformułuj własną — na głos lub w jednym zdaniu.</strong> To porównanie jest kluczem do skutecznej nauki.</li>
+        </ol>
+        <p>Zakreślanie samo w sobie nie jest błędem — powinno być po prostu punktem wyjścia. Zaznaczenie lokalizuje fragment, ale to pytanie utrwala go w pamięci.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper to bezpłatne rozszerzenie do przeglądarki Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Dodaj do Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kod źródłowy na GitHub</a>
+        <a href="../privacy.html">Prywatność (RODO)</a>
+        <a href="#" data-analytics-settings="">Ustawienia analityki</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Nota prawna (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Część <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — niezależne oprogramowanie tworzone w Niemczech.<br>
+      Projekt i realizacja: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

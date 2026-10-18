@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="nb"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Søk og emneknagger uten skyen – AI Summary Helper</title>
+<meta name="description" content="TF-IDF-indeksen bak søk, duplikatgjenkjenning og sammendragsfunksjoner i AI Summary Helper – og hvorfor det meste aldri trengte en server.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/on-device-architecture.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/on-device-architecture.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/on-device-architecture.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/on-device-architecture.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/on-device-architecture.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/on-device-architecture.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/on-device-architecture.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/on-device-architecture.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/on-device-architecture.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/on-device-architecture.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/on-device-architecture.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Hopp til innholdet</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> En del av byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funksjoner</a>
+        <a href="../index.html#pricing">Priser</a>
+        <a href="./" aria-current="page">Blogg</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Tilbake til appen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funksjoner</a>
+      <a href="../index.html#pricing">Priser</a>
+      <a href="./">Blogg</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">En del av byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Bytt til lys modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Utvikling · August 2026</span>
+      <h1>Hvorfor vi flyttet søk, tagging og anbefalinger ut av skyen</h1>
+      <p class="post-sub">Søk, duplikatsjekk, tag-opprydding og anbefalinger deler én liten lokal indeks på enheten. Slik fungerer det, og derfor handler det om mer enn bare personvern.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>De fleste «AI-drevne» nettleserutvidelser sender alt til en server – også de delene som overhodet ikke har noe med AI å gjøre. Søk, tag-opprydding og «finn lignende elementer» er flere tiår gamle, velprøvde teknikker. De trenger ingen språkmodell, og de trenger definitivt ingen tur innom nettverket. Vi gikk gjennom AI Summary Helper funksjon for funksjon og spurte: Trenger dette egentlig skyen, eller velger vi det bare fordi det er den enkleste arkitekturen?</p>
+        <p>De aller fleste trengte det ikke.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Presentasjonsbilde: et kart over tilknyttede emner med teksten «Informasjon knyttet til mening og sammenheng varer lenger enn informasjon du bare skummet gjennom»" width="800" height="1000" loading="lazy"><figcaption>Søk, tagging og lignende artikler kjører på samme lokale indeks på enheten, så koblinger mellom lagrede artikler koster ingenting.</figcaption></figure>
+        <h2>Dette flyttet vi lokalt til enheten</h2>
+        <p><strong>Søk.</strong> Opprinnelig søkte utvidelsen kun i artikkeltitler og emneknagger – raskt, men blindt for innholdet i selve teksten. I stedet for å råsjekke hele teksten for hvert tastetrykk eller sende alle søk til en server, bygde vi en liten TF-IDF-indeks fra ditt eget lagrede arkiv. Enkle felter – som tittel og tags – sjekkes først og lynraskt, akkurat som før. Lengre søk utvides mot indeksen, som bygges én gang per økt og oppdateres fortløpende, uten å skannes på nytt for hvert tastetrykk.</p>
+        <p><strong>Duplikatgjenkjenning.</strong> Før en lagring fullføres, kjøres en trinnvis sjekk: først eksakt normalisert URL-treff (enkelt, O(1)), deretter tittellikhet på kandidatene som passerer det filteret, og først til slutt – for de få gjenværende kandidatene – en full TF-IDF cosinus-likhetssammenligning. De fleste lagringer når aldri det tunge trinnet, fordi de enkle trinnene allerede har løst oppgaven.</p>
+        <p><strong>Tag-normalisering.</strong> Tags sklir gjerne ut over tid – «ML», «Machine Learning» og «machine-learning» betyr det samme for et menneske, men er helt ulike for et filter. En liten alias-tabell fanger opp de åpenbare tilfellene. En fleksibel avstandssammenligning (fuzzy edit-distance) på tvers av hele tag-vokabularet tar resten, og velger skrivemåten du faktisk har brukt oftest som standard, i stedet for å tvinge en «fasit» på deg.</p>
+        <p><strong>Lesbarhet og tone.</strong> Lesbarhetsindekser som Flesch–Kincaid er ren matematikk basert på antall setninger og stavelser – ingen modell kreves. Stemningsanalyse gjøres med en integrert AFINN-ordliste og en enkel sjekk for negasjoner i de to foregående ordene. Ingen av delene trengte noen gang å forlate nettleseren.</p>
+        <p><strong>«Lignende artikler» og Digest.</strong> Begge gjenbruker nøyaktig de samme TF-IDF-vektorene som søket allerede har bygget. Det hadde vært lett å bygge tre separate likhetssystemer for tre ulike funksjoner. Ved å bygge én felles indeks som både søk, anbefalinger og sammendragskuratering leser fra, holdt vi hele systemet lettere – og en forbedring av indeksen forbedret automatisk alle tre funksjoner samtidig.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="Diagram: nettsiden, utvidelsens bakgrunnsprosess og popup, lokal lagring og modell-leverandøren" width="1760" height="620" loading="lazy"><figcaption>Bare én enkelt pil forlater nettleseren: kallet til modell-leverandøren du selv har valgt.</figcaption></figure>
+        <h2>Dette lot vi bevisst bli værende i skyen</h2>
+        <p>Selve oppsummeringstrinnet – delen som faktisk krever en språkmodell – krever fortsatt et nettverkskall. Det kommer man ikke unna med dagens lokale modellstørrelser hvis man vil ha kvaliteten til en skybasert toppmodell. Du tar med din egen API key for dette trinnet (OpenAI, Gemini, Mistral, DeepSeek), eller kobler utvidelsen til en lokal Ollama-instans for å droppe nettverket helt. Dette er det eneste stedet hvor lokal prosessering ikke er standard – det er et aktivt valg, fordi avveiningen er reell: en lokal modell er tregere og har lavere kvalitet enn en skybasert modell, og vi ønsker ikke å late som noe annet.</p>
+
+        <h2>Hvorfor dette handler om mer enn bare personvern</h2>
+        <p>Personvernaspektet er reelt – en utvidelse med vide tilganger som sender sideinnhold til en server for ting som ikke trenger det, er et legitimt tillitsspørsmål, ikke bare pynt. Men den mer jordnære grunnen er at det som regel bare er bedre håndverk. Et TF-IDF-søk trenger ikke 200 ms nettverksforsinkelse. Tag-opprydding trenger ikke en API-faktura. Når du velger riktig verktøy for selve jobben, i stedet for å rute alt gjennom skyen som standard, ender du opp med noe som er raskere, billigere i drift og mer robust når du er frakoblet – og personverngevinsten følger med på kjøpet.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper er en gratis Chrome-utvidelse.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../privacy.html">Personvern</a>
+        <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — uavhengig programvare utviklet i Tyskland.<br>
+      Designet og utviklet av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

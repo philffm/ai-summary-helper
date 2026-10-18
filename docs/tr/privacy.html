@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="tr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Gizlilik Politikası — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helper verilerinizi nasıl işler: API key'leriniz ve geçmişiniz cihazınızda kalır, sayfa metni yalnızca seçtiğiniz AI sağlayıcısına iletilir.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="Gizlilik Politikası — AI Summary Helper">
+<meta property="og:description" content="AI Summary Helper verilerinizi nasıl işler: API key'leriniz ve makale geçmişiniz cihazınızda kalır.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/privacy.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/privacy.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/privacy.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/privacy.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/privacy.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/privacy.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/privacy.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/privacy.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/privacy.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/privacy.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/privacy.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/privacy.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/privacy.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">İçeriğe atla</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. parçasıdır
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">Özellikler</a>
+        <a href="index.html#digest">Digest</a>
+        <a href="index.html#pricing">Fiyatlandırma</a>
+        <a href="blog/">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Hesabım</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">Özellikler</a>
+      <a href="index.html#digest">Digest</a>
+      <a href="index.html#pricing">Fiyatlandırma</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Hesabım</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. parçasıdır ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Açık temaya geç</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Gizlilik Politikası</span>
+      <h1>Gizlilik Politikası</h1>
+      <p class="post-sub">API key'leriniz, makale geçmişiniz ve vurgularınız cihazınızda kalır. Sayfa içeriği yalnızca seçtiğiniz AI sağlayıcısına gönderilir — tamamen yerel bir model tercih ederseniz hiçbir veri cihazınızdan çıkmaz.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>Son güncelleme: Ekim 2026</em></p>
+
+        <p>Bu Gizlilik Politikası, AI Summary Helper'ın hangi verileri işlediğini, bunların nereye gittiğini ve nedenini açıklar. Özetle: API key'leriniz, makale geçmişiniz ve vurgularınız cihazınızda kalır. Sayfa içeriği yalnızca bağlamayı seçtiğiniz AI sağlayıcısına iletilir; tamamen yerel bir model seçtiğinizde ise hiçbir veri makinenizden ayrılmaz. Reklam göstermeyiz, veri satmayız ve temel özelliklerin hiçbiri için hesap oluşturmanızı zorunlu tutmayız.</p>
+
+        <p>Bu politikanın herhangi bir kısmını kabul etmiyorsanız lütfen eklentiyi yüklemeyin veya kullanmayın.</p>
+
+        <h2>Veri sorumlusu kimdir?</h2>
+        <p>GDPR Madde 4(7) kapsamındaki veri sorumlusu Phil Wornath'tır. Tebligat için tam ad ve adres bilgileri şurada yer almaktadır: <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">yasal bildirim</a>; bize bu politikanın sonundaki iletişim bilgilerinden ulaşabilirsiniz.</p>
+
+        <h2>Temel Özellikler İçin Hesap Gerekmez</h2>
+        <p>AI Summary Helper; sayfaları özetlemek, vurgulamak, akışları takip etmek veya arşivinizi tutmak için bir hesap oluşturmanızı, oturum açmanızı ya da herhangi bir kişisel bilgi paylaşmanızı gerektirmez. API key'iniz (kendi key'inizi kullanıyorsanız) ve tüm makale geçmişiniz doğrudan tarayıcınızın local storage alanında saklanır.</p>
+        <p>Hesap yalnızca barındırılan (hosted) hizmetler için gereklidir: byphil Cloud (kendi key'iniz olmadan özet alma) ve Send to Kindle. Oturum açma işlemi e-posta adresiniz ve tek kullanımlık bir kod ile gerçekleşir. Plan sınırlarını uygulayabilmek amacıyla e-posta adresinizi, plan veya lisans durumunuzu ve temel kullanım sayaçlarını (örneğin istek sayısı ve Kindle gönderimleri) saklarız.</p>
+
+        <h2>Hangi Verileri İşliyoruz ve Bunlar Nereye Gidiyor?</h2>
+
+        <h3>AI sağlayıcı bağlantınız</h3>
+        <p>Özetlerin nasıl oluşturulacağını siz seçersiniz:</p>
+        <ul>
+          <li><strong>Kendi key'inizi getirin (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek veya özel bir endpoint. API key'iniz yalnızca cihazınızda yerel olarak saklanır (asla senkronize edilmez, bize gönderilmez). Özetlemeyi seçtiğiniz sayfa içeriği, doğrudan tarayıcınızdan seçtiğiniz sağlayıcıya, kendi key'iniz kullanılarak ve ilgili sağlayıcının gizlilik politikasına tabi olarak iletilir. Bu içeriği görmeyiz, kaydetmeyiz veya saklamayız.</li>
+          <li><strong>Ollama ile yerel model</strong> — yerel olarak bir model çalıştırıyorsanız sayfa içeriği yalnızca kendi makinenize gönderilir. Cihazınızdan hiçbir veri dışarı çıkmaz.</li>
+          <li><strong>byphil Cloud (isteğe bağlı, ücretli)</strong> — API key yönetmekle uğraşmak istemeyenler için barındırılan bir seçenek. Bu katmanı seçerseniz özetlenmesini istediğiniz metin backend'imiz üzerinden geçer; backend isteği sizin adınıza OpenRouter aracılığıyla ilgili model sağlayıcısına iletir ve özeti geri döndürür. Veriler yalnızca iletilir: sayfa içeriklerini, URL'leri veya özetleri saklamayız. Hesap başına kaydettiğimiz tek veri kullanım metaverileridir: tamamlanan istek sayısı, token kullanımı, son istek zamanı ve kullanılan model. Hesabın kendisi isteğe bağlıdır; diğer tüm özellikler hesapsız çalışır.</li>
+        </ul>
+
+        <h3>Lisans ve abonelik durumu</h3>
+        <p>Bir Pro lisansı veya byphil Cloud aboneliği etkinleştirirseniz lisans anahtarınız yerel olarak cihazınızda saklanır (asla senkronize edilmez) ve abonelik durumunu backend'imizle doğrulamak için kullanılır. Temel hesap/fatura metaverileri ödeme işlemcimiz ve backend'imiz tarafından işlenir; sayfa içeriklerinizi veya okuma geçmişinizi sunucularımızda saklamayız.</p>
+
+        <h3>Kaldırma geri bildirimi</h3>
+        <p>Eklentiyi kaldırdığınızda Chrome, bu web sitesinde kısa bir geri bildirim sayfası açar. Sayfa adresi yalnızca eklenti sürümünü ve kaç gün yüklü kaldığını içerir; hiçbir kimlik bilgisi, sayfa içeriği veya geçmiş içermez. Formda seçtiğiniz veya yazdığınız bilgiler (bir neden, isteğe bağlı bir yorum), eklenti sürümü ve yüklü kalınan gün sayısı ile birlikte çerezsiz ve kendi sunucumuzda barındırılan analiz sistemimizde bir etkinlik olarak kaydedilir ve yalnızca eklentiyi geliştirmek için kullanılır. Tarayıcınız Do Not Track sinyali gönderiyorsa veya analizleri kapattıysanız hiçbir şey gönderilmez. E-posta alanı yoktur; yanıt almak için bir GitHub issue'su açabilirsiniz. Sayfayı yanıt vermeden de kapatabilirsiniz.</p>
+
+        <h3>Makale geçmişi, vurgular ve ayarlar</h3>
+        <p>Kaydettiğiniz her şey, Chrome'un yerleşik depolama API'leri kullanılarak yerel olarak tarayıcınızda saklanır; sunucularımızda asla depolanmaz:</p>
+        <table>
+          <thead>
+            <tr><th>Veri</th><th>Depolama</th><th>Chrome ile senkronize edilir mi?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Kaydedilen makaleler ve özetler</td><td>Yerel</td><td>Hayır</td></tr>
+            <tr><td>RSS feed abonelikleri ve içerikleri</td><td>Yerel</td><td>Hayır</td></tr>
+            <tr><td>API key'ler / sağlayıcı yapılandırması</td><td>Yerel</td><td>Hayır — hassas, yalnızca cihazda</td></tr>
+            <tr><td>Lisans anahtarı</td><td>Yerel</td><td>Hayır — hassas, yalnızca cihazda</td></tr>
+            <tr><td>LocalSend ağ IP'si</td><td>Yerel</td><td>Hayır</td></tr>
+            <tr><td>Metin vurguları ve AI ghost vurguları</td><td>Yerel (sayfa başına)</td><td>Hayır</td></tr>
+            <tr><td>Varsayılan prompt, dil, özet uzunluğu</td><td>Sync</td><td>Evet, kendi Chrome hesabınız üzerinden</td></tr>
+            <tr><td>Vurgulama açık/kapalı tercihi</td><td>Sync</td><td>Evet, kendi Chrome hesabınız üzerinden</td></tr>
+          </tbody>
+        </table>
+        <p>"Sync" olarak işaretlenen öğeler, Google hesabınıza bağlı Chrome yerleşik senkronizasyonunu kullanır; bu veriler tıpkı yer işaretleriniz gibi bizim değil, Google'ın altyapısından geçer. Bunlara harici bir erişimimiz yoktur.</p>
+        <p>Verilerinizi dilediğiniz zaman Ayarlar → Kütüphane ve Veri → Yedekleme ve geri yükleme adımlarını izleyerek dışa aktarabilirsiniz. Yedeklemeler varsayılan olarak API key'leri, oturum açma bilgilerini, lisans anahtarlarını ve yükleme tanımlayıcılarını hariç tutar; bunları dahil etmek açık bir onay ve uyarı gerektirir çünkü bu dosyaya sahip olan herkes bu bilgileri kullanabilir. Dışa aktarılan dosyaları gizli tutun ve eski yedeklerin gizli veriler içerebileceğini unutmayın. Aynı sayfadaki Tehlikeli bölge; özetler ve arşiv, vurgular, akışlar, podcast'ler, API key'ler / oturum / lisans, gönderim hedefleri (Kindle, LocalSend) ve tercihler gibi kategorileri silinecek öğe sayısıyla birlikte temizlemenize olanak tanır. <em>Tüm verileri sil</em> eklentinin cihazda sakladığı her şeyi kaldırır ve sıfırdan başlatır. Eklentiyi kaldırmak verilerini de siler. Bu işlemler yalnızca yerel verileri siler. Hesabınızı ve sunucumuzda tuttuğumuz kayıtları (aşağıya bakın) şu adresten yönetebilirsiniz: <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: oradan verilerinizi dışa aktarabilir ve hesabınızı silebilirsiniz. Eklenti ve Android uygulaması, hesap ayarlarından bu bağlantıyı sağlar.</p>
+
+        <h3>RSS feed'leri</h3>
+        <p>Yerleşik Akışlar (Feeds) okuyucusu, aboneliklerinizi ve çekilen akış öğelerini tarayıcınızda yerel olarak saklar; asla senkronize edilmez, bize gönderilmez. Bir akış eklediğinizde veya yenilediğinizde eklenti, doğrudan yayıncının sunucusundan ilgili akış adresini talep eder (tıpkı tarayıcınızın siteyi ziyaret ettiği gibi), bu nedenle yayıncı bu isteği görebilir. Aboneliklerinizi veya okuma listenizi proxy üzerinden iletmeyiz, kaydetmeyiz veya görmeyiz. OPML içe aktarma işlemi tamamen cihazınızda işlenir. Arka plan kontrollerini açarsanız (varsayılan olarak kapalıdır), eklenti yalnızca araç çubuğu simgesinde bir sayaç göstermek için seçtiğiniz aralıklarla akışlarınızı yeniden talep eder. Bir akış öğesini özetlemek, herhangi bir sayfayı özetlemekle aynı şekilde çalışır: içeriği yalnızca bir özet tetiklediğinizde ve yalnızca seçtiğiniz AI sağlayıcısına gönderilir. İsteğe bağlı AI günlük özet ve AI ton puanlaması da aynı şekilde çalışır: yalnızca tıkladığınızda eklenti, tam makaleleri değil; öğe başlıklarını, kaynak adlarını ve kısa alıntıları seçtiğiniz AI sağlayıcısına gönderir ve sonuç özeti cihazınızda önbelleğe alınır. Bir akıştaki podcast bölümleri, Oynat'a bastığınızda doğrudan yayıncının sunucusundan oynatılır.</p>
+
+        <h3>Makale gönderme: Kindle, LocalSend ve paylaşım menüsü</h3>
+        <p>İki farklı yol vardır ve bunlardan yalnızca biri sunucumuza temas eder:</p>
+        <ul>
+          <li><strong>Send to Kindle sunucumuz üzerinden çalışır.</strong> Amazon belgeleri yalnızca onaylı göndericilerden e-posta yoluyla kabul eder; bu nedenle eklenti makaleyi (başlık, özet, metin, vurgular ve kaynak adres) byphil backend'ine gönderir ve backend bunu girdiğiniz Kindle adresine e-posta ile iletir. Gönderici adresimizi (kindle@byphil.eu) Amazon hesabınızdaki onaylı göndericiler listenize eklersiniz. İçerik yalnızca bu e-postayı oluşturmak ve göndermek için kullanılır. Kindle gönderimi oturum açmış olmayı veya bir lisansa sahip olmayı gerektirir; ücretsiz katman 3 gönderim hakkı içerir.</li>
+          <li><strong>LocalSend ve sistem paylaşım menüsü (örneğin AirDrop) doğrudan çalışır.</strong> Dosya, tarayıcınızdan doğrudan yerel ağınızda seçtiğiniz cihaza veya paylaşım menüsünde seçtiğiniz uygulamaya gider. Sürece dahil olmayız; bu içeriği görmeyiz veya saklamayız. LocalSend uyumlu bir uygulama çalıştıran telefonlar, tabletler, bilgisayarlar ve e-kitap okuyucularla çalışır.</li>
+        </ul>
+
+        <h2 id="analytics">Analizler ve çerezler</h2>
+        <p><strong>Kısa özet:</strong> bu web sitesi <strong>çerez kullanmaz</strong> kullanır; reklam veya siteler arası izleyici içermez. Anonim ziyaretleri kendi sunucumuzda barındırılan bir Matomo örneği ile sayarız ve bunu istediğiniz zaman kapatabilirsiniz.</p>
+        <p><strong>Tarayıcı eklentisinin kendisi hiçbir analiz, telemetri veya izleme kodu içermez.</strong> Tek ağ istekleri yapılandırdığınız AI sağlayıcısına, abone olduğunuz akışlara, getirmesini istediğiniz sayfalara ve (kullanıyorsanız) byphil Cloud, oturum açma, lisans kontrolleri ve Send to Kindle için byphil backend'ine yöneliktir.</p>
+        <h3>Neleri ölçüyoruz?</h3>
+        <p>Sayfa görüntülemeleri, sayfa dili, yönlendiren (referrer), yaklaşık ülke/tarayıcı/cihaz sınıfı ve sitenin hangi bölümleriyle etkileşimde bulunduğunuz (örneğin "Chrome'a Ekle" tıklamaları, fiyatlandırma düğmesi, SSS öğeleri, kaydırdığınız bölümler ve bookmarklet oluşturucu adımları). Etkinlikler asla e-posta adresleri, API key'ler, tek kullanımlık kodlar, sayfa içerikleri veya makale verileri içermez.</p>
+        <h3>Nasıl yapılandırıldı?</h3>
+        <p>Matomo üçüncü bir tarafta değil, kendi sunucumuzda çalışır (analytics.philwornath.de, Almanya). Çerezler devre dışı bırakılarak ve tarayıcı parmak izi (fingerprinting) olmadan yüklenir; IP adresleri saklanmadan önce anonimleştirilir; hiçbir kullanıcı kimliği veya siteler arası tanımlayıcı atanmaz, böylece ziyaretler günler veya cihazlar arasında eşleştirilemez. Veriler satılmaz veya üçüncü taraflarla paylaşılmaz.</p>
+        <p>İzleme amacıyla cihazınızda hiçbir şey saklanmadığı veya okunmadığı için bu ölçüm, sitenin nasıl kullanıldığını anlama yönündeki meşru menfaatimize (GDPR Madde 6(1)(f)) dayanır ve § 25 TDDDG / ePrivacy Direktifi kapsamında bir çerez onay başlığı gerektirmez. Dilediğiniz zaman itiraz etme hakkına (GDPR Madde 21) sahipsiniz.</p>
+        <h3>Tercihleriniz</h3>
+        <p>Tarayıcınız şu sinyalleri gönderiyorsa analizler otomatik olarak kapatılır: <em>Do Not Track</em> veya <em>Global Privacy Control</em>. Ayrıca şu yöntemle manuel olarak da devre dışı bırakabilirsiniz: <a href="#" data-analytics-settings="">Analitik ayarları</a> (her sayfanın alt bilgisinde de yer alır). <span id="analyticsStatusInline"></span></p>
+        <h3>Tarayıcınızda neler saklanır?</h3>
+        <p>Yalnızca işlevsel tercihler saklanır, asla izleme amaçlı değildir: <code>aish_analytics</code> (devre dışı bırakma tercihiniz), <code>aish_analytics_notice</code> (bilgilendirme bildirimini kapattığınız bilgisi) ve kullanılırsa tema seçimi, dil önerisini kapatma durumu ve bookmarklet oluşturucu ayarları. Bunlar cihazınızda kalır ve bize gönderilmez.</p>
+        <h3>Yazı tipleri ve harici kaynaklar</h3>
+        <p>Yazı tipleri (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) doğrudan bu siteden sunulur; bu sayede yalnızca siteyi ziyaret ettiğiniz için IP adresiniz Google'a veya herhangi bir yazı tipi sağlayıcısına iletilmez. Tek harici istekler tıkladığınız bağlantılar ve açmayı seçtiğiniz isteğe bağlı byPhil hesap / Stripe ödeme sayfalarıdır.</p>
+
+
+        <h2>Yasal dayanaklar ve saklama süreleri</h2>
+        <p>Neredeyse her şey cihazınızda işlenir ve bize asla ulaşmaz. Veri işlediğimiz durumlarda yasal dayanaklar ve saklama süreleri şu şekildedir:</p>
+        <ul>
+          <li><strong>Hesap ve oturum açma</strong> (e-posta adresi, tek kullanımlık kod, lisans anahtarı, plan durumu) — talep ettiğiniz hesabı sağlamak için, GDPR Madde 6(1)(b). Hesap var olduğu sürece saklanır; hesabı sildiğinizde silinir.</li>
+          <li><strong>byphil Cloud</strong> (özetlediğiniz metnin iletilmesi, kullanım sayaçları, token kullanımı, son istek, son model) — hizmeti ifa etmek için, Madde 6(1)(b). Metin yalnızca iletilir ve saklanmaz. Kullanım metaverileri hesap var olduğu sürece tutulur ve hesapla birlikte silinir.</li>
+          <li><strong>Send to Kindle</strong> (gönderdiğiniz makale, Kindle adresiniz) — başlattığınız gönderim işlemini gerçekleştirmek için, Madde 6(1)(b). Yalnızca ilgili e-postayı oluşturmak ve göndermek için kullanılır.</li>
+          <li><strong>Ödemeler ve lisans doğrulama</strong> — sözleşmeyi ifa etmek ve muhasebe yükümlülüklerini yerine getirmek için, Madde 6(1)(b) ve (c). Fatura kayıtları yasaların gerektirdiği süre boyunca saklanır.</li>
+          <li><strong>Web sitesi analizleri ve kaldırma geri bildirimi</strong> — siteyi ve eklentiyi geliştirme yönündeki meşru menfaatimiz, Madde 6(1)(f). Veriler anonimdir (bkz. Analizler ve çerezler).</li>
+        </ul>
+        <p>Hesap verilerinizi dilediğiniz zaman şu adresten dışa aktarabilir ve hesabınızı silebilirsiniz: <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. Hesabı silmek, o hesap için saklanan verileri de siler.</p>
+
+        <h2>Talep Ettiğimiz İzinler ve Nedenleri</h2>
+        <table>
+          <thead>
+            <tr><th>İzin</th><th>Neden gerekli?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>Aktif olarak özetlemeyi seçtiğiniz sayfanın içeriğini okumak için</td></tr>
+            <tr><td><code>storage</code></td><td>Ayarlarınızı, makale geçmişinizi ve vurgularınızı yerel olarak kaydetmek için</td></tr>
+            <tr><td><code>contextMenus</code></td><td>Sağ tık işlemlerini (Özetle, Vurgula vb.) sunmak için</td></tr>
+            <tr><td><code>notifications</code></td><td>Daha sonra okumak üzere kaydettiğiniz makaleler için zamanlanmış hatırlatıcılar göstermek için</td></tr>
+            <tr><td><code>alarms</code></td><td>Hatırlatıcı bildirimlerini planlamak için</td></tr>
+            <tr><td><code>tabs</code></td><td>"Özetle ve Kapat" işleminden sonra sekmeyi otomatik kapatmak için</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Görüntüleme seçeneği olarak Chrome'un yerel yan panelini desteklemek için</td></tr>
+            <tr><td><code>scripting</code></td><td>Bir sayfayı okumak ve özetlemek için gereken içerik komut dosyasını (content script) eklemek için</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Açılır pencere kapalıyken arka planda podcast sesini çalmak ve özetleri sesli okumak için</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Varsayılan depolama kotasına takılmadan geniş bir yerel makale ve vurgu arşivi tutmak için</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Ziyaret ettiğiniz herhangi bir sayfayı özetlemenize olanak tanır — içerik asla pasif olarak değil, yalnızca siz aktif olarak bir özet tetiklediğinizde okunur ve iletilir</td></tr>
+          </tbody>
+        </table>
+        <p>Bu izinleri gezinmenizi izlemek, bir reklam profili oluşturmak veya yukarıda açıklanan özellikleri sunmanın ötesinde veri toplamak için kullanmayız.</p>
+
+        <h2>Neleri Yapmıyoruz?</h2>
+        <ul>
+          <li>Reklam yayınlamaz veya sunmayız; verilerinizi reklamcılara veya veri simsarlarına satmaz, kiralamaz ya da takas etmeyiz.</li>
+          <li>Hiçbir temel özellik için hesap oluşturmanızı veya oturum açmanızı zorunlu tutmayız.</li>
+          <li>Kendi API key'iniz veya yerel bir model aracılığıyla özetlediğiniz sayfaların içeriklerini kaydetmeyiz ya da tutmayız; LocalSend veya paylaşım menüsü üzerinden gönderdiğiniz içerikleri asla görmeyiz.</li>
+          <li>Yerel olarak saklanan makale geçmişinize, vurgularınıza veya API key'lerinize erişimimiz yoktur; siz açıkça dışa aktarmadığınız sürece bunlar asla cihazınızdan ayrılmaz.</li>
+        </ul>
+
+        <h2>Üçüncü Taraf Hizmetler</h2>
+        <p>Eklentiyi nasıl yapılandırdığınıza bağlı olarak sayfa içeriğiniz şuralara gönderilebilir:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI veya DeepSeek — yalnızca ilgili sağlayıcı için kendi API key'inizi girdiyseniz ve yalnızca aktif olarak özetlediğiniz sayfa için.</li>
+          <li>Almanya'da IONOS SE tarafından barındırılan byphil backend'imiz — yalnızca oturum açarsanız, byphil Cloud veya Send to Kindle kullanırsanız.</li>
+          <li>byphil Cloud'un modellere bağlandığı OpenRouter ve yönlendirdiği model sağlayıcısı — özetlediğiniz metin yalnızca ilgili istek için kullandığınız modele iletilir.</li>
+          <li>Stripe — Kayıtlı Satıcı (Merchant of Record) olarak ödemeler ve abonelik yönetimi.</li>
+          <li>Amazon — makaleyi Kindle'ınıza gönderirseniz Amazon bunu kendi gizlilik şartları altında teslim eder.</li>
+          <li>Kendi yerel Ollama örneğiniz — üçüncü taraf değildir; tamamen makinenizde kalır.</li>
+        </ul>
+        <p>Bağlamayı seçtiğiniz üçüncü taraf AI sağlayıcılarının gizlilik uygulamalarından sorumlu değiliz. Bir hesap bağlamadan önce ilgili sağlayıcıların politikalarını incelemenizi öneririz.</p>
+        <p><strong>Metninizi hangi modelin işleyeceğine siz karar verirsiniz.</strong> İster kendi key'inizi ister byphil Cloud'u kullanın, sağlayıcıyı ve modeli ayarlardan siz seçersiniz; sağlayıcının şartlarını ve verileri nerede işlediğini kontrol etmek sizin sorumluluğunuzdadır. OpenRouter, arkasındaki model sağlayıcıları ve Amazon verileri kendi güvenlik önlemleri (örneğin standart sözleşme maddeleri) kapsamında AB/AET dışındaki ülkelerde işleyebilir; biz verilerinizi üçüncü ülkelere doğrudan aktarmayız.</p>
+
+        <h2>Veri Güvenliği</h2>
+        <p>İşlenen verilere uygun, makul teknik önlemler alıyoruz; bu verilerin çoğu zaten tarayıcınızda yerel olarak saklandığı için sunucularımıza hiç ulaşmaz. Backend'imiz ile olan iletişim (byphil Cloud ve lisans doğrulaması için) aktarım sırasında şifrelenir. Hiçbir aktarım veya depolama yöntemi %100 güvenli değildir ve mutlak güvenlik garanti edilemez; ancak açıklanan özellikleri sunmak için gerekenden fazla veri toplamayız.</p>
+
+        <h2>Çocukların Gizliliği</h2>
+        <p>AI Summary Helper 13 yaşın (veya yargı alanınızdaki ilgili yasal asgari yaşın) altındaki çocuklara yönelik değildir ve çocuklardan bilerek kişisel bilgi toplamayız.</p>
+
+        <h2>Haklarınız (GDPR / CCPA ve benzeri)</h2>
+        <p>Verilerinizin neredeyse tamamı doğrudan kendi cihazınızda yerel olarak saklandığından, bunlar üzerinde zaten doğrudan kontrole sahipsiniz — eklentinin Ayarlar bölümünden veya eklentiyi kaldırarak dilediğiniz zaman görüntüleyebilir, dışa aktarabilir veya silebilirsiniz. Sunucularımızda tuttuğumuz veriler (byphil Cloud abonelik/fatura metaverileri) için bunları şu adresten yönetebilir, dışa aktarabilir ve hesabınızı silebilirsiniz: <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a> veya aşağıdan bizimle iletişime geçebilirsiniz.</p>
+        <p>Erişim (Madde 15), düzeltme (Madde 16), silme (Madde 17), kısıtlama (Madde 18), veri taşınabilirliği (Madde 20) ve itiraz (Madde 21) haklarına ve rızanızı dilediğiniz zaman geri çekme hakkına sahipsiniz. Ayrıca başta ikamet ettiğiniz üye devlet olmak üzere bir denetim makamına şikayette bulunma hakkınız (Madde 77) da mevcuttur. Verilerinizi hukuki sonuç doğuran otomatik kararlar veya profilleme için kullanmayız.</p>
+
+        <h2>Bu Politikadaki Değişiklikler</h2>
+        <p>Eklentinin özellikleri değiştikçe bu Gizlilik Politikasını güncelleyebiliriz. Önemli değişiklikler burada güncellenmiş bir "Son güncelleme" tarihi ile belirtilecektir. Bir değişiklikten sonra eklentiyi kullanmaya devam etmeniz, güncellenen politikayı kabul ettiğiniz anlamına gelir.</p>
+
+        <h2>Bize Ulaşın</h2>
+        <p>Bu Gizlilik Politikası hakkında sorularınız mı var? Bize şu adresten ulaşabilirsiniz: <a href="mailto:info@byphil.eu">info@byphil.eu</a> veya şu kanal üzerinden: <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub'da Kaynak Kodlar</a>
+        <a href="bookmarklet.html">Bookmarklet (kurulumsuz)</a>
+        <a href="privacy.html">Gizlilik</a>
+        <a href="#" data-analytics-settings="">Analitik ayarları</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Kullanım Koşulları</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">İadeler ve Geri Ödemeler</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Künye</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parçasıdır: <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — Almanya'da geliştirilen bağımsız yazılım. Ödemeler Merchant of Record olarak Stripe tarafından işlenir.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">AB Tüketici Uyuşmazlık Çözümü</a> · Tasarlayan ve geliştiren: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

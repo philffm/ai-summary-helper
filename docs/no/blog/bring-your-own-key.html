@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="nb"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Din nøkkel. Din modell. Dine data. — AI Summary Helper</title>
+<meta name="description" content="Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/bring-your-own-key.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/bring-your-own-key.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/bring-your-own-key.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/bring-your-own-key.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Hopp til innholdet</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> En del av byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funksjoner</a>
+        <a href="../index.html#pricing">Priser</a>
+        <a href="./" aria-current="page">Blogg</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Tilbake til appen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funksjoner</a>
+      <a href="../index.html#pricing">Priser</a>
+      <a href="./">Blogg</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">En del av byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Bytt til lys modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Produkt · Oktober 2026</span>
+      <h1>Din nøkkel. Din modell. Dine data.</h1>
+      <p class="post-sub">De fleste AI-verktøy setter en server mellom deg og modellen. Her ser du hva som endrer seg når den er borte – og hva som fortsatt er opp til deg.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Alle AI-sammendrag fungerer likt: tekst sendes ut, og tekst kommer tilbake. Spørsmålet som avgjør hvor mye du kan stole på verktøyet, er hvem som sitter i midten. Med mange produkter står det en bedriftsserver der, og det du leser passerer gjennom den på vei til en modell du ikke selv har valgt.</p>
+
+        <h2>Hva «bring your own key» betyr her</h2>
+        <p>Du oppretter en API key hos en leverandør du allerede stoler på, limer den inn i AI Summary Helper og velger en modell. Når du oppsummerer en side, sender utvidelsens bakgrunnsprosess teksten direkte til leverandøren og strømmer svaret tilbake. Ingen server fra AI Summary Helper er involvert når du bruker egen nøkkel.</p>
+        <p>Du kan også koble den til en modell som kjører lokalt på din egen maskin, for eksempel via Ollama. Da forlater teksten aldri datamaskinen din.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Lysbilde: Bring your own key, med merkelapper for lokale modeller, åpen kildekode og nøkler lagret i nettleseren" width="800" height="1000" loading="lazy"><figcaption>Du velger leverandør eller en lokal modell. Nøkkelen blir liggende i nettleseren din.</figcaption></figure>
+        <h2>Hvor nøkkelen din lagres</h2>
+        <p>Nøkkelen lagres lokalt i nettleserens utvidelsesminne, ikke i synkronisert lagring. Det betyr at den ikke overføres til andre enheter via nettleserkontoen din. Baksiden er at du må legge den inn én gang per nettleser. Nøklene brukes utelukkende til å kommunisere med leverandøren du har konfigurert.</p>
+
+        <h2>Hva dette beskytter mot – og hva det ikke gjør</h2>
+        <p>Vær klar over dette: Å ta med egen nøkkel fjerner mellomleddet. Det fjerner ikke modell-leverandøren. Alt du sender til en ekstern modell, omfattes av leverandørens egne vilkår og datalagringsregler – så les dem nøye. Bare en lokal modell holder teksten 100 % på maskinen din, og lokale modeller er som regel mindre og tregere enn skytjenestene.</p>
+        <p>Prosjektet er åpen kildekode, så du slipper å ta dette på ordet. Koden som håndterer nøkler og forespørsler ligger i repositoriet, klar til å leses.</p>
+
+        <h2>Velg oppsettet som passer deg</h2>
+        <ol>
+          <li><strong>Til daglig lesing:</strong> en skybasert modell fra en leverandør med vilkår du er komfortabel med. Rask, god kvalitet, og du har full kontroll over nøkkelen.</li>
+          <li><strong>Sensitivt innhold:</strong> en lokal modell. Tregere og mindre avansert, men ingenting forlater maskinen.</li>
+          <li><strong>Eksperimentering:</strong> legg til flere leverandører og sammenlign svarene på samme artikkel. Det er den raskeste måten å finne ut hvilken modell som takler hvilke typer tekst best.</li>
+        </ol>
+        <p>Poenget er ikke at ett oppsett er riktig for alle. Poenget er at valget forblir ditt.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper er en gratis Chrome-utvidelse.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../privacy.html">Personvern</a>
+        <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — uavhengig programvare utviklet i Tyskland.<br>
+      Designet og utviklet av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Blog — AI Summary Helper</title>
+<meta name="description" content="Catatan seputar membaca, pencarian, dan pengembangan on-device — dari tim di balik AI Summary Helper.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/index.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/index.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/index.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/index.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/index.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/index.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/index.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/index.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/index.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/index.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/index.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/index.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/index.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Lewati ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Bagian dari byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Fitur</a>
+        <a href="../index.html#pricing">Harga</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Kembali ke aplikasi</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Fitur</a>
+      <a href="../index.html#pricing">Harga</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Bagian dari byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Beralih ke mode terang</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" style="padding-bottom:24px;">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Blog <span class="dash"></span></div>
+      <h1 style="font-size:clamp(30px, 4.6vw, 46px);">Catatan seputar membaca, pencarian,<br><em>dan pengembangan on-device</em></h1>
+      <p class="sub">Hal-hal yang kami pelajari saat membangun ini — dan mengapa ini tepat untuk Anda yang sedang mempertimbangkan berbagai pilihan.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px;">
+    <div class="wrap">
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="bring-your-own-key.html">
+          <span class="blog-date">Produk · Okt 2026</span>
+          <h3>API key Anda. Model Anda. Data Anda.</h3>
+          <p>Arti menggunakan API key sendiri: di mana key tersimpan, ke mana teks halaman dikirim, dan bagaimana model lokal mengubah segalanya.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="feeds-recap.html">
+          <span class="blog-date">Panduan · Okt 2026</span>
+          <h3>Satu rekap, bukan 40 feed</h3>
+          <p>Terlalu banyak feed memecah fokus Anda. Pelajari cara rekap harian atau mingguan menggantikan sebagian besar dari feed tersebut.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="verify-ai-summary.html">
+          <span class="blog-date">Panduan · Okt 2026</span>
+          <h3>Cara memverifikasi ringkasan AI dengan sumber aslinya dalam 10 detik</h3>
+          <p>Kutipan hanya membuktikan teks itu ada, bukan berarti AI memahaminya dengan benar. Kebiasaan singkat untuk memvalidasi ringkasan tanpa harus membaca ulang seluruh artikel.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="highlighting-vs-asking.html">
+          <span class="blog-date">Panduan · Sep 2026</span>
+          <h3>Highlight saja tidak cukup. Coba tanyakan langsung.</h3>
+          <p>Riset teknik belajar menunjukkan efektivitas highlight cukup rendah. Ketahui alasannya dan perubahan kecil yang membuat highlight jauh lebih bermakna.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="unread-saves.html">
+          <span class="blog-date">Produk · Sep 2026</span>
+          <h3>Sebagian besar yang Anda simpan tak pernah dibaca. Inilah solusi nyatanya.</h3>
+          <p>Mayoritas artikel tersimpan tak pernah dibuka kembali. Alasan mengapa Digest hadir, dan mengapa fitur ini sengaja tidak menambah tumpukan bacaan Anda.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="on-device-architecture.html">
+          <span class="blog-date">Engineering · Agu 2026</span>
+          <h3>Mengapa kami memindahkan pencarian, tagging, dan rekomendasi keluar dari cloud</h3>
+          <p>Mengenal indeks TF-IDF di balik pencarian, dedup, dan digest — serta alasan mengapa fitur ini sebenarnya tidak pernah membutuhkan server.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="pocket-alternative.html">
+          <span class="blog-date">Panduan · Jul 2026</span>
+          <h3>Mencari alternatif Pocket? Inilah hal yang benar-benar penting</h3>
+          <p>Penutupan Pocket meninggalkan ruang kosong. Panduan memilih alat berdasarkan kebutuhan nyata Anda — bukan sekadar aplikasi mana yang tampilannya paling mirip.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+        <a class="blog-card" href="from-bookmarklet-to-2.html">
+          <span class="blog-date">Produk · Jun 2026</span>
+          <h3>Dari Bookmarklet ke 2.0: Wujud Sebenarnya dari AI Summary Helper Saat Ini</h3>
+          <p>Bermula dari bookmarklet satu klik untuk membaca di Kindle. Inilah perubahan dari v1 hingga pembaruan open-source versi 2.0.</p>
+          <span class="blog-read">Baca artikel →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../privacy.html">Privasi</a>
+        <a href="#" data-analytics-settings="">Pengaturan analitik</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Bagian dari <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independen yang dikembangkan di Jerman.<br>
+      Dirancang &amp; dibangun oleh <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Wat je opslaat, lees je toch niet — AI Summary Helper</title>
+<meta name="description" content="De meeste opgeslagen artikelen worden nooit meer geopend. Dit is waarom Digest bestaat, en waarom het bewust niet probeert de stapel nóg groter te maken.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/unread-saves.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/unread-saves.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/unread-saves.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/unread-saves.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/unread-saves.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/unread-saves.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/unread-saves.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/unread-saves.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/unread-saves.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/unread-saves.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/unread-saves.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/unread-saves.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/unread-saves.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/unread-saves.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/unread-saves.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/unread-saves.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/unread-saves.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/unread-saves.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/unread-saves.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/unread-saves.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/unread-saves.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/unread-saves.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Naar inhoud springen</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Onderdeel van byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Functies</a>
+        <a href="../index.html#pricing">Prijzen</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Terug naar app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Functies</a>
+      <a href="../index.html#pricing">Prijzen</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Onderdeel van byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Overschakelen naar lichte modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Product · September 2026</span>
+      <h1>Wat je opslaat, lees je meestal toch niet. Dit is de échte oplossing.</h1>
+      <p class="post-sub">De overgrote meerderheid van opgeslagen artikelen wordt nooit meer geopend. Dat is geen kwestie van discipline — het is een ontwerpfout.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Onderzoek naar bewaargedrag (Bergman, Whittaker en Schooler) toonde iets aan wat de meesten van ons al vermoedden maar liever niet toegaven: het overgrote deel van wat mensen bewaren om later te lezen, wordt nooit meer geopend. Volgens sommige onderzoeken loopt dat op tot wel 84%.</p>
+        <p>Als dat herkenbaar klinkt voor jouw eigen leeslijst: het ligt niet aan jouw discipline. Het is een ontwerpfout — in de tools, niet in jou.</p>
+
+        <h2>De reflex om op te slaan is het probleem niet. De alsmaar groeiende stapel wel.</h2>
+        <p>Iets opslaan kost één klik en een halve seconde intentie. Het daadwerkelijk later lezen vereist dat je een app heropent, door een lijst scrolt die inmiddels is gegroeid naar 60, 100 of 200 items, en beslist wát je nu gaat lezen in die vijf minuten die je net overhebt. Bij die tweede stap haakt bijna iedereen af — niet omdat de artikelen niet interessant waren, maar omdat <em>kiezen uit 200 items</em> op zichzelf al werk is, en de meeste lees-later-apps je gewoon de hele stapel voorschotelen en je aan je lot overlaten.</p>
+        <p>Een bladwijzer is met andere woorden een belofte die je steeds weer breekt. Niet omdat je lui bent. Maar omdat de tool je het moeilijkste deel — beslissen wat je nú echt gaat lezen — helemaal zelf liet uitzoeken, zonder enige hulp.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/tab-clutter.webp" alt="Dia: 82% van de mensen ervaart stress van een overvolle tabbladbalk, met een browsertabbladbalk vol openstaande tabbladen" width="800" height="1000" loading="lazy"><figcaption>De stapel begint hier: elk open tabblad is een belofte om het later te lezen.</figcaption></figure>
+        <h2>Waar de meeste lees-later-apps op optimaliseren</h2>
+        <p>Bijna elke tool in deze categorie is gebouwd om <em>opslaan</em> frictieloos te maken. Dat is de verkeerde focus als het echte struikelblok juist <em>kiezen</em>is. Een langere lijst is niet nuttiger dan een kortere als je de app toch nooit opent om erin te kijken.</p>
+
+        <h2>Het idee achter Digest</h2>
+        <p>In plaats van je door een groeiende stapel te laten scrollen om een keuze te maken, doet de Digest-functie van AI Summary Helper een eerste voorselectie voor je. Eén klik, en er wordt een kleine selectie gemaakt van wat je hebt opgeslagen — standaard vijf stuks — gebaseerd op:</p>
+        <ul>
+          <li><strong>Recentheid</strong>, zodat je geen artikelen te zien krijgt die je acht maanden geleden hebt opgeslagen en die je allang niet meer boeien</li>
+          <li><strong>Variatie</strong>, zodat je niet vijf artikelen over hetzelfde onderwerp krijgt wanneer je toevallig vijf dingen uit dezelfde nieuwscyclus hebt bewaard</li>
+          <li><strong>Stemming, als je dat wilt</strong> — kies voor "opbeurend", "neutraal" of "diepgang en serieus", en de selectie sluit daarop aan op basis van de toon van je opgeslagen items</li>
+        </ul>
+        <p>Dat is alles. Vijf keuzes, geen tweehonderd. Een beslissing die je binnen tien seconden maakt in plaats van een eindeloze lijst waarbij je het tabblad maar weer wegklikt.</p>
+
+        <h2>En daarna verdwijnt het volledig uit je lees-later-app</h2>
+        <p>Het punt waar het écht om draait: zodra Digest een selectie heeft gemaakt, zit je niet vast aan lezen binnen de extensie. De selecties — samenvattingen én links naar de bron — worden gebundeld in één bestand dat je direct naar je Kindle of een ander apparaat op je netwerk kunt sturen. Laad het in voor een vlucht, een weekend weg of een treinrit zonder bereik. Deze bundel is er juist voor ontworpen zodat je niet achter je laptop hoeft te zitten met de extensie open op het moment dat je daadwerkelijk wilt lezen.</p>
+
+        <h2>Waarom dit belangrijker is dan het klinkt</h2>
+        <p>Elke lees-later-tool beweert dat het je helpt om "meer te lezen van wat je bewaart". Maar vrijwel geen enkele verandert iets aan het daadwerkelijke keuzemoment. Ze maken opslaan alleen maar makkelijker, waardoor — volgens datzelfde onderzoek — de stapel alleen maar sneller groeit, zonder dat het échte probleem wordt opgelost.</p>
+        <p>De oplossing is geen betere lijst. De oplossing is die hele lijst überhaupt niet meer hoeven zien.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is een gratis Chrome-extensie.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics-instellingen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Onderdeel van <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — onafhankelijke software gemaakt in Duitsland.<br>
+      Ontworpen &amp; gebouwd door <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

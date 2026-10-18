@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="sv"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Från bookmarklet till 2.0 – AI Summary Helper</title>
+<meta name="description" content="Det började som ett bookmarklet för en persons Kindle-vanor. Här är vad som förändrades mellan v1 och den öppna källkodsversionen 2.0 – och varför.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Hoppa till innehållet</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> En del av byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funktioner</a>
+        <a href="../index.html#pricing">Priser</a>
+        <a href="./" aria-current="page">Blogg</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Tillbaka till appen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funktioner</a>
+      <a href="../index.html#pricing">Priser</a>
+      <a href="./">Blogg</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">En del av byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Växla till ljust läge</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Produkt · Juni 2026</span>
+      <h1>Från ett bokmärke till 2.0: Vad AI Summary Helper faktiskt är idag</h1>
+      <p class="post-sub">Det började som ett enkelt bookmarklet för att läsa på Kindle. Två år och en total omskrivning senare fanns det mesta som verktyget gör idag inte ens när de första hundra användarna dök upp.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper är ett gratis open source-tillägg till Chrome som sammanfattar valfri webbsida med din egen AI-leverantör eller en helt lokal modell, sparar artiklar till senare med schemalagda påminnelser och förvandlar din läshistorik till ett sökbart och sammanlänkat arkiv.</strong> Inget av det fanns i den första versionen. Här är vad som fanns, och hur resan såg ut därifrån till hit.</p>
+
+        <h2>Hur det hela faktiskt började</h2>
+        <p>I juli 2024 var detta bara ett bookmarklet – inte ens ett tillägg. Du hittade intressanta artiklar, öppnade ett dussin flikar och kom (som nästan alla andra) aldrig till skott med att läsa dem. Den ursprungliga idén var nischad och personlig: en sammanfattare med anpassade prompts som lade in resultatet direkt på sidan, så att sammanfattningen följde med när du skickade artikeln till din Kindle via <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabbles Send-to-Kindle-verktyg</a>. Det var hela produkten. En AI-leverantör. Ett prompt-fält. En bookmarklet-variant som fungerade överallt, till och med i Safari på iOS, och ett Chrome-tillägg för de som ville kunna justera prompten i farten.</p>
+        <p>Några veckor senare passerades 100 aktiva användare – genuint överraskande, eftersom det bara byggts för att lösa en enda persons egna läsvanor, inte för att bli en färdig produkt.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Diagram: en sammanfattning från start till mål – från Fråga, Streama, Slutför och Spara till Uppföljning" width="1760" height="620" loading="lazy"><figcaption>Vad som händer i fem steg när du klickar på Sammanfatta idag.</figcaption></figure>
+        <h2>Vad som faktiskt förändrades fram till 2.0</h2>
+        <p>Grundidén – sammanfatta på dina egna villkor och läs på en trevligare plats än en webbläsarflik – ändrades aldrig. Men nästan allt runt omkring gjorde det:</p>
+
+        <h3>En leverantör blev fem valbara alternativ</h3>
+        <p>v1 stödde bara OpenAI: din egen API key och en enda slutpunkt. 2.0 stöder OpenAI, Google Gemini, Mistral och DeepSeek med din egen API key, plus ett helt lokalt alternativ via Ollama – vilket innebär att sidans innehåll aldrig behöver lämna din dator om du inte vill. Det finns även en valfri molntjänst (byphil Cloud) för de som vill slippa hantera nycklar helt, men den är aldrig obligatorisk. Det var inte bara en liten funktionsuppdatering; det förändrade hela produktens natur. v1 krävde att du förlitade dig på ett specifikt företag. 2.0 kräver inte att du delar data med någon du inte själv valt.</p>
+
+        <h3>"Klistra in på sidan" blev ett riktigt arbetsflöde</h3>
+        <p>Kärninsikten – läs det senare, i en lugnare miljö än webbläsaren – lever kvar, men det handlar inte längre bara om en sammanfattning som klistras in i DOM-trädet. Högerklickar du på en sida kan du nu välja <strong>Sammanfatta &amp; stäng flik</strong>: välj en tidsram (Imorgon, Helgen, Denna vecka, Forskningspass), lägg till en anteckning och fliken stängs automatiskt när du skummat igenom sammanfattningen i ett snabbläsningsfönster (RSVP). En Chrome-notis påminner dig precis när du vill – inte "någon gång", utan exakt när du bestämt.</p>
+
+        <h3>En hög med sparade artiklar blev ett strukturerat bibliotek</h3>
+        <p>v1 hade ingen historik alls – sammanfattningen visades på sidan och var sedan borta. Nu sparas varje artikel i ett lokalt och sökbart arkiv, komplett med textmarkeringar (plus AI-genererade markeringar på viktiga stycken), en aktivitetsvy (heatmap) över din läsning och en D3-kunskapsgraf som grupperar det du läst efter ämne istället för en oöverskådlig lista.</p>
+
+        <h3>Kindle var hela poängen. Nu är det bara ett av flera alternativ</h3>
+        <p>Send-to-Kindle via Reabbles verktyg var hela anledningen till att projektet skapades. Det stöds fortfarande fullt ut, men att läsa utanför webbläsaren innebär nu även AirDrop till iPhone eller iPad (öppnas direkt i Apple Books) eller LocalSend till exempelvis KOReader över ditt eget Wi-Fi. Grundtanken – bort från webbläsaren till en dedikerad läsenhet – har bara fått fler vägar.</p>
+
+        <h2>Vad som inte har förändrats</h2>
+        <p>Det är fortfarande gratis, fortfarande open source (MIT-licensierat med all källkod på GitHub), och kräver fortfarande inget konto för grundfunktionerna. Den biten var aldrig förhandlingsbar – det är samma anledning till att v1 skapades som ett bookmarklet från början: byggt av någon som ville äga sitt eget läsverktyg, inte hyra det.</p>
+
+        <h2>Vanliga frågor</h2>
+        <p><strong>Är det här samma projekt som det ursprungliga bookmarkletet?</strong><br>
+        Ja – samma open source-projekt, samma GitHub-repo, under kontinuerlig utveckling sedan juli 2024. Bookmarklet-varianten finns fortfarande kvar för alla som vill ha ett webbläsaroberoende alternativ helt utan installation.</p>
+        <p><strong>Måste jag ha ett OpenAI-konto för att använda det?</strong><br>
+        Nej. Så var det i v1, men inte längre. Alla leverantörer som stöds fungerar, eller en helt lokal modell via Ollama helt utan externa konton.</p>
+        <p><strong>Vad hände med Gumroad-versionen?</strong><br>
+        Projektet började där som ett sätt att ta emot stöd från tidiga användare. Själva tillägget har alltid varit gratis och open source – Gumroad var aldrig en betalvägg för verktyget.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper är ett gratis tillägg för Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lägg till i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Källkod på GitHub</a>
+        <a href="../privacy.html">Integritetspolicy</a>
+        <a href="#" data-analytics-settings="">Analysinställningar</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — oberoende mjukvara utvecklad i Tyskland.<br>
+      Designad och utvecklad av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

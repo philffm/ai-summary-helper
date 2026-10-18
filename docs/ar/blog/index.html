@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>المدوّنة — AI Summary Helper</title>
+<meta name="description" content="ملاحظات حول القراءة، والبحث، والتطوير المحلي على الجهاز — من الفريق القائم على AI Summary Helper.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/index.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/index.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/index.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/index.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/index.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/index.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/index.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/index.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/index.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/index.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/index.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/index.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/index.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">الانتقال إلى المحتوى</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> جزء من byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">المميزات</a>
+        <a href="../index.html#pricing">الأسعار</a>
+        <a href="./" aria-current="page">المدونة</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← العودة إلى التطبيق</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">المميزات</a>
+      <a href="../index.html#pricing">الأسعار</a>
+      <a href="./">المدونة</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">جزء من byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">التبديل إلى الوضع الفاتح</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" style="padding-bottom:24px;">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> المدوّنة <span class="dash"></span></div>
+      <h1 style="font-size:clamp(30px, 4.6vw, 46px);">ملاحظات حول القراءة، والبحث،<br><em>والتطوير محلياً على الجهاز</em></h1>
+      <p class="sub">ما تعلمناه أثناء بناء هذا المشروع — ومكانه الأنسب عند مقارنة خياراتك.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px;">
+    <div class="wrap">
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="bring-your-own-key.html">
+          <span class="blog-date">المنتج · أكتوبر 2026</span>
+          <h3>مفتاحك. نموذجك. بياناتك.</h3>
+          <p>ما يعنيه استخدام مفتاح API key الخاص بك: أين يُحفظ المفتاح، وأين تذهب نصوص الصفحات، وما الذي يوفره تشغيل نموذج محلي.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="feeds-recap.html">
+          <span class="blog-date">دليل · أكتوبر 2026</span>
+          <h3>ملخص موجز واحد بدلاً من 40 موجزاً إخبارياً</h3>
+          <p>كثرة الخلاصات تعني تشتتاً مستمراً بين المهام. كيف يحل ملخص يومي أو أسبوعي محل معظمها.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="verify-ai-summary.html">
+          <span class="blog-date">دليل · أكتوبر 2026</span>
+          <h3>كيف تدقق ملخص الذكاء الاصطناعي مع المصدر في 10 ثوانٍ</h3>
+          <p>وجود اقتباس يثبت وجود النص، لا أن النموذج فهمه بشكل صحيح. عادة سريعة للوثوق بالملخصات دون إعادة قراءة المقال كاملاً.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="highlighting-vs-asking.html">
+          <span class="blog-date">دليل · سبتمبر 2026</span>
+          <h3>التظليل بمفرده نادراً ما يجدي. وجّه أسئلة للنص بدلاً من ذلك.</h3>
+          <p>صنّفت دراسة واسعة لأساليب التعلم تظليل النصوص في مرتبة منخفضة. تعرّف على السبب وتعديل بسيط يجعله يرسخ في الذهن.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="unread-saves.html">
+          <span class="blog-date">المنتج · سبتمبر 2026</span>
+          <h3>لن تقرأ معظم ما تحفظه. إليك الحل العملي الحقيقي.</h3>
+          <p>الغالبية العظمى من المقالات المحفوظة لا يُعاد فتحها أبداً. لماذا ابتكرنا ميزة الموجز (Digest)، ولماذا صُممت عمداً لتتجنب مراكمة المزيد من الروابط.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="on-device-architecture.html">
+          <span class="blog-date">الهندسة · أغسطس 2026</span>
+          <h3>لماذا نقلنا البحث والوسوم والتوصيات خارج السحابة</h3>
+          <p>فهرس TF-IDF وراء البحث، وإزالة التكرار، والتلخيص — ولماذا لم تكن معظم هذه الوظائف بحاجة إلى خادم من الأساس.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="pocket-alternative.html">
+          <span class="blog-date">دليل · يوليو 2026</span>
+          <h3>تبحث عن بديل لـ Pocket؟ إليك المعايير التي تهمك فعلاً</h3>
+          <p>ترك إغلاق Pocket فراغاً كبيراً. دليل لاتخاذ القرار بناءً على استخدامك الفعلي للأداة — لا بناءً على التطبيق الأكثر شبهاً في المظهر.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="from-bookmarklet-to-2.html">
+          <span class="blog-date">المنتج · يونيو 2026</span>
+          <h3>من أداة مصغّرة إلى الإصدار 2.0: حقيقة ما أصبح عليه AI Summary Helper اليوم</h3>
+          <p>بدأ كأداة Bookmarklet بنقرة واحدة للقراءة على Kindle. إليك ما تغيّر بين الإصدار الأول وإعادة بنائه بالكامل كإصدار 2.0 مفتوح المصدر.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="../privacy.html">الخصوصية</a>
+        <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. جزء من <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — برمجيات مستقلة مطوّرة في ألمانيا.<br>
+      تصميم وتطوير <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

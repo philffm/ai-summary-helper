@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="nb"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Still spørsmål til markeringene dine — AI Summary Helper</title>
+<meta name="description" content="Å markere tekst er en av de minst effektive studieteknikkene. Hvorfor det likevel føles nyttig, og en liten endring som gjør at markeringen faktisk sitter.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Hopp til innholdet</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> En del av byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funksjoner</a>
+        <a href="../index.html#pricing">Priser</a>
+        <a href="./" aria-current="page">Blogg</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Tilbake til appen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funksjoner</a>
+      <a href="../index.html#pricing">Priser</a>
+      <a href="./">Blogg</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">En del av byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Bytt til lys modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Veiledning · September 2026</span>
+      <h1>Bare markering fungerer knapt. Still spørsmål i stedet.</h1>
+      <p class="post-sub">Å markere tekst føles som å studere. Forskningen viser at det sjelden er det. Løsningen er enkel: ikke stopp ved markeringen, still spørsmål til den.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>I 2013 publiserte Dunlosky og kolleger en kunnskapsoppsummering i <em>Psychological Science in the Public Interest</em> som vurderte ti populære læringsteknikker etter hvor godt dokumentert effekten er. Markering og understreking havnet i gruppen med lavest nytteverdi, sammen med gjenlesing. Egentesting og repetisjon fordelt over tid kom best ut.</p>
+        <p>Det problematiske er ikke at markering er ubrukelig, men at det føles som ekte arbeid. Du leser, finner den viktige setningen, markerer den, og siden fylles med gult. Noe ble gjort, så det må jo ha hjulpet.</p>
+
+        <h2>Hvorfor en markering gir svakt minne</h2>
+        <p>En markering viser bare <em>at</em> du syntes en setning var viktig. Den krever ikke at du gjør noe mer med den. Du kan markere et avsnitt uten å forstå det, og du kan markere det ved andre gjennomlesing uten å ha tenkt over det ved første. Poenget i studien er at teknikker som bare eksponerer deg for stoffet på nytt, som regel taper mot teknikker som tvinger deg til å bearbeide og produsere noe selv.</p>
+
+        <h2>Spørsmål er en enkel måte å bearbeide stoffet på</h2>
+        <p>Den samme studien vurderte en spørreteknikk, utdypende spørsmålsstilling (elaborative interrogation), som middels nyttig: å spørre seg selv <em>hvorfor</em> en påstand stemmer. Du trenger ingen full prøve for å gjøre dette. Alt du trenger er en oppfordring som tvinger fram en kort forklaring med egne ord.</p>
+        <p>Det er akkurat det et oppfølgingsspørsmål gjør, så lenge du retter det mot riktig sted. «Hva var risikoene?» stilt til ett bestemt avsnitt gjør at du må ta stilling til hva du vil vite, og svaret gir deg noe å sammenligne med det du forventet.</p>
+
+        <h2>Marker, og still spørsmål</h2>
+        <p>I AI Summary Helper er en markering bare første steg. Merk et avsnitt, så blir det stående på siden slik at det fortsatt er der når du kommer tilbake til artikkelen. Still deretter et oppfølgingsspørsmål til det. Svaret siterer teksten, og et klikk på sitatet tar deg direkte tilbake til det opprinnelige avsnittet, slik at du kan sjekke om modellen forsto det på samme måte som deg. Markeringer og samtaler lagres per artikkel, så du fortsetter akkurat der du slapp neste gang.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="Lysbilde: Marker teksten, og still spørsmål til den, med en chat som viser spørsmålet «Hva var risikoene?» og et svar som siterer siden" width="800" height="1000" loading="lazy"><figcaption>Marker et avsnitt, still spørsmål til det, og hopp direkte tilbake til sitatet svaret bygger på.</figcaption></figure>
+        <h2>En rutine på to minutter</h2>
+        <ol>
+          <li><strong>Marker maksimalt tre avsnitt.</strong> Hvis alt er gult, er ingenting viktig.</li>
+          <li><strong>Still ett spørsmål per markering.</strong> «Hvorfor betyr dette noe?» eller «Hva ville endret seg hvis dette ikke stemte?» holder lenge.</li>
+          <li><strong>Før du leser svaret: si ditt eget svar høyt eller skriv det ned i én setning.</strong> Det er i selve sammenligningen læringen skjer.</li>
+        </ol>
+        <p>Dette betyr ikke at markering er feil, men at det bare er et startpunkt. Markeringstusjen finner avsnittet; spørsmålet sørger for at du husker det.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper er en gratis Chrome-utvidelse.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../privacy.html">Personvern</a>
+        <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — uavhengig programvare utviklet i Tyskland.<br>
+      Designet og utviklet av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

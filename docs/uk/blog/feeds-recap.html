@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Один підсумок замість 40 стрічок — AI Summary Helper</title>
+<meta name="description" content="Стеження за багатьма стрічками змушує постійно перемикати увагу між завданнями. Дізнайтеся, як щоденний або щотижневий підсумок замінює більшість із них і чому це важливо для фокусу.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/feeds-recap.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/feeds-recap.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/feeds-recap.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/feeds-recap.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/feeds-recap.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/feeds-recap.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/feeds-recap.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/feeds-recap.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/feeds-recap.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/feeds-recap.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/feeds-recap.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/feeds-recap.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Частина byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Можливості</a>
+        <a href="../index.html#pricing">Тарифи</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад до застосунку</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Можливості</a>
+      <a href="../index.html#pricing">Тарифи</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Частина byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Гайд · Жовтень 2026</span>
+      <h1>Один підсумок замість 40 стрічок</h1>
+      <p class="post-sub">Сорок стрічок новин означають сорок дрібних відволікань ще до обіду. Підсумок перетворює їх на один матеріал, який ви читаєте за один раз.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>У 2009 році Софі Леруа описала явище, яке вона назвала «залишком уваги» (attention residue): коли ви перемикаєтеся з одного завдання на інше, частина вашої уваги залишається на попередньому. У її експериментах люди, яких переривали під час виконання завдання, гірше справлялися з наступним, і цей ефект посилювався, якщо їм доводилося поспішати.</p>
+        <p>RSS-рідер — це машина для перемикання уваги. Кожен пункт — це інша тема, інший тон, інша вкладка. Навіть якщо переглядати все швидко, залишок уваги накопичується. І коли ви повертаєтеся до справжньої роботи, частина ваших думок усе ще зайнята зміною тарифів у якогось хостинг-провайдера.</p>
+
+        <h2>Чому «inbox zero» для стрічок новин ніколи не працює</h2>
+        <p>Лічильники непрочитаного перетворюють читання на обов'язок. Хороші стрічки якісні саме тому, що публікують багато, а отже, ця цифра лише зростає. У відповідь люди оголошують «інформаційне банкрутство», позначають усе прочитаним і згодом знову тонуть у горі публікацій.</p>
+
+        <h2>Що змінює підсумок</h2>
+        <p>Вкладка Feeds у AI Summary Helper дозволяє підписатися на RSS-стрічки, за якими ви справді стежите. Замість нескінченного списку публікацій ви замовляєте підсумок: один щоденний або щотижневий огляд із найважливішим і посиланнями на першоджерела. Ви читаєте його за один присід, і решта вашого дня більше не залежить від того, що інтернет опублікував о 10:42.</p>
+        <p>Ви також можете прослухати його як подкаст, якщо інакше взагалі не знайдете часу на читання. Генерація підсумку працює через будь-якого провайдера, якого ви налаштували зі своїм API key — так само як і звичайні самарі.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="Слайд: ваші стрічки в одному підсумку, із чатом, де показано щотижневий огляд та посилання на статті-першоджерела" width="800" height="1000" loading="lazy"><figcaption>Підсумок замінює лічильник непрочитаного: один матеріал для читання з посиланнями на кожне джерело.</figcaption></figure>
+        <h2>Як налаштувати це з максимальною користю</h2>
+        <ol>
+          <li><strong>Спершу скоротіть список.</strong> Залиште лише ті стрічки, за якими ви справді сумували б. Що кращі вхідні джерела, то кориснішим буде підсумок.</li>
+          <li><strong>Оберіть один фіксований час на день.</strong> Читання підсумку у фіксований час позбавляє звички постійно оновлювати стрічку. Якщо ж перевіряти підсумок щогодини, він перетвориться на ту саму повільну стрічку новин.</li>
+          <li><strong>Переходьте за посиланнями, які вас справді цікавлять.</strong> Кожен пункт у підсумку веде до свого першоджерела, тож стислий огляд є радше дверима до змісту, а не повною заміною читання.</li>
+        </ol>
+        <p>Мета полягає не в тому, щоб читати менше через лінощі. Вона в тому, щоб один раз свідомо вирішити, чому приділити увагу, замість сорока випадкових відволікань.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper — це безкоштовне розширення для Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — незалежне програмне забезпечення, створене в Німеччині.<br>
+      Дизайн та розробка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

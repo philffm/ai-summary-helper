@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Проверка саммари от ИИ по первоисточнику — AI Summary Helper</title>
+<meta name="description" content="Краткая выжимка от ИИ полезна только тогда, когда ей можно доверять. Рассказываем, как быстро сверить ответ со страницей-источником и что цитата может подтвердить, а что — нет.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/verify-ai-summary.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/verify-ai-summary.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/verify-ai-summary.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/verify-ai-summary.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Проект byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Возможности</a>
+        <a href="../index.html#pricing">Тарифы</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад в приложение</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Возможности</a>
+      <a href="../index.html#pricing">Тарифы</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Проект byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Светлая тема</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Руководство · Октябрь 2026</span>
+      <h1>Как проверить саммари от ИИ по первоисточнику за 10 секунд</h1>
+      <p class="post-sub">Саммари, которое нельзя проверить, — это просто догадка с безупречной грамматикой. Рассказываем о полезной привычке для фактчекинга и о том, как AI Summary Helper помогает делать это мгновенно.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>В 2011 году Спэрроу, Лю и Вегнер опубликовали в журнале <em>Science</em> исследование: когда люди рассчитывают найти информацию позже, они хуже запоминают сам факт, но лучше помнят, где его найти. Поисковые системы стали внешней памятью, и мы адаптировались к этому.</p>
+        <p>ИИ-выжимки развивают эту адаптацию еще дальше. Вы получаете четкий абзац, запоминаете его, а страница-источник уходит на второй план. Это нормально, пока саммари верно. Но если в нем ошибка, вы не сможете по тексту абзаца понять, какое именно утверждение вызывает сомнения.</p>
+
+        <h2>10-секундная проверка</h2>
+        <p>Перечитывать статью целиком не нужно — достаточно взглянуть на один фрагмент. Правило простое:</p>
+        <ol>
+          <li><strong>Выберите утверждение, которое вы бы пересказали другим.</strong> Число, дату, имя или причину.</li>
+          <li><strong>Найдите в источнике предложение, где об этом сказано.</strong> Не похожее по смыслу, а именно то, в котором содержится факт.</li>
+          <li><strong>Прочитайте по одному предложению до и после него.</strong> Именно в контексте чаще всего кроются искажения: «может» превращается в «будет», а прогноз — в свершившийся факт.</li>
+        </ol>
+        <p>Второй шаг вручную отнимает больше всего времени. Именно его и стоит автоматизировать.</p>
+
+        <h2>Как это решает AI Summary Helper</h2>
+        <p>Когда вы задаете уточняющий вопрос, ответ сопровождается точными цитатами со страницы, подтверждающими его. Расширение сверяет каждую цитату с текстом страницы и исключает те, которых нет слово в слово — выдуманная цитата никогда не будет выдана за аргумент. Нажмите на цитату, и открытая страница прокрутится до нужного фрагмента с подсветкой.</p>
+        <p>Предлагаемые уточняющие вопросы работают так же. К каждому сразу формируется краткий предварительный ответ, пока модель пишет подробный — так вы можете прочитать, проверить суть и остановиться, как только получили нужную информацию.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="Слайд: каждый ответ сопровождается подтверждением — ответ в чате с цитатой из источника и кнопкой перехода к фрагменту" width="800" height="1000" loading="lazy"><figcaption>Ответ, фрагмент текста в основе и переход к источнику в один клик.</figcaption></figure>
+        <h2>Что доказывает цитата, а что — нет</h2>
+        <p>Здесь важна аккуратность. Точная цитата доказывает лишь то, что данный фрагмент есть на странице. Она не гарантирует, что модель истолковала его верно. Сам текст ответа вокруг цитаты сформулирован моделью, поэтому проверка из шага 3 остается в силе: прочитайте соседние предложения.</p>
+        <p>В таком подходе цитата служит быстрым переходом к нужному абзацу, а не знаком безусловного доверия. В этом и суть: вы тратите 10 секунд на проверку решающего фрагмента статьи, а не 10 минут на чтение всего материала.</p>
+
+        <h2>Полезная привычка</h2>
+        <p>Возьмите за правило проверять хотя бы один ответ в статье. Через пару недель вы поймете особенности своей модели: в каких темах она точна, где округляет числа и не сглаживает ли оговорки и допущения. Такое понимание дает куда больше, чем любая разовая проверка.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper — бесплатное расширение для Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Установить в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Исходный код на GitHub</a>
+        <a href="../privacy.html">Конфиденциальность</a>
+        <a href="#" data-analytics-settings="">Настройки аналитики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правовая информация</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Проект <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — независимый продукт, разработанный в Германии.<br>
+      Дизайн и разработка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

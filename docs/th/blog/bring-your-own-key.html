@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>คีย์ของคุณ โมเดลของคุณ ข้อมูลของคุณ — AI Summary Helper</title>
+<meta name="description" content="ความหมายที่แท้จริงของการนำ API key มาใช้เองสำหรับส่วนขยายเบราว์เซอร์: คีย์ของคุณถูกจัดเก็บไว้ที่ไหน ข้อความบนหน้าเว็บส่งไปที่ใด และมีอะไรเปลี่ยนแปลงบ้างหากใช้งานโมเดลแบบ local">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/bring-your-own-key.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/bring-your-own-key.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/bring-your-own-key.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/bring-your-own-key.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">ข้ามไปยังเนื้อหา</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> ส่วนหนึ่งของ byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">ฟีเจอร์</a>
+        <a href="../index.html#pricing">ราคา</a>
+        <a href="./" aria-current="page">บล็อก</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← กลับไปยังแอป</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">ฟีเจอร์</a>
+      <a href="../index.html#pricing">ราคา</a>
+      <a href="./">บล็อก</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">ส่วนหนึ่งของ byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">สลับเป็นโหมดสว่าง</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">ผลิตภัณฑ์ · ตุลาคม 2026</span>
+      <h1>คีย์ของคุณ โมเดลของคุณ ข้อมูลของคุณ</h1>
+      <p class="post-sub">เครื่องมือ AI ส่วนใหญ่วางเซิร์ฟเวอร์ไว้คั่นกลางระหว่างคุณกับโมเดล นี่คือสิ่งที่จะเปลี่ยนไปเมื่อไม่มีเซิร์ฟเวอร์คั่นกลาง และสิ่งที่ยังคงขึ้นอยู่กับการควบคุมของคุณเอง</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>การสรุปผลด้วย AI ทุกตัวมีหลักการทำงานเหมือนกันคือ ส่งข้อความออกไป แล้วรับข้อความกลับมา แต่สิ่งที่เป็นตัวตัดสินว่าคุณควรไว้ใจเครื่องมือนั้นได้มากแค่ไหน คือใครอยู่ตรงกลาง หลายผลิตภัณฑ์มีเซิร์ฟเวอร์ของบริษัทตั้งอยู่ตรงนั้น และเนื้อหาที่คุณกำลังอ่านต้องส่งผ่านเซิร์ฟเวอร์ดังกล่าวก่อนจะไปถึงโมเดลที่คุณไม่ได้เป็นคนเลือก</p>
+
+        <h2>“การนำคีย์มาเอง (Bring your own key)” ในที่นี้หมายถึงอะไร</h2>
+        <p>คุณสร้าง API key กับผู้ให้บริการที่คุณไว้วางใจ นำมาวางใน AI Summary Helper แล้วเลือกโมเดล เมื่อคุณกดสรุปเนื้อหาหน้าเว็บ background worker ของส่วนขยายจะส่งข้อความตรงไปยังผู้ให้บริการนั้นและสตรีมคำตอบกลับมาทันที โดยไม่มีเซิร์ฟเวอร์ของ AI Summary Helper เข้ามาคั่นกลางในกระบวนการนี้เมื่อใช้คีย์ของคุณเอง</p>
+        <p>นอกจากนี้ คุณยังสามารถกำหนดค่าไปยังโมเดลที่รันบนเครื่องของคุณเองได้ เช่น ผ่าน Ollama ซึ่งในกรณีนี้ ข้อความบนหน้าเว็บจะไม่หลุดออกจากเครื่องของคุณเลยแม้แต่น้อย</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="สไลด์: นำคีย์มาใช้เอง พร้อมแท็กสำหรับโมเดลแบบ local, open source และการจัดเก็บคีย์ไว้ในเบราว์เซอร์ของคุณ" width="800" height="1000" loading="lazy"><figcaption>คุณเลือกผู้ให้บริการหรือโมเดลแบบ local ได้เอง และคีย์จะคงอยู่ในเบราว์เซอร์ของคุณ</figcaption></figure>
+        <h2>คีย์ของคุณถูกจัดเก็บไว้ที่ไหน</h2>
+        <p>คีย์จะถูกจัดเก็บไว้ใน local extension storage ของเบราว์เซอร์ ไม่ได้อยู่ใน synced storage ซึ่งหมายความว่าจะไม่มีการซิงค์ไปยังอุปกรณ์อื่นผ่านบัญชีเบราว์เซอร์ของคุณ แต่ก็แลกกับการที่คุณต้องกรอกคีย์หนึ่งครั้งต่อหนึ่งเบราว์เซอร์ โดยคีย์จะถูกใช้เพื่อเชื่อมต่อไปยังผู้ให้บริการที่คุณกำหนดไว้เท่านั้น</p>
+
+        <h2>สิ่งที่ระบบนี้ปกป้อง และสิ่งที่ไม่ครอบคลุม</h2>
+        <p>ต้องทำความเข้าใจให้ชัดเจน: การนำคีย์มาใช้เองเป็นการตัดตัวกลางออกไป แต่ไม่ได้ตัดผู้ให้บริการโมเดลออก สิ่งใดก็ตามที่คุณส่งไปยัง hosted model จะอยู่ภายใต้ข้อกำหนดและนโยบายการจัดเก็บข้อมูลของผู้ให้บริการนั้นๆ จึงควรอ่านรายละเอียดให้รอบคอบ มีเพียงโมเดลแบบ local เท่านั้นที่เก็บข้อความทั้งหมดไว้ในเครื่องของคุณอย่างแท้จริง ซึ่งโมเดล local มักจะมีขนาดเล็กกว่าและประมวลผลช้ากว่าโมเดลแบบ hosted</p>
+        <p>โปรเจกต์นี้เป็น open source คุณจึงไม่จำเป็นต้องเชื่อเพียงคำบอกเล่า เพราะโค้ดที่จัดการคีย์และคำขอทั้งหมดเปิดให้อ่านได้ใน repository</p>
+
+        <h2>การเลือกรูปแบบการใช้งาน</h2>
+        <ol>
+          <li><strong>สำหรับการอ่านทั่วไปในชีวิตประจำวัน:</strong> ใช้ hosted model จากผู้ให้บริการที่คุณยอมรับข้อกำหนดได้: รวดเร็ว คุณภาพสูง และคุณควบคุมคีย์ได้เอง</li>
+          <li><strong>สำหรับเนื้อหาที่มีความละเอียดอ่อน:</strong> ใช้โมเดลแบบ local: อาจช้ากว่าและประสิทธิภาพต่ำกว่า แต่ไม่มีข้อมูลใดหลุดออกจากเครื่อง</li>
+          <li><strong>สำหรับการทดลองใช้งาน:</strong> เพิ่มผู้ให้บริการมากกว่าหนึ่งรายแล้วเปรียบเทียบคำตอบจากบทความเดียวกัน ซึ่งเป็นวิธีที่เร็วที่สุดในการเรียนรู้ว่าโมเดลใดเหมาะกับเนื้อหาประเภทไหน</li>
+        </ol>
+        <p>ประเด็นสำคัญไม่ได้อยู่ที่ว่าการตั้งค่าแบบไหนดีที่สุด แต่อยู่ที่ว่าคุณคือผู้มีสิทธิ์เลือกด้วยตัวเอง</p>
+        <div class="post-cta">
+          <p>AI Summary Helper เป็นส่วนขยาย Chrome ที่ใช้งานได้ฟรี</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">เพิ่มลงใน Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="../privacy.html">ความเป็นส่วนตัว</a>
+        <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. ส่วนหนึ่งของ <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ซอฟต์แวร์อิสระ พัฒนาขึ้นในประเทศเยอรมนี<br>
+      ออกแบบและพัฒนาโดย <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Eén overzicht in plaats van 40 feeds — AI Summary Helper</title>
+<meta name="description" content="Het volgen van veel feeds betekent voortdurend schakelen tussen taken. Ontdek hoe een dagelijks of wekelijks overzicht dit grotendeels vervangt en waarom dat cruciaal is voor je focus.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/feeds-recap.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/feeds-recap.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/feeds-recap.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/feeds-recap.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/feeds-recap.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/feeds-recap.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/feeds-recap.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/feeds-recap.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/feeds-recap.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/feeds-recap.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/feeds-recap.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/feeds-recap.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Naar inhoud springen</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Onderdeel van byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Functies</a>
+        <a href="../index.html#pricing">Prijzen</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Terug naar app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Functies</a>
+      <a href="../index.html#pricing">Prijzen</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Onderdeel van byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Overschakelen naar lichte modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Gids · oktober 2026</span>
+      <h1>Eén overzicht in plaats van 40 feeds</h1>
+      <p class="post-sub">Veertig feeds betekenen veertig kleine onderbrekingen vóór de lunch. Een overzicht bundelt ze tot één update die je in één keer leest.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>In 2009 beschreef Sophie Leroy wat zij ‘aandachtsresidu’ (attention residue) noemde: wanneer je van de ene naar de andere taak overstapt, blijft een deel van je aandacht hangen bij de vorige taak. Uit haar onderzoek bleek dat mensen die tijdens een taak werden onderbroken, slechter presteerden op de volgende taak — een effect dat nog sterker was als ze haast hadden.</p>
+        <p>Een feedreader dwingt je continu van taak te wisselen. Elk item heeft een ander onderwerp, een andere toon en opent in een ander tabblad. Zelfs als elk berichtje snel leest, stapelt het residu zich op. Tegen de tijd dat je weer aan het werk bent, denk je onbewust nog na over een prijswijziging bij een hostingprovider.</p>
+
+        <h2>Waarom ‘inbox zero’ voor feeds nooit werkt</h2>
+        <p>Het aantal ongelezen berichten maakt van lezen een verplichting. De beste feeds zijn juist goed omdat ze vaak publiceren, waardoor het aantal alleen maar oploopt. Het gevolg: mensen verklaren hun feed failliet, markeren alles als gelezen en zien de stapel langzaam weer groeien.</p>
+
+        <h2>Wat een overzicht verandert</h2>
+        <p>In het tabblad Feeds in AI Summary Helper abonneer je je eenvoudig op de RSS-feeds die je echt volgt. In plaats van een eindeloze lijst vraag je om één overzicht: een dagelijkse of wekelijkse samenvatting van alles wat binnenkwam, inclusief links naar de bronartikelen. Je leest het in één keer door, zodat je dag niet langer wordt bepaald door wat het internet om 10:42 publiceerde.</p>
+        <p>Je kunt het ook beluisteren als podcast — ideaal als je anders helemaal niet aan lezen toekomt. Het overzicht wordt verwerkt via de provider die je zelf hebt ingesteld met je eigen sleutel, net als gewone samenvattingen.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="Dia: Je feeds in één overzicht, met een chatvenster dat een weekoverzicht en links naar de achterliggende artikelen toont" width="800" height="1000" loading="lazy"><figcaption>Een overzicht vervangt de teller met ongelezen berichten: één compacte tekst, met links naar elke bron.</figcaption></figure>
+        <h2>Zo stel je het effectief in</h2>
+        <ol>
+          <li><strong>Schoon eerst je lijst op.</strong> Behoud alleen de feeds die je echt zou missen. Samenvattingen worden beter wanneer de invoer beter is.</li>
+          <li><strong>Kies één vast moment per dag.</strong> Een overzicht op een vast tijdstip vervangt de gewoonte om constant te checken. Een overzicht dat je elk uur bekijkt, is gewoon een trage feed.</li>
+          <li><strong>Klik door naar de links die je interesseren.</strong> Elk punt in het overzicht verwijst naar de bron. Zo dient de samenvatting als ingang en niet ter vervanging van echt lezen.</li>
+        </ol>
+        <p>Het doel is niet om uit gemakzucht minder te lezen, maar om één keer bewust te bepalen waar je aandacht naartoe gaat — in plaats van veertig keer per ongeluk.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is een gratis Chrome-extensie.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics-instellingen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Onderdeel van <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — onafhankelijke software gemaakt in Duitsland.<br>
+      Ontworpen &amp; gebouwd door <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

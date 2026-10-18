@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>البحث والوسوم بدون سحابة — AI Summary Helper</title>
+<meta name="description" content="فهرس TF-IDF وراء ميزات البحث واكتشاف التكرار والملخصات في AI Summary Helper — ولماذا لم يكن معظمها بحاجة إلى خادم أبدًا.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/on-device-architecture.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/on-device-architecture.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/on-device-architecture.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/on-device-architecture.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/on-device-architecture.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/on-device-architecture.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/on-device-architecture.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/on-device-architecture.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/on-device-architecture.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/on-device-architecture.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/on-device-architecture.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">الانتقال إلى المحتوى</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> جزء من byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">المميزات</a>
+        <a href="../index.html#pricing">الأسعار</a>
+        <a href="./" aria-current="page">المدونة</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← العودة إلى التطبيق</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">المميزات</a>
+      <a href="../index.html#pricing">الأسعار</a>
+      <a href="./">المدونة</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">جزء من byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">التبديل إلى الوضع الفاتح</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">الهندسة التقنية · أغسطس 2026</span>
+      <h1>لماذا نقلنا البحث والوسوم والتوصيات خارج السحابة</h1>
+      <p class="post-sub">يتشارك البحث، وإزالة التكرار، وتنظيم الوسوم، والتوصيات في فهرس محلي واحد خفيف. إليك كيف يعمل ذلك، ولماذا لا يقتصر الأمر على مجرد شعار للخصوصية.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>ترسل معظم إضافات المتصفح "المدعومة بالذكاء الاصطناعي" كل شيء إلى خادم خارجي — بما في ذلك أجزاء لا علاقة لها بالذكاء الاصطناعي على الإطلاق. فالبحث وتنظيم الوسوم و"العثور على عناصر مشابهة" هي تقنيات راسخة ومفهومة منذ عقود؛ ولا تحتاج إلى نموذج لغوي، وبالتأكيد لا تحتاج إلى اتصال عبر الشبكة. راجعنا كل ميزة في AI Summary Helper وسألنا أنفسنا: هل تحتاج هذه الميزة حقًا إلى السحابة، أم أننا نعتمد عليها تلقائيًا لمجرد أنها البنية الأسهل؟</p>
+        <p>معظمها لم يكن بحاجة إليها مطلقًا.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="شريحة عرض: خريطة للموضوعات المترابطة مع عبارة &quot;المعلومات المرتبطة بالمعنى والسياق تدوم أطول من المعلومات التي ألقيت عليها نظرة عابرة&quot;" width="800" height="1000" loading="lazy"><figcaption>يعمل البحث والوسوم والمقالات المشابهة على نفس الفهرس المحلي على جهازك، لذا فإن إنشاء الروابط بين المحفوظات لا يكلف أي شيء.</figcaption></figure>
+        <h2>ما تم نقله فعليًا ليعمل على الجهاز</h2>
+        <p><strong>البحث.</strong> في البداية، كانت الإضافة تطابق فقط عبر عنوان المقال والوسوم — وكان ذلك سريعًا، لكنه يتجاهل محتوى المقال بالكامل. بدلاً من الفحص الشامل للنص الكامل مع كل ضغطة زر، أو إرسال كل استعلام إلى خادم، قمنا ببناء فهرس TF-IDF محلي خفيف من أرشيف المستخدم المحفوظ. تُفحص الحقول البسيطة — العنوان والوسوم — أولاً وفورًا كما كان من قبل. بينما تُوسّع الاستعلامات الأطول مقابل الفهرس، الذي يُبنى مرة واحدة لكل جلسة ويُحدّث تدريجيًا، دون إعادة الفحص مع كل نقرة مفتاح.</p>
+        <p><strong>اكتشاف المحتوى المكرر.</strong> قبل إتمام الحفظ، يتم تشغيل فحص متعدد المستويات: مطابقة دقيقة للرابط بعد توحيد صيغته أولاً (فحص سريع بتعقيد O(1))، ثم تشابه العناوين على المرشحين القلائل الذين اجتازوا ذلك، وفقط لهؤلاء القلة المتبقين — يُجرى مقارنة كاملة لتشابه جيب التمام عبر TF-IDF. معظم عمليات الحفظ لا تصل إطلاقًا إلى المستوى المتقدم عالي الكلفة، لأن المستويات الأولية تحسم الأمر مسبقًا.</p>
+        <p><strong>توحيد صيغ الوسوم.</strong> تتراكم الاختلافات في الوسوم بمرور الوقت — مثل "ML" و"Machine Learning" و"machine-learning"؛ وكلها تعني نفس الشيء للإنسان ولكنها مختلفة تمامًا لمحركات التصفية. يلتقط جدول أسماء مستعارة صغير الحالات الواضحة؛ بينما يتولى دمج المسافة التحريرية التقريبية (fuzzy edit-distance) عبر كامل قاموس الوسوم الباقي، مع اختيار الصيغة التي استخدمها المستخدم أكثر كصيغة قياسية بدلاً من فرض صيغة "صحيحة" عليه.</p>
+        <p><strong>سهولة القراءة ونبرة النص.</strong> مقياس Flesch–Kincaid لسهولة القراءة هو مجرد عملية حسابية بسيطة لعدد الجمل والمقاطع الصوتية — لا يحتاج إلى نموذج ذكاء اصطناعي. أما تحليل المشاعر فيعتمد على قائمة كلمات AFINN مدمجة مع فحص بسيط لأدوات النفي في الرمزين السابقين. لم يكن أي من هذين الأمرين بحاجة إلى مغادرة المتصفح.</p>
+        <p><strong>"المقالات المشابهة" والملخص الموجز (Digest).</strong> يعيد كلاهما استخدام نفس متجهات TF-IDF التي أنشأها البحث بالفعل. كان من السهل بناء ثلاثة أنظمة تشابه منفصلة لثلاث ميزات مختلفة. لكن بناء فهرس واحد وجعل البحث والتوصيات وإعداد الملخصات تقرأ منه حافظ على صغر حجم النظام ككل، وجعل تحسين الفهرس مرة واحدة بمثابة ترقية للميزات الثلاث معًا.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="مخطط توضيحي: صفحة الويب، وعامل الخلفية ونافذة الإضافة المنبثقة، والتخزين المحلي، ومزود النموذج" width="1760" height="620" loading="lazy"><figcaption>سهم واحد فقط يغادر المتصفح: الطلب المرسل إلى مزود النموذج الذي تختاره.</figcaption></figure>
+        <h2>ما تركناه عمدًا في السحابة</h2>
+        <p>خطوة التلخيص الفعلية — الجزء الذي يتطلب نموذجًا لغويًا حقيقيًا — لا تزال بحاجة إلى اتصال بالشبكة. لا يمكن تجاوز ذلك مع أحجام النماذج الحالية على الأجهزة إذا كنت تريد جودة تضاهي نماذج السحابة. يجلب المستخدمون مفتاح الـ API الخاص بهم لهذه الخطوة (OpenAI أو Gemini أو Mistral أو DeepSeek)، أو يوجهون الإضافة إلى خادم Ollama محلي للاستغناء عن الشبكة في هذه الخطوة أيضًا. هذا هو المكان الوحيد الذي لا يكون فيه التشغيل "على الجهاز" هو الخيار الافتراضي — بل خيارًا اختياريًا، لأن المفاضلة هنا حقيقية: فالنموذج المحلي أبطأ وأقل جودة من النموذج المستضاف، ولم نرد التظاهر بغير ذلك.</p>
+
+        <h2>لماذا يتجاوز الأمر كونه مجرد نقطة نقاش حول الخصوصية</h2>
+        <p>جانب الخصوصية حقيقي ومهم — فإضافة متصفح ذات أذونات وصول واسعة ترسل محتوى الصفحات إلى خادم لأمور لا تتطلب ذلك تمثل تساؤلًا مشروعًا حول الثقة، وليس مجرد مظهر خارجي. لكن السبب الهندسي الأبسط للقيام بذلك هو أنه الخيار التقني الصحيح في أغلب الأحيان. فبحث TF-IDF لا يحتاج إلى تأخير استجابة شبكي يبلغ 200ms. وإزالة تكرار الوسوم لا تتطلب فاتورة استهلاك API. إن مطابقة الأداة مع المهمة المطلوبة فعليًا، بدلاً من توجيه كل شيء عبر "الاتصال بالسحابة" افتراضيًا، ينتج عادةً أداءً أسرع، وأقل تكلفة، وأكثر مرونة عند انقطاع الاتصال — وتأتي ميزة الخصوصية كقيمة مضافة مجانية وتلقائية، وليس العكس.</p>
+        <div class="post-cta">
+          <p>إن AI Summary Helper هو امتداد مجاني لمتصفح Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">أضف إلى Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="../privacy.html">الخصوصية</a>
+        <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. جزء من <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — برمجيات مستقلة مطوّرة في ألمانيا.<br>
+      تصميم وتطوير <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
