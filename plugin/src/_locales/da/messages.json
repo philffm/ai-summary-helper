@@ -1,0 +1,5644 @@
+{
+  "extensionName": {
+    "message": "AI Summary Helper – Resumér websider og PDF'er (BYOK, Ollama)"
+  },
+  "extensionNameFirefox": {
+    "message": "AI Summary Helper – Resumér, spørg, lyt, citér"
+  },
+  "extensionShortName": {
+    "message": "AI Summary Helper"
+  },
+  "extensionDescription": {
+    "message": "Resumér enhver webside, PDF eller YouTube-video på 41 sprog med din egen AI-nøgle eller lokal Ollama. Privat, open source, ingen konto."
+  },
+  "fetchSummary": {
+    "message": "Hent resumé"
+  },
+  "settings": {
+    "message": "Indstillinger"
+  },
+  "saved": {
+    "message": "Gemt! 🎉"
+  },
+  "donate": {
+    "message": "Doner"
+  },
+  "noRecentSummaries": {
+    "message": "Ingen seneste resuméer"
+  },
+  "summarizePageToSee": {
+    "message": "Resumér en side for at se den her"
+  },
+  "whatShouldAiFocus": {
+    "message": "Hvad skal AI'en fokusere på?"
+  },
+  "askSpecificQuestions": {
+    "message": "Stil specifikke spørgsmål om denne side…"
+  },
+  "summaryLanguage": {
+    "message": "Resuméets sprog"
+  },
+  "searchLanguages": {
+    "message": "Søg efter sprog…"
+  },
+  "summaryLength": {
+    "message": "Resuméets længde"
+  },
+  "summaryMode": {
+    "message": "Resuméets tilstand"
+  },
+  "extension": {
+    "message": "Udvidelse"
+  },
+  "viewAndCopy": {
+    "message": "Vis &amp; kopiér"
+  },
+  "inline": {
+    "message": "Inline"
+  },
+  "insertIntoPage": {
+    "message": "Indsæt på siden"
+  },
+  "inlineModeTip": {
+    "message": "Inline-tilstand er perfekt til \"Send to Kindle\"."
+  },
+  "aiModel": {
+    "message": "AI-model"
+  },
+  "addCustomModelId": {
+    "message": "Tilføj brugerdefineret model-ID…"
+  },
+  "searchArticles": {
+    "message": "Søg i artikler... (⌘ + F)"
+  },
+  "back": {
+    "message": "← Tilbage"
+  },
+  "save": {
+    "message": "Gem 💾"
+  },
+  "feedbackText": {
+    "message": "Spørgsmål, fejl eller glad? 💡 Giv gerne feedback, kontakt mig eller overvej en donation :)"
+  },
+  "openSourceBy": {
+    "message": "Open source-software af"
+  },
+  "contributeOnGithub": {
+    "message": "Bidrag gerne på GitHub 💙"
+  },
+  "compatibleTools": {
+    "message": "Kompatible værktøjer"
+  },
+  "compatibleToolsDesc": {
+    "message": "Udvidelser, der integreres problemfrit med AI Summary Helper og supercharger dit workflow."
+  },
+  "loadingTools": {
+    "message": "Indlæser værktøjer…"
+  },
+  "navSummarize": {
+    "message": "Resumér"
+  },
+  "navHistory": {
+    "message": "Historik"
+  },
+  "navFeeds": {
+    "message": "Feeds"
+  },
+  "feedAddPlaceholder": {
+    "message": "Websted eller feed-adresse…"
+  },
+  "feedCurrentSite": {
+    "message": "Nuværende websted"
+  },
+  "feedImportOpml": {
+    "message": "Importér OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Markér alle som læst"
+  },
+  "feedSubscriptions": {
+    "message": "Abonnementer"
+  },
+  "searchSettings": {
+    "message": "Søg i indstillinger…"
+  },
+  "settingsBack": {
+    "message": "‹ Indstillinger"
+  },
+  "settingsAccount": {
+    "message": "Konto & abonnement"
+  },
+  "settingsModels": {
+    "message": "Modeller & API"
+  },
+  "settingsPrompts": {
+    "message": "Prompts"
+  },
+  "settingsReading": {
+    "message": "Læsning & markering"
+  },
+  "settingsSend": {
+    "message": "Send & del"
+  },
+  "settingsAppearance": {
+    "message": "Udseende & sprog"
+  },
+  "settingsLibrary": {
+    "message": "Bibliotek & data"
+  },
+  "settingsAbout": {
+    "message": "Om & værktøjer"
+  },
+  "settingsCapAccount": {
+    "message": "KONTO"
+  },
+  "settingsCapSummarizing": {
+    "message": "RESUMERING"
+  },
+  "settingsCapReading": {
+    "message": "LÆSNING"
+  },
+  "settingsCapApp": {
+    "message": "APP"
+  },
+  "navApps": {
+    "message": "Apps"
+  },
+  "navSettings": {
+    "message": "Indstillinger"
+  },
+  "starting": {
+    "message": "Starter…"
+  },
+  "contactingContentScript": {
+    "message": "Kontakter content script…"
+  },
+  "workingOnIt": {
+    "message": "Arbejder på det…"
+  },
+  "summary": {
+    "message": "Resumé"
+  },
+  "noTitleAvailable": {
+    "message": "Ingen titel tilgængelig"
+  },
+  "noSummaryAvailable": {
+    "message": "Intet resumé tilgængeligt"
+  },
+  "noContentAvailable": {
+    "message": "Intet indhold tilgængeligt"
+  },
+  "noDescriptionAvailable": {
+    "message": "Ingen beskrivelse tilgængelig"
+  },
+  "share": {
+    "message": "Del 🔗"
+  },
+  "saveMd": {
+    "message": ".MD 💾"
+  },
+  "reader": {
+    "message": "Læser 👓"
+  },
+  "delete": {
+    "message": "🗑️ Slet"
+  },
+  "aiSummary": {
+    "message": "🧙 AI-resumé"
+  },
+  "originalContent": {
+    "message": "📄 Originalt indhold"
+  },
+  "emptyArchive": {
+    "message": "🗂️ Dit arkiv er tomt som en ørken! Begynd at gemme artikler for at fylde det op. 🌵"
+  },
+  "noToolsAvailable": {
+    "message": "Ingen værktøjer endnu."
+  },
+  "failedToLoadTools": {
+    "message": "Kunne ikke indlæse værktøjer."
+  },
+  "clickToInsert": {
+    "message": "Klik på det element, hvor resuméet skal indsættes."
+  },
+  "fetchingSummary": {
+    "message": "Henter resumé..."
+  },
+  "openInSidebar": {
+    "message": "Åbn i sidepanel"
+  },
+  "theme": {
+    "message": "Tema"
+  },
+  "systemDefault": {
+    "message": "Systemstandard"
+  },
+  "lightMode": {
+    "message": "Lys tilstand"
+  },
+  "darkMode": {
+    "message": "Mørk tilstand"
+  },
+  "uiLanguage": {
+    "message": "Brugerfladesprog"
+  },
+  "browserDefault": {
+    "message": "Browserstandard"
+  },
+  "useNativeSidePanel": {
+    "message": "Brug Chromes indbyggede sidepanel"
+  },
+  "dangerZone": {
+    "message": "⚠️ Farezone"
+  },
+  "deleteSettings": {
+    "message": "Slet indstillinger"
+  },
+  "deleteHistory": {
+    "message": "Slet historik"
+  },
+  "model": {
+    "message": "Model"
+  },
+  "apiKey": {
+    "message": "API-nøgle"
+  },
+  "apiKeyStoredLocally": {
+    "message": "🔒 API-nøglen gemmes lokalt i din browser."
+  },
+  "endpointUrl": {
+    "message": "Endpoint-URL"
+  },
+  "prompt": {
+    "message": "Prompt"
+  },
+  "enterCustomPrompt": {
+    "message": "Skriv din egen prompt her"
+  },
+  "modelConfiguration": {
+    "message": "🤖 Modelkonfiguration"
+  },
+  "modelDesc": {
+    "message": "Vælg den LLM-model, der skal generere dine resuméer."
+  },
+  "promptCustomization": {
+    "message": "💬 Tilpasning af prompt"
+  },
+  "promptDesc": {
+    "message": "Tilpas, hvordan AI'en analyserer teksten."
+  },
+  "generalSettings": {
+    "message": "🔄 Generelle indstillinger"
+  },
+  "enablePodcastBeta": {
+    "message": "Aktivér podcast (beta)"
+  },
+  "modelIdentifiers": {
+    "message": "Model-ID'er"
+  },
+  "default": {
+    "message": "standard"
+  },
+  "notConfigured": {
+    "message": "Ikke konfigureret"
+  },
+  "configured": {
+    "message": "Konfigureret"
+  },
+  "historyGraph": {
+    "message": "Graf"
+  },
+  "historyReport": {
+    "message": "Analyse"
+  },
+  "viewGraph": {
+    "message": "Vis graf"
+  },
+  "viewAnalytics": {
+    "message": "Vis analyserapport"
+  },
+  "settingsCapFeeds": {
+    "message": "FEEDS"
+  },
+  "settingsFeeds": {
+    "message": "Feeds"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} allerede gjort)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Tilføj tag"
+  },
+  "f_tag_2f9e": {
+    "message": "+ tag"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} flere",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 time"
+  },
+  "f_1_year_98a5": {
+    "message": "1 år"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 minutter"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 timer"
+  },
+  "f_30_days_2af9": {
+    "message": "30 dage"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 minutter"
+  },
+  "f_7_days_8279": {
+    "message": "7 dage"
+  },
+  "f_90_days_9817": {
+    "message": "90 dage"
+  },
+  "f_ai_category_acf9": {
+    "message": "AI-kategori"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "AI-recap af denne dag"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "AI-anmodningen mislykkedes"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "AI-scoring mislykkedes"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "AI-genereret ud fra {n} overskrifter og uddrag. Genereret {time}. Erstatter ikke at læse selv.",
+    "description": "Placeholders: {n} {time} (keep as is)"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "AI-vurderet: tunge nyheder"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "AI-vurderet: positive nyheder"
+  },
+  "f_add_aa14": {
+    "message": "Tilføj"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Tilføj et feed"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Tilføj et websted eller en feed-adresse…"
+  },
+  "f_add_feed_1688": {
+    "message": "Tilføj feed"
+  },
+  "f_add_tag_1074": {
+    "message": "Tilføj tag"
+  },
+  "f_all_e364": {
+    "message": "Alle"
+  },
+  "f_all_sources_0e1e": {
+    "message": "Alle kilder"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Scorer allerede – et øjeblik"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Allerede abonneret"
+  },
+  "f_any_mood_9630": {
+    "message": "Alle stemninger"
+  },
+  "f_any_time_95a6": {
+    "message": "Når som helst"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Lydafspilning er ikke tilgængelig her"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "15 sek. tilbage"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Baggrundsscriptet er forældet – genindlæs udvidelsen på chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "Batch-resumering kører i udvidelsestilstand. Skift på Resumér-skærmen."
+  },
+  "f_behavior_a447": {
+    "message": "Adfærd"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Vælg en kilde"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Ryd datofilter"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Ryd filtre"
+  },
+  "f_close_player_c464": {
+    "message": "Luk afspiller"
+  },
+  "f_copy_3664": {
+    "message": "Kopiér"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Kopiering fejlede"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "Kunne ikke tilføje feed"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "Kunne ikke læse den aktuelle fane"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "Kunne ikke starte afspilning"
+  },
+  "f_date_7379": {
+    "message": "Dato"
+  },
+  "f_date_mood_799e": {
+    "message": "Dato & stemning"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · internationale nyheder"
+  },
+  "f_done_1791": {
+    "message": "Færdig"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Angiv en gyldig webadresse"
+  },
+  "f_episode_f972": {
+    "message": "Afsnit"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Alt ulæst er allerede resumeret"
+  },
+  "f_failed_c3d4": {
+    "message": "Mislykkedes"
+  },
+  "f_favorite_19ed": {
+    "message": "Favorit"
+  },
+  "f_favorites_53ba": {
+    "message": "Favoritter"
+  },
+  "f_feed_name_68fc": {
+    "message": "Feedets navn"
+  },
+  "f_feeds_8b02": {
+    "message": "Feeds"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Følg de websteder, du læser"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "30 sek. frem"
+  },
+  "f_hide_negative_6410": {
+    "message": "Skjul negative"
+  },
+  "f_import_failed_aa11": {
+    "message": "Import mislykkedes"
+  },
+  "f_imported_feed_349f": {
+    "message": "{n} feed importeret",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "{n} feeds importeret",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Uafhængig undersøgende journalistik"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Uafhængig teknologi-ansvarlighed"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Uafhængig teknologijournalistik"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Elementer, du åbner eller resumerer, forsvinder fra din ulæst-liste"
+  },
+  "f_last_7_days_d98f": {
+    "message": "Seneste 7 dage"
+  },
+  "f_loading_4ae3": {
+    "message": "Indlæser…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Markér læst"
+  },
+  "f_mark_unread_7147": {
+    "message": "Markér ulæst"
+  },
+  "f_mark_read_c994": {
+    "message": "Markér {n} læst",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_read_2e9b": {
+    "message": "{n} markeret som læst",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "{n} markeret som ulæst",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mood_551e": {
+    "message": "Stemning"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Stemning (AI-vurderet {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}",
+    "description": "Placeholders: {r} {n} {p} {m} {g} (keep as is)"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "Stemning kommer kun fra AI-scoring – elementer, du ikke har scoret, har ingen stemning og skjules aldrig af stemningsfilteret. Scoring sender titler og korte uddrag til din AI-forbindelse, når du klikker på den."
+  },
+  "f_mood_d12b": {
+    "message": "Stemning ↓"
+  },
+  "f_more_d900": {
+    "message": "Mere"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Mest positive først"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Mest positive først · {n} elementer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Slå lyd fra (udelad fra Alle kilder)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "Nye elementer er kommet siden denne recap – opdatér for at tage dem med."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "Nye indlæg lander her. Skim, resumér det vigtige, ryd resten."
+  },
+  "f_newer_f04a": {
+    "message": "Nyere"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Nyeste først"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Næste dag med elementer"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "Intet feed fundet på den adresse"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "Ingen feeds endnu. Tilføj et nedenfor eller importér en OPML-fil."
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "Ingen elementer at lave recap af her."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "Ingen nye feeds i den fil"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "Ingen kilder matcher."
+  },
+  "f_no_b8a2": {
+    "message": "Nej 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Ikke en gyldig OPML-fil"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Ikke et gyldigt feed"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Intet matcher disse filtre."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Intet nyt i dag endnu. Prøv Opdatér."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Intet at eksportere endnu"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Intet at score"
+  },
+  "f_older_d101": {
+    "message": "Ældre"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Åbn først et websted i den aktuelle fane"
+  },
+  "f_open_c3b4": {
+    "message": "Åbn ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Indsæt en vilkårlig webadresse. Vi finder feedet for dig."
+  },
+  "f_pause_bf2d": {
+    "message": "Pause"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Vælg en dag"
+  },
+  "f_play_6f83": {
+    "message": "Afspil"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Afspil afsnit i AISH"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Afspilningshastighed"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Afspilles kun, mens dette vindue er åbent"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Podcast af forfatteren · design, liv & teknologi"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Podcast-afspiller"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Forrige dag med elementer"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "Perioden starter {day} – tryk på den sidste dag.",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Recap kopieret"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Recap mislykkedes"
+  },
+  "f_refresh_aad4": {
+    "message": "Opdatér"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "Fjern tag {tag}",
+    "description": "Placeholders: {tag} (keep as is)"
+  },
+  "f_request_failed_3b37": {
+    "message": "Anmodningen mislykkedes"
+  },
+  "f_reset_a560": {
+    "message": "Nulstil"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "{n} element scoret med AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "{n} elementer scoret med AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "Scorer med AI… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_search_sources_e053": {
+    "message": "Søg i kilder…"
+  },
+  "f_seek_13d1": {
+    "message": "Spol"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "Sender {n} titler og korte uddrag til din AI-forbindelse.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Vis alle elementer"
+  },
+  "f_show_more_older_6f85": {
+    "message": "Vis {n} flere · {m} ældre",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Viser et badge på værktøjslinjeikonet, når nye elementer kommer"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Websted eller feed-adresse…"
+  },
+  "f_sort_a7f1": {
+    "message": "Sortér"
+  },
+  "f_source_a3f8": {
+    "message": "Kilde"
+  },
+  "f_sources_73d1": {
+    "message": "Kilder"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Når du stjernemarkerer et element, resumeres det i en baggrundsfane"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "Abonnerer på {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Abonnementer · OPML · adfærd"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Abonnementer · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_suggested_fdec": {
+    "message": "Foreslået"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "Resumér på et feed-element følger den tilstand, du har valgt på Resumér-skærmen (udvidelse som standard). Favoritter beholdes altid."
+  },
+  "f_summarized_415a": {
+    "message": "Resumeret"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Resumerer i baggrunden – det dukker op under Resumér og Historik"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Resumerer den åbne fane – det dukker op under Resumér og Historik"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "Resumerer {n} i baggrunden – se Historik",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_a0c0": {
+    "message": "Tags"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "AI-svaret kunne ikke læses"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "AI'en returnerede en tom recap"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "Disse elementer er allerede scoret"
+  },
+  "f_today_775e": {
+    "message": "I dag"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Dagens briefing"
+  },
+  "f_try_again_90fa": {
+    "message": "Prøv igen"
+  },
+  "f_undo_4acf": {
+    "message": "Fortryd"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Slå lyd til (inkludér i Alle kilder)"
+  },
+  "f_unread_c982": {
+    "message": "Ulæst"
+  },
+  "f_unread_4dff": {
+    "message": "Ulæst · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Afmeld"
+  },
+  "f_world_news_0f72": {
+    "message": "Verdensnyheder"
+  },
+  "f_yesterday_68c7": {
+    "message": "I går"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "Du har et gemt resumé af denne side"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Dine feeds forbliver på denne enhed."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "Du er helt à jour. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "seneste {n} dage",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, ingen elementer",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} element",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} elementer",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_recap_8d18": {
+    "message": "{label}-recap",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_feed_d469": {
+    "message": "{n} feed",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} feed kunne ikke indlæses",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} feeds",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} feeds kunne ikke indlæses",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_item_9ea2": {
+    "message": "{n} element",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_0303": {
+    "message": "{n} elementer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "{n} nye i dag fra {s} kilde · {u} ulæste",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "{n} nye i dag fra {s} kilder · {u} ulæste",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_tag_63cf": {
+    "message": "{n} tag",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_00f4": {
+    "message": "{n} tags",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unread_e786": {
+    "message": "{n} ulæste",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_d_7af5": {
+    "message": "{n}d",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_h_8141": {
+    "message": "{n}t",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_m_85fa": {
+    "message": "{n}m",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Dato & stemning"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Opdatér"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Pause"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Afspil"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Dagens briefing"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Administrér feeds & tags i Indstillinger  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  Alle elementer her er scoret"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Markér alt i denne visning som læst"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Markér læst ved åbning"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ Resumeret"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  AI-recap af i dag"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Autoresumér favoritter"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Recap"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Resumér"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ Resumér top 5 ulæste"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Skriver recap…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 Vis resumé"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  Vælg en dag eller periode…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 Eksportér OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  Importér OPML-fil"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  Importér OPML-fil…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 Importér OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  Alle kilder"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Opdatér feeds hver"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Tjek i baggrunden"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Behold elementer i"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Kun positive"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 Mest positive"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Blandet"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 Mest tunge"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Score uscorede synlige elementer med AI"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  Score {n} uscoret element med AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  Score {n} uscorede elementer med AI",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Brug nuværende websted"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Tilføj"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Mørkere = flere elementer · ✨ = recap lavet · tryk længe på en dag og derefter en anden for en periode"
+  },
+  "f_recap_done_b098": {
+    "message": "recap lavet"
+  },
+  "f_podcasts_7c90": {
+    "message": "Podcasts"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI-vurderet"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "Bedste match · {n} elementer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_229d": {
+    "message": "Dag"
+  },
+  "f_episodes_fc93": {
+    "message": "Afsnit"
+  },
+  "f_graph_77e7": {
+    "message": "Graf"
+  },
+  "f_insights_f1e8": {
+    "message": "Indsigt"
+  },
+  "f_items_382f": {
+    "message": "Elementer"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "Ingen elementer i denne kilde endnu."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Endnu ikke nok tekstdata."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Intet vurderet endnu – brug “Score med AI” i arket Dato & stemning."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Søg i feeds…"
+  },
+  "f_search_368e": {
+    "message": "Søg “{term}”",
+    "description": "Placeholders: {term} (keep as is)"
+  },
+  "f_show_only_9eef": {
+    "message": "Vis kun {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_to_listen_78b7": {
+    "message": "At lytte til"
+  },
+  "f_unplayed_7435": {
+    "message": "Uafspillet"
+  },
+  "f_week_e27d": {
+    "message": "Uge"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Topbegreber"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Podcasts"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Volumen"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 Topkilder"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Stemning & kategorier"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Føjer stemning og kategori til hvert element i samme AI-anmodning"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Vurdér elementer med recap"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Intet nyt siden denne recap"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Sender {n} nye eller redigerede titler og korte uddrag til din AI-forbindelse.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Opdaterer recap…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "En kildes recap er ændret, siden denne blev skrevet – opdatér for at tage den med."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "AI-recap af denne måned, bygget på ugens og dagenes recaps"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "AI-recap af denne uge, bygget på dagenes recaps"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Bygget på dine dags-recaps. Elementer, der allerede har en dags-recap, sendes ikke igen."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Bygget på {n} recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Bygget på {n} recaps",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancel_ca3b": {
+    "message": "Annullér"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Lav først {n} manglende dags-recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Lav først {n} manglende dags-recaps",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Laver dags-recaps… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Genereret {time}",
+    "description": "Placeholders: {time} (keep as is)"
+  },
+  "f_month_1ba5": {
+    "message": "Måned"
+  },
+  "f_no_items_43fa": {
+    "message": "Ingen elementer"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Intet at kombinere endnu."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Recap-omfang"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Sender {n} korte recaps, ikke {m} overskrifter",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Spring dage uden recap over"
+  },
+  "f_week_recap_2446": {
+    "message": "Ugens recap"
+  },
+  "f_week_c909": {
+    "message": "Uge {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_missing_0207": {
+    "message": "mangler"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "ingen recap endnu"
+  },
+  "f_reused_af15": {
+    "message": "genbrugt"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} af {b} dage har en recap",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} dags-recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} dags-recaps",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} uden recap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Lav recap"
+  },
+  "f_feed_b245": {
+    "message": "Feed"
+  },
+  "f_6_months_1bc4": {
+    "message": "6 måneder"
+  },
+  "f_categories_e98d": {
+    "message": "Kategorier"
+  },
+  "f_mood_history_is_kept_for_13__0fc8": {
+    "message": "Stemningshistorik gemmes i 13 måneder, også efter at elementer er fjernet."
+  },
+  "f_mood_index_518e": {
+    "message": "Stemningsindeks"
+  },
+  "f_only_of_items_are_rated_3794": {
+    "message": "Kun {r} af {n} elementer er vurderet",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_open_day_791d": {
+    "message": "Åbn dag ›"
+  },
+  "f_open_month_dc55": {
+    "message": "Åbn måned ›"
+  },
+  "f_open_week_a281": {
+    "message": "Åbn uge ›"
+  },
+  "f_these_items_are_no_longer_st_45c7": {
+    "message": "Disse elementer gemmes ikke længere og kan derfor ikke scores."
+  },
+  "f_what_moved_98f8": {
+    "message": "Hvad bevægede sig"
+  },
+  "f_n_a_e041": {
+    "message": "n/a"
+  },
+  "f_vs_5622": {
+    "message": "vs {label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_pts_d40a": {
+    "message": "{n} point",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_items_rated_mood_comes_fr_688e": {
+    "message": "{r} af {n} elementer vurderet · stemning kommer kun fra AI-scoring",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_categories_06df": {
+    "message": "🏷️ Kategorier"
+  },
+  "f_mood_over_time_2258": {
+    "message": "📈 Stemning over tid"
+  },
+  "f_score_unscored_items_79e0": {
+    "message": "🤖 Score {n} uscorede elementer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Gå til i dag"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Intet vurderet endnu – skriv en ✨ Recap for at vurdere elementer."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Filter"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Filter"
+  },
+  "f__c725": {
+    "message": "⏳ {n}%",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_edit_6cb1": {
+    "message": "Redigér"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "Redigér feeds & tags i Indstillinger"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Kun {r} vurderede elementer – mindst 5 kræves",
+    "description": "Placeholders: {r} (keep as is)"
+  },
+  "f_w_66b2": {
+    "message": "U{n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_vs_16ff": {
+    "message": "{a} vs {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_activity_view_00dd": {
+    "message": "Aktivitetsvisning"
+  },
+  "f_articles_b83e": {
+    "message": "Artikler"
+  },
+  "f_best_streak_8513": {
+    "message": "Bedste stribe"
+  },
+  "f_day_streak_6d31": {
+    "message": "Dages stribe"
+  },
+  "f_full_reading_37c0": {
+    "message": "Fuld læsning"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "Ingen artikler har stemning endnu – lad AI'en score dem."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "Ingen artikler endnu – begynd at resumere sider for at se din analyse! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "Ingen tags fundet. Tilføj tags til dine resuméer!"
+  },
+  "f_saved_79e4": {
+    "message": "Gemt"
+  },
+  "f_with_summaries_5619": {
+    "message": "Med resuméer"
+  },
+  "f_words_read_f576": {
+    "message": "Læste ord"
+  },
+  "f_article_09dd": {
+    "message": "{n} artikel",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_3cea": {
+    "message": "{n} artikler",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_compression_across_e24c": {
+    "message": "{p}% komprimering på tværs af {a}",
+    "description": "Placeholders: {p} {a} (keep as is)"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ Sparet tid med AISH"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Ordsky"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ Topkategorier"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 Aktivitet"
+  },
+  "f_back_4bc2": {
+    "message": "Tilbage"
+  },
+  "f_cancelled_09bc": {
+    "message": "Annulleret"
+  },
+  "f_close_acc3": {
+    "message": "Luk"
+  },
+  "f_device_b413": {
+    "message": "Enhed"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "Digest af {n} resuméer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "Gratis niveau: 3 Kindle-afsendelser inkluderet."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "Det dukker op på din Kindle om få minutter."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "Sørg for, at kindle@byphil.eu står på din Amazon-liste over “Godkendte afsendere”."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "Ikke alt blev sendt"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "Ikke sat op endnu – tilføj en modtager i Indstillinger"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "Ikke sat op endnu – tilføj din Kindle i Indstillinger"
+  },
+  "f_one_digest_a1c5": {
+    "message": "Én digest"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "Kun resumerede artikler kan sendes"
+  },
+  "f_open_settings_88b6": {
+    "message": "Åbn Indstillinger"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "Vælg modtageren. Dens app skal være åben og på samme Wi‑Fi."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "Hold dette vindue åbent"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "Angiv først din LocalSend-IP i Indstillinger."
+  },
+  "f_select_2b4d": {
+    "message": "Vælg"
+  },
+  "f_select_all_1072": {
+    "message": "Vælg alle"
+  },
+  "f_select_summaries_2cad": {
+    "message": "Vælg resuméer"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "Vælg resuméer, der skal sendes"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Send to Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "Send {n} resuméer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_summary_164f": {
+    "message": "Send {n} resumé",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Sender til Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "Sender til {name}…",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Sendt til Kindle"
+  },
+  "f_sent_to_0f59": {
+    "message": "Sendt til {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_separate_files_fc17": {
+    "message": "Separate filer"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "Angiv først din Kindle-e-mail i Indstillinger."
+  },
+  "f_untitled_a678": {
+    "message": "Uden titel"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "Venter på, at den anden enhed accepterer"
+  },
+  "f_and_more_871b": {
+    "message": "og {n} mere",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_sent_941e": {
+    "message": "{done} af {total} sendt. {error}",
+    "description": "Placeholders: {done} {total} {error} (keep as is)"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n} fil sendt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_sent_a952": {
+    "message": "{n} filer sendt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} modtager",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} modtagere",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_selected_8468": {
+    "message": "{n} valgt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} resuméer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_0c47": {
+    "message": "{n} resumé",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Send to Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 Send {n} til Kindle",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 Send"
+  },
+  "f_send_aff2": {
+    "message": "📤 Send {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_full_article_765e": {
+    "message": "Hel artikel"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "Resumé + hel artikel"
+  },
+  "f_summary_only_bd43": {
+    "message": "Kun resumé"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "Også automatisk: åbning markerer Læst, afsendelse markerer Sendt"
+  },
+  "f_archive_0b65": {
+    "message": "Arkivér"
+  },
+  "f_archived_5293": {
+    "message": "Arkiveret"
+  },
+  "f_inbox_46db": {
+    "message": "Indbakke"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "Behold dem i din indbakke som “Sendt”"
+  },
+  "f_mark_as_8ab2": {
+    "message": "Markér som…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "Markér {n} resuméer som…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "Markér {n} resumé som…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "Flytter dem til Arkiv – find dem der når som helst"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "Intet her endnu"
+  },
+  "f_read_efe5": {
+    "message": "Læst"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "Gendan til indbakke"
+  },
+  "f_sent_fb9f": {
+    "message": "Sendt"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "Status opdateres automatisk:"
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ Gendan til indbakke"
+  },
+  "f_sent_03c9": {
+    "message": "✅ Sendt · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_new_b748": {
+    "message": "🆕 Ny"
+  },
+  "f_read_bb5c": {
+    "message": "👀 Læst"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 Sendt til Kindle"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 Sendt til Kindle · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 Sendt via LocalSend"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 Sendt via LocalSend · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ Arkivér dem også"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ Arkiveret · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ {n} arkiveret",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 sætninger"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "En venlig note til dig selv"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI'en tilføjer 2–3 sætninger oven på digesten"
+  },
+  "f_briefing_d739": {
+    "message": "Briefing"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "Én sætning"
+  },
+  "f_personal_8cad": {
+    "message": "Personlig"
+  },
+  "f_short_dd75": {
+    "message": "Kort"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "Bruger din AI-model · ét ekstra kald · på dit appsprog"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ Intro sprunget over – digesten sendes uden"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ Intro skrevet"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ Skriv et kort intro"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ Skriver intro…"
+  },
+  "f_good_mood_only_5aab": {
+    "message": "Kun godt humør"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Se alle & bidrag)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Handlingspunkter"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Tilbage til builder"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Bog- & medietips"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Briefinger og recaps beholder deres faste layout (overblik, temaer, stemning) – disse indstillinger ændrer kun tone og formulering."
+  },
+  "f_casual_faa4": {
+    "message": "Afslappet"
+  },
+  "f_creative_title_c49e": {
+    "message": "Kreativ titel"
+  },
+  "f_custom_b78e": {
+    "message": "Egen"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Tilpas, hvordan AI'en skriver."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Daglig briefing"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Redigér stil for"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emojis & hashtags"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Skriv din egen prompt her..."
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Ekstra instruktioner"
+  },
+  "f_extras_1d8e": {
+    "message": "Ekstra"
+  },
+  "f_focus_on_f114": {
+    "message": "Fokusér på"
+  },
+  "f_formal_253a": {
+    "message": "Formel"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Fuld prompt"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Fuld stiltekst"
+  },
+  "f_hard_facts_f743": {
+    "message": "Hårde fakta"
+  },
+  "f_hide_8e7c": {
+    "message": "Skjul ⌃"
+  },
+  "f_include_5607": {
+    "message": "Inkludér"
+  },
+  "f_key_facts_41d3": {
+    "message": "Nøglefakta"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Nøglecitater"
+  },
+  "f_length_1935": {
+    "message": "Længde"
+  },
+  "f_light_humor_8590": {
+    "message": "Let humor"
+  },
+  "f_long_9473": {
+    "message": "Lang"
+  },
+  "f_medium_5f96": {
+    "message": "Mellem"
+  },
+  "f_neutral_0778": {
+    "message": "Neutral"
+  },
+  "f_numbers_77c9": {
+    "message": "Tal"
+  },
+  "f_opinions_1d4a": {
+    "message": "Meninger"
+  },
+  "f_preset_b13e": {
+    "message": "Preset"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Samme stil som den daglige briefing"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Standup-humor"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Stil til AI-briefinger samt uge- og måneds-recaps."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Test på eksempel"
+  },
+  "f_testing_28a7": {
+    "message": "Tester…"
+  },
+  "f_tone_2da1": {
+    "message": "Tone"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX-designer-reference"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Bruges, hver gang du resumerer en side eller artikel."
+  },
+  "f_view_edit_bf74": {
+    "message": "Se & redigér ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Uge- & måneds-recaps"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Hvorfor det betyder noget"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "fx Nævn altid forfatter og medie."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "fx Foretræk europæiske nyheder og hold tonen positiv."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Redigeret i hånden – chipsene ændrer den ikke, før du går tilbage til builderen."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Byg min egen"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Phils mix"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Hele artikler"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Feeds & briefinger"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Tags, nøglehøjdepunkter og stemningsscoren tilføjes altid automatisk – du styrer kun stilen."
+  },
+  "f_a_quick_review_on_the_chrome_c9eb": {
+    "message": "En kort anmeldelse i Chrome Web Store hjælper andre med at finde den."
+  },
+  "f_enjoying_ai_summary_helper_75e7": {
+    "message": "Kan du lide AI Summary Helper?"
+  },
+  "f_later_2b49": {
+    "message": "Senere"
+  },
+  "f_no_thanks_66fb": {
+    "message": "Nej tak"
+  },
+  "f_leave_a_review_042d": {
+    "message": "⭐ Skriv en anmeldelse"
+  },
+  "f_ai_analysis_986b": {
+    "message": "AI-analyse"
+  },
+  "f_dismiss_15f3": {
+    "message": "Afvis"
+  },
+  "f_errors_60a6": {
+    "message": "Fejl"
+  },
+  "f_feed_preferences_cbd3": {
+    "message": "Feed-præferencer"
+  },
+  "f_lines_00dc": {
+    "message": "Linjer"
+  },
+  "f_mood_over_time_per_category_b78e": {
+    "message": "Stemning over tid pr. kategori"
+  },
+  "f_mute_9f74": {
+    "message": "Slå lyd fra"
+  },
+  "f_muted_6630": {
+    "message": "Slået fra"
+  },
+  "f_name_7306": {
+    "message": "Navn"
+  },
+  "f_no_items_yet_b28c": {
+    "message": "Ingen elementer endnu"
+  },
+  "f_noisy_e255": {
+    "message": "Støjende"
+  },
+  "f_not_enough_rated_items_yet_bc02": {
+    "message": "Endnu ikke nok vurderede elementer"
+  },
+  "f_nothing_here_6e9a": {
+    "message": "Intet her."
+  },
+  "f_other_ff95": {
+    "message": "Andet"
+  },
+  "f_rates_the_tone_of_summaries__01bb": {
+    "message": "Vurderer tonen i resuméer og feed-elementer. Driver stemningsfiltre, diagrammer og Kildekosten. Slå fra for at skjule alle stemningsfunktioner."
+  },
+  "f_reading_339b": {
+    "message": "Læsning"
+  },
+  "f_reading_ai_updates_2053": {
+    "message": "Læsning · AI · opdateringer"
+  },
+  "f_review_5601": {
+    "message": "Gennemgang"
+  },
+  "f_sort_mood_fbdc": {
+    "message": "Sortér: Stemning"
+  },
+  "f_sort_name_18c8": {
+    "message": "Sortér: Navn"
+  },
+  "f_sort_read_share_6e08": {
+    "message": "Sortér: Læst andel"
+  },
+  "f_sort_unread_7db8": {
+    "message": "Sortér: Ulæst"
+  },
+  "f_stacked_785e": {
+    "message": "Stablet"
+  },
+  "f_subscriptions_tags_opml_8892": {
+    "message": "Abonnementer · tags · OPML"
+  },
+  "f_table_view_c850": {
+    "message": "Tabelvisning"
+  },
+  "f_top_73dc": {
+    "message": "Top"
+  },
+  "f_topics_over_time_f15e": {
+    "message": "Emner over tid"
+  },
+  "f_unmute_72bb": {
+    "message": "Slå lyd til"
+  },
+  "f_updates_storage_9d6a": {
+    "message": "Opdateringer & lager"
+  },
+  "f_volume_76af": {
+    "message": "Volumen"
+  },
+  "f_not_scored_ddb8": {
+    "message": "ikke scoret"
+  },
+  "f_source_causes_of_your_negati_a48c": {
+    "message": "{n} kilde står for {p}% af dine negative elementer",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_source_is_mostly_negative_a413": {
+    "message": "{n} kilde er mest negativ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_are_mostly_negative_3b24": {
+    "message": "{n} kilder er mest negative",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_cause_of_your_negati_1f62": {
+    "message": "{n} kilder står for {p}% af dine negative elementer",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_mo_read_2188": {
+    "message": "{n}/md. · {r}% læst",
+    "description": "Placeholders: {n} {r} (keep as is)"
+  },
+  "f_topics_over_time_ee3b": {
+    "message": "📈 Emner over tid"
+  },
+  "f_mood_483d": {
+    "message": "😊 Stemning"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH cloud"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Stil et opfølgende spørgsmål…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Tilbage til denne side"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Samlede elementerne"
+  },
+  "f_continuing_ffb7": {
+    "message": "Fortsætter"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Kunne ikke nå Ollama. Sørg for, at den kører, og at endpointet er korrekt."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · topnyheder"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Kassér & skriv om?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "Feed-element fra {host}",
+    "description": "Placeholders: {host} (keep as is)"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "Fokusér på noget… (valgfrit)"
+  },
+  "f_focus_c600": {
+    "message": "Fokus: {text}",
+    "description": "Placeholders: {text} (keep as is)"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "Fandt dine {n} markeringer · bruges som fokus",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_from_your_question_4088": {
+    "message": "Fra dit spørgsmål"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "Fra dine spørgsmål"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Tag alle spørgsmål med i eksport"
+  },
+  "f_last_summary_3355": {
+    "message": "Seneste resumé"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "Modellen tænker"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "Modellen skriver"
+  },
+  "f_no_answer_cd22": {
+    "message": "Intet svar."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "Ingen seneste resuméer"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "Intet nyt siden denne recap – Nulstil skriver den forfra."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "Intet modtaget i {s} s. Der er ingen tidsgrænse – Annullér, hvis det ser ud til at hænge.",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama afviste anmodningen. En 403 betyder normalt, at den skal have besked på at acceptere anmodninger fra denne udvidelse (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Kun i samtaleloggen"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Åbn siden for at springe til dette afsnit"
+  },
+  "f_page_text_words_5755": {
+    "message": "Sidetekst · {n} ord",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Sæt et spørgsmål i kø…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Hæv grænsen til {n} og opdatér",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Læs siden · {n} ord",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "Læser svaret"
+  },
+  "f_resume_1d8a": {
+    "message": "Genoptag"
+  },
+  "f_send_14cf": {
+    "message": "Send"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Send resuméer"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "Sendt til din AI-forbindelse"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Opsæt Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Vis dem – åbn én ad gangen"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Vises i artiklen og tages med i eksport"
+  },
+  "f_starting_788d": {
+    "message": "Starter…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Resumér en side for at se den her"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Resumér denne side"
+  },
+  "f_summary_b5b3": {
+    "message": "Resumé"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "Det er maksimum pr. recap. Brug ugens eller månedens recap for et større overblik, eller filtrér efter feed."
+  },
+  "f_thinking_d121": {
+    "message": "Tænker…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "Venter på modellen"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "Venter på modellen…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "Det brugte jeg"
+  },
+  "f_working_on_it_d098": {
+    "message": "Arbejder på det…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "Skriver et resumé på {n} ord…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "Skriver resuméet…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "Dit fokusspørgsmål"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Dine markeringer · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_your_questions_6d97": {
+    "message": "Dine spørgsmål"
+  },
+  "f_different_page_9b4d": {
+    "message": "anden side"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "forkortet, så det passer"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "tænkning: {n} tegn",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_aa8a": {
+    "message": "ord"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} tegn",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} opfølgning",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} opfølgninger",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_question_4688": {
+    "message": "{n} spørgsmål mere",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_questions_bd21": {
+    "message": "{n} spørgsmål mere",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} ældre element er ikke med i denne recap (grænse: {max} pr. recap).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} ældre element er ikke med i denne recap.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} ældre elementer er ikke med i denne recap (grænse: {max} pr. recap).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} ældre elementer er ikke med i denne recap.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_word_c9d9": {
+    "message": "{n} ord",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_769e": {
+    "message": "{n} ord",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stop_f89d": {
+    "message": "■ Stop"
+  },
+  "f_in_article_c185": {
+    "message": "📌 I artiklen"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 Føj til artikel"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Elementer pr. recap"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(på iOS: hold nede for at trække i 2 sekunder)"
+  },
+  "f_add_59dd": {
+    "message": "+ Tilføj"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "Et bundt på {count}: {titles}",
+    "description": "Placeholders: {count} {titles} (keep as is)"
+  },
+  "f_a_few_18aa": {
+    "message": "Nogle få"
+  },
+  "f_a_lot_9f13": {
+    "message": "Mange"
+  },
+  "f_ai_model_1862": {
+    "message": "AI-model"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "AI-skyggemarkering"
+  },
+  "f_api_error_e311": {
+    "message": "API-fejl:"
+  },
+  "f_api_key_6382": {
+    "message": "API-nøgle:"
+  },
+  "f_api_key_c6ec": {
+    "message": "API-nøgle"
+  },
+  "f_about_tools_9c0f": {
+    "message": "Om & værktøjer"
+  },
+  "f_account_a2fc": {
+    "message": "Konto"
+  },
+  "f_account_plan_bd49": {
+    "message": "Konto & abonnement"
+  },
+  "f_account_sync_cdb7": {
+    "message": "Kontosynkronisering"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "Kontosynkronisering · log ind / ud"
+  },
+  "f_activate_0190": {
+    "message": "Aktivér"
+  },
+  "f_active_send_target_69d8": {
+    "message": "Aktivt sendemål"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "Tilføj Kindle-enhed"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "Tilføj LocalSend-enhed"
+  },
+  "f_add_custom_model_336a": {
+    "message": "Tilføj brugerdefineret model"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "Tilføj model-ID, fx gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "Tillad alle origins"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "Tillad alle origins (app)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "Amazons vejledning"
+  },
+  "f_analytics_e02b": {
+    "message": "Analyse"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "Analyserer tags…"
+  },
+  "f_appearance_language_6075": {
+    "message": "Udseende & sprog"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "Er du sikker på, at du vil slette denne artikel?"
+  },
+  "f_article_05f9": {
+    "message": "Artikel"
+  },
+  "f_articles_ae4c": {
+    "message": "Artikler:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "Lydgenerering mislykkedes: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_auto_detect_0006": {
+    "message": "Autodetektér"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "Autoresumér favoritter"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "Automatiske lyseblå citatmarkeringer fra resuméer"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "Backup gendannet!\n{n} artikler importeret.\n\nUdvidelsen genindlæses nu.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "Backup · tags · slet"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "Bookmarklet-generator"
+  },
+  "f_browser_default_9336": {
+    "message": "Browserstandard"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "Tjek feeds i baggrunden"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "Tjek, om modtageren er online."
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "Tjek, om modtageren er online."
+  },
+  "f_checking_f2f5": {
+    "message": "Tjekker..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "Vælg én leveringsmetode til handlinger i artikeldetaljer."
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "Ryd op i & flet tags"
+  },
+  "f_clear_search_e946": {
+    "message": "Ryd søgning"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "Klik på Ollama-ikonet i menulinjen (øverst til højre) og vælg <b>Quit Ollama</b>."
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "Klik på “Generér 🎙️” for at oprette dit afsnit."
+  },
+  "f_close_pane_d66b": {
+    "message": "Luk rude {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "Koden er udløbet. Anmod om en ny."
+  },
+  "f_comedy_0972": {
+    "message": "Komedie"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "Kompatible værktøjer"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "Konfigurér først din LocalSend-IP-adresse i indstillingerne."
+  },
+  "f_connection_path_790c": {
+    "message": "Forbindelsessti"
+  },
+  "f_connection_path_e1ec": {
+    "message": "Forbindelsessti"
+  },
+  "f_context_k_1bbb": {
+    "message": "Kontekst: {n}k",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "Kopieret som almindelig tekst."
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "Kopieret til udklipsholderen! 📋"
+  },
+  "f_copied_f355": {
+    "message": "Kopieret! ✓"
+  },
+  "f_copy_0d38": {
+    "message": "Kopiér 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "Oprettede podcasts"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "Brugerdefineret prompttekst"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "Brugerdefineret stil (valgfrit):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "Brugerdefineret stil:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "D3-biblioteket kunne ikke indlæses."
+  },
+  "f_dark_mode_05f8": {
+    "message": "Mørk tilstand"
+  },
+  "f_delete_ea6a": {
+    "message": "Slet"
+  },
+  "f_delete_article_14d4": {
+    "message": "Slet artikel"
+  },
+  "f_delete_all_history_f022": {
+    "message": "Slet al historik?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "Slet alle indstillinger?"
+  },
+  "f_delete_history_09b6": {
+    "message": "Slet historik"
+  },
+  "f_delete_history_6db0": {
+    "message": "Slet historik…"
+  },
+  "f_delete_settings_448b": {
+    "message": "Slet indstillinger"
+  },
+  "f_delete_settings_7c57": {
+    "message": "Slet indstillinger…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "Leveringsmetode"
+  },
+  "f_delivery_method_60a6": {
+    "message": "Leveringsmetode"
+  },
+  "f_delivery_83d6": {
+    "message": "Levering: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "Beskriv din podcaststil"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "Luk grafstatistik"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "Har du ingen nøgle?"
+  },
+  "f_done_645e": {
+    "message": "Færdig 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "Træk dette link til din bogmærkelinje 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "Lærerig"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "Endpoint-URL"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "Endpoint-URL:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "Indtast 6-cifret kode"
+  },
+  "f_enter_code_6556": {
+    "message": "Indtast kode"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "Indtast koden, der er sendt til din e-mail."
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "Indtast koden sendt til:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "Indtast din e-mail..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "Fejl ved generering af podcast: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_error_d391": {
+    "message": "Fejl:"
+  },
+  "f_error_2626": {
+    "message": "Fejl: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_49d3": {
+    "message": "Eksportér"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "Eksportér først en backup"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "Eksportér eller gendan alle indstillinger som en JSON-fil."
+  },
+  "f_export_settings_1454": {
+    "message": "Eksportér indstillinger"
+  },
+  "f_exported_1988": {
+    "message": "Eksporteret! ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "Eksporteret! ✓ ({n} artikler)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_ext_8e14": {
+    "message": "Udv."
+  },
+  "f_extension_723a": {
+    "message": "Udvidelse"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "Backup kunne ikke eksporteres."
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "Kunne ikke indlæse modeller"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "Kunne ikke sende kode"
+  },
+  "f_fallback_79db": {
+    "message": "Fallback"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "Feed-briefing & recap-stil"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "Feed-opdateringsinterval"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "Feedback · kontakt · doner"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "Feeds og indbakker (LinkedIn-feed, X-forside, …) springes allerede over automatisk."
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "Filen blev delt."
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "Filtrerer grafen til kun matches – klik for i stedet at markere matches i hele arkivet"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Flesch-læsbarhed: {ease}/100",
+    "description": "Placeholders: {ease} (keep as is)"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "Til KOReader, foretræk"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "For en permanent konfiguration via systemd, tilføj <code>Environment=\"OLLAMA_ORIGINS=*\"</code> under service-enheden (fx <code>/etc/systemd/system/ollama.service</code>), kør derefter <code>systemctl daemon-reload</code> og genstart."
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "For en permanent løsning, sæt <code>OLLAMA_ORIGINS=*</code> som systemmiljøvariabel under <i>System Properties → Environment Variables</i> og genstart Ollama."
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "Fandt enhed på {ip} – klik på Tilføj for at gemme den ✓",
+    "description": "Placeholders: {ip} (keep as is)"
+  },
+  "f_free_tier_a065": {
+    "message": "Gratis niveau"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "Gratis prøvetilstand"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "Generér en bookmarklet, der resumerer enhver side i enhver browser – også på iOS/Android, hvor udvidelsen ikke kan køre. Den bruger dit byphil Cloud-login."
+  },
+  "f_generate_237e": {
+    "message": "Generér 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "Genererer lyd… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "Genererer…"
+  },
+  "f_get_key_4f7c": {
+    "message": "Hent nøgle"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "Mængde skyggemarkering"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "Mængde skyggemarkering"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "Skjul markeringspanelet på disse websteder"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "Markerer matches i hele arkivet – klik for kun at filtrere til matches"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "Markerer {a} · skygge {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_history_deleted_89bf": {
+    "message": "Historik slettet ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "Jeg vil bruge min egen API / lokale model"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "Hvis den kører som en systemd-service, stop den med <code>sudo systemctl stop ollama</code>."
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "Importér / eksportér OPML"
+  },
+  "f_import_settings_8d81": {
+    "message": "Importér indstillinger"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "Inkluderet i din byPhil-konto – ingen API-nøgle nødvendig."
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "Infrastrukturel linkudførelse mislykkedes. Sørg for netværksforbindelse til gatewayen."
+  },
+  "f_inl_2296": {
+    "message": "Inl"
+  },
+  "f_inline_1554": {
+    "message": "Inline"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "Inline-tilstand er perfekt til \"Send to Kindle\"."
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "Indsæt på siden"
+  },
+  "f_interview_0334": {
+    "message": "Interview"
+  },
+  "f_invalid_key_620f": {
+    "message": "Ugyldig nøgle"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "Ugyldig backupfil. Vælg en gyldig AI Summary Helper-eksport."
+  },
+  "f_invalid_code_4325": {
+    "message": "Ugyldig kode"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "Ugyldig kode eller udløbet session."
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "Ugyldig eller deaktiveret licensnøgle. Tjek dit abonnement."
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "KOReader / LocalSend-enheder"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "KOReader-plugin:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "Behold feed-elementer i"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "Levering til Kindle mislykkedes."
+  },
+  "f_kindle_devices_5273": {
+    "message": "Kindle-enheder"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · bookmarklet"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "Etiket"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "Start Ollama igen fra mappen Programmer eller Spotlight."
+  },
+  "f_layout_421f": {
+    "message": "Layout"
+  },
+  "f_length_729d": {
+    "message": "Længde:"
+  },
+  "f_library_data_0b46": {
+    "message": "Bibliotek & data"
+  },
+  "f_light_mode_608a": {
+    "message": "Lys tilstand"
+  },
+  "f_list_37a1": {
+    "message": "Liste"
+  },
+  "f_loading_1033": {
+    "message": "Indlæser..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "Log ud"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "Logget ind som: {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_logged_out_5877": {
+    "message": "Logget ud."
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "Magisk kode sendt! ✨ Tjek din indbakke."
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "Manuelle gule markeringer"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "Markér læst ved åbning"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "Fletter næsten-dubletter af tags som “ML” og “Machine Learning” i hele dit arkiv."
+  },
+  "f_model_e8fa": {
+    "message": "Model"
+  },
+  "f_model_identifier_527d": {
+    "message": "Model-ID"
+  },
+  "f_model_source_5863": {
+    "message": "Modelkilde"
+  },
+  "f_models_api_7e45": {
+    "message": "Modeller & API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "Stemning til/fra (tonalitetsanalyse)"
+  },
+  "f_name_6774": {
+    "message": "Navn:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Chromes indbyggede sidepanel"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "Negativ tone"
+  },
+  "f_network_error_608f": {
+    "message": "Netværksfejl"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "Netværksfejl ved afsendelse til Kindle."
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "Neutral tone"
+  },
+  "f_news_0866": {
+    "message": "Nyheder"
+  },
+  "f_next_da08": {
+    "message": "Næste"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "Ingen Kindle-e-mail angivet."
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "Ingen aktiv modtager fundet."
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "Ingen artikler gemt endnu."
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "Ingen artikler at vise i grafen endnu."
+  },
+  "f_no_audio_8798": {
+    "message": "Ingen lyd"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "Intet indhold tilgængeligt."
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "Ingen enheder tilføjet endnu."
+  },
+  "f_no_matches_found_1b67": {
+    "message": "Ingen matches fundet"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "Ingen modeller konfigureret"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "Ingen modtageradresse angivet."
+  },
+  "f_no_settings_match_918b": {
+    "message": "Ingen indstillinger matcher “{query}”.",
+    "description": "Placeholders: {query} (keep as is)"
+  },
+  "f_no_summary_available_1155": {
+    "message": "Intet resumé tilgængeligt"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "Intet resumé returneret."
+  },
+  "f_no_title_available_2723": {
+    "message": "Ingen titel tilgængelig"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "Ikke logget ind"
+  },
+  "f_not_signed_in_7281": {
+    "message": "Ikke logget ind"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Når Ollama er genstartet, er 403 Forbidden-fejlen fra denne udvidelse løst."
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Når Ollama er genstartet, er 403 Forbidden-fejlen fra din udvidelse løst."
+  },
+  "f_one_pane_9d53": {
+    "message": "Én rude"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "Åbn Kommandoprompt"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "Open source-software af"
+  },
+  "f_open_terminal_8167": {
+    "message": "Åbn Terminal"
+  },
+  "f_open_in_history_0990": {
+    "message": "Åbn i Historik"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "Åbn i sidepanel"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "Åbn appen <b>Terminal</b> på din Mac."
+  },
+  "f_own_key_7e24": {
+    "message": "Egen nøgle"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "Egen model / API-nøgle"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "Sidemarkering"
+  },
+  "f_pane_view_fde8": {
+    "message": "Rude {n}-visning",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panel_37e5": {
+    "message": "Panel"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "Fjerner permanent alle resuméer og arkivet. Eksportér først en backup."
+  },
+  "f_persist_optional_29ce": {
+    "message": "Bevar (valgfrit)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "Vælg et navn til dit show:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "Konfigurér først din Kindle-leveringsadresse i indstillingerne."
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "Indtast en licensnøgle."
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "Indtast en gyldig e-mail."
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "Indtast bekræftelseskoden."
+  },
+  "f_podcast_name_1b92": {
+    "message": "Podcastnavn"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "Podcastlængde (minutter):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "Podcaststil:"
+  },
+  "f_positive_tone_6466": {
+    "message": "Positiv tone"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "Foretrækker du terminalen? Kør Ollama direkte i et forgrundsvindue:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "Foretrukken cloudmodel"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "Foretrukken cloudmodel"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "Forbereder Kindle-levering... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "Forudindstillet og brugerdefineret prompt"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "Forudindstillet prompt"
+  },
+  "f_preset_4569": {
+    "message": "Preset: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "Tryk på <b>Win + R</b>, skriv <code>cmd</code>, og tryk på Enter."
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro aktiv ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro-licensnøgle"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro-licensnøgle"
+  },
+  "f_prompts_7bf8": {
+    "message": "Prompts"
+  },
+  "f_provider_88dc": {
+    "message": "Udbyder"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "Spørgsmål, fejl eller glad? 💡 Giv gerne"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "Hurtig test (terminal)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "Afslut Ollama"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "Vurdér elementer med recap"
+  },
+  "f_reader_4efa": {
+    "message": "Læser 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "Læsning & markering"
+  },
+  "f_reading_bundle_c191": {
+    "message": "Læsebundt — {date} ({count})",
+    "description": "Placeholders: {date} {count} (keep as is)"
+  },
+  "f_reading_page_0cb0": {
+    "message": "Læser siden..."
+  },
+  "f_recent_models_20ec": {
+    "message": "Seneste modeller"
+  },
+  "f_regular_f2b7": {
+    "message": "Almindelig"
+  },
+  "f_remove_device_c1ed": {
+    "message": "Fjern enhed"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "Nulstiller alle præferencer, prompts og nøgler på denne enhed. Din historik beholdes."
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "Genstart Ollama"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "Højreklik på Ollama-ikonet i proceslinjen (nederst til højre) og vælg <b>Quit</b>."
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "Kør Ollama som forgrundsserver fra samme vindue:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "Kør denne kommando, så Ollama forbliver konfigureret efter genstart af Mac-appen:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "Kør dette, så den kørende server accepterer anmodninger fra alle origins:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "Kører helt i din browser – ingen data forlader den."
+  },
+  "f_saved_for_later_516d": {
+    "message": "Gemt til senere"
+  },
+  "f_saved_549a": {
+    "message": "Gemt! ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "Scanning mislykkedes. Indtast IP manuelt."
+  },
+  "f_scanning_96ac": {
+    "message": "Scanner..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "Søg i cloudmodeller…"
+  },
+  "f_search_languages_1344": {
+    "message": "Søg efter sprog…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "Søger i cloud..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "Søger på LAN efter LocalSend-modtager..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "Vælg op til 5 artikler:"
+  },
+  "f_send_share_bb4a": {
+    "message": "Send & del"
+  },
+  "f_send_magic_code_de19": {
+    "message": "Send magisk kode"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "Sender til LocalSend over Wi-Fi... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "Sender..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "Sendt! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "Sendt til Kindle! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "Sessionen er udløbet. Generér en ny bookmarklet."
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "Sessionen er mistet. Anmod om en ny kode."
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "Angiv som aktivt sendemål"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "Opsæt Ollama på Linux"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "Opsæt Ollama på Windows"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "Opsæt Ollama på macOS"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "Indstillinger + artikelhistorik"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "Indstillinger importeret! Udvidelsen genindlæses nu."
+  },
+  "f_settings_only_750a": {
+    "message": "Kun indstillinger"
+  },
+  "f_share_failed_4922": {
+    "message": "Deling mislykkedes: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_share_cf08": {
+    "message": "Del 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "Deling understøttes ikke i denne browser/dette miljø."
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "Viser top-tags (arkivet er stort)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "Log ind / opret konto via e-mail"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "Log ind for at låse op for gratis cloudmodeller og synkronisere dine resuméer, eller medbring dine egne API-nøgler."
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "Logget ind · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "Solo"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "Noget gik galt – prøv igen."
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "Kilder · omdøb · tags · lyd fra"
+  },
+  "f_start_ollama_136b": {
+    "message": "Start Ollama"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "Start Ollama med det globale wildcard, så alle origins kan forbinde:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "Stop Ollama"
+  },
+  "f_storytelling_6d0b": {
+    "message": "Historiefortælling"
+  },
+  "f_style_fba4": {
+    "message": "Stil:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "Forbundet! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "Resumerer..."
+  },
+  "f_summary_language_a8df": {
+    "message": "Resuméets sprog"
+  },
+  "f_summary_length_2b31": {
+    "message": "Resuméets længde"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "Resuméets tilstand"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "Skift grafsøgning til filtertilstand"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "Skift grafsøgning til markeringstilstand"
+  },
+  "f_system_default_c329": {
+    "message": "Systemstandard"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "TTS returnerede ingen lyd."
+  },
+  "f_theme_7c92": {
+    "message": "Tema"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "Tema · sprog · sidepanel"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "Dette fjerner permanent {what} og arkivet fra denne enhed. Det kan ikke fortrydes.",
+    "description": "Placeholders: {what} (keep as is)"
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "Dette nulstiller alle præferencer, prompts og API-nøgler på denne enhed. Dine resuméer beholdes. Udvidelsen genindlæses."
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "Dette ugyldiggør den nuværende kode. Fortsæt?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "Overførsel mislykkedes: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "Skriv {word} for at bekræfte",
+    "description": "Placeholders: {word} (keep as is)"
+  },
+  "f_ui_language_08b7": {
+    "message": "Brugerfladesprog"
+  },
+  "f_ui_language_b097": {
+    "message": "Brugerfladesprog"
+  },
+  "f_unavailable_aaa9": {
+    "message": "Utilgængelig"
+  },
+  "f_unknown_error_2b43": {
+    "message": "Ukendt fejl"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "Opgradér til Pro Pass"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "Brug \"{name}\" som brugerdefineret sprogkode",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "Brug Chromes indbyggede sidepanel"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "Bruges til Send to Kindle-levering. Tilføj"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "Bekræft & log ind"
+  },
+  "f_verify_login_274f": {
+    "message": "Bekræft & log ind"
+  },
+  "f_verifying_174a": {
+    "message": "Bekræfter..."
+  },
+  "f_version_github_fae0": {
+    "message": "Version & GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "Vis & kopiér"
+  },
+  "f_view_filtered_f87d": {
+    "message": "Visning: Filtreret"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "Visning: Markeret"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "Velkommen til AI Summary Helper"
+  },
+  "f_well_connected_1033": {
+    "message": "Velforbundet"
+  },
+  "f_what_to_export_3317": {
+    "message": "Hvad skal eksporteres?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "Forkert e-mail? Gå tilbage"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "Du er klar til at generere din podcast!"
+  },
+  "f_a_donation_8832": {
+    "message": "en donation"
+  },
+  "f_all_summaries_c680": {
+    "message": "alle resuméer"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "kontakte mig"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "bidrage på GitHub 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "fx 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "fx gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "for ubegrænsede resuméer uden opsætning."
+  },
+  "f_from_8075": {
+    "message": "fra"
+  },
+  "f_give_feedback_9abb": {
+    "message": "give feedback"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "i stedet for HTTPS, som kan være ustabilt."
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "opdateres ikke længere"
+  },
+  "f_off_8a0a": {
+    "message": "fra"
+  },
+  "f_on_2fd0": {
+    "message": "til"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "ét websted pr. linje, fx linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "eller overveje"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "fælles tag"
+  },
+  "f_similar_content_784b": {
+    "message": "lignende indhold"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "til din Kindles godkendte afsendere først —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}, udvalgt fra dit AI Summary Helper-arkiv.",
+    "description": "Placeholders: {count} (keep as is)"
+  },
+  "f_tone_f081": {
+    "message": "{label}-tone",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · niveau {grade}",
+    "description": "Placeholders: {label} {grade} (keep as is)"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · API-nøgle mangler – tilføj den i Indstillinger",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · API-nøgle angivet",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · lokal, ingen API-nøgle",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "{n} artikel ikke vist",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "{n} artikler ikke vist",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "{n} dublet-tag",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "{n} dublet-tags",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_4e03": {
+    "message": "{n} min.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panes_2444": {
+    "message": "{n} ruder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "{n} sjældent brugt tag skjult",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "{n} sjældent brugte tags skjult",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} uåbnede 30d+",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_e273": {
+    "message": "{n}% ens",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_read_b555": {
+    "message": "~{n} min. læsning",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— Du er velkommen til at"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ Resumerer…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ Indstillinger"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ Farezone"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ Du skal først være logget ind på byphil Cloud for at generere en bookmarklet."
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ Sidemarkering"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ Tags ser allerede konsistente ud – intet at flette."
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ Opdateret {a}, flettet {b}.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ AI-skyggemarkering"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ Tilbage til Historik"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 Medbring din egen nøgle"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 Backup & gendannelse"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 Originalt indhold"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 Grænsen for gratis niveau er nået (3 afsendelser).\n\nOpgradér til Pro for ubegrænset Kindle-levering.\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Send to Kindle\n\nGratis niveau: 3 Kindle-afsendelser inkluderet.\nOpgradér til Pro for ubegrænset.\n\nSørg for, at kindle@byphil.eu står på din Kindles liste over godkendte afsendere (se Amazons hjælp).\n\nSend denne artikel til Kindle?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 Dine markeringer"
+  },
+  "f_export_6eba": {
+    "message": "📤 Eksportér"
+  },
+  "f_import_d884": {
+    "message": "📥 Importér"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 Forbinder til proxy-målinger..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 Hold dette privat: Denne bookmarklet indeholder dit personlige cloud-token. Del den ikke med andre. Hvis dit token udløber, kan du bare vende tilbage hertil og generere et nyt."
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 Gemt lokalt i din browser."
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 Bookmarklet-generator"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 Lignende i dit arkiv"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ Dit arkiv er tomt som en ørken! Begynd at gemme artikler for at fylde det op. 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 AI-foreslåede markeringer"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 AI-resumé"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 Værktøjer på enheden"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 Ryd op"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 Generér bookmarklet"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Intro sprunget over – digesten sendes uden"
+  },
+  "f_ask_dafd": {
+    "message": "💬 Spørg"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} svar",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} svar",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_a_paper_5823": {
+    "message": "Ikke et paper"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ Ikke peer-reviewet"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 Sandsynligvis paper"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 Markér som paper"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 Paper"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 Paper · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 Preprint"
+  },
+  "f_design_02ef": {
+    "message": "Design"
+  },
+  "f_limitations_7ff6": {
+    "message": "Begrænsninger"
+  },
+  "f_preprints_9516": {
+    "message": "Preprints"
+  },
+  "f_research_b9ec": {
+    "message": "Forskning"
+  },
+  "f_reviews_1576": {
+    "message": "Reviews"
+  },
+  "f_sample_8fc7": {
+    "message": "Stikprøve"
+  },
+  "f_trial_6b73": {
+    "message": "Forsøg"
+  },
+  "f_trials_7100": {
+    "message": "Forsøg"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "Ingen nøglefakta fundet"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Intet at analysere"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Nøglefakta"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Tilføjer hvert resumé under dets reference"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Citatopslag mislykkedes – prøv igen"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Citat utilgængeligt – ingen DOI fundet"
+  },
+  "f_copy_list_d774": {
+    "message": "Kopiér liste"
+  },
+  "f_download_bib_ef28": {
+    "message": "Download .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "Download .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "Download .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "Hent citat"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Tag mine resuméer med"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Slår citater op på doi.org – kun DOI'erne sendes…"
+  },
+  "f_looking_up_abff": {
+    "message": "Slår op…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Slår citatet op på doi.org. Kun DOI'en sendes."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Ingen citater tilgængelige – de valgte papers har ingen DOI, eller opslaget mislykkedes."
+  },
+  "f_open_doi_0f60": {
+    "message": "Åbn DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Litteraturliste"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Kilde: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} paper",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} paper sprunget over (ingen DOI, eller opslaget mislykkedes)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} papers",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} papers sprunget over (ingen DOI, eller opslaget mislykkedes)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Citér"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "Vedhæft en PDF til resumé"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "Kunne ikke læse denne PDF."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} ord",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_pdf_926d": {
+    "message": "Læser PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "Fjern vedhæftning"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "Denne PDF har ingen markérbar tekst (sandsynligvis en scanning). Tekstgenkendelse understøttes endnu ikke."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "Denne PDF er beskyttet med adgangskode."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "Denne PDF er for stor (grænse 80 MB)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "Denne fil er ikke en læsbar PDF."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "Denne fane kører stadig en ældre version af udvidelsen. Genindlæs fanen (F5), og prøv igen."
+  },
+  "f_tag_97fe": {
+    "message": "+ Tag"
+  },
+  "f_add_tag_1116": {
+    "message": "Tilføj tag…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Fjern tag"
+  },
+  "f_doi_bad6": {
+    "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Holdning"
+  },
+  "f_reference_c33a": {
+    "message": "Opslagsværk"
+  },
+  "f_tutorial_694f": {
+    "message": "Vejledning"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Forskningsartikel"
+  },
+  "f_read_1d4f": {
+    "message": "Læs 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, designet til svagsynede. Kun latinske skrifttyper."
+  },
+  "f_compact_ad86": {
+    "message": "Kompakt"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Følger i øjeblikket dit system: fra"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Følger i øjeblikket dit system: {theme}",
+    "description": "Placeholders: {theme} (keep as is)"
+  },
+  "f_display_d9b5": {
+    "message": "Visning"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Letlæselig skrifttype"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Høj kontrast"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Linjeafstand"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Bevægelse & layout"
+  },
+  "f_normal_2772": {
+    "message": "Normal"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Reducér bevægelse"
+  },
+  "f_relaxed_38bc": {
+    "message": "Luftig"
+  },
+  "f_text_2d5e": {
+    "message": "Tekst"
+  },
+  "f_text_size_1143": {
+    "message": "Tekststørrelse"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "Den hurtige brune ræv hopper over den dovne hund. Resuméer bruger denne størrelse og afstand."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Dit system beder allerede om reduceret bevægelse – det respekteres altid."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Paper-detaljer · Fakta · Citér · DOI"
+  },
+  "f_dark_0065": {
+    "message": "Mørk"
+  },
+  "f_light_f8cf": {
+    "message": "Lys"
+  },
+  "f_system_84bc": {
+    "message": "System"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "125% tekst, luftig afstand"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Tilgængelighedsprofil"
+  },
+  "f_calm_cf36": {
+    "message": "Rolig"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Tilpas tekststørrelse, afstand, skrifttype, bevægelse"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Mørk tekst på hvid, tykke omrids"
+  },
+  "f_default_307e": {
+    "message": "Standard"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Følger dit system: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_follows_system_62e2": {
+    "message": "Følger systemet"
+  },
+  "f_large_text_b73b": {
+    "message": "Stor tekst"
+  },
+  "f_motion_on_b930": {
+    "message": "Bevægelse til"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Bevægelse reduceret"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Ingen animation, alt står stille"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Dine indstillinger: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_sent_to_f63d": {
+    "message": "Sendt til {model}",
+    "description": "Placeholders: {model} (keep as is)"
+  },
+  "f_the_model_d5c1": {
+    "message": "modellen"
+  },
+  "f_waiting_s_f51e": {
+    "message": "venter {s} s",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Tag / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> glemmes efter genstart af din Mac. Dette login-element sætter den igen hver gang:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Tilføj tag eller DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Tillad browserudvidelser"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Tillad browserudvidelser (permanent)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Anvend den:"
+  },
+  "f_check_it_9a90": {
+    "message": "Tjek den"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Filter: {tag}. {n} artikler vist.",
+    "description": "Placeholders: {tag} {n} (keep as is)"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Filtrér genveje…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Fokusér søgning"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Graf over dit arkiv. {tags} tags, {articles} artikler. Tryk L for listevisning.",
+    "description": "Placeholders: {tags} {articles} (keep as is)"
+  },
+  "f_graph_view_6d78": {
+    "message": "Grafvisning"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Tastaturgenveje"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Listevisning: {tags} tags. Tryk på Tab for at bladre, Enter for at filtrere.",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_lists_df96": {
+    "message": "Lister"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Gør den permanent"
+  },
+  "f_new_summary_da1d": {
+    "message": "Nyt resumé"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Næste / forrige kort"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Ingen genveje matcher"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Kun hvis Ollama-appen er lukket (ellers får du “address already in use”; tjek med <code>lsof -i :11434</code> og stop den med <code>pkill -x ollama</code>). Kører Ollama i et forgrundsvindue:"
+  },
+  "f_open_10e9": {
+    "message": "Åbn"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Åbn service-override med <code>sudo systemctl edit ollama.service</code> og tilføj:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Tryk på ? et vilkårligt sted uden for et tekstfelt"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Genstart servicen"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Kør denne kommando. Den lader udvidelser, og kun udvidelser, tale med Ollama:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Kør dette, så Ollama accepterer anmodninger fra browserudvidelser (permanent for din brugerkonto):"
+  },
+  "f_search_a2c9": {
+    "message": "Søg"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Start Ollama igen fra Start-menuen, eller kør den som forgrundsserver i et nyt Kommandoprompt-vindue:"
+  },
+  "f_summarize_791a": {
+    "message": "Resumér"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Resumér / send"
+  },
+  "f_switch_tab_793a": {
+    "message": "Skift fane"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Tags i dit arkiv"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Uden systemd: kør Ollama i et forgrundsvindue:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "Du bør se <code>200</code>. En <code>403</code> betyder, at Ollama endnu ikke har taget indstillingen til sig: afslut den og start den igen."
+  },
+  "f_help_a3fa": {
+    "message": "hjælp"
+  },
+  "f_linked_to_886c": {
+    "message": "knyttet til {tags}",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_move_0014": {
+    "message": "flyt"
+  },
+  "f_open_c4c9": {
+    "message": "åbn"
+  },
+  "f_search_28a9": {
+    "message": "søg"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 Tildel DOI {doi}",
+    "description": "Placeholders: {doi} (keep as is)"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Hæv kontekstlængden i Ollama (OLLAMA_CONTEXT_LENGTH), eller brug en model med længere kontekst."
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "Modellen læste kun ca. {a} af {b} tokens. Ollama afskar resten, fordi dens kontekstvindue er for lille.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "Læst i {n} dele, fordi modellens kontekstvindue ({w} tokens) er for lille til hele siden.",
+    "description": "Placeholders: {n} {w} (keep as is)"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "Lang side: en lokal model læser det hele først, det kan tage et minut eller to."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "Sendt til {model} · ~{n} tokens",
+    "description": "Placeholders: {model} {n} (keep as is)"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "Sendte ~{n} tokens til modellen.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "Modellen læste {a} af {b} tokens.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "Åbn indholdsfortegnelse (lange tekster)"
+  },
+  "f_contents_67c3": {
+    "message": "Indhold"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Færdig med at læse"
+  },
+  "f_from_6140": {
+    "message": "Fra {site}.",
+    "description": "Placeholders: {site} (keep as is)"
+  },
+  "f_instant_read_374e": {
+    "message": "Hurtiglæsning"
+  },
+  "f_listen_cec6": {
+    "message": "Lyt"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Slå oplæsning fra / til"
+  },
+  "f_next_sentence_2545": {
+    "message": "Næste sætning"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "Ingen stemme til {lang} er installeret på denne enhed.",
+    "description": "Placeholders: {lang} (keep as is)"
+  },
+  "f_off_b4aa": {
+    "message": "Fra"
+  },
+  "f_on_7df0": {
+    "message": "Til"
+  },
+  "f_original_7692": {
+    "message": "Original"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Forrige sætning"
+  },
+  "f_read_again_cc5d": {
+    "message": "Læs igen"
+  },
+  "f_read_aloud_a106": {
+    "message": "Læs højt"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Læsehastighed"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Læser · sætning {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Rul til toppen"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Læser først titel og websted op, derefter resuméet sætning for sætning, mens modellen skriver."
+  },
+  "f_start_097f": {
+    "message": "Start"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Stop oplæsning"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "Stemmen følger tekstens sprog: et engelsk resumé af en tysk artikel læses på engelsk, originalen på tysk."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Stemme · auto"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Stemme: {voice} · {lang}. Den følger resuméets sprog; titel og websted oplæses på appens sprog.",
+    "description": "Placeholders: {voice} {lang} (keep as is)"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "Tilføj model-ID, fx gemma4:e2b"
+  },
+  "f_4_digits_sent_to_e76c": {
+    "message": "4 cifre, sendt til {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_no_password_we_email_you_a_s_c006": {
+    "message": "Ingen adgangskode. Vi mailer dig en kort kode."
+  },
+  "f_paste_works_it_signs_you_in__1f47": {
+    "message": "Indsætning virker. Du logges ind efter sidste ciffer."
+  },
+  "f_resend_code_4dd7": {
+    "message": "Send kode igen"
+  },
+  "f_send_me_a_code_a679": {
+    "message": "Send mig en kode"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "Indtast din kode"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "Gratis cloudmodeller og dine resuméer på alle enheder. Eller spring over og brug din egen API-nøgle."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "Log ind på AI Summary Helper"
+  },
+  "f_thinking_more_de1c": {
+    "message": "Tænker mere…"
+  },
+  "f_dig_deeper_ab60": {
+    "message": "Grav dybere"
+  },
+  "f_that_is_enough_6ac8": {
+    "message": "Det er nok"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "Fastgør til sidepanel"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "Frigør til popup"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "Åbner udvidelsen ved siden af siden. Det samme som 📌 Fastgør og ↙️ Frigør i headeren."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Føjet til favoritter"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Artikel slettet"
+  },
+  "f_check_again_fccf": {
+    "message": "Tjek igen"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Tjekker Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Kunne ikke gemme denne side – prøv at opdatere fanen."
+  },
+  "f_installed_models_a979": {
+    "message": "Installerede modeller"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Behold den i Historik, uden AI, intet sendes"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama kan ikke nås – opsæt den i Indstillinger"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama kører, men ingen model er installeret endnu. Download en i en terminal:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama kører, men ingen model er installeret – kør: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama kører. Installerede modeller – klik på en for at bruge den:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama afviste anmodningen (OLLAMA_ORIGINS) – se Indstillinger"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} installeret",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Åbn kontoindstillinger"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Åbn modelindstillinger"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "I kø – starter, når det nuværende resumé er færdigt"
+  },
+  "f_queued_4ebe": {
+    "message": "I kø: {title}",
+    "description": "Placeholders: {title} (keep as is)"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "Læs det med AI"
+  },
+  "f_remove_901d": {
+    "message": "Fjern"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Fjernet fra favoritter"
+  },
+  "f_save_only_82ca": {
+    "message": "Kun gem"
+  },
+  "f_save_options_f4e6": {
+    "message": "Gemmemuligheder"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "Gemt uden AI-resumé. Åbn siden og tryk på ✨ Resumér for at tilføje et."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Søg i installerede modeller…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "Dette kræver din konto. Log ind, eller tjek dit abonnement i indstillingerne."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "Denne side kan ikke gemmes."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "Venter på det kørende resumé – klik for at fjerne fra køen"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "Din API-nøgle mangler eller blev afvist. Tjek den i indstillingerne."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "starter, når det nuværende resumé er færdigt"
+  },
+  "f_this_page_a108": {
+    "message": "denne side"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ I kø"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 Gemt uden AI"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Gemt · ingen AI"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "Fjern grænse og opdatér"
+  },
+  "f_no_limit_f47d": {
+    "message": "Ingen grænse"
+  },
+  "f_auto_efb6": {
+    "message": "Auto"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Automatisk længdeskævhed"
+  },
+  "f_batch_failed_f281": {
+    "message": "Batch {a}/{b} mislykkedes: {m}",
+    "description": "Placeholders: {a} {b} {m} (keep as is)"
+  },
+  "f_length_mode_0c88": {
+    "message": "Længdetilstand"
+  },
+  "f_longer_8170": {
+    "message": "Længere"
+  },
+  "f_scored_of_53f5": {
+    "message": "Scoret {a} af {b}…",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "Scorer med AI…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "Scorer {n} elementer med AI i baggrunden…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Korte sider får få sætninger, lange tekster flere. Aldrig længere end halvdelen af artiklen."
+  },
+  "f_shorter_67e6": {
+    "message": "Kortere"
+  },
+  "f_standard_ab68": {
+    "message": "Standard"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Resuméets længde i ord"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n} elementer kunne ikke scores",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Tilgængelig, når Ollama er din aktive model. Den vurderer, kategoriserer og laver recap af hele dit Feed-bibliotek i små batches på din egen maskine. Det kan tage timer, men koster ingen tokens."
+  },
+  "f_done_61ad": {
+    "message": "Færdig."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Alt i dit bibliotek er vurderet, kategoriseret og recappet."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Behandl hele biblioteket"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "Vurderer og kategoriserer…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Kører på din egen maskine med Ollama og bruger ingen tokens. Hold dette panel åbent: lukker du det, sættes kørslen på pause, og når du starter igen, fortsætter den, hvor den slap. Kun elementer, der stadig er gemt, behandles (se \"Behold elementer i\"). Dagens recap skrives, når du åbner den."
+  },
+  "f_stop_7705": {
+    "message": "Stop"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Stoppet. Når du starter igen, fortsætter den, hvor den slap."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Hele biblioteket · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "Skriver dags-recaps…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "ca. {h} t {m} min.",
+    "description": "Placeholders: {h} {m} (keep as is)"
+  },
+  "f_about_min_7cd9": {
+    "message": "ca. {m} min.",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} elementer vurderet · {b} dage recappet",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} elementer at vurdere · {b} dage at recappe · {n} AI-anmodninger",
+    "description": "Placeholders: {a} {b} {n} (keep as is)"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (anbefalet)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} mislykkedes",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Elementer pr. batch"
+  },
+  "f_6_hours_b222": {
+    "message": "6 timer"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Henter dine feeds og behandler det nye med intervallet nedenfor, mens Feeds-skærmen eller sidepanelet er åbent"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Kør hver"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Behandl nye elementer automatisk"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label}-recap er klar",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Henter og behandler nye elementer i baggrunden med Ollama, mens din browser kører. Cloud- og BYOK-modeller forbliver manuelle."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Seneste baggrundskørsel: {time} · {result}",
+    "description": "Placeholders: {time} {result} (keep as is)"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Ingen baggrundskørsel endnu."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} elementer vurderet · {b} dags-recaps skrevet",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Tilgængelig, når Ollama er sat op. Den vurderer, kategoriserer og laver recap af hele dit Feed-bibliotek i små batches på din egen maskine. Det kan tage timer, men koster ingen tokens."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Dags-recap {d} af {t} ({date}): batch {a} af {b} · {n} elementer",
+    "description": "Placeholders: {d} {t} {date} {a} {b} {n} (keep as is)"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Modellen skriver…"
+  },
+  "f_model_a2bb": {
+    "message": "Model: {m}",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Behandl Feed-biblioteket med Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Behandl hele Feed-biblioteket (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Vurderer, kategoriserer og laver recap af alle dine feed-elementer i små batches på din egen maskine. Ingen tokens bruges."
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Vurderer og kategoriserer: batch {a} af {b} · elementer {from}–{to} af {n}",
+    "description": "Placeholders: {a} {b} {from} {to} {n} (keep as is)"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Læser svaret…"
+  },
+  "f_request_of_866e": {
+    "message": "Anmodning {a} af {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Kører på din egen maskine med Ollama og bruger ingen tokens, selv når en anden model er aktiv til resuméer. Hold dette panel åbent: lukker du det, sættes kørslen på pause, og når du starter igen, fortsætter den, hvor den slap. Kun elementer, der stadig er gemt, behandles (se \"Behold elementer i\"). Dagens recap skrives, når du åbner den."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Sender batchen til Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "ikke din aktive resumémodel"
+  },
+  "f_left_db92": {
+    "message": "{eta} tilbage",
+    "description": "Placeholders: {eta} (keep as is)"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} gået",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_changelog_8779": {
+    "message": "Ændringslog"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "Hvordan skal AI Summary Helper tænke?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Lokale modeller. Ingen konto, ingen nøgle, intet forlader din maskine."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "Min egen API-nøgle"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama på denne computer"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek og flere. Ingen konto, nøglen bliver på denne enhed."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Vælg en. Du kan til enhver tid ændre det i modelindstillingerne, og intet sendes nogen steder, før du resumerer en side."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Privatlivspolitik"
+  },
+  "f_security_policy_699b": {
+    "message": "Sikkerhedspolitik"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Log ind med din e-mail, ingen API-nøgle nødvendig. Dine resuméer følger dig til alle enheder."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Tip: tryk på {key} på en vilkårlig side for at resumere den.",
+    "description": "Placeholders: {key} (keep as is)"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Gratis cloudmodeller"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API-nøgler, login & licens"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Slet alle data"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Slet alle data?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Slet alle data…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Slet historik?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Slet indstillinger?"
+  },
+  "f_deleted_0f77": {
+    "message": "Slettet ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Markeringer"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle- & LocalSend-mål"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Fjerner permanent dine resuméer, arkivet og dine markeringer fra denne enhed. Indstillinger og feeds bliver, medmindre du sætter flueben. Det kan ikke fortrydes."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Fjerner permanent dine resuméer, arkivet og dine markeringer. Indstillinger og feeds bliver. Eksportér først en backup."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Præferencer & prompts"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Fjerner alt, hvad denne udvidelse gemmer på denne enhed, og starter forfra. Det kan ikke fortrydes. Din konto på vores server berøres ikke: kontakt os for at få den slettet (se privatlivspolitikken)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Fjerner alt, hvad denne udvidelse gemmer på denne enhed: resuméer, markeringer, feeds, nøgler og indstillinger. Eksportér først en backup."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Nulstiller præferencer, prompts, API-nøgler, login og sendemål på denne enhed. Resuméer, markeringer og feeds bliver, medmindre du sætter flueben. Udvidelsen genindlæses."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Nulstiller præferencer, prompts, API-nøgler, login og sendemål på denne enhed. Resuméer, markeringer og feeds bliver."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Resuméer & arkiv"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "Webstedsadgang er slået fra. Tillad den i about:addons → denne udvidelse → Permissions (\"Access your data for all websites\"), og opdatér derefter."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Som standard udelader backups API-nøgler, loginoplysninger, licensnøgler og installationsidentifikatorer. Hold eksporterede filer private."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Tag API-nøgler og loginoplysninger med (alle med filen kan bruge dem)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Denne backup indeholder API-nøgler, loginoplysninger eller licensnøgler. Import erstatter matchende gemte hemmeligheder. Fortsæt?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Denne backup vil indeholde API-nøgler, loginoplysninger og licensnøgler. Alle med filen kan bruge dem. Fortsæt?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Denne backup indeholder API-nøgler, loginoplysninger, licensnøgler eller en installationsidentifikator. Import erstatter matchende gemte hemmeligheder. Fortsæt?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Denne backup vil indeholde API-nøgler, loginoplysninger, licensnøgler og en installationsidentifikator. Alle med filen kan bruge nøglerne eller identificere denne installation. Fortsæt?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI-foreslåede markeringer"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Eksportér historik som Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Markeringer & noter"
+  },
+  "f_related_66d8": {
+    "message": "Relateret"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Tagger feed {a} af {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} feeds at tagge",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "Navngiver tags: batch {a} af {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} taglister at navngive",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "Spørger din AI-forbindelse én gang om det engelske navn og brugerfladesprogets ord for hvert tag, der endnu ikke er kendt og bruges mindst to gange, mest brugte først. Dine artikler beholder deres tags."
+  },
+  "f_balanced_603d": {
+    "message": "Afbalanceret"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "Kun CPU eller ældre maskine"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU eller Apple Silicon, 7–8B-model"
+  },
+  "f_gentle_9fd8": {
+    "message": "Skånsom"
+  },
+  "f_measure_again_7f07": {
+    "message": "Mål igen"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "Mål denne computer"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "Måling mislykkedes: {e}",
+    "description": "Placeholders: {e} (keep as is)"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "Måler… anden anmodning."
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "Måler… den første anmodning indlæser også modellen."
+  },
+  "f_name_tags_4a5b": {
+    "message": "Navngiv tags"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "Navngiv tags på dit sprog"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "Navngiver tags… {done} af {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "Endnu ikke målt. Testen sender to små vurderingsbatches til Ollama (ca. et minut på en langsom maskine), og intet forlader din computer."
+  },
+  "f_powerful_0df9": {
+    "message": "Kraftfuld"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "Nyere laptop, lille (3–4B) model"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "Opdatér feeds, der poster ofte, og som du læser først"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "Typiske opsætninger for én batch (cirka-intervaller):"
+  },
+  "f_use_b076": {
+    "message": "Brug {p}",
+    "description": "Placeholders: {p} (keep as is)"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "Meget langsom: brug en mindre model"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "Hvad hver profil ville gøre på denne maskine:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "Din egen kombination af batchstørrelse, anmodninger pr. kørsel og interval."
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "en kørsel tager ca. {t}",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "første anmodning {s} (indlæser modellen)",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_over_352a": {
+    "message": "over {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_recommended_a2ac": {
+    "message": "anbefalet"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "op til {n} elementer i timen",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_up_to_196c": {
+    "message": "op til {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_you_d09c": {
+    "message": "dig"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "{n} elementer pr. anmodning · {r} anmodninger pr. kørsel · hvert {m}. min.",
+    "description": "Placeholders: {n} {r} {m} (keep as is)"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{s} for {n} overskrifter",
+    "description": "Placeholders: {s} {n} (keep as is)"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ Ydelsesprofil"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ Alle hyppigt brugte tags har allerede et navn – intet at gøre."
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ Navngav {n} af {total} tags.",
+    "description": "Placeholders: {n} {total} (keep as is)"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ Smart opdateringsrækkefølge"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 Anmodninger pr. automatisk kørsel"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} lignende element",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} lignende elementer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "Ikke den samme historie"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "Stak lignende elementer"
+  },
+  "f_stacking_f819": {
+    "message": "Stakning"
+  },
+  "f_emoji_bcdd": {
+    "message": "Emoji"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "Emoji ser forskellige ud på hver enhed. Ikoner ser ens ud overalt."
+  },
+  "f_icons_2cd9": {
+    "message": "Ikoner"
+  },
+  "f_symbol_style_e034": {
+    "message": "Symbolstil"
+  },
+  "f_accessibility_d09f": {
+    "message": "Tilgængelighed"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "Profil · tekststørrelse · bevægelse"
+  },
+  "f_sign_in_to_use_byphil_cloud__e62e": {
+    "message": "Log ind for at bruge byPhil Cloud-modeller"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Spring over for nu"
+  },
+  "f_continue_d664": {
+    "message": "Fortsæt"
+  },
+  "f_set_up_6abc": {
+    "message": "Opsæt"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Lokale modeller. Ingen konto, ingen nøgle."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Ingen konto. Din nøgle bliver på denne enhed."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Vælg en. Intet sendes, før du resumerer en side."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Log ind med din e-mail. Ingen API-nøgle nødvendig."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Bekvemt: kun din e-mail, ingen API-nøgle. Støtter også mig, en uafhængig udvikler."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Vælg, hvordan dine resuméer skal køre. Du kan ændre det når som helst i indstillingerne."
+  },
+  "f_back_to_top_bd70": {
+    "message": "Til toppen"
+  },
+  "f_all_time_702d": {
+    "message": "Hele tiden"
+  },
+  "f_ask_61b2": {
+    "message": "Spørg"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "Spørg om disse artikler…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "Eksportér disse artikler som en .zip med Markdown-filer"
+  },
+  "f_from_3595": {
+    "message": "Fra"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "Fra {n} resuméer – intet andet blev sendt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_gaps_6714": {
+    "message": "Huller"
+  },
+  "f_reading_summaries_782f": {
+    "message": "Læser {n} resuméer…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_list_245c": {
+    "message": "Vis liste"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "Påbegyndt, aldrig fulgt op"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "Disse artikler har endnu ingen resuméer"
+  },
+  "f_to_9644": {
+    "message": "Til"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "Emner med en eller to gemte artikler, som du ikke har åbnet i 30 dage. En læseliste over det, du er begyndt på."
+  },
+  "f_last_opened_99c0": {
+    "message": "sidst åbnet {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_never_opened_c436": {
+    "message": "aldrig åbnet"
+  },
+  "f_never_opened_bf12": {
+    "message": "{n} aldrig åbnet",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "{n} emner påbegyndt og aldrig fulgt op",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ Brief mig om de {n} uåbnede",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ Brief mig om dette emne"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 Tid"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a} af {b} artikler i perioden",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_never_opened_5256": {
+    "message": "Aldrig åbnet"
+  },
+  "f_opened_0e03": {
+    "message": "Åbnet ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_used_0e42": {
+    "message": "Brugte kilder"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "Tag med i briefing"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Brief mig om alle {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "Læser {n} resuméer · trin {a} af {b}…",
+    "description": "Placeholders: {n} {a} {b} (keep as is)"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n} mere blev udeladt (grænse pr. briefing)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_all_topics_e150": {
+    "message": "Alle emner"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Spørg om denne briefing…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Briefing-layout"
+  },
+  "f_by_time_ff3d": {
+    "message": "Efter tid"
+  },
+  "f_by_topic_4c93": {
+    "message": "Efter emne"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Ryd markering"
+  },
+  "f_opened_too_faf2": {
+    "message": "Også åbnet"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "Ved over {n} artikler bruges kun de {n} nyeste; indsnævr emner eller periode for fuld dækning.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_7213": {
+    "message": "Uåbnet"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Hvilke artikler"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "{n} dubletter sprunget over",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} vist",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} trin, derefter fletning",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topic_7b60": {
+    "message": "{n} emne",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_bee9": {
+    "message": "{n} emner",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Brief"
+  },
+  "f_briefing_scope_9991": {
+    "message": "Briefing-omfang"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Eksportér disse artikler (og briefingen, hvis du lavede en) som en .zip med Markdown-filer"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Vis kun forskningsartikler"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Forskning"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "Kan ikke nå byPhil Cloud lige nu."
+  },
+  "f_check_now_0677": {
+    "message": "Tjek nu"
+  },
+  "f_checking_dad5": {
+    "message": "Tjekker…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Klik igen for at fjerne parringen"
+  },
+  "f_from_phone_850d": {
+    "message": "Fra telefon"
+  },
+  "f_hide_code_5876": {
+    "message": "Skjul kode"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Installér AISH-companion på din telefon, scan koden én gang, og del derefter ethvert link til den. Links ankommer ende-til-ende-krypteret og venter her på dit tryk."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Links delt fra din telefon"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Links, der stadig venter her, slettes, og telefonen kan ikke længere sende."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Par en telefon"
+  },
+  "f_paired_b228": {
+    "message": "Parret"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Parret · sidst tjekket {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Parret · ikke tjekket endnu"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Parret · {n} venter",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_pairing_code_057c": {
+    "message": "Parringskode"
+  },
+  "f_pairing_9d4b": {
+    "message": "Parrer…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Telefonindbakke"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Scan denne kode med AISH-companion-appen. Alle, der scanner den, kan sende links til dig, så hold den privat."
+  },
+  "f_show_code_0cc1": {
+    "message": "Vis kode"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Noget gik galt."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Denne parring er ikke længere gyldig. Fjern parringen, og par igen."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "For mange anmodninger. Prøv igen senere."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Fjern parring og slet indbakke"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Kunne ikke gemme denne side. Åbn den én gang, og prøv igen."
+  },
+  "f_saving_9e7f": {
+    "message": "Gemmer…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Viser, hvilke artikler der deler emner – som billede og liste"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Denne side har ingen tekst at gemme."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Tilføj et forbindelseskort"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "Næsten brugt op – resuméer bruger indtil da en lettere model."
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "Månedligt AI-forbrug"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Fjern dette link fra din indbakke? Det slettes og kan ikke gendannes."
+  },
+  "f_resets_055b": {
+    "message": "Nulstilles {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "Det tog for lang tid at gemme (en meget tung side). Prøv igen, eller åbn den og resumér i stedet."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "Siden svarede ikke (blokeret, eller den kræver login). Åbn den, og prøv igen."
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "Brugt op – lokale modeller virker stadig."
+  },
+  "f_used_8faf": {
+    "message": "{n}% brugt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Kunne ikke sende til din telefon: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Kunne ikke slå Send til telefon til: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Eksportér som Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "Flere handlinger"
+  },
+  "f_open_original_5070": {
+    "message": "Åbn original"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Par først din telefon: Indstillinger → Telefonindbakke."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Scan denne kode med AISH-companion-appen. Alle, der scanner den, kan sende links til dig og læse de artikler, du sender til din telefon, så hold den privat."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Send til telefon"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Send til telefon er slået til. Scan den nye kode i telefonappen én gang."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Send til telefon er slået til: brug ⋯ → Send til telefon på en vilkårlig artikel for at læse den på farten."
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Send via LocalSend"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Sender til din telefon…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Sendt til din telefon (lang artikel forkortet). Den ankommer inden for ca. 15 minutter."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Sendt til din telefon. Den ankommer inden for ca. 15 minutter."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Sendt. For at modtage den skal du scanne den nye kode i telefonappen én gang (Indstillinger → Telefonindbakke)."
+  },
+  "f_share_6dd8": {
+    "message": "Del"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Slå Send til telefon til"
+  },
+  "f_switching_on_e78a": {
+    "message": "Slår til…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "artiklen kunne ikke forberedes"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "parringen er ikke længere gyldig, par igen"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "telefonen har ikke hentet de tidligere artikler endnu"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "serveren kan ikke nås"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "denne artikel er for stor"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "for mange afsendelser, prøv igen senere"
+  },
+  "f_unknown_error_5123": {
+    "message": "ukendt fejl"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "En anden enhed ændrede listen samtidig. Prøv igen."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "Feedlisten er opdateret"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Feedliste synkroniseret: {added} tilføjet, {updated} ændret, {removed} fjernet",
+    "description": "Placeholders: {added} {updated} {removed} (keep as is)"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "Feed-synkronisering er slået til. Scan den nye kode i telefonappen én gang."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "Feed-synkronisering er slået til: din feedliste (ingen artikler) synkroniseres ende-til-ende-krypteret med din telefon."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Sidst synkroniseret {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Slå feed-synkronisering til"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Synkronisér feedliste"
+  },
+  "f_syncing_9560": {
+    "message": "Synker…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "Feedlisten er for stor til at synkronisere."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "Den synkroniserede feedliste kunne ikke læses. Fjern parringen, og par igen."
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "Titler + beskrivelser"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "Kun titler (hurtigere)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 Hvad AI'en læser"
+  },
+  "f_ratings_categories_1449": {
+    "message": "Vurderinger {a} · kategorier {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "det første svar var ulæseligt, så der blev spurgt igen"
+  },
+  "f_by_model_f8c9": {
+    "message": "Efter model"
+  },
+  "f_usage_details_5d1e": {
+    "message": "Forbrugsdetaljer"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} tokens ind · {output} tokens ud",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_request_this_month_2b08": {
+    "message": "{n} anmodning denne måned",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_requests_this_month_9977": {
+    "message": "{n} anmodninger denne måned",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_used_1e41": {
+    "message": "{used} af {limit} brugt",
+    "description": "Placeholders: {used} {limit} (keep as is)"
+  },
+  "f_default_086b": {
+    "message": "(standard)"
+  },
+  "f_free_36fb": {
+    "message": "Gratis"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "Model-ID'er"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "fx gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "{input} ind / {output} ud pr. 1 mio. tokens",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_left_4083": {
+    "message": "{n}% tilbage",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_popular_and_cheapest_4ff4": {
+    "message": "Populære og billigste"
+  },
+  "f_best_value_f0ca": {
+    "message": "Bedste værdi"
+  },
+  "f_use_1947": {
+    "message": "Brug {id}",
+    "description": "Placeholders: {id} (keep as is)"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "Recaps skrives af din Ollama-model, også når resuméer bruger cloud"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Brug altid min lokale model til briefinger"
+  },
+  "f_a_collection_bundles_saved_a_8449": {
+    "message": "En samling samler gemte artikler under ét spørgsmål."
+  },
+  "f_add_to_collection_512f": {
+    "message": "Føj til samling"
+  },
+  "f_added_to_bd62": {
+    "message": "Føjet til “{name}”",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_already_in_43ae": {
+    "message": "Allerede i “{name}”",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_author_c776": {
+    "message": "Forfatter"
+  },
+  "f_authority_agency_6682": {
+    "message": "Myndighed / organ"
+  },
+  "f_check_8de7": {
+    "message": "Tjek"
+  },
+  "f_collection_a8b1": {
+    "message": "Samling"
+  },
+  "f_collections_a966": {
+    "message": "Samlinger"
+  },
+  "f_could_not_open_collections_0d10": {
+    "message": "Kunne ikke åbne samlinger"
+  },
+  "f_create_e47d": {
+    "message": "Opret"
+  },
+  "f_delete_collection_71b6": {
+    "message": "Slet samling"
+  },
+  "f_delete_the_collection_the_ar_f797": {
+    "message": "Slet samlingen “{name}”? Artiklerne bliver i din historik.",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_export_markdown_8a28": {
+    "message": "Eksportér Markdown"
+  },
+  "f_export_as_pdf_f6e3": {
+    "message": "Eksportér som PDF"
+  },
+  "f_export_as_word_docx_9060": {
+    "message": "Eksportér som Word (DOCX)"
+  },
+  "f_export_as_document_odt_a99e": {
+    "message": "Eksportér som dokument (ODT)"
+  },
+  "f_find_other_sources_about_thi_21b5": {
+    "message": "Find andre kilder om dette"
+  },
+  "f_hints_not_ratings_you_decide_cd48": {
+    "message": "Fingerpeg, ikke vurderinger: du afgør selv, hvor meget du stoler på denne kilde."
+  },
+  "f_in_c8be": {
+    "message": "I"
+  },
+  "f_name_of_the_collection_83f4": {
+    "message": "Samlingens navn"
+  },
+  "f_new_collection_ab5b": {
+    "message": "Ny samling"
+  },
+  "f_no_author_found_d6ed": {
+    "message": "Ingen forfatter fundet"
+  },
+  "f_no_date_found_370a": {
+    "message": "Ingen dato fundet"
+  },
+  "f_no_source_details_yet_8e2f": {
+    "message": "Ingen kildeoplysninger endnu"
+  },
+  "f_no_sources_yet_use_add_to_co_dd26": {
+    "message": "Ingen kilder endnu. Brug “Føj til samling” i en artikels ⋯-menu."
+  },
+  "f_not_in_a_collection_yet_8554": {
+    "message": "Endnu ikke i en samling"
+  },
+  "f_older_than_5_years_e219": {
+    "message": "Ældre end 5 år"
+  },
+  "f_open_an_article_s_menu_and_c_0caa": {
+    "message": "Åbn en artikels ⋯-menu og vælg “Føj til samling”, eller start en her."
+  },
+  "f_open_in_new_tab_d191": {
+    "message": "Åbn i ny fane"
+  },
+  "f_opinion_blog_1ad4": {
+    "message": "Holdning / blog"
+  },
+  "f_peer_reviewed_46f1": {
+    "message": "Peer-reviewet"
+  },
+  "f_pre_selected_the_collection__f2bf": {
+    "message": "Forvalgt: den samling, du brugte sidst. Du kan ændre den."
+  },
+  "f_preprint_1c21": {
+    "message": "Preprint"
+  },
+  "f_preprint_not_peer_reviewed_2153": {
+    "message": "Preprint, ikke peer-reviewet"
+  },
+  "f_primary_source_50de": {
+    "message": "Primærkilde"
+  },
+  "f_publisher_ed1f": {
+    "message": "Udgiver"
+  },
+  "f_remove_from_collection_ed35": {
+    "message": "Fjern fra samling"
+  },
+  "f_secondary_source_87f6": {
+    "message": "Sekundærkilde"
+  },
+  "f_send_to_obsidian_a6e9": {
+    "message": "Send til Obsidian"
+  },
+  "f_source_check_4cb0": {
+    "message": "Kildetjek"
+  },
+  "f_that_collection_no_longer_ex_264a": {
+    "message": "Den samling findes ikke længere."
+  },
+  "f_this_collection_is_full_sour_a6b7": {
+    "message": "Denne samling er fuld ({n} kilder).",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_type_d06d": {
+    "message": "Type"
+  },
+  "f_what_do_other_sources_say_ab_34c8": {
+    "message": "Hvad siger andre kilder om det?"
+  },
+  "f_what_is_missing_186e": {
+    "message": "Hvad mangler?"
+  },
+  "f_where_does_the_claim_come_fr_de33": {
+    "message": "Hvor kommer påstanden fra?"
+  },
+  "f_who_is_behind_this_f59e": {
+    "message": "Hvem står bag?"
+  },
+  "f_your_question_761e": {
+    "message": "Dit spørgsmål"
+  },
+  "f_your_question_optional_cc1d": {
+    "message": "Dit spørgsmål (valgfrit)"
+  },
+  "f_last_used_743a": {
+    "message": "sidst brugt"
+  },
+  "f_sources_9831": {
+    "message": "kilder"
+  },
+  "f_updated_4716": {
+    "message": "opdateret {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_added_to_2a85": {
+    "message": "{a} føjet til “{name}”",
+    "description": "Placeholders: {a} {name} (keep as is)"
+  },
+  "f_added_to_the_collection_is_f_3393": {
+    "message": "{a} føjet til “{name}”; samlingen er fuld ({n} kilder).",
+    "description": "Placeholders: {a} {name} {n} (keep as is)"
+  },
+  "f_of_answered_a944": {
+    "message": "{a} af {n} besvaret",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_checked_9b44": {
+    "message": "{a} af {n} tjekket",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_checked_6b66": {
+    "message": "{a}/{n} tjekket",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_sources_570e": {
+    "message": "{n} af {max} kilder",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_sources_1825": {
+    "message": "{n} kilder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_sources_ca4e": {
+    "message": "Tilføj kilder"
+  },
+  "f_all_sources_checked_export_t_a6d2": {
+    "message": "Alle kilder er tjekket. Eksportér samlingen som Markdown for at skrive den op eller dele den."
+  },
+  "f_next_check_your_sources_stil_a5d2": {
+    "message": "Næste: tjek dine kilder ({n} mangler stadig), og eksportér derefter samlingen.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_agree_2be3": {
+    "message": "Enige"
+  },
+  "f_compare_what_your_sources_sa_ce64": {
+    "message": "Sammenlign, hvad dine kilder siger: hvor de er enige, uenige, og hvad der mangler."
+  },
+  "f_create_overview_8cc0": {
+    "message": "Opret overblik"
+  },
+  "f_created_sources_56b9": {
+    "message": "Oprettet {d}, {n} kilder.",
+    "description": "Placeholders: {d} {n} (keep as is)"
+  },
+  "f_disagree_94b9": {
+    "message": "Uenige"
+  },
+  "f_from_summaries_1ec5": {
+    "message": "Fra resuméer"
+  },
+  "f_from_summaries_not_checked_a_3af2": {
+    "message": "Fra resuméer, ikke tjekket mod de fulde tekster."
+  },
+  "f_missing_d6a7": {
+    "message": "Mangler"
+  },
+  "f_needs_at_least_2_sources_wit_8f99": {
+    "message": "Kræver mindst 2 kilder med et resumé."
+  },
+  "f_not_checked_against_the_full_abd6": {
+    "message": "Ikke tjekket mod de fulde tekster."
+  },
+  "f_overview_4fba": {
+    "message": "Overblik"
+  },
+  "f_sends_your_question_and_summ_e6d1": {
+    "message": "Sender dit spørgsmål og {n} resuméer til din AI-model. Fulde tekster bliver på din enhed.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_sources_changed_since_re_a027": {
+    "message": "Kilderne er ændret siden – opdatér."
+  },
+  "f_other_saved_articles_e035": {
+    "message": "Andre gemte artikler"
+  },
+  "f_suggested_fits_your_sources_efa7": {
+    "message": "Foreslået: passer til dine kilder"
+  },
+  "f_check_each_source_before_you_2659": {
+    "message": "Tjek hver kilde, før du stoler på den. Bliv ikke på siden: søg efter, hvem der står bag, og hvad andre siger."
+  },
+  "f_copy_references_6116": {
+    "message": "Kopiér referencer"
+  },
+  "f_save_as_collection_36e4": {
+    "message": "Gem som samling"
+  },
+  "f_saved_as_collection_sources_8421": {
+    "message": "Gemt som samling ({n} kilder)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_start_a_collection_from_the__5c47": {
+    "message": "Start en samling med de nyeste artikler om dette emne (op til 15). Intet sendes nogen steder."
+  },
+  "f_task_3d8c": {
+    "message": "Opgave"
+  },
+  "f_worksheet_4fe3": {
+    "message": "Arbejdsark"
+  },
+  "f_references_copied_a61d": {
+    "message": "{n} referencer kopieret",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_references_copied_without_do_7bc4": {
+    "message": "{n} referencer kopieret, {m} uden DOI sprunget over",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_doi_e927": {
+    "message": "DOI"
+  },
+  "f_enter_a_valid_doi_first_93c8": {
+    "message": "Indtast først en gyldig DOI."
+  },
+  "f_fill_from_doi_7cb8": {
+    "message": "Udfyld fra DOI"
+  },
+  "f_filled_from_doi_org_check_an_a9ae": {
+    "message": "Udfyldt fra doi.org. Tjek og ret efter behov."
+  },
+  "f_original_title_8400": {
+    "message": "Original titel"
+  },
+  "f_rename_31f3": {
+    "message": "Omdøb"
+  },
+  "f_renamed_10b5": {
+    "message": "Omdøbt"
+  },
+  "f_title_71a9": {
+    "message": "Titel"
+  },
+  "f_delete_about_d83d": {
+    "message": "Slet {n} (ca. {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_delete_articles_this_cannot__5f89": {
+    "message": "Slet {n} artikler? Det kan ikke fortrydes.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_deleting_removes_the_summary_b7d4": {
+    "message": "Sletning fjerner resuméet og den gemte sidetekst. Eksportér først en backup, hvis du er i tvivl."
+  },
+  "f_free_up_space_e9f2": {
+    "message": "Frigør plads"
+  },
+  "f_not_now_6fce": {
+    "message": "Ikke nu"
+  },
+  "f_nothing_large_and_unopened_t_7635": {
+    "message": "Intet stort og uåbnet at fjerne."
+  },
+  "f_saved_data_is_getting_large__3b00": {
+    "message": "Gemte data bliver store ({size}). {n} store artikler har ikke været åbnet i måneder.",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_saved_data_these_articles_ar_c4fc": {
+    "message": "Gemte data: {size}. Disse artikler er store og har ikke været åbnet i {d}+ dage.",
+    "description": "Placeholders: {size} {d} (keep as is)"
+  },
+  "f_select_what_can_go_7927": {
+    "message": "Vælg, hvad der kan væk"
+  },
+  "f_showing_the_largest_of_bd2f": {
+    "message": "Viser de {n} største af {m}.",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_not_opened_for_days_05c1": {
+    "message": "ikke åbnet i {d} dage",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_articles_deleted_7937": {
+    "message": "{n} artikler slettet",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_are_starred_or_in_a_col_6c6e": {
+    "message": "{n} flere er stjernemarkeret eller i en samling og vises aldrig.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_to_favorites_3814": {
+    "message": "Føj til favoritter"
+  },
+  "f_delete_selected_articles_thi_fc7a": {
+    "message": "Slet {n} valgte artikler? Det kan ikke fortrydes.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_remove_from_favorites_bb86": {
+    "message": "Fjern fra favoritter"
+  },
+  "f_summaries_in_one_file_ed78": {
+    "message": "{n} resuméer i én fil",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_in_one_file_2d00": {
+    "message": "{n} resumé i én fil",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_images_removed_from_articles_8da9": {
+    "message": "Billeder fjernet fra {n} artikler · ca. {size} frigjort",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_keeps_title_summary_tags_hig_a492": {
+    "message": "Beholder titel, resumé, tags, markeringer og din statistik. Spørgsmål om artiklen bruger så kun resuméet. Stjernemarkerede artikler og artikler i en samling springes over."
+  },
+  "f_no_saved_images_7ea9": {
+    "message": "Ingen gemte billeder."
+  },
+  "f_not_opened_for_at_least_days_3606": {
+    "message": "Ikke åbnet i mindst (dage)"
+  },
+  "f_nothing_old_enough_5ba9": {
+    "message": "Intet gammelt nok."
+  },
+  "f_off_new_articles_keep_only_t_f4c4": {
+    "message": "Fra: nye artikler beholder kun teksten. Billeder er det, der gør gemte sider store."
+  },
+  "f_page_text_of_articles_remove_9099": {
+    "message": "Sidetekst fjernet fra {n} artikler",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_page_text_removed_from_artic_59a7": {
+    "message": "Sidetekst fjernet fra {n} artikler · ca. {size} frigjort",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_pick_single_articles_to_trim_a05e": {
+    "message": "Vælg enkelte artikler at beskære eller slette."
+  },
+  "f_remove_images_ac3d": {
+    "message": "Fjern billeder"
+  },
+  "f_remove_images_from_saved_art_71cb": {
+    "message": "Fjern billeder fra gemte artikler"
+  },
+  "f_remove_page_text_3553": {
+    "message": "Fjern sidetekst"
+  },
+  "f_remove_page_text_of_old_arti_3fc8": {
+    "message": "Fjern sidetekst fra gamle artikler"
+  },
+  "f_remove_page_text_of_about_b647": {
+    "message": "Fjern sidetekst fra {n} (ca. {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_remove_the_images_from_all_s_b3c1": {
+    "message": "Fjern billederne fra alle gemte artikler? Teksten bliver. Det kan ikke fortrydes."
+  },
+  "f_remove_the_saved_page_text_o_8d34": {
+    "message": "Fjern den gemte sidetekst fra {n} artikler? Resuméer og statistik bliver. Det kan ikke fortrydes.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_removing_the_page_text_keeps_f4ca": {
+    "message": "Når sideteksten fjernes, beholdes titel, resumé, tags og markeringer, og statistikken forbliver uændret. Sletning fjerner hele artiklen. Eksportér først en backup, hvis du er i tvivl."
+  },
+  "f_review_large_unopened_articl_df0f": {
+    "message": "Gennemgå store, uåbnede artikler"
+  },
+  "f_save_images_with_articles_7dcd": {
+    "message": "Gem billeder med artikler"
+  },
+  "f_saved_data_articles_2ab7": {
+    "message": "Gemte data: {size} · {n} artikler",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_storage_cleanup_e0d8": {
+    "message": "Lager & oprydning"
+  },
+  "f_articles_with_images_about_8d5b": {
+    "message": "{n} artikler med billeder · ca. {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_articles_about_f741": {
+    "message": "{n} artikler · ca. {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_copy_of_5f2c": {
+    "message": "Kopi af “{t}”",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_duplicates_259f": {
+    "message": "Dubletter"
+  },
+  "f_duplicates_and_large_unopene_2310": {
+    "message": "Dubletter og store, uåbnede artikler. Vælg, hvad der skal beskæres eller slettes."
+  },
+  "f_images_53cb": {
+    "message": "Billeder"
+  },
+  "f_large_and_not_opened_31c1": {
+    "message": "Store og uåbnede"
+  },
+  "f_nothing_large_unopened_or_du_4ba6": {
+    "message": "Intet stort, uåbnet eller duplikeret at fjerne."
+  },
+  "f_page_text_fa29": {
+    "message": "Sidetekst"
+  },
+  "f_saved_data_tick_what_can_go_4926": {
+    "message": "Gemte data: {size}. Sæt flueben ved det, der kan væk.",
+    "description": "Placeholders: {size} (keep as is)"
+  },
+  "f_show_more_bc06": {
+    "message": "Vis flere ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stays_statistics_are_based_o_7b82": {
+    "message": "Bliver – statistikken bygger på dette"
+  },
+  "f_summaries_tags_highlights_467b": {
+    "message": "Resuméer, tags, markeringer"
+  },
+  "f_the_same_page_saved_more_tha_5a32": {
+    "message": "Den samme side gemt mere end én gang. Den nyeste kopi med et resumé bliver."
+  },
+  "f_view_analytics_report_0aaa": {
+    "message": "Vis analyserapport"
+  },
+  "f_view_graph_dfcc": {
+    "message": "Vis graf"
+  },
+  "f_doi_7aee": {
+    "message": "+ DOI"
+  },
+  "f_10_xxxx_or_doi_org_link_63ec": {
+    "message": "10.xxxx/… eller doi.org-link"
+  },
+  "f_add_doi_d4a4": {
+    "message": "Tilføj DOI"
+  },
+  "f_cite_237e": {
+    "message": "Citér"
+  },
+  "f_doi_0b23": {
+    "message": "DOI ✓ ↗"
+  },
+  "f_article_actions_2b7e": {
+    "message": "Artikelhandlinger"
+  },
+  "f_article_toolbar_008a": {
+    "message": "Artikelværktøjslinje"
+  },
+  "f_markdown_116c": {
+    "message": "Markdown"
+  },
+  "f_move_down_faa8": {
+    "message": "Flyt ned"
+  },
+  "f_move_up_9e41": {
+    "message": "Flyt op"
+  },
+  "f_obsidian_8150": {
+    "message": "Obsidian"
+  },
+  "f_pdf_7875": {
+    "message": "PDF"
+  },
+  "f_phone_944f": {
+    "message": "Telefon"
+  },
+  "f_pick_the_actions_for_the_bar_c800": {
+    "message": "Vælg handlingerne til linjen over en artikel, og sortér dem. De første tre vises altid; flere dukker op, når vinduet er bredere. Alt andet bliver i ⋯-menuen."
+  },
+  "f_reset_toolbar_ee9b": {
+    "message": "Nulstil værktøjslinje"
+  },
+  "f_send_to_e_reader_kindle_or_l_48d7": {
+    "message": "Send til e-reader (Kindle eller LocalSend)"
+  },
+  "f_customize_toolbar_b65f": {
+    "message": "Tilpas værktøjslinje…"
+  },
+  "f_everything_is_in_the_bar_d67d": {
+    "message": "Alt er i linjen."
+  },
+  "f_other_actions_drag_into_the__ae3e": {
+    "message": "Andre handlinger: træk ind i linjen"
+  },
+  "f_copy_link_90dc": {
+    "message": "Kopiér link"
+  },
+  "f_kindle_a768": {
+    "message": "Kindle"
+  },
+  "f_last_used_5cda": {
+    "message": "Sidst brugt"
+  },
+  "f_link_copied_d7d3": {
+    "message": "Link kopieret"
+  },
+  "f_manage_targets_5162": {
+    "message": "Administrér mål…"
+  },
+  "f_not_paired_pair_now_fffe": {
+    "message": "Ikke parret · par nu"
+  },
+  "f_send_to_eb5e": {
+    "message": "Send til…"
+  },
+  "f_share_c6da": {
+    "message": "Del…"
+  },
+  "f_system_share_apps_airdrop_ma_a10d": {
+    "message": "Systemdeling: apps, AirDrop, mail"
+  },
+  "f_always_available_45ef": {
+    "message": "Altid tilgængelig"
+  },
+  "f_not_paired_e80f": {
+    "message": "Ikke parret"
+  },
+  "f_not_set_up_eacf": {
+    "message": "Ikke sat op"
+  },
+  "f_opens_your_system_share_shee_38bd": {
+    "message": "Åbner dit systems delingsark (Mail, Beskeder, AirDrop, notesapps …) med artiklens link og resumé. Intet at sætte op."
+  },
+  "f_use_as_default_target_9cee": {
+    "message": "Brug som standardmål"
+  },
+  "f_devices_961c": {
+    "message": "{n} enheder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_targets_3e2c": {
+    "message": "‹ Sendemål"
+  },
+  "f_more_b42e": {
+    "message": "{n} flere…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancelled_not_sent_e7ab": {
+    "message": "Annulleret: ikke sendt"
+  },
+  "f_sending_to_in_s_808b": {
+    "message": "Sender til {name} om {n} s",
+    "description": "Placeholders: {name} {n} (keep as is)"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Markér udvalget",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Fjern alle markeringer",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Resumér denne side",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Resumér & luk fane",
+    "description": "Right-click menu entry"
+  }
+}
